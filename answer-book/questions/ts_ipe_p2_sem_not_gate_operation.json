@@ -1,0 +1,433 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_not_gate_operation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the operation of a NOT gate and give its truth table.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "NOT gate defined",
+      "marks": 1
+    },
+    {
+      "label": "Operation with input low",
+      "marks": 1
+    },
+    {
+      "label": "Operation with input high",
+      "marks": 1
+    },
+    {
+      "label": "Truth table",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two figures carry 0 marks because the question does not ask for a diagram. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the book prints 'viceversa', 'forward baised' and 'y = 1' with a lowercase y; all are written correctly here. FIGURE NOTE: the book's circuit adds a base network of two resistors to a negative rail; the figure here shows the base driven directly from the input A, which is the form printed in most texts and keeps the figure inside the 15-element limit. The physics of both cases is unchanged. Physics hand-checked: with the base at 0 V the base-emitter junction of the n-p-n transistor is not forward biased, so the collector current is zero, there is no drop across the collector resistance and the output sits at the supply voltage; with the base driven well positive the transistor saturates, the collector current is a maximum, almost the whole supply voltage is dropped across the collector resistance and the output falls to nearly zero. The figure was rendered and inspected before this card was filed."
+  },
+  "recall_prompt": "Say what a NOT gate does, explain both input cases through the transistor circuit, and give the truth table.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Semiconductor Electronics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "NOT gate",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "NOT gate:",
+            "style": "heading"
+          },
+          "A NOT gate is a logic gate with one input",
+          "and one output. Its output is high (1)",
+          "when the input is low (0), and low (0)",
+          "when the input is high (1).",
+          "It is also called an inverter.",
+          {
+            "text": "Y = \\overline{A}",
+            "style": "eq",
+            "render": "katex"
+          }
+        ],
+        "margin_note": "First mark. One input, one output, and the output is the inverse of the input.",
+        "why": "The NOT gate is the only gate with a single input, so naming that first separates it from every other gate before the behaviour is even described.",
+        "common_mistakes": [
+          "Saying it has two inputs. A NOT gate has exactly one.",
+          "Writing Y = A. The bar over A is the whole gate."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a NOT gate has one input and one output and gives the inverse of its input.",
+          "accept": [
+            "one input one output",
+            "output is the inverse of the input",
+            "it is an inverter"
+          ],
+          "reject": [
+            "output is zero only when both inputs are one"
+          ],
+          "heard_as": [
+            "not gate",
+            "inverter",
+            "inverse"
+          ]
+        },
+        "memory_tip": "One in, one out, and the answer is always the opposite."
+      },
+      {
+        "id": "s2_symbol",
+        "kind": "diagram",
+        "label": "NOT symbol",
+        "marks": 0,
+        "figure": {
+          "id": "not_symbol",
+          "width": 260,
+          "height": 160,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "not_triangle",
+              "d": "M 70 50 L 70 106 L 126 78 Z",
+              "ms": 2590
+            },
+            {
+              "type": "stroke",
+              "id": "not_bubble",
+              "d": "M 126 78 A 7 7 0 0 1 140 78 A 7 7 0 0 1 126 78",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "not_in",
+              "d": "M 24 78 L 70 78",
+              "ms": 660
+            },
+            {
+              "type": "stroke",
+              "id": "not_out",
+              "d": "M 140 78 L 200 78",
+              "ms": 860
+            },
+            {
+              "type": "label",
+              "id": "not_lbl_a",
+              "x": 6,
+              "y": 86,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "not_lbl_y",
+              "x": 208,
+              "y": 86,
+              "text": "Y",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "A triangle with a small circle at its tip. The circle is what makes it a NOT gate.",
+        "why": "A triangle without the circle is a buffer, which passes the input through unchanged. The circle is therefore the entire symbol, not decoration.",
+        "common_mistakes": [
+          "Leaving out the small circle at the tip.",
+          "Drawing two input leads. A NOT gate has one."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the NOT symbol is a triangle with a small circle at its tip.",
+          "accept": [
+            "triangle with a bubble",
+            "triangle and a small circle at the output",
+            "inverter symbol"
+          ],
+          "reject": [
+            "flat back with a round nose"
+          ],
+          "heard_as": [
+            "symbol",
+            "triangle",
+            "bubble"
+          ]
+        },
+        "memory_tip": "Triangle points the signal on; the circle turns it over."
+      },
+      {
+        "id": "s3_circuit",
+        "kind": "diagram",
+        "label": "Transistor circuit",
+        "marks": 0,
+        "figure": {
+          "id": "not_gate_circuit",
+          "width": 340,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ng_supply_r",
+              "d": "M 190 28 L 190 52 L 180 60 L 200 72 L 180 84 L 200 96 L 190 104",
+              "ms": 1710
+            },
+            {
+              "type": "stroke",
+              "id": "ng_collector",
+              "d": "M 176 142 L 190 130 L 190 104",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "ng_output",
+              "d": "M 190 116 L 268 116",
+              "ms": 1110
+            },
+            {
+              "type": "stroke",
+              "id": "ng_circle",
+              "d": "M 162 150 A 28 28 0 0 1 218 150 A 28 28 0 0 1 162 150",
+              "ms": 2510
+            },
+            {
+              "type": "stroke",
+              "id": "ng_base_bar",
+              "d": "M 176 136 L 176 164",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "ng_emitter",
+              "d": "M 176 158 L 196 174 L 196 205",
+              "ms": 810
+            },
+            {
+              "type": "stroke",
+              "id": "ng_arrow",
+              "d": "M 187.6 161.8 L 192 170.8 L 182.3 168.4",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "ng_ground",
+              "d": "M 182 205 L 210 205 M 187 213 L 205 213 M 192 221 L 200 221",
+              "ms": 770
+            },
+            {
+              "type": "stroke",
+              "id": "ng_base_in",
+              "d": "M 100 150 L 176 150",
+              "ms": 1090
+            },
+            {
+              "type": "label",
+              "id": "ng_lbl_v",
+              "x": 176,
+              "y": 22,
+              "text": "+V",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ng_lbl_y",
+              "x": 276,
+              "y": 124,
+              "text": "Y",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ng_lbl_a",
+              "x": 78,
+              "y": 158,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ng_lbl_r",
+              "x": 208,
+              "y": 80,
+              "text": "R",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "An n-p-n transistor with the collector resistance R to the supply. Input at the base, output at the collector.",
+        "why": "Everything in the explanation happens at two places in this figure: the base, where the input decides whether current flows, and the collector, where the drop across R decides the output. Marking those two points makes both cases one line each.",
+        "common_mistakes": [
+          "Taking the output from the emitter. The output of this gate is at the collector.",
+          "Leaving out the collector resistance. Without a drop across it the output could not change."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the circuit is a transistor with a collector resistance to the supply, input at the base and output at the collector.",
+          "accept": [
+            "transistor with a resistor to the supply",
+            "input at the base output at the collector",
+            "draw the transistor circuit with the collector resistance"
+          ],
+          "reject": [
+            "output is high when the input is low"
+          ],
+          "heard_as": [
+            "circuit",
+            "collector",
+            "base"
+          ]
+        },
+        "memory_tip": "Input at the base, output at the collector — never the other way round."
+      },
+      {
+        "id": "s4_input_low",
+        "kind": "text",
+        "label": "Input A = 0",
+        "marks": 1,
+        "mark_note": "Output high",
+        "lines": [
+          {
+            "text": "When A = 0:",
+            "style": "heading"
+          },
+          "The base is at 0 V, so the base-emitter",
+          "junction is not forward biased. The base",
+          "current, and hence the collector current,",
+          "is zero.",
+          "With no current there is no drop across",
+          "the collector resistance, so the output",
+          "is at +V. Hence Y = 1."
+        ],
+        "margin_note": "Second mark. No base current → no collector current → no drop across R → output at +V.",
+        "why": "The output voltage is the supply voltage minus the drop across the collector resistance. With zero current that drop is zero, so the output sits at the full supply voltage — which is what the circuit reads as logic 1.",
+        "common_mistakes": [
+          "Saying the output is 0 V when the transistor is off. With no current there is no drop, so the output is at +V.",
+          "Leaving out the collector current. The chain runs base current, collector current, then the drop."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with the input low the transistor carries no collector current, there is no drop across the resistance and the output is at the supply voltage, so Y = 1.",
+          "accept": [
+            "no base current so no collector current",
+            "no drop across the resistor so output is plus V",
+            "output is high, Y is one"
+          ],
+          "reject": [
+            "the transistor is in saturation"
+          ],
+          "heard_as": [
+            "input zero",
+            "cut off",
+            "output high"
+          ]
+        },
+        "memory_tip": "No current, no drop, full voltage at the output."
+      },
+      {
+        "id": "s5_input_high",
+        "kind": "text",
+        "label": "Input A = 1",
+        "marks": 1,
+        "mark_note": "Output low",
+        "lines": [
+          {
+            "text": "When A = 1:",
+            "style": "heading"
+          },
+          "A large enough positive voltage at A",
+          "forward biases the base-emitter junction.",
+          "The transistor goes into saturation and",
+          "the maximum collector current flows.",
+          "Almost the whole supply voltage is now",
+          "dropped across the collector resistance,",
+          "so the output falls to nearly zero.",
+          "Hence Y = 0."
+        ],
+        "margin_note": "Third mark. Saturation, maximum current, whole supply dropped across R, output nearly zero.",
+        "why": "In saturation the collector-to-emitter voltage of the transistor is very small, so the resistance takes almost all of the supply voltage. The output, measured between the collector and the earth, is then close to zero — logic 0.",
+        "common_mistakes": [
+          "Saying the output is +V when the transistor conducts. It is nearly zero.",
+          "Leaving out the word saturation. That is the state the examiner looks for."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with the input high the transistor saturates, the maximum collector current flows, the supply voltage is dropped across the resistance and the output is nearly zero, so Y = 0.",
+          "accept": [
+            "transistor goes into saturation",
+            "maximum collector current flows",
+            "output voltage becomes nearly zero"
+          ],
+          "reject": [
+            "collector current is zero"
+          ],
+          "heard_as": [
+            "input one",
+            "saturation",
+            "output low"
+          ]
+        },
+        "memory_tip": "Full current, full drop across R, nothing left for the output."
+      },
+      {
+        "id": "s6_truth_table",
+        "kind": "boxed_final",
+        "label": "Truth table",
+        "marks": 1,
+        "mark_note": "Both rows",
+        "lines": [
+          {
+            "text": "Truth table of NOT gate:",
+            "style": "heading"
+          },
+          "A = 0 → Y = 1",
+          "A = 1 → Y = 0",
+          {
+            "text": "Y = \\overline{A}",
+            "style": "eq",
+            "render": "katex"
+          }
+        ],
+        "margin_note": "Fourth mark. Two rows only — a one-input gate has two rows, not four.",
+        "why": "A gate with n inputs has 2 to the power n rows, so one input gives exactly two rows. Writing four rows shows the gate was misread as a two-input gate.",
+        "common_mistakes": [
+          "Writing four rows. One input gives two rows.",
+          "Writing the same value for input and output."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the truth table has two rows: 0 gives 1 and 1 gives 0.",
+          "accept": [
+            "zero gives one and one gives zero",
+            "two rows only",
+            "output is the inverse of the input"
+          ],
+          "reject": [
+            "one one one zero"
+          ],
+          "heard_as": [
+            "truth table",
+            "zero one",
+            "one zero"
+          ]
+        },
+        "memory_tip": "One input, two rows, and each row is a swap."
+      }
+    ]
+  },
+  "insider_note": "Both cases run down the same chain — base current, collector current, drop across the resistance, output. Write that chain once and read it twice."
+}

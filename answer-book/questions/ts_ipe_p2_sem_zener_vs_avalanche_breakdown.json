@@ -1,0 +1,159 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_zener_vs_avalanche_breakdown",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between zener breakdown and Avalanche breakdown.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Zener breakdown — its points",
+      "marks": 2
+    },
+    {
+      "label": "Avalanche breakdown — its points",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. The five printed contrasts (doping, reverse voltage, depletion thickness, which diodes, mechanism) are all kept. One phrase is written more precisely than the book: the book's fifth avalanche point reads 'Due to sufficient electric field, disturbing of covalent bonds takes place', which does not say what makes avalanche different. The mechanism is collision — the field accelerates minority carriers until they knock electrons out of covalent bonds and the freed carriers repeat it — and that is what is written here. The depletion thickness figures follow the book: less than about one micron for zener breakdown, of the order of one micron for avalanche."
+  },
+  "recall_prompt": "Compare the two breakdowns point by point — doping, reverse voltage, depletion thickness, which diodes, and the mechanism.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Semiconductor Electronics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zener_breakdown",
+        "kind": "text",
+        "label": "Zener breakdown",
+        "marks": 2,
+        "mark_note": "Five points listed",
+        "lines": [
+          {
+            "text": "Zener breakdown:",
+            "style": "heading"
+          },
+          "1) It occurs in heavily doped diodes.",
+          "2) It occurs at low reverse voltages.",
+          "3) The depletion layer is thin, less than",
+          {
+            "text": "about one micron (1 μm).",
+            "style": "indent"
+          },
+          "4) It occurs in zener diodes.",
+          "5) The strong electric field across the",
+          {
+            "text": "thin layer breaks the covalent bonds",
+            "style": "indent"
+          },
+          {
+            "text": "directly and frees the carriers.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Two marks. Heavy doping, low voltage, thin layer, direct bond breaking — those four carry the marks.",
+        "why": "Heavy doping is the root cause of every other point. It makes the depletion layer very thin, so even a small reverse voltage produces a very strong field across it, and that field pulls electrons straight out of the covalent bonds without any collision.",
+        "common_mistakes": [
+          "Saying zener breakdown happens at high reverse voltage. It happens at low reverse voltage, below about 6 V.",
+          "Saying the diode is destroyed. Zener breakdown is not damage — the diode recovers, provided the current is limited by a series resistor.",
+          "Describing collisions. Collision is the avalanche mechanism, not the zener one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That zener breakdown occurs in heavily doped diodes at low reverse voltage, across a thin depletion layer, by the field breaking covalent bonds directly.",
+          "accept": [
+            "heavily doped and low reverse voltage",
+            "thin depletion layer under one micron",
+            "strong field breaks covalent bonds"
+          ],
+          "reject": [
+            "lightly doped diodes at high voltage"
+          ],
+          "heard_as": [
+            "zener breakdown",
+            "heavily doped",
+            "covalent bonds"
+          ]
+        },
+        "memory_tip": "Zener: heavy doping, thin layer, low voltage, field pulls bonds apart."
+      },
+      {
+        "id": "s2_avalanche_breakdown",
+        "kind": "text",
+        "label": "Avalanche breakdown",
+        "marks": 2,
+        "mark_note": "Same five points, other column",
+        "lines": [
+          {
+            "text": "Avalanche breakdown:",
+            "style": "heading"
+          },
+          "1) It occurs in lightly doped diodes.",
+          "2) It occurs at high reverse voltages.",
+          "3) The depletion layer is thicker, of the",
+          {
+            "text": "order of one micron (1 μm).",
+            "style": "indent"
+          },
+          "4) It occurs in ordinary diodes.",
+          "5) The field speeds up the minority",
+          {
+            "text": "carriers until they collide and break",
+            "style": "indent"
+          },
+          {
+            "text": "covalent bonds. The freed carriers",
+            "style": "indent"
+          },
+          {
+            "text": "collide again, so the current builds up.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Two marks. Light doping, high voltage, thicker layer, and collisions — the word collision is what separates this from zener breakdown.",
+        "why": "Light doping makes the depletion layer wide, so a carrier crossing it is accelerated over a long distance and arrives with enough energy to knock an electron out of a bond by collision. Each collision makes two carriers where there was one, and the repeating process is what the word avalanche describes.",
+        "common_mistakes": [
+          "Leaving out the collisions. That word is the whole difference from zener breakdown.",
+          "Saying it occurs only in zener diodes. It occurs in ordinary diodes as well.",
+          "Saying the depletion layer is thinner than in zener breakdown. It is thicker."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That avalanche breakdown occurs in lightly doped diodes at high reverse voltage, across a thicker layer, by accelerated carriers breaking bonds through collisions.",
+          "accept": [
+            "lightly doped and high reverse voltage",
+            "carriers are accelerated and collide",
+            "collisions free more carriers"
+          ],
+          "reject": [
+            "heavily doped diodes at low voltage"
+          ],
+          "heard_as": [
+            "avalanche",
+            "lightly doped",
+            "collision"
+          ]
+        },
+        "memory_tip": "Avalanche: light doping, wide layer, high voltage, one collision starts many."
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for one word in each column — direct field for zener, collisions for avalanche. Everything else follows from the doping level."
+}

@@ -1,0 +1,295 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_transistor_circuit_symbols",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Draw the circuit symbols of p-n-p and n-p-n transistors.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "n-p-n symbol, arrow pointing out",
+      "marks": 1
+    },
+    {
+      "label": "p-n-p symbol, arrow pointing in",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the book prints 'Drawn the circuit symbols of P-N-P and N-P-N Transistors ?' — 'Drawn' is corrected to 'Draw' and the space before the question mark is dropped. PRINTED FIGURE ERROR CORRECTED (book p.54): the book's two symbols are SWAPPED. Its figure (a), captioned '(i) n-p-n transistor', carries the emitter arrow pointing INTO the base — that is the p-n-p symbol; its figure (b), captioned '(ii) p-n-p transistor', carries the arrow pointing OUT — that is the n-p-n symbol. Both figures on this card are drawn to the correct convention: the arrow sits on the emitter and points the way conventional current flows, OUT of an n-p-n transistor and INTO a p-n-p transistor. Both figures were rendered and inspected before this card was filed."
+  },
+  "recall_prompt": "Say where the arrow sits on a transistor symbol and which way it points for n-p-n and for p-n-p.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_npn_symbol",
+        "kind": "diagram",
+        "label": "n-p-n symbol",
+        "marks": 1,
+        "mark_note": "n-p-n drawn, arrow out",
+        "figure": {
+          "id": "npn_symbol",
+          "width": 330,
+          "height": 215,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "npn_circle",
+              "d": "M 104 100 A 46 46 0 0 1 196 100 A 46 46 0 0 1 104 100",
+              "ms": 4130
+            },
+            {
+              "type": "stroke",
+              "id": "npn_base_bar",
+              "d": "M 136 76 L 136 124",
+              "ms": 690
+            },
+            {
+              "type": "stroke",
+              "id": "npn_base_lead",
+              "d": "M 70 100 L 136 100",
+              "ms": 940
+            },
+            {
+              "type": "stroke",
+              "id": "npn_collector",
+              "d": "M 136 86 L 180 58 L 180 30",
+              "ms": 1150
+            },
+            {
+              "type": "stroke",
+              "id": "npn_emitter",
+              "d": "M 136 114 L 180 142 L 180 178",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "npn_arrow_out",
+              "d": "M 156.3 120.4 L 163.3 131.4 L 150.4 129.7",
+              "ms": 370
+            },
+            {
+              "type": "label",
+              "id": "npn_lbl_c",
+              "x": 190,
+              "y": 26,
+              "text": "Collector",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "npn_lbl_e",
+              "x": 190,
+              "y": 184,
+              "text": "Emitter",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "npn_lbl_b",
+              "x": 8,
+              "y": 92,
+              "text": "Base",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "npn_lbl_title",
+              "x": 56,
+              "y": 208,
+              "text": "n-p-n transistor",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "First mark. The arrow on the emitter points AWAY from the base — out of the transistor.",
+        "why": "The arrow is the only part of the symbol that tells the two transistors apart, so the whole mark rides on its direction. It marks the emitter and points the way conventional current flows in that lead. In an n-p-n transistor the emitter supplies electrons, so conventional current flows out of the emitter, and the arrow points out.",
+        "common_mistakes": [
+          "Drawing the arrow pointing into the base. That is the p-n-p symbol.",
+          "Putting the arrow on the collector. The arrow is always on the emitter.",
+          "Leaving the three leads unlabelled. Emitter, base and collector must be named."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That in the n-p-n symbol the emitter arrow points out of the transistor.",
+          "accept": [
+            "arrow on the emitter pointing outward",
+            "arrow away from the base for n-p-n",
+            "n p n arrow points out"
+          ],
+          "reject": [
+            "arrow pointing into the base"
+          ],
+          "heard_as": [
+            "n p n",
+            "arrow out",
+            "emitter"
+          ]
+        },
+        "memory_tip": "NPN = Not Pointing iN. The n-p-n arrow points out."
+      },
+      {
+        "id": "s2_pnp_symbol",
+        "kind": "diagram",
+        "label": "p-n-p symbol",
+        "marks": 1,
+        "mark_note": "p-n-p drawn, arrow in",
+        "figure": {
+          "id": "pnp_symbol",
+          "width": 330,
+          "height": 215,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "pnp_circle",
+              "d": "M 104 100 A 46 46 0 0 1 196 100 A 46 46 0 0 1 104 100",
+              "ms": 4130
+            },
+            {
+              "type": "stroke",
+              "id": "pnp_base_bar",
+              "d": "M 136 76 L 136 124",
+              "ms": 690
+            },
+            {
+              "type": "stroke",
+              "id": "pnp_base_lead",
+              "d": "M 70 100 L 136 100",
+              "ms": 940
+            },
+            {
+              "type": "stroke",
+              "id": "pnp_collector",
+              "d": "M 136 86 L 180 58 L 180 30",
+              "ms": 1150
+            },
+            {
+              "type": "stroke",
+              "id": "pnp_emitter",
+              "d": "M 136 114 L 180 142 L 180 178",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "pnp_arrow_in",
+              "d": "M 158.4 134.8 L 151.4 123.8 L 164.3 125.5",
+              "ms": 370
+            },
+            {
+              "type": "label",
+              "id": "pnp_lbl_c",
+              "x": 190,
+              "y": 26,
+              "text": "Collector",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pnp_lbl_e",
+              "x": 190,
+              "y": 184,
+              "text": "Emitter",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pnp_lbl_b",
+              "x": 8,
+              "y": 92,
+              "text": "Base",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pnp_lbl_title",
+              "x": 56,
+              "y": 208,
+              "text": "p-n-p transistor",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Second mark. Same figure, arrow reversed: it points TOWARDS the base — into the transistor.",
+        "why": "In a p-n-p transistor the emitter supplies holes, so conventional current flows into the emitter and the arrow points inward. The book's page 54 prints these two symbols the wrong way round — its '(i) n-p-n' has the inward arrow and its '(ii) p-n-p' the outward one — so copy the rule, not that figure.",
+        "common_mistakes": [
+          "Copying the book's page-54 figure. Its two symbols are swapped.",
+          "Drawing the arrow on the base lead. It belongs on the emitter.",
+          "Reversing the collector and emitter leads as well. Only the arrow direction changes."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That in the p-n-p symbol the emitter arrow points into the transistor, towards the base.",
+          "accept": [
+            "arrow on the emitter pointing inward",
+            "arrow towards the base for p n p",
+            "p n p arrow points in"
+          ],
+          "reject": [
+            "arrow pointing out of the transistor"
+          ],
+          "heard_as": [
+            "p n p",
+            "arrow in",
+            "towards the base"
+          ]
+        },
+        "memory_tip": "One figure, two answers: draw it once and flip only the arrowhead."
+      },
+      {
+        "id": "s3_arrow_rule",
+        "kind": "text",
+        "label": "The arrow rule",
+        "marks": 0,
+        "lines": [
+          "The arrow is always drawn on the emitter.",
+          "It points the way the conventional current",
+          "flows in that lead:",
+          "n-p-n → arrow points out of the transistor",
+          "p-n-p → arrow points into the transistor"
+        ],
+        "margin_note": "Not marked, but it is the rule the two marks are given for. Write it if there is room.",
+        "why": "One rule fixes both symbols, so a student who remembers it never has to remember two pictures. The book prints the two symbols swapped on page 54, and the rule is the only way to catch that.",
+        "common_mistakes": [
+          "Learning the two pictures instead of the rule. The pictures are easy to swap; the rule is not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the arrow marks the emitter and follows the conventional current direction.",
+          "accept": [
+            "arrow is on the emitter",
+            "points along the conventional current",
+            "out for n p n and in for p n p"
+          ],
+          "reject": [
+            "the base is thin and lightly doped"
+          ],
+          "heard_as": [
+            "conventional current",
+            "emitter arrow",
+            "direction"
+          ]
+        },
+        "memory_tip": "Arrow = emitter + current direction. Two facts, both symbols."
+      }
+    ]
+  },
+  "insider_note": "The examiner is checking one thing on each symbol — the arrow direction. Draw the two circles identically and change only the arrowhead."
+}

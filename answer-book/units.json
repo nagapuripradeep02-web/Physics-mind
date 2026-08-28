@@ -10347,6 +10347,189 @@
       ]
     },
     {
+      "number": 15,
+      "name": "Semiconductor Electronics",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Draw the circuit symbols of p-n-p and n-p-n transistors.",
+          "question_id": "ts_ipe_p2_sem_transistor_circuit_symbols"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "In which bias can a zener diode be used as voltage regulator?",
+          "question_id": "ts_ipe_p2_sem_zener_bias_for_regulator"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Which gates are called universal gates.",
+          "question_id": "ts_ipe_p2_sem_universal_gates"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What is zener voltage and how will a zener diode be connected in circuits generally.",
+          "question_id": "ts_ipe_p2_sem_zener_voltage_and_connection"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is p-n junction diode? Define depletion region.",
+          "question_id": "ts_ipe_p2_sem_pn_junction_diode_depletion_region"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What is an n-type semiconductor? What are the majority and minority charge carriers in it.",
+          "question_id": "ts_ipe_p2_sem_n_type_semiconductor_carriers"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What is a p-type semiconductor? What are majority and minority charge carriers in it?",
+          "question_id": "ts_ipe_p2_sem_p_type_semiconductor_carriers"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What happens to the width of the depletion layer in a p-n junction diode when it is i) forward biased ii) reverse biased?",
+          "question_id": "ts_ipe_p2_sem_depletion_width_forward_reverse_bias"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Define amplifier and amplification factor.",
+          "question_id": "ts_ipe_p2_sem_amplifier_and_amplification_factor"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "What is the maximum percentage rectification in half wave and full wave rectifiers?",
+          "question_id": "ts_ipe_p2_sem_maximum_percentage_rectification"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Write the expressions for the efficiency of a full wave rectifier and a half wave rectifier.",
+          "question_id": "ts_ipe_p2_sem_rectifier_efficiency_expressions"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write the truth table of NAND gate. How does it differ from AND gate?",
+          "question_id": "ts_ipe_p2_sem_nand_truth_table_vs_and"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Distinguish between half wave and full wave rectifier?",
+          "question_id": "ts_ipe_p2_sem_half_wave_vs_full_wave_rectifier"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Distinguish between zener breakdown and Avalanche breakdown.",
+          "question_id": "ts_ipe_p2_sem_zener_vs_avalanche_breakdown"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Define NAND & NOR gates. Give their truth table.",
+          "question_id": "ts_ipe_p2_sem_nand_and_nor_gates"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What are n type and p-type semiconductors how is a semiconductor junction formed.",
+          "question_id": "ts_ipe_p2_sem_n_and_p_type_and_junction_formation"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is a zener diode? Explain how it is used as a voltage Regulator.",
+          "question_id": "ts_ipe_p2_sem_zener_diode_as_voltage_regulator"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Explain the operation of a NOT gate and give its truth table.",
+          "question_id": "ts_ipe_p2_sem_not_gate_operation"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Describe how a semiconductor is used as a half wave rectifier.",
+          "question_id": "ts_ipe_p2_sem_semiconductor_as_half_wave_rectifier"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What is rectification? Explain the working of full wave rectifier?",
+          "question_id": "ts_ipe_p2_sem_rectification_full_wave_rectifier"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What is a rectifier? Explain the working of half wave and full wave rectifiers with diagrams.",
+          "question_id": "ts_ipe_p2_sem_rectifier_half_and_full_wave"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Describe a transistor and explain its working.",
+          "question_id": "ts_ipe_p2_sem_transistor_and_its_working"
+        }
+      ]
+    },
+    {
       "number": 16,
       "name": "Communication System",
       "subject": "physics_2",
