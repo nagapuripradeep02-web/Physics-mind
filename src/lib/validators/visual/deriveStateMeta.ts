@@ -2602,6 +2602,30 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                     candidates.push(asNum(srRv[key + '_at_ms'], 0) + asNum(srRv[key + '_ms'], 1200) + 600);
                 }
             }
+            // SR-C3 (2026-08-28) — the STACK and the FORMULA SURFACE now carry
+            // reveal beats of their own, added because this scenario was drawing
+            // an EFFECT before its CAUSE moved (Rule 32a): the whole ring stack
+            // and the "about y" answer at t = 0 on a state whose sweep starts at
+            // 3000 ms. A pin that does not account for them photographs the
+            // pre-reveal half of the state — an empty stack, a blank formula slot
+            // — and mints a baseline of the picture the state exists to replace.
+            //   stack_ms defaults to 0 here, not to 1200: an unauthored fade is an
+            //   INSTANT appearance in the renderer (srStackReveal), so borrowing
+            //   curve/region's 1200 would pin 1.2 s later than the beat settles.
+            if (typeof srRv.stack_at_ms === 'number') {
+                candidates.push(asNum(srRv.stack_at_ms, 0) + asNum(srRv.stack_ms, 0) + 600);
+            }
+            if (typeof srRv.formula_at_ms === 'number') {
+                candidates.push(asNum(srRv.formula_at_ms, 0) + 600);
+            }
+        }
+        // ...and the per-readout beats. A gated readout is the state's NUMBER, so
+        // a pin before the last of them photographs a HUD the caption contradicts.
+        const srReadoutAt = asObj(srState.readout_at_ms);
+        if (srReadoutAt) {
+            for (const rk of Object.keys(srReadoutAt)) {
+                if (typeof srReadoutAt[rk] === 'number') candidates.push(asNum(srReadoutAt[rk], 0) + 600);
+            }
         }
         // the theta sweep (SR-B) and the log-n ramp (SR-A) are the two longest
         // beats; a pin before either closes photographs a half-swept surface or a
