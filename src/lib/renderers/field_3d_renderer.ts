@@ -75778,6 +75778,9 @@ export const FIELD_3D_RENDERER_CODE = `
     function srPubClear() { for (var k in SR_PUB) { if (Object.prototype.hasOwnProperty.call(SR_PUB, k)) delete SR_PUB[k]; } }
 
     var srShiftX = 0;               // graph x -> world x offset (SR-D10)
+    var srShiftY = 0;               // graph y -> world y offset (SR-D11), REWRITTEN
+                                    // every frame from the drawn content span
+    var srTickEncl = null;          // this frame\u0027s enclosing solid, or null
     var srFrameGroup = null;        // axes + arrowheads + tick marks (rebuilt on apply)
     var srRegionMesh = null;        // pooled triangle strip (rewritten per frame)
     var srCurveMesh = null;         // pooled tube (rewritten per frame)
@@ -75959,6 +75962,126 @@ export const FIELD_3D_RENDERER_CODE = `
     function srSpanInnerR(sp, u) {
         if (sp.axis === "y") return (u <= sp.yBot) ? sp.x0 : Math.max(sp.x0, srInvF(sp.outer, u));
         return sp.inner ? srF(sp.inner, u) : 0;
+    }
+
+    // ── SR-D11 — THE VERTICAL SHIFT, AND WHY IT IS NOT ONE CONSTANT. ─────────
+    //   SR-D10 put the apparatus on the world origin along X only, so the camera
+    //   (which always looks at 0, 0, 0 — updateCameraFromSpherical, :4805) aims
+    //   at graph y = 0, the axis of revolution. A revolved solid straddles that
+    //   axis and reads centred; a state that draws only the FLAT REGION does not.
+    //   MEASURED before this landed (1280x720, the review build, apparatus-only
+    //   pixels): STATE_1 @13600 ms drew y = 115..385 px, centre 250 — 0.306 NDC
+    //   above frame centre against a 0.15 tolerance, with the lower half of the
+    //   frame empty; STATE_2 @2100 ms (near face-on, theta = 12 deg) 105..386,
+    //   centre 245.5, 0.318.
+    //
+    //   ONE GLOBAL srShiftY WOULD BE WRONG. Shift everything down by half a frame
+    //   and STATE_1 centres while every solid state — already centred on the axis
+    //   — is pushed off by the same amount. The shift therefore follows WHAT IS
+    //   DRAWN, closed-form on the values the frame already holds:
+    //
+    //     the profile band  [min(0, min f), max(0, max f)]  is ALWAYS included,
+    //       at its FULL extent rather than its revealed fraction, because a span
+    //       that grew with a wipe would slide the whole apparatus while the curve
+    //       draws — a reveal is a wipe, not a change of framing;
+    //     a stack / slice state draws FULL circles about the axis at every t, so
+    //       it contributes +/- R_max unconditionally (no reveal gating, for the
+    //       same reason: the stack fading in must not move the picture);
+    //     a swept SKIN contributes only the arc it has drawn. srWriteSurface lays
+    //       theta-major rings from phi = 0 (which is +y) and clips with a draw
+    //       range, so the drawn band is R_max * [min cos, max cos] over
+    //       phi in [0, theta] = [R_max cos theta, R_max] up to 180 deg and
+    //       [-R_max, R_max] past it — exact, continuous, and it is what makes
+    //       STATE_2 glide from -1 to 0 as its solid closes instead of jumping;
+    //     about the Y axis the solid spans the axis interval [u0, u1] in y and
+    //       revolving cannot change that, so theta does not enter at all.
+    //
+    //   THE FRAME IS DELIBERATELY NOT IN THE SPAN. Its y rod is single-sided by
+    //   construction (0 .. y_range1), so including it would bias every solid
+    //   state upward and, worse, would make the apparatus DRIFT vertically on any
+    //   state whose radius ramps under a fixed y_range (S5's r 1 -> 2, S8's
+    //   b 1 -> 4, every S9 slider corner) — motion no author asked for, against
+    //   Rule 32b. What has to be centred is the mathematics; the frame is the
+    //   scaffold drawn around it and it centres with it.
+    //
+    //   NO ACCUMULATION (SR-D2): a pure function of the same state-local values
+    //   the rest of the frame is built from, so a SET_TIME_FREEZE re-pin lands on
+    //   the same offset. When the content is symmetric about the axis the span is
+    //   symmetric and the shift is EXACTLY 0 — which is why every solid-about-x
+    //   state (S3, S4, S5, S6, S8, S9) keeps its pixels to the byte.
+    function srContentYSpan(sr, outer, inner, x0, x1, axis, thetaDeg) {
+        var lo = 0, hi = 0, i, y;
+        // the profile band, sampled on the SAME grid the region strip is written on
+        for (i = 0; i <= SR_REGION_SAMPLES; i++) {
+            var x = x0 + (x1 - x0) * (i / SR_REGION_SAMPLES);
+            y = srF(outer, x);
+            if (isFinite(y)) { if (y < lo) lo = y; if (y > hi) hi = y; }
+            if (inner) {
+                y = srF(inner, x);
+                if (isFinite(y)) { if (y < lo) lo = y; if (y > hi) hi = y; }
+            }
+        }
+        var mode = sr ? sr.mode : null;
+        if (mode === "region") return { y0: lo, y1: hi };
+        var sp = srStackSpan(outer, inner, x0, x1, axis);
+        if (axis === "y") {
+            // revolution about y: the solid occupies the axis interval in y and
+            // the sweep angle cannot move it
+            if (isFinite(sp.u0) && sp.u0 < lo) lo = sp.u0;
+            if (isFinite(sp.u1) && sp.u1 > hi) hi = sp.u1;
+            return { y0: lo, y1: hi };
+        }
+        var rMax = 0;
+        for (i = 0; i <= SR_SURF_NU; i++) {
+            var u = sp.u0 + (sp.u1 - sp.u0) * (i / SR_SURF_NU);
+            var r = srSpanOuterR(sp, u);
+            if (isFinite(r) && r > rMax) rMax = r;
+        }
+        // full circles (a stack, a slice, the sandbox) vs the arc a sweep has drawn
+        var full = (mode === "stack" || mode === "compare" || mode === "slice" || mode === "explore");
+        var th = (thetaDeg == null) ? 360 : thetaDeg;
+        var cosLo = full ? -1 : ((th >= 180) ? -1 : Math.cos(th * Math.PI / 180));
+        var cosHi = (full || th > 0) ? 1 : 0;
+        if (rMax * cosLo < lo) lo = rMax * cosLo;
+        if (rMax * cosHi > hi) hi = rMax * cosHi;
+        return { y0: lo, y1: hi };
+    }
+    function srContentShiftY(sr, outer, inner, x0, x1, axis, thetaDeg) {
+        var s = srContentYSpan(sr, outer, inner, x0, x1, axis, thetaDeg);
+        var v = -(s.y0 + s.y1) / 2;
+        return isFinite(v) ? v : 0;
+    }
+
+    // ── THE TICK NUMBERS ARE DOM, SO THEY ALWAYS PAINT LAST. ────────────────
+    //   A DOM node has no z relationship to the scene (that is the price of the
+    //   blocker-2 decision: authored glyph height in device px, screen-space
+    //   decollision, readable by every DOM probe). MEASURED: on STATE_5 at
+    //   r = 2.00 the ticks -1, 0 and 1 sit at screen (582,352), (627,369),
+    //   (707,397), inside the ball\u0027s projected silhouette (x 535..785), and
+    //   read as ink ON the ball.
+    //   HIDING THEM IS WORSE. The axes of a solid of revolution are geometrically
+    //   INSIDE the solid, so "hide what is occluded" deletes the scale on every
+    //   solid state. The solid is translucent by design, so a tick seen THROUGH
+    //   it is not wrong; what is wrong is full strength.
+    //   THE TEST IS ENCLOSURE, NOT SILHOUETTE OVERLAP. A point inside the solid
+    //   has the near wall in front of it at every camera, so attenuating it is
+    //   always honest; a point merely overlapping the silhouette may be in FRONT
+    //   of the solid and must not be touched. And enclosure is only claimed when
+    //   the solid closes around the axis — full circles (a stack / slice) or a
+    //   skin swept the whole 360 — so a partially swept STATE_2 leaves its ticks
+    //   at full strength.
+    //   It attenuates only: no tick MOVES, on any state, and nothing latches, so
+    //   the value is a pure function of the frame (SR-D2).
+    var SR_TICK_BEHIND_OPACITY = 0.45;
+    function srTickEnclosed(encl, gx, gy) {
+        if (!encl) return false;
+        var u = (encl.axis === "y") ? gy : gx;
+        var rad = Math.abs((encl.axis === "y") ? gx : gy);
+        var sp = encl.span;
+        var u0 = Math.min(sp.u0, sp.u1), u1 = Math.max(sp.u0, sp.u1);
+        if (!(u >= u0 && u <= u1)) return false;
+        var R = srSpanOuterR(sp, u);
+        return isFinite(R) && rad < R;
     }
 
     // ── SR-D3 / SR6 — THE ONE SUMMATION. Called ONCE per frame. It accumulates
@@ -76886,7 +77009,7 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < srTicks.length; i++) {
             var node = srTickNodes[i];
             if (!node) continue;
-            srTmpV.set(srTicks[i].gx + srShiftX, srTicks[i].gy, 0);
+            srTmpV.set(srTicks[i].gx + srShiftX, srTicks[i].gy + srShiftY, 0);
             // BEHIND the camera projects to garbage — a dot product, not a second
             // projector (nlbProjPx is the one projection helper and it already ships).
             var behind = srTmpV.clone().sub(camera.position).dot(fwd) <= 0;
@@ -76907,6 +77030,11 @@ export const FIELD_3D_RENDERER_CODE = `
             node.style.display = "block";
             node.style.left = p.x.toFixed(1) + "px";
             node.style.top = p.y.toFixed(1) + "px";
+            // ...and the ONLY thing enclosure changes is strength: a tick inside
+            // the drawn solid reads through the glass instead of on it. Written
+            // on every frame at both values, so there is no one-way dim.
+            node.style.opacity = srTickEnclosed(srTickEncl, srTicks[i].gx, srTicks[i].gy)
+                ? String(SR_TICK_BEHIND_OPACITY) : "1";
         }
     }
 
@@ -77167,6 +77295,29 @@ export const FIELD_3D_RENDERER_CODE = `
         srDriveParamRamp(sr, tMs);
         var outer = srOuter(sr), inner = srInner(sr);
         var d = srDomain(sr), x0 = d[0], x1 = d[1];
+        // SR7 — the LIVE choice wins over the authored one (the explore-picker
+        // scar: a frame that reads the authored value while the picker moved).
+        // Read HERE, before anything is placed, because SR-D11\u0027s vertical
+        // shift depends on which axis the solid is built about.
+        var ax = (window.PM_srAxis === "y" || window.PM_srAxis === "x") ? window.PM_srAxis : (sr.axis || "x");
+        // ── SR5 — the swept skin. theta is a pure function of state-local ms and
+        //   the reveal is a DRAW RANGE over theta-major quads, never a rebuild.
+        var thDeg = srThetaDeg(sr, tMs);
+        SR_PUB.theta_deg = thDeg;
+        // ── SR-D11 — centre what is DRAWN on the camera target, before one pixel
+        //   of it is placed. Exactly 0 whenever the content already straddles the
+        //   axis, so a solid state cannot move.
+        srShiftY = srContentShiftY(sr, outer, inner, x0, x1, ax, thDeg);
+        //   Carried on the ROOTS that are otherwise pinned at the origin — the
+        //   frame group and the four pooled groups — so the per-object placement
+        //   below stays in graph coordinates and reads exactly as it always did.
+        //   The meshes with their own y (the axis rod, the curve, the region, the
+        //   skin) take it at their own position write.
+        if (srFrameGroup) srFrameGroup.position.y = srShiftY;
+        if (srDiscPool) srDiscPool.group.position.y = srShiftY;
+        if (srRingOutPool) srRingOutPool.group.position.y = srShiftY;
+        if (srRingInPool) srRingInPool.group.position.y = srShiftY;
+        if (srSliceRing) srSliceRing.group.position.y = srShiftY;
 
         var wc = srRevealWin(sr, "curve", 0, 1200);
         var wr = srRevealWin(sr, "region", 1200, 1200);
@@ -77182,7 +77333,7 @@ export const FIELD_3D_RENDERER_CODE = `
             pts.push([x, isFinite(y) ? y : 0]);
         }
         srWriteTube(srCurveMesh, pts, SR_CURVE_RADIUS, SR_CURVE_TUB * curveF);
-        srCurveMesh.position.x = srShiftX;
+        srCurveMesh.position.set(srShiftX, srShiftY, 0);
         if (inner) {
             var ip = [];
             for (i = 0; i < n; i++) {
@@ -77191,29 +77342,27 @@ export const FIELD_3D_RENDERER_CODE = `
                 ip.push([xi, isFinite(yi) ? yi : 0]);
             }
             srWriteTube(srInnerCurveMesh, ip, SR_CURVE_RADIUS, SR_CURVE_TUB * curveF);
-            srInnerCurveMesh.position.x = srShiftX;
+            srInnerCurveMesh.position.set(srShiftX, srShiftY, 0);
         } else {
             srInnerCurveMesh.visible = false;
         }
 
         srWriteRegion(srRegionMesh, outer, inner, x0, x1, fillF);
-        srRegionMesh.position.x = srShiftX;
+        srRegionMesh.position.set(srShiftX, srShiftY, 0);
         srRegionMesh.visible = srRegionMesh.visible && (sr.show_region !== false);
 
         // the axis of revolution, drawn as its own brighter rod so the line the
         // region turns about is never confused with the frame it is measured on.
-        // SR7 — the LIVE choice wins over the authored one (the explore-picker
-        // scar: a frame that reads the authored value while the picker moved).
-        var ax = (window.PM_srAxis === "y" || window.PM_srAxis === "x") ? window.PM_srAxis : (sr.axis || "x");
+        // (ax is read at the top of this frame — SR-D11 needs it before placement.)
         if (ax === "x") {
             srAxisMesh.scale.set(1, Math.max(1e-3, x1 - x0), 1);
             srAxisMesh.rotation.set(0, 0, Math.PI / 2);
-            srAxisMesh.position.set(srShiftX + (x0 + x1) / 2, 0, 0);
+            srAxisMesh.position.set(srShiftX + (x0 + x1) / 2, srShiftY, 0);
         } else {
             var yTop = Math.max(1e-3, srF(outer, x1));
             srAxisMesh.scale.set(1, isFinite(yTop) ? yTop : 1, 1);
             srAxisMesh.rotation.set(0, 0, 0);
-            srAxisMesh.position.set(srShiftX + x0, (isFinite(yTop) ? yTop : 1) / 2, 0);
+            srAxisMesh.position.set(srShiftX + x0, srShiftY + (isFinite(yTop) ? yTop : 1) / 2, 0);
         }
 
         // SR10 — the ramp PUBLISHES n; nothing else recomputes it (SR-D3).
@@ -77244,18 +77393,14 @@ export const FIELD_3D_RENDERER_CODE = `
             if (wrongOn) kind = (ct.kind === "radius_difference") ? "radius_difference" : kind;
         }
 
-        // ── SR5 — the swept skin. theta is a pure function of state-local ms and
-        //   the reveal is a DRAW RANGE over theta-major quads, never a rebuild.
-        var thDeg = srThetaDeg(sr, tMs);
-        SR_PUB.theta_deg = thDeg;
         var sp = srStackSpan(outer, inner, x0, x1, ax);
         var showSolid = (sr.mode !== "region") && (sr.show_solid !== false) && !wrongOn;
         if (showSolid && isFinite(sp.u0) && isFinite(sp.u1) && sp.u1 > sp.u0) {
             srWriteSurface(srSurfOuter, sp.u0, sp.u1, ax, function (u) { return srSpanOuterR(sp, u); }, thDeg);
-            srSurfOuter.position.x = srShiftX;
+            srSurfOuter.position.set(srShiftX, srShiftY, 0);
             if (ax === "y" || inner) {
                 srWriteSurface(srSurfInner, sp.u0, sp.u1, ax, function (u) { return srSpanInnerR(sp, u); }, thDeg);
-                srSurfInner.position.x = srShiftX;
+                srSurfInner.position.set(srShiftX, srShiftY, 0);
             } else { srSurfInner.visible = false; }
         } else { srSurfOuter.visible = false; srSurfInner.visible = false; }
         // the flat region turns WITH its own sweep, so the thing that paints the
@@ -77414,6 +77559,16 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
 
+        // ── WHAT ENCLOSES THE AXIS THIS FRAME (the DOM ticks read it below).
+        //   Claimed only when the solid CLOSES around the axis: a skin swept the
+        //   full 360, or a stack of full circles spanning the axis. A partial
+        //   sweep, a single slice slab and the wrong-solid contrast beat all
+        //   claim nothing, so nothing is dimmed on a frame where a tick may
+        //   legitimately be in front.
+        var srSkinClosed = showSolid && srSurfOuter.visible && thDeg >= 359.9;
+        var srStackFull = srStk.show && !!res && sr.mode !== "slice"
+            && kind !== "radius_difference" && !wrongOn;
+        srTickEncl = (srSkinClosed || srStackFull) ? { axis: ax, span: sp } : null;
         srPlaceTickNodes((sr.frame && sr.frame.show_frame === false) ? false : true);
         srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax, tMs);
     }
