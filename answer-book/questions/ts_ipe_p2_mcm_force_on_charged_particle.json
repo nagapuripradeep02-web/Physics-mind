@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_force_on_charged_particle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the force on a charged particle of charge q moving with velocity v in a uniform magnetic field of induction B? When is it maximum?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "F = B q v sin θ",
+      "marks": 1
+    },
+    {
+      "label": "Maximum at θ = 90°",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: F = Bqv sin θ (the Lorentz magnetic force, F = q(v × B)); maximum F = Bqv when v ⊥ B. Matches the book's answer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The same two-part shape as the conductor question: formula with θ named, then the θ = 90° maximum.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Moving Charges and Magnetism · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The force formula",
+        "marks": 1,
+        "mark_note": "F = B q v sin θ, with θ named",
+        "lines": [
+          "The force on the moving charge is",
+          {
+            "text": "F = B q v sin θ",
+            "style": "eq"
+          },
+          "where θ is the angle between the",
+          "velocity v and the field B.",
+          "In vector form, F = q (v × B)."
+        ],
+        "margin_note": "First mark. The angle θ is between v and B — say so beside the formula.",
+        "why": "The magnetic force uses only the part of the motion at right angles to the field; a charge at rest, or moving along the field, feels no force.",
+        "common_mistakes": [
+          "Forgetting sin θ and writing F = B q v for every direction.",
+          "Applying the formula to a charge at rest. With v = 0 the force is zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the force is F = B q v sin θ, with θ between v and B.",
+          "accept": [
+            "F equals B q v sin theta",
+            "q v B sin theta",
+            "theta between velocity and field"
+          ],
+          "reject": [
+            "maximum at ninety degrees"
+          ],
+          "heard_as": [
+            "B q v sin theta",
+            "sin theta"
+          ]
+        },
+        "memory_tip": "Charge, speed, field — q v B — then sin θ for the angle between v and B."
+      },
+      {
+        "id": "s2_maximum",
+        "kind": "boxed_final",
+        "label": "When it is maximum",
+        "marks": 1,
+        "mark_note": "θ = 90° and Fₘₐₓ = B q v",
+        "lines": [
+          "The force is maximum when θ = 90°, that",
+          "is, when v is perpendicular to B.",
+          "Then sin θ = 1 and",
+          {
+            "text": "Fₘₐₓ = B q v",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Condition and value together: v ⊥ B, F = B q v.",
+        "why": "sin θ reaches 1 only at 90°, so the push is strongest when the charge crosses the field lines at right angles.",
+        "common_mistakes": [
+          "Saying maximum when v is along B. Along the field, θ = 0° and the force is zero.",
+          "Giving θ = 90° without writing the maximum value B q v."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the force is maximum when v is perpendicular to B, where F = B q v.",
+          "accept": [
+            "maximum when v perpendicular to B",
+            "theta ninety degrees",
+            "F max is B q v"
+          ],
+          "reject": [
+            "maximum when v is along B"
+          ],
+          "heard_as": [
+            "perpendicular",
+            "ninety degrees"
+          ]
+        },
+        "memory_tip": "Cross the field lines squarely for the biggest push; run along them for none."
+      }
+    ]
+  }
+}

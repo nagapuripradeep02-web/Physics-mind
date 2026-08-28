@@ -1,0 +1,359 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_amperes_law_state_prove",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and prove Ampere's law?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The sign rule and the net current",
+      "marks": 1
+    },
+    {
+      "label": "The line integral round a circle",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: ∮B·dl = μ₀i over a closed path, with the enclosed currents signed by the right-hand rule for the chosen sense of travel; the book's figure gives i = i₁ − i₂ − i₃ + i₄ for its own choice of sense, which is reproduced here. The verification uses a circular path round a long straight wire, where B is constant in magnitude and along dl, giving B(2πr) = μ₀i. The book's printed question reads 'ampere's law'; capitalised here as a proper name, and the space before the question mark is dropped."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The sign rule is the line most students skip. Say which currents count positive and write the signed sum before you go near the integral.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Moving Charges and Magnetism · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "A closed path round four currents",
+        "marks": 0,
+        "figure": {
+          "id": "ampere_closed_path",
+          "width": 340,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "closed_path",
+              "d": "M 60 130 A 100 90 0 1 1 260 130 A 100 90 0 1 1 60 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dl_line",
+              "d": "M 231 66 L 259 91",
+              "ms": 540
+            },
+            {
+              "type": "stroke",
+              "id": "dl_arrowhead",
+              "d": "M 248 88 L 259 91 L 255 81",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "b_line",
+              "d": "M 231 66 L 285 42",
+              "ms": 840
+            },
+            {
+              "type": "stroke",
+              "id": "b_arrowhead",
+              "d": "M 278 51 L 285 42 L 274 42",
+              "ms": 320
+            },
+            {
+              "type": "label",
+              "id": "lbl_i1",
+              "x": 88,
+              "y": 100,
+              "text": "⊗ i₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i2",
+              "x": 162,
+              "y": 76,
+              "text": "⊙ i₂",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i3",
+              "x": 88,
+              "y": 170,
+              "text": "⊙ i₃",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i4",
+              "x": 172,
+              "y": 164,
+              "text": "⊗ i₄",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 292,
+              "y": 38,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_dl",
+              "x": 266,
+              "y": 110,
+              "text": "dl",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_path",
+              "x": 118,
+              "y": 240,
+              "text": "closed path",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "One closed path with four currents through it: two into the page (⊗) and two out of it (⊙). B and the element dl are marked on the path.",
+        "why": "The law is about a path, not about a wire, so the picture has to show the path first and the currents second — the shape of the path never enters the answer.",
+        "common_mistakes": [
+          "Drawing the currents outside the path. Only currents THROUGH the path are counted.",
+          "Drawing B along the radius. B is taken along the path at the element dl."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a closed path is drawn with currents passing through it, some into the page and some out of it.",
+          "accept": [
+            "draw a closed path",
+            "currents into and out of the page",
+            "mark B and dl on the path"
+          ],
+          "reject": [
+            "B equals mu nought i by two pi r"
+          ],
+          "heard_as": [
+            "closed path",
+            "figure"
+          ]
+        },
+        "memory_tip": "Draw the loop first, then drop the currents through it."
+      },
+      {
+        "id": "s2_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Line integral = μ₀ × enclosed current",
+        "lines": [
+          "Ampere's law: the line integral of the",
+          "magnetic induction B round any closed path is",
+          "equal to μ₀ times the net current enclosed by",
+          "that path.",
+          {
+            "text": "∮ B · dl = μ₀ i",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Say 'round any closed path' and 'net current enclosed' — both phrases carry the mark.",
+        "why": "The word 'any' is the whole strength of the law: the same answer comes out for every path round the same current, so a path can be chosen to make the integral easy.",
+        "common_mistakes": [
+          "Saying total current instead of enclosed current. A current outside the path adds nothing.",
+          "Writing μ₀ on the wrong side, as ∮B·dl / μ₀ = i without saying so."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line integral of B round a closed path equals μ₀ times the enclosed current.",
+          "accept": [
+            "line integral of B dot dl",
+            "mu nought times the current enclosed",
+            "round any closed path"
+          ],
+          "reject": [
+            "i one minus i two minus i three plus i four"
+          ],
+          "heard_as": [
+            "ampere's law",
+            "line integral"
+          ]
+        },
+        "memory_tip": "Walk once round the loop adding B·dl; the total only counts what you walked around."
+      },
+      {
+        "id": "s3_sign",
+        "kind": "equation",
+        "label": "The sign rule and the net current",
+        "marks": 1,
+        "mark_note": "Signed sum of enclosed currents",
+        "lines": [
+          "A closed path may enclose several currents.",
+          "Fix a sense of travel round the path. A",
+          "current whose direction follows the right",
+          "hand rule for that sense is taken as",
+          "positive, and a current in the opposite",
+          "direction as negative.",
+          "In the figure i₁ and i₄ go into the page (⊗)",
+          "and are positive, while i₂ and i₃ come out of",
+          "the page (⊙) and are negative.",
+          {
+            "text": "i = i₁ − i₂ − i₃ + i₄",
+            "style": "eq"
+          },
+          "Currents outside the path are not counted."
+        ],
+        "margin_note": "Second mark. The signed sum, with one line saying why two of the four carry a minus sign.",
+        "why": "Signs matter because two equal currents in opposite directions through the same path give zero line integral — the fields they make cancel round the loop.",
+        "common_mistakes": [
+          "Adding all four currents with plus signs.",
+          "Counting a current that lies outside the path."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the enclosed currents are added with signs fixed by direction, giving i = i₁ − i₂ − i₃ + i₄ here.",
+          "accept": [
+            "currents into the page positive out of the page negative",
+            "i one minus i two minus i three plus i four",
+            "net current enclosed"
+          ],
+          "reject": [
+            "B dl cos zero"
+          ],
+          "heard_as": [
+            "net current",
+            "sign"
+          ]
+        },
+        "memory_tip": "One way in is a plus, the other way is a minus; anything outside the loop is a zero."
+      },
+      {
+        "id": "s4_prove",
+        "kind": "equation",
+        "label": "The line integral round a circle",
+        "marks": 1,
+        "mark_note": "∮B·dl = B(2πr)",
+        "lines": [
+          "Take a long straight wire carrying a current",
+          "i, and choose the closed path to be a circle",
+          "of radius r with the wire through its centre.",
+          "By symmetry B has the same size at every",
+          "point of the circle and is along the tangent,",
+          "so B and dl point the same way and the angle",
+          "between them is 0°.",
+          {
+            "text": "∮ B · dl = ∮ B dl cos 0° = B ∮ dl",
+            "style": "eq"
+          },
+          {
+            "text": "∮ dl = 2πr,  so  ∮ B · dl = B (2πr)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Symmetry lets B come out of the integral, and the remaining integral is just the circumference.",
+        "why": "B can be taken outside the integral only because the circle is chosen so that B has the same size everywhere on it; that choice is the whole method.",
+        "common_mistakes": [
+          "Leaving B inside the integral. On this path B is constant, so it comes out.",
+          "Writing ∮dl = πr². The path length of a circle is 2πr, not its area."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That on a circle round the wire B is constant and along dl, so the integral becomes B times 2πr.",
+          "accept": [
+            "circle of radius r round the wire",
+            "B is constant and along dl",
+            "B into two pi r"
+          ],
+          "reject": [
+            "B equals mu nought i by two pi r"
+          ],
+          "heard_as": [
+            "two pi r",
+            "symmetry"
+          ]
+        },
+        "memory_tip": "Same B all round means B steps outside the integral and only the circumference is left."
+      },
+      {
+        "id": "s5_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "∮B·dl = μ₀i",
+        "lines": [
+          "The magnetic induction of a long straight",
+          "wire at a distance r is",
+          {
+            "text": "B = μ₀i / 2πr",
+            "style": "eq"
+          },
+          "Putting this in the previous step,",
+          {
+            "text": "∮ B · dl = (μ₀i / 2πr) × 2πr",
+            "style": "eq"
+          },
+          {
+            "text": "∮ B · dl = μ₀ i",
+            "style": "boxed"
+          },
+          "The radius r cancels, so the result does not",
+          "depend on the size of the path."
+        ],
+        "margin_note": "Last mark. Show r cancelling — that cancellation is the point of the whole step.",
+        "why": "B falls off as 1/r while the path length grows as r, so the two changes cancel exactly; that is why the line integral depends only on the enclosed current.",
+        "common_mistakes": [
+          "Leaving r in the final answer. It must cancel.",
+          "Writing 2π in the answer. The 2π cancels with the one in B."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting B = μ₀i/2πr gives ∮B·dl = μ₀i, with r cancelling.",
+          "accept": [
+            "mu nought i by two pi r into two pi r",
+            "line integral equals mu nought i",
+            "r cancels"
+          ],
+          "reject": [
+            "B is constant on the circle"
+          ],
+          "heard_as": [
+            "mu nought i",
+            "cancels"
+          ]
+        },
+        "memory_tip": "Field down by r, path up by r: the two cancel and only μ₀i survives."
+      }
+    ]
+  }
+}

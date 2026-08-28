@@ -1,0 +1,337 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_cyclotron_components_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the basic components of a cyclotron? Mention its uses?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The four main parts",
+      "marks": 2
+    },
+    {
+      "label": "How it works",
+      "marks": 1
+    },
+    {
+      "label": "Uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: r = mv/qB, period T = 2πm/qB, so the cyclotron frequency f = qB/2πm is independent of speed and radius, and the energy at the largest radius is KE = q²r²B²/2m — all matching the book. The book's spellings 'chombars', 'metalic', 'Vaccume' and 'accelearate' are corrected here; the physics is unchanged. The space before the question mark in the printed question is dropped."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The question asks two things — parts and uses — so give both, in two separate lists. A full account of the working with no list of uses loses the last mark.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Moving Charges and Magnetism · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The dees, the field and the spiral path",
+        "marks": 0,
+        "figure": {
+          "id": "cyclotron_layout",
+          "width": 400,
+          "height": 340,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "dee_left",
+              "d": "M 170 60 A 90 90 0 0 0 170 240 L 170 60",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dee_right",
+              "d": "M 190 60 A 90 90 0 0 1 190 240 L 190 60",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "spiral_path",
+              "d": "M 180 150 A 15 15 0 0 1 180 180 A 30 30 0 0 1 180 120 A 45 45 0 0 1 180 210 A 60 60 0 0 1 180 90",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "exit_line",
+              "d": "M 180 90 L 320 58",
+              "ms": 2050
+            },
+            {
+              "type": "stroke",
+              "id": "exit_arrowhead",
+              "d": "M 311 65 L 320 58 L 309 55",
+              "ms": 330
+            },
+            {
+              "type": "stroke",
+              "id": "lead_left",
+              "d": "M 130 231 L 130 290",
+              "ms": 840
+            },
+            {
+              "type": "stroke",
+              "id": "lead_right",
+              "d": "M 230 231 L 230 290",
+              "ms": 840
+            },
+            {
+              "type": "stroke",
+              "id": "oscillator_box",
+              "d": "M 120 290 L 240 290 L 240 320 L 120 320 L 120 290",
+              "ms": 4290
+            },
+            {
+              "type": "label",
+              "id": "lbl_d1",
+              "x": 98,
+              "y": 156,
+              "text": "D₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_d2",
+              "x": 248,
+              "y": 156,
+              "text": "D₂",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_field_left",
+              "x": 92,
+              "y": 100,
+              "text": "⊙  ⊙",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_field_right",
+              "x": 232,
+              "y": 108,
+              "text": "⊙  ⊙",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 58,
+              "y": 40,
+              "text": "B out of the page",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_exit",
+              "x": 278,
+              "y": 40,
+              "text": "exit port",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_osc",
+              "x": 134,
+              "y": 310,
+              "text": "OSCILLATOR",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Two dees with a gap between them, the magnetic field out of the page, the widening spiral path, the oscillator across the dees and the exit port.",
+        "why": "The picture shows the two jobs done by two different parts: the gap is where the electric field speeds the particle up, and the inside of a dee is where the magnetic field bends it round.",
+        "common_mistakes": [
+          "Drawing the magnetic field in the plane of the dees. It is perpendicular to that plane.",
+          "Drawing the path as a single circle. The radius grows at every crossing, so it is a spiral."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That two dees with a gap, the perpendicular magnetic field, the spiral path and the oscillator are drawn.",
+          "accept": [
+            "draw the two dees and the gap",
+            "field out of the page",
+            "spiral path and oscillator"
+          ],
+          "reject": [
+            "f equals qB by two pi m"
+          ],
+          "heard_as": [
+            "dees",
+            "figure"
+          ]
+        },
+        "memory_tip": "Two half-circles facing each other, dots for the field, a spiral growing outward."
+      },
+      {
+        "id": "s2_components",
+        "kind": "text",
+        "label": "The four main parts",
+        "marks": 2,
+        "mark_note": "All four parts named",
+        "lines": [
+          "A cyclotron is a device used to accelerate",
+          "positively charged particles such as protons,",
+          "deuterons and alpha particles.",
+          "It mainly consists of:",
+          "1) Two hollow D-shaped metal chambers D₁ and",
+          "   D₂, called dees, with a small gap between",
+          "   them.",
+          "2) A high frequency oscillator connected",
+          "   across the two dees.",
+          "3) A strong electromagnet whose field is",
+          "   perpendicular to the plane of the dees.",
+          "4) A vacuum chamber that holds the dees."
+        ],
+        "margin_note": "Two marks. Four numbered parts, one line each — dees, oscillator, electromagnet, vacuum chamber.",
+        "why": "Each part does one job: the dees shield the particle from the electric field, the oscillator supplies it at the gap, the magnet bends the path and the vacuum stops the particle hitting gas molecules.",
+        "common_mistakes": [
+          "Leaving out the vacuum chamber. Without it the particle would lose energy in collisions with air.",
+          "Calling the oscillator a battery. The potential difference must reverse every half turn."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The four parts: two dees, a high frequency oscillator, a strong electromagnet and a vacuum chamber.",
+          "accept": [
+            "two D shaped chambers or dees",
+            "high frequency oscillator",
+            "strong electromagnet",
+            "vacuum chamber"
+          ],
+          "reject": [
+            "used to produce radioisotopes"
+          ],
+          "heard_as": [
+            "dees",
+            "oscillator",
+            "electromagnet"
+          ]
+        },
+        "memory_tip": "Two dees, one oscillator, one magnet, one vacuum box: 2-1-1-1."
+      },
+      {
+        "id": "s3_working",
+        "kind": "equation",
+        "label": "How it works",
+        "marks": 1,
+        "mark_note": "Gap accelerates, field bends, f = qB/2πm",
+        "lines": [
+          "The oscillator puts an alternating potential",
+          "difference across the gap, so the particle is",
+          "accelerated every time it crosses the gap.",
+          "Inside a dee there is no electric field, and",
+          "the magnetic field bends the particle into a",
+          "semicircle of radius",
+          {
+            "text": "r = mv / qB",
+            "style": "eq"
+          },
+          "The time for one semicircle is πm/qB, which",
+          "does not depend on the speed or the radius,",
+          "so the frequency of revolution is",
+          {
+            "text": "f = qB / 2πm",
+            "style": "eq"
+          },
+          "The oscillator frequency is made equal to",
+          "this cyclotron frequency. At the largest",
+          "radius the particle is taken out through the",
+          "exit port by a deflector, with energy",
+          {
+            "text": "KE = q²r²B² / 2m",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The one sentence that matters: the frequency does not depend on speed or radius, so a fixed oscillator frequency works throughout.",
+        "why": "A faster particle travels a bigger circle, and the two changes cancel exactly, so every half turn takes the same time — that is why one fixed oscillator frequency can keep pushing the particle for the whole spiral.",
+        "common_mistakes": [
+          "Saying the magnetic field increases the speed. It only changes the direction; the gap does the accelerating.",
+          "Saying the oscillator frequency must be changed as the particle speeds up. It stays fixed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the gap accelerates and the field bends, and that f = qB/2πm is independent of speed and radius.",
+          "accept": [
+            "accelerated in the gap between the dees",
+            "magnetic field bends it into semicircles",
+            "frequency q B by two pi m does not depend on speed"
+          ],
+          "reject": [
+            "two hollow D shaped chambers"
+          ],
+          "heard_as": [
+            "cyclotron frequency",
+            "semicircle"
+          ]
+        },
+        "memory_tip": "Bigger circle but faster particle: the same time every half turn."
+      },
+      {
+        "id": "s4_uses",
+        "kind": "boxed_final",
+        "label": "Uses",
+        "marks": 1,
+        "mark_note": "Any two or three uses",
+        "lines": [
+          "Uses of a cyclotron:",
+          "1) It is used to implant ions into solids.",
+          "2) It is used to produce radioisotopes.",
+          "3) It is suitable for accelerating heavy",
+          "   particles such as protons, deuterons and",
+          "   alpha particles.",
+          {
+            "text": "f = qB/2πm: same frequency at every radius",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. Three short uses, one line each.",
+        "why": "All three uses need a beam of heavy positive particles at high energy, which is exactly what the spiral of many small pushes produces.",
+        "common_mistakes": [
+          "Saying a cyclotron accelerates electrons. An electron becomes relativistic too soon and falls out of step.",
+          "Writing only one use when the question says uses."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "At least two uses: implanting ions into solids, producing radioisotopes, accelerating heavy particles.",
+          "accept": [
+            "implant ions into solids",
+            "produce radioisotopes",
+            "accelerate protons deuterons and alpha particles"
+          ],
+          "reject": [
+            "high frequency oscillator"
+          ],
+          "heard_as": [
+            "radioisotopes",
+            "ion implantation"
+          ]
+        },
+        "memory_tip": "Ions in, isotopes out, heavy particles fast."
+      }
+    ]
+  }
+}

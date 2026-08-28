@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_coil_field_and_moment_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A 100 turn closely wound circular coil of radius 10 cm carries a current of 3.2 A. a) What is the field at the centre of the coil? b) What is the magnetic moment of this coil?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The data in SI units",
+      "marks": 1
+    },
+    {
+      "label": "The field at the centre",
+      "marks": 1
+    },
+    {
+      "label": "The magnetic moment formula",
+      "marks": 1
+    },
+    {
+      "label": "The magnetic moment value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Arithmetic re-derived: B = μ₀ni/2r = (4π × 10⁻⁷ × 100 × 3.2)/(2 × 0.1) = 4.021 × 10⁻⁴/0.2 = 2.01 × 10⁻³ T ≈ 2 × 10⁻³ T; M = niA = niπr² = 100 × 3.2 × 3.14 × 0.01 = 10.05 ≈ 10 A m². Both agree with the book's printed answers. The book's 'filed' for field is corrected here. This numerical is printed inside the Short Answer list, so it is authored as an SAQ; the three questions under the separate PROBLEMS banner of this chapter are deferred and are not authored."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Convert 10 cm to 0.1 m on the first line. Every mark below it depends on that one conversion, and a radius left in centimetres gives an answer wrong by a factor of 100.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Moving Charges and Magnetism · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_data",
+        "kind": "equation",
+        "label": "The data in SI units",
+        "marks": 1,
+        "mark_note": "Data converted and formulas written",
+        "lines": [
+          "Number of turns n = 100",
+          "Radius r = 10 cm = 10 × 10⁻² m = 0.1 m",
+          "Current i = 3.2 A",
+          "μ₀ = 4π × 10⁻⁷ T m A⁻¹",
+          "Field at the centre of a circular coil:",
+          {
+            "text": "B = μ₀ n i / 2r",
+            "style": "eq"
+          },
+          "Magnetic moment of a coil:",
+          {
+            "text": "M = n i A = n i (πr²)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Write the data in SI units and name both formulas before substituting anything.",
+        "why": "The two parts use two different formulas built from the same three numbers, so listing the data once saves repeating it.",
+        "common_mistakes": [
+          "Leaving r as 10 in the working. It must be 0.1 m.",
+          "Using B = μ₀i/2πr, which is the straight wire formula, not the coil formula."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n = 100, r = 0.1 m, i = 3.2 A, with B = μ₀ni/2r and M = niA.",
+          "accept": [
+            "n is hundred r is zero point one metre i is three point two",
+            "B equals mu nought n i by two r",
+            "M equals n i A"
+          ],
+          "reject": [
+            "two into ten power minus three tesla"
+          ],
+          "heard_as": [
+            "data",
+            "formula"
+          ]
+        },
+        "memory_tip": "Centimetres to metres first, then touch the formula."
+      },
+      {
+        "id": "s2_field",
+        "kind": "equation",
+        "label": "The field at the centre",
+        "marks": 1,
+        "mark_note": "B = 2 × 10⁻³ T",
+        "lines": [
+          "a) Substituting in B = μ₀ n i / 2r,",
+          {
+            "text": "B = (4π × 10⁻⁷ × 100 × 3.2) / (2 × 0.1)",
+            "style": "eq"
+          },
+          {
+            "text": "B = (4.02 × 10⁻⁴) / 0.2",
+            "style": "eq"
+          },
+          {
+            "text": "B ≈ 2 × 10⁻³ T",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. The substitution line and the value with its unit — tesla, not weber.",
+        "why": "The field is set by the turns, the current and the radius only; 100 turns at the same radius give 100 times the field of a single turn.",
+        "common_mistakes": [
+          "Writing 2r as 2 × 10, giving an answer 100 times too small.",
+          "Giving the answer with no unit, or in weber."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substitution gives B ≈ 2 × 10⁻³ T.",
+          "accept": [
+            "four pi into ten power minus seven into hundred into three point two",
+            "two into ten power minus three tesla",
+            "divided by two into zero point one"
+          ],
+          "reject": [
+            "ten ampere metre squared"
+          ],
+          "heard_as": [
+            "two into ten power minus three",
+            "tesla"
+          ]
+        },
+        "memory_tip": "Top line is 4 × 10⁻⁴, bottom line is 0.2: the answer is 2 × 10⁻³."
+      },
+      {
+        "id": "s3_moment",
+        "kind": "equation",
+        "label": "The magnetic moment formula",
+        "marks": 1,
+        "mark_note": "M = ni(πr²) with the values put in",
+        "lines": [
+          "b) The area of the coil is",
+          {
+            "text": "A = πr² = 3.14 × (0.1)² = 3.14 × 10⁻² m²",
+            "style": "eq"
+          },
+          "The magnetic moment is",
+          {
+            "text": "M = n i A = 100 × 3.2 × 3.14 × 10⁻²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Work out the area first, then put it into M = niA.",
+        "why": "Magnetic moment counts every turn, so the n stays in front; the coil behaves like n separate loops stacked together.",
+        "common_mistakes": [
+          "Using the circumference 2πr instead of the area πr².",
+          "Dropping the n and finding the moment of one turn only."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A = πr² = 3.14 × 10⁻² m² and M = niA = 100 × 3.2 × 3.14 × 10⁻².",
+          "accept": [
+            "area is pi r squared",
+            "three point one four into ten power minus two",
+            "M is n i A"
+          ],
+          "reject": [
+            "B is mu nought n i by two r"
+          ],
+          "heard_as": [
+            "pi r squared",
+            "area"
+          ]
+        },
+        "memory_tip": "Area before moment: πr² first, then multiply by n and i."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "The magnetic moment value",
+        "marks": 1,
+        "mark_note": "M ≈ 10 A m²",
+        "lines": [
+          {
+            "text": "M = 320 × 3.14 × 10⁻² ≈ 10 A m²",
+            "style": "eq"
+          },
+          "The two answers are",
+          {
+            "text": "B ≈ 2 × 10⁻³ T,  M ≈ 10 A m²",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. Give the value with the unit A m², and restate both answers together.",
+        "why": "The unit A m² comes straight from the formula niA: an ampere times a square metre, which is also the unit of the moment of a bar magnet.",
+        "common_mistakes": [
+          "Writing the unit as A/m² or A m. It is ampere metre squared.",
+          "Answering only part (a) and stopping."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That M ≈ 10 A m², alongside B ≈ 2 × 10⁻³ T.",
+          "accept": [
+            "ten ampere metre squared",
+            "M is about ten",
+            "both answers together"
+          ],
+          "reject": [
+            "area is pi r squared"
+          ],
+          "heard_as": [
+            "ampere metre squared",
+            "ten"
+          ]
+        },
+        "memory_tip": "320 turns-amperes over an area of about 0.031 m² gives 10."
+      }
+    ]
+  }
+}

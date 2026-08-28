@@ -9355,6 +9355,141 @@
       ]
     },
     {
+      "number": 7,
+      "name": "Moving Charges and Magnetism",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What is the importance of Oersted's experiment?",
+          "question_id": "ts_ipe_p2_mcm_oersted_experiment_importance"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "A circular coil of radius r having N turns carries a current i. What is its magnetic moment?",
+          "question_id": "ts_ipe_p2_mcm_circular_coil_magnetic_moment"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What is the force on a conductor of length l carrying a current i when it is situated in a magnetic field of induction B? When is it maximum?",
+          "question_id": "ts_ipe_p2_mcm_force_on_conductor_in_field"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What is the force on a charged particle of charge q moving with velocity v in a uniform magnetic field of induction B? When is it maximum?",
+          "question_id": "ts_ipe_p2_mcm_force_on_charged_particle"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Distinguish between ammeter and voltmeter.",
+          "question_id": "ts_ipe_p2_mcm_ammeter_vs_voltmeter"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "How do you convert a moving coil galvanometer into an ammeter?",
+          "question_id": "ts_ipe_p2_mcm_galvanometer_to_ammeter"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "How do you convert a moving coil galvanometer into a voltmeter?",
+          "question_id": "ts_ipe_p2_mcm_galvanometer_to_voltmeter"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What is the principle of the moving coil galvanometer?",
+          "question_id": "ts_ipe_p2_mcm_moving_coil_galvanometer_principle"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "State and explain Biot-Savart law.",
+          "question_id": "ts_ipe_p2_mcm_biot_savart_law"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "State and prove Ampere's law?",
+          "question_id": "ts_ipe_p2_mcm_amperes_law_state_prove"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What are the basic components of a cyclotron? Mention its uses?",
+          "question_id": "ts_ipe_p2_mcm_cyclotron_components_uses"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Find intensity of magnetic induction B due to a long current carrying conductor.",
+          "question_id": "ts_ipe_p2_mcm_field_long_straight_conductor"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "A 100 turn closely wound circular coil of radius 10 cm carries a current of 3.2 A. a) What is the field at the centre of the coil? b) What is the magnetic moment of this coil?",
+          "question_id": "ts_ipe_p2_mcm_coil_field_and_moment_numerical"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "A current of 10 A passes through two very long wires held parallel to each other and separated by a distance of 1 m. What is the force per unit length between them?",
+          "question_id": "ts_ipe_p2_mcm_parallel_wires_force_numerical"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Deduce an expression for the force on a current carrying conductor placed in a magnetic field. Derive an expression for the force per unit length between two parallel current carrying conductors?",
+          "question_id": "ts_ipe_p2_mcm_force_conductor_and_parallel_wires"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Obtain an expression for the torque on a loop placed in a uniform magnetic field. Describe the construction and working of moving coil galvanometer.",
+          "question_id": "ts_ipe_p2_mcm_torque_on_loop_and_galvanometer"
+        }
+      ]
+    },
+    {
       "number": 8,
       "name": "Magnetism and Matter",
       "subject": "physics_2",
