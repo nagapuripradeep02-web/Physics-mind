@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_aba_stomatal_closure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How does ABA bring about the closure of stomata under water stress conditions?",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What ABA does",
+      "marks": 1
+    },
+    {
+      "label": "Why the pore closes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 61. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "One sentence answers this if it names the ion. \"Drives K+ out of the guard cells\" is the line the examiner is looking for.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_aba",
+        "kind": "text",
+        "label": "What ABA does",
+        "marks": 1,
+        "mark_note": "ABA acts",
+        "margin_note": "Name the hormone and the ion it moves. Three lines.",
+        "lines": [
+          "ABA is abscisic acid, the stress hormone of",
+          "plants.",
+          "Under water stress, ABA drives K+ ions OUT of",
+          "the guard cells."
+        ],
+        "why": "ABA acts on the same potassium pump that opens the pore in light, so a single hormone can override the light signal.",
+        "common_mistakes": [
+          "Saying ABA closes the pore directly. It acts through the K+ ions.",
+          "Naming the wrong ion. It is POTASSIUM (K+) that leaves."
+        ],
+        "memory_tip": "ABA pulls the potassium out, and the pore follows."
+      },
+      {
+        "id": "s2_close",
+        "kind": "boxed_final",
+        "label": "Why the pore closes",
+        "marks": 1,
+        "mark_note": "Closure",
+        "margin_note": "Four steps in order: ion, water potential, turgor, shape.",
+        "lines": [
+          {
+            "text": "Potassium out, water out, pore shut",
+            "style": "boxed"
+          },
+          "As K+ leaves, the water potential of the guard",
+          "cells rises.",
+          "Water moves out and the guard cells lose",
+          "turgor.",
+          "The pair straightens and the stomata close, so",
+          "the plant saves water."
+        ],
+        "why": "The chain from ion to water to turgor to shape is the same one that opens the pore, run in reverse — which is why only the first step needed a hormone.",
+        "common_mistakes": [
+          "Skipping straight from ABA to closure. The water potential and turgor steps are the mark.",
+          "Saying the guard cells become turgid. They LOSE turgor, which is why the pore shuts."
+        ],
+        "memory_tip": "Lose the water, lose the bend, lose the pore."
+      }
+    ]
+  }
+}

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { answerBookQuestionSchema } from '../../../src/schemas/answerBook';
 
-const QDIR = 'C:/Tutor/physics-mind-ipe-zoology/answer-book/questions';
+const QDIR = path.join(process.cwd(), 'answer-book', 'questions');
 const files = fs.readdirSync(QDIR).filter((f) => f.startsWith('ts_ipe_z1_bhw_') && f.endsWith('.json'));
 let bad = 0;
 const stubs: string[] = [];

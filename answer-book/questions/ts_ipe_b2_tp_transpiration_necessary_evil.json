@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_transpiration_necessary_evil",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "\"Transpiration is a necessary evil\". Explain.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Why it is necessary",
+      "marks": 2
+    },
+    {
+      "label": "Why it is harmful",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.22, printed question 10. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two halves, two marks each. An answer that lists five advantages and no disadvantage scores half. Split the page down the middle before you start writing.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transport in Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_advantages",
+        "kind": "text",
+        "label": "Why transpiration is necessary",
+        "marks": 2,
+        "mark_note": "Advantages",
+        "margin_note": "At least four numbered advantages. Two marks sit here, so do not rush this half.",
+        "lines": [
+          "Transpiration has both benefits and harms, so",
+          "it is called a necessary evil.",
+          "ADVANTAGES:",
+          "1. It creates the transpiration pull that",
+          "absorbs and transports water in the plant.",
+          "2. It supplies water for photosynthesis.",
+          "3. It carries minerals from the soil to every",
+          "part of the plant.",
+          "4. It cools the leaf surface by evaporative",
+          "cooling.",
+          "5. It keeps cells turgid, so the plant holds",
+          "its shape."
+        ],
+        "why": "Each advantage is a job no other process in the plant does, which is what makes the loss of water unavoidable rather than merely tolerated.",
+        "common_mistakes": [
+          "Listing fewer than four advantages. Two marks need a full list.",
+          "Writing only 'it cools the plant'. The transport of water and minerals is the bigger point."
+        ],
+        "memory_tip": "Pull, supply, carry, cool, hold: five jobs one evaporation does."
+      },
+      {
+        "id": "s2_disadvantages",
+        "kind": "boxed_final",
+        "label": "Why transpiration is harmful",
+        "marks": 2,
+        "mark_note": "Disadvantages",
+        "margin_note": "At least three disadvantages, then one closing line that joins both halves.",
+        "lines": [
+          {
+            "text": "Necessary for transport, harmful in excess",
+            "style": "boxed"
+          },
+          "DISADVANTAGES:",
+          "1. Excessive transpiration makes cells flaccid.",
+          "2. Flaccid cells slow the growth of the plant.",
+          "3. A large amount of water is lost as vapour.",
+          "4. Photosynthesis is then limited by the",
+          "shortage of water.",
+          "So transpiration is necessary for transport but",
+          "harmful when it is excessive."
+        ],
+        "why": "The harm is not transpiration itself but its excess, and saying so is what turns two lists into the single sentence the question actually asks for.",
+        "common_mistakes": [
+          "Giving no disadvantages at all. That is two marks lost.",
+          "Writing that transpiration is useless. The question calls it NECESSARY as well as evil."
+        ],
+        "memory_tip": "Evil only in excess: a little is transport, too much is drought."
+      }
+    ]
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_ascent_of_sap",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How does ascent of sap occur in tall trees?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Cohesion and adhesion",
+      "marks": 1
+    },
+    {
+      "label": "Transpiration pull",
+      "marks": 1
+    },
+    {
+      "label": "Why it works in tall trees",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.21, printed question 9. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Three named physical properties carry three of the four marks. Name all three even if you explain only briefly — a missing name cannot be recovered by a longer sentence about the others.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transport in Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Ascent of sap defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, tissue, and the direction. Three or four lines.",
+        "lines": [
+          "Ascent of sap is the upward movement of water",
+          "from the roots to the leaves.",
+          "It moves through the XYLEM.",
+          "It moves against the force of gravity."
+        ],
+        "why": "Naming the tissue and the direction fixes what has to be explained: an upward flow with no pump, which is why the rest of the answer is about physical properties of water.",
+        "common_mistakes": [
+          "Writing phloem. Water rises through the XYLEM; phloem carries food.",
+          "Leaving out 'against gravity'. That is the difficulty the answer has to explain."
+        ],
+        "memory_tip": "Sap goes up the xylem; food goes down the phloem."
+      },
+      {
+        "id": "s2_cohesion",
+        "kind": "text",
+        "label": "Cohesion and adhesion",
+        "marks": 1,
+        "mark_note": "Cohesion, adhesion",
+        "margin_note": "Both names, both meanings, one line each. Do not merge them into one sentence.",
+        "lines": [
+          "The ascent depends on three physical",
+          "properties of water.",
+          "1. Cohesion: the mutual attraction between",
+          "water molecules. It holds the water column",
+          "together as one unbroken thread.",
+          "2. Adhesion: the attraction of water molecules",
+          "to polar surfaces, such as the walls of the",
+          "tracheal elements."
+        ],
+        "why": "Cohesion holds the column together and adhesion holds it against the wall, so between them the water in a tall xylem vessel behaves like a single rope rather than loose drops.",
+        "common_mistakes": [
+          "Swapping the two. COHESION is water to water; ADHESION is water to the wall.",
+          "Defining only one. The mark asks for both names with their meanings."
+        ],
+        "memory_tip": "Cohesion is water holding water; adhesion is water holding the wall."
+      },
+      {
+        "id": "s3_pull",
+        "kind": "text",
+        "label": "Transpiration pull",
+        "marks": 1,
+        "mark_note": "Transpiration pull",
+        "margin_note": "Evaporation, tension, pull. Name it as the driving force in the last line.",
+        "lines": [
+          "3. Transpiration pull:",
+          "Water evaporates from the leaf surface during",
+          "transpiration.",
+          "This creates a tension at the top of the water",
+          "column.",
+          "The tension pulls the whole column upward.",
+          "Transpiration pull is the driving force for the",
+          "upward movement of water."
+        ],
+        "why": "Transpiration is what actually supplies the force; cohesion and adhesion only make it possible for that force to be felt all the way down to the root.",
+        "common_mistakes": [
+          "Calling it a push from the roots. Root pressure is small; the main force is a PULL from the top.",
+          "Leaving out evaporation. The pull begins when water leaves the leaf."
+        ],
+        "memory_tip": "The leaf pulls, the column follows; nothing pushes from below."
+      },
+      {
+        "id": "s4_tall",
+        "kind": "boxed_final",
+        "label": "Why it works in tall trees",
+        "marks": 1,
+        "mark_note": "In tall trees",
+        "margin_note": "Close on tensile strength and capillarity. This is the mark for the word 'tall'.",
+        "lines": [
+          {
+            "text": "High tensile strength plus high capillarity",
+            "style": "boxed"
+          },
+          "Together these properties give water a high",
+          "tensile strength and high capillarity.",
+          "So the water column does not break even in a",
+          "very tall tree.",
+          "Photosynthesis needs a steady water supply,",
+          "and the xylem from root to leaf delivers it."
+        ],
+        "why": "The question says TALL trees, so the answer has to close on the reason height is not a problem: the column has enough tensile strength to hold together over that distance.",
+        "common_mistakes": [
+          "Not answering the 'tall' part. The last mark is for why the column does not break.",
+          "Writing that a pump lifts the water. There is no pump in a plant."
+        ],
+        "memory_tip": "An unbroken rope of water can be pulled from the top however long it is."
+      }
+    ]
+  }
+}

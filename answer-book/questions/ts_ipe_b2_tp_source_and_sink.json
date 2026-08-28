@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_source_and_sink",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "With reference to transportation of food within a plant, what are source and sink?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Source",
+      "marks": 1
+    },
+    {
+      "label": "Sink",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 56. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Each half needs a definition AND an example. The examples are short, so there is no reason to leave them out.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_source",
+        "kind": "text",
+        "label": "Source",
+        "marks": 1,
+        "mark_note": "Source",
+        "margin_note": "Definition plus one example. Three lines.",
+        "lines": [
+          "The source is the place in the plant body",
+          "where food material is PREPARED.",
+          "Example: a leaf."
+        ],
+        "why": "Food is made where photosynthesis happens, so the leaf is the source by definition rather than by convention.",
+        "common_mistakes": [
+          "Calling the root the source. The root usually stores food, so it is a sink.",
+          "Leaving out the example. The example is part of the mark."
+        ],
+        "memory_tip": "Source makes it, sink keeps it."
+      },
+      {
+        "id": "s2_sink",
+        "kind": "boxed_final",
+        "label": "Sink",
+        "marks": 1,
+        "mark_note": "Sink",
+        "margin_note": "Definition, examples, and one line on why the roles can swap.",
+        "lines": [
+          {
+            "text": "Source makes food; sink stores it",
+            "style": "boxed"
+          },
+          "The sink is the place in the plant body where",
+          "food material is STORED or used.",
+          "Examples: fruits and buds.",
+          "Source and sink can change with the season, so",
+          "phloem transport runs in both directions."
+        ],
+        "why": "A part can be a source in one season and a sink in another, which is why phloem transport is not fixed to one direction the way xylem transport is.",
+        "common_mistakes": [
+          "Naming only one example. The question uses the plural.",
+          "Saying phloem always moves food downward. It moves toward whichever part is the sink."
+        ],
+        "memory_tip": "Whichever end is storing today is the sink today."
+      }
+    ]
+  }
+}
