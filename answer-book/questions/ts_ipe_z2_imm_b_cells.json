@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_imm_b_cells",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Immune System",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write short notes on B-cells.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What B-cells are",
+      "marks": 1
+    },
+    {
+      "label": "Where they are made",
+      "marks": 1
+    },
+    {
+      "label": "Immunocompetent B-cells",
+      "marks": 1
+    },
+    {
+      "label": "Memory and plasma cells",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.36, SAQ 28. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Immune System · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What B-cells are",
+        "marks": 1,
+        "mark_note": "What they are",
+        "why": "B cells are the only cells that make antibodies, so the whole of humoral immunity runs through them.",
+        "common_mistakes": [
+          "Calling B cells phagocytes. They make antibodies; they do not engulf.",
+          "Confusing B cells with T cells."
+        ],
+        "memory_tip": "B for bone marrow and for antiBody.",
+        "margin_note": "Definition first, then the life story in order.",
+        "lines": [
+          "B-cells are lymphocytes that can produce",
+          "antibodies.",
+          "They can capture circulating antigens."
+        ]
+      },
+      {
+        "id": "s2_origin",
+        "kind": "text",
+        "label": "Where they are made",
+        "marks": 1,
+        "mark_note": "Origin",
+        "why": "Before birth there is no working bone marrow, so the liver takes the job over until there is.",
+        "common_mistakes": [
+          "Naming the thymus. That is where T cells mature.",
+          "Leaving out the foetal liver."
+        ],
+        "memory_tip": "Bone marrow in the adult, liver in the foetus.",
+        "margin_note": "Both sites are marked. Give them both.",
+        "lines": [
+          "They are produced from the bone marrow of",
+          "adult mammals, and from the liver of the",
+          "foetus."
+        ]
+      },
+      {
+        "id": "s3_immunocompetent",
+        "kind": "text",
+        "label": "Immunocompetent B-cells",
+        "marks": 1,
+        "mark_note": "Mature B-cells",
+        "why": "A mature B cell carries its antibody on the outside like a hook, so it can catch the one antigen it was made for.",
+        "common_mistakes": [
+          "Writing that mature B cells release antibodies. They carry them on the surface.",
+          "Leaving out the term immunocompetent."
+        ],
+        "memory_tip": "Antibodies on the surface make the cell immunocompetent.",
+        "margin_note": "Say where the antibodies sit at this stage.",
+        "lines": [
+          "Mature B cells make various antibodies,",
+          "which are carried on their plasma membrane.",
+          "Because these antibodies can take antigens,",
+          "such mature B cells are called",
+          "immunocompetent B cells.",
+          "They reach secondary lymphoid organs and",
+          "become functional immune cells."
+        ]
+      },
+      {
+        "id": "s4_memory_plasma",
+        "kind": "boxed_final",
+        "label": "Memory and plasma cells",
+        "marks": 1,
+        "mark_note": "Two cell types",
+        "why": "One kind fights the infection now and the other remembers it, which is why the second attack by the same germ is dealt with faster.",
+        "common_mistakes": [
+          "Giving memory cells the antibody-making job. Plasma cells do that.",
+          "Leaving out the quicker second response."
+        ],
+        "memory_tip": "Plasma cells fight today, memory cells remember for next time.",
+        "margin_note": "End with the quick second response. That is the point.",
+        "lines": [
+          "Functional immune cells change into long",
+          "lived memory cells and effector plasma",
+          "cells.",
+          "Plasma cells produce antibodies specific to",
+          "the antigen.",
+          {
+            "text": "Memory cells give a quick response next time",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Follow one B cell through its life: made, matured, moved, then split into memory and plasma cells. Marks are given for the sequence, not for repeating that B cells make antibodies."
+}

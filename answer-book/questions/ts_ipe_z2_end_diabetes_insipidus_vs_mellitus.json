@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_diabetes_insipidus_vs_mellitus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between diabetes insipidus and diabetes mellitus.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Diabetes insipidus",
+      "marks": 1
+    },
+    {
+      "label": "Diabetes mellitus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.52, VSAQ 91. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Endocrine System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_insipidus",
+        "kind": "text",
+        "label": "Diabetes insipidus",
+        "marks": 1,
+        "mark_note": "Insipidus",
+        "why": "Without vasopressin the kidney cannot take water back, so plain water is lost and thirst follows.",
+        "common_mistakes": [
+          "Giving glucose in the urine. Insipidus means tasteless: there is no sugar.",
+          "Blaming insulin."
+        ],
+        "memory_tip": "Insipidus means tasteless: water, no sugar, no vasopressin.",
+        "margin_note": "Write it as two rows.",
+        "lines": [
+          "Diabetes insipidus shows excessive",
+          "urination and extreme thirst.",
+          "It is due to hyposecretion of vasopressin."
+        ]
+      },
+      {
+        "id": "s2_mellitus",
+        "kind": "boxed_final",
+        "label": "Diabetes mellitus",
+        "marks": 1,
+        "mark_note": "Mellitus",
+        "why": "With too little insulin the blood sugar rises so high that the kidney cannot hold it back, and it spills into the urine.",
+        "common_mistakes": [
+          "Blaming vasopressin. Mellitus is an insulin problem.",
+          "Leaving out the ketone bodies."
+        ],
+        "memory_tip": "Mellitus means honey: sugar in the urine, insulin too low.",
+        "margin_note": "Mirror the two points exactly.",
+        "lines": [
+          "Diabetes mellitus shows excess urine with",
+          "glucose and ketone bodies in it.",
+          {
+            "text": "It is due to hyposecretion of insulin",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The most repeated two-mark question in this chapter. Both are 'diabetes' because both pass much urine — the difference is the hormone, so name vasopressin and insulin."
+}

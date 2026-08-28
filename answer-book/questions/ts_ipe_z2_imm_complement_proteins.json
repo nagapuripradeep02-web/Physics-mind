@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_imm_complement_proteins",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Immune System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are complement proteins?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "What they do",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.53, VSAQ 98. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Immune System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "What they are",
+        "why": "They wait in the plasma doing nothing until an infection switches them on, so the body is armed without being at war.",
+        "common_mistakes": [
+          "Calling them antibodies. They complement antibodies but are not antibodies.",
+          "Leaving out that they are inactive to begin with."
+        ],
+        "memory_tip": "They complete, or complement, the work of antibodies.",
+        "margin_note": "Say inactive. It is the marked word.",
+        "lines": [
+          "Complement proteins are a group of",
+          "inactive plasma proteins and cell surface",
+          "proteins."
+        ]
+      },
+      {
+        "id": "s2_action",
+        "kind": "boxed_final",
+        "label": "What they do",
+        "marks": 1,
+        "mark_note": "Action",
+        "why": "A hole in the membrane lets fluid rush in, so the infected cell swells until it bursts.",
+        "common_mistakes": [
+          "Saying they engulf microbes. They punch holes in them.",
+          "Leaving out the membrane attack complex."
+        ],
+        "memory_tip": "They drill pores, water rushes in, the cell bursts.",
+        "margin_note": "Name the complex and the result.",
+        "lines": [
+          "When activated they form membrane attack",
+          "complexes, which make pores in the plasma",
+          "membrane of the affected cell.",
+          {
+            "text": "Fluid enters, and the cell swells and bursts",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The marked chain is: inactive proteins, activated, membrane attack complex, pores, cell bursts. Say 'inactive' — that is what makes them complement proteins rather than antibodies."
+}

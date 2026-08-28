@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_imm_mature_vs_functional_b_cells",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Immune System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate between mature B-cells and functional B-cells.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Mature B-cells",
+      "marks": 1
+    },
+    {
+      "label": "Functional B-cells",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.53, VSAQ 97. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Immune System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mature",
+        "kind": "text",
+        "label": "Mature B-cells",
+        "marks": 1,
+        "mark_note": "Mature",
+        "why": "A mature B cell carries its antibody on the outside but has not yet met an antigen, so it is ready but not yet working.",
+        "common_mistakes": [
+          "Writing that mature B cells release antibodies. They display them.",
+          "Placing them in the lymph nodes. They are made in the bone marrow."
+        ],
+        "memory_tip": "Mature in the marrow, functional in the lymph organs.",
+        "margin_note": "Two rows: where made, what it does.",
+        "lines": [
+          "Mature B-cells are produced from stem",
+          "cells in the bone marrow of adult mammals.",
+          "They make antibodies which are displayed on",
+          "their surface."
+        ]
+      },
+      {
+        "id": "s2_functional",
+        "kind": "boxed_final",
+        "label": "Functional B-cells",
+        "marks": 1,
+        "mark_note": "Functional",
+        "why": "Once it reaches a lymphoid organ and meets its antigen, the cell divides into one kind that fights now and one that remembers.",
+        "common_mistakes": [
+          "Saying functional B cells are made in the marrow. They develop from mature B cells.",
+          "Naming only one of the two products."
+        ],
+        "memory_tip": "Functional B cells split into memory cells and plasma cells.",
+        "margin_note": "Both products are marked. Name them.",
+        "lines": [
+          "Functional B-cells develop from mature",
+          "B-cells in secondary lymphoid organs.",
+          {
+            "text": "They become memory cells and plasma cells",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The difference is WHERE each is found and WHAT it becomes. Bone marrow for the mature cell, secondary lymphoid organs for the functional one."
+}

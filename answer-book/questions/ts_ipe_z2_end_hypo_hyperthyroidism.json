@@ -1,0 +1,164 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_hypo_hyperthyroidism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain how hypothyroidism and hyperthyroidism can affect the body.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What hypothyroidism is",
+      "marks": 1
+    },
+    {
+      "label": "Its effects",
+      "marks": 1
+    },
+    {
+      "label": "What hyperthyroidism is",
+      "marks": 1
+    },
+    {
+      "label": "Its effects",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.34, SAQ 23. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Endocrine System · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hypo",
+        "kind": "text",
+        "label": "Hypothyroidism",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "Iodine is part of the thyroid hormone itself, so too little iodine means too little hormone however hard the gland works.",
+        "common_mistakes": [
+          "Writing that the gland shrinks. In simple goitre it enlarges.",
+          "Leaving out iodine as the cause."
+        ],
+        "memory_tip": "Hypo means low: less T3 and T4, and the gland swells trying to make more.",
+        "margin_note": "Name the hormones and the cause first.",
+        "lines": [
+          {
+            "text": "Hypothyroidism",
+            "style": "heading"
+          },
+          "It is a condition in which the production",
+          "of thyroid hormones T3 and T4 decreases.",
+          "The thyroid gland enlarges. This is called",
+          "simple goitre.",
+          "It is caused by too little iodine, or by",
+          "damage to the thyroid gland."
+        ]
+      },
+      {
+        "id": "s2_hypo_effects",
+        "kind": "text",
+        "label": "Effects of hypothyroidism",
+        "marks": 1,
+        "mark_note": "Effects",
+        "why": "The same shortage does different damage at different ages, because in a child the hormone is also needed for growth and brain development.",
+        "common_mistakes": [
+          "Using one name for both ages. Thyroid dwarfism is in children, myxoedema in adults.",
+          "Leaving out mental effects."
+        ],
+        "memory_tip": "In the child, growth stops; in the adult, everything slows.",
+        "margin_note": "Two conditions, one for each age.",
+        "lines": [
+          "Untreated hypothyroidism from birth leads",
+          "to thyroid dwarfism, with stunted growth,",
+          "mental retardation, low IQ, abnormal skin,",
+          "deafness and mutism.",
+          "In adults it causes myxoedema, with",
+          "lethargy, mental impairment, puffiness of",
+          "the face and dry skin."
+        ]
+      },
+      {
+        "id": "s3_hyper",
+        "kind": "text",
+        "label": "Hyperthyroidism",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "An overactive gland pours out hormone whether the body needs it or not, so every process the hormone drives runs too fast.",
+        "common_mistakes": [
+          "Writing that T3 and T4 fall. In hyperthyroidism they rise.",
+          "Confusing simple goitre with exophthalmic goitre."
+        ],
+        "memory_tip": "Hyper means high: too much T3 and T4.",
+        "margin_note": "Mirror the structure of the first half.",
+        "lines": [
+          {
+            "text": "Hyperthyroidism",
+            "style": "heading"
+          },
+          "It is a condition in which the production",
+          "of T3 and T4 increases abnormally.",
+          "Over-activity of the thyroid may also be",
+          "due to cancer of the gland."
+        ]
+      },
+      {
+        "id": "s4_hyper_effects",
+        "kind": "boxed_final",
+        "label": "Effects of hyperthyroidism",
+        "marks": 1,
+        "mark_note": "Effects",
+        "why": "Thyroid hormone sets the speed of the body's chemistry, so an excess shows up as a raised metabolic rate.",
+        "common_mistakes": [
+          "Giving a lowered metabolic rate. It rises.",
+          "Leaving out the protruding eyeballs, which is the marked sign."
+        ],
+        "memory_tip": "Exophthalmic goitre: the eyeballs bulge out.",
+        "margin_note": "Name the goitre and the metabolic rate.",
+        "lines": [
+          "In adults it causes exophthalmic goitre,",
+          "in which the eyeballs protrude.",
+          {
+            "text": "The basal metabolic rate rises",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both halves are marked equally. Write hypo and hyper under two headings so the examiner can see you answered both."
+}

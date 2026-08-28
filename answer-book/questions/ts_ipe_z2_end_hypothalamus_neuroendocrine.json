@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_hypothalamus_neuroendocrine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the role of hypothalamus as a neuro-endocrine organ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Where it lies",
+      "marks": 1
+    },
+    {
+      "label": "Neurosecretory cells",
+      "marks": 1
+    },
+    {
+      "label": "Releasing and inhibiting hormones",
+      "marks": 1
+    },
+    {
+      "label": "Two named examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.35, SAQ 26. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Endocrine System · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "text",
+        "label": "Where it lies",
+        "marks": 1,
+        "mark_note": "Position",
+        "why": "It sits between the brain and the pituitary, which is exactly the position needed to turn nerve signals into hormone signals.",
+        "common_mistakes": [
+          "Placing it above the thalamus. It lies below.",
+          "Leaving out its link to the pituitary."
+        ],
+        "memory_tip": "Below the thalamus, above the pituitary: the bridge between them.",
+        "margin_note": "Position, then what it connects.",
+        "lines": [
+          "The hypothalamus lies below the thalamus",
+          "and forms the floor of the diencephalon of",
+          "the forebrain.",
+          "It connects the brain on one side and the",
+          "pituitary gland on the other.",
+          "It regulates a wide range of body",
+          "functions."
+        ]
+      },
+      {
+        "id": "s2_neurosecretory",
+        "kind": "text",
+        "label": "Neurosecretory cells",
+        "marks": 1,
+        "mark_note": "Neurosecretory cells",
+        "why": "These are nerve cells that release their product into the blood rather than onto another neuron, which is what makes the organ neuro-endocrine.",
+        "common_mistakes": [
+          "Calling the nuclei glands. They are groups of nerve cells.",
+          "Leaving out the neurohypophysis."
+        ],
+        "memory_tip": "Nerve cells that secrete hormones: neurosecretory.",
+        "margin_note": "Name the nuclei and where their hormones go.",
+        "lines": [
+          "It contains groups of neurosecretory cells",
+          "called nuclei, which produce neurohormones.",
+          "These hormones are carried to the",
+          "neurohypophysis, the posterior pituitary."
+        ]
+      },
+      {
+        "id": "s3_releasing",
+        "kind": "text",
+        "label": "Releasing and inhibiting hormones",
+        "marks": 1,
+        "mark_note": "Two kinds of hormone",
+        "why": "Having both a start signal and a stop signal lets the hypothalamus hold the pituitary at any level it needs.",
+        "common_mistakes": [
+          "Naming only releasing hormones. Inhibiting hormones are equally marked.",
+          "Writing that the pituitary controls the hypothalamus. It is the other way round."
+        ],
+        "memory_tip": "One kind starts the pituitary, the other stops it.",
+        "margin_note": "Two named kinds, one line each.",
+        "lines": [
+          "It secretes two kinds of hormones:",
+          "1. Releasing hormones, which make the",
+          "pituitary secrete its hormones.",
+          "2. Inhibiting hormones, which stop the",
+          "pituitary from secreting them."
+        ]
+      },
+      {
+        "id": "s4_examples",
+        "kind": "boxed_final",
+        "label": "Two named examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "why": "The same pituitary hormone has one hypothalamic hormone to switch it on and another to switch it off.",
+        "common_mistakes": [
+          "Mixing the two up. Somatocrinin releases, somatostatin inhibits.",
+          "Giving no example at all."
+        ],
+        "memory_tip": "Somatocrinin creates the signal; somatostatin stops it.",
+        "margin_note": "A pair of opposites makes the point clearly.",
+        "lines": [
+          "Somatocrinin makes the pituitary secrete",
+          "growth hormone.",
+          {
+            "text": "Somatostatin stops the release of growth hormone",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Neuro-endocrine means it does two jobs. Say plainly that it is nerve tissue that makes hormones, or the point of the question is missed."
+}

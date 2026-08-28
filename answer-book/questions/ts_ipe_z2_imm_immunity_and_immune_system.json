@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_imm_immunity_and_immune_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Immune System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the terms immunity and immune system.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Immunity",
+      "marks": 1
+    },
+    {
+      "label": "Immune system",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.53, VSAQ 96. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Immune System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_immunity",
+        "kind": "text",
+        "label": "Immunity",
+        "marks": 1,
+        "mark_note": "Immunity",
+        "why": "Immunity is a capacity, not a structure, which is why it is defined as an ability.",
+        "common_mistakes": [
+          "Defining immunity as a set of organs. That is the immune system.",
+          "Restricting it to bacteria only."
+        ],
+        "memory_tip": "Immunity is what the body CAN do; the immune system is what DOES it.",
+        "margin_note": "Two separate lines, clearly headed.",
+        "lines": [
+          "Immunity is the overall ability of an",
+          "organism to fight against disease causing",
+          "organisms."
+        ]
+      },
+      {
+        "id": "s2_system",
+        "kind": "boxed_final",
+        "label": "Immune system",
+        "marks": 1,
+        "mark_note": "Immune system",
+        "why": "It is called a system because organs, cells and proteins all take part, not one organ alone.",
+        "common_mistakes": [
+          "Naming only white blood cells. Organs and proteins are part of it too.",
+          "Repeating the definition of immunity."
+        ],
+        "memory_tip": "Organs, cells and proteins working as one network.",
+        "margin_note": "Name all three kinds of parts.",
+        "lines": [
+          "The immune system is the network of",
+          "organs, cells and proteins that protect the",
+          "body from harmful infectious agents such as",
+          {
+            "text": "bacteria, fungi and viruses",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two definitions, one mark each. Immunity is an ability; the immune system is the machinery. Keep them clearly apart."
+}

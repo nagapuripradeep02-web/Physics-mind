@@ -10202,6 +10202,181 @@
           "question_id": "ts_ipe_z2_ncc_organ_of_corti"
         }
       ]
+    },
+    {
+      "subject": "zoology_2",
+      "number": 4,
+      "name": "Human Anatomy and Physiology-IV (Zoology-II)",
+      "questions": [
+        {
+          "ref": "saq23",
+          "section": "SAQ",
+          "number": 23,
+          "stars": 2,
+          "text": "Explain how hypothyroidism and hyperthyroidism can affect the body.",
+          "question_id": "ts_ipe_z2_end_hypo_hyperthyroidism"
+        },
+        {
+          "ref": "saq24",
+          "section": "SAQ",
+          "number": 24,
+          "stars": 3,
+          "text": "Write a note on Addison's disease and Cushing's syndrome.",
+          "question_id": "ts_ipe_z2_end_addison_cushing"
+        },
+        {
+          "ref": "saq25",
+          "section": "SAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Write a note on the mechanism of action of hormones.",
+          "question_id": "ts_ipe_z2_end_hormone_action_mechanism"
+        },
+        {
+          "ref": "saq26",
+          "section": "SAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "Describe the role of hypothalamus as a neuro-endocrine organ.",
+          "question_id": "ts_ipe_z2_end_hypothalamus_neuroendocrine"
+        },
+        {
+          "ref": "saq27",
+          "section": "SAQ",
+          "number": 27,
+          "stars": 2,
+          "text": "Give an account of the secretions of pituitary gland.",
+          "question_id": "ts_ipe_z2_end_pituitary_secretions"
+        },
+        {
+          "ref": "saq28",
+          "section": "SAQ",
+          "number": 28,
+          "stars": 2,
+          "text": "Write short notes on B-cells.",
+          "question_id": "ts_ipe_z2_imm_b_cells"
+        },
+        {
+          "ref": "saq29",
+          "section": "SAQ",
+          "number": 29,
+          "stars": 2,
+          "text": "Write short notes on immunoglobulins.",
+          "question_id": "ts_ipe_z2_imm_immunoglobulins"
+        },
+        {
+          "ref": "saq30",
+          "section": "SAQ",
+          "number": 30,
+          "stars": 2,
+          "text": "Explain the mechanism by which HIV multiplies and leads to AIDS.",
+          "question_id": "ts_ipe_z2_imm_hiv_aids_mechanism"
+        },
+        {
+          "ref": "saq31",
+          "section": "SAQ",
+          "number": 31,
+          "stars": 1,
+          "text": "Describe various types of barriers of innate immunity.",
+          "question_id": "ts_ipe_z2_imm_innate_immunity_barriers"
+        },
+        {
+          "ref": "vsaq89",
+          "section": "VSAQ",
+          "number": 89,
+          "stars": 2,
+          "text": "What is acromegaly? Name the hormone responsible for this disorder.",
+          "question_id": "ts_ipe_z2_end_acromegaly"
+        },
+        {
+          "ref": "vsaq90",
+          "section": "VSAQ",
+          "number": 90,
+          "stars": 2,
+          "text": "Which hormone is called anti-diuretic hormone? Write the name of the gland that secretes it.",
+          "question_id": "ts_ipe_z2_end_antidiuretic_hormone"
+        },
+        {
+          "ref": "vsaq91",
+          "section": "VSAQ",
+          "number": 91,
+          "stars": 3,
+          "text": "Distinguish between diabetes insipidus and diabetes mellitus.",
+          "question_id": "ts_ipe_z2_end_diabetes_insipidus_vs_mellitus"
+        },
+        {
+          "ref": "vsaq92",
+          "section": "VSAQ",
+          "number": 92,
+          "stars": 1,
+          "text": "Name the gland that increases in size during childhood and decreases in size during adulthood. What important role does it play in case of infection?",
+          "question_id": "ts_ipe_z2_end_thymus_gland"
+        },
+        {
+          "ref": "vsaq93",
+          "section": "VSAQ",
+          "number": 93,
+          "stars": 2,
+          "text": "What is 'insulin shock'?",
+          "question_id": "ts_ipe_z2_end_insulin_shock"
+        },
+        {
+          "ref": "vsaq94",
+          "section": "VSAQ",
+          "number": 94,
+          "stars": 2,
+          "text": "Which hormone is commonly known as fight and flight hormone?",
+          "question_id": "ts_ipe_z2_end_fight_flight_hormone"
+        },
+        {
+          "ref": "vsaq95",
+          "section": "VSAQ",
+          "number": 95,
+          "stars": 1,
+          "text": "What are androgens? Which cells secrete them?",
+          "question_id": "ts_ipe_z2_end_androgens"
+        },
+        {
+          "ref": "vsaq96",
+          "section": "VSAQ",
+          "number": 96,
+          "stars": 1,
+          "text": "Define the terms immunity and immune system.",
+          "question_id": "ts_ipe_z2_imm_immunity_and_immune_system"
+        },
+        {
+          "ref": "vsaq97",
+          "section": "VSAQ",
+          "number": 97,
+          "stars": 0,
+          "text": "Differentiate between mature B-cells and functional B-cells.",
+          "question_id": "ts_ipe_z2_imm_mature_vs_functional_b_cells"
+        },
+        {
+          "ref": "vsaq98",
+          "section": "VSAQ",
+          "number": 98,
+          "stars": 1,
+          "text": "What are complement proteins?",
+          "question_id": "ts_ipe_z2_imm_complement_proteins"
+        },
+        {
+          "ref": "vsaq99",
+          "section": "VSAQ",
+          "number": 99,
+          "stars": 2,
+          "text": "\"Colostrum is very much essential for the new born infants\". Justify.",
+          "question_id": "ts_ipe_z2_imm_colostrum"
+        },
+        {
+          "ref": "vsaq100",
+          "section": "VSAQ",
+          "number": 100,
+          "stars": 2,
+          "text": "Differentiate between perforins and granzymes.",
+          "question_id": "ts_ipe_z2_imm_perforins_vs_granzymes"
+        }
+      ]
     }
   ]
 }
