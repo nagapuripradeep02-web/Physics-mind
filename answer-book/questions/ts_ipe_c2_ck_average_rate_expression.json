@@ -1,0 +1,111 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_average_rate_expression",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Assuming that the volume of the system is constant, derive the expression for the average rate of the system R → P in terms of R and P. (time = t sec, R = reactant, P = products).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Setting up the changes",
+      "marks": 1
+    },
+    {
+      "label": "The two average rates",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed derivation is CORRECT and was checked line by line: Δ[R] = [R]₂ − [R]₁ is negative, Δ[P] = [P]₂ − [P]₁ is positive, and the two average rates are −Δ[R]/Δt and +Δ[P]/Δt. BOOK TYPO: the printed answer spells it \"molar conenecntration\". BOOK GAP: the printed answer never says WHY the two expressions are equal. They are equal only because R → P consumes one R for every one P formed; for aA → bB the rate is −(1/a)Δ[A]/Δt = +(1/b)Δ[B]/Δt. That sentence is added, because the question is set on R → P and a student who generalises the printed answer will get a stoichiometric factor wrong."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Setting up the changes",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "Let R → P at constant volume.",
+          "At time t₁ the concentrations are [R]₁ and",
+          "[P]₁; at time t₂ they are [R]₂ and [P]₂.",
+          {
+            "text": "Δt = t₂ − t₁",
+            "style": "eq"
+          },
+          {
+            "text": "Δ[R] = [R]₂ − [R]₁  (negative)",
+            "style": "eq"
+          },
+          {
+            "text": "Δ[P] = [P]₂ − [P]₁  (positive)",
+            "style": "eq"
+          },
+          "Square brackets stand for molar",
+          "concentration."
+        ],
+        "why": "The volume is held constant so that a change in the number of moles is a change in concentration and nothing else. Writing the two changes with their signs at the start is what makes the minus sign in the next step a consequence rather than a rule to remember.",
+        "common_mistakes": [
+          "Writing Δ[R] = [R]₁ − [R]₂ to make it positive. Δ always means final minus initial; the sign is fixed by that.",
+          "Leaving out the constant volume condition. Without it a concentration could change because the volume changed, not because of the reaction."
+        ],
+        "memory_tip": "Final minus initial, for both R and P. R comes out negative, P comes out positive.",
+        "margin_note": "Mark the sign beside each change. The minus sign in the next step comes from here."
+      },
+      {
+        "id": "s2_rates",
+        "kind": "boxed_final",
+        "label": "The two average rates",
+        "marks": 1,
+        "mark_note": "The expressions",
+        "lines": [
+          "Average rate with respect to R",
+          {
+            "text": "= decrease in [R] / time = −Δ[R]/Δt",
+            "style": "eq"
+          },
+          "Average rate with respect to P",
+          {
+            "text": "= increase in [P] / time = +Δ[P]/Δt",
+            "style": "eq"
+          },
+          {
+            "text": "rate = −Δ[R]/Δt = +Δ[P]/Δt",
+            "style": "boxed"
+          },
+          "The two are equal because one R gives",
+          "one P. Unit: mol L⁻¹ s⁻¹.",
+          "For aA → bB divide each term by its",
+          "own coefficient."
+        ],
+        "why": "The minus sign does not make the rate negative; it cancels the negative Δ[R] so that the rate comes out positive whichever species it is measured on. The equality of the two expressions is a statement about the stoichiometry, which is why it needs the 1 : 1 ratio.",
+        "common_mistakes": [
+          "Writing the rate with respect to R as +Δ[R]/Δt. That is a negative number and cannot be a rate.",
+          "Carrying the equality across to a reaction like 2N₂O₅ → 4NO₂ + O₂. There each term must be divided by its coefficient first."
+        ],
+        "memory_tip": "Minus for the reactant, plus for the product, so that both come out positive.",
+        "margin_note": "The boxed line with both signs correct is the marked line. Write the unit under it."
+      }
+    ]
+  },
+  "insider_note": "This question is marked on the signs, not on the algebra. Show Δ[R] as negative in the set-up, then the minus sign in the rate expression explains itself."
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_rate_of_reaction_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the speed of a reaction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The rate expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.73, VSAQ 1): the printed definition reads \"The change in concentration of any reactant or any product during a time interval is called speed (rate) of the reaction at that time interval\". A change in concentration is not a rate; the words PER UNIT TIME are missing and are written on this card. BOOK SLOPPINESS on the same answer: the printed definition describes a finite time interval but the printed expressions are the differential forms −d[R]/dt and +d[P]/dt, which are the rate at an INSTANT. Both forms are distinguished here, and the average form −Δ[R]/Δt is the one derived in VSAQ 12."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The rate or speed of a reaction is the",
+          "change in the concentration of a reactant",
+          "or of a product per unit time.",
+          "For the reaction R → P it can be measured",
+          "as the fall in [R] or as the rise in [P]."
+        ],
+        "why": "A rate is always something divided by a time. The concentration change alone tells how far the reaction has gone, not how fast it went, so the words per unit time are the whole content of the definition. The printed answer leaves them out.",
+        "common_mistakes": [
+          "Writing only \"the change in concentration\". That is an amount, not a rate; the time has to be divided out.",
+          "Defining the rate on the reactant only. It can be measured on a product just as well, and the two give the same number for R → P."
+        ],
+        "memory_tip": "Concentration change divided by time. Both halves, or it is not a rate.",
+        "margin_note": "The words per unit time carry this mark. Write them even if the rest is short."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "The rate expression",
+        "marks": 1,
+        "mark_note": "Expression",
+        "lines": [
+          "Let R → P.",
+          {
+            "text": "rate = −d[R]/dt = +d[P]/dt",
+            "style": "boxed"
+          },
+          "[R] falls with time, so d[R]/dt is",
+          "negative. The minus sign makes the rate",
+          "a positive number.",
+          "This is the rate at an instant. Over a",
+          "time interval the average rate is −Δ[R]/Δt.",
+          "Unit: mol L⁻¹ s⁻¹."
+        ],
+        "why": "The two expressions are one rate written on two different species, not two rates. R is being used up so d[R]/dt is negative, and the minus sign is a sign convention that reports the rate as a positive number. The two forms are equal here only because one R gives one P.",
+        "common_mistakes": [
+          "Writing rate = +d[R]/dt. The reactant concentration falls, so that expression comes out negative.",
+          "Giving the unit as mol L⁻¹. A rate is a concentration divided by a time, so a time unit must appear."
+        ],
+        "memory_tip": "Minus for the reactant, plus for the product. The minus only cancels the fall.",
+        "margin_note": "One boxed expression with both signs correct completes the second mark."
+      }
+    ]
+  },
+  "insider_note": "The two words most often missing are per unit time. Without them the answer defines a concentration change, and that is where the first mark is lost."
+}

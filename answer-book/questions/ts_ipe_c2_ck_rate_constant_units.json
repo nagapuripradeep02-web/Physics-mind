@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_rate_constant_units",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the units of rate constants for Zero, first order and second order reactions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How the unit is obtained",
+      "marks": 1
+    },
+    {
+      "label": "The three units",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The three printed units were checked against the general result (mol L⁻¹)¹⁻ⁿ s⁻¹ and all three are CORRECT: zero order mol L⁻¹ s⁻¹, first order s⁻¹, second order L mol⁻¹ s⁻¹. BOOK NOTATION: the book prints \"lit\" for litre and \"sec\" for second. The SI symbols L and s are used here. The general formula (mol L⁻¹)¹⁻ⁿ s⁻¹ is not in the printed answer; it is added because it makes the three results one line of work instead of three memorised strings."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "How the unit is obtained",
+        "marks": 1,
+        "mark_note": "Method",
+        "lines": [
+          "For a reaction of order n with",
+          "concentration C:",
+          {
+            "text": "rate = kCⁿ  ⇒  k = rate / Cⁿ",
+            "style": "eq"
+          },
+          "rate is in mol L⁻¹ s⁻¹ and C is in mol L⁻¹,",
+          "so dividing gives the unit of k."
+        ],
+        "why": "The unit of k is not a separate fact to memorise; it falls out of the rate law. Because the concentration is raised to the power n, the concentration part of the unit changes with the order while the time part never does.",
+        "common_mistakes": [
+          "Using the same unit for every order. The concentration part of the unit depends on n.",
+          "Forgetting that the rate itself always has the unit mol L⁻¹ s⁻¹, whatever the order is."
+        ],
+        "memory_tip": "k = rate divided by concentration to the power n. Divide the units the same way.",
+        "margin_note": "One line of working here means the three units cannot be misremembered."
+      },
+      {
+        "id": "s2_units",
+        "kind": "boxed_final",
+        "label": "The three units",
+        "marks": 1,
+        "mark_note": "The units",
+        "lines": [
+          {
+            "text": "unit of k = (mol L⁻¹)¹⁻ⁿ s⁻¹",
+            "style": "boxed"
+          },
+          {
+            "text": "Zero order:    mol L⁻¹ s⁻¹",
+            "style": "eq"
+          },
+          {
+            "text": "First order:   s⁻¹",
+            "style": "eq"
+          },
+          {
+            "text": "Second order:  L mol⁻¹ s⁻¹",
+            "style": "eq"
+          },
+          "Only the first order constant is free of a",
+          "concentration unit."
+        ],
+        "why": "Putting n = 0, 1 and 2 into the general form gives the three answers in one step. The first order case is the one worth remembering separately, because (mol L⁻¹)⁰ is 1 and the concentration disappears, which is why a first order half life does not depend on the starting concentration.",
+        "common_mistakes": [
+          "Writing mol L⁻¹ s⁻¹ for second order. Putting n = 2 gives (mol L⁻¹)⁻¹ s⁻¹, that is L mol⁻¹ s⁻¹.",
+          "Leaving out s⁻¹ from any of the three. Every rate constant carries a per second."
+        ],
+        "memory_tip": "Zero order keeps the whole rate unit, first order keeps only s⁻¹, second order inverts the concentration unit.",
+        "margin_note": "All three must be written. One correct unit out of three is usually not worth a mark."
+      }
+    ]
+  },
+  "insider_note": "The second order unit is the one usually written upside down. Put n = 2 into (mol L⁻¹)¹⁻ⁿ s⁻¹ on the page rather than trusting memory."
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_temperature_effect_rate_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the effect of temperature on the rate constant ?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The effect",
+      "marks": 1
+    },
+    {
+      "label": "The temperature coefficient",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SLOPPINESS (book p.74, VSAQ 11): the printed answer states the doubling or tripling for a 10 °C rise as though it were a law. It is a rough observation for many reactions near room temperature, and the qualifier is written on this card. The printed ratio K(t+10 °C)/K(t °C) ≃ 2 or 3 is otherwise correct. BOOK OBSCURITY on the same answer: the printed line ends with the bare parenthesis \"(decomposition of ammonia)\" beside the value 3, with no sentence saying what that reaction is doing there. It is dropped from this card rather than guessed at. The Arrhenius equation k = Ae^(−Eₐ/RT) is added here because it is the reason for the effect; the book prints it only under LAQ 5."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_effect",
+        "kind": "text",
+        "label": "The effect",
+        "marks": 1,
+        "mark_note": "The effect",
+        "lines": [
+          "The rate constant increases when the",
+          "temperature is raised.",
+          "A higher temperature increases the",
+          "fraction of molecules whose energy is",
+          "equal to or greater than the activation",
+          "energy, so more collisions form products.",
+          {
+            "text": "k = Ae^(−Eₐ/RT)",
+            "style": "eq"
+          }
+        ],
+        "why": "Temperature enters the rate constant only through the exponential term. Because T is in the denominator of the exponent, a small rise in T produces a large rise in k, which is why heating is such an effective way of speeding a reaction up.",
+        "common_mistakes": [
+          "Writing that the rate constant is proportional to the temperature. It depends on temperature through an exponential, so it rises much faster than in proportion.",
+          "Saying the activation energy falls when the temperature rises. Eₐ is fixed for a reaction; what changes is the fraction of molecules that have it."
+        ],
+        "memory_tip": "Temperature does not lower the barrier. It increases how many molecules can pass it.",
+        "margin_note": "The word increases plus one reason earns this mark. The Arrhenius equation makes the reason exact."
+      },
+      {
+        "id": "s2_coefficient",
+        "kind": "boxed_final",
+        "label": "The temperature coefficient",
+        "marks": 1,
+        "mark_note": "Temperature coefficient",
+        "lines": [
+          "As a rough rule, a rise of 10 °C about",
+          "doubles or triples the rate constant.",
+          {
+            "text": "k(t+10) / k(t) ≈ 2 to 3",
+            "style": "boxed"
+          },
+          "This ratio is called the temperature",
+          "coefficient of the reaction.",
+          "It is an observation for many reactions",
+          "near room temperature, not an exact law."
+        ],
+        "why": "The value 2 to 3 is what the Arrhenius equation gives for the activation energies most ordinary reactions have, at temperatures near 300 K. For a reaction with a much smaller or much larger Eₐ, or at a much higher temperature, the ratio is different, so it is a guide and not a rule.",
+        "common_mistakes": [
+          "Writing that the rate constant doubles for every 10 K at any temperature. The rule holds only near ordinary temperatures.",
+          "Quoting the coefficient as 10. The 10 is the temperature rise in °C, not the factor the rate constant grows by."
+        ],
+        "memory_tip": "Ten degrees up, roughly two to three times faster.",
+        "margin_note": "Write the ratio as a formula, not only in words. The boxed line is what the examiner ticks."
+      }
+    ]
+  },
+  "insider_note": "Add the word roughly or about to the doubling rule. It costs nothing and it is the difference between a correct statement and one a strict examiner can fault."
+}

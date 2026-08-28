@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_zero_order_examples",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give two examples for zero Order reactions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What zero order means",
+      "marks": 1
+    },
+    {
+      "label": "The two examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.73, VSAQ 5): the printed answer states \"All photo chemical reactions and enzyme catalyzed reactions are zero order reactions\". Neither ALL is true. Some photochemical reactions are zero order in the reactant because the rate is fixed by the light absorbed, and an enzyme catalysed reaction is zero order only when the substrate concentration is high enough to saturate the enzyme; at low substrate concentration the same reaction is first order. The corrected statements are written on this card. The book's two named examples are CORRECT and are kept: 2HI → H₂ + I₂ on a gold surface and 2NH₃ → N₂ + 3H₂ on hot platinum, both balanced and both genuinely zero order. BOOK SLOPPINESS: the printed definition reads \"The Rate of reaction is directly proportional to zero power of concentration reactant\", which is the algebra rather than the meaning; the meaning, that the rate does not depend on the concentration, is written here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "What zero order means",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A zero order reaction is one whose rate",
+          "does not depend on the concentration of",
+          "the reactant.",
+          {
+            "text": "rate = k[A]⁰ = k",
+            "style": "eq"
+          },
+          "The rate stays constant until the reactant",
+          "is nearly used up."
+        ],
+        "why": "The power zero makes the concentration term equal to 1, so the rate is just the constant k. That is why a zero order rate constant carries the full unit mol L⁻¹ s⁻¹: the constant is the rate.",
+        "common_mistakes": [
+          "Saying the rate is zero. The rate is constant, not zero; only its dependence on concentration is zero.",
+          "Writing that a zero order reaction has no rate constant. Its rate constant is k itself, in mol L⁻¹ s⁻¹."
+        ],
+        "memory_tip": "Zero order: the concentration drops but the rate does not.",
+        "margin_note": "One line of meaning plus rate = k earns the first mark before any example is written."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "equation",
+        "label": "The two examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "1. Decomposition of HI on a gold surface:",
+          {
+            "text": "2HI(g) → H₂(g) + I₂(g)",
+            "style": "eq"
+          },
+          "2. Decomposition of ammonia on hot",
+          "platinum at about 1130 K:",
+          {
+            "text": "2NH₃(g) → N₂(g) + 3H₂(g)",
+            "style": "eq"
+          },
+          "In both, the metal surface is fully covered",
+          "with gas, so adding more gas does not",
+          "raise the rate.",
+          "Some photochemical reactions are also zero",
+          "order in the reactant, because the rate is",
+          "fixed by the light absorbed."
+        ],
+        "why": "Both named examples are surface reactions. Once every site on the metal is occupied, the number of molecules reacting per second is set by the number of sites and not by how much gas is above the surface, and that is what makes the rate independent of concentration.",
+        "common_mistakes": [
+          "Writing that every enzyme catalysed reaction is zero order. It is zero order only when the substrate concentration is high enough to saturate the enzyme.",
+          "Leaving out the catalyst surface. Without \"on gold\" or \"on platinum\" these two reactions are not zero order."
+        ],
+        "memory_tip": "Gold for HI, platinum for ammonia. The surface is full, so more gas changes nothing.",
+        "margin_note": "Name the surface with each equation. The example is only zero order because of the surface."
+      }
+    ]
+  },
+  "insider_note": "Write the catalyst surface beside each equation. Two balanced equations with no metal named read as ordinary decompositions and do not show zero order."
+}
