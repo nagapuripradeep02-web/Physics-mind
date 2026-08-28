@@ -227,7 +227,7 @@
             "type": "camera",
             "id": "sr_camera",
             "label": "the tilt",
-            "note": "ONE camera_step at at_ms 2000 with ease_ms 9000 (at_ms is the ease START) carries the camera from the face-on camera_base to the three-quarter HOME pose [4.60, 3.07, 5.21] across 2000-11000 ms, while the sweep runs. The chapter spends its tilt on one meaning: there is a dimension you have not seen yet"
+            "note": "ONE camera_step at at_ms 2000 with ease_ms 9000 (at_ms is the ease START) carries the camera from the face-on camera_base to the three-quarter HOME pose [4.60, 3.07, 5.21] across 2000-11000 ms, while the sweep runs. TWO PACING DEPENDENCIES, recorded so a re-time does not silently break them (Checkpoint B round 3): (1) the theta_ramp starts at 1500 and the tilt at 2000 -- a 500 ms cause-before-effect lead, the FLOOR of Rule 32a; re-timing theta_ramp earlier makes the tilt simultaneous with the sweep. (2) theta reaches only ~10 degrees before the tilt begins, so this state has essentially no face-on rotation -- that is fine ONLY because STATE_1 spends 13.6 s establishing the face-on frame (core ring, survives every preset cut); a trim of STATE_1 takes this state's foundation with it. The chapter spends its tilt on one meaning: there is a dimension you have not seen yet"
           }
         ],
         "teacher_script": {
