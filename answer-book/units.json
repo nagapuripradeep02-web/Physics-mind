@@ -8799,6 +8799,173 @@
       ]
     },
     {
+      "number": 2,
+      "name": "Ray Optics and Optical Instruments",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Define focal length and radius of curvature of a concave lens.",
+          "question_id": "ts_ipe_p2_ray_focal_length_radius_concave_lens"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "What do you understand by the terms 'focus' and 'principal focus' in the context of lenses?",
+          "question_id": "ts_ipe_p2_ray_focus_principal_focus_lenses"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What are the laws of reflection through curved mirrors?",
+          "question_id": "ts_ipe_p2_ray_laws_reflection_curved_mirrors"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Define 'power' of a convex lens. What is its unit?",
+          "question_id": "ts_ipe_p2_ray_power_of_convex_lens"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "A concave mirror produces an image of a long vertical pin, placed 40 cm from the mirror, at the position of the object. Find the focal length of the mirror.",
+          "question_id": "ts_ipe_p2_ray_pin_image_at_object_position"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "A small angled prism of 4° deviates a ray through 2.48°. Find the refractive index of the prism.",
+          "question_id": "ts_ipe_p2_ray_small_angle_prism_refractive_index"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What is 'dispersion'? Which colour gets relatively more dispersed?",
+          "question_id": "ts_ipe_p2_ray_dispersion_and_most_dispersed_colour"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "The focal length of a concave lens is 30 cm. Where should an object be placed so that its image is 1/10 of its size?",
+          "question_id": "ts_ipe_p2_ray_concave_lens_image_one_tenth"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What is myopia? How can it be corrected?",
+          "question_id": "ts_ipe_p2_ray_myopia_and_correction"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "What is hypermetropia? How can it be corrected?",
+          "question_id": "ts_ipe_p2_ray_hypermetropia_and_correction"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "A concave mirror of focal length 10 cm is placed at a distance 35 cm from a wall. How far from the wall should an object be placed so that its real image is formed on the wall?",
+          "question_id": "ts_ipe_p2_ray_concave_mirror_wall_real_image"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What focal length should the reading spectacles have for a person for whom the least distance of vision is 50 cm? (The distance of Normal vision is 25 cm)",
+          "question_id": "ts_ipe_p2_ray_reading_spectacles_focal_length"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Define focal length of a concave mirror. Prove that the radius of curvature of a concave mirror is double its focal length.",
+          "question_id": "ts_ipe_p2_ray_focal_length_concave_mirror_r_2f"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Define critical angle. Explain total internal reflection using a neat diagram.",
+          "question_id": "ts_ipe_p2_ray_critical_angle_total_internal_reflection"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the formation of a mirage.",
+          "question_id": "ts_ipe_p2_ray_formation_of_mirage"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Explain the formation of a rainbow.",
+          "question_id": "ts_ipe_p2_ray_formation_of_rainbow"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Why does the setting sun appear red?",
+          "question_id": "ts_ipe_p2_ray_setting_sun_appears_red"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "With a neat labelled diagram explain the formation of image in a simple microscope.",
+          "question_id": "ts_ipe_p2_ray_simple_microscope_image_formation"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "a) Define Snell's Law. Using a neat labelled diagram derive an expression for the refractive index of the material of an equilateral prism. b) A ray of light, after passing through a medium, meets the surface separating the medium from air at an angle of 45° and is not just refracted. Find the refractive index of medium?",
+          "question_id": "ts_ipe_p2_ray_snells_law_prism_refractive_index"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of a compound microscope and explain its working. Derive an expression for its magnification.",
+          "question_id": "ts_ipe_p2_ray_compound_microscope_magnification"
+        }
+      ]
+    },
+    {
       "number": 3,
       "name": "Wave Optics",
       "subject": "physics_2",

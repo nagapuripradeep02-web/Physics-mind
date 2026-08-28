@@ -211,66 +211,55 @@ naming nothing.
 
 Shipping is the founder's: no `deploy:answers`, no `content:push`, no `ab_content` edit here.
 
-## 9. WHERE THIS STOPPED — read before resuming (2026-08-28)
+## 9. STATUS (2026-08-28)
 
-The first authoring run was cut off mid-flight: **13 of the 16 chapter agents were killed by an
-API session limit**, not by anything wrong with the work. **145 of 257 cards (56%) are authored and
-every one of them passes** `check_p2_cards.ts` — schema, paper shape, mark sums, header, and the
-Rule-41 register scan.
+**Fifteen of sixteen chapters ship: 236 cards, 15 units.** Only Ray Optics (unit 2) is outstanding.
+The first authoring run was cut off mid-flight by an API session limit that killed 13 of 16 chapter
+agents; everything below was rebuilt from that state.
 
-**The tree is GREEN, and that cost a rearrangement.** `build_answer_book.ts` hard-fails on an
-authored card that no unit lists, so a chapter cannot ship until its manifest fragment exists. Only
-three fragments were written before the cut. So:
+Per-chapter counts are in §4. To finish or re-open a chapter:
 
-- **`answer-book/questions/` holds the 29 cards of the three merge-ready chapters** — Wave Optics
-  (10), Electromagnetic Waves (11), Communication System (8). These are IN `units.json` and IN the
-  built book.
-- **`answer-book/wip/p2/cards/` holds the other 116 authored cards**, parked. Nothing scans
-  `answer-book/wip/`, so they cannot break the build — and they are in the repo rather than stranded
-  on one disk, which is the whole point (a killed run loses whatever is not committed).
-- **`answer-book/wip/p2/fragments/` holds the three merged fragments**, kept as the worked example
-  of the shape the remaining thirteen need.
+1. Author its cards into `answer-book/wip/p2/cards/` (nothing scans `answer-book/wip/`, so a
+   half-written chapter cannot break the build).
+2. Write its fragment to `answer-book/wip/p2/fragments/uNN.json` — **by reading the book**, never
+   generated from the cards: `ref` and `number` must follow the printed order.
+3. `npx tsx answer-book/tools/check_p2_cards.ts ts_ipe_p2_<abbr>` — it scans BOTH directories, so it
+   works on parked cards, and it refuses to report a pass over an empty set.
+4. Move the cards into `answer-book/questions/`, then
+   `node answer-book/tools/merge_p2_units.mjs answer-book/wip/p2/fragments --only NN --write`.
+5. `npm run build:answers`, then the stream builds and the two measures.
 
-| # | abbr | chapter | authored | target | state |
-|---|---|---|---|---|---|
-| 1 | wav | Waves | 12V 3S 4L | 23 | parked — needs **4 LAQ** (the three numericals + one derivation) |
-| 2 | ray | Ray Optics | 5V | 20 | parked — needs 7V 6S 2L |
-| 3 | wop | Wave Optics | 4V 6S | 10 | **SHIPPED** |
-| 4 | ecf | Electric Charges | 7V 3S | 13 | parked — needs 3S |
-| 5 | epc | Potential & Capacitance | 7V 5S | 17 | parked — needs 4S 1L |
-| 6 | cur | Current Electricity | 14V | 26 | parked — needs 8V 4L |
-| 7 | mcm | Moving Charges | 8V | 16 | parked — needs 6S 2L |
-| 8 | mag | Magnetism and Matter | 11V 2S | 13 | parked — **cards complete, fragment missing** |
-| 9 | emi | EM Induction | 10V 1S | 13 | parked — needs 2S |
-| 10 | ac | Alternating Current | 9V | 11 | parked — needs 1V 1S |
-| 11 | emw | EM Waves | 10V 1S | 11 | **SHIPPED** |
-| 12 | dnr | Dual Nature | 8V 2S | 10 | parked — **cards complete, fragment missing** |
-| 13 | atm | Atoms | 4V | 18 | parked — needs 6V 8S |
-| 14 | nuc | Nuclei | 1V | 26 | parked — needs 14V 6S 5L |
-| 15 | sem | Semiconductor Electronics | — | 22 | **not started** |
-| 16 | com | Communication System | 8V | 8 | **SHIPPED** |
+### What this run learned that a later one should not rediscover
 
-**To resume, per chapter:** finish its missing cards straight into `answer-book/wip/p2/cards/`,
-write its fragment to `answer-book/wip/p2/fragments/uNN.json`, then `git mv` that chapter's cards
-into `answer-book/questions/` and run
-`node answer-book/tools/merge_p2_units.mjs answer-book/wip/p2/fragments --write`. The merge tool
-proves it can round-trip `units.json` byte-identically without physics_2 before it writes anything,
-so it cannot touch another subject; it also refuses on drift in either direction, so a fragment and
-its cards must agree before either lands.
+- **`ms: 0` is the documented authoring placeholder** that `pace_figures.ts` fills. Nine cards read
+  as 36 schema failures until the pacing step ran. `--prefix` reads `answer-book/questions/` only,
+  so on parked cards use `--file <path> --write`, one at a time.
+- **A stroke longer than about 720 units cannot pass the pace gate.** `paceMs` clamps at 4500 ms, so
+  750 units draws at 167 u/s against a 160 ceiling. Split it in two. Three separate agents hit this.
+- **Boxed lines have a tighter budget than plain ones** — 535 px against 568 — and a
+  character-count proxy will not catch it. Sixteen boxed lines shipped over budget before
+  `measure_wrap.mjs` was run against the merged tree. The fleet now measures 3669 lines, 0 wrapping.
+- **The build's Rule-41 gate is an ERROR and its word list is the house one** (`idiomsIn` from
+  `vidiChecks.ts`, shared with the shakedown that grades Vidi). `check_p2_cards.ts` imports the same
+  list and scans the same fields, including `why`. Do not write a third list.
+- **A `{"type":"pause"}` phase element does not exist in this branch's schema** — the element union
+  is `stroke | label`, and `notebook.js` has no pause handling. **Cap figures at 15 drawn elements**
+  and split a bigger diagram across two `kind: "diagram"` steps. `check_figure_pace.ts` probes the
+  schema and downgrades its phase demand to a warning here; when the phased-figure mechanism lands
+  as a platform change (schema AND player, Rule 40), enforcement resumes with no edit.
+- **The post-commit auto-push hook's report cannot be trusted in either direction.** It reported
+  FAILED after succeeding on every commit this session, and one of those spurious reports raced a
+  manual push into a "remote rejected". Confirm with `git ls-remote`, never the hook.
 
-**Two chapters are one step from shipping**: `mag` and `dnr` have every card authored and only need
-their manifest fragment. Their fragments were **not** invented from the cards on disk — the `ref`
-and `number` must follow the book's printed order, and guessing that is exactly the kind of unearned
-claim this bank does not make.
+### Still owed on the shipped chapters
 
-**Two things the run proved, worth keeping:**
-- **`ms: 0` is the documented authoring placeholder** that `pace_figures.ts` fills. Nine cards
-  looked like 36 schema failures until the pacing step ran — their agents died before reaching it.
-  Run `npx tsx src/scripts/pace_figures.ts --prefix ts_ipe_p2 --write` before believing a figure
-  error.
-- **A blunt Rule-41 word list is worse than none.** Banning "wants" outright produced 12 false hits
-  on "the examiner wants the substitution line" — literal, and exactly the plain wording the rule
-  asks for — and would have pushed authoring back towards vaguer prose. The scan now fires only
-  when the subject is a THING. It still caught the two real hits: a wave crest that "knows nothing
-  of the motion", and a table that "wants" an element list. A negative control (injecting "The
-  signal wants to reach the receiver") confirms it still bites.
+- **Every mark split is invented**, and every card says so. A Telangana IPE teacher has to confirm
+  them — the numericals filed under LAQ numbering most of all, where an 8-mark split for four lines
+  of arithmetic is a placeholder shape rather than a mark scheme.
+- **A visual pass over the figures.** Some chapters rendered and looked; others were checked only
+  programmatically (labels inside the canvas, no label-box overlap, pace green). The gates have
+  never caught a clipped label or a wrong shape.
+- **Ch.13 SAQ 4** (Bohr's postulates + radius + energy) is the paper's strongest 8-mark candidate
+  and is deliberately left at 4. **Ch.15 SAQ 8** duplicates the full-wave half of LAQ 1 and may want
+  `cuts[]` rather than two cards. Both are founder/teacher calls, recorded on the cards themselves.
+

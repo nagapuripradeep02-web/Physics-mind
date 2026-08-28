@@ -1,0 +1,379 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_formation_of_rainbow",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the formation of a rainbow.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three effects together",
+      "marks": 1
+    },
+    {
+      "label": "What happens inside one drop",
+      "marks": 1
+    },
+    {
+      "label": "Primary rainbow",
+      "marks": 1
+    },
+    {
+      "label": "Secondary rainbow",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed pp.12-13 — Section B, 4 marks. The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The figure carries ZERO marks because the printed question does not ask for a diagram; the book prints two, and one combined figure is authored here. Hand-checked physically: the printed angles are the standard ones — for the primary bow violet emerges at about 40° and red at about 42° to the incoming sunlight, and for the secondary bow the range is about 50° to 53° with the colour order reversed, because the light is reflected twice inside the drop. TRANSCRIPTION: the printed answer spells 'internla' for internal."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ray Optics and Optical Instruments · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cause",
+        "kind": "text",
+        "label": "The three effects",
+        "marks": 1,
+        "mark_note": "Dispersion, refraction, TIR",
+        "lines": [
+          {
+            "text": "Rainbow:",
+            "style": "heading"
+          },
+          "A rainbow is formed by the combined effect",
+          "of dispersion, refraction and total internal",
+          "reflection of sunlight in the spherical water",
+          "drops of rain.",
+          "Each drop acts as a tiny prism."
+        ],
+        "margin_note": "First mark. All three names are wanted, and the words spherical water drops.",
+        "why": "No single effect makes a rainbow. Refraction bends the light in and out, dispersion separates the colours, and total internal reflection is what sends the light back towards the observer instead of straight through.",
+        "common_mistakes": [
+          "Naming only dispersion. The total internal reflection is what turns the light back to the eye.",
+          "Saying the drop reflects like a mirror. It refracts at the surface and reflects only inside."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a rainbow is formed by dispersion, refraction and total internal reflection of sunlight in spherical water drops.",
+          "accept": [
+            "dispersion refraction and total internal reflection in water drops",
+            "each raindrop acts like a small prism",
+            "combined effect of the three in spherical rain drops",
+            "dispersion refraction total internal reflection kalisi"
+          ],
+          "reject": [
+            "red emerges at forty two degrees"
+          ],
+          "heard_as": [
+            "dispersion",
+            "refraction",
+            "total internal reflection",
+            "water drops"
+          ]
+        },
+        "memory_tip": "Three names in one line: dispersion, refraction, total internal reflection."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 0,
+        "figure": {
+          "id": "rainbow_drops",
+          "width": 360,
+          "height": 210,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "drop1",
+              "d": "M 190 55 A 25 25 0 1 1 240 55 A 25 25 0 1 1 190 55",
+              "ms": 2240
+            },
+            {
+              "type": "stroke",
+              "id": "in1",
+              "d": "M 50 26 L 196 40",
+              "ms": 2100
+            },
+            {
+              "type": "stroke",
+              "id": "in1_head",
+              "d": "M 129 38 L 140 35 L 130 30",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "inside1",
+              "d": "M 196 40 L 236 66",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "refl1",
+              "d": "M 236 66 L 199 71",
+              "ms": 530
+            },
+            {
+              "type": "stroke",
+              "id": "emer1",
+              "d": "M 199 71 L 110 162",
+              "ms": 1820
+            },
+            {
+              "type": "stroke",
+              "id": "drop2",
+              "d": "M 225 130 A 25 25 0 1 1 275 130 A 25 25 0 1 1 225 130",
+              "ms": 2240
+            },
+            {
+              "type": "stroke",
+              "id": "in2",
+              "d": "M 50 108 L 230 118",
+              "ms": 2580
+            },
+            {
+              "type": "stroke",
+              "id": "inside2",
+              "d": "M 230 118 L 272 138 L 246 154 L 227 138",
+              "ms": 1460
+            },
+            {
+              "type": "stroke",
+              "id": "emer2",
+              "d": "M 227 138 L 118 172",
+              "ms": 1630
+            },
+            {
+              "type": "stroke",
+              "id": "eye",
+              "d": "M 96 170 A 7 7 0 1 1 110 170 A 7 7 0 1 1 96 170",
+              "ms": 630
+            },
+            {
+              "type": "label",
+              "id": "lbl_sun",
+              "x": 22,
+              "y": 20,
+              "text": "Sunlight",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_primary",
+              "x": 248,
+              "y": 44,
+              "text": "Primary",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_secondary",
+              "x": 286,
+              "y": 124,
+              "text": "Secondary",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_observer",
+              "x": 62,
+              "y": 196,
+              "text": "Observer",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Upper drop: one internal reflection, the primary bow. Lower drop: two internal reflections, the secondary bow. Both send light to the same observer.",
+        "why": "The only difference between the two drops in the figure is the number of internal reflections. Drawing them one above the other makes that the single visible difference, which is exactly what separates the two bows.",
+        "common_mistakes": [
+          "Drawing the same number of reflections in both drops. One reflection gives the primary bow, two give the secondary."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure shows sunlight entering a drop, reflecting once inside for the primary bow and twice for the secondary, and reaching the observer.",
+          "accept": [
+            "draw two raindrops with sunlight entering each",
+            "one internal reflection in the upper drop and two in the lower",
+            "both emergent rays reach the observer"
+          ],
+          "reject": [
+            "red emerges at forty two degrees"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "raindrops",
+            "sunlight"
+          ]
+        },
+        "memory_tip": "Count the bounces inside the drop: one for primary, two for secondary."
+      },
+      {
+        "id": "s3_inside_drop",
+        "kind": "text",
+        "label": "Inside one drop",
+        "marks": 1,
+        "mark_note": "Refract, disperse, reflect, refract",
+        "lines": [
+          "1) Sunlight is refracted as it enters a rain",
+          "drop, and the white light separates into its",
+          "seven constituent colours.",
+          "2) Red bends the least and violet the most.",
+          "3) These colours meet the far inside surface",
+          "at an angle greater than the critical angle",
+          "of water, about 48°, so they are totally",
+          "internally reflected.",
+          "4) The reflected light is refracted once more",
+          "as it leaves the drop, and the colours",
+          "spread further apart."
+        ],
+        "margin_note": "Second mark. Four events in order: refraction in, dispersion, total internal reflection, refraction out.",
+        "why": "The order matters. Dispersion begins at the first refraction and is added to at the last one, while the reflection in between is what turns the light back towards the observer instead of letting it pass out of the far side.",
+        "common_mistakes": [
+          "Leaving out the second refraction as the light leaves the drop.",
+          "Saying the light reflects off the outside of the drop. The reflection happens on the inside surface."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That light refracts and disperses on entering the drop, is totally internally reflected at the far inside surface, and refracts again on leaving.",
+          "accept": [
+            "refracted in, dispersed, totally internally reflected, refracted out",
+            "the colours separate at entry and separate more at exit",
+            "total internal reflection at the back of the drop",
+            "drop lo refract, disperse, total internal reflect, malli refract"
+          ],
+          "reject": [
+            "the inner bow is the primary rainbow"
+          ],
+          "heard_as": [
+            "refracted",
+            "dispersed",
+            "internal reflection",
+            "leaves the drop"
+          ]
+        },
+        "memory_tip": "In, bounce, out — and the colours spread at both the in and the out."
+      },
+      {
+        "id": "s4_primary",
+        "kind": "text",
+        "label": "Primary rainbow",
+        "marks": 1,
+        "mark_note": "One reflection, red on top",
+        "lines": [
+          {
+            "text": "Primary rainbow:",
+            "style": "heading"
+          },
+          "The inner bow is the primary rainbow. It is",
+          "formed by light that is totally internally",
+          "reflected ONCE inside the drop.",
+          "Violet emerges at about 40° and red at",
+          "about 42° to the incoming sunlight.",
+          "In this bow red is on the top and violet on",
+          "the bottom."
+        ],
+        "margin_note": "Third mark. One reflection, 40° to 42°, red on top. All three facts belong together.",
+        "why": "Red leaves at the larger angle, so the drops that send red to the eye sit higher in the sky than the drops that send violet. That is why the colour order in the sky is the reverse of what the numbers first suggest.",
+        "common_mistakes": [
+          "Putting violet on the top of the primary bow. Red is on top.",
+          "Saying the primary bow is the outer one. It is the inner bow."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the primary rainbow is the inner bow, formed by one total internal reflection, with red on the top and violet on the bottom, between about 40° and 42°.",
+          "accept": [
+            "inner bow, one internal reflection, red on top",
+            "violet at forty degrees and red at forty two degrees",
+            "primary rainbow has red outside and violet inside",
+            "primary lo red paina violet kinda"
+          ],
+          "reject": [
+            "two internal reflections reverse the colours"
+          ],
+          "heard_as": [
+            "primary",
+            "inner bow",
+            "red on top",
+            "forty two degrees"
+          ]
+        },
+        "memory_tip": "Primary: one bounce, red on top, inner bow. The bow you see first."
+      },
+      {
+        "id": "s5_secondary",
+        "kind": "boxed_final",
+        "label": "Secondary rainbow",
+        "marks": 1,
+        "mark_note": "Two reflections, order reversed",
+        "lines": [
+          {
+            "text": "Secondary rainbow:",
+            "style": "heading"
+          },
+          "The outer bow is the secondary rainbow. It",
+          "is formed by light that is internally",
+          "reflected TWICE inside the drop.",
+          "It appears between about 50° and 53° to",
+          "the incoming sunlight.",
+          "The extra reflection reverses the order of",
+          "the colours, so red is on the bottom and",
+          "violet on the top.",
+          {
+            "text": "Primary: one reflection · secondary: two",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The reversed colour order is the fact that shows the second reflection was understood.",
+        "why": "Each internal reflection turns the light through a further angle, so a second one both moves the bow outwards and flips the order of the colours. The secondary bow is also fainter, because some light escapes at each reflection.",
+        "common_mistakes": [
+          "Saying the colours are in the same order as the primary bow. They are reversed.",
+          "Giving the secondary bow one reflection. It has two."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the secondary rainbow is the outer bow, formed by two internal reflections, with the colour order reversed — red at the bottom and violet at the top.",
+          "accept": [
+            "outer bow, two internal reflections, colours reversed",
+            "red at the bottom and violet at the top",
+            "secondary bow lies between fifty and fifty three degrees",
+            "secondary lo colours reverse avutayi"
+          ],
+          "reject": [
+            "inner bow, one internal reflection, red on top"
+          ],
+          "heard_as": [
+            "secondary",
+            "outer bow",
+            "twice",
+            "reversed"
+          ]
+        },
+        "memory_tip": "The extra bounce flips the colours. Two reflections, two reversed ends."
+      }
+    ]
+  },
+  "insider_note": "Four blocks, one mark each. The two bows differ by exactly one thing — the number of internal reflections — and every other difference follows from it."
+}

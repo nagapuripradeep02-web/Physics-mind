@@ -1,0 +1,749 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_snells_law_prism_refractive_index",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "a) Define Snell's Law. Using a neat labelled diagram derive an expression for the refractive index of the material of an equilateral prism. b) A ray of light, after passing through a medium, meets the surface separating the medium from air at an angle of 45° and is not just refracted. Find the refractive index of medium?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Snell's law",
+      "marks": 1
+    },
+    {
+      "label": "Prism set-up and ray path",
+      "marks": 1
+    },
+    {
+      "label": "r₁ + r₂ = A",
+      "marks": 1
+    },
+    {
+      "label": "i₁ + i₂ = A + δ",
+      "marks": 1
+    },
+    {
+      "label": "Minimum deviation conditions",
+      "marks": 1
+    },
+    {
+      "label": "Prism formula",
+      "marks": 1
+    },
+    {
+      "label": "Part b: μ = √2",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed pp.13-14 — Section C, 8 marks. The book prints this as ONE numbered Long Answer question with parts a) and b), and it is authored as ONE card whose steps cover both parts, because that is how the book prints and marks it. The 1+1+1+1+1+1+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; in particular, whether part b) is worth 2 of the 8 marks is exactly the kind of thing only a teacher can settle. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The two figures carry ZERO marks because the printed question says 'Using a neat labelled diagram', not 'draw a neat labelled diagram of' — for an 8-mark question that asks for a diagram, a teacher may well award diagram marks, and that is one of the things to confirm. TRANSCRIPTION: the printed part b) reads 'and is not just refracted'; the standard wording is 'is just not refracted', that is, the ray grazes along the surface at the critical angle. The book's own working confirms that reading — it uses the angle in air as 90°. The printed text is kept here and the intended reading is recorded in this note and in the step's why. The book also prints a space before the question mark (removed here), writes 'lightray' as one word, and prints μ₁² where it means the relative refractive index ₁μ₂. Hand-checked numerically: μ = sin 90°/sin 45° = 1/(1/√2) = √2 ≈ 1.414, matching the printed answer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Ray Optics and Optical Instruments · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_snells_law",
+        "kind": "text",
+        "label": "Snell's law",
+        "marks": 1,
+        "mark_note": "sin i / sin r = μ",
+        "lines": [
+          {
+            "text": "a) Snell's law:",
+            "style": "heading"
+          },
+          "When light passes from one medium into",
+          "another, the ratio of the sine of the angle",
+          "of incidence to the sine of the angle of",
+          "refraction is a constant.",
+          {
+            "text": "sin i / sin r = μ",
+            "style": "eq"
+          },
+          "Both angles are measured from the normal",
+          "at the point of incidence. The constant μ is",
+          "the refractive index of the second medium",
+          "with respect to the first."
+        ],
+        "margin_note": "First mark. The word constant and the phrase from the normal both belong in the statement.",
+        "why": "The law is a statement about a ratio, not about the angles themselves: the angles change together whenever the incidence changes, but their sine ratio stays fixed for the same pair of media. That fixed number is what is called the refractive index.",
+        "common_mistakes": [
+          "Writing i/r = μ. The law is about the SINES of the angles.",
+          "Measuring the angles from the surface. Both are measured from the normal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ratio of the sine of the angle of incidence to the sine of the angle of refraction is a constant, equal to the refractive index.",
+          "accept": [
+            "sine i by sine r is a constant",
+            "the ratio of the sines is the refractive index",
+            "sin i over sin r equals mu",
+            "sin i by sin r constant, adi mu"
+          ],
+          "reject": [
+            "r one plus r two equals A"
+          ],
+          "heard_as": [
+            "Snell's law",
+            "sine i by sine r",
+            "refractive index",
+            "constant"
+          ]
+        },
+        "memory_tip": "Sines, not angles. The ratio of the sines is what stays fixed."
+      },
+      {
+        "id": "s2_figure_prism",
+        "kind": "diagram",
+        "label": "Prism ray path",
+        "marks": 0,
+        "figure": {
+          "id": "prism_geometry",
+          "width": 480,
+          "height": 310,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "prism_sides",
+              "d": "M 110 290 L 250 45 L 390 290",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "prism_base",
+              "d": "M 390 290 L 110 290",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "incident",
+              "d": "M 47 215 L 179 170",
+              "ms": 1990
+            },
+            {
+              "type": "stroke",
+              "id": "incident_head",
+              "d": "M 104 202 L 115 192 L 100 191",
+              "ms": 430
+            },
+            {
+              "type": "stroke",
+              "id": "inside",
+              "d": "M 179 170 L 321 170",
+              "ms": 2030
+            },
+            {
+              "type": "stroke",
+              "id": "emergent",
+              "d": "M 321 170 L 453 215",
+              "ms": 1990
+            },
+            {
+              "type": "stroke",
+              "id": "emergent_head",
+              "d": "M 380 196 L 395 195 L 384 185",
+              "ms": 430
+            },
+            {
+              "type": "stroke",
+              "id": "normals",
+              "d": "M 84 115 L 274 225 M 226 225 L 416 115",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 240,
+              "y": 36,
+              "text": "A",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 205,
+              "y": 162,
+              "text": "Q",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 280,
+              "y": 162,
+              "text": "R",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i1",
+              "x": 109,
+              "y": 163,
+              "text": "i₁",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_r1",
+              "x": 222,
+              "y": 190,
+              "text": "r₁",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_r2",
+              "x": 258,
+              "y": 190,
+              "text": "r₂",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i2",
+              "x": 391,
+              "y": 163,
+              "text": "i₂",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Prism ABC with refracting angle A. The ray enters at Q, travels as QR inside, and leaves at R. The dashed lines are the normals at Q and R.",
+        "why": "The two normals meet at a point T inside the prism, and that point is what makes the quadrilateral AQTR in the next step. Drawing both normals is therefore not decoration — the geometry step needs them.",
+        "common_mistakes": [
+          "Drawing the normals along the faces. A normal is perpendicular to the face at the point of incidence."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the diagram shows the prism with refracting angle A, the ray entering at Q, crossing to R and leaving, with the normals at Q and R marked.",
+          "accept": [
+            "draw the prism with the ray entering at Q and leaving at R",
+            "mark the normals at both faces",
+            "label i one r one r two and i two"
+          ],
+          "reject": [
+            "r one plus r two equals A"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "prism",
+            "normals"
+          ]
+        },
+        "memory_tip": "Four angles on the path: i₁, r₁, r₂, i₂ — in that order along the ray."
+      },
+      {
+        "id": "s3_setup",
+        "kind": "text",
+        "label": "Set-up",
+        "marks": 1,
+        "mark_note": "Ray path and deviation",
+        "lines": [
+          "Let ABC be the principal section of a prism",
+          "of refracting angle A and refractive index μ,",
+          "kept in air, which is the rarer medium.",
+          "PQ is the incident ray on the face AB. It",
+          "goes from rarer to denser, so it bends",
+          "towards the normal and travels inside as QR.",
+          "At the face AC it goes from denser to rarer,",
+          "so it bends away from the normal and leaves",
+          "as the emergent ray RS.",
+          "The angle between PQ produced forward and",
+          "RS produced backward is the angle of",
+          "deviation δ."
+        ],
+        "margin_note": "Second mark. Say which way the ray bends at each face, and define δ between the produced rays.",
+        "why": "The ray bends towards the normal on entering and away from it on leaving, so the two bends add rather than cancel. That is why a prism deviates light instead of shifting it sideways the way a flat glass slab does.",
+        "common_mistakes": [
+          "Saying the ray bends away from the normal on entering. Rarer to denser bends it towards the normal.",
+          "Defining δ as the angle inside the prism. It is between the two produced rays outside it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ray bends towards the normal on entering and away on leaving, and that δ is the angle between the incident ray produced forward and the emergent ray produced backward.",
+          "accept": [
+            "bends towards the normal entering and away leaving",
+            "the deviation is between the produced incident and emergent rays",
+            "PQ enters at Q, QR inside, RS leaves at R",
+            "lopaliki normal vaipu, bayataki normal nunchi door ga"
+          ],
+          "reject": [
+            "sine i by sine r is a constant"
+          ],
+          "heard_as": [
+            "refracting angle",
+            "emergent ray",
+            "deviation",
+            "principal section"
+          ]
+        },
+        "memory_tip": "In towards the normal, out away from it. The two bends add, so the prism deviates."
+      },
+      {
+        "id": "s4_r1_r2",
+        "kind": "equation",
+        "label": "r₁ + r₂ = A",
+        "marks": 1,
+        "mark_note": "From quadrilateral AQTR",
+        "lines": [
+          "Let the two normals meet at T inside the",
+          "prism.",
+          {
+            "text": "In ΔQRT:   r₁ + r₂ + T = 180°    ...(1)",
+            "style": "eq"
+          },
+          "In the quadrilateral AQTR the angles at Q",
+          "and at R are each 90°, so",
+          {
+            "text": "A + 90° + T + 90° = 360°",
+            "style": "eq"
+          },
+          {
+            "text": "T = 180° − A    ...(2)",
+            "style": "eq"
+          },
+          "Substituting (2) in (1),",
+          {
+            "text": "r₁ + r₂ + 180° − A = 180°",
+            "style": "eq"
+          },
+          {
+            "text": "r₁ + r₂ = A",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third mark. Two figures, one substitution. The 90° angles come from the normals.",
+        "why": "This is the step that brings the refracting angle A into the working. Until now A appeared only in the picture; the quadrilateral is what turns it into an equation the two refraction angles must satisfy.",
+        "common_mistakes": [
+          "Using the angle sum of a quadrilateral as 180°. It is 360°.",
+          "Writing r₁ + r₂ = 180° − A. The A comes out with a plus sign after the substitution."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the triangle QRT and the quadrilateral AQTR together give r₁ + r₂ = A.",
+          "accept": [
+            "r one plus r two equals A",
+            "from the quadrilateral T is one eighty minus A so the sum of r is A",
+            "angle sum of the quadrilateral gives r one plus r two equals A",
+            "r one plus r two equals A vastundi"
+          ],
+          "reject": [
+            "i one plus i two equals A plus delta"
+          ],
+          "heard_as": [
+            "r one plus r two",
+            "quadrilateral",
+            "equals A",
+            "three sixty"
+          ]
+        },
+        "memory_tip": "Two right angles at the two faces, so the quadrilateral hands over A. r₁ + r₂ = A."
+      },
+      {
+        "id": "s5_deviation",
+        "kind": "equation",
+        "label": "i₁ + i₂ = A + δ",
+        "marks": 1,
+        "mark_note": "Exterior angle of ΔQUR",
+        "lines": [
+          "At Q the ray is turned through i₁ − r₁, and",
+          "at R through i₂ − r₂. The total turning is",
+          "the deviation:",
+          {
+            "text": "δ = (i₁ − r₁) + (i₂ − r₂)",
+            "style": "eq"
+          },
+          {
+            "text": "δ = (i₁ + i₂) − (r₁ + r₂)",
+            "style": "eq"
+          },
+          "Using r₁ + r₂ = A,",
+          {
+            "text": "δ = (i₁ + i₂) − A",
+            "style": "eq"
+          },
+          {
+            "text": "i₁ + i₂ = A + δ",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The deviation is the sum of the two turnings, one at each face.",
+        "why": "Each refraction turns the ray by the difference between its two angles, and the two turnings are in the same sense, so they add. Feeding r₁ + r₂ = A into that sum removes the inside angles and leaves a relation between what can be measured outside the prism.",
+        "common_mistakes": [
+          "Writing δ = (i₁ + r₁) + (i₂ + r₂). Each turning is a difference, not a sum.",
+          "Forgetting to substitute r₁ + r₂ = A, which leaves the result unfinished."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the deviation is (i₁ − r₁) + (i₂ − r₂), which with r₁ + r₂ = A gives i₁ + i₂ = A + δ.",
+          "accept": [
+            "i one plus i two equals A plus delta",
+            "delta is i one minus r one plus i two minus r two",
+            "the two turnings add up to the deviation",
+            "i one plus i two equals A plus delta vastundi"
+          ],
+          "reject": [
+            "r one plus r two equals A"
+          ],
+          "heard_as": [
+            "i one plus i two",
+            "A plus delta",
+            "deviation",
+            "turning"
+          ]
+        },
+        "memory_tip": "Two relations, one for the insides and one for the outsides: r₁ + r₂ = A and i₁ + i₂ = A + δ."
+      },
+      {
+        "id": "s6_figure_curve",
+        "kind": "diagram",
+        "label": "i–D curve",
+        "marks": 0,
+        "figure": {
+          "id": "prism_i_d_curve",
+          "width": 300,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "y_axis",
+              "d": "M 50 20 L 50 170",
+              "ms": 2140
+            },
+            {
+              "type": "stroke",
+              "id": "x_axis",
+              "d": "M 50 170 L 280 170",
+              "ms": 3290
+            },
+            {
+              "type": "stroke",
+              "id": "curve",
+              "d": "M 80 50 Q 150 152 240 60",
+              "ms": 2770
+            },
+            {
+              "type": "stroke",
+              "id": "min_horiz",
+              "d": "M 50 104 L 155 104",
+              "ms": 1500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "min_vert",
+              "d": "M 155 104 L 155 170",
+              "ms": 940,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "d1_horiz",
+              "d": "M 50 70 L 230 70",
+              "ms": 2570,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "d1_vert_a",
+              "d": "M 96 70 L 96 170",
+              "ms": 1430,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "d1_vert_b",
+              "d": "M 230 70 L 230 170",
+              "ms": 1430,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_d_axis",
+              "x": 34,
+              "y": 28,
+              "text": "D",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i_axis",
+              "x": 268,
+              "y": 188,
+              "text": "i",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d1",
+              "x": 30,
+              "y": 74,
+              "text": "D₁",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_delta",
+              "x": 32,
+              "y": 108,
+              "text": "δ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i1_axis",
+              "x": 88,
+              "y": 186,
+              "text": "i₁",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_min",
+              "x": 142,
+              "y": 186,
+              "text": "i₁ = i₂",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i2_axis",
+              "x": 222,
+              "y": 186,
+              "text": "i₂",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "The deviation against the angle of incidence. Any deviation above the least value is reached at two different angles of incidence; at the least value the two angles come together.",
+        "why": "The curve is the evidence for the whole minimum-deviation argument. Every horizontal line above the minimum cuts the curve twice, so there are two angles for one deviation, and only at the lowest point do those two angles become one.",
+        "common_mistakes": [
+          "Drawing the curve as a straight line. The deviation falls, reaches a least value and then rises."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the graph of deviation against angle of incidence falls to a minimum and rises again, and that a deviation above the minimum corresponds to two angles of incidence.",
+          "accept": [
+            "draw the deviation against the angle of incidence",
+            "the curve dips to a minimum and rises",
+            "two angles of incidence give the same deviation"
+          ],
+          "reject": [
+            "at minimum deviation i one equals i two"
+          ],
+          "heard_as": [
+            "graph",
+            "curve",
+            "minimum",
+            "angle of incidence"
+          ]
+        },
+        "memory_tip": "One horizontal line cuts the curve twice — except at the bottom, where it touches once."
+      },
+      {
+        "id": "s7_min_deviation",
+        "kind": "equation",
+        "label": "Minimum deviation",
+        "marks": 1,
+        "mark_note": "i₁ = i₂, r = A/2",
+        "lines": [
+          "As the angle of incidence is increased, the",
+          "deviation first falls to a least value and",
+          "then rises. This least value is called the",
+          "angle of minimum deviation δ.",
+          "At minimum deviation the two angles of",
+          "incidence become equal, and so do the two",
+          "angles of refraction:",
+          {
+            "text": "i₁ = i₂ = i   and   r₁ = r₂ = r",
+            "style": "eq"
+          },
+          {
+            "text": "2r = A ,   so   r = A/2",
+            "style": "eq"
+          },
+          {
+            "text": "2i = A + δ ,   so   i = (A + δ)/2",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fifth mark. Both equal-angle conditions, then both halved relations.",
+        "why": "At the minimum the ray passes symmetrically through the prism, so the path looks the same from either end. That symmetry is what makes the two angles equal, and it is what allows the four unknown angles to collapse into the two that the prism formula uses.",
+        "common_mistakes": [
+          "Writing r = A. At minimum deviation each angle of refraction is HALF of A.",
+          "Applying i = (A + δ)/2 at any angle of incidence. It holds only at minimum deviation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at minimum deviation i₁ = i₂ and r₁ = r₂, so r = A/2 and i = (A + δ)/2.",
+          "accept": [
+            "at minimum deviation i one equals i two and r one equals r two",
+            "r is A by two and i is A plus delta by two",
+            "the ray passes symmetrically so the angles are equal",
+            "minimum deviation daggara i one equals i two"
+          ],
+          "reject": [
+            "mu is sin of A plus delta by two over sin A by two"
+          ],
+          "heard_as": [
+            "minimum deviation",
+            "A by two",
+            "A plus delta by two",
+            "symmetric"
+          ]
+        },
+        "memory_tip": "Symmetric path: both r values become A/2, both i values become (A + δ)/2."
+      },
+      {
+        "id": "s8_prism_formula",
+        "kind": "equation",
+        "label": "Prism formula",
+        "marks": 1,
+        "mark_note": "μ = sin((A+δ)/2)/sin(A/2)",
+        "lines": [
+          "By Snell's law at the first face, with",
+          "i₁ = i₂ = i and r₁ = r₂ = r,",
+          {
+            "text": "μ = sin i₁ / sin r₁ = sin i / sin r",
+            "style": "eq"
+          },
+          "Substituting i = (A + δ)/2 and r = A/2,",
+          {
+            "text": "μ = sin((A + δ)/2) / sin(A/2)",
+            "style": "boxed"
+          },
+          "This is called the prism formula.",
+          "For an equilateral prism A = 60°, so",
+          {
+            "text": "μ = sin((60° + δ)/2) / sin 30°",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Sixth mark. The equilateral case is A = 60°, and sin 30° = 1/2, so μ = 2 sin((60° + δ)/2).",
+        "why": "Both angles in the formula can be measured outside the prism — the refracting angle with a protractor and the minimum deviation with a spectrometer — so this one equation turns a laboratory measurement into a refractive index.",
+        "common_mistakes": [
+          "Writing sin(A + δ)/sin A without the halves. Both angles are halved.",
+          "Using A = 60° for every prism. That value belongs only to an equilateral prism."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That μ = sin((A + δ)/2) / sin(A/2), and that for an equilateral prism A = 60°.",
+          "accept": [
+            "mu is sin of A plus delta by two over sin A by two",
+            "the prism formula with both angles halved",
+            "for an equilateral prism A is sixty degrees",
+            "mu equals sin A plus delta by two by sin A by two"
+          ],
+          "reject": [
+            "at minimum deviation i one equals i two"
+          ],
+          "heard_as": [
+            "prism formula",
+            "A plus delta by two",
+            "sin A by two",
+            "equilateral"
+          ]
+        },
+        "memory_tip": "Everything is halved: (A + δ)/2 on top, A/2 below."
+      },
+      {
+        "id": "s9_part_b",
+        "kind": "boxed_final",
+        "label": "Part b: the numerical",
+        "marks": 2,
+        "mark_note": "μ = √2 ≈ 1.414",
+        "lines": [
+          {
+            "text": "b) Given:",
+            "style": "heading"
+          },
+          "The ray travels from the denser medium to",
+          "air, meets the surface at 45°, and grazes",
+          "along it. So the angle in the medium is 45°",
+          "and the angle in air is 90°.",
+          {
+            "text": "μ = sin(angle in air) / sin(angle in medium)",
+            "style": "eq"
+          },
+          {
+            "text": "μ = sin 90° / sin 45° = 1 / (1/√2)",
+            "style": "eq"
+          },
+          {
+            "text": "μ = √2 ≈ 1.414",
+            "style": "boxed"
+          },
+          "The 45° is therefore the critical angle of",
+          "this medium."
+        ],
+        "margin_note": "Both marks here. One for reading the 45° as the critical angle, one for the value √2.",
+        "why": "The printed question reads 'is not just refracted', which is a slip for 'is just not refracted': the ray is exactly on the edge of being refracted, so the refracted ray lies along the surface at 90°. The book's own working confirms this reading, since it uses sin 90° in the numerator. Recognising the 45° as the critical angle is the whole question; the arithmetic after that is one line.",
+        "common_mistakes": [
+          "Writing μ = sin 45°/sin 90° and getting 0.707. The angle in the RARER medium goes on top.",
+          "Missing that 45° is the critical angle, and treating the problem as ordinary refraction with two unknowns."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 45° is the critical angle, so μ = sin 90°/sin 45° = √2 ≈ 1.414.",
+          "accept": [
+            "forty five degrees is the critical angle so mu is root two",
+            "sin ninety by sin forty five is root two",
+            "mu is one point four one four",
+            "mu root two, one point four one four"
+          ],
+          "reject": [
+            "mu is sin of A plus delta by two over sin A by two"
+          ],
+          "heard_as": [
+            "root two",
+            "one point four one four",
+            "critical angle",
+            "sin ninety"
+          ]
+        },
+        "memory_tip": "Just not refracted means exactly at the critical angle, so the angle in air is 90°."
+      }
+    ]
+  },
+  "insider_note": "Six blocks build the prism formula and the seventh is one line of arithmetic. The two relations r₁ + r₂ = A and i₁ + i₂ = A + δ are the spine — everything after them is substitution."
+}

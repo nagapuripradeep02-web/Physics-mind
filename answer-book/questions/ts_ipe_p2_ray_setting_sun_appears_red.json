@@ -1,0 +1,383 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_setting_sun_appears_red",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Why does the setting sun appear red?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What scattering is",
+      "marks": 1
+    },
+    {
+      "label": "Rayleigh's law",
+      "marks": 1
+    },
+    {
+      "label": "The long path at the horizon",
+      "marks": 1
+    },
+    {
+      "label": "Why the colour is red",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.13 — Section B, 4 marks. The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The figure carries ZERO marks because the printed question does not ask for a diagram; the book prints one, so one is authored. TRANSCRIPTION: the book prints a space before the question mark (removed here) and misspells 'incidnet' and 'moleucle'. Hand-checked physically: Rayleigh scattering holds when the scattering particle is much smaller than the wavelength (a ≪ λ) and the scattered intensity goes as 1/λ⁴, so violet and blue are scattered far more strongly than red; near the horizon the sunlight travels a much longer path through the atmosphere, most of the short-wavelength light is scattered out of the direct beam, and mainly red reaches the eye."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ray Optics and Optical Instruments · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_scattering",
+        "kind": "text",
+        "label": "Scattering",
+        "marks": 1,
+        "mark_note": "Absorbed and re-sent in all directions",
+        "lines": [
+          {
+            "text": "Scattering:",
+            "style": "heading"
+          },
+          "When light falls on very small particles,",
+          "the particles absorb it and send it out",
+          "again in all directions.",
+          "This spreading of light in all directions by",
+          "small particles is called scattering.",
+          "The reddish colour of the setting sun is",
+          "explained by Rayleigh scattering."
+        ],
+        "margin_note": "First mark. The definition needs the words in all directions — that is what takes light out of the direct beam.",
+        "why": "Scattering removes light from the straight path between the sun and the eye and sends it elsewhere in the sky. Everything else in the answer is about which colours are removed most.",
+        "common_mistakes": [
+          "Confusing scattering with reflection. Scattering sends the light out in all directions, not along one.",
+          "Explaining the colour by refraction. Refraction bends light; it does not remove a colour from the beam."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That scattering is the absorption of light by small particles and its re-emission in all directions.",
+          "accept": [
+            "small particles absorb light and send it in all directions",
+            "scattering spreads light in every direction",
+            "the light is taken out of the direct beam by small particles",
+            "chinna particles light ni anni directions lo pampistayi"
+          ],
+          "reject": [
+            "intensity is proportional to one by lambda to the fourth"
+          ],
+          "heard_as": [
+            "scattering",
+            "all directions",
+            "small particles",
+            "Rayleigh"
+          ]
+        },
+        "memory_tip": "Scattering does not bend light — it takes light out of the beam and spreads it."
+      },
+      {
+        "id": "s2_rayleigh",
+        "kind": "equation",
+        "label": "Rayleigh's law",
+        "marks": 1,
+        "mark_note": "I ∝ 1/λ⁴",
+        "lines": [
+          "Rayleigh showed that when the size a of the",
+          "scattering particle is much smaller than the",
+          "wavelength λ, that is a ≪ λ, the intensity of",
+          "the scattered light is inversely proportional",
+          "to the fourth power of the wavelength.",
+          {
+            "text": "I ∝ 1/λ⁴",
+            "style": "boxed"
+          },
+          "So blue and violet, which have short",
+          "wavelengths, are scattered much more than",
+          "red, which has a long wavelength."
+        ],
+        "margin_note": "Second mark. Write the fourth power exactly, and state the condition a ≪ λ.",
+        "why": "The fourth power is what makes the effect so strong. Blue light has roughly half the wavelength of red, and a factor of two in the wavelength becomes a factor of sixteen in the scattered intensity.",
+        "common_mistakes": [
+          "Writing I ∝ 1/λ² or 1/λ. The power is four.",
+          "Leaving out the condition that the particle is much smaller than the wavelength."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the scattered intensity is inversely proportional to the fourth power of the wavelength, I ∝ 1/λ⁴, when a ≪ λ.",
+          "accept": [
+            "intensity is proportional to one by lambda to the fourth",
+            "Rayleigh scattering goes as one over lambda power four",
+            "short wavelengths scatter much more than long ones",
+            "one by lambda power four, Rayleigh scattering"
+          ],
+          "reject": [
+            "small particles absorb light and send it in all directions"
+          ],
+          "heard_as": [
+            "lambda to the fourth",
+            "inversely proportional",
+            "Rayleigh scattering",
+            "wavelength"
+          ]
+        },
+        "memory_tip": "Fourth power, not square. Halve the wavelength and the scattering rises sixteen times."
+      },
+      {
+        "id": "s3_figure",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 0,
+        "figure": {
+          "id": "sunset_path",
+          "width": 340,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ground",
+              "d": "M 20 170 L 320 170",
+              "ms": 4290
+            },
+            {
+              "type": "stroke",
+              "id": "atm_top",
+              "d": "M 20 70 L 320 70",
+              "ms": 4290,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "eye",
+              "d": "M 164 158 A 6 6 0 1 1 176 158 A 6 6 0 1 1 164 158",
+              "ms": 540
+            },
+            {
+              "type": "stroke",
+              "id": "sun_top",
+              "d": "M 163 14 A 7 7 0 1 1 177 14 A 7 7 0 1 1 163 14",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "ray_top",
+              "d": "M 170 21 L 170 152",
+              "ms": 1870
+            },
+            {
+              "type": "stroke",
+              "id": "ray_top_head",
+              "d": "M 165 109 L 170 120 L 175 109",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "sun_horizon",
+              "d": "M 15 44 A 7 7 0 1 1 29 44 A 7 7 0 1 1 15 44",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "ray_horizon",
+              "d": "M 22 50 L 168 156",
+              "ms": 2580
+            },
+            {
+              "type": "stroke",
+              "id": "ray_horizon_head",
+              "d": "M 88 104 L 100 107 L 94 97",
+              "ms": 340
+            },
+            {
+              "type": "label",
+              "id": "lbl_sun_horizon",
+              "x": 14,
+              "y": 28,
+              "text": "Sun near horizon",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_sun_top",
+              "x": 190,
+              "y": 26,
+              "text": "Sun overhead",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_atm",
+              "x": 250,
+              "y": 62,
+              "text": "Atmosphere",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_short",
+              "x": 180,
+              "y": 116,
+              "text": "Short path",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_long",
+              "x": 34,
+              "y": 150,
+              "text": "Long path",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_observer",
+              "x": 186,
+              "y": 166,
+              "text": "Observer",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "The overhead sun sends light through a short depth of air; the setting sun sends it along a much longer slant path through the same air.",
+        "why": "Only one thing changes between the two rays in the figure: the length of the path through the atmosphere. The colour of the sun changes because of that one difference.",
+        "common_mistakes": [
+          "Drawing the atmosphere as a thin line and the two paths equal. The slant path must clearly be the longer one."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure compares a short vertical path through the atmosphere with a long slant path from the horizon.",
+          "accept": [
+            "draw the atmosphere above the ground with the observer on it",
+            "one ray straight down and one slanting in from the horizon",
+            "the horizon ray travels a longer path through the air"
+          ],
+          "reject": [
+            "intensity is proportional to one by lambda to the fourth"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "atmosphere",
+            "path"
+          ]
+        },
+        "memory_tip": "Same air, two path lengths. The long path is the whole reason the colour changes."
+      },
+      {
+        "id": "s4_long_path",
+        "kind": "text",
+        "label": "The long path",
+        "marks": 1,
+        "mark_note": "Maximum scattering at the horizon",
+        "lines": [
+          "At sunrise and sunset the sun is near the",
+          "horizon, so its light reaches the eye along",
+          "a slanting path.",
+          "This path passes through a much greater",
+          "distance of atmosphere than the light of",
+          "the midday sun.",
+          "The sunlight therefore suffers the maximum",
+          "amount of scattering."
+        ],
+        "margin_note": "Third mark. The key phrase is a larger distance in the atmosphere, so more scattering.",
+        "why": "The amount of light removed grows with the length of the path, because the beam meets more air molecules along the way. At midday the path is short and little blue is lost, so the sun looks white.",
+        "common_mistakes": [
+          "Saying the sun is further away at sunset. The distance to the sun does not change; only the path through the air does.",
+          "Explaining the colour by dust alone. The air molecules themselves scatter the light."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That near the horizon the sunlight travels a much longer distance through the atmosphere and so suffers maximum scattering.",
+          "accept": [
+            "at sunset the light travels a longer path through the atmosphere",
+            "more air means more scattering",
+            "maximum scattering because of the large distance",
+            "horizon daggara light ekkuva distance atmosphere lo prayanistundi"
+          ],
+          "reject": [
+            "the sun appears red because blue is scattered away"
+          ],
+          "heard_as": [
+            "long path",
+            "atmosphere",
+            "maximum scattering",
+            "horizon"
+          ]
+        },
+        "memory_tip": "The sun does not move further away — the light just has more air to cross."
+      },
+      {
+        "id": "s5_red",
+        "kind": "boxed_final",
+        "label": "Why red",
+        "marks": 1,
+        "mark_note": "Blue scattered out, red left",
+        "lines": [
+          "Along that long path most of the blue and",
+          "violet light is scattered out of the direct",
+          "beam, because I ∝ 1/λ⁴.",
+          "Red has the longest wavelength and is",
+          "scattered the least, so it is the colour that",
+          "survives the journey.",
+          "Therefore the sun appears reddish at",
+          "sunrise and at sunset.",
+          {
+            "text": "Long path + I ∝ 1/λ⁴ → red reaches the eye",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Join the two earlier facts: the long path and the fourth-power law together give red.",
+        "why": "The direct beam is not made red — it is what is left after the blue end has been taken out of it. The same scattered blue light is what makes the rest of the daytime sky blue.",
+        "common_mistakes": [
+          "Saying red is scattered towards the eye. Red is the colour that is NOT scattered away.",
+          "Giving the answer without naming the fourth-power law."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That along the long path the short-wavelength blue and violet are scattered out and mainly red reaches the eye, so the setting sun appears red.",
+          "accept": [
+            "blue is scattered away and red reaches the eye",
+            "red has the longest wavelength so it is scattered least",
+            "the sun appears reddish at sunrise and sunset",
+            "blue scatter aipoyi red matrame kanti daggara vastundi"
+          ],
+          "reject": [
+            "at sunset the light travels a longer path through the atmosphere"
+          ],
+          "heard_as": [
+            "red",
+            "blue scattered away",
+            "longest wavelength",
+            "setting sun"
+          ]
+        },
+        "memory_tip": "Red is what is left over, not what is sent. The blue went to the rest of the sky."
+      }
+    ]
+  },
+  "insider_note": "Two facts do all the work: I ∝ 1/λ⁴ and the long path near the horizon. The last step is just putting them side by side."
+}

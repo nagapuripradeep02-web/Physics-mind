@@ -1,0 +1,394 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_critical_angle_total_internal_reflection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define critical angle. Explain total internal reflection using a neat diagram.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of critical angle",
+      "marks": 1
+    },
+    {
+      "label": "Relation μ = 1/sin C",
+      "marks": 1
+    },
+    {
+      "label": "Total internal reflection",
+      "marks": 1
+    },
+    {
+      "label": "Conditions and uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed pp.11-12 — Section B, 4 marks. The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The figure carries ZERO marks because the printed question does not use the phrase 'draw a neat labelled diagram', though it does ask for a neat diagram — a teacher may award a diagram mark, and that is one of the things to confirm. Hand-checked physically: for light going from a denser medium into air, Snell's law written as μ = sin(angle in air)/sin(angle in medium) gives μ = sin 90°/sin C = 1/sin C at the critical angle; a larger refractive index therefore means a smaller critical angle. TRANSCRIPTION: the printed answer spells 'vaccum' for vacuum."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ray Optics and Optical Instruments · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_critical_angle",
+        "kind": "text",
+        "label": "Critical angle",
+        "marks": 1,
+        "mark_note": "Angle of refraction 90°",
+        "lines": [
+          {
+            "text": "Critical angle:",
+            "style": "heading"
+          },
+          "When a ray travels from a denser medium to",
+          "a rarer medium (air), the angle of incidence",
+          "in the denser medium for which the angle of",
+          "refraction in air is 90° is called the",
+          "critical angle C."
+        ],
+        "margin_note": "First mark. Three parts: denser to rarer, angle measured in the DENSER medium, refraction angle exactly 90°.",
+        "why": "As the angle of incidence in the denser medium grows, the refracted ray in air bends further from the normal. At one particular angle it reaches 90° and grazes along the surface. That angle is the critical angle, and beyond it there is no refracted ray at all.",
+        "common_mistakes": [
+          "Measuring the critical angle in the rarer medium. It is the angle in the DENSER medium.",
+          "Saying the angle of refraction is 0°. It is 90°, along the surface."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the critical angle is the angle of incidence in the denser medium for which the angle of refraction in the rarer medium is 90°.",
+          "accept": [
+            "angle of incidence in the denser medium for which refraction is ninety degrees",
+            "the refracted ray grazes along the surface at the critical angle",
+            "denser to rarer and the refracted ray is at ninety degrees",
+            "denser medium lo angle, refraction ninety degrees ayye angle"
+          ],
+          "reject": [
+            "mu is one by sine C"
+          ],
+          "heard_as": [
+            "critical angle",
+            "ninety degrees",
+            "denser medium",
+            "rarer medium"
+          ]
+        },
+        "memory_tip": "Critical angle is the last angle that still refracts — the refracted ray lies flat along the surface at 90°."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 0,
+        "figure": {
+          "id": "critical_angle_tir",
+          "width": 340,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "interface",
+              "d": "M 20 100 L 320 100",
+              "ms": 4290
+            },
+            {
+              "type": "stroke",
+              "id": "normal_a",
+              "d": "M 110 30 L 110 164",
+              "ms": 1910,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "incident_a",
+              "d": "M 40 150 L 110 100",
+              "ms": 1230
+            },
+            {
+              "type": "stroke",
+              "id": "incident_a_head",
+              "d": "M 55 145 L 61 135 L 49 138",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "graze_head",
+              "d": "M 170 95 L 178 100 L 170 105",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "normal_b",
+              "d": "M 240 30 L 240 164",
+              "ms": 1910,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "incident_b",
+              "d": "M 170 150 L 240 100",
+              "ms": 1230
+            },
+            {
+              "type": "stroke",
+              "id": "incident_b_head",
+              "d": "M 185 145 L 191 135 L 179 138",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "reflected_b",
+              "d": "M 240 100 L 310 150",
+              "ms": 1230
+            },
+            {
+              "type": "stroke",
+              "id": "reflected_b_head",
+              "d": "M 270 127 L 282 130 L 276 120",
+              "ms": 340
+            },
+            {
+              "type": "label",
+              "id": "lbl_rarer",
+              "x": 24,
+              "y": 90,
+              "text": "Rarer (air)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_denser",
+              "x": 24,
+              "y": 184,
+              "text": "Denser (glass)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_ninety",
+              "x": 126,
+              "y": 92,
+              "text": "90°",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i_eq_c",
+              "x": 58,
+              "y": 158,
+              "text": "i = C",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i_gt_c",
+              "x": 190,
+              "y": 158,
+              "text": "i > C",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Left half: i = C and the refracted ray grazes along the surface at 90°. Right half: i > C and the ray is reflected back into the denser medium.",
+        "why": "The two halves sit side by side so that the only difference between them is the angle of incidence. Everything else — the same surface, the same two media — is held the same, which is what makes the contrast readable.",
+        "common_mistakes": [
+          "Drawing the incident ray in the rarer medium. Total internal reflection starts in the DENSER medium."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the diagram shows i = C with the refracted ray at 90° along the surface, and i > C with the ray reflected back into the denser medium.",
+          "accept": [
+            "draw the surface with the denser medium below and air above",
+            "one ray at the critical angle grazing along the surface",
+            "a second ray beyond the critical angle reflected back inside"
+          ],
+          "reject": [
+            "mu is one by sine C"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "grazing",
+            "surface"
+          ]
+        },
+        "memory_tip": "Two rays, one surface. At C the ray lies flat; past C it turns back."
+      },
+      {
+        "id": "s3_relation",
+        "kind": "equation",
+        "label": "μ and the critical angle",
+        "marks": 1,
+        "mark_note": "μ = 1/sin C",
+        "lines": [
+          "Applying Snell's law at the surface, with the",
+          "angle in air 90° and the angle in the medium",
+          "equal to C,",
+          {
+            "text": "μ = sin(angle in air) / sin(angle in medium)",
+            "style": "eq"
+          },
+          {
+            "text": "μ = sin 90° / sin C",
+            "style": "eq"
+          },
+          "Since sin 90° = 1,",
+          {
+            "text": "μ = 1 / sin C",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write sin 90° = 1 as its own line — that is where the relation comes from.",
+        "why": "The refractive index and the critical angle are two ways of saying the same thing. A denser material has a larger μ, so 1/sin C is larger, so sin C is smaller and the critical angle is smaller: a denser material traps light more easily.",
+        "common_mistakes": [
+          "Writing μ = sin C. The refractive index is the RECIPROCAL of sin C.",
+          "Putting the angle in air in the denominator. The angle in the denser medium goes below."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Snell's law with 90° in air gives μ = sin 90°/sin C = 1/sin C.",
+          "accept": [
+            "mu is sine ninety by sine C which is one by sine C",
+            "mu equals one by sine C",
+            "sine ninety is one so mu is one over sine C",
+            "mu equals one by sin C"
+          ],
+          "reject": [
+            "angle of incidence in the denser medium for which refraction is ninety degrees"
+          ],
+          "heard_as": [
+            "one by sine C",
+            "sine ninety",
+            "Snell's law",
+            "refractive index"
+          ]
+        },
+        "memory_tip": "Bigger μ, smaller C. The reciprocal in μ = 1/sin C is what makes them move in opposite directions."
+      },
+      {
+        "id": "s4_tir",
+        "kind": "text",
+        "label": "Total internal reflection",
+        "marks": 1,
+        "mark_note": "i > C, no refraction",
+        "lines": [
+          {
+            "text": "Total internal reflection:",
+            "style": "heading"
+          },
+          "When a ray passing from a denser medium to",
+          "a rarer medium meets the surface at an",
+          "angle greater than the critical angle, no",
+          "ray enters the rarer medium. The whole of",
+          "the light is reflected back into the denser",
+          "medium. This is total internal reflection."
+        ],
+        "margin_note": "Third mark. The word TOTAL is the point: none of the light crosses the surface.",
+        "why": "At i = C the refracted ray already lies flat along the surface, so for any larger angle there is no direction left for it to take. Ordinary reflection always returns only part of the light; here it returns all of it, which is why the loss of energy is so small.",
+        "common_mistakes": [
+          "Saying most of the light is reflected. In total internal reflection all of it is.",
+          "Applying it from rarer to denser. It happens only from denser to rarer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That when the angle of incidence in the denser medium is greater than the critical angle, all the light is reflected back into the denser medium.",
+          "accept": [
+            "beyond the critical angle all the light is reflected back",
+            "no refracted ray, the whole light returns into the denser medium",
+            "total internal reflection happens when i is greater than C",
+            "i greater than C ayite motham light venakki reflect avutundi"
+          ],
+          "reject": [
+            "mu equals one by sine C"
+          ],
+          "heard_as": [
+            "total internal reflection",
+            "greater than the critical angle",
+            "reflected back",
+            "denser medium"
+          ]
+        },
+        "memory_tip": "Past the critical angle the surface behaves as a perfect mirror."
+      },
+      {
+        "id": "s5_conditions_uses",
+        "kind": "boxed_final",
+        "label": "Conditions and uses",
+        "marks": 1,
+        "mark_note": "Two conditions, two uses",
+        "lines": [
+          {
+            "text": "Conditions:",
+            "style": "heading"
+          },
+          "1) Light must travel from a denser medium",
+          "to a rarer medium.",
+          "2) The angle of incidence in the denser",
+          "medium must be greater than the critical",
+          "angle of that medium.",
+          {
+            "text": "Uses:",
+            "style": "heading"
+          },
+          "1) Light travels on without loss of energy,",
+          "so it is used in optical communication.",
+          "2) Optical fibres work on this effect.",
+          {
+            "text": "Denser to rarer, and i > C",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Both conditions must appear; the uses are one line each.",
+        "why": "Both conditions are needed together — a ray from air into glass never reflects totally, however large the angle. The uses follow from the loss-free reflection: a fibre can carry a signal for kilometres because each bounce returns all of the light.",
+        "common_mistakes": [
+          "Giving only one condition. Denser to rarer AND i > C are both needed.",
+          "Naming a use without saying which property is used."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The two conditions (denser to rarer, i greater than C) and at least one use, such as optical fibres.",
+          "accept": [
+            "denser to rarer and angle greater than the critical angle",
+            "two conditions and optical fibres as a use",
+            "used in optical fibres and optical communication",
+            "denser nunchi rarer, i greater than C, optical fibre lo use"
+          ],
+          "reject": [
+            "beyond the critical angle all the light is reflected back"
+          ],
+          "heard_as": [
+            "conditions",
+            "optical fibre",
+            "denser to rarer",
+            "greater than critical angle"
+          ]
+        },
+        "memory_tip": "Two conditions, two uses. Both conditions name the denser medium."
+      }
+    ]
+  },
+  "insider_note": "Four separate blocks, one mark each. The relation μ = 1/sin C is the one line the examiner can look for at a glance."
+}
