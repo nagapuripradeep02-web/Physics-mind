@@ -1,0 +1,314 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_structures_of_xef6_and_xeof4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the structures of a) XeF₆ b) XeOF₄.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Structure of XeF₆",
+      "marks": 2
+    },
+    {
+      "label": "Structure of XeOF₄",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.90 as SAQ 2. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: the printed hybridisations (sp3d3 for XeF6, sp3d2 for XeOF4) and the printed shapes (distorted octahedral, square pyramidal) are correct and are kept. BOOK NOTATION: the book prints \"SP3d3\" for XeF6 and \"sp3d2\" for XeOF4 on the same page, so the capitalisation is inconsistent; both are written lowercase here. BOOK GAP (the one real omission): the printed answer for XeOF4 gives the shape with NO reason at all - it says only \"Shape is square pyramidal\", while the XeF6 answer beside it does say \"due to the presence of 1 lone pair\". The lone pair on xenon, and its position opposite the oxygen atom, are added here, because without them square pyramidal is a word to memorise rather than a shape to work out. The count of sigma bonds plus lone pairs (5 + 1 = 6) is also added, since a student who counts the Xe=O double bond as two regions reaches sp3d3 and the wrong shape. FIGURE SCOPE: the question says \"explain\", not \"draw\", so both diagram steps carry NO marks and the whole split sits on the two written steps. The two shapes are drawn in two separate figures, not one, because a single figure holding both would need 19 drawn elements and the limit is 16."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Noble Gases — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_xef6",
+        "kind": "text",
+        "label": "Structure of XeF₆",
+        "marks": 2,
+        "mark_note": "sp³d³, distorted octahedral",
+        "lines": [
+          "XeF₆: xenon has six bond pairs and one lone",
+          "pair, seven electron pairs in all.",
+          "So xenon is sp³d³ hybridised (third excited",
+          "state).",
+          "Six bond pairs on their own would give a",
+          "regular octahedron.",
+          "The seventh pair is a lone pair. It caps one",
+          "face of that octahedron and pushes the",
+          "bonds near it away.",
+          {
+            "text": "Shape of XeF₆ is distorted octahedral",
+            "style": "boxed"
+          }
+        ],
+        "why": "Seven electron pairs cannot be placed at equal angles the way four, five or six can, so there is no regular shape for XeF₆ to take. The lone pair occupies one triangular face of what would otherwise be an octahedron and pushes the three bonds around that face outwards, which is exactly what the word distorted records.",
+        "common_mistakes": [
+          "Calling XeF₆ a regular octahedron. Six bond pairs alone would give one, but the seventh pair is a lone pair, so the octahedron is distorted.",
+          "Writing sp³d² for XeF₆. Seven electron pairs need seven orbitals, so three d orbitals are used, giving sp³d³.",
+          "Forgetting the lone pair. Xenon has eight valence electrons and uses six of them for the six bonds, so one pair is always left over."
+        ],
+        "memory_tip": "Eight valence electrons, six used for bonds, one pair left over. That leftover pair is what distorts the octahedron.",
+        "margin_note": "The word distorted is worth as much as the word octahedral. Name the lone pair as the reason for it."
+      },
+      {
+        "id": "s2_xef6_drawn",
+        "kind": "diagram",
+        "label": "XeF₆ drawn",
+        "marks": 0,
+        "figure": {
+          "id": "xef6_shape",
+          "width": 420,
+          "height": 320,
+          "elements": [
+            {
+              "type": "label",
+              "id": "x6_f_top",
+              "x": 193,
+              "y": 64,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "x6_f_ul",
+              "x": 88,
+              "y": 128,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "x6_f_ur",
+              "x": 304,
+              "y": 128,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "x6_xe",
+              "x": 186,
+              "y": 170,
+              "text": "Xe",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "x6_f_ll",
+              "x": 88,
+              "y": 212,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "x6_f_lr",
+              "x": 306,
+              "y": 196,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "x6_f_bot",
+              "x": 150,
+              "y": 262,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "x6_bonds",
+              "d": "M 200 148 L 200 74 M 192 176 L 168 240 M 184 154 L 112 126 M 216 154 L 288 126 M 184 166 L 112 198 M 216 163 L 292 178",
+              "ms": 2600
+            },
+            {
+              "type": "stroke",
+              "id": "x6_lp_line",
+              "d": "M 218 175 L 248 214",
+              "ms": 500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "x6_lone_pair",
+              "d": "M 251 222 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 263 232 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "x6_caption",
+              "x": 48,
+              "y": 304,
+              "text": "XeF₆ — distorted octahedral, 1 lone pair",
+              "ms": 400,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The picture shows six fluorine atoms in the octahedral positions and the lone pair pushed out through one face between them. The pencil line is only there to show where the lone pair points; it is not a bond.",
+        "common_mistakes": [
+          "Drawing a regular octahedron with six evenly spaced bonds. The lone pair takes a seventh position and pushes the bonds nearest it away, which is what the word distorted records.",
+          "Drawing a seventh F where the lone pair is. There are six fluorine atoms; the seventh position holds electrons, not an atom."
+        ],
+        "memory_tip": "Six F at the octahedron corners, and the dots pushed out through one face.",
+        "margin_note": "The question says explain, not draw, so this earns no marks. All four marks sit on the two written steps."
+      },
+      {
+        "id": "s3_xeof4",
+        "kind": "boxed_final",
+        "label": "Structure of XeOF₄",
+        "marks": 2,
+        "mark_note": "sp³d², square pyramidal",
+        "lines": [
+          "XeOF₄: xenon has one Xe=O bond, four Xe–F",
+          "bonds and one lone pair.",
+          "Counting σ bonds and lone pairs gives six",
+          "pairs, so xenon is sp³d² hybridised",
+          "(second excited state).",
+          "The six pairs take up an octahedral",
+          "arrangement.",
+          "The lone pair sits at the position opposite",
+          "the oxygen atom.",
+          {
+            "text": "Shape of XeOF₄ is square pyramidal",
+            "style": "boxed"
+          },
+          "The four fluorine atoms form the square base",
+          "and the oxygen atom is at the apex."
+        ],
+        "why": "The count is over σ bonds and lone pairs, not over bonds. The Xe=O double bond has one σ component, so xenon has five σ bonds and one lone pair, which is six regions and sp³d². The parenthetical second excited state is the book's name for the promotion that gives four unpaired electrons for the four Xe–F bonds; the Xe=O bond uses a further pair from xenon. Take an octahedron, put the lone pair in one position and the oxygen atom in the position opposite it, and the four fluorine atoms that are left form a square with the oxygen above them: a square pyramid.",
+        "common_mistakes": [
+          "Counting the Xe=O double bond as two regions. Only its σ part is counted, so xenon has six regions and not seven.",
+          "Calling XeOF₄ octahedral. Six electron pairs are arranged octahedrally, but one is a lone pair, so the SHAPE is square pyramidal.",
+          "Putting the oxygen atom in the square base. The four fluorine atoms make the base; the oxygen atom is at the apex."
+        ],
+        "memory_tip": "Square pyramidal = an octahedron with one position holding the lone pair instead of an atom. The oxygen atom is at the top of the pyramid.",
+        "margin_note": "Give the reason as well as the shape: one lone pair opposite the oxygen atom. The book prints the shape with no reason, and a bare shape usually reads as one mark."
+      },
+      {
+        "id": "s4_xeof4_drawn",
+        "kind": "diagram",
+        "label": "XeOF₄ drawn",
+        "marks": 0,
+        "figure": {
+          "id": "xeof4_shape",
+          "width": 420,
+          "height": 320,
+          "elements": [
+            {
+              "type": "label",
+              "id": "o4_o",
+              "x": 192,
+              "y": 58,
+              "text": "O",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "o4_f_tl",
+              "x": 88,
+              "y": 120,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "o4_f_tr",
+              "x": 304,
+              "y": 120,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "o4_xe",
+              "x": 186,
+              "y": 170,
+              "text": "Xe",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "o4_f_bl",
+              "x": 88,
+              "y": 216,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "o4_f_br",
+              "x": 304,
+              "y": 216,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "o4_double_bond",
+              "d": "M 197 148 L 197 68 M 204 148 L 204 68",
+              "ms": 1100
+            },
+            {
+              "type": "stroke",
+              "id": "o4_bonds",
+              "d": "M 184 154 L 112 118 M 216 154 L 288 118 M 184 166 L 112 202 M 216 166 L 288 202",
+              "ms": 1800
+            },
+            {
+              "type": "stroke",
+              "id": "o4_lp_line",
+              "d": "M 200 178 L 200 228",
+              "ms": 500,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "o4_lone_pair",
+              "d": "M 191 238 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 207 238 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "o4_caption",
+              "x": 110,
+              "y": 298,
+              "text": "XeOF₄ — square pyramidal",
+              "ms": 400,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The four fluorine atoms are drawn as a flat square around xenon, the oxygen atom above it on a double bond, and the lone pair below it. Seeing the lone pair directly opposite the oxygen atom is what makes the square pyramid obvious.",
+        "common_mistakes": [
+          "Drawing the Xe–O bond as a single line. It is a double bond, and only its σ part counts, so the oxygen atom is one region and not two.",
+          "Drawing the lone pair beside the oxygen atom. It is at the position opposite, below the square of fluorine atoms."
+        ],
+        "memory_tip": "Oxygen on top, four F in a flat square, dots underneath.",
+        "margin_note": "The question says explain, not draw, so this earns no marks. Sketch it only after both written steps are complete."
+      }
+    ]
+  },
+  "insider_note": "Two marks for each molecule, and the two drawings earn none of them, because the question says explain and not draw. For XeOF₄ the reason matters most: the book prints the shape without one, so naming the lone pair opposite the oxygen atom is what makes the answer complete."
+}
