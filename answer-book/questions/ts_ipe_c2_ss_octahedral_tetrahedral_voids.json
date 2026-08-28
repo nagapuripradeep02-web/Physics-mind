@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_octahedral_tetrahedral_voids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are octahedral and tetrahedral voids?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Tetrahedral void",
+      "marks": 1
+    },
+    {
+      "label": "Octahedral void",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.63, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book's two definitions are correct as printed. The counts (N octahedral and 2N tetrahedral voids for N spheres) and the fact that a tetrahedral void is the smaller of the two are added from NCERT, because they are what the later ionic solid questions are built on."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tetrahedral",
+        "kind": "text",
+        "label": "Tetrahedral void",
+        "marks": 1,
+        "mark_note": "Tetrahedral",
+        "lines": [
+          "Tetrahedral void: the empty space formed by",
+          "four spheres that are in contact with one",
+          "another in a tetrahedral arrangement.",
+          "Three spheres lie in one layer and the",
+          "fourth sits in the hollow above them.",
+          "It is the smaller of the two voids."
+        ],
+        "why": "A void is named after the shape made by the centres of the spheres that surround it. Joining the centres of these four touching spheres gives a tetrahedron, so the space between them is the tetrahedral void.",
+        "common_mistakes": [
+          "Writing that four spheres lie in one layer. Three lie in one layer and the fourth rests on top of them.",
+          "Saying the void itself has the shape of a tetrahedron. It is the four surrounding sphere centres that form the tetrahedron."
+        ],
+        "memory_tip": "Tetra means four, so four spheres. Octa means eight faces, and that shape needs six spheres.",
+        "margin_note": "Give the number of spheres in each definition. Four and six are the two numbers being marked."
+      },
+      {
+        "id": "s2_octahedral",
+        "kind": "boxed_final",
+        "label": "Octahedral void",
+        "marks": 1,
+        "mark_note": "Octahedral",
+        "lines": [
+          {
+            "text": "Tetrahedral: 4 spheres. Octahedral: 6.",
+            "style": "boxed"
+          },
+          "Octahedral void: the empty space formed by",
+          "six spheres in contact in an octahedral",
+          "arrangement, three in each of two layers.",
+          "For N close packed spheres there are N",
+          "octahedral and 2N tetrahedral voids."
+        ],
+        "why": "Six touching spheres, three in the layer below and three in the layer above, have centres that form an octahedron, so the space between them is the octahedral void. It is the larger of the two, so a bigger ion can occupy it.",
+        "common_mistakes": [
+          "Writing eight spheres because the name starts with octa. An octahedron has eight faces but only six corners, so six spheres.",
+          "Swapping the counts. There are twice as many tetrahedral voids as octahedral ones."
+        ],
+        "memory_tip": "Octahedron has 8 faces and 6 corners. The corners are the spheres, so the count is 6.",
+        "margin_note": "The boxed contrast line is the fastest way to show both numbers. Add the N and 2N counts if there is room."
+      }
+    ]
+  },
+  "insider_note": "The whole answer rests on two numbers, four spheres and six spheres. Write both definitions in full sentences, because the word octa makes many students write eight."
+}

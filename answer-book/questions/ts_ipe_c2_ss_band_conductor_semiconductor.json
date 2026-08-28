@@ -1,0 +1,260 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_band_conductor_semiconductor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "In terms of band theory, what is the difference between a conductor and a semiconductor?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two bands",
+      "marks": 1
+    },
+    {
+      "label": "The conductor",
+      "marks": 1
+    },
+    {
+      "label": "The semiconductor",
+      "marks": 1
+    },
+    {
+      "label": "The contrast",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.64, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO: the printed answer spells it \"valance band\" (book p.64, SAQ 7); it is valence band. BOOK GAP: the printed answer does not say that the conductivity of a semiconductor RISES with temperature, which is the property that separates it from a conductor in every later question; it is added here from NCERT, together with the note that at 0 K a semiconductor behaves as an insulator. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks and the whole split sits on the four written steps. This card and ts_ipe_c2_ss_band_conductor_insulator answer two separate printed questions that share the conductor half, which is why the conductor step reads alike on both."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solid State — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bands",
+        "kind": "text",
+        "label": "The two bands",
+        "marks": 1,
+        "mark_note": "The bands",
+        "lines": [
+          "In a solid the atomic orbitals of all the atoms",
+          "combine into large groups of closely spaced",
+          "energy levels called bands.",
+          "The highest band holding the valence",
+          "electrons is the valence band; the empty",
+          "band above it, in which an electron can move",
+          "through the solid, is the conduction band.",
+          "The energy difference between the two is",
+          "the energy gap."
+        ],
+        "why": "Both solids in this comparison have the same two bands, so the answer can only be about the space between them. Defining that space first is what makes the words small gap and no gap mean something later.",
+        "common_mistakes": [
+          "Writing that a semiconductor has an extra band. It has the same two bands as any other solid.",
+          "Spelling it valance band. The word is valence, from valence electrons."
+        ],
+        "memory_tip": "Same two bands in every solid. Only the distance between them changes.",
+        "margin_note": "Define both bands and the gap in the first three lines. The rest of the answer is written in these terms."
+      },
+      {
+        "id": "s2_conductor",
+        "kind": "text",
+        "label": "The conductor",
+        "marks": 1,
+        "mark_note": "Conductor",
+        "lines": [
+          "In a conductor the valence band is only",
+          "partly filled, or it overlaps the conduction",
+          "band.",
+          "So the energy gap is very small or there is",
+          "no gap at all.",
+          "Electrons pass into the conduction band with",
+          "almost no extra energy, so a conductor has",
+          "a high conductivity."
+        ],
+        "why": "A partly filled band has empty levels immediately above the filled ones, so a small voltage is enough to set the electrons moving. Where the bands overlap there is no gap to cross at all.",
+        "common_mistakes": [
+          "Writing that a conductor has a small gap like a semiconductor. In a conductor the gap is either negligible or absent because the bands overlap.",
+          "Leaving out the partly filled band case. The book's own diagram shows both cases for a conductor."
+        ],
+        "memory_tip": "Partly filled or overlapping. Either way the electrons have empty levels to move into.",
+        "margin_note": "Both cases must appear: partly filled band AND overlapping bands."
+      },
+      {
+        "id": "s3_semiconductor",
+        "kind": "text",
+        "label": "The semiconductor",
+        "marks": 1,
+        "mark_note": "Semiconductor",
+        "lines": [
+          "In a semiconductor the valence band is",
+          "completely filled, and there is a small energy",
+          "gap above it.",
+          "The gap is small enough that some electrons",
+          "take enough thermal energy to cross it, so",
+          "a few reach the conduction band and the",
+          "solid conducts a little.",
+          "Raising the temperature sends more",
+          "electrons across, so its conductivity rises",
+          "with temperature."
+        ],
+        "why": "The gap is the middle case: too large for the free flow of a metal, small enough that ordinary heat lifts a few electrons across. That is also why heating helps a semiconductor and hinders a metal, whose conductivity falls as it gets hotter.",
+        "common_mistakes": [
+          "Writing that a semiconductor has no gap. It has a small one; with no gap it would be a conductor.",
+          "Writing that its conductivity falls as the temperature rises. That is a metal; a semiconductor conducts better when it is hotter."
+        ],
+        "memory_tip": "Small gap means a few electrons get across, and heat sends more. Metals behave the other way.",
+        "margin_note": "The words \"small energy gap\" and \"some electrons jump\" carry this mark. Add the temperature line if there is room."
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "The band diagram",
+        "marks": 0,
+        "figure": {
+          "id": "band_conductor_semiconductor",
+          "width": 500,
+          "height": 330,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "bcs_conductor_bands",
+              "d": "M 50 100 L 115 100 L 115 160 L 50 160 Z M 50 160 L 115 160 L 115 220 L 50 220 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "bcs_conductor_fill",
+              "d": "M 50 175 L 115 175 M 50 190 L 115 190 M 50 205 L 115 205",
+              "ms": 2790
+            },
+            {
+              "type": "stroke",
+              "id": "bcs_semiconductor_bands",
+              "d": "M 200 100 L 265 100 L 265 148 L 200 148 Z M 200 168 L 265 168 L 265 225 L 200 225 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "bcs_semiconductor_fill",
+              "d": "M 200 182 L 265 182 M 200 196 L 265 196 M 200 210 L 265 210",
+              "ms": 2790
+            },
+            {
+              "type": "stroke",
+              "id": "bcs_gap_arrow",
+              "d": "M 274 148 L 274 168 M 270 154 L 274 148 L 278 154 M 270 162 L 274 168 L 278 162",
+              "ms": 700
+            },
+            {
+              "type": "label",
+              "id": "bcs_lbl_conductor",
+              "x": 46,
+              "y": 268,
+              "text": "Conductor",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "bcs_lbl_overlap",
+              "x": 40,
+              "y": 310,
+              "text": "bands touch",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "bcs_lbl_semiconductor",
+              "x": 196,
+              "y": 268,
+              "text": "Semiconductor",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "bcs_lbl_conduction_band",
+              "x": 286,
+              "y": 112,
+              "text": "Conduction band",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "bcs_lbl_gap",
+              "x": 286,
+              "y": 164,
+              "text": "Small energy gap",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "bcs_lbl_valence_band",
+              "x": 286,
+              "y": 216,
+              "text": "Valence band",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Placed side by side, the two columns show the one difference: the conductor's bands run into each other, while the semiconductor has a narrow strip of empty energy between its filled band and its empty one.",
+        "common_mistakes": [
+          "Drawing the semiconductor gap as wide as an insulator's. A wide gap would make it an insulator, not a semiconductor.",
+          "Drawing the semiconductor valence band only partly filled. It is completely filled; the partly filled band belongs to the conductor."
+        ],
+        "memory_tip": "Two boxes touching for the conductor, two boxes with a narrow strip between them for the semiconductor.",
+        "margin_note": "The question does not ask for a diagram, so this earns no marks. All four marks sit on the written steps; the sketch only saves writing."
+      },
+      {
+        "id": "s5_contrast",
+        "kind": "boxed_final",
+        "label": "The contrast",
+        "marks": 1,
+        "mark_note": "Contrast",
+        "lines": [
+          {
+            "text": "Conductor: part filled band or no gap.",
+            "style": "boxed"
+          },
+          {
+            "text": "Semiconductor: full band, small gap.",
+            "style": "boxed"
+          },
+          "So a conductor conducts freely at any",
+          "temperature, while a semiconductor conducts",
+          "a little and conducts better when heated.",
+          "At 0 K a semiconductor behaves as an",
+          "insulator."
+        ],
+        "why": "The comparison is the marked line, and it holds together only if both halves name the same two things: how full the valence band is, and how wide the gap is. The behaviour with temperature follows from those two and is the difference a later question is most likely to ask about.",
+        "common_mistakes": [
+          "Describing the two solids separately with no comparing sentence. The word difference means the comparison itself is being marked.",
+          "Writing that a semiconductor is a poor conductor for the same reason as an insulator. The gap is small, not large, which is why heat is enough to move electrons across it."
+        ],
+        "memory_tip": "No gap, small gap, large gap: conductor, semiconductor, insulator, in that order.",
+        "margin_note": "Two boxed lines complete this answer. The temperature sentence is what lifts it above a bare comparison."
+      }
+    ]
+  },
+  "insider_note": "The line that separates a full answer from a half one is that the conductivity of a semiconductor rises with temperature while that of a metal falls. Write the comparison as a single sentence, not as two separate descriptions."
+}

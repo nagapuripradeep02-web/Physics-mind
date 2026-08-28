@@ -118,8 +118,16 @@ Build-enforced, so this is not advisory. `npm run build:answers` fails on any of
 - `insider_note` on every card
 - **Rule 41 plain language** in every string a student reads. Chemistry is unusually prone to
   breaking it: a reaction never "wants" to go right, electrons never "prefer" an orbital, an atom
-  is never "happy", a system never "fights back", a bond never "holds on". The imported word list
-  catches perhaps half — scan by hand.
+  is never "happy", a system never "fights back", a bond never "holds on". The build's own check is
+  `idiomsIn()`, a list of SIXTEEN chat phrases ("piece of cake", "nail it") written to grade Vidi's
+  replies — it catches essentially none of the ways science prose breaks the rule. Run
+  `npm run scan:register -- ts_ipe_c2`, which reports candidates for a human to judge, and read the
+  prose as well. Real hits from unit 1, all of which passed every automated gate: "the ion moves
+  house inside the crystal", "Lattice = the whole wall. Unit cell = one brick", "nowhere to get
+  stuck", "shared with nobody", and four uses of "decides" where "determines" is the literal word.
+  Chemistry's OWN vocabulary is not a violation (Rule 41b): a base donates a pair, an acid accepts
+  one, charges attract and repel, atoms share electrons, an electron jumps to the conduction band,
+  occupies an orbital, is trapped at a vacancy. Use the word the formula uses.
 - `recall` blocks and `recall_prompt` are NOT authored; that feature is dormant.
 - `verification.needs_teacher_verification` is `true` on every card (the merge script checks it).
 
@@ -189,9 +197,10 @@ diagram marks. Elsewhere the diagram step takes `marks: 0` and — because the s
 `mark_note` at zero — carries none, with the whole split on the written steps and that said in
 `margin_note`.
 
-**Pacing.** Author the path `d` and leave `"ms": 0`, then run
-`npm run pace:figures -- --prefix ts_ipe_c2 --write` to fill every `ms` from measured path length
-at 70 u/s. `npm run check:figure-pace` gates 40–160 u/s over `ts_ipe_c2`.
+**Pacing.** Give every stroke a real positive `ms` — the schema is `z.number().int().positive()`,
+so a placeholder `"ms": 0` FAILS validation. Any plausible value will do; the orchestrator then runs
+`npm run pace:figures -- --prefix ts_ipe_c2 --force --write` to retime every stroke to a uniform
+70 u/s from its measured path length. `npm run check:figure-pace` gates 40–160 u/s over `ts_ipe_c2`.
 
 **The phase constraint.** The zoology branch's phased-figure `pause` element is NOT on master —
 `figureSchema` admits only `stroke` and `label`, so authoring a pause fails the build. The pace

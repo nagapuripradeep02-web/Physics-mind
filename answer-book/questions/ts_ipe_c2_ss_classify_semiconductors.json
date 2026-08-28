@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_classify_semiconductors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Classify each of the following as either a p-type or an n-type semiconductor: 1) Ge doped with In  2) Si doped with B.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The doping rule",
+      "marks": 2
+    },
+    {
+      "label": "The two classifications",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.64, which prints the question and a model answer. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book's two answers (both p-type) are correct. The book gives the rule for group 13 dopants only; the group 15 half is added here so the classification reads as a rule applied rather than a fact recalled, and because the question says \"either p-type or n-type\", which a student cannot answer without both halves."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solid State — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "text",
+        "label": "The doping rule",
+        "marks": 2,
+        "mark_note": "The rule",
+        "lines": [
+          "Silicon and germanium are group 14 elements",
+          "and each forms four bonds.",
+          "Doping with a group 13 element (B, Al, Ga,",
+          "In) leaves one bond short of an electron.",
+          "That empty place is a hole, so the solid is a",
+          "p-type semiconductor.",
+          "Doping with a group 15 element (P, As, Sb)",
+          "leaves one electron over, so the solid is an",
+          "n-type semiconductor."
+        ],
+        "why": "The classification depends only on the group of the dopant, because silicon and germanium need exactly four bonding electrons. One electron fewer leaves a hole, one electron more leaves a free electron, and the name of the semiconductor follows from which of the two it is.",
+        "common_mistakes": [
+          "Looking at the host instead of the dopant. Silicon and germanium are the same in both parts; only the added element determines the type.",
+          "Swapping the two groups. Group 13 gives p-type and group 15 gives n-type."
+        ],
+        "memory_tip": "Group 13 is one short of 14, so a hole and p-type. Group 15 is one over, so an electron and n-type.",
+        "margin_note": "Write the rule before the two answers. Two marks are for the reasoning; a bare p-type and p-type cannot earn them."
+      },
+      {
+        "id": "s2_classification",
+        "kind": "boxed_final",
+        "label": "The two classifications",
+        "marks": 2,
+        "mark_note": "The two answers",
+        "lines": [
+          {
+            "text": "1) Ge doped with In → p-type",
+            "style": "boxed"
+          },
+          {
+            "text": "2) Si doped with B → p-type",
+            "style": "boxed"
+          },
+          "Indium is in group 13, so it leaves a hole in",
+          "germanium.",
+          "Boron is in group 13, so it leaves a hole in",
+          "silicon.",
+          "Both are therefore p-type."
+        ],
+        "why": "Indium and boron are both group 13 elements, so both parts of this question have the same answer. Naming the group beside each answer is what shows the classification came from the rule and not from a guess.",
+        "common_mistakes": [
+          "Assuming the two parts must have different answers. Both dopants here are group 13, so both are p-type.",
+          "Writing p-type with no reason. The group of the dopant has to be named for the mark."
+        ],
+        "memory_tip": "Boron and indium are in the same group, so the two answers are the same.",
+        "margin_note": "Answer both parts separately and number them. Give the dopant group beside each answer."
+      }
+    ]
+  },
+  "insider_note": "Both parts are p-type, and many students change the second answer because they expect the two to differ. Name the group of the dopant beside each answer and the reasoning marks are safe."
+}

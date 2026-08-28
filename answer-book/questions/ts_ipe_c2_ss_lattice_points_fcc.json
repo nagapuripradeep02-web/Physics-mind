@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_lattice_points_fcc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many lattice points are there in one unit cell of a face centred cubic lattice? (face centred tetragonal lattice)",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Where the points lie",
+      "marks": 1
+    },
+    {
+      "label": "The count",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed question carries the parenthesis \"(face centered tetragonal lattice)\" but the printed answer never mentions the tetragonal case at all (book p.62, VSAQ 5). It is answered here: a face centred tetragonal cell has the same 8 corners and 6 face centres, so the count is also 14. SPELLING: the book prints \"centered\"; \"centred\" is used here to match the rest of the bank. The distinction between the 14 lattice POINTS and the 4 effective particles is the book's own bracketed line and is kept, because a student who reports 4 to a question asking for lattice points is answering a different question."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_positions",
+        "kind": "text",
+        "label": "Where the points lie",
+        "marks": 1,
+        "mark_note": "Positions",
+        "lines": [
+          "In a face centred arrangement there are",
+          "8 lattice points at the corners of the cube",
+          "and 6 lattice points at the face centres.",
+          "A face centred tetragonal cell has the same",
+          "8 corners and 6 face centres."
+        ],
+        "why": "The count comes from the positions, so the positions have to be named first. A cube has 8 corners and 6 faces, and the face centred pattern puts one lattice point on each of them. Stretching the cube into a tetragonal cell changes the edge lengths but not the number of corners or faces, so the same count applies.",
+        "common_mistakes": [
+          "Counting 4 face centres instead of 6. A cube has six faces, not four.",
+          "Adding a body centre. A face centred cell has no lattice point at the centre of the body."
+        ],
+        "memory_tip": "A cube has 8 corners and 6 faces. Face centred means one point on each of those 14 places.",
+        "margin_note": "Name the two sets of positions before the arithmetic. The positions carry the first mark on their own."
+      },
+      {
+        "id": "s2_count",
+        "kind": "boxed_final",
+        "label": "The count",
+        "marks": 1,
+        "mark_note": "Count",
+        "lines": [
+          {
+            "text": "Total lattice points = 8 + 6 = 14",
+            "style": "boxed"
+          },
+          "Number of particles per unit cell:",
+          {
+            "text": "8 × ⅛ + 6 × ½ = 1 + 3 = 4",
+            "style": "eq"
+          },
+          "So 14 lattice points, 4 particles."
+        ],
+        "why": "The question asks for lattice points, so the answer is the plain count 14. The second line answers the different question a student often confuses with it: each corner point is shared by 8 cells and each face centre by 2, so only 4 particles belong to one cell.",
+        "common_mistakes": [
+          "Writing 4 as the number of lattice points. 4 is the number of particles that belong to the cell; the number of lattice points is 14.",
+          "Dividing the face centre by 4 instead of 2. A face is shared between two cells only."
+        ],
+        "memory_tip": "Corner is shared by 8 cells, face by 2. 8 × ⅛ = 1 and 6 × ½ = 3, so 4 in all.",
+        "margin_note": "Box the 14 as the answer to the question asked, then add the 4 as the particle count with its working."
+      }
+    ]
+  },
+  "insider_note": "The question says lattice points, so 14 is the answer being marked. Write the 4 particles as a second line with its working; a student who writes only 4 has answered a different question."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_ferromagnetism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain ferromagnetism with a suitable example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer gives the strong attraction and permanent magnetism but not the reason (book p.62, VSAQ 10). The domain explanation is added from NCERT, because it is what separates ferromagnetism from paramagnetism, which is the next question on the same page. The five examples Fe, Co, Ni, Gd and CrO₂ are the book's own and are correct."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Substances that are strongly attracted by an",
+          "external magnetic field are called",
+          "ferromagnetic substances.",
+          "In these solids the magnetic moments are",
+          "grouped into small regions called domains.",
+          "The field lines up all the domains in one",
+          "direction, so the magnetism stays after the",
+          "field is removed. This is permanent",
+          "magnetism."
+        ],
+        "why": "Strong attraction is the observation; domains are the reason. Once the field has lined the domains up they stay lined up, and that is why a ferromagnetic solid keeps its magnetism when the field is switched off. A paramagnetic solid has no domains, so it does not.",
+        "common_mistakes": [
+          "Writing weakly attracted. Weak attraction is paramagnetism; ferromagnetic substances are strongly attracted.",
+          "Leaving out permanent magnetism. Keeping the magnetism after the field is removed is the marked point that separates the two."
+        ],
+        "memory_tip": "Ferrum is the Latin name for iron, and iron is the substance that stays magnetised.",
+        "margin_note": "Write \"strongly attracted\" and \"permanent magnetism\" in the same sentence. Those two phrases carry the definition mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Examples: Fe, Co, Ni, Gd, CrO₂.",
+            "style": "boxed"
+          },
+          "CrO₂ is used to coat magnetic recording",
+          "tape.",
+          "Heating a ferromagnetic solid above a",
+          "certain temperature turns it paramagnetic."
+        ],
+        "why": "The example is a separate marking point. The heating fact is worth one line because it shows that the domains are what matter: heat disturbs their alignment, and the solid then behaves like a paramagnetic one.",
+        "common_mistakes": [
+          "Giving O₂ or a transition metal ion as the example. Those are paramagnetic; the ferromagnetic examples are metals such as Fe, Co, Ni and the solid CrO₂.",
+          "Writing the chromium oxide as CrO₃ or Cr₂O₃. The ferromagnetic one is CrO₂."
+        ],
+        "memory_tip": "The three neighbours in the periodic table, iron, cobalt and nickel, are the three ferromagnetic metals.",
+        "margin_note": "Fe, Co and Ni alone earn the example mark. Add Gd and CrO₂ if there is room."
+      }
+    ]
+  },
+  "insider_note": "Two words decide this mark: strongly and permanent. The next question on paramagnetism is marked on weakly and temporary, so the two answers must not read alike."
+}

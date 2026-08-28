@@ -1,0 +1,210 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_schottky_defect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a Schottky defect?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Density change and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks and the whole split sits on the two written steps. The book prints a grid diagram alongside the answer, and it is reproduced here because the pair of vacancies is what separates this defect from a Frenkel defect. The book does not say WHY equal numbers are missing; the electrical neutrality reason and the condition (ions of nearly equal size, high co-ordination number) are added from NCERT."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A Schottky defect is a vacancy defect shown",
+          "by ionic crystals.",
+          "An equal number of cations and anions are",
+          "missing from their lattice sites.",
+          "The numbers are equal so that the crystal",
+          "stays electrically neutral."
+        ],
+        "why": "Two facts make the definition: the sites are empty (a vacancy defect), and the two kinds of ion are missing in equal numbers. The second fact is forced by charge: removing more cations than anions would leave the crystal with a net charge, which cannot happen.",
+        "common_mistakes": [
+          "Writing that only cations are missing. In a Schottky defect the cations and anions are missing in equal numbers.",
+          "Describing an ion moving to a new position inside the crystal. That is a Frenkel defect; in a Schottky defect the ions are absent from the crystal."
+        ],
+        "memory_tip": "Schottky has an S for Sites left empty, in pairs. Frenkel has no missing ion at all.",
+        "margin_note": "The phrase \"equal number of cations and anions\" is the scoring phrase. Write it before anything else."
+      },
+      {
+        "id": "s2_density_examples",
+        "kind": "boxed_final",
+        "label": "Density change and examples",
+        "marks": 1,
+        "mark_note": "Effect and examples",
+        "lines": [
+          {
+            "text": "The density of the crystal decreases.",
+            "style": "boxed"
+          },
+          "The volume is unchanged but ions are",
+          "missing, so the mass falls.",
+          "It appears in ionic solids whose cation and",
+          "anion are of nearly the same size and have",
+          "a high co-ordination number.",
+          "Examples: NaCl, KCl, CsCl, AgBr."
+        ],
+        "why": "Density is mass divided by volume. The lattice keeps its size, so the volume is the same, but ions have gone out of the crystal, so the mass is smaller and the density falls. This is the one property that separates a Schottky defect from a Frenkel defect in a written answer. AgBr appears in this list and also in the Frenkel list, and that is not a contradiction: it is one of the few solids that shows both defects.",
+        "common_mistakes": [
+          "Writing that the density stays the same. That is the Frenkel defect; the Schottky defect lowers the density.",
+          "Giving ZnS as an example. ZnS has a large size difference between its ions and shows the Frenkel defect."
+        ],
+        "memory_tip": "Ions leave the crystal, so mass falls while the volume stays. Density must fall.",
+        "margin_note": "Density decreases plus one named example completes the second mark. NaCl is the safest example."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "The diagram",
+        "marks": 0,
+        "figure": {
+          "id": "schottky_defect_grid",
+          "width": 420,
+          "height": 200,
+          "elements": [
+            {
+              "type": "label",
+              "id": "sk_r0c0",
+              "x": 80,
+              "y": 70,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sk_r0c2",
+              "x": 176,
+              "y": 70,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sk_r1c0",
+              "x": 80,
+              "y": 118,
+              "text": "−",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sk_r1c2",
+              "x": 176,
+              "y": 118,
+              "text": "−",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sk_r2c0",
+              "x": 80,
+              "y": 166,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sk_r2c1",
+              "x": 128,
+              "y": 166,
+              "text": "−",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sk_r2c2",
+              "x": 176,
+              "y": 166,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "sk_anion_vacancy",
+              "d": "M 122 50 L 144 50 L 144 72 L 122 72 Z",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "sk_cation_vacancy",
+              "d": "M 122 98 L 144 98 L 144 120 L 122 120 Z",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "sk_leader_anion",
+              "d": "M 214 30 L 146 46 M 154 41 L 146 46 L 152 51",
+              "ms": 1240
+            },
+            {
+              "type": "stroke",
+              "id": "sk_leader_cation",
+              "d": "M 214 150 L 146 124 M 154 128 L 146 124 L 150 132",
+              "ms": 1300
+            },
+            {
+              "type": "label",
+              "id": "sk_lbl_anion",
+              "x": 220,
+              "y": 34,
+              "text": "anion vacancy",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "sk_lbl_cation",
+              "x": 220,
+              "y": 154,
+              "text": "cation vacancy",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The grid shows the ionic lattice with one cation site and one anion site left empty. Drawing the two empty squares as a pair is the quickest way to show that the missing ions are equal in number and that the crystal is still neutral.",
+        "common_mistakes": [
+          "Drawing only one empty site. One vacancy alone would leave the crystal charged.",
+          "Drawing an ion sitting in a gap between the lattice sites. That belongs to the Frenkel diagram."
+        ],
+        "memory_tip": "Two empty squares, one where a plus was and one where a minus was. That is the whole picture.",
+        "margin_note": "The question does not ask for a diagram, so this earns no marks. Both marks sit on the two written steps; draw it only if there is time."
+      }
+    ]
+  },
+  "insider_note": "Both halves of the definition are needed: vacancy defect AND equal numbers of cations and anions. Then write that the density decreases, which is the line that tells the examiner you have not confused it with the Frenkel defect."
+}
