@@ -1,0 +1,111 @@
+{
+  "number": 8,
+  "name": "Magnetism and Matter",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What are the units of magnetic moment, magnetic induction and magnetic field?",
+      "question_id": "ts_ipe_p2_mag_units_moment_induction_field"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Define magnetic declination.",
+      "question_id": "ts_ipe_p2_mag_magnetic_declination"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "Define magnetic inclination or angle of dip.",
+      "question_id": "ts_ipe_p2_mag_angle_of_dip"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "Classify the following materials with regard to magnetism: Manganese, Cobalt, Nickel, Bismuth, Oxygen, Copper.",
+      "question_id": "ts_ipe_p2_mag_classify_materials"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "A bar magnet of length 0.1 m and with a magnetic moment of 5 Am² is placed in a uniform magnetic field of intensity 0.4 T, with its axis making an angle of 60° with the field. What is the torque on the magnet?",
+      "question_id": "ts_ipe_p2_mag_torque_on_bar_magnet"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "The horizontal component of the earth's magnetic field at a certain place is 2.6 × 10⁻⁵ T and the angle of dip is 60°. What is the magnetic field of the earth at this location?",
+      "question_id": "ts_ipe_p2_mag_earth_field_from_h"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "What is the magnetic moment associated with a solenoid?",
+      "question_id": "ts_ipe_p2_mag_solenoid_moment"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "The force between two magnetic poles separated by a distance \"d\" in air is \"F\". At what distance between them does the force become doubled?",
+      "question_id": "ts_ipe_p2_mag_pole_force_doubled"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 9,
+      "stars": 0,
+      "text": "Magnetic lines form continuous closed loops. Why?",
+      "question_id": "ts_ipe_p2_mag_closed_loops"
+    },
+    {
+      "ref": "vsaq10",
+      "section": "VSAQ",
+      "number": 10,
+      "stars": 0,
+      "text": "What happens to compass needles at the Earth's poles?",
+      "question_id": "ts_ipe_p2_mag_compass_at_poles"
+    },
+    {
+      "ref": "vsaq11",
+      "section": "VSAQ",
+      "number": 11,
+      "stars": 0,
+      "text": "Which needle to be used at poles?",
+      "question_id": "ts_ipe_p2_mag_needle_at_poles"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "Compare the properties of para, dia and ferromagnetic substances.",
+      "question_id": "ts_ipe_p2_mag_compare_para_dia_ferro"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Obtain Gauss's Law for magnetism and explain it.",
+      "question_id": "ts_ipe_p2_mag_gauss_law_magnetism"
+    }
+  ]
+}

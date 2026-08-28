@@ -76,16 +76,24 @@ function render(obj) {
     return trailingNewline ? s + eol : s;
 }
 
-// The round-trip proof. If dropping every physics_2 unit and re-rendering does
-// not reproduce the file byte for byte, our serialiser disagrees with the one
-// that wrote it and a merge would rewrite unrelated subjects as a side effect.
-const withoutP2 = { ...manifest, units: manifest.units.filter((u) => u.subject !== 'physics_2') };
-if (render(withoutP2) !== original) {
-    console.error('\n✗ merge_p2_units: the round-trip proof FAILED — re-rendering units.json without');
-    console.error('  physics_2 does not reproduce the file byte for byte. Writing would silently');
-    console.error('  reformat other subjects. Fix the serialiser before merging anything.');
+// The round-trip proof: re-rendering the manifest EXACTLY AS PARSED must
+// reproduce the file byte for byte. That is what proves our serialiser agrees
+// with whatever wrote the file, so replacing the physics_2 block cannot reformat
+// another subject as a side effect.
+//
+// The first version of this compared `render(manifest minus physics_2)` to the
+// original instead — which is only true before the FIRST merge. The moment
+// units 3, 11 and 16 landed, the guard failed permanently and the tool could
+// never merge a fourth unit. It failed safe (it refused rather than wrote), but
+// a proof that expires after one use is not a proof. Caught 2026-08-28 by the
+// agent writing the units 8 and 12 fragments, not by the tool's own author.
+if (render(manifest) !== original) {
+    console.error('\n✗ merge_p2_units: the round-trip proof FAILED — re-rendering units.json as parsed');
+    console.error('  does not reproduce the file byte for byte. Writing would silently reformat');
+    console.error('  other subjects. Fix the serialiser before merging anything.');
     process.exit(1);
 }
+const withoutP2 = { ...manifest, units: manifest.units.filter((u) => u.subject !== 'physics_2') };
 
 // ── load the fragments ───────────────────────────────────────────────────────
 const fragFiles = readdirSync(FRAG_DIR).filter((f) => f.endsWith('.json')).sort();
