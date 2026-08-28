@@ -1573,7 +1573,7 @@ sources, forbidden for mathematics.*
       claim is negative), presets derived from rings, graph-axis convention decided (no conflict),
       dialect ruling made, anchor is a household object.
 - [x] Rule 41: every rendered string checked — titles, delta cues, captions, labels, HUD, narration.
-      No idiom, no metaphor, no personification. "Disc" and "ring", never "washer" outside one
+      No idiom, no metaphor, no personification. "Disc" and "ring", with "washer" dual-labelled once
       dual-label.
 - [x] Rule 16a: exactly three `misconception_watch` states; six states carry none.
 - [x] **Seven** assessment items against the code-verified `.min(6)` floor; `non_assessed_states`
@@ -1710,10 +1710,18 @@ JSON and recorded here so the skeleton stops being a source of the same defect.
    S1, `²` from S3 — `f(x)` is defined on NO surface, so `f(x)²` would have been a Rule-25 untaught
    term), and the narration now says "root x squared". §10b's row is superseded.
 2. **"washer" (§3 noun discipline vs §10(i-5) dialect ruling).** §3 says the word never appears in
-   reader-facing text; §10(i-5) said dual-label it once on S6. The audit applied §3 + Rule 41c (a
-   second-language student does not own hardware vocabulary) and DELETED `, or washer` from `s6_3`.
-   **FLAG for the founder:** if the AP "washer method" term should be kept for that audience, that is
-   an architect amendment to §3, not a silent re-insertion.
+   reader-facing text; §10(i-5) said dual-label it once on S6. Round 1 applied §3 + Rule 41c and
+   DELETED `, or washer` from `s6_3`. **REVERSED at Checkpoint B, founder-delegated: the dual-label
+   is RESTORED, and §3's ABSOLUTE clause is the thing that gives way.** Rule 41c's test is whether a
+   word needs explaining and is NOT subject vocabulary; the washer method is the technique's NAME,
+   which puts it under Rule 41b ("use the word the formula uses"), and Rule 38d prescribes exactly
+   one dual-label for cross-board dialect. This concept's own `curriculum_tags` mark AP Calculus
+   AB/BC `full` while CBSE/JEE are `partial` with the topic absent — it is the wave's INTERNATIONAL
+   concept, authored FOR the audience whose textbook says washer, and a student who only ever learns
+   "ring" is stranded on their own exam paper. `s6_3` reads "a ring, or washer" once, then bare;
+   S6 = 47 words, inside its 45–50 budget. **§3's ban still holds for "shell", "cylinder", "slab"
+   and "element"** — none of those is an examined technique name, and that is the distinction §3 was
+   missing.
 3. **S7's HUD (§10b claims `R = 4.000`, `r = y²`).** The JSON authors `readouts: ["theta",
    "V_about_x", "V_about_y"]` and that is CORRECT: the engine's `R` / `r_inner` keys compute
    `srF(outer, x_cut)` — the slice radii for the x-axis case — and would print WRONG numbers for the
