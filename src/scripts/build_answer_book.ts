@@ -552,6 +552,13 @@ const payBase = GATED
 // builds only: signing in exists to carry a PASS between devices, and an
 // ungated build has nothing to carry. Unset keeps the Auth module inert — the
 // same guarantee Sync and Gate make.
+// The word behind #/notastudent/<word> (2026-08-28): opening that route once
+// marks a browser as the team's, so the usage dashboard never counts the
+// founder's own testing as a student. Hosted builds only — with no word the
+// route answers "not valid" and the offline suite never sees it do anything.
+const STAFF_WORD_DEFAULT = 'viditra-team';
+const staffWord = HOSTED ? (process.env.ANSWER_BOOK_STAFF_WORD ?? STAFF_WORD_DEFAULT) : '';
+
 const AUTH_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co';
 const authBase = GATED
     ? (process.env.ANSWER_BOOK_AUTH_BASE ?? AUTH_HOSTED_BASE)
@@ -615,6 +622,7 @@ const dataJs =
     `window.PM_PAY_BASE = ${JSON.stringify(payBase)};\n` +
     `window.PM_AUTH_BASE = ${JSON.stringify(authBase)};\n` +
     `window.PM_AUTH_ANON = ${JSON.stringify(authAnon)};\n` +
+    `window.PM_STAFF_WORD = ${JSON.stringify(staffWord)};\n` +
     // null on the full build — the catalog eyebrow then stays subject-neutral.
     `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM].short : null)};
 ` +

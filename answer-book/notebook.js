@@ -552,6 +552,7 @@
       // renderCatalog N times on the Nth change.
       subjSel.onchange = function () {
         catFilter.subject = subjSel.value;
+        Vidi.log('cat_subject', { subject: subjSel.value });
         // Changing subject invalidates the chapter: a physics chapter is not in
         // the chemistry list, and a stale key would filter everything to zero.
         catFilter.unit = 'ALL';
@@ -592,7 +593,11 @@
       ct.className = 'ct';
       ct.textContent = String(n);
       b.appendChild(ct);
-      b.addEventListener('click', function () { catFilter.qtype = t; renderCatalog(); });
+      b.addEventListener('click', function () {
+        catFilter.qtype = t;
+        Vidi.log('cat_qtype', { qtype: t });
+        renderCatalog();
+      });
       chipRow.appendChild(b);
     });
 
@@ -661,6 +666,7 @@
       unitSel.className = 'cat-select' + (catFilter.unit !== 'ALL' ? ' on' : '');
       unitSel.onchange = function () {
         catFilter.unit = unitSel.value;
+        Vidi.log('cat_unit', { unit: unitSel.value });
         renderCatalog();
       };
     }
@@ -742,6 +748,13 @@
           var authored = e.question_id !== undefined;
           var card = document.createElement(authored ? 'a' : 'div');
           card.className = 'cat-card' + (authored ? '' : ' soon');
+          // A tap on a card with no answer yet is the clearest signal of what
+          // to write next — recorded, never shown.
+          if (!authored) {
+            card.addEventListener('click', function () {
+              Vidi.log('soon_tap', { unit: unitKey(u), ref: e.section + ' ' + e.number });
+            });
+          }
           var ec = entryCut(e);
           if (authored) {
             card.setAttribute('href', '#/q/' + encodeURIComponent(e.question_id) +
@@ -905,12 +918,38 @@
       }, 1100);
     };
     no.onclick = function () {
+      Vidi.log('ask_answer', { qid: qid, k: kind, ok: false });
       ov.hidden = true;
       askConsumed = true; route();
     };
   }
 
+  /** #/notastudent/<word>[/off] — mark THIS browser as the team's, so its
+      visits never count as a student on the dashboard. The word is baked at
+      build time (PM_STAFF_WORD) so a forwarded link cannot mark a class; a
+      wrong word does nothing. Resolves ABOVE the door, like every deep link. */
+  function showTeamMark(word, off) {
+    var want = (window.PM_STAFF_WORD || '').trim();
+    var ok = !!want && word === want;
+    if (ok) Vidi.markInternal(!off);
+    var ov = $('askOverlay'), yes = $('askYes'), no = $('askNo');
+    $('askText').textContent = !ok
+      ? 'That link is not valid.'
+      : (off ? 'This device is a student again. Its visits will be counted.'
+             : 'This device is marked as team. Its visits will not be counted as a student.');
+    yes.textContent = 'Open the book';
+    yes.hidden = false; no.hidden = true;
+    ov.hidden = false;
+    yes.onclick = function () { ov.hidden = true; no.hidden = false; location.hash = '#/'; };
+    no.onclick = null;
+    showCatalog();
+  }
+
   function route() {
+    // The team mark is an admin action, not reading — it resolves even above
+    // the leave-question ask, so marking a phone never turns into a stage tick.
+    var ns = location.hash.match(/^#\/notastudent\/([^\/]+)(?:\/(off))?$/);
+    if (ns) { showTeamMark(decodeURIComponent(ns[1]), !!ns[2]); return; }
     if (askGuard()) return;
     var ee = location.hash.match(/^#\/exam-eve\/([a-z]+-\d+|\d+)$/);
     if (ee) { showExamEve(ee[1]); return; }
@@ -1463,6 +1502,7 @@
       finishCurrent = null;
       stepIndex = next;
       marksEarned += steps[next].marks;
+      Vidi.log('advance', { qid: question.question_id, step: steps[next].id, i: next + 1, n: steps.length });
       if (stepIndex === steps.length - 1) {
         completed = true;
         placeTotalBlock();
@@ -1508,6 +1548,7 @@
   }
 
   function goToIndex(i) {
+    Vidi.log('step_jump', { qid: question.question_id, i: i + 1 });
     if (i === stepIndex + 1 && !revealing) { advance(); return; }
     renderUpTo(i, true);
   }
@@ -1516,11 +1557,19 @@
 
   notebook.addEventListener('click', advance);
   btnNext.addEventListener('click', advance);
-  $('btnRestart').addEventListener('click', function () { renderUpTo(-1, false); });
+  $('btnRestart').addEventListener('click', function () {
+    Vidi.log('restart', { qid: question.question_id });
+    renderUpTo(-1, false);
+  });
   $('doorBack').addEventListener('click', function () { Door.show(); });
+  var searchLogTimer = null;
   $('catSearch').addEventListener('input', function () {
     catFilter.search = this.value.trim().toLowerCase();
     renderCatalog();
+    // Logged once the typing settles, not per keystroke.
+    if (searchLogTimer) clearTimeout(searchLogTimer);
+    var q = catFilter.search;
+    searchLogTimer = setTimeout(function () { if (q) Vidi.log('cat_search', { q: q.slice(0, 60) }); }, 900);
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === ' ' || e.key === 'ArrowRight') {
@@ -2241,7 +2290,27 @@
     }
 
     // Telemetry — fire-and-forget; silently dropped with no base (offline gate).
+    //
+    // Every batch carries three ids and one flag (2026-08-28): the DEVICE id
+    // (the same pm_device_id Sync uses, so a row on the dashboard can be tied
+    // to a device), a per-tab VISIT id (what "one session" means there), the
+    // long-lived session id it always had, and INTERNAL — true on a browser
+    // the team has marked with #/notastudent/<word>, so the founder's own
+    // testing never counts as a student. keepalive keeps the last batch alive
+    // across a tab close, and a failed send is re-queued rather than dropped.
     var evq = [];
+    var visit = '';
+    try { visit = sessionStorage.getItem('pm_visit') || ''; } catch (e) {}
+    if (!visit) {
+      visit = 'v_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+      try { sessionStorage.setItem('pm_visit', visit); } catch (e) {}
+    }
+    function isInternal() { return lsGet('pm_internal') === '1'; }
+    /** true = marked team, false = explicitly un-marked, null = never said. */
+    function internalClaim() {
+      var v = lsGet('pm_internal');
+      return v === '1' ? true : (v === '0' ? false : null);
+    }
     function log(type, data) {
       if (!VIDI_BASE) return;
       var e = { t: type, at: Date.now() };
@@ -2249,19 +2318,75 @@
       evq.push(e);
       if (evq.length >= 10) flush();
     }
+    function requeue(batch) {
+      // Bounded: a dead endpoint must never grow memory for a whole session.
+      evq = batch.concat(evq).slice(-200);
+    }
     function flush() {
       if (!VIDI_BASE || !evq.length) return;
       var batch = evq.splice(0, evq.length);
+      var body = { type: 'events', session_id: session, visit_id: visit, internal: isInternal(), events: batch };
+      // Sync owns the device id and mints one only when it has a base itself,
+      // so the offline build stays exactly as inert as before.
+      if ((window.PM_SYNC_BASE || '').trim() && typeof Sync !== 'undefined') body.device_id = Sync.deviceId();
       try {
         fetch(VIDI_BASE, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ type: 'events', session_id: session, events: batch })
-        }).catch(function () {});
-      } catch (e) {}
+          body: JSON.stringify(body), keepalive: true
+        }).then(function (r) { if (!r.ok) requeue(batch); })
+          .catch(function () { requeue(batch); });
+      } catch (e) { requeue(batch); }
     }
+
+    // Time on page. Only VISIBLE seconds count — a phone with the screen off
+    // is not a student reading. A heartbeat every 60 s while visible, and the
+    // total on leave (which may be lost on a hard close; the heartbeat is why
+    // that loss is bounded).
+    var visSec = 0, dwellSeq = 0;
+    var visSince = document.visibilityState === 'visible' ? Date.now() : 0;
+    function visNow() { return visSec + (visSince ? Math.round((Date.now() - visSince) / 1000) : 0); }
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'hidden') flush();
+      if (document.visibilityState === 'hidden') { visSec = visNow(); visSince = 0; flush(); }
+      else if (!visSince) { visSince = Date.now(); }
     });
+    setInterval(function () {
+      if (!VIDI_BASE || !visSince) return;
+      dwellSeq++;
+      log('dwell', { seq: dwellSeq, vis_s: visNow() });
+    }, 60000);
+    window.addEventListener('pagehide', function () {
+      if (VIDI_BASE) log('page_leave', { after_s: visNow() });
+      flush();
+    });
+
+    // Crashes on real phones, capped so a loop cannot flood the batch.
+    var errN = 0;
+    function onErr(kind, msg, src, line) {
+      if (!VIDI_BASE || errN >= 10) return;
+      errN++;
+      log('err', { kind: kind, msg: String(msg || '').slice(0, 200), src: String(src || '').slice(0, 120), line: line || 0 });
+    }
+    window.addEventListener('error', function (ev) {
+      if (ev && ev.target && ev.target !== window && !(ev.message)) {
+        onErr('resource', (ev.target.src || ev.target.href || ''), ev.target.tagName || '');
+        return;
+      }
+      onErr('js', ev && ev.message, ev && ev.filename, ev && ev.lineno);
+    }, true);
+    window.addEventListener('unhandledrejection', function (ev) {
+      var r = ev && ev.reason;
+      onErr('rejection', r && (r.message || r));
+    });
+
+    /** #/notastudent/<word> lands here. The flag is stored beside pm_device_id,
+        so a device id minted later in this browser inherits it; the sync push
+        carries it to the server, where it sticks to the device. */
+    function markInternal(on) {
+      lsSet('pm_internal', on ? '1' : '0');
+      log('team_mark', { on: !!on });
+      flush();
+      syncTouch();
+    }
 
     return {
       session: session,
@@ -2353,7 +2478,11 @@
         return changed;
       },
       log: log,
-      flush: flush
+      flush: flush,
+      visit: visit,
+      internal: isInternal,
+      internalClaim: internalClaim,
+      markInternal: markInternal
     };
   })();
 
@@ -2933,7 +3062,9 @@
         device_id: deviceId(),
         stages: rows(),
         plan: plan || null,
-        plan_saved_at: (plan && plan.saved_at) || null
+        plan_saved_at: (plan && plan.saved_at) || null,
+        // null = this browser never said; true/false = #/notastudent[/off]
+        internal: Vidi.internalClaim()
       };
       var done = function () {
         inFlight = false;
@@ -3036,6 +3167,8 @@
         the hash, which capture() strips before anything else reads the URL. */
     function signIn() {
       if (!BASE) return;
+      Vidi.log('sign_in_start', {});
+      Vidi.flush();                        // the page is about to leave for Google
       var back = location.origin + location.pathname;
       location.href = BASE + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(back);
     }
@@ -3066,6 +3199,7 @@
       if (!p.access_token) return false;
       s(K_AT, p.access_token);
       if (p.refresh_token) s(K_RT, p.refresh_token);
+      Vidi.log('sign_in_done', {});
       try {
         history.replaceState(null, '', location.pathname + location.search + '#/');
       } catch (e) { location.hash = '#/'; }
@@ -3254,6 +3388,8 @@
       // a successful payment lands on the catalog rather than trying to reopen
       // question index null.
       pendingUnlock = (i === null || i === undefined) ? null : { i: i, cutKey: cutKey };
+      Vidi.log('pay_start', { signed_in: Auth.signedIn() });
+      Vidi.flush();                        // the page is about to leave for Razorpay
       sheet('Opening the payment page…', []);
       var body = { device_id: Sync.deviceId() };
       if (Auth.signedIn()) body.access_token = Auth.token();
@@ -3388,6 +3524,7 @@
     }
 
     function showLocked(i, cutKey, k) {
+      Vidi.log('lock_wall', { unit: k });
       var buttons = [];
       // Four chapters — one per subject — are free for EVERY student since
       // 2026-08-27. The old copy here said "you have already used your free
@@ -3415,6 +3552,7 @@
     }
 
     function claimFree(i, cutKey, k) {
+      Vidi.log('unlock_free', { unit: k });
       sheet('Opening your free chapter…', []);
       post({ unit_key: k, claim_free: true }, function (out) {
         adoptStanding(out);
@@ -3609,6 +3747,7 @@
         hashchange, so the catalog is shown once — here — and not again by route(). */
     function choose(group, year) {
       s(KEY, JSON.stringify({ group: group, year: year, at: new Date().toISOString() }));
+      Vidi.log('door_choose', { group: group, year: year });
       if (location.hash && location.hash !== '#/') {
         try { history.replaceState(null, '', location.pathname + location.search + '#/'); }
         catch (e) { /* file:// refuses replaceState; the hash is cosmetic here */ }
@@ -4963,6 +5102,7 @@
       var input = $('vidiInput');
       var txt = String(input.value || '').replace(/\s+/g, ' ').trim();
       if (!txt) return;
+      Vidi.log('vidi_ask', { len: txt.length, home: currentView !== 'notebook' });
       input.value = '';
       bubble(txt, 'student');
       recentMsgs.push({ role: 'student', text: txt });
@@ -5091,6 +5231,7 @@
         rec.maxAlternatives = 1;
         active = true;
         btn.classList.add('rec');
+        Vidi.log('vidi_mic', {});
         rec.onresult = function (ev) {
           var t = ev.results && ev.results[0] && ev.results[0][0] ? ev.results[0][0].transcript : '';
           if (t) { $('vidiInput').value = t; vidiAsk(); }
@@ -5187,7 +5328,11 @@
         // student MEETS Vidi. After that, respect what they chose.
         var w = Vidi.getWin();
         if (!w || w.open) openWin(); else minWin();
-        Vidi.log('open_q', { qid: question.question_id, cut: cut.key });
+        Vidi.log('open_q', {
+          qid: question.question_id, cut: cut.key,
+          unit: (question.subject || 'physics') + '-' + question.unit.number,
+          subject: question.subject || 'physics'
+        });
       },
       /** View change (catalog / exam-eve). Keeps the strip current, and on the
           catalog pulses the pill until the intro has been seen. */
@@ -5345,8 +5490,14 @@
     VidiPanel.syncName();
     VidiPanel.initDrag();
     VidiPanel.initMic();
-    $('vidiFab').addEventListener('click', VidiPanel.openHome);
-    $('vidiClose').addEventListener('click', VidiPanel.minWin);
+    $('vidiFab').addEventListener('click', function () {
+      Vidi.log('vidi_open', { view: currentView });
+      VidiPanel.openHome();
+    });
+    $('vidiClose').addEventListener('click', function () {
+      Vidi.log('vidi_close', { view: currentView });
+      VidiPanel.minWin();
+    });
     $('vidiSend').addEventListener('click', VidiPanel.ask);
     $('vidiInput').addEventListener('keydown', function (e) {
       if (e.key === 'Enter') VidiPanel.ask();
@@ -5446,9 +5597,21 @@
     // The email arrives a moment later; repaint so the chip shows the real
     // initial rather than the placeholder dot.
     Auth.loadProfile(function () { Auth.paintChip(); });
+    var hadDevice = false;
+    try { hadDevice = !!localStorage.getItem('pm_device_id'); } catch (e) {}
     Sync.init();
     Gate.init();
     route();
     window.addEventListener('hashchange', route);
+    // The one event the dashboard counts people by: fired once per page load.
+    var chosenTrack = Door.chosen() || {};
+    Vidi.log('app_open', {
+      track: chosenTrack.group || null,
+      year: chosenTrack.year || null,
+      ref: (document.referrer || '').replace(/^https?:\/\/([^\/]+).*$/, '$1').slice(0, 60),
+      w: window.innerWidth, h: window.innerHeight,
+      signed_in: Auth.signedIn(),
+      newdev: !hadDevice
+    });
   });
 })();

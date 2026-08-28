@@ -21,10 +21,14 @@
  *
  * Raw IPs are never stored — only a salted SHA-256 hash, for rate limiting.
  *
- * Telemetry: the page also POSTs {type:'events'} batches (chip taps, check
- * scores, renames, exam-eve opens). They need no model call, cost nothing,
- * and land in simulation_feedback — handled before the key check, so
- * telemetry works even on a day the tutor is resting.
+ * Telemetry: the page also POSTs {type:'events'} batches (opens, step
+ * reveals, chip taps, asks, renames, exam-eve opens…). They need no model
+ * call, cost nothing, and land in ab_events ONE ROW PER EVENT via the
+ * ab_log_events RPC (2026-08-28; before that, one jsonb blob per batch in
+ * simulation_feedback) — handled before the key check, so telemetry works
+ * even on a day the tutor is resting. Each batch carries the device id, a
+ * per-tab visit id and the team flag; the RPC stamps is_internal so the
+ * founder's own testing never counts as a student on the dashboard.
  *
  *   supabase secrets set DEEPSEEK_API_KEY=...
  *   optional: AB_ALLOWED_ORIGINS, AB_DAILY_USD_CAP, AB_IP_PER_MIN,
@@ -180,41 +184,46 @@ async function writeUsage(row: Record<string, unknown>): Promise<void> {
     }
 }
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 /**
- * Telemetry batch → simulation_feedback (sacred table, already shaped for
- * this: session_id / concept_id / interaction_data jsonb). One row per batch.
- * Never throws — a failed write must not break the page.
+ * Telemetry batch → ab_events, one row per event, through the ab_log_events
+ * RPC (which resolves the team flag once per batch and stamps every row).
+ * Client input is bounded here — at most 50 events, 12 keys each, strings cut
+ * to 200 chars — and shaped again in SQL. Never throws — a failed write must
+ * not break the page.
  */
 async function writeEvents(body: Record<string, any>): Promise<void> {
     const events = Array.isArray(body.events) ? body.events.slice(0, 50) : [];
     if (!events.length) return;
-    const row = {
-        session_id: String(body.session_id ?? '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'anon',
-        concept_id: 'answer_book',
-        student_rating: 'telemetry',
-        interaction_data: {
-            surface: 'answer_book',
-            events: events.map((e: Record<string, unknown>) => {
-                const out: Record<string, unknown> = {};
-                for (const k of Object.keys(e).slice(0, 12)) {
-                    const v = e[k];
-                    out[k] = typeof v === 'string' ? v.slice(0, 200) : v;
-                }
-                return out;
-            }),
-        },
+    const deviceId = typeof body.device_id === 'string' && UUID_RE.test(body.device_id) ? body.device_id : null;
+    const payload = {
+        p_device: deviceId,
+        p_session: String(body.session_id ?? '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'anon',
+        p_visit: typeof body.visit_id === 'string' ? body.visit_id.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 32) || null : null,
+        // Only a literal true is a claim; a device already flagged server-side
+        // stays flagged regardless of what the page sends.
+        p_internal: body.internal === true,
+        p_events: events.map((e: Record<string, unknown>) => {
+            const out: Record<string, unknown> = {};
+            for (const k of Object.keys(e).slice(0, 12)) {
+                const v = e[k];
+                out[k] = typeof v === 'string' ? v.slice(0, 200) : v;
+            }
+            return out;
+        }),
     };
     try {
-        await fetch(SUPABASE_URL + '/rest/v1/simulation_feedback', {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/ab_log_events', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 apikey: SERVICE_KEY,
                 Authorization: 'Bearer ' + SERVICE_KEY,
-                Prefer: 'return=minimal',
             },
-            body: JSON.stringify([row]),
+            body: JSON.stringify(payload),
         });
+        if (!res.ok) console.error('[answerbook-vidi-chat] events rpc failed', res.status, (await res.text()).slice(0, 200));
     } catch (e) {
         console.error('[answerbook-vidi-chat] events write failed', e);
     }

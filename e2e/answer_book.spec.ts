@@ -2309,3 +2309,127 @@ test('the home chat is never blank: a returning student with nothing due still g
     expect(text).toMatch(/step by step/i);
     expect(text).not.toMatch(/study plan|plan your exam|exam preparation/i);
 });
+
+// ── usage telemetry + the team mark (2026-08-28) ────────────────────────────
+// The dashboard at viditra.co/admin/answers counts DEVICES from ab_events.
+// Two things must hold: the OFFLINE build never sends a byte and the team
+// route does nothing there; and a hosted-shaped build stamps every batch with
+// the device id, a visit id and the team flag, so the founder's own phone can
+// be kept out of every count.
+
+test('offline: #/notastudent does nothing and sends nothing', async ({ page }) => {
+    const external: string[] = [];
+    page.on('request', (r) => {
+        const u = r.url();
+        if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
+    });
+    await page.goto(URL + '#/notastudent/anything');
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#askOverlay:not([hidden])');
+    expect(await page.textContent('#askText')).toContain('not valid');
+    const r = await page.evaluate(() => ({
+        staff: (window as any).PM_STAFF_WORD,
+        internal: localStorage.getItem('pm_internal'),
+        deviceId: localStorage.getItem('pm_device_id'),
+    }));
+    expect(r.staff).toBe('');            // the offline build carries no word
+    expect(r.internal).toBe(null);       // and so the route marks nothing
+    expect(r.deviceId).toBe(null);
+    await page.click('#askYes');
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.waitForTimeout(500);
+    expect(external).toEqual([]);
+});
+
+test('hosted: every batch carries device + visit + team flag, and the team route flips the flag', async ({ page }) => {
+    const VIDI = 'https://vidi.test/functions/v1/answerbook-vidi-chat';
+    const SYNC = 'https://sync.test/functions/v1/answerbook-sync';
+    const batches: any[] = [];
+    const syncs: any[] = [];
+
+    await page.addInitScript(([v, s]: [string, string]) => {
+        // The data block assigns these before notebook.js reads them, so the
+        // override has to be a getter that swallows that write.
+        for (const [k, val] of [['PM_VIDI_BASE', v], ['PM_SYNC_BASE', s], ['PM_STAFF_WORD', 'secret-word']]) {
+            Object.defineProperty(window, k, { get: () => val, set: () => {}, configurable: true });
+        }
+        try { localStorage.setItem('pm_intro_done', '1'); } catch { /* file:// */ }
+    }, [VIDI, SYNC]);
+
+    const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type', 'Content-Type': 'application/json' };
+    await page.route('https://vidi.test/**', async (route) => {
+        const req = route.request();
+        if (req.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
+        batches.push(JSON.parse(req.postData() || '{}'));
+        return route.fulfill({ status: 200, headers: cors, body: JSON.stringify({ ok: true }) });
+    });
+    await page.route('https://sync.test/**', async (route) => {
+        const req = route.request();
+        if (req.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
+        syncs.push(JSON.parse(req.postData() || '{}'));
+        return route.fulfill({ status: 200, headers: cors,
+            body: JSON.stringify({ ok: true, plan: null, plan_saved_at: null, stages: [], internal: false }) });
+    });
+
+    // Open, read up to three steps (the first question may be a 2-step VSAQ),
+    // hide the tab: the batch flushes on hidden.
+    await openFirst(page);
+    const stepCount = await page.evaluate(() => (window as any).PM_ANSWER.question.answer.steps.length);
+    const reveals = Math.min(3, stepCount);
+    for (let i = 0; i < reveals; i++) {
+        await page.evaluate(() => new Promise<void>((resolve) => {
+            document.addEventListener('pm:step-revealed', () => resolve(), { once: true });
+            (window as any).PM_ANSWER.revealNext();
+            setTimeout(() => (window as any).PM_ANSWER.revealNext(), 120);
+        }));
+    }
+    await page.evaluate(() => {
+        Object.defineProperty(document, 'visibilityState', { get: () => 'hidden', configurable: true });
+        document.dispatchEvent(new Event('visibilitychange'));
+    });
+    await page.waitForFunction(() => true);
+    await expect.poll(() => batches.length, { timeout: 5000 }).toBeGreaterThan(0);
+
+    const deviceId = await page.evaluate(() => localStorage.getItem('pm_device_id'));
+    expect(deviceId).toMatch(/^[0-9a-f-]{36}$/i);
+    const all = batches.flatMap((b) => b.events || []);
+    const types = all.map((e: any) => e.t);
+    expect(types).toContain('app_open');                       // exactly one per page load
+    expect(types.filter((t: string) => t === 'app_open').length).toBe(1);
+    expect(types).toContain('open_q');
+    expect(types.filter((t: string) => t === 'advance').length).toBe(reveals);
+    const adv = all.find((e: any) => e.t === 'advance');
+    expect(adv.i).toBe(1); expect(adv.n).toBeGreaterThan(0); expect(adv.qid).toBeTruthy();
+    const oq = all.find((e: any) => e.t === 'open_q');
+    expect(oq.unit).toMatch(/^[a-z_0-9]+-\d+$/);               // the chapter rides along now
+    for (const b of batches) {
+        expect(b.type).toBe('events');
+        expect(b.device_id).toBe(deviceId);                      // tied to the device
+        expect(b.visit_id).toMatch(/^v_/);                        // and to the visit
+        expect(b.internal).toBe(false);                           // a student, so far
+    }
+
+    // The team route with the RIGHT word flips the flag; the next batch and
+    // the next sync both carry it.
+    const before = batches.length;
+    await page.evaluate(() => { location.hash = '#/notastudent/secret-word'; });
+    await page.waitForSelector('#askOverlay:not([hidden])');
+    expect(await page.textContent('#askText')).toContain('marked as team');
+    expect(await page.evaluate(() => localStorage.getItem('pm_internal'))).toBe('1');
+    await expect.poll(() => batches.length, { timeout: 5000 }).toBeGreaterThan(before);
+    const marked = batches[batches.length - 1];
+    expect(marked.internal).toBe(true);
+    expect(marked.events.some((e: any) => e.t === 'team_mark' && e.on === true)).toBe(true);
+    await expect.poll(() => syncs.some((s) => s.internal === true), { timeout: 6000 }).toBe(true);
+
+    // A WRONG word does nothing — a forwarded link cannot mark a class.
+    await page.evaluate(() => { localStorage.removeItem('pm_internal'); location.hash = '#/notastudent/wrong'; });
+    await page.waitForFunction(() => /not valid/.test(document.getElementById('askText')!.textContent || ''));
+    expect(await page.evaluate(() => localStorage.getItem('pm_internal'))).toBe(null);
+
+    // /off with the right word turns a team device back into a student.
+    await page.evaluate(() => { location.hash = '#/notastudent/secret-word/off'; });
+    await page.waitForFunction(() => /student again/.test(document.getElementById('askText')!.textContent || ''));
+    expect(await page.evaluate(() => localStorage.getItem('pm_internal'))).toBe('0');
+});

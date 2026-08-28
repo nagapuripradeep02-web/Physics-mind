@@ -30,6 +30,12 @@
  * only a salted SHA-256 used to count device minting. Phone numbers arrive in
  * P4 and belong in their own table, never in these three.
  *
+ * TEAM DEVICES (2026-08-28). The page may send internal:true (after the
+ * founder opened #/notastudent/<word> on that browser) or internal:false (the
+ * /off route); anything else is null = "the page said nothing", and the
+ * device keeps whatever flag it has. The flag lives on ab_devices and is what
+ * keeps the team's own testing out of the usage dashboard.
+ *
  *   optional secrets: AB_ALLOWED_ORIGINS, AB_SYNC_MAX_BYTES,
  *                     AB_SYNC_NEW_PER_IP, AB_SYNC_MAX_ROWS, AB_IP_SALT
  * SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are injected by the platform.
@@ -141,6 +147,9 @@ Deno.serve(async (req: Request) => {
         ? new Date(body.plan_saved_at).toISOString() : null;
     const plan = planSaved && body.plan && typeof body.plan === 'object' ? body.plan : null;
 
+    // Strictly a boolean or nothing — a string "false" must not read as a claim.
+    const internal = typeof body.internal === 'boolean' ? body.internal : null;
+
     const rawIp = (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim();
     const ipHash = rawIp ? await sha256Hex(IP_SALT + '|' + rawIp) : null;
 
@@ -161,6 +170,7 @@ Deno.serve(async (req: Request) => {
                 p_plan_saved_at: planSaved,
                 p_max_rows: MAX_ROWS,
                 p_max_new_per_ip: NEW_PER_IP,
+                p_internal: internal,
             }),
         });
         if (!res.ok) {
