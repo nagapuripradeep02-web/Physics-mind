@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "By using Cramer's rule, solve 2x − y + 3z = 9, x + y + z = 6, x − y + z = 2.",
@@ -49,19 +49,19 @@
     },
     {
       "label": "Apply Cramer's rule and state the solution",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.27 — LAQ chapter 3 Matrices, answer 18.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16 · TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.27 sets two Cramer questions side by side in two columns, which leaves no margin for the [N Marks] tags the chapter uses elsewhere, so no split is printed for any of the four Cramer answers. The 1+1+1+1+1+2 above follows the only split this book states for a solving-a-system question — the note on book p.30 reading 'Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks', which weights the bulk computation against the finish. Here that bulk is four determinants, so each carries one mark and the rule plus the answer carry two. A teacher may weight Δ higher, since a zero Δ would make Cramer's rule inapplicable. The SAME split and the SAME step ids are used on all four Cramer answers in this unit, deliberately: the four questions are one method over different numbers. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.27 — LAQ chapter 3 Matrices, answer 18.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16 · TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.27 sets two Cramer questions side by side in two columns, which leaves no margin for the [N Marks] tags the chapter uses elsewhere, so no split is printed for any of the four Cramer answers. The 1+1+1+1+1+2 above follows the only split this book states for a solving-a-system question — the note on book p.30 reading 'Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks', which weights the bulk computation against the finish. Here that bulk is four determinants, so each carries one mark and the rule plus the answer carry two. A teacher may weight Δ higher, since a zero Δ would make Cramer's rule inapplicable. The SAME split and the SAME step ids are used on all four Cramer answers in this unit, deliberately: the four questions are one method over different numbers. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Apply Cramer's rule and state the solution\" step."
   },
   "recall_prompt": "Say how you would solve this by Cramer's rule — say what four determinants you need, how you build each one, and how you get x, y and z at the end.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -300,9 +300,9 @@
         "id": "s6_solve",
         "kind": "boxed_final",
         "label": "Apply Cramer's rule",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Each unknown is its own determinant divided by Δ. All four values here are negative, so every division gives a positive answer — write the divisions out rather than doing them in your head.",
+        "margin_note": "The last three marks. Each unknown is its own determinant divided by Δ. All four values here are negative, so every division gives a positive answer — write the divisions out rather than doing them in your head.",
         "lines": [
           "By Cramer's rule:",
           "x = Δ₁/Δ = (−2)/(−2) = 1",

@@ -19,7 +19,9 @@ const ROOT = join(__dirname, '..', '..');
 const BOOK = join(ROOT, 'answer-book');
 const PAPERS = join(BOOK, 'papers');
 
-const KNOWN_SOURCES = new Set(['blm', 'enumerated', 'ap_2026_paper', 'ts_paper']);
+// syllabus_2026_27 (2026-08-28): a coming-soon placeholder for a chapter the 2026-27 reform
+// announced but whose textbook is not yet in hand (Physics Unit 14). Never on an authored card.
+const KNOWN_SOURCES = new Set(['blm', 'enumerated', 'ap_2026_paper', 'ts_paper', 'syllabus_2026_27']);
 
 const failures: string[] = [];
 const fail = (m: string) => failures.push(m);

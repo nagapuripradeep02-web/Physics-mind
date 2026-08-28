@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "Show that the determinant with rows (a+b+2c, a, b), (c, b+c+2a, b) and (c, a, c+a+2b) is equal to 2(a+b+c)³.",
@@ -37,7 +37,7 @@
   "mark_split": [
     {
       "label": "Column operation C₁ → C₁+C₂+C₃",
-      "marks": 2
+      "marks": 3
     },
     {
       "label": "Take 2(a+b+c) common from C₁",
@@ -59,13 +59,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 14, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.2 in Dets'. The four printed appearance tags (TS 16,19 · AP 16,18) make it the most-asked determinant in the chapter. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. This page carries a 'Tick Boxes' widget in the margin where the [N Marks] tags would normally sit, so no split is printed for this question. The 2+1+2+1+1 above is inferred from the split the same book DOES print for answer 17 on book p.26 — a structurally identical proof (sum a row or column, take the common factor out, two row operations, expand) which is printed as 1+1+1+2+1+1. The two marks on the opening column operation reflect that spotting C₁+C₂+C₃ is the whole question; a teacher may well weight it differently. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 14, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.2 in Dets'. The four printed appearance tags (TS 16,19 · AP 16,18) make it the most-asked determinant in the chapter. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. This page carries a 'Tick Boxes' widget in the margin where the [N Marks] tags would normally sit, so no split is printed for this question. The 2+1+2+1+1 above is inferred from the split the same book DOES print for answer 17 on book p.26 — a structurally identical proof (sum a row or column, take the common factor out, two row operations, expand) which is printed as 1+1+1+2+1+1. The two marks on the opening column operation reflect that spotting C₁+C₂+C₃ is the whole question; a teacher may well weight it differently. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Column operation C₁ → C₁+C₂+C₃\" step."
   },
   "recall_prompt": "Say how you would prove this — say which rows or columns you add together first, what comes out common, and how the determinant finishes.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -115,9 +115,9 @@
         "id": "s2_column_sum",
         "kind": "equation",
         "label": "Add all three columns into C₁",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Column operation",
-        "margin_note": "Two of the seven marks, and the only idea in the question. Adding C₂ and C₃ into C₁ makes every entry of column 1 the same: 2a+2b+2c. Nothing else in the proof is hard.",
+        "margin_note": "Three of the eight marks, and the only idea in the question. Adding C₂ and C₃ into C₁ makes every entry of column 1 the same: 2a+2b+2c. Nothing else in the proof is hard.",
         "lines": [
           "C₁ → C₁ + C₂ + C₃",
           "Each row of C₁ becomes 2a + 2b + 2c:",

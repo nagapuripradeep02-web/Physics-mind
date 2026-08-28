@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 10,
+    "number": 12,
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "In a △ABC, if a : b : c = 7 : 8 : 9, then show that cos A : cos B : cos C = 14 : 11 : 6.",
@@ -37,7 +37,7 @@
     },
     {
       "label": "Find cos B and cos C",
-      "marks": 2
+      "marks": 3
     },
     {
       "label": "Form the ratio",
@@ -47,13 +47,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.49 — LAQ chapter 6 Properties of Triangles, answer 38. Printed appearances: AP 15,17. A ratio question, so a constant k is introduced and then cancels. Nothing about the actual size of the triangle matters — only the proportions. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.49 — LAQ chapter 6 Properties of Triangles, answer 38. Printed appearances: AP 15,17. A ratio question, so a constant k is introduced and then cancels. Nothing about the actual size of the triangle matters — only the proportions. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Find cos B and cos C\" step."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Properties of Triangles · 7 marks"
+      "Properties of Triangles · 8 marks"
     ],
     "steps": [
       {
@@ -144,9 +144,9 @@
         "id": "s3_find_cos_b_and_cos_c",
         "kind": "equation",
         "label": "Find cos B and cos C",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Method",
-        "margin_note": "Two more marks. Same rule, rotating which side is subtracted: b² for cos B, c² for cos C.",
+        "margin_note": "Three marks. Same rule, rotating which side is subtracted: b² for cos B, c² for cos C.",
         "lines": [
           "cos B = (c² + a² − b²)/(2ca) = (81 + 49 − 64)/(2 · 9 · 7) = 66/126 = 11/21",
           "cos C = (a² + b² − c²)/(2ab) = (49 + 64 − 81)/(2 · 7 · 8) = 32/112 = 2/7"

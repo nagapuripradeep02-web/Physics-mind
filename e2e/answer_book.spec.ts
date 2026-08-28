@@ -1043,7 +1043,9 @@ test('rename is offered once after the first Mark revised, blocklist holds, name
 });
 
 test('the exam-eve route renders the most-asked list and Back returns to the catalog', async ({ page }) => {
-    await page.goto(URL + '#/exam-eve/4');
+    // physics-3 = Motion in a Plane since the 2026-27 renumbering; the trailing
+    // year marks the link as post-renumbering (a bare '4' would be remapped).
+    await page.goto(URL + '#/exam-eve/physics-3/2027');
     await page.waitForSelector('#examEveView:not([hidden])');
 
     const r = await page.evaluate(() => ({
@@ -1053,8 +1055,8 @@ test('the exam-eve route renders the most-asked list and Back returns to the cat
         catCardsInEve: document.querySelectorAll('#eveBody .cat-card').length,
         backShown: !document.getElementById('btnCatalog')!.hidden,
     }));
-    expect(r.title).toContain('Unit 4');
-    expect(r.cards).toBeGreaterThan(0);          // unit 4 has 3-star questions
+    expect(r.title).toContain('Unit 3');
+    expect(r.cards).toBeGreaterThan(0);          // Motion in a Plane has 3-star questions
     expect(r.catCardsInEve).toBe(0);
     expect(r.backShown).toBe(true);
 
@@ -1241,7 +1243,7 @@ async function bootPlanner(page: any, today: string, seed: Record<string, string
     2026-08-26. For several papers with their own dates, use
     buildMultiSubjectPlan. */
 async function buildPlanViaChat(page: any, examDate: string,
-    unitNames: string[] = ['Units and Measurements', 'Motion in a Straight Line'],
+    unitNames: string[] = ['Physical World and Measurement', 'Motion in a Straight Line'],
     hoursLabel = '1 hour', scopeUntick: string[] = []) {
     return buildMultiSubjectPlan(page, { physics: examDate }, unitNames, hoursLabel, scopeUntick);
 }
@@ -1251,7 +1253,7 @@ async function buildPlanViaChat(page: any, examDate: string,
     `dates` is keyed by the subject value units.json uses — 'physics',
     'chemistry', 'mathematics' (Maths-1A), 'mathematics_1b', 'botany'. */
 async function buildMultiSubjectPlan(page: any, dates: Record<string, string>,
-    unitNames: string[] = ['Units and Measurements', 'Motion in a Straight Line'],
+    unitNames: string[] = ['Physical World and Measurement', 'Motion in a Straight Line'],
     hoursLabel = '1 hour', scopeUntick: string[] = []) {
     if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
     const lastW = () => page.locator('.vidi-widget').last();
@@ -1942,7 +1944,7 @@ test('three papers, three dates: nothing is scheduled on or after its OWN subjec
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const plan = await buildMultiSubjectPlan(page, {
         physics: '2026-09-13', chemistry: '2026-09-18', mathematics: '2026-09-24',
-    }, ['Units and Measurements', 'Atomic Structure', 'Matrices']);
+    }, ['Physical World and Measurement', 'Atomic Structure', 'Matrices']);
 
     expect(plan.examDates).toEqual({
         physics: '2026-09-13', chemistry: '2026-09-18', mathematics: '2026-09-24',
@@ -1971,7 +1973,7 @@ test('day one mixes every paper the student picked', async ({ page }) => {
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const plan = await buildMultiSubjectPlan(page, {
         physics: '2026-09-13', chemistry: '2026-09-18', mathematics: '2026-09-24',
-    }, ['Units and Measurements', 'Atomic Structure', 'Matrices'], '2 hours');
+    }, ['Physical World and Measurement', 'Atomic Structure', 'Matrices'], '2 hours');
 
     const day1 = countBySubject(plan, plan.days[0].learn);
     expect(Object.keys(day1).sort()).toEqual(['chemistry', 'mathematics', 'physics']);
@@ -1981,26 +1983,32 @@ test('the nearer a paper is, the bigger its share of the day', async ({ page }) 
     // Same chapters, same pace, same rival — ONLY the physics date moves. A
     // bare threshold would not prove urgency drives the split; this comparison
     // does, and carries its own control.
+    // Sample = a 22-question chapter (Motion in a Straight Line since the 2026-27
+    // renumbering; it was Units and Measurements, also 22). The merged 25-card
+    // Unit 1 saturates the ten-day window in BOTH cases and the shares tie.
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const far = await buildMultiSubjectPlan(page, {
         physics: '2026-10-20', chemistry: '2026-10-24',
-    }, ['Units and Measurements', 'Atomic Structure'], '1 hour');
+    }, ['Physical World and Measurement', 'Atomic Structure'], '2 hours');
 
     await page.evaluate(() => localStorage.removeItem('pm_plan_v1'));
     await page.reload();
     await page.waitForFunction(() => (window as any).PM_ANSWER);
     const near = await buildMultiSubjectPlan(page, {
         physics: '2026-09-12', chemistry: '2026-10-24',
-    }, ['Units and Measurements', 'Atomic Structure'], '1 hour');
+    }, ['Physical World and Measurement', 'Atomic Structure'], '2 hours');
 
-    // Measured over the opening WEEK, not day one. Day one saturates: at 60
-    // minutes the same 3 physics questions fit whether the paper is six weeks
-    // out or ten days out, so a day-1 comparison reads 3 vs 3 and can see
-    // nothing. The share across the first ten days is where urgency shows —
-    // measured 42% when the paper is far, 50% when it is near.
+    // Measured over the first FIVE days, not day one and not ten. Day one
+    // saturates: the same physics questions fit whether the paper is six weeks
+    // out or ten days out, so a day-1 comparison can see nothing. Ten days
+    // saturates the other way since the 2026-27 renumbering merged old Units 1+2
+    // into one 25-card chapter that BOTH plans finish inside ten days — the
+    // cumulative shares then tie exactly. Five days is where urgency shows.
+    // Sample: merged Unit 1 + Atomic Structure at 2 hours a day (2026-08-28) —
+    // the comparison is the assertion, so no fixed percentage is recorded here.
     const share = (p: any) => {
         let phy = 0, tot = 0;
-        for (let d = 0; d < Math.min(10, p.days.length); d++) {
+        for (let d = 0; d < Math.min(5, p.days.length); d++) {
             for (const q of p.days[d].learn) { if (p.subjectByQid[q] === 'physics') phy++; tot++; }
         }
         return phy / Math.max(1, tot);
@@ -2016,7 +2024,7 @@ test('a paper already written leaves the plan — the rest keep going', async ({
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const plan = await buildMultiSubjectPlan(page, {
         physics: '2026-09-10', chemistry: '2026-09-25',
-    }, ['Units and Measurements', 'Atomic Structure']);
+    }, ['Physical World and Measurement', 'Atomic Structure']);
 
     // walk the clock past the physics paper, keeping the plan
     await bootPlanner(page, '2026-09-14', {
@@ -2308,4 +2316,129 @@ test('the home chat is never blank: a returning student with nothing due still g
     expect(text.trim().length).toBeGreaterThan(20);
     expect(text).toMatch(/step by step/i);
     expect(text).not.toMatch(/study plan|plan your exam|exam preparation/i);
+});
+
+
+// ═══ the 2026-27 syllabus revision (2026-08-28) ═══════════════════════════════
+// Three mechanisms landed together: the physics renumbering (old Units 1+2 merged,
+// old 3-14 → 2-13, new Unit 14), the legacy-link remap that keeps forwarded
+// exam-eve links pointing at the chapter they meant, and the retire mechanism.
+
+test('a pre-renumbering exam-eve link still lands on the chapter it meant', async ({ page }) => {
+    // Old links carried the OLD physics key and no year: "#/exam-eve/4" and
+    // "#/exam-eve/physics-4" both meant Motion in a Plane (old Unit 4), which is
+    // Unit 3 in the 2026-27 book. A link WITH the year is taken literally.
+    await page.goto(URL + '#/exam-eve/physics-4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 3 — Motion in a Plane');
+
+    await page.goto(URL + '#/exam-eve/4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 3 — Motion in a Plane');
+
+    await page.goto(URL + '#/exam-eve/physics-4/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 4 — Laws of Motion');
+
+    // Subject keys with an underscore never matched the old route regex, so a
+    // Maths-1B exam-eve link fell through to the catalog.
+    await page.goto(URL + '#/exam-eve/mathematics_1b-3/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('The Straight Line');
+});
+
+test('the physics bank is on the 2026-27 numbering and Unit 14 is coming-soon', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const r = await page.evaluate(() => {
+        const units = ((window as any).PM_UNITS as any[]).filter((u) => !u.subject);
+        const byN: Record<number, any> = {};
+        for (const u of units) byN[u.number] = u;
+        return {
+            n: units.length,
+            u1: byN[1]?.name, u1n: byN[1]?.questions.length,
+            u3: byN[3]?.name, u14: byN[14]?.name,
+            u14ready: byN[14]?.questions.filter((e: any) => e.question_id).length,
+            u14coming: byN[14]?.questions.length,
+            patternsLaq: (window as any).PM_PATTERNS?.mathematics?.sections?.find((s: any) => s.key === 'LAQ')?.marks,
+        };
+    });
+    expect(r.n).toBe(14);
+    expect(r.u1).toBe('Physical World and Measurement');
+    expect(r.u1n).toBe(25);                               // 3 + 22 merged
+    expect(r.u3).toBe('Motion in a Plane');
+    expect(r.u14).toBe('Physics of Emerging Technologies');
+    expect(r.u14ready).toBe(0);
+    expect(r.u14coming).toBeGreaterThan(0);
+    expect(r.patternsLaq).toBe(8);                        // the maths LAQ is 8 marks now
+});
+
+test('a retired card renders on a forwarded link with the syllabus banner', async ({ page }) => {
+    // No card is retired yet (the official syllabus lists are not in hand), so the
+    // banner path is exercised by pinning PM_RETIRED before the page's own data
+    // script assigns it — a setter that ignores the assignment keeps the pin.
+    const qid = 'ts_ipe_p1_um_fundamental_vs_derived_units';
+    await page.addInitScript((id: string) => {
+        const pinned = { [id]: { wef: '2026-27', reason: 'this topic was removed from the syllabus', unit: 'Physical World and Measurement' } };
+        Object.defineProperty(window, 'PM_RETIRED', { get: () => pinned, set: () => { /* pinned */ }, configurable: true });
+    }, qid);
+    await page.goto(URL + '#/q/' + qid);
+    await page.waitForSelector('.page', { timeout: 8000 });
+    const chip = page.locator('.question-meta .chip-retired');
+    expect(await chip.count()).toBe(1);
+    expect(await chip.textContent()).toContain('Not in the 2026-27 syllabus');
+    expect(await chip.textContent()).toContain('removed from the syllabus');
+});
+
+test('a card that is not retired shows no syllabus banner', async ({ page }) => {
+    await page.goto(URL + '#/q/ts_ipe_p1_um_fundamental_vs_derived_units');
+    await page.waitForSelector('.page', { timeout: 8000 });
+    expect(await page.locator('.question-meta .chip-retired').count()).toBe(0);
+});
+
+
+test('a pre-renumbering Maths-1A link lands on the chapter it meant', async ({ page }) => {
+    // The 2026-27 Maths-1A book inserted Sets and Relations at 1 and Sequences
+    // and Series at 3, so old mathematics-4 (Addition of Vectors) is now
+    // mathematics-6. Same trap as physics: every old key is still a valid key
+    // naming a DIFFERENT chapter, so only the trailing year tells them apart.
+    await page.goto(URL + '#/exam-eve/mathematics-4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Addition of Vectors');
+
+    await page.goto(URL + '#/exam-eve/mathematics-6/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Addition of Vectors');
+
+    // Maths-1B did NOT renumber, so its old keys must pass through untouched.
+    await page.goto(URL + '#/exam-eve/mathematics_1b-3');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('The Straight Line');
+});
+
+test('Maths-1A is on the 2026-27 numbering with its two new chapters listed', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const r = await page.evaluate(() => {
+        const u = ((window as any).PM_UNITS as any[]).filter((x) => x.subject === 'mathematics');
+        const byN: Record<number, any> = {};
+        for (const x of u) byN[x.number] = x;
+        const ready = (n: number) => byN[n]?.questions.filter((e: any) => e.question_id).length;
+        return {
+            n: u.length,
+            u1: byN[1]?.name, u1ready: ready(1),
+            u3: byN[3]?.name, u3ready: ready(3),
+            u8: byN[8]?.name, u9: byN[9]?.name, u12: byN[12]?.name,
+        };
+    });
+    expect(r.n).toBe(12);
+    expect(r.u1).toContain('Sets and Relations');
+    expect(r.u1ready).toBe(0);                       // announced, not written yet
+    expect(r.u3).toContain('Sequences and Series');
+    expect(r.u3ready).toBe(0);
+    // the book says "and", not the old "upto"
+    expect(r.u8).toContain('Trigonometric Ratios and Transformations');
+    // NOT removed, despite a circular proposing it — see docs/SYLLABUS_2026_27.md
+    expect(r.u9).toContain('Trigonometric Equations');
+    expect(r.u12).toContain('Properties of Triangles');
 });
