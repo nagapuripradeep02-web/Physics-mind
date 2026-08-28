@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_pcl5_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How does PCl₅ react with the following? a) water b) C₂H₅OH c) CH₃COOH d) Ag",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "With water",
+      "marks": 1
+    },
+    {
+      "label": "With ethanol",
+      "marks": 1
+    },
+    {
+      "label": "With acetic acid",
+      "marks": 1
+    },
+    {
+      "label": "With silver",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and all four equations on book p.84 as the single Short Answer Question of this sub-box. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK (book p.84, SAQ 1): all four printed equations were atom-counted and all four are balanced. PCl₅ + H₂O (cold) → POCl₃ + 2HCl (P 1, Cl 5, H 2, O 1 each side); C₂H₅OH + PCl₅ → C₂H₅Cl + POCl₃ + HCl (C 2, H 6, O 1, P 1, Cl 5 each side); CH₃COOH + PCl₅ → CH₃COCl + POCl₃ + HCl (C 2, H 4, O 2, P 1, Cl 5 each side); PCl₅ + 2Ag → 2AgCl + PCl₃ (P 1, Cl 5, Ag 2 each side). They are reproduced unchanged. BOOK GAP: the book writes \"(cold)\" beside the water equation but never gives the reaction with EXCESS water, which is the other half of that part and gives H₃PO₄. It is added here (PCl₅ + 4H₂O → H₃PO₄ + 5HCl, atom-counted: P 1, Cl 5, H 8, O 4 each side). TREND: the card also records why PCl₅ exists at all while NCl₅ does not — phosphorus has vacant 3d orbitals and can expand its octet, nitrogen has no d orbitals in its valence shell and cannot."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "VA Group Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_water",
+        "kind": "text",
+        "label": "With water",
+        "marks": 1,
+        "mark_note": "Part (a)",
+        "lines": [
+          "a) With a little cold water PCl₅ gives",
+          "phosphoryl chloride:",
+          {
+            "text": "PCl₅ + H₂O (cold) → POCl₃ + 2HCl",
+            "style": "eq"
+          },
+          "With excess water the hydrolysis is complete",
+          "and phosphoric acid is formed:",
+          {
+            "text": "PCl₅ + 4H₂O → H₃PO₄ + 5HCl",
+            "style": "eq"
+          }
+        ],
+        "why": "The amount of water changes the product, so the condition has to be written beside the equation. A little cold water replaces two chlorine atoms and stops at POCl₃; excess water replaces all five and gives H₃PO₄.",
+        "common_mistakes": [
+          "Writing H₃PO₄ for the cold, limited water case. That product needs excess water.",
+          "Leaving out the word cold or limited. Without it the first equation looks wrong beside the second."
+        ],
+        "memory_tip": "Little water stops at POCl₃; plenty of water goes all the way to H₃PO₄.",
+        "margin_note": "Write both cases with their conditions. The examiner is checking that the condition is understood, not only the formula."
+      },
+      {
+        "id": "s2_ethanol",
+        "kind": "text",
+        "label": "With ethanol",
+        "marks": 1,
+        "mark_note": "Part (b)",
+        "lines": [
+          "b) The –OH group of the alcohol is replaced",
+          "by –Cl, giving ethyl chloride:",
+          {
+            "text": "C₂H₅OH + PCl₅ → C₂H₅Cl + POCl₃ + HCl",
+            "style": "eq"
+          },
+          "This is a standard laboratory method for",
+          "making an alkyl chloride from an alcohol."
+        ],
+        "why": "PCl₅ replaces one –OH group per molecule and is left as POCl₃ plus one HCl. That is the difference from PCl₃, which converts three –OH groups and is left as H₃PO₃, and it is why the coefficients here are all 1.",
+        "common_mistakes": [
+          "Writing H₃PO₃ or H₃PO₄ as the phosphorus product. With an alcohol, PCl₅ gives POCl₃ and HCl.",
+          "Using a coefficient of 3 as in the PCl₃ reaction. One PCl₅ converts one alcohol molecule."
+        ],
+        "memory_tip": "PCl₅ with an –OH always leaves POCl₃ and one HCl behind.",
+        "margin_note": "All three products must be written. Losing the HCl is the usual way half of this mark goes."
+      },
+      {
+        "id": "s3_acetic_acid",
+        "kind": "text",
+        "label": "With acetic acid",
+        "marks": 1,
+        "mark_note": "Part (c)",
+        "lines": [
+          "c) The –OH group of the carboxylic acid is",
+          "replaced by –Cl, giving acetyl chloride:",
+          {
+            "text": "CH₃COOH + PCl₅ → CH₃COCl + POCl₃ + HCl",
+            "style": "eq"
+          },
+          "This is how acid chlorides are prepared",
+          "from carboxylic acids."
+        ],
+        "why": "A carboxylic acid contains an –OH group just as an alcohol does, so it reacts in exactly the same pattern and gives the same two phosphorus-containing products. Writing parts (b) and (c) with the same shape shows the examiner that the pattern was recognised.",
+        "common_mistakes": [
+          "Writing CH₃COCl with two oxygens. The –OH has gone, so acetyl chloride has one oxygen.",
+          "Naming the product acetic chloride. Its name is acetyl chloride, or ethanoyl chloride."
+        ],
+        "memory_tip": "Alcohol gives an alkyl chloride; carboxylic acid gives an acyl chloride. Same reagent, same pattern.",
+        "margin_note": "One balanced equation earns this mark. Naming the product is a useful extra line, not a required one."
+      },
+      {
+        "id": "s4_silver",
+        "kind": "boxed_final",
+        "label": "With silver",
+        "marks": 1,
+        "mark_note": "Part (d)",
+        "lines": [
+          "d) With finely divided silver on warming,",
+          "PCl₅ acts as a chlorinating agent:",
+          {
+            "text": "PCl₅ + 2Ag → 2AgCl + PCl₃",
+            "style": "boxed"
+          },
+          "Two of the five chlorine atoms go to the",
+          "silver, so PCl₅ is reduced to PCl₃ and the",
+          "silver is oxidised to AgCl."
+        ],
+        "why": "This part is a redox reaction and not a substitution: phosphorus falls from +5 to +3 while silver rises from 0 to +1, and two silver atoms are needed for the two electrons. Naming which species is oxidised and which reduced is what separates this part from the first three.",
+        "common_mistakes": [
+          "Writing AgCl₅ or Ag₂Cl. Silver is +1, so the chloride is AgCl and two of them are formed.",
+          "Leaving PCl₃ out of the products. The phosphorus does not disappear; it is reduced to PCl₃."
+        ],
+        "memory_tip": "Silver takes two chlorines, so PCl₅ drops to PCl₃. Five minus two is three.",
+        "margin_note": "The balanced equation is the mark. Adding the words oxidised and reduced makes the answer complete."
+      }
+    ]
+  },
+  "insider_note": "Parts (a), (b) and (c) all leave POCl₃ behind, and part (d) is the only redox one — that grouping is the fastest way to keep the four equations straight. It is also worth knowing that PCl₅ exists because phosphorus has vacant 3d orbitals, while NCl₅ does not exist because nitrogen has no d orbitals in its valence shell."
+}

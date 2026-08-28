@@ -1,0 +1,306 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_sf4_sf6_structures",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the structures of SF₄ and SF₆.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "SF₄",
+      "marks": 1
+    },
+    {
+      "label": "SF₆",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 8 of that sub-box, book p.85. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. FIGURE SCOPE: the question says \"explain\", not \"draw\", so both diagram steps carry NO marks and the whole split sits on the two written steps. The figures are still authored because the shape IS the answer here. BOOK FIGURES: the book prints two sketches on p.85 labelled \"SF₆ Structure\" and \"SF₄ Structure\". The SF₆ sketch is drawn as a hexagon with the six F atoms at the hexagon corners, which reads as a planar hexagonal molecule rather than an octahedron. SF₆ is octahedral: four fluorine atoms in a square plane around the sulphur and one above and one below. The figure on this card draws the octahedron with the back bond in dashed pencil. BOOK ORDER: the question asks SF₄ first, the printed answer explains SF₆ first; this card follows the question's order. BOOK GAP: the printed answer does not give any bond angle and does not say why sulphur can expand its octet while oxygen cannot. Both are written here. CROSS-BANK OVERLAP: Chemistry-I card ts_ipe_c1_cb_sf6_hybridisation is a 4-mark SAQ on SF₆ hybridisation with the orbital ladder; this 2-mark card covers shape and lone-pair count only, and adds SF₄, which that card does not have."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sf4_structure",
+        "kind": "text",
+        "label": "SF₄ : sp³d, see-saw",
+        "marks": 1,
+        "mark_note": "SF₄ shape",
+        "lines": [
+          "In SF₄ the central sulphur atom is sp³d",
+          "hybridised, giving five hybrid orbitals.",
+          "Four of them form four S–F bonds and the",
+          "fifth holds a lone pair of electrons.",
+          "The five positions make a trigonal bipyramid",
+          "and the lone pair takes an equatorial place.",
+          "The shape is therefore see-saw, also called",
+          "a distorted trigonal bipyramid."
+        ],
+        "why": "Five electron positions always arrange themselves as a trigonal bipyramid. A lone pair occupies more space than a bond pair, so it takes an equatorial position where it has only two neighbours at 90°, not three. Removing one equatorial corner from a trigonal bipyramid leaves the see-saw shape, which is why SF₄ is not symmetrical while SF₆ is.",
+        "common_mistakes": [
+          "Calling SF₄ tetrahedral. It has four bonds but also a lone pair, so five positions, not four.",
+          "Putting the lone pair in an axial position. It goes equatorial, where the crowding is least."
+        ],
+        "memory_tip": "Four bonds plus one lone pair is five positions. Take one equatorial corner off a trigonal bipyramid and a see-saw is left.",
+        "margin_note": "The words sp³d, one lone pair and see-saw are the marked items. All three fit in two lines."
+      },
+      {
+        "id": "s2_sf4_figure",
+        "kind": "diagram",
+        "label": "SF₄ drawn",
+        "marks": 0,
+        "figure": {
+          "id": "sf4_see_saw",
+          "width": 300,
+          "height": 262,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "sf4_bonds",
+              "d": "M 154 105 L 168 57 M 154 131 L 168 177 M 163 124 L 214 146",
+              "ms": 2190
+            },
+            {
+              "type": "stroke",
+              "id": "sf4_back_bond",
+              "d": "M 163 113 L 209 93",
+              "ms": 715,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "sf4_lone_pair",
+              "d": "M 106 109 L 109 112 L 106 115 L 103 112 Z M 106 123 L 109 126 L 106 129 L 103 126 Z",
+              "ms": 490
+            },
+            {
+              "type": "label",
+              "id": "sf4_lbl_s",
+              "x": 132,
+              "y": 124,
+              "text": "S",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "sf4_lbl_f_axtop",
+              "x": 176,
+              "y": 48,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf4_lbl_f_axbot",
+              "x": 172,
+              "y": 196,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf4_lbl_f_eqfront",
+              "x": 220,
+              "y": 154,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf4_lbl_f_eqback",
+              "x": 216,
+              "y": 90,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf4_lbl_lone_pair",
+              "x": 20,
+              "y": 122,
+              "text": "lone pair",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "sf4_lbl_caption",
+              "x": 72,
+              "y": 248,
+              "text": "SF₄ see-saw shape",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The picture shows what the words cannot: the two axial bonds lean away from the lone pair, so the molecule is not symmetrical. The dashed bond is the one going away from the reader, and the two dots on the left are the equatorial lone pair.",
+        "common_mistakes": [
+          "Drawing four bonds spread evenly like methane. The lone pair repels the two axial bonds, so the four bonds are not evenly spread.",
+          "Leaving the lone pair out of the drawing. Without it the sketch is the drawing of a different molecule."
+        ],
+        "memory_tip": "Draw a trigonal bipyramid and rub out one equatorial corner. Put the dots where that corner was.",
+        "margin_note": "The question says explain, not draw, so this earns no marks. Both marks sit on the written steps; sketch it only if there is time."
+      },
+      {
+        "id": "s3_sf6_structure",
+        "kind": "boxed_final",
+        "label": "SF₆ : sp³d², octahedral",
+        "marks": 1,
+        "mark_note": "SF₆ shape",
+        "lines": [
+          {
+            "text": "SF₆ is octahedral, sp³d² hybridised.",
+            "style": "boxed"
+          },
+          "Sulphur forms six sp³d² hybrid orbitals and",
+          "each one overlaps a half filled 2p orbital",
+          "of one fluorine atom.",
+          "All six S–F bonds are equal in length and",
+          "every neighbouring pair is at 90°, so there",
+          "is no lone pair and no distortion.",
+          "Only S, Se and Te can do this. Oxygen has no",
+          "d orbitals in its second shell, so OF₆ does",
+          "not exist."
+        ],
+        "why": "Six bond pairs and no lone pair give the one arrangement in which all six positions are the same, so every bond length and every neighbouring bond angle is identical. The last three lines are the exception that keeps the group statement honest: the ability to reach six bonds comes from empty d orbitals in the valence shell, and oxygen has none, so its covalency stops at two.",
+        "common_mistakes": [
+          "Writing the bond angle as 109°28' or 120°. In an octahedron every neighbouring pair of bonds is at 90°.",
+          "Drawing or describing SF₆ as a flat hexagon. Four fluorine atoms lie in a square plane with one above and one below.",
+          "Saying oxygen forms OF₆ in the same way. The second shell has no d orbitals, so it cannot happen."
+        ],
+        "memory_tip": "Six bonds, no lone pair, all angles 90°. Four fluorine atoms in a square, one up and one down.",
+        "margin_note": "The words sp³d² and octahedral earn this mark. Add 90° in the same line; it costs nothing and reads as understanding."
+      },
+      {
+        "id": "s4_sf6_figure",
+        "kind": "diagram",
+        "label": "SF₆ drawn",
+        "marks": 0,
+        "figure": {
+          "id": "sf6_octahedron",
+          "width": 300,
+          "height": 258,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "sf6_bonds",
+              "d": "M 150 102 L 150 52 M 150 130 L 150 180 M 136 116 L 58 116 M 164 116 L 242 116 M 140 125 L 117 146",
+              "ms": 4100
+            },
+            {
+              "type": "stroke",
+              "id": "sf6_back_bond",
+              "d": "M 160 107 L 183 86",
+              "ms": 445,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "sf6_lbl_s",
+              "x": 142,
+              "y": 122,
+              "text": "S",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "sf6_lbl_f_top",
+              "x": 144,
+              "y": 44,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf6_lbl_f_bot",
+              "x": 144,
+              "y": 200,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf6_lbl_f_left",
+              "x": 32,
+              "y": 122,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf6_lbl_f_right",
+              "x": 250,
+              "y": 122,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf6_lbl_f_front",
+              "x": 96,
+              "y": 166,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf6_lbl_f_back",
+              "x": 190,
+              "y": 78,
+              "text": "F",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "sf6_lbl_angle",
+              "x": 100,
+              "y": 98,
+              "text": "90°",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "sf6_lbl_caption",
+              "x": 88,
+              "y": 244,
+              "text": "SF₆ octahedral",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Six bonds drawn from one centre, four of them in a plane and one each above and below, is what octahedral means. The bond drawn in dashed pencil is the one pointing away from the reader, and it is what turns a flat six-pointed sketch into a three dimensional one.",
+        "common_mistakes": [
+          "Drawing the six fluorine atoms at the corners of a hexagon. That is a flat molecule; SF₆ is three dimensional.",
+          "Drawing every bond as a plain line. One bond has to be dashed, or the picture reads as flat."
+        ],
+        "memory_tip": "A plus sign for the four planar bonds, then one bond up and one down.",
+        "margin_note": "No marks here, the same as the SF₄ sketch. Draw it only after both written steps are finished."
+      }
+    ]
+  },
+  "insider_note": "Two molecules, one mark each, so the answer must reach SF₆ even if SF₄ takes longer. The single line that earns each mark is the hybridisation label plus the shape name."
+}

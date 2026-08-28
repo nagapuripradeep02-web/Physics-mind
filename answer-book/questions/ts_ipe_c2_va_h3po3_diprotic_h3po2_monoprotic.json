@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_h3po3_diprotic_h3po2_monoprotic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "H₃PO₃ is diprotic while H₃PO₂ is monoprotic. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "H₃PO₃ has two O–H bonds",
+      "marks": 1
+    },
+    {
+      "label": "H₃PO₂ has one O–H bond",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 11. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.83, VSAQ 11): the printed answer counts the hydrogens correctly — \"In H₃PO₃, 2 hydrogen are attached to oxygen. In H₃PO₂, 1 hydrogen is attached to oxygen\" — but never states the RULE that makes the count matter: only a hydrogen attached to oxygen (P–O–H) is ionisable, and a hydrogen attached directly to phosphorus (P–H) is not. Without the rule the answer is a coincidence. The rule, the two structures and the two neutralisation equations are added. Both added equations were atom-counted: H₃PO₃ + 2NaOH → Na₂HPO₃ + 2H₂O (Na 2, P 1, O 5, H 5 each side) and H₃PO₂ + NaOH → NaH₂PO₂ + H₂O (Na 1, P 1, O 3, H 4 each side). FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_h3po3",
+        "kind": "text",
+        "label": "H₃PO₃ has two O–H bonds",
+        "marks": 1,
+        "mark_note": "H₃PO₃",
+        "lines": [
+          "Only a hydrogen joined to oxygen (P–O–H)",
+          "can be released as H⁺. A hydrogen joined",
+          "straight to phosphorus (P–H) cannot.",
+          "In H₃PO₃ two of the three H atoms are on",
+          "oxygen and one is on phosphorus.",
+          {
+            "text": "H₃PO₃ + 2NaOH → Na₂HPO₃ + 2H₂O",
+            "style": "eq"
+          }
+        ],
+        "why": "The rule is what carries the answer, not the count. Phosphorus and hydrogen have almost the same electronegativity, so the P–H bond is barely polar and the hydrogen is not released as a proton. The O–H bond is strongly polar, so those hydrogens ionise.",
+        "common_mistakes": [
+          "Counting all three hydrogens of H₃PO₃ as ionisable. The P–H hydrogen is not released.",
+          "Giving the sodium salt as Na₃PO₃. Only two hydrogens are replaced, so the salt is Na₂HPO₃."
+        ],
+        "memory_tip": "Count the O–H bonds, not the H atoms in the formula. Only O–H hydrogens ionise.",
+        "margin_note": "Write the rule about P–O–H and P–H in one line before the count. That line is what the mark is given for."
+      },
+      {
+        "id": "s2_h3po2",
+        "kind": "boxed_final",
+        "label": "H₃PO₂ has one O–H bond",
+        "marks": 1,
+        "mark_note": "H₃PO₂",
+        "lines": [
+          "In H₃PO₂ only one H is on oxygen and two",
+          "are joined straight to phosphorus.",
+          {
+            "text": "So H₃PO₂ gives one H⁺ and is monoprotic.",
+            "style": "boxed"
+          },
+          {
+            "text": "H₃PO₂ + NaOH → NaH₂PO₂ + H₂O",
+            "style": "eq"
+          },
+          "For the same reason H₃PO₄ has three O–H",
+          "bonds and is triprotic."
+        ],
+        "why": "Putting the three acids side by side shows that one rule covers all of them: H₃PO₄ has 3 O–H bonds and is triprotic, H₃PO₃ has 2 and is diprotic, H₃PO₂ has 1 and is monoprotic. All three have the same three hydrogens in the formula, so the formula alone never gives the answer.",
+        "common_mistakes": [
+          "Reading the subscript 3 in H₃PO₂ as three ionisable hydrogens. Two of them are on phosphorus.",
+          "Writing the salt as Na₃PO₂. Only one hydrogen is replaced, so the salt is NaH₂PO₂."
+        ],
+        "memory_tip": "H₃PO₄ three, H₃PO₃ two, H₃PO₂ one. The O–H count drops by one at each step.",
+        "margin_note": "The word monoprotic (or monobasic) with the O–H count is the marked idea. The equation is the supporting line."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "The two structures",
+        "marks": 0,
+        "figure": {
+          "id": "h3po3_vs_h3po2_structures",
+          "width": 560,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "hp_bonds_left",
+              "d": "M 112 110 L 112 84 M 123 110 L 123 84 M 106 125 L 74 125 M 132 125 L 166 125 M 118 138 L 118 168",
+              "ms": 2600
+            },
+            {
+              "type": "label",
+              "id": "hp_o_left",
+              "x": 110,
+              "y": 72,
+              "text": "O",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hp_p_left",
+              "x": 110,
+              "y": 131,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "hp_h_left",
+              "x": 52,
+              "y": 131,
+              "text": "H",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hp_oh_left_right",
+              "x": 170,
+              "y": 131,
+              "text": "OH",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hp_oh_left_down",
+              "x": 106,
+              "y": 188,
+              "text": "OH",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hp_cap_left",
+              "x": 30,
+              "y": 230,
+              "text": "H₃PO₃ : 2 O–H, diprotic",
+              "ms": 500,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "hp_bonds_right",
+              "d": "M 402 110 L 402 84 M 413 110 L 413 84 M 396 125 L 364 125 M 422 125 L 456 125 M 408 138 L 408 168",
+              "ms": 2600
+            },
+            {
+              "type": "label",
+              "id": "hp_o_right",
+              "x": 400,
+              "y": 72,
+              "text": "O",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hp_p_right",
+              "x": 400,
+              "y": 131,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "hp_h_right",
+              "x": 342,
+              "y": 131,
+              "text": "H",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hp_oh_right",
+              "x": 460,
+              "y": 131,
+              "text": "OH",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hp_h_right_down",
+              "x": 402,
+              "y": 188,
+              "text": "H",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hp_cap_right",
+              "x": 320,
+              "y": 230,
+              "text": "H₃PO₂ : 1 O–H, monoprotic",
+              "ms": 500,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two structures make the count visible: the left one has two OH groups and one H on phosphorus, the right one has one OH group and two H on phosphorus. The double line is the P=O bond, which carries no hydrogen and takes no part in the ionisation.",
+        "common_mistakes": [
+          "Drawing all three hydrogens on oxygen. Then both acids would look triprotic, which is the error the picture is meant to prevent.",
+          "Leaving out the P=O double bond. Both acids have one, and without it the phosphorus is short of a bond."
+        ],
+        "memory_tip": "Left picture: two OH. Right picture: one OH. The rest of the hydrogens are on phosphorus.",
+        "margin_note": "The question does not say draw, so this earns no marks. Both marks sit on the two written steps."
+      }
+    ]
+  },
+  "insider_note": "The book gives the count but not the rule behind it. Write \"only a hydrogen attached to oxygen is ionisable\" first — that one line makes the count an explanation instead of a coincidence."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_ph3_weaker_base_than_nh3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "PH₃ is a weaker base than NH₃ Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Size and the lone pair",
+      "marks": 1
+    },
+    {
+      "label": "The order of basicity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question on book p.83 as VSAQ 5, as \"PH₃ is a weaker base than NH₃ Explain.\" — the full stop before \"Explain\" is missing in the book, and the question text is kept exactly as printed rather than repunctuated, the same call made on every other question of this unit. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.83, VSAQ 5): the printed answer is \"Nitrogen has small size. Hence it has more electron density.\" It never says WHAT has the electron density (the lone pair), never says what a base does with it (donates it to a proton), and gives no group order. All three are added. TREND AND EXCEPTION: the basicity order NH₃ > PH₃ > AsH₃ > SbH₃ > BiH₃ is written on this card together with the property that runs the OTHER way — reducing character increases down the group, BiH₃ being the strongest reducing agent — so that the reader does not carry away \"everything decreases down group 15\"."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lone_pair",
+        "kind": "text",
+        "label": "Size and the lone pair",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "A base donates its lone pair to a proton.",
+          "Nitrogen is small (70 pm), so its lone pair is",
+          "held in a small orbital and the electron",
+          "density on it is high.",
+          "Phosphorus is large (110 pm), so its lone",
+          "pair is spread over a much bigger orbital",
+          "and the electron density on it is low."
+        ],
+        "why": "Basic strength is about how easily the lone pair is given to a proton. The same two electrons spread over a larger orbital are less concentrated, so the phosphorus lone pair is donated less easily even though both molecules have exactly one lone pair.",
+        "common_mistakes": [
+          "Writing that PH₃ has no lone pair. Both NH₃ and PH₃ have one lone pair; the difference is how concentrated it is.",
+          "Explaining it by electronegativity alone. The size of the orbital holding the lone pair is the reason usually marked."
+        ],
+        "memory_tip": "Bigger atom, larger orbital, lower electron density on the lone pair, weaker base.",
+        "margin_note": "Say \"lone pair\" and \"electron density\" in the same sentence. That pairing is what earns this mark."
+      },
+      {
+        "id": "s2_order",
+        "kind": "boxed_final",
+        "label": "The order of basicity",
+        "marks": 1,
+        "mark_note": "Order",
+        "lines": [
+          "Size increases down group 15, so the lone",
+          "pair becomes less concentrated at each step.",
+          {
+            "text": "NH₃ > PH₃ > AsH₃ > SbH₃ > BiH₃",
+            "style": "boxed"
+          },
+          "So basic strength falls down the group and",
+          "PH₃ is a weaker base than NH₃."
+        ],
+        "why": "Writing the full order shows the reason is a group trend and not one odd fact about phosphorus. Not every property of these hydrides falls down the group: the REDUCING character increases down the group, BiH₃ being the strongest reducing agent, and the boiling point of NH₃ does not follow the order at all (see the hydrogen bonding card).",
+        "common_mistakes": [
+          "Reversing the order and putting BiH₃ first. Basic strength is highest at the top of the group.",
+          "Using the same order for reducing power. Reducing power increases down the group, which is the opposite way."
+        ],
+        "memory_tip": "Basicity falls down the group; reducing power rises. The two orders are opposite.",
+        "margin_note": "The written order is the marked line here. One line, five formulae, in the right direction."
+      }
+    ]
+  },
+  "insider_note": "The book's answer, \"nitrogen has small size, hence more electron density\", never says that the electron density is on the LONE PAIR. Write the words lone pair, and add the order NH₃ > PH₃ > AsH₃ > SbH₃ > BiH₃ for the second mark."
+}

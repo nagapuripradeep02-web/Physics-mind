@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_hybridisation_of_sulphur",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the hybridization of sulphur in the following: a) SO₂ b) SO₃ c) SF₄ d) SF₆",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "SO₂ and SO₃",
+      "marks": 1
+    },
+    {
+      "label": "SF₄ and SF₆",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 3 of that sub-box, book p.85. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (label order): the question is printed a) SO₂ b) SO₃ c) SF₄ d) SF₆, but the printed answer is lettered \"(a) SO₂ → Sp², (b) SF₄ → Sp³d, (c) SO₃ → Sp², (d) SF₆ → Sp³d²\". The letters b and c are swapped against the question. The four hybridisation values themselves are correct; only the lettering is wrong. This card answers in the QUESTION's order. The book also prints the hybridisation with a capital S, \"Sp²\"; the accepted notation is lower case, sp². BOOK GAP: the printed answer gives no shapes, and does not say why sulphur can expand its octet while oxygen cannot. Both are written on this card. CROSS-BANK OVERLAP: Chemistry-I card ts_ipe_c1_cb_sf6_hybridisation is a 4-mark SAQ on SF₆ hybridisation with the orbital ladder and a diagram. This card is a different question in a different paper and stays at the 2-mark level, listing hybridisation and shape only. QUESTION WORDING: printed without a colon, \"Give the hybridization of sulphur in the following a) SO₂ b) SO₃ c) SF₄ d) SF₆\"; a colon was added here for readability. Nothing else in the wording was changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_so2_so3",
+        "kind": "text",
+        "label": "SO₂ and SO₃",
+        "marks": 1,
+        "mark_note": "Both sp²",
+        "lines": [
+          "a) SO₂ : sulphur is sp² hybridised.",
+          "Three sp² orbitals hold two bond pairs and",
+          "one lone pair, so the shape is angular.",
+          "b) SO₃ : sulphur is sp² hybridised.",
+          "Three sp² orbitals hold three bond pairs and",
+          "no lone pair, so the shape is trigonal",
+          "planar."
+        ],
+        "why": "The hybridisation is counted from the number of sigma bonds plus lone pairs on the central atom, never from the number of oxygen atoms. SO₂ has two sigma bonds and one lone pair, and SO₃ has three sigma bonds and no lone pair. Both come to three, so both are sp². The pi bonds are not counted.",
+        "common_mistakes": [
+          "Counting the double bonds and writing sp³ for SO₃. Only sigma bonds and lone pairs are counted; the pi bond does not use a hybrid orbital.",
+          "Writing the same shape for both. Both are sp², but the lone pair in SO₂ makes it angular while SO₃ is trigonal planar."
+        ],
+        "memory_tip": "Count sigma bonds plus lone pairs. Three of them means sp², whether the molecule is SO₂ or SO₃.",
+        "margin_note": "The hybridisation label is the marked item. Shapes are supporting content and cost nothing to add."
+      },
+      {
+        "id": "s2_sf4_sf6",
+        "kind": "boxed_final",
+        "label": "SF₄ and SF₆",
+        "marks": 1,
+        "mark_note": "sp³d and sp³d²",
+        "lines": [
+          {
+            "text": "c) SF₄ : sp³d      d) SF₆ : sp³d²",
+            "style": "boxed"
+          },
+          "In SF₄ five sp³d orbitals are formed. Four",
+          "hold bond pairs and the fifth holds a lone",
+          "pair, so the shape is see-saw.",
+          "In SF₆ six sp³d² orbitals are formed and all",
+          "six hold bond pairs, so the shape is",
+          "octahedral.",
+          "Sulphur can do this because its third shell",
+          "has empty 3d orbitals. Oxygen has no d",
+          "orbitals in its second shell, so OF₄ and OF₆",
+          "do not exist."
+        ],
+        "why": "SF₄ has four sigma bonds and one lone pair, which is five, so one d orbital is used and the hybridisation is sp³d. SF₆ has six sigma bonds and no lone pair, so two d orbitals are used and it is sp³d². The last two lines are the exception that makes the group trend honest: sulphur, selenium and tellurium expand the octet, oxygen never does, because the second shell has no d orbitals at all.",
+        "common_mistakes": [
+          "Writing sp³d for SF₆. Six positions need six hybrid orbitals, which is sp³d².",
+          "Forgetting the lone pair in SF₄ and calling it tetrahedral. Four bonds plus one lone pair is five positions, so it is see-saw inside a trigonal bipyramid.",
+          "Saying oxygen forms OF₆ by the same rule. Oxygen has no d orbitals in the second shell, so its covalency stops at two."
+        ],
+        "memory_tip": "SF₄ has four bonds plus one lone pair, so five, so sp³d. SF₆ has six bonds, so six, so sp³d².",
+        "margin_note": "Both labels together earn this mark. The oxygen line is not marked but is the sentence an examiner reads as understanding."
+      }
+    ]
+  },
+  "insider_note": "Marks are given for the four labels, not for the explanation, so write all four first and then add the shapes. The label most often written wrong is SF₄, because students forget its lone pair."
+}

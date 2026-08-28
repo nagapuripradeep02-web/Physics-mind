@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_water_liquid_h2s_gas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why H₂O is a liquid, while H₂S is a gas?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Hydrogen bonding in water",
+      "marks": 1
+    },
+    {
+      "label": "H₂S and the group trend",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 4 of that sub-box, book p.85. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer is one sentence, \"H₂O contains intermolecular hydrogen bond, but H₂S does not contain\". It never says WHY oxygen forms hydrogen bonds and sulphur does not (oxygen is small and highly electronegative, sulphur is neither), and it never places the pair on the group trend. That omission is exactly the failure this bank guards against: the boiling points of the group 16 hydrides RISE down the group, H₂S < H₂Se < H₂Te, and water is the EXCEPTION that sits above all of them. Both the trend and the exception are written on this card. BOILING POINTS used here, from NCERT Class 12 p-block: H₂O 373 K, H₂S 213 K, H₂Se 232 K, H₂Te 269 K."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hydrogen_bonding",
+        "kind": "text",
+        "label": "Hydrogen bonding in water",
+        "marks": 1,
+        "mark_note": "H bonding",
+        "lines": [
+          "Water molecules are joined to each other by",
+          "intermolecular hydrogen bonds.",
+          "Oxygen is small and highly electronegative,",
+          "so the O–H bond is strongly polar.",
+          "Breaking these hydrogen bonds needs a large",
+          "amount of energy, so water is a liquid at",
+          "room temperature."
+        ],
+        "why": "A hydrogen bond forms only when hydrogen is attached to a small, highly electronegative atom, which in practice means fluorine, oxygen or nitrogen. Oxygen meets both conditions, so every water molecule is linked to its neighbours and the extra energy needed to separate them raises the boiling point to 373 K.",
+        "common_mistakes": [
+          "Calling it an intramolecular hydrogen bond. The bonds that raise the boiling point are between molecules, not inside one.",
+          "Writing only that water has hydrogen bonds. The mark is for saying they are between molecules and that extra energy is needed to break them."
+        ],
+        "memory_tip": "A hydrogen bond forms only when the hydrogen is joined to a small, highly electronegative atom: F, O or N. Oxygen is one of those three.",
+        "margin_note": "The words intermolecular hydrogen bond are the marked phrase. Write intermolecular, not just hydrogen bond."
+      },
+      {
+        "id": "s2_h2s_and_trend",
+        "kind": "boxed_final",
+        "label": "H₂S and the group trend",
+        "marks": 1,
+        "mark_note": "No H bonding",
+        "lines": [
+          {
+            "text": "H₂S has no hydrogen bonding.",
+            "style": "boxed"
+          },
+          "Sulphur is much larger and much less",
+          "electronegative than oxygen, so the S–H bond",
+          "is only weakly polar.",
+          "H₂S molecules are held by weak van der Waals",
+          "forces alone, so H₂S is a gas.",
+          "Down the group the boiling point rises,",
+          "H₂S < H₂Se < H₂Te, as the molecules get",
+          "larger. Water is the exception, boiling",
+          "highest of all at 373 K."
+        ],
+        "why": "The size and electronegativity of sulphur are the reason, and they are what a one-line answer leaves out. The last three lines put the pair on the group trend: boiling point rises down the group with molecular size, and water sits above the whole line because hydrogen bonding is a stronger force than van der Waals attraction. Keep this trend separate from two others that run in different directions: thermal stability of the hydrides FALLS down the group, H₂O > H₂S > H₂Se > H₂Te, while acid strength RISES, H₂O < H₂S < H₂Se < H₂Te.",
+        "common_mistakes": [
+          "Writing that H₂S is a gas because it has a lower molecular mass than water. H₂S is the heavier molecule; the force between molecules is what differs.",
+          "Stating the boiling point trend as though water fits it. Water is the exception to that trend, not part of it.",
+          "Mixing up the trends: stability falls down the group while acid strength rises down the group."
+        ],
+        "memory_tip": "Water is the exception in group 16. Every other hydride follows molecular size; only water follows hydrogen bonding.",
+        "margin_note": "One sentence saying H₂S has no hydrogen bonding earns this mark. The trend line is the sentence that shows the exception is understood."
+      }
+    ]
+  },
+  "insider_note": "Both marks sit on the contrast, so write the two molecules side by side. The line examiners look for is that the difference is between molecules, not inside them."
+}

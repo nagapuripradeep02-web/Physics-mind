@@ -1,0 +1,191 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_nitrogen_diatomic_phosphorus_p4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Nitrogen exists as diatomic molecule and phosphorus as P₄. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Nitrogen forms a triple bond",
+      "marks": 1
+    },
+    {
+      "label": "Phosphorus forms single bonds",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 1. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAPS (book p.83, VSAQ 1): the printed answer is one run-on sentence, \"Nitrogen has small size. Hence it can form multiple bonds phosphorus has large size. Hence it cannot form multiple bonds.\" It never names pπ–pπ overlap, never says that the nitrogen bond is a TRIPLE bond, and never says what P₄ actually is — a tetrahedron with six P–P single bonds. All three are written on this card. TREND AND EXCEPTION: the card also records the exception that the N–N single bond (about 159 kJ/mol) is WEAKER than the P–P single bond (about 213 kJ/mol), which is why phosphorus catenates and nitrogen does not. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nitrogen",
+        "kind": "text",
+        "label": "Nitrogen forms a triple bond",
+        "marks": 1,
+        "mark_note": "Nitrogen",
+        "lines": [
+          "Nitrogen has a small atomic radius, 70 pm.",
+          "Its 2p orbitals are small and can come close",
+          "enough to overlap sideways, so two nitrogen",
+          "atoms form pπ–pπ multiple bonds.",
+          {
+            "text": "N ≡ N   (one σ bond and two π bonds)",
+            "style": "eq"
+          },
+          "So nitrogen exists as the diatomic gas N₂."
+        ],
+        "why": "Multiple bonding needs sideways overlap of two p orbitals, and that overlap is strong only when the two atoms are small enough to sit close together. Nitrogen is the only member of group 15 small enough for it, which is why only nitrogen exists as a diatomic molecule.",
+        "common_mistakes": [
+          "Writing that N₂ has a double bond. It has a triple bond: one sigma and two pi.",
+          "Saying nitrogen is diatomic because it is a gas. The formula follows from the pπ–pπ overlap, not from the physical state."
+        ],
+        "memory_tip": "Small atom, short bond, sideways p overlap. Only nitrogen in this group is small enough.",
+        "margin_note": "The words \"small size\" and \"pπ–pπ multiple bond\" are what the first mark is given for."
+      },
+      {
+        "id": "s2_phosphorus",
+        "kind": "boxed_final",
+        "label": "Phosphorus forms single bonds",
+        "marks": 1,
+        "mark_note": "Phosphorus",
+        "lines": [
+          "Phosphorus has a much larger radius, 110 pm.",
+          "Its 3p orbitals are too far apart for sideways",
+          "overlap, so it forms only P–P single bonds.",
+          {
+            "text": "P₄ is a tetrahedron of six P–P bonds.",
+            "style": "boxed"
+          },
+          "Each P atom is bonded to the other three.",
+          "The P–P–P bond angle is 60°."
+        ],
+        "why": "The group trend is that pπ–pπ multiple bonding becomes weak as the atoms get larger, so P, As and Sb use single bonds only. One exception is worth knowing because it is the opposite of the usual pattern: the N–N single bond (about 159 kJ/mol) is WEAKER than the P–P single bond (about 213 kJ/mol), because the lone pairs on two small nitrogen atoms repel each other strongly. That is why phosphorus catenates into P₄ and nitrogen does not.",
+        "common_mistakes": [
+          "Writing that P₄ has four P–P bonds. A tetrahedron has six edges, so there are six bonds.",
+          "Saying phosphorus cannot bond to itself. It bonds to itself well; it is multiple bonding that it cannot do."
+        ],
+        "memory_tip": "A tetrahedron has 4 corners and 6 edges, so P₄ has 4 atoms and 6 bonds.",
+        "margin_note": "Say \"large size, no pπ–pπ overlap\" and name the P₄ tetrahedron. Both halves are usually needed for this mark."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "The two structures",
+        "marks": 0,
+        "figure": {
+          "id": "n2_vs_p4_structures",
+          "width": 560,
+          "height": 262,
+          "elements": [
+            {
+              "type": "label",
+              "id": "nv_nn",
+              "x": 46,
+              "y": 140,
+              "text": "N ≡ N",
+              "ms": 700,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "nv_nn_cap",
+              "x": 26,
+              "y": 196,
+              "text": "N₂ : one triple bond",
+              "ms": 500,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "nv_p4_outer",
+              "d": "M 326 184 L 448 184 M 326 176 L 378 104 M 448 176 L 398 104",
+              "ms": 3200
+            },
+            {
+              "type": "stroke",
+              "id": "nv_p4_inner",
+              "d": "M 388 134 L 388 106 M 378 158 L 334 178 M 398 158 L 442 178",
+              "ms": 1900,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "nv_p_a",
+              "x": 304,
+              "y": 194,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "nv_p_b",
+              "x": 456,
+              "y": 194,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "nv_p_c",
+              "x": 382,
+              "y": 92,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "nv_p_d",
+              "x": 382,
+              "y": 160,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "nv_p4_cap",
+              "x": 306,
+              "y": 244,
+              "text": "P₄ : six P–P bonds",
+              "ms": 500,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two pictures put the whole answer side by side: one short triple bond for nitrogen, and six single bonds around a tetrahedron for phosphorus. The dashed lines are the three bonds to the fourth phosphorus atom, which lies behind the plane of the other three.",
+        "common_mistakes": [
+          "Drawing P₄ as a square. It is a tetrahedron, so every P is bonded to the other three.",
+          "Drawing N₂ with one line. The bond order is three, so three lines are drawn."
+        ],
+        "memory_tip": "A triangle with a fourth P inside it, joined to all three corners.",
+        "margin_note": "The question does not say draw, so this earns no marks. Both marks sit on the two written steps."
+      }
+    ]
+  },
+  "insider_note": "Both marks turn on atomic size. Write \"nitrogen is small, so pπ–pπ overlap is strong\" and \"phosphorus is large, so it forms single bonds\" — those two clauses carry the answer, and naming the P₄ tetrahedron is what separates a full mark from half."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_pcl3_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How does PCl₃ react with a) CH₃COOH b) C₂H₅OH and c) water",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "With acetic acid and ethanol",
+      "marks": 1
+    },
+    {
+      "label": "With water",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and all three equations on book p.83 as VSAQ 15. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK (book p.83, VSAQ 15): all three printed equations were atom-counted and all three are balanced. PCl₃ + 3CH₃COOH → 3CH₃COCl + H₃PO₃ (P 1, Cl 3, C 6, H 12, O 6 each side); PCl₃ + 3C₂H₅OH → 3C₂H₅Cl + H₃PO₃ (P 1, Cl 3, C 6, H 18, O 3 each side); PCl₃ + 3H₂O → H₃PO₃ + 3HCl (P 1, Cl 3, H 6, O 3 each side). They are reproduced unchanged. BOOK GAP: the book prints the three equations with no sentence at all, so nothing tells the reader that the same thing happens in all three — PCl₃ replaces an –OH group by –Cl, and the phosphorus always ends as H₃PO₃. That unifying line is added. The book also prints the chlorine in \"PCl₃\" in a mixed italic on this page, which is a typesetting artefact and not a chemical distinction."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_acid_and_alcohol",
+        "kind": "text",
+        "label": "With acetic acid and ethanol",
+        "marks": 1,
+        "mark_note": "Parts (a) and (b)",
+        "lines": [
+          "PCl₃ replaces an –OH group by –Cl.",
+          "a) With acetic acid it gives acetyl chloride:",
+          {
+            "text": "PCl₃ + 3CH₃COOH → 3CH₃COCl + H₃PO₃",
+            "style": "eq"
+          },
+          "b) With ethanol it gives ethyl chloride:",
+          {
+            "text": "PCl₃ + 3C₂H₅OH → 3C₂H₅Cl + H₃PO₃",
+            "style": "eq"
+          }
+        ],
+        "why": "One idea covers both parts: any compound with an –OH group has that group replaced by –Cl, and the three chlorine atoms of PCl₃ do it three times over. That is why the coefficient is 3 in both equations and why the phosphorus product is the same in both.",
+        "common_mistakes": [
+          "Writing CH₃COCl as CH₃COOCl. Acetyl chloride has one oxygen; the –OH has been replaced by –Cl.",
+          "Using a coefficient of 1 instead of 3. PCl₃ has three chlorine atoms, so it converts three –OH groups."
+        ],
+        "memory_tip": "One –OH out, one –Cl in, three times over. The phosphorus is left as H₃PO₃ every time.",
+        "margin_note": "Both equations belong in this step. Balanced coefficients of 3 are what the mark checks."
+      },
+      {
+        "id": "s2_water",
+        "kind": "boxed_final",
+        "label": "With water",
+        "marks": 1,
+        "mark_note": "Part (c)",
+        "lines": [
+          "c) Water also has an –OH group, so PCl₃ is",
+          "hydrolysed by it.",
+          {
+            "text": "PCl₃ + 3H₂O → H₃PO₃ + 3HCl",
+            "style": "boxed"
+          },
+          "The products are phosphorous acid and",
+          "hydrogen chloride, which fumes in moist air."
+        ],
+        "why": "Water is the simplest compound with an –OH group, so it follows the same pattern as the acid and the alcohol and gives H₃PO₃ once more. Note the contrast with PCl₅, which with a little cold water gives POCl₃ and only with excess water gives H₃PO₄.",
+        "common_mistakes": [
+          "Giving H₃PO₄ as the product. PCl₃ gives phosphorous acid H₃PO₃; H₃PO₄ comes from PCl₅.",
+          "Writing 3H₂O as H₂O. Three water molecules are needed for three chlorine atoms."
+        ],
+        "memory_tip": "PCl₃ with water gives H₃PO₃; PCl₅ with excess water gives H₃PO₄. Count the O atoms.",
+        "margin_note": "This equation alone earns the mark. Write the names of the two products if there is room."
+      }
+    ]
+  },
+  "insider_note": "All three parts are one reaction: PCl₃ replaces –OH by –Cl and is itself left as H₃PO₃. Write that sentence once at the top and the three equations follow from it."
+}

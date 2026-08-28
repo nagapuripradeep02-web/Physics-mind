@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_holmes_signal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A mixture of Ca₃P₂ and CaC₂ is used in making Holme's signal. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two reactions with water",
+      "marks": 1
+    },
+    {
+      "label": "Why the gases burn",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 8. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAPS (book p.83, VSAQ 8): the printed answer is \"Containers containing Ca₃P₂, CaC₂ are pierced and thrown in sea. Then gases are evolved. These gas burn and serves as signal.\" It never names the two gases, gives neither equation, and — the important omission — never says WHY the gases burn with no flame applied. The reason is that the phosphine formed contains traces of diphosphine, P₂H₄, which ignites in air on its own; that impurity is the whole mechanism of the signal and it is written on this card. Both equations added here were atom-counted: Ca₃P₂ + 6H₂O → 3Ca(OH)₂ + 2PH₃ (Ca 3, P 2, O 6, H 12 each side) and CaC₂ + 2H₂O → Ca(OH)₂ + C₂H₂ (Ca 1, C 2, O 2, H 4 each side)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reactions",
+        "kind": "text",
+        "label": "The two reactions with water",
+        "marks": 1,
+        "mark_note": "Reactions",
+        "lines": [
+          "Containers holding the mixture are pierced",
+          "and thrown into the sea. Water enters and",
+          "both solids react with it.",
+          {
+            "text": "Ca₃P₂ + 6H₂O → 3Ca(OH)₂ + 2PH₃",
+            "style": "eq"
+          },
+          {
+            "text": "CaC₂ + 2H₂O → Ca(OH)₂ + C₂H₂",
+            "style": "eq"
+          }
+        ],
+        "why": "Calcium phosphide gives phosphine and calcium carbide gives acetylene. Naming the two gases is the first half of the answer, because everything that follows is about what those two gases do in air.",
+        "common_mistakes": [
+          "Writing PH₃ as the product of the carbide. The carbide gives acetylene, C₂H₂; the phosphide gives phosphine, PH₃.",
+          "Leaving the equations unbalanced. Ca₃P₂ needs 6H₂O and gives 3Ca(OH)₂ with 2PH₃."
+        ],
+        "memory_tip": "Phosphide gives phosphine, carbide gives acetylene. Water is the reagent in both.",
+        "margin_note": "Both equations belong in this step. Naming the two gases alone is usually worth half of it."
+      },
+      {
+        "id": "s2_signal",
+        "kind": "boxed_final",
+        "label": "Why the gases burn",
+        "marks": 1,
+        "mark_note": "The signal",
+        "lines": [
+          "The phosphine formed contains traces of",
+          "diphosphine, P₂H₄.",
+          {
+            "text": "P₂H₄ ignites in air on its own.",
+            "style": "boxed"
+          },
+          "It ignites the acetylene, and the burning",
+          "gases give a bright flame on the surface of",
+          "the water.",
+          "The flame marks the position for ships."
+        ],
+        "why": "The mixture is made so that no outside flame is needed. Pure phosphine does not ignite by itself at room temperature; the diphosphine impurity does, and it is that impurity that starts the acetylene burning. An answer that says only \"the gases burn\" has not said what lights them.",
+        "common_mistakes": [
+          "Writing that a flame or a spark is used. Nothing is lit; the P₂H₄ impurity ignites on its own in air.",
+          "Saying acetylene ignites by itself. Acetylene needs to be lit, and here the burning P₂H₄ is what lights it."
+        ],
+        "memory_tip": "P₂H₄ ignites first, and it is what starts the acetylene burning.",
+        "margin_note": "The word P₂H₄ is what separates a full mark from half here. Write the formula, not just \"impurity\"."
+      }
+    ]
+  },
+  "insider_note": "The book never names P₂H₄, and that single formula is the reason the signal works with no flame applied. Write it, then say it ignites the acetylene."
+}

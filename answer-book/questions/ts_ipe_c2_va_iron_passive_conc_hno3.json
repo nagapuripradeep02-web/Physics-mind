@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_iron_passive_conc_hno3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Iron becomes passive in conc. HNO₃. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The oxide layer forms",
+      "marks": 1
+    },
+    {
+      "label": "The layer stops further reaction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 13. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. THE BOOK IS WRONG HERE AND THIS CARD DOES NOT FOLLOW IT (book p.83, VSAQ 13). The book prints \"Fe + 2HNO₃ → FeO + H₂O + 2NO₂\" and then \"After formation of FeO layer, it acts as protective layer and Fe becomes passive.\" That equation does balance (Fe 1, H 2, N 2, O 6 on both sides), but the PRODUCT is wrong: FeO is iron(II) oxide, and concentrated nitric acid is far too strong an oxidising agent to leave the iron at the +2 state. The passive film is Fe₃O₄ (magnetite), which contains iron as both Fe(II) and Fe(III); NCERT Class 12 states only that conc. HNO₃ renders iron passive by forming a passive film of oxide on the surface, without naming FeO. This card writes 3Fe + 8HNO₃ → Fe₃O₄ + 8NO₂ + 4H₂O instead. That equation was atom-counted (Fe 3, H 8, N 8, O 24 on both sides) and its electron count agrees: three Fe atoms lose eight electrons in all to reach an average +8/3, and eight HNO₃ molecules each gain one electron to become NO₂. The book's printed version is recorded in the first step's why so a reader who is marked against the book knows what the book says."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_oxide_layer",
+        "kind": "text",
+        "label": "The oxide layer forms",
+        "marks": 1,
+        "mark_note": "Reaction",
+        "lines": [
+          "Concentrated HNO₃ is a strong oxidising",
+          "agent. It oxidises the surface of the iron to",
+          "a thin layer of the oxide Fe₃O₄.",
+          {
+            "text": "3Fe + 8HNO₃ → Fe₃O₄ + 8NO₂ + 4H₂O",
+            "style": "eq"
+          },
+          "The nitric acid is reduced to NO₂."
+        ],
+        "why": "The reaction is a redox reaction: iron is oxidised and the acid is reduced. The book (book p.83, VSAQ 13) prints this as Fe + 2HNO₃ → FeO + H₂O + 2NO₂. That equation balances, but FeO is iron(II) oxide and concentrated nitric acid is too strong an oxidising agent to stop at the +2 state. The film that actually forms is Fe₃O₄, in which iron is present as both Fe(II) and Fe(III), so Fe₃O₄ is written here.",
+        "common_mistakes": [
+          "Writing that no reaction happens at all. A reaction does happen; it stops after a very thin layer has formed.",
+          "Writing the reduction product as NO. Concentrated nitric acid gives NO₂; dilute nitric acid gives NO."
+        ],
+        "memory_tip": "Concentrated acid, brown NO₂ gas, and a thin oxide film on the surface.",
+        "margin_note": "One balanced equation with an oxide product earns this mark. Name the oxide rather than writing \"an oxide\"."
+      },
+      {
+        "id": "s2_passivity",
+        "kind": "boxed_final",
+        "label": "The layer stops further reaction",
+        "marks": 1,
+        "mark_note": "Passivity",
+        "lines": [
+          "The oxide layer is insoluble in the acid and",
+          "covers the whole metal surface.",
+          {
+            "text": "The acid cannot reach the iron below it.",
+            "style": "boxed"
+          },
+          "Further reaction stops, and the iron is said",
+          "to be passive.",
+          "Cr and Al behave in the same way."
+        ],
+        "why": "Passivity is the layer, not the metal. The oxide film is only a few atoms thick but it is unbroken and does not dissolve in the acid, so it separates the acid from the metal below and the reaction cannot continue. That is why the same iron still reacts normally with dilute HCl once the film is scraped off.",
+        "common_mistakes": [
+          "Writing that iron does not react with nitric acid. It reacts with dilute HNO₃ normally; only the concentrated acid makes it passive.",
+          "Saying the iron becomes a noble metal. Nothing about the metal changes; a surface layer forms on it."
+        ],
+        "memory_tip": "Passive means covered, not unreactive. Scrape the film off and the iron reacts again.",
+        "margin_note": "The word passive must be explained, not just repeated. \"Insoluble oxide layer covers the surface\" is the marked line."
+      }
+    ]
+  },
+  "insider_note": "The book prints FeO as the passive film; the film is Fe₃O₄. Whichever oxide an examiner expects, the mark is given for the two words \"protective oxide layer\" plus the statement that the acid can no longer reach the metal."
+}
