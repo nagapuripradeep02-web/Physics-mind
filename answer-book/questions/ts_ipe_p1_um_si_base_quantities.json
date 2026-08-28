@@ -7,10 +7,10 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 2,
-    "name": "Units and Measurements"
+    "number": 1,
+    "name": "Physical World and Measurement"
   },
-  "chapter": "Units and Measurements",
+  "chapter": "Physical World and Measurement",
   "qtype": "VSAQ",
   "marks_total": 2,
   "paper_section": "Section A",

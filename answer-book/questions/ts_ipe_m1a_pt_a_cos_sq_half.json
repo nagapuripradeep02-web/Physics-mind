@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 10,
+    "number": 12,
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "In a △ABC, prove that a cos²(A/2) + b cos²(B/2) + c cos²(C/2) = s + Δ/R.",
@@ -37,19 +37,19 @@
     },
     {
       "label": "Convert to Δ/R",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.47 — LAQ chapter 6 Properties of Triangles, answer 36. Printed appearances: TS 15, plus the pre-bifurcation tag 'IPE 13' which appearances[] cannot carry. The right-hand side has two pieces and the proof produces them separately: the s comes from the constant half of the half-angle expansion, the Δ/R from the rest. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.47 — LAQ chapter 6 Properties of Triangles, answer 36. Printed appearances: TS 15, plus the pre-bifurcation tag 'IPE 13' which appearances[] cannot carry. The right-hand side has two pieces and the proof produces them separately: the s comes from the constant half of the half-angle expansion, the Δ/R from the rest. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Convert to Δ/R\" step."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Properties of Triangles · 7 marks"
+      "Properties of Triangles · 8 marks"
     ],
     "steps": [
       {
@@ -172,7 +172,7 @@
             "two R"
           ]
         },
-        "why": "This is exactly the identity proved as Unit 6 answer 26.1. Quoting a proved result rather than re-deriving it is what keeps a 7-mark answer inside its time.",
+        "why": "This is exactly the identity proved as Unit 6 answer 26.1. Quoting a proved result rather than re-deriving it is what keeps an 8-mark answer inside its time.",
         "common_mistakes": [
           "Trying to re-prove the identity and running out of time.",
           "Halving wrongly and losing the factor of 2."
@@ -182,9 +182,9 @@
         "id": "s4_convert_to_r",
         "kind": "boxed_final",
         "label": "Convert to Δ/R",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. Multiply and divide by R: 2R² sinA sinB sinC is Δ, so the whole term becomes Δ/R.",
+        "margin_note": "Last two marks. Multiply and divide by R: 2R² sinA sinB sinC is Δ, so the whole term becomes Δ/R.",
         "lines": [
           "= s + (2R² sinA sinB sinC)/R   [multiplying and dividing by R]",
           "= s + Δ/R   [∵ Δ = 2R² sinA sinB sinC]",

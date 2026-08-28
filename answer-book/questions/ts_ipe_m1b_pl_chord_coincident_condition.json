@@ -12,7 +12,7 @@
   },
   "chapter": "Pair of Straight Lines",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Find the condition for the lines joining to the points of intersection of the circle x²+y²=a² and the line lx+my=1 to coincide.",
@@ -42,19 +42,19 @@
     },
     {
       "label": "Apply the coincident condition",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 15, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS M-17 · TS 19,22. THE MARK SPLIT IS THE BOOK'S: this answer carries printed margin tags. It is one of only TWO answers in the whole chapter that do — answer 12 on book p.24 (printed 1+1+2+1+2) and answer 15 on book p.26 (printed 1+1+1+1+1+2). Both are HOMOGENISATION answers, and both total 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 15, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS M-17 · TS 19,22. THE MARK SPLIT IS THE BOOK'S: this answer carries printed margin tags. It is one of only TWO answers in the whole chapter that do — answer 12 on book p.24 (printed 1+1+2+1+2) and answer 15 on book p.26 (printed 1+1+1+1+1+2). Both are HOMOGENISATION answers, and both total 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Apply the coincident condition."
   },
   "recall_prompt": "Say how you would solve this — say what coincident means as a condition on the pair.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Pair of Straight Lines · 7 marks"
+      "Pair of Straight Lines · 8 marks"
     ],
     "steps": [
       {
@@ -184,8 +184,8 @@
         "id": "s4_apply_the_condition",
         "kind": "boxed_final",
         "label": "Apply the coincident condition",
-        "marks": 2,
-        "margin_note": "The last two marks, printed in the book as '1 Mark' for stating h² = ab and '2 Marks' for carrying it through. Coincident means the two lines are the SAME line, which for a pair is exactly h² = ab.",
+        "marks": 3,
+        "margin_note": "The last three marks. The book prints this part as '1 Mark' for stating h² = ab and '2 Marks' for carrying it through; the extra mark for the 2026-27 8-mark pattern is added here. Coincident means the two lines are the SAME line, which for a pair is exactly h² = ab.",
         "lines": [
           "If this pair of lines are coincident then  h² = ab",
           "Here a = (1 − a²l²), b = (1 − a²m²), 2h = −2a²lm ⇒ h = −a²lm",

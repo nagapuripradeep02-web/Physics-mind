@@ -59,13 +59,20 @@ function leakProbes(): { text: string; tex: string } {
         join(process.cwd(), 'answer-book', 'questions', 'ts_ipe_p1_vec_parallelogram_law.json'), 'utf8'));
     const l0 = phys.answer.steps[0].lines[0];
     const text = typeof l0 === 'string' ? l0 : l0.text;
-    // any maths bundle carries render:"katex" lines with raw TeX sources
-    const m3 = JSON.parse(readFileSync(join(CONTENT_DIR, 'mathematics-3.json'), 'utf8'));
+    // Any maths bundle carries render:"katex" lines with raw TeX sources. Found
+    // by SCANNING the maths bundles, never by a hardcoded unit key: this named
+    // mathematics-3 until the 2026-27 book renumbered Maths-1A and chapter 3
+    // became "Sequences and Series", which nobody has written yet — so the probe
+    // silently found no TeX and the leak gate failed for the wrong reason.
     let tex = '';
-    outer: for (const q of m3.questions) {
-        for (const s of q.answer.steps) {
-            for (const ln of s.lines ?? []) {
-                if (ln && typeof ln === 'object' && ln.render === 'katex') { tex = ln.text; break outer; }
+    outer: for (const f of readdirSync(CONTENT_DIR)) {
+        if (!f.startsWith('mathematics')) continue;
+        const b = JSON.parse(readFileSync(join(CONTENT_DIR, f), 'utf8'));
+        for (const q of b.questions) {
+            for (const s of q.answer.steps) {
+                for (const ln of s.lines ?? []) {
+                    if (ln && typeof ln === 'object' && ln.render === 'katex') { tex = ln.text; break outer; }
+                }
             }
         }
     }
@@ -139,15 +146,15 @@ test('a free chapter opens with no tap and no claim — four are free to everyon
     let claimAttempted = false;
     await bootGated(page, (body) => {
         if (body.list) {
-            return { ok: true, unlocked: ['physics-4'], free_available: false, sku: { price_inr: null } };
+            return { ok: true, unlocked: ['physics-3'], free_available: false, sku: { price_inr: null } };
         }
         if (body.claim_free) { claimAttempted = true; }
-        if (body.unit_key === 'physics-4') return { ok: true, unlocked: true, bundle: bundleFor('physics-4') };
+        if (body.unit_key === 'physics-3') return { ok: true, unlocked: true, bundle: bundleFor('physics-3') };
         return { ok: true, locked: true, free_available: false, sku: { price_inr: null } };
     });
     await page.waitForSelector('#catalogView:not([hidden])');
 
-    const qid = 'ts_ipe_p1_vec_parallelogram_law';        // a physics-4 question
+    const qid = 'ts_ipe_p1_vec_parallelogram_law';        // a physics-3 question (Motion in a Plane — Unit 3 since the 2026-27 renumbering)
     await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
     await page.waitForSelector('.page', { timeout: 8000 });
 
@@ -183,8 +190,8 @@ test('an entitled unit opens directly — no sheet at all', async ({ page }) => 
 test('a locked chapter names the free four, offers the pass, and leaks nothing', async ({ page }) => {
     const probes = leakProbes();
     await bootGated(page, (body) => {
-        if (body.list) return { ok: true, unlocked: ['physics-3'], free_available: false, sku: { price_inr: null } };
-        if (body.unit_key === 'physics-3') return { ok: true, unlocked: true, bundle: bundleFor('physics-3') };
+        if (body.list) return { ok: true, unlocked: ['physics-2'], free_available: false, sku: { price_inr: null } };
+        if (body.unit_key === 'physics-2') return { ok: true, unlocked: true, bundle: bundleFor('physics-2') };
         // locked — free_available is false everywhere now: the per-device claim
         // is dormant, so there is nothing for the client to spend.
         return { ok: true, locked: true, free_available: false, sku: { price_inr: null } };
@@ -217,9 +224,18 @@ test('a locked chapter names the free four, offers the pass, and leaks nothing',
         free: document.querySelectorAll('.cat-lock.free').length,
         sections: document.querySelectorAll('.cat-section').length,
         perCard: document.querySelectorAll('.cc-chip.pm-lock').length,
+        // Chapters the 2026-27 syllabus lists but nobody has written yet. DERIVED,
+        // never a magic offset: there was one on 2026-08-28 (physics Unit 14) and
+        // three by the end of the same day (Maths-1A gained Sets and Relations
+        // and Sequences and Series), and a hardcoded "- 2" silently rots.
+        unwritten: ((window as any).PM_UNITS as any[])
+            .filter((u) => !u.questions.some((e: any) => e.question_id)).length,
     }));
-    expect(cues.free).toBe(1);                             // physics-3, and only it
-    expect(cues.locked).toBe(cues.sections - 1);           // every other chapter says so
+    expect(cues.free).toBe(1);                             // physics-2 (Motion in a Straight Line), and only it — the parallelogram card is Unit 3 and stays locked
+    expect(cues.unwritten).toBeGreaterThan(0);             // the case this guards is real
+    // Every chapter that HAS answers and is not the free one says locked; an
+    // unwritten chapter carries no pill at all rather than being sold.
+    expect(cues.locked).toBe(cues.sections - 1 - cues.unwritten);
     expect(cues.perCard).toBe(0);                          // the chip this replaced
 });
 
@@ -574,8 +590,8 @@ test('signing in is never required — the free chapters work signed out', async
     // The anonymous journey is the product's front door and must survive
     // accounts entirely: open a link, read, never sign in.
     await bootGated(page, (body) => {
-        if (body.list) return { ok: true, unlocked: ['physics-4'], free_available: false, sku: FOUNDING_SKU };
-        if (body.unit_key === 'physics-4') return { ok: true, unlocked: true, bundle: bundleFor('physics-4') };
+        if (body.list) return { ok: true, unlocked: ['physics-3'], free_available: false, sku: FOUNDING_SKU };
+        if (body.unit_key === 'physics-3') return { ok: true, unlocked: true, bundle: bundleFor('physics-3') };
         return { ok: true, locked: true, free_available: false, sku: FOUNDING_SKU };
     });
     await page.waitForSelector('#catalogView:not([hidden])');
@@ -717,7 +733,9 @@ test('the price shows as a price: 199 struck through, 99 big', async ({ page }) 
 /** The four chapters flagged `free` in ab_content — one per subject, and never
     the first chapter of any of them, which is the whole reason the order had to
     change. */
-const FREE_UNITS = ['physics-4', 'chemistry-3', 'mathematics-4', 'mathematics_1b-3'];
+// Maths-1A's Addition of Vectors moved from chapter 4 to 6 when the 2026-27 book
+// inserted Sets and Relations at 1 and Sequences and Series at 3 (2026-08-28).
+const FREE_UNITS = ['physics-3', 'chemistry-3', 'mathematics-6', 'mathematics_1b-3'];
 const SKU_99 = {
     sku: 'full_book', price_inr: 99, list_price_inr: 199, founding: true,
     founding_locked: false, founding_slots_left: 486, period_days: 31,
@@ -803,7 +821,7 @@ test('a link to an answer never passes through the door', async ({ page }) => {
     await forgetTrack(page);
     await bootGated(page, (body: any) => {
         if (body.list) return { ok: true, unlocked: FREE_UNITS, free_available: false, sku: SKU_99 };
-        if (body.unit_key === 'physics-4') return { ok: true, unlocked: true, bundle: bundleFor('physics-4') };
+        if (body.unit_key === 'physics-3') return { ok: true, unlocked: true, bundle: bundleFor('physics-3') };
         return { ok: true, locked: true, sku: SKU_99 };
     });
     await page.evaluate(() => { location.hash = '#/q/ts_ipe_p1_vec_parallelogram_law'; });
@@ -873,7 +891,7 @@ test('the chapters a student can open come first, in the list and in the picker'
     await page.selectOption('#subjectSelect', 'physics');
 
     const h = await heads(page);
-    // physics-4 is the free one; 1, 2 and 3 are locked and used to come first.
+    // physics-3 is the free one; 1 and 2 are locked and used to come first.
     expect(h[0]).toContain('Motion in a Plane');
     expect(h[0]).toContain('Free');
     const firstLocked = h.findIndex((s: string) => s.includes('Locked'));
@@ -887,7 +905,12 @@ test('the chapters a student can open come first, in the list and in the picker'
     expect(opts[0]).toContain('All chapters');
     expect(opts[1]).toContain('Motion in a Plane');
     expect(opts[1]).not.toContain('🔒');
-    expect(opts.slice(2).every((o: string) => o.includes('🔒'))).toBe(true);
+    // Every remaining option that HAS answers is locked. A chapter with none
+    // written yet (physics Unit 14, 2026-08-28) sorts last and carries no lock:
+    // there is nothing in it to unlock (see "never sold as locked" below).
+    const unwritten = 'Physics of Emerging Technologies';
+    expect(opts.slice(2).every((o: string) => o.includes('🔒') || o.includes(unwritten))).toBe(true);
+    expect(opts[opts.length - 1]).toContain(unwritten);      // and it is last
 
     // the lock moved UP to the chapter; it is no longer repeated on every card
     expect(await page.locator('.cc-chip.pm-lock').count()).toBe(0);
@@ -913,7 +936,10 @@ test('the offer is drawn once, immediately below the last chapter that opens', a
     expect(shape.after).toContain('Locked');
     // The number is the server's (ab_price_for), never one the client invented.
     expect(shape.title).toContain('₹99');
-    expect(shape.title).toContain('38 chapters');
+    // Chapters that HAVE answers. The catalog LISTS 40 since the 2026-27
+    // syllabus added three chapters nobody has written yet; the offer counts
+    // only what the pass can actually open.
+    expect(shape.title).toContain('37 chapters');
 });
 
 test('with a pass the order is untouched and no lock cue is drawn', async ({ page }) => {
@@ -963,4 +989,36 @@ test('an answer opens, and there is no way to print it', async ({ page }) => {
         return (window as any).PM_ANSWER.getState();
     });
     expect(st.marksEarned).toBe(st.marksTotal);
+});
+
+
+test('a chapter with nothing written yet is never sold as locked', async ({ page }) => {
+    // Physics Unit 14 "Physics of Emerging Technologies" is listed for the
+    // chapter's true shape (2026-08-28) but has no answers yet. Labelling it
+    // Locked would invite a student to pay for an empty chapter, and counting
+    // its coming-soon rows into the offer would overstate what the pass buys.
+    await bootWith(page, FREE_UNITS);
+    await page.selectOption('#subjectSelect', 'physics');
+    await page.waitForTimeout(150);
+
+    const r = await page.evaluate(() => {
+        const heads = [...document.querySelectorAll('#catSections h2')].map((h) => h.textContent || '');
+        const u14 = heads.find((h) => h.includes('Physics of Emerging Technologies')) || '';
+        const wall = document.querySelector('.cat-wall-sub')?.textContent || '';
+        const units = (window as any).PM_UNITS as any[];
+        // what the offer may honestly claim: authored answers in locked chapters
+        let sellable = 0;
+        for (const u of units) {
+            const ready = u.questions.filter((e: any) => e.question_id).length;
+            if (ready > 0) sellable += ready;
+        }
+        return { u14, wall, sellable };
+    });
+
+    expect(r.u14).toContain('0 of 5 ready');       // listed honestly
+    expect(r.u14).not.toContain('Locked');         // never sold
+    expect(r.u14).not.toContain('Free');           // and never promised either
+    const claimed = Number((r.wall.match(/^(\d+)/) || [])[1]);
+    expect(claimed).toBeGreaterThan(0);
+    expect(claimed).toBeLessThanOrEqual(r.sellable);   // never promises answers that do not exist
 });

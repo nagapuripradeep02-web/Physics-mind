@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
-    "name": "Trigonometric Ratios upto Transformations"
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
   },
-  "chapter": "Trigonometric Ratios upto Transformations",
+  "chapter": "Trigonometric Ratios and Transformations",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "If A + B + C = 2S, then prove that sin(S−A) + sin(S−B) + sinC = 4 cos((S−A)/2) cos((S−B)/2) sin(C/2).",
@@ -29,7 +29,7 @@
     },
     {
       "label": "Pair two terms with a sum-to-product formula",
-      "marks": 2
+      "marks": 3
     },
     {
       "label": "Use the condition to convert",
@@ -47,13 +47,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 T-Ratios upto Transformations, answer 30.1. Printed appearances: TS 16. The S-family. The condition is A + B + C = 2S, so (A+B) + C = 2S and (S−A) + (S−B) = 2S − (A+B) = C — the substitution every step below turns on. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 T-Ratios upto Transformations, answer 30.1. Printed appearances: TS 16. The S-family. The condition is A + B + C = 2S, so (A+B) + C = 2S and (S−A) + (S−B) = 2S − (A+B) = C — the substitution every step below turns on. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Pair two terms with a sum-to-product formula."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Trigonometric Transformations · 7 marks"
+      "Trigonometric Transformations · 8 marks"
     ],
     "steps": [
       {
@@ -102,9 +102,9 @@
         "id": "s2_pair",
         "kind": "equation",
         "label": "Pair two terms",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Sum to product",
-        "margin_note": "Two of the seven marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
         "lines": [
           "L.H.S = sin(S−A) + sin(S−B) + sinC",
           "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",

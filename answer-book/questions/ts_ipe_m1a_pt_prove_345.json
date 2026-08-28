@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 10,
+    "number": 12,
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "In a △ABC, if r₁ = 2, r₂ = 3, r₃ = 6 and r = 1, then prove that a = 3, b = 4 and c = 5.",
@@ -29,7 +29,7 @@
     },
     {
       "label": "Find each side from its ex-radius",
-      "marks": 3
+      "marks": 4
     },
     {
       "label": "Conclude",
@@ -39,13 +39,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.43 — LAQ chapter 6 Properties of Triangles, answer 31.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 22. The twin of 31.1, but r is GIVEN — so the first step is skipped and the chain starts one link further along. The answer is the 3-4-5 right triangle. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.43 — LAQ chapter 6 Properties of Triangles, answer 31.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 22. The twin of 31.1, but r is GIVEN — so the first step is skipped and the chain starts one link further along. The answer is the 3-4-5 right triangle. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Find each side from its ex-radius\" step."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Properties of Triangles · 7 marks"
+      "Properties of Triangles · 8 marks"
     ],
     "steps": [
       {
@@ -54,7 +54,7 @@
         "label": "Find Δ and s",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two of the seven marks. r is given here, so Δ = √(r r₁ r₂ r₃) can be used immediately — no reciprocal step needed.",
+        "margin_note": "Two of the eight marks. r is given here, so Δ = √(r r₁ r₂ r₃) can be used immediately — no reciprocal step needed.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,9 +96,9 @@
         "id": "s2_find_each_side_from_its_ex",
         "kind": "equation",
         "label": "Find each side from its ex-radius",
-        "marks": 3,
+        "marks": 4,
         "mark_note": "Method",
-        "margin_note": "Three marks — the bulk. Same pairing as the twin: r₁ with a, r₂ with b, r₃ with c.",
+        "margin_note": "Four marks — the bulk. Same pairing as the twin: r₁ with a, r₂ with b, r₃ with c.",
         "lines": [
           "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 6/2 = 3",
           "  ∴ 6 − a = 3 ⇒ a = 3",
