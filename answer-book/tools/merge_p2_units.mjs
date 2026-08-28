@@ -55,6 +55,23 @@ const CHAPTERS = [
 const args = process.argv.slice(2);
 const FRAG_DIR = args.find((a) => !a.startsWith('--'));
 const WRITE = args.includes('--write');
+// --only 5,7,15 — merge just these units and ignore every other fragment.
+//
+// The tool is all-or-nothing by design: a fragment whose cards are half written
+// must not land. But while several chapter agents run at once, the fragments
+// directory always holds someone's work in progress, so an all-or-nothing merge
+// blocks a FINISHED chapter behind an unfinished one. (It caught me doing
+// exactly that, correctly, and refused.) `--only` narrows the set without
+// weakening any check: whatever is selected still faces the full drift audit in
+// both directions.
+const onlyArg = args.indexOf('--only');
+const ONLY = onlyArg >= 0 && args[onlyArg + 1]
+    ? new Set(args[onlyArg + 1].split(',').map((n) => parseInt(n.trim(), 10)))
+    : null;
+if (ONLY && [...ONLY].some((n) => !Number.isInteger(n))) {
+    console.error('\n✗ merge_p2_units: --only takes a comma-separated list of unit numbers, e.g. --only 5,7,15');
+    process.exit(1);
+}
 const problems = [];
 const fail = (m) => problems.push(m);
 
@@ -116,6 +133,7 @@ for (const f of fragFiles) {
     if (!Number.isInteger(u.number) || u.number < 1 || u.number > CHAPTERS.length) {
         fail(`${f}: unit number ${u.number} is outside 1..${CHAPTERS.length}`); continue;
     }
+    if (ONLY && !ONLY.has(u.number)) continue;   // --only: not this run's business
     if (u.name !== CHAPTERS[u.number - 1]) {
         fail(`${f}: unit ${u.number} is named "${u.name}", the book calls it "${CHAPTERS[u.number - 1]}"`);
     }
@@ -164,8 +182,20 @@ for (const u of units) {
         if (!authored.has(e.question_id)) fail(`unit ${u.number}: "${e.question_id}" has no authored file`);
     }
 }
+// Cards belonging to physics_2 units this run is NOT replacing are already
+// accounted for by the manifest on disk. Without this, --only would report every
+// previously merged chapter as an orphan — a false alarm that would teach the
+// reader to ignore the one alarm that matters.
+const replacing = new Set(units.map((u) => u.number));
+const keptElsewhere = new Set();
+for (const u of manifest.units) {
+    if (u.subject !== 'physics_2' || replacing.has(u.number)) continue;
+    for (const e of u.questions) if (e.question_id) keptElsewhere.add(e.question_id);
+}
 for (const id of authored) {
-    if (!listed.has(id)) fail(`authored file "${id}.json" is in no unit — the build will reject it`);
+    if (!listed.has(id) && !keptElsewhere.has(id)) {
+        fail(`authored file "${id}.json" is in no unit — the build will reject it`);
+    }
 }
 
 // ── cross-bank id collisions ─────────────────────────────────────────────────
@@ -189,7 +219,11 @@ if (problems.length) {
 // the catalog's order within a subject, and every other subject's block is left
 // exactly where it was.
 units.sort((a, b) => a.number - b.number);
-const merged = { ...manifest, units: [...withoutP2.units, ...units] };
+const kept = manifest.units.filter((u) => u.subject === 'physics_2' && !replacing.has(u.number));
+const merged = {
+    ...manifest,
+    units: [...withoutP2.units, ...[...kept, ...units].sort((a, b) => a.number - b.number)],
+};
 const out = render(merged);
 
 const counts = units.map((u) => {
@@ -200,8 +234,16 @@ console.log(`physics_2: ${units.length} unit(s), ${listed.size} authored card(s)
 for (const c of counts) {
     console.log(`  ${String(c.n).padStart(2)} ${c.name.padEnd(38)} VSAQ ${String(c.V).padStart(2)} · SAQ ${String(c.S).padStart(2)} · LAQ ${String(c.L).padStart(2)}  = ${c.total}`);
 }
-const missing = CHAPTERS.map((n, i) => i + 1).filter((n) => !seenNumbers.has(n));
-if (missing.length) console.log(`\n  not yet merged: unit(s) ${missing.join(', ')}`);
+// What the BOOK is still missing — counting units already in the manifest, not
+// just the ones this run touched. The first version listed every unit outside
+// the current run, so a scoped `--only 5` reported nine already-merged chapters
+// as "not yet merged". An alarm that overstates is the one a reader learns to
+// ignore, which is the whole value of the alarm.
+const alreadyIn = new Set(manifest.units.filter((u) => u.subject === 'physics_2').map((u) => u.number));
+const missing = CHAPTERS.map((n, i) => i + 1)
+    .filter((n) => !seenNumbers.has(n) && !alreadyIn.has(n));
+if (missing.length) console.log(`\n  still missing from the book: unit(s) ${missing.join(', ')}`);
+else console.log('\n  every chapter is in the book.');
 
 if (!WRITE) {
     console.log('\n(dry run — pass --write to update answer-book/units.json)');

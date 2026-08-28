@@ -8997,6 +8997,149 @@
       ]
     },
     {
+      "number": 5,
+      "name": "Electric Potential and Capacitance",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Can there be electric potential at a point with zero electric intensity? Give an example.",
+          "question_id": "ts_ipe_p2_epc_potential_zero_intensity"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Can there be electric intensity at a point with zero potential? Give one example.",
+          "question_id": "ts_ipe_p2_epc_intensity_zero_potential"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What are meant by equipotential surfaces?",
+          "question_id": "ts_ipe_p2_epc_equipotential_surfaces"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Why is the electric field always at right angles to the equipotential surface? Explain.",
+          "question_id": "ts_ipe_p2_epc_field_perpendicular_equipotential"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Three capacitors of capacitances 1 μF, 2 μF and 3 μF are connected in parallel. (a) What is the ratio of charges? (b) What is the ratio of potential differences?",
+          "question_id": "ts_ipe_p2_epc_three_capacitors_parallel_ratio"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Three capacitors of capacitances 1 μF, 2 μF and 3 μF are connected in series. (a) What is the ratio of charges? (b) What is the ratio of potential differences?",
+          "question_id": "ts_ipe_p2_epc_three_capacitors_series_ratio"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What happens to the capacitance of a parallel plate capacitor if the area of its plates is doubled?",
+          "question_id": "ts_ipe_p2_epc_capacitance_area_doubled"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Derive an expression for the potential at a distance from a point charge.",
+          "question_id": "ts_ipe_p2_epc_potential_point_charge_derive"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Derive an expression for the potential energy of an electric dipole placed in a uniform electric field.",
+          "question_id": "ts_ipe_p2_epc_dipole_potential_energy_derive"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Derive an expression for the capacitance of a parallel plate capacitor.",
+          "question_id": "ts_ipe_p2_epc_parallel_plate_capacitance_derive"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Explain series combination of capacitors. Derive the formula for equivalent capacitance in each combination.",
+          "question_id": "ts_ipe_p2_epc_series_combination_derive"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Explain parallel combination of capacitors. Derive the formula for equivalent capacitance.",
+          "question_id": "ts_ipe_p2_epc_parallel_combination_derive"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Derive an expression for the energy stored in a capacitor.",
+          "question_id": "ts_ipe_p2_epc_energy_stored_capacitor"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Three capacitors of capacitances 2 pF, 3 pF and 4 pF are connected in parallel. a) What is the total capacitance of the combination? b) Determine the charge on each capacitors, if the combination is connected to a 100 V supply.",
+          "question_id": "ts_ipe_p2_epc_three_capacitors_parallel_100v"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Explain behaviour of dielectrics in an electric field.",
+          "question_id": "ts_ipe_p2_epc_dielectrics_in_electric_field"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Three capacitors each of capacitance 9 pF are connected in series. (a) What is the total capacitance of the combination? (b) What is the potential difference across each capacitor, if the combination is connected to a 120 V supply?",
+          "question_id": "ts_ipe_p2_epc_three_capacitors_series_120v"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Derive an expression for the energy stored in a capacitor. What is the energy stored when the space between the plates is filled with a dielectric (a) With charging battery disconnected? (b) With charging battery connected in the circuit?",
+          "question_id": "ts_ipe_p2_epc_energy_stored_with_dielectric"
+        }
+      ]
+    },
+    {
       "number": 8,
       "name": "Magnetism and Matter",
       "subject": "physics_2",

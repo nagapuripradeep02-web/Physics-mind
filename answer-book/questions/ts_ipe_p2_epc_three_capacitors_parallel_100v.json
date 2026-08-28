@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_three_capacitors_parallel_100v",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Three capacitors of capacitances 2 pF, 3 pF and 4 pF are connected in parallel. a) What is the total capacitance of the combination? b) Determine the charge on each capacitors, if the combination is connected to a 100 V supply.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The total capacitance",
+      "marks": 2
+    },
+    {
+      "label": "The common voltage",
+      "marks": 1
+    },
+    {
+      "label": "The three charges",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). Hand-checked against the book: C = 2+3+4 = 9 pF; q₁ = 2 pF × 100 V = 200 pC, q₂ = 300 pC, q₃ = 400 pC — every figure the book prints is correct, and the sum 900 pC equals C × V = 9 pF × 100 V. Transcription: the printed '2pF, 3pF and 4pF' is spaced as '2 pF, 3 pF and 4 pF' and the printed unit '100 v' is written with the correct capital unit symbol '100 V'; the printed 'a)' and 'b)' labels are kept as printed, and the ungrammatical 'the charge on each capacitors' is PRESERVED as printed (grammar slips are not corrected in this bank, only misspellings and certainly-dropped words)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Potential and Capacitance · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_total_capacitance",
+        "kind": "equation",
+        "label": "The total capacitance",
+        "marks": 2,
+        "mark_note": "C = 9 pF",
+        "lines": [
+          "In a parallel combination the capacitances add:",
+          {
+            "text": "C = C₁ + C₂ + C₃",
+            "style": "eq"
+          },
+          "Here C₁ = 2 pF, C₂ = 3 pF and C₃ = 4 pF, so",
+          {
+            "text": "C = 2 + 3 + 4 = 9 pF",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. The parallel rule, then the arithmetic in pF.",
+        "why": "Plates joined side by side act as one capacitor of the combined area, and capacitance grows with area — so in parallel the values add straight.",
+        "common_mistakes": [
+          "Using the series rule 1/C = 1/C₁ + 1/C₂ + 1/C₃ and getting a value below 2 pF.",
+          "Changing pF to F for the addition and then losing the power of ten."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in parallel the capacitances add, giving C = 2 + 3 + 4 = 9 pF.",
+          "accept": [
+            "capacitances add in parallel",
+            "C is C one plus C two plus C three",
+            "nine picofarad"
+          ],
+          "reject": [
+            "charge is C times V"
+          ],
+          "heard_as": [
+            "parallel",
+            "9 pF"
+          ]
+        },
+        "memory_tip": "Parallel adds up — the answer must be bigger than the biggest capacitor."
+      },
+      {
+        "id": "s2_common_voltage",
+        "kind": "text",
+        "label": "The common voltage",
+        "marks": 1,
+        "mark_note": "Same V on each",
+        "lines": [
+          "In parallel every capacitor is joined across the",
+          "same two terminals, so each one has the full",
+          "supply voltage across it:",
+          {
+            "text": "V = 100 V for each capacitor",
+            "style": "eq"
+          },
+          "The charge on any one capacitor is then q = CV."
+        ],
+        "margin_note": "Third mark. Say the 100 V sits across each capacitor, then write q = CV.",
+        "why": "The charge is only asked separately because the voltage is common — in series it would be the other way round.",
+        "common_mistakes": [
+          "Dividing the 100 V between the three capacitors.",
+          "Finding one charge from C × V = 9 pF × 100 V and stopping there."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each capacitor has the full 100 V across it, so its charge is q = CV.",
+          "accept": [
+            "same voltage across each",
+            "full hundred volts on each capacitor",
+            "q is C times V"
+          ],
+          "reject": [
+            "capacitances add in parallel"
+          ],
+          "heard_as": [
+            "same V",
+            "hundred volts"
+          ]
+        },
+        "memory_tip": "Parallel: one V for all, the charge splits."
+      },
+      {
+        "id": "s3_three_charges",
+        "kind": "boxed_final",
+        "label": "The three charges",
+        "marks": 1,
+        "mark_note": "The charges",
+        "lines": [
+          {
+            "text": "q₁ = 2 pF × 100 V = 200 pC",
+            "style": "eq"
+          },
+          {
+            "text": "q₂ = 3 pF × 100 V = 300 pC",
+            "style": "eq"
+          },
+          {
+            "text": "q₃ = 4 pF × 100 V = 400 pC",
+            "style": "eq"
+          },
+          {
+            "text": "200 pC, 300 pC and 400 pC",
+            "style": "boxed"
+          },
+          "Check: 200 + 300 + 400 = 900 pC, which is also",
+          "C × V = 9 pF × 100 V."
+        ],
+        "margin_note": "Last mark. All three charges with pC units, and the total as a check.",
+        "why": "Each charge is in the same ratio as its capacitance, so the three answers must come out in the ratio 2 : 3 : 4 — a fast way to spot a slip.",
+        "common_mistakes": [
+          "Writing the answers in coulomb without the pico prefix.",
+          "Giving one combined charge instead of three separate charges."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the charges are 200 pC, 300 pC and 400 pC on the 2, 3 and 4 pF capacitors.",
+          "accept": [
+            "two hundred, three hundred and four hundred picocoulomb",
+            "charges in the ratio two three four",
+            "q is 200 pC on the 2 pF"
+          ],
+          "reject": [
+            "full hundred volts on each capacitor"
+          ],
+          "heard_as": [
+            "picocoulomb",
+            "200 pC"
+          ]
+        },
+        "memory_tip": "Same V, so the charges are in the same ratio as the capacitances: 2 : 3 : 4."
+      }
+    ]
+  },
+  "insider_note": "Both parts are answered from one line, q = CV with a common V — the marks go missing when the 100 V is shared out between the three capacitors instead of being applied to each."
+}

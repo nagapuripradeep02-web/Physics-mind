@@ -1,0 +1,306 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_series_combination_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain series combination of capacitors. Derive the formula for equivalent capacitance in each combination.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The arrangement",
+      "marks": 1
+    },
+    {
+      "label": "Adding the potential differences",
+      "marks": 2
+    },
+    {
+      "label": "The equivalent capacitance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). Hand-checked: in series Q is common, V = V₁+V₂+V₃ with Vᵢ = Q/Cᵢ gives 1/C = 1/C₁+1/C₂+1/C₃ — the book's chain, correct. The question text is the book's, including its 'in each combination' tail (this card derives the series case; the parallel case is its own SAQ)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Potential and Capacitance · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_arrangement",
+        "kind": "text",
+        "label": "The arrangement",
+        "marks": 1,
+        "mark_note": "Arrangement",
+        "lines": [
+          "In series, the second plate of the first",
+          "capacitor joins the first plate of the second,",
+          "and so on down the line. The two free end",
+          "plates join the two battery terminals.",
+          "The same charge Q appears on each capacitor;",
+          "the applied V is shared between them."
+        ],
+        "margin_note": "First mark. Plate-to-plate in one line; same Q on each, V shared.",
+        "why": "The plate pair joining two neighbours is an isolated conductor — charge separating on one face must come from the other — so one Q runs through the whole chain, and the battery's V is split across the gaps.",
+        "common_mistakes": [
+          "Saying V is the same on each — in series it is the CHARGE that is common.",
+          "Describing plates joined to common terminals — that is the parallel arrangement."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That capacitors join plate to plate in one line, the same Q sits on each, and V is shared.",
+          "accept": [
+            "plate to plate in a line",
+            "same charge on each",
+            "voltage is shared"
+          ],
+          "reject": [
+            "one by C is the sum of one by C i"
+          ],
+          "heard_as": [
+            "series",
+            "same charge"
+          ]
+        },
+        "memory_tip": "Series: one path, one Q, shared V."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "three_capacitors_series",
+          "width": 480,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "top_wires",
+              "d": "M 40 80 L 130 80 M 150 80 L 230 80 M 250 80 L 330 80 M 350 80 L 440 80",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cap1_plates",
+              "d": "M 130 56 L 130 104 M 150 56 L 150 104",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "cap2_plates",
+              "d": "M 230 56 L 230 104 M 250 56 L 250 104",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "cap3_plates",
+              "d": "M 330 56 L 330 104 M 350 56 L 350 104",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "left_drop",
+              "d": "M 40 80 L 40 190 L 210 190",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "right_drop",
+              "d": "M 440 80 L 440 190 L 270 190",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "battery_long",
+              "d": "M 210 174 L 210 206",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "battery_short",
+              "d": "M 270 182 L 270 198",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_c1",
+              "x": 126,
+              "y": 44,
+              "text": "C₁",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_c2",
+              "x": 226,
+              "y": 44,
+              "text": "C₂",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_c3",
+              "x": 326,
+              "y": 44,
+              "text": "C₃",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_plus",
+              "x": 194,
+              "y": 170,
+              "text": "+",
+              "ms": 300,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_minus",
+              "x": 278,
+              "y": 170,
+              "text": "−",
+              "ms": 300,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_v",
+              "x": 232,
+              "y": 228,
+              "text": "V",
+              "ms": 300
+            }
+          ]
+        },
+        "margin_note": "Three capacitors in one line across the battery V.",
+        "why": "One unbroken path through all three gaps is what makes the same Q appear on each capacitor — the figure shows there is nowhere else for the charge to go.",
+        "common_mistakes": [
+          "Drawing the capacitors in separate branches — that is the parallel figure."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That three capacitors are drawn in one line with a battery across the ends.",
+          "accept": [
+            "three capacitors in a line",
+            "battery across the ends"
+          ],
+          "reject": [
+            "V is V one plus V two plus V three"
+          ],
+          "heard_as": [
+            "series circuit",
+            "one line"
+          ]
+        },
+        "memory_tip": "One wire, three gaps, one battery below."
+      },
+      {
+        "id": "s3_add_pds",
+        "kind": "equation",
+        "label": "Adding the potential differences",
+        "marks": 2,
+        "mark_note": "V = ΣQ/Cᵢ",
+        "lines": [
+          "The applied potential difference is the sum",
+          "of the three:",
+          {
+            "text": "V = V₁ + V₂ + V₃",
+            "style": "eq"
+          },
+          "With the common charge Q on each capacitor,",
+          {
+            "text": "V₁ = Q/C₁, V₂ = Q/C₂, V₃ = Q/C₃",
+            "style": "eq"
+          },
+          "If C is the equivalent capacitance, V = Q/C:",
+          {
+            "text": "Q/C = Q/C₁ + Q/C₂ + Q/C₃",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. V adds; each Vᵢ is the same Q over its own Cᵢ.",
+        "why": "The equivalent capacitor is DEFINED as the one that draws the same Q at the same total V — writing V = Q/C beside the sum is what turns the physics into the formula.",
+        "common_mistakes": [
+          "Adding charges instead of potential differences — charges are all equal here.",
+          "Using different charges Q₁, Q₂, Q₃ — series forces one common Q."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That V is the sum of the three potential differences, each equal to Q over its own C.",
+          "accept": [
+            "V is V one plus V two plus V three",
+            "each V is Q by its C",
+            "same Q in every term"
+          ],
+          "reject": [
+            "plate to plate in a line"
+          ],
+          "heard_as": [
+            "sum",
+            "Q by C"
+          ]
+        },
+        "memory_tip": "Series: the V's add up, the Q factors out."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The equivalent capacitance",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Dividing every term by Q:",
+          {
+            "text": "1/C = 1/C₁ + 1/C₂ + 1/C₃",
+            "style": "boxed"
+          },
+          "The equivalent C is smaller than the smallest",
+          "of C₁, C₂, C₃."
+        ],
+        "margin_note": "Last mark. Box the reciprocal sum and note that C comes out smaller.",
+        "why": "Adding gaps in series is like lengthening the gap of one capacitor — harder to store charge — so reciprocals add and the result is smaller than every member.",
+        "common_mistakes": [
+          "Writing C = C₁ + C₂ + C₃ — that is the parallel formula.",
+          "Forgetting that the reciprocal sum still needs inverting to get C itself."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one by C equals the sum of the three reciprocals, and C is smaller than the smallest.",
+          "accept": [
+            "one by C is the sum of one by C i",
+            "reciprocals add",
+            "smaller than the smallest"
+          ],
+          "reject": [
+            "C is C one plus C two plus C three"
+          ],
+          "heard_as": [
+            "reciprocal",
+            "one by C"
+          ]
+        },
+        "memory_tip": "Series capacitors behave like parallel resistors: reciprocals add."
+      }
+    ]
+  },
+  "insider_note": "The one line that earns the middle marks is V₁ = Q/C₁ etc. with the SAME Q — the examiner checks that no Q₁, Q₂, Q₃ appear."
+}

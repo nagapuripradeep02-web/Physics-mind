@@ -15,6 +15,13 @@
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { answerBookQuestionSchema } from '../../src/schemas/answerBook';
+// The HOUSE Rule-41 list, imported not copied — the same one build_answer_book.ts
+// uses and the same one the shakedown grades Vidi's replies with. This tool kept
+// a private word list at first, which is how it ended up with a DIFFERENT
+// standard from the build: it skipped `why`, and the build caught an idiom there
+// that this had passed. Agents working on parked cards cannot run the build, so
+// this is their only Rule-41 gate and it must be the same gate.
+import { idiomsIn } from '../../src/lib/answerBook/vidiChecks';
 
 // Both the shipped cards and the parked ones. The first version read
 // `answer-book/questions/` alone, so running it on a chapter still parked in
@@ -27,27 +34,6 @@ const DIRS = [
     join(process.cwd(), 'answer-book', 'wip', 'p2', 'cards'),
 ];
 const PREFIX = process.argv[2] ?? 'ts_ipe_p2_';
-
-/**
- * Rule 41: literary register that has no place in a reader-facing string.
- *
- * The scan looks for a PHYSICAL subject doing a human thing. An examiner who
- * "wants the substitution line" is a person wanting something — literal, and
- * exactly the plain wording Rule 41 asks for — so these verbs are reported only
- * when the nearby subject is a thing. Banning the verb outright produced 12
- * false hits on the first run and would have pushed authoring back towards
- * vaguer prose, which is the opposite of the rule's purpose. The one true hit it
- * found was a wave crest that "knows nothing of the motion".
- */
-const HUMAN_SUBJECTS = /\b(examiner|examiners|teacher|student|marker|mark|marks|scheme|question|paper|board|code|phrasing)\b/i;
-const IDIOMS = [
-    'wants to', 'want to', 'wants', 'tries to', 'try to', 'happily', 'lazily',
-    'fights', 'fight back', 'refuses', 'refuse to', 'prefers', 'prefer to',
-    'knows', 'decides', 'chooses', 'seeks', 'hunts', 'escapes angrily',
-    'like a blanket', 'traps heat', 'one-way street', 'gives up', 'gives back',
-    'holds on to', 'lets go', 'runs away', 'dies out', 'stops dead', 'grip',
-    'fate', 'all yours', 'budges', 'rides on', 'lurches', 'is shy of',
-];
 
 type Row = { file: string; msg: string };
 const errors: Row[] = [];
@@ -131,28 +117,26 @@ for (const [dir, f] of files) {
         if ((s.marks ?? 0) === 0 && s.mark_note) errors.push({ file: f, msg: `step "${s.id}" has 0 marks and a mark_note` });
     }
 
-    // Rule 41 register scan over every reader-facing string
-    const strings: string[] = [];
-    const walk = (v: any) => {
-        if (typeof v === 'string') strings.push(v);
-        else if (Array.isArray(v)) v.forEach(walk);
-        else if (v && typeof v === 'object') {
-            for (const [k, x] of Object.entries(v)) {
-                if (k === 'why' || k === 'verification' || k === 'note') continue; // explanation, not the answer
-                walk(x);
-            }
+    // Rule 41, over exactly the fields build_answer_book.ts scans — including
+    // `why`, which an earlier version of this tool skipped.
+    const r41: [string, string][] = [];
+    if (q.insider_note) r41.push(['insider_note', q.insider_note]);
+    for (const s of q.answer.steps) {
+        if (s.why) r41.push([`${s.id}.why`, s.why]);
+        if (s.memory_tip) r41.push([`${s.id}.memory_tip`, s.memory_tip]);
+        if (s.margin_note) r41.push([`${s.id}.margin_note`, s.margin_note]);
+        for (const [i, m] of (s.common_mistakes ?? []).entries()) {
+            r41.push([`${s.id}.common_mistakes[${i}]`, m]);
         }
-    };
-    walk({ question_text: q.question_text, steps: q.answer.steps, insider_note: q.insider_note });
-    for (const str of strings) {
-        for (const idiom of IDIOMS) {
-            const re = new RegExp(`\\b${idiom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
-            const m = re.exec(str);
-            if (!m) continue;
-            // Look back a few words: a HUMAN subject makes the verb literal.
-            if (HUMAN_SUBJECTS.test(str.slice(Math.max(0, m.index - 40), m.index))) continue;
-            warns.push({ file: f, msg: `Rule 41: "${idiom}" in “${str.slice(0, 60)}…”` });
+        for (const [i, l] of (s.lines ?? []).entries()) {
+            const text = typeof l === 'string' ? l : l?.text;
+            if (text) r41.push([`${s.id}.lines[${i}]`, text]);
         }
+    }
+    r41.push(['question_text', q.question_text]);
+    for (const [field, text] of r41) {
+        const hit = idiomsIn(text);
+        if (hit.length) errors.push({ file: f, msg: `${field}: Rule 41 — "${hit.join('", "')}"` });
     }
 
     const abbr = id.split('_')[3];

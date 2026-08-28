@@ -1,0 +1,429 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_energy_stored_with_dielectric",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Derive an expression for the energy stored in a capacitor. What is the energy stored when the space between the plates is filled with a dielectric (a) With charging battery disconnected? (b) With charging battery connected in the circuit?",
+  "appearances": [
+    {
+      "year": 2006
+    },
+    {
+      "year": 2007
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The charging work",
+      "marks": 1
+    },
+    {
+      "label": "The energy integral",
+      "marks": 2
+    },
+    {
+      "label": "The three forms",
+      "marks": 1
+    },
+    {
+      "label": "Battery disconnected",
+      "marks": 2
+    },
+    {
+      "label": "Battery connected",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+1+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). APPEARANCES: the book prints '(2006, 2007-MAY)' beside this question — the only exam-year citation in Chapter 5. The schema's appearance object carries year, q_no and board only, so the MONTH is recorded here and not in the data: the 2007 sitting is the MAY paper. No board is printed, so no board key is set (an absent board means ts_ipe by the schema's own convention). Hand-checked against the book: W = ∫₀^Q (q/C) dq = Q²/2C, so U = Q²/2C = CV²/2 = QV/2; with the battery disconnected Q is fixed, C₀ → KC₀, V = V₀/K and U = Q²/2KC₀ = U₀/K; with the battery connected V is fixed at V₀, Q = KC₀V₀ = KQ₀ and U = KC₀V₀²/2 = KU₀. Every result the book prints is correct. The book's answer text carries two misspellings, not copied: 'the energy stored bocomes' and a scan-blurred 'V≈V₀' where the algebra needs V = V₀; it also uses the older word 'condenser' for capacitor throughout. Transcription: the printed spaces before the two question marks are dropped; nothing else is changed."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Electric Potential and Capacitance · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_charging_work",
+        "kind": "text",
+        "label": "The charging work",
+        "marks": 1,
+        "mark_note": "Work against v = q/C",
+        "lines": [
+          "Take an uncharged capacitor of capacitance C.",
+          "To add more charge to a plate that already",
+          "carries some, work has to be done against the",
+          "potential difference already present.",
+          "When the charge on the capacitor is q, that",
+          "potential difference is v = q/C."
+        ],
+        "margin_note": "First mark. The charging is done against a potential difference that itself grows.",
+        "why": "The energy comes out as Q²/2C rather than QV only because the opposing potential difference grows with the charge already delivered — that is the whole physics of the derivation.",
+        "common_mistakes": [
+          "Treating the potential difference as fixed at V throughout the charging.",
+          "Starting from a charged capacitor, which leaves no work to add up."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That charging is done against the potential difference already on the plates, v = q/C.",
+          "accept": [
+            "work is done against the existing potential",
+            "small v equals q by C",
+            "start from an uncharged capacitor"
+          ],
+          "reject": [
+            "d W is v d q"
+          ],
+          "heard_as": [
+            "uncharged",
+            "q by C"
+          ]
+        },
+        "memory_tip": "The opposing potential difference grows as the charge grows, so later charge needs more work."
+      },
+      {
+        "id": "s2_energy_integral",
+        "kind": "equation",
+        "label": "The energy integral",
+        "marks": 2,
+        "mark_note": "W = Q²/2C",
+        "lines": [
+          "The small work done in adding a further",
+          "charge dq is dW = v dq. Adding all such",
+          "bits of work from q = 0 to q = Q:",
+          {
+            "text": "W = ∫ v dq = ∫ (q/C) dq,  q from 0 to Q",
+            "style": "eq"
+          },
+          {
+            "text": "W = [q²/2C],  q from 0 to Q",
+            "style": "eq"
+          },
+          {
+            "text": "W = Q²/2C",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. Write dW = v dq, put v = q/C, integrate between 0 and Q.",
+        "why": "The integral is what turns a growing potential difference into a single number; the factor of two comes straight out of integrating q, not from any separate rule.",
+        "common_mistakes": [
+          "Writing W = QV by taking v outside the integral.",
+          "Losing the limits, so the constant of integration is never removed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dW = v dq is integrated with v = q/C from 0 to Q, giving W = Q²/2C.",
+          "accept": [
+            "d W is v d q",
+            "integrate q by C from zero to Q",
+            "W is Q squared by 2 C"
+          ],
+          "reject": [
+            "work is done against the existing potential"
+          ],
+          "heard_as": [
+            "integrate",
+            "Q squared by two C"
+          ]
+        },
+        "memory_tip": "Integrating q gives q²/2 — that is where the half in the energy comes from."
+      },
+      {
+        "id": "s3_three_forms",
+        "kind": "equation",
+        "label": "The three forms",
+        "marks": 1,
+        "mark_note": "Three forms",
+        "lines": [
+          "This work is stored in the capacitor as",
+          "electric potential energy U. Using Q = CV,",
+          "the same energy can be written in three ways:",
+          {
+            "text": "U = Q²/2C = CV²/2 = QV/2",
+            "style": "boxed"
+          },
+          "Which form is useful depends on whether the",
+          "charge or the potential difference is held",
+          "fixed, and that is the difference between the",
+          "two cases below."
+        ],
+        "margin_note": "Third mark. All three forms, and note that the fixed quantity picks the form.",
+        "why": "The two dielectric cases are only different because one holds Q fixed and the other holds V fixed, so choosing the matching form is what parts (a) and (b) test.",
+        "common_mistakes": [
+          "Dropping the factor of two and writing CV² or Q²/C.",
+          "Giving only one form, then being unable to handle case (a)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That U = Q²/2C = CV²/2 = QV/2, and that the form to use depends on which quantity is held fixed.",
+          "accept": [
+            "U is Q squared by 2 C",
+            "U is half C V squared",
+            "three equivalent forms"
+          ],
+          "reject": [
+            "integrate q by C from zero to Q"
+          ],
+          "heard_as": [
+            "half C V squared",
+            "Q squared by two C"
+          ]
+        },
+        "memory_tip": "Q fixed, use Q²/2C. V fixed, use CV²/2. Match the form to the quantity that is constant."
+      },
+      {
+        "id": "s4_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "capacitor_with_dielectric_and_switch",
+          "width": 420,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "wire_left",
+              "d": "M 175 60 L 70 60 L 70 190 L 140 190",
+              "ms": 4360
+            },
+            {
+              "type": "stroke",
+              "id": "plate_left",
+              "d": "M 175 34 L 175 86",
+              "ms": 740
+            },
+            {
+              "type": "stroke",
+              "id": "slab_outline",
+              "d": "M 180 30 L 214 30 L 214 90 L 180 90 Z",
+              "ms": 2690
+            },
+            {
+              "type": "stroke",
+              "id": "plate_right",
+              "d": "M 219 34 L 219 86",
+              "ms": 740
+            },
+            {
+              "type": "stroke",
+              "id": "wire_right",
+              "d": "M 219 60 L 340 60 L 340 190 L 265 190",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "switch_lever",
+              "d": "M 265 190 L 240 170",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "wire_bottom",
+              "d": "M 225 190 L 155 190",
+              "ms": 1000
+            },
+            {
+              "type": "stroke",
+              "id": "battery_long_plate",
+              "d": "M 155 174 L 155 206",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "battery_short_plate",
+              "d": "M 140 182 L 140 198",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_capacitance",
+              "x": 176,
+              "y": 114,
+              "text": "C₀",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_dielectric",
+              "x": 192,
+              "y": 66,
+              "text": "K",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_supply",
+              "x": 130,
+              "y": 228,
+              "text": "V₀",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_switch",
+              "x": 252,
+              "y": 160,
+              "text": "switch",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "One circuit for both cases: switch open is (a), battery disconnected; switch closed is (b), battery connected.",
+        "why": "Drawing one circuit with a switch makes the only difference between the two cases visible — whether the battery is still in the loop when the slab goes in.",
+        "common_mistakes": [
+          "Drawing the slab outside the plates instead of between them."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a capacitor with a dielectric slab between its plates is drawn in a loop with a battery and a switch.",
+          "accept": [
+            "capacitor with a slab between the plates",
+            "battery and switch in the loop",
+            "switch open or closed for the two cases"
+          ],
+          "reject": [
+            "U is Q squared by 2 C"
+          ],
+          "heard_as": [
+            "switch",
+            "slab"
+          ]
+        },
+        "memory_tip": "Switch open: the charge cannot change. Switch closed: the voltage cannot change."
+      },
+      {
+        "id": "s5_battery_disconnected",
+        "kind": "equation",
+        "label": "Battery disconnected",
+        "marks": 2,
+        "mark_note": "Q fixed, U = U₀/K",
+        "lines": [
+          "(a) With the charging battery disconnected.",
+          "Let a capacitor of capacitance C₀ be charged",
+          "to a potential difference V₀. Its charge is",
+          "Q = C₀V₀ and its stored energy is",
+          {
+            "text": "U₀ = Q²/2C₀",
+            "style": "eq"
+          },
+          "The battery is now removed and a slab of",
+          "dielectric constant K is placed between the",
+          "plates. With no battery in the circuit the",
+          "charge Q on the plates cannot change. The",
+          "capacitance becomes C = KC₀, so",
+          {
+            "text": "V = Q/KC₀ = V₀/K",
+            "style": "eq"
+          },
+          {
+            "text": "U = Q²/2C = Q²/2KC₀ = U₀/K",
+            "style": "eq"
+          },
+          {
+            "text": "Q fixed: V = V₀/K and U = U₀/K",
+            "style": "boxed"
+          },
+          "Both the potential difference and the",
+          "energy fall to 1/K of their first values."
+        ],
+        "margin_note": "Two marks. State that Q cannot change, then use the Q²/2C form.",
+        "why": "With the plates isolated there is no path for charge to leave, so Q is the constant; the energy falls because the field pulls the slab in and does work on it.",
+        "common_mistakes": [
+          "Holding V constant instead of Q, which reverses the answer.",
+          "Using CV²/2 with the old V₀, which misses the drop in V."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with the battery disconnected Q stays fixed, so V falls to V₀/K and U falls to U₀/K.",
+          "accept": [
+            "charge stays the same",
+            "V becomes V nought by K",
+            "energy falls to U nought by K"
+          ],
+          "reject": [
+            "battery keeps the voltage the same"
+          ],
+          "heard_as": [
+            "disconnected",
+            "U nought by K"
+          ]
+        },
+        "memory_tip": "No battery, no path for charge: Q stays the same, so V and U both divide by K."
+      },
+      {
+        "id": "s6_battery_connected",
+        "kind": "boxed_final",
+        "label": "Battery connected",
+        "marks": 2,
+        "mark_note": "V fixed, U = KU₀",
+        "lines": [
+          "(b) With the charging battery still connected.",
+          "The battery holds the potential difference at",
+          "V₀, so here it is V that cannot change. The",
+          "starting energy is",
+          {
+            "text": "U₀ = C₀V₀²/2",
+            "style": "eq"
+          },
+          "The same slab makes the capacitance C = KC₀,",
+          "and the charge rises to",
+          {
+            "text": "Q = KC₀V₀ = KQ₀",
+            "style": "eq"
+          },
+          {
+            "text": "U = CV²/2 = KC₀V₀²/2 = KU₀",
+            "style": "eq"
+          },
+          {
+            "text": "V fixed: Q = KQ₀ and U = KU₀",
+            "style": "boxed"
+          },
+          "The charge and the stored energy both rise to K",
+          "times their first values, and the extra energy",
+          "is supplied by the battery."
+        ],
+        "margin_note": "Last two marks. State that V cannot change, use CV²/2, and name the battery as the source of the extra energy.",
+        "why": "The battery is still in the loop, so it supplies more charge to hold V at V₀ — the extra energy has to come from somewhere, and saying so is what separates a full answer from a formula.",
+        "common_mistakes": [
+          "Giving U₀/K again by copying case (a).",
+          "Not saying where the extra energy comes from."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with the battery connected V stays at V₀, so Q rises to KQ₀ and U rises to KU₀, the extra energy coming from the battery.",
+          "accept": [
+            "battery keeps the voltage the same",
+            "charge rises to K times",
+            "energy becomes K U nought"
+          ],
+          "reject": [
+            "charge stays the same"
+          ],
+          "heard_as": [
+            "connected",
+            "K U nought"
+          ]
+        },
+        "memory_tip": "Battery in the loop fixes V, so C up by K makes Q and U rise by K too."
+      }
+    ]
+  },
+  "insider_note": "Half the paper's marks for this question are in the two dielectric cases, so an answer that derives U and stops there scores about four — and the single line the examiner checks first is which of Q and V is held constant in each case."
+}
