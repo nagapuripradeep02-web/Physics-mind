@@ -70,8 +70,8 @@ be unique within a unit — a merged chapter 7 would carry four `vsaq1` refs and
 | Unit | abbr | Book ch. | Name | PDF pp | VSAQ | SAQ | LAQ | Cards |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `ss` | 1 | Solid State | 1–3 | 13 | 7 | – | 20 |
-| 2 | `sol` | 2 | Solutions | 4–7 | 16 | 5 | – | 21 |
-| 3 | `ec` | 3 | Electro Chemistry | 8–11 | 10 | 4 | 6 | 20 |
+| 2 | `sol` | 2 | Solutions | 4–7 | 16 **+3** | 5 **+1** | – | 25 |
+| 3 | `ec` | 3 | Electro Chemistry | 8–11 | 10 **+1** | 4 | 6 | 21 |
 | 4 | `ck` | 4 | Chemical Kinetics | 12–15 | 12 | – | 6 | 18 |
 | 5 | `sc` | 5 | Surface Chemistry | 15–18 | 16 | 8 | – | 24 |
 | 6 | `met` | 6 | Metallurgy | 18–21 | 11 | 7 | – | 18 |
@@ -87,7 +87,10 @@ be unique within a unit — a merged chapter 7 would carry four `vsaq1` refs and
 | 16 | `ape` | 12b | Alcohols, Phenols and Ethers | 47–51 | 5 | 10 | 2 | 17 |
 | 17 | `akc` | 12c | Aldehydes, Ketones and Carboxylic Acids | 51–54 | 8 | 5 | 1 | 14 |
 | 18 | `ocn` | 12d | Organic Compounds Containing Nitrogen | 54–59 | 9 | 10 | 1 | 20 |
-| | | | **Total** | | **223** | **91** | **21** | **335** |
+| | | | **Total** | | **227** | **92** | **21** | **340** |
+
+The bold **+n** cells in units 2 and 3 are the five PROBLEMS (§ below), which carry no printed
+section of their own — they are the only cards in the subject whose section is inferred.
 
 **This table was wrong once, and the unit agent caught it.** It first read unit 16 as VSAQ 1–3
 and the subject as 333 cards. The agent authoring that unit counted 1–5 and named the two it
@@ -110,10 +113,24 @@ Shape facts that are NOT uniform, so never assume:
   behind a highest-printed-number of 7. Use refs `saq6` and `saq6b`, and say so in the manifest.
 - Six units start **mid-page**, under the tail of the previous one. Walk from the question that
   CLOSES the previous unit to the one that OPENS the next.
-- **PROBLEMS sections are DEFERRED** (standing founder decision, 2026-08-20). Unit 2 has four
-  (`Problems : In text Questions`, book p.68) and unit 3 has one (`PROBLEM`, book p.72). They
-  belong to no paper section and have no mark scheme. Do not author them; they are recorded in
-  the `units.json` comment.
+- **The PROBLEMS sections ARE authored for this subject** (founder call, 2026-08-29), lifting the
+  standing 2026-08-20 deferral here only. Unit 2 has four (`Problems : In text Questions`, book
+  p.68) and unit 3 has one (`PROBLEM`, book p.72). With those five, **every printed question in the
+  59 pages is in the bank.**
+  - **No engine change was needed and none was made.** They ship as ordinary VSAQ/SAQ with **no
+    `source` value** — the same as the 1,144 other entries that simply come from their book —
+    rather than inventing a fourth `section` value across the build, the player and the gates,
+    which is what the physics deferral was protecting against. A new `source` string would also
+    have failed `check:papers`, whose `KNOWN_SOURCES` is a closed set.
+  - **Their section and marks are the only inferred claims in the subject.** A PROBLEM belongs to
+    no printed paper section, so the placement is authored, not read, and every one of the five
+    says exactly that in its own `verification.note`. Four are VSAQ at 2 marks (single-formula
+    calculations, the shape this book already asks as Very Short Answers in the same units); the
+    vapour-pressure molar-mass one is SAQ at 4, matching unit 2's existing Short Answer 4, which
+    uses the same relation.
+  - **This follows the CHEMISTRY precedent, not the physics one.** Chemistry-I records that
+    chemistry numericals sit inside the VSAQ and SAQ lists and *are* the asked bank, so the
+    "belongs to no section" objection is weaker here than for a physics practice problem.
 
 ## 4. The bar a card must clear
 
@@ -339,6 +356,16 @@ molality, printed with the unit M) because the correct value is defensible and t
 Unit 2 SAQ 4 does **not** override (8 g from the dilute approximation, where exact Raoult gives
 10 g) because NCERT prints 8 g too and a student should not hand an examiner a number nobody
 expects. Both are recorded; a teacher settles both.
+
+**What the five PROBLEMS added.** Unit 3's problem prints the equivalent mass of copper as **31**
+where 63.5/2 = **31.75**, so its printed 0.39 g should be 0.395 g. Unit 2's problem 2 does the
+opposite — it **settles** a contradiction, dividing by the volume of SOLUTION (the correct route)
+where the book's own VSAQ 12 three pages earlier divides by the volume of WATER and prints the
+resulting molality as a molarity. And problem 4 uses the dilute approximation where it is genuinely
+**sound** (relative lowering 0.0059; exact 169.0 against approximate 170), the mirror image of unit
+2's SAQ 4, where the same shortcut is applied at a relative lowering of 0.2 and the exact answer
+differs by a quarter. Those two cards now cross-reference each other, so a student can see when the
+shortcut is safe and when it is not.
 
 **Where our numbers come from.** This book prints almost no numeric data. Nearly every value on
 these cards — electron gain enthalpies, bond enthalpies, pKa and pKb, boiling points, magnetic

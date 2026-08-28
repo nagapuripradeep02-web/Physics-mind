@@ -1,0 +1,78 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_prob_mole_fraction_ethylene_glycol",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": { "number": 2, "name": "Solutions (Chemistry-II)" },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the mole fraction of ethylene glycol (C₂H₆O₂) in a solution containing 20% of C₂H₆O₂ by mass.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Moles of each component", "marks": 1 },
+    { "label": "The mole fraction", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From the boxed 'Problems : In text Questions' section of the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.68 (problem 1). A PROBLEM belongs to no printed paper section and the book prints no mark scheme for it, so BOTH the Section-A placement and the 1+1 split are authored CLAIMS, not the board's — this is the one class of card in Chemistry-II whose section is inferred rather than read. It is placed at 2 marks because it is a single-formula calculation of exactly the shape this book already asks as Very Short Answer questions in the same unit (mole fraction of 98% H₂SO₄, molarity of 10% w/w glucose). Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed question asks for 'the fraction', with no qualifier, while its own answer computes the MOLE fraction; the card asks for the mole fraction so the question and the answer agree."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "text",
+        "label": "Moles of each component",
+        "marks": 1,
+        "mark_note": "Both mole counts",
+        "lines": [
+          "20% by mass means 20 g of ethylene",
+          "glycol in every 100 g of SOLUTION.",
+          "Mass of water = 100 − 20 = 80 g",
+          "M(C₂H₆O₂) = 62 g mol⁻¹, M(H₂O) = 18 g mol⁻¹",
+          { "text": "n(glycol) = 20 / 62 = 0.3226 mol", "style": "eq" },
+          { "text": "n(water) = 80 / 18 = 4.4444 mol", "style": "eq" }
+        ],
+        "why": "A percentage by mass is per 100 g of solution, so 100 g is the natural basis: it gives the mass of glycol directly and the mass of water by subtraction. Mole fraction is a ratio of MOLES, not of masses, so both masses must be divided by their molar masses before anything is compared.",
+        "common_mistakes": [
+          "Taking 20 g of glycol in 100 g of WATER. The label is per 100 g of solution, so the water is 80 g, not 100 g.",
+          "Writing the mole fraction as 20/100 = 0.2. That is the mass fraction; the mole fraction needs both mole counts."
+        ],
+        "memory_tip": "Per cent by mass is always per 100 g of solution. Write the two masses first, then divide each by its molar mass.",
+        "margin_note": "Show both mole counts. The examiner needs to see 20/62 and 80/18 before the ratio."
+      },
+      {
+        "id": "s2_fraction",
+        "kind": "boxed_final",
+        "label": "The mole fraction",
+        "marks": 1,
+        "mark_note": "The ratio and the value",
+        "lines": [
+          { "text": "x(glycol) = n(glycol) / (n(glycol) + n(water))", "style": "eq" },
+          { "text": "= 0.3226 / (0.3226 + 4.4444)", "style": "eq" },
+          { "text": "x(glycol) = 0.068", "style": "boxed" },
+          "x(water) = 1 − 0.068 = 0.932"
+        ],
+        "why": "Mole fraction is the moles of one component divided by the TOTAL moles of the solution, which is why the denominator carries both terms. The two mole fractions must add to 1, so the water value follows by subtraction and doubles as a check on the arithmetic.",
+        "common_mistakes": [
+          "Dividing by the moles of water instead of by the total. That ratio is not a mole fraction.",
+          "Giving the mole fraction a unit. It is a ratio of moles, so it has none.",
+          "Stopping at the glycol value when the question names the solution. Quoting both, and showing they add to 1, costs one line."
+        ],
+        "memory_tip": "The two mole fractions add to 1. Work out the smaller one, then subtract.",
+        "margin_note": "Box the value and add the water fraction. The two adding to 1 is a free check."
+      }
+    ]
+  },
+  "insider_note": "The whole question is the difference between mass and moles. Write the two masses, divide each by its molar mass, then divide by the TOTAL. Quoting x(water) = 0.932 alongside shows the two add to 1 and costs one line."
+}
