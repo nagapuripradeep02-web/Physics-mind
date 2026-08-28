@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_mole_fraction_98_h2so4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the mole fraction of H₂SO₄ in a solution containing 98% H₂SO₄ by mass.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Moles of each component",
+      "marks": 1
+    },
+    {
+      "label": "The mole fraction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. ARITHMETIC RECHECKED and the printed FINAL answer 0.9 is correct, but the line above it is not. BOOK SLOPPINESS (book p.65, VSAQ 11): the book rounds n(H₂O) = 2/18 to 0.1, writes the total moles as 1.1, and then prints \"1/1.1 = 0.9\". 1/1.1 is 0.909, not 0.9. Kept unrounded, 2/18 is exactly 1/9, the total is 10/9, and the mole fraction is exactly 9/10 = 0.900. This card carries the unrounded chain, so the printed answer and the working now agree."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "equation",
+        "label": "Moles of each component",
+        "marks": 1,
+        "mark_note": "Moles",
+        "lines": [
+          "98% by mass means 98 g of H₂SO₄ in every",
+          "100 g of SOLUTION.",
+          "Mass of water = 100 − 98 = 2 g",
+          "Molar mass of H₂SO₄ = 98 g mol⁻¹",
+          "Molar mass of H₂O = 18 g mol⁻¹",
+          {
+            "text": "n(H₂SO₄) = 98 / 98 = 1 mol",
+            "style": "eq"
+          },
+          {
+            "text": "n(H₂O) = 2 / 18 = 0.1111 mol",
+            "style": "eq"
+          }
+        ],
+        "why": "Percentage by mass is always measured against 100 g of solution, so taking 100 g as the basis turns the percentage straight into masses with no extra step. Both masses then divide by their molar masses, because a mole fraction is a ratio of moles and never of masses.",
+        "common_mistakes": [
+          "Taking 98 g of acid in 100 g of WATER. Per cent by mass is per 100 g of solution, so the water here is only 2 g.",
+          "Rounding 2/18 to 0.1 at this stage. Keep 0.1111, because the rounding changes the third figure of the answer."
+        ],
+        "memory_tip": "98% by mass: 98 g of acid and only 2 g of water in every 100 g of solution.",
+        "margin_note": "Write the basis line \"take 100 g of solution\" first. Both mole values are needed for this mark."
+      },
+      {
+        "id": "s2_mole_fraction",
+        "kind": "boxed_final",
+        "label": "The mole fraction",
+        "marks": 1,
+        "mark_note": "Mole fraction",
+        "lines": [
+          "Total moles = 1 + 0.1111 = 1.1111 mol",
+          {
+            "text": "x(H₂SO₄) = n(H₂SO₄) / total moles",
+            "style": "eq"
+          },
+          {
+            "text": "= 1 / 1.1111",
+            "style": "indent"
+          },
+          {
+            "text": "x(H₂SO₄) = 0.900",
+            "style": "boxed"
+          },
+          "Check: x(H₂O) = 1 − 0.900 = 0.100"
+        ],
+        "why": "The mole fraction is the moles of one component divided by the total moles of everything present. Kept unrounded the arithmetic is exact: 2/18 is 1/9, the total is 10/9, and 1 divided by 10/9 is 9/10. The book instead rounds to 1.1 and then prints 1/1.1 = 0.9; the printed answer is right but that division actually gives 0.909, so the rounding is what makes that printed line wrong, not the answer itself.",
+        "common_mistakes": [
+          "Dividing by the moles of water instead of by the total moles. The denominator is the sum of all the components.",
+          "Leaving the answer with a unit. Mole fraction is a ratio of moles, so it has no unit."
+        ],
+        "memory_tip": "Denominator is the TOTAL moles, so the two mole fractions must add to 1.",
+        "margin_note": "Box 0.900 and write the check x(H₂O) = 0.100. The check costs one line and proves the denominator was right."
+      }
+    ]
+  },
+  "insider_note": "Almost the whole mark is in reading the label: 98% by mass leaves only 2 g of water in 100 g of solution. Students who read it as 98 g in 100 g of water get about 0.15 and lose both marks."
+}

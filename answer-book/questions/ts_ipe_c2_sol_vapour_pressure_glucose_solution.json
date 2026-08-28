@@ -1,0 +1,166 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_vapour_pressure_glucose_solution",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Vapour pressure of water at 293 K is 17.535 mm Hg. Calculate the vapour pressure of the solution at 293 K when 25 g of glucose is dissolved in 450 g of water.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The data",
+      "marks": 1
+    },
+    {
+      "label": "The relation used",
+      "marks": 1
+    },
+    {
+      "label": "Substitution",
+      "marks": 1
+    },
+    {
+      "label": "The vapour pressure",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. ARITHMETIC RECHECKED: (25 × 18)/(180 × 450) = 450/81000 = 0.005556; 17.535 × 0.005556 = 0.0974; 17.535 − 0.0974 = 17.4376, so the printed 17.44 mm Hg is correct. The dilute approximation is safe here: solving the exact relation, with n₂ = 0.1389 mol against n₁ = 25 mol, gives 17.4381 mm Hg, which rounds to the same 17.44. BOOK SLOPPINESS (book p.68, SAQ 5): the printed working jumps from \"(17.535 − Pₛ)/17.535 = (25/180) × (18/450)\" straight to \"Pₛ = 17.44 mm.Hg\" with no intermediate line, so the ratio 0.005556 and the lowering 0.0974 never appear. Both are written out here. The book also prints the unit as \"mm.Hg\" with a full stop; it is written mm Hg."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solutions — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_data",
+        "kind": "text",
+        "label": "The data",
+        "marks": 1,
+        "mark_note": "Data",
+        "lines": [
+          "Solute, glucose C₆H₁₂O₆:",
+          "w₂ = 25 g, M₂ = 180 g mol⁻¹",
+          "Solvent, water H₂O:",
+          "w₁ = 450 g, M₁ = 18 g mol⁻¹",
+          "Vapour pressure of pure water at 293 K:",
+          "p⁰ = 17.535 mm Hg",
+          "Vapour pressure of the solution pₛ = ?"
+        ],
+        "why": "Glucose is non-volatile, so it adds nothing to the vapour and the whole vapour pressure comes from the water. Listing the four quantities with the solute and the solvent kept apart is what stops the two masses and the two molar masses from being swapped in the formula, which is where this question is usually lost.",
+        "common_mistakes": [
+          "Using 342 for glucose. 342 g mol⁻¹ is sucrose; glucose C₆H₁₂O₆ is 180 g mol⁻¹.",
+          "Taking 450 g as the mass of the SOLUTION. It is the mass of water, the solvent, and the solution is 475 g."
+        ],
+        "memory_tip": "Solute is glucose, 25 g and 180 g mol⁻¹. Solvent is water, 450 g and 18 g mol⁻¹.",
+        "margin_note": "Head the two columns solute and solvent. This mark is for the data set out with units, before any formula."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "equation",
+        "label": "The relation used",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "For a dilute solution of a non-volatile",
+          "solute, Raoult's law gives",
+          {
+            "text": "(p⁰ − pₛ) / p⁰ = (w₂ × M₁) / (M₂ × w₁)",
+            "style": "eq"
+          },
+          "The left side is the relative lowering of",
+          "vapour pressure, and the right side is the",
+          "mole fraction of the solute written in",
+          "masses and molar masses."
+        ],
+        "why": "Relative lowering equals the mole fraction of the solute, n₂/(n₁ + n₂), and for a dilute solution the n₂ in the denominator is dropped to give n₂/n₁. Here that step is safe: 0.139 mol of glucose against 25 mol of water changes the answer only in the fourth decimal place, so the approximate and the exact routes both give 17.44 mm Hg.",
+        "common_mistakes": [
+          "Putting M₂ on top and M₁ below. The solute contributes its mass w₂ on top; the molar masses swap sides.",
+          "Writing the left side as pₛ/p⁰. The left side is the LOWERING (p⁰ − pₛ) over p⁰."
+        ],
+        "memory_tip": "Solute mass and solvent molar mass on top; solute molar mass and solvent mass below.",
+        "margin_note": "Write the formula in symbols before putting numbers in. The formula line is this mark on its own."
+      },
+      {
+        "id": "s3_substitution",
+        "kind": "equation",
+        "label": "Substitution",
+        "marks": 1,
+        "mark_note": "Substitution",
+        "lines": [
+          "Substituting the data:",
+          {
+            "text": "(17.535 − pₛ) / 17.535",
+            "style": "eq"
+          },
+          {
+            "text": "= (25 × 18) / (180 × 450)",
+            "style": "indent"
+          },
+          {
+            "text": "= 450 / 81000",
+            "style": "indent"
+          },
+          {
+            "text": "= 0.005556",
+            "style": "indent"
+          }
+        ],
+        "why": "Working the right side out to a single number first keeps the unknown pₛ on its own on the left, so the last step is one multiplication and one subtraction. The value 0.005556 is the mole fraction of glucose, and it is small, which is the sign that the dilute approximation is safe here.",
+        "common_mistakes": [
+          "Multiplying 25 by 180 and 18 by 450. The pairing is solute mass with solvent molar mass, so it is 25 × 18 over 180 × 450.",
+          "Rounding 0.005556 to 0.006 at this stage. The lowering is small, so early rounding moves the second decimal place of the answer."
+        ],
+        "memory_tip": "450 over 81000 is 0.005556, and that number is the mole fraction of the glucose.",
+        "margin_note": "Show the single-number line 0.005556. Working the right side first is what keeps the final step short."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The vapour pressure",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "17.535 − pₛ = 17.535 × 0.005556",
+            "style": "eq"
+          },
+          {
+            "text": "17.535 − pₛ = 0.0974",
+            "style": "indent"
+          },
+          {
+            "text": "pₛ = 17.535 − 0.0974",
+            "style": "eq"
+          },
+          {
+            "text": "pₛ = 17.44 mm Hg",
+            "style": "boxed"
+          }
+        ],
+        "why": "The lowering is only 0.0974 mm Hg because 25 g of a heavy solute is a small number of moles beside 25 moles of water. The final subtraction is the step that turns the relative lowering back into a vapour pressure, and the answer must come out just below 17.535, which is the quick check that no step was inverted.",
+        "common_mistakes": [
+          "Stopping at 0.0974 and calling it the answer. That is the LOWERING; the vapour pressure of the solution is 17.535 minus it.",
+          "Reporting a value above 17.535. A non-volatile solute always lowers the vapour pressure, so pₛ must be smaller than p⁰."
+        ],
+        "memory_tip": "The answer sits just below the pure water value, 17.535 mm Hg.",
+        "margin_note": "Box 17.44 mm Hg with its unit. Checking that the answer is below 17.535 costs no time and catches an inverted step."
+      }
+    ]
+  },
+  "insider_note": "The lowering is under a tenth of a millimetre, so an answer that is nowhere near 17.5 mm Hg has an inverted step in it. Check the boxed value against the pure water value before moving on."
+}

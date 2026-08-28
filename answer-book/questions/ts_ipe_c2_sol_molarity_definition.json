@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_molarity_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define molarity?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The formula and the unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the question is printed as \"Define molarity?\", with a question mark after an instruction; the printed wording is kept here so the card matches the paper. BOOK GAP (book p.65, VSAQ 5): the printed answer gives the definition and the formula but never states the unit and never says that molarity CHANGES with temperature. The temperature line is the one that separates molarity from molality, which is the very next question in the same book, so it is written here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Molarity (M) is the number of moles of",
+          "solute present in one litre of SOLUTION.",
+          {
+            "text": "M = (moles of solute) / (volume in L)",
+            "style": "eq"
+          }
+        ],
+        "why": "Molarity measures how much solute there is in a measured volume, which is what a burette or a pipette actually delivers. The word solution, not solvent, is the important part: the volume is measured after the solute has been dissolved and made up to the mark.",
+        "common_mistakes": [
+          "Writing \"one litre of solvent\". Molarity is per litre of SOLUTION.",
+          "Writing grams of solute instead of moles. The mass has to be divided by the molar mass first."
+        ],
+        "memory_tip": "Molarity is moles per litre of solution. Volume, so it is measured in a flask.",
+        "margin_note": "The word SOLUTION is the marked word in this line. Underline it."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula and the unit",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "M = (w × 1000) / (GMW × V in mL)",
+            "style": "boxed"
+          },
+          "w = mass of solute in gram",
+          "GMW = gram molecular weight of the solute",
+          "V = volume of the solution in mL",
+          "Unit: mol L⁻¹, written M.",
+          "Molarity changes with temperature, because",
+          "the volume of the solution changes with",
+          "temperature."
+        ],
+        "why": "The 1000 converts millilitres to litres, so the formula is the definition written for the quantities actually weighed and measured in the laboratory. The temperature line follows from the same formula: mass and molar mass are fixed, but the volume in the denominator expands on heating, so M falls.",
+        "common_mistakes": [
+          "Dividing by the volume in litres and still multiplying by 1000. The 1000 is there only because V is in mL.",
+          "Saying molarity does not change with temperature. That is molality; molarity has a volume in it, so it does change."
+        ],
+        "memory_tip": "Molarity has a volume in it, and volume changes with temperature.",
+        "margin_note": "Write the unit mol L⁻¹. A formula with no unit usually loses part of this mark."
+      }
+    ]
+  },
+  "insider_note": "Molarity and molality are asked as a pair in this book. Write the temperature line on both cards, because that is the single line an examiner uses to see whether the two terms have been separated."
+}
