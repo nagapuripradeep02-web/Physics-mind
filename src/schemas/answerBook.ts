@@ -225,8 +225,13 @@ export const answerBookQuestionSchema = z
         board_label: z.string().min(1),
         // One PAPER = one subject value (same list as build_answer_book.ts
         // SUBJECTS): mathematics = Maths-1A (predates 1B), mathematics_1b =
-        // Maths-1B. Unit numbers namespace per subject.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany']),
+        // Maths-1B, physics_2 = Senior Inter Physics Paper-II (year_cycle
+        // 'second_year'). Unit numbers namespace per subject — and physics_2
+        // rather than "physics units 15-30" is load-bearing, not cosmetic:
+        // notebook.js LEGACY_PHYSICS_KEYS remaps exact `physics-N` keys for the
+        // 2026-27 first-year renumbering, so second-year chapters filed under
+        // `physics` would be silently remapped onto first-year units.
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'physics_2']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),

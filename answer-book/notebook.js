@@ -172,10 +172,14 @@
       // mathematics from one build, and 'the physics' on a maths page is a false
       // statement about what was checked.
       // The SUBJECT word, not the paper: 'the mathematics and the method are
-      // checked' reads right for 1A and 1B alike.
+      // checked' reads right for 1A and 1B alike, and for physics_2 (Paper-II)
+      // the word is still 'physics' — spelled out rather than left to the
+      // fallthrough, because the fallthrough is what silently told every botany
+      // student 'the physics ... is checked' until 2026-08-25.
       var subjectWord = (question.subject || '').indexOf('mathematics') === 0 ? 'mathematics'
         : question.subject === 'chemistry' ? 'chemistry'
-        : question.subject === 'botany' ? 'botany' : 'physics';
+        : question.subject === 'botany' ? 'botany'
+        : question.subject === 'physics_2' ? 'physics' : 'physics';
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
         'The ' + subjectWord + ' and the method are checked; the exact split is a claim.';
     }
@@ -341,7 +345,8 @@
       copies would drift the day a sixth paper lands. */
   var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
                      mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
-                     botany: 'Botany', zoology: 'Zoology' };
+                     botany: 'Botany', zoology: 'Zoology',
+                     physics_2: 'Physics II' };
   function subjLabel(s) {
     return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
   }
@@ -496,7 +501,7 @@
     // inference. Absent (the full build) leaves the eyebrow subject-neutral.
     var eyebrow = $('catEyebrow');
     if (eyebrow && window.PM_STREAM) {
-      var base = 'Telangana IPE · First year';
+      var base = 'Telangana IPE · ' + (window.PM_YEAR || 'First year');
       var eyeText = base + ' · ' + window.PM_STREAM;
       if (Door.enabled()) {
         // The eyebrow already names the board, the year and the group, so it is

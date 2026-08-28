@@ -119,7 +119,7 @@
     <div class="door-tiles" id="doorYears"></div>
   </div>
 
-  <p class="door-foot">First year MPC is ready today. We build in the order students ask,
+  <p class="door-foot" id="doorFoot">We build in the order students ask,
     so tap &ldquo;Tell me when it is ready&rdquo; and yours moves up the list.</p>
 </main>
 
@@ -132,8 +132,11 @@
 <main class="catalog" id="catalogView" hidden>
   <div class="cat-hero">
     <!-- Subject-neutral since the book stopped being physics-only: it now carries
-         physics, chemistry and mathematics. The subject chips below say which. -->
-    <p class="cat-eyebrow" id="catEyebrow">Telangana IPE · First year</p>
+         physics, chemistry and mathematics. The subject chips below say which.
+         The YEAR here is the pre-paint fallback only: on a streamed build
+         renderCatalog() overwrites this line from window.PM_YEAR, so a
+         second-year artifact never keeps the word "First". -->
+    <p class="cat-eyebrow" id="catEyebrow">Telangana IPE</p>
     <h1>Question Bank</h1>
     <p class="cat-tag">Every answer, written the way the examiner marks it.</p>
     <p class="cat-sub" id="catSub"></p>

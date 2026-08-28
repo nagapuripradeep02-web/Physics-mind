@@ -161,20 +161,24 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
     const qid = String(body.question_id ?? '');
     const subjectKey = qid.startsWith('ts_ipe_m1a_') ? 'mathematics'
         : qid.startsWith('ts_ipe_m1b_') ? 'mathematics_1b'
-            : qid.startsWith('ts_ipe_c1_') ? 'chemistry' : 'physics';
+            : qid.startsWith('ts_ipe_c1_') ? 'chemistry'
+                : qid.startsWith('ts_ipe_p2_') ? 'physics_2' : 'physics';
     const SUBJECT_WORD: Record<string, string> = {
         physics: 'physics', chemistry: 'chemistry',
         mathematics: 'mathematics', mathematics_1b: 'mathematics',
+        physics_2: 'physics',
     };
     const SUBJECT_LABEL: Record<string, string> = {
         physics: 'Physics', chemistry: 'Chemistry',
         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+        physics_2: 'Physics II',
     };
     const SUBJECT_TERMS: Record<string, string> = {
         physics: 'velocity, speed, force, energy, mass, acceleration, momentum, friction, work, power, gravitational',
         chemistry: 'atom, orbital, bond, mole, oxidation, reduction, equilibrium, enthalpy, entropy, catalyst',
         mathematics: 'function, domain, range, matrix, determinant, inverse, vector, identity, period, triangle',
         mathematics_1b: 'locus, straight line, slope, plane, direction cosines, direction ratios, pair of lines, transformation',
+        physics_2: 'wavelength, frequency, refraction, lens, interference, charge, potential, capacitance, current, resistance, magnetic field, induction, photon, nucleus, semiconductor, diode, transistor',
     };
     const subjectWord = SUBJECT_WORD[subjectKey];
     const subjectTerms = SUBJECT_TERMS[subjectKey];
