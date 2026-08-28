@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_scandium_transition_zinc_not",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Scandium is a transition element but zinc is not. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Scandium has a partly filled d subshell",
+      "marks": 1
+    },
+    {
+      "label": "Zinc is d¹⁰ in the atom and in the ion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 2. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CRITERION CORRECTED (book p.91, VSAQ 2): the printed answer tests for \"unpaired d electron in the penultimate shell\" — Sc is [Ar]3d¹4s² and has one, Zn is [Ar]3d¹⁰4s² and has none. That test gives the right answer for zinc by accident and the WRONG answer for copper: Cu is [Ar]3d¹⁰4s¹ and has no unpaired d electron either, yet Cu²⁺ is 3d⁹ and copper IS a transition element. The card uses the standard definition — a partly filled (incompletely filled) d subshell in the atom OR in one of its common ions — and states the copper case explicitly. TREND AND EXCEPTIONS NAMED HERE: Zn, Cd and Hg are the d-block metals excluded by the strict definition; Cr ([Ar]3d⁵4s¹) and Cu ([Ar]3d¹⁰4s¹) are the two first-series configurations that do not follow the plain 3d^x 4s² pattern."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_scandium",
+        "kind": "text",
+        "label": "Scandium is a transition element",
+        "marks": 1,
+        "mark_note": "Sc configuration",
+        "lines": [
+          "A transition element has a partly filled",
+          "d subshell in the atom or in one of its",
+          "common ions.",
+          "Sc is [Ar] 3d¹ 4s².",
+          "The 3d subshell holds one electron out of",
+          "ten, so it is partly filled.",
+          "Scandium therefore is a transition",
+          "element."
+        ],
+        "why": "The definition is about a partly filled d subshell, not about which block an element is placed in. Scandium has 3d¹ in the free atom, which is partly filled, so it passes the test on the atom alone. Its only common ion, Sc³⁺, is 3d⁰ — which is why Sc³⁺ is colourless and diamagnetic even though scandium itself is a transition element.",
+        "common_mistakes": [
+          "Saying every d-block element is a transition element. Zn, Cd and Hg lie in the d block but do not meet the definition.",
+          "Testing the ion only. Sc³⁺ is 3d⁰, but the atom Sc is 3d¹, and the atom is enough."
+        ],
+        "memory_tip": "Test the atom first, then the common ions. One partly filled d subshell anywhere is enough.",
+        "margin_note": "Write the configuration [Ar] 3d¹ 4s² and the words \"partly filled\". The definition on its own is half this mark."
+      },
+      {
+        "id": "s2_zinc",
+        "kind": "boxed_final",
+        "label": "Zinc is not",
+        "marks": 1,
+        "mark_note": "Zn configuration",
+        "lines": [
+          "Zn is [Ar] 3d¹⁰ 4s², and Zn²⁺ is",
+          "[Ar] 3d¹⁰ 4s⁰.",
+          {
+            "text": "Zn and Zn²⁺ are both 3d¹⁰",
+            "style": "boxed"
+          },
+          "a completely filled subshell, so zinc",
+          "fails the test in both forms.",
+          "Zn, Cd and Hg are d-block metals but",
+          "not transition metals.",
+          "Copper passes on its ion instead: Cu is",
+          "3d¹⁰ 4s¹, but Cu²⁺ is 3d⁹."
+        ],
+        "why": "Zinc fails the test twice over — the atom is 3d¹⁰ and its only common ion, Zn²⁺, is also 3d¹⁰ — so no partly filled d subshell exists in either. Cadmium and mercury fail in the same way. Copper is the opposite case and is the reason the ions must be tested: the atom has no partly filled d subshell, but Cu²⁺ is 3d⁹, so copper is a transition element. Two first-series configurations are also not the plain 3d^x 4s² pattern at all — Cr is [Ar] 3d⁵ 4s¹ and Cu is [Ar] 3d¹⁰ 4s¹ — because the half-filled and completely filled d sets are lower in energy.",
+        "common_mistakes": [
+          "Writing Zn²⁺ as 3d⁸. The 4s electrons are removed first, so Zn²⁺ is 3d¹⁰ 4s⁰.",
+          "Ruling copper out on the atom alone. Cu is 3d¹⁰ 4s¹, but Cu²⁺ is 3d⁹, so copper is a transition element."
+        ],
+        "memory_tip": "Zn, Cd and Hg are the three d-block metals that are not transition metals: d¹⁰ in the atom and d¹⁰ in the ion.",
+        "margin_note": "Both configurations, atom and ion, are needed. Naming Cd and Hg beside zinc costs one line and shows the rule."
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for the phrase \"partly filled d subshell\", applied to the atom AND to its common ions. Configurations written without that phrase are usually worth half."
+}

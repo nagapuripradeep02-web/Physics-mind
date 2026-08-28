@@ -1,0 +1,167 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_lanthanide_contraction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is lanthanide contraction? What are the consequences of lanthanide contraction?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "Consequences: basic character and covalent nature",
+      "marks": 1
+    },
+    {
+      "label": "Consequence: Zr and Hf",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.92 as Short Answer 2. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CONSEQUENCE REWORDED (book p.92, Short Answer 2, consequence 1): the printed line reads \"the covalent nature of La-OH bond increases from La to Lu\", which names the bond as La-OH for the whole series. It is the Ln-OH bond in general; La(OH)₃ is one end of the series, not the bond itself. The card writes Ln-OH and keeps the direction, which is correct. The book's other two consequences — falling basic character from La(OH)₃ to Lu(OH)₃, and the near-identical sizes of the second and third transition series — are correct and are kept. NUMBERS ADDED AND CHECKED: La³⁺ about 106 pm falling to Lu³⁺ about 85 pm, a total of about 21 pm across the series; Zr 160 pm against Hf 159 pm, and Zr⁴⁺ 79 pm against Hf⁴⁺ 78 pm. TERMINOLOGY: the book writes lanthanide throughout and the question text keeps that word; the current IUPAC name lanthanoid is given once on the card so both are recognised."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "d and f Block Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Lanthanide contraction is the steady",
+          "decrease in atomic and ionic radii from",
+          "La to Lu across the 4f series.",
+          "La³⁺ has a radius of about 106 pm and",
+          "Lu³⁺ about 85 pm.",
+          "The decrease at each step is small, but",
+          "it adds up across the series.",
+          "IUPAC now writes these elements as the",
+          "lanthanoids."
+        ],
+        "why": "The size decrease is the whole content of the term, so the definition must name the direction (La to Lu), the quantity (atomic and ionic radius) and the fact that the decrease is gradual. The fourteen elements after lanthanum fill the 4f subshell, and the numbers 106 pm and 85 pm put a size on what \"steady decrease\" means: about 21 pm in total.",
+        "common_mistakes": [
+          "Saying the radius increases along the series. It decreases, from about 106 pm at La³⁺ to about 85 pm at Lu³⁺.",
+          "Restricting the term to the ions. Both the atomic radius and the ionic radius decrease."
+        ],
+        "memory_tip": "La to Lu: fourteen small steps down, about 21 pm in total for the M³⁺ ions.",
+        "margin_note": "Name the two ends, La and Lu, and use the word steady. That wording is the definition mark."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Poor 4f shielding",
+        "lines": [
+          "Reason: as the atomic number rises by one",
+          "at each step, the new electron enters a",
+          "4f orbital.",
+          "The shape of a 4f orbital shields the",
+          "outer electrons from the nucleus poorly.",
+          "So the added nuclear charge is only",
+          "partly cancelled, the effective nuclear",
+          "charge on the outer shell rises, and the",
+          "radius falls."
+        ],
+        "why": "Shielding within a subshell is always imperfect, and it is worst for f orbitals, whose shape spreads the electron density in a way that screens the nucleus badly. Each proton added is therefore only partly cancelled by the 4f electron added with it, the net pull on the outer electrons grows across the series, and the atom contracts. The same argument applied to d electrons gives the smaller d-block contraction.",
+        "common_mistakes": [
+          "Giving poor shielding by d electrons as the reason. The electrons added across the lanthanides are 4f electrons.",
+          "Saying the nuclear charge does not change. It rises by one at every element; the point is that the 4f electron does not cancel it."
+        ],
+        "memory_tip": "One more proton and one more 4f electron each step, and 4f shields badly, so the net pull rises.",
+        "margin_note": "The two words that earn this mark are \"poor shielding\" and \"4f\". Both must appear."
+      },
+      {
+        "id": "s3_consequences",
+        "kind": "text",
+        "label": "Consequences on the hydroxides",
+        "marks": 1,
+        "mark_note": "First two consequences",
+        "lines": [
+          "Consequences:",
+          {
+            "text": "1. Basic strength of the hydroxides",
+            "style": "indent"
+          },
+          {
+            "text": "   falls from La(OH)₃ to Lu(OH)₃.",
+            "style": "indent"
+          },
+          {
+            "text": "2. The Ln–OH bond becomes more covalent",
+            "style": "indent"
+          },
+          {
+            "text": "   from La to Lu.",
+            "style": "indent"
+          },
+          "A smaller Ln³⁺ polarises the OH⁻ ion",
+          "more, so the bond is less ionic and the",
+          "hydroxide is a weaker base."
+        ],
+        "why": "Both consequences are the same fact stated twice. The charge stays at 3+ across the series while the radius falls, so the charge density rises, the cation polarises the hydroxide ion more strongly, and the Ln–O bond gains covalent character. A more covalent hydroxide releases OH⁻ less readily, and that is what \"less basic\" means. So La(OH)₃ is the most basic of the series and Lu(OH)₃ the least.",
+        "common_mistakes": [
+          "Writing that basic character increases from La to Lu. It decreases; La(OH)₃ is the most basic.",
+          "Giving the two consequences as unrelated facts. Rising covalent character IS the falling basic character."
+        ],
+        "memory_tip": "Smaller ion, more covalent bond, weaker base. La(OH)₃ strongest, Lu(OH)₃ weakest.",
+        "margin_note": "Number the consequences. Two here and one on the next step make three, which is what the question expects."
+      },
+      {
+        "id": "s4_zr_hf",
+        "kind": "boxed_final",
+        "label": "Zr and Hf",
+        "marks": 1,
+        "mark_note": "Third consequence",
+        "lines": [
+          {
+            "text": "3. Zr and Hf are almost the same size",
+            "style": "boxed"
+          },
+          "Zr is 160 pm and Hf is 159 pm; Zr⁴⁺ is",
+          "79 pm and Hf⁴⁺ is 78 pm.",
+          "Hafnium comes after the lanthanides, so",
+          "the contraction cancels the size increase",
+          "expected on going down the group.",
+          "Zr and Hf therefore have nearly identical",
+          "chemistry and are hard to separate.",
+          "Nb with Ta, and Mo with W, behave the",
+          "same way."
+        ],
+        "why": "This is the consequence with the largest practical effect. Going from the second to the third transition series should increase the radius, because a whole shell is added; but the fourteen lanthanoids lie in between and their contraction removes almost exactly that increase. The result is a pair of elements one period apart with the same size, the same charge and the same chemistry, which is why zirconium and hafnium always occur together and are separated only with difficulty.",
+        "common_mistakes": [
+          "Saying Hf is much larger than Zr because it lies lower in the group. The lanthanide contraction cancels that increase.",
+          "Naming the effect but not the pair. Zr and Hf is the example the examiner is looking for."
+        ],
+        "memory_tip": "Zr and Hf: one period apart, one picometre apart.",
+        "margin_note": "The pair Zr and Hf finishes the answer. Adding Nb with Ta and Mo with W costs one line and shows the pattern."
+      }
+    ]
+  },
+  "insider_note": "Three consequences is the expected number, and Zr with Hf is the one most answers leave out. Definition and reason take one mark each, so do not spend half the page on them."
+}

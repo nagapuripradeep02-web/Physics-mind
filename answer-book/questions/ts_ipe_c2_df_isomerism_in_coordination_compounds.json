@@ -1,0 +1,312 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_isomerism_in_coordination_compounds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain different types of isomerism exhibited by coordination compounds, giving suitable examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ionisation and hydrate isomerism",
+      "marks": 1
+    },
+    {
+      "label": "Linkage and coordination isomerism",
+      "marks": 1
+    },
+    {
+      "label": "Geometrical isomerism",
+      "marks": 1
+    },
+    {
+      "label": "Optical isomerism",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.93 as Short Answer 6, the answer running over to book p.94. DUPLICATE PRINTED NUMBER: the number 6 is printed TWICE in this chapter's Short Answer list — once here and again on book p.94 for \"Write the IUPAC names of the following co-ordination compounds\" — and the list then continues to 7. The chapter therefore holds EIGHT real Short Answer questions behind a highest printed number of seven. This card is the first of the two and keeps the manifest ref saq6; the naming question takes saq6b. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CONTENT KEPT: all six types and all the printed example pairs are the book's own and are chemically correct. BOOK NOTATION TIDIED: the printed coordination-isomer pair is \"[Co(NH₃)₆][Cr(CN)₆], [Co(CN)₆][Cr(NH₃)₆]\", which writes the anion first in the second formula. The convention is cation first, so it is written [Cr(NH₃)₆][Co(CN)₆] here; the compound is the same. The printed linkage pair is given as the chlorides [Co(NO₂)(NH₃)₅]Cl₂ and [Co(ONO)(NH₃)₅]Cl₂, kept as printed. FIGURE SCOPE: the question says \"explain\", not \"draw\", so the cis and trans diagram step carries NO marks and no mark note, and all four marks sit on the written steps. It is drawn because cis and trans are positions and the difference between adjacent and opposite is what the words are describing."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "d and f Block Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ionisation_hydrate",
+        "kind": "text",
+        "label": "Ionisation and hydrate",
+        "marks": 1,
+        "mark_note": "First two structural types",
+        "lines": [
+          "Isomers have the same molecular formula",
+          "but a different arrangement.",
+          "I. Structural isomerism — four types.",
+          "1. Ionisation isomerism: the ion inside",
+          "the coordination sphere and the ion",
+          "outside it are exchanged.",
+          {
+            "text": "[Co(NH₃)₅Br]SO₄ and [Co(NH₃)₅SO₄]Br",
+            "style": "eq"
+          },
+          "2. Hydrate isomerism: water is a ligand",
+          "in one isomer and lies outside the",
+          "sphere in the other.",
+          {
+            "text": "[Cr(H₂O)₆]Cl₃ and [Cr(H₂O)₅Cl]Cl₂·H₂O",
+            "style": "eq"
+          }
+        ],
+        "why": "Both types move a species between the inside and the outside of the coordination sphere, and both are detected in solution. The ionisation pair gives different ions: the first releases SO₄²⁻ and gives a precipitate with Ba²⁺, the second releases Br⁻ and gives one with Ag⁺. The hydrate pair differs in how many chloride ions are free, so it is detected with silver nitrate — three moles of AgCl from the first and two from the second.",
+        "common_mistakes": [
+          "Writing two formulas that are not the same overall. Isomers must have identical molecular formulas; only the arrangement differs.",
+          "Calling hydrate isomerism the same thing as ionisation isomerism. In hydrate isomerism it is water that is inside the coordination sphere in one isomer and outside it in the other."
+        ],
+        "memory_tip": "Ionisation: an anion changes place. Hydrate: a water molecule changes place.",
+        "margin_note": "Every type needs a named pair of formulas. A type written with no example is usually not counted."
+      },
+      {
+        "id": "s2_linkage_coordination",
+        "kind": "text",
+        "label": "Linkage and coordination",
+        "marks": 1,
+        "mark_note": "Last two structural types",
+        "lines": [
+          "3. Linkage isomerism: an ambidentate",
+          "ligand binds through one donor atom or",
+          "through the other.",
+          {
+            "text": "[Co(NO₂)(NH₃)₅]Cl₂ and",
+            "style": "eq"
+          },
+          {
+            "text": "[Co(ONO)(NH₃)₅]Cl₂",
+            "style": "eq"
+          },
+          "4. Coordination isomerism: two complex",
+          "ions in the same salt exchange their",
+          "ligands.",
+          {
+            "text": "[Co(NH₃)₆][Cr(CN)₆] and",
+            "style": "eq"
+          },
+          {
+            "text": "[Cr(NH₃)₆][Co(CN)₆]",
+            "style": "eq"
+          }
+        ],
+        "why": "Linkage isomerism needs an ambidentate ligand, so it appears only with NO₂⁻, SCN⁻ or CN⁻; the nitro form is written NO₂ and the nitrito form ONO, and the two have different colours. Coordination isomerism needs BOTH the cation and the anion to be complex — a salt with a simple counter ion such as K⁺ cannot show it, because there is no second metal to exchange ligands with.",
+        "common_mistakes": [
+          "Looking for linkage isomerism with NH₃ or H₂O. Each has one donor atom, so neither can bind two ways.",
+          "Calling K₃[Fe(CN)₆] a coordination isomer of something. Both ions must be complex, and K⁺ is not."
+        ],
+        "memory_tip": "Linkage needs an ambidentate ligand; coordination needs two complex ions.",
+        "margin_note": "Write NO₂ and ONO clearly and separately. The whole of the linkage mark sits in those two formulas."
+      },
+      {
+        "id": "s3_geometrical",
+        "kind": "text",
+        "label": "Geometrical isomerism",
+        "marks": 1,
+        "mark_note": "Geometrical isomerism",
+        "lines": [
+          "II. Stereoisomerism — two types.",
+          "5. Geometrical isomerism: identical",
+          "ligands are adjacent in the cis isomer",
+          "and opposite in the trans isomer.",
+          "Shown by square planar MA₂X₂ and MABX₂,",
+          "and by octahedral MA₄X₂ and MA₃X₃.",
+          {
+            "text": "Example: [Pt(NH₃)₂Cl₂]",
+            "style": "eq"
+          },
+          "Tetrahedral complexes do not show it,",
+          "because all four corners are adjacent."
+        ],
+        "why": "Geometrical isomerism needs positions that can be told apart as adjacent or opposite, so it appears in the square plane and in the octahedron but never in the tetrahedron, where every corner is next to every other. The cis and trans forms of [Pt(NH₃)₂Cl₂] are different compounds with different properties: the cis form is the anticancer drug cisplatin and the trans form is not active.",
+        "common_mistakes": [
+          "Saying tetrahedral complexes show geometrical isomerism. All four corners of a tetrahedron are adjacent, so cis and trans cannot be told apart.",
+          "Looking for it in a complex with only one kind of ligand, such as MA₄ or MA₆. With every ligand the same, there is nothing for a ligand to be cis or trans to."
+        ],
+        "memory_tip": "Cis means next to each other and trans means across from each other. Never in a tetrahedron.",
+        "margin_note": "The words adjacent and opposite carry this mark on their own. Draw the pair only if there is time."
+      },
+      {
+        "id": "s4_cis_trans_figure",
+        "kind": "diagram",
+        "label": "Cis and trans drawn",
+        "marks": 0,
+        "figure": {
+          "id": "df_cis_trans_ptnh32cl2",
+          "width": 560,
+          "height": 250,
+          "elements": [
+            {
+              "type": "label",
+              "id": "cis_cl_top",
+              "x": 68,
+              "y": 82,
+              "text": "Cl",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cis_cl_bottom",
+              "x": 68,
+              "y": 178,
+              "text": "Cl",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cis_nh3_top",
+              "x": 188,
+              "y": 82,
+              "text": "NH₃",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cis_nh3_bottom",
+              "x": 188,
+              "y": 178,
+              "text": "NH₃",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cis_pt",
+              "x": 128,
+              "y": 138,
+              "text": "Pt",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "cis_bonds",
+              "d": "M 128 122 L 96 94 M 158 122 L 190 94 M 128 142 L 96 168 M 158 142 L 190 168",
+              "ms": 1650
+            },
+            {
+              "type": "label",
+              "id": "cis_caption",
+              "x": 58,
+              "y": 226,
+              "text": "cis — the two Cl are adjacent",
+              "ms": 700,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "trans_cl_top",
+              "x": 330,
+              "y": 82,
+              "text": "Cl",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "trans_nh3_top",
+              "x": 446,
+              "y": 82,
+              "text": "NH₃",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "trans_nh3_bottom",
+              "x": 322,
+              "y": 178,
+              "text": "H₃N",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "trans_cl_bottom",
+              "x": 452,
+              "y": 178,
+              "text": "Cl",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "trans_pt",
+              "x": 390,
+              "y": 138,
+              "text": "Pt",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "trans_bonds",
+              "d": "M 390 122 L 358 94 M 420 122 L 452 94 M 390 142 L 358 168 M 420 142 L 452 168",
+              "ms": 1650
+            },
+            {
+              "type": "label",
+              "id": "trans_caption",
+              "x": 316,
+              "y": 226,
+              "text": "trans — the two Cl are opposite",
+              "ms": 700,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Cis and trans are statements about position, so the two square-planar pictures show in one image what the words take three lines to say. In the cis form the two chlorido ligands are at neighbouring corners of the square; in the trans form they are at opposite corners with the two ammine ligands between them.",
+        "common_mistakes": [
+          "Drawing the four ligands at unequal angles. The four positions of a square planar complex are 90° apart.",
+          "Putting the two Cl on the same side in both pictures. That is one structure drawn twice, not two isomers."
+        ],
+        "memory_tip": "Cis: the two identical ligands share one side of the square. Trans: they are at the two ends of a diagonal.",
+        "margin_note": "The question says explain, not draw, so this earns no marks. All four marks sit on the written steps."
+      },
+      {
+        "id": "s5_optical",
+        "kind": "boxed_final",
+        "label": "Optical isomerism",
+        "marks": 1,
+        "mark_note": "Optical isomerism",
+        "lines": [
+          "6. Optical isomerism: two isomers are",
+          "non-superimposable mirror images of",
+          "each other.",
+          {
+            "text": "Shown by octahedral complexes",
+            "style": "boxed"
+          },
+          "with two or three bidentate ligands.",
+          {
+            "text": "Examples: [CoCl₂(en)₂]⁺, [Co(en)₃]³⁺",
+            "style": "eq"
+          },
+          "The two forms rotate plane-polarised",
+          "light by equal amounts in opposite",
+          "directions, and are called d and l."
+        ],
+        "why": "A molecule is optically active when it has no plane of symmetry, and the way to build that into a coordination compound is to place two or three bidentate ligands around an octahedron. [Co(en)₃]³⁺ has three, and the resulting arrangement of the three rings has no mirror plane. [CoCl₂(en)₂]⁺ shows optical activity only in the cis form, because the trans form does have a plane of symmetry.",
+        "common_mistakes": [
+          "Saying trans-[CoCl₂(en)₂]⁺ is optically active. The trans form has a plane of symmetry, so only the cis form is active.",
+          "Confusing optical with geometrical isomerism. Optical isomers are mirror images of each other; geometrical isomers are not."
+        ],
+        "memory_tip": "Optical isomerism needs no mirror plane. Two or three en rings on an octahedron give that.",
+        "margin_note": "Name both example ions. Both use the same ligand, en, so they are easy to remember together."
+      }
+    ]
+  },
+  "insider_note": "Six types are expected — four structural and two stereo — and each needs a named example. A type written with no formula beside it is usually not counted, so keep each explanation to one line and spend the space on the formulas."
+}

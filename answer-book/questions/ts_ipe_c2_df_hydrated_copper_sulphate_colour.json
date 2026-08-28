@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_hydrated_copper_sulphate_colour",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "CuSO₄·5H₂O is blue in colour whereas anhydrous CuSO₄ is colourless. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Water is a ligand and splits the d orbitals",
+      "marks": 1
+    },
+    {
+      "label": "No water, so no d-d transition in the visible range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 3. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK STATEMENT SHARPENED (book p.91, VSAQ 3): the printed answer says that in anhydrous CuSO₄ \"due to the absence of water, crystal field splitting is not possible\". Strictly that is not so — the sulphate oxygen atoms still surround Cu²⁺ and still split the d orbitals — but they produce a much weaker field than water, so the gap Δo is small and the absorption falls outside the visible range. The card writes the honest version: the splitting is too small to absorb visible light, so the solid is white. TREND AND EXCEPTION: Cu²⁺ is 3d⁹ and coloured in both hydrated and complexed forms; the exceptions in the series are Sc³⁺ (3d⁰) and Zn²⁺ (3d¹⁰), which are colourless whatever the ligand, and those are named on the sibling colour cards."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hydrated",
+        "kind": "text",
+        "label": "The hydrated salt is blue",
+        "marks": 1,
+        "mark_note": "Water as ligand",
+        "lines": [
+          "In CuSO₄·5H₂O the water molecules act as",
+          "ligands around Cu²⁺.",
+          "They split the five d orbitals into a",
+          "lower t2g set and a higher eg set.",
+          "This is crystal field splitting.",
+          "Cu²⁺ is 3d⁹, so one unpaired d electron",
+          "can move from t2g to eg.",
+          "The salt absorbs orange-red light and",
+          "transmits blue, so it looks blue."
+        ],
+        "why": "Colour in a d-block salt needs two things at the same time: a partly filled d subshell and a set of ligands to split it. Water supplies the second. Cu²⁺ is 3d⁹, so one electron can be promoted across the gap, and the energy needed for that promotion is taken from the orange-red part of white light, so the light that passes through is blue. An ion with an empty or a full d subshell, such as Sc³⁺ (3d⁰) or Zn²⁺ (3d¹⁰), stays colourless whatever the ligand.",
+        "common_mistakes": [
+          "Saying the blue colour comes from the sulphate ion. SO₄²⁻ has no partly filled d subshell and is colourless.",
+          "Saying Cu²⁺ is coloured on its own. Without ligands the five d orbitals are degenerate, so there is no gap to absorb across."
+        ],
+        "memory_tip": "Colour needs both: a partly filled d subshell and ligands to split it. Water is the ligand here.",
+        "margin_note": "The terms crystal field splitting and d-d transition are the marked terms. Write them in that order."
+      },
+      {
+        "id": "s2_anhydrous",
+        "kind": "boxed_final",
+        "label": "The anhydrous salt is white",
+        "marks": 1,
+        "mark_note": "No visible absorption",
+        "lines": [
+          "In anhydrous CuSO₄ the water is gone.",
+          "Only sulphate oxygen atoms surround",
+          "Cu²⁺, and they give a much weaker field.",
+          {
+            "text": "Δo is too small to absorb",
+            "style": "boxed"
+          },
+          "visible light, so no d-d transition takes",
+          "place in the visible range.",
+          "Nothing visible is absorbed, so the solid",
+          "is white and looks colourless.",
+          "Adding water restores the blue."
+        ],
+        "why": "Cu²⁺ is 3d⁹ in both solids, so the number of d electrons is not what changes. What changes is the ligand. Water is a stronger-field ligand than sulphate oxygen, so it gives a larger gap Δo; the smaller gap in the anhydrous salt corresponds to infrared rather than visible light, nothing in the visible range is removed, and all of it is returned, which is what a white solid is. Putting water back gives the larger gap again and the blue returns.",
+        "common_mistakes": [
+          "Writing that anhydrous CuSO₄ has no d electrons. Cu²⁺ is 3d⁹ in both solids; only the ligand changes.",
+          "Stopping at the word colourless. The mark is for the reason — no d-d transition in the visible range — not for the observation."
+        ],
+        "memory_tip": "Take the water away and the gap falls below the visible range, so there is no colour.",
+        "margin_note": "Finish with the reverse test: add water and the blue returns. One line, and it shows the cause."
+      }
+    ]
+  },
+  "insider_note": "This is a two-part comparison, so answer it in two halves. Half a mark is regularly lost by explaining the blue salt in full and then writing only \"no water, so colourless\" for the other half."
+}

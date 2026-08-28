@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_spin_only_magnetic_moment_fe2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the spin only magnetic moment of the Fe²⁺(aq) ion.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Configuration and unpaired electron count",
+      "marks": 1
+    },
+    {
+      "label": "Substitution and the answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 4. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. ARITHMETIC CHECKED: Fe (Z = 26) is [Ar] 3d⁶ 4s²; Fe²⁺ is [Ar] 3d⁶ 4s⁰; six electrons in five d orbitals give one pair and four singles, so n = 4; μ = √(4 × 6) = √24 = 4.899 BM, written 4.90 BM. The book prints 4.9 BM, the same number. NOTE ON THE MODEL: the formula is spin-only and drops the orbital contribution, which for high-spin Fe²⁺(aq) is not negligible — measured values run above 5 BM. That limit is stated on the card so the student does not read 4.90 BM as an experimental prediction."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configuration",
+        "kind": "text",
+        "label": "Configuration and n",
+        "marks": 1,
+        "mark_note": "Configuration and n",
+        "lines": [
+          "Spin only magnetic moment:",
+          {
+            "text": "μ = √(n(n+2)) BM",
+            "style": "eq"
+          },
+          "where n is the number of unpaired",
+          "electrons.",
+          "Fe has atomic number 26, so Fe is",
+          "[Ar] 3d⁶ 4s².",
+          "The two 4s electrons are removed first,",
+          "so Fe²⁺ is [Ar] 3d⁶ 4s⁰.",
+          "In 3d⁶ one orbital holds a pair and four",
+          "hold one electron each, so n = 4."
+        ],
+        "why": "The 4s electrons leave first, so Fe²⁺ is 3d⁶ and not 3d⁴ 4s². Filling six electrons into five orbitals by Hund's rule gives one pair and four singles, so the unpaired count is four. Getting n right is the whole calculation; the formula then does the rest.",
+        "common_mistakes": [
+          "Removing the 3d electrons first and writing Fe²⁺ as 3d⁴ 4s². The 4s electrons are removed first.",
+          "Counting six unpaired electrons in 3d⁶. There are only five orbitals, so the sixth electron pairs up and n = 4."
+        ],
+        "memory_tip": "3d⁶ is one pair plus four singles: six electrons in five boxes leaves four alone.",
+        "margin_note": "Write the atom, then the ion, then n. The unpaired count is where this calculation is usually lost."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitution and answer",
+        "marks": 1,
+        "mark_note": "Substitution and answer",
+        "lines": [
+          {
+            "text": "μ = √(4(4+2)) = √24",
+            "style": "eq"
+          },
+          {
+            "text": "μ = 4.90 BM",
+            "style": "boxed"
+          },
+          "An unpaired electron makes the ion",
+          "paramagnetic, so Fe²⁺(aq) is",
+          "paramagnetic.",
+          "This is a spin only value: it counts",
+          "electron spin and leaves out orbital",
+          "motion, so the measured value for",
+          "Fe²⁺(aq) is a little above 4.90 BM."
+        ],
+        "why": "√24 = 4.899, which is written 4.90 BM to three figures; the book prints 4.9 BM, the same number. The formula is called spin only because it drops the orbital contribution to the moment. For most first-series ions in water that contribution is small, but for high-spin Fe²⁺ it is not, so the measured moment comes out above the calculated one. Saying so is honest and costs one line.",
+        "common_mistakes": [
+          "Using the number of d electrons in place of n. Here n is 4, not 6.",
+          "Leaving the answer as √24. Work the square root out and write 4.90 BM with the unit."
+        ],
+        "memory_tip": "n(n+2) with n = 4 gives 24, and √24 is just under 5.",
+        "margin_note": "Box the number with the unit BM. A bare 4.90 with no unit usually loses part of this mark."
+      }
+    ]
+  },
+  "insider_note": "The formula and the final number are both easy marks; the part actually lost is the unpaired count. Show 3d⁶ as one pair and four singles before substituting."
+}

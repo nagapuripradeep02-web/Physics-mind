@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_iupac_formulae_from_names",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Using IUPAC norms write the formulae for the following.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formulae 1 to 3",
+      "marks": 1
+    },
+    {
+      "label": "Formulae 4 to 6",
+      "marks": 1
+    },
+    {
+      "label": "Formulae 7 to 9",
+      "marks": 1
+    },
+    {
+      "label": "Formulae 10 and 11",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.92 as Short Answer 3. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK QUESTION INCOMPLETE (book pp.92-93, Short Answer 3): the printed question is only \"Using IUPAC norms write the formulas for the following.\" — it never lists what \"the following\" are. The eleven names appear inside the ANSWER instead, numbered 1 to 11 and running across the page break onto book p.93. The card carries all eleven names in its steps, because a question with no list cannot be answered. BOOK TYPOS CORRECTED, each recorded on its step: item 3 is printed K₄(Fe(CN)₆) with round brackets, corrected to K₄[Fe(CN)₆]; item 5 is printed K₂[Pdcl₄] with a lower-case l in the chlorine symbol, corrected to K₂[PdCl₄]; the names are printed with spaces inside them (\"Hexo amine cobalt\", \"Tetra hydroxo zin cate\") and with amine for the NH₃ ligand, which is ammine. NOTATION: the ligand names cyanido and chlorido are the current IUPAC forms and are used here; the book's older cyano and chloro mean the same ligands and both are widely accepted."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "d and f Block Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rules",
+        "kind": "text",
+        "label": "Rules used",
+        "marks": 0,
+        "lines": [
+          "Rules used:",
+          {
+            "text": "1. Cation first, then anion.",
+            "style": "indent"
+          },
+          {
+            "text": "2. The complex ion goes inside square",
+            "style": "indent"
+          },
+          {
+            "text": "   brackets, metal first.",
+            "style": "indent"
+          },
+          {
+            "text": "3. A prefix gives the ligand count: di,",
+            "style": "indent"
+          },
+          {
+            "text": "   tri, tetra, penta, hexa.",
+            "style": "indent"
+          },
+          {
+            "text": "4. A metal name ending in -ate means the",
+            "style": "indent"
+          },
+          {
+            "text": "   complex is the anion.",
+            "style": "indent"
+          },
+          {
+            "text": "5. The Roman numeral is the oxidation",
+            "style": "indent"
+          },
+          {
+            "text": "   number of the metal.",
+            "style": "indent"
+          }
+        ],
+        "why": "Working backwards from a name to a formula is a counting job. The prefix gives the number of each ligand, the ending says whether the complex is the cation or the anion, and the Roman numeral fixes the metal's oxidation number, which then fixes the charge on the complex ion. Getting that charge right is what determines how many counter ions are written outside the bracket.",
+        "common_mistakes": [
+          "Writing the ligands before the metal inside the bracket. The formula puts the metal first; only the NAME puts the ligands first.",
+          "Reading the Roman numeral as the charge on the whole complex ion. It is the oxidation number of the metal alone."
+        ],
+        "memory_tip": "Prefix gives the count, an -ate ending means the complex is the anion, the Roman numeral is the metal's oxidation number.",
+        "margin_note": "This step earns no marks on its own. Write it only if there is time; the eleven formulae carry all four marks."
+      },
+      {
+        "id": "s2_group_one",
+        "kind": "text",
+        "label": "Formulae 1 to 3",
+        "marks": 1,
+        "mark_note": "Formulae 1 to 3",
+        "lines": [
+          {
+            "text": "1. Tetrahydroxozincate(II)",
+            "style": "indent"
+          },
+          {
+            "text": "   [Zn(OH)₄]²⁻",
+            "style": "eq"
+          },
+          {
+            "text": "2. Hexaamminecobalt(III) sulphate",
+            "style": "indent"
+          },
+          {
+            "text": "   [Co(NH₃)₆]₂(SO₄)₃",
+            "style": "eq"
+          },
+          {
+            "text": "3. Potassium hexacyanidoferrate(II)",
+            "style": "indent"
+          },
+          {
+            "text": "   K₄[Fe(CN)₆]",
+            "style": "eq"
+          }
+        ],
+        "why": "The charge check is what builds each formula. Zinc is +2 with four OH⁻, so the complex ion is 2−. Cobalt is +3 with six neutral NH₃, so the complex ion is 3+, and three sulphate ions balance two of them. Iron is +2 with six CN⁻, so the complex ion is 4− and four potassium ions are needed. The book prints number 3 with round brackets, K₄(Fe(CN)₆); a coordination sphere takes square brackets.",
+        "common_mistakes": [
+          "Writing [Co(NH₃)₆](SO₄)₃. Two 3+ ions need three 2− ions, so the formula is [Co(NH₃)₆]₂(SO₄)₃.",
+          "Writing K₃[Fe(CN)₆] for the iron(II) complex. Iron(II) with six CN⁻ gives a 4− ion, so four potassium ions are needed."
+        ],
+        "memory_tip": "Set the metal's oxidation number from the Roman numeral, add the ligand charges, and the rest is balancing.",
+        "margin_note": "Square brackets around the complex ion and the charge written outside. Both are marked."
+      },
+      {
+        "id": "s3_group_two",
+        "kind": "text",
+        "label": "Formulae 4 to 6",
+        "marks": 1,
+        "mark_note": "Formulae 4 to 6",
+        "lines": [
+          {
+            "text": "4. Potassium hexacyanidoferrate(III)",
+            "style": "indent"
+          },
+          {
+            "text": "   K₃[Fe(CN)₆]",
+            "style": "eq"
+          },
+          {
+            "text": "5. Potassium tetrachloridopalladate(II)",
+            "style": "indent"
+          },
+          {
+            "text": "   K₂[PdCl₄]",
+            "style": "eq"
+          },
+          {
+            "text": "6. Potassium trioxalatochromate(III)",
+            "style": "indent"
+          },
+          {
+            "text": "   K₃[Cr(C₂O₄)₃]",
+            "style": "eq"
+          }
+        ],
+        "why": "Numbers 3 and 4 differ only in the Roman numeral, and that one change moves the potassium count from four to three — the cleanest test in the whole list that the oxidation number has been used and not guessed. In number 6 the oxalate ion is bidentate and carries a 2− charge, so three of them give 6− against Cr(III), leaving a 3− complex ion balanced by three K⁺. The book prints number 5 as K₂[Pdcl₄]; the chlorine symbol is Cl.",
+        "common_mistakes": [
+          "Writing the chlorine symbol as cl. Element symbols take a capital first letter: Pd and Cl.",
+          "Treating oxalate as 1−. C₂O₄²⁻ carries two negative charges; three of them against Cr³⁺ give a 3− ion, so three K⁺ balance it."
+        ],
+        "memory_tip": "Same ligands, different Roman numeral, different potassium count: K₄ for Fe(II) and K₃ for Fe(III).",
+        "margin_note": "Numbers 3 and 4 are the trap on this list. Write both and check each potassium count against its Roman numeral."
+      },
+      {
+        "id": "s4_group_three",
+        "kind": "text",
+        "label": "Formulae 7 to 9",
+        "marks": 1,
+        "mark_note": "Formulae 7 to 9",
+        "lines": [
+          {
+            "text": "7. Hexaamminecobalt(III) chloride",
+            "style": "indent"
+          },
+          {
+            "text": "   [Co(NH₃)₆]Cl₃",
+            "style": "eq"
+          },
+          {
+            "text": "8. Diamminechlorido(methylamine)",
+            "style": "indent"
+          },
+          {
+            "text": "   platinum(II) chloride",
+            "style": "indent"
+          },
+          {
+            "text": "   [Pt(NH₃)₂Cl(CH₃NH₂)]Cl",
+            "style": "eq"
+          },
+          {
+            "text": "9. Hexaaquatitanium(III) ion",
+            "style": "indent"
+          },
+          {
+            "text": "   [Ti(H₂O)₆]³⁺",
+            "style": "eq"
+          }
+        ],
+        "why": "Number 8 needs the most care: platinum is +2, the two ammine ligands and the methylamine ligand are neutral, and the chlorido ligand is 1−, so the complex ion is 1+ and one chloride sits outside. Number 9 has no counter ion at all, because the name asks for the ion itself, so the 3+ charge is written on the bracket. Methylamine, CH₃NH₂, is spelt with one m; the NH₃ ligand, ammine, takes two.",
+        "common_mistakes": [
+          "Writing number 9 with a chloride outside. The name says ion, so the formula is the complex ion with its charge shown.",
+          "Counting the chlorido ligand inside the bracket as ionisable. In number 8 only the chloride outside the bracket is precipitated by silver nitrate."
+        ],
+        "memory_tip": "If the name ends in \"ion\", stop at the bracket and write the charge on it.",
+        "margin_note": "Write the charge as a superscript outside the closing bracket. A missing charge on number 9 loses part of this mark."
+      },
+      {
+        "id": "s5_group_four",
+        "kind": "boxed_final",
+        "label": "Formulae 10 and 11",
+        "marks": 1,
+        "mark_note": "Formulae 10 and 11",
+        "lines": [
+          {
+            "text": "10. Tetrachloridonickelate(II) ion",
+            "style": "indent"
+          },
+          {
+            "text": "    [NiCl₄]²⁻",
+            "style": "eq"
+          },
+          {
+            "text": "11. Iron(III) hexacyanidoferrate(II)",
+            "style": "indent"
+          },
+          {
+            "text": "    Fe₄[Fe(CN)₆]₃",
+            "style": "eq"
+          },
+          {
+            "text": "Four Fe³⁺ give 12+ and three",
+            "style": "boxed"
+          },
+          "[Fe(CN)₆]⁴⁻ give 12−, so number 11 is",
+          "neutral. It is the pigment Prussian blue."
+        ],
+        "why": "Number 11 is the only formula in the list with the same element in two different oxidation states, and the charge balance is what proves the subscripts: 4 × (+3) = +12 against 3 × (−4) = −12. Writing that arithmetic down is faster and safer than guessing. Number 10 is a bare complex ion again, so its 2− charge must be shown.",
+        "common_mistakes": [
+          "Writing Fe₃[Fe(CN)₆]₄ for number 11. Four iron(III) ions balance three hexacyanidoferrate(II) ions, not the other way round.",
+          "Leaving the charge off number 10. The name says ion, so the 2− must be written."
+        ],
+        "memory_tip": "For number 11 balance +3 against −4: four of one against three of the other.",
+        "margin_note": "Show the charge balance for number 11 in the margin. It is the quickest way to prove the subscripts."
+      }
+    ]
+  },
+  "insider_note": "Eleven formulae for four marks is roughly three formulae per mark, so one wrong bracket rarely costs a whole mark but a missing charge does. Write square brackets and the charge on every one."
+}

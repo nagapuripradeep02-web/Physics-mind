@@ -1,0 +1,112 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_mischmetal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is mischmetal? Give its composition and uses.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is, with the composition",
+      "marks": 1
+    },
+    {
+      "label": "Uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 6. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING TIDIED (book p.91, VSAQ 6): the printed answer reads \"Misch metal is a well known alloy of Lanthanide metal. It contain 95% Lanthanide metal and 5% Fe and small amount of S, C, Ca, Al.\" The composition figures are kept exactly. The printed use, \"used in Mg based alloy to produce bullets, shell and lighter flint\", is one run-on phrase covering three separate uses; the card separates them and adds the reason they all work, which is that mischmetal is pyrophoric. ADDED HERE: cerium is the largest single part of the lanthanoid fraction, which is why mischmetal is sometimes sold as cerium mischmetal."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What mischmetal is",
+        "marks": 1,
+        "mark_note": "Definition and composition",
+        "lines": [
+          "Mischmetal is an alloy of the lanthanoid",
+          "metals.",
+          "Composition:",
+          {
+            "text": "about 95% lanthanoid metal",
+            "style": "indent"
+          },
+          {
+            "text": "about 5% iron",
+            "style": "indent"
+          },
+          {
+            "text": "small amounts of S, C, Ca and Al",
+            "style": "indent"
+          },
+          "Cerium is the largest single part of the",
+          "lanthanoid fraction."
+        ],
+        "why": "The name covers a mixture and not a compound. After the lanthanoid contraction the fourteen lanthanoids are so alike in size and chemistry that separating them is difficult and costly, so the mixed metal is used as it comes from the ore. Cerium is the most abundant lanthanoid, so it makes up most of the 95%.",
+        "common_mistakes": [
+          "Calling mischmetal a compound. It is an alloy, that is, a mixture of metals.",
+          "Writing only the word lanthanoid. The composition, 95% lanthanoid metal and 5% iron, is half of this mark."
+        ],
+        "memory_tip": "95 and 5: lanthanoid metal and iron, with small amounts of S, C, Ca and Al.",
+        "margin_note": "Write both percentages. The list of small amounts is worth adding, but 95 and 5 are the marked numbers."
+      },
+      {
+        "id": "s2_uses",
+        "kind": "boxed_final",
+        "label": "Uses",
+        "marks": 1,
+        "mark_note": "Uses",
+        "lines": [
+          "Uses:",
+          {
+            "text": "1. Added to magnesium-based alloys",
+            "style": "indent"
+          },
+          {
+            "text": "2. In bullets and shells",
+            "style": "indent"
+          },
+          {
+            "text": "3. As the flint in a lighter",
+            "style": "indent"
+          },
+          {
+            "text": "Mischmetal sparks when scratched",
+            "style": "boxed"
+          },
+          "which is the property all three uses",
+          "depend on."
+        ],
+        "why": "All three uses come from one property: mischmetal is pyrophoric, so scratching it throws off small hot particles that ignite in air. That is exactly what a lighter flint has to do, and it is why the alloy is used in tracer ammunition as well. In magnesium alloys the lanthanoids also improve strength at high temperature, which is a separate benefit.",
+        "common_mistakes": [
+          "Listing only one use. The question says uses, so give at least two.",
+          "Naming the alloy but not what it does. The lighter flint is the use the examiner looks for, so write it."
+        ],
+        "memory_tip": "Magnesium alloys, ammunition, lighter flint — all three follow from the sparking.",
+        "margin_note": "Two uses finish this mark. Name the lighter flint; it is the use every book gives."
+      }
+    ]
+  },
+  "insider_note": "Composition and uses are separate demands, so a definition with no percentages and no named use is worth about half. Write the two numbers first, then two uses."
+}
