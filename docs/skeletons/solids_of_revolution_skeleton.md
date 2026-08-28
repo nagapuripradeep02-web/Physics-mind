@@ -1725,3 +1725,15 @@ nothing" — the 1.0 start showed a finite solid at t = 0); narration `5.333` �
 HUD's own decimals; three figurative constructions replaced ("paints" → "sweeps out", "staircase
 thins / total climbs" → "steps get smaller / total increases", "not a horn" → "open at the top");
 duplicate primitive ids removed from S5 / S7 `scene_composition`; advisory `prerequisites` authored.
+
+4. **S8's `b` ramp (§10a / §3 say "b sweeps 0 → 4 … grows from nothing"; §10c says `[0.5, 4.0]`).**
+   Round 1 authored `from: 0.5` to honour it and **regressed**: the `b` slider row is SHARED with
+   S9, whose explore camera was solved over `b ∈ [1.0, 4.0]` (§3b, gate §12), so the range cannot
+   be widened — and a ramp below the slider's `min` leaves the thumb frozen at 1.0 while the HUD
+   reads 0.50…0.85 for 4.7 s, the exact "slider reads one value beside a HUD reading another"
+   topology SR-D3 was written against. Reverted to `from: 1.0`; the "0 → 4" / "from nothing"
+   line is withdrawn. The solid opens as the b = 1 solid and grows to b = 4.
+5. **S2's camera timing note.** `osCamScheduleAt` treats `at_ms` as the ease START, so the
+   two-step schedule the JSON first authored eased 11000→20000, not 2000→11000 as §11 states.
+   Re-authored as ONE step at 2000 with `ease_ms 9000` from `camera_base`, which is what §11
+   meant. (Checkpoint B round 2, N1.)
