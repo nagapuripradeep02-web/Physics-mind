@@ -467,7 +467,7 @@
       },
       "STATE_6": {
         "title": "Each Slice Is a Ring",
-        "duration": 28,
+        "duration": 22,
         "eye_capture_ms": 21000,
         "depth_ring": "extended",
         "advance_mode": "manual_click",
@@ -1426,7 +1426,13 @@
             "n": 1000,
             "rule": "left",
             "kind": "ring",
-            "max_discs_drawn": 120
+            "max_discs_drawn": 120,
+            "n_ramp": {
+              "log10_from": 0.602,
+              "log10_to": 3.0,
+              "start_ms": 1500,
+              "duration_ms": 5500
+            }
           },
           "contrast": {
             "kind": "radius_difference",

@@ -1737,3 +1737,16 @@ duplicate primitive ids removed from S5 / S7 `scene_composition`; advisory `prer
    two-step schedule the JSON first authored eased 11000→20000, not 2000→11000 as §11 states.
    Re-authored as ONE step at 2000 with `ease_ms 9000` from `camera_base`, which is what §11
    meant. (Checkpoint B round 2, N1.)
+6. **S6's §12 sub-beats were prose with no driver behind them (founder-proxy Checkpoint B, cycle 1).**
+   §12 authored "wrong solid builds 1500–7000 · reads 7000–9000 · dissolves 9000–11000". The JSON
+   shipped a STATIC `discs.n` with `reveal.stack_at_ms 1500`, which is an INSTANT placement — three
+   of the four sub-beats were never built, and the state held **13 byte-identical frames (8.4 s, a
+   third of its length)** under live narration. THE EYE's D5 passed it, because D5 scores a state as
+   a whole and this state moved elsewhere. Fixed by giving `discs` an `n_ramp` (n: 4 → 1000 over
+   1500–7000), so the wrong solid builds and its total visibly climbs 1.6598 → 1.6744 → 1.6754 →
+   1.6755 into the read window; and by cutting `duration` 28 → 22 s, since θ closes at 20000 and the
+   pin is 21000 — the last 7 s were dead. **Durable rule: a sub-beat table that names MOTION must
+   resolve to a named driver in the shipped JSON (a `*_ramp`, a `*_ms` window, or a `camera_steps`
+   entry); an `at_ms` with no duration and no ramp is an instant placement that satisfies every gate.**
+   The 2 s *dissolve* is still unauthorable — `srStackReveal` fades in only — and is filed as an
+   engine ride-along rather than pretended.
