@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_dimensional_speed_string",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Using dimensional analysis obtain an expression for the speed of transverse waves in a stretched string.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Dimensional formulas of T and μ",
+      "marks": 1
+    },
+    {
+      "label": "Combining to v = K√(T/μ)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: [T] = MLT⁻² (a force), [μ] = ML⁻¹ (mass per length), so T/μ has dimensions MLT⁻²/ML⁻¹ = L²T⁻² = [v²]; hence v = K√(T/μ) with K dimensionless. The exact treatment gives K = 1."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order — the two quantities the speed depends on, their dimensional formulas, and the final expression.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dimensions",
+        "kind": "text",
+        "label": "Dimensional formulas",
+        "marks": 1,
+        "mark_note": "D.F. of T and μ written",
+        "lines": [
+          "The speed v of a transverse wave on a",
+          "stretched string depends on the tension T",
+          "in the string and its linear density μ",
+          "(mass per unit length).",
+          {
+            "text": "D.F. of T = MLT⁻²",
+            "style": "eq"
+          },
+          {
+            "text": "D.F. of μ = M/L = ML⁻¹ ; v = LT⁻¹",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Name the two quantities and write both dimensional formulas.",
+        "why": "Dimensional analysis can only start from a guessed list of quantities. Tension supplies the restoring force and linear density the inertia, so these two are the physical inputs.",
+        "common_mistakes": [
+          "Using density ρ (ML⁻³) instead of linear density μ (ML⁻¹) — a string is measured per unit length, not per unit volume.",
+          "Writing the dimensional formula of tension as MLT⁻¹ — tension is a force, MLT⁻²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the speed depends on tension T (dimensions MLT⁻²) and linear density μ (dimensions ML⁻¹).",
+          "accept": [
+            "depends on tension and linear density",
+            "tension is MLT minus two",
+            "mu is mass per unit length, ML inverse"
+          ],
+          "reject": [
+            "v equals K root T by mu"
+          ],
+          "heard_as": [
+            "tension",
+            "linear density",
+            "dimensional formula",
+            "mu"
+          ]
+        },
+        "memory_tip": "Force over inertia: tension pulls the string back, linear density slows it down."
+      },
+      {
+        "id": "s2_combine",
+        "kind": "boxed_final",
+        "label": "Combining the dimensions",
+        "marks": 1,
+        "mark_note": "v = K√(T/μ)",
+        "lines": [
+          "Divide the two dimensional formulas:",
+          {
+            "text": "T/μ = MLT⁻²/ML⁻¹ = L²T⁻² = v²",
+            "style": "eq"
+          },
+          "So v² matches T/μ. Taking the square root:",
+          {
+            "text": "v = K√(T/μ) , K = constant",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Show T/μ = L²T⁻² before writing the root — the division IS the working.",
+        "why": "Matching dimensions on both sides is the whole method: T/μ is the only combination of the two inputs with the dimensions of speed squared. The dimensionless constant K cannot come from dimensions — the exact derivation gives K = 1.",
+        "common_mistakes": [
+          "Writing v = K(T/μ) without the square root — T/μ has the dimensions of v², not v.",
+          "Dropping the constant K. Dimensional analysis can never fix a pure number, so K must be stated."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T/μ has the dimensions of v², so v = K√(T/μ) with K a dimensionless constant.",
+          "accept": [
+            "T by mu gives L squared T minus two",
+            "v equals K root T over mu",
+            "square root of tension by linear density"
+          ],
+          "reject": [
+            "tension is a force"
+          ],
+          "heard_as": [
+            "root T by mu",
+            "L squared T minus 2",
+            "constant K"
+          ]
+        },
+        "memory_tip": "T over μ lands on v squared, so the answer always carries a square root."
+      }
+    ]
+  },
+  "insider_note": "The square root and the stated constant K carry the second mark — v = K(T/μ) without the root is the standard way this answer dies."
+}

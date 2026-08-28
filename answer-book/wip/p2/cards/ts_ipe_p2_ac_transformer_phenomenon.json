@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_transformer_phenomenon",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the phenomenon involved in the working of a transformer?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Mutual induction named",
+      "marks": 1
+    },
+    {
+      "label": "How the flux links the coils",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: a transformer is two coils coupled only by the core flux; e = −N dφ/dt needs a CHANGING flux, so it works only on a.c. and the coupling between the two circuits is mutual induction, matching the book's answer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "text",
+        "label": "Mutual induction named",
+        "marks": 1,
+        "mark_note": "Mutual induction",
+        "lines": [
+          "Mutual induction is the phenomenon behind",
+          "the working of a transformer."
+        ],
+        "margin_note": "First mark. The word mutual must appear.",
+        "why": "Naming mutual induction is the asked fact — the transformer is two circuits coupled only by magnetic flux, and an emf induced in one coil by a changing current in the other is exactly what mutual induction means.",
+        "common_mistakes": [
+          "Writing self induction. The emf appears in the OTHER coil, so it is mutual induction.",
+          "Writing electromagnetic induction alone. Name the mutual kind — the flux of one coil links the other coil."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That mutual induction is the phenomenon behind the working of a transformer.",
+          "accept": [
+            "mutual induction",
+            "mutual inductance between the two coils"
+          ],
+          "reject": [
+            "changing flux in the core"
+          ],
+          "heard_as": [
+            "mutual induction"
+          ]
+        },
+        "memory_tip": "Two coils, so the induction is mutual — self induction needs only one coil."
+      },
+      {
+        "id": "s2_how",
+        "kind": "boxed_final",
+        "label": "How the flux links the coils",
+        "marks": 1,
+        "mark_note": "Changing flux links S",
+        "lines": [
+          "An alternating current in the primary coil",
+          "sets up a changing magnetic flux in the core.",
+          "This changing flux links the secondary coil",
+          "and induces an emf in it.",
+          "A transformer therefore works only on a.c.",
+          "and does nothing with steady d.c.",
+          {
+            "text": "Mutual induction",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. One sentence of mechanism: changing flux in the core, linked to the secondary.",
+        "why": "The one-line mechanism shows why the name fits: only a CHANGING flux induces an emf, which is also why a transformer needs a.c. and is useless on steady d.c.",
+        "common_mistakes": [
+          "Saying a transformer also works on d.c. A steady current gives a steady flux, and a steady flux induces no emf."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the alternating current in the primary makes a changing flux in the core, which links the secondary and induces an emf; steady d.c. induces nothing.",
+          "accept": [
+            "changing flux in the core",
+            "flux links the secondary",
+            "works only on a.c."
+          ],
+          "reject": [
+            "mutual induction"
+          ],
+          "heard_as": [
+            "changing flux",
+            "a.c.",
+            "d.c."
+          ]
+        },
+        "memory_tip": "No change, no emf. The flux must keep changing, so the supply must be a.c."
+      }
+    ]
+  },
+  "insider_note": "The word mutual carries the mark — self induction, or plain induction, is the common wrong answer here."
+}

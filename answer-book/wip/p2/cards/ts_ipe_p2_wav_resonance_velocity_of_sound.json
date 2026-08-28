@@ -1,0 +1,362 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_resonance_velocity_of_sound",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What do you understand by resonance? How would you use resonance to determine the velocity of sound in air?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of resonance",
+      "marks": 1
+    },
+    {
+      "label": "The two resonating lengths",
+      "marks": 1
+    },
+    {
+      "label": "Wavelength from the two lengths",
+      "marks": 1
+    },
+    {
+      "label": "Velocity of sound",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it — the figure carries 0 marks because the question does not ask for a diagram. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: a closed air column resonates at l₁ = λ/4 and again at l₂ = 3λ/4, so l₂ − l₁ = λ/2 and λ = 2(l₂ − l₁); with V = nλ this gives V = 2n(l₂ − l₁), and l₂ = 3l₁ at resonance. Using the difference of two lengths also cancels the end correction of the tube."
+  },
+  "recall_prompt": "Say what resonance is, then the two resonating lengths of the air column and how they give the velocity of sound.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Waves · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_resonance",
+        "kind": "text",
+        "label": "Resonance defined",
+        "marks": 1,
+        "mark_note": "Natural frequency, maximum amplitude",
+        "lines": [
+          "When the frequency of an external",
+          "periodic force acting on a body equals",
+          "the natural frequency of the body, the",
+          "body vibrates with maximum amplitude.",
+          "This phenomenon is called resonance.",
+          "An air column vibrating like this with a",
+          "tuning fork is a resonating air column."
+        ],
+        "margin_note": "First mark. Both phrases matter: equals the natural frequency, and maximum amplitude.",
+        "why": "The definition needs the matching condition (external frequency = natural frequency) AND the observable result (maximum amplitude) — the experiment below detects resonance by exactly that loud maximum.",
+        "common_mistakes": [
+          "Writing large amplitude instead of maximum amplitude — resonance is the peak response, not just a big one.",
+          "Leaving out the natural frequency — without the matching condition the sentence describes any forced vibration."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That resonance is maximum-amplitude vibration when the forcing frequency equals the body's natural frequency.",
+          "accept": [
+            "external frequency equals the natural frequency",
+            "the body vibrates with maximum amplitude",
+            "a resonating air column with a tuning fork"
+          ],
+          "reject": [
+            "first resonance at lambda by four"
+          ],
+          "heard_as": [
+            "resonance",
+            "natural frequency",
+            "maximum amplitude"
+          ]
+        },
+        "memory_tip": "Match the frequency, get the maximum — the two halves of the definition."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The air column at two lengths",
+        "marks": 0,
+        "figure": {
+          "id": "resonance_air_columns",
+          "width": 340,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "t1_top",
+              "d": "M 30 55 L 250 55",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "t1_bot",
+              "d": "M 30 95 L 250 95",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "t1_end",
+              "d": "M 250 55 L 250 95",
+              "ms": 570
+            },
+            {
+              "type": "stroke",
+              "id": "t1_loop_up",
+              "d": "M 30 58 Q 170 60 250 75",
+              "ms": 3160
+            },
+            {
+              "type": "stroke",
+              "id": "t1_loop_dn",
+              "d": "M 30 92 Q 170 90 250 75",
+              "ms": 3160
+            },
+            {
+              "type": "label",
+              "id": "t1_an",
+              "x": 22,
+              "y": 46,
+              "text": "an",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "t1_n",
+              "x": 256,
+              "y": 52,
+              "text": "n",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "t1_len",
+              "x": 100,
+              "y": 120,
+              "text": "l₁ = λ/4",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "t2_top",
+              "d": "M 30 150 L 250 150",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "t2_bot",
+              "d": "M 30 190 L 250 190",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "t2_end",
+              "d": "M 250 150 L 250 190",
+              "ms": 570
+            },
+            {
+              "type": "stroke",
+              "id": "t2_loop_up",
+              "d": "M 30 153 Q 66 156 103 170 Q 140 184 176 187 Q 213 184 250 170",
+              "ms": 3240
+            },
+            {
+              "type": "stroke",
+              "id": "t2_loop_dn",
+              "d": "M 30 187 Q 66 184 103 170 Q 140 156 176 153 Q 213 156 250 170",
+              "ms": 3240
+            },
+            {
+              "type": "label",
+              "id": "t2_n",
+              "x": 96,
+              "y": 143,
+              "text": "n",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "t2_len",
+              "x": 95,
+              "y": 215,
+              "text": "l₂ = 3λ/4",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "No marks ride on the figure, but drawing the two column lengths makes the λ/4 and 3λ/4 claims visible.",
+        "why": "The two sketches fix the geometry the working uses: the closed (water) end is always a node and the open end an antinode, so the shortest resonating column is a quarter wave and the next is three quarters.",
+        "common_mistakes": [
+          "Drawing an antinode at the closed end — the closed end cannot move, so it is always a node."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the sketch shows the air column resonating at l₁ = λ/4 and again at l₂ = 3λ/4.",
+          "accept": [
+            "draw the column at the two resonating lengths",
+            "node at the closed end, antinode at the open end",
+            "quarter wave then three quarters"
+          ],
+          "reject": [
+            "V equals two n times the length difference"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "air column"
+          ]
+        },
+        "memory_tip": "Closed end: node. Open end: antinode. The first two fits are λ/4 and 3λ/4."
+      },
+      {
+        "id": "s3_two_lengths",
+        "kind": "text",
+        "label": "The two resonating lengths",
+        "marks": 1,
+        "mark_note": "l₁ = λ/4 and l₂ = 3λ/4",
+        "lines": [
+          "A vibrating tuning fork of frequency n is",
+          "held over a closed air column whose",
+          "length can be changed. The length is",
+          "increased until the sound is loudest —",
+          "the column resonates with the fork.",
+          {
+            "text": "First resonance: l₁ = λ/4",
+            "style": "eq"
+          },
+          {
+            "text": "Second resonance: l₂ = 3λ/4 = 3l₁",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Two loudest lengths, and their λ values — note l₂ is three times l₁.",
+        "why": "A closed column resonates when a node sits at the closed end and an antinode at the open end; the shortest such fit is a quarter wavelength and the next fit adds half a wavelength — that is where λ/4 and 3λ/4 come from.",
+        "common_mistakes": [
+          "Writing the second resonance as λ/2 — the next fit for a CLOSED column is 3λ/4; λ/2 belongs to open pipes.",
+          "Detecting resonance by anything but the loudest sound — maximum loudness IS the resonance signal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the column resonates first at l₁ = λ/4 and next at l₂ = 3λ/4.",
+          "accept": [
+            "first resonance at lambda by four",
+            "second at three lambda by four",
+            "raise the column till the sound is loudest"
+          ],
+          "reject": [
+            "lambda equals two l two minus l one"
+          ],
+          "heard_as": [
+            "first resonance",
+            "second resonance",
+            "loudest"
+          ]
+        },
+        "memory_tip": "The column grows by half a wavelength between one resonance and the next: λ/4, then 3λ/4."
+      },
+      {
+        "id": "s4_wavelength",
+        "kind": "equation",
+        "label": "Wavelength from the two lengths",
+        "marks": 1,
+        "mark_note": "λ = 2(l₂ − l₁)",
+        "lines": [
+          "Subtract the two resonating lengths:",
+          {
+            "text": "l₂ − l₁ = 3λ/4 − λ/4 = λ/2",
+            "style": "eq"
+          },
+          {
+            "text": "∴ λ = 2(l₂ − l₁)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The difference of the two lengths gives half a wavelength.",
+        "why": "Using the DIFFERENCE of two measured lengths, instead of l₁ alone, cancels the small end correction of the tube — both lengths carry the same error and subtraction removes it.",
+        "common_mistakes": [
+          "Writing λ = 4l₁ and stopping — correct in principle but the method asks for both lengths; the difference is the measured quantity.",
+          "Forgetting the factor 2 — the difference is λ/2, so λ is twice the difference."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That l₂ − l₁ = λ/2, so λ = 2(l₂ − l₁).",
+          "accept": [
+            "the difference is half a wavelength",
+            "lambda is twice l two minus l one",
+            "subtract the two lengths"
+          ],
+          "reject": [
+            "V equals n lambda"
+          ],
+          "heard_as": [
+            "difference",
+            "half wavelength",
+            "two times"
+          ]
+        },
+        "memory_tip": "Between resonances the column grew by exactly half a wave — double the growth to get λ."
+      },
+      {
+        "id": "s5_velocity",
+        "kind": "boxed_final",
+        "label": "Velocity of sound",
+        "marks": 1,
+        "mark_note": "V = 2n(l₂ − l₁)",
+        "lines": [
+          "With the wave relation V = nλ, where n is",
+          "the frequency of the tuning fork:",
+          {
+            "text": "V = nλ = 2n(l₂ − l₁)",
+            "style": "boxed"
+          },
+          "Measuring l₁ and l₂ for a fork of known",
+          "frequency gives the velocity of sound in",
+          "air."
+        ],
+        "margin_note": "Fourth mark. Substitute λ into V = nλ and box the result.",
+        "why": "The fork's frequency is stamped on it and the two lengths are read off the apparatus, so every quantity on the right side is measured — the formula turns the experiment into a number for V.",
+        "common_mistakes": [
+          "Using the frequency of the air column instead of the fork — at resonance they are equal, and the KNOWN one is the fork's.",
+          "Writing V = n(l₂ − l₁) — the difference is λ/2, so the 2 must appear."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That V = nλ = 2n(l₂ − l₁), with n the tuning fork frequency.",
+          "accept": [
+            "V equals two n times l two minus l one",
+            "substitute lambda into V equals n lambda",
+            "the fork frequency is known"
+          ],
+          "reject": [
+            "the difference is half a wavelength"
+          ],
+          "heard_as": [
+            "velocity of sound",
+            "two n",
+            "tuning fork"
+          ]
+        },
+        "memory_tip": "Known fork frequency × measured wavelength — the whole experiment sits inside V = nλ."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for the pair λ/4 and 3λ/4 and the final V = 2n(l₂ − l₁) — the difference form matters because it is the measured version, not the memorised one."
+}

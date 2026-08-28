@@ -31,6 +31,11 @@ const streamArg = process.argv.find((a) => a.startsWith('--stream='));
 const STREAM = streamArg ? streamArg.slice('--stream='.length) : null;
 const STREAM_SUBJECTS: Record<string, string[]> = {
     mpc: ['physics', 'chemistry', 'mathematics', 'mathematics_1b'],
+    // Senior Inter, 2026-08-28. Kept in step with STREAMS in build_answer_book.ts
+    // BY HAND: the bundles this pushes are written by that build, so a stream
+    // listed in one and not the other either pushes nothing or pushes content
+    // the artifact does not serve.
+    mpc_2: ['physics_2'],
 };
 if (STREAM !== null && !STREAM_SUBJECTS[STREAM]) {
     console.error(`✗ --stream="${STREAM}" is not one of ${Object.keys(STREAM_SUBJECTS).join('/')}`);

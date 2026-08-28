@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_oersted_experiment_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the importance of Oersted's experiment?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A current produces a magnetic field",
+      "marks": 1
+    },
+    {
+      "label": "Field direction follows the current",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: Oersted (1820) observed a compass needle deflect near a current-carrying wire; the deflection reverses when the current reverses. This was the first experimental link between electricity and magnetism."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The examiner wants the observation and its meaning: a current produces a magnetic field, and the field direction depends on the current direction.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Moving Charges and Magnetism · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_discovery",
+        "kind": "text",
+        "label": "Current produces a magnetic field",
+        "marks": 1,
+        "mark_note": "Current produces a magnetic field",
+        "lines": [
+          "Oersted found that when a current flows",
+          "through a conductor, a magnetic field is",
+          "produced around the conductor.",
+          "A compass needle placed near the wire",
+          "shows this by deflecting."
+        ],
+        "margin_note": "First mark. Say what is produced (a magnetic field) and around what (the current-carrying conductor).",
+        "why": "The compass needle is the evidence: it deflects only when the current flows, so the current itself must be making a magnetic field around the wire.",
+        "common_mistakes": [
+          "Saying the wire attracts the compass needle. The needle turns because of a magnetic field, not an electric pull.",
+          "Leaving out the word around — the field forms in circles around the conductor."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a current flowing through a conductor produces a magnetic field around it.",
+          "accept": [
+            "current produces a magnetic field",
+            "magnetic field around the wire",
+            "compass needle deflects near a current"
+          ],
+          "reject": [
+            "field direction depends on current direction"
+          ],
+          "heard_as": [
+            "oersted",
+            "compass",
+            "magnetic field"
+          ]
+        },
+        "memory_tip": "One wire, one compass: switch the current on and the needle turns."
+      },
+      {
+        "id": "s2_importance",
+        "kind": "boxed_final",
+        "label": "Field direction follows the current",
+        "marks": 1,
+        "mark_note": "Direction and the link it proved",
+        "lines": [
+          "The direction of the field depends on",
+          "the direction of the current.",
+          "The experiment showed for the first time",
+          "that electricity and magnetism are",
+          "connected.",
+          {
+            "text": "A current produces a magnetic field",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The reversal test — reverse the current and the needle reverses — is what proves the field belongs to the current.",
+        "why": "Reversing the current reverses the deflection, so the field is not fixed in the wire — it is set by the current. That link opened the whole subject of electromagnetism.",
+        "common_mistakes": [
+          "Stopping at the deflection and not saying what it proved — the link between electricity and magnetism.",
+          "Saying the field depends on the size of the compass. It depends on the current."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the field direction depends on the current direction, and that this linked electricity and magnetism.",
+          "accept": [
+            "direction of field depends on direction of current",
+            "electricity and magnetism are connected",
+            "reverse the current and the needle reverses"
+          ],
+          "reject": [
+            "the needle deflects"
+          ],
+          "heard_as": [
+            "direction",
+            "electricity and magnetism"
+          ]
+        },
+        "memory_tip": "Two halves: field around the current, and reverse the current to reverse the field."
+      }
+    ]
+  }
+}

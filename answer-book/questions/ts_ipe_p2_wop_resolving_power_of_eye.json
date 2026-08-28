@@ -1,0 +1,306 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_resolving_power_of_eye",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How do you determine the resolving power of your eye?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The stripe pattern",
+      "marks": 1
+    },
+    {
+      "label": "The experiment",
+      "marks": 2
+    },
+    {
+      "label": "The resolving limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: a white gap of width d viewed from distance D subtends the angle d/D radians at the eye; stripes whose separation subtends less than the eye's resolving limit merge, so the boundary gap between merged and separate stripes measures that limit; for a normal eye it is about 1 minute of arc, 1′ = (1/60)°. The book's bullet increase as you from left to right is missing a word (move); the meaning — the white gaps widen left to right — is kept."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The result d/D is an angle in radians — adding that a normal eye resolves about 1 minute of arc is what completes the answer.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Wave Optics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The stripe pattern",
+        "marks": 0,
+        "figure": {
+          "id": "eye_resolution_stripes",
+          "width": 340,
+          "height": 170,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "stripe1",
+              "d": "M 30 35 L 48 35 L 48 105 L 30 105 Z",
+              "ms": 1400
+            },
+            {
+              "type": "stroke",
+              "id": "hatch1",
+              "d": "M 30 105 L 48 35",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "stripe2",
+              "d": "M 54 35 L 72 35 L 72 105 L 54 105 Z",
+              "ms": 1400
+            },
+            {
+              "type": "stroke",
+              "id": "hatch2",
+              "d": "M 54 105 L 72 35",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "stripe3",
+              "d": "M 82 35 L 100 35 L 100 105 L 82 105 Z",
+              "ms": 1400
+            },
+            {
+              "type": "stroke",
+              "id": "hatch3",
+              "d": "M 82 105 L 100 35",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "stripe4",
+              "d": "M 116 35 L 134 35 L 134 105 L 116 105 Z",
+              "ms": 1400
+            },
+            {
+              "type": "stroke",
+              "id": "hatch4",
+              "d": "M 116 105 L 134 35",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "stripe5",
+              "d": "M 158 35 L 176 35 L 176 105 L 158 105 Z",
+              "ms": 1400
+            },
+            {
+              "type": "stroke",
+              "id": "hatch5",
+              "d": "M 158 105 L 176 35",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "tick_left",
+              "d": "M 134 112 L 134 126",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "tick_right",
+              "d": "M 158 112 L 158 126",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 141,
+              "y": 124,
+              "text": "d",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_stripes",
+              "x": 30,
+              "y": 148,
+              "text": "equal black stripes",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_gaps",
+              "x": 205,
+              "y": 148,
+              "text": "gaps widen →",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "No separate figure mark asked, but sketch the pattern: equal black stripes, white gaps widening to the right, d marked on one gap. (Shade the stripes black in your booklet.)",
+        "why": "The pattern IS the measuring instrument: each white gap offers the eye a different angular separation at the same distance, so one look at the pattern tests many separations at once.",
+        "common_mistakes": [
+          "Widening the black stripes instead of the white gaps. The stripes stay equal; the gaps between them grow."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure is a row of equal black stripes with white gaps that widen from left to right, with d the width of one gap.",
+          "accept": [
+            "draw the stripe pattern",
+            "equal stripes, widening gaps",
+            "mark d on a gap"
+          ],
+          "reject": [
+            "resolution is d by D"
+          ],
+          "heard_as": [
+            "stripes",
+            "pattern",
+            "figure"
+          ]
+        },
+        "memory_tip": "Stripes equal, gaps growing — the gaps are what the eye is being tested on."
+      },
+      {
+        "id": "s2_pattern",
+        "kind": "text",
+        "label": "The pattern",
+        "marks": 1,
+        "mark_note": "Equal stripes, widening gaps",
+        "lines": [
+          "On a sheet, draw black stripes of equal",
+          "width. Make the white gaps between them",
+          "increase in width from left to right."
+        ],
+        "margin_note": "First mark. Two properties: black stripes equal, white gaps increasing left to right.",
+        "why": "Keeping the black stripes equal makes the gap width the only thing that changes across the pattern, so whatever the eye can or cannot separate is decided by the gaps alone.",
+        "common_mistakes": [
+          "Making the black stripes unequal too. Only the white gaps change; the stripes are the fixed part of the pattern."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pattern has equal black stripes with white gaps that increase in width from left to right.",
+          "accept": [
+            "black stripes equal width",
+            "white gaps increase left to right"
+          ],
+          "reject": [
+            "paste it on a wall"
+          ],
+          "heard_as": [
+            "stripes",
+            "gaps"
+          ]
+        },
+        "memory_tip": "One variable at a time: fix the stripes, vary the gaps."
+      },
+      {
+        "id": "s3_experiment",
+        "kind": "text",
+        "label": "The experiment",
+        "marks": 2,
+        "mark_note": "The merge boundary; d and D noted",
+        "lines": [
+          "Paste the pattern on a wall at the height",
+          "of your eye and view it with one eye.",
+          "Move toward or away from the wall. At some",
+          "distance, all the black stripes to the left",
+          "of one white gap merge into each other,",
+          "while the stripes to the right of it can",
+          "still be seen as separate.",
+          "Note the width d of this white gap and the",
+          "distance D of the wall from the eye."
+        ],
+        "margin_note": "Two marks. The observation is a BOUNDARY: merged stripes on the left of one gap, separate stripes on its right. d and D are both measured at that moment.",
+        "why": "Narrow gaps subtend angles below the eye's limit, so those stripes blur together; wide gaps subtend more and stay separate. The boundary gap is the one that subtends exactly the eye's resolving limit — which is why its width d, with the distance D, measures that limit.",
+        "common_mistakes": [
+          "Viewing with both eyes. The measurement is for one eye; use one.",
+          "Measuring d as the width of a black stripe. d is the width of the white gap at the merge boundary.",
+          "Forgetting to record D. The result needs both the gap width and the distance to the wall."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That you view the wall pattern with one eye, find the gap where merging changes to separate, and note that gap's width d and the wall distance D.",
+          "accept": [
+            "view with one eye",
+            "stripes on the left merge",
+            "note d and D"
+          ],
+          "reject": [
+            "one minute of arc"
+          ],
+          "heard_as": [
+            "merge",
+            "one eye",
+            "distance D"
+          ]
+        },
+        "memory_tip": "Find the border between blurred and separate — that border gap is the eye's limit made visible."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The resolving limit",
+        "marks": 1,
+        "mark_note": "d/D, about 1′ for a normal eye",
+        "lines": [
+          "The smallest angle the eye can separate is",
+          "the angle this gap subtends at the eye:",
+          {
+            "text": "resolution of the eye = d/D",
+            "style": "eq"
+          },
+          "(d and D in the same units; the ratio is in",
+          "radians). For a normal eye it is about one",
+          "minute of arc: 1′ = (1/60)°.",
+          {
+            "text": "Resolution of the eye = d/D ≈ 1′",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "One mark. The formula d/D plus the normal-eye value of about 1 minute of arc.",
+        "why": "A length d seen from a distance D subtends the angle d/D radians — that is all the formula is. Quoting the normal-eye value, about 1′, turns the experiment into a checkable result.",
+        "common_mistakes": [
+          "Writing D/d. The angle is the small length over the large distance: d/D.",
+          "Quoting 1° instead of 1′. The normal eye resolves about one MINUTE of arc, a sixtieth of a degree."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the resolving limit is the angle d/D in radians, about one minute of arc for a normal eye.",
+          "accept": [
+            "d by D",
+            "about one minute of arc",
+            "one sixtieth of a degree"
+          ],
+          "reject": [
+            "stripes on the left merge"
+          ],
+          "heard_as": [
+            "d by D",
+            "one minute",
+            "arc minute"
+          ]
+        },
+        "memory_tip": "Small length over big distance gives the angle: d/D — and a normal eye manages about 1′."
+      }
+    ]
+  }
+}

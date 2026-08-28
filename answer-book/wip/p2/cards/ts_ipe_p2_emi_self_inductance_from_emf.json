@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_self_inductance_from_emf",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Current in a circuit falls from 5.0 A to 0.0 A in 0.1 s. If an average emf of 200 V is induced, give an estimate of the self-inductance of the circuit.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and data",
+      "marks": 1
+    },
+    {
+      "label": "Substitution and result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Arithmetic hand-checked: rate of change = 5.0/0.1 = 50 A s⁻¹; L = 200/50 = 4 H — agrees with the book's printed 4 H. PRINT SLIP recorded: the book's data line reads 'di = 0.1S' where the quantity is the TIME, dt = 0.1 s; the card writes dt."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula_data",
+        "kind": "text",
+        "label": "Formula and data",
+        "marks": 1,
+        "mark_note": "|ε| = L Δi/Δt with Δt = 0.1 s",
+        "lines": [
+          {
+            "text": "Δi = 5.0 − 0.0 = 5.0 A, Δt = 0.1 s",
+            "style": "eq"
+          },
+          {
+            "text": "|ε| = 200 V (average)",
+            "style": "eq"
+          },
+          "The magnitude of the average induced emf",
+          "is",
+          {
+            "text": "|ε| = L Δi / Δt",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Sort the data: Δi is the change of current, Δt the time taken — the book's own data line mislabels the time as di.",
+        "why": "An average emf uses the total change over the total time, so the magnitudes Δi and Δt are all the formula needs. The book prints di = 0.1 S in its data line; that quantity is the time, Δt = 0.1 s.",
+        "common_mistakes": [
+          "Writing the time as di. The 0.1 s is Δt, the time taken, not a current.",
+          "Carrying the minus sign into the arithmetic. Work with magnitudes; the sign only records the opposition."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the average emf magnitude is L Δi over Δt, with Δi = 5.0 A and Δt = 0.1 s.",
+          "accept": [
+            "L delta i by delta t",
+            "five amperes in 0.1 second",
+            "average emf 200 volts"
+          ],
+          "reject": [
+            "4 henry"
+          ],
+          "heard_as": [
+            "delta i",
+            "delta t"
+          ]
+        },
+        "memory_tip": "Three magnitudes go in: change of current, time taken, average emf. L is the only unknown."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "Substitution and result",
+        "marks": 1,
+        "mark_note": "L = 200/50 = 4 H",
+        "lines": [
+          {
+            "text": "200 = L × (5.0 / 0.1)",
+            "style": "eq"
+          },
+          {
+            "text": "200 = 50 L, so L = 200 / 50",
+            "style": "eq"
+          },
+          {
+            "text": "L = 4 H",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The rate is 50 A s⁻¹; 200 V at that rate pins L at 4 H.",
+        "why": "5.0 over 0.1 is a rate of 50 A s⁻¹; an emf of 200 V at that rate gives L = 4 H. The word estimate is in the question because the emf is an average over the fall.",
+        "common_mistakes": [
+          "Dividing 200 by 5 and forgetting the 0.1 s. The rate of change is 50 A s⁻¹, not 5 A s⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 200 equals L times 50, so L is 4 henry.",
+          "accept": [
+            "200 by 50",
+            "4 henry",
+            "rate is 50 ampere per second"
+          ],
+          "reject": [
+            "20 microhenry"
+          ],
+          "heard_as": [
+            "four henry",
+            "fifty"
+          ]
+        },
+        "memory_tip": "Rate first: 5 over 0.1 is 50. Then 200 over 50 is 4."
+      }
+    ]
+  },
+  "insider_note": "The book's own data line prints di = 0.1 S where it means the time dt; write Δt = 0.1 s and the estimate lands at 4 H."
+}

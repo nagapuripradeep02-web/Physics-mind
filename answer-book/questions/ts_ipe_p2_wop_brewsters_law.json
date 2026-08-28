@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_brewsters_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain Brewster's law.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law in words",
+      "marks": 1
+    },
+    {
+      "label": "Formula and perpendicular rays",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: μ = tan θₚ is self-consistent with Snell's law — sin θₚ = μ sin r together with θₚ + r = 90° gives sin θₚ = μ cos θₚ, hence μ = tan θₚ; at the polarising angle the reflected light is completely plane polarised and the reflected and refracted rays are perpendicular."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Most students write μ = tan θₚ and stop — the perpendicular reflected and refracted rays are the other half of the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Wave Optics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The law in words",
+        "marks": 1,
+        "mark_note": "Polarising angle defined",
+        "lines": [
+          "When unpolarised light falls on a transparent",
+          "surface at one particular angle of incidence,",
+          "called the polarising angle θₚ, the reflected",
+          "light is completely plane polarised."
+        ],
+        "margin_note": "First mark. Define the polarising angle before using it — it is the angle at which the reflected light is completely polarised.",
+        "why": "Brewster's law is a statement about one special angle, so the answer must first say what is special about it: only at θₚ is the reflected light completely plane polarised. At every other angle it is only partly polarised.",
+        "common_mistakes": [
+          "Saying the reflected light is polarised at every angle. Complete polarisation happens only at the polarising angle.",
+          "Saying the refracted light is completely polarised. It is the reflected light; the refracted light stays partly polarised."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at one particular angle of incidence, the polarising angle, the reflected light is completely plane polarised.",
+          "accept": [
+            "at the polarising angle the reflected light is fully polarised",
+            "completely plane polarised on reflection",
+            "one particular angle of incidence"
+          ],
+          "reject": [
+            "mu equals tan theta p"
+          ],
+          "heard_as": [
+            "polarising angle",
+            "Brewster",
+            "theta p"
+          ]
+        },
+        "memory_tip": "One special angle, one special result: at θₚ the REFLECTED light is completely polarised."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Formula and perpendicular rays",
+        "marks": 1,
+        "mark_note": "μ = tan θₚ, rays perpendicular",
+        "lines": [
+          "Brewster's law: the refractive index of the",
+          "medium equals the tangent of the polarising",
+          "angle.",
+          "At this angle the reflected ray and the",
+          "refracted ray are perpendicular to each",
+          "other, so θₚ + r = 90°.",
+          {
+            "text": "μ = tan θₚ",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write the formula AND the perpendicularity — they belong together, one follows from the other.",
+        "why": "The tangent form is not an extra fact to memorise: put r = 90° − θₚ into Snell's law sin θₚ = μ sin r and μ = tan θₚ drops out. Writing the perpendicular rays next to the formula shows the examiner the law is understood, not copied.",
+        "common_mistakes": [
+          "Writing μ = tan θ with an unnamed angle. The angle in the law is the polarising angle θₚ.",
+          "Leaving out the perpendicular reflected and refracted rays, which is the condition the formula comes from."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That μ equals tan of the polarising angle, and at that angle the reflected and refracted rays are perpendicular.",
+          "accept": [
+            "mu equals tan theta p",
+            "reflected and refracted rays are perpendicular",
+            "theta p plus r is ninety degrees"
+          ],
+          "reject": [
+            "the reflected light is completely polarised"
+          ],
+          "heard_as": [
+            "tan theta p",
+            "perpendicular",
+            "refractive index"
+          ]
+        },
+        "memory_tip": "Perpendicular rays give r = 90° − θₚ; put that in Snell's law and tan θₚ appears."
+      }
+    ]
+  }
+}

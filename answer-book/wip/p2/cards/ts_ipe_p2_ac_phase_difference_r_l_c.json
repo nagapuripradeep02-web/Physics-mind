@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_phase_difference_r_l_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the phase difference between a.c. emf and current in the following? (i) pure resistor (ii) pure inductor (iii) pure capacitor",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Pure resistor",
+      "marks": 1
+    },
+    {
+      "label": "Pure inductor and pure capacitor",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked against V = V₀ sin ωt: pure R gives I = (V₀/R) sin ωt, in phase; pure L gives I = (V₀/ωL) sin(ωt − π/2), current LAGS by π/2; pure C gives I = ωCV₀ sin(ωt + π/2), current LEADS by π/2 — the lag/lead directions match the book's answer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_resistor",
+        "kind": "text",
+        "label": "Pure resistor",
+        "marks": 1,
+        "mark_note": "In phase, zero",
+        "lines": [
+          "In a pure resistor the emf and the current",
+          "are in phase.",
+          "The phase difference is zero."
+        ],
+        "margin_note": "First mark. Two words carry it: in phase.",
+        "why": "With only resistance there is nothing that stores energy, so the current simply follows the emf instant by instant — zero phase difference.",
+        "common_mistakes": [
+          "Giving π/2 for the resistor. Only the inductor and the capacitor shift the phase."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in a pure resistor the emf and the current are in phase — zero phase difference.",
+          "accept": [
+            "in phase",
+            "zero phase difference"
+          ],
+          "reject": [
+            "lags by 90 degrees"
+          ],
+          "heard_as": [
+            "in phase",
+            "zero"
+          ]
+        },
+        "memory_tip": "Resistor: nothing stored, nothing shifted — zero."
+      },
+      {
+        "id": "s2_l_and_c",
+        "kind": "boxed_final",
+        "label": "Pure inductor and pure capacitor",
+        "marks": 1,
+        "mark_note": "L lags, C leads, π/2",
+        "lines": [
+          "In a pure inductor the current lags the emf",
+          "by π/2 radian, that is 90°.",
+          "In a pure capacitor the current leads the emf",
+          "by π/2 radian, that is 90°.",
+          {
+            "text": "R: zero · L: lags π/2 · C: leads π/2",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The direction words lags and leads are what the examiner reads first.",
+        "why": "The direction is the tested point. An inductor opposes a change of current, so the current builds up late and LAGS; a capacitor must take current in before its voltage rises, so the current comes early and LEADS.",
+        "common_mistakes": [
+          "Swapping the two. The current does not lead in an inductor or lag in a capacitor.",
+          "Writing π instead of π/2. The shift is a quarter cycle, 90°."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in a pure inductor the current lags the emf by π/2 and in a pure capacitor it leads by π/2.",
+          "accept": [
+            "current lags in an inductor",
+            "current leads in a capacitor",
+            "by pi by 2",
+            "90 degrees"
+          ],
+          "reject": [
+            "in phase"
+          ],
+          "heard_as": [
+            "lags",
+            "leads",
+            "pi by two"
+          ]
+        },
+        "memory_tip": "ELI the ICE man: in ELI, emf E comes before current I with L; in ICE, current I comes before emf E with C."
+      }
+    ]
+  },
+  "insider_note": "The lag or lead direction is the single most swapped fact in this chapter — inductor: current lags; capacitor: current leads."
+}

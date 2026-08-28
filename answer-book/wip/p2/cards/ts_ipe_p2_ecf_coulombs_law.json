@@ -1,0 +1,276 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_coulombs_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and explain Coulomb's inverse square law in electricity.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "Formula with the constant",
+      "marks": 2
+    },
+    {
+      "label": "Force in a medium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: F = (1/4πε₀)·Q₁Q₂/r² with k = 1/4πε₀ = 9 × 10⁹ N m² C⁻²; in a medium ε = ε₀εᵣ replaces ε₀. The book prints 'permitivity of free spaced' and 'electrostalic' (printed p.19-20); written correctly here."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Charges and Fields · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Full statement",
+        "lines": [
+          "The force of attraction or repulsion",
+          "between two stationary point charges is",
+          "directly proportional to the product of the",
+          "charges, inversely proportional to the",
+          "square of the distance between them, and",
+          "acts along the line joining the two",
+          "charges."
+        ],
+        "margin_note": "First mark. Three parts: product of charges, inverse square of distance, along the joining line.",
+        "why": "The statement has three separate claims and the examiner checks all three. Stationary and point-sized matter too — the law is stated for point charges at rest.",
+        "common_mistakes": [
+          "Leaving out acts along the line joining the charges — the direction is part of the law.",
+          "Writing proportional to the sum of the charges. It is the PRODUCT Q₁Q₂."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the force is proportional to the product of the charges, inversely proportional to the square of the distance, and acts along the joining line.",
+          "accept": [
+            "product of the charges",
+            "inverse square of the distance",
+            "along the line joining them"
+          ],
+          "reject": [
+            "one by four pi epsilon nought"
+          ],
+          "heard_as": [
+            "Coulomb's law",
+            "product",
+            "inverse square"
+          ]
+        },
+        "memory_tip": "Three claims in one sentence: product, inverse square, joining line."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "coulomb_two_charges",
+          "width": 340,
+          "height": 128,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "q1",
+              "d": "M 53 52 A 7 7 0 1 0 67 52 A 7 7 0 1 0 53 52",
+              "ms": 630
+            },
+            {
+              "type": "label",
+              "id": "lbl_q1",
+              "x": 46,
+              "y": 24,
+              "text": "Q₁",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "q2",
+              "d": "M 273 52 A 7 7 0 1 0 287 52 A 7 7 0 1 0 273 52",
+              "ms": 630
+            },
+            {
+              "type": "label",
+              "id": "lbl_q2",
+              "x": 268,
+              "y": 24,
+              "text": "Q₂",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "join",
+              "d": "M 67 52 L 273 52",
+              "ms": 2940
+            },
+            {
+              "type": "stroke",
+              "id": "dim",
+              "d": "M 60 92 L 280 92",
+              "ms": 3140,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 166,
+              "y": 116,
+              "text": "r",
+              "ms": 300
+            }
+          ]
+        },
+        "margin_note": "Two point charges Q₁ and Q₂, a distance r apart. Draw it beside the explanation — it defines the symbols the formula uses.",
+        "why": "The figure fixes what Q₁, Q₂ and r mean before they appear in the formula, so the explanation reads as geometry instead of as symbols from nowhere.",
+        "common_mistakes": [
+          "Marking r from the surfaces of two large bodies. The law is for POINT charges, r is between the points."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure shows two point charges Q₁ and Q₂ separated by a distance r.",
+          "accept": [
+            "draw two charges a distance r apart",
+            "mark Q one, Q two and r"
+          ],
+          "reject": [
+            "F equals k Q1 Q2 by r squared"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "two charges"
+          ]
+        },
+        "memory_tip": "Two dots, one line, one letter r — the whole law lives on this picture."
+      },
+      {
+        "id": "s3_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 2,
+        "mark_note": "F = (1/4πε₀) · Q₁Q₂/r²",
+        "lines": [
+          "Let Q₁ and Q₂ be two point charges at rest,",
+          "separated by a distance r. Then",
+          {
+            "text": "F ∝ Q₁Q₂ / r²",
+            "style": "eq"
+          },
+          {
+            "text": "F = k · Q₁Q₂ / r²",
+            "style": "eq"
+          },
+          "where k is a constant. In free space,",
+          {
+            "text": "k = 1/4πε₀ = 9 × 10⁹ N m² C⁻²",
+            "style": "eq"
+          },
+          {
+            "text": "F = (1/4πε₀) · Q₁Q₂ / r²",
+            "style": "eq"
+          },
+          "Here ε₀ is the permittivity of free space."
+        ],
+        "margin_note": "Two marks. One for the proportionality made into an equation, one for k = 1/4πε₀ with its value.",
+        "why": "The explanation is the statement turned into symbols: the two proportionalities combine into one, and the constant k carries the units. Naming ε₀ as the permittivity of free space shows where k comes from.",
+        "common_mistakes": [
+          "Writing k = 4πε₀ instead of k = 1/4πε₀.",
+          "Quoting k as 9 × 10⁹ with no unit. The unit N m² C⁻² is part of the value.",
+          "Writing r instead of r² in the denominator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F = (1/4πε₀) · Q₁Q₂/r², with k = 1/4πε₀ = 9 × 10⁹ N m² C⁻².",
+          "accept": [
+            "F equals one by four pi epsilon nought into Q1 Q2 by r squared",
+            "k is nine into ten power nine",
+            "k equals one by four pi epsilon nought"
+          ],
+          "reject": [
+            "epsilon equals epsilon nought epsilon r"
+          ],
+          "heard_as": [
+            "four pi epsilon nought",
+            "Q1 Q2 by r squared",
+            "nine into ten power nine"
+          ]
+        },
+        "memory_tip": "Proportionality first, then k, then k's value — three lines, two marks."
+      },
+      {
+        "id": "s4_medium",
+        "kind": "boxed_final",
+        "label": "Force in a medium",
+        "marks": 1,
+        "mark_note": "Medium form with ε = ε₀εᵣ",
+        "lines": [
+          "If the charges are placed in a material",
+          "medium of permittivity ε = ε₀εᵣ, the force",
+          "decreases to",
+          {
+            "text": "F = (1/4πε) · Q₁Q₂ / r²",
+            "style": "eq"
+          },
+          "where εᵣ is the relative permittivity of",
+          "the medium.",
+          {
+            "text": "F = (1/4πε₀) · Q₁Q₂ / r²",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. Replace ε₀ by ε = ε₀εᵣ — the force in a medium is smaller by the factor εᵣ.",
+        "why": "The medium form is the same law with ε₀ replaced by ε. Since εᵣ > 1 for every material medium, the force between the same charges is smaller inside a medium than in free space.",
+        "common_mistakes": [
+          "Writing ε = ε₀ + εᵣ. The permittivity multiplies: ε = ε₀εᵣ.",
+          "Saying the force increases in a medium. εᵣ > 1, so the force decreases."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in a medium ε = ε₀εᵣ replaces ε₀, so the force becomes smaller.",
+          "accept": [
+            "epsilon equals epsilon nought epsilon r",
+            "replace epsilon nought by epsilon",
+            "force decreases in a medium"
+          ],
+          "reject": [
+            "k is nine into ten power nine"
+          ],
+          "heard_as": [
+            "medium",
+            "relative permittivity",
+            "epsilon r"
+          ]
+        },
+        "memory_tip": "Same law, bigger permittivity, smaller force — divide by εᵣ."
+      }
+    ]
+  },
+  "insider_note": "The middle two marks are the explanation — the proportionality turned into an equation and k given with both its form and its value; the medium line is the mark most students never write."
+}

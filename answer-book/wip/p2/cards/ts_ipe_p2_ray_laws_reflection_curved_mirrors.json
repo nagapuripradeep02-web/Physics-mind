@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_laws_reflection_curved_mirrors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the laws of reflection through curved mirrors?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Equal angles law",
+      "marks": 1
+    },
+    {
+      "label": "Same plane law + the curved-mirror normal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: the two laws of reflection are local — they hold at each point of any surface (plane, curved, or rough) — and for a spherical mirror the normal at a point is the radius through that point, the line joining the point to the centre of curvature C."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equal_angles",
+        "kind": "text",
+        "label": "Equal angles law",
+        "marks": 1,
+        "mark_note": "∠i = ∠r from the normal",
+        "lines": [
+          {
+            "text": "The laws of reflection:",
+            "style": "heading"
+          },
+          "1) The angle of incidence equals the angle",
+          "of reflection,",
+          {
+            "text": "∠i = ∠r",
+            "style": "eq"
+          },
+          "both measured from the normal at the point",
+          "of incidence."
+        ],
+        "margin_note": "First mark. Both angles are measured from the NORMAL, not from the mirror surface.",
+        "why": "Both angles are defined from the normal because on a curved mirror there is no single surface direction to measure from — the normal at the point of incidence is the one well-defined reference.",
+        "common_mistakes": [
+          "Measuring the angles from the mirror surface instead of from the normal.",
+          "Writing the law without saying where the angles are measured."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle of incidence equals the angle of reflection, measured from the normal at the point of incidence.",
+          "accept": [
+            "angle of incidence equals angle of reflection",
+            "i equals r from the normal",
+            "equal angles about the normal at the point of incidence",
+            "incidence angle reflection angle equal untayi"
+          ],
+          "reject": [
+            "the rays lie in one plane"
+          ],
+          "heard_as": [
+            "angle of incidence",
+            "angle of reflection",
+            "normal",
+            "i equals r"
+          ]
+        },
+        "memory_tip": "One equation carries the mark: ∠i = ∠r, both from the normal."
+      },
+      {
+        "id": "s2_same_plane",
+        "kind": "boxed_final",
+        "label": "Same plane law",
+        "marks": 1,
+        "mark_note": "One plane; normal through C",
+        "lines": [
+          "2) The incident ray, the reflected ray and",
+          "the normal at the point of incidence all lie",
+          "in one plane.",
+          "For a curved mirror the normal at any point",
+          "is the line joining that point to the centre",
+          "of curvature C. The same two laws hold at",
+          "every point of the curved surface.",
+          {
+            "text": "Same two laws; the normal passes through C",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The curved-mirror content is the normal: at any point it passes through C.",
+        "why": "The laws of reflection are local — they act at the single point where the ray lands. So they hold for plane mirrors, curved mirrors and rough surfaces alike; only the direction of the normal changes from point to point, and on a sphere that normal is the radius through the point.",
+        "common_mistakes": [
+          "Thinking curved mirrors need new laws. The same two laws apply; only the normal direction varies.",
+          "Drawing the normal perpendicular to the principal axis. The normal at a point passes through the centre of curvature C."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the incident ray, reflected ray and normal lie in one plane, and that on a curved mirror the normal at a point passes through the centre of curvature.",
+          "accept": [
+            "incident ray reflected ray and normal are in one plane",
+            "same plane law and the normal is the line to the centre of curvature",
+            "the normal at any point of the mirror passes through C",
+            "normal C gunda veltundi curved mirror lo"
+          ],
+          "reject": [
+            "angle of incidence equals angle of reflection"
+          ],
+          "heard_as": [
+            "same plane",
+            "one plane",
+            "centre of curvature",
+            "normal"
+          ]
+        },
+        "memory_tip": "Two laws plus one sentence for the curve: the normal at any point is the radius through that point."
+      }
+    ]
+  },
+  "insider_note": "The curved-mirror content is one sentence — the normal at any point passes through C. The two laws themselves are unchanged."
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_bulb_100w_200v_resistance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A light bulb is rated at 100 W for a 200 V supply. Find the resistance of the bulb.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitution and answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. PRINTED ERROR (book p27, VSAQ 11): the question states a 200 V supply but the printed solution substitutes V = 220 V and gets 484 Ω. This card answers the question AS ASKED: R = V²/P = 200²/100 = 40000/100 = 400 Ω. The book's 220 V slip is recorded in the substitution step's why. Hand-checked: 200 × 200 = 40000; 40000/100 = 400."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "R = V²/P",
+        "lines": [
+          "Given: P = 100 W, V = 200 V.",
+          "The rated power at the rated voltage is",
+          {
+            "text": "P = V²/R ⇒ R = V²/P",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Rearrange P = V²/R before substituting.",
+        "why": "The rating names the voltage and the power, so P = V²/R is the form that connects exactly the two given quantities to the required R.",
+        "common_mistakes": [
+          "Using P = I²R first — the current is not given, so V²/P is the direct route.",
+          "Forgetting to square the voltage."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R equals V squared by P, rearranged from P equals V squared by R.",
+          "accept": [
+            "R equals V squared by P",
+            "P equals V squared by R",
+            "voltage squared over power"
+          ],
+          "reject": [
+            "400 ohm"
+          ],
+          "heard_as": [
+            "V squared",
+            "by P"
+          ]
+        },
+        "memory_tip": "Rating gives V and P, so pick the power formula holding exactly V and R: P = V²/R."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitution and answer",
+        "marks": 1,
+        "mark_note": "400 Ω",
+        "lines": [
+          {
+            "text": "R = V²/P = (200 × 200)/100 = 400 Ω",
+            "style": "eq"
+          },
+          {
+            "text": "R = 400 Ω at the stated 200 V",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Substitute the voltage the question actually states: 200 V.",
+        "why": "The book's printed solution substitutes 220 V and gets 484 Ω even though the question says 200 V. Answer the question as asked: at 200 V the resistance is 400 Ω. (If an exam paper states 220 V, the same working gives 484 Ω.)",
+        "common_mistakes": [
+          "Copying 220 V from memory of the common mains value — use the 200 V the question states.",
+          "Dividing V by P without squaring: 200/100 = 2 Ω is wrong."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting 200 volt and 100 watt gives 40000 by 100, which is 400 ohm.",
+          "accept": [
+            "400 ohm",
+            "200 squared by 100",
+            "40000 divided by 100"
+          ],
+          "reject": [
+            "R equals V squared by P"
+          ],
+          "heard_as": [
+            "400",
+            "ohm"
+          ]
+        },
+        "memory_tip": "200² has four zeros ready-made: 40000/100 = 400."
+      }
+    ]
+  },
+  "insider_note": "Read the stated voltage carefully: this book's own solution slips to 220 V and prints 484 Ω, but the question says 200 V, so the answer is 400 Ω."
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_pole_force_doubled",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The force between two magnetic poles separated by a distance \"d\" in air is \"F\". At what distance between them does the force become doubled?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Inverse square law",
+      "marks": 1
+    },
+    {
+      "label": "The new distance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: F ∝ 1/d² gives F·d² = 2F·d₂², so d₂² = d²/2 and d₂ = d/√2 ≈ 0.707 d — the book's result, reached here without its intermediate ratio clutter."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_inverse_square",
+        "kind": "equation",
+        "label": "Inverse square law",
+        "marks": 1,
+        "mark_note": "F ∝ 1/d² applied",
+        "lines": [
+          "The force between two magnetic poles",
+          "follows an inverse square law:",
+          {
+            "text": "F = (μ₀/4π) · m₁m₂/d², so F ∝ 1/d²",
+            "style": "eq"
+          },
+          "For the same poles, F·d² stays constant:",
+          {
+            "text": "F · d² = 2F · d₂²",
+            "style": "eq"
+          },
+          {
+            "text": "d₂² = d²/2",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Same poles, so m₁m₂ cancels — only F·d² = constant is needed.",
+        "why": "The pole-force law has d² in the denominator, so F times d² is the same at both separations. Setting the old and new products equal turns the question into one line of algebra.",
+        "common_mistakes": [
+          "Halving the distance to double the force. Halving d multiplies the force by 4, not 2.",
+          "Writing F ∝ 1/d. The law is inverse square — the ² is what brings in the √2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pole force follows an inverse square law, so F times d squared is constant and d₂ squared is d squared over 2.",
+          "accept": [
+            "force is inverse square in distance",
+            "F d squared stays constant",
+            "d two squared equals d squared by two"
+          ],
+          "reject": [
+            "d by root two"
+          ],
+          "heard_as": [
+            "inverse square",
+            "d squared"
+          ]
+        },
+        "memory_tip": "Double the force needs d² halved — the square root comes in only at the last step."
+      },
+      {
+        "id": "s2_new_distance",
+        "kind": "boxed_final",
+        "label": "The new distance",
+        "marks": 1,
+        "mark_note": "d/√2",
+        "lines": [
+          {
+            "text": "∴ d₂ = d/√2 ≈ 0.707 d",
+            "style": "boxed"
+          },
+          "The poles must be brought closer, to d/√2."
+        ],
+        "margin_note": "Second mark. A sense check: doubling the force needs a smaller separation, and d/√2 is smaller than d.",
+        "why": "Taking the square root of d²/2 gives d/√2. The answer must come out smaller than d, because the force grows only when the poles come closer.",
+        "common_mistakes": [
+          "Writing d₂ = d√2. Moving the poles apart weakens the force — √2 belongs in the denominator.",
+          "Stopping at d₂² = d²/2 without taking the square root."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the new separation is d divided by root two, about 0.707 d — closer than before.",
+          "accept": [
+            "d by root two",
+            "point seven zero seven d",
+            "the poles come closer"
+          ],
+          "reject": [
+            "inverse square law"
+          ],
+          "heard_as": [
+            "root two",
+            "d by root 2"
+          ]
+        },
+        "memory_tip": "More force means less distance: divide by √2, never multiply."
+      }
+    ]
+  },
+  "insider_note": "The one-line check that saves this question: the answer must be SMALLER than d — any √2 on top of d is instantly wrong."
+}

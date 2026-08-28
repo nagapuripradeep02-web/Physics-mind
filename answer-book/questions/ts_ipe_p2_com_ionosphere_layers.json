@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_com_ionosphere_layers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Communication System"
+  },
+  "chapter": "Communication System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention various parts of the ionosphere?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The four layers named",
+      "marks": 1
+    },
+    {
+      "label": "Heights, regions, day and night",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Whether Communication Systems is still on the current Telangana second-year syllabus is UNCONFIRMED — NCERT removed this chapter in the 2023 rationalisation, but this book prints it. A lecturer's pen tick marks this question as expected, and the lecturer has bracketed the printed answer in pen, written 'belongs to' above it and underlined 'stratosphere', 'mesosphere' and 'thermosphere' — the printed placement of the layers is WRONG and this card writes the correct one. Physics hand-checked: D at about 60–90 km (upper mesosphere), E at about 90–120 km (lower thermosphere), F₁ at about 150–200 km and F₂ above about 200 km, both in the thermosphere; no ionosphere layer is in the stratosphere; at night F₁ and F₂ merge into one F layer and the D layer exists only in the daytime."
+  },
+  "recall_prompt": "Name the four layers of the ionosphere with their approximate heights, and say what changes between day and night.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Communication System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_four_layers",
+        "kind": "text",
+        "label": "The four layers named",
+        "marks": 1,
+        "mark_note": "D, E, F₁ and F₂",
+        "lines": [
+          "The ionosphere is divided into four",
+          "layers: D, E, F₁ and F₂."
+        ],
+        "margin_note": "First mark. All four names, with F split into F₁ and F₂.",
+        "why": "The four layers differ in height and in how strongly they are ionised, and each one matters differently for radio reflection, so the examiner expects all four named — F written as two layers, F₁ and F₂, not one.",
+        "common_mistakes": [
+          "Writing three layers D, E, F. In the daytime the F layer is two layers, F₁ and F₂, and the question asks for the parts.",
+          "Writing A, B, C, D. The layers are lettered from D upward: D, E, F₁, F₂."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ionosphere has four layers, named D, E, F₁ and F₂.",
+          "accept": [
+            "D, E, F one and F two",
+            "four layers, D E F1 F2",
+            "the D layer, the E layer and the two F layers"
+          ],
+          "reject": [
+            "the F layers merge at night"
+          ],
+          "heard_as": [
+            "D layer",
+            "E layer",
+            "F1",
+            "F2",
+            "ef one",
+            "ef two"
+          ]
+        },
+        "memory_tip": "The letters run D, E, F going up — and the top letter F is doubled: F₁ then F₂."
+      },
+      {
+        "id": "s2_heights_regions",
+        "kind": "boxed_final",
+        "label": "Heights, regions, day and night",
+        "marks": 1,
+        "mark_note": "Correct heights; none in the stratosphere",
+        "lines": [
+          "D layer: about 60–90 km, in the upper",
+          "mesosphere. E layer: about 90–120 km, in",
+          "the lower thermosphere.",
+          "F₁ (about 150–200 km) and F₂ (above about",
+          "200 km) are both in the thermosphere.",
+          "At night F₁ and F₂ merge into one F layer;",
+          "the D layer exists only during the day.",
+          {
+            "text": "No ionosphere layer is in the stratosphere",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Heights with regions. The book's placement is wrong here — see why.",
+        "why": "The book prints 'D & E layers lie in the stratosphere. F₁ layer is a part of mesosphere and F₂ layer is a part of thermosphere' — and the lecturer has bracketed this in pen, written 'belongs to' above it and underlined the three region names, because it is wrong. The stratosphere (about 10–50 km) holds no ionosphere layer at all: D sits at about 60–90 km in the upper mesosphere, E at about 90–120 km in the lower thermosphere, and F₁ and F₂ are BOTH in the thermosphere. The book's closing sentence is also garbled; the correct statement is that F₁ and F₂ merge at night while D exists only in the daytime.",
+        "common_mistakes": [
+          "Copying the book: D and E in the stratosphere, F₁ in the mesosphere. No layer is in the stratosphere; F₁ and F₂ are both in the thermosphere.",
+          "Saying the D layer exists at night. Its ionisation needs sunlight, so D is a daytime layer.",
+          "Saying F₁ and F₂ merge in the daytime. They are separate by day and merge into one F layer at night."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That D is at about 60–90 km and E at about 90–120 km, F₁ and F₂ are both in the thermosphere, no layer is in the stratosphere, F₁ and F₂ merge at night, and D exists only by day.",
+          "accept": [
+            "D is at 60 to 90 kilometres and E above it",
+            "F1 and F2 are both in the thermosphere",
+            "nothing of the ionosphere is in the stratosphere",
+            "at night the two F layers become one and D disappears"
+          ],
+          "reject": [
+            "the four layers are D, E, F1 and F2"
+          ],
+          "heard_as": [
+            "mesosphere",
+            "thermosphere",
+            "stratosphere",
+            "60 to 90",
+            "merge at night"
+          ]
+        },
+        "memory_tip": "Go up from 60 km: D, then E, then F₁, then F₂ — mesosphere lowest, thermosphere for everything above."
+      }
+    ]
+  },
+  "insider_note": "The book's region placement is wrong and the lecturer struck it out in pen. Write the corrected picture: D 60–90 km, E 90–120 km, F₁ and F₂ in the thermosphere, nothing in the stratosphere — and the day–night change."
+}

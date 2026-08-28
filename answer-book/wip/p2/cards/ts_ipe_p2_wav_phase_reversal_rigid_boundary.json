@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_phase_reversal_rigid_boundary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the phase difference between the incident and reflected waves when the wave is reflected by a rigid boundary?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reflection at a rigid boundary",
+      "marks": 1
+    },
+    {
+      "label": "The phase difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: at a rigid (fixed) boundary the displacement must stay zero, so the reflected wave is inverted relative to the incident wave — a phase change of π radian (180°). At a free boundary there is no phase change; the question asks only the rigid case."
+  },
+  "recall_prompt": "Say what happens to a wave at a rigid boundary, and the phase difference between the incident and reflected waves.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_inversion",
+        "kind": "text",
+        "label": "Wave inverted at the rigid end",
+        "marks": 1,
+        "mark_note": "Reflected wave is inverted",
+        "lines": [
+          "At a rigid boundary the end of the medium",
+          "cannot move, so the wave is reflected",
+          "inverted — a crest returns as a trough."
+        ],
+        "margin_note": "First mark. Say the reflected wave is inverted, and why: the fixed end cannot move.",
+        "why": "The displacement at a fixed end must stay zero at every instant. Only an inverted reflected wave can cancel the incident wave there, so the inversion is forced by the boundary.",
+        "common_mistakes": [
+          "Claiming the same inversion at a free boundary — a free end reflects with NO phase change.",
+          "Saying the wave loses energy at the boundary — an ideal rigid boundary reflects the full wave, only inverted."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at a rigid boundary the reflected wave comes back inverted because the fixed end cannot move.",
+          "accept": [
+            "the wave reflects inverted",
+            "a crest comes back as a trough",
+            "the fixed end must stay at zero displacement"
+          ],
+          "reject": [
+            "the phase difference is pi"
+          ],
+          "heard_as": [
+            "rigid boundary",
+            "inverted",
+            "crest",
+            "trough"
+          ]
+        },
+        "memory_tip": "A fixed end cannot move, so the reflection must flip the wave to keep that point at zero."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The phase difference",
+        "marks": 1,
+        "mark_note": "π radian (180°)",
+        "lines": [
+          "An inverted wave is out of phase with the",
+          "incident wave by half a cycle.",
+          {
+            "text": "Phase difference = π radian (180°)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write the value in radian — π — with the degree form beside it.",
+        "why": "Inversion means every point of the reflected wave is displaced opposite to the incident wave — exactly half a cycle apart, which in angle is π radian.",
+        "common_mistakes": [
+          "Writing 2π — a full cycle brings a wave back in phase; the inversion is HALF a cycle, π.",
+          "Writing π/2 — a quarter cycle. The crest-to-trough flip is half a cycle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the phase difference between the incident and reflected waves is π radian, that is 180 degrees.",
+          "accept": [
+            "phase difference is pi",
+            "180 degrees",
+            "half a cycle out of phase"
+          ],
+          "reject": [
+            "the fixed end cannot move"
+          ],
+          "heard_as": [
+            "pi radian",
+            "180",
+            "phase difference"
+          ]
+        },
+        "memory_tip": "Flip = half a cycle = π. A full cycle 2π would mean no change at all."
+      }
+    ]
+  },
+  "insider_note": "The value π carries the second mark, but examiners also look for the reason — the fixed end cannot move — before the number."
+}

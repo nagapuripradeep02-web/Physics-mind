@@ -8606,6 +8606,259 @@
           "question_id": "ts_ipe_b1_ea_plant_succession_primary_vs_secondary"
         }
       ]
+    },
+    {
+      "number": 3,
+      "name": "Wave Optics",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What is polarization of light?",
+          "question_id": "ts_ipe_p2_wop_polarization_of_light"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "What is Malus law?",
+          "question_id": "ts_ipe_p2_wop_malus_law"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain Brewster's law.",
+          "question_id": "ts_ipe_p2_wop_brewsters_law"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What is Fresnel distance?",
+          "question_id": "ts_ipe_p2_wop_fresnel_distance"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain Doppler effect in light. Distinguish between red shift and blue shift.",
+          "question_id": "ts_ipe_p2_wop_doppler_effect_in_light"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Derive the expression for the intensity at a point where interference of light occurs. Arrive at the conditions for maximum and zero intensity.",
+          "question_id": "ts_ipe_p2_wop_interference_intensity_conditions"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Does the principle of conservation of energy hold for interference and diffraction phenomena? Explain briefly.",
+          "question_id": "ts_ipe_p2_wop_energy_conservation_interference"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Discuss the intensity of transmitted light when a Polaroid sheet is rotated between two crossed polaroids.",
+          "question_id": "ts_ipe_p2_wop_polaroid_between_crossed_polaroids"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is total internal reflection. Explain the phenomenon using Huygen's principle.",
+          "question_id": "ts_ipe_p2_wop_total_internal_reflection_huygens"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "How do you determine the resolving power of your eye?",
+          "question_id": "ts_ipe_p2_wop_resolving_power_of_eye"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "name": "Electromagnetic Waves",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What is the average wavelength of X-rays?",
+          "question_id": "ts_ipe_p2_emw_xray_average_wavelength"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Give any one use of infrared rays.",
+          "question_id": "ts_ipe_p2_emw_infrared_rays_use"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "If the wavelength of electromagnetic radiation is doubled, what happens to the energy of photon?",
+          "question_id": "ts_ipe_p2_emw_wavelength_doubled_photon_energy"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What is the principle of production of electromagnetic waves?",
+          "question_id": "ts_ipe_p2_emw_production_principle"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is the ratio of speed of infrared rays and ultraviolet rays in vacuum?",
+          "question_id": "ts_ipe_p2_emw_infrared_uv_speed_ratio"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What is the relation between the amplitudes of the electric and magnetic field in free space for an electromagnetic wave?",
+          "question_id": "ts_ipe_p2_emw_e0_b0_relation"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What are the applications of microwaves?",
+          "question_id": "ts_ipe_p2_emw_microwaves_applications"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Microwaves are used in Radars, why?",
+          "question_id": "ts_ipe_p2_emw_microwaves_in_radar_why"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "The charging current for a capacitor is 0.6 A. What is the displacement current across its plates?",
+          "question_id": "ts_ipe_p2_emw_displacement_current_capacitor"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Which animal can detect Infrared Waves?",
+          "question_id": "ts_ipe_p2_emw_infrared_detecting_animal"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What is Greenhouse effect and its contribution towards the surface temperature of earth?",
+          "question_id": "ts_ipe_p2_emw_greenhouse_effect"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "name": "Communication System",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What are the basic blocks of a communication system?",
+          "question_id": "ts_ipe_p2_com_basic_blocks"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "What is \"World Wide web\" (www)?",
+          "question_id": "ts_ipe_p2_com_world_wide_web"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Mention the frequency range of speech signals.",
+          "question_id": "ts_ipe_p2_com_speech_frequency_range"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What is sky wave propagation?",
+          "question_id": "ts_ipe_p2_com_sky_wave_propagation"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Mention various parts of the ionosphere?",
+          "question_id": "ts_ipe_p2_com_ionosphere_layers"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Define modulation. Why is it necessary?",
+          "question_id": "ts_ipe_p2_com_modulation_necessity"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Mention basic methods of modulation.",
+          "question_id": "ts_ipe_p2_com_modulation_methods"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Which type of communication is employed in mobile phones?",
+          "question_id": "ts_ipe_p2_com_mobile_phone_communication"
+        }
+      ]
     }
   ]
 }

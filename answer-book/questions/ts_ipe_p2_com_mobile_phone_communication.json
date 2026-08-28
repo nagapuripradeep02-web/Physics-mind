@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_com_mobile_phone_communication",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Communication System"
+  },
+  "chapter": "Communication System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which type of communication is employed in mobile phones?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Wireless — space wave",
+      "marks": 1
+    },
+    {
+      "label": "Why space wave is the type used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Whether Communication Systems is still on the current Telangana second-year syllabus is UNCONFIRMED — NCERT removed this chapter in the 2023 rationalisation, but this book prints it. A lecturer's pen tick marks this question as expected. Physics hand-checked: mobile phones use wireless communication by space-wave (line-of-sight) propagation in a cellular network; their frequencies are far above 30 MHz, so the waves pass through the ionosphere and the signal must travel in a straight line between the phone and a nearby base-station tower."
+  },
+  "recall_prompt": "Say which type of communication mobile phones use, and why that type and not sky wave.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Communication System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "Wireless — space wave",
+        "marks": 1,
+        "mark_note": "Space wave (line of sight)",
+        "lines": [
+          "Mobile phones use wireless communication",
+          "by space-wave (line-of-sight) propagation,",
+          "as part of a cellular network."
+        ],
+        "margin_note": "First mark. The words space wave; line of sight makes the answer complete.",
+        "why": "The question asks for the TYPE of communication, and the type has a name: space-wave, also called line-of-sight, propagation — the wave travels straight from the phone to a nearby tower, and the network of towers (cells) carries it onward.",
+        "common_mistakes": [
+          "Writing sky wave. Mobile-phone frequencies are not reflected by the ionosphere, so sky wave cannot carry them.",
+          "Writing only 'wireless'. Wireless is the family; the type asked for is space wave (line of sight)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That mobile phones use wireless communication by space-wave, line-of-sight propagation in a cellular network.",
+          "accept": [
+            "space wave propagation",
+            "line of sight communication",
+            "wireless, space wave, in a cellular network"
+          ],
+          "reject": [
+            "the waves pass through the ionosphere"
+          ],
+          "heard_as": [
+            "space wave",
+            "line of sight",
+            "cellular",
+            "wireless"
+          ]
+        },
+        "memory_tip": "Phone to tower in a straight line — the name space wave means the wave crosses the space between them directly."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "Why space wave is the type used",
+        "marks": 1,
+        "mark_note": "Above 30 MHz — no ionospheric reflection",
+        "lines": [
+          "Mobile phone frequencies are far above",
+          "30 MHz, so the waves pass through the",
+          "ionosphere instead of being reflected.",
+          "The signal therefore travels in a straight",
+          "line between the phone and a nearby tower.",
+          {
+            "text": "Mobile phones: space wave (line of sight)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Above 30 MHz the ionosphere does not reflect — so line of sight is the only way.",
+        "why": "The reason is the same 30 MHz limit that defines sky wave: above it the ionosphere lets the wave through, so long hops off the ionosphere are impossible and the signal must go straight to a nearby receiver — which is why the network needs many towers close together.",
+        "common_mistakes": [
+          "Saying the ionosphere reflects mobile signals. Above about 30 MHz it does not — the wave passes through.",
+          "Saying one tall tower serves a whole state. Line of sight is short-range, so the cellular network uses many towers, each covering one small cell."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That mobile-phone frequencies are above 30 MHz, pass through the ionosphere, and so must travel line of sight to a nearby tower.",
+          "accept": [
+            "the frequency is above 30 megahertz",
+            "the ionosphere does not reflect them",
+            "the signal goes straight to a nearby tower"
+          ],
+          "reject": [
+            "space wave in a cellular network"
+          ],
+          "heard_as": [
+            "30 megahertz",
+            "ionosphere",
+            "straight line",
+            "tower"
+          ]
+        },
+        "memory_tip": "Sky wave stops at about 30 MHz; mobile phones are far above it, so their signals must go straight to a nearby tower."
+      }
+    ]
+  },
+  "insider_note": "First mark: the named type, space wave (line of sight). Second: the 30 MHz reason — the ionosphere passes these frequencies, so the wave must go straight to a nearby tower."
+}

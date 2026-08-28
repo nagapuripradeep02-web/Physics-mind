@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_displacement_current_capacitor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The charging current for a capacitor is 0.6 A. What is the displacement current across its plates?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Displacement current equals conduction current",
+      "marks": 1
+    },
+    {
+      "label": "The value, 0.6 A",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: while a capacitor charges, the displacement current between the plates equals the conduction current in the wires — the equality that keeps the Ampère–Maxwell law consistent whether the chosen surface cuts the wire or passes between the plates — so the displacement current is 0.6 A, as the book answers (p.42)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equality",
+        "kind": "text",
+        "label": "Equal to the conduction current",
+        "marks": 1,
+        "mark_note": "Displacement = conduction current",
+        "lines": [
+          "While a capacitor is charging, the",
+          "displacement current between its plates",
+          "is equal to the conduction current in the",
+          "connecting wires."
+        ],
+        "margin_note": "First mark. The equality is the physics; the number only follows from it.",
+        "why": "The equality is what keeps the Ampère–Maxwell law consistent at a capacitor: a surface cut through the wire sees the conduction current, a surface passing between the plates sees the displacement current, and both must give the same magnetic field.",
+        "common_mistakes": [
+          "Treating the displacement current as zero because no charge crosses the gap. The changing electric field between the plates acts as a current — the displacement current.",
+          "Calling the wire current the displacement current. In the wire it is conduction current; between the plates it is displacement current."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the displacement current between the plates equals the conduction (charging) current.",
+          "accept": [
+            "displacement current equals conduction current",
+            "same as the charging current",
+            "always equal"
+          ],
+          "reject": [
+            "displacement current is zero"
+          ],
+          "heard_as": [
+            "displacement current",
+            "conduction current",
+            "equal"
+          ]
+        },
+        "memory_tip": "Whatever current the wire carries, the gap carries the same number as displacement current."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value, 0.6 A",
+        "marks": 1,
+        "mark_note": "0.6 A",
+        "lines": [
+          {
+            "text": "Conduction current I = 0.6 A",
+            "style": "eq"
+          },
+          {
+            "text": "Displacement current = 0.6 A",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write the value with its unit, ampere.",
+        "why": "No calculation is needed — the equality hands over the number directly.",
+        "common_mistakes": [
+          "Halving or doubling 0.6 A. The two currents are equal, so the answer is exactly 0.6 A.",
+          "Leaving out the unit. The answer is 0.6 A, not 0.6."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the displacement current is 0.6 A.",
+          "accept": [
+            "zero point six ampere",
+            "same zero point six",
+            "point six A"
+          ],
+          "reject": [
+            "one point two"
+          ],
+          "heard_as": [
+            "point six",
+            "ampere"
+          ]
+        },
+        "memory_tip": "Equal currents: 0.6 A in the wire, 0.6 A across the gap."
+      }
+    ]
+  },
+  "insider_note": "The examiner wants the sentence displacement current equals conduction current before the number — 0.6 A alone reads as a guess."
+}

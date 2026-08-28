@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_transformer_turns_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A transformer converts 200 V a.c. into 2000 V a.c. Calculate the number of turns on the secondary if the primary has 10 turns.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The turns relation",
+      "marks": 1
+    },
+    {
+      "label": "Substitution and result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: Nₛ = Vₛ Nₚ / Vₚ = 2000 × 10 / 200 = 100 turns — a step-up by 10 in voltage needs 10 times the turns, matching the book's printed answer of 100."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The turns relation",
+        "marks": 1,
+        "mark_note": "Relation with data written",
+        "lines": [
+          "For a transformer the voltage ratio equals",
+          "the turns ratio.",
+          {
+            "text": "Vₛ / Vₚ = Nₛ / Nₚ",
+            "style": "eq"
+          },
+          "Here Vₚ = 200 V, Vₛ = 2000 V and Nₚ = 10 turns."
+        ],
+        "margin_note": "First mark. Write the relation and the given values before any arithmetic.",
+        "why": "The relation Vₛ/Vₚ = Nₛ/Nₚ is the whole physics of the problem — an ideal transformer changes the voltage in exactly the ratio of its turns, so the next step is only substitution.",
+        "common_mistakes": [
+          "Writing the ratio upside down, Nₛ/Nₚ = Vₚ/Vₛ. Check it: a higher secondary voltage needs more secondary turns.",
+          "Mixing up the two voltages. 200 V is the primary and 2000 V is the secondary."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the voltage ratio equals the turns ratio, Vₛ/Vₚ = Nₛ/Nₚ, with Vₚ = 200 V, Vₛ = 2000 V and Nₚ = 10.",
+          "accept": [
+            "voltage ratio equals turns ratio",
+            "V s by V p equals N s by N p",
+            "write the given values first"
+          ],
+          "reject": [
+            "N s is 100"
+          ],
+          "heard_as": [
+            "turns ratio",
+            "V s by V p",
+            "transformer"
+          ]
+        },
+        "memory_tip": "More voltage out needs more turns — voltage and turns sit on the same side of the ratio."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "Substitute and solve",
+        "marks": 1,
+        "mark_note": "Nₛ = 100 turns",
+        "lines": [
+          {
+            "text": "Nₛ = Vₛ Nₚ / Vₚ = (2000 × 10) / 200",
+            "style": "eq"
+          },
+          {
+            "text": "Nₛ = 100 turns",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The examiner wants the substitution line and the boxed number with its unit, turns.",
+        "why": "Solving the ratio for Nₛ turns the physics into one line of arithmetic: 2000 × 10 / 200 = 100 turns on the secondary.",
+        "common_mistakes": [
+          "Dividing the wrong way and getting Nₛ = 1 turn. A step-up from 200 V to 2000 V must multiply the turns by 10, not divide them."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Nₛ = Vₛ Nₚ / Vₚ = 2000 × 10 / 200 = 100 turns.",
+          "accept": [
+            "N s equals 100",
+            "2000 into 10 by 200",
+            "100 turns"
+          ],
+          "reject": [
+            "voltage ratio equals turns ratio"
+          ],
+          "heard_as": [
+            "hundred turns",
+            "N s"
+          ]
+        },
+        "memory_tip": "The voltage goes up ten times, so the turns go up ten times: 10 becomes 100."
+      }
+    ]
+  },
+  "insider_note": "The relation line Vₛ/Vₚ = Nₛ/Nₚ carries a mark on its own — students who jump straight to 100 risk losing it."
+}

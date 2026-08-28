@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_focus_principal_focus_lenses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you understand by the terms 'focus' and 'principal focus' in the context of lenses?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Principal focus",
+      "marks": 1
+    },
+    {
+      "label": "Focus of a tilted beam",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. PRINTED-ANSWER CORRECTION: the book writes that a beam tilted to the principal axis meets at 'a point on principal axis' and calls the emerging rays 'reflected'. Both are wrong for a lens: the rays REFRACT, and a tilted parallel beam meets OFF the axis, at a point in the FOCAL PLANE through F. This card writes the focal-plane statement and records the book's version in the step's why."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principal_focus",
+        "kind": "text",
+        "label": "Principal focus",
+        "marks": 1,
+        "mark_note": "Beam parallel to the axis",
+        "lines": [
+          {
+            "text": "Principal focus:",
+            "style": "heading"
+          },
+          "A beam parallel to the principal axis, after",
+          "refraction, converges to (convex lens) or",
+          "appears to diverge from (concave lens) a",
+          "fixed point on the principal axis. This point",
+          "is the principal focus F of the lens."
+        ],
+        "margin_note": "First mark. The defining beam is the one parallel to the principal axis; F sits ON the axis.",
+        "why": "One special beam — the one parallel to the principal axis — defines one fixed point F. Saying converges for a convex lens and appears to diverge for a concave lens covers both lenses in one definition.",
+        "common_mistakes": [
+          "Leaving out appears to diverge, which loses the concave-lens case.",
+          "Calling any meeting point a principal focus. F is defined only by the beam parallel to the principal axis."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rays parallel to the principal axis converge to, or appear to diverge from, a fixed point on the axis called the principal focus.",
+          "accept": [
+            "rays parallel to the principal axis meet at the principal focus on the axis",
+            "parallel beam converges to F or appears to diverge from F",
+            "principal focus is where the axis-parallel beam focuses",
+            "axis ki parallel rays anni F daggara kalustayi"
+          ],
+          "reject": [
+            "a tilted beam meets in the focal plane"
+          ],
+          "heard_as": [
+            "principal focus",
+            "parallel to the axis",
+            "converge",
+            "diverge"
+          ]
+        },
+        "memory_tip": "Principal focus goes with the principal axis: axis-parallel beam → point ON the axis."
+      },
+      {
+        "id": "s2_focus",
+        "kind": "boxed_final",
+        "label": "Focus of a tilted beam",
+        "marks": 1,
+        "mark_note": "Point in the focal plane",
+        "lines": [
+          {
+            "text": "Focus:",
+            "style": "heading"
+          },
+          "If the parallel beam makes a small angle with",
+          "the principal axis, the refracted rays meet",
+          "at a point OFF the axis, in the focal plane —",
+          "the plane through F perpendicular to the",
+          "axis. That point is the focus of that beam.",
+          {
+            "text": "Parallel to axis → F · tilted → focal plane",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The tilted beam's meeting point is OFF the axis, in the focal plane through F.",
+        "why": "The book prints that the tilted beam meets at a point on the principal axis and calls the rays reflected. Both are slips: a lens refracts, and only the axis-parallel beam focuses at F on the axis — a tilted beam focuses off the axis, in the focal plane through F.",
+        "common_mistakes": [
+          "Writing that the tilted beam also meets on the principal axis. It meets off the axis, in the focal plane.",
+          "Writing reflected for a lens. A lens refracts light.",
+          "Treating focus and principal focus as the same point. Every beam has a focus; only the axis-parallel beam's focus is the principal focus."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a parallel beam tilted to the axis meets at a point off the axis in the focal plane, and that point is called the focus of that beam.",
+          "accept": [
+            "a tilted parallel beam meets at a point in the focal plane",
+            "the focus of a slanted beam is off the axis in the plane through F",
+            "tilted beam focuses in the focal plane not on the axis",
+            "angle tho vachina beam focal plane lo focus avutundi"
+          ],
+          "reject": [
+            "rays parallel to the principal axis meet at the principal focus"
+          ],
+          "heard_as": [
+            "focal plane",
+            "tilted beam",
+            "off the axis",
+            "focus"
+          ]
+        },
+        "memory_tip": "One plane holds every focus: the focal plane through F. On-axis beam → F itself; tilted beam → another point of that plane."
+      }
+    ]
+  },
+  "insider_note": "The whole distinction is one word each: principal focus ON the axis, focus of a tilted beam OFF the axis in the focal plane."
+}

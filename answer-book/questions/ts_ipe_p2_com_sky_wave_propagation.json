@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_com_sky_wave_propagation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Communication System"
+  },
+  "chapter": "Communication System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is sky wave propagation?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reflection from the ionosphere",
+      "marks": 1
+    },
+    {
+      "label": "Where it is used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Whether Communication Systems is still on the current Telangana second-year syllabus is UNCONFIRMED — NCERT removed this chapter in the 2023 rationalisation, but this book prints it. A lecturer's pen tick marks this question as expected, and the lecturer has also corrected the printed answer in pen, inserting 'by' so the run-on sentence reads 'is achieved by ionospheric reflection'. Physics hand-checked: sky-wave propagation is long-distance communication by reflection of radio waves from the ionosphere, used by short-wave broadcast services in the band up to about 30 MHz; above about 30 MHz the wave passes through the ionosphere instead of being reflected."
+  },
+  "recall_prompt": "Say what sky wave propagation is — what reflects the wave — and which services use it, up to what frequency.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Communication System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Reflection from the ionosphere",
+        "marks": 1,
+        "mark_note": "Ionosphere reflects the wave back",
+        "lines": [
+          "Sky wave propagation is long-distance radio",
+          "communication in which the radio wave is",
+          "reflected by the ionosphere back to the",
+          "earth."
+        ],
+        "margin_note": "First mark. The word ionosphere and the word reflected must both appear.",
+        "why": "The reflection is what makes long distance possible: a wave sent up at a slant comes back down far away, well past the horizon that limits a straight-line wave. The book's printed sentence is a run-on; the lecturer's pen inserts 'by' to fix it — 'is achieved by ionospheric reflection'.",
+        "common_mistakes": [
+          "Writing that the wave is reflected by the ground or by clouds. It is the ionosphere — the layer of charged particles in the upper atmosphere — that reflects it.",
+          "Confusing sky wave with space wave. A space wave travels in a straight line and is NOT reflected by the ionosphere."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in sky wave propagation the radio wave is reflected by the ionosphere back to the earth, giving long-distance communication.",
+          "accept": [
+            "the ionosphere reflects the wave back to earth",
+            "long-distance communication by ionospheric reflection",
+            "the wave goes up and the ionosphere sends it back down"
+          ],
+          "reject": [
+            "used for short-wave broadcast up to 30 megahertz"
+          ],
+          "heard_as": [
+            "sky wave",
+            "ionosphere",
+            "ionospheric reflection",
+            "reflected"
+          ]
+        },
+        "memory_tip": "Sky wave — the wave goes to the sky and the ionosphere returns it to the earth."
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "Where it is used",
+        "marks": 1,
+        "mark_note": "Short-wave broadcast, up to about 30 MHz",
+        "lines": [
+          "It is used by short-wave broadcast services",
+          "for frequencies up to about 30 MHz.",
+          "Above about 30 MHz the wave passes through",
+          "the ionosphere instead of being reflected.",
+          {
+            "text": "Sky wave: reflected by the ionosphere",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Short-wave services and the 30 MHz limit.",
+        "why": "The 30 MHz limit is physical, not a rule of thumb only: the ionosphere can turn back waves up to about this frequency, and higher-frequency waves go straight through — which is why TV and mobile signals need a different method.",
+        "common_mistakes": [
+          "Writing 30 MHz as a lower limit. It is the UPPER limit — sky wave works up to about 30 MHz.",
+          "Saying television uses sky wave. TV frequencies are above 30 MHz and pass through the ionosphere, so TV uses space-wave methods instead."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sky wave is used by short-wave broadcast services for frequencies up to about 30 MHz.",
+          "accept": [
+            "short-wave broadcast services use it",
+            "works up to about 30 megahertz",
+            "above 30 megahertz the wave goes through the ionosphere"
+          ],
+          "reject": [
+            "the ionosphere reflects the wave"
+          ],
+          "heard_as": [
+            "short wave",
+            "30 megahertz",
+            "thirty megahertz",
+            "broadcast"
+          ]
+        },
+        "memory_tip": "Sky wave and short wave go together, and both stop at about 30 MHz."
+      }
+    ]
+  },
+  "insider_note": "First mark: ionosphere + reflected, in one sentence. Second mark: short-wave broadcast and the 30 MHz upper limit. The lecturer's pen fixed the book's grammar here, not its physics."
+}

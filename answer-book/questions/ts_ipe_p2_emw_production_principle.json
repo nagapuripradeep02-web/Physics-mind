@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_production_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the principle of production of electromagnetic waves?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "An accelerating or oscillating charge",
+      "marks": 1
+    },
+    {
+      "label": "The changing fields produce each other",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: electromagnetic waves are radiated by an accelerating or oscillating charge (a charge at rest or in uniform motion radiates nothing); the wave sustains itself because a changing electric field produces a changing magnetic field and a changing magnetic field produces a changing electric field — both directions of the exchange stated, as the book prints (p.41)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_source",
+        "kind": "text",
+        "label": "The source: an accelerating charge",
+        "marks": 1,
+        "mark_note": "Accelerating or oscillating charge",
+        "lines": [
+          "Electromagnetic waves are produced by an",
+          "accelerating or oscillating charge."
+        ],
+        "margin_note": "First mark. A charge at rest or in uniform motion radiates no wave.",
+        "why": "A charge at rest gives only a steady electric field, and a charge in uniform motion gives steady fields. Only an accelerating charge makes the changing fields a wave needs.",
+        "common_mistakes": [
+          "Writing that any moving charge radiates. A charge moving with constant velocity does not; it must accelerate or oscillate.",
+          "Naming a steady current as the source. A steady current radiates nothing; the current must change with time."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an accelerating or oscillating charge produces electromagnetic waves.",
+          "accept": [
+            "accelerating charge",
+            "oscillating charge",
+            "accelerated charge produces em waves"
+          ],
+          "reject": [
+            "charge at rest",
+            "constant velocity"
+          ],
+          "heard_as": [
+            "accelerating",
+            "oscillating",
+            "charge"
+          ]
+        },
+        "memory_tip": "No acceleration, no wave — an oscillating charge accelerates all the time."
+      },
+      {
+        "id": "s2_fields",
+        "kind": "text",
+        "label": "The two changing fields",
+        "marks": 1,
+        "mark_note": "Changing E and B produce each other",
+        "lines": [
+          "A changing electric field produces a",
+          "changing magnetic field, and a changing",
+          "magnetic field produces a changing",
+          "electric field. The two fields keep",
+          "producing each other, and this pair",
+          "travels through space as the wave."
+        ],
+        "margin_note": "Second mark. State both directions of the effect — E to B and B to E.",
+        "why": "One direction alone is not a wave. The wave keeps itself going because each changing field creates the other, so both statements are needed.",
+        "common_mistakes": [
+          "Writing only that a changing magnetic field produces an electric field. The reverse statement is equally part of the principle.",
+          "Saying the electric field produces the magnetic field. It is the change in each field that produces the other."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a changing electric field produces a changing magnetic field and a changing magnetic field produces a changing electric field.",
+          "accept": [
+            "changing electric field produces magnetic field",
+            "changing magnetic field produces electric field",
+            "the two fields produce each other"
+          ],
+          "reject": [
+            "static field"
+          ],
+          "heard_as": [
+            "changing field",
+            "electric",
+            "magnetic"
+          ]
+        },
+        "memory_tip": "Two mirror sentences: E changing makes B, B changing makes E."
+      }
+    ]
+  },
+  "insider_note": "Write both halves of the exchange — E to B and B to E; a one-direction answer reads as half the principle."
+}

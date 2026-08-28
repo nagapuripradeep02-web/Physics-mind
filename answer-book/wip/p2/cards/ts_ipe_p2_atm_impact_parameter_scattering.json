@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_impact_parameter_scattering",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How is impact parameter related to angle of scattering?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The inverse relation",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: b = Ze²cot(θ/2)/[4πε₀(½mv²)] — cot(θ/2) falls as θ grows, so small b means large θ and b = 0 means θ = 180°. The book prints the nuclear charge as lowercase ze²; the standard symbol Ze² (Z = atomic number) is used here."
+  },
+  "recall_prompt": "Say how b and θ are related, and then say the formula.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atoms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "text",
+        "label": "The inverse relation",
+        "marks": 1,
+        "mark_note": "Small b, large θ",
+        "lines": [
+          "The impact parameter b and the scattering",
+          "angle θ are inversely related.",
+          "Small b gives a large θ; large b gives a",
+          "small θ. For b = 0, θ = 180°."
+        ],
+        "margin_note": "First mark. State both directions of the relation and the b = 0 case.",
+        "why": "A small b means the α-particle passes close to the nucleus, feels a strong Coulomb repulsion, and turns through a large angle — head-on (b = 0) it comes straight back.",
+        "common_mistakes": [
+          "Saying b and θ increase together. The relation is inverse.",
+          "Leaving out the b = 0, θ = 180° case — the sharpest form of the relation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That small b gives large θ and large b gives small θ, with θ = 180° at b = 0.",
+          "accept": [
+            "inversely related",
+            "small impact parameter, large angle",
+            "b zero gives one eighty degrees"
+          ],
+          "reject": [
+            "cot theta by two"
+          ],
+          "heard_as": [
+            "impact parameter",
+            "scattering angle",
+            "one eighty"
+          ]
+        },
+        "memory_tip": "Closer pass, harder turn: as b shrinks, θ grows, all the way to 180°."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "b ∝ cot(θ/2)",
+        "lines": [
+          {
+            "text": "b = Ze² cot(θ/2) / 4πε₀(½mv²)",
+            "style": "eq"
+          },
+          "Here Z is the atomic number of the nucleus",
+          "and ½mv² is the kinetic energy of the",
+          "α-particle.",
+          {
+            "text": "Smaller b → larger scattering angle θ",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. b ∝ cot(θ/2) — the cot factor carries the inverse relation.",
+        "why": "cot(θ/2) decreases as θ increases, so the formula itself says the relation is inverse — quoting it proves the statement in the first step.",
+        "common_mistakes": [
+          "Writing tan(θ/2) instead of cot(θ/2).",
+          "Dropping the ½mv² — b depends on the α-particle's kinetic energy too."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b equals Ze² cot(θ/2) over 4πε₀ times the kinetic energy ½mv².",
+          "accept": [
+            "Z e squared cot theta by two",
+            "over four pi epsilon nought",
+            "half m v squared below"
+          ],
+          "reject": [
+            "b zero gives one eighty degrees"
+          ],
+          "heard_as": [
+            "cot theta by 2",
+            "epsilon nought",
+            "Ze squared"
+          ]
+        },
+        "memory_tip": "cot, not tan: cot(θ/2) shrinks as θ grows, which is exactly the inverse relation."
+      }
+    ]
+  },
+  "insider_note": "Say the relation in words AND quote the cot(θ/2) formula — the words earn one mark, the formula the other."
+}

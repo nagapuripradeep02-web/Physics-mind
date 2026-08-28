@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_needle_at_poles",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which needle is to be used at the poles?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The dip needle",
+      "marks": 1
+    },
+    {
+      "label": "Why it works there",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: at the magnetic poles the dip is 90° and the horizontal component is zero, so a horizontal compass reads nothing useful; a dip needle — a magnetised needle pivoted to turn in a vertical plane containing the earth's field — is what reads there, standing vertical at dip 90°. The book's question wording 'Which needle to be used at poles ?' is completed grammatically here without changing what is asked."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dip_needle",
+        "kind": "text",
+        "label": "The dip needle",
+        "marks": 1,
+        "mark_note": "Named and defined",
+        "lines": [
+          "A dip needle is used at the poles.",
+          "A dip needle is a magnetised needle",
+          "pivoted to turn in a vertical plane that",
+          "contains the earth's magnetic field."
+        ],
+        "margin_note": "First mark. Name the instrument and say what it is — a needle pivoted in a vertical plane.",
+        "why": "The answer is an instrument choice, so the mark needs the instrument named and defined. The defining feature is the pivot: vertical plane, not horizontal.",
+        "common_mistakes": [
+          "Answering an ordinary compass. A compass turns in the horizontal plane and is the needle that fails at the poles.",
+          "Naming the dip needle without saying it turns in a vertical plane — the pivot plane is the definition."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a dip needle is used — a magnetised needle pivoted to turn in a vertical plane containing the earth's field.",
+          "accept": [
+            "a dip needle",
+            "pivoted in a vertical plane",
+            "turns in the vertical plane of the field"
+          ],
+          "reject": [
+            "the field is vertical at the poles"
+          ],
+          "heard_as": [
+            "dip needle",
+            "vertical plane"
+          ]
+        },
+        "memory_tip": "The dip needle measures dip, so it must be free to tilt — its pivot lets it swing in a vertical plane."
+      },
+      {
+        "id": "s2_why_it_works",
+        "kind": "text",
+        "label": "Why it works there",
+        "marks": 1,
+        "mark_note": "Reads 90° at the poles",
+        "lines": [
+          "At the poles the earth's field is vertical,",
+          "so the dip needle stands vertical and",
+          "reads a dip of 90°.",
+          "A compass that turns only in the",
+          "horizontal plane shows no direction there,",
+          "because the horizontal component is zero."
+        ],
+        "margin_note": "Second mark. Contrast the two needles: the dip needle reads 90°; the flat compass reads nothing.",
+        "why": "The instrument must be able to follow the field's direction. At the poles the field is vertical, and only a needle free to tilt can line up with it — the dip needle does, and its 90° reading is itself the measurement.",
+        "common_mistakes": [
+          "Saying the dip needle points north at the poles. It stands vertical — its reading there is 90°, not a horizontal direction.",
+          "Giving the field-is-vertical fact without connecting it to the needle's pivot plane."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the field at the poles is vertical, so the dip needle stands vertical reading 90° while a horizontal compass shows nothing.",
+          "accept": [
+            "the dip needle stands vertical",
+            "reads ninety degrees at the poles",
+            "the horizontal compass shows no direction"
+          ],
+          "reject": [
+            "pivoted in a vertical plane"
+          ],
+          "heard_as": [
+            "ninety degrees",
+            "stands vertical",
+            "compass"
+          ]
+        },
+        "memory_tip": "Match the pivot to the field: vertical field at the poles needs the needle that can tilt vertical."
+      }
+    ]
+  },
+  "insider_note": "This pairs with the compass question just before it in the book — one answer says the flat compass fails, this one names what replaces it."
+}

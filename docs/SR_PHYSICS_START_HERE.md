@@ -210,3 +210,67 @@ construction lines, label overlap, and cuts-by-marks — are the ones to re-meas
 naming nothing.
 
 Shipping is the founder's: no `deploy:answers`, no `content:push`, no `ab_content` edit here.
+
+## 9. WHERE THIS STOPPED — read before resuming (2026-08-28)
+
+The first authoring run was cut off mid-flight: **13 of the 16 chapter agents were killed by an
+API session limit**, not by anything wrong with the work. **145 of 257 cards (56%) are authored and
+every one of them passes** `check_p2_cards.ts` — schema, paper shape, mark sums, header, and the
+Rule-41 register scan.
+
+**The tree is GREEN, and that cost a rearrangement.** `build_answer_book.ts` hard-fails on an
+authored card that no unit lists, so a chapter cannot ship until its manifest fragment exists. Only
+three fragments were written before the cut. So:
+
+- **`answer-book/questions/` holds the 29 cards of the three merge-ready chapters** — Wave Optics
+  (10), Electromagnetic Waves (11), Communication System (8). These are IN `units.json` and IN the
+  built book.
+- **`answer-book/wip/p2/cards/` holds the other 116 authored cards**, parked. Nothing scans
+  `answer-book/wip/`, so they cannot break the build — and they are in the repo rather than stranded
+  on one disk, which is the whole point (a killed run loses whatever is not committed).
+- **`answer-book/wip/p2/fragments/` holds the three merged fragments**, kept as the worked example
+  of the shape the remaining thirteen need.
+
+| # | abbr | chapter | authored | target | state |
+|---|---|---|---|---|---|
+| 1 | wav | Waves | 12V 3S 4L | 23 | parked — needs **4 LAQ** (the three numericals + one derivation) |
+| 2 | ray | Ray Optics | 5V | 20 | parked — needs 7V 6S 2L |
+| 3 | wop | Wave Optics | 4V 6S | 10 | **SHIPPED** |
+| 4 | ecf | Electric Charges | 7V 3S | 13 | parked — needs 3S |
+| 5 | epc | Potential & Capacitance | 7V 5S | 17 | parked — needs 4S 1L |
+| 6 | cur | Current Electricity | 14V | 26 | parked — needs 8V 4L |
+| 7 | mcm | Moving Charges | 8V | 16 | parked — needs 6S 2L |
+| 8 | mag | Magnetism and Matter | 11V 2S | 13 | parked — **cards complete, fragment missing** |
+| 9 | emi | EM Induction | 10V 1S | 13 | parked — needs 2S |
+| 10 | ac | Alternating Current | 9V | 11 | parked — needs 1V 1S |
+| 11 | emw | EM Waves | 10V 1S | 11 | **SHIPPED** |
+| 12 | dnr | Dual Nature | 8V 2S | 10 | parked — **cards complete, fragment missing** |
+| 13 | atm | Atoms | 4V | 18 | parked — needs 6V 8S |
+| 14 | nuc | Nuclei | 1V | 26 | parked — needs 14V 6S 5L |
+| 15 | sem | Semiconductor Electronics | — | 22 | **not started** |
+| 16 | com | Communication System | 8V | 8 | **SHIPPED** |
+
+**To resume, per chapter:** finish its missing cards straight into `answer-book/wip/p2/cards/`,
+write its fragment to `answer-book/wip/p2/fragments/uNN.json`, then `git mv` that chapter's cards
+into `answer-book/questions/` and run
+`node answer-book/tools/merge_p2_units.mjs answer-book/wip/p2/fragments --write`. The merge tool
+proves it can round-trip `units.json` byte-identically without physics_2 before it writes anything,
+so it cannot touch another subject; it also refuses on drift in either direction, so a fragment and
+its cards must agree before either lands.
+
+**Two chapters are one step from shipping**: `mag` and `dnr` have every card authored and only need
+their manifest fragment. Their fragments were **not** invented from the cards on disk — the `ref`
+and `number` must follow the book's printed order, and guessing that is exactly the kind of unearned
+claim this bank does not make.
+
+**Two things the run proved, worth keeping:**
+- **`ms: 0` is the documented authoring placeholder** that `pace_figures.ts` fills. Nine cards
+  looked like 36 schema failures until the pacing step ran — their agents died before reaching it.
+  Run `npx tsx src/scripts/pace_figures.ts --prefix ts_ipe_p2 --write` before believing a figure
+  error.
+- **A blunt Rule-41 word list is worse than none.** Banning "wants" outright produced 12 false hits
+  on "the examiner wants the substitution line" — literal, and exactly the plain wording the rule
+  asks for — and would have pushed authoring back towards vaguer prose. The scan now fires only
+  when the subject is a THING. It still caught the two real hits: a wave crest that "knows nothing
+  of the motion", and a table that "wants" an element list. A negative control (injecting "The
+  signal wants to reach the receiver") confirms it still bites.

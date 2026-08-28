@@ -1,0 +1,357 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_polaroid_between_crossed_polaroids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Discuss the intensity of transmitted light when a Polaroid sheet is rotated between two crossed polaroids.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The arrangement",
+      "marks": 1
+    },
+    {
+      "label": "Intensity after P₂",
+      "marks": 1
+    },
+    {
+      "label": "Intensity after P₃",
+      "marks": 1
+    },
+    {
+      "label": "The maximum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: with I₀ the polarised intensity after P₁ and P₂ at angle θ to P₁, two applications of Malus law give I₃ = I₀ cos²θ cos²(90° − θ) = I₀ cos²θ sin²θ = (I₀/4) sin²2θ; maximum I₀/4 at θ = 45°, zero at θ = 0° and 90°; four maxima per full rotation. The book's printed algebra reaches the same result but writes it loosely (it mixes an unpolarised I/2 factor and two angles θ₁, θ₂ into what is a one-angle problem); the derivation here keeps the single angle θ and the clean I₀ throughout."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The final form (I₀/4) sin²2θ and the θ = 45° maximum are what the examiner scans for — the two Malus-law applications are how you reach them.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Wave Optics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The three polaroids",
+        "marks": 0,
+        "figure": {
+          "id": "three_polaroids",
+          "width": 360,
+          "height": 220,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ray_in",
+              "d": "M 15 120 L 60 120",
+              "ms": 600
+            },
+            {
+              "type": "stroke",
+              "id": "head_in",
+              "d": "M 52 115 L 61 120 L 52 125",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "p1_rect",
+              "d": "M 60 60 L 100 60 L 100 180 L 60 180 Z",
+              "ms": 2600
+            },
+            {
+              "type": "stroke",
+              "id": "p1_axis",
+              "d": "M 80 75 L 80 165",
+              "ms": 1000,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_p1",
+              "x": 68,
+              "y": 205,
+              "text": "P₁",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "p2_rect",
+              "d": "M 150 60 L 190 60 L 190 180 L 150 180 Z",
+              "ms": 2600
+            },
+            {
+              "type": "stroke",
+              "id": "p2_axis",
+              "d": "M 158 158 L 182 82",
+              "ms": 900,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 192,
+              "y": 78,
+              "text": "axis at θ",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p2",
+              "x": 158,
+              "y": 205,
+              "text": "P₂",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "p3_rect",
+              "d": "M 240 60 L 280 60 L 280 180 L 240 180 Z",
+              "ms": 2600
+            },
+            {
+              "type": "stroke",
+              "id": "p3_axis",
+              "d": "M 245 120 L 275 120",
+              "ms": 420,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_p3",
+              "x": 248,
+              "y": 205,
+              "text": "P₃",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "ray_out",
+              "d": "M 280 120 L 330 120",
+              "ms": 650
+            },
+            {
+              "type": "stroke",
+              "id": "head_out",
+              "d": "M 322 115 L 331 120 L 322 125",
+              "ms": 200
+            }
+          ]
+        },
+        "margin_note": "No separate figure mark asked, but the picture fixes the set-up: P₁ axis vertical, P₃ axis horizontal (crossed), P₂ between them at angle θ. The dashed line in each sheet is its transmission axis.",
+        "why": "The whole problem is three transmission axes at three angles, and the picture is the fastest way to state them: vertical, θ, horizontal. Every cosine in the algebra is an angle between two of these dashed lines.",
+        "common_mistakes": [
+          "Drawing P₁ and P₃ with parallel axes. Crossed means their axes are perpendicular."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That light passes through three polaroids in a row — P₁ and P₃ crossed, P₂ between them with its axis at θ to P₁.",
+          "accept": [
+            "draw the three polaroids",
+            "P1 and P3 crossed",
+            "P2 at angle theta"
+          ],
+          "reject": [
+            "Malus law twice"
+          ],
+          "heard_as": [
+            "polaroids",
+            "crossed",
+            "figure"
+          ]
+        },
+        "memory_tip": "Three dashed axes: upright, tilted by θ, flat — the tilted one is the sheet that rotates."
+      },
+      {
+        "id": "s2_setup",
+        "kind": "text",
+        "label": "The arrangement",
+        "marks": 1,
+        "mark_note": "Crossed pair, θ defined, I₀ named",
+        "lines": [
+          "P₁ and P₃ are crossed: their transmission",
+          "axes are perpendicular, so alone they pass",
+          "no light. A polaroid P₂ is placed between",
+          "them with its axis at angle θ to the axis",
+          "of P₁.",
+          "Let I₀ be the intensity of the polarised",
+          "light coming out of P₁."
+        ],
+        "margin_note": "First mark. Three facts: the pair is crossed, θ is measured from the axis of P₁, and I₀ is the intensity after P₁.",
+        "why": "Without P₂ the crossed pair is dark — that is the surprise the question is built on: inserting a third polaroid lets light THROUGH. Defining θ and I₀ here is what makes the two Malus-law steps one line each.",
+        "common_mistakes": [
+          "Taking I₀ as the unpolarised intensity before P₁. Here I₀ is the polarised intensity after P₁; the unpolarised input would contribute a separate factor of 1/2.",
+          "Measuring θ from the axis of P₃ but then using cos²θ for the P₁ to P₂ step. Fix θ from the axis of P₁ and keep it fixed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P₁ and P₃ are crossed, P₂ sits between them at angle θ to P₁, and I₀ is the polarised intensity after P₁.",
+          "accept": [
+            "crossed means perpendicular axes",
+            "theta from the axis of P1",
+            "I nought after the first polaroid"
+          ],
+          "reject": [
+            "cos squared theta by Malus law"
+          ],
+          "heard_as": [
+            "crossed polaroids",
+            "theta",
+            "I nought"
+          ]
+        },
+        "memory_tip": "Crossed pair alone: dark. The question is what the middle sheet changes."
+      },
+      {
+        "id": "s3_after_p2",
+        "kind": "equation",
+        "label": "Intensity after P₂ — Malus law",
+        "marks": 1,
+        "mark_note": "First Malus application",
+        "lines": [
+          "By Malus law, the intensity transmitted",
+          "by P₂ is",
+          {
+            "text": "I₂ = I₀ cos²θ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. One clean application of Malus law with the angle θ between the axes of P₁ and P₂.",
+        "why": "The light reaching P₂ is plane polarised along the axis of P₁, so Malus law applies directly with the angle between the two axes, θ. P₂ also turns the plane of polarisation to its own axis — which is what sets up the next step.",
+        "common_mistakes": [
+          "Halving the intensity here. The light arriving at P₂ is already polarised; the factor 1/2 belongs only to unpolarised light."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Malus law at P₂ gives I₂ = I₀ cos²θ.",
+          "accept": [
+            "I nought cos squared theta",
+            "Malus law at P2"
+          ],
+          "reject": [
+            "ninety minus theta"
+          ],
+          "heard_as": [
+            "cos squared theta",
+            "Malus"
+          ]
+        },
+        "memory_tip": "After P₂ the light is polarised along P₂'s own axis — remember that for the next step."
+      },
+      {
+        "id": "s4_after_p3",
+        "kind": "equation",
+        "label": "Intensity after P₃",
+        "marks": 1,
+        "mark_note": "Second Malus application, (I₀/4) sin²2θ",
+        "lines": [
+          "The axis of P₃ makes (90° − θ) with the",
+          "axis of P₂. Applying Malus law again:",
+          {
+            "text": "I₃ = I₀ cos²θ · cos²(90° − θ)",
+            "style": "eq"
+          },
+          {
+            "text": "I₃ = I₀ cos²θ sin²θ",
+            "style": "eq"
+          },
+          "Using 2 sin θ cos θ = sin 2θ:",
+          {
+            "text": "I₃ = (I₀/4) sin²2θ",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third mark. The angle for the second application is (90° − θ), because P₁ and P₃ are crossed. Then the double-angle identity.",
+        "why": "P₁ to P₂ is θ and P₁ to P₃ is 90°, so P₂ to P₃ must be 90° − θ — the crossed condition is what fixes this angle. cos(90° − θ) = sin θ, and the double-angle identity packs cos²θ sin²θ into the single readable form (I₀/4) sin²2θ.",
+        "common_mistakes": [
+          "Using θ again at P₃. The second Malus angle is between the axes of P₂ and P₃, which is 90° − θ.",
+          "Losing the factor 1/4: sin²θ cos²θ = (1/4) sin²2θ, since sin 2θ = 2 sin θ cos θ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the P₂ to P₃ angle is 90° − θ, so I₃ = I₀ cos²θ sin²θ = (I₀/4) sin²2θ.",
+          "accept": [
+            "ninety minus theta at P3",
+            "cos squared theta sin squared theta",
+            "I nought by four sin squared two theta"
+          ],
+          "reject": [
+            "maximum at forty five degrees"
+          ],
+          "heard_as": [
+            "sin squared two theta",
+            "ninety minus theta"
+          ]
+        },
+        "memory_tip": "The three axes: 0, θ, 90°. The two gaps are θ and 90° − θ — one cosine each."
+      },
+      {
+        "id": "s5_maximum",
+        "kind": "boxed_final",
+        "label": "The maximum",
+        "marks": 1,
+        "mark_note": "Maximum I₀/4 at θ = 45°",
+        "lines": [
+          "I₃ is maximum when sin²2θ = 1, that is",
+          "2θ = 90°, θ = 45°. Then Iₘₐₓ = I₀/4.",
+          "I₃ is zero when θ = 0° or θ = 90° — the",
+          "crossed pair passes no light again.",
+          "As P₂ rotates through 360°, the light goes",
+          "bright and dark four times.",
+          {
+            "text": "I = (I₀/4) sin²2θ · maximum at θ = 45°",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The discussion: maximum I₀/4 at 45°, zero at 0° and 90°, four maxima in one full rotation.",
+        "why": "The question says discuss, so the formula must be read out: sin²2θ peaks at 2θ = 90°, and because sin²2θ repeats every 90° of θ, one full turn of P₂ gives four maxima (45°, 135°, 225°, 315°) and four zeros.",
+        "common_mistakes": [
+          "Giving the maximum as I₀. The best the arrangement passes is I₀/4, at θ = 45°.",
+          "Saying the light is brightest when P₂ lines up with P₁ or with P₃. At those settings (θ = 0° or 90°) the output is ZERO."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the transmitted intensity peaks at I₀/4 when θ = 45°, is zero at 0° and 90°, and shows four maxima per rotation.",
+          "accept": [
+            "maximum at forty five degrees",
+            "I nought by four",
+            "zero at zero and ninety",
+            "four maxima in one rotation"
+          ],
+          "reject": [
+            "ninety minus theta at P3"
+          ],
+          "heard_as": [
+            "forty five degrees",
+            "maximum"
+          ]
+        },
+        "memory_tip": "Halfway between the crossed axes — 45° — is where the light gets through best."
+      }
+    ]
+  }
+}

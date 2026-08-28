@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_xray_average_wavelength",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the average wavelength of X-rays?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The range of X-ray wavelengths",
+      "marks": 1
+    },
+    {
+      "label": "The average, 10⁻¹⁰ m",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the book (p.41) gives the X-ray wavelength range 10⁻⁸ m to 10⁻¹³ m and answers 10⁻¹⁰ m — that is the mid-point of the range taken on powers of ten (the geometric mid-point of the printed range), not the arithmetic mean; the arithmetic mean of 10⁻⁸ m and 10⁻¹³ m would be near 5 × 10⁻⁹ m."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_range",
+        "kind": "text",
+        "label": "The range of X-ray wavelengths",
+        "marks": 1,
+        "mark_note": "The range 10⁻⁸ m to 10⁻¹³ m",
+        "lines": [
+          "The wavelength range of X-rays is",
+          "10⁻⁸ m to 10⁻¹³ m."
+        ],
+        "margin_note": "First mark. Write both limits with their powers of ten and the unit m.",
+        "why": "The average only means something once the range is on paper, so the range line earns its own mark.",
+        "common_mistakes": [
+          "Writing the limits without units. Both limits are lengths in metres: 10⁻⁸ m and 10⁻¹³ m.",
+          "Quoting the visible-light range. X-rays are far shorter: 10⁻⁸ m down to 10⁻¹³ m."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That X-ray wavelengths run from 10⁻⁸ m down to 10⁻¹³ m.",
+          "accept": [
+            "ten to the minus eight to ten to the minus thirteen",
+            "ten power minus eight metres",
+            "range of X-ray wavelengths"
+          ],
+          "reject": [
+            "ten to the minus ten"
+          ],
+          "heard_as": [
+            "ten to the minus eight",
+            "ten to the minus thirteen",
+            "range"
+          ]
+        },
+        "memory_tip": "Two limits, five powers of ten apart: 10⁻⁸ m and 10⁻¹³ m."
+      },
+      {
+        "id": "s2_average",
+        "kind": "boxed_final",
+        "label": "The average wavelength",
+        "marks": 1,
+        "mark_note": "Average ≈ 10⁻¹⁰ m",
+        "lines": [
+          "Taking the middle of this range on the",
+          "powers of ten gives the average wavelength.",
+          {
+            "text": "Average wavelength of X-rays ≈ 10⁻¹⁰ m",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The average is taken on the powers of ten, not by adding the two limits.",
+        "why": "The book's 10⁻¹⁰ m is the mid-point of the printed range taken on powers of ten — the geometric mid-point. An arithmetic mean of 10⁻⁸ m and 10⁻¹³ m would be about 5 × 10⁻⁹ m, which is not the marked answer.",
+        "common_mistakes": [
+          "Adding 10⁻⁸ m and 10⁻¹³ m and dividing by two. That gives about 5 × 10⁻⁹ m, not the marked 10⁻¹⁰ m.",
+          "Writing 10⁻¹⁰ without the unit. The answer is a length: 10⁻¹⁰ m."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the average wavelength of X-rays is about 10⁻¹⁰ m.",
+          "accept": [
+            "ten to the minus ten metres",
+            "average is ten power minus ten",
+            "about one angstrom"
+          ],
+          "reject": [
+            "five into ten to the minus nine"
+          ],
+          "heard_as": [
+            "ten to the minus ten",
+            "average wavelength",
+            "angstrom"
+          ]
+        },
+        "memory_tip": "10⁻¹⁰ m is one angstrom — atom-sized, which is why X-rays can probe crystals."
+      }
+    ]
+  },
+  "insider_note": "Both powers of ten carry marks: the range 10⁻⁸ m to 10⁻¹³ m earns the first, and 10⁻¹⁰ m as the average earns the second."
+}

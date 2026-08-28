@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_millikan_experiment",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What important fact did Millikan's experiment establish?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Verified Einstein's equation",
+      "marks": 1
+    },
+    {
+      "label": "Measured Planck's constant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.43); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: Millikan's photoelectric experiment (1916) measured stopping potential against frequency for alkali metals; the straight V₀–ν line verified Einstein's photoelectric equation, its slope h/e gave Planck's constant in close agreement with the accepted value, and this led to the acceptance of the photon picture of radiation — the book's account is correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Dual Nature of Radiation and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_verified",
+        "kind": "text",
+        "label": "Verified Einstein's equation",
+        "marks": 1,
+        "mark_note": "Einstein's equation verified",
+        "lines": [
+          "Millikan's experiment verified Einstein's",
+          "photoelectric equation by experiment."
+        ],
+        "margin_note": "First mark. Name the equation being verified — Einstein's photoelectric equation.",
+        "why": "Millikan measured the stopping potential at many frequencies and found the straight V₀–ν line that Einstein's equation predicts, so the equation passed a direct experimental test.",
+        "common_mistakes": [
+          "Answering with the oil-drop experiment. That one measured the electron's charge; this question is about his photoelectric experiment.",
+          "Saying he discovered the photoelectric effect. He tested Einstein's equation for it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Millikan's experiment verified Einstein's photoelectric equation.",
+          "accept": [
+            "verified Einstein's photoelectric equation",
+            "proved Einstein's equation by experiment",
+            "confirmed Einstein's equation"
+          ],
+          "reject": [
+            "determined Planck's constant"
+          ],
+          "heard_as": [
+            "Millikan",
+            "Einstein's equation",
+            "verified"
+          ]
+        },
+        "memory_tip": "Millikan measured; Einstein's equation matched."
+      },
+      {
+        "id": "s2_planck",
+        "kind": "boxed_final",
+        "label": "Measured Planck's constant",
+        "marks": 1,
+        "mark_note": "Value of h, photon picture accepted",
+        "lines": [
+          "The same measurements determined the value of",
+          "Planck's constant h. This result led to the",
+          "acceptance of the photon picture of radiation",
+          "described by Einstein.",
+          {
+            "text": "Verified Einstein's equation, measured h",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Two outcomes: the value of h, and the photon picture accepted.",
+        "why": "In Einstein's equation eV₀ = hν − W₀ the slope of the V₀–ν line is h/e. Measuring that slope gave h itself, and a wave picture of light offers no such line at all.",
+        "common_mistakes": [
+          "Stopping at verified the equation. The measured value of Planck's constant is the second half of the answer.",
+          "Writing that he measured the work function. The constant the experiment is known for is h."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the experiment determined Planck's constant and led to acceptance of the photon picture of radiation.",
+          "accept": [
+            "determined Planck's constant",
+            "measured h",
+            "photon picture was accepted"
+          ],
+          "reject": [
+            "verified Einstein's photoelectric equation"
+          ],
+          "heard_as": [
+            "Planck's constant",
+            "photon",
+            "value of h"
+          ]
+        },
+        "memory_tip": "Two prizes from one line: the equation checked, and h read off its slope."
+      }
+    ]
+  },
+  "insider_note": "Say both facts: the equation verified AND Planck's constant measured — most answers stop at the first and lose the second mark."
+}
