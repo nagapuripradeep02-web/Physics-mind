@@ -182,7 +182,7 @@
             {
               "type": "label",
               "id": "ep_lbl_et",
-              "x": 44,
+              "x": 150,
               "y": 59,
               "text": "ET",
               "ms": 450,
@@ -313,7 +313,7 @@
             {
               "type": "label",
               "id": "xp_lbl_et",
-              "x": 44,
+              "x": 150,
               "y": 39,
               "text": "ET",
               "ms": 450,

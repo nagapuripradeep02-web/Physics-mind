@@ -135,13 +135,13 @@
               "type": "stroke",
               "id": "gl_backbone",
               "d": "M 95 58 L 95 216",
-              "ms": 2300
+              "ms": 2260
             },
             {
               "type": "stroke",
               "id": "gl_bars",
               "d": "M 62 85 L 128 85 M 62 127 L 128 127 M 62 169 L 128 169 M 62 211 L 128 211",
-              "ms": 3800
+              "ms": 3770
             },
             {
               "type": "label",
@@ -284,13 +284,13 @@
               "type": "stroke",
               "id": "cy_backbone",
               "d": "M 95 56 L 95 246",
-              "ms": 2700
+              "ms": 2710
             },
             {
               "type": "stroke",
               "id": "cy_bars",
               "d": "M 62 62 L 128 62 M 62 104 L 128 104 M 62 146 L 128 146 M 62 188 L 128 188 M 62 230 L 128 230",
-              "ms": 4700
+              "ms": 4500
             },
             {
               "type": "label",
@@ -368,7 +368,7 @@
               "type": "stroke",
               "id": "cy_bracket",
               "d": "M 95 56 L 95 30 L 226 30 L 226 138 M 226 168 L 226 230 L 128 230",
-              "ms": 4600
+              "ms": 4500
             },
             {
               "type": "label",

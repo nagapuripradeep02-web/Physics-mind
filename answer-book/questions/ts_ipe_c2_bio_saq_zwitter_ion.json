@@ -163,13 +163,13 @@
               "type": "stroke",
               "id": "zw_arrow_up",
               "d": "M 150 130 L 150 78 M 143 88 L 150 78 L 157 88",
-              "ms": 900
+              "ms": 1090
             },
             {
               "type": "stroke",
               "id": "zw_arrow_dn",
               "d": "M 150 170 L 150 222 M 143 212 L 150 222 L 157 212",
-              "ms": 900
+              "ms": 1090
             },
             {
               "type": "label",

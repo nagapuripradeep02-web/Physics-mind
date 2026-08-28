@@ -110,31 +110,31 @@
               "type": "stroke",
               "id": "ser_benzene",
               "d": "M 140 85 L 105 65 L 70 85 L 70 125 L 105 145 L 140 125 Z",
-              "ms": 1600
+              "ms": 3450
             },
             {
               "type": "stroke",
               "id": "ser_benzene_doubles",
               "d": "M 131 88 L 107 74 M 77 91 L 77 119 M 107 136 L 131 122",
-              "ms": 900
+              "ms": 1190
             },
             {
               "type": "stroke",
               "id": "ser_five_ring",
               "d": "M 140 85 L 178 73 M 178 73 L 201 105 M 201 105 L 186 126 M 166 133 L 140 125",
-              "ms": 1400
+              "ms": 1890
             },
             {
               "type": "stroke",
               "id": "ser_ring_double",
               "d": "M 177 82 L 192 103",
-              "ms": 350
+              "ms": 370
             },
             {
               "type": "stroke",
               "id": "ser_nh_bond",
               "d": "M 178 151 L 178 176",
-              "ms": 350
+              "ms": 360
             },
             {
               "type": "stroke",
@@ -214,19 +214,19 @@
               "type": "stroke",
               "id": "bit_rings",
               "d": "M 100 72 L 135 92 L 135 132 L 100 152 L 65 132 L 65 92 Z M 296 72 L 331 92 L 331 132 L 296 152 L 261 132 L 261 92 Z",
-              "ms": 2800
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "bit_doubles",
               "d": "M 103 82 L 125 94 M 125 130 L 103 142 M 72 125 L 72 99 M 293 82 L 271 94 M 271 130 L 293 142 M 324 125 L 324 99",
-              "ms": 1700
+              "ms": 2170
             },
             {
               "type": "stroke",
               "id": "bit_bonds",
               "d": "M 135 92 L 185 76 M 211 76 L 261 92 M 100 68 L 100 54 M 296 68 L 296 54 M 61 92 L 48 92 M 335 92 L 344 92 M 100 156 L 100 176 M 296 156 L 296 176",
-              "ms": 2300
+              "ms": 2790
             },
             {
               "type": "label",
@@ -318,25 +318,25 @@
               "type": "stroke",
               "id": "chl_ring",
               "d": "M 148 110 L 129 77 L 91 77 L 72 110 L 91 143 L 129 143 Z",
-              "ms": 1700
+              "ms": 3260
             },
             {
               "type": "stroke",
               "id": "chl_ring_doubles",
               "d": "M 139 107 L 127 86 M 93 86 L 81 107 M 98 137 L 122 137",
-              "ms": 900
+              "ms": 1030
             },
             {
               "type": "stroke",
               "id": "chl_chain_bonds",
               "d": "M 68 110 L 46 110 M 152 110 L 163 110 M 193 110 L 222 110 M 251 110 L 280 110",
-              "ms": 1400
+              "ms": 1300
             },
             {
               "type": "stroke",
               "id": "chl_side_bonds",
               "d": "M 178 124 L 178 146 M 236 98 L 236 72",
-              "ms": 700
+              "ms": 690
             },
             {
               "type": "label",
@@ -420,31 +420,31 @@
               "type": "stroke",
               "id": "sac_benzene",
               "d": "M 146 89 L 110 68 L 74 89 L 74 131 L 110 152 L 146 131 Z",
-              "ms": 1700
+              "ms": 3580
             },
             {
               "type": "stroke",
               "id": "sac_benzene_doubles",
               "d": "M 136 91 L 113 78 M 81 97 L 81 123 M 113 142 L 136 129",
-              "ms": 900
+              "ms": 1130
             },
             {
               "type": "stroke",
               "id": "sac_five_ring",
               "d": "M 146 89 L 196 68 M 196 68 L 220 96 M 221 123 L 206 141 M 146 131 L 185 147",
-              "ms": 1500
+              "ms": 2240
             },
             {
               "type": "stroke",
               "id": "sac_carbonyl",
               "d": "M 193 62 L 193 42 M 200 62 L 200 42",
-              "ms": 600
+              "ms": 570
             },
             {
               "type": "stroke",
               "id": "sac_sulphonyl",
               "d": "M 187 164 L 159 190 M 183 160 L 155 186 M 205 165 L 231 190 M 209 160 L 235 185",
-              "ms": 1700
+              "ms": 2120
             },
             {
               "type": "label",
