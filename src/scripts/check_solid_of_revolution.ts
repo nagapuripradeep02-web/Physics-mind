@@ -86,6 +86,8 @@ const VARS = ["SR_MODES", "SR_MODES_COMPLETE", "SR_FAMILIES", "SR_READOUTS", "SR
   "SR_RULES", "SR_KINDS", "SR_RAMP_PARAMS", "SR_DISC_POOL", "SR_DEFAULT_MAX_DRAWN",
   // SR-C — the explore idle turn + the sandbox orbit (section 16).
   "SR_EXPLORE_TURN_DEG_PER_S", "SR_EXPLORE_CAM_DEG_PER_S",
+  // SR-D11 (section 19)
+  "SR_REGION_SAMPLES", "SR_SURF_NU", "SR_TICK_BEHIND_OPACITY",
   // NOT SR's — the SHARED Rule-39f label table, pulled in read-only so section
   // 16 (vi) can run the fleet's own row-label resolver over SR's markup.
   "PM_WG_WORDS"];
@@ -109,6 +111,8 @@ const FNS = [
   // section 18 — the labelled annulus. The PURE half of it, so the gate decides
   // whether a ring is drawn without a browser.
   "srSliceRingPlan",
+  // SR-D11 — the vertical centring rule and the tick enclosure test (section 19).
+  "srContentYSpan", "srContentShiftY", "srTickEnclosed",
   // the SHARED widget-label resolver (section 16 (vi)), read-only.
   "pmWgWord", "pmWgRowLabel",
 ];
@@ -1366,17 +1370,26 @@ console.log("\n=== 11. S3's CIRCLE, over the FULL x_cut sweep, in perspective ==
     return (l1 > 0 && l2 > 0) ? Math.sqrt(Math.min(l1, l2) / Math.max(l1, l2)) : NaN;
   };
   const SHIFT = -2;                       // SR-D10: the apparatus sits on the origin
+  // SR-D11 put a VERTICAL shift on the same apparatus, and every number in this
+  // section is measured against world positions — so the shift is READ from the
+  // shipped rule rather than assumed, and asserted, before anything is projected.
+  // On this state (a slice: full circles about the x axis) the content straddles
+  // the axis, the rule returns EXACTLY 0, and every figure below is unmoved.
+  const SHIFTY = E.srContentShiftY({ mode: "slice" }, { family: "power", a: 1, p: 0.5, c: 0 },
+    null, 0, 4, "x", 360);
+  check("SR-D11's vertical shift on S3 is exactly 0, so this section's world positions "
+    + "are the ones it was solved against", SHIFTY, 0, 0);
   const rimConic = (cam: number[], xg: number) => {
     const r = Math.sqrt(xg), pts: Array<[number, number]> = [];
     for (let i = 0; i < 720; i++) {
       const ph = (i / 720) * Math.PI * 2;
-      const p = P(cam, xg + SHIFT, r * Math.cos(ph), r * Math.sin(ph));
+      const p = P(cam, xg + SHIFT, SHIFTY + r * Math.cos(ph), r * Math.sin(ph));
       pts.push([p.tx, p.ty]);
     }
     return conicAspect(pts);
   };
   const rimNormal = (cam: number[], xg: number) => {
-    const vx = xg + SHIFT - cam[0], vy = -cam[1], vz = -cam[2];
+    const vx = xg + SHIFT - cam[0], vy = SHIFTY - cam[1], vz = -cam[2];
     return Math.abs(vx / Math.hypot(vx, vy, vz));
   };
   const sweep = (cam: number[], f: (c: number[], x: number) => number) => {
@@ -1402,14 +1415,14 @@ console.log("\n=== 11. S3's CIRCLE, over the FULL x_cut sweep, in perspective ==
     const r = Math.sqrt(4), pts: Array<[number, number]> = [];
     for (let i = 0; i < 360; i++) {
       const ph = (i / 360) * Math.PI * 2;
-      const p = P(DESIGN, 4 + SHIFT, r * Math.cos(ph), r * Math.sin(ph));
+      const p = P(DESIGN, 4 + SHIFT, SHIFTY + r * Math.cos(ph), r * Math.sin(ph));
       pts.push([p.tx, p.ty]);
     }
     let dia = 0;
     for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
       dia = Math.max(dia, Math.hypot(pts[i][0] - pts[j][0], pts[i][1] - pts[j][1]));
     }
-    const a0 = P(DESIGN, 0 + SHIFT, 0, 0), a1 = P(DESIGN, 4 + SHIFT, 0, 0);
+    const a0 = P(DESIGN, 0 + SHIFT, SHIFTY, 0), a1 = P(DESIGN, 4 + SHIFT, SHIFTY, 0);
     const axial = Math.hypot(a0.tx - a1.tx, a0.ty - a1.ty);
     console.log("      projected axial length / face diameter at x = 4: "
       + (100 * axial / dia).toFixed(1) + "%  (floor 8 %)");
@@ -1429,7 +1442,7 @@ console.log("\n=== 11. S3's CIRCLE, over the FULL x_cut sweep, in perspective ==
       const x = 4 * i / 60, r = Math.sqrt(x);
       for (let k = 0; k < 48; k++) {
         const ph = (k / 48) * Math.PI * 2;
-        const p = P(DESIGN, x + SHIFT, r * Math.cos(ph), r * Math.sin(ph));
+        const p = P(DESIGN, x + SHIFT, SHIFTY + r * Math.cos(ph), r * Math.sin(ph));
         mx = Math.max(mx, Math.abs(p.ndcX)); my = Math.max(my, Math.abs(p.ndcY));
       }
     }
@@ -1473,14 +1486,24 @@ console.log("\n=== 12. S9's explore camera, over the FULL slider product, ENUMER
 // of a 793-point product, and a sweep of ONE axis with the other held is a search
 // that hides the feasible region in the axis it held fixed.
 {
+  // SR-D11 rides along here too, and per CORNER rather than once: the shift is a
+  // function of the drawn content, so a search over the slider product has to ask
+  // for it at every corner it visits. On the explore state the solid is a closed
+  // body of revolution about the x axis at every corner, so the rule returns
+  // EXACTLY 0 at all 793 — asserted below rather than assumed, because that
+  // zero is the whole reason this section's numbers did not move.
+  let shiftYMax = 0;
   const solidExtent = (cam: number[], a: number, b: number) => {
     const shift = -b / 2;
+    const shiftY = E.srContentShiftY({ mode: "explore" }, { family: "power", a, p: 0.5, c: 0 },
+      null, 0, b, "x", 360);
+    shiftYMax = Math.max(shiftYMax, Math.abs(shiftY));
     let mx = 0, my = 0, ymin = Infinity, ymax = -Infinity;
     for (let i = 0; i <= 60; i++) {
       const x = b * i / 60, r = a * Math.sqrt(x);
       for (let k = 0; k < 48; k++) {
         const ph = (k / 48) * Math.PI * 2;
-        const p = P(cam, x + shift, r * Math.cos(ph), r * Math.sin(ph));
+        const p = P(cam, x + shift, shiftY + r * Math.cos(ph), r * Math.sin(ph));
         mx = Math.max(mx, Math.abs(p.ndcX)); my = Math.max(my, Math.abs(p.ndcY));
         ymin = Math.min(ymin, p.ndcY); ymax = Math.max(ymax, p.ndcY);
       }
@@ -1501,6 +1524,8 @@ console.log("\n=== 12. S9's explore camera, over the FULL slider product, ENUMER
     }
   }
   check("the product is ENUMERATED, not sampled: 13 x 61 corners", corners, 793, 0);
+  check("SR-D11's vertical shift is exactly 0 at EVERY one of those corners, so this "
+    + "section's framing solve is unmoved by it", shiftYMax, 0, 0);
   console.log(`      worst max |NDC| = ${worst.v.toFixed(3)} at a = ${worst.a.toFixed(2)}, `
     + `b = ${worst.b.toFixed(2)}  |  min corner screen span = ${(minSpan.v * 100).toFixed(1)}% `
     + `at a = ${minSpan.a.toFixed(2)}, b = ${minSpan.b.toFixed(2)}`);
@@ -2919,9 +2944,240 @@ console.log("\n=== 18. THE LABELLED SLICE IS DRAWN AS THE RING IT IS CALLED ==="
   }
 }
 
+console.log("\n=== 19. SR-D11 — THE DRAWN CONTENT IS CENTRED, AND THE TICKS READ BEHIND GLASS ===");
+// The camera always looks at (0, 0, 0) — updateCameraFromSpherical, :4805 — and
+// SR-D10 only ever put the apparatus on the origin along X. So the camera aims at
+// graph y = 0, the axis of revolution: a revolved solid straddles it and reads
+// centred, a FLAT REGION state does not. MEASURED in the browser on the review
+// build before this landed (1280x720, apparatus pixels only): STATE_1 @13600ms
+// drew y = 115..385 of 720, centre 250 = 0.306 NDC high; STATE_2 @2100ms
+// 105..386, centre 245.5 = 0.318. After: 233..505 (-0.025) and 233..506 (-0.026).
+//
+// THE TRAP THIS SECTION PINS DOWN, so it is not re-argued from the report: a
+// SINGLE global shift is wrong. It centres STATE_1 and pushes every solid state
+// — already centred on the axis — off by the same amount. Control (ii) below
+// measures exactly that, so the reason the shipped rule is content-derived is a
+// number in this file rather than a sentence in a commit message.
+{
+  const YSPAN = (sr: any, outer: any, inner: any, x0: number, x1: number, ax: string, th: number | null) =>
+    E.srContentYSpan(sr, outer, inner, x0, x1, ax, th);
+  const SHIFT = (sr: any, outer: any, inner: any, x0: number, x1: number, ax: string, th: number | null) =>
+    E.srContentShiftY(sr, outer, inner, x0, x1, ax, th);
+  const SQRT = { family: "power", a: 1.0, p: 0.5, c: 0.0 };
+  const HALFX = { family: "power", a: 0.5, p: 1.0, c: 0.0 };
+  const BALL = (r: number) => ({ family: "circle_arc", r, x0: 0.0, c: 0.0 });
+
+  // ── (i) THE PURE RULE, against spans solved by hand from the geometry ──
+  // STATE_1: the region under y = sqrt x on [0, 4] occupies y in [0, 2]; nothing
+  // is revolved, so the content centre is y = 1 and the shift is exactly -1.
+  check("STATE_1 (region only) spans [0, 2] and shifts by -1",
+    SHIFT({ mode: "region" }, SQRT, null, 0, 4, "x", 0), -1, 1e-12);
+  // every solid-about-x state: the skin/stack straddles the axis, so EXACTLY 0
+  for (const [label, mode, outer, inner, x0, x1, th] of [
+    ["STATE_3 (slice)", "slice", SQRT, null, 0, 4, 360],
+    ["STATE_4 (stack)", "stack", SQRT, null, 0, 4, 360],
+    ["STATE_5 (stack, r = 1.00, mid-ramp)", "stack", BALL(1), null, -1, 1, 360],
+    ["STATE_5 (stack, r = 2.00, ramp end)", "stack", BALL(2), null, -2, 2, 360],
+    ["STATE_6 (compare, ring)", "compare", SQRT, HALFX, 0, 4, 360],
+    ["STATE_8 (sweep, b = 1.00)", "sweep", SQRT, null, 0, 1, 360],
+    ["STATE_8 (sweep, b = 4.00)", "sweep", SQRT, null, 0, 4, 360],
+    ["STATE_9 (explore, defaults)", "explore", SQRT, null, 0, 4, 360],
+  ] as Array<[string, string, any, any, number, number, number]>) {
+    check(label + " is untouched: shift is EXACTLY 0",
+      SHIFT({ mode }, outer, inner, x0, x1, "x", th), 0, 0);
+  }
+  // STATE_7 revolves about Y: the solid occupies the axis interval [0, 2] in y
+  // and revolving cannot move it, so it is as one-sided as the flat region is.
+  check("STATE_7 (stack about y) spans [0, 2] and shifts by -1",
+    SHIFT({ mode: "stack" }, SQRT, null, 0, 4, "y", 360), -1, 1e-12);
+  // the SWEEP, which is the only time-varying one. srWriteSurface lays rings from
+  // phi = 0 (= +y) and clips with a draw range, so the drawn band is
+  // R * [cos theta, 1] up to 180 deg and R * [-1, 1] past it. R = 2 here.
+  for (const [th, want] of [[0, -1], [45, -1], [90, -1], [120, -0.5], [180, 0], [270, 0], [360, 0]] as Array<[number, number]>) {
+    check("STATE_2 sweep at theta = " + th + " deg shifts by " + want,
+      SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", th), want, 1e-12);
+  }
+  // ...and it never JUMPS, which is the property a mode-flip rule would fail: a
+  // shift that switched on "is a solid being drawn" would teleport the whole
+  // apparatus by a world unit on one frame (Rule 32d, home-pose continuity).
+  {
+    let maxStep = 0, prev = SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", 0);
+    for (let i = 1; i <= 3600; i++) {
+      const v = SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", i / 10);
+      maxStep = Math.max(maxStep, Math.abs(v - prev)); prev = v;
+    }
+    console.log("      largest shift step over the whole 0 -> 360 deg sweep, at 0.1 deg "
+      + "granularity: " + maxStep.toFixed(6) + " world units");
+    assertTrue("the sweep shift is continuous — no frame moves the apparatus by more than "
+      + "0.01 world units", maxStep <= 0.01);
+  }
+  check("determinism (SR-D2): the same inputs return the same bits",
+    SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", 137.5) - SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", 137.5), 0, 0);
+  {
+    const s = YSPAN({ mode: "region" }, SQRT, null, 0, 4, "x", 0);
+    assertTrue("the span itself is reported, not just its centre: STATE_1 = ["
+      + s.y0.toFixed(3) + ", " + s.y1.toFixed(3) + "]",
+      Math.abs(s.y0) < 1e-12 && Math.abs(s.y1 - 2) < 1e-12);
+  }
+
+  // ── (ii) SCREEN TRUTH — the projected centre of the DRAWN content ──
+  // Sampled the way the frame draws it: the flat profile band (the curve tube is
+  // never rotated, so it is drawn at [0, max f] at every theta) plus the swept
+  // rim over the arc the draw range actually keeps.
+  const contentNdcCentre = (
+    cam: number[], outer: any, inner: any, x0: number, x1: number, ax: string,
+    mode: string, th: number, shiftY: number,
+  ) => {
+    const shiftX = -(x0 + x1) / 2;
+    let lo = Infinity, hi = -Infinity;
+    const add = (x: number, y: number, z: number) => {
+      const p = P(cam, x + shiftX, y + shiftY, z);
+      if (p.behind) return;
+      lo = Math.min(lo, p.ndcY); hi = Math.max(hi, p.ndcY);
+    };
+    for (let i = 0; i <= 60; i++) {
+      const x = x0 + (x1 - x0) * i / 60;
+      const f = ref_f(outer, x), g = inner ? ref_f(inner, x) : 0;
+      add(x, 0, 0);
+      if (isFinite(f)) add(x, f, 0);
+      if (inner && isFinite(g)) add(x, g, 0);
+    }
+    if (mode !== "region") {
+      const full = (mode === "stack" || mode === "compare" || mode === "slice" || mode === "explore");
+      const arc = full ? 360 : th;
+      for (let i = 0; i <= 60; i++) {
+        if (ax === "y") {
+          const yTop = ref_f(outer, x1), u = yTop * i / 60;
+          for (let k = 0; k <= 48; k++) {
+            const ph = (arc * Math.PI / 180) * k / 48;
+            add(x1 * Math.cos(ph), u, x1 * Math.sin(ph));
+          }
+        } else {
+          const x = x0 + (x1 - x0) * i / 60, r = ref_f(outer, x);
+          if (!isFinite(r)) continue;
+          for (let k = 0; k <= 48; k++) {
+            const ph = (arc * Math.PI / 180) * k / 48;
+            add(x, r * Math.cos(ph), r * Math.sin(ph));
+          }
+        }
+      }
+    }
+    return (lo + hi) / 2;
+  };
+  type St = { id: string; cam: number[]; mode: string; outer: any; inner: any; dom: [number, number]; ax: string; thetas: number[] };
+  const STATES: St[] = [
+    { id: "STATE_1", cam: [0, 0, 5.2], mode: "region", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [0] },
+    { id: "STATE_2", cam: [0, 0, 5.2], mode: "sweep", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [0, 12, 45, 90, 135, 180, 270, 360] },
+    { id: "STATE_3", cam: [7.83, 0.8, 1.46], mode: "slice", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [360] },
+    { id: "STATE_4", cam: [4.6, 3.07, 5.21], mode: "stack", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [360] },
+    { id: "STATE_5", cam: [4.6, 3.07, 5.21], mode: "stack", outer: BALL(2), inner: null, dom: [-2, 2], ax: "x", thetas: [360] },
+    { id: "STATE_6", cam: [5.09, 2.39, 5.69], mode: "compare", outer: SQRT, inner: HALFX, dom: [0, 4], ax: "x", thetas: [0, 180, 360] },
+    { id: "STATE_7", cam: [6.02, 4.89, 6.77], mode: "stack", outer: SQRT, inner: null, dom: [0, 4], ax: "y", thetas: [0, 180, 360] },
+    { id: "STATE_8", cam: [4.6, 3.07, 5.21], mode: "sweep", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [360] },
+    { id: "STATE_9", cam: [5.42, 3.43, 6.32], mode: "explore", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [360] },
+  ];
+  let worstId = "", worst = 0;
+  for (const st of STATES) {
+    let w = 0, atTh = 0;
+    for (const th of st.thetas) {
+      const sh = SHIFT({ mode: st.mode }, st.outer, st.inner, st.dom[0], st.dom[1], st.ax, th);
+      const c = contentNdcCentre(st.cam, st.outer, st.inner, st.dom[0], st.dom[1], st.ax, st.mode, th, sh);
+      if (Math.abs(c) > Math.abs(w)) { w = c; atTh = th; }
+    }
+    if (Math.abs(w) > Math.abs(worst)) { worst = w; worstId = st.id; }
+    console.log("      " + st.id + " worst projected content centre: " + w.toFixed(3)
+      + " NDC (theta = " + atTh + " deg)");
+    assertTrue(st.id + "'s drawn content sits within 0.15 NDC of frame centre at every "
+      + "sampled theta", Math.abs(w) <= 0.15);
+  }
+  console.log("      worst state overall: " + worstId + " at " + worst.toFixed(3) + " NDC");
+
+  // FIVE NEGATIVE CONTROLS.
+  {
+    // (i) the PRE-FIX body: no vertical shift at all.
+    const pre = contentNdcCentre([0, 0, 5.2], SQRT, null, 0, 4, "x", "region", 0, 0);
+    control("the pre-fix body (no vertical shift) puts STATE_1's content at " + pre.toFixed(3)
+      + " NDC — it FAILS the 0.15 floor, and it agrees with the 0.306 measured in the "
+      + "browser before the fix", Math.abs(pre) > 0.15);
+  }
+  {
+    // (ii) THE TRAP: one global shift, sized for STATE_1, applied to everything.
+    const s5 = contentNdcCentre([4.6, 3.07, 5.21], BALL(2), null, -2, 2, "x", "stack", 360, -1);
+    const s5ok = contentNdcCentre([4.6, 3.07, 5.21], BALL(2), null, -2, 2, "x", "stack", 360, 0);
+    control("a SINGLE global shiftY = -1 pushes STATE_5's already-centred ball to "
+      + s5.toFixed(3) + " NDC (from " + s5ok.toFixed(3) + ") — the trap, MEASURED",
+      Math.abs(s5) > 0.15 && Math.abs(s5ok) <= 0.15);
+  }
+  {
+    // (iii) a span that included the FRAME would drift on every ramped radius.
+    const framed = (r: number) => {
+      const s = YSPAN({ mode: "stack" }, BALL(r), null, -r, r, "x", 360);
+      return -(Math.min(s.y0, 0) + Math.max(s.y1, 2)) / 2;   // frame y_range [0, 2] folded in
+    };
+    const shipped = (r: number) => SHIFT({ mode: "stack" }, BALL(r), null, -r, r, "x", 360);
+    control("folding the frame's y_range into the span makes STATE_5 DRIFT vertically over "
+      + "its own r ramp (" + framed(1).toFixed(3) + " -> " + framed(2).toFixed(3)
+      + ") where the shipped rule holds " + shipped(1).toFixed(3) + " -> " + shipped(2).toFixed(3),
+      Math.abs(framed(1) - framed(2)) > 0.1 && shipped(1) === 0 && shipped(2) === 0);
+  }
+
+  // ── (iii) THE TICK NUMBERS, which have no depth because they are DOM ──
+  // MEASURED before this landed, on STATE_5 at r = 2.00: the ticks -1, 0 and 1
+  // sat at screen (582,352), (627,369), (707,397), inside the ball's projected
+  // silhouette (x 535..785), at full strength.
+  const S5SPAN = E.srStackSpan(BALL(2), null, -2, 2, "x");
+  const S5ENCL = { axis: "x", span: S5SPAN };
+  const TICKL = 0.11;                       // SR_TICK_LEN, the tick offsets below
+  const xTick = (v: number) => E.srTickEnclosed(S5ENCL, v, -TICKL * 1.6);
+  const yTick = (v: number) => E.srTickEnclosed(S5ENCL, -TICKL * 1.9, v);
+  assertTrue("STATE_5: the x ticks -1, 0 and 1 are INSIDE the ball and attenuate",
+    xTick(-1) && xTick(0) && xTick(1));
+  assertTrue("...and the ticks at the rim (-2, 2), which are NOT inside it, do not",
+    !xTick(-2) && !xTick(2));
+  assertTrue("...and the y tick 1 is inside the ball while 2 is on its surface",
+    yTick(1) && !yTick(2));
+  assertTrue("a state with nothing enclosing the axis (STATE_1) attenuates NOTHING",
+    !E.srTickEnclosed(null, 1, -TICKL * 1.6) && !E.srTickEnclosed(null, 0, 0));
+  {
+    // STATE_7 revolves about y: the x-axis ticks sit BELOW the solid's base face
+    // and stay full strength, while the y ticks inside it attenuate.
+    const s7 = E.srStackSpan(SQRT, null, 0, 4, "y"), e7 = { axis: "y", span: s7 };
+    assertTrue("STATE_7 (about y): the x ticks are outside the solid's y span and stay full, "
+      + "the y ticks 1 and 2 attenuate",
+      !E.srTickEnclosed(e7, 1, -TICKL * 1.6) && !E.srTickEnclosed(e7, 4, -TICKL * 1.6)
+      && E.srTickEnclosed(e7, -TICKL * 1.9, 1) && E.srTickEnclosed(e7, -TICKL * 1.9, 1.5));
+  }
+  assertTrue("the attenuation is a strength, not a move: the shipped constant is a fraction "
+    + "in (0, 1) and the enclosure path writes style.opacity and nothing else",
+    E.SR_TICK_BEHIND_OPACITY > 0 && E.SR_TICK_BEHIND_OPACITY < 1
+    && /node\.style\.opacity = srTickEnclosed\(srTickEncl, srTicks\[i\]\.gx, srTicks\[i\]\.gy\)/.test(grabFn("srPlaceTickNodes"))
+    && !/srTickEnclosed[\s\S]{0,200}node\.style\.(left|top)/.test(grabFn("srPlaceTickNodes")));
+  {
+    control("the pre-fix render (every tick at full strength) is WRONG on STATE_5: three of "
+      + "its ticks are provably enclosed by the ball, so 'no tick is enclosed' is false",
+      xTick(-1) || xTick(0) || xTick(1));
+    // an UNGUARDED rule — one that claimed enclosure the moment a solid existed —
+    // would dim STATE_2's ticks while its sweep is only 12 deg wide and the axis
+    // is still in plain view. The guard is what makes the claim honest.
+    const s2 = E.srStackSpan(SQRT, null, 0, 4, "x");
+    control("an enclosure claim not gated on a CLOSED solid would attenuate STATE_2's tick at "
+      + "x = 2 while only 12 deg of skin is drawn",
+      E.srTickEnclosed({ axis: "x", span: s2 }, 2, -TICKL * 1.6));
+  }
+  {
+    const FR19 = SRC.slice(SRC.indexOf("function updateSolidOfRevolutionFrame("));
+    const FRB19 = FR19.slice(0, FR19.indexOf("\n    function ", 10));
+    assertTrue("...and the shipped frame IS gated: the descriptor is built only from a skin "
+      + "swept the full 360 or a stack of full circles, and it is rebuilt every frame",
+      /var srSkinClosed = showSolid && srSurfOuter\.visible && thDeg >= 359\.9;/.test(FRB19)
+      && /srTickEncl = \(srSkinClosed \|\| srStackFull\) \? \{ axis: ax, span: sp \} : null;/.test(FRB19)
+      && /srShiftY = srContentShiftY\(sr, outer, inner, x0, x1, ax, thDeg\);/.test(FRB19));
+  }
+}
+
 // ═══════════════════════════════════════════════════════════════════════════
 console.log("\n" + "═".repeat(78));
-console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15, 16, 17, 18");
+console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15, 16, 17, 18, 19");
 console.log("  negative controls fired: " + controlsFired);
 // Self-correcting, because this banner was a CLAIM about the repo and claims
 // rot: the moment a concept authors the scenario, THE EYE becomes the stronger
