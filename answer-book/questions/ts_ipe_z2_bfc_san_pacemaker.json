@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_bfc_san_pacemaker",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Body Fluids and Circulation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Sino-atrial node is called the pacemaker of our heart. Why?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "It makes its own action potential",
+      "marks": 1
+    },
+    {
+      "label": "It starts the heart beat",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.48, VSAQ 62. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Body Fluids and Circulation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_own_potential",
+        "kind": "text",
+        "label": "It fires on its own",
+        "marks": 1,
+        "mark_note": "Self-generating",
+        "why": "A pacemaker is anything that sets the rate, and the SAN sets it because nothing else has to tell it to fire.",
+        "common_mistakes": [
+          "Writing that a nerve stimulates the SAN. It fires without any outside signal.",
+          "Calling the SAN nerve tissue. It is modified heart muscle."
+        ],
+        "memory_tip": "The SAN needs no order from outside, so it sets the pace.",
+        "margin_note": "The reason comes first. This is a 'why' question.",
+        "lines": [
+          "The sino-atrial node, SAN, can generate",
+          "action potentials without any external",
+          "stimuli."
+        ]
+      },
+      {
+        "id": "s2_initiates",
+        "kind": "boxed_final",
+        "label": "It starts the beat",
+        "marks": 1,
+        "mark_note": "Starts the beat",
+        "why": "Because its signal reaches the rest of the heart first, every beat begins where the SAN is.",
+        "common_mistakes": [
+          "Giving the AVN's position instead. The SAN is in the right upper corner of the right atrium.",
+          "Stopping at the definition without saying what it does."
+        ],
+        "memory_tip": "SAN starts it; the rest of the heart follows.",
+        "margin_note": "Add the position. It is a free extra point.",
+        "lines": [
+          "It initiates every heart beat, so it is",
+          "called the pacemaker.",
+          {
+            "text": "It lies in the right upper corner of the RA",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The marking words are 'without any external stimuli'. Saying only that the SAN is in the right atrium answers where, not why."
+}

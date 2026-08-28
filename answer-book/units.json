@@ -9908,6 +9908,149 @@
           "question_id": "ts_ipe_z2_beg_occupational_disorders"
         }
       ]
+    },
+    {
+      "subject": "zoology_2",
+      "number": 2,
+      "name": "Human Anatomy and Physiology-II (Zoology-II)",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Describe the structure of the heart of man with the help of neat labelled diagram.",
+          "question_id": "ts_ipe_z2_bfc_laq_heart_structure"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Write notes on the working of the heart of man.",
+          "question_id": "ts_ipe_z2_bfc_laq_heart_working"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Describe the excretory system of man, giving the structure of a nephron.",
+          "question_id": "ts_ipe_z2_exc_laq_excretory_system_nephron"
+        },
+        {
+          "ref": "vsaq61",
+          "section": "VSAQ",
+          "number": 61,
+          "stars": 0,
+          "text": "Write the differences between 'open' and 'closed' systems of circulation.",
+          "question_id": "ts_ipe_z2_bfc_open_vs_closed_circulation"
+        },
+        {
+          "ref": "vsaq62",
+          "section": "VSAQ",
+          "number": 62,
+          "stars": 1,
+          "text": "Sino-atrial node is called the pacemaker of our heart. Why?",
+          "question_id": "ts_ipe_z2_bfc_san_pacemaker"
+        },
+        {
+          "ref": "vsaq63",
+          "section": "VSAQ",
+          "number": 63,
+          "stars": 1,
+          "text": "Name the valves that guard the left and right atrioventricular apertures in man.",
+          "question_id": "ts_ipe_z2_bfc_av_valves"
+        },
+        {
+          "ref": "vsaq64",
+          "section": "VSAQ",
+          "number": 64,
+          "stars": 0,
+          "text": "Why are the arteries more elastic than the veins?",
+          "question_id": "ts_ipe_z2_bfc_arteries_more_elastic"
+        },
+        {
+          "ref": "vsaq65",
+          "section": "VSAQ",
+          "number": 65,
+          "stars": 1,
+          "text": "Define cardiac cycle and cardiac output.",
+          "question_id": "ts_ipe_z2_bfc_cardiac_cycle_output"
+        },
+        {
+          "ref": "vsaq66",
+          "section": "VSAQ",
+          "number": 66,
+          "stars": 0,
+          "text": "What is meant by double circulation? What is the significance?",
+          "question_id": "ts_ipe_z2_bfc_double_circulation"
+        },
+        {
+          "ref": "vsaq67",
+          "section": "VSAQ",
+          "number": 67,
+          "stars": 0,
+          "text": "Name the blood vessels that enter and exit the kidney.",
+          "question_id": "ts_ipe_z2_exc_kidney_blood_vessels"
+        },
+        {
+          "ref": "vsaq68",
+          "section": "VSAQ",
+          "number": 68,
+          "stars": 3,
+          "text": "What are the columns of Bertin?",
+          "question_id": "ts_ipe_z2_exc_columns_of_bertin"
+        },
+        {
+          "ref": "vsaq69",
+          "section": "VSAQ",
+          "number": 69,
+          "stars": 2,
+          "text": "Define glomerular filtration.",
+          "question_id": "ts_ipe_z2_exc_glomerular_filtration"
+        },
+        {
+          "ref": "vsaq70",
+          "section": "VSAQ",
+          "number": 70,
+          "stars": 0,
+          "text": "Define glomerular filtration rate (GFR).",
+          "question_id": "ts_ipe_z2_exc_gfr"
+        },
+        {
+          "ref": "vsaq71",
+          "section": "VSAQ",
+          "number": 71,
+          "stars": 1,
+          "text": "What is juxtaglomerular apparatus?",
+          "question_id": "ts_ipe_z2_exc_juxtaglomerular_apparatus"
+        },
+        {
+          "ref": "vsaq72",
+          "section": "VSAQ",
+          "number": 72,
+          "stars": 2,
+          "text": "Distinguish between the enzymes renin and rennin.",
+          "question_id": "ts_ipe_z2_exc_renin_vs_rennin"
+        },
+        {
+          "ref": "vsaq73",
+          "section": "VSAQ",
+          "number": 73,
+          "stars": 0,
+          "text": "Name the structural and functional units of kidney. What are the two main types of structural units in it?",
+          "question_id": "ts_ipe_z2_exc_nephron_units_types"
+        },
+        {
+          "ref": "vsaq74",
+          "section": "VSAQ",
+          "number": 74,
+          "stars": 1,
+          "text": "Distinguish between cortical and juxta medullary nephrons.",
+          "question_id": "ts_ipe_z2_exc_cortical_vs_juxtamedullary"
+        }
+      ]
     }
   ]
 }

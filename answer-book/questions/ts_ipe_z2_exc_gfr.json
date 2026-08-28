@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_exc_gfr",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Excretory Products and their Elimination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define glomerular filtration rate (GFR).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.49, VSAQ 70. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Excretory Products and their Elimination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_def",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "The rate is counted for both kidneys together because that is what a clinical test measures.",
+        "common_mistakes": [
+          "Defining it for one kidney. It is for both kidneys.",
+          "Saying it is the amount of urine. It is the amount of filtrate."
+        ],
+        "memory_tip": "Filtrate from both kidneys in one minute.",
+        "margin_note": "Definition first, value second.",
+        "lines": [
+          "Glomerular filtration rate is the amount of",
+          "filtrate formed by both the kidneys in one",
+          "minute."
+        ]
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value",
+        "marks": 1,
+        "mark_note": "The value",
+        "why": "About 180 litres are filtered a day, which is why almost all of it has to be taken back further along the tubule.",
+        "common_mistakes": [
+          "Giving the figure per day when the definition says per minute.",
+          "Leaving the value out."
+        ],
+        "memory_tip": "125 mL a minute, about 180 litres a day.",
+        "margin_note": "One line with the number.",
+        "lines": [
+          {
+            "text": "GFR is about 125 mL per minute",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Half the marks are in the number. Write 125 mL per minute."
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_bfc_open_vs_closed_circulation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Body Fluids and Circulation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the differences between 'open' and 'closed' systems of circulation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Open circulation",
+      "marks": 1
+    },
+    {
+      "label": "Closed circulation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.48, VSAQ 61. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Body Fluids and Circulation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_open",
+        "kind": "text",
+        "label": "Open circulation",
+        "marks": 1,
+        "mark_note": "Open type",
+        "why": "With no capillaries the blood leaves the vessels and bathes the organs directly, so the pressure stays low.",
+        "common_mistakes": [
+          "Writing that there are no vessels at all. There are vessels and sinuses.",
+          "Giving no example group."
+        ],
+        "memory_tip": "Open means the blood leaves the pipes into open spaces.",
+        "margin_note": "One line for the definition, one for the examples.",
+        "lines": [
+          "In the open type of circulation, blood",
+          "flows through vessels and sinuses.",
+          "Capillaries are absent.",
+          "Examples: leeches, arthropods, molluscs,",
+          "echinoderms and ascidians."
+        ]
+      },
+      {
+        "id": "s2_closed",
+        "kind": "boxed_final",
+        "label": "Closed circulation",
+        "marks": 1,
+        "mark_note": "Closed type",
+        "why": "Blood kept inside vessels can be pushed at high pressure and sent where it is needed, which is why active animals have it.",
+        "common_mistakes": [
+          "Leaving out capillaries. Their presence is the marking difference.",
+          "Naming arthropods here. They have the open type."
+        ],
+        "memory_tip": "Closed means the blood never leaves the pipes.",
+        "margin_note": "Keep the two types on separate lines so the contrast shows.",
+        "lines": [
+          "In the closed type of circulation, blood",
+          "flows only through blood vessels.",
+          "Capillaries are present.",
+          {
+            "text": "Examples: Annelida, Cephalopoda, Vertebrata",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Give an example group for each type. A difference without examples is usually marked as half an answer."
+}

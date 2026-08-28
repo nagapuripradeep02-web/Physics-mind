@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_exc_cortical_vs_juxtamedullary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Excretory Products and their Elimination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between cortical and juxta medullary nephrons.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cortical nephrons",
+      "marks": 1
+    },
+    {
+      "label": "Juxtamedullary nephrons",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.49, VSAQ 74. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Excretory Products and their Elimination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cortical",
+        "kind": "text",
+        "label": "Cortical nephrons",
+        "marks": 1,
+        "mark_note": "Cortical",
+        "why": "A short loop that hardly enters the medulla cannot build a strong salt gradient, so these nephrons do little concentrating.",
+        "common_mistakes": [
+          "Giving cortical nephrons a long loop. Their loop is short.",
+          "Writing that they have vasa recta. They lack it."
+        ],
+        "memory_tip": "Cortical: high up, short loop, no vasa recta.",
+        "margin_note": "Two points each, written as a comparison.",
+        "lines": [
+          "Cortical nephrons have the renal corpuscle",
+          "in the superficial renal cortex.",
+          "They have a short loop of Henle and no",
+          "vasa recta."
+        ]
+      },
+      {
+        "id": "s2_juxtamedullary",
+        "kind": "boxed_final",
+        "label": "Juxtamedullary nephrons",
+        "marks": 1,
+        "mark_note": "Juxtamedullary",
+        "why": "The long loop and its vasa recta together build the salt gradient that lets the kidney make concentrated urine.",
+        "common_mistakes": [
+          "Placing them in the cortex. They lie near the medulla.",
+          "Leaving out the vasa recta, which is the marked difference."
+        ],
+        "memory_tip": "Juxtamedullary: near the medulla, long loop, vasa recta present.",
+        "margin_note": "Finish with the vasa recta. It is the key difference.",
+        "lines": [
+          "Juxtamedullary nephrons lie near the renal",
+          "medulla.",
+          {
+            "text": "They have a long loop of Henle with vasa recta",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two differences carry the marks: where the corpuscle sits, and whether the vasa recta is present."
+}

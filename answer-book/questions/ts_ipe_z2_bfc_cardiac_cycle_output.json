@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_bfc_cardiac_cycle_output",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Body Fluids and Circulation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define cardiac cycle and cardiac output.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cardiac cycle",
+      "marks": 1
+    },
+    {
+      "label": "Cardiac output",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.48, VSAQ 65. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Body Fluids and Circulation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cycle",
+        "kind": "text",
+        "label": "Cardiac cycle",
+        "marks": 1,
+        "mark_note": "Cardiac cycle",
+        "why": "The cycle is defined from one beat to the start of the next so that it covers both the working and the resting part of a beat.",
+        "common_mistakes": [
+          "Defining it as one contraction only. It includes the relaxation.",
+          "Leaving out the 0.8 second duration."
+        ],
+        "memory_tip": "One full beat, start to start, 0.8 seconds.",
+        "margin_note": "Definition then duration, on two lines.",
+        "lines": [
+          "The cardiac events that occur from the",
+          "beginning of one heart beat to the",
+          "beginning of the next form the cardiac",
+          "cycle. It lasts about 0.8 s."
+        ]
+      },
+      {
+        "id": "s2_output",
+        "kind": "boxed_final",
+        "label": "Cardiac output",
+        "marks": 1,
+        "mark_note": "Cardiac output",
+        "why": "Output is measured per minute rather than per beat so that it can be compared between a fast and a slow heart.",
+        "common_mistakes": [
+          "Defining output per beat. That is the stroke volume.",
+          "Leaving out the 5 litre figure."
+        ],
+        "memory_tip": "Per beat is stroke volume, per minute is cardiac output.",
+        "margin_note": "One line and the figure.",
+        "lines": [
+          "Cardiac output is the volume of blood",
+          "pumped out by a ventricle in one minute.",
+          {
+            "text": "It is about 5 litres per minute",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both definitions carry a number — 0.8 seconds and about 5 litres. A definition without its figure is usually cut to half."
+}

@@ -1,0 +1,669 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_bfc_laq_heart_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Body Fluids and Circulation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the structure of the heart of man with the help of neat labelled diagram.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Pericardium",
+      "marks": 1
+    },
+    {
+      "label": "Heart wall",
+      "marks": 1
+    },
+    {
+      "label": "External structure",
+      "marks": 1
+    },
+    {
+      "label": "Atria",
+      "marks": 1
+    },
+    {
+      "label": "Ventricles",
+      "marks": 1
+    },
+    {
+      "label": "Nodal tissue",
+      "marks": 1
+    },
+    {
+      "label": "Aortic arches",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.10-11, LAQ 1. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Body Fluids and Circulation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pericardium",
+        "kind": "text",
+        "label": "Pericardium",
+        "marks": 1,
+        "mark_note": "Pericardium",
+        "why": "The heart beats about once a second for a lifetime, so it needs a lubricated bag around it or the friction would wear it away.",
+        "common_mistakes": [
+          "Writing that the pericardium is a single membrane. It is double walled.",
+          "Leaving out the pericardial fluid. That is where the mark is."
+        ],
+        "memory_tip": "A double bag with fluid between: the heart slides, never rubs.",
+        "margin_note": "Open with what the heart is, then take the four parts in order.",
+        "lines": [
+          "The human heart is a hollow, muscular, cone",
+          "shaped, pulsating organ between the lungs.",
+          "It is about the size of a clenched fist.",
+          "It has four parts: pericardium, heart wall,",
+          "external structure and internal structure.",
+          {
+            "text": "1. Pericardium",
+            "style": "heading"
+          },
+          "The heart is covered by a double walled",
+          "pericardium. The outer layer is fibrous and",
+          "the inner layer is serous.",
+          "Between them is pericardial fluid, which",
+          "reduces friction and lets the heart move",
+          "freely."
+        ]
+      },
+      {
+        "id": "s2_heart_wall",
+        "kind": "text",
+        "label": "Heart wall",
+        "marks": 1,
+        "mark_note": "Heart wall",
+        "why": "The middle layer is the thick muscle that does the pumping; the layers on either side of it are only linings.",
+        "common_mistakes": [
+          "Giving two layers. There are three.",
+          "Swapping the names. Epi- is outer, endo- is inner."
+        ],
+        "memory_tip": "Epi outside, myo the muscle, endo the inner lining.",
+        "margin_note": "Three named layers, one line. An easy mark.",
+        "lines": [
+          {
+            "text": "2. Heart wall",
+            "style": "heading"
+          },
+          "The heart wall has 3 layers:",
+          "outer epicardium, middle myocardium and",
+          "inner endocardium."
+        ]
+      },
+      {
+        "id": "s3_external",
+        "kind": "text",
+        "label": "External structure",
+        "marks": 1,
+        "mark_note": "External structure",
+        "why": "The grooves on the outside mark exactly where the chambers meet inside, so the outside tells you the inside plan.",
+        "common_mistakes": [
+          "Calling the upper chambers ventricles. The upper pair are the atria.",
+          "Leaving out the coronary sulcus. It is the marked groove."
+        ],
+        "memory_tip": "Two small on top, two large below, a groove between them.",
+        "margin_note": "Five short numbered points cover this mark.",
+        "lines": [
+          {
+            "text": "3. External structure",
+            "style": "heading"
+          },
+          "The heart has four chambers.",
+          "The two small upper chambers are the atria,",
+          "left and right.",
+          "The two large lower chambers are the",
+          "ventricles, left and right.",
+          "A deep transverse groove, the coronary",
+          "sulcus, separates atria from ventricles.",
+          "Each atrium has an ear lobe like projection",
+          "called the auricular appendix.",
+          "Two interventricular grooves hold the",
+          "coronary arteries."
+        ]
+      },
+      {
+        "id": "s4_atria",
+        "kind": "text",
+        "label": "Atria",
+        "marks": 1,
+        "mark_note": "Atria",
+        "why": "The atria only push blood down into the ventricles a few centimetres, so their walls stay thin.",
+        "common_mistakes": [
+          "Writing that the atria are thick walled. They are thin walled.",
+          "Confusing foramen ovale with fossa ovalis. The pore is in the foetus, the scar in the adult."
+        ],
+        "memory_tip": "Foramen ovale is the hole in the foetus, fossa ovalis the mark left behind.",
+        "margin_note": "The internal structure has four parts. This is the first.",
+        "lines": [
+          {
+            "text": "4. Internal structure — atria",
+            "style": "heading"
+          },
+          "The internal structure has 4 parts: atria,",
+          "ventricles, nodal tissue and aortic arches.",
+          "Atria are thin walled blood receiving",
+          "chambers. The right one is larger.",
+          "A thin inter-atrial septum separates them.",
+          "In the foetal heart this septum has a pore",
+          "called the foramen ovale.",
+          "In the adult it is closed and leaves a mark",
+          "called the fossa ovalis."
+        ]
+      },
+      {
+        "id": "s5_ventricles",
+        "kind": "text",
+        "label": "Ventricles",
+        "marks": 1,
+        "mark_note": "Ventricles",
+        "why": "The left ventricle drives blood round the whole body while the right one reaches only the lungs, so the left wall is the thicker of the two.",
+        "common_mistakes": [
+          "Writing that both ventricles have equal walls. The left is thicker.",
+          "Mixing up the two valves. Bicuspid is left, tricuspid is right."
+        ],
+        "memory_tip": "Left works harder, so the left wall is thicker. LAB RAT: Left Atrium Bicuspid, Right Atrium Tricuspid.",
+        "margin_note": "Name columnae carneae, papillary muscles and chordae tendineae.",
+        "lines": [
+          {
+            "text": "Ventricles",
+            "style": "heading"
+          },
+          "Ventricles are thick walled pumping",
+          "chambers, separated by the inter-",
+          "ventricular septum.",
+          "The wall of the left ventricle is thicker",
+          "than that of the right.",
+          "Their inner surface is raised into muscular",
+          "ridges called columnae carneae.",
+          "Large conical ridges are the papillary",
+          "muscles.",
+          "Chordae tendineae are collagen cords that",
+          "join the papillary muscles to the bicuspid",
+          "and tricuspid valves."
+        ]
+      },
+      {
+        "id": "s6_nodal",
+        "kind": "text",
+        "label": "Nodal tissue",
+        "marks": 1,
+        "mark_note": "Nodal tissue",
+        "why": "The heart beats on its own because part of its muscle has become tissue that makes its own electrical signal.",
+        "common_mistakes": [
+          "Calling nodal tissue nerve tissue. It is modified heart muscle.",
+          "Placing the SAN in the left atrium. It lies in the right atrium."
+        ],
+        "memory_tip": "SAN starts the beat, AVN relays it through the bundle of His.",
+        "margin_note": "Both nodes with their positions, then the bundle.",
+        "lines": [
+          {
+            "text": "Nodal tissue",
+            "style": "heading"
+          },
+          "It is modified heart muscle, made of two",
+          "nodes and fibres.",
+          "The sinoatrial node, SAN, lies in the right",
+          "upper corner of the right atrium, close to",
+          "the opening of the superior vena cava.",
+          "The atrioventricular node, AVN, lies in the",
+          "lower left corner of the right atrium, near",
+          "the opening of the coronary sinus.",
+          "The AVN forms the bundle of His, which",
+          "divides into right and left bundle branches."
+        ]
+      },
+      {
+        "id": "s7_aortic_arches",
+        "kind": "text",
+        "label": "Aortic arches",
+        "marks": 1,
+        "mark_note": "Aortic arches",
+        "why": "The two arches keep the two circulations apart: one carries blood to the lungs, the other to the body.",
+        "common_mistakes": [
+          "Writing that the pulmonary arch carries oxygenated blood. It carries deoxygenated blood.",
+          "Starting the systemic arch from the right ventricle. It leaves the left."
+        ],
+        "memory_tip": "Pulmonary from the right to the lungs; systemic from the left to the body.",
+        "margin_note": "Name the valve at each opening. Those are marked words.",
+        "lines": [
+          {
+            "text": "Aortic arches",
+            "style": "heading"
+          },
+          "There are two aortic arches in man.",
+          "The pulmonary arch arises from the left",
+          "anterior angle of the right ventricle. Its",
+          "opening is guarded by the pulmonary valve",
+          "and it carries deoxygenated blood to the",
+          "lungs.",
+          "The systemic arch arises from the left",
+          "ventricle. Its opening is guarded by the",
+          "aortic valve and it carries oxygenated",
+          "blood to all parts of the body."
+        ]
+      },
+      {
+        "id": "s8_figure",
+        "kind": "diagram",
+        "label": "Diagram — internal structure",
+        "marks": 1,
+        "mark_note": "Labelled diagram",
+        "why": "A section through the heart is the only view that shows all four chambers, both valves and the great vessels at once.",
+        "common_mistakes": [
+          "Drawing the outside of the heart. The question needs the internal structure.",
+          "Leaving the valves out. Bicuspid and tricuspid are expected labels.",
+          "Drawing it small. Use about a third of the page."
+        ],
+        "memory_tip": "Outline, then septum, then the four chambers, then the valves, then the vessels.",
+        "margin_note": "Draw it large and label at least ten parts.",
+        "figure": {
+          "id": "bfc_heart_internal",
+          "width": 520,
+          "height": 430,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the outline of the heart"
+            },
+            {
+              "type": "stroke",
+              "id": "outline",
+              "d": "M 176 176 C 172 140 190 112 216 106 C 238 102 252 114 256 130 C 260 114 276 100 300 104 C 330 110 348 134 346 168 C 344 212 336 260 322 302 C 306 350 282 384 258 392 C 238 398 220 388 210 366 C 190 322 178 240 176 176",
+              "ms": 4500
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the four chambers"
+            },
+            {
+              "type": "stroke",
+              "id": "coronary_sulcus",
+              "d": "M 178 196 C 220 214 292 214 344 194",
+              "ms": 2420
+            },
+            {
+              "type": "stroke",
+              "id": "interatrial_septum",
+              "d": "M 252 104 L 254 204",
+              "ms": 1430
+            },
+            {
+              "type": "stroke",
+              "id": "interventricular_septum",
+              "d": "M 254 208 C 248 262 240 322 226 374",
+              "ms": 2410
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the two atrioventricular valves"
+            },
+            {
+              "type": "stroke",
+              "id": "tricuspid",
+              "d": "M 206 202 C 210 222 216 236 222 242 M 240 206 C 238 224 232 236 224 242",
+              "ms": 1200
+            },
+            {
+              "type": "stroke",
+              "id": "bicuspid",
+              "d": "M 278 208 C 282 226 286 236 292 242 M 310 202 C 306 222 300 234 294 242",
+              "ms": 1150
+            },
+            {
+              "type": "stroke",
+              "id": "chordae",
+              "d": "M 222 244 L 218 268 M 224 244 L 232 266 M 292 244 L 288 268 M 294 244 L 302 266",
+              "ms": 1360
+            },
+            {
+              "type": "stroke",
+              "id": "papillary",
+              "d": "M 210 270 L 218 294 L 226 270 M 226 268 L 234 292 L 242 268 M 280 270 L 288 294 L 296 270 M 296 268 L 304 290 L 312 268",
+              "ms": 2840
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the muscular ridges of the ventricle wall"
+            },
+            {
+              "type": "stroke",
+              "id": "columnae_l",
+              "d": "M 190 250 C 196 254 200 256 204 254 M 194 282 C 200 286 204 288 208 286 M 202 314 C 208 318 212 320 216 318",
+              "ms": 660
+            },
+            {
+              "type": "stroke",
+              "id": "columnae_r",
+              "d": "M 336 246 C 330 250 326 252 322 250 M 330 278 C 324 282 320 284 316 282 M 322 310 C 316 314 312 316 308 314",
+              "ms": 660
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the great blood vessels"
+            },
+            {
+              "type": "stroke",
+              "id": "precaval",
+              "d": "M 200 110 L 194 44 M 222 106 L 218 44",
+              "ms": 1830
+            },
+            {
+              "type": "stroke",
+              "id": "postcaval",
+              "d": "M 180 176 L 138 190 M 184 196 L 142 210",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "pulmonary_arch",
+              "d": "M 244 132 C 238 100 244 72 262 62 M 258 130 C 252 102 256 82 268 74",
+              "ms": 1950
+            },
+            {
+              "type": "stroke",
+              "id": "systemic_arch",
+              "d": "M 270 126 C 274 92 294 66 318 66 C 344 66 356 86 354 112 M 284 120 C 290 96 304 80 320 80 C 338 80 344 94 342 112",
+              "ms": 3620
+            },
+            {
+              "type": "stroke",
+              "id": "pulmonary_veins",
+              "d": "M 344 148 L 400 142 M 344 160 L 400 154 M 344 174 L 400 170 M 344 186 L 400 182",
+              "ms": 3210
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — the labels"
+            },
+            {
+              "type": "label",
+              "id": "lb_precaval",
+              "x": 6,
+              "y": 56,
+              "text": "Precaval vein",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_precaval",
+              "d": "M 116 50 L 196 62",
+              "ms": 1160,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_pulm_arch",
+              "x": 6,
+              "y": 100,
+              "text": "Pulmonary arch",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pulm_arch",
+              "d": "M 124 94 L 246 92",
+              "ms": 1740,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ra",
+              "x": 6,
+              "y": 150,
+              "text": "Right atrium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ra",
+              "d": "M 106 144 L 200 152",
+              "ms": 1350,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_postcaval",
+              "x": 6,
+              "y": 196,
+              "text": "Post caval vein",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_postcaval",
+              "d": "M 126 190 L 140 194",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_tricuspid",
+              "x": 6,
+              "y": 244,
+              "text": "Tricuspid valve",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_tricuspid",
+              "d": "M 126 238 L 206 220",
+              "ms": 1170,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_rv",
+              "x": 6,
+              "y": 300,
+              "text": "Right ventricle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_rv",
+              "d": "M 122 294 L 198 288",
+              "ms": 1090,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_systemic",
+              "x": 372,
+              "y": 70,
+              "text": "Systemic arch",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_systemic",
+              "d": "M 370 64 L 352 90",
+              "ms": 450,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_pulm_veins",
+              "x": 372,
+              "y": 128,
+              "text": "Pulmonary veins",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pulm_veins",
+              "d": "M 398 122 L 396 140",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_la",
+              "x": 372,
+              "y": 176,
+              "text": "Left atrium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_la",
+              "d": "M 370 170 L 316 166",
+              "ms": 770,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_bicuspid",
+              "x": 372,
+              "y": 214,
+              "text": "Bicuspid valve",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bicuspid",
+              "d": "M 370 208 L 312 208",
+              "ms": 830,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_chordae",
+              "x": 372,
+              "y": 252,
+              "text": "Chordae tendineae",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_chordae",
+              "d": "M 370 246 L 304 256",
+              "ms": 950,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_papillary",
+              "x": 372,
+              "y": 290,
+              "text": "Papillary muscle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_papillary",
+              "d": "M 370 284 L 312 280",
+              "ms": 830,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_lv",
+              "x": 372,
+              "y": 328,
+              "text": "Left ventricle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lv",
+              "d": "M 370 322 L 306 314",
+              "ms": 920,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_columnae",
+              "x": 372,
+              "y": 366,
+              "text": "Columnae carneae",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_columnae",
+              "d": "M 370 360 L 322 314",
+              "ms": 950,
+              "w": 1.4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "Eight marks, eight headings. Write the four parts as numbered headings first — an examiner marking a wall of prose cannot find the seven points, and the diagram alone carries the eighth mark."
+}
