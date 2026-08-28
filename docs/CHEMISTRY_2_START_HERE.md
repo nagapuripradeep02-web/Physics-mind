@@ -84,13 +84,22 @@ be unique within a unit — a merged chapter 7 would carry four `vsaq1` refs and
 | 13 | `bio` | 10 | Biomolecules | 38–43 | 23 | 14 | – | 37 |
 | 14 | `cel` | 11 | Chemistry in Everyday Life | 44–45 | 17 | 3 | – | 20 |
 | 15 | `hal` | 12a | Halo Alkanes & Halo Arenes | 46–47 | 6 | 3 | – | 9 |
-| 16 | `ape` | 12b | Alcohols, Phenols and Ethers | 47–51 | 3 | 10 | 2 | 15 |
+| 16 | `ape` | 12b | Alcohols, Phenols and Ethers | 47–51 | 5 | 10 | 2 | 17 |
 | 17 | `akc` | 12c | Aldehydes, Ketones and Carboxylic Acids | 51–54 | 8 | 5 | 1 | 14 |
 | 18 | `ocn` | 12d | Organic Compounds Containing Nitrogen | 54–59 | 9 | 10 | 1 | 20 |
-| | | | **Total** | | **221** | **91** | **21** | **333** |
+| | | | **Total** | | **223** | **91** | **21** | **335** |
 
-Those counts come from an independent full read of all 59 pages. **Count your own unit yourself
-and report the number** — if it disagrees with this table, say so rather than trusting either.
+**This table was wrong once, and the unit agent caught it.** It first read unit 16 as VSAQ 1–3
+and the subject as 333 cards. The agent authoring that unit counted 1–5 and named the two it
+found — "Identify the reactant needed to form t-butyl alcohol from acetone?" and "Give the
+reagents used for the preparation of phenol from chlorobenzene?" — both in the LEFT column of
+book p.109, while the right column had already begun "Short Answer Questions: 1". Checked against
+the page and confirmed: the index had stopped at a column break. The reading order in this book
+is left column then right column, and a chapter can hand over mid-column.
+
+So: **count your own unit yourself and report the number.** If it disagrees with this table, say
+so rather than trusting either. Seventeen of eighteen units matched; the eighteenth is the reason
+the instruction exists.
 
 Shape facts that are NOT uniform, so never assume:
 
@@ -218,6 +227,17 @@ rendered as `dx²−y²`, and botany needed four iterations on a DNA helix, with
 throughout. Leave **at least 40 figure units** of vertical clearance between labels whose
 horizontal extents overlap; 28 fails.
 
+This subject added four more proofs of the same point, all with every gate green: two Schottky
+leader lines struck through the `+` and `−` signs they pointed at; XeF₆ drew six evenly spaced
+bonds — a REGULAR octahedron — on a card whose own `common_mistakes` said the bonds are not evenly
+spaced; the cyclic glucose ring bond ran to the anomeric `–OH` instead of the C1 carbon; and
+carbon 6, the whole `CH₂OH` group, was simply missing from that structure.
+
+**`figures:gallery`'s bounds check is optimistic and must not be trusted alone.** It estimates an
+`sm` label as `8.5 × len × 0.8`, which under-measures real Kalam by roughly 10%. It reported "no
+out-of-bounds labels" on a saccharin caption that was clipped at the canvas edge — the string
+needed about 346 units against a 320 canvas. Leave real margin, or look.
+
 ## 7. Orchestration — one agent per unit, and nobody touches units.json
 
 Each unit agent:
@@ -276,9 +296,54 @@ staged — a tree that fails the build.
 
 ## 9. Where this book is wrong
 
-Recorded as found, with the card that corrects it. **Append here; do not fix silently.**
+Every case below is written correctly on the card that answers it, with the book's printed claim
+recorded in that step's `why` and in `verification.note` — never silently followed, never silently
+fixed. Roughly 130 findings across the 18 units; these are the classes that matter, with the worst
+example of each.
 
-*(empty at the start of authoring)*
+**Wrong chemistry that a gate can never catch, because it balances or parses.**
+- Unit 7 VSAQ 13: `Fe + 2HNO₃ → FeO + H₂O + 2NO₂`. The equation balances; the product does not.
+  Concentrated nitric acid cannot leave iron at +2. Written as `3Fe + 8HNO₃ → Fe₃O₄ + 8NO₂ + 4H₂O`.
+- Unit 11 VSAQ 2: a transition element is tested for by "an unpaired d electron in the penultimate
+  shell". That gets zinc right by accident and **copper wrong** — Cu is 3d¹⁰4s¹ with no unpaired d
+  electron, yet Cu²⁺ is 3d⁹. This is the definition the whole chapter rests on.
+- Unit 11 SAQ 5: FeO offered as an interstitial compound. It is ionic rock-salt; its
+  non-stoichiometry comes from cation vacancies.
+- Unit 10 VSAQ 8: the closed shell printed "(ns² ns⁶)" — there is no ns⁶ sub-shell — and the
+  electron gain enthalpy called "nearly zero" when it is large and **positive** for every noble gas.
+- Unit 12 VSAQ 11 and VSAQ 3: a polyamide repeat unit `[NH₂–CHR–CO]ₙ` (nitrogen with four bonds and
+  a charge) and a PHBV unit with five bonds on one carbon.
+
+**The book contradicting itself, usually within two pages.**
+- Unit 9: Deacon's process printed `4HCl + O₂ → 2Cl₂ + 3H₂O` on p.86 — unbalanced — and correctly
+  with `2H₂O` on p.88.
+- Unit 4: "Rate of reaction ∝ temperature" printed four lines above the Arrhenius equation.
+- Unit 3: a galvanic cell "connected by external battery", contradicting the book's own figure on
+  the same page; the lead-acid electrolyte given as 20% in one point and 40% in the next.
+- Unit 6: the **smelting** paragraph printed verbatim under the **Roasting** heading.
+- Unit 13: D-glucose said not to react with hydroxylamine, while the same book's table lists that
+  oxime as evidence for the open chain.
+- Unit 16: Dow's process at 300 atm on p.109 and 320 atm on p.111.
+
+**Answers that do not answer the question.** Unit 1 SAQ 4 asks for two coordination numbers and
+never gives them; unit 11 SAQ 3's question never lists what "the following" are (the eleven names
+appear only inside the answer); unit 16 VSAQ 1 prints one molecule in the question and draws a
+different one in the answer.
+
+**One number reproduced wrong on purpose.** Unit 6 VSAQ 2 gives German silver as Cu 25–40%,
+Zn 25–35%, Ni 40–50% — lower bounds summing to 90 and upper to 125. It is kept because it is what
+the book marks, with the impossibility named on the card. The only such case.
+
+**A judgement split, deliberately.** Unit 2 VSAQ 12 overrides the book (its "0.617 M" is the
+molality, printed with the unit M) because the correct value is defensible and the error is gross.
+Unit 2 SAQ 4 does **not** override (8 g from the dilute approximation, where exact Raoult gives
+10 g) because NCERT prints 8 g too and a student should not hand an examiner a number nobody
+expects. Both are recorded; a teacher settles both.
+
+**Where our numbers come from.** This book prints almost no numeric data. Nearly every value on
+these cards — electron gain enthalpies, bond enthalpies, pKa and pKb, boiling points, magnetic
+moments, reaction conditions — is standard NCERT Class 12, and **NCERT is not in this corpus**.
+Those are the highest-value cells for a verifying teacher to spot-check.
 
 ## 10. Verify
 
