@@ -539,7 +539,7 @@
             },
             {
               "id": "s6_3",
-              "text_en": "Each slice is really a ring: take away the inner circle's area, not the inner radius.",
+              "text_en": "Each slice is really a ring, or washer: take away the inner circle's area, not the inner radius.",
               "glow": "sr_ring_outer"
             }
           ]
