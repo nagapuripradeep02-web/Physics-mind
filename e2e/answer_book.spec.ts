@@ -355,7 +355,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(1_200_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), and at botany (~945). Never trim the sweep.
+    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), and at Chemistry-II (1326). Never trim the sweep.
     // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -389,7 +389,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(1_200_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), and at botany (~945). Never trim the sweep.
+    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), and at Chemistry-II (1326). Never trim the sweep.
     // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -468,7 +468,7 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
     // never trim the sweep or the waits to fit, because a shortened sweep silently
     // stops checking the questions it drops.
-    test.setTimeout(1_200_000);   // the WIDEST sweep: questions x cuts. ~1150 entries after botany opened.
+    test.setTimeout(1_800_000);   // the WIDEST sweep: questions × cuts. ~1485 entries after Chemistry-II opened (was ~1150 at botany); at the measured ~0.9 s/entry that is ~1335 s, past the old 1200 s budget.
     // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~0.9 s/question.
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
