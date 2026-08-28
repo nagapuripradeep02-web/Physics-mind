@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_ziegler_natta_catalyst",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Ziegler–Natta catalyst?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the catalyst is",
+      "marks": 1
+    },
+    {
+      "label": "What it is used for",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 13 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer names the two compounds and their formulae correctly (\"tri ethyl aluminium\" (C₂H₅)₃Al and \"titanium tetra chloride\" TiCl₄) but never says what the catalyst is FOR. Its use, the low pressure polymerisation of ethene to high density polythene, is added here, because that is what the name is examined for and the only reason the catalyst is on the syllabus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_composition",
+        "kind": "text",
+        "label": "What the catalyst is",
+        "marks": 1,
+        "mark_note": "Composition",
+        "lines": [
+          "The Ziegler–Natta catalyst is a mixture",
+          "of triethylaluminium and titanium",
+          "tetrachloride.",
+          {
+            "text": "(C₂H₅)₃Al + TiCl₄",
+            "style": "eq"
+          },
+          "It is used as a suspension in a",
+          "hydrocarbon solvent."
+        ],
+        "why": "The titanium compound supplies the metal centre where ethene molecules attach one after another, and the aluminium alkyl supplies the first alkyl group that starts the chain. Neither works alone, which is why the answer is a mixture and not a single compound.",
+        "common_mistakes": [
+          "Naming only one of the two compounds. The catalyst is the mixture of both.",
+          "Writing triethylaluminium as (C₂H₅)₃Al₃. It is (C₂H₅)₃Al, three ethyl groups on one aluminium."
+        ],
+        "memory_tip": "Two metals: aluminium supplies the ethyl groups, titanium supplies the chloride.",
+        "margin_note": "Both names with both formulae are the mark. One name on its own is usually half."
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "What it is used for",
+        "marks": 1,
+        "mark_note": "Its use",
+        "lines": [
+          {
+            "text": "Used to make high density polythene",
+            "style": "boxed"
+          },
+          "With this catalyst ethene polymerises at",
+          "low temperature and low pressure.",
+          "The chains grow straight, with almost no",
+          "branching, so they pack closely.",
+          "The product is high density polythene,",
+          "which is harder, stronger and denser",
+          "than branched low density polythene."
+        ],
+        "why": "The metal centre holds the growing chain, and ethene molecules add to it one at a time, so branches do not form. Close packing follows from straight chains, and the density, hardness and melting point all follow from close packing.",
+        "common_mistakes": [
+          "Writing that the catalyst gives low density polythene. Low density polythene is made at high pressure without this catalyst.",
+          "Writing that the catalyst is used for condensation polymers such as nylon. It is used for the addition polymerisation of alkenes."
+        ],
+        "memory_tip": "Straight chains pack closely, so the density is high.",
+        "margin_note": "Naming high density polythene is the mark; adding the low pressure condition makes it certain."
+      }
+    ]
+  },
+  "insider_note": "The two compound names are the first mark. The second is high density polythene, which the book does not print but the examiner expects."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_polymerisation_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is polymerisation? Give an example of a polymerisation reaction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example reaction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 2 on book p.95. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer is \"The process of formation of polymers from respective monomers is called polymerisation\", with the ethene to polythene equation as the example. Both are correct and are kept. The printed definition does not say that a large number of monomer molecules are needed; that is added here, because a polymer formed from one molecule is the commonest wrong definition."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Polymerisation is the process in which a",
+          "large number of small molecules, called",
+          "monomers, join together to form one very",
+          "large molecule called a polymer.",
+          "The monomer unit repeats along the chain,",
+          "so the polymer has a high molecular mass."
+        ],
+        "why": "The definition must contain three things: a large number of small molecules, the word monomer, and one large product molecule. A student who writes only that monomers form polymers has named the parts but not the process.",
+        "common_mistakes": [
+          "Writing that a polymer is formed from one monomer molecule. A large number of monomer molecules are needed.",
+          "Leaving out the word monomer. The examiner marks the definition on that word."
+        ],
+        "memory_tip": "Poly means many and mer means part, so a polymer is many repeated parts.",
+        "margin_note": "One sentence containing the words monomer, polymer and large number is the full mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example reaction",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Polythene from ethene:",
+          {
+            "text": "n CH₂=CH₂ → –[CH₂–CH₂]ₙ–",
+            "style": "boxed"
+          },
+          "ethene (monomer) → polythene (polymer)",
+          "The C=C double bond of each ethene opens",
+          "and the units join end to end.",
+          "This one is an addition polymerisation."
+        ],
+        "why": "The example must be written as an equation, not named, because the question asks for a reaction. The n in front of the monomer and the n outside the bracket are what turn a single addition into a polymerisation.",
+        "common_mistakes": [
+          "Keeping the double bond in the product. It opens during addition, so the chain has only single bonds.",
+          "Writing the product without the bracket and the subscript n. Without n the equation is not a polymerisation."
+        ],
+        "memory_tip": "Write n in front of the monomer and n outside the bracket; the two n values are the same.",
+        "margin_note": "Any correct polymerisation equation earns this mark. The ethene to polythene one is the shortest to write."
+      }
+    ]
+  },
+  "insider_note": "The second mark is for an equation, not for a name. Write n CH₂=CH₂ → –[CH₂–CH₂]ₙ– and label which side is the monomer."
+}

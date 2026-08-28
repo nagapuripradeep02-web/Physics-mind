@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_vulcanisation_cross_linking_agent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the cross linking agent used in vulcanisation?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The agent",
+      "marks": 1
+    },
+    {
+      "label": "What it does",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 10 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer is \"5% sulphur is the cross linking agent\" with the scheme \"Raw rubber + S → vulcanized rubber\". Written that way the percentage reads as part of the name of the agent. The agent is sulphur; 5% is the proportion used for the flexible rubber of tyres and about 30% gives ebonite, and both figures are stated here. GAP: the book never says what the sulphur cross links join to, namely the leftover double bonds of the cis-1,4-polyisoprene chains, and never names the monomer of natural rubber, which is isoprene, 2-methyl-1,3-butadiene; both are supplied."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_agent",
+        "kind": "text",
+        "label": "The agent",
+        "marks": 1,
+        "mark_note": "The agent",
+        "lines": [
+          "Sulphur is the cross linking agent used",
+          "in vulcanisation.",
+          "Raw rubber is heated with it at 373 K to",
+          "415 K.",
+          "About 5% sulphur gives the flexible",
+          "rubber used for tyres; about 30% gives",
+          "the hard rubber called ebonite."
+        ],
+        "why": "Sulphur is used because it can insert between two chains at their leftover double bonds, forming a cross link that belongs to both. The percentage is not part of the name of the agent; it sets how many cross links form and therefore how hard the product is.",
+        "common_mistakes": [
+          "Writing 5% sulphur as though the percentage were part of the name. The agent is sulphur; 5% is the amount used for tyre rubber.",
+          "Naming a different agent such as oxygen or chlorine. The syllabus answer is sulphur."
+        ],
+        "memory_tip": "One word answers the question: sulphur. The percentage only sets how hard the rubber becomes.",
+        "margin_note": "The single word sulphur earns this mark. Add the temperature range if there is room."
+      },
+      {
+        "id": "s2_action",
+        "kind": "boxed_final",
+        "label": "What it does",
+        "marks": 1,
+        "mark_note": "Its action",
+        "lines": [
+          {
+            "text": "Raw rubber + S → vulcanised rubber",
+            "style": "boxed"
+          },
+          "Sulphur atoms form –S–S– cross links",
+          "between the rubber chains at their",
+          "leftover double bonds.",
+          "The cross links stop the chains sliding",
+          "past one another, so the rubber becomes",
+          "harder and stays elastic over a wider",
+          "temperature range."
+        ],
+        "why": "Raw rubber is cis-1,4-polyisoprene, and each repeat unit still has one C=C bond left after polymerisation. Those are the points where sulphur forms the cross links, which is why only diene rubbers can be vulcanised.",
+        "common_mistakes": [
+          "Writing that sulphur joins the monomers together. The chains are already formed; sulphur joins one chain to another.",
+          "Writing that vulcanised rubber melts more easily. The cross links raise the softening temperature."
+        ],
+        "memory_tip": "The cross links run between chains, not inside a chain.",
+        "margin_note": "The equation together with the words cross links finishes this mark."
+      }
+    ]
+  },
+  "insider_note": "The question asks for one substance, so the first word must be sulphur. Everything after that is protection for the second mark."
+}

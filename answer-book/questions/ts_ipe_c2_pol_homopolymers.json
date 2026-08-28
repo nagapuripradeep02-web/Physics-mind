@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_homopolymers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are homopolymers? Give example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples with their monomers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 22 on book p.98. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK: the printed answer is \"Polymer which are formed from one kind of monomer units are called homopolymers\", with examples \"PVC, Polythene\". Both are correct and are kept; the broken grammar is rewritten. The monomers are supplied, and nylon-6 is added as a third example, because it is the case that separates homopolymer from copolymer for a student who counts functional groups instead of monomers."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A homopolymer is a polymer made from only",
+          "one kind of monomer.",
+          "The same repeating unit runs along the",
+          "whole chain.",
+          "It may be an addition polymer or a",
+          "condensation polymer; what matters is",
+          "that a single monomer supplies every",
+          "unit."
+        ],
+        "why": "Counting monomer types, not functional groups, is what separates a homopolymer from a copolymer. Nylon-6 shows this: its repeat unit holds both an –NH– and a –CO–, yet one monomer, caprolactam, supplies both, so it is a homopolymer.",
+        "common_mistakes": [
+          "Calling nylon-6 a copolymer because its unit has two groups. Both groups come from the single monomer caprolactam.",
+          "Writing that a homopolymer must be an addition polymer. Nylon-6 is a condensation homopolymer."
+        ],
+        "memory_tip": "Homo means same: one monomer repeated.",
+        "margin_note": "The words one kind of monomer are the mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples with their monomers",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: polythene, PVC, nylon-6",
+            "style": "boxed"
+          },
+          "Polythene from ethene, CH₂=CH₂",
+          "PVC from vinyl chloride, CH₂=CH–Cl",
+          "Nylon-6 from caprolactam",
+          "Polythene and PVC are addition",
+          "homopolymers; nylon-6 is a condensation",
+          "homopolymer."
+        ],
+        "why": "The three examples cover both routes, so the answer holds whichever of the two routes the examiner asks about. Polythene and PVC are the two the book prints and are the safest to write first.",
+        "common_mistakes": [
+          "Giving nylon-6,6 as a homopolymer. It needs two monomers, so it is a copolymer.",
+          "Giving Buna-S. It is made from 1,3-butadiene and styrene, so it is a copolymer."
+        ],
+        "memory_tip": "One monomer name after the polymer means homopolymer; two names mean copolymer.",
+        "margin_note": "Two examples finish this mark. Polythene and PVC are the pair the book prints."
+      }
+    ]
+  },
+  "insider_note": "The case most often confused in this pair of questions is nylon-6 against nylon-6,6: one monomer against two, so homopolymer against copolymer."
+}
