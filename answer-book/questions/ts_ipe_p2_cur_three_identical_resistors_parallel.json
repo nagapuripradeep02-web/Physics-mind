@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_three_identical_resistors_parallel",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Three identical resistors are connected in parallel and total resistance of the circuit is R/3. Find the value of each resistance.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The parallel rule",
+      "marks": 1
+    },
+    {
+      "label": "The value of each resistance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcribed verbatim from the book (p28, VSAQ 17). Hand-checked: with each resistance x, 1/Rₚ = 3/x, and Rₚ = R/3 gives 3/R = 3/x, so x = R — the same answer the book prints."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "equation",
+        "label": "The parallel rule",
+        "marks": 1,
+        "mark_note": "1/Rₚ = 3/x",
+        "lines": [
+          "Let each of the three equal resistances be x.",
+          "For resistances in parallel the reciprocals",
+          "add:",
+          {
+            "text": "1/Rₚ = 1/x + 1/x + 1/x = 3/x",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Name the unknown x and write the reciprocal sum.",
+        "why": "Parallel branches share the same potential difference, so their currents add. Current adds means conductance adds, and conductance is 1/resistance — which is why the reciprocals are what you sum.",
+        "common_mistakes": [
+          "Adding the resistances instead of the reciprocals. That is the series rule."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for three equal resistances x in parallel, one by R equals three by x.",
+          "accept": [
+            "one by R equals three by x",
+            "reciprocals add in parallel",
+            "let each resistance be x"
+          ],
+          "reject": [
+            "each resistance is R"
+          ],
+          "heard_as": [
+            "three by x",
+            "parallel"
+          ]
+        },
+        "memory_tip": "Parallel adds reciprocals; n equal resistors give x/n."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The value of each resistance",
+        "marks": 1,
+        "mark_note": "x = R",
+        "lines": [
+          "The combination is given as Rₚ = R/3, so",
+          {
+            "text": "3/R = 3/x",
+            "style": "eq"
+          },
+          {
+            "text": "x = R",
+            "style": "boxed"
+          },
+          "Each of the three resistors has resistance R."
+        ],
+        "margin_note": "Second mark. Compare 3/x with 3/R and read off x = R.",
+        "why": "Three equal resistors of value x in parallel always give x/3. The question states the combination is R/3, so x can only be R.",
+        "common_mistakes": [
+          "Answering R/3. That is the value of the combination, not of one resistor.",
+          "Answering 3R."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing 3 by x with 3 by R gives x equal to R, so each resistance is R.",
+          "accept": [
+            "x equals R",
+            "each resistance is R",
+            "three by x equals three by R"
+          ],
+          "reject": [
+            "one by x plus one by x plus one by x"
+          ],
+          "heard_as": [
+            "x equals R",
+            "each is R"
+          ]
+        },
+        "memory_tip": "Three of them give a third of one, so one of them is R."
+      }
+    ]
+  },
+  "insider_note": "The trap is the letter R. It stands for one resistor in the answer and appears inside R/3 in the question, so name the unknown x first."
+}

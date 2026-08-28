@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_neutrons_cannot_ionize",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Neutrons cannot produce ionization. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ionization needs an electric force",
+      "marks": 1
+    },
+    {
+      "label": "Very low ionizing power",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: ionization is the removal of an atomic electron by the Coulomb force of the passing particle. A neutron has zero charge, so it has essentially no direct ionizing power; the small ionization observed with neutron beams is INDIRECT, from the recoil protons and reaction products they create. The book states only the direct part."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_no_force",
+        "kind": "text",
+        "label": "Ionization needs an electric force",
+        "marks": 1,
+        "mark_note": "A neutral particle exerts no force on electrons",
+        "lines": [
+          "To ionize an atom, a particle must pull an",
+          "electron out of it. That needs an electric",
+          "force between the particle and the electron.",
+          "A neutron is uncharged, so it exerts no such",
+          "force."
+        ],
+        "margin_note": "First mark. Name the electric force that a neutral particle cannot exert.",
+        "why": "Ionizing power comes from the Coulomb pull or push of a charged particle as it passes an atom; a neutral particle passes without any such interaction with the electrons.",
+        "common_mistakes": [
+          "Saying the neutron is too slow. Speed is not the reason; charge is.",
+          "Saying the neutron never interacts. It does interact, but with nuclei, not electrons."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ionization needs an electric force on the atomic electrons, and a neutron is uncharged so it exerts none.",
+          "accept": [
+            "neutron has no charge",
+            "no electric force on the electrons",
+            "cannot pull the electron out"
+          ],
+          "reject": [
+            "alpha and beta have high ionizing power"
+          ],
+          "heard_as": [
+            "uncharged",
+            "ionization",
+            "electron"
+          ]
+        },
+        "memory_tip": "No charge, no pull on the electrons, no ionization."
+      },
+      {
+        "id": "s2_comparison",
+        "kind": "boxed_final",
+        "label": "Very low ionizing power",
+        "marks": 1,
+        "mark_note": "Compared with α and β; loses energy by collision",
+        "lines": [
+          "So the ionizing power of a neutron is very",
+          "small compared with that of α-particles and",
+          "β-particles, which are charged.",
+          "A neutron loses its energy by colliding with",
+          "nuclei instead.",
+          {
+            "text": "Neutral ⇒ almost no ionization",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The comparison with α and β carries this half.",
+        "why": "Because it cannot ionize, a neutron travels a long way through matter before it is stopped — the same fact that makes it highly penetrating makes it a poor ioniser.",
+        "common_mistakes": [
+          "Saying the ionizing power is exactly zero. It is very small, and any ionization is indirect.",
+          "Leaving out α and β. The question expects the comparison."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ionizing power of a neutron is very small compared with alpha and beta particles, and it loses energy by colliding with nuclei.",
+          "accept": [
+            "ionizing power is very less than alpha and beta",
+            "loses energy by collision with nuclei",
+            "very low ionizing power"
+          ],
+          "reject": [
+            "neutron has no charge"
+          ],
+          "heard_as": [
+            "ionizing power",
+            "alpha and beta",
+            "collision"
+          ]
+        },
+        "memory_tip": "Poor ioniser, deep traveller — the same missing charge explains both."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the missing electric force, then the comparison with α-particles and β-particles."
+}

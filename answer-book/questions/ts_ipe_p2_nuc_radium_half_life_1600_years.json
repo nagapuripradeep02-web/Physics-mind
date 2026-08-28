@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_radium_half_life_1600_years",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "The half life of radium is 1600 years. How much time does 1 g of radium take to reduce to 0.125 g?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Given data",
+      "marks": 2
+    },
+    {
+      "label": "The fraction left after n half lives",
+      "marks": 2
+    },
+    {
+      "label": "Find n",
+      "marks": 2
+    },
+    {
+      "label": "The time",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+2+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. AN 8-MARK SPLIT FOR A SHORT NUMERICAL IS INVENTED and needs the teacher pass: this question is four lines of arithmetic, and 2+2+2+2 is a placeholder shape, not a mark scheme. The book prints it under LONG ANSWER numbering with no Problems banner, so it is authored as an LAQ at the paper's 8 marks (SR_PHYSICS_START_HERE §4). TRANSCRIPTION: the book prints \"The Half life radium is 1600 years how much time does 1g of radium take to reduce to 0.125g ?\" — the dropped word \"of\" is restored, the two clauses are separated with a full stop, and the space before the question mark is dropped. Hand-checked: N/N₀ = 0.125/1 = 1/8 = 1/2³ so n = 3, and t = nT = 3 × 1600 = 4800 years. Cross-checked against N = N₀e^(−λt) with λ = 0.693/1600 = 4.331 × 10⁻⁴ per year: e^(−4.331 × 10⁻⁴ × 4800) = e^(−2.079) = 0.125. ✓"
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Nuclei · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "equation",
+        "label": "Given data",
+        "marks": 2,
+        "mark_note": "T, N₀ and N written down",
+        "lines": [
+          "Half life period, T = 1600 years",
+          "Initial mass, N₀ = 1 g",
+          "Final mass, N = 0.125 g",
+          "Let n be the number of half lives taken."
+        ],
+        "margin_note": "Write all three given values before starting. Masses may be used in place of numbers of nuclei because the two are proportional.",
+        "why": "The number of nuclei is proportional to the mass of the sample, so the ratio N/N₀ can be worked out from the masses directly.",
+        "common_mistakes": [
+          "Converting grams to nuclei. It is unnecessary, because only the ratio is used.",
+          "Reading 0.125 g as the mass that has decayed. It is the mass that is LEFT."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the half life is 1600 years, the initial mass is 1 g and the final mass left is 0.125 g.",
+          "accept": [
+            "T is sixteen hundred years",
+            "N nought is one gram and N is zero point one two five gram",
+            "let n be the number of half lives"
+          ],
+          "reject": [
+            "n equals three"
+          ],
+          "heard_as": [
+            "sixteen hundred years",
+            "one gram",
+            "zero point one two five"
+          ]
+        },
+        "memory_tip": "Masses work as well as numbers here, because only their ratio is used."
+      },
+      {
+        "id": "s2_fraction",
+        "kind": "equation",
+        "label": "The fraction left after n half lives",
+        "marks": 2,
+        "mark_note": "N/N₀ = 1/2ⁿ",
+        "lines": [
+          "After each half life the amount left is halved.",
+          "So after n half lives,",
+          {
+            "text": "N / N₀ = 1 / 2ⁿ",
+            "style": "eq"
+          },
+          "Substituting the given masses,",
+          {
+            "text": "0.125 / 1 = 1 / 2ⁿ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The relation N/N₀ = 1/2ⁿ is the formula this question is built on.",
+        "why": "One half life leaves 1/2, two leave 1/4, three leave 1/8 — each further half life multiplies what is left by another 1/2, which is what 1/2ⁿ says.",
+        "common_mistakes": [
+          "Writing N/N₀ = n/2. The halvings multiply, they do not add.",
+          "Putting the masses upside down as N₀/N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That after n half lives the fraction left is N/N₀ = 1/2ⁿ, and here that equals 0.125.",
+          "accept": [
+            "N by N nought is one by two to the power n",
+            "each half life halves the amount",
+            "zero point one two five equals one by two power n"
+          ],
+          "reject": [
+            "t equals four thousand eight hundred years"
+          ],
+          "heard_as": [
+            "one by two power n",
+            "fraction left",
+            "half lives"
+          ]
+        },
+        "memory_tip": "Each half life multiplies what is left by one half, so n of them give 1/2ⁿ."
+      },
+      {
+        "id": "s3_find_n",
+        "kind": "equation",
+        "label": "Find n",
+        "marks": 2,
+        "mark_note": "0.125 = 1/8 = 1/2³, so n = 3",
+        "lines": [
+          "Writing 0.125 as a fraction,",
+          {
+            "text": "0.125 = 125/1000 = 1/8",
+            "style": "eq"
+          },
+          {
+            "text": "1/8 = 1/2ⁿ   and   8 = 2³",
+            "style": "eq"
+          },
+          {
+            "text": "∴ n = 3",
+            "style": "eq"
+          },
+          "The sample halves three times:",
+          "1 g → 0.5 g → 0.25 g → 0.125 g."
+        ],
+        "margin_note": "Turn the decimal into a power of two. Counting the halvings 1, 0.5, 0.25, 0.125 gives the same answer and is a good check.",
+        "why": "No logarithm is needed because 0.125 is exactly 1/8, a whole power of two; a value such as 0.2 would need logarithms.",
+        "common_mistakes": [
+          "Taking n = 8 from the 1/8. The 8 is 2³, so n is 3.",
+          "Writing 0.125 as 1/125."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 0.125 is 1/8, which is 1/2³, so n = 3 half lives.",
+          "accept": [
+            "zero point one two five is one by eight",
+            "eight is two cubed so n is three",
+            "three half lives"
+          ],
+          "reject": [
+            "sixteen hundred years"
+          ],
+          "heard_as": [
+            "one by eight",
+            "two cubed",
+            "n equals three"
+          ]
+        },
+        "memory_tip": "Count the halvings: 1, 0.5, 0.25, 0.125 — three arrows, so n = 3."
+      },
+      {
+        "id": "s4_time",
+        "kind": "boxed_final",
+        "label": "The time",
+        "marks": 2,
+        "mark_note": "t = nT = 4800 years",
+        "lines": [
+          "The total time is the number of half lives",
+          "multiplied by the half life period:",
+          {
+            "text": "t = n T = 3 × 1600",
+            "style": "eq"
+          },
+          {
+            "text": "t = 4800 years",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Final mark. The unit is years, the same unit the half life was given in.",
+        "why": "Each half life takes the same 1600 years whatever the amount left, so three of them simply add to 4800 years.",
+        "common_mistakes": [
+          "Dividing 1600 by 3 instead of multiplying.",
+          "Leaving out the unit years."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the time taken is n times T, that is 3 × 1600 = 4800 years.",
+          "accept": [
+            "three into sixteen hundred",
+            "four thousand eight hundred years",
+            "t equals n T"
+          ],
+          "reject": [
+            "n equals three"
+          ],
+          "heard_as": [
+            "four thousand eight hundred",
+            "years",
+            "three into sixteen hundred"
+          ]
+        },
+        "memory_tip": "Three halvings at 1600 years each: 4800 years."
+      }
+    ]
+  },
+  "insider_note": "Count the halvings rather than using logarithms: 1 g to 0.5 g to 0.25 g to 0.125 g is three steps, so the time is three half lives."
+}

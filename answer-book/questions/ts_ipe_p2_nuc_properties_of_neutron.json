@@ -1,0 +1,212 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_properties_of_neutron",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the properties of a neutron?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Charge and mass",
+      "marks": 1
+    },
+    {
+      "label": "Penetration and ionization",
+      "marks": 1
+    },
+    {
+      "label": "Stability and decay",
+      "marks": 1
+    },
+    {
+      "label": "Slowing down and diffraction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: neutron rest mass 1.675 × 10⁻²⁷ kg against the proton mass 1.673 × 10⁻²⁷ kg, so \"nearly equal to the proton\" is right. Free-neutron mean life is about 880 s, close to the book's 1000 s, and the decay ₀n¹ → ₁H¹ + ₋₁e⁰ + antineutrino balances: A 1 = 1 + 0, Z 0 = 1 − 1. Neutron diffraction by crystals is standard and confirms the wave nature."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Nuclei · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_charge_mass",
+        "kind": "text",
+        "label": "Charge and mass",
+        "marks": 1,
+        "mark_note": "Uncharged, proton-like mass, no deflection",
+        "lines": [
+          "A neutron is an uncharged particle.",
+          "Its mass is nearly equal to the mass of a",
+          "proton, about 1.675 × 10⁻²⁷ kg.",
+          "Being neutral, it is not deflected by electric",
+          "or magnetic fields."
+        ],
+        "margin_note": "First mark. Charge zero, proton-like mass, no deflection in fields.",
+        "why": "Every other property in this answer follows from the zero charge, so it belongs in the first line.",
+        "common_mistakes": [
+          "Giving the neutron a small negative charge. It is exactly neutral.",
+          "Saying the mass equals the electron mass."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a neutron is uncharged, has mass nearly equal to the proton mass, and is not deflected by electric or magnetic fields.",
+          "accept": [
+            "uncharged particle",
+            "mass nearly equal to the proton",
+            "not deflected by electric and magnetic fields"
+          ],
+          "reject": [
+            "high penetrating power"
+          ],
+          "heard_as": [
+            "uncharged",
+            "proton mass",
+            "not deflected"
+          ]
+        },
+        "memory_tip": "Neutral and heavy: that pair explains the rest of the list."
+      },
+      {
+        "id": "s2_penetration",
+        "kind": "text",
+        "label": "Penetration and ionization",
+        "marks": 1,
+        "mark_note": "High penetrating power, very low ionizing power",
+        "lines": [
+          "A neutron has very high penetrating power and",
+          "very low ionizing power.",
+          "It passes through matter without pulling",
+          "electrons out of atoms, and loses energy only",
+          "when it collides with a nucleus."
+        ],
+        "margin_note": "Second mark. The two powers move in opposite directions: penetration high, ionization low.",
+        "why": "A charged particle is stopped quickly because it ionizes every atom it passes; with no charge the neutron does neither, so it travels far.",
+        "common_mistakes": [
+          "Saying the ionizing power is high. It is very low.",
+          "Saying neutrons are stopped by thin lead. They are highly penetrating."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a neutron has very high penetrating power and very low ionizing power, losing energy by collisions with nuclei.",
+          "accept": [
+            "high penetrating power",
+            "very low ionization power",
+            "loses energy by collision with nuclei"
+          ],
+          "reject": [
+            "it decays into a proton and an electron"
+          ],
+          "heard_as": [
+            "penetrating power",
+            "ionizing power",
+            "collision"
+          ]
+        },
+        "memory_tip": "No ionization on the way in means nothing slows it — high penetration."
+      },
+      {
+        "id": "s3_stability",
+        "kind": "equation",
+        "label": "Stability and decay",
+        "marks": 1,
+        "mark_note": "Stable inside the nucleus, decays when free",
+        "lines": [
+          "Inside a nucleus a neutron is stable.",
+          "A free neutron is unstable: in about 1000 s it",
+          "decays into a proton, an electron and an",
+          "antineutrino.",
+          {
+            "text": "₀n¹ → ₁H¹ + ₋₁e⁰ + antineutrino",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The contrast between bound and free, plus the decay equation.",
+        "why": "The equation balances: mass numbers 1 = 1 + 0 and charge numbers 0 = 1 − 1. Inside a nucleus this decay is blocked because there is no free energy level for the extra proton, so bound neutrons last indefinitely.",
+        "common_mistakes": [
+          "Writing a neutrino instead of an antineutrino.",
+          "Saying a neutron is unstable everywhere. It is stable inside the nucleus."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a neutron is stable inside the nucleus but a free neutron decays in about 1000 seconds into a proton, an electron and an antineutrino.",
+          "accept": [
+            "stable inside the nucleus",
+            "free neutron decays into a proton electron and antineutrino",
+            "about one thousand seconds"
+          ],
+          "reject": [
+            "very high penetrating power"
+          ],
+          "heard_as": [
+            "free neutron",
+            "antineutrino",
+            "thousand seconds"
+          ]
+        },
+        "memory_tip": "Bound neutron: safe. Free neutron: about a quarter of an hour."
+      },
+      {
+        "id": "s4_slowing",
+        "kind": "boxed_final",
+        "label": "Slowing down and diffraction",
+        "marks": 1,
+        "mark_note": "Slowed by light nuclei; diffracted by crystals",
+        "lines": [
+          "Fast neutrons are slowed down when they pass",
+          "through heavy water, paraffin wax or graphite,",
+          "because these contain light nuclei.",
+          "Neutrons are also diffracted by crystals, which",
+          "shows their wave nature.",
+          {
+            "text": "Neutral · penetrates · slowed by light nuclei",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Name one slowing material and the crystal diffraction.",
+        "why": "A neutron gives up most energy in a head-on collision with a nucleus of nearly its own mass, which is why hydrogen-rich materials are the best moderators.",
+        "common_mistakes": [
+          "Naming lead as a moderator. Heavy nuclei barely slow a neutron.",
+          "Omitting diffraction. It is the property that shows the neutron behaves as a wave."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That fast neutrons are slowed by heavy water, paraffin wax or graphite, and that neutrons are diffracted by crystals.",
+          "accept": [
+            "slowed down by heavy water and graphite",
+            "paraffin wax slows them",
+            "diffracted by crystals"
+          ],
+          "reject": [
+            "stable inside the nucleus"
+          ],
+          "heard_as": [
+            "heavy water",
+            "paraffin",
+            "diffracted"
+          ]
+        },
+        "memory_tip": "Light nuclei brake a neutron best, because equal masses trade the most energy."
+      }
+    ]
+  },
+  "insider_note": "Four marks, so group the properties into four: charge and mass, penetration, stability, and behaviour in matter. A loose list of eight lines earns no more."
+}

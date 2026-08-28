@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_potentiometer_second_cell_emf",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In a potentiometer arrangement, a cell of emf 1.25 V gives a balance point at 35.0 cm length of the wire. If the cell is replaced by another cell and the balance point shifts to 63.0 cm. What is the emf of the second cell?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The comparison relation",
+      "marks": 1
+    },
+    {
+      "label": "Substitution and answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription: the book (p28, VSAQ 15) spaces the units as 1.25V, 35.0cm and 63.0cm; a space is inserted before each unit and the space before the question mark is dropped. Its sentence break after 63.0cm is kept as printed. Hand-checked: 63.0/35.0 = 1.8 exactly, so ε₂ = 1.25 × 1.8 = 2.25 V — the same answer the book prints."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The comparison relation",
+        "marks": 1,
+        "mark_note": "ε₁/ε₂ = l₁/l₂",
+        "lines": [
+          "Given: ε₁ = 1.25 V, l₁ = 35.0 cm,",
+          "l₂ = 63.0 cm.",
+          "The same wire carries the same current, so",
+          "the balancing length is proportional to the",
+          "emf balanced against it:",
+          {
+            "text": "ε₁/ε₂ = l₁/l₂",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Write the comparison relation before any numbers go in.",
+        "why": "The potential drop per centimetre of the wire is fixed by the primary circuit, so an emf balanced at a length is that gradient times the length. When two emfs are compared the gradient cancels and only the two lengths remain.",
+        "common_mistakes": [
+          "Writing ε₁ l₁ = ε₂ l₂. The emf is proportional to the length, not inversely proportional."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ratio of the two emfs equals the ratio of their balancing lengths.",
+          "accept": [
+            "epsilon one by epsilon two equals l one by l two",
+            "emf is proportional to balancing length",
+            "ratio of emfs equals ratio of lengths"
+          ],
+          "reject": [
+            "2.25 volt"
+          ],
+          "heard_as": [
+            "e one by e two",
+            "l one by l two",
+            "balancing length"
+          ]
+        },
+        "memory_tip": "One wire, one gradient: the gradient cancels and only the lengths are left."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitution and answer",
+        "marks": 1,
+        "mark_note": "ε₂ = 2.25 V",
+        "lines": [
+          {
+            "text": "ε₂ = ε₁ × l₂/l₁ = 1.25 × 63.0/35.0",
+            "style": "eq"
+          },
+          {
+            "text": "ε₂ = 1.25 × 1.8 = 2.25 V",
+            "style": "boxed"
+          },
+          "The emf of the second cell is 2.25 V."
+        ],
+        "margin_note": "Second mark. The longer length belongs to the larger emf, so l₂ goes on top.",
+        "why": "63.0/35.0 is exactly 1.8, so the arithmetic is one clean multiplication. The balance point moved further along the wire, so the second emf must be the larger one — a useful check on the ratio.",
+        "common_mistakes": [
+          "Inverting the ratio and getting 0.69 V. The balance point moved further, so the emf is larger.",
+          "Converting cm to m first. The ratio is the same in either unit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives 1.25 times 63 by 35, which is 2.25 volt.",
+          "accept": [
+            "1.25 into 63 by 35",
+            "2.25 volt",
+            "emf of second cell is 2.25 volt"
+          ],
+          "reject": [
+            "epsilon one by epsilon two equals l one by l two"
+          ],
+          "heard_as": [
+            "two point two five",
+            "volt"
+          ]
+        },
+        "memory_tip": "63 over 35 is 1.8; multiply 1.25 by 1.8."
+      }
+    ]
+  },
+  "insider_note": "The whole second mark is the ratio the right way up. A longer balancing length always means a larger emf, so l₂ belongs on top."
+}

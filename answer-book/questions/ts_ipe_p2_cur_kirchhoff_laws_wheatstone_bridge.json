@@ -1,0 +1,678 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_kirchhoff_laws_wheatstone_bridge",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "State Kirchhoff's laws for an electrical network. Using these laws deduce the condition for balancing in a Wheatstone bridge?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Kirchhoff's current law",
+      "marks": 2
+    },
+    {
+      "label": "Kirchhoff's voltage law",
+      "marks": 2
+    },
+    {
+      "label": "The bridge equations",
+      "marks": 2
+    },
+    {
+      "label": "The balance condition",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+2+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription (book p29, LAQ 1): the book prints 'State kirchoff's law for an electrical network using these laws deduce the condition for balancing in a wheatstone bridge ?'. Corrected here: the misspelling kirchoff to Kirchhoff, the dropped s in 'law' (the same sentence says 'these laws'), the proper nouns Kirchhoff and Wheatstone capitalised, a full stop added after 'network' where the printed sentence runs on, and the space before the question mark dropped. NOTATION: the galvanometer current is written i₅ here, not the book's i_g, because Unicode has no subscript g and this bank writes all on-page mathematics in real Unicode; G still means the galvanometer resistance, as in the book. Hand-checked: junction rule at C and D plus the loop rule for ACDA and CBDC give, at i₅ = 0, i₁ = i₃, i₂ = i₄, i₁P = i₂R and i₃Q = i₄S, so P/Q = R/S."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Current Electricity · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_kcl",
+        "kind": "text",
+        "label": "Kirchhoff's current law",
+        "marks": 2,
+        "mark_note": "Statement + conservation of charge",
+        "lines": [
+          "Kirchhoff's first law (junction rule):",
+          "the sum of the currents entering a junction",
+          "is equal to the sum of the currents leaving",
+          "it. In other words, the algebraic sum of the",
+          "currents meeting at a junction is zero.",
+          "For the junction drawn below,",
+          {
+            "text": "I₁ + I₂ + I₃ = I₄ + I₅",
+            "style": "eq"
+          },
+          {
+            "text": "I₁ + I₂ + I₃ − I₄ − I₅ = 0",
+            "style": "eq"
+          },
+          "This law follows from the conservation of",
+          "charge."
+        ],
+        "margin_note": "First two marks. Statement, the equation, and the conservation law it rests on.",
+        "why": "Charge does not collect at a junction, because a junction is only a meeting point of wires with no capacity to store charge. Whatever charge arrives each second must leave each second, and that is the junction rule.",
+        "common_mistakes": [
+          "Naming the wrong conservation law. The junction rule is charge; the loop rule is energy.",
+          "Writing the sums without saying which currents enter and which leave."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the current entering a junction equals the current leaving it, and that this follows from conservation of charge.",
+          "accept": [
+            "sum of currents entering equals sum leaving",
+            "algebraic sum of currents at a junction is zero",
+            "based on conservation of charge"
+          ],
+          "reject": [
+            "sum of potential differences is zero"
+          ],
+          "heard_as": [
+            "junction",
+            "conservation of charge",
+            "entering and leaving"
+          ]
+        },
+        "memory_tip": "Junction rule goes with charge; loop rule goes with energy."
+      },
+      {
+        "id": "s2_junction_figure",
+        "kind": "diagram",
+        "label": "The junction",
+        "marks": 0,
+        "figure": {
+          "id": "kcl_junction",
+          "width": 360,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "b1_in",
+              "d": "M 50 130 L 180 130",
+              "ms": 1860
+            },
+            {
+              "type": "stroke",
+              "id": "b1_ah",
+              "d": "M 112 124 L 122 130 L 112 136",
+              "ms": 330
+            },
+            {
+              "type": "stroke",
+              "id": "b2_in",
+              "d": "M 88 38 L 180 130",
+              "ms": 1860
+            },
+            {
+              "type": "stroke",
+              "id": "b2_ah",
+              "d": "M 130 87 L 140 90 L 137 80",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "b3_in",
+              "d": "M 88 222 L 180 130",
+              "ms": 1860
+            },
+            {
+              "type": "stroke",
+              "id": "b3_ah",
+              "d": "M 130 173 L 140 170 L 137 180",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "b4_out",
+              "d": "M 180 130 L 272 38",
+              "ms": 1860
+            },
+            {
+              "type": "stroke",
+              "id": "b4_ah",
+              "d": "M 259 58 L 262 48 L 252 51",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "b5_out",
+              "d": "M 180 130 L 272 222",
+              "ms": 1860
+            },
+            {
+              "type": "stroke",
+              "id": "b5_ah",
+              "d": "M 252 209 L 262 212 L 259 202",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_i1",
+              "x": 36,
+              "y": 124,
+              "text": "I₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i2",
+              "x": 72,
+              "y": 32,
+              "text": "I₂",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i3",
+              "x": 72,
+              "y": 238,
+              "text": "I₃",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i4",
+              "x": 280,
+              "y": 32,
+              "text": "I₄",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i5",
+              "x": 280,
+              "y": 238,
+              "text": "I₅",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Five wires meeting at one point: I₁, I₂ and I₃ enter, I₄ and I₅ leave.",
+        "why": "The arrows are the whole content of the junction rule. Which currents are added and which are subtracted is decided by the arrow directions, not by the numbering.",
+        "common_mistakes": [
+          "Drawing the arrows without marking which way each current runs."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a junction is drawn with three currents entering and two leaving.",
+          "accept": [
+            "draw a junction with arrows",
+            "three currents in two currents out"
+          ],
+          "reject": [
+            "P by Q equals R by S"
+          ],
+          "heard_as": [
+            "junction",
+            "arrows"
+          ]
+        },
+        "memory_tip": "Draw the arrows first; the signs in the equation follow them."
+      },
+      {
+        "id": "s3_kvl",
+        "kind": "text",
+        "label": "Kirchhoff's voltage law",
+        "marks": 2,
+        "mark_note": "Statement + conservation of energy",
+        "lines": [
+          "Kirchhoff's second law (loop rule):",
+          "in any closed loop of a network the algebraic",
+          "sum of the potential differences is zero.",
+          {
+            "text": "Σ V = 0",
+            "style": "eq"
+          },
+          "This law follows from the conservation of",
+          "energy.",
+          "For the single loop drawn below,",
+          {
+            "text": "ε − I R₁ − I R₂ − I R₃ = 0",
+            "style": "eq"
+          },
+          {
+            "text": "I = ε / (R₁ + R₂ + R₃)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Next two marks. Statement, Σ V = 0, the energy law, and one worked loop.",
+        "why": "Potential is a single-valued quantity, so going once round a loop and returning to the start must bring you back to the same potential. Each rise from the cell is matched by the drops across the resistors, which is conservation of energy for unit charge.",
+        "common_mistakes": [
+          "Dropping the minus signs. A rise across the cell and a drop across a resistor have opposite signs.",
+          "Saying the loop rule follows from conservation of charge."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the algebraic sum of potential differences round a closed loop is zero, and that this follows from conservation of energy.",
+          "accept": [
+            "sum of potential differences in a closed loop is zero",
+            "sigma V equals zero",
+            "based on conservation of energy"
+          ],
+          "reject": [
+            "sum of currents at a junction is zero"
+          ],
+          "heard_as": [
+            "closed loop",
+            "sigma V is zero",
+            "conservation of energy"
+          ]
+        },
+        "memory_tip": "Round the loop and back to the start: the potential must come back to where it began."
+      },
+      {
+        "id": "s4_loop_figure",
+        "kind": "diagram",
+        "label": "The loop",
+        "marks": 0,
+        "figure": {
+          "id": "kvl_loop",
+          "width": 360,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "left_top",
+              "d": "M 60 128 L 60 40 L 140 40",
+              "ms": 2400
+            },
+            {
+              "type": "stroke",
+              "id": "r1_zig",
+              "d": "M 140 40 L 148 28 L 160 52 L 172 28 L 184 52 L 196 28 L 200 40",
+              "ms": 1920
+            },
+            {
+              "type": "stroke",
+              "id": "top_right",
+              "d": "M 200 40 L 300 40 L 300 90",
+              "ms": 2140
+            },
+            {
+              "type": "stroke",
+              "id": "i_ah",
+              "d": "M 240 34 L 250 40 L 240 46",
+              "ms": 330
+            },
+            {
+              "type": "stroke",
+              "id": "r2_zig",
+              "d": "M 300 90 L 288 98 L 312 110 L 288 122 L 312 134 L 300 142",
+              "ms": 1560
+            },
+            {
+              "type": "stroke",
+              "id": "right_bottom",
+              "d": "M 300 142 L 300 190 L 210 190",
+              "ms": 1970
+            },
+            {
+              "type": "stroke",
+              "id": "r3_zig",
+              "d": "M 210 190 L 202 178 L 190 202 L 178 178 L 166 202 L 158 190",
+              "ms": 1560
+            },
+            {
+              "type": "stroke",
+              "id": "bottom_left",
+              "d": "M 158 190 L 60 190 L 60 140",
+              "ms": 2110
+            },
+            {
+              "type": "stroke",
+              "id": "batt_long",
+              "d": "M 44 140 L 76 140",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "batt_short",
+              "d": "M 52 128 L 68 128",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_e",
+              "x": 24,
+              "y": 138,
+              "text": "ε",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r1",
+              "x": 158,
+              "y": 18,
+              "text": "R₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r2",
+              "x": 322,
+              "y": 118,
+              "text": "R₂",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r3",
+              "x": 174,
+              "y": 222,
+              "text": "R₃",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i",
+              "x": 256,
+              "y": 28,
+              "text": "I",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "One cell and three resistors in a single loop; the arrow fixes the direction taken as positive.",
+        "why": "A single loop is the simplest case in which the loop rule can be applied, and it gives the series formula as a by-product.",
+        "common_mistakes": [
+          "Leaving the loop without a marked current direction, which makes every sign a guess."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a closed loop is drawn with a cell and three resistors and a marked current direction.",
+          "accept": [
+            "draw a loop with a cell and three resistors",
+            "mark the current direction"
+          ],
+          "reject": [
+            "sum of currents at a junction"
+          ],
+          "heard_as": [
+            "loop",
+            "cell",
+            "resistors"
+          ]
+        },
+        "memory_tip": "Pick a direction, mark it once, and keep to it all the way round."
+      },
+      {
+        "id": "s5_bridge_figure",
+        "kind": "diagram",
+        "label": "The Wheatstone bridge",
+        "marks": 0,
+        "figure": {
+          "id": "wheatstone_bridge",
+          "width": 360,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "arm_upper",
+              "d": "M 60 130 L 180 50 L 300 130",
+              "ms": 4120
+            },
+            {
+              "type": "stroke",
+              "id": "arm_lower",
+              "d": "M 60 130 L 180 210 L 300 130",
+              "ms": 4120
+            },
+            {
+              "type": "stroke",
+              "id": "wire_cg",
+              "d": "M 180 50 L 180 115",
+              "ms": 930
+            },
+            {
+              "type": "stroke",
+              "id": "galv",
+              "d": "M 165 130 A 15 15 0 1 0 195 130 A 15 15 0 1 0 165 130",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "wire_gd",
+              "d": "M 180 145 L 180 210",
+              "ms": 930
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 106,
+              "y": 86,
+              "text": "P",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 250,
+              "y": 86,
+              "text": "Q",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 102,
+              "y": 192,
+              "text": "R",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 250,
+              "y": 192,
+              "text": "S",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_g",
+              "x": 174,
+              "y": 137,
+              "text": "G",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 36,
+              "y": 136,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 312,
+              "y": 136,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 174,
+              "y": 40,
+              "text": "C",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 174,
+              "y": 234,
+              "text": "D",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Four arms P, Q, R, S between A, C, B, D, with the galvanometer G across CD. The cell and key go between A and B and are described in the next step.",
+        "why": "The four arms form two paths from A to B: one through C and one through D. The galvanometer compares the potentials at C and D, so it reads zero exactly when the two paths divide the potential in the same ratio.",
+        "common_mistakes": [
+          "Placing the galvanometer between A and B. It goes across CD, the other diagonal.",
+          "Putting the cell across CD."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the four arms P, Q, R and S are drawn between A, C, B and D with the galvanometer across CD.",
+          "accept": [
+            "draw the bridge with four arms",
+            "galvanometer between C and D",
+            "P Q R S on the four arms"
+          ],
+          "reject": [
+            "P by Q equals R by S"
+          ],
+          "heard_as": [
+            "bridge",
+            "galvanometer",
+            "four arms"
+          ]
+        },
+        "memory_tip": "Cell on one diagonal, galvanometer on the other."
+      },
+      {
+        "id": "s6_bridge_equations",
+        "kind": "equation",
+        "label": "The bridge equations",
+        "marks": 2,
+        "mark_note": "Junction rule + loop rule applied",
+        "lines": [
+          "A cell of emf ε with a key is joined between",
+          "A and B. Let the currents be i₁ in P, i₂ in R,",
+          "i₃ in Q, i₄ in S, and i₅ in the galvanometer",
+          "of resistance G.",
+          "Junction rule at C and at D:",
+          {
+            "text": "i₁ = i₅ + i₃    ... (1)",
+            "style": "eq"
+          },
+          {
+            "text": "i₂ + i₅ = i₄    ... (2)",
+            "style": "eq"
+          },
+          "Loop rule for the closed mesh ACDA:",
+          {
+            "text": "−i₁P − i₅G + i₂R = 0    ... (3)",
+            "style": "eq"
+          },
+          "Loop rule for the closed mesh CBDC:",
+          {
+            "text": "−i₃Q + i₄S + i₅G = 0    ... (4)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. Name every current first, then write the four equations with their numbers.",
+        "why": "Two junctions and two meshes give four independent equations, which is exactly what is needed to eliminate the currents and leave a relation between the four resistances alone.",
+        "common_mistakes": [
+          "Naming fewer than five currents, so one branch is left out.",
+          "Taking the galvanometer branch round both meshes with the same sign."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the junction rule is applied at C and D and the loop rule to the meshes ACDA and CBDC.",
+          "accept": [
+            "apply junction rule at C and D",
+            "apply loop rule to A C D A and C B D C",
+            "four equations in the currents"
+          ],
+          "reject": [
+            "P by Q equals R by S"
+          ],
+          "heard_as": [
+            "junction rule",
+            "mesh",
+            "loop rule"
+          ]
+        },
+        "memory_tip": "Two junctions, two meshes, four equations."
+      },
+      {
+        "id": "s7_balance",
+        "kind": "boxed_final",
+        "label": "The balance condition",
+        "marks": 2,
+        "mark_note": "P/Q = R/S",
+        "lines": [
+          "The bridge is balanced when the galvanometer",
+          "shows no deflection, that is when no current",
+          "passes through it:",
+          {
+            "text": "i₅ = 0",
+            "style": "eq"
+          },
+          "Then (1) and (2) give i₁ = i₃ and i₂ = i₄,",
+          "and (3) and (4) become",
+          {
+            "text": "i₁P = i₂R    ... (5)",
+            "style": "eq"
+          },
+          {
+            "text": "i₃Q = i₄S    ... (6)",
+            "style": "eq"
+          },
+          "Dividing (5) by (6),",
+          {
+            "text": "i₁P / i₃Q = i₂R / i₄S",
+            "style": "eq"
+          },
+          {
+            "text": "P/Q = R/S",
+            "style": "boxed"
+          },
+          "This is the balancing condition of the",
+          "Wheatstone bridge."
+        ],
+        "margin_note": "Last two marks. Set i₅ = 0, divide the two mesh equations, and box P/Q = R/S.",
+        "why": "With i₅ = 0 the pairs i₁ = i₃ and i₂ = i₄ let every current cancel in the division, and only the ratio of the resistances survives. That is why the bridge measures an unknown resistance without needing to know the current or the emf.",
+        "common_mistakes": [
+          "Writing P/R = Q/S. Both forms are true, but the asked form pairs the arms as P with Q and R with S.",
+          "Saying the galvanometer current is small at balance. It is exactly zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting the galvanometer current equal to zero and dividing the two mesh equations gives P by Q equals R by S.",
+          "accept": [
+            "no current through the galvanometer",
+            "P by Q equals R by S",
+            "i five is zero at balance"
+          ],
+          "reject": [
+            "apply junction rule at C and D"
+          ],
+          "heard_as": [
+            "balance",
+            "P by Q equals R by S",
+            "zero deflection"
+          ]
+        },
+        "memory_tip": "Zero through the galvanometer, then divide: every current cancels and only P/Q = R/S is left."
+      }
+    ]
+  },
+  "insider_note": "Two marks of this answer are the two conservation laws by name — charge for the junction rule, energy for the loop rule. Students who write only the equations lose them."
+}

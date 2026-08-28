@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_radiation_electric_field",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Among alpha, beta and gamma radiation which get affected by the electric field?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Alpha and beta deflect — they are charged",
+      "marks": 1
+    },
+    {
+      "label": "Gamma does not — it has no charge",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: α carries +2e, β carries −e (β⁺ carries +e), so an electric field deflects both; γ is electromagnetic radiation with no charge and is not deflected. The book's printed answer names only alpha and beta; the gamma statement completes the comparison the question asks for."
+  },
+  "recall_prompt": "Say which radiations an electric field deflects, and why the third one is not deflected.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atoms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_charged",
+        "kind": "text",
+        "label": "Alpha and beta are deflected",
+        "marks": 1,
+        "mark_note": "Charged particles deflect",
+        "lines": [
+          "Alpha and beta radiation are deflected by an",
+          "electric field, because they carry charge.",
+          "An α-particle carries +2e and a β-particle",
+          "carries −e."
+        ],
+        "margin_note": "First mark. Name both radiations and give the reason: they are charged.",
+        "why": "An electric field exerts force F = qE only on charge. Naming the charges (+2e and −e) shows the reason, not just the fact.",
+        "common_mistakes": [
+          "Saying only alpha is deflected. Beta is charged too and deflects the opposite way.",
+          "Giving the fact without the reason. The charge is what earns the mark."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That alpha and beta are deflected because they carry charge.",
+          "accept": [
+            "alpha and beta are charged",
+            "alpha is plus two e, beta is minus e",
+            "the field pulls on their charge"
+          ],
+          "reject": [
+            "gamma has no charge"
+          ],
+          "heard_as": [
+            "alpha",
+            "beta",
+            "charged particles"
+          ]
+        },
+        "memory_tip": "Force needs charge: F = qE. Alpha and beta have q; that is the whole reason."
+      },
+      {
+        "id": "s2_gamma",
+        "kind": "boxed_final",
+        "label": "Gamma is not deflected",
+        "marks": 1,
+        "mark_note": "Gamma: no charge",
+        "lines": [
+          "Gamma rays carry no charge — they are",
+          "electromagnetic radiation. An electric field",
+          "does not deflect them.",
+          {
+            "text": "Alpha and beta deflect; gamma does not",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The question lists three radiations — account for gamma too.",
+        "why": "The question names all three radiations, so a complete answer must say what happens to gamma and why: no charge, no electric force.",
+        "common_mistakes": [
+          "Leaving gamma out entirely. The question asks about all three.",
+          "Calling gamma a particle with a small charge. It is uncharged electromagnetic radiation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That gamma carries no charge, so the field does not deflect it.",
+          "accept": [
+            "gamma has no charge",
+            "gamma is electromagnetic radiation",
+            "gamma goes straight"
+          ],
+          "reject": [
+            "alpha is plus two e"
+          ],
+          "heard_as": [
+            "gamma",
+            "no charge",
+            "electromagnetic"
+          ]
+        },
+        "memory_tip": "Two of the three carry charge. The odd one out, gamma, is light — it goes straight."
+      }
+    ]
+  },
+  "insider_note": "Answer for all three radiations — the second mark is for saying gamma is NOT deflected and why, which the book's own printed answer skips."
+}

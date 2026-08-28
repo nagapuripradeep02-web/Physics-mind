@@ -1,0 +1,420 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_nuclear_reactor_principle_working",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the principle and working of a nuclear reactor with the help of a labelled diagram.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Principle",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 2
+    },
+    {
+      "label": "Fuel and moderator",
+      "marks": 1
+    },
+    {
+      "label": "Control rods",
+      "marks": 1
+    },
+    {
+      "label": "Shielding and coolant",
+      "marks": 1
+    },
+    {
+      "label": "Working",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+1+1+1+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The 1+2+1+1+1+2 split is INVENTED; the 2 marks on the diagram follow the words \"with the help of a labelled diagram\" in the question. The book prints \"labeled\"; the spelling is normalised here. Hand-checked against the book's own five-part list (fuel, moderator, control rods, radiation shielding, coolant). The diagram is drawn with five labelled parts only: the renderer draws outlines with no fills, so a part cannot be hidden inside another, and every label needs its own clear lane."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Nuclei · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "Principle",
+        "marks": 1,
+        "mark_note": "Controlled chain reaction in enriched uranium",
+        "lines": [
+          "Principle: a nuclear reactor works on the",
+          "principle of a controlled chain reaction in",
+          "natural uranium U-238 enriched with U-235.",
+          "The heat generated is used to produce",
+          "electricity."
+        ],
+        "margin_note": "First mark. The words \"controlled chain reaction\" carry it.",
+        "why": "A reactor and a bomb use the same nuclear reaction; the whole difference is that a reactor holds the multiplication factor at K = 1.",
+        "common_mistakes": [
+          "Saying a reactor works on fusion. It works on fission.",
+          "Leaving out the word controlled."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a nuclear reactor works on the principle of a controlled chain reaction in uranium enriched with U-235, generating heat.",
+          "accept": [
+            "controlled chain reaction",
+            "uranium two thirty eight enriched with uranium two thirty five",
+            "generates large amounts of heat"
+          ],
+          "reject": [
+            "fuel moderator control rods shielding coolant"
+          ],
+          "heard_as": [
+            "controlled chain reaction",
+            "uranium",
+            "reactor"
+          ]
+        },
+        "memory_tip": "Same reaction as the bomb, held at K = 1."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 2,
+        "mark_note": "Core with fuel rods, control rod, moderator, coolant, shielding",
+        "figure": {
+          "id": "nuclear_reactor_schematic",
+          "width": 420,
+          "height": 280,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "shield",
+              "d": "M 30 60 L 250 60 L 250 215",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "shield_base",
+              "d": "M 250 215 L 30 215 L 30 60",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "core",
+              "d": "M 60 88 L 220 88 L 220 188 L 60 188 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "fuel_rod_1",
+              "d": "M 100 98 L 100 178",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "fuel_rod_2",
+              "d": "M 180 98 L 180 178",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "control_rod",
+              "d": "M 140 34 L 140 165",
+              "ms": 1870
+            },
+            {
+              "type": "stroke",
+              "id": "coolant_out",
+              "d": "M 250 110 L 356 110",
+              "ms": 1510
+            },
+            {
+              "type": "stroke",
+              "id": "coolant_out_ah",
+              "d": "M 348 105 L 356 110 L 348 115",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "coolant_in",
+              "d": "M 356 170 L 250 170",
+              "ms": 1510,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_control",
+              "x": 106,
+              "y": 26,
+              "text": "Control rod",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_shield",
+              "x": 24,
+              "y": 52,
+              "text": "Shielding",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_core",
+              "x": 62,
+              "y": 82,
+              "text": "Core",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_fuel",
+              "x": 64,
+              "y": 206,
+              "text": "Fuel rods",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_moderator",
+              "x": 150,
+              "y": 206,
+              "text": "Moderator",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_coolant_out",
+              "x": 262,
+              "y": 100,
+              "text": "Coolant out",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_coolant_in",
+              "x": 266,
+              "y": 190,
+              "text": "Coolant in",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Two marks. The examiner looks for the core with fuel rods, a control rod entering from above, the moderator, the coolant path and the shielding.",
+        "why": "The picture makes the three separate jobs visible at once: the fuel rods make the neutrons, the moderator between them slows the neutrons, and the control rod removes neutrons from above.",
+        "common_mistakes": [
+          "Drawing the control rod outside the core. It must reach into the core.",
+          "Labelling the moderator as the coolant. The moderator fills the space between the fuel rods."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the reactor is drawn with a shielded core holding fuel rods, a control rod entering from above, the moderator between the rods, and the coolant path.",
+          "accept": [
+            "draw the core with fuel rods and a control rod",
+            "label the moderator shielding and coolant"
+          ],
+          "reject": [
+            "heavy water and graphite slow the neutrons"
+          ],
+          "heard_as": [
+            "fuel rods",
+            "control rod",
+            "shielding"
+          ]
+        },
+        "memory_tip": "Draw the box, then the rods inside, then the rod coming down from the top."
+      },
+      {
+        "id": "s3_fuel_moderator",
+        "kind": "text",
+        "label": "Fuel and moderator",
+        "marks": 1,
+        "mark_note": "U-235 fuel rods; heavy water or graphite moderator",
+        "lines": [
+          "1. Fuel: the fuel is made into thin, long",
+          "cylindrical rods of uranium enriched in U-235.",
+          "The part of the reactor holding the fuel is",
+          "called the core.",
+          "2. Moderator: heavy water or graphite is placed",
+          "between the fuel rods to slow the fast",
+          "neutrons down to thermal neutrons."
+        ],
+        "margin_note": "The fuel and the moderator share one mark. Name a material for each.",
+        "why": "Enrichment matters because natural uranium is over 99% U-238, which does not undergo fission with thermal neutrons.",
+        "common_mistakes": [
+          "Naming cadmium as the moderator. Cadmium absorbs neutrons and is a control rod.",
+          "Saying the fuel is U-238. The fissile part is U-235."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fuel is uranium enriched in U-235 in the form of rods in the core, and the moderator is heavy water or graphite that slows the fast neutrons.",
+          "accept": [
+            "fuel rods of enriched uranium",
+            "heavy water or graphite as moderator",
+            "slows down the fast neutrons"
+          ],
+          "reject": [
+            "cadmium or boron rods"
+          ],
+          "heard_as": [
+            "fuel rods",
+            "moderator",
+            "graphite"
+          ]
+        },
+        "memory_tip": "Fuel makes neutrons, moderator slows them — two parts, one mark."
+      },
+      {
+        "id": "s4_control_rods",
+        "kind": "text",
+        "label": "Control rods",
+        "marks": 1,
+        "mark_note": "Cadmium or boron rods absorb neutrons",
+        "lines": [
+          "3. Control rods: cadmium or boron rods are",
+          "lowered into the core to absorb neutrons.",
+          "Their depth sets how many neutrons are left",
+          "to continue the chain reaction, so the",
+          "multiplication factor is held at K = 1."
+        ],
+        "margin_note": "One mark. Name the material AND the purpose.",
+        "why": "The control rods are the only quick adjustment the reactor has, so they are what makes the difference between a steady output and a runaway one.",
+        "common_mistakes": [
+          "Saying the control rods slow the neutrons. They absorb them.",
+          "Naming graphite. Graphite is the moderator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That control rods of cadmium or boron are lowered into the core to absorb neutrons and hold the multiplication factor at 1.",
+          "accept": [
+            "cadmium or boron rods",
+            "absorb the neutrons",
+            "control the chain reaction"
+          ],
+          "reject": [
+            "heavy water or graphite"
+          ],
+          "heard_as": [
+            "control rods",
+            "cadmium",
+            "boron"
+          ]
+        },
+        "memory_tip": "Moderator slows, control rod removes."
+      },
+      {
+        "id": "s5_shield_coolant",
+        "kind": "text",
+        "label": "Shielding and coolant",
+        "marks": 1,
+        "mark_note": "Concrete or lead shield; water or molten sodium coolant",
+        "lines": [
+          "4. Shielding: β and γ rays given out during",
+          "fission are harmful, so the reactor is",
+          "surrounded by a thick concrete, steel or lead",
+          "shield that absorbs them.",
+          "5. Coolant: water or molten sodium is circulated",
+          "to carry the heat away from the fuel rods."
+        ],
+        "margin_note": "One mark for both. Name a material for each.",
+        "why": "The coolant does two jobs at once: it keeps the fuel rods from overheating and it carries the useful heat out to the boiler.",
+        "common_mistakes": [
+          "Saying the shield stops neutrons only. It absorbs the β and γ radiation.",
+          "Leaving the coolant out. Without it there is no way to use the heat."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a thick concrete, steel or lead shield absorbs the harmful beta and gamma rays, and a coolant such as water or molten sodium carries the heat away.",
+          "accept": [
+            "concrete shield absorbs beta and gamma",
+            "coolant is water or molten sodium",
+            "removes the heat from the fuel"
+          ],
+          "reject": [
+            "cadmium rods absorb neutrons"
+          ],
+          "heard_as": [
+            "shielding",
+            "coolant",
+            "molten sodium"
+          ]
+        },
+        "memory_tip": "Shield keeps radiation in; coolant takes heat out."
+      },
+      {
+        "id": "s6_working",
+        "kind": "boxed_final",
+        "label": "Working",
+        "marks": 2,
+        "mark_note": "Fission to thermal neutrons to steam to generator",
+        "lines": [
+          "Working: the uranium fuel rods sit in the core",
+          "with the graphite moderator between them.",
+          "A few U-235 nuclei undergo fission and release",
+          "fast neutrons. These pass through the",
+          "moderator, lose energy and become thermal",
+          "neutrons, which are captured by U-235 and",
+          "carry the chain reaction on.",
+          "The control rods hold the reaction steady.",
+          "The heat produced turns water into steam, the",
+          "steam drives a turbine, and the turbine drives",
+          "a generator that produces electricity.",
+          {
+            "text": "Fission ⇒ heat ⇒ steam ⇒ turbine",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Two marks. Follow one chain from the first fission to the electricity.",
+        "why": "Only the first link is nuclear; from the steam onwards a nuclear power station is an ordinary thermal power station.",
+        "common_mistakes": [
+          "Saying electricity is produced directly by fission. The heat drives a steam turbine.",
+          "Leaving out the moderator step. The fast neutrons must be slowed before they are captured."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That fission neutrons are slowed by the moderator, captured by U-235 to continue the chain reaction under the control rods, and the heat produced makes steam that drives a turbine and a generator.",
+          "accept": [
+            "fast neutrons are slowed by the moderator",
+            "heat converts water into steam",
+            "steam turbine drives the generator"
+          ],
+          "reject": [
+            "concrete shield absorbs the radiation"
+          ],
+          "heard_as": [
+            "thermal neutrons",
+            "steam turbine",
+            "generator"
+          ]
+        },
+        "memory_tip": "Nuclear only as far as the heat; after that it is an ordinary steam plant."
+      }
+    ]
+  },
+  "insider_note": "Eight marks, and the five named parts carry three of them. Write the list with a one-line job for each part rather than a paragraph."
+}

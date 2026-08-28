@@ -1,0 +1,209 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_nuclear_forces_properties",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the nuclear forces? Write their properties.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What nuclear forces are",
+      "marks": 1
+    },
+    {
+      "label": "Attractive and charge independent",
+      "marks": 1
+    },
+    {
+      "label": "Short range and saturated",
+      "marks": 1
+    },
+    {
+      "label": "Exchange forces; strongest",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the nuclear force range is about 10⁻¹⁵ m; the relative strengths F_N : F_e : F_G ≈ 10³⁸ : 10³⁶ : 1 are the book's figures and match the standard ratios (strong : electromagnetic : gravitational ≈ 1 : 10⁻² : 10⁻³⁸). The book calls the force \"non-central\"; that is the tensor part of the force, so this card says the force has a non-central part rather than that it never acts along the line joining the nucleons."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Nuclei · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What nuclear forces are",
+        "marks": 1,
+        "mark_note": "The force that holds nucleons together",
+        "lines": [
+          "Nuclear forces are the strong attractive forces",
+          "that act between the nucleons — proton and",
+          "proton, proton and neutron, neutron and",
+          "neutron — and hold the nucleus together."
+        ],
+        "margin_note": "First mark. Name the three nucleon pairs and the job the force does.",
+        "why": "The protons in a nucleus repel each other electrically, so a stronger attractive force must be present or no nucleus with two or more protons could exist.",
+        "common_mistakes": [
+          "Calling the nuclear force an electric force. It is a separate, much stronger force.",
+          "Saying it acts between electrons and the nucleus."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That nuclear forces are the strong attractive forces between nucleons that hold the nucleus together.",
+          "accept": [
+            "forces between nucleons",
+            "they hold the nucleus together",
+            "strong attractive force"
+          ],
+          "reject": [
+            "short range forces"
+          ],
+          "heard_as": [
+            "nuclear force",
+            "nucleons",
+            "nucleus"
+          ]
+        },
+        "memory_tip": "Without it the protons would push the nucleus apart at once."
+      },
+      {
+        "id": "s2_charge_independent",
+        "kind": "text",
+        "label": "Attractive and charge independent",
+        "marks": 1,
+        "mark_note": "Same for p-p, p-n and n-n",
+        "lines": [
+          "1. They are attractive.",
+          "2. They are charge independent: the force is",
+          "the same between p-p, p-n and n-n pairs.",
+          "3. They are spin dependent: stronger when the",
+          "two nucleon spins point the same way."
+        ],
+        "margin_note": "Second mark. Charge independence is the property most often left out.",
+        "why": "Charge independence is measured, not assumed: the binding of mirror nuclei with protons and neutrons exchanged is the same once the electric repulsion is subtracted.",
+        "common_mistakes": [
+          "Saying the p-p force is weaker. The NUCLEAR force is the same; the electric repulsion is extra.",
+          "Leaving out spin dependence."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That nuclear forces are attractive, charge independent (same for proton-proton, proton-neutron and neutron-neutron) and spin dependent.",
+          "accept": [
+            "charge independent",
+            "same between p p, p n and n n",
+            "spin dependent"
+          ],
+          "reject": [
+            "range is ten to the power minus fifteen metre"
+          ],
+          "heard_as": [
+            "charge independent",
+            "spin dependent",
+            "attractive"
+          ]
+        },
+        "memory_tip": "The nuclear force does not look at charge, only at spin and distance."
+      },
+      {
+        "id": "s3_short_range",
+        "kind": "text",
+        "label": "Short range and saturated",
+        "marks": 1,
+        "mark_note": "Range about 10⁻¹⁵ m; saturated; non-central part",
+        "lines": [
+          "4. They are short range forces, acting only up",
+          "to about 10⁻¹⁵ m.",
+          "5. They are saturated: one nucleon is bound",
+          "only to its nearest neighbours.",
+          "6. They have a non-central part, so the force",
+          "is not directed only along the line joining",
+          "the two nucleons."
+        ],
+        "margin_note": "Third mark. The range figure 10⁻¹⁵ m carries this one.",
+        "why": "Saturation is why the binding energy per nucleon is almost constant above A ≈ 20: adding a nucleon adds a fixed number of bonds, not a bond to every other nucleon.",
+        "common_mistakes": [
+          "Writing the range as 10⁻¹⁰ m. That is the size of an atom, not of a nucleus.",
+          "Saying the force is long range like gravitation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That nuclear forces are short range, acting up to about 10⁻¹⁵ m, are saturated, and have a non-central part.",
+          "accept": [
+            "short range forces",
+            "ten to the power minus fifteen metre",
+            "saturated forces"
+          ],
+          "reject": [
+            "exchange of pi mesons"
+          ],
+          "heard_as": [
+            "short range",
+            "ten power minus fifteen",
+            "saturated"
+          ]
+        },
+        "memory_tip": "Short range and saturated: a nucleon feels only the neighbours touching it."
+      },
+      {
+        "id": "s4_exchange",
+        "kind": "boxed_final",
+        "label": "Exchange forces; strongest",
+        "marks": 1,
+        "mark_note": "π-meson exchange; strength ratio 10³⁸ : 10³⁶ : 1",
+        "lines": [
+          "7. They are exchange forces: the force between",
+          "two nucleons arises from the exchange of",
+          "π-mesons.",
+          "8. They are the strongest forces in nature.",
+          {
+            "text": "Nuclear : electric : gravity = 10³⁸ : 10³⁶ : 1",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The π-meson exchange and the strength ratio.",
+        "why": "The exchanged particle has mass, and a heavier exchanged particle gives a shorter range — which is how the pion mass and the 10⁻¹⁵ m range are connected.",
+        "common_mistakes": [
+          "Naming photons instead of π-mesons. Photon exchange gives the electric force.",
+          "Getting the ratio the wrong way round. The nuclear force is the largest of the three."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That nuclear forces are exchange forces due to pi-mesons and are the strongest forces in nature, with the ratio to electric and gravitational forces about 10³⁸ : 10³⁶ : 1.",
+          "accept": [
+            "exchange of pi mesons",
+            "strongest force in nature",
+            "ten power thirty eight to ten power thirty six to one"
+          ],
+          "reject": [
+            "short range forces"
+          ],
+          "heard_as": [
+            "pi mesons",
+            "exchange force",
+            "strongest"
+          ]
+        },
+        "memory_tip": "Pass a pion between two nucleons and you have the strongest force there is."
+      }
+    ]
+  },
+  "insider_note": "The examiner marks named properties, not sentences. Four marks means four groups: what it is, charge independence, range, and the exchange picture with the strength ratio."
+}

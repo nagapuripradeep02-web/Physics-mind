@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_colour_code_350_mega_ohm",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the colour code for a resistor of resistance 350 MΩ with 5% tolerance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Digits and multiplier",
+      "marks": 1
+    },
+    {
+      "label": "The four-band code",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: 350 MΩ = 350 × 10⁶ Ω = 35 × 10⁷ Ω; 3 = Orange, 5 = Green, 10⁷ = Violet, 5% = Gold; code Orange, Green, Violet, Gold — matches the book."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "equation",
+        "label": "Digits and multiplier",
+        "marks": 1,
+        "mark_note": "35 × 10⁷ Ω",
+        "lines": [
+          "Write the resistance as two digits times a",
+          "power of ten:",
+          {
+            "text": "350 MΩ = 350 × 10⁶ Ω = 35 × 10⁷ Ω",
+            "style": "eq"
+          },
+          "Digits: 3 and 5. Multiplier: 10⁷."
+        ],
+        "margin_note": "First mark. 350 has three digits, so push one ten into the multiplier: 35 × 10⁷.",
+        "why": "The code carries only two digit bands. 350 × 10⁶ has three digits, so one factor of ten moves into the multiplier to give 35 × 10⁷.",
+        "common_mistakes": [
+          "Keeping 350 × 10⁶ and running out of digit bands.",
+          "Writing 3.5 × 10⁸ — the code wants two whole digits, 35, not 3.5."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 350 mega ohm becomes 35 times 10 power 7 ohm, so the digits are 3 and 5 with multiplier 10 power 7.",
+          "accept": [
+            "35 into 10 power 7",
+            "digits 3 and 5, multiplier 10 power 7",
+            "shift a ten into the multiplier"
+          ],
+          "reject": [
+            "orange green violet gold"
+          ],
+          "heard_as": [
+            "mega ohm",
+            "10 power 7"
+          ]
+        },
+        "memory_tip": "Three digits will not fit — slide the extra zero into the power: 35 × 10⁷."
+      },
+      {
+        "id": "s2_code",
+        "kind": "boxed_final",
+        "label": "The four-band code",
+        "marks": 1,
+        "mark_note": "Orange, Green, Violet, Gold",
+        "lines": [
+          "3 → Orange, 5 → Green, 10⁷ → Violet",
+          "Tolerance 5% → Gold",
+          {
+            "text": "Colour code: Orange, Green, Violet, Gold",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. All four bands, in order, including Gold for 5%.",
+        "why": "The first three bands re-use the digit table (3 Orange, 5 Green, 7 Violet); the tolerance has its own two-colour rule, Gold 5% and Silver 10%.",
+        "common_mistakes": [
+          "Forgetting the Gold band — the question asks for the 5% tolerance too.",
+          "Swapping Gold and Silver: Gold is 5%, Silver is 10%."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four bands are orange, green, violet, gold — with gold standing for the 5 percent tolerance.",
+          "accept": [
+            "orange green violet gold",
+            "gold means 5 percent",
+            "7 is violet"
+          ],
+          "reject": [
+            "35 into 10 power 7"
+          ],
+          "heard_as": [
+            "violet",
+            "gold",
+            "tolerance"
+          ]
+        },
+        "memory_tip": "Digits 3-5-7 read Orange-Green-Violet; Gold closes the code at 5%."
+      }
+    ]
+  },
+  "insider_note": "The reshaping step 350 × 10⁶ → 35 × 10⁷ is where this question is really tested — the colours follow from the table."
+}

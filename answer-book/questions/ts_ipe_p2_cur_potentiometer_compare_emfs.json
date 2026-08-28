@@ -1,0 +1,500 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_potentiometer_compare_emfs",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "State the working principle of potentiometer explain with the help of circuit diagram. How the emf of two primary cells are compared by using the potentiometer.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 2
+    },
+    {
+      "label": "The arrangement",
+      "marks": 2
+    },
+    {
+      "label": "The two balance points",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+2+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription (book p29, LAQ 2): the wording is kept as printed, including 'How the emf of two primary cells are compared'; the book's 'manganine', 'Comparision' and 'inseries' spellings are corrected on the card. NOTE ON ρ: the book uses ρ for the RESISTANCE PER UNIT LENGTH of the potentiometer wire (ρ = R/L), not for resistivity; the card says so in words wherever ρ appears. Hand-checked: ε₁ = Iρl₁ and ε₂ = Iρl₂ with the same primary current, so ε₁/ε₂ = l₁/l₂."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Current Electricity · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 2,
+        "mark_note": "V ∝ l for a steady current",
+        "lines": [
+          "Principle: when a steady current passes",
+          "through a wire of uniform cross section, the",
+          "potential difference between any two points",
+          "on the wire is directly proportional to the",
+          "length of wire between those points.",
+          {
+            "text": "V ∝ l",
+            "style": "eq"
+          },
+          "The constant of proportionality is called the",
+          "potential gradient of the wire."
+        ],
+        "margin_note": "First two marks. State the principle in full: steady current, uniform cross section, V ∝ l.",
+        "why": "A uniform wire has the same resistance in every centimetre, so a steady current produces the same potential drop in every centimetre. Adding equal drops over l centimetres makes the total drop proportional to l.",
+        "common_mistakes": [
+          "Leaving out uniform cross section. Without it the drop per centimetre is not the same everywhere.",
+          "Leaving out steady current."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with a steady current in a wire of uniform cross section the potential difference between two points is proportional to the length between them.",
+          "accept": [
+            "potential difference is proportional to length",
+            "steady current uniform cross section",
+            "V is proportional to l"
+          ],
+          "reject": [
+            "epsilon one by epsilon two equals l one by l two"
+          ],
+          "heard_as": [
+            "uniform cross section",
+            "proportional to length",
+            "potential gradient"
+          ]
+        },
+        "memory_tip": "Same wire, same current: every centimetre drops the same voltage."
+      },
+      {
+        "id": "s2_primary_figure",
+        "kind": "diagram",
+        "label": "The primary circuit",
+        "marks": 0,
+        "figure": {
+          "id": "potentiometer_primary_compare",
+          "width": 360,
+          "height": 150,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "wire_ab",
+              "d": "M 40 110 L 320 110",
+              "ms": 4000,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "prim_left",
+              "d": "M 40 110 L 40 40 L 140 40",
+              "ms": 2430
+            },
+            {
+              "type": "stroke",
+              "id": "batt_long",
+              "d": "M 146 26 L 146 54",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "batt_short",
+              "d": "M 158 33 L 158 47",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "prim_right",
+              "d": "M 158 40 L 190 40 L 198 28 L 210 52 L 222 28 L 234 52 L 242 40 L 320 40 L 320 110",
+              "ms": 4130
+            },
+            {
+              "type": "stroke",
+              "id": "i_ah",
+              "d": "M 272 34 L 282 40 L 272 46",
+              "ms": 330
+            },
+            {
+              "type": "label",
+              "id": "lbl_e",
+              "x": 138,
+              "y": 74,
+              "text": "E",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_rh",
+              "x": 204,
+              "y": 20,
+              "text": "Rₕ",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i",
+              "x": 276,
+              "y": 26,
+              "text": "I",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 32,
+              "y": 132,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 324,
+              "y": 132,
+              "text": "B",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The thick line is the potentiometer wire AB. The cell E, the key and the rheostat Rₕ send a steady current I through it.",
+        "why": "The primary circuit does one job: it holds a steady, adjustable current in the wire so that the potential gradient stays fixed while the two cells are balanced one after the other.",
+        "common_mistakes": [
+          "Leaving out the rheostat, which is what makes the gradient adjustable."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the primary circuit is the wire AB with a cell, a key and a rheostat across its ends.",
+          "accept": [
+            "draw the wire A B with the cell and rheostat",
+            "primary circuit across the ends of the wire"
+          ],
+          "reject": [
+            "two cells and a galvanometer"
+          ],
+          "heard_as": [
+            "primary circuit",
+            "rheostat",
+            "wire A B"
+          ]
+        },
+        "memory_tip": "Primary circuit first: it sets the gradient before anything is measured."
+      },
+      {
+        "id": "s3_secondary_figure",
+        "kind": "diagram",
+        "label": "The secondary circuit",
+        "marks": 0,
+        "figure": {
+          "id": "potentiometer_secondary_compare",
+          "width": 360,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "wire_ab",
+              "d": "M 40 60 L 320 60",
+              "ms": 4000,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "rail",
+              "d": "M 40 60 L 40 200 L 90 200",
+              "ms": 2710
+            },
+            {
+              "type": "stroke",
+              "id": "branch1",
+              "d": "M 40 130 L 90 130",
+              "ms": 710
+            },
+            {
+              "type": "stroke",
+              "id": "cell1",
+              "d": "M 90 116 L 120 116 L 120 144 L 90 144 Z",
+              "ms": 1660
+            },
+            {
+              "type": "stroke",
+              "id": "branch1_out",
+              "d": "M 120 130 L 180 130 L 180 165",
+              "ms": 1360
+            },
+            {
+              "type": "stroke",
+              "id": "cell2",
+              "d": "M 90 186 L 120 186 L 120 214 L 90 214 Z",
+              "ms": 1660
+            },
+            {
+              "type": "stroke",
+              "id": "branch2_out",
+              "d": "M 120 200 L 180 200 L 180 165",
+              "ms": 1360
+            },
+            {
+              "type": "stroke",
+              "id": "galv_wire",
+              "d": "M 180 165 L 216 165",
+              "ms": 510
+            },
+            {
+              "type": "stroke",
+              "id": "galv",
+              "d": "M 216 165 A 15 15 0 1 0 246 165 A 15 15 0 1 0 216 165",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "jockey",
+              "d": "M 246 165 L 272 165 L 272 60",
+              "ms": 1870
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 28,
+              "y": 52,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 326,
+              "y": 52,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_e1",
+              "x": 92,
+              "y": 108,
+              "text": "ε₁, K₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_e2",
+              "x": 92,
+              "y": 178,
+              "text": "ε₂, K₂",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_g",
+              "x": 224,
+              "y": 172,
+              "text": "G",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Both cells are joined by their positive ends to A. Each branch carries its own key, and the jockey slides along AB.",
+        "why": "Both cells face the wire the same way round, so each of them opposes the drop along AB and can be brought to a balance point of its own.",
+        "common_mistakes": [
+          "Joining the two cells with opposite ends to A, so no balance point can be found.",
+          "Closing both keys at once."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the secondary circuit has the two cells with their keys joined through a galvanometer to the jockey on AB.",
+          "accept": [
+            "two cells with keys and a galvanometer",
+            "jockey slides on the wire",
+            "secondary circuit from A through the cells to the jockey"
+          ],
+          "reject": [
+            "cell and rheostat across A B"
+          ],
+          "heard_as": [
+            "secondary circuit",
+            "jockey",
+            "galvanometer"
+          ]
+        },
+        "memory_tip": "Same ends to A, one key closed at a time."
+      },
+      {
+        "id": "s4_arrangement",
+        "kind": "equation",
+        "label": "The arrangement",
+        "marks": 2,
+        "mark_note": "Potential gradient of the wire",
+        "lines": [
+          "A uniform manganin wire AB about 10 m long is",
+          "fixed on a wooden plank beside a metre scale.",
+          "Its ends carry copper strips of negligible",
+          "resistance.",
+          "The ends A and B are joined to a cell of emf E",
+          "and internal resistance r through a key K and",
+          "a rheostat. This is the primary circuit.",
+          "With Rₛ the series resistance and R the",
+          "resistance of the whole wire of length L,",
+          {
+            "text": "I = E / (r + R + Rₛ)",
+            "style": "eq"
+          },
+          "Writing ρ = R/L for the resistance per unit",
+          "length, the drop across a length l is",
+          {
+            "text": "V = I ρ l",
+            "style": "eq"
+          },
+          "so the potential gradient of the wire is",
+          {
+            "text": "V/l = I ρ = [E/(r + R + Rₛ)] × (R/L)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. The wire and its primary circuit, then the potential gradient V/l = Iρ.",
+        "why": "The gradient depends only on the primary circuit, so as long as the rheostat is left alone it is the same for both cells. That is what allows the two balancing lengths to be compared directly.",
+        "common_mistakes": [
+          "Using ρ for resistivity. Here ρ means resistance per unit length, R/L.",
+          "Changing the rheostat setting between the two readings."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a uniform wire AB carries a steady current from the primary circuit and its potential gradient is I times the resistance per unit length.",
+          "accept": [
+            "uniform wire about ten metre on a plank",
+            "potential gradient is I rho",
+            "current is E by r plus R plus R s"
+          ],
+          "reject": [
+            "epsilon one equals I rho l one"
+          ],
+          "heard_as": [
+            "potential gradient",
+            "resistance per unit length",
+            "manganin wire"
+          ]
+        },
+        "memory_tip": "Gradient = current × resistance per centimetre. Fix it once and leave it alone."
+      },
+      {
+        "id": "s5_balancing",
+        "kind": "equation",
+        "label": "The two balance points",
+        "marks": 2,
+        "mark_note": "ε₁ = Iρl₁ and ε₂ = Iρl₂",
+        "lines": [
+          "The secondary circuit holds the two cells ε₁",
+          "and ε₂ with the plug keys K₁ and K₂, joined",
+          "through a galvanometer G to the jockey J.",
+          "Close K and K₁ only. Slide the jockey along",
+          "AB until the galvanometer reads zero. Let the",
+          "balancing length from A be l₁. Then",
+          {
+            "text": "ε₁ = I ρ l₁    ... (1)",
+            "style": "eq"
+          },
+          "Now open K₁ and close K₂, without touching",
+          "the rheostat. The new balancing length is l₂,",
+          "so",
+          {
+            "text": "ε₂ = I ρ l₂    ... (2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. One key at a time, zero deflection each time, and one equation per reading.",
+        "why": "At the balance point the drop along the length l exactly opposes the cell, so no current passes through the galvanometer and the cell's own internal resistance carries no current. This is why the reading is the emf and not the terminal voltage.",
+        "common_mistakes": [
+          "Closing both keys together. The two cells must be balanced one at a time.",
+          "Calling the balanced value the terminal voltage. At zero galvanometer current it is the emf."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each cell in turn is balanced at zero deflection, giving epsilon one equals I rho l one and epsilon two equals I rho l two.",
+          "accept": [
+            "close K one get balance at l one",
+            "epsilon one equals I rho l one",
+            "epsilon two equals I rho l two"
+          ],
+          "reject": [
+            "epsilon one by epsilon two equals l one by l two"
+          ],
+          "heard_as": [
+            "balance point",
+            "zero deflection",
+            "l one and l two"
+          ]
+        },
+        "memory_tip": "One key, one balance, one equation. Then repeat for the other cell."
+      },
+      {
+        "id": "s6_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 2,
+        "mark_note": "ε₁/ε₂ = l₁/l₂",
+        "lines": [
+          "Dividing (1) by (2), the current I and the",
+          "resistance per unit length ρ cancel:",
+          {
+            "text": "ε₁/ε₂ = I ρ l₁ / I ρ l₂",
+            "style": "eq"
+          },
+          {
+            "text": "ε₁/ε₂ = l₁/l₂",
+            "style": "boxed"
+          },
+          "So the emfs of the two cells are compared by",
+          "measuring the two balancing lengths on the",
+          "metre scale. If one emf is known, the other",
+          "follows from this ratio."
+        ],
+        "margin_note": "Last two marks. Show I and ρ cancelling, then box the ratio.",
+        "why": "Neither the primary current nor the resistance of the wire needs to be measured, because both cancel in the division. The whole measurement is reduced to two lengths read off a metre scale, which is why the method is so accurate.",
+        "common_mistakes": [
+          "Inverting the ratio. The longer balancing length belongs to the larger emf.",
+          "Stopping at the two separate equations without dividing them."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing the two equations cancels I and rho and leaves epsilon one by epsilon two equal to l one by l two.",
+          "accept": [
+            "epsilon one by epsilon two equals l one by l two",
+            "I and rho cancel",
+            "ratio of emfs equals ratio of lengths"
+          ],
+          "reject": [
+            "epsilon one equals I rho l one"
+          ],
+          "heard_as": [
+            "e one by e two",
+            "l one by l two"
+          ]
+        },
+        "memory_tip": "Divide the two readings and everything but the lengths cancels."
+      }
+    ]
+  },
+  "insider_note": "The two marks in the last step are for showing I and ρ cancelling. An answer that stops at the two separate balance equations has not compared anything."
+}

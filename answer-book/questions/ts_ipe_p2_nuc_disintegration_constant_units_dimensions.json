@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_disintegration_constant_units_dimensions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the units and dimensions of disintegration constant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The unit",
+      "marks": 1
+    },
+    {
+      "label": "The dimensions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: from dN/dt = −λN, λ = −(dN/dt)/N. N is a pure count, so λ carries only 1/time. SI unit s⁻¹; dimensional formula M⁰L⁰T⁻¹."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_unit",
+        "kind": "equation",
+        "label": "The unit",
+        "marks": 1,
+        "mark_note": "SI unit s⁻¹",
+        "lines": [
+          "The radioactive decay law gives",
+          {
+            "text": "dN/dt = −λN   so   λ = −(dN/dt) / N",
+            "style": "eq"
+          },
+          "N is a pure number of nuclei, so λ has the",
+          "unit of 1 / time.",
+          {
+            "text": "SI unit of λ: s⁻¹ (per second)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. λ is a rate per nucleus, so its unit is per second.",
+        "why": "λ is the chance per second that one nucleus decays, so its unit has to be \"per second\" — the count of nuclei in the numerator and denominator cancels.",
+        "common_mistakes": [
+          "Writing the unit as seconds. λ is a rate, so it is per second.",
+          "Giving becquerel. Bq is the unit of activity A = λN, not of λ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the SI unit of the disintegration constant is per second, s⁻¹, because λ is (dN/dt) divided by N.",
+          "accept": [
+            "per second",
+            "s inverse",
+            "lambda is dN by dt over N"
+          ],
+          "reject": [
+            "T to the power minus one"
+          ],
+          "heard_as": [
+            "per second",
+            "lambda",
+            "disintegration constant"
+          ]
+        },
+        "memory_tip": "λ is a chance per second, so the unit is per second."
+      },
+      {
+        "id": "s2_dimensions",
+        "kind": "boxed_final",
+        "label": "The dimensions",
+        "marks": 1,
+        "mark_note": "M⁰L⁰T⁻¹",
+        "lines": [
+          "A number of nuclei has no dimensions, so λ",
+          "carries only the dimension of inverse time.",
+          {
+            "text": "Unit: s⁻¹  ·  Dimensions: M⁰L⁰T⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write the full formula M⁰L⁰T⁻¹, not just T⁻¹.",
+        "why": "Mass and length never enter the decay law, so both exponents are zero and only time appears, with exponent −1.",
+        "common_mistakes": [
+          "Writing T instead of T⁻¹.",
+          "Adding a mass or length dimension. Neither appears in dN/dt = −λN."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the dimensional formula of the disintegration constant is M⁰L⁰T⁻¹, that is inverse time.",
+          "accept": [
+            "T to the power minus one",
+            "M zero L zero T minus one",
+            "inverse time"
+          ],
+          "reject": [
+            "per second is the unit"
+          ],
+          "heard_as": [
+            "T inverse",
+            "dimensional formula",
+            "M zero L zero"
+          ]
+        },
+        "memory_tip": "Only a clock is involved, so only T appears — with a minus one."
+      }
+    ]
+  },
+  "insider_note": "Derive the unit from λ = −(dN/dt)/N in one line rather than quoting it; the derivation protects the mark if the unit is misremembered."
+}

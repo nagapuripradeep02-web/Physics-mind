@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_moderator_function",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the function of moderator in a nuclear reactor?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "It slows the neutrons",
+      "marks": 1
+    },
+    {
+      "label": "Why, and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. PRINTED SLIP CORRECTED. The book writes \"to thermal neutrons (0.025 MeV)\"; the thermal energy is 0.025 eV, a million times smaller. Hand-checked: fission neutrons carry about 2 MeV; kT at about 300 K is 0.025 eV, so the moderator has to remove nearly all the neutron energy. Heavy water and graphite are the moderators the book names, and both are correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slows",
+        "kind": "text",
+        "label": "It slows the neutrons",
+        "marks": 1,
+        "mark_note": "From about 2 MeV down to about 0.025 eV",
+        "lines": [
+          "The moderator slows down the fast neutrons",
+          "released in fission.",
+          "Their energy falls from about 2 MeV to the",
+          "thermal energy of about 0.025 eV."
+        ],
+        "margin_note": "First mark. Fast to thermal, with both energy values.",
+        "why": "A neutron loses most energy when it collides with a nucleus of nearly its own mass, which is why moderators are made of light nuclei such as hydrogen in heavy water or carbon in graphite.",
+        "common_mistakes": [
+          "Writing 0.025 MeV. The printed book has this slip; the value is 0.025 eV.",
+          "Saying the moderator absorbs neutrons. That is the control rod."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a moderator slows fast fission neutrons of about 2 MeV down to thermal neutrons of about 0.025 eV.",
+          "accept": [
+            "slows down the fast neutrons",
+            "from two MeV to thermal energy",
+            "makes them thermal neutrons"
+          ],
+          "reject": [
+            "heavy water and graphite"
+          ],
+          "heard_as": [
+            "moderator",
+            "slow down",
+            "thermal neutrons"
+          ]
+        },
+        "memory_tip": "Moderate means slow down, not absorb."
+      },
+      {
+        "id": "s2_why_examples",
+        "kind": "boxed_final",
+        "label": "Why, and examples",
+        "marks": 1,
+        "mark_note": "Slow neutrons cause fission in ²³⁵U; heavy water, graphite",
+        "lines": [
+          "Slow neutrons are captured by ²³⁵U far more",
+          "readily than fast ones, so the chain reaction",
+          "is sustained.",
+          {
+            "text": "Ex: heavy water and graphite.",
+            "style": "indent"
+          },
+          {
+            "text": "Moderator: fast ⇒ thermal neutrons",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The reason plus one named moderator.",
+        "why": "Without a moderator the fast neutrons would mostly leave the fuel without causing fission, and the reaction would stop.",
+        "common_mistakes": [
+          "Naming cadmium or boron. Those absorb neutrons and are control rods.",
+          "Giving the examples but not the reason."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That slow neutrons cause fission in uranium-235 so the chain reaction continues, and that heavy water and graphite are moderators.",
+          "accept": [
+            "slow neutrons cause fission in uranium two thirty five",
+            "heavy water and graphite",
+            "chain reaction is sustained"
+          ],
+          "reject": [
+            "slows the fast neutrons down"
+          ],
+          "heard_as": [
+            "heavy water",
+            "graphite",
+            "uranium two thirty five"
+          ]
+        },
+        "memory_tip": "Heavy water and graphite are light-nucleus brakes for neutrons."
+      }
+    ]
+  },
+  "insider_note": "The number to write is 0.025 eV, not 0.025 MeV. The book prints MeV, and the wrong unit is a common copy."
+}

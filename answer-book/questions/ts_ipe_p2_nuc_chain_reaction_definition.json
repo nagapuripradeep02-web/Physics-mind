@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_chain_reaction_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is chain reaction?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How it continues",
+      "marks": 1
+    },
+    {
+      "label": "The definition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: one fission of ²³⁵U releases on average about 2.5 neutrons (the book rounds this to \"nearly three\"), and each of these can cause a further fission, so the reaction sustains itself. The book gives the definition alone; the mechanism is added here because the word \"self-sustained\" needs it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mechanism",
+        "kind": "text",
+        "label": "How it continues",
+        "marks": 1,
+        "mark_note": "Each fission releases neutrons that cause more fissions",
+        "lines": [
+          "When a ²³⁵U nucleus undergoes fission, it",
+          "releases about three neutrons.",
+          "These neutrons cause fission in more ²³⁵U",
+          "nuclei, which release still more neutrons."
+        ],
+        "margin_note": "First mark. The neutrons from one fission start the next fissions.",
+        "why": "Fission produces the very particle that triggers fission, so the process feeds itself — that is the whole idea behind the word \"chain\".",
+        "common_mistakes": [
+          "Saying the energy causes the next fission. It is the neutrons.",
+          "Naming no fuel. The mark scheme expects ²³⁵U or uranium."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one fission of uranium-235 releases about three neutrons, which cause fission in further nuclei.",
+          "accept": [
+            "about three neutrons are released",
+            "those neutrons cause more fissions",
+            "uranium two thirty five splits and gives neutrons"
+          ],
+          "reject": [
+            "self sustained fission reaction"
+          ],
+          "heard_as": [
+            "three neutrons",
+            "fission",
+            "uranium"
+          ]
+        },
+        "memory_tip": "Fission needs a neutron and makes three — that is why it keeps itself alive."
+      },
+      {
+        "id": "s2_definition",
+        "kind": "boxed_final",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Self-sustained fission reaction releasing large energy",
+        "lines": [
+          "A self-sustained nuclear fission reaction of",
+          "this kind, releasing a large amount of energy,",
+          "is called a chain reaction.",
+          {
+            "text": "Chain reaction: fission that sustains itself",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The phrase \"self-sustained fission reaction\" is the one the examiner looks for.",
+        "why": "The definition names three things at once: the reaction is fission, it sustains itself through its own neutrons, and it releases a large amount of energy.",
+        "common_mistakes": [
+          "Calling it a fusion reaction. A chain reaction is a fission process.",
+          "Leaving out \"self-sustained\". That word is the definition."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a chain reaction is a self-sustained nuclear fission reaction that releases a large amount of energy.",
+          "accept": [
+            "self sustained fission reaction",
+            "releases a large amount of energy",
+            "the reaction continues on its own"
+          ],
+          "reject": [
+            "three neutrons are produced"
+          ],
+          "heard_as": [
+            "chain reaction",
+            "self sustained",
+            "fission"
+          ]
+        },
+        "memory_tip": "Self-sustained is the key word: no outside supply of neutrons is needed."
+      }
+    ]
+  },
+  "insider_note": "Two marks: one for the neutrons that carry the reaction forward, one for the phrase \"self-sustained fission reaction\"."
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_paschen_series_wavelength",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The wavelengths of some of the spectral lines obtained in hydrogen spectrum are 1216 Å, 6463 Å and 9549 Å. Which one of these wavelengths belongs to the Paschen series?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Sort the three wavelengths by region",
+      "marks": 1
+    },
+    {
+      "label": "9549 Å is the Paschen line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. SOURCE DEFECT: the book prints this question TWICE, word for word and with the same answer, as VSAQ 9 (printed p47) and VSAQ 10 (printed p48). It is one question, so it is authored ONCE and carries the FIRST occurrence's reference, vsaq9; the vsaq10 reference is deliberately left out of the unit fragment because merge_p2_units.mjs rejects the same question_id listed twice. The book writes the angstrom as \"A°\"; it is written Å here. Physics hand-checked with 1/λ = R(1/n₁² − 1/n₂²), R = 1.097 × 10⁷ m⁻¹: 1216 Å is Lyman-α (n₂ = 2 → n₁ = 1, ultraviolet); 6463 Å lies in the visible band and belongs to the Balmer series; 9549 Å is infrared and is the n₂ = 8 → n₁ = 3 line of the Paschen series (the Paschen series runs from 18751 Å down to its limit at 8204 Å)."
+  },
+  "recall_prompt": "Say which region each of the three wavelengths falls in, then name the Paschen one.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atoms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_regions",
+        "kind": "text",
+        "label": "Sort them by region",
+        "marks": 1,
+        "mark_note": "UV, visible, infrared",
+        "lines": [
+          "1216 Å is ultraviolet — a Lyman line.",
+          "6463 Å is in the visible band — a Balmer line.",
+          "9549 Å is longer than 7000 Å, so it is",
+          "infrared."
+        ],
+        "margin_note": "First mark. Place all three, not just the answer — that is what shows the reasoning.",
+        "why": "Each series sits in one region: Lyman is ultraviolet, Balmer is visible, Paschen is infrared. Placing the three wavelengths by region identifies the series at once.",
+        "common_mistakes": [
+          "Calling 6463 Å ultraviolet. The visible band is 4000 Å to 7000 Å.",
+          "Placing only the answer and leaving the other two out."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1216 Å is ultraviolet, 6463 Å is visible and 9549 Å is infrared.",
+          "accept": [
+            "1216 is ultraviolet",
+            "6463 is visible, Balmer",
+            "9549 is infrared"
+          ],
+          "reject": [
+            "so it belongs to the Paschen series"
+          ],
+          "heard_as": [
+            "1216 angstrom",
+            "6463 angstrom",
+            "9549 angstrom"
+          ]
+        },
+        "memory_tip": "Three wavelengths, three regions, in order: ultraviolet, visible, infrared."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The Paschen line",
+        "marks": 1,
+        "mark_note": "9549 Å",
+        "lines": [
+          "The Paschen series is emitted when the electron",
+          "moves to the third orbit (n₁ = 3), and it lies",
+          "in the infrared region.",
+          "So the infrared wavelength is the Paschen line.",
+          {
+            "text": "9549 Å belongs to the Paschen series",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name n₁ = 3 and give the wavelength.",
+        "why": "Paschen transitions end on n₁ = 3, where the energy gaps are small, so the photons are low in energy and long in wavelength — the infrared.",
+        "common_mistakes": [
+          "Answering 6463 Å. That is a Balmer line in the visible band.",
+          "Writing n₁ = 2 for Paschen. That is Balmer; Paschen ends on n₁ = 3."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 9549 Å is the Paschen line, because Paschen ends on n₁ = 3 and lies in the infrared.",
+          "accept": [
+            "nine five four nine angstrom",
+            "Paschen ends on the third orbit",
+            "Paschen is infrared"
+          ],
+          "reject": [
+            "1216 is ultraviolet"
+          ],
+          "heard_as": [
+            "9549",
+            "Paschen",
+            "third orbit"
+          ]
+        },
+        "memory_tip": "Paschen ends on 3, small gaps, long waves — the longest of the three given."
+      }
+    ]
+  },
+  "insider_note": "The book prints this question twice, as VSAQ 9 and again as VSAQ 10 with the same answer — it is one question, and the answer is 9549 Å."
+}

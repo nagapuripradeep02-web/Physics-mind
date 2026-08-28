@@ -1,0 +1,248 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_colour_code_red_red_red_silver",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The sequence of bands marked on a carbon resistor are Red, Red, Red, Silver. What is its resistance and tolerance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The resistance",
+      "marks": 1
+    },
+    {
+      "label": "The tolerance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: Red = 2, so digits 2 and 2 with multiplier 10² give 22 × 10² Ω = 2.2 × 10³ Ω = 2.2 kΩ; Silver as the fourth band = 10% tolerance. Matches the book's printed 2.2 × 10³ Ω ± 10%."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The four bands",
+        "marks": 0,
+        "figure": {
+          "id": "resistor_bands_rrr_silver",
+          "width": 340,
+          "height": 140,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "body",
+              "d": "M 70 32 L 270 32 L 270 90 L 70 90 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "leads",
+              "d": "M 20 61 L 70 61 M 270 61 L 320 61",
+              "ms": 1430
+            },
+            {
+              "type": "stroke",
+              "id": "bands",
+              "d": "M 100 32 L 100 90 M 130 32 L 130 90 M 160 32 L 160 90 M 240 32 L 240 90",
+              "ms": 3310
+            },
+            {
+              "type": "label",
+              "id": "lbl_d1",
+              "x": 92,
+              "y": 24,
+              "text": "2",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d2",
+              "x": 124,
+              "y": 24,
+              "text": "2",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_mult",
+              "x": 148,
+              "y": 24,
+              "text": "×10²",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_tol",
+              "x": 226,
+              "y": 24,
+              "text": "10%",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_red1",
+              "x": 80,
+              "y": 112,
+              "text": "Red",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_red2",
+              "x": 118,
+              "y": 112,
+              "text": "Red",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_red3",
+              "x": 152,
+              "y": 112,
+              "text": "Red",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_silver",
+              "x": 218,
+              "y": 112,
+              "text": "Silver",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "The question does not ask for a diagram, so this sketch earns no mark — but it keeps the band order straight.",
+        "why": "The band order is the whole problem: first two bands are digits, third is the multiplier, fourth is the tolerance. Sketching them in order prevents swapping digit and multiplier.",
+        "common_mistakes": [
+          "Reading the third band as a digit instead of the power of ten."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the four bands in order mean digit, digit, multiplier, tolerance.",
+          "accept": [
+            "digit digit multiplier tolerance",
+            "sketch the bands in order",
+            "first two digits then power of ten"
+          ],
+          "reject": [
+            "silver means ten percent"
+          ],
+          "heard_as": [
+            "bands",
+            "multiplier"
+          ]
+        },
+        "memory_tip": "Band roles in order: digit, digit, multiplier, tolerance."
+      },
+      {
+        "id": "s2_resistance",
+        "kind": "equation",
+        "label": "The resistance",
+        "marks": 1,
+        "mark_note": "22 × 10² Ω",
+        "lines": [
+          "Red stands for the number 2.",
+          "First two bands: digits 2 and 2.",
+          "Third band (Red): multiplier 10².",
+          {
+            "text": "Resistance = 22 × 10² Ω = 2.2 × 10³ Ω",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Digits 22 times the multiplier 10².",
+        "why": "The colour code packs a number into paint: two digits side by side make 22, and the third band says how many zeros follow.",
+        "common_mistakes": [
+          "Multiplying 2 × 2 × 100 instead of placing the digits side by side as 22.",
+          "Reading the third Red as digit 2, giving 222."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That red is 2, so the value is 22 times 10 squared ohm, which is 2.2 kilo ohm.",
+          "accept": [
+            "22 into 10 power 2",
+            "2.2 kilo ohm",
+            "red red red gives 2200 ohm"
+          ],
+          "reject": [
+            "tolerance is 10 percent"
+          ],
+          "heard_as": [
+            "red",
+            "10 power 2",
+            "kilo ohm"
+          ]
+        },
+        "memory_tip": "Red = 2 everywhere: digit 2, digit 2, then two zeros."
+      },
+      {
+        "id": "s3_tolerance",
+        "kind": "boxed_final",
+        "label": "The tolerance",
+        "marks": 1,
+        "mark_note": "Silver: 10%",
+        "lines": [
+          "The fourth band is Silver, and Silver",
+          "means a tolerance of 10%.",
+          {
+            "text": "R = 2.2 × 10³ Ω ± 10%",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Silver 10%, Gold 5%, no band 20%.",
+        "why": "The tolerance band states how far the true resistance may sit from the marked value — silver promises within ten percent either way.",
+        "common_mistakes": [
+          "Swapping Silver and Gold: Gold is 5%, Silver is 10%."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the silver fourth band means the tolerance is ten percent.",
+          "accept": [
+            "silver means ten percent",
+            "tolerance 10 percent",
+            "plus or minus ten percent"
+          ],
+          "reject": [
+            "22 into 10 power 2"
+          ],
+          "heard_as": [
+            "silver",
+            "tolerance",
+            "ten percent"
+          ]
+        },
+        "memory_tip": "Gold 5, Silver 10, no band 20 — tolerance doubles as the metal gets cheaper."
+      }
+    ]
+  },
+  "insider_note": "Both marks sit in the last line: the value 2.2 × 10³ Ω AND the ± 10% must appear together."
+}

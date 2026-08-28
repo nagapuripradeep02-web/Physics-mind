@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_neutrons_best_projectiles",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Neutrons are the best projectiles to produce nuclear reactions. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The neutron carries no charge",
+      "marks": 1
+    },
+    {
+      "label": "Charged projectiles are repelled",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked against the Coulomb barrier: a nucleus of charge Ze repels a proton or an α-particle, so a charged projectile needs several MeV to reach the nucleus, while a neutron of a fraction of an eV still reaches it. The book gives the same reason in shorter words."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_no_charge",
+        "kind": "text",
+        "label": "The neutron carries no charge",
+        "marks": 1,
+        "mark_note": "Neutral, so no electric force from the nucleus",
+        "lines": [
+          "A neutron is electrically neutral.",
+          "The nucleus is positively charged, but it",
+          "exerts no electric force on a neutral",
+          "particle."
+        ],
+        "margin_note": "First mark. State the neutral charge and the absence of an electric force.",
+        "why": "The Coulomb force acts only between charges. With zero charge the neutron meets no barrier at all on its way in.",
+        "common_mistakes": [
+          "Saying the neutron is small. Size is not the reason; charge is.",
+          "Saying the neutron is heavy. Its mass is close to the proton mass."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a neutron has no charge, so the positively charged nucleus exerts no electric force on it.",
+          "accept": [
+            "neutron is uncharged",
+            "no electric force from the nucleus",
+            "neutral particle"
+          ],
+          "reject": [
+            "alpha particle is repelled"
+          ],
+          "heard_as": [
+            "neutral",
+            "no charge",
+            "nucleus"
+          ]
+        },
+        "memory_tip": "No charge means no Coulomb barrier."
+      },
+      {
+        "id": "s2_charged_repelled",
+        "kind": "boxed_final",
+        "label": "Charged projectiles are repelled",
+        "marks": 1,
+        "mark_note": "Protons and α-particles need high energy",
+        "lines": [
+          "A proton or an α-particle is repelled by the",
+          "nucleus and needs a high energy to come",
+          "close enough to react.",
+          "Even a slow neutron reaches the nucleus.",
+          {
+            "text": "Neutrons are the best projectiles.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Contrast the charged projectile with the neutron.",
+        "why": "A charged projectile has to be accelerated to several MeV before it can cross the Coulomb barrier, so most of the energy is spent on the approach rather than on the reaction. A neutron spends none.",
+        "common_mistakes": [
+          "Leaving out the comparison. The word \"best\" needs something to be better than.",
+          "Saying charged particles cannot cause nuclear reactions at all. They can, at high energy."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That protons and alpha particles are repelled by the nucleus and need high energy, while even a slow neutron reaches it, so neutrons are the best projectiles.",
+          "accept": [
+            "protons and alpha particles are repelled",
+            "even a slow neutron reaches the nucleus",
+            "charged particles need high energy"
+          ],
+          "reject": [
+            "neutron is uncharged"
+          ],
+          "heard_as": [
+            "alpha particle",
+            "repelled",
+            "slow neutron"
+          ]
+        },
+        "memory_tip": "Charged bullets must climb a hill; the neutron walks in on level ground."
+      }
+    ]
+  },
+  "insider_note": "The mark is for the REASON, not the statement. Name the electric repulsion that a neutron does not meet."
+}

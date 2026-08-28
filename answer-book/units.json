@@ -9140,6 +9140,221 @@
       ]
     },
     {
+      "number": 6,
+      "name": "Current Electricity",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Define mean free path of electron in a conductor.",
+          "question_id": "ts_ipe_p2_cur_mean_free_path"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "State Ohm's law and write its mathematical form.",
+          "question_id": "ts_ipe_p2_cur_ohms_law_statement"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Define resistivity (or) specific resistance.",
+          "question_id": "ts_ipe_p2_cur_resistivity_define"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Define temperature coefficient of resistance.",
+          "question_id": "ts_ipe_p2_cur_temp_coefficient_resistance"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Why is manganin used for making standard resistors?",
+          "question_id": "ts_ipe_p2_cur_manganin_standard_resistors"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Why are household appliances connected in parallel?",
+          "question_id": "ts_ipe_p2_cur_household_parallel"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "The sequence of bands marked on a carbon resistor are Red, Red, Red, Silver. What is its resistance and tolerance?",
+          "question_id": "ts_ipe_p2_cur_colour_code_red_red_red_silver"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Write the colour code of a carbon resistor of resistance 23 kilo ohms.",
+          "question_id": "ts_ipe_p2_cur_colour_code_23_kilo_ohm"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What is the colour code for a resistor of resistance 350 MΩ with 5% tolerance?",
+          "question_id": "ts_ipe_p2_cur_colour_code_350_mega_ohm"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Two wires of equal length, made of copper and manganin, have the same resistance. Which wire is thicker?",
+          "question_id": "ts_ipe_p2_cur_copper_manganin_thicker"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "A light bulb is rated at 100 W for a 200 V supply. Find the resistance of the bulb.",
+          "question_id": "ts_ipe_p2_cur_bulb_100w_200v_resistance"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "The balance point in a meter bridge experiment is obtained at 30 cm from the left. If the right gap contains 3.5 Ω, what is the resistance in the left gap?",
+          "question_id": "ts_ipe_p2_cur_meter_bridge_left_gap"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "If the balancing point in a meter bridge from the left is 60 cm, compare the resistances in the left and right gaps of the meter bridge.",
+          "question_id": "ts_ipe_p2_cur_meter_bridge_60cm_ratio"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "A potentiometer wire is 5 m long and a potential difference of 6 V is maintained between its ends. Find the emf of a cell which balances against a length of 180 cm of the potentiometer wire.",
+          "question_id": "ts_ipe_p2_cur_potentiometer_emf_180cm"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "In a potentiometer arrangement, a cell of emf 1.25 V gives a balance point at 35.0 cm length of the wire. If the cell is replaced by another cell and the balance point shifts to 63.0 cm. What is the emf of the second cell?",
+          "question_id": "ts_ipe_p2_cur_potentiometer_second_cell_emf"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "A battery of emf 10 V and internal resistance 3 Ω is connected to a resistor. If the current in the circuit is 0.5 A, what is the resistance of the resistor? What is the terminal voltage of the battery when the circuit is closed?",
+          "question_id": "ts_ipe_p2_cur_battery_internal_resistance_terminal_voltage"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Three identical resistors are connected in parallel and total resistance of the circuit is R/3. Find the value of each resistance.",
+          "question_id": "ts_ipe_p2_cur_three_identical_resistors_parallel"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "A wire of resistance '4R' is bent in the form of a circle. What is the effective resistance between the ends of the diameter?",
+          "question_id": "ts_ipe_p2_cur_wire_bent_circle_diameter"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Under what conditions is the current through the mixed grouping of cells maximum?",
+          "question_id": "ts_ipe_p2_cur_mixed_grouping_maximum_current"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Why are household appliances connected in parallel?",
+          "question_id": "ts_ipe_p2_cur_household_parallel_independent_control"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Write the colour code of a carbon resistor of resistance 350 mΩ ± 10%.",
+          "question_id": "ts_ipe_p2_cur_colour_code_350_milli_ohm"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "If a wire is stretched to double its original length without loss of mass, how will the resistivity of the wire be influenced?",
+          "question_id": "ts_ipe_p2_cur_stretched_wire_resistivity"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "State Kirchhoff's laws for an electrical network. Using these laws deduce the condition for balancing in a Wheatstone bridge?",
+          "question_id": "ts_ipe_p2_cur_kirchhoff_laws_wheatstone_bridge"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "State the working principle of potentiometer explain with the help of circuit diagram. How the emf of two primary cells are compared by using the potentiometer.",
+          "question_id": "ts_ipe_p2_cur_potentiometer_compare_emfs"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "State the working principle of potentiometer explain with the help of circuit diagram. How the potentiometer is used, to determine the internal resistance of the primary cell.",
+          "question_id": "ts_ipe_p2_cur_potentiometer_internal_resistance"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Three resistors each of resistance 10 Ω are connected in parallel. Calculate the effective resistance of the combination.",
+          "question_id": "ts_ipe_p2_cur_three_ten_ohm_parallel"
+        }
+      ]
+    },
+    {
       "number": 8,
       "name": "Magnetism and Matter",
       "subject": "physics_2",
@@ -9635,6 +9850,364 @@
           "stars": 0,
           "text": "Describe an experiment to study the effect of frequency of incident radiation on 'stopping potential'.",
           "question_id": "ts_ipe_p2_dnr_frequency_stopping_potential"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "name": "Atoms",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Name a physical quantity whose dimensions are the same as those of angular momentum?",
+          "question_id": "ts_ipe_p2_atm_angular_momentum_dimensions"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Among alpha, beta and gamma radiation which get affected by the electric field?",
+          "question_id": "ts_ipe_p2_atm_radiation_electric_field"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What do you understand by the phrase \"ground state atom\"?",
+          "question_id": "ts_ipe_p2_atm_ground_state_atom"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "How is impact parameter related to angle of scattering?",
+          "question_id": "ts_ipe_p2_atm_impact_parameter_scattering"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is the difference between α-particle and helium atom?",
+          "question_id": "ts_ipe_p2_atm_alpha_particle_vs_helium_atom"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Give two drawbacks of Rutherford's atomic model?",
+          "question_id": "ts_ipe_p2_atm_rutherford_two_drawbacks"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What is the angular momentum of electron in the second orbit of Bohr's model of hydrogen atom?",
+          "question_id": "ts_ipe_p2_atm_angular_momentum_second_orbit"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "The Lyman series of hydrogen spectrum lies in the ultraviolet region. Why?",
+          "question_id": "ts_ipe_p2_atm_lyman_series_ultraviolet"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "The wavelengths of some of the spectral lines obtained in hydrogen spectrum are 1216 Å, 6463 Å and 9549 Å. Which one of these wavelengths belongs to the Paschen series?",
+          "question_id": "ts_ipe_p2_atm_paschen_series_wavelength"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What are the limitations of Bohr's theory of hydrogen atom?",
+          "question_id": "ts_ipe_p2_atm_bohr_theory_limitations"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Discuss Bohr's theory of the spectrum of hydrogen atom?",
+          "question_id": "ts_ipe_p2_atm_bohr_hydrogen_spectrum"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the impact parameter?",
+          "question_id": "ts_ipe_p2_atm_impact_parameter_explain"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "State the basic postulates of Bohr's theory of atomic spectra. Hence obtain an expression for the radius of orbit and the energy of orbital electron in a hydrogen atom?",
+          "question_id": "ts_ipe_p2_atm_bohr_postulates_radius_energy"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Derive an expression for potential and kinetic energy of an electron in any orbit of a hydrogen atom according to Bohr's atomic model. How does P.E change with increasing n?",
+          "question_id": "ts_ipe_p2_atm_kinetic_potential_energy_orbit"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Explain the distance of closest approach and impact parameter.",
+          "question_id": "ts_ipe_p2_atm_closest_approach_impact_parameter"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Give a brief account of Thomson model of atom. What are its limitations?",
+          "question_id": "ts_ipe_p2_atm_thomson_model_limitations"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Describe Rutherford atom model. What are the drawbacks of this model?",
+          "question_id": "ts_ipe_p2_atm_rutherford_model_describe"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "name": "Nuclei",
+      "subject": "physics_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What are isotopes and isobars?",
+          "question_id": "ts_ipe_p2_nuc_isotopes_isobars"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "What are isotones and isomers?",
+          "question_id": "ts_ipe_p2_nuc_isotones_isomers"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What is a.m.u? What is its equivalent energy?",
+          "question_id": "ts_ipe_p2_nuc_amu_equivalent_energy"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What will be the ratio of the radii of two nuclei of mass numbers A₁ and A₂?",
+          "question_id": "ts_ipe_p2_nuc_ratio_of_nuclear_radii"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What are the units and dimensions of disintegration constant?",
+          "question_id": "ts_ipe_p2_nuc_disintegration_constant_units_dimensions"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Neutrons are the best projectiles to produce nuclear reactions. Why?",
+          "question_id": "ts_ipe_p2_nuc_neutrons_best_projectiles"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Neutrons cannot produce ionization. Why?",
+          "question_id": "ts_ipe_p2_nuc_neutrons_cannot_ionize"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What are thermal neutrons? What is their importance?",
+          "question_id": "ts_ipe_p2_nuc_thermal_neutrons"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What is the value of neutron multiplication factor in a controlled chain reaction and in an uncontrolled chain reaction?",
+          "question_id": "ts_ipe_p2_nuc_multiplication_factor_controlled_uncontrolled"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "What is the role of controlling rods in a nuclear reactor?",
+          "question_id": "ts_ipe_p2_nuc_control_rods_role"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define Becquerel and Curie.",
+          "question_id": "ts_ipe_p2_nuc_becquerel_and_curie"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What is chain reaction?",
+          "question_id": "ts_ipe_p2_nuc_chain_reaction_definition"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "What is the function of moderator in a nuclear reactor?",
+          "question_id": "ts_ipe_p2_nuc_moderator_function"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "What are delayed neutrons?",
+          "question_id": "ts_ipe_p2_nuc_delayed_neutrons"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Why are nuclear fusion reactions called thermo nuclear reactions?",
+          "question_id": "ts_ipe_p2_nuc_thermonuclear_reactions"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Write a short note on the discovery of neutron?",
+          "question_id": "ts_ipe_p2_nuc_discovery_of_neutron"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "What are the properties of a neutron?",
+          "question_id": "ts_ipe_p2_nuc_properties_of_neutron"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What are the nuclear forces? Write their properties.",
+          "question_id": "ts_ipe_p2_nuc_nuclear_forces_properties"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Define half life period and decay constant for a radioactive substance. Deduce the relation between them.",
+          "question_id": "ts_ipe_p2_nuc_half_life_and_decay_constant"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Explain the terms 'chain reaction' and 'multiplication factor'. How a chain reaction is sustained?",
+          "question_id": "ts_ipe_p2_nuc_chain_reaction_and_multiplication_factor"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Distinguish between nuclear fission and nuclear fusion?",
+          "question_id": "ts_ipe_p2_nuc_fission_vs_fusion"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What is radioactivity? State the law of radioactive decay. Show that radioactive decay is exponential in nature.",
+          "question_id": "ts_ipe_p2_nuc_radioactive_decay_law_exponential"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Explain the principle and working of a nuclear reactor with the help of a labelled diagram.",
+          "question_id": "ts_ipe_p2_nuc_nuclear_reactor_principle_working"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the source of stellar energy. Explain the carbon-nitrogen cycle, proton-proton cycle occurring in stars.",
+          "question_id": "ts_ipe_p2_nuc_stellar_energy_carbon_nitrogen_proton_proton"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "If one microgram of ₉₂U²³⁵ is completely destroyed in an atom bomb, how much energy will be released?",
+          "question_id": "ts_ipe_p2_nuc_energy_from_one_microgram_u235"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "The half life of radium is 1600 years. How much time does 1 g of radium take to reduce to 0.125 g?",
+          "question_id": "ts_ipe_p2_nuc_radium_half_life_1600_years"
         }
       ]
     },

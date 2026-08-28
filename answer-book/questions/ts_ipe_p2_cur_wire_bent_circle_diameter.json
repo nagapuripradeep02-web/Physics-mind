@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_wire_bent_circle_diameter",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A wire of resistance '4R' is bent in the form of a circle. What is the effective resistance between the ends of the diameter?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two halves",
+      "marks": 1
+    },
+    {
+      "label": "The parallel combination",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription: the book (p28, VSAQ 18) puts a space before the question mark; it is dropped. Hand-checked: each semicircle is 4R/2 = 2R and the two are in parallel, so 1/Rₚ = 1/2R + 1/2R = 1/R and Rₚ = R — the same answer the book prints."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_halves",
+        "kind": "equation",
+        "label": "The two halves",
+        "marks": 1,
+        "mark_note": "each half = 2R",
+        "lines": [
+          "The two ends of a diameter divide the circle",
+          "into two equal halves.",
+          "Resistance is proportional to length, so each",
+          "half carries half of the total 4R:",
+          {
+            "text": "R₁ = R₂ = 4R/2 = 2R",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Both halves are equal, so each is 2R.",
+        "why": "The wire has uniform thickness and material, so R = ρl/A makes resistance depend only on length. Half the wire is half the length, and so half the resistance.",
+        "common_mistakes": [
+          "Taking each half as 4R. The 4R belongs to the whole wire.",
+          "Taking the two halves as unequal. A diameter cuts the circle into equal arcs."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the diameter splits the wire into two equal halves of 2R each.",
+          "accept": [
+            "each half is 2R",
+            "four R by two",
+            "two equal semicircles"
+          ],
+          "reject": [
+            "answer is R"
+          ],
+          "heard_as": [
+            "two R",
+            "half the wire"
+          ]
+        },
+        "memory_tip": "Half the length is half the resistance: 4R becomes 2R and 2R."
+      },
+      {
+        "id": "s2_parallel",
+        "kind": "boxed_final",
+        "label": "The parallel combination",
+        "marks": 1,
+        "mark_note": "Rₚ = R",
+        "lines": [
+          "Both halves join the same two ends, so they",
+          "are in parallel:",
+          {
+            "text": "1/Rₚ = 1/2R + 1/2R = 2/2R = 1/R",
+            "style": "eq"
+          },
+          {
+            "text": "Rₚ = R",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Same two end points means parallel, not series.",
+        "why": "Both arcs start at one end of the diameter and finish at the other, so the same potential difference sits across each of them. That is exactly what parallel means.",
+        "common_mistakes": [
+          "Adding 2R + 2R = 4R. The halves are in parallel, not in series.",
+          "Stopping at 1/Rₚ = 1/R without writing Rₚ = R."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two 2R halves are in parallel and give an effective resistance R.",
+          "accept": [
+            "two R parallel two R",
+            "effective resistance is R",
+            "one by two R plus one by two R"
+          ],
+          "reject": [
+            "each half is two R"
+          ],
+          "heard_as": [
+            "parallel",
+            "R"
+          ]
+        },
+        "memory_tip": "Two equal resistances in parallel give half of one: 2R and 2R give R."
+      }
+    ]
+  },
+  "insider_note": "The mark is lost by treating the two halves as a series pair. They share both end points, so they are in parallel."
+}
