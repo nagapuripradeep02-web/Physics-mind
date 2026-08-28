@@ -76360,6 +76360,69 @@ export const FIELD_3D_RENDERER_CODE = `
         return { at: at, dur: Math.max(1, dur) };
     }
 
+    // ── SR-C3 — THE THREE REVEAL BEATS THE FIRST PASS DID NOT CARRY: the disc /
+    //    ring STACK, the FORMULA surface, and the individual HUD READOUTS.
+    //
+    //    WHY THEY EXIST. Rule 32a says the CAUSE moves visibly first and the
+    //    EFFECT answers after a readable beat. This scenario was shipping the
+    //    effect first, and a concept measured it: STATE_7 drew all 120 rings of
+    //    the "about y" bowl AND printed "about y: 80.4248" at t = 0 — before the
+    //    region had turned one degree (its theta_ramp starts at 3000 ms) — on the
+    //    one state whose whole lesson is that the OTHER axis makes a DIFFERENT
+    //    solid. The answer was on screen ahead of the question. STATE_6 showed the
+    //    CORRECT ring formula beside the WRONG solid and its wrong number for the
+    //    entire 9.5 s misconception window, so the eye read a formula and a value
+    //    that contradict each other.
+    //
+    //    WHY THEY ARE GATED ON PRESENCE AND NOT ON A DEFAULT TIME — the property
+    //    this design exists for, stated so it is never traded away later. An
+    //    ABSENT field is today\u0027s behaviour BYTE FOR BYTE: a stack with no
+    //    stack_at_ms is placed from frame 0, a state with no formula_at_ms shows
+    //    its formula at apply, an empty readout_at_ms changes nothing. A default
+    //    reveal time would silently re-time every already-measured state of every
+    //    concept that ships this scenario, which is the same blast radius a new
+    //    mechanism would have had. srRevealHas is what makes "authored" and "not
+    //    authored" two different code PATHS rather than two values of one number,
+    //    and check:solid-of-revolution section 17 asserts that identity directly.
+    //
+    //    They ride the EXISTING contract rather than adding a second one: the same
+    //    sr.reveal block, the same srRevealWin window, the same cueTriggerMs
+    //    binding (sr_stack / sr_formula / sr_readout_<key>) that curve and region
+    //    already use, so a pacing trim retimes the picture with the narration
+    //    instead of desyncing from it.
+    function srRevealHas(sr, key) {
+        var rv = sr.reveal;
+        return !!rv && rv[key + "_at_ms"] != null;
+    }
+    // The stack\u0027s own beat: whether the pools may be PLACED this frame, and the
+    // opacity multiplier of the optional fade. CLOSED FORM on state-local ms
+    // (SR-D2) — nothing accumulates and nothing latches, so a SET_TIME_FREEZE
+    // re-pin to the same at_ms redraws the identical opacity.
+    //   A stack_ms of 1 (srRevealWin\u0027s floor, i.e. nothing authored) is an INSTANT
+    //   appearance rather than a one-millisecond fade, so the frame pinned exactly
+    //   AT stack_at_ms shows the stack rather than a fully transparent one.
+    function srStackReveal(sr, tMs) {
+        if (!srRevealHas(sr, "stack")) return { show: true, fade: 1 };
+        var w = srRevealWin(sr, "stack", 0, 1);
+        if (tMs < w.at) return { show: false, fade: 0 };
+        return { show: true, fade: (w.dur <= 1) ? 1 : srClamp01((tMs - w.at) / w.dur) };
+    }
+    // The fade is applied to the POOL MATERIALS, which the glow pass deliberately
+    // does not own: all three pools are brightenOnly (a volume you must see
+    // through), so applyGlowEmphasis never writes their opacity and there is no
+    // second writer to fight. It is written on EVERY frame, at the pool\u0027s own
+    // authored base when nothing is gating, so there is no one-way dim with no
+    // restore branch (the dim-apparatus scar) — the value simply IS the base again
+    // the moment the state changes.
+    function srSetStackOpacity(f) {
+        var pools = [srDiscPool, srRingOutPool, srRingInPool], i, p;
+        for (i = 0; i < pools.length; i++) {
+            p = pools[i];
+            if (!p || !p.material) continue;
+            p.material.opacity = p.baseOpacity * srClamp01(f);
+        }
+    }
+
     // ── BUILD ──────────────────────────────────────────────────────────────
     function srDisposeGroup(g) {
         if (!g) return;
@@ -76540,7 +76603,10 @@ export const FIELD_3D_RENDERER_CODE = `
             grp.add(m);
             arr.push(m);
         }
-        return { group: grp, meshes: arr };
+        // the material and its AUTHORED base opacity travel with the pool, because
+        // the stack reveal fades the pool as a whole (SR-C3) and a fade that had to
+        // re-derive the base from a mesh would drift the moment anything else wrote it.
+        return { group: grp, meshes: arr, material: mat, baseOpacity: opacity };
     }
     // Place the drawn subset. The slab THICKNESS is always the TRUE du, never a
     // thickness scaled up to stay visible: a disc drawn wider than its own slab is
@@ -77090,7 +77156,19 @@ export const FIELD_3D_RENDERER_CODE = `
             };
             SR_PUB.slice_x = xc;
         }
-        if (res && kind === "ring" && sr.mode !== "slice") {
+        // ── SR-C3 — THE STACK\u0027S REVEAL BEAT. What is gated here is the
+        //   PLACEMENT, never the summation: srDiscSum above already ran and
+        //   already published the total, because the total is a NUMBER and this
+        //   beat is about a PICTURE (SR-D3 is untouched — there is still exactly
+        //   one summation, called once per frame). n_drawn is republished as 0
+        //   while the pools are hidden, so the SR-D5 cap line can never say discs
+        //   are drawn when none are; it reads "0 of n", which is the truth.
+        var srStk = srStackReveal(sr, tMs);
+        srSetStackOpacity(srStk.fade);
+        if (!srStk.show && SR_PUB.n_drawn != null) SR_PUB.n_drawn = 0;
+        if (!srStk.show) {
+            srHideDiscs(srDiscPool); srHideDiscs(srRingOutPool); srHideDiscs(srRingInPool);
+        } else if (res && kind === "ring" && sr.mode !== "slice") {
             srHideDiscs(srDiscPool);
             srPlaceDiscs(srRingOutPool, res, kind, "outer", srShiftX);
             srPlaceDiscs(srRingInPool, res, kind, "inner", srShiftX);
@@ -77146,8 +77224,21 @@ export const FIELD_3D_RENDERER_CODE = `
             } else { window.PM_srCamPose = null; }
         } else { window.PM_srCamPose = null; }
 
+        // ── SR-C3 — THE FORMULA SURFACE\u0027S OWN BEAT. It is written on the same
+        //   style.display channel applySolidOfRevolutionState already uses, i.e.
+        //   the DISPLAY pass and nothing else, so Rule 39f\u0027s .pmWgHide /
+        //   .pmWgShow !important classes still beat it and the teacher\u0027s gear
+        //   toggle stays authoritative over the author\u0027s timing.
+        if (srRevealHas(sr, "formula")) {
+            var fmlEl = document.getElementById("sr_formula");
+            if (fmlEl) {
+                var wf = srRevealWin(sr, "formula", 0, 1);
+                fmlEl.style.display = (stateDef.formula_overlay && tMs >= wf.at) ? "block" : "none";
+            }
+        }
+
         srPlaceTickNodes((sr.frame && sr.frame.show_frame === false) ? false : true);
-        srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax);
+        srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax, tMs);
     }
 
     // The slice the state labels: the live control if a teacher has one, else the
@@ -77182,7 +77273,18 @@ export const FIELD_3D_RENDERER_CODE = `
         if (cp && cp.length === 3) {
             var d = Math.sqrt(cp[0] * cp[0] + cp[1] * cp[1] + cp[2] * cp[2]) || 1;
             return {
-                az: Math.atan2(cp[0], cp[2]) * 180 / Math.PI,
+                // atan2(z, x), NOT atan2(x, z). updateCameraFromSpherical places the
+                // camera at x = r sin(phi) cos(theta), z = r sin(phi) sin(theta), so
+                // the azimuth is measured FROM +x TOWARD +z and the inverse is
+                // atan2(z, x) — which is what the sibling conversion in this file
+                // has always used. This one was the odd one out, and it was not
+                // cosmetic: a face-on camera_position [0, 0, 5.2] mapped to az 0,
+                // i.e. looking straight DOWN the axis of revolution. It stayed
+                // latent while only a state authoring camera_base read it; the
+                // sandbox orbit (srIdleCamAzDeg) derives its STARTING azimuth from
+                // here on a state that authors camera_position only, so the orbit
+                // began 8.8 deg off the authored pose and the state entry jumped.
+                az: Math.atan2(cp[2], cp[0]) * 180 / Math.PI,
                 el: Math.asin(srClamp(cp[1] / d, -1, 1)) * 180 / Math.PI,
                 dist: d
             };
@@ -77196,11 +77298,36 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // Value-only HUD (Rule 33d / 34b). Every line gates on the state's OWN
     // readout list, so a state can never leak a quantity it has not taught.
-    function srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax) {
+    function srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax, tMs) {
         var hud = document.getElementById("sr_readout");
         if (!hud) return;
         var keys = sr.readouts || [];
         var lines = [];
+        // ── SR-C3 — THE PER-READOUT BEAT. A key listed in sr.readout_at_ms renders
+        //   only from its own time; an unlisted key renders exactly as it always
+        //   did. This is what stops a state printing its ANSWER before the picture
+        //   that earns it has moved (STATE_7 printed "about y" at t = 0 with the
+        //   sweep still 3 s away).
+        //   THE MAP IS VALIDATED FIRST, AND INDEPENDENTLY OF sr.readouts, because a
+        //   typo in a timing map is the one kind of miss that is invisible: an
+        //   unknown key would simply never gate anything and the state would look
+        //   like it always did. SR-D8 — the enum is CLOSED and the miss is loud.
+        var rat = sr.readout_at_ms || {}, rk;
+        for (rk in rat) {
+            if (!Object.prototype.hasOwnProperty.call(rat, rk)) continue;
+            if (SR_READOUTS[rk] !== 1) {
+                throw new Error("solid_of_revolution: unknown readout_at_ms key " + String(rk)
+                    + " — the enum is CLOSED; see SR_READOUTS");
+            }
+        }
+        //   tMs is the state-local clock. A caller with no clock to offer (the
+        //   gate\u0027s pure-helper harness) gates nothing, which is the same absent-field
+        //   identity the rest of SR-C3 is built on.
+        var ratOn = (tMs != null && isFinite(tMs));
+        function srReadoutDue(k) {
+            if (rat[k] == null || !ratOn) return true;
+            return tMs >= cueTriggerMs("sr_readout_" + k, rat[k]);
+        }
         var xc = srClamp(srSliceX(sr, x0, x1), x0, x1);
         var Rc = srF(outer, xc), ric = inner ? srF(inner, xc) : 0;
         for (var i = 0; i < keys.length; i++) {
@@ -77209,6 +77336,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 throw new Error("solid_of_revolution: unknown readout key " + String(k)
                     + " — the enum is CLOSED; see SR_READOUTS");
             }
+            if (!srReadoutDue(k)) continue;
             if (k === "area") {
                 var A = srIntegralF(outer, x0, x1) - (inner ? srIntegralF(inner, x0, x1) : 0);
                 lines.push("area = " + srFmt(A, 4));

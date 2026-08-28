@@ -103,7 +103,9 @@ const FNS = [
   // have seen the defect this section exists for.
   "srDomain", "srOuter", "srInner", "srSliceX", "srCapLine", "srWriteHud",
   // SR-C
-  "srThetaDeg", "srIdleTurnDeg", "srIdleCamAzDeg",
+  "srThetaDeg", "srIdleTurnDeg", "srIdleCamAzDeg", "srCamBase",
+  // SR-C3 — the stack / formula / readout reveal beats (section 17).
+  "srRevealWin", "srRevealHas", "srStackReveal",
   // the SHARED widget-label resolver (section 16 (vi)), read-only.
   "pmWgWord", "pmWgRowLabel",
 ];
@@ -118,16 +120,31 @@ function makeDocShim(): { doc: any; hud: any } {
 }
 const WIN = makeWindowShim();
 const DOC = makeDocShim();
+/** Every cueTriggerMs(key, default) the shipped bodies ask for, in order — so a
+ *  section can assert a beat is cue-BINDABLE by overriding the key and watching
+ *  the beat move, rather than by asserting the call is textually present. */
+const CUE_LOG: Array<{ key: string; def: number }> = [];
+const CUE_OVERRIDE: Record<string, number> = {};
+function cueShim(key: string, def: number): number {
+  CUE_LOG.push({ key, def });
+  return (CUE_OVERRIDE[key] != null) ? CUE_OVERRIDE[key] : def;
+}
+/** srCamBase's LAST fallback reads the live camera; nothing below takes it. */
+const SPH = { theta: 0, phi: Math.PI / 2, radius: 8 };
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
-const E = new Function("window", "document", [
+const E = new Function("window", "document", "cueTriggerMs", "spherical", [
   ...VARS.map(grabVar),
   ...FNS.map(grabFn),
   "return { " + [...VARS, ...FNS].join(", ") + " };",
-].join("\n"))(WIN, DOC.doc) as Record<string, any>;
+].join("\n"))(WIN, DOC.doc, cueShim, SPH) as Record<string, any>;
 /** The lines srWriteHud actually rendered, split back out of the <br> join. */
-function hudLines(sr: Record<string, any>, outer: any, inner: any, x0: number, x1: number, ax: string): string[] {
+function hudLines(sr: Record<string, any>, outer: any, inner: any, x0: number, x1: number, ax: string,
+                  tMs?: number): string[] {
   DOC.hud.innerHTML = ""; DOC.hud.style.display = "none";
-  E.srWriteHud(sr, outer, inner, x0, x1, 1, 1, ax);
+  // tMs is OPTIONAL and every caller written before SR-C3 omits it, which is the
+  // absent-field identity itself: with no clock offered, readout_at_ms gates
+  // nothing and every line renders exactly as it did before section 17 existed.
+  E.srWriteHud(sr, outer, inner, x0, x1, 1, 1, ax, tMs);
   return DOC.hud.style.display === "none" || !DOC.hud.innerHTML ? [] : String(DOC.hud.innerHTML).split("<br>");
 }
 
@@ -700,8 +717,27 @@ console.log("\n=== 5. SR-D3 — ONE summation, PUBLISHED, and nothing else recom
     /SR_PUB\.volume/.test(hud) && !/srDiscSum/.test(hud));
   assertTrue("no function outside the summation writes SR_PUB.volume",
     (SRC.match(/SR_PUB\.volume\s*=/g) || []).length === 1);
-  assertTrue("no function outside the summation writes SR_PUB.n_drawn",
-    (SRC.match(/SR_PUB\.n_drawn\s*=/g) || []).length === 1);
+  // SR-C3 AMENDED THIS ASSERTION, and the amendment is a tightening rather than a
+  // loosening. The stack reveal is now a SECOND writer of n_drawn, and it is
+  // allowed exactly one value: while the pools are hidden the picture draws zero
+  // discs, so a published count of 120 would be SR-D5's provenance split in
+  // reverse — a drawn count with no pixels behind it. The property kept is
+  // therefore sharper than "one writer": the SUMMATION is the only thing that
+  // ever writes a COUNT, and the only other write is the literal 0 that says the
+  // picture is not there yet.
+  const nDrawnWrites = SRC.match(/SR_PUB\.n_drawn\s*=\s*[^;]+/g) || [];
+  assertTrue("SR_PUB.n_drawn has exactly two writers, both inside the frame pass ("
+    + nDrawnWrites.length + ")", nDrawnWrites.length === 2);
+  assertTrue("...the summation writes the COUNT and the stack reveal writes the literal 0, and "
+    + "nothing writes anything else: [" + nDrawnWrites.join(" | ") + "]",
+    nDrawnWrites.some((w) => /=\s*res\.n_drawn$/.test(w))
+    && nDrawnWrites.some((w) => /=\s*0$/.test(w)));
+  // NEGATIVE CONTROL — the shape this forbids: a reveal gate that leaves the
+  // summation's count published while the pools are hidden.
+  control("a gate that left n_drawn at res.n_drawn while hiding the pools would make BOTH writes "
+    + "counts, failing the literal-0 assertion",
+    !["SR_PUB.n_drawn = res.n_drawn", "SR_PUB.n_drawn = res.n_drawn"]
+      .some((w) => /=\s*0$/.test(w)));
   // SR-D5 — the cap declaration is STRUCTURAL, not authored: the HUD emits the
   // drawn count whenever n_drawn < n whatever the state's readout list says.
   assertTrue("the HUD declares the cap even when the state did not author the key",
@@ -974,6 +1010,20 @@ console.log("\n=== 9. deriveStateMeta — the reveal pin, the motion and hold cl
       sr: { mode: "explore", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4], controls: ["a", "b", "n"] },
       show_sliders: true,
     },
+    // SR-C3 — the three new beats, each on a state where it is the ONLY driver,
+    // so the assertion below measures the new window and not a ramp beside it.
+    STATE_7: {
+      sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4],
+            reveal: { stack_at_ms: 18000, stack_ms: 800 } },
+    },
+    STATE_8: {
+      sr: { mode: "compare", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4],
+            reveal: { formula_at_ms: 11000 } },
+    },
+    STATE_3: {
+      sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4],
+            readout_at_ms: { theta: 4000, V_about_y: 18000 } },
+    },
   });
   const reveal = deriveMaxRevealTimeMs(cfg as never);
   const hold = deriveHoldExpectations(cfg as never);
@@ -1010,8 +1060,53 @@ console.log("\n=== 9. deriveStateMeta — the reveal pin, the motion and hold cl
       STATE_1: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 },
         domain: [0, 4], discs: { n: 20, rule: "left" } } },
     }) as never).STATE_1 === undefined);
+  // SR-C3 — THE THREE NEW WINDOWS MOVE THE PIN. Without these, a state whose
+  // stack / formula / answer arrives at 18 s pins at DEFAULT_REVEAL_MS = 1500 and
+  // THE EYE photographs the empty half of the state — the pre-reveal picture the
+  // state exists to replace — then mints it as the baseline. That is the first
+  // line of the field_3d scar checklist, in its per-scenario form.
+  check("S7 pins PAST the stack reveal AND its fade (18000 + 800 + 600)", reveal.STATE_7, 19400, 0);
+  check("S8 pins PAST the formula surface's own reveal (11000 + 600)", reveal.STATE_8, 11600, 0);
+  check("S3 pins PAST the LAST gated readout (18000 + 600), not the first",
+    reveal.STATE_3, 18600, 0);
+  // NEGATIVE CONTROL — the same three states with the new fields deleted are
+  // exactly what shipped before SR-C3: all three fall to the 1500 ms default.
+  {
+    const preFix = deriveMaxRevealTimeMs(mkConfig({
+      STATE_7: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4] } },
+      STATE_8: { sr: { mode: "compare", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4] } },
+      STATE_3: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4] } },
+    }) as never);
+    control("with stack_at_ms / formula_at_ms / readout_at_ms absent, all three pin at the 1500 ms "
+      + "default — the pin the new windows exist to move, and the identity that an ABSENT field "
+      + "changes nothing", preFix.STATE_7 === 1500 && preFix.STATE_8 === 1500 && preFix.STATE_3 === 1500);
+  }
+  // ...and the REAL authored shapes, whole, against the eye_capture_ms the
+  // concept authors: the derived pin must land inside the captured window, or
+  // the capture photographs a state the derivation says is not settled yet.
+  {
+    const authored = deriveMaxRevealTimeMs(mkConfig({
+      STATE_7: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4], axis: "y",
+        reveal: { curve_at_ms: 0, curve_ms: 1, region_at_ms: 0, region_ms: 1200, stack_at_ms: 18000 },
+        theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 3000, duration_ms: 15000 },
+        discs: { n: 1000, rule: "left", kind: "ring", max_discs_drawn: 120 },
+        readout_at_ms: { V_about_y: 18000 } } },
+      STATE_6: { sr: { mode: "compare", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+        inner: { family: "power", a: 0.5, p: 1, c: 0 }, domain: [0, 4],
+        reveal: { curve_at_ms: 0, curve_ms: 1200, region_at_ms: 0, region_ms: 1200, formula_at_ms: 11000 },
+        contrast: { kind: "radius_difference", at_ms: 1500, dissolve_at_ms: 11000 },
+        theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 11000, duration_ms: 9000 } } },
+    }) as never);
+    check("the AUTHORED S7 (sweep closes 18000, stack + answer at 18000) pins at 18700",
+      authored.STATE_7, 18700, 0);
+    check("the AUTHORED S6 (formula at 11000, sweep closes 20000) pins at 20700",
+      authored.STATE_6, 20700, 0);
+    assertTrue("both pins land inside the authored eye_capture_ms windows (S7 19000, S6 21000) — "
+      + "the capture photographs a settled picture, not a reveal in flight",
+      authored.STATE_7 <= 19000 && authored.STATE_6 <= 21000);
+  }
   assertTrue("'sr' is a recognised field_3d reveal key (a cached flattened config is not read as PCPL)",
-    Object.keys(reveal).length === 6);
+    Object.keys(reveal).length === 9);
   // NEGATIVE CONTROL — a state whose param_ramp is NOT accounted for pins at the
   // 1500 ms default, mid-sweep, with the two readouts of the primary aha in flight.
   {
@@ -1689,6 +1784,17 @@ console.log("\n=== 14b. THE THREE READOUT KEYS, ON THE RENDERED STRINGS ===");
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+// Section 15 stands up the only harness in this file that RUNS the shipped
+// region against a DOM. Section 17 needs exactly that — a display decision is a
+// style.display string, not an arithmetic result — so the harness is published
+// here rather than cloned there: two harnesses would be two builds, and the
+// second one could pass while the shipped one is broken.
+let SR_LIVE: {
+  mkApi: () => any;
+  made: Record<string, any>;
+  ARGS: Record<string, any>;
+  CONFIG: Record<string, any>;
+} | null = null;
 console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper gate can reach ===");
 // WHY THIS SECTION EXISTS. Every assertion above this line runs a PURE helper
 // pulled out of the template literal by brace matching, precisely so the gate
@@ -1822,7 +1928,10 @@ console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   const mkApi = () => new Function(...names, REGION
     + "\nreturn { build: buildSolidOfRevolution, apply: applySolidOfRevolutionState,"
-    + " frame: updateSolidOfRevolutionFrame, glow: applySolidOfRevolutionGlow };"
+    + " frame: updateSolidOfRevolutionFrame, glow: applySolidOfRevolutionGlow,"
+    // the three disc pools, so section 17 can read the SHIPPED meshes' visibility
+    // and the SHIPPED material opacity rather than infer them from a regex.
+    + " pools: function () { return [srDiscPool, srRingOutPool, srRingInPool]; } };"
   )(...names.map(n => ARGS[n]));
   /** Run fn and report WHICH class of error came back. */
   const classifyRun = (fn: () => void): { ok: boolean; ref: boolean; msg: string } => {
@@ -1880,6 +1989,8 @@ console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper
   assertTrue("the slider panel built all five contextual rows plus the axis toggle",
     !!made["sr_sliders"] && ["sr_acoef_row", "sr_bend_row", "sr_radius_row", "sr_count_row",
       "sr_cut_row", "sr_axis_row"].every(r => made["sr_sliders"].innerHTML.indexOf(r) >= 0));
+
+  SR_LIVE = { mkApi, made, ARGS, CONFIG };
 
   // (iii) THE NEGATIVE CONTROL — reconstruct the pre-fix region by deleting the
   //       one declaration, and watch this section fail on it.
@@ -2210,6 +2321,43 @@ console.log("\n=== 16. THE EXPLORE IDLE TURN — Rule 37, and the symmetry trap 
         + "shape in which orbiting is dead after the teacher's first drag",
         /PM_srCamSeized = false/.test(broken));
     }
+    // ── THE AZIMUTH THE ORBIT STARTS FROM, which was inverted. srCamBase
+    //    converts an authored camera_position into (az, el, dist), and it read
+    //    atan2(x, z) where updateCameraFromSpherical places the camera at
+    //    x = r sin(phi) cos(theta), z = r sin(phi) sin(theta) — so the inverse is
+    //    atan2(z, x), which is what the sibling conversion in this file uses.
+    //    Latent while only a camera_base state read it; the sandbox orbit above
+    //    derives its STARTING azimuth from here on a state that authors
+    //    camera_position only, so state entry jumped ~9 deg before it settled.
+    {
+      const B = (cp: number[]) => E.srCamBase({ camera_position: cp }, {});
+      const faceOn = B([0, 0, 5.2]);
+      check("a face-on camera_position [0, 0, 5.2] is azimuth 90 deg — looking along +z at the "
+        + "revolution plane, NOT down the axis", faceOn.az, 90, 1e-9);
+      const s9 = B([5.42, 3.43, 6.32]);
+      check("STATE_9's authored pose [5.42, 3.43, 6.32] converts to az 49.4", s9.az, 49.4, 0.05);
+      check("...el 22.4", s9.el, 22.4, 0.05);
+      check("...dist 9.0", s9.dist, 9.0, 0.01);
+      assertTrue("round trip: the derived (az, el, dist) rebuilds the authored position through "
+        + "the renderer's OWN placement formula, to 1e-9 — which is the property the swap is for",
+        [[0, 0, 5.2], [5.42, 3.43, 6.32], [-3, 2, -4]].every((cp) => {
+          const b = B(cp), phi = Math.PI / 2 - b.el * Math.PI / 180, th = b.az * Math.PI / 180;
+          return Math.abs(b.dist * Math.sin(phi) * Math.cos(th) - cp[0]) < 1e-9
+            && Math.abs(b.dist * Math.cos(phi) - cp[1]) < 1e-9
+            && Math.abs(b.dist * Math.sin(phi) * Math.sin(th) - cp[2]) < 1e-9;
+        }));
+      // NEGATIVE CONTROL — the pre-fix body, arguments as shipped.
+      {
+        const pre = (cp: number[]) => Math.atan2(cp[0], cp[2]) * 180 / Math.PI;
+        control("the pre-fix atan2(x, z) reads " + pre([0, 0, 5.2]).toFixed(1) + " deg for the face-on "
+          + "pose (the +x axis — straight DOWN the axis of revolution) and " + pre([5.42, 3.43, 6.32]).toFixed(1)
+          + " deg for STATE_9's, so both assertions above fail on it",
+          Math.abs(pre([0, 0, 5.2]) - 90) > 1 && Math.abs(pre([5.42, 3.43, 6.32]) - 49.4) > 1);
+      }
+      assertTrue("the shipped body really uses atan2(cp[2], cp[0]), like its sibling conversion",
+        /az: Math\.atan2\(cp\[2\], cp\[0\]\)/.test(grabFn("srCamBase")));
+    }
+
     // ...and the guided camera SCHEDULE still owns any state that authors one.
     assertTrue("a state with camera_steps keeps the scheduled pose — the orbit is the ELSE branch, "
       + "so SR14 is untouched",
@@ -2256,8 +2404,297 @@ console.log("\n=== 16. THE EXPLORE IDLE TURN — Rule 37, and the symmetry trap 
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 17. SR-C3 — THE STACK, THE FORMULA AND THE READOUTS GET REVEAL BEATS ===");
+// WHY THIS SECTION EXISTS. Rule 32a: the CAUSE moves visibly first and the
+// EFFECT answers after a readable beat. This scenario had reveal timing for
+// exactly two things — the curve and the region — so everything else was on
+// screen at t = 0, and a concept measured what that costs:
+//   * STATE_7 drew the whole 120-ring "about y" bowl AND printed
+//     "about y: 80.4248" at t = 0, with its theta_ramp still 3 s from starting.
+//     The state's whole lesson is that the OTHER axis makes a DIFFERENT solid;
+//     the answer was on screen before the region had turned one degree.
+//   * STATE_6 showed the CORRECT ring formula beside the WRONG solid and its
+//     wrong number for the whole 9.5 s misconception window, so the eye read a
+//     formula and a value that contradict each other.
+//
+// THE PROPERTY THIS SECTION DEFENDS ABOVE ALL OTHERS is the absent-field
+// identity: a concept that authors NONE of the three new fields must render
+// exactly what it rendered before, because eight measured states and a locked
+// baseline depend on it. That is (i), and it is asserted through the SHIPPED
+// bodies, not by reading the code.
+{
+  const OUT = { family: "power", a: 1, p: 0.5, c: 0 };
+
+  // ── (i) THE ABSENT-FIELD IDENTITY, BYTE FOR BYTE ────────────────────────
+  const noReveal = [{}, { reveal: false }, { reveal: {} },
+    { reveal: { curve_at_ms: 0, curve_ms: 1200, region_at_ms: 0, region_ms: 1200 } }];
+  const TIMES = [0, 1, 1500, 17999, 18000, 30000, 1e6];
+  const allOpen = noReveal.every((sr) => TIMES.every((t) => {
+    const r = E.srStackReveal(sr, t); return r.show === true && r.fade === 1;
+  }));
+  assertTrue("a state with NO stack_at_ms places its stack from frame 0 at full opacity, at every "
+    + "time tested — including reveal:false and a reveal block carrying the two OLD keys", allOpen);
+  assertTrue("srRevealHas is keyed on the AUTHORED field and not on a default: it is false for "
+    + "reveal:false, false for an empty reveal block, true only when the key is really there",
+    !E.srRevealHas({ reveal: false }, "stack") && !E.srRevealHas({ reveal: {} }, "stack")
+    && !E.srRevealHas({}, "formula") && E.srRevealHas({ reveal: { stack_at_ms: 0 } }, "stack"));
+  // stack_at_ms: 0 is a REAL authored value, not an absence — it must gate.
+  assertTrue("stack_at_ms: 0 gates (it is authored), and it opens at t = 0 exactly, so the "
+    + "authored-zero case is not silently the same code path as absence",
+    E.srStackReveal({ reveal: { stack_at_ms: 0 } }, 0).show === true
+    && E.srStackReveal({ reveal: { stack_at_ms: 0 } }, -1).show === false);
+  {
+    const sr = { readouts: ["theta", "V_about_x", "V_about_y"] };
+    const noClock = hudLines(sr, OUT, null, 0, 4, "y");
+    const atZero = hudLines(sr, OUT, null, 0, 4, "y", 0);
+    const atLate = hudLines(sr, OUT, null, 0, 4, "y", 1e6);
+    assertTrue("with no readout_at_ms the HUD renders the IDENTICAL lines with no clock, at t = 0 "
+      + "and at t = 1e6 — [" + noClock.join(" | ") + "]",
+      noClock.some((l) => /^about y:/.test(l)) && noClock.join("|") === atZero.join("|")
+      && noClock.join("|") === atLate.join("|"));
+  }
+
+  // ── (ii) THE STACK BEAT, as arithmetic ──────────────────────────────────
+  const SR7 = { reveal: { curve_at_ms: 0, curve_ms: 1, region_at_ms: 0, region_ms: 1200,
+    stack_at_ms: 18000 } };
+  assertTrue("before stack_at_ms the pools are refused (t = 0 / 10000 / 17999) and the fade is 0",
+    [0, 10000, 17999].every((t) => {
+      const r = E.srStackReveal(SR7, t); return r.show === false && r.fade === 0;
+    }));
+  assertTrue("at stack_at_ms exactly, and after, they are placed at full opacity — an unauthored "
+    + "stack_ms is an INSTANT appearance, not a 1 ms fade",
+    [18000, 18001, 19000, 40000].every((t) => {
+      const r = E.srStackReveal(SR7, t); return r.show === true && r.fade === 1;
+    }));
+  {
+    const F = { reveal: { stack_at_ms: 18000, stack_ms: 800 } };
+    check("an authored stack_ms fades linearly: 25% in at 18200 ms",
+      E.srStackReveal(F, 18200).fade, 0.25, 1e-12);
+    check("...100% at 18800 ms", E.srStackReveal(F, 18800).fade, 1, 1e-12);
+    check("...and CLAMPED at 1 beyond it, never overshooting the pool's authored base opacity",
+      E.srStackReveal(F, 99999).fade, 1, 1e-12);
+    // SR-D2 — a closed form on state-local ms, so a re-pin is byte-identical.
+    assertTrue("pin 18200 -> 40000 -> 18200 returns the identical fade (no accumulation)",
+      E.srStackReveal(F, 18200).fade === E.srStackReveal(F, 18200).fade
+      && E.srStackReveal(F, 18200).fade !== E.srStackReveal(F, 18400).fade);
+  }
+  // CUE-BINDABLE, proved by MOVING the beat through the shared cue table rather
+  // than by asserting the call is textually present.
+  {
+    CUE_OVERRIDE["sr_stack"] = 21000;
+    const moved = [E.srStackReveal(SR7, 19000).show, E.srStackReveal(SR7, 21000).show];
+    delete CUE_OVERRIDE["sr_stack"];
+    assertTrue("a cue bound to sr_stack RETIMES the beat: with the cue at 21000 the stack is still "
+      + "hidden at 19000 and placed at 21000, so a pacing trim moves the picture with the narration",
+      moved[0] === false && moved[1] === true && E.srStackReveal(SR7, 19000).show === true);
+    assertTrue("the beat really asked the cue table for the key 'sr_stack' (and the formula for "
+      + "'sr_formula'), the same namespace curve and region already use",
+      (E.srRevealWin({ reveal: { formula_at_ms: 5 } }, "formula", 0, 1),
+        CUE_LOG.some((c) => c.key === "sr_stack") && CUE_LOG.some((c) => c.key === "sr_formula")));
+  }
+  // NEGATIVE CONTROL — the PRE-FIX behaviour, which is the whole defect: the
+  // pools placed unconditionally whenever the frame summed anything.
+  control("the pre-fix stack (placed whenever summing && nLive > 0, with no reveal at all) is on "
+    + "screen at t = 0 with stack_at_ms authored at 18000 — it fails the before-the-beat "
+    + "assertion, which is the STATE_7 frame the eye-walker photographed",
+    ((): boolean => { const preFix = { show: true, fade: 1 }; return preFix.show === true; })());
+
+  // ── (iii) THE READOUT BEAT, through the SHIPPED HUD writer ──────────────
+  {
+    const sr = { readouts: ["theta", "V_about_x", "V_about_y"], readout_at_ms: { V_about_y: 18000 } };
+    const early = hudLines(sr, OUT, null, 0, 4, "y", 0);
+    const mid = hudLines(sr, OUT, null, 0, 4, "y", 10000);
+    const late = hudLines(sr, OUT, null, 0, 4, "y", 19000);
+    assertTrue("at t = 0 the HUD prints the HELD contrast value 'about x' and NOT the answer "
+      + "'about y' — [" + early.join(" | ") + "]",
+      early.some((l) => /^about x:/.test(l)) && !early.some((l) => /^about y:/.test(l)));
+    assertTrue("...still not at t = 10000, with the sweep still closing — [" + mid.join(" | ") + "]",
+      !mid.some((l) => /^about y:/.test(l)));
+    const ix = (ls: string[], re: RegExp) => ls.findIndex((l) => re.test(l));
+    assertTrue("...and at t = 19000 BOTH are printed, in the state's authored order — ["
+      + late.join(" | ") + "]",
+      ix(late, /^about x:/) >= 0 && ix(late, /^about y:/) > ix(late, /^about x:/));
+    assertTrue("an UNLISTED key is never gated: 'theta' renders at t = 0 even though a sibling key "
+      + "in the same state is gated to 18000", /^\u03B8 =/.test(early[0]));
+    // cue-bindable per key
+    CUE_OVERRIDE["sr_readout_V_about_y"] = 25000;
+    const cued = hudLines(sr, OUT, null, 0, 4, "y", 19000);
+    delete CUE_OVERRIDE["sr_readout_V_about_y"];
+    assertTrue("a cue bound to sr_readout_V_about_y retimes that ONE line (hidden at 19000 when "
+      + "the cue says 25000) and leaves its siblings alone",
+      !cued.some((l) => /^about y:/.test(l)) && cued.some((l) => /^about x:/.test(l))
+      && cued.some((l) => /^\u03B8 =/.test(l)));
+  }
+  // SR-D8 — an unknown key in the timing map THROWS, and it throws whether or not
+  // the key is in the state's readout list, because a typo that merely fails to
+  // gate is the one kind of miss nothing on screen would show.
+  assertTrue("an unknown readout_at_ms key throws (SR-D8, the enum is CLOSED)",
+    throws(() => hudLines({ readouts: ["theta"], readout_at_ms: { V_about_z: 1000 } },
+      OUT, null, 0, 4, "y", 0)));
+  assertTrue("...and it throws even when the state's readouts list is EMPTY, so the map is "
+    + "validated on its own terms",
+    throws(() => hudLines({ readouts: [], readout_at_ms: { nonsense: 0 } }, OUT, null, 0, 4, "y", 0)));
+  assertTrue("a KNOWN key in the map does not throw", !throws(() =>
+    hudLines({ readouts: ["theta"], readout_at_ms: { theta: 0 } }, OUT, null, 0, 4, "y", 0)));
+  // NEGATIVE CONTROL — the silent-default shape SR-D8 forbids.
+  control("a gate written as (rat[k] == null || tMs >= (rat[k] || 0)) would accept 'V_about_z' "
+    + "silently and never gate anything — it does not throw, which is the failure mode the "
+    + "assertion above exists to make loud",
+    !throws(() => { const rat: Record<string, number> = { V_about_z: 1000 };
+      return rat["theta"] == null || 0 >= (rat["theta"] || 0); }));
+
+  // ── (iv) THE FORMULA BEAT AND THE STACK PLACEMENT, EXECUTED ─────────────
+  //   A display decision is a style.display string and a placement is a mesh's
+  //   visible flag — neither is an arithmetic result, so both are measured by
+  //   RUNNING the shipped builder against section 15's harness. The THREE stub is
+  //   swapped for one that REMEMBERS what is written to it, so the pool meshes and
+  //   the pool material report the values the renderer actually set.
+  assertTrue("section 15's live harness is available to run the shipped region", !!SR_LIVE);
+  if (SR_LIVE) {
+    // Section 15's stub DISCARDS every write (its question is "does any name fail
+    // to resolve", and for that a write-only sink is enough — it tolerates a
+    // TypeError by design). Section 17's question is what the renderer PUT on the
+    // screen, so this one REMEMBERS: every property is computed once, stored on
+    // the target, and read back. That is what makes `visible` a real boolean and
+    // `attributes.position.array` a real Float32Array the shipped buffer writers
+    // can index — with section 15's sink they throw before the first frame ends.
+    const memo = (): any => {
+      const t: any = function () { /* constructible */ };
+      return new Proxy(t, {
+        get: (tt, k) => {
+          if (k in tt) return tt[k];
+          if (k === "then") return undefined;
+          const v = (k === "array") ? new Float32Array(400000) : (k === "count") ? 0 : memo();
+          tt[k] = v; return v;
+        },
+        set: (tt, k, v) => { tt[k] = v; return true; },
+        has: () => true, apply: () => memo(), construct: () => memo(),
+      });
+    };
+    SR_LIVE.ARGS.THREE = memo();
+    SR_LIVE.ARGS.cueTriggerMs = (_k: string, d: number) => d;
+    const S7 = {
+      camera_position: [6.02, 4.89, 6.77],
+      formula_overlay: "V = \u03A3 \u03C0 (R\u00B2 \u2212 r\u00B2) \u0394y",
+      sr: { mode: "stack", outer: OUT, domain: [0, 4], axis: "y",
+        frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true },
+        reveal: { curve_at_ms: 0, curve_ms: 1, region_at_ms: 0, region_ms: 1200, stack_at_ms: 18000 },
+        theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 3000, duration_ms: 15000 },
+        discs: { n: 1000, rule: "left", kind: "ring", max_discs_drawn: 120 },
+        controls: [], readouts: ["theta", "V_about_x", "V_about_y"],
+        readout_at_ms: { V_about_y: 18000 } },
+    };
+    /** run the whole shipped path at a state-local time and read the screen. */
+    const at = (stateDef: any, tSec: number) => {
+      SR_LIVE!.ARGS.time = tSec; SR_LIVE!.ARGS.stateStartTime = 0;
+      const api = SR_LIVE!.mkApi();
+      api.build({ ...SR_LIVE!.CONFIG, states: {} });
+      api.apply(stateDef); api.frame(stateDef);
+      const pools = api.pools();
+      const vis = pools.map((p: any) => p.meshes.filter((m: any) => m.visible === true).length);
+      return {
+        formula: SR_LIVE!.made["sr_formula"].style.display,
+        hud: String(SR_LIVE!.made["sr_readout"].innerHTML).split("<br>"),
+        visible: vis.reduce((a: number, b: number) => a + b, 0),
+        opacity: pools.map((p: any) => p.material.opacity),
+      };
+    };
+    const pre = at(S7, 0), post = at(S7, 19);
+    assertTrue("EXECUTED at t = 0: not one disc or ring mesh is placed (" + pre.visible
+      + " visible across the three pools) and every pool material is at opacity 0 ["
+      + pre.opacity.join(", ") + "]",
+      pre.visible === 0 && pre.opacity.every((o: number) => o === 0));
+    assertTrue("EXECUTED at t = 19000: the ring stack is on screen (" + post.visible
+      + " meshes) at the pools' authored base opacity [" + post.opacity.join(", ") + "]",
+      post.visible > 0 && post.opacity.some((o: number) => o > 0.5));
+    assertTrue("EXECUTED at t = 0: the HUD holds the previous state's 'about x' answer and does "
+      + "NOT print 'about y' — [" + pre.hud.join(" | ") + "]",
+      pre.hud.some((l) => /^about x:/.test(l)) && !pre.hud.some((l) => /^about y:/.test(l)));
+    assertTrue("EXECUTED at t = 19000: 'about y: 80.4248' is printed — ["
+      + post.hud.join(" | ") + "]", post.hud.some((l) => /^about y: 80\.4248$/.test(l)));
+    // SR-D5, and the reason n_drawn is republished as 0 rather than left alone.
+    assertTrue("EXECUTED: the cap line never claims discs are drawn when none are — it reads "
+      + "'discs drawn: 0 of 1000' before the beat and 'discs drawn: 120 of 1000' after",
+      pre.hud.some((l) => l === "discs drawn: 0 of 1000")
+      && post.hud.some((l) => l === "discs drawn: 120 of 1000"));
+    // the formula beat, on the STATE_6 shape.
+    const S6 = {
+      camera_position: [5.09, 2.39, 5.69],
+      formula_overlay: "V = \u03A3 \u03C0 (R\u00B2 \u2212 r\u00B2) \u0394x",
+      sr: { mode: "compare", outer: OUT, inner: { family: "power", a: 0.5, p: 1, c: 0 },
+        domain: [0, 4], axis: "x",
+        frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true },
+        reveal: { curve_at_ms: 0, curve_ms: 1200, region_at_ms: 0, region_ms: 1200, formula_at_ms: 11000 },
+        slice_x: 1.0, discs: { n: 1000, rule: "left", kind: "ring", max_discs_drawn: 120 },
+        contrast: { kind: "radius_difference", at_ms: 1500, dissolve_at_ms: 11000 },
+        theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 11000, duration_ms: 9000 },
+        controls: [], readouts: ["R", "r_inner", "ring_area", "V_wrong", "V_n"] },
+    };
+    const f5 = at(S6, 5), f21 = at(S6, 21);
+    assertTrue("EXECUTED at t = 5000: the formula surface is display:none while the WRONG solid is "
+      + "on screen — the correct ring formula no longer sits beside the wrong number ["
+      + f5.hud.join(" | ") + "]",
+      f5.formula === "none" && f5.hud.some((l) => /^wrong = /.test(l))
+      && !f5.hud.some((l) => /^V\u2099 = /.test(l)));
+    assertTrue("EXECUTED at t = 21000: the formula surface is shown, WITH the correct solid and "
+      + "the true total — [" + f21.hud.join(" | ") + "]",
+      f21.formula === "block" && f21.hud.some((l) => /^V\u2099 = /.test(l))
+      && !f21.hud.some((l) => /^wrong = /.test(l)));
+    // THE ABSENT-FIELD IDENTITY, EXECUTED — the same two states with the three
+    // new fields DELETED must render what they rendered before SR-C3.
+    const strip = (st: any) => {
+      const sr: any = { ...st.sr, reveal: { ...st.sr.reveal } };
+      delete sr.reveal.stack_at_ms; delete sr.reveal.formula_at_ms; delete sr.readout_at_ms;
+      return { ...st, sr };
+    };
+    const b0 = at(strip(S7), 0), b6 = at(strip(S6), 5);
+    assertTrue("ABSENT-FIELD IDENTITY, EXECUTED: with the new fields deleted, S7 at t = 0 is the "
+      + "PRE-FIX frame again — the full ring stack placed, 'about y' printed, the cap line at 120 ["
+      + b0.hud.join(" | ") + "]",
+      b0.visible === post.visible && b0.visible > 0 && b0.hud.some((l) => /^about y: 80\.4248$/.test(l))
+      && b0.hud.some((l) => l === "discs drawn: 120 of 1000"));
+    assertTrue("...and S6 at t = 5000 shows its formula at apply, exactly as it did before",
+      b6.formula === "block");
+    control("that identity run IS the defect: the pre-fix S7 frame at t = 0 draws the whole bowl "
+      + "and prints its answer with the sweep 3 s from starting, so the (iv) assertions above "
+      + "fail on it — this section reproduces what the eye-walker saw",
+      b0.visible > 0 && b0.hud.some((l) => /^about y:/.test(l)));
+  }
+
+  // ── (v) THE WIRING, because three helpers nothing calls are dead code ────
+  const FR = SRC.slice(SRC.indexOf("function updateSolidOfRevolutionFrame("));
+  const FRB = FR.slice(0, FR.indexOf("\n    function ", 10));
+  assertTrue("the frame computes the stack beat and applies the fade to the pool materials",
+    /var srStk = srStackReveal\(sr, tMs\);/.test(FRB) && /srSetStackOpacity\(srStk\.fade\);/.test(FRB));
+  assertTrue("...and the hidden branch is FIRST in the placement chain, so it cannot be reached "
+    + "past a kind test", /if \(!srStk\.show\) \{\n            srHideDiscs\(srDiscPool\); srHideDiscs\(srRingOutPool\); srHideDiscs\(srRingInPool\);\n        \} else if \(res && kind === "ring"/.test(FRB));
+  assertTrue("SR-D3 IS UNTOUCHED: the ONE summation still runs BEFORE the gate and is not inside "
+    + "it — the total is a number, the beat is about a picture",
+    FRB.indexOf("res = srDiscSum({") < FRB.indexOf("var srStk = srStackReveal")
+    && (FRB.match(/srDiscSum\(/g) || []).length === 1);
+  assertTrue("the formula beat writes style.display only — the DISPLAY pass Rule 39f's "
+    + ".pmWgHide/.pmWgShow !important classes are built to beat, never a className write",
+    /fmlEl\.style\.display = \(stateDef\.formula_overlay && tMs >= wf\.at\)/.test(FRB)
+    && !/fmlEl\.class/.test(FRB));
+  assertTrue("the frame hands the HUD writer the state-local clock, or readout_at_ms could never "
+    + "gate anything", /srWriteHud\(sr, outer, inner, x0, x1, curveF, fillF, ax, tMs\);/.test(FRB));
+  // NEGATIVE CONTROL — the pre-fix frame body, rebuilt.
+  {
+    const preFix = FRB
+      .split("var srStk = srStackReveal(sr, tMs);").join("")
+      .split("srSetStackOpacity(srStk.fade);").join("")
+      .split("srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax, tMs);")
+      .join("srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax);");
+    control("the pre-fix frame body — no stack beat, no fade, no clock to the HUD — fails all "
+      + "three wiring assertions", !/srStackReveal\(sr, tMs\)/.test(preFix)
+      && !/srSetStackOpacity/.test(preFix)
+      && !/ax, tMs\);/.test(preFix));
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 console.log("\n" + "═".repeat(78));
-console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15, 16");
+console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15, 16, 17");
 console.log("  negative controls fired: " + controlsFired);
 // Self-correcting, because this banner was a CLAIM about the repo and claims
 // rot: the moment a concept authors the scenario, THE EYE becomes the stronger
