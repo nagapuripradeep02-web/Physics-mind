@@ -106,6 +106,9 @@ const FNS = [
   "srThetaDeg", "srIdleTurnDeg", "srIdleCamAzDeg", "srCamBase",
   // SR-C3 — the stack / formula / readout reveal beats (section 17).
   "srRevealWin", "srRevealHas", "srStackReveal",
+  // section 18 — the labelled annulus. The PURE half of it, so the gate decides
+  // whether a ring is drawn without a browser.
+  "srSliceRingPlan",
   // the SHARED widget-label resolver (section 16 (vi)), read-only.
   "pmWgWord", "pmWgRowLabel",
 ];
@@ -866,8 +869,9 @@ console.log("\n=== 7b. GLOW — a translucent volume is never made opaque by its
   const dimV = Number(dim ? dim[1] : NaN);
   assertTrue("every entry in the glow map carries its OWN brightenOnly flag "
     + "(no shared literal false)", /map\[i\]\[2\]/.test(glow) && !/,\s*1,\s*false\)/.test(glow));
-  assertTrue("the two swept skins and all three disc pools are brightenOnly",
-    (glow.match(/,\s*true\]/g) || []).length === 5);
+  assertTrue("the two swept skins, all three disc pools and the labelled annular slab are "
+    + "brightenOnly — six translucent volumes, none of which the generic pass may re-opacify",
+    (glow.match(/,\s*true\]/g) || []).length === 6);
   assertTrue("the opaque line objects still carry the peer dim (brightenOnly false)",
     (glow.match(/,\s*false\]/g) || []).length === 5);
   // NEGATIVE CONTROL — the shared-literal form, and what it would do to a 0.20 skin.
@@ -1762,8 +1766,17 @@ console.log("\n=== 14b. THE THREE READOUT KEYS, ON THE RENDERED STRINGS ===");
   const s3 = hudLines({ mode: "slice", slice_x: 1, readouts: ["x_cut", "r", "face_area", "pi_area"],
     domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
   console.log("      S3 HUD renders: " + JSON.stringify(s3));
-  assertTrue("pi_area renders M1's consequence pi x 5.3333 = 16.7552",
-    s3.some(l => l === "\u03C0 \u00D7 area = 16.7552"));
+  // M1 is rendered as a BELIEF, not as a fact. It used to print
+  // "pi x area = 16.7552" with a neutral label, one line under a climbing TRUE
+  // face area, so with the sound off a student read two ordinary quantities and
+  // could not tell which was being refuted — and the units disagreed silently,
+  // because pi times an area is a VOLUME standing beside an area.
+  assertTrue("pi_area renders M1's consequence, LABELLED as the wrong volume it is: "
+    + "'wrong volume (pi x area) = 16.7552'",
+    s3.some(l => l === "wrong volume (\u03C0 \u00D7 area) = 16.7552"));
+  control("the pre-fix neutral label 'pi x area = 16.7552' is no longer emitted anywhere — a "
+    + "misconception printed with a neutral label reads sound-off as a fact",
+    !s3.some(l => l === "\u03C0 \u00D7 area = 16.7552"));
   assertTrue("...beside the TRUE face area at the labelled slice, so the contrast is on one screen",
     s3.some(l => l === "face area = 3.1416"));
   control("the two numbers are 5.3x apart, so a student cannot read the wrong one as a rounding of "
@@ -1931,7 +1944,10 @@ console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper
     + " frame: updateSolidOfRevolutionFrame, glow: applySolidOfRevolutionGlow,"
     // the three disc pools, so section 17 can read the SHIPPED meshes' visibility
     // and the SHIPPED material opacity rather than infer them from a regex.
-    + " pools: function () { return [srDiscPool, srRingOutPool, srRingInPool]; } };"
+    + " pools: function () { return [srDiscPool, srRingOutPool, srRingInPool]; },"
+    // the labelled annular slab, so section 18 reads the SHIPPED vertex buffer
+    // rather than trusting the plan that fed it.
+    + " slice: function () { return srSliceRing; } };"
   )(...names.map(n => ARGS[n]));
   /** Run fn and report WHICH class of error came back. */
   const classifyRun = (fn: () => void): { ok: boolean; ref: boolean; msg: string } => {
@@ -2693,8 +2709,219 @@ console.log("\n=== 17. SR-C3 — THE STACK, THE FORMULA AND THE READOUTS GET REV
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 18. THE LABELLED SLICE IS DRAWN AS THE RING IT IS CALLED ===");
+// ═══════════════════════════════════════════════════════════════════════════
+// WHY THIS SECTION EXISTS. STATE_6 named a ring on four text surfaces at once —
+// the caption "Each slice is a ring", the formula surface V = Sigma pi (R^2 - r^2)
+// dx, the HUD line "ring area = 2.3562" and its narration — and rendered one on
+// NONE. At every t in 0..28000 ms the frame showed a closed shell and a pooled
+// stack of open walls. Seventeen sections and sixty negative controls passed on
+// that frame, because every one of them asked whether a NUMBER was right or
+// whether a beat fired; not one asked whether the object the state is about
+// exists in the picture. Presence is not correctness, and neither is arithmetic.
+//
+// THE TRAP IT PINS DOWN, so nobody re-argues it from the design: the state could
+// not have authored its way out. SR_MODES is CLOSED and one mode per state, so
+// "slice" and "compare" cannot be combined; and the two bounding curves of this
+// concept MEET at both ends of the domain (sqrt x and x/2 cross at x = 0 and
+// x = 4), so the closed solid exposes no annulus at an end face either. The
+// object was unreachable by every authored combination, which is what made it an
+// engine defect rather than a JSON one.
+{
+  const OUT = SQRT_P, IN = HALF_P;
+  const S6SR: any = {
+    mode: "compare", outer: OUT, inner: IN, domain: [0, 4], axis: "x",
+    slice_x: 1.0, slice_thickness: 0.12,
+    reveal: { curve_at_ms: 0, curve_ms: 1200, region_at_ms: 0, region_ms: 1200,
+      stack_at_ms: 1500, formula_at_ms: 11000 },
+    discs: { n: 1000, rule: "left", kind: "ring", max_discs_drawn: 120 },
+    contrast: { kind: "radius_difference", at_ms: 1500, dissolve_at_ms: 11000 },
+    controls: [], readouts: ["R", "r_inner", "ring_area", "V_wrong", "V_n"],
+  };
+  // (i) THE PURE DECISION — is an annulus drawn, and with which radii?
+  const plan = E.srSliceRingPlan(S6SR, OUT, IN, 0, 4, true, false);
+  assertTrue("STATE_6 draws a labelled annulus at all (pre-fix: none was drawn at ANY t)", !!plan);
+  if (plan) {
+    check("...at the authored slice x", plan.u, 1.0, 1e-12);
+    check("...outer radius R = sqrt(1)", plan.R, 1.0, 1e-12);
+    check("...inner radius r = 1/2", plan.r, 0.5, 1e-12);
+    check("...so the drawn radius RATIO is 2:1 — a hole half the width of the ring",
+      plan.R / plan.r, 2.0, 1e-12);
+    check("...with the slab thickness the state authored", plan.th, 0.12, 1e-12);
+  }
+  // the beat: it rides the TRUE stack reveal and stands down for the wrong solid.
+  assertTrue("nothing is drawn before the stack beat — the ring cannot precede the picture it "
+    + "belongs to", E.srSliceRingPlan(S6SR, OUT, IN, 0, 4, false, false) === null);
+  assertTrue("nothing is drawn while the WRONG kind is summed — the answer cannot sit beside the "
+    + "misconception the state is still refuting",
+    E.srSliceRingPlan(S6SR, OUT, IN, 0, 4, true, true) === null);
+  // THE ABSENT-FIELD IDENTITY, which is the whole no-regression claim.
+  {
+    const noSlice = { ...S6SR }; delete noSlice.slice_x;
+    assertTrue("ABSENT-FIELD IDENTITY: a compare state with no slice_x draws NOTHING new, so its "
+      + "frame is byte-identical to the one before this landed",
+      E.srSliceRingPlan(noSlice, OUT, IN, 0, 4, true, false) === null);
+    const s5: any = { mode: "stack", outer: OUT, domain: [0, 4], axis: "x", slice_x: 0,
+      controls: [], readouts: ["r", "V_n", "V_exact", "discs_drawn"] };
+    assertTrue("...and STATE_5 — mode stack, slice_x 0, NO inner profile — is untouched too: a "
+      + "solid has no ring to draw", E.srSliceRingPlan(s5, OUT, null, 0, 4, true, false) === null);
+    // AND THE CONTROL FOR THAT IDENTITY, because an identity assertion passes
+    // trivially on an engine that draws nothing: a GREEDY twin that ignored
+    // slice_x and drew at the near end of the domain would satisfy every
+    // annulus assertion above and still break the two states that authored no
+    // slice at all. This is the shape that would have made this section a lie.
+    const greedy = (sr: any) => (sr.mode === "compare" || sr.mode === "stack");
+    control("a twin that drew a slice on EVERY compare/stack state, authored or not, fails the "
+      + "absent-field identity above — which is what makes that identity evidence",
+      greedy(noSlice) === true && E.srSliceRingPlan(noSlice, OUT, IN, 0, 4, true, false) === null);
+    const sliceMode = { ...S6SR, mode: "slice" };
+    assertTrue("...and the slice mode keeps its OWN single travelling face — this path never "
+      + "fires there", E.srSliceRingPlan(sliceMode, OUT, IN, 0, 4, true, false) === null);
+  }
+  // where the two curves MEET there is no ring, and drawing one would claim a
+  // hole the solid does not have.
+  for (const xm of [0, 4]) {
+    const met = { ...S6SR, slice_x: xm };
+    assertTrue("no annulus is drawn at x = " + xm + ", where the two curves MEET (R = r) — the "
+      + "engine never claims a hole the solid does not have",
+      E.srSliceRingPlan(met, OUT, IN, 0, 4, true, false) === null);
+  }
+  // NEGATIVE CONTROL — the pre-fix engine, which is exactly "no plan, ever".
+  control("the PRE-FIX engine is modelled as a plan that is always null, and it fails the first "
+    + "assertion of this section — which is the defect founder-proxy measured on "
+    + "STATE_6__dense_t15400.png", (() => null)() === null && !!plan);
+
+  // (ii) EXECUTED — the SHIPPED frame, and the SHIPPED vertex buffer it writes.
+  assertTrue("section 15's live harness is available to run the shipped region", !!SR_LIVE);
+  if (SR_LIVE) {
+    const memo18 = (): any => {
+      const t: any = function () { /* constructible */ };
+      return new Proxy(t, {
+        get: (tt, k) => {
+          if (k in tt) return tt[k];
+          if (k === "then") return undefined;
+          const v = (k === "array") ? new Float32Array(400000) : (k === "count") ? 0 : memo18();
+          tt[k] = v; return v;
+        },
+        set: (tt, k, v) => { tt[k] = v; return true; },
+        has: () => true, apply: () => memo18(), construct: () => memo18(),
+      });
+    };
+    SR_LIVE.ARGS.THREE = memo18();
+    SR_LIVE.ARGS.cueTriggerMs = (_k: string, d: number) => d;
+    const S6 = {
+      camera_position: [5.09, 2.39, 5.69],
+      formula_overlay: "V = \u03A3 \u03C0 (R\u00B2 \u2212 r\u00B2) \u0394x",
+      sr: { ...S6SR, theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 11000, duration_ms: 9000 },
+        frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true } },
+    };
+    const run = (stateDef: any, tSec: number) => {
+      SR_LIVE!.ARGS.time = tSec; SR_LIVE!.ARGS.stateStartTime = 0;
+      const api = SR_LIVE!.mkApi();
+      api.build({ ...SR_LIVE!.CONFIG, states: {} });
+      api.apply(stateDef); api.frame(stateDef);
+      const sl = api.slice();
+      // the radii the CAP was actually written with, read back off the shipped
+      // Float32Array rather than off the plan that fed it. Vertex 2i is the inner
+      // rim, 2i+1 the outer rim.
+      const pos: Float32Array = sl.capA.pos;
+      let inR = Infinity, outR = 0, n = 0;
+      for (let i = 0; i * 6 < pos.length; i++) {
+        const o = i * 6;
+        const ri = Math.hypot(pos[o], pos[o + 1]);
+        const ro = Math.hypot(pos[o + 3], pos[o + 4]);
+        if (ri < inR) inR = ri;
+        if (ro > outR) outR = ro;
+        n++;
+      }
+      return {
+        visible: sl.group.visible === true, inR, outR, rims: n,
+        hud: String(SR_LIVE!.made["sr_readout"].innerHTML).split("<br>"),
+      };
+    };
+    const wrongBeat = run(S6, 5), ringBeat = run(S6, 15.4), lateBeat = run(S6, 21);
+    assertTrue("EXECUTED at t = 5000 (the wrong-solid beat): the annular slab is NOT in the scene",
+      !wrongBeat.visible);
+    assertTrue("EXECUTED at t = 15400 — the exact frame founder-proxy measured: the annular slab "
+      + "IS in the scene", ringBeat.visible);
+    assertTrue("EXECUTED at t = 21000: it is still there while the true ring stack is summed",
+      lateBeat.visible);
+    check("EXECUTED: the OUTER rim written into the shipped vertex buffer", ringBeat.outR, 1.0, 1e-6);
+    check("EXECUTED: the INNER rim written into the shipped vertex buffer", ringBeat.inR, 0.5, 1e-6);
+    // the buffer is float32, so the tolerance is the STORAGE precision (about
+    // 1e-7 relative) and not a slackened claim about the mathematics.
+    check("EXECUTED: drawn outer:inner ratio, measured off the geometry, not the plan",
+      ringBeat.outR / ringBeat.inR, 2.0, 1e-6);
+    assertTrue("EXECUTED: the HOLE IS A HOLE — the cap has NO vertex inside the inner rim, so "
+      + "nothing the slab draws fills the hole it is supposed to have (" + ringBeat.rims
+      + " rim pairs, minimum radius " + ringBeat.inR.toFixed(4) + ")",
+      ringBeat.inR > 0.4999 && ringBeat.rims === 29);
+    assertTrue("EXECUTED at t = 15400: the HUD line the picture had contradicted now describes "
+      + "something on screen — [" + ringBeat.hud.join(" | ") + "]",
+      ringBeat.hud.some((l) => l === "ring area = 2.3562"));
+    // NEGATIVE CONTROL — the wrong-beat frame IS the pre-fix picture.
+    control("the t = 5000 frame draws no annulus and still prints 'wrong = ' — that frame is the "
+      + "pre-fix picture, and the two visibility assertions above separate it from the fixed one",
+      !wrongBeat.visible && wrongBeat.hud.some((l) => /^wrong = /.test(l)));
+  }
+
+  // (iii) THE COUNTER-NUMBER MAY STAND BESIDE WHAT IT REFUTES.
+  //   V_n is gated on kind !== radius_difference and V_wrong on === , so the
+  //   wrong value is ERASED in the exact frame the true one appears: t = 10900
+  //   printed "wrong = 1.6755" with no Vn, t = 11100 printed "Vn = 8.3776" with
+  //   no wrong. The design asked for the true ring area to stand AGAINST the
+  //   wrong ring AREA, pi (R - r) squared, and no key computed that at all.
+  E.srPubClear();
+  const both = hudLines({ mode: "compare", slice_x: 1, domain: [0, 4], outer: SQRT_P, inner: HALF_P,
+    readouts: ["R", "r_inner", "ring_area", "ring_area_wrong"] }, SQRT_P, HALF_P, 0, 4, "x");
+  console.log("      S6 contrast HUD renders: " + JSON.stringify(both));
+  assertTrue("the TRUE ring area and the WRONG one render in the SAME frame — a contrast that "
+    + "erases one of its two halves is not a contrast",
+    both.some(l => l === "ring area = 2.3562") && both.some(l => l === "wrong ring area = 0.7854"));
+  check("...and the wrong one is pi (R - r) squared, computed here from the mathematics",
+    Math.PI * (1.0 - 0.5) * (1.0 - 0.5), 0.7854, 5e-5);
+  control("the two numbers are 3.0x apart, so a student cannot read the wrong one as a rounding "
+    + "of the right one", Math.abs(Math.PI * 0.75 / (Math.PI * 0.25) - 3) < 1e-12);
+  control("a ring_area_wrong implemented as pi (R^2 - r^2) — the RIGHT formula under the wrong "
+    + "name — would print the same 2.3562 as the line it exists to refute, and the assertion "
+    + "above fails on it", E.srFmt(Math.PI * (1 * 1 - 0.5 * 0.5), 4) === "2.3562");
+  {
+    // read the BRANCH, not a window of characters after it: the V_n branch a few
+    // lines below does read SR_PUB.volume, and a window would have swallowed it
+    // and reported a control that never fired.
+    const hudFn = grabFn("srWriteHud");
+    const i0 = hudFn.indexOf("k === \"ring_area_wrong\"");
+    const branch = i0 < 0 ? "" : hudFn.slice(i0, hudFn.indexOf("} else if", i0 + 1));
+    const code = branch.split("\n").filter(l => !/^\s*\/\//.test(l)).join("\n");
+    control("the wrong key is SELF-COMPUTING — its branch touches SR_PUB nowhere, so no published "
+      + "total can leak into it the way the contrast-ghost scar leaked into Vn",
+      i0 > 0 && code.indexOf("SR_PUB") < 0
+      && /Math\.PI \* \(Rc - ric\) \* \(Rc - ric\)/.test(code));
+  }
+
+  // (iv) THE WIRING, because a helper nothing calls is dead code.
+  const FR18 = SRC.slice(SRC.indexOf("function updateSolidOfRevolutionFrame("));
+  const FRB18 = FR18.slice(0, FR18.indexOf("\n    function ", 10));
+  assertTrue("the frame asks for a plan and places it, and hides the slab on the null path",
+    /srSliceRingPlan\(sr, outer, inner, x0, x1, srStk\.show, wrongOn \|\| kind === "radius_difference"\)/.test(FRB18)
+    && /srPlaceSliceRing\(srSliceRing, slPlan, ax, srShiftX, srStk\.fade\);/.test(FRB18)
+    && /srHideSliceRing\(srSliceRing\);/.test(FRB18));
+  assertTrue("SR-D3: the pass that PLACES the annulus publishes its radii, and the HUD READS them "
+    + "rather than evaluating the profile a second time",
+    /SR_PUB\.slice_R = slPlan\.R;/.test(FRB18)
+    && /var Rc = \(SR_PUB\.slice_R != null\) \? SR_PUB\.slice_R : srF\(outer, xc\);/.test(grabFn("srWriteHud")));
+  assertTrue("the drawn annulus is PUBLISHED on window, so a headless probe can measure it with "
+    + "no scene handle", /window\.PM_srSliceRing = slPlan/.test(FRB18));
+  {
+    const preFix = FRB18.split("srPlaceSliceRing(srSliceRing, slPlan, ax, srShiftX, srStk.fade);").join("");
+    control("the pre-fix frame body — a plan computed and never placed — fails the wiring "
+      + "assertion above", !/srPlaceSliceRing\(/.test(preFix));
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 console.log("\n" + "═".repeat(78));
-console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15, 16, 17");
+console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15, 16, 17, 18");
 console.log("  negative controls fired: " + controlsFired);
 // Self-correcting, because this banner was a CLAIM about the repo and claims
 // rot: the moment a concept authors the scenario, THE EYE becomes the stronger
