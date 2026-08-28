@@ -27,7 +27,7 @@ export interface SkipTally {
     passed: number;
 }
 
-export function tally(results: CheckResult[]): SkipTally {
+export function tally(results: readonly CheckResult[]): SkipTally {
     const failed = results.filter(r => !r.passed).length;
     const skipped = results.filter(r => r.skipped === true).length;
     return { total: results.length, failed, skipped, passed: results.length - failed - skipped };

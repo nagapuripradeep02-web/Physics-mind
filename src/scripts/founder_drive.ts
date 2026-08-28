@@ -42,6 +42,24 @@ interface SliderDrag {
   reverted: boolean; // true = the sim took the drag then overwrote it (the dead-guided-slider class)
   /** The scene_group this row was visible in. Null on an unpartitioned state. */
   sceneGroup: string | null;
+  /**
+   * WHICH EVENT PATH DROVE THIS ROW. Recorded, not assumed.
+   *
+   * vg sliders sit behind a trusted-drag guard: a knob only leaves its authored
+   * static under an ev.isTrusted event (the drag-seize pattern that lets a guided
+   * state's choreography keep its hands on a knob the teacher has not touched).
+   * A probe firing dispatchEvent(new Event('input')) therefore reads the AUTHORED
+   * VALUE at every position — indistinguishable from the inert slider it is trying
+   * to confirm fixed, and a clean false negative on every vg control
+   * (bug_class vg_slider_drive_probe_using_synthetic_input_events_never_seizes_
+   * the_knob_and_reports_the_authored_static).
+   *
+   * This driver uses Playwright page.mouse.down/move/up, which IS trusted. The
+   * field exists so a reader of the dump can SEE that, rather than infer it from
+   * the source of whatever produced the file: per that row's prevention rule, a
+   * dump that cannot show a trusted path is not evidence about a vg control.
+   */
+  inputPath: 'trusted-pointer';
 }
 
 /**
@@ -83,6 +101,8 @@ interface Manifest {
   overlayCollisions: OverlayCollision[];
   /** Declared scene_groups of the explore state ([] when it is not partitioned). */
   exploreSceneGroups: string[];
+  /** Event path used for every slider drag in this run — see SliderDrag.inputPath. */
+  sliderInputPath: 'trusted-pointer';
   motionProbes: MotionProbe[];
   consoleErrors: string[];
   pageErrors: string[];
@@ -128,6 +148,7 @@ async function main(): Promise<void> {
     sliderDrags: [],
     overlayCollisions: [],
     exploreSceneGroups: [],
+    sliderInputPath: 'trusted-pointer',
     motionProbes: [],
     consoleErrors: [],
     pageErrors: [],
@@ -330,6 +351,7 @@ async function main(): Promise<void> {
           moved: valueBefore !== valueAfter,
           reverted,
           sceneGroup: currentGroup,
+          inputPath: 'trusted-pointer',
         });
       }
       return n;
@@ -476,6 +498,7 @@ async function main(): Promise<void> {
     `  states=${manifest.stateCount} shots=${manifest.shots.length} drags=${manifest.sliderDrags.length} ` +
       `collisions=${manifest.overlayCollisions.length} flags=${manifest.flags.length} ` +
       `groups=${manifest.exploreSceneGroups.length || 1} probes=${manifest.motionProbes.length} ` +
+      `input=${manifest.sliderInputPath} ` +
       `consoleErrors=${manifest.consoleErrors.length}`,
   );
   for (const c of manifest.overlayCollisions) {
