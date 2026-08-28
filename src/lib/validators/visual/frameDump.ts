@@ -18,6 +18,7 @@ import { join, resolve } from 'node:path';
 import { Buffer } from 'node:buffer';
 import type { CaptureResult } from './screenshotter';
 import type { CheckResult } from './spec';
+import { tally } from './skipReport';
 
 export interface FrameDumpEntry {
     role: 'state_panel_a' | 'state_panel_b' | 'state_combined' | 'dense' | 'keyframe' | 'i2_formula' | 'frozen';
@@ -112,6 +113,8 @@ export function dumpCaptureToDisk(opts: DumpCaptureOptions): FrameDumpResult {
 
     const checks = opts.checks ?? [];
     const failedChecks = checks.filter(c => !c.passed);
+
+    const t = tally(checks);
     const manifestPath = join(dir, 'manifest.json');
     writeFileSync(manifestPath, JSON.stringify({
         concept_id: opts.conceptId,
@@ -123,11 +126,27 @@ export function dumpCaptureToDisk(opts: DumpCaptureOptions): FrameDumpResult {
         timings: opts.capture.timings,
         // The headline the run prints, as an artifact rather than a claim.
         // `checks_present: false` distinguishes "no checks ran" from "all passed".
+        //
+        // `passed` COUNTS ONLY CHECKS THAT RAN. It used to be
+        // `checks.length - failedChecks.length`, which folded every SKIP into the
+        // pass count — so a run the console honestly reported as
+        // "63 checks · 53 ran and passed · 10 SKIPPED · 0 failed" was written to
+        // disk as {total: 63, passed: 63, failed: 0}. The console had been fixed
+        // (skipReport.tally) and this artifact had not, so every MACHINE reader —
+        // eye_walker, founder_proxy, any agent grepping the manifest — still saw a
+        // clean sweep over gates that never executed. That is the open half of
+        // bug_class eye_gate_skipped_for_an_unregistered_scenario_is_counted_as_a_
+        // pass, and it is the half that matters most, because a human at least
+        // sees the GATE COVERAGE block printed underneath.
+        //
+        // Derived from the SAME tally() the console prints, deliberately: two
+        // independent counts of one thing is how they came to disagree.
         check_summary: {
             checks_present: opts.checks !== undefined,
-            total: checks.length,
-            passed: checks.length - failedChecks.length,
-            failed: failedChecks.length,
+            total: t.total,
+            passed: t.passed,
+            skipped: t.skipped,
+            failed: t.failed,
             failed_ids: failedChecks.map(c => `${c.state_id}:${c.check_id}`),
         },
         checks,
