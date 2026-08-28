@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_colloidal_solution",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are colloidal solution?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition with the size range",
+      "marks": 1
+    },
+    {
+      "label": "How a colloid is recognised",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed question reads \"What are colloidal solution?\" and is kept verbatim. BOOK ERROR (book p.77, VSAQ 11): the printed answer gives the particle size as \"10⁻⁹ to 10⁻⁸\" with NO UNIT AT ALL, and with an upper limit that is wrong by two orders of magnitude even when metres are assumed. The NCERT range is 1 nm to 1000 nm, that is 10⁻⁹ m to 10⁻⁶ m, and that range is written on this card. Recording the printed version here rather than following it, because a student who writes 10⁻⁸ as the upper limit excludes most of the sols named in the rest of the chapter. BOOK GAP: the printed answer gives no other property, so the two tests a student is expected to know, passing through filter paper but not through a semi-permeable membrane, and showing the Tyndall effect, are added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition with the size range",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A colloidal solution is a system in which",
+          "particles of one substance are dispersed",
+          "in another substance, with a particle",
+          "diameter between 1 nm and 1000 nm.",
+          {
+            "text": "1 nm = 10⁻⁹ m and 1000 nm = 10⁻⁶ m",
+            "style": "eq"
+          },
+          "The dispersed substance is the dispersed",
+          "phase and the other one is the dispersion",
+          "medium."
+        ],
+        "why": "The colloidal state is defined by size alone, not by the substance, so the number range is the answer. Below 1 nm the system is a true solution and above 1000 nm it is a suspension, which is why both limits have to be written.",
+        "common_mistakes": [
+          "Writing the size with no unit. A bare 10⁻⁹ to 10⁻⁶ means nothing until metres are written after it.",
+          "Giving only the lower limit. Both limits are needed, because the upper one separates a colloid from a suspension."
+        ],
+        "memory_tip": "1 nm to 1000 nm. Below it a true solution, above it a suspension.",
+        "margin_note": "Write the range with the unit. A size range without metres or nanometres is usually not given the mark."
+      },
+      {
+        "id": "s2_recognition",
+        "kind": "boxed_final",
+        "label": "How a colloid is recognised",
+        "marks": 1,
+        "mark_note": "Properties",
+        "lines": [
+          {
+            "text": "A colloid shows the Tyndall effect.",
+            "style": "boxed"
+          },
+          "Colloidal particles pass through ordinary",
+          "filter paper, but they do not pass through",
+          "a parchment or cellophane membrane.",
+          "The particles show Brownian movement and",
+          "do not settle on standing.",
+          "Ex: milk, blood, gold sol, starch sol."
+        ],
+        "why": "The size range cannot be seen, so the answer is completed by the properties that follow from it. Each property is a test in the laboratory: the membrane test separates a colloid from a true solution, the filter paper test separates it from a suspension, and the Tyndall effect can be seen with the eye.",
+        "common_mistakes": [
+          "Writing that colloidal particles are held back by filter paper. They pass through it; only a suspension is held back.",
+          "Writing that a colloidal solution settles on standing. It does not, because of Brownian movement and the charge on the particles."
+        ],
+        "memory_tip": "Through filter paper, not through a membrane. That pair of answers fixes the size in the middle.",
+        "margin_note": "One property plus one example is enough for this mark. The Tyndall effect is the safest one to write."
+      }
+    ]
+  },
+  "insider_note": "The size range with its unit is the marked line, and the book prints it without a unit and with the wrong upper limit. Write 1 nm to 1000 nm, or 10⁻⁹ m to 10⁻⁶ m."
+}

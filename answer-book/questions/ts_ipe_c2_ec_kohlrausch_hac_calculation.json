@@ -1,0 +1,165 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_kohlrausch_hac_calculation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Λ°m for NaCl, HCl and NaAc are 126.4, 425.9 and 91.0 S cm² mol⁻¹ respectively. Calculate Λ°m for HAc.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law applied to HAc",
+      "marks": 1
+    },
+    {
+      "label": "Building HAc from the three given salts",
+      "marks": 1
+    },
+    {
+      "label": "Substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer with units",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. ARITHMETIC RECOMPUTED (book p.70, SAQ 3): 425.9 + 91.0 = 516.9, and 516.9 − 126.4 = 390.5. The book's printed answer of 390.5 S cm² mol⁻¹ is CORRECT and is followed. BOOK SLOPPINESS: the printed working writes the cancelling line as \"λ°H⁺ + λ°Cl⁻ + λ°Ac⁻ + λ°Na⁺ − λ°Na⁺ − λ°Cl⁻\" without ever saying that the added and subtracted sodium and chloride terms are what cancel; that sentence is added here. The book also writes the last line with the sign \"≐\" instead of \"=\". All three electrolytes here are 1:1, so the stoichiometric numbers of Kohlrausch's law are all 1 and the simple sum applies; this card says so, because the same law needs those numbers for a salt such as BaCl₂ (see card ts_ipe_c2_ec_kohlrausch_law_statement)."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electro Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "equation",
+        "label": "The law applied to HAc",
+        "marks": 1,
+        "mark_note": "The law",
+        "lines": [
+          "By Kohlrausch's law the limiting molar",
+          "conductivity of an electrolyte is the sum of",
+          "those of its ions. All four electrolytes here",
+          "are 1:1, so each ion is counted once.",
+          {
+            "text": "Λ°m(HAc) = λ°(H⁺) + λ°(Ac⁻)",
+            "style": "eq"
+          },
+          "Neither ionic value is given, so HAc has to",
+          "be built out of the three salts that are."
+        ],
+        "why": "Acetic acid is a weak electrolyte, so its Λ°m cannot be found by measuring dilute solutions and extending the graph. Kohlrausch's law is the only route, and it works by adding and subtracting strong electrolytes whose values can be measured.",
+        "common_mistakes": [
+          "Trying to add the three given numbers directly. One of them has to be subtracted, and which one comes from the ion bookkeeping.",
+          "Forgetting that HAc is weak. That is the reason the law is needed at all instead of a direct measurement."
+        ],
+        "memory_tip": "Write down which ions you need, then find which given salts supply them, and which supply the extras to cancel.",
+        "margin_note": "State the law in words before any numbers. That sentence is the marked line of this step."
+      },
+      {
+        "id": "s2_combination",
+        "kind": "equation",
+        "label": "Building HAc from the three given salts",
+        "marks": 1,
+        "mark_note": "Combination",
+        "lines": [
+          {
+            "text": "Λ°m(HCl) = λ°(H⁺) + λ°(Cl⁻)",
+            "style": "eq"
+          },
+          {
+            "text": "Λ°m(NaAc) = λ°(Na⁺) + λ°(Ac⁻)",
+            "style": "eq"
+          },
+          {
+            "text": "Λ°m(NaCl) = λ°(Na⁺) + λ°(Cl⁻)",
+            "style": "eq"
+          },
+          "Adding the first two brings in one Na⁺ and",
+          "one Cl⁻ that are not wanted, and the third",
+          "line holds exactly those two, so subtracting",
+          "it cancels them:",
+          {
+            "text": "Λ°m(HAc) = Λ°m(HCl) + Λ°m(NaAc)",
+            "style": "eq"
+          },
+          {
+            "text": "− Λ°m(NaCl)",
+            "style": "indent"
+          }
+        ],
+        "why": "HCl supplies the H⁺ and NaAc supplies the Ac⁻, which are the two ions wanted. Each of them also brings in one unwanted ion, and NaCl is made of exactly those two unwanted ions, so subtracting it removes both at once.",
+        "common_mistakes": [
+          "Subtracting HCl or NaAc instead of NaCl. The salt subtracted must be made of the two ions that are not wanted.",
+          "Writing the ionic terms without showing the cancellation. The examiner marks the cancelling, not just the final combination."
+        ],
+        "memory_tip": "Take the two salts that carry the ions you want, then subtract the salt made of the two leftovers.",
+        "margin_note": "Show the three ionic equations and the cancellation. Jumping straight to the combination is where this mark is lost."
+      },
+      {
+        "id": "s3_substitution",
+        "kind": "equation",
+        "label": "Substitution",
+        "marks": 1,
+        "mark_note": "Substitution",
+        "lines": [
+          "Substituting the given values in S cm² mol⁻¹:",
+          {
+            "text": "Λ°m(HAc) = 425.9 + 91.0 − 126.4",
+            "style": "eq"
+          },
+          {
+            "text": "= 516.9 − 126.4",
+            "style": "indent"
+          }
+        ],
+        "why": "Each number has to be matched to the right electrolyte before it is used: 425.9 belongs to HCl, 91.0 to NaAc and 126.4 to NaCl. The question lists them in the order NaCl, HCl, NaAc, which is not the order they are used in.",
+        "common_mistakes": [
+          "Matching the numbers to the wrong salts. The question lists NaCl first, but NaCl is the one subtracted.",
+          "Mixing units. All three values are already in S cm² mol⁻¹, so no conversion is needed."
+        ],
+        "memory_tip": "Write the salt name above each number before adding. The listed order is not the working order.",
+        "margin_note": "Show the substitution line before the answer. A bare final number rarely takes both of the last two marks."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The answer with units",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "Λ°m(HAc) = 390.5 S cm² mol⁻¹",
+            "style": "boxed"
+          },
+          "This is the limiting molar conductivity of",
+          "acetic acid at infinite dilution."
+        ],
+        "why": "The value is large because it contains the H⁺ ion, which carries current faster than any other ion. Acetic acid in an ordinary solution has a much smaller measured Λm, and the ratio of the two gives its degree of dissociation.",
+        "common_mistakes": [
+          "Leaving out the units. S cm² mol⁻¹ has to be written on the final line.",
+          "Reporting the value as the conductivity of acetic acid. It is the LIMITING MOLAR conductivity, at infinite dilution."
+        ],
+        "memory_tip": "The answer is bigger than any of the three given values, because H⁺ carries current faster than Na⁺.",
+        "margin_note": "Box the answer with its units. Units alone are worth part of this mark in most schemes."
+      }
+    ]
+  },
+  "insider_note": "The salt that gets subtracted is the one made of the two ions you do NOT want, which is NaCl here. Subtracting HCl instead gives 91.0 + 126.4 − 425.9 = −208.5, a negative conductivity, which is the sign that the wrong salt was chosen."
+}

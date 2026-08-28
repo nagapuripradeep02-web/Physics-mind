@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_blister_copper",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is blister copper? Why is it so called?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Why the name",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EQUATION CHECKED: Cu₂S + 2Cu₂O → 6Cu + SO₂ balances as printed in the book's SAQ 5 (Cu 6=6, S 1=1, O 2=2). It is added to this card because it is where the SO₂ that makes the blisters comes from, and the book's VSAQ answer does not say."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Blister copper is the copper obtained",
+          "after the bessemerisation of matte.",
+          "A blast of hot air with silica is blown",
+          "through the molten matte in the Bessemer",
+          "converter, and copper is produced.",
+          "It is about 98 % pure and still contains",
+          "about 2 % of Ag, Au and other metals."
+        ],
+        "why": "The stage has to be named, because copper leaves each stage of the extraction at a different purity. Blister copper is the product of the converter, and it is the metal that then goes for electrolytic refining.",
+        "common_mistakes": [
+          "Calling blister copper pure copper. It is 98 % pure and still has to be refined electrolytically.",
+          "Saying it comes out of the blast furnace. The blast furnace gives matte; the Bessemer converter gives blister copper."
+        ],
+        "memory_tip": "Bessemer converter in, blister copper out, 98 % pure.",
+        "margin_note": "Name the stage and the purity. Both are looked for in this first mark."
+      },
+      {
+        "id": "s2_why_the_name",
+        "kind": "boxed_final",
+        "label": "Why the name",
+        "marks": 1,
+        "mark_note": "Reason for the name",
+        "lines": [
+          {
+            "text": "SO₂ escapes and makes surface blisters",
+            "style": "boxed"
+          },
+          "Sulphur dioxide dissolves in the hot",
+          "molten copper.",
+          "As the metal cools and solidifies, this",
+          "dissolved SO₂ escapes and raises blisters",
+          "on the surface, which is how the metal",
+          "gets its name.",
+          {
+            "text": "Cu₂S + 2Cu₂O → 6Cu + SO₂↑",
+            "style": "eq"
+          }
+        ],
+        "why": "The blisters are gas cavities trapped at the surface as the metal freezes. The SO₂ comes from the last reaction in the converter, in which the cuprous oxide made by the air blast reacts with the cuprous sulphide that is left, so writing that equation accounts for both the copper and the gas.",
+        "common_mistakes": [
+          "Saying the blisters are made of copper oxide. They are cavities left by escaping SO₂ gas.",
+          "Writing that the blisters form while the metal is still molten. They appear as the metal solidifies and traps the gas."
+        ],
+        "memory_tip": "Gas escaping from freezing metal leaves bumps, and the gas is SO₂.",
+        "margin_note": "The words \"dissolved SO₂\" and \"solidifies\" are the two the examiner reads for here."
+      }
+    ]
+  },
+  "insider_note": "Two lines answer this: 98 % pure copper from the converter, and blisters raised by SO₂ escaping as it solidifies."
+}

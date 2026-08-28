@@ -1,0 +1,309 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_froth_flotation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the purification of sulphide ore by froth floatation method.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "The process",
+      "marks": 1
+    },
+    {
+      "label": "The reagents",
+      "marks": 1
+    },
+    {
+      "label": "Uses and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question, a seven-point model answer and a labelled diagram of the flotation cell. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR CORRECTED, AND THE BOOK CONTRADICTS ITSELF (book pp.80-81, SAQ 2): printed point 3 calls sodium ethyl xanthate a \"frothing agent\", and printed point 6 says \"Froth is stabilized by adding collectors\". Both are wrong and they disagree with each other, so the book never states what a collector actually does. A xanthate is a COLLECTOR (it makes the mineral surface water repellent); pine oil is the FROTHING AGENT; cresol and aniline are FROTH STABILISERS. The corrected roles are written on the card. BOOK LOOSE WORDING: printed point 6 says lime and sodium carbonate \"help the froth to float\"; they are pH regulators that condition the pulp so the collector acts on the wanted mineral, and that is what the card says. FIGURE SCOPE: the question says \"explain\", not \"draw\", so the diagram step carries NO marks and the whole split sits on the four written steps."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Metallurgy — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "Froth flotation is used to concentrate",
+          "low grade sulphide ores.",
+          "The principle is that sulphide mineral",
+          "particles are wetted by oil, while the",
+          "gangue particles are wetted by water.",
+          "The oiled mineral particles stick to air",
+          "bubbles and rise; the wetted gangue sinks."
+        ],
+        "why": "The separation rests on a difference in wetting, not on a difference in density, and that one sentence is what the question is asking for. A sulphide surface is water repellent once an oil film is on it, so it attaches to an air bubble and is carried to the top.",
+        "common_mistakes": [
+          "Saying the mineral is lighter than the gangue. The mineral is usually heavier; it rises because it is stuck to air bubbles.",
+          "Applying the method to oxide or carbonate ores. Froth flotation is used for sulphide ores."
+        ],
+        "memory_tip": "The mineral is wetted by oil and the gangue is wetted by water.",
+        "margin_note": "One sentence of principle, naming oil and water, is the whole of this mark."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "The flotation cell",
+        "marks": 0,
+        "figure": {
+          "id": "froth_flotation_cell",
+          "width": 520,
+          "height": 290,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ff_tank",
+              "d": "M 120 88 L 120 252 L 302 252 L 302 88",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "ff_froth_surface",
+              "d": "M 122 104 Q 140 94 158 104 Q 176 114 194 104 Q 212 94 230 104 Q 248 114 266 104 Q 284 94 300 104 M 122 142 L 300 142",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "ff_paddle",
+              "d": "M 211 30 L 211 230 M 188 230 L 234 230 M 196 224 L 196 236 M 226 224 L 226 236",
+              "ms": 3860
+            },
+            {
+              "type": "stroke",
+              "id": "ff_air_inlet",
+              "d": "M 128 52 L 203 52 M 195 47 L 203 52 L 195 57",
+              "ms": 1340
+            },
+            {
+              "type": "stroke",
+              "id": "ff_mineral_particles",
+              "d": "M 134 116 l 6 0 M 156 126 l 6 0 M 178 112 l 6 0 M 196 132 l 6 0 M 240 118 l 6 0 M 262 130 l 6 0 M 284 114 l 6 0 M 146 136 l 6 0 M 266 108 l 6 0 M 172 134 l 6 0",
+              "ms": 860
+            },
+            {
+              "type": "stroke",
+              "id": "ff_gangue_particles",
+              "d": "M 132 246 l 6 0 M 152 240 l 6 0 M 172 247 l 6 0 M 250 244 l 6 0 M 270 239 l 6 0 M 288 246 l 6 0 M 148 232 l 6 0 M 282 233 l 6 0",
+              "ms": 690
+            },
+            {
+              "type": "stroke",
+              "id": "ff_leader_paddle",
+              "d": "M 314 34 L 218 34 M 226 30 L 218 34 L 226 38",
+              "ms": 1630
+            },
+            {
+              "type": "stroke",
+              "id": "ff_leader_froth",
+              "d": "M 314 112 L 250 108 M 258 104 L 250 108 L 257 113",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "ff_leader_pulp",
+              "d": "M 314 176 L 262 186 M 270 180 L 262 186 L 270 191",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "ff_leader_gangue",
+              "d": "M 314 242 L 254 248 M 262 243 L 254 248 L 261 253",
+              "ms": 1120
+            },
+            {
+              "type": "label",
+              "id": "ff_lbl_paddle",
+              "x": 320,
+              "y": 38,
+              "text": "rotating paddle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ff_lbl_air",
+              "x": 96,
+              "y": 56,
+              "text": "air",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ff_lbl_froth",
+              "x": 320,
+              "y": 116,
+              "text": "mineral froth",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ff_lbl_pulp",
+              "x": 320,
+              "y": 180,
+              "text": "pulp of ore + oil",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ff_lbl_gangue",
+              "x": 320,
+              "y": 246,
+              "text": "gangue settles down",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The picture shows the three layers the written answer describes: the froth carrying the mineral at the top, the pulp of ore and oil in the middle, and the gangue settled at the bottom, together with the paddle and the air inlet that make the froth.",
+        "common_mistakes": [
+          "Drawing the mineral at the bottom of the tank. The mineral is in the froth at the top; it is the gangue that settles.",
+          "Leaving out the air inlet. Without air there are no bubbles and no froth."
+        ],
+        "memory_tip": "Three layers: froth on top, pulp in the middle, gangue at the bottom.",
+        "margin_note": "The question does not say draw, so this earns no marks. All four marks sit on the written steps; sketch it only if there is time."
+      },
+      {
+        "id": "s3_process",
+        "kind": "text",
+        "label": "The process",
+        "marks": 1,
+        "mark_note": "Process",
+        "lines": [
+          "1) The ore is powdered finely and mixed",
+          {
+            "text": "with water in a tank to form a pulp.",
+            "style": "indent"
+          },
+          "2) Pine oil and the other reagents are",
+          {
+            "text": "added to the pulp.",
+            "style": "indent"
+          },
+          "3) Air is blown in and the pulp is stirred",
+          {
+            "text": "by a rotating paddle.",
+            "style": "indent"
+          },
+          "4) The mineral particles stick to the air",
+          {
+            "text": "bubbles and rise as a froth.",
+            "style": "indent"
+          },
+          "5) The froth is skimmed off, allowed to",
+          {
+            "text": "collapse and dried to give the ore.",
+            "style": "indent"
+          }
+        ],
+        "why": "The order matters. The pulp is made first, the reagents go in next and the air last, because a bubble has to meet a surface that is already oiled. The gangue settles at the bottom of the same tank and is drawn off separately.",
+        "common_mistakes": [
+          "Blowing the air in before the reagents. The mineral surface has to be oiled first, or the bubbles carry nothing up.",
+          "Saying the froth is the waste. The froth carries the mineral; the waste settles at the bottom."
+        ],
+        "memory_tip": "Powder, water, oil, air, froth. Five words in that order.",
+        "margin_note": "Five numbered steps in order earn this mark. Numbering them makes the order visible to the examiner."
+      },
+      {
+        "id": "s4_reagents",
+        "kind": "text",
+        "label": "The reagents",
+        "marks": 1,
+        "mark_note": "Reagents",
+        "lines": [
+          "Collectors: sodium ethyl xanthate, fatty",
+          {
+            "text": "acids. They make the mineral surface",
+            "style": "indent"
+          },
+          {
+            "text": "water repellent, so it sticks to bubbles.",
+            "style": "indent"
+          },
+          "Frothing agents: pine oil, eucalyptus",
+          {
+            "text": "oil. They produce the froth.",
+            "style": "indent"
+          },
+          "Froth stabilisers: cresol, aniline. They",
+          {
+            "text": "keep the froth from collapsing early.",
+            "style": "indent"
+          },
+          "Depressants: NaCN, to keep one sulphide",
+          {
+            "text": "out of the froth.",
+            "style": "indent"
+          },
+          "pH regulators: lime, Na₂CO₃."
+        ],
+        "why": "Each reagent has one job and the four must not be swapped. The book prints sodium ethyl xanthate as a frothing agent and then says the froth is stabilised by collectors; both are the wrong way round, and the two printed statements also disagree with each other. A xanthate is a collector, pine oil is the frothing agent, and cresol or aniline is the froth stabiliser. The corrected roles are written here.",
+        "common_mistakes": [
+          "Calling sodium ethyl xanthate a frothing agent. It is a collector; pine oil is the frothing agent.",
+          "Saying collectors stabilise the froth. Froth stabilisers such as cresol do that; a collector acts on the mineral surface."
+        ],
+        "memory_tip": "Collector coats the mineral, frother makes the bubbles, stabiliser keeps them, depressant keeps one mineral out.",
+        "margin_note": "Name at least two reagents with the correct job. Swapping collector and frothing agent is the commonest error, and the book itself swaps them."
+      },
+      {
+        "id": "s5_examples",
+        "kind": "boxed_final",
+        "label": "Uses and examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Used for sulphide ores only",
+            "style": "boxed"
+          },
+          "Copper pyrites  CuFeS₂",
+          "Zinc blende  ZnS",
+          "Galena  PbS",
+          "Iron pyrites  FeS₂",
+          "The method raises the metal content of a",
+          "low grade ore enough for it to be worth",
+          "reducing."
+        ],
+        "why": "Every ore named is a sulphide, which is the principle step said from the other side. Naming the ore with its formula shows the examiner that the choice of method follows from the type of ore.",
+        "common_mistakes": [
+          "Giving bauxite or haematite as examples. Those are oxide ores and are concentrated by leaching or by magnetic separation.",
+          "Writing copper pyrites as CuS. Copper pyrites is CuFeS₂."
+        ],
+        "memory_tip": "Every froth flotation example ends in S: CuFeS₂, ZnS, PbS, FeS₂.",
+        "margin_note": "Two named ores with their formulae complete this mark."
+      }
+    ]
+  },
+  "insider_note": "The mark most often lost is the reagent mark, because the book's own answer calls sodium ethyl xanthate a frothing agent. It is a collector, and pine oil is the frothing agent."
+}

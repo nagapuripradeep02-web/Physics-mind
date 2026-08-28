@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_promoters_and_poisons",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define promoters and poisons in the phenomena of catalysis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Promoter",
+      "marks": 1
+    },
+    {
+      "label": "Poison, with the example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed answer is correct as far as it goes: Mo is a promoter for the iron catalyst in the Haber process and CO poisons it. BOOK GAP (book p.77, VSAQ 12): the printed definitions leave out the point that a promoter has little or no catalytic activity of its own, which is the whole reason it is not simply called a second catalyst. That line is added. The book also does not say that a poison acts by being adsorbed on the surface of the catalyst more strongly than the reactant, which is added because it is the reason the poisoning is often permanent."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_promoter",
+        "kind": "text",
+        "label": "Promoter",
+        "marks": 1,
+        "mark_note": "Promoter",
+        "lines": [
+          "A promoter is a substance which by itself",
+          "has little or no catalytic activity, but",
+          "which increases the activity of a catalyst",
+          "when it is added along with the catalyst.",
+          "Ex: in the Haber process, molybdenum is",
+          "the promoter for the iron catalyst."
+        ],
+        "why": "The definition has to separate a promoter from a second catalyst, and the separating fact is that a promoter does almost nothing on its own. Only in company with the catalyst does it raise the rate, which is why the words along with the catalyst belong in the answer.",
+        "common_mistakes": [
+          "Calling a promoter a catalyst. On its own it has little or no catalytic activity.",
+          "Writing that the promoter is used up. It is not consumed; it stays with the catalyst."
+        ],
+        "memory_tip": "A promoter works only in company. Alone it does almost nothing.",
+        "margin_note": "The words increases the activity of a catalyst carry this mark. One example fixes it."
+      },
+      {
+        "id": "s2_poison",
+        "kind": "boxed_final",
+        "label": "Poison, with the example",
+        "marks": 1,
+        "mark_note": "Poison",
+        "lines": [
+          {
+            "text": "Haber process: Mo promotes, CO poisons.",
+            "style": "boxed"
+          },
+          "A poison is a substance which decreases or",
+          "destroys the activity of a catalyst.",
+          "It is adsorbed on the surface of the",
+          "catalyst more strongly than the reactant,",
+          "so the reactant has no free surface left.",
+          "Ex: carbon monoxide poisons the iron",
+          "catalyst in the Haber process."
+        ],
+        "why": "A heterogeneous catalyst works on its surface, so anything held on that surface more firmly than the reactant stops the reaction. Naming the same reaction for both the promoter and the poison makes the pair easy to write and easy to mark.",
+        "common_mistakes": [
+          "Writing that a poison slows the reaction directly. It acts on the catalyst, not on the reaction.",
+          "Naming molybdenum as the poison. Molybdenum is the promoter and carbon monoxide is the poison in the same process."
+        ],
+        "memory_tip": "One reaction, two answers: Mo raises the activity of iron and CO destroys it.",
+        "margin_note": "Give both definitions and one shared example. The Haber process covers both in a single line."
+      }
+    ]
+  },
+  "insider_note": "Both halves must be defined; an answer that defines only the promoter earns one mark. The Haber process supplies the example for both, so write it once and name Mo and CO together."
+}

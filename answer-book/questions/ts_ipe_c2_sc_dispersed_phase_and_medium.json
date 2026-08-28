@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_dispersed_phase_and_medium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Name the dispersed phase and dispersion medium in the following systems. i) Fog ii) Smoke iii) Milk iv) Cloud v) Blood vi) Gold sol",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Fog, smoke and milk",
+      "marks": 2
+    },
+    {
+      "label": "Cloud, blood and gold sol",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.78-79, which prints the question and a model answer. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. PRINTING QUIRK: this is the one question in the unit whose answer is labelled \"Sol.\" instead of \"A.\"; it is an ordinary Short Answer question. BOOK ERROR (book p.78, SAQ 6): the book prints the type of milk as \"Aquasol\". Milk is an EMULSION: both its phases are liquid, liquid fat dispersed in water, and the book's own SAQ 3 on the same page defines an emulsion in exactly those words. Aquasol names only the medium and does not name the type. The card writes emulsion and records the disagreement. The five other entries the book gives are correct: fog and cloud are liquid in gas, smoke is solid in gas, and blood and gold sol are solid in liquid. BOOK GAP: the book does not state the naming rule, that the type of a colloid is named from the states of BOTH phases together, which is the only reason milk and blood get different names although both are dispersions in water; the rule is written as the closing step."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Surface Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_three",
+        "kind": "text",
+        "label": "Fog, smoke and milk",
+        "marks": 2,
+        "mark_note": "First three",
+        "lines": [
+          "i) Fog:",
+          "dispersed phase = water droplets (liquid)",
+          "dispersion medium = air (gas)",
+          "type = aerosol",
+          "ii) Smoke:",
+          "dispersed phase = carbon particles (solid)",
+          "dispersion medium = air (gas)",
+          "type = aerosol",
+          "iii) Milk:",
+          "dispersed phase = liquid fat (liquid)",
+          "dispersion medium = water (liquid)",
+          "type = emulsion"
+        ],
+        "why": "Each answer is read off the two states. Fog and smoke are both dispersions in air and so both are aerosols, although one is liquid in gas and the other solid in gas. Milk has both phases liquid, which is the definition of an emulsion, so it is not an aerosol or a sol.",
+        "common_mistakes": [
+          "Calling milk a sol or an aquasol. Both of its phases are liquid, so milk is an emulsion.",
+          "Writing air as the dispersed phase in fog or smoke. Air is the medium; the droplets or the carbon particles are dispersed in it."
+        ],
+        "memory_tip": "Fog is liquid in gas, smoke is solid in gas, milk is liquid in liquid.",
+        "margin_note": "Write three labelled lines for each system: dispersed phase, dispersion medium, type. Three lines each is what earns full marks."
+      },
+      {
+        "id": "s2_last_three",
+        "kind": "text",
+        "label": "Cloud, blood and gold sol",
+        "marks": 2,
+        "mark_note": "Last three",
+        "lines": [
+          "iv) Cloud:",
+          "dispersed phase = water droplets (liquid)",
+          "dispersion medium = air (gas)",
+          "type = aerosol",
+          "v) Blood:",
+          "dispersed phase = albuminoid substance",
+          "(solid)",
+          "dispersion medium = water (liquid)",
+          "type = sol",
+          "vi) Gold sol:",
+          "dispersed phase = gold particles (solid)",
+          "dispersion medium = water (liquid)",
+          "type = sol"
+        ],
+        "why": "Cloud has the same two phases as fog and therefore the same name; the difference between them is height, not chemistry. Blood and gold sol are both solids dispersed in water, so both are sols, and because the medium is water each may also be called a hydrosol or aquasol.",
+        "common_mistakes": [
+          "Giving cloud a different type from fog. Both are water droplets in air, so both are aerosols.",
+          "Writing gold sol as a solid dispersed in a solid. The medium is water, so it is a sol and not a solid sol."
+        ],
+        "memory_tip": "Cloud matches fog. Blood and gold sol are both solid in water, so both are sols.",
+        "margin_note": "Cloud repeats fog exactly, so write it quickly and spend the time on blood and gold sol."
+      },
+      {
+        "id": "s3_naming_rule",
+        "kind": "boxed_final",
+        "label": "The naming rule",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "The name comes from BOTH phases.",
+            "style": "boxed"
+          },
+          "Solid or liquid in a gas = aerosol.",
+          "Liquid in a liquid = emulsion.",
+          "Solid in a liquid = sol.",
+          "Solid or liquid in a solid = solid sol or",
+          "gel.",
+          "A sol in water may also be called a",
+          "hydrosol or aquasol, but that name gives",
+          "the medium only, not the type."
+        ],
+        "why": "The type of a colloid is named from the states of the two phases taken together, so both states have to be written before the name is chosen. The words hydrosol and aquasol name the medium alone, which is why the book's answer for milk, aquasol, does not settle whether milk is an emulsion or a sol; both phases being liquid settles it as an emulsion.",
+        "common_mistakes": [
+          "Naming the type from the medium alone. Aquasol says only that the medium is water.",
+          "Using the word sol for every colloid. A sol is a solid dispersed in a liquid."
+        ],
+        "memory_tip": "Gas medium gives an aerosol, liquid in liquid gives an emulsion, solid in liquid gives a sol.",
+        "margin_note": "This rule earns no marks by itself, but writing the type beside each system is what the six answers are marked on."
+      }
+    ]
+  },
+  "insider_note": "Six systems and four marks means about two thirds of a mark each, so a missed one costs. Write the type as well as the two phases, and note that milk is an emulsion, not an aquasol as the book prints."
+}

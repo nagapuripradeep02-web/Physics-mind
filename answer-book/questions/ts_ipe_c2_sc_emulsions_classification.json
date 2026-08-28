@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_emulsions_classification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are emulsions? How are they classified. Describe the applications of emulsions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Oil in water type",
+      "marks": 1
+    },
+    {
+      "label": "Water in oil type",
+      "marks": 1
+    },
+    {
+      "label": "Applications",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.77-78, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed classification, oil in water with milk and water in oil with butter, is correct and is kept. BOOK GAP: the printed definition does not say that the two liquids must be liquids that do not mix, and the printed answer gives only two applications, milk in the diet and cosmetics. Two more are added here from NCERT, the cleansing action of soap and the emulsification of fats by bile salts during digestion, because \"describe the applications\" in the plural reads as more than two. The book also does not mention that an emulsion needs an emulsifying agent to stay stable, which its own VSAQ 5 defines; that line is added."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Surface Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An emulsion is a colloidal solution in",
+          "which both the dispersed phase and the",
+          "dispersion medium are liquids that do not",
+          "mix with each other.",
+          "An emulsion is not stable by itself, so an",
+          "emulsifying agent is added to keep the",
+          "droplets separate.",
+          "Emulsions are classified into two types."
+        ],
+        "why": "The definition is the liquid in liquid case of a colloid, and the clause about the liquids not mixing is what keeps a true solution out of it. The stability line belongs here because every real emulsion in the applications part of the answer holds together only because of an emulsifying agent.",
+        "common_mistakes": [
+          "Writing that the two liquids mix with each other. If they mixed the result would be a true solution.",
+          "Leaving out the emulsifying agent. Without one the two liquids separate into layers after some time."
+        ],
+        "memory_tip": "Liquid in liquid, the two do not mix, and an agent is needed to keep them apart.",
+        "margin_note": "Open with the definition in one sentence, then announce the two types. That structure earns the first mark quickly."
+      },
+      {
+        "id": "s2_oil_in_water",
+        "kind": "text",
+        "label": "Oil in water type",
+        "marks": 1,
+        "mark_note": "Oil in water",
+        "lines": [
+          "1) Oil in water type (o/w):",
+          "Dispersed phase = oil",
+          "Dispersion medium = water",
+          "Ex: milk, vanishing cream.",
+          "Milk is droplets of liquid fat dispersed",
+          "in water.",
+          "The emulsifying agent for this type is a",
+          "soap, a detergent or a protein."
+        ],
+        "why": "The type is named after the dispersed liquid first and the medium second, so oil in water means oil droplets inside water. Writing the dispersed phase and the medium on separate lines makes clear which liquid is which, and that is exactly what the classification is being marked on.",
+        "common_mistakes": [
+          "Reading the name backwards. In oil in water, oil is the dispersed phase and water is the medium.",
+          "Giving butter as the example. Butter is the water in oil type."
+        ],
+        "memory_tip": "The first liquid named is always the dispersed one. Oil in water means oil droplets in water.",
+        "margin_note": "Write dispersed phase and dispersion medium as two labelled lines, then the example."
+      },
+      {
+        "id": "s3_water_in_oil",
+        "kind": "text",
+        "label": "Water in oil type",
+        "marks": 1,
+        "mark_note": "Water in oil",
+        "lines": [
+          "2) Water in oil type (w/o):",
+          "Dispersed phase = water",
+          "Dispersion medium = oil",
+          "Ex: butter, cold cream.",
+          "Butter is droplets of water dispersed in",
+          "fat.",
+          "The emulsifying agent for this type is a",
+          "heavy metal salt of a fatty acid."
+        ],
+        "why": "This is the same pair of liquids with the roles exchanged, which is why the two types must be written one after the other in the same layout. The agent is different for the two types, and naming it is what shows that the exchange of roles is a real physical difference.",
+        "common_mistakes": [
+          "Writing the same emulsifying agent for both types. Soap suits oil in water; a heavy metal salt of a fatty acid suits water in oil.",
+          "Writing cold cream and vanishing cream as the same type. Cold cream is water in oil, vanishing cream is oil in water."
+        ],
+        "memory_tip": "Butter and cold cream are water in oil. Milk and vanishing cream are oil in water.",
+        "margin_note": "Keep the same three labelled lines as the previous type. The parallel layout is what makes the pair easy to mark."
+      },
+      {
+        "id": "s4_applications",
+        "kind": "boxed_final",
+        "label": "Applications",
+        "marks": 1,
+        "mark_note": "Applications",
+        "lines": [
+          {
+            "text": "Food, cosmetics, cleaning, digestion.",
+            "style": "boxed"
+          },
+          "1) Milk is an emulsion of fat in water and",
+          "is an important part of the daily diet.",
+          "2) Cosmetics, ointments, lotions and hair",
+          "dyes are made as emulsions.",
+          "3) The cleansing action of soap works by",
+          "making an emulsion of grease in water.",
+          "4) In digestion, bile salts emulsify fats",
+          "so that enzymes can act on them."
+        ],
+        "why": "Each application is the same physical idea used for a different purpose: a liquid that will not mix with water is broken into droplets and kept there. Naming four covers food, personal care, cleaning and the body, so the answer reads as a description rather than one memorised line.",
+        "common_mistakes": [
+          "Naming an application without saying which liquid is dispersed in which. Half the mark is for showing that the example really is an emulsion.",
+          "Giving froth flotation as an emulsion. That process uses an oil and water mixture with air, and it belongs to the metallurgy chapter."
+        ],
+        "memory_tip": "Four places: on the plate, on the skin, in the wash, and in the body.",
+        "margin_note": "Two applications may be enough for this mark, but four numbered lines cost only four rules."
+      }
+    ]
+  },
+  "insider_note": "The classification carries half the paper here, and the fastest way to lose it is to write the two types as a paragraph. Use the labelled lines dispersed phase and dispersion medium under each type."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_brownian_movement",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Brownian movement?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Cause and effect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO (book p.76, VSAQ 4): the printed answer reads \"The zig-zig motion of colloidal particles\"; the word is zig-zag and is written so here. BOOK GAP: the printed answer gives no cause. The cause is the uneven bombardment of each colloidal particle by the molecules of the dispersion medium, and the consequence is that the particles do not settle, which is one reason a sol is stable. Both are added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The continuous, rapid, zig-zag motion of",
+          "colloidal particles in the dispersion",
+          "medium is called Brownian movement.",
+          "It is seen under an ultramicroscope, and it",
+          "does not stop with time."
+        ],
+        "why": "The motion is a property of the colloidal state itself, not of the substance. Every colloidal particle in a liquid shows it, and it goes on for as long as the sol lasts, which is why the answer says continuous.",
+        "common_mistakes": [
+          "Writing that the particles move in straight lines. The path changes direction constantly, which is what zig-zag means.",
+          "Writing that the motion stops after some time. It is continuous as long as the sol exists."
+        ],
+        "memory_tip": "Zig-zag, continuous, never settling. Three words carry the definition.",
+        "margin_note": "The words zig-zag motion of colloidal particles carry this mark. Name the dispersion medium as well."
+      },
+      {
+        "id": "s2_cause_effect",
+        "kind": "boxed_final",
+        "label": "Cause and effect",
+        "marks": 1,
+        "mark_note": "Cause and effect",
+        "lines": [
+          {
+            "text": "Cause: uneven bombardment by molecules",
+            "style": "boxed"
+          },
+          "The molecules of the dispersion medium",
+          "strike each colloidal particle from every",
+          "side, and the number of collisions is not",
+          "the same on all sides at any instant.",
+          "The particle is pushed in the direction of",
+          "the larger number of collisions.",
+          "This motion keeps the particles apart, so",
+          "they do not settle and the sol is stable."
+        ],
+        "why": "A colloidal particle is small enough that the collisions from opposite sides do not balance at any one instant, so a net push remains and its direction keeps changing. The same motion works against gravity settling the particles, which is one of the two reasons a sol stays dispersed, the other being the charge on the particles.",
+        "common_mistakes": [
+          "Giving the cause as convection currents or vibration of the container. The cause is molecular collision from the medium.",
+          "Writing that the collisions are equal on all sides. If they were equal there would be no net push and no motion."
+        ],
+        "memory_tip": "Collisions never balance, so a push always remains and its direction keeps changing.",
+        "margin_note": "Write the cause in one sentence and the stability point in another. Both are needed for this mark."
+      }
+    ]
+  },
+  "insider_note": "The second mark is for the cause, not for more description of the motion. Write the words uneven bombardment by the molecules of the dispersion medium."
+}

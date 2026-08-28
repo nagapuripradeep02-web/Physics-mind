@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_depressant_role",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the role of depressant in froth floatation?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The role",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.80, VSAQ 11): the book names NaCN and the ZnS + PbS ore but prints no equation. The reaction 4NaCN + ZnS → Na₂[Zn(CN)₄] + Na₂S is added here and balances (Na 4=4, C 4=4, N 4=4, Zn 1=1, S 1=1). The book's spelling of the process is \"froth floatation\" throughout; the question text keeps the printed spelling and the answer uses \"flotation\"."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_role",
+        "kind": "text",
+        "label": "The role",
+        "marks": 1,
+        "mark_note": "Role",
+        "lines": [
+          "A depressant is a substance added in froth",
+          "flotation to keep one mineral out of the",
+          "froth.",
+          "It is used when an ore contains two",
+          "sulphides and only one of them is wanted.",
+          "The depressant coats the unwanted sulphide",
+          "so the bubbles do not lift it."
+        ],
+        "why": "Froth flotation on its own lifts every sulphide in the pulp, so an ore holding two sulphides would give a froth containing both. The depressant is what makes the process selective, and that selectivity is the whole answer.",
+        "common_mistakes": [
+          "Saying a depressant stops the froth from forming. The froth still forms; only one mineral is kept out of it.",
+          "Confusing a depressant with a collector. A collector brings a mineral into the froth; a depressant keeps one out."
+        ],
+        "memory_tip": "A collector brings a mineral into the froth; a depressant keeps one out. Opposite jobs in the same tank.",
+        "margin_note": "The words \"two sulphides\" and \"separates\" carry this mark. Selectivity is what is being asked about."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "NaCN keeps ZnS out of the froth",
+            "style": "boxed"
+          },
+          "An ore containing ZnS and PbS is treated",
+          "with NaCN.",
+          {
+            "text": "4NaCN + ZnS → Na₂[Zn(CN)₄] + Na₂S",
+            "style": "eq"
+          },
+          "The complex layer formed on the ZnS keeps",
+          "it wetted by water, so only PbS is",
+          "carried up into the froth."
+        ],
+        "why": "Sodium cyanide reacts with the zinc sulphide surface and forms the soluble complex sodium tetracyanozincate. That layer is wetted by water, so the zinc sulphide particles stay in the pulp while the galena is lifted. The book gives NaCN and the ZnS + PbS ore but no equation, which is added here.",
+        "common_mistakes": [
+          "Saying NaCN depresses PbS. It depresses ZnS, so lead sulphide is the one that floats.",
+          "Writing Na[Zn(CN)₄]. The complex ion has a 2− charge, so two sodium ions are needed."
+        ],
+        "memory_tip": "NaCN holds zinc back and lead floats first.",
+        "margin_note": "The example with the two sulphides named is the mark. The equation is extra and is worth writing if there is room."
+      }
+    ]
+  },
+  "insider_note": "Naming which sulphide is depressed is what earns the second mark. NaCN depresses ZnS and PbS floats."
+}

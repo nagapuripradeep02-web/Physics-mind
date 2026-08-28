@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_matte",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is matte? Give its composition.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The composition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.80, VSAQ 7): the printed answer says only that matte is obtained after smelting. Where it sits in the furnace — below the FeSiO₃ slag — is added here, because that is what separates matte from the slag in a diagram question and it is the same fact used in SAQ 5 of this unit."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Matte is the molten mixture obtained when",
+          "the roasted copper ore is smelted with",
+          "coke and silica in a blast furnace.",
+          "The iron in the charge is slagged off as",
+          "FeSiO₃, and the copper stays behind in",
+          "the matte layer below the slag."
+        ],
+        "why": "Matte is named by the stage it comes from and by its position: the slag floats on top and the matte is the heavier layer under it. Defining it as the product of smelting, and not of roasting or of bessemerisation, is what separates it from blister copper.",
+        "common_mistakes": [
+          "Calling matte pure copper. It is a sulphide mixture and still has to go through the Bessemer converter.",
+          "Saying matte is obtained after bessemerisation. That product is blister copper; matte comes out of the smelting furnace."
+        ],
+        "memory_tip": "Slag floats, matte sinks. Matte is the layer below the slag.",
+        "margin_note": "The word \"smelting\" is what fixes the stage. Write it in the first line."
+      },
+      {
+        "id": "s2_composition",
+        "kind": "boxed_final",
+        "label": "The composition",
+        "marks": 1,
+        "mark_note": "Composition",
+        "lines": [
+          {
+            "text": "Matte = Cu₂S (major) + FeS (minor)",
+            "style": "boxed"
+          },
+          "Copper is present as cuprous sulphide",
+          "Cu₂S, which is the larger part.",
+          "A small amount of ferrous sulphide FeS",
+          "is still left with it."
+        ],
+        "why": "Both sulphides have to be named, because the whole purpose of bessemerisation, the next stage, is to burn off the FeS that is left and then convert the Cu₂S to copper. A composition written as Cu₂S alone leaves nothing for the converter to remove.",
+        "common_mistakes": [
+          "Writing CuS instead of Cu₂S. Copper is in the +1 state here, so the formula is Cu₂S.",
+          "Leaving FeS out. The small amount of FeS is part of the composition and is usually the second half of this mark."
+        ],
+        "memory_tip": "Matte is mostly Cu₂S with a little FeS.",
+        "margin_note": "Box the one-line composition with the words major and minor. That line is the mark."
+      }
+    ]
+  },
+  "insider_note": "Matte, blister copper and pure copper are three different stages and each has its own composition. This question asks for the middle one."
+}

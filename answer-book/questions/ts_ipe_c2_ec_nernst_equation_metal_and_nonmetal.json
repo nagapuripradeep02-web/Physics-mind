@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_nernst_equation_metal_and_nonmetal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "State and explain Nernst equation with the help of a metallic electrode and a non metallic electrode.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Statement of the Nernst equation",
+      "marks": 1
+    },
+    {
+      "label": "The general form and its symbols",
+      "marks": 2
+    },
+    {
+      "label": "Metallic electrode",
+      "marks": 2
+    },
+    {
+      "label": "Non metallic electrode",
+      "marks": 2
+    },
+    {
+      "label": "A worked example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+2+2+2+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The two printed results (book p.71, LAQ 2), E = E° + (0.059/n) log c for a metal electrode and E = E° − (0.059/n) log c for a non metal electrode, are CORRECT and are followed. BOOK INCONSISTENCY: this LAQ prints the constant as 0.059 while the VSAQ on the same topic (book p.70, VSAQ 10) prints 0.0591. Recomputed: 2.303RT/F at 298 K = 2.303 × 8.314 × 298 / 96500 = 0.05913 V. 0.0591 is used throughout this unit. BOOK ERRORS: the book writes both electrode reactions with a single arrow (Mⁿ⁺ + ne⁻ → M), but an electrode is reversible, so ⇌ is used here. BOOK GAPS: the printed answer never gives the general Nernst equation the two results come FROM, never defines R, F, T or the reaction quotient, and never says the concentration of a pure solid is taken as 1, which is the step that produces the change of sign between the two cases. All of that is written here. WORKED EXAMPLE RECOMPUTED, and not in the book: for zinc in 0.1 M Zn²⁺, E = −0.76 + (0.0591/2) log(0.1) = −0.76 − 0.02955 = −0.78955, which rounds to −0.79 V."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Electro Chemistry — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "Statement of the Nernst equation",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "The Nernst equation gives the electrode",
+          "potential of an electrode at any concentration",
+          "of the ions with which the electrode is",
+          "reversible, in terms of its standard electrode",
+          "potential.",
+          "Standard potentials are quoted at 1 M, and",
+          "the Nernst equation carries that value across",
+          "to the concentration actually present."
+        ],
+        "why": "A table of standard potentials is only good at 1 M, and no working cell stays at 1 M. The Nernst equation is what makes the table usable, which is why every calculation on cell emf at a stated concentration runs through it.",
+        "common_mistakes": [
+          "Saying it gives the standard electrode potential. E° is what goes IN; E at the stated concentration is what comes out.",
+          "Saying it applies only to whole cells. It is written for a single electrode, which is what this question asks for."
+        ],
+        "memory_tip": "The table gives the value at 1 M. Nernst moves it to whatever concentration is really there.",
+        "margin_note": "The phrase at any given concentration must appear, or the sentence just describes E°."
+      },
+      {
+        "id": "s2_general_form",
+        "kind": "equation",
+        "label": "The general form and its symbols",
+        "marks": 2,
+        "mark_note": "General form",
+        "lines": [
+          "For a general electrode reaction the equation",
+          "is",
+          {
+            "text": "E = E° − (2.303RT/nF) log Q",
+            "style": "eq"
+          },
+          "Q is the reaction quotient of the electrode",
+          "reaction, that is the concentrations of the",
+          "products over the concentrations of the",
+          "reactants.",
+          "R = 8.314 J K⁻¹ mol⁻¹, F = 96500 C mol⁻¹,",
+          "T = temperature in kelvin, n = number of",
+          "electrons in the electrode reaction.",
+          "At T = 298 K, 2.303RT/F = 0.0591 V, so",
+          {
+            "text": "E = E° − (0.0591/n) log Q",
+            "style": "boxed"
+          },
+          "The concentration of a pure solid or a pure",
+          "liquid is taken as 1."
+        ],
+        "why": "Both of the results asked for come from this one equation, so writing it first turns the answer into one idea applied twice instead of two formulas to be memorised separately. The rule that a pure solid counts as 1 is what makes the two cases differ.",
+        "common_mistakes": [
+          "Writing Q upside down, as reactants over products. Products go on top, exactly as in an equilibrium constant.",
+          "Using the 0.0591 form at a temperature other than 298 K. Away from 298 K the full 2.303RT/nF form must be used."
+        ],
+        "memory_tip": "One equation, E = E° − (0.0591/n) log Q. Everything after this is only working out what Q is.",
+        "margin_note": "Write the general form and define every symbol before splitting into the two cases. These two marks are for the general form."
+      },
+      {
+        "id": "s3_metal_electrode",
+        "kind": "equation",
+        "label": "Metallic electrode",
+        "marks": 2,
+        "mark_note": "Metal electrode",
+        "lines": [
+          "A metallic electrode is a metal in contact",
+          "with a solution of its own ions.",
+          {
+            "text": "Mⁿ⁺(aq) + ne⁻ ⇌ M(s)",
+            "style": "eq"
+          },
+          "The product is the solid metal, taken as 1:",
+          {
+            "text": "Q = [M] / [Mⁿ⁺] = 1 / [Mⁿ⁺]",
+            "style": "eq"
+          },
+          {
+            "text": "E = E° − (0.0591/n) log (1/[Mⁿ⁺])",
+            "style": "eq"
+          },
+          "Turning the fraction the right way up",
+          "changes the sign:",
+          {
+            "text": "E = E° + (0.0591/n) log [Mⁿ⁺]",
+            "style": "boxed"
+          },
+          "So the potential of a metal electrode rises",
+          "as the ion concentration rises.",
+          "Example: Zn²⁺(aq) + 2e⁻ ⇌ Zn(s), n = 2."
+        ],
+        "why": "The ion is on the reactant side, so it goes to the bottom of Q. Turning that fraction over is the only reason the sign in front of the log is a plus here, and knowing this makes the two cases one piece of work rather than two.",
+        "common_mistakes": [
+          "Keeping the minus sign in front of log[Mⁿ⁺]. Turning the fraction over changes it to a plus.",
+          "Putting the solid metal into the log term. A pure solid is taken as 1 and does not appear."
+        ],
+        "memory_tip": "The ion is a reactant, so it starts at the bottom of Q; moving it to the top changes the sign to plus.",
+        "margin_note": "Show the 1/[Mⁿ⁺] line before the final form. These two marks are for the working, not the result alone."
+      },
+      {
+        "id": "s4_non_metal_electrode",
+        "kind": "equation",
+        "label": "Non metallic electrode",
+        "marks": 2,
+        "mark_note": "Non metal electrode",
+        "lines": [
+          "A non metallic electrode is a non metal in",
+          "contact with a solution of its own anions.",
+          {
+            "text": "A(s) + ne⁻ ⇌ Aⁿ⁻(aq)",
+            "style": "eq"
+          },
+          "Here the ion is the PRODUCT and the non",
+          "metal is the solid, taken as 1:",
+          {
+            "text": "Q = [Aⁿ⁻] / [A] = [Aⁿ⁻]",
+            "style": "eq"
+          },
+          {
+            "text": "E = E° − (0.0591/n) log [Aⁿ⁻]",
+            "style": "boxed"
+          },
+          "So the potential of a non metal electrode",
+          "falls as the anion concentration rises,",
+          "which is the opposite of the metal case."
+        ],
+        "why": "The only difference from the metal case is which side of the electrode reaction the ion sits on. Here it is already the product, so no fraction has to be turned over and the minus sign of the general form is kept.",
+        "common_mistakes": [
+          "Writing a plus sign here as well. The anion is the product, so the minus sign of the general form stays.",
+          "Using this form for a halogen electrode such as Cl₂ | Cl⁻. There two chloride ions are formed, so the log term is log[Cl⁻]²."
+        ],
+        "memory_tip": "Ion on the product side means no flip, so the sign stays minus. Ion on the reactant side means flip, so it becomes plus.",
+        "margin_note": "The contrast with the metal case is what earns these marks. Say clearly that the sign is opposite and why."
+      },
+      {
+        "id": "s5_example",
+        "kind": "boxed_final",
+        "label": "A worked example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "For a zinc electrode in 0.1 M ZnSO₄,",
+          "E° = −0.76 V and n = 2:",
+          {
+            "text": "E = −0.76 + (0.0591/2) log (0.1)",
+            "style": "eq"
+          },
+          {
+            "text": "= −0.76 + (0.02955)(−1)",
+            "style": "indent"
+          },
+          {
+            "text": "E = −0.79 V",
+            "style": "boxed"
+          },
+          "Diluting the solution has lowered the",
+          "potential of the metal electrode, as the",
+          "equation predicts."
+        ],
+        "why": "The example shows the size of the effect as well as its direction: a tenfold change in concentration moves the potential by only 0.0591/n volts. That is why standard potentials stay useful even when a cell is not exactly at 1 M.",
+        "common_mistakes": [
+          "Reading log(0.1) as 0.1. The logarithm of 0.1 is −1.",
+          "Dividing 0.0591 by the charge of the sulphate ion. n = 2 comes from the two electrons in the zinc electrode reaction."
+        ],
+        "memory_tip": "One tenfold dilution shifts the potential by 0.0591/n volts. For n = 2 that is about 0.03 V.",
+        "margin_note": "One worked number is worth more than another paragraph of words. Keep the arithmetic on two lines."
+      }
+    ]
+  },
+  "insider_note": "The two results differ only in the sign in front of the log, and the sign comes from which side of the electrode reaction the ion is on. Derive both from E = E° − (0.0591/n) log Q instead of memorising them separately."
+}

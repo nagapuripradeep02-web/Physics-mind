@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_collodion_solution",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is collodion solution?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Where it is used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed answer, \"4% solution of nitro cellulose in a mixture of alcohol and ether is called collodion\", is correct and is kept. BOOK GAP (book p.76, VSAQ 7): the book never says what collodion is FOR. It is used to make the semi-permeable membrane of a dialyser and the membrane used in ultrafiltration, which is the only reason it appears in this chapter; that is added here. Nitro cellulose is also written as cellulose nitrate, and both names are given."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Collodion is a 4% solution of nitro",
+          "cellulose in a mixture of alcohol and",
+          "ether.",
+          "Nitro cellulose is also called cellulose",
+          "nitrate."
+        ],
+        "why": "The definition is a recipe, so the three parts of it are marked: the strength 4%, the solute nitro cellulose, and the solvent, which is a mixture of alcohol and ether and not either one alone.",
+        "common_mistakes": [
+          "Writing alcohol alone or ether alone as the solvent. The solvent is a mixture of the two.",
+          "Leaving out the 4%. The strength is part of the definition."
+        ],
+        "memory_tip": "4%, nitro cellulose, alcohol and ether. Three details, one line.",
+        "margin_note": "All three details carry this mark. Writing only \"a solution of nitro cellulose\" is incomplete."
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "Where it is used",
+        "marks": 1,
+        "mark_note": "Use",
+        "lines": [
+          {
+            "text": "Used to make membranes for dialysis.",
+            "style": "boxed"
+          },
+          "The solution is spread as a thin film and",
+          "the solvent is allowed to evaporate.",
+          "The film left behind is a semi-permeable",
+          "membrane.",
+          "Such membranes are used in the dialyser",
+          "and in ultrafiltration of colloids."
+        ],
+        "why": "Collodion is in the surface chemistry chapter only because of what the dried film does: ions and small molecules pass through it while colloidal particles do not. That is the property a dialyser needs, so the use is the second half of the answer.",
+        "common_mistakes": [
+          "Writing that collodion is itself a colloidal solution. It is a true solution of nitro cellulose; the membrane made from it is what matters here.",
+          "Naming coagulation as the use. Collodion is used for purification by dialysis, not for coagulating a sol."
+        ],
+        "memory_tip": "Dry the film, and it becomes the membrane bag of the dialyser.",
+        "margin_note": "Name dialysis or ultrafiltration. One named use is enough for this mark."
+      }
+    ]
+  },
+  "insider_note": "The book prints only the recipe. Add one line on the use, because the question is set in this chapter for the membrane, not for the solution."
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_gibbs_energy_and_emf",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How is Gibbs energy (G) related to the cell emf (E) mathematically?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "The symbols and the sign",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERRORS (book p.69, VSAQ 3), all three corrected on this card. (a) The printed line is \"−ΔrG = nFE°cell (or) ΔrG = −nFEcell\", which puts the STANDARD potential E°cell in one form and the non-standard Ecell in the other, as though the two were interchangeable. They are not: ΔG = −nFEcell holds at any concentration and ΔG° = −nFE°cell only under standard conditions. Both are written here as a pair. (b) The printed key reads \"ΔG = Standard Gibbs free energy change\"; the standard quantity carries the degree sign, ΔG°. (c) The printed key reads \"E°cell = standard electrode potential\"; E°cell is the standard emf of the CELL, which is the difference of two electrode potentials, not one electrode potential."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          "The electrical work a galvanic cell can do is",
+          "equal to the fall in Gibbs energy of the cell",
+          "reaction. At any concentration:",
+          {
+            "text": "ΔG = −nFEcell",
+            "style": "boxed"
+          },
+          "Under standard conditions:",
+          {
+            "text": "ΔG° = −nFE°cell",
+            "style": "eq"
+          }
+        ],
+        "why": "Work done by a cell is charge moved times the potential difference it is moved through. The charge carried by n moles of electrons is nF, and the potential difference is the emf, so the useful work is nFE. Gibbs energy falls by exactly that amount, which is where the minus sign comes from.",
+        "common_mistakes": [
+          "Dropping the minus sign. Gibbs energy FALLS while the cell does work, so ΔG is negative when Ecell is positive.",
+          "Mixing the two forms, writing ΔG with E°cell. The degree sign must appear on both sides or on neither."
+        ],
+        "memory_tip": "Charge nF moved through a potential difference E gives the work nFE, and the Gibbs energy falls by that much.",
+        "margin_note": "Write the pair: ΔG = −nFEcell and ΔG° = −nFE°cell. Writing only one of them is where half this mark goes."
+      },
+      {
+        "id": "s2_symbols",
+        "kind": "text",
+        "label": "The symbols and the sign",
+        "marks": 1,
+        "mark_note": "Symbols",
+        "lines": [
+          "n = number of electrons transferred in the",
+          "balanced cell reaction",
+          "F = Faraday constant = 96500 C mol⁻¹",
+          "Ecell = emf of the cell, in volts",
+          "ΔG = Gibbs energy change, in joules",
+          "ΔG° = standard Gibbs energy change",
+          "A positive Ecell gives a negative ΔG, so the",
+          "cell reaction is spontaneous."
+        ],
+        "why": "n has to be read from the balanced cell reaction and not from one half reaction, because the same reaction written with different coefficients changes n and changes ΔG with it, while Ecell stays the same. Ecell is an intensive quantity; ΔG is not.",
+        "common_mistakes": [
+          "Taking n from one half reaction alone. n is the number of electrons that cancel when the two halves are added.",
+          "Writing F = 96500 without units. F is a charge per mole, 96500 C mol⁻¹."
+        ],
+        "memory_tip": "Positive emf, negative ΔG, spontaneous cell. The three go together in that order.",
+        "margin_note": "Every symbol used in the equation must be named. The sign sentence is usually what separates full marks from half."
+      }
+    ]
+  },
+  "insider_note": "The book prints ΔG with the standard potential E°cell in the same line, which is wrong. Keep the degree signs together: ΔG = −nFEcell, and ΔG° = −nFE°cell."
+}

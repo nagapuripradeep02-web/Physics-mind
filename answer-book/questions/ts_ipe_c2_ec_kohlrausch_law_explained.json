@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_kohlrausch_law_explained",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "State and explain Kohlrausch's law of independent migration of ions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Statement of the law",
+      "marks": 2
+    },
+    {
+      "label": "The equation and its symbols",
+      "marks": 2
+    },
+    {
+      "label": "Worked examples of the equation",
+      "marks": 1
+    },
+    {
+      "label": "Application: Λ°m of a weak electrolyte",
+      "marks": 1
+    },
+    {
+      "label": "Application: degree of dissociation",
+      "marks": 1
+    },
+    {
+      "label": "Application: dissociation constant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 2+2+1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The three applications listed here are the three the book lists (book p.71, LAQ 4). BOOK ERRORS. (a) The printed statement reads \"The limiting molar conductivity of an ELECTROLYTES IS EQUAL TO sum of the individual contribution of the anion and Cation\", with a plural and singular that do not agree; the wording is tidied here. (b) The printed equation is written \"mλ⁰(AB) = λ⁰A⁺ + λ⁰B⁻\", with the subscript m of Λ°m detached and printed as a leading letter m, so it reads as a multiplication. The symbol is Λ°m. (c) Like VSAQ 6, the printed equation carries no stoichiometric numbers and so is wrong for any salt that is not 1:1; the full form Λ°m = ν₊λ°₊ + ν₋λ°₋ is written here with a non-1:1 example. (d) The book lists the three applications by name but works none of them, so the three formulas on this card are supplied: the HAc combination, α = Λm/Λ°m, and the Ostwald dilution law Ka = cα²/(1 − α). SHORT ANSWER PAIR: VSAQ 6 asks for the statement alone (card ts_ipe_c2_ec_kohlrausch_law_statement) and SAQ 3 works the HAc number (card ts_ipe_c2_ec_kohlrausch_hac_calculation)."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Electro Chemistry — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "Statement of the law",
+        "marks": 2,
+        "mark_note": "Statement",
+        "lines": [
+          "Kohlrausch's law of independent migration of",
+          "ions: at infinite dilution the limiting molar",
+          "conductivity of an electrolyte is the sum of",
+          "the limiting molar conductivities of its",
+          "cations and its anions.",
+          "Explanation: at infinite dilution the",
+          "electrolyte is completely dissociated and the",
+          "ions are so far apart that they no longer",
+          "affect one another.",
+          "Each ion then carries current at a rate that",
+          "depends only on itself, so it adds the same",
+          "fixed amount whatever the other ion is."
+        ],
+        "why": "The law is useful only because the ionic value is fixed. Once λ°(Cl⁻) is known from one salt it can be reused in every other chloride, and that reuse is what makes a whole table of ionic conductivities possible from a small number of measurements.",
+        "common_mistakes": [
+          "Leaving out the words at infinite dilution. At ordinary concentrations the ions do affect one another and the law fails.",
+          "Stating the law for conductivity κ. It is about limiting MOLAR conductivity Λ°m."
+        ],
+        "memory_tip": "Far apart means independent. Each ion brings its own fixed amount and the amounts are simply added.",
+        "margin_note": "State the law, then explain WHY the ions are independent. The question says state and explain, so both halves are marked."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The equation and its symbols",
+        "marks": 2,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "Λ°m = ν₊ λ°₊ + ν₋ λ°₋",
+            "style": "boxed"
+          },
+          "Λ°m = limiting molar conductivity of the",
+          "electrolyte, that is its molar conductivity",
+          "at infinite dilution",
+          "λ°₊ = limiting molar conductivity of the",
+          "cation",
+          "λ°₋ = limiting molar conductivity of the",
+          "anion",
+          "ν₊, ν₋ = the numbers of cations and anions",
+          "produced by one formula unit of the",
+          "electrolyte",
+          "The ionic values λ° are constants of the ion",
+          "and are tabulated."
+        ],
+        "why": "The stoichiometric numbers are the part most often dropped, and dropping them is what makes the law give a wrong answer for a salt that is not 1:1. Counting the ions in one formula unit first is therefore the safe habit.",
+        "common_mistakes": [
+          "Writing Λ°m = λ°₊ + λ°₋ with no numbers. That form is correct only for a 1:1 electrolyte such as NaCl.",
+          "Multiplying by the charge on the ion instead of the number of ions. BaCl₂ gives two chlorides, so the 2 goes on the chloride."
+        ],
+        "memory_tip": "Count ions, not charges. Write out the dissociation first and the numbers are already there.",
+        "margin_note": "Every symbol used has to be named. These two marks are for the equation with its full key."
+      },
+      {
+        "id": "s3_examples",
+        "kind": "equation",
+        "label": "Worked examples of the equation",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Λ°m(NaCl) = λ°(Na⁺) + λ°(Cl⁻)",
+            "style": "eq"
+          },
+          {
+            "text": "Λ°m(BaCl₂) = λ°(Ba²⁺) + 2λ°(Cl⁻)",
+            "style": "eq"
+          },
+          {
+            "text": "Λ°m(Al₂(SO₄)₃) = 2λ°(Al³⁺) + 3λ°(SO₄²⁻)",
+            "style": "eq"
+          },
+          "In each case the multiplier is read from the",
+          "formula of the electrolyte."
+        ],
+        "why": "One formula unit of BaCl₂ releases two chloride ions and each of them carries current, so the chloride term is counted twice. Working through a 1:1, a 1:2 and a 2:3 salt shows that the rule is only counting.",
+        "common_mistakes": [
+          "Giving only the NaCl example. A 1:1 salt hides the stoichiometric numbers, which is exactly what is being tested.",
+          "Writing 3λ°(Al³⁺) for Al₂(SO₄)₃. There are two aluminium ions and three sulphate ions, so it is 2 and 3."
+        ],
+        "memory_tip": "Write the dissociation equation first. The numbers in front of the ions are the numbers in the law.",
+        "margin_note": "A non 1:1 example is what makes this mark safe. NaCl alone shows nothing."
+      },
+      {
+        "id": "s4_application_weak",
+        "kind": "equation",
+        "label": "Application: Λ°m of a weak electrolyte",
+        "marks": 1,
+        "mark_note": "Application 1",
+        "lines": [
+          "1. Finding Λ°m of a weak electrolyte.",
+          "A weak electrolyte is still far from complete",
+          "dissociation even in a dilute solution, so its",
+          "Λ°m cannot be found by measuring dilute",
+          "solutions and extending the graph.",
+          "It is built instead from strong electrolytes,",
+          "whose values can be measured:",
+          {
+            "text": "Λ°m(CH₃COOH) = Λ°m(CH₃COONa)",
+            "style": "eq"
+          },
+          {
+            "text": "+ Λ°m(HCl) − Λ°m(NaCl)",
+            "style": "indent"
+          }
+        ],
+        "why": "The two salts on the right supply the acetate and the hydrogen ions that are wanted, and each of them also brings in one unwanted ion. NaCl is made of exactly those two unwanted ions, so subtracting it removes both at once.",
+        "common_mistakes": [
+          "Subtracting HCl instead of NaCl. The salt subtracted has to be made of the two ions that are not wanted.",
+          "Saying the value can be measured directly. For a weak electrolyte the graph of Λm against √c does not reach the axis cleanly."
+        ],
+        "memory_tip": "Take the two salts carrying the ions you want, then subtract the salt made of the two leftovers.",
+        "margin_note": "Name the reason the direct method fails before giving the combination. That reason is half of this mark."
+      },
+      {
+        "id": "s5_application_alpha",
+        "kind": "equation",
+        "label": "Application: degree of dissociation",
+        "marks": 1,
+        "mark_note": "Application 2",
+        "lines": [
+          "2. Finding the degree of dissociation α of a",
+          "weak electrolyte.",
+          {
+            "text": "α = Λm / Λ°m",
+            "style": "boxed"
+          },
+          "Λm is the molar conductivity measured at the",
+          "given concentration and Λ°m is the limiting",
+          "value found in application 1.",
+          "α lies between 0 and 1."
+        ],
+        "why": "Λ°m corresponds to every molecule being dissociated, so the ratio of the measured value to it is the fraction that actually is. That turns a conductivity measurement, which is easy, into a dissociation figure, which is not.",
+        "common_mistakes": [
+          "Writing α = Λ°m/Λm, which is upside down and gives a number bigger than 1.",
+          "Applying it to a strong electrolyte. For a strong electrolyte α is already 1 and the fall in Λm has a different cause."
+        ],
+        "memory_tip": "Measured over limiting: the fraction of the way to full dissociation.",
+        "margin_note": "Say which of the two is measured and which is the limiting value. Mixing them is the usual slip."
+      },
+      {
+        "id": "s6_application_ka",
+        "kind": "boxed_final",
+        "label": "Application: dissociation constant",
+        "marks": 1,
+        "mark_note": "Application 3",
+        "lines": [
+          "3. Finding the dissociation constant of a weak",
+          "acid or base.",
+          "For a weak acid HA at concentration c, by",
+          "Ostwald's dilution law:",
+          {
+            "text": "Ka = cα² / (1 − α)",
+            "style": "boxed"
+          },
+          "Substituting α = Λm/Λ°m gives",
+          {
+            "text": "Ka = c(Λm)² / [Λ°m(Λ°m − Λm)]",
+            "style": "eq"
+          },
+          "so Ka can be found from conductivity",
+          "measurements alone."
+        ],
+        "why": "The three applications build on one another: the first gives Λ°m, the second turns it into α, and the third turns α into Ka. Presenting them in that order shows they are one chain and not three separate facts.",
+        "common_mistakes": [
+          "Writing Ka = cα² with no (1 − α). The undissociated part is what sits on the bottom.",
+          "Using the concentration of the ions as c. c is the total concentration of the acid taken."
+        ],
+        "memory_tip": "Application 1 gives Λ°m, application 2 turns it into α, application 3 turns α into Ka. One chain, three links.",
+        "margin_note": "Name the law as Ostwald's dilution law. The name is often worth part of this mark on its own."
+      }
+    ]
+  },
+  "insider_note": "State and explain means two things, so give the law AND the reason the ions are independent at infinite dilution. The three applications are three of the eight marks and the book names all three, so learn them in order."
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_cell_reaction_cu_ag",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the cell reaction taking place in the cell Cu(s) | Cu²⁺(aq) || Ag⁺(aq) | Ag(s).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two electrode reactions",
+      "marks": 1
+    },
+    {
+      "label": "The overall cell reaction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed answer (book p.69, VSAQ 1) was checked reaction by reaction and is correct, including the doubling of the silver half reaction. BOOK GAP: it never says WHY the left electrode is the anode, which is the one rule a student needs to answer any cell-notation question; that rule is written on this card."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_electrode_reactions",
+        "kind": "equation",
+        "label": "The two electrode reactions",
+        "marks": 1,
+        "mark_note": "Half reactions",
+        "lines": [
+          "In cell notation the left electrode is the",
+          "anode and the right electrode is the cathode.",
+          "So Cu is oxidised and Ag⁺ is reduced.",
+          {
+            "text": "At anode (oxidation):",
+            "style": "eq"
+          },
+          {
+            "text": "Cu(s) → Cu²⁺(aq) + 2e⁻",
+            "style": "indent"
+          },
+          {
+            "text": "At cathode (reduction):",
+            "style": "eq"
+          },
+          {
+            "text": "2Ag⁺(aq) + 2e⁻ → 2Ag(s)",
+            "style": "indent"
+          }
+        ],
+        "why": "The cell line is read from left to right: the electrode written first is the anode, where oxidation happens, and the electrode written last is the cathode, where reduction happens. Fixing that order is what determines which metal is oxidised, and every later line follows from it.",
+        "common_mistakes": [
+          "Taking the left electrode as the cathode. In cell notation the left electrode is always the anode.",
+          "Writing Ag⁺ + e⁻ → Ag with one electron. Copper releases two electrons, so the silver half reaction must be doubled."
+        ],
+        "memory_tip": "Read the cell line left to right: anode first, cathode last. Oxidation is on the left.",
+        "margin_note": "Both half reactions must carry the same number of electrons before they are added. The examiner looks for 2e⁻ in each."
+      },
+      {
+        "id": "s2_overall_reaction",
+        "kind": "boxed_final",
+        "label": "The overall cell reaction",
+        "marks": 1,
+        "mark_note": "Cell reaction",
+        "lines": [
+          "Adding the two half reactions, the electrons",
+          "cancel:",
+          {
+            "text": "Cu(s) + 2Ag⁺(aq) → Cu²⁺(aq) + 2Ag(s)",
+            "style": "boxed"
+          },
+          "Copper metal dissolves and silver metal is",
+          "deposited, so n = 2 electrons are transferred."
+        ],
+        "why": "The overall cell reaction is the sum of the two half reactions with the electrons cancelled. It is the reaction that actually supplies the cell's energy, and it is the line the question asks for.",
+        "common_mistakes": [
+          "Leaving e⁻ in the overall equation. The electrons must cancel when the two halves are added.",
+          "Writing Cu²⁺ on the left side. Copper metal is the reactant here and Cu²⁺ is the product."
+        ],
+        "memory_tip": "Double the silver half reaction first, then add. The electrons cancel only when both halves carry 2e⁻.",
+        "margin_note": "Box the overall equation. It is the line the question asks for and it carries the second mark."
+      }
+    ]
+  },
+  "insider_note": "The mark most often lost is the 2 in front of Ag⁺ and Ag. Balance the electrons in the two half reactions before adding them."
+}

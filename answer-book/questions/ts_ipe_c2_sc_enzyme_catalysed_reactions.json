@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_enzyme_catalysed_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Name any four enzyme catalysed reactions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Diastase",
+      "marks": 1
+    },
+    {
+      "label": "Invertase",
+      "marks": 1
+    },
+    {
+      "label": "Zymase",
+      "marks": 1
+    },
+    {
+      "label": "Urease",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.79, which prints the question and a model answer as a three column table of enzyme, source and reaction. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The four enzymes, their sources and their reactions are all correct as printed and match the NCERT table: diastase from malt, invertase from yeast, zymase from yeast, urease from soyabean. The printed table is rendered here as ordinary written lines, not as a drawn figure, because a table of text is written text and not a diagram. The book writes the enzyme above each reaction arrow; Unicode has no over-arrow form, so the enzyme is written in brackets after the equation and the margin note tells the student to place it above the arrow on the answer sheet. BOOK GAP: the printed table does not name the substrate and the product in words under every reaction; those names are added, because an examiner reads them faster than the formulae."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Surface Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diastase",
+        "kind": "text",
+        "label": "Diastase",
+        "marks": 1,
+        "mark_note": "Diastase",
+        "lines": [
+          "1) Diastase, obtained from malt.",
+          "It changes starch into maltose:",
+          {
+            "text": "2(C₆H₁₀O₅)ₙ + nH₂O → nC₁₂H₂₂O₁₁",
+            "style": "eq"
+          },
+          {
+            "text": "starch → maltose   [diastase]",
+            "style": "indent"
+          }
+        ],
+        "why": "Starch is a long chain of glucose units, and this enzyme cuts it into two-unit pieces, which is maltose. The n in the formula stands for the number of repeating units in the chain, so it appears on both sides of the equation.",
+        "common_mistakes": [
+          "Writing that diastase gives glucose. It gives maltose; maltase is the enzyme that turns maltose into glucose.",
+          "Leaving out the water. The change is a hydrolysis, so water is a reactant."
+        ],
+        "memory_tip": "Diastase from malt: starch to maltose. The names malt and maltose go together.",
+        "margin_note": "Write the enzyme above the arrow on the answer sheet. Name the substrate and the product in words as well."
+      },
+      {
+        "id": "s2_invertase",
+        "kind": "text",
+        "label": "Invertase",
+        "marks": 1,
+        "mark_note": "Invertase",
+        "lines": [
+          "2) Invertase, obtained from yeast.",
+          "It changes sucrose into glucose and",
+          "fructose:",
+          {
+            "text": "C₁₂H₂₂O₁₁ + H₂O → C₆H₁₂O₆ + C₆H₁₂O₆",
+            "style": "eq"
+          },
+          {
+            "text": "sucrose → glucose + fructose",
+            "style": "indent"
+          }
+        ],
+        "why": "Sucrose is one glucose unit joined to one fructose unit, so hydrolysis splits it into exactly those two. Both products have the same molecular formula C₆H₁₂O₆ and differ in structure, which is why the equation shows the formula twice.",
+        "common_mistakes": [
+          "Writing only glucose as the product. Sucrose gives glucose and fructose in equal amounts.",
+          "Writing the two products as different formulae. Both are C₆H₁₂O₆; they differ in structure, not in formula."
+        ],
+        "memory_tip": "Invertase splits sucrose into its two halves, glucose and fructose.",
+        "margin_note": "The two products must both be named. Writing C₆H₁₂O₆ twice is correct and is what the book prints."
+      },
+      {
+        "id": "s3_zymase",
+        "kind": "text",
+        "label": "Zymase",
+        "marks": 1,
+        "mark_note": "Zymase",
+        "lines": [
+          "3) Zymase, obtained from yeast.",
+          "It changes glucose into ethanol and carbon",
+          "dioxide:",
+          {
+            "text": "C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂",
+            "style": "eq"
+          },
+          {
+            "text": "glucose → ethyl alcohol + CO₂   [zymase]",
+            "style": "indent"
+          }
+        ],
+        "why": "This is fermentation, and it is not a hydrolysis, so no water appears in the equation. One molecule of glucose gives two of ethanol and two of carbon dioxide, and the coefficient 2 on both products is what balances the six carbon atoms.",
+        "common_mistakes": [
+          "Adding water to this equation. Fermentation is not a hydrolysis; the other three reactions here are.",
+          "Leaving out the coefficient 2. Without it the carbon atoms do not balance."
+        ],
+        "memory_tip": "Zymase gives the two products of fermentation, ethanol and carbon dioxide, two of each.",
+        "margin_note": "Check the balance before moving on: six carbon atoms on the left, four plus two on the right."
+      },
+      {
+        "id": "s4_urease",
+        "kind": "boxed_final",
+        "label": "Urease",
+        "marks": 1,
+        "mark_note": "Urease",
+        "lines": [
+          {
+            "text": "(NH₂)₂CO + H₂O → 2NH₃ + CO₂",
+            "style": "boxed"
+          },
+          "4) Urease, obtained from soyabean.",
+          "It changes urea into ammonia and carbon",
+          "dioxide.",
+          {
+            "text": "urea → ammonia + CO₂   [urease]",
+            "style": "indent"
+          },
+          "All four are hydrolysis reactions except",
+          "the third, which is fermentation."
+        ],
+        "why": "Urea has two nitrogen atoms and both leave as ammonia, which is why the coefficient 2 stands before NH₃. Closing with the note that three of the four are hydrolysis reactions ties the set together and helps a student check each equation for water.",
+        "common_mistakes": [
+          "Writing one molecule of ammonia. Urea has two nitrogen atoms, so two molecules of ammonia are formed.",
+          "Giving the source as yeast. Urease is obtained from soyabean; yeast is the source of invertase and zymase."
+        ],
+        "memory_tip": "Urea, urease, and two ammonia molecules from its two nitrogen atoms.",
+        "margin_note": "Name the source with every enzyme. The book's table has a source column, so the source is part of each answer."
+      }
+    ]
+  },
+  "insider_note": "One mark for each reaction, so all four have to be written; there is no reward for a long account of one. Give the enzyme, its source and the balanced equation for each."
+}

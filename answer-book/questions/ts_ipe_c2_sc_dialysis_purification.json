@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_dialysis_purification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the purification of colloidal solutions by the phenomenon of dialysis with a neat diagram.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The method",
+      "marks": 2
+    },
+    {
+      "label": "The diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.79, which prints the question, a model answer and a diagram of the dialyser. The 1+2+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. FIGURE SCOPE: this question SAYS \"with a neat diagram\", so unlike the other figures in this unit the diagram step carries a mark of its own. BOOK GAP (book p.79, SAQ 7): the printed answer does not say WHY the separation works, that the colloidal particles are too large to pass through the membrane while the ions and small molecules are small enough; that reason is added. It also does not say why the water must flow continuously, which is to keep the water outside almost free of the dissolved substance so that diffusion continues. BOOK GAP: electrodialysis is not mentioned, and neither is the caution that dialysis carried on too long removes the small amount of electrolyte that stabilises a lyophobic sol and the sol then coagulates. Both are added from NCERT as an unmarked closing step."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Surface Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Dialysis is the process of removing the",
+          "dissolved substances, that is the ions and",
+          "small molecules, from a colloidal solution",
+          "by diffusion through a suitable membrane.",
+          "It works because the colloidal particles",
+          "are too large to pass through the",
+          "membrane, while the ions and small",
+          "molecules are small enough to pass."
+        ],
+        "why": "The whole method rests on one size difference. A parchment, cellophane or collodion membrane has openings that let ions and small molecules through and hold back particles of colloidal size, so leaving the mixture against such a membrane separates the two on its own.",
+        "common_mistakes": [
+          "Writing that the colloidal particles pass through the membrane. They are held back; the dissolved substances pass through.",
+          "Calling the membrane a filter paper. Colloidal particles pass through filter paper, so filter paper cannot separate them."
+        ],
+        "memory_tip": "Small ions pass through, large colloidal particles stay behind.",
+        "margin_note": "Give the definition and the size reason in the first four lines. That pair carries the first mark."
+      },
+      {
+        "id": "s2_method",
+        "kind": "text",
+        "label": "The method",
+        "marks": 2,
+        "mark_note": "Method",
+        "lines": [
+          "1) A bag is made of a suitable membrane,",
+          "such as parchment paper, cellophane or",
+          "collodion.",
+          "2) The impure colloidal solution is taken",
+          "in this bag, and the bag is suspended in a",
+          "vessel through which fresh water flows",
+          "continuously.",
+          "3) The ions and the small molecules",
+          "diffuse out through the membrane into the",
+          "water and are carried away.",
+          "4) The water is kept flowing so that the",
+          "water outside stays almost free of them",
+          "and the diffusion continues.",
+          "5) The pure colloidal solution is left",
+          "behind inside the bag.",
+          "The apparatus is called a dialyser."
+        ],
+        "why": "Diffusion runs from the more concentrated side to the less concentrated one and stops when the two sides are equal, so the water outside has to be replaced continuously. That single point is why the vessel has an inlet and an outlet, and it is what turns the size difference into a working method of purification.",
+        "common_mistakes": [
+          "Leaving out the continuous flow of water. Without it the outside water reaches the same concentration and the purification stops.",
+          "Writing that the colloidal solution is placed in the vessel and the water inside the membrane bag. It is the other way round.",
+          "Naming the apparatus a dialysis. The apparatus is the dialyser; dialysis is the process."
+        ],
+        "memory_tip": "Sol inside the bag, flowing water outside, ions out through the membrane.",
+        "margin_note": "Five numbered steps carry two marks. The continuous flow of water is the step examiners look for."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "The diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "dialyser_apparatus",
+          "width": 520,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "dl_vessel",
+              "d": "M 100 100 L 100 250 L 400 250 L 400 100",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dl_water_level",
+              "d": "M 100 130 L 400 130",
+              "ms": 4290
+            },
+            {
+              "type": "stroke",
+              "id": "dl_bag",
+              "d": "M 232 60 L 232 175 A 30 30 0 0 0 292 175 L 292 60",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dl_bag_mouth",
+              "d": "M 224 60 L 300 60",
+              "ms": 1090
+            },
+            {
+              "type": "stroke",
+              "id": "dl_water_in",
+              "d": "M 40 230 L 100 230 M 92 226 L 100 230 L 92 234",
+              "ms": 1110
+            },
+            {
+              "type": "stroke",
+              "id": "dl_water_out",
+              "d": "M 400 145 L 460 145 M 452 141 L 460 145 L 452 149",
+              "ms": 1110
+            },
+            {
+              "type": "stroke",
+              "id": "dl_diffusion",
+              "d": "M 236 150 L 200 150 M 208 146 L 200 150 L 208 154 M 288 150 L 324 150 M 316 146 L 324 150 L 316 154",
+              "ms": 1540
+            },
+            {
+              "type": "stroke",
+              "id": "dl_leader_membrane",
+              "d": "M 276 46 L 250 58",
+              "ms": 410,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "dl_leader_colloid",
+              "d": "M 294 196 L 270 185",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "dl_lbl_membrane",
+              "x": 40,
+              "y": 40,
+              "text": "semi-permeable membrane bag",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dl_lbl_colloid",
+              "x": 300,
+              "y": 200,
+              "text": "colloidal solution",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dl_lbl_water_in",
+              "x": 20,
+              "y": 222,
+              "text": "water in",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dl_lbl_water_out",
+              "x": 408,
+              "y": 136,
+              "text": "water out",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dl_lbl_water",
+              "x": 130,
+              "y": 155,
+              "text": "water",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dl_lbl_ions",
+              "x": 120,
+              "y": 205,
+              "text": "ions pass out",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The diagram is asked for, so it has to show the four things the method depends on: the bag of membrane, the colloidal solution inside it, the vessel of water outside, and the inlet and outlet that keep that water flowing. The arrows through the wall of the bag show the direction in which the ions leave.",
+        "common_mistakes": [
+          "Drawing the bag resting on the bottom of the vessel. It is suspended in the water so that the whole membrane is in contact with it.",
+          "Leaving out the water inlet and outlet. They carry the idea of continuous flow, which is what the method depends on."
+        ],
+        "memory_tip": "A bag in a tank, water in at the bottom and out at the top, arrows going outward through the bag.",
+        "margin_note": "Label the bag, the colloidal solution, and the water inlet and outlet. An unlabelled sketch rarely earns this mark."
+      },
+      {
+        "id": "s4_electrodialysis",
+        "kind": "boxed_final",
+        "label": "Electrodialysis and one caution",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "An electric field speeds up dialysis.",
+            "style": "boxed"
+          },
+          "If two electrodes are placed in the water",
+          "on either side of the bag, the ions move",
+          "faster towards the opposite electrode.",
+          "This is called electrodialysis, and it",
+          "works only for charged impurities.",
+          "Caution: dialysis carried on for too long",
+          "also removes the small amount of",
+          "electrolyte that keeps a lyophobic sol",
+          "stable, and the sol then coagulates."
+        ],
+        "why": "Diffusion alone is slow, and an electric field gives the ions a direction as well, so the same separation takes far less time. The caution belongs with it because the process removes every electrolyte, including the one that gives the colloidal particles their charge and keeps them dispersed.",
+        "common_mistakes": [
+          "Writing that electrodialysis removes non-electrolyte impurities faster. Only charged particles respond to the field.",
+          "Writing that longer dialysis always gives a purer sol. Beyond a point it removes the stabilising electrolyte and the sol coagulates."
+        ],
+        "memory_tip": "Add electrodes and the ions move faster. Continue too long and the sol coagulates.",
+        "margin_note": "This step earns no marks. Write it only if the three marked steps are already complete."
+      }
+    ]
+  },
+  "insider_note": "This is the one question in the unit whose diagram is asked for, so the sketch carries a mark of its own. Label the membrane bag, the colloidal solution and the water inlet and outlet."
+}

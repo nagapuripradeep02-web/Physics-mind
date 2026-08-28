@@ -1,0 +1,172 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_metallic_corrosion_of_iron",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is metallic corrosion? Explain it with respect to Iron corrosion.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What corrosion is",
+      "marks": 1
+    },
+    {
+      "label": "The anode reaction",
+      "marks": 1
+    },
+    {
+      "label": "The cathode reaction",
+      "marks": 1
+    },
+    {
+      "label": "Formation of rust",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. RECOMPUTED AND CHECKED (book p.70, SAQ 2). The book's anode, cathode and overall equations all balance and are followed here: 2Fe → 2Fe²⁺ + 4e⁻; O₂ + 4H⁺ + 4e⁻ → 2H₂O; overall 2Fe + O₂ + 4H⁺ → 2Fe²⁺ + 2H₂O. BOOK SLOPPINESS: the book writes the iron ions as Fe⁺⁺ and Fe⁺⁺⁺ throughout; the modern forms Fe²⁺ and Fe³⁺ are used here. The book's first sentence reads \"metallic corrosion corrosion of Iron is called rusting\", with the word corrosion printed twice. BOOK GAP: the book never writes the equation that actually MAKES the rust, stopping at the words \"further oxidised\". The balanced equation 2Fe²⁺ + 2H₂O + ½O₂ → Fe₂O₃ + 4H⁺ is added here and was checked: 2 Fe, 3 O, 4 H and a net +4 charge on each side. The standard potentials E°(Fe²⁺/Fe) = −0.44 V and E°(O₂/H₂O) = 1.23 V, giving E°cell = 1.67 V, are also added; they are not in the book."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electro Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What corrosion is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Metallic corrosion is the slow destruction of",
+          "a metal by an electrochemical reaction with",
+          "the oxygen, moisture and acids around it.",
+          "The metal is oxidised to its ions at the",
+          "surface, so metal is lost from the surface.",
+          "The corrosion of iron is called rusting.",
+          "A film of water on the iron acts as the",
+          "electrolyte and the iron itself acts as both",
+          "electrodes, so a small galvanic cell is set up."
+        ],
+        "why": "Corrosion is not a simple reaction between iron and oxygen at one spot. The iron and the water film form a complete galvanic cell, so the oxidation and the reduction can happen at two different places on the same piece of metal.",
+        "common_mistakes": [
+          "Calling corrosion a physical change. It is a chemical change in which the metal is oxidised.",
+          "Saying rust forms only in dry air. Both moisture and oxygen are needed; iron does not rust in dry air."
+        ],
+        "memory_tip": "One piece of iron plus a water film is a complete cell: anode spot, cathode spot and electrolyte all in one.",
+        "margin_note": "Say oxidation and name the water film as the electrolyte. Those two words set up the three steps that follow."
+      },
+      {
+        "id": "s2_anode",
+        "kind": "equation",
+        "label": "The anode reaction",
+        "marks": 1,
+        "mark_note": "Anode",
+        "lines": [
+          "At one spot on the wet surface the iron is",
+          "oxidised. That spot acts as the anode:",
+          {
+            "text": "Anode: 2Fe(s) → 2Fe²⁺(aq) + 4e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "E°(Fe²⁺/Fe) = −0.44 V",
+            "style": "eq"
+          },
+          "The electrons released travel through the",
+          "metal itself to another spot on the surface."
+        ],
+        "why": "Iron has a negative standard reduction potential, so it is oxidised more readily than water is. The electrons it releases can move freely through the metal, which is what lets the reduction happen somewhere else.",
+        "common_mistakes": [
+          "Writing Fe → Fe³⁺ + 3e⁻ at the anode. Iron is first oxidised to Fe²⁺; the Fe³⁺ comes later.",
+          "Saying the electrons travel through the water. They travel through the metal; only ions move through the water."
+        ],
+        "memory_tip": "Anode means oxidation, so the iron loses electrons here and metal is lost from this spot.",
+        "margin_note": "Label the equation Anode. The examiner marks the label as well as the equation."
+      },
+      {
+        "id": "s3_cathode",
+        "kind": "equation",
+        "label": "The cathode reaction",
+        "marks": 1,
+        "mark_note": "Cathode",
+        "lines": [
+          "At the other spot the oxygen dissolved in the",
+          "water film is reduced, helped by the H⁺ ions",
+          "from dissolved CO₂. That spot is the cathode:",
+          {
+            "text": "Cathode: O₂(g) + 4H⁺(aq) + 4e⁻ → 2H₂O(l)",
+            "style": "eq"
+          },
+          {
+            "text": "E°(O₂/H₂O) = 1.23 V",
+            "style": "eq"
+          },
+          "Adding the two half reactions:",
+          {
+            "text": "2Fe + O₂ + 4H⁺ → 2Fe²⁺ + 2H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "E°cell = 1.23 − (−0.44) = 1.67 V",
+            "style": "eq"
+          }
+        ],
+        "why": "The cell emf comes out strongly positive, so the whole process is spontaneous, and that is why iron rusts on its own with no outside help. The H⁺ ions come from carbon dioxide dissolved in the water film, which is why rusting is faster in acidic surroundings.",
+        "common_mistakes": [
+          "Mixing the two forms. O₂ + 2H₂O + 4e⁻ → 4OH⁻ is correct in neutral solution, but this answer uses the acidic form, so the overall equation must match it.",
+          "Putting the cathode at a separate piece of metal. Both spots are on the same piece of iron."
+        ],
+        "memory_tip": "Cathode means reduction, and the thing reduced is the dissolved oxygen, not the iron.",
+        "margin_note": "The overall equation and the positive E°cell together show why the process happens on its own. Both are worth writing."
+      },
+      {
+        "id": "s4_rust",
+        "kind": "boxed_final",
+        "label": "Formation of rust",
+        "marks": 1,
+        "mark_note": "Rust",
+        "lines": [
+          "The Fe²⁺ ions are then oxidised further by",
+          "the oxygen of the air to Fe³⁺, which comes",
+          "out of the solution as ferric oxide:",
+          {
+            "text": "2Fe²⁺ + 2H₂O + ½O₂ → Fe₂O₃ + 4H⁺",
+            "style": "eq"
+          },
+          {
+            "text": "Fe₂O₃ + xH₂O → Fe₂O₃·xH₂O",
+            "style": "boxed"
+          },
+          "Fe₂O₃·xH₂O is rust, hydrated ferric oxide.",
+          "Rust is brown and flakes off the surface, so",
+          "fresh iron is exposed and the corrosion",
+          "carries on into the metal."
+        ],
+        "why": "Rust is not the direct product of the cell reaction; it is formed in a second step in which Fe²⁺ is oxidised again. Rust also does not stick as a protective layer, which is why iron keeps corroding while aluminium, whose oxide does stick, does not.",
+        "common_mistakes": [
+          "Writing rust as FeO or as Fe₂O₃ with no water. Rust is hydrated ferric oxide, Fe₂O₃·xH₂O.",
+          "Stopping at Fe²⁺. The question asks about rust, so the second oxidation to Fe³⁺ must be written."
+        ],
+        "memory_tip": "Two oxidations: iron to Fe²⁺ in the cell, then Fe²⁺ to Fe³⁺ by the air. Rust is the hydrated Fe³⁺ oxide.",
+        "margin_note": "Write the formula Fe₂O₃·xH₂O and name it as rust. That formula is the marked line of this step."
+      }
+    ]
+  },
+  "insider_note": "Marks are lost by stopping at Fe²⁺. The question says rust, so the second oxidation to Fe³⁺ and the formula Fe₂O₃·xH₂O both have to be on the page."
+}

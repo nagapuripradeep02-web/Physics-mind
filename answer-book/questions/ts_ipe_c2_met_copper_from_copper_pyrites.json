@@ -1,0 +1,184 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_copper_from_copper_pyrites",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How is copper extracted from copper pyrites?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Concentration and roasting",
+      "marks": 1
+    },
+    {
+      "label": "Smelting",
+      "marks": 1
+    },
+    {
+      "label": "Bessemerisation",
+      "marks": 1
+    },
+    {
+      "label": "Electrolytic refining",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.82, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EQUATIONS CHECKED: every printed equation balances as printed — 2CuFeS₂ + O₂ → Cu₂S + 2FeS + SO₂ (Cu 2=2, Fe 2=2, S 4=4, O 2=2); 2Cu₂S + 3O₂ → 2Cu₂O + 2SO₂ (Cu 4=4, S 2=2, O 6=6); 2FeS + 3O₂ → 2FeO + 2SO₂ (Fe 2=2, S 2=2, O 6=6); FeO + SiO₂ → FeSiO₃ (Fe 1=1, Si 1=1, O 3=3); Cu₂S + 2Cu₂O → 6Cu + SO₂ (Cu 6=6, S 1=1, O 2=2). BOOK ERROR CORRECTED (book p.82, SAQ 5): the sentence under the heading \"Roasting\" reads \"Roasted ore mixed with coke and sand which is heated in blast furnace\" — the SAME sentence that is then printed again under \"Smelting\". It describes smelting, not roasting; roasting is heating in a regular supply of air in a reverberatory furnace, with no coke and no sand. The card writes the roasting description correctly and records the book's duplicated sentence in the step's why. BOOK TYPOS: \"molten mate\" for molten matte; \"Anode : Blistered Cu\" for blister copper; \"Cu⁺²\" for Cu²⁺. BOOK LOOSE POINT: the electrolyte is printed as \"Aqueous solution of CuSO₄\"; it is acidified with dilute H₂SO₄ to carry the current, and the card says so."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Metallurgy — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_roasting",
+        "kind": "equation",
+        "label": "Concentration and roasting",
+        "marks": 1,
+        "mark_note": "Roasting",
+        "lines": [
+          "Copper pyrites is CuFeS₂.",
+          "Concentration: the ore is concentrated by",
+          "froth flotation.",
+          "Roasting: the concentrated ore is heated",
+          "in a regular supply of air in a",
+          "reverberatory furnace, below its melting",
+          "point.",
+          {
+            "text": "2CuFeS₂ + O₂ → Cu₂S + 2FeS + SO₂↑",
+            "style": "eq"
+          },
+          {
+            "text": "2Cu₂S + 3O₂ → 2Cu₂O + 2SO₂↑",
+            "style": "eq"
+          },
+          {
+            "text": "2FeS + 3O₂ → 2FeO + 2SO₂↑",
+            "style": "eq"
+          }
+        ],
+        "why": "Roasting drives part of the sulphur off as SO₂ and turns some of the sulphides into oxides. The book prints the sentence \"Roasted ore mixed with coke and sand which is heated in blast furnace\" under the heading Roasting and then prints the same sentence again under Smelting; that sentence describes smelting only, so the roasting description is written correctly here as heating in air in a reverberatory furnace.",
+        "common_mistakes": [
+          "Roasting in a blast furnace with coke. Roasting is done in air in a reverberatory furnace; coke and the blast furnace belong to smelting.",
+          "Writing CuFeS₂ → Cu₂S + FeS + SO₂ without balancing. Two CuFeS₂ and one O₂ are needed."
+        ],
+        "memory_tip": "Roasting means air only. Coke and sand come in at the next stage.",
+        "margin_note": "The first equation is the one that identifies the ore. Write it before the other two."
+      },
+      {
+        "id": "s2_smelting",
+        "kind": "equation",
+        "label": "Smelting",
+        "marks": 1,
+        "mark_note": "Smelting",
+        "lines": [
+          "Smelting: the roasted ore is mixed with",
+          "coke and silica (sand) and heated in a",
+          "blast furnace.",
+          "The FeO joins the silica and is removed as",
+          "a slag that floats on top.",
+          {
+            "text": "FeO + SiO₂ → FeSiO₃   (slag)",
+            "style": "eq"
+          },
+          "The layer left below the slag is matte.",
+          {
+            "text": "Matte = Cu₂S (major) + FeS (minor)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Smelting does two things at once: the silica removes the iron as a fusible slag, and the copper is gathered into the matte layer under it. The two layers separate because the slag is the lighter of the two.",
+        "common_mistakes": [
+          "Saying silica removes the copper. Silica removes the iron; the copper stays in the matte.",
+          "Calling matte the final product. It still has to go to the Bessemer converter."
+        ],
+        "memory_tip": "Silica removes the iron; the copper stays in the matte.",
+        "margin_note": "The slag equation and the composition of matte together earn this mark."
+      },
+      {
+        "id": "s3_bessemerisation",
+        "kind": "equation",
+        "label": "Bessemerisation",
+        "marks": 1,
+        "mark_note": "Bessemerisation",
+        "lines": [
+          "The matte is transferred to a Bessemer",
+          "converter and a blast of hot air with",
+          "silica is blown through it.",
+          "The FeS that is left burns to FeO and is",
+          "slagged off by the silica.",
+          {
+            "text": "2Cu₂S + 3O₂ → 2Cu₂O + 2SO₂↑",
+            "style": "eq"
+          },
+          {
+            "text": "Cu₂S + 2Cu₂O → 6Cu + SO₂↑",
+            "style": "eq"
+          },
+          "The copper obtained is blister copper,",
+          "about 98 % pure."
+        ],
+        "why": "The air blast turns part of the cuprous sulphide into cuprous oxide, and that oxide then reacts with the sulphide that is left. Sulphur and oxygen leave together as SO₂ and copper metal is formed, which is why no outside reducing agent is needed at this stage.",
+        "common_mistakes": [
+          "Adding coke to the converter. The Cu₂O is reduced by the Cu₂S itself, so no carbon is used.",
+          "Writing Cu₂S + 2Cu₂O → 4Cu + SO₂. Six copper atoms are on the left, so six must be on the right."
+        ],
+        "memory_tip": "Part of the sulphide becomes oxide, and the two then react to give copper and SO₂.",
+        "margin_note": "Cu₂S + 2Cu₂O → 6Cu + SO₂ is the marked line of this step. Write it even if the others are cut."
+      },
+      {
+        "id": "s4_refining",
+        "kind": "boxed_final",
+        "label": "Electrolytic refining",
+        "marks": 1,
+        "mark_note": "Refining",
+        "lines": [
+          {
+            "text": "Anode: blister copper",
+            "style": "boxed"
+          },
+          {
+            "text": "Cathode: thin sheet of pure copper",
+            "style": "boxed"
+          },
+          "Electrolyte: CuSO₄ solution acidified",
+          "with dilute H₂SO₄.",
+          {
+            "text": "At anode:  Cu → Cu²⁺ + 2e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "At cathode:  Cu²⁺ + 2e⁻ → Cu",
+            "style": "eq"
+          },
+          "The Ag and Au in the blister copper",
+          "collect below the anode as anode mud."
+        ],
+        "why": "The last 2 % of impurity cannot be burned off, so it is removed electrically. Silver and gold do not dissolve at the working voltage, so they drop as anode mud and are recovered separately. The book gives the electrolyte as aqueous CuSO₄; it is acidified with dilute sulphuric acid to carry the current, and that is written here.",
+        "common_mistakes": [
+          "Writing the ion as Cu⁺². The number is written before the sign: Cu²⁺.",
+          "Calling the anode mud waste. It contains the silver and the gold and is worth recovering."
+        ],
+        "memory_tip": "Blister copper is the anode, pure copper the cathode, and the gold falls to the bottom.",
+        "margin_note": "Name the three parts of the cell and write both electrode equations. That is the full mark."
+      }
+    ]
+  },
+  "insider_note": "Four stages, one mark each: roasting, smelting, bessemerisation and refining. The equation most often lost is Cu₂S + 2Cu₂O → 6Cu + SO₂, the self reduction inside the converter."
+}
