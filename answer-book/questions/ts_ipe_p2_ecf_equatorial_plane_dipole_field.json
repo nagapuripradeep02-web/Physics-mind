@@ -1,0 +1,386 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_equatorial_plane_dipole_field",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for the intensity of the electric field at a point on the equatorial plane of an electric dipole.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Setup and the equal distances",
+      "marks": 1
+    },
+    {
+      "label": "Fields at P due to +q and −q",
+      "marks": 1
+    },
+    {
+      "label": "Components add to give E",
+      "marks": 1
+    },
+    {
+      "label": "Short dipole result and direction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: AP = BP = √(r² + a²), so both field magnitudes equal (1/4πε₀)q/(r² + a²); the components perpendicular to the axis are equal and opposite and cancel, the components along the axis add, each equal to E₁cos θ with cos θ = a/√(r² + a²); hence E = 2·(1/4πε₀)·qa/(r² + a²)³⁄² = (1/4πε₀)·p/(r² + a²)³⁄², and for r ≫ a, E = (1/4πε₀)·p/r³ directed OPPOSITE to p — the vector form therefore keeps the minus sign, E = −(1/4πε₀)·p/r³. This is exactly half the axial field at the same distance, which is the arithmetic check. The book's question prints 'equitorial' and its answer prints 'seperated'; both are written correctly here. The book writes the dipole moment as capital P with a unit vector p̂; lowercase p is used here and the direction is stated in words, since a hat symbol does not read on one handwritten line."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Charges and Fields · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "The dipole and the point P",
+        "marks": 1,
+        "mark_note": "AP = BP = √(r² + a²)",
+        "lines": [
+          "Consider an electric dipole with charge −q",
+          "at A and +q at B, separated by a distance 2a,",
+          "with centre O. Its dipole moment is p = q × 2a,",
+          "directed from −q to +q. Let P be a point on",
+          "the equatorial line at a distance r from O.",
+          "P is the same distance from both charges:",
+          {
+            "text": "AP = BP = √(r² + a²)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The equal distance √(r² + a²) is what the whole derivation rests on.",
+        "why": "The equatorial point is off the axis, so the distance to each charge is the hypotenuse of a right triangle with sides r and a. Both charges are the same distance away, and that symmetry is what makes the two field magnitudes equal.",
+        "common_mistakes": [
+          "Using r as the distance to each charge. It is √(r² + a²).",
+          "Writing √(r² + 4a²). Each charge is a, not 2a, from the centre."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P lies on the equatorial line a distance r from the centre, and each charge is √(r² + a²) away.",
+          "accept": [
+            "point on the equatorial line at distance r from the centre",
+            "root of r squared plus a squared",
+            "both charges are the same distance from P"
+          ],
+          "reject": [
+            "one by four pi epsilon nought p by r cubed"
+          ],
+          "heard_as": [
+            "equatorial",
+            "root r squared plus a squared",
+            "2a"
+          ]
+        },
+        "memory_tip": "Off the axis, the distance is a hypotenuse: √(r² + a²)."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "equatorial_dipole_field",
+          "width": 330,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis",
+              "d": "M 50 190 L 300 190",
+              "ms": 3570
+            },
+            {
+              "type": "stroke",
+              "id": "arm_a",
+              "d": "M 95 190 L 170 70",
+              "ms": 2020
+            },
+            {
+              "type": "stroke",
+              "id": "arm_b",
+              "d": "M 245 190 L 170 70",
+              "ms": 2020
+            },
+            {
+              "type": "stroke",
+              "id": "op",
+              "d": "M 170 70 L 170 190",
+              "ms": 1710,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_nq",
+              "x": 76,
+              "y": 210,
+              "text": "−q",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_pq",
+              "x": 248,
+              "y": 210,
+              "text": "+q",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_O",
+              "x": 164,
+              "y": 210,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_2a",
+              "x": 156,
+              "y": 232,
+              "text": "2a",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_P",
+              "x": 162,
+              "y": 58,
+              "text": "P",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 178,
+              "y": 136,
+              "text": "r",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "e1",
+              "d": "M 170 70 L 138 19",
+              "ms": 860
+            },
+            {
+              "type": "stroke",
+              "id": "e1_head",
+              "d": "M 147 24 L 138 19 L 139 29",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_e1",
+              "x": 100,
+              "y": 26,
+              "text": "E₁",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "e2_head",
+              "d": "M 139 111 L 138 121 L 147 116",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_e2",
+              "x": 104,
+              "y": 118,
+              "text": "E₂",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The dipole −q at A and +q at B about O, the dashed distance r up to P, and the two fields at P: E₁ along BP away from +q, E₂ along PA towards −q.",
+        "why": "The figure shows the two field arrows leaning the same amount on either side of the vertical, which is what makes the perpendicular parts cancel and the parts along the axis add.",
+        "common_mistakes": [
+          "Drawing E₂ away from −q. The field of a negative charge points towards it.",
+          "Drawing the two arrows at different angles. By symmetry the angles are equal."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure shows the dipole, the point P above the centre at a distance r, and the two equal field arrows at P.",
+          "accept": [
+            "draw the dipole and mark P above the centre",
+            "show the two field arrows at P leaning equally",
+            "mark r and 2a"
+          ],
+          "reject": [
+            "the vertical components cancel"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "equatorial"
+          ]
+        },
+        "memory_tip": "A triangle: the dipole is the base, P is the apex, r is the dashed height."
+      },
+      {
+        "id": "s3_magnitudes",
+        "kind": "equation",
+        "label": "Fields at P due to each charge",
+        "marks": 1,
+        "mark_note": "Equal magnitudes, opposite lean",
+        "lines": [
+          "The field at P due to +q is",
+          {
+            "text": "E₁ = (1/4πε₀) · q / (r² + a²)",
+            "style": "eq"
+          },
+          "directed along BP, away from +q. The field",
+          "at P due to −q is",
+          {
+            "text": "E₂ = (1/4πε₀) · q / (r² + a²)",
+            "style": "eq"
+          },
+          "directed along PA, towards −q. The two",
+          "magnitudes are equal."
+        ],
+        "margin_note": "Second mark. Both fields, with (r² + a²) in the denominator and each direction named.",
+        "why": "The distance to each charge is the same, so the two magnitudes are the same. Only their directions differ, and that is what the next step resolves.",
+        "common_mistakes": [
+          "Writing (r² + a²)² in the denominator. The distance squared is r² + a², not its square.",
+          "Making E₁ and E₂ different sizes. Equal distance means equal magnitude."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both fields have magnitude (1/4πε₀)q/(r² + a²), one along BP and one along PA.",
+          "accept": [
+            "q by r squared plus a squared",
+            "both magnitudes are equal",
+            "one away from plus q and one towards minus q"
+          ],
+          "reject": [
+            "two E cos theta"
+          ],
+          "heard_as": [
+            "r squared plus a squared",
+            "equal magnitudes",
+            "along BP"
+          ]
+        },
+        "memory_tip": "Same distance, same size — only the directions differ."
+      },
+      {
+        "id": "s4_components",
+        "kind": "equation",
+        "label": "Components along the axis add",
+        "marks": 1,
+        "mark_note": "E = p / 4πε₀(r² + a²)³⁄²",
+        "lines": [
+          "Resolve each field along the dipole axis and",
+          "perpendicular to it. The perpendicular parts",
+          "are equal and opposite, so they cancel. The",
+          "parts along the axis both act from +q to −q,",
+          "so they add:",
+          {
+            "text": "E = 2E₁ cos θ , cos θ = a / √(r² + a²)",
+            "style": "eq"
+          },
+          {
+            "text": "E = 2 · (1/4πε₀) · q a / (r² + a²)³⁄²",
+            "style": "eq"
+          },
+          {
+            "text": "E = (1/4πε₀) · p / (r² + a²)³⁄²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The cancelling and the adding must both be said, then cos θ substituted.",
+        "why": "Resolving turns a vector sum into two scalar sums. The perpendicular parts are mirror images and cancel; the parts along the axis are identical and double, and cos θ = a/√(r² + a²) comes straight from the right triangle.",
+        "common_mistakes": [
+          "Using sin θ. The component along the axis is the adjacent side, so it is cos θ.",
+          "Forgetting the factor 2. Two equal components add."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the perpendicular components cancel, the axial ones add as 2E₁cos θ, giving E = (1/4πε₀)p/(r² + a²) to the power three by two.",
+          "accept": [
+            "perpendicular components cancel",
+            "two E cos theta",
+            "p by r squared plus a squared to the power three by two"
+          ],
+          "reject": [
+            "p by r cubed"
+          ],
+          "heard_as": [
+            "cancel",
+            "cos theta",
+            "three by two"
+          ]
+        },
+        "memory_tip": "Cancel across, double along — then cos θ = a over the hypotenuse."
+      },
+      {
+        "id": "s5_short_dipole",
+        "kind": "boxed_final",
+        "label": "Short dipole result",
+        "marks": 1,
+        "mark_note": "E = −p / 4πε₀r³, opposite to p",
+        "lines": [
+          "For a short dipole a is much smaller than r,",
+          "so a² can be neglected and (r² + a²)³⁄² ≈ r³.",
+          {
+            "text": "E = (1/4πε₀) · p / r³",
+            "style": "eq"
+          },
+          "This field is opposite in direction to p: it",
+          "acts from +q towards −q. In vector form the",
+          "minus sign carries that direction.",
+          {
+            "text": "E = −(1/4πε₀) · p / r³",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. The minus sign is the direction — an answer without it is incomplete.",
+        "why": "On the equator the resultant runs from +q back towards −q, which is opposite to the dipole moment. The minus sign is the only thing in the final line that records that, so it is not decoration.",
+        "common_mistakes": [
+          "Dropping the minus sign. On the equator E is opposite to p.",
+          "Writing 2p/r³. The 2 belongs to the axial field, not this one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for r ≫ a, E = (1/4πε₀)p/r³ directed opposite to p, written with a minus sign in vector form.",
+          "accept": [
+            "a is much less than r",
+            "p by four pi epsilon nought r cubed",
+            "opposite to the dipole moment",
+            "minus sign shows the direction"
+          ],
+          "reject": [
+            "two E cos theta"
+          ],
+          "heard_as": [
+            "short dipole",
+            "r cubed",
+            "minus sign"
+          ]
+        },
+        "memory_tip": "Equator: no 2, and a minus sign — half the axial field, the other way round."
+      }
+    ]
+  },
+  "insider_note": "The minus sign is the whole last mark here — a script that stops at p/4πε₀r³ without saying the field is opposite to p has answered the axial question with the wrong number."
+}

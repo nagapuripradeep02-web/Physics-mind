@@ -52,7 +52,8 @@
             "text": "Vₛ / Vₚ = Nₛ / Nₚ",
             "style": "eq"
           },
-          "Here Vₚ = 200 V, Vₛ = 2000 V and Nₚ = 10 turns."
+          "Here Vₚ = 200 V, Vₛ = 2000 V,",
+            "and Nₚ = 10 turns."
         ],
         "margin_note": "First mark. Write the relation and the given values before any arithmetic.",
         "why": "The relation Vₛ/Vₚ = Nₛ/Nₚ is the whole physics of the problem — an ideal transformer changes the voltage in exactly the ratio of its turns, so the next step is only substitution.",

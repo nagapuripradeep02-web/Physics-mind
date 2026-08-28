@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_closed_pipe_70cm_fundamental",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "A closed organ pipe 70cm long is sounded. If the velocity of sound is 331 m/s, what is the fundamental frequency of vibration of the air column?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Data listed",
+      "marks": 1
+    },
+    {
+      "label": "Closed-pipe boundary condition",
+      "marks": 2
+    },
+    {
+      "label": "Wavelength of the fundamental",
+      "marks": 2
+    },
+    {
+      "label": "Frequency formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitution and result",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+2+1+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. It needs that teacher pass more than most cards on this paper: an 8-mark split for a SHORT numerical is not a thing any printed scheme shows, because the book files this numerical under Long Answer numbering with no Problems banner, so the 8 marks come from the section it sits in and the five-way split across them is entirely this bank's invention. A teacher may well mark it as a 4-mark question. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Arithmetic hand-checked: l = 70 cm = 0.70 m; a closed pipe has l = λ₁/4, so λ₁ = 4l = 2.80 m; n₁ = V/λ₁ = 331/2.80 = 118.214… ≈ 118.2 Hz — agrees with the book's printed 118.2 Hz."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order — the data, the closed-pipe condition, the wavelength, the formula, and the result.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Waves · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_data",
+        "kind": "text",
+        "label": "Data listed",
+        "marks": 1,
+        "mark_note": "l = 0.70 m, V = 331 m s⁻¹",
+        "lines": [
+          "Closed organ pipe, sounded in its",
+          "fundamental mode.",
+          {
+            "text": "l = 70 cm = 70 × 10⁻² m = 0.70 m",
+            "style": "eq"
+          },
+          {
+            "text": "V = 331 m s⁻¹",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Convert the length to metres on the data line, before any formula.",
+        "why": "The formula is in metres per second, so the centimetre length has to become 0.70 m here; a conversion left until the substitution line is where the factor of 100 goes missing.",
+        "common_mistakes": [
+          "Substituting 70 instead of 0.70 and reporting 1.18 Hz.",
+          "Not stating that the pipe is closed at one end. Every step below depends on it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pipe length is 70 cm, which is 0.70 m, and the speed of sound is 331 m s⁻¹.",
+          "accept": [
+            "l is 70 centimetre, that is 0 point 7 metre",
+            "V is 331 metre per second",
+            "convert centimetre to metre"
+          ],
+          "reject": [
+            "lambda is four l"
+          ],
+          "heard_as": [
+            "point seven metre",
+            "three three one"
+          ]
+        },
+        "memory_tip": "Write the metre value on the data line, so the substitution line has nothing left to convert."
+      },
+      {
+        "id": "s2_boundary",
+        "kind": "text",
+        "label": "Closed-pipe boundary condition",
+        "marks": 2,
+        "mark_note": "Node at the closed end, antinode at the open end",
+        "lines": [
+          "In a closed pipe the air cannot move at",
+          "the closed end, so a node forms there.",
+          "The open end is free to move, so an",
+          "antinode forms there.",
+          "The shortest air column with one node",
+          "and one antinode is a quarter of a",
+          "wavelength, so for the fundamental:",
+          {
+            "text": "l = λ₁/4",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: the node at the closed end and the antinode at the open end, then l = λ₁/4.",
+        "why": "This one line is what separates a closed pipe from an open pipe. An open pipe has an antinode at both ends and l = λ/2, which would give twice this frequency.",
+        "common_mistakes": [
+          "Using l = λ/2, the open-pipe condition. That doubles the answer to 236 Hz.",
+          "Putting the antinode at the closed end. The air is held still there, so it is a node."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a closed pipe has a node at the closed end and an antinode at the open end, so l = λ₁/4.",
+          "accept": [
+            "node at the closed end, antinode at the open end",
+            "length is lambda by four",
+            "quarter wavelength fits in the pipe"
+          ],
+          "reject": [
+            "331 divided by 2 point 8"
+          ],
+          "heard_as": [
+            "node",
+            "antinode",
+            "lambda by four"
+          ]
+        },
+        "memory_tip": "Closed end holds the air still, so it is a node; a quarter wave reaches the first antinode."
+      },
+      {
+        "id": "s3_wavelength",
+        "kind": "equation",
+        "label": "Wavelength of the fundamental",
+        "marks": 2,
+        "mark_note": "λ₁ = 4l = 2.80 m",
+        "lines": [
+          "Rearranging the boundary condition:",
+          {
+            "text": "λ₁ = 4l",
+            "style": "eq"
+          },
+          {
+            "text": "λ₁ = 4 × 0.70 = 2.80 m",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: λ₁ = 4l written out, then its value in metres.",
+        "why": "Writing the wavelength as a number first keeps the arithmetic in one place, and 2.80 m is a useful check on its own — the wave is four times longer than the pipe.",
+        "common_mistakes": [
+          "Writing λ₁ = l/4 instead of 4l. The wavelength is longer than the pipe, never shorter."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That λ₁ = 4l = 4 × 0.70 = 2.80 m.",
+          "accept": [
+            "lambda is four into l",
+            "four into zero point seven is two point eight",
+            "wavelength is 2 point 8 metre"
+          ],
+          "reject": [
+            "n is V by lambda"
+          ],
+          "heard_as": [
+            "two point eight",
+            "four l"
+          ]
+        },
+        "memory_tip": "Four times the pipe length — the wavelength is always the bigger number."
+      },
+      {
+        "id": "s4_formula",
+        "kind": "equation",
+        "label": "Frequency formula",
+        "marks": 1,
+        "mark_note": "n₁ = V/λ₁ = V/4l",
+        "lines": [
+          "For any wave, V = n λ. So the",
+          "fundamental frequency of the air column",
+          "is:",
+          {
+            "text": "n₁ = V/λ₁ = V/4l",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "One mark. Quote V = nλ, then the closed-pipe form V/4l.",
+        "why": "V = nλ is the only physics needed after the wavelength is known, and writing V/4l in one line shows the examiner the closed-pipe result without a second derivation.",
+        "common_mistakes": [
+          "Writing n₁ = V/2l, which belongs to an open pipe."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n₁ = V/λ₁, which for a closed pipe is V/4l.",
+          "accept": [
+            "V equals n lambda",
+            "n is V by lambda",
+            "n is V by four l"
+          ],
+          "reject": [
+            "118 point 2 hertz"
+          ],
+          "heard_as": [
+            "V by four l",
+            "n lambda"
+          ]
+        },
+        "memory_tip": "One formula, V = nλ, rearranged once."
+      },
+      {
+        "id": "s5_result",
+        "kind": "boxed_final",
+        "label": "Substitution and result",
+        "marks": 2,
+        "mark_note": "n₁ ≈ 118.2 Hz",
+        "lines": [
+          "Substituting the values:",
+          {
+            "text": "n₁ = 331 / (4 × 70 × 10⁻²)",
+            "style": "eq"
+          },
+          {
+            "text": "n₁ = 331 / 2.80",
+            "style": "eq"
+          },
+          {
+            "text": "n₁ ≈ 118.2 Hz",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Two marks: one clean substitution, then the value with the unit hertz.",
+        "why": "The unit is the last mark on any numerical, and a rough check backs the number: 2.80 m into 331 m each second is a bit under 120 waves a second.",
+        "common_mistakes": [
+          "Leaving the answer as 118 with no unit. Frequency is in hertz.",
+          "Dividing 331 by 0.70 and reporting 473 Hz. The 4 belongs in the denominator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 331 divided by 2.80 gives about 118.2 Hz.",
+          "accept": [
+            "331 by 2 point 8",
+            "118 point 2 hertz",
+            "about 118 hertz"
+          ],
+          "reject": [
+            "lambda is 2 point 8 metre"
+          ],
+          "heard_as": [
+            "one eighteen point two",
+            "hertz"
+          ]
+        },
+        "memory_tip": "331 over 2.8 is a little under 120 — a quick sanity check before writing 118.2 Hz."
+      }
+    ]
+  },
+  "insider_note": "The whole numerical turns on one line: a closed pipe fits a quarter wavelength, so λ = 4l. A student who writes λ = 2l has already lost the answer, and every later step will still look tidy."
+}

@@ -12,11 +12,20 @@
  * dies silently in this shell's transport (a recorded scar), and a check that
  * silently prints nothing is worse than no check at all.
  */
-import { readFileSync, readdirSync } from 'fs';
+import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { answerBookQuestionSchema } from '../../src/schemas/answerBook';
 
-const QDIR = join(process.cwd(), 'answer-book', 'questions');
+// Both the shipped cards and the parked ones. The first version read
+// `answer-book/questions/` alone, so running it on a chapter still parked in
+// wip/ matched NOTHING and printed "every card passes" over an empty set — a
+// green check over zero work, which is the one failure a verification tool
+// cannot afford. Two chapter agents hit it on the same afternoon. It now scans
+// both directories and REFUSES an empty match.
+const DIRS = [
+    join(process.cwd(), 'answer-book', 'questions'),
+    join(process.cwd(), 'answer-book', 'wip', 'p2', 'cards'),
+];
 const PREFIX = process.argv[2] ?? 'ts_ipe_p2_';
 
 /**
@@ -44,15 +53,29 @@ type Row = { file: string; msg: string };
 const errors: Row[] = [];
 const warns: Row[] = [];
 
-const files = readdirSync(QDIR).filter((f) => f.startsWith(PREFIX) && f.endsWith('.json')).sort();
+// [dir, filename] pairs, so an error can name where the card actually lives.
+const files: [string, string][] = [];
+for (const d of DIRS) {
+    if (!existsSync(d)) continue;
+    for (const f of readdirSync(d)) {
+        if (f.startsWith(PREFIX) && f.endsWith('.json')) files.push([d, f]);
+    }
+}
+files.sort((a, b) => a[1].localeCompare(b[1]));
+if (files.length === 0) {
+    console.error(`✗ check_p2_cards: no card matches "${PREFIX}" in:`);
+    for (const d of DIRS) console.error(`    ${d}`);
+    console.error('  Refusing to report a pass over an empty set.');
+    process.exit(1);
+}
 const byChapter = new Map<string, { n: number; V: number; S: number; L: number; figs: number }>();
 const ids = new Set<string>();
 let steps = 0;
 
-for (const f of files) {
+for (const [dir, f] of files) {
     let raw: unknown;
     try {
-        raw = JSON.parse(readFileSync(join(QDIR, f), 'utf8'));
+        raw = JSON.parse(readFileSync(join(dir, f), 'utf8'));
     } catch (e) {
         errors.push({ file: f, msg: `invalid JSON: ${(e as Error).message}` });
         continue;
