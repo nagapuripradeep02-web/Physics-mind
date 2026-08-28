@@ -209,7 +209,7 @@
           }
         ],
         "margin_note": "First mark. Declare every symbol once — l, A, N₁, N₂, i₁ — before any formula uses it.",
-        "why": "Every later line reuses these symbols, so declaring them once — length, area, turns, current — is what makes the derivation readable and markable.",
+        "why": "Every later line reuses these symbols, so declaring them once — length, area, turns, current — is what makes the derivation readable and markable. A is the cross-sectional area of the INNER solenoid. Two coaxial solenoids cannot share an area, and it is the inner one that matters both ways: the inner solenoid's field exists only over its own area, and the outer solenoid's uniform field crosses the inner coil over that same area.",
         "common_mistakes": [
           "Writing B = μ₀ni with n undefined. Say which count you use: here N₁ is the TOTAL number of turns, so B₁ = μ₀N₁i₁/l."
         ],

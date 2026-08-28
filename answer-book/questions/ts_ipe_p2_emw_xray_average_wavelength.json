@@ -81,18 +81,18 @@
         "marks": 1,
         "mark_note": "Average ≈ 10⁻¹⁰ m",
         "lines": [
-          "Taking the middle of this range on the",
-          "powers of ten gives the average wavelength.",
+          "The value usually quoted as the average",
+          "X-ray wavelength is 1 Å.",
           {
             "text": "Average wavelength of X-rays ≈ 10⁻¹⁰ m",
             "style": "boxed"
           }
         ],
         "margin_note": "Second mark. The average is taken on the powers of ten, not by adding the two limits.",
-        "why": "The book's 10⁻¹⁰ m is the mid-point of the printed range taken on powers of ten — the geometric mid-point. An arithmetic mean of 10⁻⁸ m and 10⁻¹³ m would be about 5 × 10⁻⁹ m, which is not the marked answer.",
+        "why": "10⁻¹⁰ m is the conventional typical X-ray wavelength (1 Å, about one atomic diameter), and it is the value the book marks. It is NOT an average of the two printed limits by any rule: the arithmetic mean of 10⁻⁸ m and 10⁻¹³ m is about 5 × 10⁻⁹ m, and the geometric mean is 10⁻¹⁰·⁵ ≈ 3 × 10⁻¹¹ m. Quote the standard value rather than trying to compute one from the range.",
         "common_mistakes": [
-          "Adding 10⁻⁸ m and 10⁻¹³ m and dividing by two. That gives about 5 × 10⁻⁹ m, not the marked 10⁻¹⁰ m.",
-          "Writing 10⁻¹⁰ without the unit. The answer is a length: 10⁻¹⁰ m."
+          "Averaging the two limits arithmetically and writing about 5 × 10⁻⁹ m.",
+          "Taking the geometric mean of the limits and writing about 3 × 10⁻¹¹ m — that is a real mid-point of the range, but it is not the value asked for."
         ],
         "recall": {
           "credit": "say_it",

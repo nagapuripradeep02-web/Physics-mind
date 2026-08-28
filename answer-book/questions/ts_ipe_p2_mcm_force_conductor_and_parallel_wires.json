@@ -53,7 +53,7 @@
     "note": "The 1+1+1+1+1+1+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: i = nqvA, f = qvB sin θ, F = (nlA)f = B i l sin θ, vector form F = i(l × B); then B₁ = μ₀i₁/2πr, F₂ = i₂lB₁ = μ₀i₁i₂l/2πr and F₁ = i₁lB₂ equal to it, so F/l = μ₀i₁i₂/2πr, attractive for currents in the same direction — all matching the book. The book's printed question reads 'megnetic field' and 'Derive on expression'; corrected here to 'magnetic field' and 'Derive an expression'. ONE DEPARTURE FROM THE BOOK'S FIGURE: the book draws the force F in the plane of the page while also drawing B in that plane. With the current and the field both in the page, F = i(l × B) is perpendicular to the page, so the first figure here shows F as ⊙ out of the page; the algebra is unchanged and the book's drawing is noted in the figure step's why line."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
-  "insider_note": "This is one question in two halves, and each half carries its own figure and its own final formula. A full first half with no second half loses four marks, so watch the clock and start the parallel wires by the halfway point.",
+  "insider_note": "Two halves, but not four marks each way: the force on a conductor carries 3 and the parallel-wire result 5. A full first half with no second half earns 3 of 8, so budget the time for both.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

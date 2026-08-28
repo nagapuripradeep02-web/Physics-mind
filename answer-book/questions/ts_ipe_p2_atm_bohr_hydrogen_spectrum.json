@@ -113,13 +113,13 @@
             {
               "type": "stroke",
               "id": "lvl_3",
-              "d": "M 110 69 L 390 69",
+              "d": "M 110 90 L 390 90",
               "ms": 4000
             },
             {
               "type": "stroke",
               "id": "lvl_2",
-              "d": "M 110 105 L 390 105",
+              "d": "M 110 145 L 390 145",
               "ms": 4000
             },
             {
@@ -131,8 +131,8 @@
             {
               "type": "stroke",
               "id": "lyman_shaft",
-              "d": "M 160 105 L 160 296",
-              "ms": 2730
+              "d": "M 160 145 L 160 296",
+              "ms": 2160
             },
             {
               "type": "stroke",
@@ -143,13 +143,13 @@
             {
               "type": "stroke",
               "id": "balmer_shaft",
-              "d": "M 300 69 L 300 101",
-              "ms": 460
+              "d": "M 300 90 L 300 141",
+              "ms": 730
             },
             {
               "type": "stroke",
               "id": "balmer_head",
-              "d": "M 294 91 L 300 103 L 306 91",
+              "d": "M 294 131 L 300 143 L 306 131",
               "ms": 380
             },
             {
@@ -164,7 +164,7 @@
               "type": "label",
               "id": "n_3",
               "x": 400,
-              "y": 73,
+              "y": 94,
               "text": "n = 3",
               "ms": 450
             },
@@ -172,7 +172,7 @@
               "type": "label",
               "id": "n_2",
               "x": 400,
-              "y": 109,
+              "y": 149,
               "text": "n = 2",
               "ms": 450
             },
@@ -197,7 +197,7 @@
               "type": "label",
               "id": "lbl_balmer",
               "x": 308,
-              "y": 92,
+              "y": 122,
               "text": "Balmer",
               "ms": 450,
               "sm": true
@@ -214,7 +214,7 @@
           ]
         },
         "margin_note": "Levels for n = 1, 2, 3 and ∞, with one Lyman arrow down to n = 1 and one Balmer arrow down to n = 2.",
-        "why": "The spacing is drawn to scale from Eₙ = −13.6/n² eV, so the picture itself shows why the drop to n = 1 is by far the largest — that is the whole reason the Lyman series is ultraviolet.",
+        "why": "The levels are drawn in the right ORDER and with the right shape — they crowd closer together as n rises, because Eₙ = −13.6/n² flattens towards zero — but the gaps are not to scale. True to scale, with n = 1 at the foot and n = ∞ at the top, n = 2 would sit three quarters of the way down: the n = 1 to n = 2 step alone is 10.2 eV of the 13.6 eV total. The drawing opens the top gaps so the labels stay readable.",
         "common_mistakes": [
           "Drawing the levels equally spaced. They crowd together towards n = ∞."
         ],

@@ -241,7 +241,7 @@
           "where εᵣ is the relative permittivity of",
           "the medium.",
           {
-            "text": "F = (1/4πε₀) · Q₁Q₂ / r²",
+            "text": "F = (1/4πε) · Q₁Q₂ / r²   with ε = ε₀εᵣ",
             "style": "boxed"
           }
         ],

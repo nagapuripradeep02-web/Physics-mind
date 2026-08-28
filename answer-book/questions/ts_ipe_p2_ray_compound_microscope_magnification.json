@@ -171,7 +171,7 @@
             {
               "type": "stroke",
               "id": "ray2",
-              "d": "M 98 48 L 350 133",
+              "d": "M 98 48 L 350 155",
               "ms": 3800
             },
             {
@@ -475,7 +475,7 @@
           "For the objective, with image distance v₀",
           "and object distance u,",
           {
-            "text": "m₀ = −v₀/u",
+            "text": "m₀ = v₀/u",
             "style": "eq"
           }
         ],
@@ -483,7 +483,7 @@
         "why": "The second lens magnifies whatever the first one hands to it, so the two factors multiply rather than add. The minus sign in m₀ records that the objective inverts the image.",
         "common_mistakes": [
           "Adding the two magnifications instead of multiplying them.",
-          "Dropping the minus sign in m₀, which loses the inversion."
+          "Writing m₀ = −v₀/u. That is the MIRROR form; for a lens m₀ = v₀/u, and the inversion comes from u being negative."
         ],
         "recall": {
           "credit": "say_it",
@@ -522,7 +522,7 @@
           "where fₑ is the focal length of the eyepiece.",
           "Substituting m₀ and mₑ in (1),",
           {
-            "text": "m = (−v₀/u)(1 + D/fₑ)    ...(2)",
+            "text": "m = (v₀/u)(1 + D/fₑ)    ...(2)",
             "style": "boxed"
           }
         ],
@@ -578,7 +578,7 @@
           }
         ],
         "margin_note": "Seventh mark. Both approximations stated: u ≈ −f₀ and v₀ ≈ L.",
-        "why": "These two approximations replace the two quantities that change while the instrument is focused by two fixed lengths of the instrument itself. The result is a formula in f₀, fₑ, L and D alone, all of which are known once the microscope is built.",
+        "why": "These two approximations replace the two quantities that change while the instrument is focused by two fixed lengths of the instrument itself. The result is a formula in f₀, fₑ, L and D alone, all of which are known once the microscope is built. Note where the minus in (3) comes from: not from the magnification formula, but from u ≈ −f₀. For a thin lens m = v/u, and a real object left of the lens has negative u, so the result is negative and the image inverted.",
         "common_mistakes": [
           "Writing v₀ ≈ f₀. It is the OBJECT distance that is close to f₀; the image distance is close to L.",
           "Leaving L undefined. L is the distance between the two lenses."
@@ -614,7 +614,7 @@
           "If the final image is formed at infinity, the",
           "eyepiece magnification becomes D/fₑ, so",
           {
-            "text": "m = −(v₀/u)(D/fₑ)",
+            "text": "m = (v₀/u)(D/fₑ)",
             "style": "eq"
           },
           "and with the same approximations,",
@@ -631,7 +631,7 @@
         "why": "With both focal lengths in the denominator, a microscope is made powerful by making both lenses short-focus. The image at infinity is the setting a user chooses for long viewing, because the eye stays relaxed.",
         "common_mistakes": [
           "Writing m ≈ −LD/(f₀ + fₑ). The two focal lengths MULTIPLY in the denominator.",
-          "Ignoring the minus sign, which is what records the inversion."
+          "Ignoring the minus sign in the final result, which is what records the inversion."
         ],
         "recall": {
           "credit": "say_it",
@@ -676,7 +676,7 @@
           "increases when ultraviolet light is used."
         ],
         "margin_note": "The book prints this extra part with no question number of its own. It carries no marks here; write it only if the paper asks for it.",
-        "why": "The focal length of a lens depends on the refractive index of its material, and the refractive index is larger for shorter wavelengths. Ultraviolet light therefore sees a shorter-focus lens than visible light does, and since m ∝ 1/f the magnification rises. This is the reason ultraviolet microscopes resolve finer detail than visible-light ones.",
+        "why": "The focal length of a lens depends on the refractive index of its material, and the refractive index is larger for shorter wavelengths. Ultraviolet light therefore sees a shorter-focus lens than visible light does, and since m ∝ 1/f the magnification rises. Ultraviolet microscopes do resolve finer detail, but for a different reason: the diffraction limit is set by the WAVELENGTH, not by the focal length. Magnification without resolution is empty magnification.",
         "common_mistakes": [
           "Saying the magnification falls. A smaller focal length gives a LARGER magnification.",
           "Explaining it by the brightness of the light. The reason is the focal length, through the wavelength."

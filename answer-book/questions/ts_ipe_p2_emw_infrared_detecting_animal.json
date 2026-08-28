@@ -46,14 +46,15 @@
         "marks": 1,
         "mark_note": "Cold-blooded animals",
         "lines": [
-          "Cold-blooded animals can detect infrared",
-          "waves."
+          "Snakes. Pit vipers, pythons and boas carry",
+          "heat-sensing pit organs that detect the",
+          "infrared a warm body gives off."
         ],
         "margin_note": "First mark. The book's marked answer is the group: cold-blooded animals.",
-        "why": "This is the answer as the book marks it. More precisely, pit vipers and some other snakes carry heat-sensing pit organs that detect the infrared a warm body gives off — being cold-blooded is not itself the reason an animal senses infrared.",
+        "why": "The book answers 'cold-blooded animals, Ex: snakes'. Snakes are the marked example and they are also the true one, so name them. Being cold-blooded is not itself what gives the sense — frogs, lizards and fish are cold-blooded and have no infrared organ. The pit organ is the reason, and it belongs to a few snakes and a few insects.",
         "common_mistakes": [
-          "Naming bats. Bats hunt with ultrasound, which is sound, not infrared radiation.",
-          "Writing warm-blooded animals. The book's marked answer is cold-blooded animals."
+          "Writing that all cold-blooded animals detect infrared. Most do not — the pit organ is what does it.",
+          "Naming a warm-blooded animal. The pit organ evolved to find warm prey against a cooler background."
         ],
         "recall": {
           "credit": "say_it",

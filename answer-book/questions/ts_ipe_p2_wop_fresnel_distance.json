@@ -87,8 +87,7 @@
         "mark_note": "Z_F = a²/λ, symbols named",
         "lines": [
           {
-            "text": "Z_F = \\dfrac{a^2}{\\lambda}",
-            "render": "katex",
+            "text": "Z_F = a²/λ",
             "style": "boxed"
           },
           "where a = size of the slit or aperture and",

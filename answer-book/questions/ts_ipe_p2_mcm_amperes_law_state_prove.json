@@ -152,7 +152,7 @@
         "why": "The law is about a path, not about a wire, so the picture has to show the path first and the currents second — the shape of the path never enters the answer.",
         "common_mistakes": [
           "Drawing the currents outside the path. Only currents THROUGH the path are counted.",
-          "Drawing B along the radius. B is taken along the path at the element dl."
+          "Assuming B is always along the path. It is not in general — ∮B·dl reduces to B∮dl only on a path chosen so that B is tangential and equal in size everywhere on it."
         ],
         "recall": {
           "credit": "name_it",
@@ -331,7 +331,7 @@
           "depend on the size of the path."
         ],
         "margin_note": "Last mark. Show r cancelling — that cancellation is the point of the whole step.",
-        "why": "B falls off as 1/r while the path length grows as r, so the two changes cancel exactly; that is why the line integral depends only on the enclosed current.",
+        "why": "B falls off as 1/r while the path length grows as r, so the two changes cancel exactly; that is why the line integral depends only on the enclosed current. The long-wire field B = μ₀i/2πr used here comes from the Biot–Savart law, integrated along an infinite straight wire — not from Ampère's law, which would make this circular.",
         "common_mistakes": [
           "Leaving r in the final answer. It must cancel.",
           "Writing 2π in the answer. The 2π cancels with the one in B."

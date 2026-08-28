@@ -52,7 +52,7 @@
           "infrared."
         ],
         "margin_note": "First mark. Place all three, not just the answer — that is what shows the reasoning.",
-        "why": "Each series sits in one region: Lyman is ultraviolet, Balmer is visible, Paschen is infrared. Placing the three wavelengths by region identifies the series at once.",
+        "why": "Each series sits in one region: Lyman is ultraviolet, Balmer is visible, Paschen is infrared. Placing the three wavelengths by region identifies the series at once. The book prints 6463 Å; hydrogen has no line there — the visible Balmer line is Hα at 6563 Å, which is what this chapter's own hydrogen-spectrum card quotes. The slip does not change the answer, because either value is visible and so Balmer either way.",
         "common_mistakes": [
           "Calling 6463 Å ultraviolet. The visible band is 4000 Å to 7000 Å.",
           "Placing only the answer and leaving the other two out."

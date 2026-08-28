@@ -191,7 +191,7 @@
               "type": "label",
               "id": "lbl_fuel",
               "x": 64,
-              "y": 206,
+              "y": 178,
               "text": "Fuel rods",
               "ms": 450,
               "sm": true
@@ -200,7 +200,7 @@
               "type": "label",
               "id": "lbl_moderator",
               "x": 150,
-              "y": 206,
+              "y": 178,
               "text": "Moderator",
               "ms": 450,
               "sm": true

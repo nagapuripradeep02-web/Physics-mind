@@ -110,7 +110,7 @@
         "marks": 2,
         "mark_note": "The six reactions, with carbon returned at the end",
         "lines": [
-          "Carbon-nitrogen cycle (suggested by Bothe):",
+          "Carbon-nitrogen cycle (suggested by Bethe):",
           "hydrogen is converted into helium with carbon",
           "and nitrogen acting as catalysts.",
           {
@@ -210,7 +210,7 @@
         "marks": 2,
         "mark_note": "The four reactions with their energies",
         "lines": [
-          "Proton-proton cycle: four protons become",
+          "Proton-proton cycle: four protons turn",
           "into helium in four steps.",
           {
             "text": "₁H¹ + ₁H¹ → ₁H² + e⁺ + ν + 0.42 MeV   (i)",

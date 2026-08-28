@@ -56,10 +56,11 @@
           }
         ],
         "margin_note": "First mark. The one-line principle: a current coil in a magnetic field experiences a torque.",
-        "why": "Everything in the instrument follows from this one fact — the current makes the torque, and the torque turns the coil against the suspension wire.",
+        "why": "Everything in the instrument follows from this one fact — the current makes the torque, and the torque turns the coil against the suspension wire. θ here is measured from the NORMAL to the plane of the coil, not from the plane itself — the same θ the long-answer form warns about.",
         "common_mistakes": [
           "Saying the coil feels a net force. In a uniform field the net force is zero; it is the TORQUE that turns the coil.",
-          "Leaving out the field: the torque needs both the current and the magnetic field."
+          "Leaving out the field: the torque needs both the current and the magnetic field.",
+          "Measuring θ from the plane of the coil. It is measured from the normal to the plane."
         ],
         "recall": {
           "credit": "say_it",

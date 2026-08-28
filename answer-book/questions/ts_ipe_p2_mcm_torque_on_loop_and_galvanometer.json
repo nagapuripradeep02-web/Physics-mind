@@ -53,7 +53,7 @@
     "note": "The 1+1+1+2+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: forces i(b × B) on the two b sides act along the suspension axis and cancel; the two l sides each carry ilB and form a couple of arm b sin θ, so τ = ilB · b sin θ = iAB sin θ and τ = niAB sin θ for n turns; in the radial field of the instrument sin θ = 1, so niAB = Cθ gives i = (C/nAB)θ = Kθ — all matching the book. The book's headings print 'Movind coil galvanometer', 'equibibrium', 'defrecting' and 'carrnet pases'; these spellings are corrected here and the physics is unchanged. The first figure is drawn as a view along the axis of suspension, which is not the book's three-dimensional drawing, because the arm b sin θ of the couple can be seen directly in that view."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
-  "insider_note": "Two halves, four marks each way. The line that carries the second half is the radial field: it is the reason sin θ = 1 and the reason the scale of the instrument is uniform.",
+  "insider_note": "The radial field is the line that carries the second half: it is the reason sin θ = 1 at every deflection and the reason the scale is uniform. Note the marks are not split evenly — the torque derivation carries 5 and the galvanometer 3, so a full first half with no galvanometer still earns 5.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -536,19 +536,20 @@
           "   coil. It increases the field strength and,",
           "   with the concave poles, makes the field",
           "   radial.",
-          "4) The radial field gives the maximum flux",
-          "   through the coil in every position of the",
-          "   coil.",
+          "4) In a radial field the field always lies in",
+          "   the plane of the coil, so the deflecting",
+          "   torque is n i A B at every deflection.",
           "5) A spring at the lower end supplies the",
           "   restoring couple, and the current enters",
           "   and leaves through the suspension and the",
           "   spring."
         ],
         "margin_note": "Fifth mark. Five short numbered points. The phosphor bronze property and the radial field are the two the examiner looks for.",
-        "why": "Every part answers one need: the wire must twist without stretching, the core must make the field radial, and the spring must supply a restoring couple that grows with the twist.",
+        "why": "Every part answers one need: the wire must twist without stretching, the core must make the field radial, and the spring must supply a restoring couple that grows with the twist. A radial field gives the coil ZERO flux, not maximum: the field lies in the plane of the coil, so the normal is at 90° to B and Φ = NBA cos 90° = 0. What it maximises is the TORQUE, τ = niAB sin θ with sin θ = 1 at every deflection — and that is what makes the scale uniform.",
         "common_mistakes": [
           "Saying phosphor bronze has a high rigidity modulus. It is LOW, so the wire twists easily.",
-          "Saying the field is uniform. In this instrument it is radial."
+          "Saying the field is uniform. In this instrument it is radial.",
+          "Saying the radial field gives maximum flux. It gives maximum torque; the flux through the coil is zero."
         ],
         "recall": {
           "credit": "say_it",
