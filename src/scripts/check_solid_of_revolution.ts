@@ -83,7 +83,12 @@ function grabVar(name: string): string {
 }
 
 const VARS = ["SR_MODES", "SR_MODES_COMPLETE", "SR_FAMILIES", "SR_READOUTS", "SR_GLOW_KEYS", "SR_PUB",
-  "SR_RULES", "SR_KINDS", "SR_RAMP_PARAMS", "SR_DISC_POOL", "SR_DEFAULT_MAX_DRAWN"];
+  "SR_RULES", "SR_KINDS", "SR_RAMP_PARAMS", "SR_DISC_POOL", "SR_DEFAULT_MAX_DRAWN",
+  // SR-C — the explore idle turn + the sandbox orbit (section 16).
+  "SR_EXPLORE_TURN_DEG_PER_S", "SR_EXPLORE_CAM_DEG_PER_S",
+  // NOT SR's — the SHARED Rule-39f label table, pulled in read-only so section
+  // 16 (vi) can run the fleet's own row-label resolver over SR's markup.
+  "PM_WG_WORDS"];
 const FNS = [
   "srClamp", "srClamp01", "srProfileFamily", "srF", "srAntiF", "srIntegralF",
   "srAntiF2", "srIntegralF2", "srHoldTotal", "srRampFrac", "srRamp", "srRampN",
@@ -97,6 +102,10 @@ const FNS = [
   // lesson of section 14 is that a probe aimed at the pure summation could never
   // have seen the defect this section exists for.
   "srDomain", "srOuter", "srInner", "srSliceX", "srCapLine", "srWriteHud",
+  // SR-C
+  "srThetaDeg", "srIdleTurnDeg", "srIdleCamAzDeg",
+  // the SHARED widget-label resolver (section 16 (vi)), read-only.
+  "pmWgWord", "pmWgRowLabel",
 ];
 /** The two live-global surfaces the SR block reads. Fresh per construction. */
 function makeWindowShim(): Record<string, any> {
@@ -1713,7 +1722,10 @@ console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper
   const SHIMS = ["window", "document", "config", "THREE", "console", "addToScene",
     "hexToThreeColor", "cueTriggerMs", "osCamScheduleAt", "nlbProjPx",
     "targetSpherical", "spherical", "updateCameraFromSpherical", "animating",
-    "time", "stateStartTime"];
+    "time", "stateStartTime",
+    // SR-C2's sandbox orbit reads the shared camera-drag flag, exactly as the
+    // shipped organic_structure seize does (:68966).
+    "isDragging"];
   const HOST = ["window", "document", "console", "THREE", "config"];
   const notDeclared = SHIMS.filter(n => !HOST.includes(n) && !declaredAtRendererScope(n));
   assertTrue("every shimmed name below is really declared at RENDERER scope outside this region ("
@@ -1804,7 +1816,7 @@ console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper
     nlbProjPx: () => null,
     targetSpherical: { radius: 8, phi: 1, theta: 1 }, spherical: { radius: 8, phi: 1, theta: 1 },
     updateCameraFromSpherical: () => undefined, animating: false,
-    time: 0, stateStartTime: 0,
+    time: 0, stateStartTime: 0, isDragging: false,
   };
   const names = Object.keys(ARGS);
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -1833,12 +1845,27 @@ console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper
   //        only a ReferenceError — a name the region uses and nobody declares —
   //        fails here. That IS the shipped defect's class, and (iii) proves this
   //        assertion catches it.
+  // THE EXPLORE STATE IS RUN TOO, because a branch nothing executes is a branch
+  // no ReferenceError can escape from: SR-C2's sandbox orbit lives inside
+  // `else if (sr.mode === "explore")` and STATE_1 is mode "region", so the
+  // walk below would have compiled it and never entered it.
+  const EXPLORE_STATE = {
+    camera_position: [5.42, 3.43, 6.32],
+    sr: { mode: "explore", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+      domain: [0, 4], axis: "x",
+      frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true },
+      reveal: false, discs: { n: 20, rule: "left", max_discs_drawn: 120 },
+      controls: ["a", "b", "n"], readouts: ["a", "b", "n", "V_n"] },
+  };
   const full = classifyRun(() => {
     const api = mkApi();
     api.build(CONFIG);
     api.apply(CONFIG.states.STATE_1);
     api.frame(CONFIG.states.STATE_1);
     api.glow(CONFIG.states.STATE_1);
+    api.apply(EXPLORE_STATE);
+    api.frame(EXPLORE_STATE);
+    api.glow(EXPLORE_STATE);
   });
   assertTrue("no name used anywhere in build -> apply -> frame -> glow is undeclared"
     + (full.ok ? "" : " (non-ReferenceError under the THREE stub, which is not evidence either way: "
@@ -1874,8 +1901,363 @@ console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 16. THE EXPLORE IDLE TURN — Rule 37, and the symmetry trap it sits on ===");
+// WHY THIS SECTION EXISTS. The explore state is a live teacher sandbox: the
+// player never freezes it (interaction_complete skips the pin), so a scenario
+// that draws a settled picture and holds it sits DEAD STILL until the first
+// drag. founder_drive measured exactly that on the first concept to author
+// this scenario: 0 px changed over 1 s against a 60 px floor.
+//
+// THE TRAP THIS SECTION PINS DOWN, so nobody re-argues it from the design
+// line "the solid turns about its axis": a solid of revolution is rotationally
+// symmetric ABOUT THAT AXIS, so turning the swept skin maps the surface onto
+// itself and moves no pixels at all. (ii-b) measures that claim instead of
+// asserting it. What moves is the flat REGION STRIP, still sweeping.
+{
+  const T = (mode: string, tMs: number): number => E.srIdleTurnDeg({ mode: mode }, tMs);
+
+  // ── (i) THE MODE GATE. Every guided mode returns 0 at every time, so the
+  //        eight guided states' measured baselines and D5 profiles cannot move.
+  const GUIDED = Object.keys(E.SR_MODES).filter((m) => m !== "explore");
+  const guidedTimes = [0, 250, 1000, 3333, 9000, 47000];
+  const guidedNonZero = GUIDED.filter((m) => guidedTimes.some((t) => T(m, t) !== 0));
+  assertTrue("every guided mode (" + GUIDED.join(", ") + ") returns 0 at all of "
+    + guidedTimes.join("/") + " ms — the idle turn cannot reach a measured baseline"
+    + (guidedNonZero.length ? " — LEAKED INTO: " + guidedNonZero.join(", ") : ""),
+    guidedNonZero.length === 0);
+  assertTrue("a state with no sr block at all returns 0 rather than throwing",
+    E.srIdleTurnDeg(null, 5000) === 0 && E.srIdleTurnDeg(undefined, 5000) === 0);
+  // NEGATIVE CONTROL — drop the mode gate. This is the shape that would turn the
+  // region on every guided state, i.e. re-write eight approved baselines silently.
+  {
+    const ungated = (tMs: number): number => {
+      const a = (tMs / 1000) * E.SR_EXPLORE_TURN_DEG_PER_S;
+      return a - Math.floor(a / 360) * 360;
+    };
+    control("an idle turn with NO mode gate turns 'stack' by " + ungated(3333).toFixed(2)
+      + " deg at 3333 ms, so the guided-mode assertion fails on it",
+      GUIDED.some((_m) => ungated(3333) !== 0));
+  }
+
+  // ── (ii-a) THE CLOSED FORM. Exact, wrapped, and monotone inside a turn.
+  const RATE = E.SR_EXPLORE_TURN_DEG_PER_S;
+  check("explore turn at t = 1000 ms is exactly the authored rate", T("explore", 1000), RATE, 1e-12);
+  check("...and at 3333 ms it is rate x 3.333", T("explore", 3333), RATE * 3.333, 1e-12);
+  const period = 360000 / RATE;
+  check("the turn WRAPS at one full revolution (" + (period / 1000) + " s) to a clean 0",
+    T("explore", period), 0, 1e-12);
+  check("...and one ms before the wrap it is just under 360, so the wrap is continuous",
+    T("explore", period - 1), 360 - RATE / 1000, 1e-12);
+  assertTrue("t = 0 (state entry) is 0 deg and nothing pre-fires",
+    T("explore", 0) === 0 && T("explore", -50) === 0);
+  const inRange = [0, 1, 250, 7777, 11999, 12001, 123456, 9e6].every((t) => {
+    const v = T("explore", t); return v >= 0 && v < 360;
+  });
+  assertTrue("the angle stays inside [0, 360) at every time tested, including 2.5 hours in", inRange);
+
+  // ── (ii-b) THE SYMMETRY TRAP, MEASURED. Rotate the CLOSED skin about the axis
+  //          of revolution and the surface maps onto itself; rotate the region
+  //          strip and its corner travels. Both measured in SCREEN PX at the
+  //          authored explore camera, against founder_drive's own 60 px floor.
+  const CAM = [5.42, 3.43, 6.32];              // STATE_9's authored camera
+  const VW = 1280, VH = 720;                   // the drive viewport
+  const px = (x: number, y: number, z: number) => {
+    const q = P(CAM, x, y, z);
+    return { x: q.ndcX * VW / 2, y: q.ndcY * VH / 2, behind: q.behind };
+  };
+  const dist = (a: { x: number; y: number }, b: { x: number; y: number }) =>
+    Math.hypot(a.x - b.x, a.y - b.y);
+  // the region's far corner: graph (x, y) = (4, 2) on y = sqrt x, shifted onto
+  // the world origin by srShiftX = -(0 + 4)/2 = -2. It turns about the graph x
+  // axis, so its radius from that axis is its own y.
+  const CX = 2, CR = 2;
+  const corner = (deg: number) => {
+    const a = deg * Math.PI / 180;
+    return px(CX, CR * Math.cos(a), CR * Math.sin(a));
+  };
+  // WORST CASE OVER PHASE, not a lucky sample: the drive shoots its two frames
+  // at an arbitrary moment after state entry.
+  //
+  // AND MEASURED IN THE PROBE'S OWN UNITS. founder_drive's 60 px floor is a
+  // CHANGED-PIXEL COUNT over the clipped sim, not the travel of one point, and
+  // scoring a point displacement against it would be a category swap. So the
+  // region strip is rasterised: its (x, y) samples are projected at phase p and
+  // at p + one second of turn, each marked into a 1280x720 bitmap, and the
+  // SYMMETRIC DIFFERENCE is counted. Every sample marks a 2x2 block and the
+  // sample spacing is sub-pixel, so the strip is solid rather than stippled.
+  // This is CONSERVATIVE against the real frame in both directions that matter:
+  // it counts the region alone (the translucent skin and the disc stack blend
+  // over it, so the real frame changes more), and it ignores anti-aliasing.
+  const GW = VW, GH = VH;
+  const bufA = new Uint8Array(GW * GH), bufB = new Uint8Array(GW * GH);
+  const NU = 300, NV = 150;
+  const mark = (buf: Uint8Array, deg: number) => {
+    buf.fill(0);
+    const a = deg * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a);
+    for (let iu = 0; iu <= NU; iu++) {
+      const gx = 4 * (iu / NU);                 // graph x over the authored domain
+      const top = Math.sqrt(gx);                // y = sqrt x, the authored profile
+      for (let iv = 0; iv <= NV; iv++) {
+        const gy = top * (iv / NV);             // the filled region, axis to curve
+        const q = px(gx - 2, gy * ca, gy * sa); // srShiftX = -2, turning about the x axis
+        if (q.behind) continue;
+        const sx = Math.round(q.x + GW / 2), sy = Math.round(GH / 2 - q.y);
+        for (let dx = 0; dx < 2; dx++) {
+          for (let dy = 0; dy < 2; dy++) {
+            const X = sx + dx, Y = sy + dy;
+            if (X >= 0 && X < GW && Y >= 0 && Y < GH) buf[Y * GW + X] = 1;
+          }
+        }
+      }
+    }
+  };
+  const changedPx = (deg: number): number => {
+    mark(bufA, deg); mark(bufB, deg + RATE);
+    let n = 0;
+    for (let i = 0; i < bufA.length; i++) if (bufA[i] !== bufB[i]) n++;
+    return n;
+  };
+  /** the same count with the turn REMOVED — the pre-fix frame, twice. */
+  const changedPx0 = (): number => {
+    mark(bufA, 37); mark(bufB, 37);
+    let n = 0;
+    for (let i = 0; i < bufA.length; i++) if (bufA[i] !== bufB[i]) n++;
+    return n;
+  };
+  const MOTION_FLOOR_PX = 60;   // founder_drive's own floor
+  let worstPx = Infinity, worstAt = -1, inkAt0 = 0;
+  for (let ph = 0; ph < 360; ph += 15) {
+    const d = changedPx(ph);
+    if (d < worstPx) { worstPx = d; worstAt = ph; }
+  }
+  mark(bufA, 0); for (let i = 0; i < bufA.length; i++) if (bufA[i]) inkAt0++;
+  // WHAT THIS NUMBER IS, AND WHAT IT IS NOT — the distinction cost a cycle and is
+  // recorded so it does not cost a second one. It is a GEOMETRIC count: how many
+  // pixels the strip's own silhouette occupies differently one second apart. It
+  // is NOT founder_drive's count, which is PERCEPTUAL (pixelmatch threshold 0.1
+  // over the composited frame). Measured on the shipped build: those two numbers
+  // are 9 034 and 0 for the same pair of frames, because the strip sweeps INSIDE
+  // a closed solid whose disc stack has almost exactly its luminance (166 vs 171)
+  // — a real motion that a perceptual diff is entitled to call no motion. The
+  // sandbox orbit in (vii) is what carries the silhouette, and this assertion is
+  // kept because the region turn is still the motion that TEACHES.
+  assertTrue("the region strip's own silhouette changes >= " + MOTION_FLOOR_PX + " px in 1 s at "
+    + "EVERY phase tested (worst " + worstPx + " px at " + worstAt + " deg, against " + inkAt0
+    + " px of strip) — geometrically the generator really is sweeping", worstPx >= MOTION_FLOOR_PX);
+  // ...and the far corner really travels, so the count above is a moving object
+  // and not a rasterisation artefact of the sampling grid.
+  const CORNER_FLOOR_PX = 20;
+  let worstCorner = Infinity, cornerAt = -1;
+  for (let ph = 0; ph < 360; ph++) {
+    const d = dist(corner(ph), corner(ph + RATE));
+    if (d < worstCorner) { worstCorner = d; cornerAt = ph; }
+  }
+  assertTrue("the region's far corner travels >= " + CORNER_FLOOR_PX + " px in 1 s at every one of "
+    + "360 phases (worst " + worstCorner.toFixed(1) + " px at " + cornerAt + " deg — the phase where "
+    + "its motion is most nearly along the view ray)", worstCorner >= CORNER_FLOOR_PX);
+  // NEGATIVE CONTROL 1 — the SHIPPED PRE-FIX behaviour: no turn at all.
+  control("the pre-fix explore state (turn = 0) changes 0 px and moves that corner 0.0 px in 1 s, "
+    + "failing both floors — this section reproduces the defect it was written for",
+    changedPx0() < MOTION_FLOOR_PX && dist(corner(37), corner(37)) < CORNER_FLOOR_PX);
+  // NEGATIVE CONTROL 2 — THE LITERAL DESIGN READING. Turn the closed swept SKIN
+  // about the axis of revolution instead: sample it, rotate the sample, and
+  // measure how far the rotated set sits from the original set. A rotationally
+  // symmetric surface maps onto itself, so this is ~0 however fast it spins —
+  // which is why "the solid turns about its axis" could not be taken literally.
+  {
+    const SAMP = 720;
+    const ring = (deg: number) => {
+      const out: Array<{ x: number; y: number }> = [];
+      for (let k = 0; k < SAMP; k++) {
+        const a = (k * 360 / SAMP + deg) * Math.PI / 180;
+        out.push(px(CX, CR * Math.cos(a), CR * Math.sin(a)));
+      }
+      return out;
+    };
+    const A = ring(0), B = ring(RATE);
+    let setGap = 0;
+    for (const b of B) {
+      let near = Infinity;
+      for (const a of A) { const d = dist(a, b); if (d < near) near = d; }
+      if (near > setGap) setGap = near;
+    }
+    control("turning the CLOSED SKIN about the axis of revolution instead moves the surface "
+      + setGap.toFixed(2) + " px as a set (720 samples) — it maps onto itself, so the literal "
+      + "reading of the design line would have shipped a second frozen explore state",
+      setGap < CORNER_FLOOR_PX);
+  }
+  // ── (iii) NO ACCUMULATION (SR-D2 / Rule 36). A pinned re-visit redraws the
+  //         same angle however the renderer arrived there.
+  const pinSeq = [3000, 9000, 3000];
+  const pinVals = pinSeq.map((t) => T("explore", t));
+  assertTrue("pin t=3000 -> 9000 -> 3000 returns the IDENTICAL angle (" + pinVals[0].toFixed(6)
+    + " both times) — SET_TIME_FREEZE re-pins byte-identical", pinVals[0] === pinVals[2]);
+  const crawled = (() => { let v = 0; for (let t = 0; t <= 3000; t += 7) v = T("explore", t); return v; })();
+  assertTrue("crawling to 3000 ms in 7 ms steps lands on the same angle as jumping there "
+    + "(frame-rate independence: the value is a function of t, not of the call count)",
+    crawled === T("explore", 2996) && T("explore", 3000) === RATE * 3);
+  // NEGATIVE CONTROL 3 — the accumulator twin, the first line of the field_3d
+  // scar checklist. It cannot rewind, so the re-pin lands on a different angle.
+  {
+    // The twin is driven the way the renderer really drives a frame: dt is
+    // always the POSITIVE elapsed time since the last frame. A re-pin does not
+    // hand it a negative dt to unwind with — it just draws one more frame.
+    let acc = 0;
+    const step = (dtMs: number): number => { acc += (dtMs / 1000) * RATE; return acc % 360; };
+    step(3000); const accAt9 = step(6000); const accBack = step(16);
+    control("a += dt accumulator reads " + accAt9.toFixed(2) + " deg at 9000 ms and, re-pinned to "
+      + "3000 ms, draws " + accBack.toFixed(2) + " deg instead of " + pinVals[0].toFixed(2)
+      + " — it cannot rewind, which is the first line of the field_3d scar checklist",
+      Math.abs(accBack - pinVals[0]) > 1e-6);
+  }
+
+  // ── (iv) THE WIRING, because a pure function nothing calls is dead code.
+  const FRAME = SRC.slice(SRC.indexOf("function updateSolidOfRevolutionFrame("));
+  const FRAME_BODY = FRAME.slice(0, FRAME.indexOf("\n    function ", 10));
+  assertTrue("updateSolidOfRevolutionFrame CALLS srIdleTurnDeg on the state's own sr block and ms",
+    /var turnDeg = srIdleTurnDeg\(sr, tMs\);/.test(FRAME_BODY));
+  assertTrue("...and BOTH region-rotation branches (x axis and y axis) turn by thDeg + turnDeg",
+    (FRAME_BODY.match(/srRegionMesh\.rotation\.set\([^)]*regDeg[^)]*\)/g) || []).length === 2
+    && /var regDeg = thDeg \+ turnDeg;/.test(FRAME_BODY));
+  assertTrue("...and the SWEPT SKIN still receives thDeg, never the wrapping angle — the solid "
+    + "never un-sweeps in the sandbox",
+    (FRAME_BODY.match(/srWriteSurface\([^\n]*thDeg\);/g) || []).length === 2
+    && !/srWriteSurface\([^\n]*(regDeg|turnDeg)/.test(FRAME_BODY));
+  // NEGATIVE CONTROL 4 — the pre-fix frame body, rebuilt by putting thDeg back
+  // into the region rotation. The wiring assertions must fail on it.
+  {
+    const preFix = FRAME_BODY
+      .split("var turnDeg = srIdleTurnDeg(sr, tMs);").join("")
+      .split("var regDeg = thDeg + turnDeg;").join("")
+      .split("regDeg").join("thDeg");
+    control("the pre-fix frame body — region rotation straight off thDeg, no idle turn — fails "
+      + "both wiring assertions", !/srIdleTurnDeg\(sr, tMs\)/.test(preFix)
+      && !/var regDeg =/.test(preFix));
+  }
+
+  // ── (v) THE TICK CONTAINER CARRIES NO INK, SO IT MUST MEASURE NONE. Same
+  //       dispatch, one CSS line: #sr_ticks was a 100% x 100% fixed sheet, so a
+  //       DOM collision probe scored its bounding box against every piece of
+  //       review chrome it overlapped — 27 collisions on 9 states for a
+  //       transparent container whose glyphs are children positioned in viewport
+  //       px. An empty rect with overflow visible measures the ticks instead.
+  const BUILD = grabFn("buildSolidOfRevolution");
+  const tickCss = (/tk\.style\.cssText = "([^"]*)"/.exec(BUILD) || [])[1] || "";
+  assertTrue("#sr_ticks is a 0x0 fixed box with overflow visible (" + tickCss.slice(0, 80) + "...)",
+    /position:fixed/.test(tickCss) && /width:0/.test(tickCss) && /height:0/.test(tickCss)
+    && /overflow:visible/.test(tickCss) && !/100%/.test(tickCss));
+  assertTrue("...and it still anchors at the viewport origin, so every child keeps landing on the "
+    + "identical pixel it did before", /left:0/.test(tickCss) && /top:0/.test(tickCss));
+  assertTrue("the tick GLYPHS are the ink, absolutely positioned from nlbProjPx in viewport px",
+    /position:absolute/.test(grabFn("srSyncTickNodes"))
+    && /node\.style\.left = p\.x/.test(grabFn("srPlaceTickNodes")));
+  control("the pre-fix full-viewport sheet (width:100%;height:100%) fails the empty-rect "
+    + "assertion — the shape that scored 27 collisions",
+    /100%/.test("position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:8;display:none;"));
+
+  // ── (vii) THE SANDBOX ORBIT — the fallback, taken on measurement. The region
+  //         turn above is chromatic-only inside a closed silhouette (see (ii-b)),
+  //         so the sandbox also orbits slowly at the shipped bonding_scene /
+  //         orbital_shapes idle rate. Same three properties as the turn: guided
+  //         modes untouched, closed form on state-local ms, and the teacher owns
+  //         the camera the moment they drag it.
+  {
+    const AZ0 = 42;                     // an arbitrary authored base azimuth
+    const C = (mode: string, tMs: number) => E.srIdleCamAzDeg({ mode: mode }, tMs, AZ0);
+    const CRATE = E.SR_EXPLORE_CAM_DEG_PER_S;
+    check("the orbit runs at the shipped idle rate (bonding_scene 0.14 rad/s)",
+      CRATE, 0.14 * 180 / Math.PI, 0.03 * 180 / Math.PI);
+    const camGuidedMoved = GUIDED.filter((m) => guidedTimes.some((t) => C(m, t) !== AZ0));
+    assertTrue("every guided mode holds its authored azimuth at all of " + guidedTimes.join("/")
+      + " ms — a guided state's solved pose is never drifted"
+      + (camGuidedMoved.length ? " — LEAKED INTO: " + camGuidedMoved.join(", ") : ""),
+      camGuidedMoved.length === 0);
+    assertTrue("state entry opens on the authored pose exactly (t = 0 is the base azimuth, "
+      + "nothing jumps)", C("explore", 0) === AZ0);
+    check("...and one second in it has turned by exactly the rate", C("explore", 1000), AZ0 + CRATE, 1e-12);
+    const camWrapAt = (360 - AZ0 % 360) / CRATE * 1000;
+    assertTrue("the azimuth wraps into [0, 360) rather than growing without bound "
+      + "(at " + Math.round(camWrapAt + 5000) + " ms it reads " + C("explore", camWrapAt + 5000).toFixed(2) + " deg)",
+      [0, 1000, camWrapAt + 5000, 4e6].every((t) => { const v = C("explore", t); return v >= 0 && v < 360; }));
+    assertTrue("pin 3000 -> 9000 -> 3000 returns the identical azimuth — a frozen frame re-pins to "
+      + "the same pose", C("explore", 3000) === C("explore", 3000)
+      && C("explore", 3000) !== C("explore", 9000));
+    // NEGATIVE CONTROL — the accumulating camera, which is what an idle orbit is
+    // usually written as. It cannot rewind, so THE EYE's re-pin drifts.
+    {
+      let az = AZ0;
+      const stepc = (dtMs: number) => { az += (dtMs / 1000) * CRATE; return az; };
+      stepc(3000); stepc(6000); const backc = stepc(16);
+      control("an accumulating azimuth draws " + backc.toFixed(2) + " deg on a re-pin to 3000 ms "
+        + "where the closed form draws " + C("explore", 3000).toFixed(2),
+        Math.abs(backc - C("explore", 3000)) > 1e-6);
+    }
+    // THE WIRING, and the ONE property the pattern it clones exists to protect.
+    assertTrue("the frame seizes the camera on a drag (the shipped organic_structure edge)",
+      /if \(isDragging\) window\.PM_srCamSeized = true;/.test(FRAME_BODY));
+    assertTrue("...and writes the closed-form pose only while UNSEIZED",
+      /if \(!window\.PM_srCamSeized\) \{/.test(FRAME_BODY)
+      && /srIdleCamAzDeg\(sr, tMs, camBase\.az\)/.test(FRAME_BODY));
+    assertTrue("the seize is cleared on state ENTRY and NOWHERE in the frame — a clear that re-runs "
+      + "per frame undoes the drag on the frame it arrives (the defect the clone target shipped)",
+      /window\.PM_srCamSeized = false;/.test(grabFn("applySolidOfRevolutionState"))
+      && !/PM_srCamSeized = false/.test(FRAME_BODY));
+    // NEGATIVE CONTROL — put the clear back in the frame and watch that fail.
+    {
+      const broken = FRAME_BODY.replace("if (isDragging) window.PM_srCamSeized = true;",
+        "window.PM_srCamSeized = false; if (isDragging) window.PM_srCamSeized = true;");
+      control("with the clear moved into the frame, the per-frame-clear assertion fails — the "
+        + "shape in which orbiting is dead after the teacher's first drag",
+        /PM_srCamSeized = false/.test(broken));
+    }
+    // ...and the guided camera SCHEDULE still owns any state that authors one.
+    assertTrue("a state with camera_steps keeps the scheduled pose — the orbit is the ELSE branch, "
+      + "so SR14 is untouched",
+      /if \(sr\.camera_steps && sr\.camera_steps\.length\) \{/.test(FRAME_BODY)
+      && FRAME_BODY.indexOf("if (sr.camera_steps") < FRAME_BODY.indexOf('} else if (sr.mode === "explore") {'));
+  }
+
+  // ── (vi) THE GEAR PANEL MUST NOT CONTRADICT THE ROW IT TOGGLES. Rule 39f
+  //        auto-derives a row's teacher-facing name by appending " slider" to
+  //        its <label> — right for the five real slider rows, and a lie on the
+  //        axis row, which is a two-BUTTON toggle. This is the FIXED scar
+  //        f3d_widget_autolabel_contradicts_the_panel_header_it_toggles
+  //        recurring on a new scenario. The fix is the row naming ITSELF through
+  //        data-wg-label (the path pmWgRowLabel checks first), never a special
+  //        case in the shared engine — so this runs the SHARED resolver over
+  //        SR's OWN markup rather than asserting the attribute is present.
+  {
+    const rowHtml = (/<div id="sr_axis_row"[^>]*>/.exec(BUILD) || [])[0] || "";
+    const labelText = "Axis of revolution";
+    const mkRow = (withAttr: boolean) => ({
+      id: "sr_axis_row",
+      getAttribute: (k: string) => (withAttr && k === "data-wg-label" ? labelText : null),
+      querySelector: (sel: string) => (sel === "label" ? { textContent: labelText } : null),
+    });
+    const shipped = E.pmWgRowLabel(mkRow(/data-wg-label="Axis of revolution"/.test(rowHtml)));
+    assertTrue('the gear panel names the axis row "' + labelText + '" — resolved by the FLEET\'s own '
+      + "pmWgRowLabel over SR's shipped markup, not by an assertion that an attribute exists",
+      shipped === labelText);
+    assertTrue("the row really is a two-button toggle, which is what makes \" slider\" wrong "
+      + "(and a two-position range the reason it is not one)",
+      /id="sr_axis_x"/.test(BUILD) && /id="sr_axis_y"/.test(BUILD)
+      && !/id="sr_axis_slider"/.test(BUILD));
+    // NEGATIVE CONTROL — the same row WITHOUT the attribute, through the same
+    // shared resolver: the auto-derived name the auditor read off the live page.
+    control('without data-wg-label the shared resolver derives "'
+      + E.pmWgRowLabel(mkRow(false)) + '" over two buttons — the contradiction this fixes',
+      E.pmWgRowLabel(mkRow(false)) === labelText + " slider");
+    // ...and the three DOM panels keep naming themselves too (same contract).
+    for (const pair of [["sr_ticks", "Axis numbers"], ["sr_readout", "Live numbers"], ["sr_formula", "Formula"]]) {
+      assertTrue('#' + pair[0] + ' still declares data-wg-label "' + pair[1] + '"',
+        new RegExp('setAttribute\\("data-wg-label", "' + pair[1] + '"\\)').test(BUILD));
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 console.log("\n" + "═".repeat(78));
-console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15");
+console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15, 16");
 console.log("  negative controls fired: " + controlsFired);
 // Self-correcting, because this banner was a CLAIM about the repo and claims
 // rot: the moment a concept authors the scenario, THE EYE becomes the stronger

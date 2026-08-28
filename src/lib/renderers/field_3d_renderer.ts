@@ -76153,6 +76153,76 @@ export const FIELD_3D_RENDERER_CODE = `
         return a0 + (a1 - a0) * f;
     }
 
+    // SR-C — THE EXPLORE IDLE TURN (Rule 37). The last state is a live teacher
+    // sandbox: the player deliberately does NOT freeze it (advance_mode
+    // interaction_complete skips the pin), so whatever the scenario draws has to
+    // keep moving on its own. This one drew a settled picture and then held it,
+    // and it measured 0 px changed over 1 s against founder_drive's 60 px floor
+    // — dead still until the teacher's first drag.
+    //
+    //   WHAT THE MOTION CANNOT BE, so the obvious reading is not tried twice: a
+    //   solid of revolution is rotationally symmetric ABOUT ITS AXIS. Turning
+    //   the swept skin about that axis maps the surface onto itself — it changes
+    //   essentially no pixels and it teaches nothing.
+    //   WHAT IT IS: the flat REGION STRIP keeps sweeping. That is this
+    //   scenario's own motion vocabulary (the sweep state's theta advancing with
+    //   the region turning on it), it is the OBJECT's motion and not the
+    //   camera's (Rule 32 — the camera language is spent deliberately in this
+    //   chapter), and it says the true thing: the thing that painted this
+    //   surface is still painting it.
+    //
+    //   IT DRIVES THE REGION MESH ALONE. The solid's own theta stays at its
+    //   closed 360 (srThetaDeg above), because feeding a wrapping angle into
+    //   srWriteSurface's draw range would un-sweep and re-sweep the skin every
+    //   12 s — a solid that keeps dissolving is a different, wrong lesson.
+    //
+    //   EXPLORE ONLY, BY CONSTRUCTION. Every other mode returns 0, so the eight
+    //   guided states' measured baselines and D5 profiles cannot move.
+    //   NO ACCUMULATION (SR-D2): a closed form on state-local ms, wrapped with
+    //   floor() rather than carried in a variable, so a SET_TIME_FREEZE re-pin
+    //   to the same at_ms redraws byte-identical pixels and Rule 36's variable
+    //   step count cannot drift the phase. The drag-seize latches are untouched
+    //   — a slider reshapes the solid live while this keeps turning.
+    var SR_EXPLORE_TURN_DEG_PER_S = 30;
+    function srIdleTurnDeg(sr, tMs) {
+        if (!sr || sr.mode !== "explore") return 0;
+        var t = (isFinite(tMs) && tMs > 0) ? tMs : 0;
+        var a = (t / 1000) * SR_EXPLORE_TURN_DEG_PER_S;
+        return a - Math.floor(a / 360) * 360;
+    }
+
+    // SR-C2 — THE SANDBOX ORBIT, and the measurement that forced it.
+    //
+    //   The region turn above is the RIGHT motion and it was not enough, which is
+    //   a fact about this shape rather than about the code. MEASURED end to end:
+    //   the turn runs live at exactly 30 deg/s (PM_srTurnDeg 264.0 -> 294.2 over
+    //   one second), the strip is drawn last so it reads over the solid, and the
+    //   two frames differ in 9 034 pixels — and founder_drive still scored ZERO,
+    //   because its pixelmatch threshold is PERCEPTUAL (0.1) and the difference
+    //   is chromatic only: the region is #4FC3F7 and the disc stack it sweeps
+    //   inside is #B39DDB, whose luminances are 166 and 171. Anything that turns
+    //   INSIDE a closed solid of revolution stays inside that solid's silhouette,
+    //   and the silhouette is where the contrast against the dark background is.
+    //   At threshold 0.05 the same pair scores 9 034 px; at 0.1 it scores 0.
+    //
+    //   So the sandbox also ORBITS, slowly, at the bonding_scene / orbital_shapes
+    //   idle rate (0.14 rad/s = 8 deg/s). This is the fallback the dispatch named
+    //   and it is taken on evidence, not preference: it moves the SILHOUETTE, and
+    //   it earns its keep pedagogically too, because a solid of revolution read
+    //   from one fixed azimuth is a flat purple blob.
+    //   THE TEACHER OWNS THE CAMERA THE INSTANT THEY TOUCH IT — the seize is the
+    //   shipped organic_structure edge (:68966), cloned locally, cleared on state
+    //   entry. THE EYE never drags, so a frozen frame always takes the closed
+    //   form and stays byte-identical; the azimuth is a pure function of
+    //   state-local ms, so a re-pin lands on the same pose (SR-D2).
+    var SR_EXPLORE_CAM_DEG_PER_S = 8;
+    function srIdleCamAzDeg(sr, tMs, baseAz) {
+        if (!sr || sr.mode !== "explore") return baseAz;
+        var t = (isFinite(tMs) && tMs > 0) ? tMs : 0;
+        var a = baseAz + (t / 1000) * SR_EXPLORE_CAM_DEG_PER_S;
+        return a - Math.floor(a / 360) * 360;
+    }
+
     // Quantise a live value to ITS OWN SLIDER STEP, on every path that can set it.
     //   This is load-bearing on S5 and it is not a cosmetic rounding. That state
     //   claims the disc total and (4/3)pi r cubed print the SAME four decimals at
@@ -76644,7 +76714,15 @@ export const FIELD_3D_RENDERER_CODE = `
         //    the teacher toggles cost no wiring. data-wg-label names each one.
         var tk = document.createElement("div"); tk.id = "sr_ticks";
         tk.setAttribute("data-wg-label", "Axis numbers");
-        tk.style.cssText = "position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:8;display:none;";
+        // THE CONTAINER CARRIES NO INK — ONLY ITS CHILDREN DO, so it is given an
+        // EMPTY RECT. At 100% x 100% its bounding box is the whole viewport, so a
+        // DOM collision probe scored it against every piece of review chrome it
+        // overlaps and nothing else: 27 collisions (#fsBtn / #wgBtn / #simPenBar on
+        // all 9 states) for a transparent sheet. The tick glyphs are absolutely
+        // positioned children written from nlbProjPx in VIEWPORT px, and a fixed
+        // 0x0 box still has its origin at (0,0) with overflow visible, so every
+        // glyph lands on the identical pixel and the probe now measures the ticks.
+        tk.style.cssText = "position:fixed;left:0;top:0;width:0;height:0;overflow:visible;pointer-events:none;z-index:8;display:none;";
         document.body.appendChild(tk);
 
         // Rule 34d — the HUD clears the review chrome Full screen button (top:52px+);
@@ -76698,7 +76776,14 @@ export const FIELD_3D_RENDERER_CODE = `
             // SR7's control is a CHOICE, not a magnitude, so it is a two-button
             // toggle rather than a two-position range: a slider whose only reachable
             // values are its two ends invites a drag that does nothing.
-            + '<div id="sr_axis_row" style="display:none;margin-top:6px"><label>Axis of revolution</label><br>'
+            // AND IT NAMES ITSELF TO THE GEAR PANEL. Rule 39f's row-label fallback
+            // appends " slider" to a row's <label> text, which is right for the five
+            // rows above and a contradiction on this one — the teacher would read
+            // "Axis of revolution slider" over two buttons. data-wg-label is the
+            // authoritative path pmWgRowLabel checks FIRST (:85536), the same
+            // attribute the three DOM panels above already carry, so the fix is the
+            // attribute and never a special case in the shared engine.
+            + '<div id="sr_axis_row" data-wg-label="Axis of revolution" style="display:none;margin-top:6px"><label>Axis of revolution</label><br>'
             + '<button type="button" id="sr_axis_x" style="margin-top:3px">about x</button> '
             + '<button type="button" id="sr_axis_y" style="margin-top:3px">about y</button></div>';
         document.body.appendChild(sp);
@@ -76788,6 +76873,11 @@ export const FIELD_3D_RENDERER_CODE = `
     function applySolidOfRevolutionState(stateDef) {
         var sr = srBlock(stateDef, "applySolidOfRevolutionState");
         srWarnStage(sr.mode);
+        // SR-C2 — the sandbox orbit owns the camera again on every state ENTRY,
+        // and only a drag takes it away. Cleared here rather than in the frame,
+        // because a clear that re-runs per frame undoes the drag on the frame it
+        // arrives (the organic_structure defect this pattern is cloned from).
+        window.PM_srCamSeized = false;
         var dom = sr.domain || [0, 1];
         srShiftX = -(dom[0] + dom[1]) / 2;      // SR-D10
 
@@ -76948,8 +77038,26 @@ export const FIELD_3D_RENDERER_CODE = `
         } else { srSurfOuter.visible = false; srSurfInner.visible = false; }
         // the flat region turns WITH its own sweep, so the thing that paints the
         // surface is visibly the thing that was measured (Rule 32d, one apparatus)
-        if (ax === "y") srRegionMesh.rotation.set(0, thDeg * Math.PI / 180, 0);
-        else srRegionMesh.rotation.set(thDeg * Math.PI / 180, 0, 0);
+        // — and in the explore sandbox it never stops turning (SR-C, Rule 37).
+        var turnDeg = srIdleTurnDeg(sr, tMs);
+        if (turnDeg !== 0) SR_PUB.turn_deg = turnDeg;
+        // PUBLISHED like every other live SR value, so a headless probe can read
+        // the idle turn without a scene handle (the scenario's own convention).
+        window.PM_srTurnDeg = turnDeg;
+        // ...AND IT HAS TO BE SEEN, which turning it was not enough for. MEASURED:
+        // with the turn verified live at 30 deg/s (PM_srTurnDeg 264.0 -> 294.2 over
+        // one second), the drive still scored 1 px. Every SR mesh is transparent
+        // with depthWrite off, so the sandbox's twenty 0.55-alpha discs and the
+        // 0.20 skin saturate the composite and the 0.34 region inside them
+        // contributes almost nothing to the final pixel — an invisible motion is
+        // the same defect as no motion. In explore the region is therefore drawn
+        // LAST, over the solid it generated: a renderOrder, not a new material and
+        // not a second mesh, and it is restored to 0 in every guided mode on the
+        // same frame it is read (no entry latch, so no missing exit branch).
+        srRegionMesh.renderOrder = (sr.mode === "explore") ? 5 : 0;
+        var regDeg = thDeg + turnDeg;
+        if (ax === "y") srRegionMesh.rotation.set(0, regDeg * Math.PI / 180, 0);
+        else srRegionMesh.rotation.set(regDeg * Math.PI / 180, 0, 0);
 
         // ── SR6 / SR-D3 — THE ONE SUMMATION. Called ONCE per frame, publishing
         //   its total and its drawn count; the placement below READS its radii.
@@ -77018,6 +77126,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 updateCameraFromSpherical();
                 window.PM_srCamPose = { az: camSch.az, el: camSch.el, dist: camSch.dist };
             }
+        } else if (sr.mode === "explore") {
+            // SR-C2 — the sandbox orbit. Same three writes the schedule above
+            // makes, from a closed-form azimuth, and it stands down for good the
+            // moment the teacher drags (cleared on state entry, never here).
+            if (isDragging) window.PM_srCamSeized = true;
+            if (!window.PM_srCamSeized) {
+                var camBase = srCamBase(stateDef, sr);
+                var camAz = srIdleCamAzDeg(sr, tMs, camBase.az);
+                targetSpherical.radius = camBase.dist;
+                targetSpherical.phi = Math.PI / 2 - camBase.el * Math.PI / 180;
+                targetSpherical.theta = camAz * Math.PI / 180;
+                spherical.radius = targetSpherical.radius;
+                spherical.phi = targetSpherical.phi;
+                spherical.theta = targetSpherical.theta;
+                animating = false;
+                updateCameraFromSpherical();
+                window.PM_srCamPose = { az: camAz, el: camBase.el, dist: camBase.dist };
+            } else { window.PM_srCamPose = null; }
         } else { window.PM_srCamPose = null; }
 
         srPlaceTickNodes((sr.frame && sr.frame.show_frame === false) ? false : true);
