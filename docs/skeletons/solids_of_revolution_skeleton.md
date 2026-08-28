@@ -1693,3 +1693,35 @@ not name), and both departures are shown with the measurement that forced them r
 *Handoff: this document makes `solid_of_revolution` buildable — two dispatches, checkable before a
 line of renderer code lands on master. **Not** handoff-ready to `mathematics_author` until SR-A and
 SR-B are on master; ready for **founder_proxy Checkpoint A re-verdict** at cycle 1.*
+
+
+---
+
+## POST-BUILD CORRECTIONS — Checkpoint B round 1 (2026-08-28, quality-auditor FAIL → `alex:json_author`)
+
+Three places where this document disagreed with itself or with the shipped engine, resolved in the
+JSON and recorded here so the skeleton stops being a source of the same defect.
+
+1. **S8's formula surface (§2 / §10a say `f(x)²`, §10b's symbol table says `x`).** The JSON had
+   shipped the §10b form `V = π ∫₀ᵇ x dx` while the narration said "f of x squared" — the ear and the
+   eye disagreed, and the bare `x` hid the SQUARE on the one state carrying the concept's only `∫`,
+   in a concept whose flagship misconception (M1) IS the missing square. Resolved as
+   **`V = π ∫₀ᵇ (√x)² dx`**: it shows the square, it uses only symbols already on screen (`√x` from
+   S1, `²` from S3 — `f(x)` is defined on NO surface, so `f(x)²` would have been a Rule-25 untaught
+   term), and the narration now says "root x squared". §10b's row is superseded.
+2. **"washer" (§3 noun discipline vs §10(i-5) dialect ruling).** §3 says the word never appears in
+   reader-facing text; §10(i-5) said dual-label it once on S6. The audit applied §3 + Rule 41c (a
+   second-language student does not own hardware vocabulary) and DELETED `, or washer` from `s6_3`.
+   **FLAG for the founder:** if the AP "washer method" term should be kept for that audience, that is
+   an architect amendment to §3, not a silent re-insertion.
+3. **S7's HUD (§10b claims `R = 4.000`, `r = y²`).** The JSON authors `readouts: ["theta",
+   "V_about_x", "V_about_y"]` and that is CORRECT: the engine's `R` / `r_inner` keys compute
+   `srF(outer, x_cut)` — the slice radii for the x-axis case — and would print WRONG numbers for the
+   y-axis bowl. The DoD line is withdrawn; the fixed outer radius 4 and the growing inner radius are
+   carried by the drawn ring stack, not by a readout.
+
+Also applied in the same round: S8's `b` ramp now starts at 0.5 (§10c's range, "grows from nearly
+nothing" — the 1.0 start showed a finite solid at t = 0); narration `5.333` → `5.3333` to match the
+HUD's own decimals; three figurative constructions replaced ("paints" → "sweeps out", "staircase
+thins / total climbs" → "steps get smaller / total increases", "not a horn" → "open at the top");
+duplicate primitive ids removed from S5 / S7 `scene_composition`; advisory `prerequisites` authored.

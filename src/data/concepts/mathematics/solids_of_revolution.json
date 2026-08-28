@@ -15,7 +15,10 @@
       "solid_of_revolution"
     ]
   },
-  "prerequisites": [],
+  "prerequisites": [
+    "definite_integral_as_accumulated_area",
+    "lines_and_planes_in_space"
+  ],
   "concept_tier": "complex",
   "cognitive_limits": {
     "max_primitives_per_state": 7,
@@ -164,7 +167,7 @@
             },
             {
               "id": "s1_2",
-              "text_en": "This region has an area of 5.333.",
+              "text_en": "This region has an area of 5.3333.",
               "glow": "sr_region"
             },
             {
@@ -235,7 +238,7 @@
             },
             {
               "id": "s2_2",
-              "text_en": "The boundary paints a surface as it goes, and at 360 degrees the shape closes.",
+              "text_en": "The boundary sweeps out a surface as it goes, and at 360 degrees the shape closes.",
               "glow": "sr_solid_outer"
             },
             {
@@ -383,7 +386,7 @@
             },
             {
               "id": "s4_3",
-              "text_en": "As n grows the staircase thins and the total climbs.",
+              "text_en": "As n grows the steps get smaller and the total increases.",
               "glow": "sr_disc_stack"
             },
             {
@@ -413,13 +416,6 @@
             "label": "axis",
             "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
             "colour_role": "derived object"
-          },
-          {
-            "type": "curve",
-            "id": "sr_curve_outer",
-            "label": "y = √x",
-            "note": "the profile curve, the same tube in every state that draws one",
-            "colour_role": "second direction"
           },
           {
             "type": "curve",
@@ -543,7 +539,7 @@
             },
             {
               "id": "s6_3",
-              "text_en": "Each slice is really a ring, or washer: take away the inner circle's area, not the radius.",
+              "text_en": "Each slice is really a ring: take away the inner circle's area, not the inner radius.",
               "glow": "sr_ring_outer"
             }
           ]
@@ -562,13 +558,6 @@
             "id": "sr_frame",
             "label": "ticked axes",
             "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
-          },
-          {
-            "type": "line",
-            "id": "sr_axis",
-            "label": "axis",
-            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
-            "colour_role": "derived object"
           },
           {
             "type": "curve",
@@ -619,7 +608,7 @@
             },
             {
               "id": "s7_2",
-              "text_en": "The solid that forms is a bowl, not a horn.",
+              "text_en": "The solid that forms is a bowl, open at the top.",
               "glow": "sr_solid_inner"
             },
             {
@@ -670,7 +659,7 @@
           {
             "type": "formula",
             "id": "sr_formula",
-            "label": "V = π ∫₀ᵇ x dx",
+            "label": "V = π ∫₀ᵇ (√x)² dx",
             "note": "the ONLY integral sign in the concept, on the ONLY advanced-ring state (Rule 38c notation ladder)"
           },
           {
@@ -688,7 +677,7 @@
             },
             {
               "id": "s8_2",
-              "text_en": "Write it as V equals pi times the integral of f of x squared, dx.",
+              "text_en": "Write it as V equals pi times the integral of root x squared, dx.",
               "glow": "sr_formula"
             },
             {
@@ -884,7 +873,7 @@
       },
       {
         "q_id": "q7",
-        "stem": "In V = π ∫₀ᵇ x dx, changing b from 4 to 2 changes the volume from 25.13 to:",
+        "stem": "In V = π ∫₀ᵇ (√x)² dx, changing b from 4 to 2 changes the volume from 25.13 to:",
         "options": {
           "A": "6.28",
           "B": "12.57",
@@ -900,7 +889,7 @@
         "tested_idea": "the limits of the integral are the two ends of the solid, and the volume goes as b squared",
         "teaches_state": "STATE_8",
         "difficulty": "stretch",
-        "parallel_form_stem": "In V = π ∫₀ᵇ x dx, what happens to the volume when b is changed from 4 to 3?"
+        "parallel_form_stem": "In V = π ∫₀ᵇ (√x)² dx, what happens to the volume when b is changed from 4 to 3?"
       }
     ]
   },
@@ -1529,7 +1518,7 @@
       "STATE_8": {
         "label": "The Integral Form",
         "caption": "Limits are the two ends",
-        "formula_overlay": "V = π ∫₀ᵇ x dx",
+        "formula_overlay": "V = π ∫₀ᵇ (√x)² dx",
         "camera_position": [
           4.6,
           3.07,
@@ -1570,7 +1559,7 @@
           },
           "param_ramp": {
             "param": "b",
-            "from": 1.0,
+            "from": 0.5,
             "to": 4.0,
             "start_ms": 2500,
             "duration_ms": 15500
