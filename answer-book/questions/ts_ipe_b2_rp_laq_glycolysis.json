@@ -1,0 +1,741 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_rp_laq_glycolysis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Respiration in Plants (Botany-II)"
+  },
+  "chapter": "Respiration in Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give an account of glycolysis. Where does it occur? What are the end products? Trace the fate of these products in both aerobic and anaerobic respiration.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What glycolysis is, and where",
+      "marks": 1
+    },
+    {
+      "label": "The end products",
+      "marks": 1
+    },
+    {
+      "label": "Fate of pyruvic acid",
+      "marks": 1
+    },
+    {
+      "label": "Energy acquiring phase, steps 1-5",
+      "marks": 2
+    },
+    {
+      "label": "Energy releasing phase, steps 6-10",
+      "marks": 2
+    },
+    {
+      "label": "Net yield",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.10, printed question 1. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the printed answer lists the end products as \"pyruvic acid (PA), ATP, NADPH+H+\". Glycolysis reduces NAD⁺, not NADP⁺, so the product is NADH+H⁺. The book's own p.11 flow chart prints NAD⁺ → NADH correctly, so the guide contradicts itself within one page turn. Two spelling slips are also corrected: the text writes \"Fructose 1,6-biphosphate\" where its diagram writes BISphosphate, and \"3-phosglyceric acid\" for 3-phosphoglyceric acid."
+  },
+  "insider_note": "Four questions in one. Answer them in the order asked — what, where, end products, fate — then give the ten steps. A student who writes ten beautiful steps and never says 'cytoplasm' has thrown away a mark that took two words.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Respiration in Plants (Botany-II) · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "What glycolysis is, and where",
+        "marks": 1,
+        "mark_note": "Definition, site",
+        "margin_note": "Definition, site, partial oxidation, the 1-into-2 count, and the EMP name. Answer the 'where' here so it cannot be forgotten later.",
+        "lines": [
+          "GLYCOLYSIS is the first step of respiration in",
+          "ALL living organisms.",
+          "It occurs in the CYTOPLASM of the cell.",
+          "It is the PARTIAL oxidation of one molecule of",
+          "glucose to form TWO molecules of pyruvic acid.",
+          "It needs no oxygen, so it is common to both",
+          "aerobic and anaerobic respiration.",
+          "It is also called the EMP pathway, after",
+          "Embden, Meyerhof and Parnas."
+        ],
+        "why": "Glycolysis happens in the cytoplasm and needs no oxygen, which is exactly why it is the one stage every living organism shares.",
+        "common_mistakes": [
+          "Saying glycolysis occurs in the mitochondria. It occurs in the CYTOPLASM.",
+          "Calling it complete oxidation. It is PARTIAL oxidation — glucose only reaches pyruvate.",
+          "Saying it needs oxygen. It does not, which is why anaerobes use it too."
+        ],
+        "memory_tip": "First step, cytoplasm, no oxygen, one glucose into two pyruvates."
+      },
+      {
+        "id": "s2_products",
+        "kind": "text",
+        "label": "The end products",
+        "marks": 1,
+        "mark_note": "End products",
+        "margin_note": "Three products with their counts. Say NADH, not NADPH.",
+        "lines": [
+          "The END PRODUCTS of glycolysis are:",
+          "1. Pyruvic acid (2 molecules)",
+          "2. ATP (a net gain of 2)",
+          "3. NADH + H+ (2 molecules)"
+        ],
+        "why": "Three products means three things the next stage can use: a carbon skeleton, energy, and reducing power.",
+        "common_mistakes": [
+          "Writing NADPH. Glycolysis reduces NAD+, giving NADH + H+. NADPH belongs to photosynthesis. The guide misprints this.",
+          "Giving one pyruvate. One glucose gives TWO pyruvic acid molecules.",
+          "Forgetting that the ATP figure is a NET gain. Four are made and two are spent."
+        ],
+        "memory_tip": "Two pyruvates, two ATP net, two NADH."
+      },
+      {
+        "id": "s3_fate",
+        "kind": "text",
+        "label": "Fate of pyruvic acid",
+        "marks": 1,
+        "mark_note": "Fate",
+        "margin_note": "Both routes, both named, with an example organism or tissue each. The question asks for BOTH, so a one-sided answer loses this mark.",
+        "lines": [
+          "The fate of pyruvic acid depends on oxygen.",
+          "In AEROBIC respiration, where oxygen is",
+          "available, pyruvic acid is COMPLETELY oxidised",
+          "to CO2 and H2O through the Krebs cycle.",
+          "In ANAEROBIC respiration, where oxygen is not",
+          "available, pyruvic acid is converted by",
+          "FERMENTATION into ethyl alcohol (in yeast) or",
+          "into lactic acid (in muscle)."
+        ],
+        "why": "Oxygen is what decides the fate: with it the carbon is burned all the way to carbon dioxide, without it the pyruvate is only rearranged.",
+        "common_mistakes": [
+          "Saying pyruvate is fully oxidised in anaerobic respiration. It is not — fermentation only rearranges it.",
+          "Giving one fermentation product. Ethyl alcohol AND lactic acid are both asked for.",
+          "Saying glycolysis itself needs oxygen. Only the FATE of its product depends on oxygen."
+        ],
+        "memory_tip": "Oxygen present, burn it to CO2; oxygen absent, ferment it."
+      },
+      {
+        "id": "s4_phase1",
+        "kind": "equation",
+        "label": "Energy acquiring phase, steps 1-5",
+        "marks": 2,
+        "mark_note": "Steps 1-5",
+        "margin_note": "Two marks sit here. Number the steps, name the reaction type, name the enzyme. The equations alone can carry the mark if time runs short.",
+        "lines": [
+          "Glycolysis is a chain of TEN enzyme catalysed",
+          "reactions. The first five SPEND energy.",
+          "1. Phosphorylation:",
+          {
+            "text": "Glucose + ATP --hexokinase--> G-6-P + ADP",
+            "style": "eq"
+          },
+          "2. Isomerisation:",
+          {
+            "text": "G-6-P --phosphohexose isomerase--> F-6-P",
+            "style": "eq"
+          },
+          "3. Phosphorylation:",
+          {
+            "text": "F-6-P + ATP --phosphofructokinase-->",
+            "style": "eq"
+          },
+          {
+            "text": "   Fructose 1,6-BISphosphate + ADP",
+            "style": "eq"
+          },
+          "4. Cleavage:",
+          {
+            "text": "F-1,6-bisP --aldolase--> G-3-P + DHAP",
+            "style": "eq"
+          },
+          "5. Isomerisation:",
+          {
+            "text": "DHAP --triose phosphate isomerase--> G-3-P",
+            "style": "eq"
+          }
+        ],
+        "why": "Two ATP are spent here to make the six-carbon sugar unstable enough to split, which is why this half is called the energy acquiring phase even though it produces no energy.",
+        "common_mistakes": [
+          "Writing 'biphosphate'. It is BISphosphate — two separate phosphate groups. The guide's text misprints it and its own diagram gets it right.",
+          "Naming no enzymes. Each named enzyme is part of the mark.",
+          "Stopping at four steps. The DHAP-to-G-3-P isomerisation is step 5 and is what makes the second half run twice."
+        ],
+        "memory_tip": "Spend two ATP, split one six-carbon sugar into two three-carbon ones."
+      },
+      {
+        "id": "s5_phase2",
+        "kind": "equation",
+        "label": "Energy releasing phase, steps 6-10",
+        "marks": 2,
+        "mark_note": "Steps 6-10",
+        "margin_note": "Two marks. The oxidation at step 6 and the two ATP-making steps are the ones an examiner checks first.",
+        "lines": [
+          "The last five steps RELEASE energy, and each",
+          "runs TWICE, once per triose.",
+          "6. Oxidation:",
+          {
+            "text": "G-3-P + Pi + NAD⁺ --G-3-P dehydrogenase-->",
+            "style": "eq"
+          },
+          {
+            "text": "   1,3-bisphosphoglyceric acid + NADH + H⁺",
+            "style": "eq"
+          },
+          "7. Dephosphorylation:",
+          {
+            "text": "1,3-bisPGA + ADP --phosphoglycerokinase-->",
+            "style": "eq"
+          },
+          {
+            "text": "   3-phosphoglyceric acid + ATP",
+            "style": "eq"
+          },
+          "8. Intramolecular shift:",
+          {
+            "text": "3-PGA --phosphoglyceromutase--> 2-PGA",
+            "style": "eq"
+          },
+          "9. Dehydration:",
+          {
+            "text": "2-PGA --enolase--> PEP + H2O",
+            "style": "eq"
+          },
+          "10. Dephosphorylation:",
+          {
+            "text": "PEP + ADP --pyruvate kinase--> pyruvic acid",
+            "style": "eq"
+          },
+          {
+            "text": "   + ATP",
+            "style": "eq"
+          }
+        ],
+        "why": "Every reaction from step 6 onward happens twice because step 4 made two three-carbon molecules, which is why four ATP are collected from a two-ATP investment.",
+        "common_mistakes": [
+          "Forgetting these steps run twice. That is why the ATP count doubles.",
+          "Writing NADPH at step 6. It is NAD+ that is reduced, to NADH + H+.",
+          "Naming the last enzyme 'pyruvic kinase'. It is PYRUVATE KINASE."
+        ],
+        "memory_tip": "Two ATP made at step 7 and two more at step 10: four in, two already spent."
+      },
+      {
+        "id": "s6_diagram",
+        "kind": "diagram",
+        "label": "Diagram — the glycolysis chain",
+        "marks": 0,
+        "margin_note": "No diagram mark — the question says 'give an account'. It is still the fastest way to check your own ten steps are in the right order.",
+        "figure": {
+          "id": "b2_rp_glycolysis",
+          "width": 660,
+          "height": 544,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "g_p1",
+              "caption": "Step 1 — the ten compounds, top to bottom"
+            },
+            {
+              "type": "label",
+              "id": "gl_c0",
+              "x": 62,
+              "y": 40,
+              "text": "Glucose (6C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_c1",
+              "x": 62,
+              "y": 88,
+              "text": "Glucose-6-P (6C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_c2",
+              "x": 62,
+              "y": 136,
+              "text": "Fructose-6-P (6C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_c3",
+              "x": 62,
+              "y": 184,
+              "text": "Fructose 1,6-bisP (6C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_c4",
+              "x": 62,
+              "y": 232,
+              "text": "G-3-P (3C) ⇌ DHAP (3C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_c5",
+              "x": 62,
+              "y": 308,
+              "text": "1,3-bisPGA (3C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_c6",
+              "x": 62,
+              "y": 356,
+              "text": "3-PGA (3C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_c7",
+              "x": 62,
+              "y": 404,
+              "text": "2-PGA (3C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_c8",
+              "x": 62,
+              "y": 452,
+              "text": "PEP (3C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_c9",
+              "x": 62,
+              "y": 500,
+              "text": "2 × Pyruvic acid (3C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "g_p2",
+              "caption": "Step 2 — the arrows joining them"
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr0",
+              "d": "M 44 48 L 44 72",
+              "ms": 340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr0_h",
+              "d": "M 40.5 65.9 L 44 72 L 47.5 65.9",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr1",
+              "d": "M 44 96 L 44 120",
+              "ms": 340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr1_h",
+              "d": "M 40.5 113.9 L 44 120 L 47.5 113.9",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr2",
+              "d": "M 44 144 L 44 168",
+              "ms": 340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr2_h",
+              "d": "M 40.5 161.9 L 44 168 L 47.5 161.9",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr3",
+              "d": "M 44 192 L 44 216",
+              "ms": 340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr3_h",
+              "d": "M 40.5 209.9 L 44 216 L 47.5 209.9",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr4",
+              "d": "M 44 240 L 44 292",
+              "ms": 740,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr4_h",
+              "d": "M 40.5 285.9 L 44 292 L 47.5 285.9",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr5",
+              "d": "M 44 316 L 44 340",
+              "ms": 340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr5_h",
+              "d": "M 40.5 333.9 L 44 340 L 47.5 333.9",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr6",
+              "d": "M 44 364 L 44 388",
+              "ms": 340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr6_h",
+              "d": "M 40.5 381.9 L 44 388 L 47.5 381.9",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr7",
+              "d": "M 44 412 L 44 436",
+              "ms": 340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr7_h",
+              "d": "M 40.5 429.9 L 44 436 L 47.5 429.9",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr8",
+              "d": "M 44 460 L 44 484",
+              "ms": 340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "g_arr8_h",
+              "d": "M 40.5 477.9 L 44 484 L 47.5 477.9",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "g_p3",
+              "caption": "Step 3 — the enzyme on every arrow"
+            },
+            {
+              "type": "label",
+              "id": "gl_e0",
+              "x": 292,
+              "y": 64,
+              "text": "Hexokinase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_e1",
+              "x": 292,
+              "y": 112,
+              "text": "Phosphohexose isomerase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_e2",
+              "x": 292,
+              "y": 160,
+              "text": "Phosphofructokinase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_e3",
+              "x": 292,
+              "y": 208,
+              "text": "Aldolase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_e4",
+              "x": 292,
+              "y": 256,
+              "text": "G-3-P dehydrogenase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_e5",
+              "x": 292,
+              "y": 332,
+              "text": "Phosphoglycerokinase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_e6",
+              "x": 292,
+              "y": 380,
+              "text": "Phosphoglyceromutase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_e7",
+              "x": 292,
+              "y": 428,
+              "text": "Enolase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_e8",
+              "x": 292,
+              "y": 476,
+              "text": "Pyruvate kinase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "g_p4",
+              "caption": "Step 4 — what is spent and what is made"
+            },
+            {
+              "type": "stroke",
+              "id": "g_s0",
+              "d": "M 44 56 C 22 50 12 68 30 72",
+              "ms": 590,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "gl_s0",
+              "x": 532,
+              "y": 64,
+              "text": "ATP → ADP",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "g_s2",
+              "d": "M 44 152 C 22 146 12 164 30 168",
+              "ms": 590,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "gl_s2",
+              "x": 532,
+              "y": 160,
+              "text": "ATP → ADP",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "g_s4",
+              "d": "M 44 248 C 22 242 12 260 30 264",
+              "ms": 590,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "gl_s4",
+              "x": 532,
+              "y": 256,
+              "text": "NAD⁺ → NADH",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "g_s5",
+              "d": "M 44 324 C 22 318 12 336 30 340",
+              "ms": 590,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "gl_s5",
+              "x": 532,
+              "y": 332,
+              "text": "ADP → ATP",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "g_s7",
+              "d": "M 44 420 C 22 414 12 432 30 436",
+              "ms": 590,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "gl_s7",
+              "x": 532,
+              "y": 428,
+              "text": "→ H₂O",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "g_s8",
+              "d": "M 44 468 C 22 462 12 480 30 484",
+              "ms": 590,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "gl_s8",
+              "x": 532,
+              "y": 476,
+              "text": "ADP → ATP",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "g_p5",
+              "caption": "Step 5 — the two halves of the pathway"
+            },
+            {
+              "type": "stroke",
+              "id": "g_divider",
+              "d": "M 16 284 L 644 284",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x",
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "gl_phase1",
+              "x": 422,
+              "y": 20,
+              "text": "Energy acquiring phase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gl_phase2",
+              "x": 422,
+              "y": 532,
+              "text": "Energy releasing phase",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Seeing the ten compounds in one column makes the two halves obvious: ATP arrows point INTO the chain above the divider and OUT of it below.",
+        "common_mistakes": [
+          "Drawing ATP being made in the first half. The first half SPENDS ATP.",
+          "Drawing one pyruvate at the bottom. TWO pyruvates leave, because the chain splits in two.",
+          "Leaving the enzymes off the arrows. The enzyme names are what the written answer is marked on, and the chart is where they are easiest to remember."
+        ],
+        "memory_tip": "Arrows in at the top, arrows out at the bottom: that is the whole shape."
+      },
+      {
+        "id": "s7_net",
+        "kind": "boxed_final",
+        "label": "Net yield",
+        "marks": 1,
+        "mark_note": "Net yield",
+        "margin_note": "Give the net figures, not the gross ones. One closing line on why the story continues.",
+        "lines": [
+          {
+            "text": "Per glucose: 2 pyruvate, 2 ATP net, 2 NADH",
+            "style": "boxed"
+          },
+          "4 ATP are produced but 2 are spent, so the NET",
+          "gain is 2 ATP.",
+          "2 NADH + H+ are produced.",
+          "2 molecules of pyruvic acid leave the cytoplasm.",
+          "Glycolysis alone releases only a small part of",
+          "the energy in glucose; the rest is released in",
+          "the Krebs cycle."
+        ],
+        "why": "The net figure is what makes the point of the whole answer: glycolysis by itself is a poor return, which is why aerobic organisms go on to the Krebs cycle.",
+        "common_mistakes": [
+          "Writing 4 ATP as the answer. FOUR are made, TWO are spent, so the net gain is TWO.",
+          "Ending without a tally. The last line is the one an examiner scans for."
+        ],
+        "memory_tip": "Four made, two spent, two kept."
+      }
+    ]
+  }
+}

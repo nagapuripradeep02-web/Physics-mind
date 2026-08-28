@@ -1,0 +1,111 @@
+{
+  "number": 4,
+  "name": "Photosynthesis in Higher Plants (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 17,
+      "stars": 0,
+      "text": "Draw a neat labelled diagram of Chloroplast.",
+      "question_id": "ts_ipe_b2_ph_chloroplast_diagram"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 18,
+      "stars": 0,
+      "text": "Tabulate any eight differences between C3 and C4 plants/cycles.",
+      "question_id": "ts_ipe_b2_ph_c3_vs_c4"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 19,
+      "stars": 0,
+      "text": "Describe in brief photorespiration.",
+      "question_id": "ts_ipe_b2_ph_photorespiration"
+    },
+    {
+      "ref": "saq4",
+      "section": "SAQ",
+      "number": 168,
+      "stars": 0,
+      "text": "Explain the Calvin cycle.",
+      "question_id": "ts_ipe_b2_ph_calvin_cycle"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 63,
+      "stars": 0,
+      "text": "Name the processes which take place in the grana and stroma regions of chloroplasts.",
+      "question_id": "ts_ipe_b2_ph_grana_stroma_processes"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 64,
+      "stars": 0,
+      "text": "Where does the photolysis of H2O occur? What is its significance?",
+      "question_id": "ts_ipe_b2_ph_photolysis_of_water"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 65,
+      "stars": 0,
+      "text": "Distinguish between action spectrum and absorption spectrum.",
+      "question_id": "ts_ipe_b2_ph_action_vs_absorption_spectrum"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 66,
+      "stars": 0,
+      "text": "Define the law of limiting factors proposed by Blackman.",
+      "question_id": "ts_ipe_b2_ph_law_of_limiting_factors"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 67,
+      "stars": 0,
+      "text": "What is the primary acceptor of CO2 in C3 plants? What is the first stable compound formed in a Calvin cycle?",
+      "question_id": "ts_ipe_b2_ph_c3_acceptor_and_first_product"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 68,
+      "stars": 0,
+      "text": "What is the primary acceptor of CO2 in C4 plants? What is the first compound formed as a result of primary carboxylation in the C4 pathway?",
+      "question_id": "ts_ipe_b2_ph_c4_acceptor_and_first_product"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 69,
+      "stars": 0,
+      "text": "Which tissue transports photosynthates? What experiment proves this?",
+      "question_id": "ts_ipe_b2_ph_phloem_transports_food"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 70,
+      "stars": 0,
+      "text": "How many molecules of ATP and NADPH are needed to fix a molecule of CO2 in C3 plants? Where does this process occur?",
+      "question_id": "ts_ipe_b2_ph_atp_nadph_per_co2"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 71,
+      "stars": 0,
+      "text": "What products drive the Calvin cycle? What products regenerate them?",
+      "question_id": "ts_ipe_b2_ph_calvin_drivers"
+    }
+  ]
+}

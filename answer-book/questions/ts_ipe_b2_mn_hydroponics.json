@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mn_hydroponics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Mineral Nutrition (Botany-II)"
+  },
+  "chapter": "Mineral Nutrition",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define hydroponics.",
+  "appearances": [
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "What it shows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.50, printed question 151. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "A one-line definition question. Say 'without soil' explicitly — that is the whole point of the technique and the word the examiner looks for.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mineral Nutrition (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Hydroponics defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Two lines. The words 'nutrient solution' and 'without soil' are both needed.",
+        "lines": [
+          "Hydroponics is the technique of growing plants",
+          "in a specified nutrient solution, WITHOUT soil."
+        ],
+        "why": "Soil normally supplies both support and minerals, so removing it is what lets each mineral be supplied on its own and studied.",
+        "common_mistakes": [
+          "Leaving out 'without soil'. That is the defining feature.",
+          "Saying plants are grown in water alone. It is a NUTRIENT solution, not plain water."
+        ],
+        "memory_tip": "Hydro means water: the roots sit in solution, not soil."
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "What it shows",
+        "marks": 1,
+        "mark_note": "Use",
+        "margin_note": "One line on the purpose. This is the half most answers skip.",
+        "lines": [
+          {
+            "text": "Leave one element out and see what fails",
+            "style": "boxed"
+          },
+          "Because every element in the solution is known,",
+          "hydroponics is used to find which elements are",
+          "essential and what their deficiency symptoms",
+          "are."
+        ],
+        "why": "A known solution can have exactly one element removed, and whatever goes wrong afterwards must be that element's job.",
+        "common_mistakes": [
+          "Giving only the definition. The second mark is for what hydroponics is used for.",
+          "Saying it is used to grow crops faster. Its use here is to study essential elements."
+        ],
+        "memory_tip": "Control the solution and the plant tells you what is missing."
+      }
+    ]
+  }
+}

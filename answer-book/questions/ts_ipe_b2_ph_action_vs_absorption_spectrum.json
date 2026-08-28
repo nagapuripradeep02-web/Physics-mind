@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_action_vs_absorption_spectrum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between action spectrum and absorption spectrum.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Action spectrum",
+      "marks": 1
+    },
+    {
+      "label": "Absorption spectrum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.40, printed question 65. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Both are graphs against wavelength. The difference is entirely in what is plotted up the y-axis, so name that quantity in each half.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_action",
+        "kind": "text",
+        "label": "Action spectrum",
+        "marks": 1,
+        "mark_note": "Action",
+        "margin_note": "Name the quantity on the y-axis. That is the whole mark.",
+        "lines": [
+          "The ACTION spectrum is the graph showing the",
+          "RATE OF PHOTOSYNTHESIS at different wavelengths",
+          "of light."
+        ],
+        "why": "It measures what the plant actually does with each colour, which is why it is called the action spectrum.",
+        "common_mistakes": [
+          "Saying it plots absorption. That is the OTHER spectrum.",
+          "Leaving out 'at different wavelengths'. Both graphs run against wavelength."
+        ],
+        "memory_tip": "Action means what the plant DOES with the light."
+      },
+      {
+        "id": "s2_absorption",
+        "kind": "boxed_final",
+        "label": "Absorption spectrum",
+        "marks": 1,
+        "mark_note": "Absorption",
+        "margin_note": "Mirror the first half, then one line on why the two curves are compared.",
+        "lines": [
+          {
+            "text": "Rate of photosynthesis against light absorbed",
+            "style": "boxed"
+          },
+          "The ABSORPTION spectrum is the graph showing the",
+          "ABSORPTION OF LIGHT by pigments at different",
+          "wavelengths.",
+          "The two curves nearly overlap, which shows",
+          "chlorophyll a is the main pigment."
+        ],
+        "why": "The two curves matching is the evidence that the light being absorbed is the same light driving photosynthesis.",
+        "common_mistakes": [
+          "Saying the absorption spectrum plots the rate of photosynthesis. It plots ABSORPTION.",
+          "Leaving out the pigment. It is the PIGMENTS that absorb."
+        ],
+        "memory_tip": "Absorption means what the pigment TAKES IN."
+      }
+    ]
+  }
+}

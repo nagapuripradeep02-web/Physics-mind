@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_en_apoenzyme_vs_cofactor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Enzymes (Botany-II)"
+  },
+  "chapter": "Enzymes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between apoenzyme and cofactor.",
+  "appearances": [
+    {
+      "year": 2014
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Apoenzyme",
+      "marks": 1
+    },
+    {
+      "label": "Cofactor",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.50, printed question 156. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: this answer prints \"It makes the enzyme CATABOLICALLY active\", while the guide's own answer to global 155 on the same page prints \"CATALYTICALLY active\" for the same claim. Catalytically is correct: a cofactor makes the enzyme able to catalyse, which has nothing to do with catabolism."
+  },
+  "insider_note": "Protein against non-protein. That single contrast answers the whole question, so write it in the first line of each half.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Enzymes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_apoenzyme",
+        "kind": "text",
+        "label": "Apoenzyme",
+        "marks": 1,
+        "mark_note": "Apoenzyme",
+        "margin_note": "Protein part, proteinaceous, inactive alone. Three lines.",
+        "lines": [
+          "The APOENZYME is the PROTEIN part of a",
+          "holoenzyme.",
+          "It is chemically proteinaceous.",
+          "On its own it is not catalytically active."
+        ],
+        "why": "The apoenzyme carries the shape of the active site but cannot work alone, which is why the cofactor is needed at all.",
+        "common_mistakes": [
+          "Calling the apoenzyme the non-protein part. It is the PROTEIN part.",
+          "Saying the apoenzyme works on its own. It needs its cofactor."
+        ],
+        "memory_tip": "Apo is the protein and it is not enough by itself."
+      },
+      {
+        "id": "s2_cofactor",
+        "kind": "boxed_final",
+        "label": "Cofactor",
+        "marks": 1,
+        "mark_note": "Cofactor",
+        "margin_note": "Non-protein part, what it does, and the sum line. Watch the word catalytically.",
+        "lines": [
+          {
+            "text": "Protein plus non-protein makes a working",
+            "style": "boxed"
+          },
+          {
+            "text": "holoenzyme",
+            "style": "boxed"
+          },
+          "The CO-FACTOR is the NON-PROTEIN part of a",
+          "holoenzyme.",
+          "It makes the enzyme CATALYTICALLY active.",
+          "Apoenzyme + cofactor = holoenzyme."
+        ],
+        "why": "The equation at the end is the cleanest statement of the difference, because it shows the two parts are complements rather than alternatives.",
+        "common_mistakes": [
+          "Writing 'catabolically active'. It is CATALYTICALLY active. The guide misprints this.",
+          "Leaving out the sum. Apoenzyme plus cofactor equals holoenzyme is the closing line."
+        ],
+        "memory_tip": "Protein plus helper makes the working whole."
+      }
+    ]
+  }
+}

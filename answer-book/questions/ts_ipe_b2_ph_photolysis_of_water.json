@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_photolysis_of_water",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Where does the photolysis of H2O occur? What is its significance?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Where",
+      "marks": 1
+    },
+    {
+      "label": "Significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.40, printed question 64. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The significance is one sentence and it is a big claim: the oxygen in the air we breathe comes from here. Write it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_where",
+        "kind": "text",
+        "label": "Where it occurs",
+        "marks": 1,
+        "mark_note": "Where",
+        "margin_note": "Region plus which reaction. Three lines.",
+        "lines": [
+          "Photolysis of water occurs in the GRANA of the",
+          "chloroplast.",
+          "It happens during the light reaction."
+        ],
+        "why": "Splitting water needs light energy, so it happens where the light-absorbing membranes are.",
+        "common_mistakes": [
+          "Saying photolysis happens in the stroma. It happens in the GRANA.",
+          "Saying it happens during the dark reaction. It is part of the LIGHT reaction."
+        ],
+        "memory_tip": "Water is split where the light is caught."
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Significance",
+        "marks": 1,
+        "mark_note": "Significance",
+        "margin_note": "Oxygen, the atmosphere, and what else the split supplies. Four lines.",
+        "lines": [
+          {
+            "text": "The source of the oxygen in the atmosphere",
+            "style": "boxed"
+          },
+          "During photolysis, OXYGEN is evolved.",
+          "This is the main source of atmospheric oxygen.",
+          "The reaction also supplies electrons and protons",
+          "to the light reaction."
+        ],
+        "why": "Splitting water releases oxygen as a by-product, and because plants do this on an enormous scale it is where nearly all the oxygen in the air came from.",
+        "common_mistakes": [
+          "Saying the oxygen comes from carbon dioxide. It comes from WATER.",
+          "Giving only 'oxygen is released'. The significance is that it is the atmosphere's source."
+        ],
+        "memory_tip": "The oxygen we breathe was once water in a leaf."
+      }
+    ]
+  }
+}

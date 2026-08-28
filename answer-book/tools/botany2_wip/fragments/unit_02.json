@@ -1,0 +1,63 @@
+{
+  "number": 2,
+  "name": "Mineral Nutrition (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 13,
+      "stars": 0,
+      "text": "Explain the steps involved in the formation of root nodule.",
+      "question_id": "ts_ipe_b2_mn_root_nodule_formation"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 14,
+      "stars": 0,
+      "text": "Write in brief how plants synthesize amino acids.",
+      "question_id": "ts_ipe_b2_mn_amino_acid_synthesis"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 166,
+      "stars": 0,
+      "text": "Explain in brief how plants absorb essential elements.",
+      "question_id": "ts_ipe_b2_mn_absorption_of_essential_elements"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 151,
+      "stars": 0,
+      "text": "Define hydroponics.",
+      "question_id": "ts_ipe_b2_mn_hydroponics"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 152,
+      "stars": 0,
+      "text": "Explain the role of the pink colour pigment in the root nodule of legume plants. What is it called?",
+      "question_id": "ts_ipe_b2_mn_leghaemoglobin"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 153,
+      "stars": 0,
+      "text": "Write the balanced equation of nitrogen fixation.",
+      "question_id": "ts_ipe_b2_mn_nitrogen_fixation_equation"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 154,
+      "stars": 0,
+      "text": "Name any two essential elements and the deficiency diseases caused by them.",
+      "question_id": "ts_ipe_b2_mn_essential_elements_deficiency"
+    }
+  ]
+}
