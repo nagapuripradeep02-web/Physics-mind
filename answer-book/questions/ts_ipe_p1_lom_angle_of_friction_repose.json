@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -58,7 +58,8 @@
         ],
         "why": "One is measured on a flat surface, the other on a slope — which is exactly why it is worth proving they are the same number.",
         "common_mistakes": [
-          "Defining the angle of friction as the angle between the friction force and the surface."
+          "Defining the angle of friction as the angle between the friction force and the surface.",
+          "Defining φ as the angle between the normal force and the limiting friction — that angle is always 90°. φ is between the normal and the RESULTANT of the normal force and the limiting friction."
         ],
         "recall": {
           "credit": "say_it",
@@ -74,7 +75,9 @@
             "angle of friction",
             "angle of repose"
           ]
-        }
+        },
+        "memory_tip": "φ is measured from the NORMAL, not from the surface. θ is measured from the horizontal.",
+        "margin_note": "First mark. Both definitions on the page. One is measured on a table, the other on a slope."
       },
       {
         "id": "s2_relations",
@@ -100,7 +103,7 @@
             "style": "eq"
           }
         ],
-        "why": "The mg cancels in the second line, which is why the angle of repose depends on the surfaces alone and never on the body.",
+        "why": "The mg cancels in the second line, which is why the angle of repose depends on the surfaces alone and never on the body. Here f_s is the limiting (maximum) static friction. Below the limit friction is smaller than μ_s N, and the resultant then makes an angle smaller than φ with the normal.",
         "common_mistakes": [
           "Forgetting that the normal force on an incline is mg cos θ, not mg."
         ],
@@ -119,7 +122,9 @@
             "tan phi",
             "tan theta"
           ]
-        }
+        },
+        "memory_tip": "Tangent both times: f_s/N on the flat table, sin θ/cos θ on the slope.",
+        "margin_note": "Second and third marks. One relation for each angle, and each must end at μ_s."
       },
       {
         "id": "s3_result",
@@ -155,8 +160,11 @@
             "equal",
             "phi equals theta"
           ]
-        }
+        },
+        "memory_tip": "μ_s = 0.6 gives φ = θ = 31°, whichever of the two ways it was measured.",
+        "margin_note": "Fourth mark. It is for the sentence φ = θ, not for the two tangents above it."
       }
     ]
-  }
+  },
+  "insider_note": "The two tan relations carry 2 of the 4 marks. End with φ = θ — stopping at tan φ = tan θ loses the last mark."
 }

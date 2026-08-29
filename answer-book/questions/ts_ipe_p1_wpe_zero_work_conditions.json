@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Work Power Energy"
   },
   "chapter": "Work Power Energy",
@@ -123,5 +123,6 @@
         "memory_tip": "Zero force, zero displacement, or θ = 90°. The porter on level ground is the 90° case."
       }
     ]
-  }
+  },
+  "insider_note": "Three cases for one mark — all three are needed, and the perpendicular case is the one most answers miss."
 }

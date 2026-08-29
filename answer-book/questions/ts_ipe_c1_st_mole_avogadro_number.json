@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) asks several mole CALCULATIONS but never the definition of the mole or of Avogadro's number. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) asks several mole CALCULATIONS but never the definition of the mole or of Avogadro's number. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Rewrote the s2 memory tip: '6.022 with twenty-three zeros' misreads 6.022 × 10²³ (which is 6022 followed by 20 zeros). No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -77,7 +77,7 @@
           "Writing 6.022 × 10²² or another wrong power of ten.",
           "Omitting the unit mol⁻¹."
         ],
-        "memory_tip": "6.022 with twenty-three zeros' worth of ten — the power 23 is the part to protect.",
+        "memory_tip": "6.022 multiplied by 10²³, and 10²³ is 1 followed by 23 zeros — the power 23 is the part to protect.",
         "margin_note": "Box the value with its unit mol⁻¹."
       }
     ]

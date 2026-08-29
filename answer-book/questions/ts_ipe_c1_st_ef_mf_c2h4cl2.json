@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK ERROR: the book prints 'its nuclear mass is 98.96 gm' — the intended quantity is the MOLAR (molecular) mass, 98.96 g mol⁻¹, as its own working confirms (n = 98.96/49.5). This card asks and works with molar mass and records the book's wording here."
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK ERROR: the book prints 'its nuclear mass is 98.96 gm' — the intended quantity is the MOLAR (molecular) mass, 98.96 g mol⁻¹, as its own working confirms (n = 98.96/49.5). This card asks and works with molar mass and records the book's wording here. AI chemistry check 2026-08-25 (audit round): step s2 memory_tip said the formula and its weight were 'one mark each', which read as 5 marks on a 4-mark question; it now says the two together earn the single mark."
   },
   "answer": {
     "page_header": [
@@ -90,7 +90,7 @@
           "Computing 12 + 1 + 35.5 = 48.5 by forgetting the second hydrogen.",
           "Reporting CH₂Cl as the final answer. The question asks for BOTH formulas."
         ],
-        "memory_tip": "Write the empirical formula AND its weight — one mark each, and the weight is needed for n.",
+        "memory_tip": "Write the empirical formula AND its weight — the two together earn this single mark, and the weight is needed for n.",
         "margin_note": "CH₂Cl with its weight 49.5 earns this mark."
       },
       {

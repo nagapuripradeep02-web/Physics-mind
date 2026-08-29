@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_mean_free_path_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define mean free path.",
+  "appearances": [
+    {
+      "year": 2017,
+      "q_no": 9,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2017 (Q9) — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question text itself is sourced from that paper. `appearances` is deliberately left empty — a separate reviewed tagging pass fills it, and a hand-written tag here would be an invented claim. Physics hand-checked against NCERT Class-11 Chapter 13: the mean free path is the average distance travelled between two successive collisions, λ = 1/(√2 π d² n), with d the molecular diameter and n the number of molecules per unit volume; the √2 comes from the relative motion of the other molecules."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The mean free path is the average",
+          "distance a molecule travels between two",
+          "successive collisions.",
+          {
+            "text": "λ = total path length / number of collisions",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The word average and the words successive collisions both carry it.",
+        "why": "A molecule does not travel far in a straight line. It moves freely, hits another molecule, changes direction and moves freely again. The free paths have different lengths, so the quantity that is useful is their average.",
+        "common_mistakes": [
+          "Saying it is the distance between two molecules. It is the distance TRAVELLED between two collisions."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That mean free path is the average distance a molecule travels between two successive collisions.",
+          "accept": [
+            "average distance between two collisions",
+            "distance travelled between successive collisions",
+            "average of the free paths"
+          ],
+          "reject": [
+            "one by root two pi d squared n"
+          ],
+          "heard_as": [
+            "mean free path",
+            "successive collisions"
+          ]
+        },
+        "memory_tip": "A free path is one run between two hits. Mean is the average of all those runs."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "λ = 1/(√2 π d² n)",
+        "lines": [
+          {
+            "text": "λ = 1 / (√2 π d² n)",
+            "style": "boxed"
+          },
+          "d is the diameter of a molecule and n is",
+          "the number of molecules per unit volume.",
+          "λ falls when the gas is denser or when",
+          "the molecules are larger."
+        ],
+        "margin_note": "Second mark. Name d and n after the formula; the symbols alone are not the mark.",
+        "why": "Both d and n sit in the denominator, so a denser gas or a larger molecule gives a shorter free path. The √2 is there because the other molecules are moving as well, not standing still.",
+        "common_mistakes": [
+          "Reading n as the total number of molecules. n is the number per unit volume.",
+          "Dropping the √2 and writing λ = 1/(π d² n)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That lambda equals one by root two pi d squared n, with d the molecular diameter and n the number per unit volume.",
+          "accept": [
+            "one by root two pi d squared n",
+            "d is the diameter",
+            "n is the number per unit volume"
+          ],
+          "reject": [
+            "average distance between two collisions"
+          ],
+          "heard_as": [
+            "root two pi d squared n",
+            "lambda"
+          ]
+        },
+        "memory_tip": "Larger molecules and more of them both shorten the run: d and n are both downstairs."
+      }
+    ]
+  },
+  "insider_note": "The definition alone is one mark of two — add λ = 1/(√2 π d² n) with d and n named to take the second."
+}

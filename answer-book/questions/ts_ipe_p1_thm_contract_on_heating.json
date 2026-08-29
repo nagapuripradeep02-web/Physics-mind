@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_contract_on_heating",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Can a substance contract on heating? Give an example.",
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 8,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Yes, with the reason",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2023 (Q8) — Section A, 2 marks. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: water contracts when heated from 0 °C to 4 °C, where its coefficient of expansion is negative and its density is maximum at 4 °C; rubber is a second standard example of contraction on heating. Above 4 °C water expands in the ordinary way."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_yes",
+        "kind": "text",
+        "label": "Yes, it can",
+        "marks": 1,
+        "mark_note": "Yes",
+        "lines": [
+          "Yes. A few substances contract when they",
+          "are heated over a certain range of",
+          "temperature.",
+          "The coefficient of expansion is negative",
+          "in that range."
+        ],
+        "margin_note": "First mark. The word yes together with the reason earns it.",
+        "why": "Expansion coefficients are positive for almost every material, but nothing forbids a negative one. A negative coefficient simply means the volume falls as the temperature rises.",
+        "common_mistakes": [
+          "Answering only no. The anomalous behaviour of water is the standard counter-example."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That yes, a substance can contract on heating, because its coefficient of expansion is negative in that range.",
+          "accept": [
+            "yes it can",
+            "negative coefficient of expansion",
+            "contracts over a range"
+          ],
+          "reject": [
+            "water from zero to four degrees"
+          ],
+          "heard_as": [
+            "yes",
+            "negative coefficient",
+            "contract"
+          ]
+        },
+        "memory_tip": "Contraction on heating simply means a negative coefficient of expansion."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Water contracts from 0 °C to 4 °C",
+            "style": "boxed"
+          },
+          "Heating water from 0 °C to 4 °C makes its",
+          "volume decrease and its density rise.",
+          "Above 4 °C water expands in the ordinary",
+          "way. Rubber also contracts on heating."
+        ],
+        "margin_note": "Second mark. Name water and give the range 0 °C to 4 °C.",
+        "why": "Between 0 °C and 4 °C the open structure left over from ice keeps collapsing as the water warms, so the volume falls until 4 °C is reached.",
+        "common_mistakes": [
+          "Writing that water contracts on heating at every temperature. Above 4 °C it expands normally."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That water contracts when heated from 0 °C to 4 °C.",
+          "accept": [
+            "water from zero to four degrees",
+            "anomalous expansion of water",
+            "rubber contracts on heating"
+          ],
+          "reject": [
+            "negative coefficient of expansion"
+          ],
+          "heard_as": [
+            "water",
+            "zero to four",
+            "four degree Celsius"
+          ]
+        },
+        "memory_tip": "Water is densest at 4 °C. From 0 °C up to 4 °C it shrinks, not grows."
+      }
+    ]
+  },
+  "insider_note": "A one word answer plus one example — the range 0 °C to 4 °C is what the examiner looks for, not the word water alone."
+}

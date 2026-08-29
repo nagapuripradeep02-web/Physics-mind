@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 14,
   "question_text": "By the Gauss-Jordan method, solve 2x − y + 3z = 9, x + y + z = 6, x − y + z = 2.",
@@ -41,7 +41,7 @@
     },
     {
       "label": "Clear upwards to the identity",
-      "marks": 2
+      "marks": 3
     },
     {
       "label": "Read off the solution",
@@ -51,13 +51,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.33 — LAQ chapter 3 Matrices, answer 20.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.33 sets two Gauss-Jordan questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere, so no split is printed for any Gauss-Jordan answer. The 1+2+1+2+1 above follows the only split this book states for a solving-a-system question — the note on book p.30 reading 'Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks' — by weighting the bulk row-reduction (4 marks across clearing down and clearing up) against the setup and the finish (3 marks). The row-operation chain here is the book's own. The SAME split and the SAME step ids are used on both unique-solution Gauss-Jordan answers in this unit. The two remaining Gauss-Jordan answers, 20.3 and 20.4, do NOT share this skeleton: their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.33 — LAQ chapter 3 Matrices, answer 20.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.33 sets two Gauss-Jordan questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere, so no split is printed for any Gauss-Jordan answer. The 1+2+1+2+1 above follows the only split this book states for a solving-a-system question — the note on book p.30 reading 'Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks' — by weighting the bulk row-reduction (4 marks across clearing down and clearing up) against the setup and the finish (3 marks). The row-operation chain here is the book's own. The SAME split and the SAME step ids are used on both unique-solution Gauss-Jordan answers in this unit. The two remaining Gauss-Jordan answers, 20.3 and 20.4, do NOT share this skeleton: their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Clear upwards to the identity\" step."
   },
   "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — say what matrix you write down first, which direction you clear in, and how you get the answer at the end.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -226,9 +226,9 @@
         "id": "s4_backward",
         "kind": "equation",
         "label": "Clear upwards",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Backward elimination",
-        "margin_note": "Two more marks. Row 2 is left as −1 rather than normalised to 1; that is allowed, and the last step simply reads −y = −2. Normalising it costs an extra line and gains nothing.",
+        "margin_note": "Three marks. Row 2 is left as −1 rather than normalised to 1; that is allowed, and the last step simply reads −y = −2. Normalising it costs an extra line and gains nothing.",
         "lines": [
           "R₁ → R₁ − R₃,  R₂ → R₂ − R₃",
           {

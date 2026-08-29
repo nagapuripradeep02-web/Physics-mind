@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_thermal_expansion_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is thermal expansion?",
+  "appearances": [
+    {
+      "year": 2016,
+      "q_no": 8,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The three kinds",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2016 (Q8) — Section A, 2 marks. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: ΔL = αL₀Δθ, ΔA = βA₀Δθ, ΔV = γV₀Δθ, with β = 2α and γ = 3α for an isotropic solid."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "What thermal expansion is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Thermal expansion is the increase in the",
+          "size of a body when its temperature rises.",
+          "The body returns to its earlier size when",
+          "it is cooled.",
+          "The atoms vibrate more strongly on heating",
+          "and their average separation increases."
+        ],
+        "margin_note": "First mark. Say increase in size with rise in temperature.",
+        "why": "Heating raises the average vibration energy of the atoms, and the forces between them are not symmetrical, so the average spacing grows. The whole body grows with it.",
+        "common_mistakes": [
+          "Saying the atoms themselves become bigger. The atoms keep their size; only the spacing between them increases."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That thermal expansion is the increase in the size of a body when its temperature rises.",
+          "accept": [
+            "increase in size on heating",
+            "dimensions increase with temperature",
+            "expands when heated"
+          ],
+          "reject": [
+            "beta is two alpha"
+          ],
+          "heard_as": [
+            "expansion",
+            "increase in size",
+            "temperature rises"
+          ]
+        },
+        "memory_tip": "Hotter atoms vibrate more and sit farther apart, so the body grows."
+      },
+      {
+        "id": "s2_kinds",
+        "kind": "boxed_final",
+        "label": "The three kinds of expansion",
+        "marks": 1,
+        "mark_note": "The three kinds",
+        "lines": [
+          "There are three kinds of thermal expansion:",
+          {
+            "text": "ΔL = αL₀Δθ,  ΔA = βA₀Δθ,  ΔV = γV₀Δθ",
+            "style": "eq"
+          },
+          "α, β and γ are the coefficients of linear,",
+          "areal and cubical expansion.",
+          {
+            "text": "β = 2α and γ = 3α for a solid",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name all three kinds with their coefficients.",
+        "why": "Linear expansion acts along one dimension, areal along two and cubical along three, so the same fractional change appears twice in an area and three times in a volume.",
+        "common_mistakes": [
+          "Writing γ = 2α and β = 3α. The factor is the number of dimensions: β = 2α, γ = 3α."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expansion is linear, areal or cubical, with β = 2α and γ = 3α.",
+          "accept": [
+            "linear areal and cubical",
+            "beta is two alpha",
+            "gamma is three alpha"
+          ],
+          "reject": [
+            "increase in size on heating"
+          ],
+          "heard_as": [
+            "alpha beta gamma",
+            "linear areal cubical",
+            "two alpha"
+          ]
+        },
+        "memory_tip": "One length α, two lengths 2α, three lengths 3α — the factor counts the dimensions."
+      }
+    ]
+  },
+  "insider_note": "Two marks means two parts — the definition and the three kinds. An answer that only says a body expands on heating earns one mark."
+}

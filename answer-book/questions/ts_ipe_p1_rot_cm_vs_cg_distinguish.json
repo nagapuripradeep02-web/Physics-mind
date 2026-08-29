@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -16,7 +16,28 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "Distinguish between centre of mass and centre of gravity.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 13,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2024,
+      "q_no": 13,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 14,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 14,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Centre of mass",
@@ -30,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -124,7 +145,8 @@
         "margin_note": "Point 4 is the connecting sentence examiners look for: for ordinary bodies the two points coincide.",
         "why": "Weight is mass TIMES g — so wherever g varies across a very large body, the weight-average and the mass-average part company. For everything on a table top they are the same point.",
         "common_mistakes": [
-          "Claiming the two are always different. For a small uniform-field body they coincide."
+          "Claiming the two are always different. For a small uniform-field body they coincide.",
+          "Thinking a different but UNIFORM g moves the centre of gravity. It does not — in any uniform field the CG is at the CM; the two separate only when g VARIES across the body."
         ],
         "recall": {
           "credit": "say_it",
@@ -146,5 +168,6 @@
         "memory_tip": "Centre of GRAVITY: the weight average — the two points separate only where g varies across the body."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks each side, so give the same number of points in each column — a distinguish question is marked pair against pair."
 }

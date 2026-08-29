@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -16,7 +16,18 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "Define angular acceleration and torque. Establish the relation between angular acceleration and torque.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 15,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 15,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Angular acceleration",
@@ -80,7 +91,8 @@
             "d omega by d t",
             "alpha"
           ]
-        }
+        },
+        "memory_tip": "The unit gives the definition: rad/s² is radians per second, per second."
       },
       {
         "id": "s2_torque",
@@ -119,7 +131,8 @@
             "d L by d t",
             "torque"
           ]
-        }
+        },
+        "memory_tip": "τ = dL/dt is the exact twin of F = dp/dt. Write it that way and the derivation is set up."
       },
       {
         "id": "s3_relation",
@@ -161,8 +174,10 @@
             "constant",
             "F equals m a"
           ]
-        }
+        },
+        "memory_tip": "Two lines only: write L = Iω, then differentiate it. Nothing else is needed."
       }
     ]
-  }
+  },
+  "insider_note": "The relation carries 2 of the 4 marks and the two definitions one each, so all three parts must be written."
 }

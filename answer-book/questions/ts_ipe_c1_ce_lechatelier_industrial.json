@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's heading prints 'application application' (a printing repeat) and spells the name Lechateliers; both are cleaned here. The book prints the enthalpies as -92.3KJ and -189KJ/mol; this card writes both as kJ."
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's heading prints 'application application' (a printing repeat) and spells the name Lechateliers; both are cleaned here. The book prints the enthalpies as -92.3KJ and -189KJ/mol; this card writes both as kJ. AI chemistry check 2026-08-25. Both equations balanced and both ΔH signs, mole counts (4 to 2 and 3 to 2), temperatures, pressures and catalysts verified. TRUTH NOTE ADDED, marked line kept: the book's ΔH = −189 kJ for 2SO₂ + O₂ ⇌ 2SO₃ disagrees with the value from standard formation enthalpies (about −198 kJ; most textbooks print −196 to −198 kJ) — flagged in the s3 why per the house rule, NOT silently corrected. GAP filled in the s4 why: why only 1.5 − 1.7 atm is used even though higher pressure would raise the yield. One why and one memory tip rewritten for Rule 41. AI chemistry check 2026-08-25 (audit round): the ΔH = −189 kJ truth note in the s3 why was confirmed present and correct, no change needed. The insider_note flattened both processes into 'fewer gas moles so raised pressure', which contradicts the 1.5 − 1.7 atm boxed in step s4; it now separates the shared reasoning from the different pressures actually used."
   },
   "answer": {
     "page_header": [
@@ -79,7 +79,7 @@
           "moles, so 200 − 300 atm is used.",
           "Catalyst: finely divided iron; promoter: Mo."
         ],
-        "why": "Yield and rate ask for different temperatures — low for yield, high for speed — so industry settles on an optimum. Pressure has no such conflict: high pressure helps both.",
+        "why": "Yield and rate need different temperatures — low for the yield, high for the rate — so the plant runs at an optimum temperature between them. Pressure has no such conflict here: raising the pressure increases both the yield and the rate.",
         "common_mistakes": [
           "Writing simply 'low temperature is used'. The plant uses an optimum temperature because low temperature is too slow.",
           "Leaving out the catalyst and promoter. They are part of the optimum conditions."
@@ -103,7 +103,7 @@
           "This forward reaction is also exothermic,",
           "and the gas moles decrease from 3 to 2."
         ],
-        "why": "The SO₃ synthesis has the same two features as the ammonia one — exothermic and fewer gas moles on the right — so the same reasoning gives its conditions.",
+        "why": "The SO₃ synthesis has the same two features as the ammonia one — exothermic and fewer gas moles on the right — so the same reasoning gives its conditions. On the number: ΔH = −189 kJ is what the source book prints and what the examiner marks, so it is kept here, but standard formation enthalpies (SO₂(g) about −296.8 and SO₃(g) about −395.7 kJ mol⁻¹) give ΔH = 2(−395.7) − 2(−296.8) ≈ −198 kJ for this equation, and most textbooks print a value near −196 to −198 kJ. The mark is carried by the negative SIGN of ΔH, not by the exact figure; a teacher should settle which number the board expects.",
         "common_mistakes": [
           "Writing the equation unbalanced as SO₂ + O₂ ⇌ SO₃. The balanced form is 2SO₂ + O₂ ⇌ 2SO₃.",
           "Omitting ΔH or the mole count, which the conditions are argued from."
@@ -128,15 +128,15 @@
             "style": "boxed"
           }
         ],
-        "why": "The same yield-against-rate reasoning fixes the optimum temperature; the mole-count reasoning fixes the pressure; V₂O₅ is the named catalyst of the Contact process.",
+        "why": "The same yield-against-rate reasoning fixes the optimum temperature; the mole-count reasoning fixes the DIRECTION of the pressure effect; V₂O₅ is the named catalyst of the Contact process. The direction and the pressure actually used are different questions: raising the pressure would raise the SO₃ yield, but at about 673 K the conversion of SO₂ to SO₃ is already close to 97 percent, so a high-pressure plant is not worth its cost and only 1.5 − 1.7 atm is used.",
         "common_mistakes": [
           "Writing the Haber conditions here. The Contact process runs near 673 K and only 1.5 − 1.7 atm.",
           "Naming iron as the catalyst. The Contact process uses V₂O₅."
         ],
-        "memory_tip": "Contact process: V₂O₅ — V for vanadium, the catalyst that separates it from Haber's iron.",
+        "memory_tip": "Contact process: V₂O₅, vanadium pentoxide. The Haber process uses iron — do not mix the two catalysts.",
         "margin_note": "Temperature, pressure and catalyst for SO₃ complete the four marks."
       }
     ]
   },
-  "insider_note": "Both syntheses follow the same two-line logic — exothermic so an optimum temperature, fewer gas moles so raised pressure. Name the catalyst for each; that is where the last mark sits."
+  "insider_note": "Both syntheses are argued from the same two facts read off the equation: exothermic, so an optimum temperature; fewer gas moles on the right, so higher pressure shifts the equilibrium towards the product. The REASONING is shared, the numbers are not. The Haber process really is run at high pressure, 200 − 300 atm, but the Contact process runs at only about 1.5 − 1.7 atm, because at about 673 K the conversion of SO₂ to SO₃ is already near 97 percent and a high-pressure plant is not worth its cost. Writing the Haber conditions under SO₃ is a lost mark. Name the catalyst for each: iron for ammonia, V₂O₅ for SO₃."
 }

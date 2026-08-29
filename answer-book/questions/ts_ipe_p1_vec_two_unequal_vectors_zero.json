@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 3,
     "name": "Motion in a Plane"
   },
   "chapter": "Motion in a Plane",
@@ -51,6 +51,7 @@
           "are equal in magnitude and opposite in",
           "direction."
         ],
+        "margin_note": "First mark. Write No, then the equal-and-opposite condition. Both are needed.",
         "why": "Zero means the two arrows must close on themselves, and only equal-and-opposite arrows do that.",
         "common_mistakes": [
           "Answering \"yes, if the angle is 180°\" — opposite direction alone is not enough."
@@ -70,7 +71,8 @@
             "no",
             "equal and opposite"
           ]
-        }
+        },
+        "memory_tip": "Two arrows cancel only if they are the same length and point opposite ways. 3 N and 5 N cannot."
       },
       {
         "id": "s2_reason",
@@ -87,6 +89,7 @@
           "Three unequal vectors CAN give zero, if",
           "they close into a triangle."
         ],
+        "margin_note": "Second mark. |P − Q| turns the No into a proof. The three-vector line is extra.",
         "why": "Naming the smallest possible resultant turns a memorised \"no\" into a proof, and the three-vector line shows exactly where the limit stops.",
         "common_mistakes": [
           "Extending the \"no\" to three vectors — three unequal vectors can close a triangle."
@@ -106,8 +109,10 @@
             "mod P minus Q",
             "smallest"
           ]
-        }
+        },
+        "memory_tip": "The smallest resultant of 4 and 6 is 2, never 0. Only equal magnitudes reach zero."
       }
     ]
-  }
+  },
+  "insider_note": "Answering No is one mark, the reason is the other. Name the smallest resultant |P − Q| — that single line is the proof."
 }

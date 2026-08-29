@@ -7,10 +7,10 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 2,
-    "name": "Units and Measurements"
+    "number": 1,
+    "name": "Physical World and Measurement"
   },
-  "chapter": "Units and Measurements",
+  "chapter": "Physical World and Measurement",
   "qtype": "VSAQ",
   "marks_total": 2,
   "paper_section": "Section A",
@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -52,7 +52,8 @@
         ],
         "why": "A leading zero only places the decimal point, so it carries no information about the measurement. A trailing zero was actually read off the instrument, so it does.",
         "common_mistakes": [
-          "Counting the leading zeros in 0.024 and calling it four significant figures."
+          "Counting the leading zeros in 0.024 and calling it four significant figures.",
+          "Applying \"zeros after it are significant\" to a number with no decimal point. In 12300 the trailing zeros are not significant (NCERT rule); write 1.23 × 10⁴ to remove the doubt."
         ],
         "recall": {
           "credit": "say_it",

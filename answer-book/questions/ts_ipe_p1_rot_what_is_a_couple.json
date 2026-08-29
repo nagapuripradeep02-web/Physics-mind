@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -69,7 +69,9 @@
             "couple",
             "rotation"
           ]
-        }
+        },
+        "memory_tip": "Three conditions: equal, opposite, and lines of action SEPARATED. All three are needed.",
+        "margin_note": "First mark. The definition plus the phrase \"rotation without translation\"."
       },
       {
         "id": "s2_example",
@@ -106,8 +108,11 @@
             "tap",
             "key"
           ]
-        }
+        },
+        "memory_tip": "One finger cannot make a couple. A single force is a torque, not a couple.",
+        "margin_note": "Second mark. One example is enough — name it and stop."
       }
     ]
-  }
+  },
+  "insider_note": "The example is the second mark, not an extra. Turning a tap is enough — one named example, one line."
 }

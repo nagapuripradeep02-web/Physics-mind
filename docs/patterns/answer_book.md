@@ -704,6 +704,16 @@ missing from the manifest would be invisible in the catalog; a manifest pointer 
 be a dead card. Both exit 1 naming the offender — the PILOT_CONCEPTS silent-drop lesson applied
 here before it could happen.
 
+**Retired entries (2026-08-28, for the 2026-27 syllabus revision).** A question whose topic left
+the syllabus is neither deleted (the seven-paper corpus in `papers/matches.json` resolves to it,
+and its exam history is real) nor offered. `"status": "retired", "retired": {"wef": "2026-27",
+"reason": "…"}` on the entry — or on a whole unit — keeps both drift checks satisfied, and the
+build then strips it from `PM_UNITS` (catalog, counts, picker, planner, exam-eve, Vidi's chapter
+lists, the door, the og card, the gated content bundles all read `PM_UNITS`, so none of them can
+see it) and emits `PM_RETIRED` so a forwarded `#/q/<id>` link still renders, with a banner. A
+coming-soon entry cannot be retired — delete the row. `source: "syllabus_2026_27"` marks the
+placeholder rows of a chapter announced by the reform but not yet in hand (Physics Unit 14).
+
 ## Filters — ONE CARD = ONE QUESTION AT ONE LENGTH (founder review, same day)
 
 The first shipped version matched filters on the UNION of an entry's section and its cuts'
@@ -741,20 +751,32 @@ and the analysis below is what the authoring model rests on. Multi-source web re
 none of it is from an official circular yet — re-verify against tsbie.cgg.gov.in /
 bieap.apcfss.in model papers when they publish.
 
-### Telangana (TGBIE) — our board: theory UNCHANGED, syllabus revised
+### Telangana (TGBIE) — our board: science theory UNCHANGED, MATHS pattern changed, syllabus revised
 
-- **Physics theory stays 60 marks** — explicitly stated in the reform coverage, and the March 2026
-  paper ran exactly our structure: Section A 10×2 compulsory · B 6-of-8 ×4 · C 2-of-3 ×8,
-  21 questions, 3 hours, English + Telugu. **The Answer Book's model is safe for March 2027.**
-- What changes 2026-27 (FIRST year; second year follows 2027-28): the old 30-mark second-year-only
-  practicals split into **15 marks per year**, conducted externally at each year's end. Maths goes
-  75 written → **60 written + 15 Activity-Based Learning** per paper. Humanities/Languages
-  100 → 80 + 20 internal. ("60 + 15 ABL" is the MATHS formula — for Physics the 15 is practicals.)
-- **The real exposure is the syllabus revision**, not the pattern: NCERT-aligned for 2026-27,
-  ~30% cuts in some subjects (Chemistry named), non-JEE/NEET topics removed, a new "Artificial
-  Intelligence in Physics" chapter, QR-coded textbooks. Our inventory is sourced from the 2024
-  Fastrack, which compiles the OLD syllabus's exam history. Mechanics (Units 4-6) is NCERT-stable;
-  the per-unit inventory still needs a diff against the new TGBIE textbooks when they publish.
+> Updated 2026-08-28 from the official Maths 1A 2026-27 textbook's model paper and the reform
+> coverage of May 2026. The full record, per-subject chapter maps and the open cells are in
+> **`docs/SYLLABUS_2026_27.md`** — this section is the summary.
+
+- **Physics / Chemistry / Botany / Zoology theory stays 60 marks** in exactly our structure:
+  Section A 10×2 compulsory · B 6-of-8 ×4 · C 2-of-3 ×8, 21 questions, 3 hours. The March 2026
+  paper ran it. The 15 marks these subjects gained in 2026-27 are a first-year **practical**,
+  outside the written paper.
+- **Maths 1A and 1B changed shape, not just total.** The old 75-mark paper (A 10×2 · B any 5 of 7
+  ×4 · C any 5 of 7 ×**7**) became **60 written + 15 Activity-Based Learning** per paper, and the
+  Telugu Akademi 1A textbook prints the new model paper: **the Physics shape** — A 10×2 = 20 ·
+  B any 6 of 8 ×4 = 24 · C any 2 of 3 ×**8** = 16. Long answers fell from 35 of 75 to 16 of 60.
+  The 99 maths LAQ cards authored at 7 marks were re-cut to 8 (2026-08-28), and
+  `PAPER_PATTERNS` in `src/schemas/answerBook.ts` now holds every card's marks to its paper.
+- **The syllabus revision is the remaining exposure.** Physics: old Units 1+2 merged into
+  "Physical World and Measurement", a new Unit 14 "Physics of Emerging Technologies" — the bank
+  is renumbered (2026-08-28) and Unit 14 is coming-soon. Maths 1A gained two chapters (Sets and
+  Relations; Sequences and Series) and "repetitive problems" left; Chemistry lost three chapters
+  (names unpublished — States of Matter is the exposed unit); Botany/Zoology lost one or two.
+  Per-chapter sub-topic deletions were announced everywhere and published nowhere reachable: the
+  official PDFs sit behind a 403 WAF, so the input is the new textbooks' Contents / Syllabus /
+  Model-paper pages from a lecturer. The retire mechanism (`status: "retired"` in units.json —
+  the file stays, the card leaves the book, a forwarded link shows a banner) is built and waits
+  for that list.
 
 ### Andhra Pradesh (BIEAP) — already switched, March 2026
 
@@ -898,6 +920,8 @@ just not by either book. It ships as `source: "ap_2026_paper"` with a real `appe
 `notebook.js` branches only on `source === 'enumerated'`, so an unknown source value falls through to
 the asked-chip path and needed no code change — but that is a property worth knowing before adding a
 fourth.
+
+**The corpus now exists — seven real TS papers, and the diff has been run (2026-08-26).** Seven Telangana Physics Paper-I papers (March 2016, 2017, 2019, 2020, 2023, 2024, 2025) are transcribed into `answer-book/papers/`, every one of their 154 slots is mapped by hand in `matches.json`, and `npm run backtest:physics` re-derives the whole diff from the bank on demand. The full narrative, including what the diff found and the two things it surfaced that are NOT fixed, is `docs/IPE_PHYSICS_1_PAPERS.md`. It also settled the PROBLEMS question below: **six of the seven papers print a numerical inside a Section-C question**, so the founder lifted the deferral for paper-attested numericals and they are authored.
 
 **PROBLEMS, deferred, keep turning out to be examined.** Unit 6 problem 3 carries printed years;
 Unit 8 problem 2 (energy when the amplitude is doubled) is the what-if the AP 2026 paper asked, and is

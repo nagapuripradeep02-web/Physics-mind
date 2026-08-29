@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -50,7 +50,7 @@
           "a point is the work done in bringing the body",
           "from infinity to that point."
         ],
-        "why": "Infinity is chosen as the zero because that is the only distance at which the pull genuinely vanishes.",
+        "why": "Infinity is chosen as the zero because that is the only distance at which the pull genuinely vanishes. Here \"work done\" means work done BY AN EXTERNAL AGENT (against the field), which is the negative of the work done by the gravitational pull — that is why U in step 2 is negative.",
         "common_mistakes": [
           "Defining it as m g h, which is only the near-surface special case."
         ],
@@ -68,7 +68,9 @@
             "infinity",
             "work done"
           ]
-        }
+        },
+        "memory_tip": "Work done by an OUTSIDE agent, bringing the body from infinity to the point.",
+        "margin_note": "First mark. The words from infinity fix the zero; do not leave them out."
       },
       {
         "id": "s2_expression",
@@ -103,8 +105,11 @@
             "minus G M m by r",
             "negative"
           ]
-        }
+        },
+        "memory_tip": "One r on the bottom, not r². The r² belongs to the force, the r to the energy.",
+        "margin_note": "Second mark. Box the minus sign with the formula and name the zero at infinity."
       }
     ]
-  }
+  },
+  "insider_note": "The minus sign is what is checked in the second mark; the first needs the words from infinity to that point."
 }

@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -114,5 +114,6 @@
         "memory_tip": "A large I resists changes in rotation, so the wheel turns steadily between pedal strokes."
       }
     ]
-  }
+  },
+  "insider_note": "The first mark is the phrase \"increases the moment of inertia\". A strength-only answer scores nothing."
 }

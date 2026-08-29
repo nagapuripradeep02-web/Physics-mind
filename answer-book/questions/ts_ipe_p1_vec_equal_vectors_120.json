@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 3,
     "name": "Motion in a Plane"
   },
   "chapter": "Motion in a Plane",
@@ -54,6 +54,7 @@
             "style": "eq"
           }
         ],
+        "margin_note": "First mark. Write the parallelogram formula with P in every place.",
         "why": "Writing \"the resultant is also P\" as an equation is the whole question; the algebra after it is two lines.",
         "common_mistakes": [
           "Setting the resultant to 2P instead of P."
@@ -72,7 +73,8 @@
             "equal magnitude",
             "resultant is also P"
           ]
-        }
+        },
+        "memory_tip": "The words \"equal to either of them\" mean R = P, not 2P. The same P goes in all three places."
       },
       {
         "id": "s2_solve",
@@ -91,6 +93,7 @@
             "style": "boxed"
           }
         ],
+        "margin_note": "Second mark. The angle is the answer — write 120°, not just cos θ = −½.",
         "why": "A negative cosine means an obtuse angle — the two vectors point further apart, and that is what squeezes the resultant back down to P.",
         "common_mistakes": [
           "Reading cos θ = −½ as 60° instead of 120°."
@@ -109,8 +112,10 @@
             "minus half",
             "120"
           ]
-        }
+        },
+        "memory_tip": "Check it: at 120° the two vectors and their resultant form an equilateral triangle."
       }
     ]
-  }
+  },
+  "insider_note": "Setting up P² = P² + P² + 2P·P cos θ is a full mark on its own. Writing 120° with no setup earns one mark, not two."
 }

@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "By the Gauss-Jordan method, solve x + y + z = 3, 2x + 2y − z = 3, x + y − z = 1.",
@@ -41,19 +41,19 @@
     },
     {
       "label": "Introduce a parameter and state the solution set",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Matrices, answer 20.3. Printed appearance: TS 17. THIS IS ONE OF ONLY TWO QUESTIONS IN THE WHOLE MATRICES CHAPTER WHOSE ANSWER IS NOT A SINGLE TRIPLE — the other is answer 20.4, which has no solution at all. A student who has practised only the unique-solution questions will try to force x, y and z out of a row of zeros; that is the specific failure this question exists to catch, and it was set in a real TS paper. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.34 sets two questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere. The 1+2+1+2+1 above is deliberately the same shape used for the two unique-solution Gauss-Jordan answers in this unit, so the split does not imply this question is harder than it is; the weight simply moves from clearing upwards (impossible here) to interpreting the zero row. The row-operation chain is the book's own. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Matrices, answer 20.3. Printed appearance: TS 17. THIS IS ONE OF ONLY TWO QUESTIONS IN THE WHOLE MATRICES CHAPTER WHOSE ANSWER IS NOT A SINGLE TRIPLE — the other is answer 20.4, which has no solution at all. A student who has practised only the unique-solution questions will try to force x, y and z out of a row of zeros; that is the specific failure this question exists to catch, and it was set in a real TS paper. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.34 sets two questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere. The 1+2+1+2+1 above is deliberately the same shape used for the two unique-solution Gauss-Jordan answers in this unit, so the split does not imply this question is harder than it is; the weight simply moves from clearing upwards (impossible here) to interpreting the zero row. The row-operation chain is the book's own. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Introduce a parameter and state the solution set\" step."
   },
   "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — and say what you would do if a whole row turns into zeros.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -248,9 +248,9 @@
         "id": "s5_parameter",
         "kind": "boxed_final",
         "label": "Introduce a parameter",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Solution set",
-        "margin_note": "Last mark. Name the free unknown with a letter — k is the usual choice — and write everything else in terms of it. Say that k can be any real number; without that the answer is incomplete.",
+        "margin_note": "Last two marks. Name the free unknown with a letter — k is the usual choice — and write everything else in terms of it. Say that k can be any real number; without that the answer is incomplete.",
         "lines": [
           "Let x = k, where k ∈ R. Then y = 2 − k.",
           {

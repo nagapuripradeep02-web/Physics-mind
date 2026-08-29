@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_pump_power_lift_and_eject",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A pump is required to lift 600 kg of water per minute from a well of 25 m deep and to eject it with a speed of 50 ms⁻¹. Calculate the power required to perform the above task. (g = 10 ms⁻²)",
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 19,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 19,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The rate in kg s⁻¹",
+      "marks": 1
+    },
+    {
+      "label": "Two energy terms",
+      "marks": 1
+    },
+    {
+      "label": "The power",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Printed as the applied half of an 8-mark Section-C question in TS March 2016 (Q19) and TS March 2020 (Q19), Inter I-Year Physics Paper-I. The 4-mark standalone length is our authoring choice, not the board's — the board never printed it as a 4-mark Section-B question. Unlike ts_ipe_p1_wpe_pump_power_lift_only, this question gives an ejection speed, so the ½mv² term is required and is the point of the card. Arithmetic hand-checked with the printed g = 10 m s⁻²: 600/60 = 10 kg s⁻¹; mgh/t = 10 × 10 × 25 = 2500 W; ½mv²/t = ½ × 10 × (50)² = ½ × 10 × 2500 = 12500 W; total = 15000 W = 15 kW. A published guide prints 14.95 kW because it uses g = 9.8 m s⁻² for the potential term; the paper prints g = 10, so 15 kW is written here and the 14.95 kW discrepancy is recorded rather than silently followed or silently corrected. The three-way split is invented and is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Work Power Energy · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rate",
+        "kind": "equation",
+        "label": "The rate in kg s⁻¹",
+        "marks": 1,
+        "mark_note": "600/60",
+        "lines": [
+          "Convert the rate first. The pump handles",
+          "600 kg in 60 s, so",
+          {
+            "text": "m/t = 600/60 = 10 kg s⁻¹",
+            "style": "eq"
+          },
+          "That same 10 kg is raised through 25 m and",
+          "then thrown out at 50 ms⁻¹."
+        ],
+        "margin_note": "First mark. One conversion line, and it is used twice later.",
+        "why": "The same 10 kg s⁻¹ does two jobs in this question: it is raised through the depth and it leaves the pipe with speed. Fixing the rate first lets both energy terms be written per second, which is what a power answer needs.",
+        "common_mistakes": [
+          "Using 600 kg as the mass handled in one second.",
+          "Converting the rate and then using the converted value in only one of the two terms."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 600 kg per minute is 10 kg per second, and that same 10 kg is both raised and ejected.",
+          "accept": [
+            "ten kilogram per second",
+            "six hundred by sixty",
+            "the same ten kg is lifted and ejected"
+          ],
+          "reject": [
+            "twelve thousand five hundred watt"
+          ],
+          "heard_as": [
+            "10 kg per second",
+            "600 by 60"
+          ]
+        },
+        "memory_tip": "10 kg every second, and that same 10 kg is both raised and ejected."
+      },
+      {
+        "id": "s2_two_terms",
+        "kind": "equation",
+        "label": "Two energy terms",
+        "marks": 1,
+        "mark_note": "mgh + ½mv²",
+        "lines": [
+          "The water is raised through h = 25 m and",
+          "also leaves at v = 50 ms⁻¹, so the pump",
+          "supplies potential energy AND kinetic",
+          "energy in the same second:",
+          {
+            "text": "P = (mgh + ½mv²)/t",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. The added ½mv² term is the whole point of this question.",
+        "why": "This is the one difference from a pump that only lifts. Water that is only raised arrives at the top with no speed, so mgh is the entire cost. Here the water leaves at 50 ms⁻¹, and that kinetic energy came from the pump too, so ½mv² is added to the potential term.",
+        "common_mistakes": [
+          "Dropping the ½mv² term and answering 2500 W, which is the lifting cost alone.",
+          "Using m = 600 kg in the kinetic term instead of the 10 kg handled in one second."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the power is m g h plus half m v squared, all divided by t — both terms, not just the lifting one.",
+          "accept": [
+            "m g h plus half m v squared by t",
+            "potential and kinetic together",
+            "the ejection speed adds a kinetic term"
+          ],
+          "reject": [
+            "only m g h by t"
+          ],
+          "heard_as": [
+            "mgh plus half m v squared",
+            "two terms"
+          ]
+        },
+        "memory_tip": "Raised and thrown means two terms: mgh for the height, ½mv² for the speed."
+      },
+      {
+        "id": "s3_power",
+        "kind": "boxed_final",
+        "label": "The power",
+        "marks": 2,
+        "mark_note": "P",
+        "lines": [
+          "The paper prints g = 10 m s⁻². Substitute",
+          "the two terms separately:",
+          {
+            "text": "mgh/t = 10 × 10 × 25 = 2500 W",
+            "style": "eq"
+          },
+          {
+            "text": "½mv²/t = ½ × 10 × (50)² = 12500 W",
+            "style": "eq"
+          },
+          {
+            "text": "P = 2500 + 12500 = 15000 W = 15 kW",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third and fourth marks. Both terms shown, then one boxed total with its unit.",
+        "why": "The paper prints g = 10 m s⁻², so 15 kW is the marked answer. A published guide gives 14.95 kW because it uses g = 9.8 m s⁻² for the potential term; that gap of 50 W comes only from the value of g, not from any difference in the physics. Use the value the paper prints.",
+        "common_mistakes": [
+          "Stopping at 2500 W, the lifting term alone.",
+          "Using 600 kg in the kinetic term, which makes that term 60 times too large."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two terms are 2500 W and 12500 W, so P = 15000 W = 15 kW.",
+          "accept": [
+            "fifteen thousand watt",
+            "fifteen kilowatt",
+            "two thousand five hundred plus twelve thousand five hundred"
+          ],
+          "reject": [
+            "two thousand five hundred watt only"
+          ],
+          "heard_as": [
+            "15 kW",
+            "15000 W",
+            "12500 W"
+          ]
+        },
+        "memory_tip": "2500 W to raise it, 12500 W to eject it: 15000 W in all, which is 15 kW."
+      }
+    ]
+  },
+  "insider_note": "The kinetic term is 12500 of the 15000 W, so an answer that stops at 2500 W keeps the first two marks and loses the last two."
+}

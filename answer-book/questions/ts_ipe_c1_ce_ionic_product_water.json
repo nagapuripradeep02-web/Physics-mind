@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book prints the unit as moles²/lit²; this card writes the same quantity as mol² L⁻²."
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book prints the unit as moles²/lit²; this card writes the same quantity as mol² L⁻². AI chemistry check 2026-08-25. Kw = 1.0 × 10⁻¹⁴ mol² L⁻² at 25 °C verified, including the temperature dependence and the squared unit; one memory tip rewritten for Rule 41 ('travel together'). No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -87,7 +87,7 @@
           "Writing the value without the temperature. Kw = 1.0 × 10⁻¹⁴ only at 25 °C.",
           "Writing the unit as mol L⁻¹. Two concentrations are multiplied, so the unit is mol² L⁻²."
         ],
-        "memory_tip": "Fourteen at twenty-five. The power −14 and the temperature 25 °C travel together.",
+        "memory_tip": "Fourteen at twenty-five: always write the power −14 together with the temperature 25 °C.",
         "margin_note": "The value, the unit and the temperature together earn this mark."
       }
     ]

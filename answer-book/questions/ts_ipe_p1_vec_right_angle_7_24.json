@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 3,
     "name": "Motion in a Plane"
   },
   "chapter": "Motion in a Plane",
@@ -74,7 +74,8 @@
             "seven",
             "twenty four"
           ]
-        }
+        },
+        "memory_tip": "7 and 24 are the two perpendicular sides, so the resultant is the hypotenuse and must exceed 24."
       },
       {
         "id": "s2_value",
@@ -112,8 +113,10 @@
             "twenty five",
             "25"
           ]
-        }
+        },
+        "memory_tip": "49 + 576 = 625, and 25² = 625. A whole-number root is the sign nothing slipped."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks, two lines, no derivation. Time saved here is time for the Section B derivations."
 }

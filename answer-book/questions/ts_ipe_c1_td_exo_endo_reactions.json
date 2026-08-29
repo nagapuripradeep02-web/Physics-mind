@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's answer gives definitions only; the example equations on this card are standard NCERT values added for completeness."
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's answer gives definitions only; the example equations on this card are standard NCERT values added for completeness. AI chemistry check 2026-08-25 (audit round): insider_note, the s1 margin_note and the s2 common_mistakes entry each took a different position on whether the example equation is mark-bearing. All three now say the same thing — the definition with the sign of ΔH earns the mark, the equation is added support."
   },
   "answer": {
     "page_header": [
@@ -58,7 +58,7 @@
           "Pairing exothermic with a positive ΔH — released heat means ΔH < 0."
         ],
         "memory_tip": "Exo, exit: heat goes out, and burning carbon is the standard example.",
-        "margin_note": "Definition earns the mark; the equation strengthens it."
+        "margin_note": "The definition with the sign of ΔH earns the mark; the equation is the supporting line."
       },
       {
         "id": "s2_endothermic",
@@ -81,7 +81,7 @@
         ],
         "why": "In an endothermic reaction the products hold more enthalpy than the reactants, and the difference is taken in from the surroundings as heat.",
         "common_mistakes": [
-          "Giving no example — one standard equation per type completes the answer.",
+          "Giving no example. The definition with its ΔH sign earns the mark, but one standard equation per type is the supporting line, so keep it if there is room.",
           "Writing the NO formation value without its plus sign."
         ],
         "memory_tip": "Endo, enter: heat comes in. Nitrogen and oxygen combine only when heat is supplied.",
@@ -89,5 +89,5 @@
       }
     ]
   },
-  "insider_note": "Definitions alone read as textbook copying. One balanced equation with its signed ΔH value under each definition is what a full-mark answer looks like."
+  "insider_note": "The book's own answer gives the two definitions only. Each definition, with the sign of ΔH stated, earns its mark; the balanced equation under it is a supporting line this card adds, not a mark requirement. It costs one line, so write it when there is room."
 }

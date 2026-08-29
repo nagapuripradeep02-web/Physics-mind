@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: the rule and the nitrogen 1s² 2s² 2p³ example verified; the memory tip reworded to drop the bus-seat comparison (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -55,7 +55,7 @@
           "Leaving out the word degenerate. The rule applies only to orbitals of equal energy.",
           "Forgetting to say the single electrons have parallel spins."
         ],
-        "memory_tip": "Degenerate orbitals fill like seats on an empty bus. One person per seat before anyone sits together.",
+        "memory_tip": "Every degenerate orbital takes one electron before any of them takes a second.",
         "margin_note": "The words degenerate and pairing must both appear."
       },
       {

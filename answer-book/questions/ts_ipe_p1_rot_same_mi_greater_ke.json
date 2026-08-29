@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -74,7 +74,8 @@
             "two I",
             "kinetic energy"
           ]
-        }
+        },
+        "memory_tip": "Put ω = L/I into ½Iω²; that gives L²/2I in one line, with nothing to memorise."
       },
       {
         "id": "s2_answer",
@@ -114,8 +115,10 @@
             "greater angular momentum",
             "greater kinetic energy"
           ]
-        }
+        },
+        "memory_tip": "With I fixed, KE ∝ L². Double the angular momentum and the energy is four times."
       }
     ]
-  }
+  },
+  "insider_note": "Only the TSBIE material carries this one. The second mark is for stating the condition, I the same for both, not only the answer."
 }

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25. Both definitions and all four phase-labelled equations verified correct. Filled a GAP: s4 why now states that pure solids and pure liquids are excluded from Kc and Kp, with the CaCO₃ expressions. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -132,7 +132,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Both examples mix a solid with gases, so two phases stand in the same equilibrium — exactly what the definition requires; the boxed line closes the answer with the one-line test.",
+        "why": "Both examples mix a solid with gases, so two phases are present in the same equilibrium — exactly what the definition requires; the boxed line closes the answer with the one-line test. One consequence is worth adding if the question asks for the expression: a pure solid or a pure liquid has a constant concentration, so it is LEFT OUT of the equilibrium constant. For CaCO₃(s) ⇌ CaO(s) + CO₂(g) the expressions are Kc = [CO₂] and Kp = pCO₂.",
         "common_mistakes": [
           "Writing the phase labels wrong (CaCO₃ and CaO are solids, CO₂ is the gas).",
           "Giving a second all-gas example here. A heterogeneous example must show two phases."

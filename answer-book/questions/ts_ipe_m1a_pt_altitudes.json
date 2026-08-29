@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 10,
+    "number": 12,
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 14,
   "question_text": "If p₁, p₂, p₃ are the altitudes of a △ABC, then show that (i) 1/p₁ + 1/p₂ + 1/p₃ = 1/r, (ii) 1/p₁ + 1/p₂ − 1/p₃ = 1/r₃, and (iii) p₁p₂p₃ = (abc)²/(8R³) = 8Δ³/(abc).",
@@ -37,19 +37,19 @@
     },
     {
       "label": "Prove part (iii)",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.49 — LAQ chapter 6 Properties of Triangles, answer 39. Printed appearances: TS 18. THREE results from one setup. All three follow from a single observation — each altitude is 2Δ divided by its own base — so that is established once and then used three times. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. FIGURE: the book prints one against this answer — triangle ABC with the altitude from A dropped onto BC, its right angle marked and the base named a (book p.49). It is the ONLY figure in the Properties of Triangles chapter, and it is redrawn as its own step because pairing each altitude with the side it is dropped onto is what all three parts rest on."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.49 — LAQ chapter 6 Properties of Triangles, answer 39. Printed appearances: TS 18. THREE results from one setup. All three follow from a single observation — each altitude is 2Δ divided by its own base — so that is established once and then used three times. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. FIGURE: the book prints one against this answer — triangle ABC with the altitude from A dropped onto BC, its right angle marked and the base named a (book p.49). It is the ONLY figure in the Properties of Triangles chapter, and it is redrawn as its own step because pairing each altitude with the side it is dropped onto is what all three parts rest on. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Prove part (iii)\" step."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Properties of Triangles · 7 marks"
+      "Properties of Triangles · 8 marks"
     ],
     "steps": [
       {
@@ -299,9 +299,9 @@
         "id": "s4_prove_part_iii",
         "kind": "boxed_final",
         "label": "Prove part (iii)",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
+        "margin_note": "Last two marks. Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
         "lines": [
           "(iii) p₁p₂p₃ = (2Δ/a)(2Δ/b)(2Δ/c) = 8Δ³/(abc)",
           "Also Δ = abc/(4R) ⇒ 8Δ³/(abc) = 8/(abc) · (abc/4R)³",

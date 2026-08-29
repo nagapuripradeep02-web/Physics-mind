@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "By using the matrix inversion method, solve 2x − y + 3z = 8, −x + 2y + z = 4, 3x + y − 4z = 0.",
@@ -37,7 +37,7 @@
     },
     {
       "label": "Find the cofactor matrix",
-      "marks": 2
+      "marks": 3
     },
     {
       "label": "Transpose to Adj A and write A⁻¹",
@@ -51,13 +51,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.30 — LAQ chapter 3 Matrices, answer 19.2. Printed appearances: TS 22 · AP 15. THE 4+3 SPLIT IS THE BOOK'S, though not in its usual form: no [N Marks] tags are printed against these answers, but a margin note on book p.30 states it in words — \"Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks!\". The five steps here honour that exactly: det A, the cofactor matrix and the adjoint/inverse total 4, and the matrix form plus the multiplication total 3. The finer 1/2/1 and 1/2 division INSIDE each half is ours, not the book's. The SAME split and the SAME step ids are used on all three matrix-inversion answers in this unit, deliberately: the three questions are one method over different numbers. Star rank is the CHAPTER's ★★★, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.30 — LAQ chapter 3 Matrices, answer 19.2. Printed appearances: TS 22 · AP 15. THE 4+3 SPLIT IS THE BOOK'S, though not in its usual form: no [N Marks] tags are printed against these answers, but a margin note on book p.30 states it in words — \"Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks!\". The five steps here honour that exactly: det A, the cofactor matrix and the adjoint/inverse total 4, and the matrix form plus the multiplication total 3. The finer 1/2/1 and 1/2 division INSIDE each half is ours, not the book's. The SAME split and the SAME step ids are used on all three matrix-inversion answers in this unit, deliberately: the three questions are one method over different numbers. Star rank is the CHAPTER's ★★★, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Find the cofactor matrix\" step."
   },
   "recall_prompt": "Say how you would solve this by the matrix inversion method — say what you have to find first, how you build the inverse, and what you multiply at the end.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -115,7 +115,7 @@
         "label": "Find det A",
         "marks": 1,
         "mark_note": "Determinant",
-        "margin_note": "Second mark. det A is −38, non-zero, so A⁻¹ exists. This is the question the book attaches its mark note to: finding A⁻¹ is worth 4 of the 7 marks on its own.",
+        "margin_note": "Second mark. det A is −38, non-zero, so A⁻¹ exists. This is the question the book attaches its mark note to: finding A⁻¹ was worth 4 of the old 7 marks on its own, and is 5 of the 8 marks on the 2026-27 paper.",
         "lines": [
           {
             "text": "\\det A = \\begin{vmatrix} 2 & -1 & 3 \\\\ -1 & 2 & 1 \\\\ 3 & 1 & -4 \\end{vmatrix}",
@@ -160,9 +160,9 @@
         "id": "s3_cofactors",
         "kind": "equation",
         "label": "Find the cofactor matrix",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Cofactors",
-        "margin_note": "Two marks, and the longest part of the question — nine 2×2 determinants. The sign board is + − + / − + − / + − +. Cross out the entry’s own row and column, take the determinant of what is left, then apply that sign.",
+        "margin_note": "Three marks, and the longest part of the question — nine 2×2 determinants. The sign board is + − + / − + − / + − +. Cross out the entry’s own row and column, take the determinant of what is left, then apply that sign.",
         "lines": [
           "Delete each entry’s row and column, take the 2×2",
           "determinant, and apply the sign board + − + / − + − / + − +:",

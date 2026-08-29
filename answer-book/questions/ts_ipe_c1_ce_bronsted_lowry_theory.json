@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book prints the names as 'Brownstead – Lowery' throughout; this card uses the standard spelling Brønsted–Lowry."
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book prints the names as 'Brownstead – Lowery' throughout; this card uses the standard spelling Brønsted–Lowry. AI chemistry check 2026-08-25. Chemistry verified correct (both conjugate pairs differ by exactly one H⁺); two memory tips rewritten for Rule 41 ('catches', 'lands on'). No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -83,7 +83,7 @@
           "Writing that a base must contain OH⁻. NH₃ has no OH⁻ and is still a base — it accepts a proton.",
           "Writing electron-pair donor, which is the Lewis base definition."
         ],
-        "memory_tip": "The base catches the proton the acid donates — one transfer, two roles.",
+        "memory_tip": "The base accepts the proton the acid donates — one transfer, two roles.",
         "margin_note": "Water appears in both lists — it can donate or accept a proton."
       },
       {
@@ -106,7 +106,7 @@
           "Labelling H₂O as the base out of habit. In this reaction water donates the proton, so it is the acid.",
           "Writing the equation with a one-way arrow instead of ⇌."
         ],
-        "memory_tip": "Follow the proton: it leaves H₂O and lands on NH₃. The giver is the acid.",
+        "memory_tip": "Follow the proton: it moves from H₂O to NH₃. The species that donates it is the acid.",
         "margin_note": "Label the acid and the base under the equation."
       },
       {

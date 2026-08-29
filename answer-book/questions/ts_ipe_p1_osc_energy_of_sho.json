@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 8,
+    "number": 7,
     "name": "Oscillations"
   },
   "chapter": "Oscillations",
@@ -94,7 +94,8 @@
             "kinetic energy"
           ]
         },
-        "memory_tip": "Write v in terms of y, not t: v = ω√(A² − y²), so KE = ½mω²(A² − y²)."
+        "memory_tip": "Write v in terms of y, not t: v = ω√(A² − y²), so KE = ½mω²(A² − y²).",
+        "margin_note": "First two marks. The line v = ω√(A² − y²) has to come before KE."
       },
       {
         "id": "s2_potential",
@@ -137,7 +138,8 @@
             "integrate"
           ]
         },
-        "memory_tip": "The force grows with y, so integrate — PE = ½mω²y². Using F × y directly gives twice the answer."
+        "memory_tip": "The force grows with y, so integrate — PE = ½mω²y². Using F × y directly gives twice the answer.",
+        "margin_note": "Second two marks. The integration earns them — show dW = mω²y dy first."
       },
       {
         "id": "s3_positions",
@@ -182,7 +184,8 @@
             "extreme"
           ]
         },
-        "memory_tip": "Three positions to quote: mean (all kinetic), extreme (all potential), in between (shared)."
+        "memory_tip": "Three positions to quote: mean (all kinetic), extreme (all potential), in between (shared).",
+        "margin_note": "Third pair of marks. All three positions, each with both KE and PE."
       },
       {
         "id": "s4_graph",
@@ -324,7 +327,8 @@
             "curves"
           ]
         },
-        "memory_tip": "Two mirror parabolas and one flat line on top — the flat line is the total energy."
+        "memory_tip": "Two mirror parabolas and one flat line on top — the flat line is the total energy.",
+        "margin_note": "One mark for the figure. Label both curves and the flat total line."
       },
       {
         "id": "s5_total",
@@ -363,7 +367,8 @@
             "cancel"
           ]
         },
-        "memory_tip": "Add KE and PE: the y² terms cancel. That cancellation IS the proof."
+        "memory_tip": "Add KE and PE: the y² terms cancel. That cancellation IS the proof.",
+        "margin_note": "The last mark. Add KE and PE at a general y, not only at the two ends."
       }
     ]
   },

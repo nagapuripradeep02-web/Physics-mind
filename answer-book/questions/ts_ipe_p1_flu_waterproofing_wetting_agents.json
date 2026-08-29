@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_waterproofing_wetting_agents",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are waterproofing agents and water wetting agents? What do they do?",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 6,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Wetting agents lower T and θ",
+      "marks": 1
+    },
+    {
+      "label": "Waterproofing agents raise θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2025 (Q6) — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: water wetting agents (soaps, detergents) lower the surface tension of water, which lowers the angle of contact, so the water spreads over the solid and enters the narrow gaps between fibres; waterproofing agents raise the angle of contact above 90°, so water does not enter the gaps and stands on the cloth as drops. The cloth still has open gaps after waterproofing, which is why it remains permeable to air."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_wetting_agents",
+        "kind": "text",
+        "label": "Wetting agents lower T and θ",
+        "marks": 1,
+        "mark_note": "Lower surface tension, lower θ",
+        "lines": [
+          "Water wetting agents are substances added",
+          "to water to lower its surface tension.",
+          "Soaps and detergents are the common ones.",
+          "A smaller surface tension gives a smaller",
+          "angle of contact, so the water spreads",
+          "over the solid and enters the narrow gaps",
+          "between the fibres of a cloth.",
+          "This is why washing needs a detergent."
+        ],
+        "margin_note": "First mark. Say lowers the surface tension and lowers the angle of contact.",
+        "why": "Cleaning needs the water to reach the fibre itself. Lowering the surface tension lowers θ, and the water then covers more of the solid instead of standing on it.",
+        "common_mistakes": [
+          "Saying detergents raise the surface tension of water. They lower it.",
+          "Naming the substances but never saying what they change. The question asks what they do."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That wetting agents such as soaps and detergents lower the surface tension of water, lower the angle of contact, and make the water spread.",
+          "accept": [
+            "soaps and detergents lower the surface tension",
+            "angle of contact becomes smaller",
+            "water spreads and enters the cloth"
+          ],
+          "reject": [
+            "the angle of contact becomes more than ninety degrees"
+          ],
+          "heard_as": [
+            "wetting agent",
+            "detergent",
+            "surface tension"
+          ]
+        },
+        "memory_tip": "Detergent lowers T, so θ falls and the water spreads. Lower, lower, spread."
+      },
+      {
+        "id": "s2_waterproofing_agents",
+        "kind": "boxed_final",
+        "label": "Waterproofing agents raise θ",
+        "marks": 1,
+        "mark_note": "Raise θ above 90°",
+        "lines": [
+          "Waterproofing agents are substances put on",
+          "a fabric to raise its angle of contact",
+          "with water above 90°.",
+          "Water then stands on the cloth as drops",
+          "and does not enter the gaps between the",
+          "fibres, so the cloth stays dry. The gaps",
+          "are still open, so air still passes",
+          "through.",
+          {
+            "text": "Wetting: θ falls · Proofing: θ rises",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The number 90° is what separates wetting from not wetting.",
+        "why": "Above 90° the liquid surface in a narrow gap curves the other way, and the pressure difference across that surface keeps the water out of the gap instead of drawing it in.",
+        "common_mistakes": [
+          "Saying waterproofing agents seal the gaps in the cloth. They change the angle of contact; the gaps stay open.",
+          "Giving the two agents the same effect. One lowers the angle of contact, the other raises it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That waterproofing agents raise the angle of contact above ninety degrees, so water does not enter the cloth and stands on it as drops.",
+          "accept": [
+            "angle of contact goes above ninety degrees",
+            "water does not wet the cloth",
+            "water stands as drops on the fabric"
+          ],
+          "reject": [
+            "soaps and detergents lower the surface tension"
+          ],
+          "heard_as": [
+            "waterproofing",
+            "ninety degrees",
+            "angle of contact"
+          ]
+        },
+        "memory_tip": "Below 90° water goes in, above 90° water stays out. Waterproofing raises θ."
+      }
+    ]
+  },
+  "insider_note": "Two halves, one mark each, so both must appear. The examiner ticks the direction of the change to θ: down for wetting, up for waterproofing."
+}

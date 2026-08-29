@@ -113,6 +113,33 @@ function denseTailPairs(pairCount: number): number {
 const DENSE_MOTION_INK_EPSILON = 0.005;   // ≥0.5% of the pair's own ink pixels
 const DENSE_INK_ABS_FLOOR_PX = 32;        // AND ≥32px changed in absolute terms
 const DENSE_INK_MIN_CONTENT_PX = 500;     // frames with <500 ink px skip the ink lens (degenerate/near-blank)
+// The ink denominator counts only ink that CAN move — pixels that differ from
+// the series' first frame at least once somewhere in the series. Static control
+// chrome is excluded by construction.
+//
+// Why (bug_class visual_eyes_d5_ink_relative_lens_is_diluted_by_static_chrome_on_
+// explore_states): the rescue lens divided by the frame's TOTAL non-background
+// ink, which on an interaction_complete explore state is dominated by the
+// always-on slider panel, the scene-group picker and the HUD box — none of which
+// can move. MEASURED on lines_and_planes_in_space (run 20260827-183756, 29 dense
+// frames per state):
+//     STATE_9     total ink 135408   movable 5356    movable share  4.0%
+//     STATE_9@B   total ink  59440   movable 4456    movable share  7.5%
+//     STATE_1     total ink  65644   movable 40568   movable share 61.8%
+// So on the explore state the denominator was ~25x too large, and a lambda
+// marker traversing the FULL length of its line scored 0.23-0.28% of ink against
+// a 0.5% floor. STATE_9:D5 then failed on EIGHT consecutive runs of a correct
+// state — a gate that fails correct content trains its readers to wave it
+// through, which is the same end state as a gate that passes everything.
+// STATE_1 shows the guided case is barely affected (61.8% movable), so this
+// narrows the denominator exactly where it was wrong.
+//
+// THIS CANNOT MANUFACTURE A PASS. findInkMotion still requires
+// diffPx >= DENSE_INK_ABS_FLOOR_PX (32) in ABSOLUTE terms, and a frozen pair has
+// diffPx ~0-16px (this file's measured noise ceiling), so no denominator can
+// lift it over the floor. Shrinking the denominator can only rescue a pair that
+// already moved real pixels.
+const DENSE_INK_MOVABLE_FLOOR_PX = 64;    // <64 movable ink px in the series => fall back to the total-ink denominator
 const INK_BG_DELTA = 24;                  // per-pixel |ΔR|+|ΔG|+|ΔB| above this = "ink", not background
 
 // Tesseract template-leak literal characters to search for in OCR output.
@@ -293,13 +320,13 @@ async function runDenseChecks(
             evidence = `OK — motion visible: max adjacent diff ${(maxDiff * 100).toFixed(2)}% of canvas (≥${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% required). Profile: ${profile}`;
         } else if (inkHit) {
             evidence = `OK — motion visible via ink-relative lens: ${pairLabel(inkHit.idx)} changed ${inkHit.diffPx}px `
-                + `(${(inkHit.inkRatio * 100).toFixed(2)}% of that pair's ~${Math.round(inkHit.avgInk)}px of ink; canvas-ratio stayed `
+                + `(${(inkHit.inkRatio * 100).toFixed(2)}% of that pair's ~${Math.round(inkHit.avgMovableInk)}px of MOVABLE ink, of ${Math.round(inkHit.avgInk)}px total; canvas-ratio stayed `
                 + `${(maxDiff * 100).toFixed(2)}%, below the ${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% canvas floor — a thin primitive `
                 + `moving on a large canvas). Ink profile: ${inkProfile}`;
         } else {
             evidence = `State declares motion but pixels never move: max adjacent diff ${(maxDiff * 100).toFixed(2)}% of canvas `
                 + `(<${(DENSE_MOTION_EPSILON * 100).toFixed(1)}%) and ink-relative diff stayed <${(DENSE_MOTION_INK_EPSILON * 100).toFixed(1)}% `
-                + `of ink (or too little ink to trust) across ${diffs.length} pairs. The animation loop is not driving the declared `
+                + `of MOVABLE ink (or too little ink to trust) across ${diffs.length} pairs. The animation loop is not driving the declared `
                 + `trajectory. Profile: ${profile}. Ink profile: ${inkProfile}`;
         }
         results.push(mkResult('D5', stateId, passed, evidence));
@@ -349,34 +376,101 @@ async function runDenseChecks(
  *  the ink-ratio (D5's additional lens — see DENSE_MOTION_INK_EPSILON). */
 interface AdjacentDiff {
     diffPx: number;
-    canvasRatio: number;      // diffPx / totalCanvasPx — UNCHANGED semantics
-    avgInk: number;           // avg ink-pixel count of the pair's two frames
-    inkRatio: number | null;  // diffPx / avgInk; null when avgInk < DENSE_INK_MIN_CONTENT_PX
+    canvasRatio: number;         // diffPx / totalCanvasPx — UNCHANGED semantics
+    avgInk: number;              // avg TOTAL ink-pixel count of the pair's two frames
+    avgMovableInk: number;       // avg ink that changes somewhere in the series (the denominator)
+    inkRatio: number | null;     // diffPx / avgMovableInk; null when the guards below fail
 }
 
 /** Decode the series once, then pixelmatch each adjacent pair. */
 async function adjacentDiffRatios(framesB64: string[]): Promise<AdjacentDiff[]> {
     const decoded = await Promise.all(framesB64.map(decodeRgba));
     const inkCounts = decoded.map(img => countInkPixels(img, estimateBackground(img)));
+    const movableCounts = countMovableInk(decoded);
     const out: AdjacentDiff[] = [];
     for (let i = 0; i < decoded.length - 1; i++) {
         const a = decoded[i];
         const b = decoded[i + 1];
         if (a.width !== b.width || a.height !== b.height) {
             // Dimension drift mid-series — treat as identical (skip-friendly).
-            out.push({ diffPx: 0, canvasRatio: 0, avgInk: 0, inkRatio: null });
+            out.push({ diffPx: 0, canvasRatio: 0, avgInk: 0, avgMovableInk: 0, inkRatio: null });
             continue;
         }
         const diffPx = pixelmatch(a.data, b.data, undefined, a.width, a.height, PIXELMATCH_OPTIONS);
         const avgInk = (inkCounts[i] + inkCounts[i + 1]) / 2;
+        const avgMovableInk = (movableCounts[i] + movableCounts[i + 1]) / 2;
+        // The degenerate-frame guard is unchanged: a near-blank frame has no
+        // trustworthy ink at all, and its ink lens is skipped exactly as before.
+        //
+        // THE MOVABLE COUNT FALLS BACK, IT DOES NOT DISQUALIFY. Below the floor the
+        // denominator reverts to TOTAL ink — the pre-existing behaviour — rather
+        // than nulling the lens. That distinction is what makes this change
+        // provably safe fleet-wide instead of merely tested on one concept:
+        //
+        //   movableInk <= totalInk always (movable ink is a subset of ink), so
+        //   diffPx/movable >= diffPx/total. The new ratio is >= the old ratio for
+        //   every pair, and the ink lens only ever ADDS a D5 pass path
+        //   (passed = canvasPassed || inkHit !== null). Therefore no concept that
+        //   passed D5 before can fail it now, and no fleet re-verify is needed to
+        //   establish that — it holds by construction.
+        //
+        //   Nulling below the floor, which this first did, would have REMOVED a
+        //   pass path: a concept passing via the ink lens with total ink >= 500 but
+        //   under 64px of movable ink would have newly failed, silently, on a gate
+        //   change verified against a single concept.
+        const denom = avgMovableInk >= DENSE_INK_MOVABLE_FLOOR_PX ? avgMovableInk : avgInk;
         out.push({
             diffPx,
             canvasRatio: diffPx / (a.width * a.height),
             avgInk,
-            inkRatio: avgInk >= DENSE_INK_MIN_CONTENT_PX ? diffPx / avgInk : null,
+            avgMovableInk,
+            inkRatio: avgInk >= DENSE_INK_MIN_CONTENT_PX ? diffPx / denom : null,
         });
     }
     return out;
+}
+
+/**
+ * Per-frame count of ink that MOVES somewhere in the series.
+ *
+ * A pixel is "movable" if it differs from the first frame in at least one frame
+ * of the series; every other ink pixel is static chrome or static scene. Counted
+ * once over the whole series, then reported per frame as that frame's ink
+ * restricted to the movable set — so the D5 denominator is the ink that could
+ * possibly have changed, not the ink that happens to be on screen.
+ *
+ * Deliberately series-scoped rather than pair-scoped: a marker that pauses for a
+ * beat is still movable ink, and a pair-local mask would shrink the denominator
+ * exactly when the object stops, inflating the ratio at the wrong moment.
+ */
+function countMovableInk(frames: RgbaImage[]): number[] {
+    if (frames.length === 0) return [];
+    const first = frames[0];
+    const { width, height } = first;
+    const px = width * height;
+    const movable = new Uint8Array(px);
+    for (let f = 1; f < frames.length; f++) {
+        const cur = frames[f];
+        if (cur.width !== width || cur.height !== height) continue;
+        const A = first.data, B = cur.data;
+        for (let i = 0, p = 0; p < px; i += 4, p++) {
+            if (movable[p]) continue;
+            const d = Math.abs(A[i] - B[i]) + Math.abs(A[i + 1] - B[i + 1]) + Math.abs(A[i + 2] - B[i + 2]);
+            if (d > INK_BG_DELTA) movable[p] = 1;
+        }
+    }
+    return frames.map((img) => {
+        if (img.width !== width || img.height !== height) return 0;
+        const bg = estimateBackground(img);
+        const { data } = img;
+        let n = 0;
+        for (let i = 0, p = 0; p < px; i += 4, p++) {
+            if (!movable[p]) continue;
+            const d = Math.abs(data[i] - bg[0]) + Math.abs(data[i + 1] - bg[1]) + Math.abs(data[i + 2] - bg[2]);
+            if (d > INK_BG_DELTA) n++;
+        }
+        return n;
+    });
 }
 
 /**
@@ -430,13 +524,13 @@ function countInkPixels(img: RgbaImage, bg: [number, number, number]): number {
  * from reading as a large percentage of a tiny ink count. Returns null when no
  * pair qualifies; this only ever ADDS a D5 pass path, it never removes one.
  */
-function findInkMotion(pairs: AdjacentDiff[]): { idx: number; diffPx: number; avgInk: number; inkRatio: number } | null {
-    let best: { idx: number; diffPx: number; avgInk: number; inkRatio: number } | null = null;
+function findInkMotion(pairs: AdjacentDiff[]): { idx: number; diffPx: number; avgInk: number; avgMovableInk: number; inkRatio: number } | null {
+    let best: { idx: number; diffPx: number; avgInk: number; avgMovableInk: number; inkRatio: number } | null = null;
     pairs.forEach((p, idx) => {
         if (p.inkRatio === null) return;
         if (p.inkRatio < DENSE_MOTION_INK_EPSILON) return;
         if (p.diffPx < DENSE_INK_ABS_FLOOR_PX) return;
-        if (!best || p.inkRatio > best.inkRatio) best = { idx, diffPx: p.diffPx, avgInk: p.avgInk, inkRatio: p.inkRatio };
+        if (!best || p.inkRatio > best.inkRatio) best = { idx, diffPx: p.diffPx, avgInk: p.avgInk, avgMovableInk: p.avgMovableInk, inkRatio: p.inkRatio };
     });
     return best;
 }

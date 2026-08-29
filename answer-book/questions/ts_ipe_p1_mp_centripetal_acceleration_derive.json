@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 3,
     "name": "Motion in a Plane"
   },
   "chapter": "Motion in a Plane",
@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -55,6 +55,7 @@
           "turns through an angle Δθ, and the velocity",
           "vector turns through the SAME angle Δθ."
         ],
+        "margin_note": "First mark. Set up the two instants and name Δθ. No formula is expected yet.",
         "why": "The velocity always stays perpendicular to the radius, so when one turns by an angle the other must turn by the same angle.",
         "common_mistakes": [
           "Assuming the velocity vector does not turn because the speed is constant."
@@ -73,7 +74,8 @@
             "same angle",
             "delta theta"
           ]
-        }
+        },
+        "memory_tip": "Draw both instants first: two radii, two velocity arrows, the same Δθ between each pair."
       },
       {
         "id": "s2_triangles",
@@ -96,7 +98,8 @@
             "style": "eq"
           }
         ],
-        "why": "Similar triangles turn a hard vector subtraction into a ratio of lengths, which is the whole method of this derivation.",
+        "margin_note": "Two marks. Say the two triangles are similar before writing the ratio.",
+        "why": "Similar triangles turn a hard vector subtraction into a ratio of lengths, which is the whole method of this derivation. Here Δs is the chord between the two positions; for a very small Δt the chord equals the arc, so Δs/Δt becomes the speed v.",
         "common_mistakes": [
           "Writing Δv / r = Δs / v, the two triangles matched up wrongly."
         ],
@@ -115,7 +118,8 @@
             "similar",
             "delta v by v"
           ]
-        }
+        },
+        "memory_tip": "Short side over its OWN long side: Δv/v from the velocity triangle, Δs/r from the radius one."
       },
       {
         "id": "s3_result",
@@ -132,6 +136,7 @@
           "does, so this acceleration is always",
           "perpendicular to the velocity."
         ],
+        "margin_note": "Fourth mark. Box a = v²/r and write \"towards the centre\" beside it.",
         "why": "An acceleration perpendicular to the velocity can only turn the motion, never speed it up — which is why the speed stays constant.",
         "common_mistakes": [
           "Dropping the direction; the magnitude alone does not earn the last mark."
@@ -151,8 +156,10 @@
             "v squared by r",
             "centre"
           ]
-        }
+        },
+        "memory_tip": "Check the units: v²/r is m²s⁻² divided by m, which is m s⁻². An r on top would be wrong."
       }
     ]
-  }
+  },
+  "insider_note": "The similar triangles step carries 2 of the 4 marks. Set up Δv / v = Δs / r and the rest of the derivation is one line."
 }

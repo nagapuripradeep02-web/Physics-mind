@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 2,
+    "number": 4,
     "name": "Mathematical Induction"
   },
   "chapter": "Mathematical Induction",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "Using the principle of finite Mathematical Induction, prove that a + ar + ar² + … upto n terms = a(rⁿ − 1)/(r − 1), for r ≠ 1.",
@@ -41,7 +41,7 @@
     },
     {
       "label": "Prove S(k+1)",
-      "marks": 3
+      "marks": 4
     },
     {
       "label": "Conclude by P.M.I.",
@@ -51,13 +51,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.99 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 144. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: the bank gives no mark cut here, but Mathematical Induction is an LAQ-ONLY unit — the paper gives it only Q19 — so the section is fixed by the unit, not inferred. Printed appearances: AP 19 · TS 20. The geometric-progression sum, proved by induction. It uses the SAME five moves as every answer in Unit 2 — nth term, S(1), assume S(k), prove S(k+1), conclude by P.M.I. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.99 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 144. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: the bank gives no mark cut here, but Mathematical Induction is an LAQ-ONLY unit — the paper gives it only Q19 — so the section is fixed by the unit, not inferred. Printed appearances: AP 19 · TS 20. The geometric-progression sum, proved by induction. It uses the SAME five moves as every answer in Unit 2 — nth term, S(1), assume S(k), prove S(k+1), conclude by P.M.I. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Prove S(k+1)."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Mathematical Induction · 7 marks"
+      "Mathematical Induction · 8 marks"
     ],
     "steps": [
       {
@@ -185,9 +185,9 @@
         "id": "s4_prove_s_k_1",
         "kind": "equation",
         "label": "Prove S(k+1)",
-        "marks": 3,
+        "marks": 4,
         "mark_note": "Inductive step",
-        "margin_note": "Three marks — the bulk. Add the (k+1)th term, which is ar^k, to both sides of the hypothesis, then combine over the common denominator.",
+        "margin_note": "Four marks — the bulk. Add the (k+1)th term, which is ar^k, to both sides of the hypothesis, then combine over the common denominator.",
         "lines": [
           "Adding the (k+1)th term ar^k to both sides of (1):",
           "L.H.S = a(r^k − 1)/(r − 1) + ar^k",

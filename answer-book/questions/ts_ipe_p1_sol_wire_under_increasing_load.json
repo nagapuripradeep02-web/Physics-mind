@@ -1,0 +1,397 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_wire_under_increasing_load",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the behaviour of a wire under gradually increasing load.",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 16,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2024,
+      "q_no": 18,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 17,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 17,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The proportional region",
+      "marks": 1
+    },
+    {
+      "label": "Elastic limit and permanent set",
+      "marks": 1
+    },
+    {
+      "label": "Yield point and plastic region",
+      "marks": 1
+    },
+    {
+      "label": "Fracture point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2017 (Q17), March 2020 (Q17), March 2024 (Q18) and March 2025 (Q16) — TS Inter I-Year Physics Paper-I, Section B, 4 marks each time. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Hooke's law (stress ∝ strain) holds only up to the proportional limit; the elastic limit is the last point of full recovery and a permanent set remains beyond it; the yield point begins the plastic region, where strain grows for little added stress; the wire narrows at one place before it breaks at the fracture point."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_curve",
+        "kind": "diagram",
+        "label": "The stress–strain curve",
+        "marks": 0,
+        "figure": {
+          "id": "stress_strain_curve",
+          "width": 460,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "yaxis",
+              "d": "M 75 275 L 75 45",
+              "ms": 420,
+              "w": 2.4
+            },
+            {
+              "type": "stroke",
+              "id": "yhead",
+              "d": "M 69 56 L 75 44 L 81 56",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "xaxis",
+              "d": "M 75 275 L 437 275",
+              "ms": 420,
+              "w": 2.4
+            },
+            {
+              "type": "stroke",
+              "id": "xhead",
+              "d": "M 426 269 L 438 275 L 426 281",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_stress",
+              "x": 44,
+              "y": 34,
+              "text": "Stress",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_strain",
+              "x": 340,
+              "y": 306,
+              "text": "Strain",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 56,
+              "y": 296,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "curve_op",
+              "d": "M 75 275 L 180 130",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "dot_p",
+              "d": "M 176 130 A 4 4 0 1 0 184 130 A 4 4 0 1 0 176 130",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 156,
+              "y": 122,
+              "text": "P",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "drop_p",
+              "d": "M 180 132 L 180 273",
+              "ms": 340,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "curve_pe",
+              "d": "M 180 130 C 190 118 202 108 214 104",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "dot_e",
+              "d": "M 210 104 A 4 4 0 1 0 218 104 A 4 4 0 1 0 210 104",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_e",
+              "x": 198,
+              "y": 88,
+              "text": "E",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "curve_ey",
+              "d": "M 214 104 C 224 100 236 96 246 95",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "dot_y",
+              "d": "M 242 95 A 4 4 0 1 0 250 95 A 4 4 0 1 0 242 95",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 252,
+              "y": 74,
+              "text": "Y",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "drop_y",
+              "d": "M 246 97 L 246 273",
+              "ms": 340,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "curve_plastic",
+              "d": "M 246 95 C 270 99 296 90 322 76 C 334 69 342 65 350 62",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "curve_neck",
+              "d": "M 350 62 C 368 64 390 82 405 105",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "break1",
+              "d": "M 398 98 L 412 112",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "break2",
+              "d": "M 412 98 L 398 112",
+              "ms": 140
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 418,
+              "y": 96,
+              "text": "F",
+              "ms": 200
+            }
+          ]
+        },
+        "margin_note": "No mark of its own. The question asks for a description, so this is a study drawing that holds the four named points in the right order.",
+        "why": "Every named point in the answer sits on this one curve, so drawing it first keeps P, E, Y and F in the order the description needs.",
+        "common_mistakes": [
+          "Drawing strain up the vertical axis. Stress goes up the vertical axis and strain along the horizontal one.",
+          "Marking the fracture point at the highest point of the curve. The highest point comes first, then the wire narrows and breaks."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the answer is built on the stress-strain curve, with P, E, Y and F marked along it in that order.",
+          "accept": [
+            "draw the stress strain curve",
+            "mark P, E, Y and F on the graph",
+            "stress on the y axis and strain on the x axis"
+          ],
+          "reject": [
+            "stress is proportional to strain up to P"
+          ],
+          "heard_as": [
+            "graph",
+            "curve",
+            "stress strain diagram"
+          ]
+        },
+        "memory_tip": "Four points in order along the curve: P, then E, then Y, then F."
+      },
+      {
+        "id": "s2_proportional",
+        "kind": "equation",
+        "label": "The proportional region",
+        "marks": 1,
+        "mark_note": "Hooke's law region",
+        "lines": [
+          "The wire is loaded a little at a time and the",
+          "extension is measured at each load.",
+          "At first the graph is a straight line through",
+          "the origin: stress is proportional to strain.",
+          {
+            "text": "Stress ∝ strain   (Hooke's law)",
+            "style": "eq"
+          },
+          "The stress at the end of this straight part",
+          "is the proportional limit, P."
+        ],
+        "margin_note": "First mark. Name the straight part as Hooke's law and name P as the proportional limit.",
+        "why": "Hooke's law is a law of the straight part only. The wire keeps stretching after P, but no longer in proportion to the load.",
+        "common_mistakes": [
+          "Saying Hooke's law holds up to the breaking point. It holds only up to the proportional limit.",
+          "Saying the wire is not elastic after P. It is still elastic between P and E; it is only no longer proportional."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first part of the graph is a straight line through the origin where stress is proportional to strain, ending at the proportional limit P.",
+          "accept": [
+            "straight line through the origin",
+            "stress is proportional to strain",
+            "P is the proportional limit"
+          ],
+          "reject": [
+            "a permanent set is left in the wire"
+          ],
+          "heard_as": [
+            "Hooke's law",
+            "proportional limit",
+            "straight line"
+          ]
+        },
+        "memory_tip": "Straight line means Hooke's law. P is the point where the line stops being straight."
+      },
+      {
+        "id": "s3_elastic_yield",
+        "kind": "equation",
+        "label": "Elastic limit and yield point",
+        "marks": 2,
+        "mark_note": "Elastic limit and yield point",
+        "lines": [
+          "Just past P the graph bends, but the wire",
+          "still returns to its original length when the",
+          "load is removed. The stress at the last point",
+          "of full recovery is the elastic limit, E.",
+          "Beyond E the wire does not return fully. A",
+          "permanent set is left in the wire.",
+          "At the yield point Y the wire stretches a lot",
+          "for very little added stress. This is the",
+          "plastic region."
+        ],
+        "margin_note": "Two marks here. One for the elastic limit and the permanent set, one for the yield point and the plastic region.",
+        "why": "The elastic limit and the yield point are two different points that sit close together on the graph. E is about recovery; Y is about strain growing fast for almost no added stress.",
+        "common_mistakes": [
+          "Treating the elastic limit and the yield point as the same point. E is where full recovery ends; Y is where the strain starts growing fast.",
+          "Saying the wire returns to its original length after E. Past E a permanent set stays in the wire."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E is the elastic limit, the last point of full recovery, that a permanent set remains beyond it, and that at the yield point Y the strain grows for little added stress.",
+          "accept": [
+            "E is the elastic limit",
+            "a permanent set is left in the wire",
+            "at the yield point strain grows for little stress"
+          ],
+          "reject": [
+            "stress is proportional to strain"
+          ],
+          "heard_as": [
+            "elastic limit",
+            "permanent set",
+            "yield point",
+            "plastic region"
+          ]
+        },
+        "memory_tip": "E is the last point of full recovery. Past E a permanent set stays in the wire."
+      },
+      {
+        "id": "s4_fracture",
+        "kind": "boxed_final",
+        "label": "The fracture point",
+        "marks": 1,
+        "mark_note": "Fracture point",
+        "lines": [
+          "In the plastic region the wire keeps",
+          "stretching under an almost steady load. The",
+          "stress reaches a maximum, the wire narrows at",
+          "one place, and at the fracture point F it",
+          "breaks.",
+          {
+            "text": "Elastic up to E, plastic after Y, breaks at F",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Say that the wire narrows at one place first and then breaks at F.",
+        "why": "The load at F is often smaller than the largest load the wire carried, because the wire has thinned at one place and the same load now acts on a smaller area.",
+        "common_mistakes": [
+          "Saying the wire breaks at the point of maximum stress. It thins at one place first and breaks a little after that point.",
+          "Leaving F unnamed. The question is a list of named points, and F is one of them."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the stress reaches a maximum, the wire narrows at one place, and it breaks at the fracture point F.",
+          "accept": [
+            "the wire narrows and then breaks",
+            "F is the fracture point",
+            "stress reaches a maximum first"
+          ],
+          "reject": [
+            "E is the elastic limit"
+          ],
+          "heard_as": [
+            "fracture point",
+            "breaking point",
+            "necking"
+          ]
+        },
+        "memory_tip": "The wire thins at one place first, then breaks, so F comes after the highest point."
+      }
+    ]
+  },
+  "insider_note": "Four marks for four named points. An answer that describes the stretching without naming P, E, Y and F collects one or two."
+}

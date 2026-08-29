@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 10,
+    "number": 12,
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "In a △ABC, if a = 13, b = 14 and c = 15, then show that R = 65/8, r = 4, r₁ = 21/2, r₂ = 12 and r₃ = 14.",
@@ -45,7 +45,7 @@
     },
     {
       "label": "Find Δ by Heron",
-      "marks": 1
+      "marks": 2
     },
     {
       "label": "Find R",
@@ -71,13 +71,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Properties of Triangles, answer 32, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,16,17,19 — five printed tags, the most-asked LAQ in this unit. The reverse of answers 31.x: the SIDES are given and the five radii are wanted. The book calls it \"Roc'king... Q! Superrrr...Q!\" and its split is printed in full. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of seven working lines — a fully sourced 1+1+1+1+1+1+1, and the only printed split in this chapter. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Properties of Triangles, answer 32, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,16,17,19 — five printed tags, the most-asked LAQ in this unit. The reverse of answers 31.x: the SIDES are given and the five radii are wanted. The book calls it \"Roc'king... Q! Superrrr...Q!\" and its split is printed in full. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of seven working lines — a fully sourced 1+1+1+1+1+1+1, and the only printed split in this chapter. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Find Δ by Heron\" step."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Properties of Triangles · 7 marks"
+      "Properties of Triangles · 8 marks"
     ],
     "steps": [
       {
@@ -128,9 +128,9 @@
         "id": "s2_find_by_heron",
         "kind": "equation",
         "label": "Find Δ by Heron",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Second mark. Heron's formula. Group the factors into perfect squares — 3²×4²×7² — rather than multiplying out to 7056.",
+        "margin_note": "Two marks. Heron's formula. Group the factors into perfect squares — 3²×4²×7² — rather than multiplying out to 7056.",
         "lines": [
           "Δ = √(s(s−a)(s−b)(s−c))",
           "= √(21(21−13)(21−14)(21−15)) = √(21 × 8 × 7 × 6)",

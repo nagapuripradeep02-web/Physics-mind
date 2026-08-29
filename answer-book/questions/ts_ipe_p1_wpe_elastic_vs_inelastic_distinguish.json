@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Work Power Energy"
   },
   "chapter": "Work Power Energy",
@@ -57,6 +57,7 @@
           "Example: the collision of two atomic or",
           "sub-atomic particles."
         ],
+        "margin_note": "Two marks. Number the points, then the example. The example is easy to forget.",
         "why": "Momentum is conserved in both kinds, so it is kinetic energy alone that separates them — that is the line the mark is for.",
         "common_mistakes": [
           "Listing \"momentum is conserved\" as a difference; it holds for both."
@@ -76,7 +77,8 @@
             "elastic",
             "kinetic energy conserved"
           ]
-        }
+        },
+        "memory_tip": "Elastic means no loss: e = 1, and the kinetic energy after equals the kinetic energy before."
       },
       {
         "id": "s2_inelastic",
@@ -97,6 +99,7 @@
           "perfectly inelastic.",
           "Example: a bat striking a ball."
         ],
+        "margin_note": "Two marks. Keep the same three-point order as the elastic column, then the example.",
         "why": "The lost kinetic energy is not missing: it goes into heat, sound and permanent deformation, and saying so is what makes the answer complete.",
         "common_mistakes": [
           "Saying momentum is lost as well; only kinetic energy is."
@@ -116,8 +119,10 @@
             "inelastic",
             "not conserved"
           ]
-        }
+        },
+        "memory_tip": "Put the e values on a line: 1 elastic, 0 perfectly inelastic, in between for a real one."
       }
     ]
-  }
+  },
+  "insider_note": "Give three points a side and match them one to one — the conserved quantities, what happens after, the value of e."
 }

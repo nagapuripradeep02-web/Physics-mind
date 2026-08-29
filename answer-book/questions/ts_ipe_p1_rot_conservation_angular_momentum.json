@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -185,5 +185,6 @@
         "memory_tip": "Two examples, two mechanisms: the dancer changes I (arms in → spins faster); the helicopter needs a tail rotor because L is exchanged between its parts."
       }
     ]
-  }
+  },
+  "insider_note": "State, prove, examples: three separate demands in one question, and the examples are a full mark on their own."
 }

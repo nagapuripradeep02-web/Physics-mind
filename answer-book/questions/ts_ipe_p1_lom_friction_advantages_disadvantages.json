@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -16,7 +16,18 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "Explain the advantages and disadvantages of friction.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 13,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 13,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Advantages",
@@ -30,7 +41,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -80,7 +91,7 @@
             "nails"
           ]
         },
-        "memory_tip": "Remember five scenes: walking, holding, driving, braking, writing — each one needs friction."
+        "memory_tip": "Remember five scenes: walking, gripping, braking, nails holding, belts driving — each one needs friction."
       },
       {
         "id": "s2_disadvantages",
@@ -132,5 +143,6 @@
         "memory_tip": "All three losses are one loss: work done against friction leaves as heat and wear."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks a side. Three numbered points each is full marks, and the disadvantages half is where students run short of examples."
 }

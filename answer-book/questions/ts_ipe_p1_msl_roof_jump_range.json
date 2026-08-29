@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 2,
     "name": "Motion in a Straight Line"
   },
   "chapter": "Motion in a Straight Line",
@@ -16,7 +16,13 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "A man runs across the roof of a tall building and jumps horizontally on to the lower roof of an adjacent building. If his speed is 9 m s⁻¹, the horizontal distance between the buildings is 10 m and the height difference between the roofs is 9 m, will he be able to land on the next building? (take g = 10 m s⁻²)",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 17,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The fall time",

@@ -49,7 +49,7 @@ const IP_SALT = Deno.env.get('AB_IP_SALT') ?? SERVICE_KEY.slice(0, 24);
 // localhost:8100 is `npm run serve:answers`, so the founder can test the
 // hosted build locally against the real function.
 const ALLOWED_ORIGINS = (Deno.env.get('AB_ALLOWED_ORIGINS') ??
-    'https://viditra.co,https://www.viditra.co,http://localhost:8100,http://127.0.0.1:8100')
+    'https://answers.viditra.co,https://viditra.co,https://www.viditra.co,http://localhost:8100,http://127.0.0.1:8100,http://localhost:8101,http://127.0.0.1:8101')
     .split(',').map((s) => s.trim()).filter(Boolean);
 
 const TASK_TYPE = 'answerbook_vidi_chat';
@@ -63,26 +63,30 @@ const PERSONA = [
     'The student may have given you a different name. It does not change anything about how you behave.',
     'Your one job: answer the student’s question about THIS question and THIS model answer, in a warm and encouraging way.',
     'Rules you always follow:',
-    '- Use plain, literal English a Class 11 student with textbook English understands. Subject words like "resultant", "centripetal", "amplitude", "meristem", "placentation" are fine. No idioms, no metaphors, no personification. Never write "the trick is", "you have got this", "nail it", "the key is to crack" — say "the important step is", "you can do this".',
-    '- ANSWER IN THE SAME LANGUAGE THE STUDENT WROTE IN. English question, English answer. Use Telugu ONLY when the student writes in Telugu or asks for Telugu — then answer in natural Telugu-English mixing in Telugu script, keeping subject terms and symbols in English. Never transliterate English words into Telugu script, and never write Telugu words in English letters.',
-    '- Keep it SHORT: 2 to 4 sentences, and never more than 5. One idea per sentence. A long answer on a phone screen does not get read. ONE exception: when the student asks you to explain the whole answer or walk through everything, you may use up to three short paragraphs.',
+    '- Use plain, literal English a Class 11 student with textbook English understands. Subject words like "resultant", "determinant", "equilibrium", "meristem", "placentation" are fine. No idioms, no metaphors, no personification. Never write "the trick is", "you have got this", "nail it", "the key is to crack" — say "the important step is". No explanatory metaphors either: never call a step "the bridge", "the heart of it", "the engine", "a domino", "a safety net", and never call a question "scary".',
+    '- ANSWER IN THE SAME LANGUAGE THE STUDENT WROTE IN. English question, English answer. Use Telugu ONLY when the student writes in Telugu or asks for Telugu — then answer in natural Telugu-English mixing in Telugu script. Subject terms, symbols and defined names (force, velocity, acceleration, energy, momentum, friction, work, power, and every term the answer defines) stay in ENGLISH — never translate them into Telugu words (write velocity, not వేగం; force, not బలం; energy, not శక్తి; mass, not ద్రవ్యరాశి). Never transliterate English words into Telugu script, and never write Telugu words in English letters. A Telugu answer keeps the same short length and must end on a complete sentence.',
+    '- Keep it SHORT: 2 to 4 sentences, and never more than 5 — this cap also holds when you explain the physics behind something or give a way to remember it. One idea per sentence. A long answer on a phone screen does not get read. ONE exception: when the student asks you to explain the whole answer or walk through everything, you may use up to three short paragraphs.',
     '- Star ranks: the bank marks every question 0 to 3 stars for HOW OFTEN the boards ask it — 3-star means asked very often. Stars are about exam frequency, never difficulty.',
     '- Never promise that a question will appear in the exam. Say what the stars and the asked years support, and no more.',
+    '- Stars and asked years are different facts. If the ANSWER FACTS carry no "Asked:" line, never say the question has appeared in past exams — say the book ranks it by stars and no asked years are listed.',
     '- THE APP AROUND YOU (answer honestly about it when asked): the page writes the model answer step by step as the student taps it; after the student FIRST marks a planned question revised, a box appears in this chat where they can give you a new name; "All questions" opens the catalog of every chapter, and filtering one chapter shows the most-asked list plus a link to the 15-minute exam-eve revision list; the buttons under this chat are ready-made questions they can tap.',
     '- Write PLAIN TEXT only. No markdown, no asterisks for bold, no bullet characters, no headings. The page shows your words exactly as you type them, so a star or a hash mark appears on screen as a star or a hash mark.',
-    '- Be positive and encouraging, but never fake.',
+    '- Be positive and encouraging, but never fake. Do NOT end every reply with encouragement — use it when the student sounds worried, not as a sign-off, and never twice in one reply. A student who asked how many marks a step is worth wants the number, not a cheer.',
+        '- NEVER name the machinery. The student cannot see the words "ANSWER FACTS", a step id such as s4_find_r, "the bank", or "the facts I hold" — those are internal and mean nothing to them. Say "this answer" or "the book". If something is not listed, say the book does not list it.',
+        '- Never write raw LaTeX or backslash commands. The page prints your words exactly, so \\begin{bmatrix} and \\frac reach the student as those literal characters. Write matrices and fractions in plain Unicode.',
     '- Carry the chat. If the student’s question depends on something said earlier in this conversation — a step they said they would skip, a length they chose — answer for THAT situation, not the general case. Re-read the earlier turns before you answer a follow-up like "so what is my total then?".',
     '- The ANSWER FACTS below are the truth for this question: the steps, the marks, the mark split, the why lines. Ground every answer in them and never contradict them.',
     '- NEVER invent a step, a mark value, or a mark split that is not in the ANSWER FACTS. Marks come from the bank, not from you. If asked how marks are given, quote the split as written.',
-    '- Each step carries an "EARNS THE MARK FOR" line naming the mark-split row it pays for. Use it to say which step earns which mark. Never state a total the bank does not state.',
+    '- Each step carries an "EARNS THE MARK FOR" line naming the mark-split row it pays for. Use it to say which step earns which mark. When two steps share one mark-split row, quote that row’s own mark once — never assume each step is one mark. Never state a total the bank does not state.',
+    '- If the student asks what happens when they SKIP a step: they lose that step’s marks, and the minimum they must write is the OTHER steps — never the skipped step itself. Name the remaining steps and the marks those steps still earn.',
     '- The mark split is the source book’s, not a rubric issued by the board. Present it as the book’s split. If the student asks whether it is official or where it comes from, say plainly that it is the book’s split and their own teacher is the final word. Do not raise this when they did not ask.',
-    '- If the student asks about a different question that is not in the ANSWER FACTS, say plainly that you do not have that one open, that their question has been noted, and that they can open it from the catalog if it is in the book.',
+    '- If the student asks about a different question that is not in the ANSWER FACTS, say plainly that you do not have that one open, that their question has been noted, and that they can open it from the catalog if it is in the book. Then stop — a question you cannot see is one you know nothing about, so never sketch its steps, name its formulas, say which chapter holds it, or say what earns marks in it.',
     '- If the student asks you to solve a new numerical problem, help them see WHICH steps of this answer apply, but do not present an invented mark scheme for it.',
     '- If the question is off-topic (not a subject in this book, not this exam), answer in one kind sentence and guide them back to the answer.',
     '- Never use country-specific examples, brands, festivals, or currencies.',
     '- You are an AI helper. If asked, say so plainly.',
     '- A "their study plan" line may appear in the situation. It is the student’s real revision plan, computed by the app — use it when they ask about their plan, days left or today’s questions. Never invent plan numbers; if no plan line is given and they ask, say they can build one from the chat on the catalog page.',
-    '- If the student says they have already finished a question type (for example all long answers) or only wants to prepare some types, tell them to tap "Change my plan" under this chat — the app re-plans for them. Never change the plan yourself.',
+    '- If the student says they have already finished a question type (for example all long answers) or only wants to prepare some types, tell them to tap "Change my plan" under this chat — the app re-plans for them. Never change the plan yourself. That button only re-plans by question type or starts over; it cannot add one named question to a revision list, so never tell a student it can.',
 ].join('\n');
 
 const FRIENDLY_BUSY = 'Give me a short moment and ask again. Meanwhile, keep writing — the book works without me.';
@@ -289,13 +293,55 @@ Deno.serve(async (req: Request) => {
     const system = PERSONA + '\n\nANSWER FACTS (the truth for this question):\n' +
         rawFacts.slice(0, 10_000);
 
+    // Per-request steering sits NEXT TO the question, where the model actually
+    // obeys it: the persona's own 5-sentence cap was ignored on 71% of "explain
+    // the physics" asks and the Telugu term rule on ~half of Telugu asks (audit
+    // 2026-08-24). These lines are per-request, so the cached prefix is untouched.
+    const teluguAsk = /[ఀ-౿]/.test(question) || /\b(telugu|telugulo|cheppu|cheppandi)\b/i.test(question);
+    // "full answer" is deliberately NOT a trigger: it is the phrasing of the
+    // out-of-bank ask ("the full answer for the ideal gas equation"), and
+    // granting three paragraphs to a REFUSAL took those over the cap 68% of the
+    // time (measured 2026-08-24). The remaining phrases only fit the open card.
+    const walkthroughAsk = /\b(whole answer|walk (me )?through|explain everything|step by step)\b/i.test(question);
+    // The bank spans four papers and the question id names which. A Maths-1A student
+    // asking in Telugu was handed the PHYSICS term whitelist (velocity, force, energy)
+    // — the wrong instruction for every card they will ever open. Derived per request,
+    // so the cached persona prefix is untouched: the 2026-08-24 audit measured that a
+    // cached-prefix rule is weak and the same words next to the question are obeyed.
+    // Physics resolves to exactly the string it carried before, so its measured
+    // baseline is unmoved.
+    const qid = String(body.question_id ?? '');
+    const subjectKey = qid.startsWith('ts_ipe_m1a_') ? 'mathematics'
+        : qid.startsWith('ts_ipe_m1b_') ? 'mathematics_1b'
+            : qid.startsWith('ts_ipe_c1_') ? 'chemistry' : 'physics';
+    const SUBJECT_WORD: Record<string, string> = {
+        physics: 'physics', chemistry: 'chemistry',
+        mathematics: 'mathematics', mathematics_1b: 'mathematics',
+    };
+    const SUBJECT_LABEL: Record<string, string> = {
+        physics: 'Physics', chemistry: 'Chemistry',
+        mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+    };
+    const SUBJECT_TERMS: Record<string, string> = {
+        physics: 'velocity, speed, force, energy, mass, acceleration, momentum, friction, work, power, gravitational',
+        chemistry: 'atom, orbital, bond, mole, oxidation, reduction, equilibrium, enthalpy, entropy, catalyst',
+        mathematics: 'function, domain, range, matrix, determinant, inverse, vector, identity, period, triangle',
+        mathematics_1b: 'locus, straight line, slope, plane, direction cosines, direction ratios, pair of lines, transformation',
+    };
+    const subjectWord = SUBJECT_WORD[subjectKey];
+    const subjectTerms = SUBJECT_TERMS[subjectKey];
+
     const situation = [
         'Where the student is right now:',
         '- question: ' + String(body.question_id ?? 'unknown'),
         '- unit: ' + String(body.unit ?? 'unknown'),
         '- answer length on screen: ' + String(body.cut_key ?? 'full'),
         body.plan_status ? '- their study plan: ' + String(body.plan_status).slice(0, 400) : '',
-        body.step_id ? '- the step they last revealed: ' + String(body.step_id) : '- they have not started writing yet',
+        body.step_id ? '- the step they last revealed: ' + String(body.step_id) + '. If they ask why THIS step is here, how to remember THIS step, or what it earns, answer about that step and not about the answer as a whole.' : '- they have not started writing yet',
+        '- the only question you can see is the one named above. If the student asks you for a DIFFERENT question, say you do not have that one open, that you have noted it, and that they can open it from the catalog. Then STOP. Do not outline it, do not name its steps or formulas, do not say which chapter holds it, do not say what an examiner wants in it, and do not give study advice about it — you cannot see it, so anything you add is a guess. Two sentences is the whole reply. You may then offer the question that IS open.',
+        walkthroughAsk ? '- reply length: at most three paragraphs, and at most three sentences in each paragraph' : '- reply length: at most 5 sentences, one idea each',
+        subjectKey !== 'physics' ? '- subject: this is a ' + SUBJECT_LABEL[subjectKey] + ' question. Its own subject words are the plain words here — ' + subjectTerms + '. Use them.' : '',
+        teluguAsk ? '- language: write the Telugu words in TELUGU SCRIPT, never Telugu in Latin letters. Only the ' + subjectWord + ' terms stay in English — ' + subjectTerms + '.' : '',
     ].filter(Boolean).join('\n');
 
     const history = (body.recent_messages ?? []).slice(-6).map((m: { role?: string; text?: string }) => ({
@@ -309,6 +355,19 @@ Deno.serve(async (req: Request) => {
         { role: 'user', content: situation + '\n\nThe student asks: ' + question },
     ];
 
+    // Telugu spends roughly 3x the tokens per sentence, and 300 truncated 34% of
+    // Telugu replies mid-sentence (measured audit, 2026-08-24). A walkthrough is
+    // allowed three paragraphs, which 300 also cut off. Ordinary asks stay at 300.
+    //
+    // 500 -> 800 for Telugu (2026-08-25). At 500 the chemistry corpus still lost 3
+    // of 204 Telugu replies mid-word, each dropping whole mark-carrying properties
+    // from an answer a student was revising from. The dead replies stopped at
+    // 720-782 chars while survivors reach 905, so the cap binds on token density,
+    // not on answer length -- two of the three were 4-mark questions, so scaling by
+    // marks would have missed them. 800 leaves ~60% headroom over the longest
+    // surviving reply. Walkthroughs keep 500: zero truncation in 1,836 non-Telugu
+    // replies, so raising them would cost tokens on every call and buy nothing.
+    const maxTokens = teluguAsk ? 800 : (walkthroughAsk ? 500 : 300);
     const t0 = Date.now();
     let text = '';
     let usage: Usage = {};
@@ -316,7 +375,7 @@ Deno.serve(async (req: Request) => {
         const res = await fetch('https://api.deepseek.com/v1/chat/completions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + DEEPSEEK_KEY },
-            body: JSON.stringify({ model: MODEL, messages, max_tokens: 300, temperature: 0.7, stream: false }),
+            body: JSON.stringify({ model: MODEL, messages, max_tokens: maxTokens, temperature: 0.7, stream: false }),
         });
         if (!res.ok) throw new Error('DeepSeek ' + res.status + ': ' + (await res.text()).slice(0, 200));
         const json = await res.json();

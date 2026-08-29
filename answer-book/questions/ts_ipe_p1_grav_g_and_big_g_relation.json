@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -77,7 +77,8 @@
             "R squared"
           ]
         },
-        "memory_tip": "A sphere pulls as if all its mass sat at the centre — that is why the distance is R."
+        "memory_tip": "A sphere pulls as if all its mass sat at the centre — that is why the distance is R.",
+        "margin_note": "First mark. F = GMm/R², with R measured from the centre of the planet."
       },
       {
         "id": "s2_weight",
@@ -113,7 +114,8 @@
             "weight"
           ]
         },
-        "memory_tip": "Name the SAME force twice: once as GMm/R², once as mg."
+        "memory_tip": "Name the SAME force twice: once as GMm/R², once as mg.",
+        "margin_note": "Second mark. One line: the same pull written again as mg."
       },
       {
         "id": "s3_relation",
@@ -155,8 +157,10 @@
             "cancels"
           ]
         },
-        "memory_tip": "Equate and cancel m: g = GM/R². The cancelled m is why every body falls alike."
+        "memory_tip": "Equate and cancel m: g = GM/R². The cancelled m is why every body falls alike.",
+        "margin_note": "The last two marks. Equate, cancel m, then box g = GM/R²."
       }
     ]
-  }
+  },
+  "insider_note": "Two of the four marks sit in the equating and the cancelling — writing g = GM/R² straight down earns the box and loses the working."
 }

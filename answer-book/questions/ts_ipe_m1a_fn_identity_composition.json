@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 1,
+    "number": 2,
     "name": "Functions"
   },
   "chapter": "Functions",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "If f: A→B is a function and I_A, I_B are identity functions on A, B respectively then prove that foI_A = f = I_Bof.",
@@ -25,7 +25,7 @@
   "mark_split": [
     {
       "label": "Proof that foI_A = f",
-      "marks": 3
+      "marks": 4
     },
     {
       "label": "Proof that I_Bof = f",
@@ -35,13 +35,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 3. The 3+4 split is printed in that book's margin; the only appearance year printed is AP 18. Publisher's claims until a Telangana IPE teacher confirms them. Written lines use render:'katex' wherever the identity functions appear, because a capital-letter subscript has no Unicode form (docs/IPE_MATHS_1A_SOURCE.md)."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 3. The 3+4 split is printed in that book's margin; the only appearance year printed is AP 18. Publisher's claims until a Telangana IPE teacher confirms them. Written lines use render:'katex' wherever the identity functions appear, because a capital-letter subscript has no Unicode form (docs/IPE_MATHS_1A_SOURCE.md). Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that foI_A = f."
   },
   "recall_prompt": "Say how you would prove that composing f with the identity on either side leaves f unchanged — the two parts, and how each part goes.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Functions · 7 marks"
+      "Functions · 8 marks"
     ],
     "steps": [
       {
@@ -102,9 +102,9 @@
         "id": "s2_right_identity",
         "kind": "equation",
         "label": "Identity on the right",
-        "marks": 3,
+        "marks": 4,
         "mark_note": "First part",
-        "margin_note": "Three of the seven marks. Two things earn them: that both sides have domain A, and the one-line substitution. Do not skip the domain line.",
+        "margin_note": "Four of the eight marks. Two things earn them: that both sides have domain A, and the one-line substitution. Do not skip the domain line.",
         "lines": [
           {
             "text": "\\text{(i) To prove } f \\circ I_A = f",
@@ -171,7 +171,7 @@
         "label": "Identity on the left",
         "marks": 4,
         "mark_note": "Second part",
-        "margin_note": "Four of the seven marks. Same shape as part (i), but the identity now acts on the OUTPUT, so it is I_B and it uses I_B(b) = b.",
+        "margin_note": "Four of the eight marks. Same shape as part (i), but the identity now acts on the OUTPUT, so it is I_B and it uses I_B(b) = b.",
         "lines": [
           {
             "text": "\\text{(ii) To prove } I_B \\circ f = f",

@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 8,
+    "number": 7,
     "name": "Oscillations"
   },
   "chapter": "Oscillations",
@@ -71,7 +71,8 @@
             "length decreases"
           ]
         },
-        "memory_tip": "Standing raises the centre of mass, so the pendulum LENGTH becomes shorter."
+        "memory_tip": "Standing raises the centre of mass, so the pendulum LENGTH becomes shorter.",
+        "margin_note": "First mark. Name the centre of mass. Without it the length change is unexplained."
       },
       {
         "id": "s2_frequency",
@@ -107,8 +108,10 @@
             "root l"
           ]
         },
-        "memory_tip": "T = 2π√(l/g): shorter l, smaller T, higher frequency."
+        "memory_tip": "T = 2π√(l/g): shorter l, smaller T, higher frequency.",
+        "margin_note": "Second mark. End with the word increases, not only the proportionality."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks for a one-line answer: one for the length, one for the frequency. An answer that never mentions the centre of mass earns only one."
 }

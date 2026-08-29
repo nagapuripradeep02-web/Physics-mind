@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_law_of_equipartition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the law of equipartition of energy.",
+  "appearances": [
+    {
+      "year": 2016,
+      "q_no": 10,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "Energy per degree of freedom",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2016 (Q10) — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question text itself is sourced from that paper. `appearances` is deliberately left empty — a separate reviewed tagging pass fills it, and a hand-written tag here would be an invented claim. Physics hand-checked against NCERT Class-11 Chapter 13: in thermal equilibrium the energy is shared equally among all degrees of freedom, each carrying ½k_BT per molecule, and a vibrational mode carries k_BT because it holds a kinetic share and a potential share."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "The statement",
+        "lines": [
+          "In thermal equilibrium the total energy",
+          "of a molecule is shared equally among",
+          "all its degrees of freedom.",
+          "No one degree of freedom carries more",
+          "energy than another."
+        ],
+        "margin_note": "First mark. The words thermal equilibrium and degrees of freedom are both checked.",
+        "why": "A degree of freedom is one independent way a molecule can hold energy — one direction of translation, one axis of rotation, one mode of vibration. Collisions keep passing energy between these ways until every one of them holds the same average share.",
+        "common_mistakes": [
+          "Saying the energy is shared equally among the molecules. It is shared among the degrees of freedom of one molecule."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in thermal equilibrium the energy is shared equally among all the degrees of freedom.",
+          "accept": [
+            "shared equally among the degrees of freedom",
+            "thermal equilibrium",
+            "equal share for each degree of freedom"
+          ],
+          "reject": [
+            "half k T per degree of freedom"
+          ],
+          "heard_as": [
+            "degrees of freedom",
+            "equipartition"
+          ]
+        },
+        "memory_tip": "Equi-partition means equal shares. The shares go to degrees of freedom, not to molecules."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "Energy per degree of freedom",
+        "marks": 1,
+        "mark_note": "½k_BT each",
+        "lines": [
+          "Each degree of freedom carries the same",
+          "average energy per molecule:",
+          {
+            "text": "Energy per degree of freedom = ½k_BT",
+            "style": "boxed"
+          },
+          "k_B is Boltzmann's constant and T is the",
+          "absolute temperature. A vibrational mode",
+          "counts as two, so it carries k_BT."
+        ],
+        "margin_note": "Second mark. The ½ and the k_B must both be written.",
+        "why": "The half comes from the kinetic-theory result for one direction of translation, ½m⟨v_x²⟩ = ½k_BT. Equipartition gives every other degree of freedom that same average, and a vibrational mode holds two such shares because it stores kinetic energy and potential energy together.",
+        "common_mistakes": [
+          "Writing k_BT instead of ½k_BT for one degree of freedom.",
+          "Using the Celsius temperature. T is the absolute temperature in kelvin."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each degree of freedom carries half k B T of energy per molecule.",
+          "accept": [
+            "half k T",
+            "half k B T per degree of freedom",
+            "half Boltzmann constant into T"
+          ],
+          "reject": [
+            "shared equally among the degrees of freedom"
+          ],
+          "heard_as": [
+            "half k T",
+            "k B T"
+          ]
+        },
+        "memory_tip": "One degree of freedom, one half of k_BT. A vibration is two of those halves."
+      }
+    ]
+  },
+  "insider_note": "Two marks means the words AND the value — the statement written without ½k_BT gives away the second mark."
+}

@@ -146,3 +146,7 @@ ql-deploy/.wrangler/
 website/learn/
 answer-book/content/
 answer-book/dist-gated/
+# Per-stream book builds: --stream=mpc → answer-book/dist-mpc/ (index.html +
+# og.png), and any stream added later. Same rule as dist/ and dist-gated/ —
+# a ~6 MB generated artifact, rebuilt by npm run build:answers:<stream>.
+answer-book/dist-*/

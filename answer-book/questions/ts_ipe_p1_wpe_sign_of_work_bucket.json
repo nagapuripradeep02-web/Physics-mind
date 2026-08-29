@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Work Power Energy"
   },
   "chapter": "Work Power Energy",
@@ -120,5 +120,6 @@
         "memory_tip": "Gravity down, motion up: opposite directions, negative work."
       }
     ]
-  }
+  },
+  "insider_note": "One mark each part, and a bare positive or negative with no angle earns nothing — the θ line is the answer and the sign is its label."
 }

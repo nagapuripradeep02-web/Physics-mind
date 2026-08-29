@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them. AI chemistry check 2026-08-25: both definitions and both examples verified, including the atomic numbers in the ⁴⁰Ar, ⁴⁰K and ⁴⁰Ca set; the why corrected, since a difference in neutrons also changes the physical properties that depend on mass (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -50,7 +50,7 @@
           "numbers.",
           "Example: ¹H, ²H and ³H (hydrogen)"
         ],
-        "why": "Isotopes have the same proton count, so they are the same element and behave the same chemically. They differ only in the number of neutrons, which changes the mass and nothing else.",
+        "why": "Isotopes have the same proton count, so they are the same element and behave the same chemically. They differ only in the number of neutrons. That changes the mass, and with it the physical properties that depend on mass, while the chemical behaviour stays the same.",
         "common_mistakes": [
           "Saying isotopes have different atomic numbers. Then they would be different elements.",
           "Giving no example. The question asks for one."

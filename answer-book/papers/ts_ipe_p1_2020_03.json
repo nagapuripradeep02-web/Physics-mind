@@ -1,0 +1,223 @@
+{
+  "schema_version": "ipe_paper_v1",
+  "paper_id": "ts_ipe_p1_2020_03",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "paper": "Paper-I",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "year": 2020,
+  "month": 3,
+  "month_label": "March 2020",
+  "date_confidence": "printed",
+  "paper_code": "0119",
+  "set": "A",
+  "provenance": {
+    "source_pdf": "TS_Inter_1st_year_Physics_2020_March_Exam_Paper.pdf",
+    "transcribed_on": "2026-08-26",
+    "transcribed_from": "the PDF scan itself, read page by page — never a prior transcription",
+    "year_source": "printed on the paper",
+    "header_note": "Header reads \"Part III PHYSICS, Paper - I (English Version)\"; booklet code 0119, set A."
+  },
+  "exam_pattern": {
+    "max_marks": 60,
+    "duration_hours": 3,
+    "sections": [
+      {
+        "name": "Section A",
+        "qtype": "VSAQ",
+        "marks_each": 2,
+        "count": 10,
+        "choose": 10,
+        "q_range": [
+          1,
+          10
+        ]
+      },
+      {
+        "name": "Section B",
+        "qtype": "SAQ",
+        "marks_each": 4,
+        "count": 8,
+        "choose": 6,
+        "q_range": [
+          11,
+          18
+        ]
+      },
+      {
+        "name": "Section C",
+        "qtype": "LAQ",
+        "marks_each": 8,
+        "count": 3,
+        "choose": 2,
+        "q_range": [
+          19,
+          21
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q_no": 1,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is the discovery of C.V. Raman?"
+    },
+    {
+      "q_no": 2,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "The percentage error in the mass and speed are 2% and 3% respectively. What is the maximum error in kinetic energy? Calculate using these quantities."
+    },
+    {
+      "q_no": 3,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "A = i + j. What is the angle between the vector and x-axis?"
+    },
+    {
+      "q_no": 4,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "A batsman hits back a ball straight in the direction of the bowler without changing its initial speed of 12 ms⁻¹. If the mass of the ball is 0.15 kg, determine the impulse imparted to the ball. (Assume linear motion of the ball)"
+    },
+    {
+      "q_no": 5,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Give the expression for the excess pressure in an air bubble inside the liquid."
+    },
+    {
+      "q_no": 6,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is angle of contact?"
+    },
+    {
+      "q_no": 7,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "State Wien’s displacement law."
+    },
+    {
+      "q_no": 8,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Distinguish between heat and temperature."
+    },
+    {
+      "q_no": 9,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "State Dalton’s law of partial pressure."
+    },
+    {
+      "q_no": 10,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "The absolute temperature of a gas is increased 3 times. What will be the increase in rms velocity of the gas molecule?"
+    },
+    {
+      "q_no": 11,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "A man walks on a straight road from his home to a market 2.5 km away with a speed of 5 kmh⁻¹. Finding the market closed, he instantly turns and walks back home with a speed of 7.5 kmh⁻¹. What is the magnitude of average velocity and average speed of the man over the time interval 0 to 50 min?"
+    },
+    {
+      "q_no": 12,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "State Parallelogram law of vector. Derive an expression for the magnitude and direction of the resultant vector."
+    },
+    {
+      "q_no": 13,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "State the laws of rolling friction."
+    },
+    {
+      "q_no": 14,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Find the scalar and vector products of two vectors a = (3i − 4j + 5k) and b = (−2i + j − 3k)."
+    },
+    {
+      "q_no": 15,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Define the angular acceleration and torque. Establish the relation between angular acceleration and torque."
+    },
+    {
+      "q_no": 16,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "State Kepler’s laws of planetary motion."
+    },
+    {
+      "q_no": 17,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Describe the behaviour of a wire under gradually increasing load."
+    },
+    {
+      "q_no": 18,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Explain conduction, convection and radiation with examples."
+    },
+    {
+      "q_no": 19,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "State and prove law of conservation of energy in case of a freely falling body. A pump is required to lift 600 kg of water per minute from a well of 25 m deep and to eject it with a speed of 50 ms⁻¹. Calculate the power required to perform the above task.",
+      "parts": [
+        {
+          "part": "a",
+          "kind": "derivation",
+          "text": "State and prove law of conservation of energy in case of a freely falling body."
+        },
+        {
+          "part": "b",
+          "kind": "numerical",
+          "text": "A pump is required to lift 600 kg of water per minute from a well of 25 m deep and to eject it with a speed of 50 ms⁻¹. Calculate the power required to perform the above task."
+        }
+      ]
+    },
+    {
+      "q_no": 20,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "Show that the motion of a simple pendulum is simple harmonic and hence derive an equation for its time period. What is the length of a simple pendulum, which ticks seconds?"
+    },
+    {
+      "q_no": 21,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "State second law of thermodynamics. How is heat engine different from a refrigerator?"
+    }
+  ]
+}

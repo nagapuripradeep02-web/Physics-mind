@@ -117,10 +117,26 @@ but false as a statement).
 
 ---
 
-## 3. ⚠ SCAR ROWS AUTHORED BUT NOT SEEDED — do this first on resume, it is cheap and it rots
+## 3. ✅ SCAR ROWS — SEEDED AND VERIFIED LIVE (closed 2026-08-09, commit `15608f1`)
 
-**Verified 2026-08-09: the live queue holds 7 rows for this concept, ALL `FIXED`. None of the rows below
-is in it.** They exist only in agent reports.
+> **RESOLVED — do NOT redo this.** All **18** rows below were authored into
+> `src/scripts/_seed_engine_bug_queue_vector_products_gate_rounds.ts` (+ archival migration SQL) and
+> upserted to the live queue 42 minutes after this file was written. **Re-verified 2026-08-09 by direct
+> query against `engine_bug_queue`: 18/18 present, 0 missing, 0 status mismatches, all 18 stamped
+> `discovered_in_session = session_2026-08-09_vector_products_gate_rounds`.** 5 `FIXED` / 13 `OPEN`;
+> the concept now shows **25 rows** total.
+>
+> Two details worth keeping. (a) `eye_gate_skipped_for_an_unregistered_scenario_is_counted_as_a_pass`
+> was deliberately seeded **`OPEN`, overriding the surgeon's `FIXED`** — the `vg` registration landed but
+> the second EYE walk found D5 still skipped on all eight states, and *a row is FIXED when the product has
+> the thing it describes, not when a change intended to deliver it has landed*. (b)
+> `field3d_vg_slider_range_is_concept_wide_...` was authored `OPEN` **by design** and closes only now that
+> `STATE_5` carries `control_ranges`. Neither status is an oversight.
+>
+> **The presence of the migration SQL file does not prove the rows landed** — the script writes that file
+> *before* it upserts. The proof is the query, and it was run.
+
+*Historical record of what the 18 cover (verified against the live queue, not re-authored):*
 
 - **4 rows from PR #79's surface-truth dispatch** — `field3d_vg_a_value_surface_can_disagree_with_the_geometry_it_names` ·
   `field3d_vg_slider_range_is_concept_wide_so_a_guided_state_cannot_bound_its_own_control` (**authored `OPEN`
@@ -137,8 +153,17 @@ is in it.** They exist only in agent reports.
   That last one is the concrete mechanism behind AMENDMENT A20 and it is the same shape as the scar that
   file's own header already documents.
 
-*The full SQL for all of these is in the session transcript; re-authoring from this list is straightforward
-because each row's prevention rule is stated above.*
+*Canonical text for all 18 (root cause · prevention rule · probe logic) now lives in
+`src/scripts/_seed_engine_bug_queue_vector_products_gate_rounds.ts` and
+`supabase_migrations/supabase_2026-08-09_seed_engine_bug_queue_vector_products_gate_rounds_migration.sql`
+— read those, not this summary. The script is idempotent (`onConflict: 'bug_class'`), so re-running it is
+safe but unnecessary.*
+
+**Still genuinely outstanding from this section:** the two TOOLING rows are FILED, not FIXED —
+`onframe_gate_projects_no_sprite_labels_and_uses_a_solver_pose_not_the_states_own` and
+`engine_bug_queue_filters_are_blind_to_subject_subdirectories` (the non-recursive `readdirSync` at
+`query_engine_bug_queue.ts:51`, the concrete mechanism behind AMENDMENT A20). Both are Rule-40 platform
+work that lands on master separately.
 
 ---
 

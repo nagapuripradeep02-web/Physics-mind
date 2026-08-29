@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them. AI chemistry check 2026-08-25: the meanings of ψ and ψ² verified against NCERT Class-11 conventions; one memory tip reworded to say what squaring gives (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -56,7 +56,7 @@
           "Saying ψ gives the probability. That is ψ², not ψ.",
           "Calling ψ the path of the electron. It is a wave function, not a path."
         ],
-        "memory_tip": "ψ is the wave itself and can be negative. Square it to make it mean something.",
+        "memory_tip": "ψ is the wave itself and can be negative. Squaring it gives the probability density.",
         "margin_note": "Naming Schrödinger's equation is worth one line here."
       },
       {

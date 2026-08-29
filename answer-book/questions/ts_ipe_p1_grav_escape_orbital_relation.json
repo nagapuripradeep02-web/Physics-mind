@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -71,7 +71,9 @@
             "root g R",
             "escape"
           ]
-        }
+        },
+        "memory_tip": "Escape velocity has the 2 under the root: v_e = √(2gR). Orbital has none: v₀ = √(gR).",
+        "margin_note": "First mark. Write both speeds out before you divide one by the other."
       },
       {
         "id": "s2_relation",
@@ -106,8 +108,11 @@
             "root two",
             "1.4"
           ]
-        }
+        },
+        "memory_tip": "√2 ≈ 1.41, and 7.9 × 1.41 ≈ 11.2 km s⁻¹. The two known speeds agree.",
+        "margin_note": "Second mark. Box √2 × v₀ and say 1.4 times, not twice."
       }
     ]
-  }
+  },
+  "insider_note": "Write v₀ = √(gR) and v_e = √(2gR) first — they carry the first mark, and v_e = √2 v₀ on its own answers only half."
 }

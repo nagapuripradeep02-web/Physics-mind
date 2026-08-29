@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_spring_time_period_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A mass of 2 kg is attached to a spring of force constant 200 Nm⁻¹. Find its time period.",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 20,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The ratio and its root",
+      "marks": 1
+    },
+    {
+      "label": "The time period",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Printed as the applied half of an 8-mark Section-C question in TS March 2019 (Q20), Inter I-Year Physics Paper-I. The 4-mark standalone length is our authoring choice, not the board's — the board never printed it as a 4-mark Section-B question. Arithmetic hand-checked: m/k = 2/200 = 0.01, and kg/(N m⁻¹) = s², so the ratio is 0.01 s²; √0.01 = 0.1 s; T = 2π × 0.1 = 0.2π ≈ 0.628 s. The derivation of T = 2π√(m/k) itself is the companion card ts_ipe_p1_osc_spring_frequency; this card applies the result. The three-way split is invented and is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Oscillations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "T = 2π√(m/k)",
+        "lines": [
+          "For a mass m on a spring of force constant",
+          "k, the time period is",
+          {
+            "text": "T = 2π√(m/k)",
+            "style": "eq"
+          },
+          "Here m = 2 kg and k = 200 N m⁻¹."
+        ],
+        "margin_note": "First mark. The formula with m and k named, before any arithmetic.",
+        "why": "Only the mass and the force constant set the period of a loaded spring. The amplitude and the value of g do not appear in the formula, which is why the question supplies no other number.",
+        "common_mistakes": [
+          "Writing T = 2π√(k/m), which inverts the ratio and gives 62.8 s, a hundred times too large.",
+          "Bringing g into the formula. The period of a loaded spring does not contain g."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T = 2 pi root m by k, with m = 2 kg and k = 200 newton per metre.",
+          "accept": [
+            "T is two pi root m by k",
+            "mass by force constant inside the root",
+            "two kg and two hundred newton per metre"
+          ],
+          "reject": [
+            "zero point six two eight second"
+          ],
+          "heard_as": [
+            "2 pi root m by k",
+            "m by k"
+          ]
+        },
+        "memory_tip": "Heavier mass, slower swing: m sits on TOP inside the root of T = 2π√(m/k)."
+      },
+      {
+        "id": "s2_ratio",
+        "kind": "equation",
+        "label": "The ratio and its root",
+        "marks": 1,
+        "mark_note": "√(m/k)",
+        "lines": [
+          "Take the ratio first and check its unit:",
+          {
+            "text": "m/k = 2/200 = 0.01",
+            "style": "eq"
+          },
+          {
+            "text": "kg / (N m⁻¹) = s², so √(m/k) is in s",
+            "style": "eq"
+          },
+          {
+            "text": "√(m/k) = √0.01 = 0.1 s",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. The ratio and its square root. The unit check earns it.",
+        "why": "The ratio m/k has the unit s², so its square root is a time and the answer comes out in seconds with no further conversion. Doing the division and the root before touching 2π leaves one multiplication for the last step.",
+        "common_mistakes": [
+          "Writing √0.01 = 0.001. The square root of 0.01 is 0.1.",
+          "Squaring the ratio instead of taking its square root."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m by k is 0.01 s², and its square root is 0.1 s.",
+          "accept": [
+            "two by two hundred is zero point zero one",
+            "root of point zero one is point one",
+            "the ratio has unit second squared"
+          ],
+          "reject": [
+            "T is two pi root m by k"
+          ],
+          "heard_as": [
+            "0.01",
+            "0.1 second"
+          ]
+        },
+        "memory_tip": "2/200 = 0.01 and √0.01 = 0.1 s. Two decimal places become one."
+      },
+      {
+        "id": "s3_period",
+        "kind": "boxed_final",
+        "label": "The time period",
+        "marks": 2,
+        "mark_note": "T",
+        "lines": [
+          "Substituting into the formula,",
+          {
+            "text": "T = 2π × 0.1 = 0.2π s",
+            "style": "eq"
+          },
+          {
+            "text": "T ≈ 0.628 s",
+            "style": "boxed"
+          },
+          "That is about 1.6 oscillations a second."
+        ],
+        "margin_note": "Third and fourth marks. Evaluate 0.2π and write the unit s beside it.",
+        "why": "2π ≈ 6.28, so 2π × 0.1 ≈ 0.628 s. The question asks for the time period, so the answer has to be a number of seconds; the symbolic 0.2π on its own is not the value that was asked for.",
+        "common_mistakes": [
+          "Leaving the answer as 0.2π when the question asks for a value.",
+          "Giving the frequency, about 1.6 Hz, in place of the time period."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T = 2π × 0.1 = 0.2π ≈ 0.628 s.",
+          "accept": [
+            "zero point six two eight second",
+            "point two pi second",
+            "two pi into zero point one"
+          ],
+          "reject": [
+            "root of point zero one is point one"
+          ],
+          "heard_as": [
+            "0.628 s",
+            "0.2 pi"
+          ]
+        },
+        "memory_tip": "2π ≈ 6.28, so 2π × 0.1 ≈ 0.628 s. The decimal point moves one place."
+      }
+    ]
+  },
+  "insider_note": "Two of the four marks are the final value, and the second of them is earned only when 0.2π is evaluated to 0.628 s with its unit."
+}

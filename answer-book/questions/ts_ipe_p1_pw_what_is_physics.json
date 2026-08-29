@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pw_what_is_physics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Physical World and Measurement"
+  },
+  "chapter": "Physical World and Measurement",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Physics?",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 1,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 1,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The two domains",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2016 (Q1) and March 2024 (Q1) — Section A, 2 marks each time. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question text itself is sourced from those papers. `appearances` is deliberately left empty — a separate reviewed tagging pass fills it, and a hand-written tag here would be an invented claim. Content hand-checked against NCERT Class-11 Chapter 1: physics is the study of the basic laws of nature and their manifestation in different natural phenomena, studied in a macroscopic domain (laboratory, terrestrial and astronomical scales) and a microscopic domain (atoms, nuclei and elementary particles)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physical World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Physics is the study of the basic laws of",
+          "nature and the way those laws show",
+          "themselves in different natural",
+          "phenomena.",
+          "A small number of laws accounts for a",
+          "very large number of phenomena."
+        ],
+        "margin_note": "First mark. One sentence of definition. Do not list chapter names.",
+        "why": "Physics is defined by what it looks for, not by a list of topics: a small set of laws that hold everywhere, and the many different phenomena those same few laws produce.",
+        "common_mistakes": [
+          "Listing topics — mechanics, heat, light — instead of giving a definition. A list is not a definition."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That physics is the study of the basic laws of nature and how they show themselves in natural phenomena.",
+          "accept": [
+            "basic laws of nature",
+            "study of nature and its laws",
+            "laws shown in natural phenomena"
+          ],
+          "reject": [
+            "macroscopic and microscopic domains"
+          ],
+          "heard_as": [
+            "basic laws of nature",
+            "natural phenomena"
+          ]
+        },
+        "memory_tip": "Few laws, many phenomena. That contrast is the whole definition in four words."
+      },
+      {
+        "id": "s2_domains",
+        "kind": "boxed_final",
+        "label": "The two domains",
+        "marks": 1,
+        "mark_note": "The two domains",
+        "lines": [
+          "Physics is studied in two domains:",
+          {
+            "text": "Macroscopic domain · Microscopic domain",
+            "style": "boxed"
+          },
+          "The macroscopic domain covers phenomena",
+          "at laboratory, terrestrial and",
+          "astronomical scales. The microscopic",
+          "domain covers atoms, nuclei and",
+          "elementary particles."
+        ],
+        "margin_note": "Second mark. Name both domains, with one example of scale for each.",
+        "why": "The two domains are separated by the size of the objects studied, and different laws dominate in each — classical mechanics and thermodynamics in the macroscopic domain, quantum theory in the microscopic one.",
+        "common_mistakes": [
+          "Naming only one domain. Two marks means the definition and both domains."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That physics has a macroscopic domain and a microscopic domain.",
+          "accept": [
+            "macroscopic and microscopic",
+            "laboratory terrestrial and astronomical",
+            "atoms nuclei and elementary particles"
+          ],
+          "reject": [
+            "basic laws of nature"
+          ],
+          "heard_as": [
+            "macroscopic",
+            "microscopic"
+          ]
+        },
+        "memory_tip": "Two domains split by size: laboratory up to stars, and atoms down to particles."
+      }
+    ]
+  },
+  "insider_note": "Two marks means two things: one sentence of definition and both domains named. A list of chapter names earns neither."
+}

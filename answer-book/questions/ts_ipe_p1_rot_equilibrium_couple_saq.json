@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -74,7 +74,9 @@
             "equilibrium",
             "unchanged"
           ]
-        }
+        },
+        "memory_tip": "Both momenta, p and L, must stay constant. Two quantities, so two conditions follow.",
+        "margin_note": "First mark. Say \"does not change with time\" for both momenta, not \"at rest\"."
       },
       {
         "id": "s2_conditions",
@@ -94,7 +96,7 @@
             "style": "eq"
           }
         ],
-        "why": "Each condition kills one kind of acceleration; a body needs both to be fully in equilibrium.",
+        "why": "Each condition kills one kind of acceleration; a body needs both to be fully in equilibrium. When ΣF = 0, the torque sum is the same about every point, so verifying Στ = 0 about one convenient point is enough.",
         "common_mistakes": [
           "Giving only ΣF = 0 — a couple defeats that single condition."
         ],
@@ -112,7 +114,9 @@
             "both",
             "zero"
           ]
-        }
+        },
+        "memory_tip": "One condition per momentum: ΣF = 0 keeps p constant, Στ = 0 keeps L constant.",
+        "margin_note": "Two marks, one for each condition. Number them 1 and 2."
       },
       {
         "id": "s3_couple",
@@ -148,8 +152,11 @@
             "couple",
             "pure rotation"
           ]
-        }
+        },
+        "memory_tip": "Two fingers turning a tap: equal, opposite, and not along the same line.",
+        "margin_note": "Final mark. Define the couple and add that its net force is zero but its torque is not."
       }
     ]
-  }
+  },
+  "insider_note": "Three parts in the question, three in the answer. The couple is only the last mark, so do not spend the space on it."
 }

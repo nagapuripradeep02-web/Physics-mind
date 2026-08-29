@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING: the book's printed definition is garbled — 'In a group 1st element of second period has similar properties with second element of next higher group in third period diagonally is known as diagonal relationship' — and the card states the standard definition instead: a second-period element resembles the third-period element placed diagonally below it, one group to the right. The book's example table prints the columns IA IIA IIIA IVA with Li Be B C over Na Mg Al Si and diagonal arrows; the card keeps the three true diagonal pairs Li–Mg, Be–Al, B–Si."
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING: the book's printed definition is garbled — 'In a group 1st element of second period has similar properties with second element of next higher group in third period diagonally is known as diagonal relationship' — and the card states the standard definition instead: a second-period element resembles the third-period element placed diagonally below it, one group to the right. The book's example table prints the columns IA IIA IIIA IVA with Li Be B C over Na Mg Al Si and diagonal arrows; the card keeps the three true diagonal pairs Li–Mg, Be–Al, B–Si. AI chemistry check 2026-08-25 (audit round 3): the insider note said examiners accept the answer without a diagram, while the 1-mark example step is the figure ('the arrows carry this mark') and the named-pairs step carries no mark, so a student who skipped the figure had no route to the second mark; the insider note now matches the mark map. Marks and mark split untouched. OPEN for the teacher gate: whether the three pairs written in words, with no sketch, earn the example mark — if they do, the mark map should move that mark to the named-pairs step. Also checked: the figure draws only the Li→Mg, Be→Al and B→Si arrows, so it does not prescribe the C–Si pair that the next step calls an error; C and Si are drawn as table cells and the why now says so."
   },
   "answer": {
     "page_header": [
@@ -253,7 +253,7 @@
             }
           ]
         },
-        "why": "The relationship is a position on the periodic table, so the clearest example is the table itself: two rows of elements with an arrow joining each diagonal pair.",
+        "why": "The relationship is a position on the periodic table, so the clearest example is the table itself: two rows of elements with an arrow joining each diagonal pair. Column IVA (C above Si) is drawn because the B–Si arrow has to end on silicon and the row would stop short without it; C and Si are table cells here, not a pair. The figure draws exactly three arrows, Li→Mg, Be→Al and B→Si, so no arrow joins C to Si: the C–Si pair that the next step lists as a mistake is not drawn here. C and Si are in the same group, one directly above the other.",
         "common_mistakes": [
           "Drawing the arrows straight down, which shows group-mates instead of diagonal pairs.",
           "Leaving out the period names, so the two rows cannot be told apart."
@@ -281,5 +281,5 @@
       }
     ]
   },
-  "insider_note": "Examiners accept the answer without a diagram, but the two-row sketch with diagonal arrows is what makes the word diagonally impossible to miss."
+  "insider_note": "Draw the two-row sketch. On this card the second mark sits on the example step, and that step is the sketch with its diagonal arrows; the line naming Li–Mg, Be–Al and B–Si carries no separate mark here, so skipping the sketch leaves no route to that mark. Write both anyway: the sketch for the mark, the named pairs under it so the example reads at a glance. Whether an examiner also accepts the three pairs written in words with no sketch is not settled on this card and is flagged for the teacher gate."
 }
