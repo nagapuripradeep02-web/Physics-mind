@@ -93,7 +93,7 @@
     "check:cards": "npx tsx src/scripts/check_cards.ts",
     "scan:register": "node answer-book/tools/register_scan.mjs",
     "pace:figures": "npx tsx src/scripts/pace_figures.ts",
-    "check:figure-pace": "npx tsx src/scripts/check_figure_pace.ts --strict",
+    "check:figure-pace": "npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_c2,ts_ipe_z1,ts_ipe_m2a",
     "figures:gallery": "python answer-book/tools/render_figures.py",
     "measure:wrap": "node answer-book/tools/measure_wrap.mjs",
     "tag:appearances": "npx tsx src/scripts/tag_appearances.ts",

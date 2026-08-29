@@ -33,7 +33,24 @@ const opt = (name: string, dflt: string): string => {
     const i = args.indexOf(name);
     return i >= 0 && args[i + 1] ? args[i + 1] : dflt;
 };
-const STRICT = opt('--strict', '');
+/**
+ * `--strict` with nothing after it USED to degrade silently to report-only: `opt`
+ * returns '' when the next token is missing, `strict` is then false for every
+ * file, every finding lands in the warnings bucket, and the run still exits 0
+ * saying "report only". A gate that an argument slip can switch off without
+ * saying so is not a gate — a package.json script ending in a bare `--strict`
+ * shipped exactly that on 2026-08-29 and was caught by a sibling session, not by
+ * this script. Passing the flag now means asking for the gate, so a missing
+ * value is a hard error.
+ */
+if (args.includes('--strict') && !opt('--strict', '')) {
+    console.error('✗ --strict needs a prefix (or a comma-separated list): --strict ts_ipe_m2a,ts_ipe_c2');
+    console.error('  omit --strict entirely for the report-only run.');
+    process.exit(2);
+}
+/** Comma-separated so ONE npm script can gate every prefix that has opted in. */
+const STRICT_PREFIXES = opt('--strict', '').split(',').map((x) => x.trim()).filter(Boolean);
+const STRICT = STRICT_PREFIXES.join(',');
 const MIN = parseFloat(opt('--min', '40'));
 const MAX = parseFloat(opt('--max', '160'));
 const PHASE_MIN = parseInt(opt('--phase-min', '16'), 10);
@@ -48,7 +65,7 @@ let figures = 0, strokes = 0, strictFigures = 0;
 const files = readdirSync(QDIR).filter((f) => f.endsWith('.json') && (!ONLY || f.startsWith(ONLY))).sort();
 for (const f of files) {
     const q = JSON.parse(readFileSync(join(QDIR, f), 'utf8'));
-    const strict = STRICT !== '' && f.startsWith(STRICT);
+    const strict = STRICT_PREFIXES.some((prefix) => f.startsWith(prefix));
     for (const step of q.answer?.steps || []) {
         if (step.kind !== 'diagram' || !step.figure) continue;
         const fig = step.figure;
