@@ -1,0 +1,708 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_laq_female_reproductive_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe female reproductive system of a woman with the help of a labelled diagram.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The six parts and the ovaries",
+      "marks": 1
+    },
+    {
+      "label": "Structure of the ovary",
+      "marks": 1
+    },
+    {
+      "label": "The fallopian tubes",
+      "marks": 1
+    },
+    {
+      "label": "The uterus",
+      "marks": 1
+    },
+    {
+      "label": "Vagina and vulva",
+      "marks": 1
+    },
+    {
+      "label": "Bartholin's and Skene's glands",
+      "marks": 1
+    },
+    {
+      "label": "Mammary glands",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.16-17, LAQ 4. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Human Reproductive System · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts_ovaries",
+        "kind": "text",
+        "label": "The six parts and the ovaries",
+        "marks": 1,
+        "mark_note": "Parts and ovaries",
+        "why": "The ovary is called the primary sex organ because it makes both the gamete and the hormones; everything else only carries or houses them.",
+        "common_mistakes": [
+          "Calling the uterus the primary sex organ. The ovaries are.",
+          "Leaving out the hormones. Ovaries make steroid hormones as well as ova."
+        ],
+        "memory_tip": "Ovary, tube, uterus, vagina, vulva, glands — outside in, top down.",
+        "margin_note": "List all six parts first. That list is itself worth writing.",
+        "lines": [
+          "The female reproductive system has 6 parts:",
+          "ovaries, fallopian tubes, uterus, vagina,",
+          "vulva and accessory glands.",
+          {
+            "text": "1. Ovaries",
+            "style": "heading"
+          },
+          "Ovaries are the primary female sex organs.",
+          "They produce the female gametes, the ova,",
+          "and several steroid hormones.",
+          "A pair of ovaries lies one on each side of",
+          "the lower abdomen."
+        ]
+      },
+      {
+        "id": "s2_ovary_structure",
+        "kind": "text",
+        "label": "Structure of the ovary",
+        "marks": 1,
+        "mark_note": "Ovary structure",
+        "why": "The follicles sit in the outer cortex while the blood vessels run in the inner medulla, so an ovum has only a short distance to travel to the surface.",
+        "common_mistakes": [
+          "Swapping cortex and medulla. The cortex is outer.",
+          "Leaving out mesovarium and tunica albuginea."
+        ],
+        "memory_tip": "Mesovarium ties it on; germinal epithelium and tunica albuginea cover it.",
+        "margin_note": "Four named coverings and layers carry this mark.",
+        "lines": [
+          "The ovary is connected to the wall of the",
+          "abdominal cavity by a fold of peritoneum",
+          "called the mesovarium.",
+          "Ovaries are covered by germinal epithelium",
+          "and tunica albuginea.",
+          "The main body of the ovary is the stroma.",
+          "Its outer part is the cortex and its inner",
+          "part is the medulla, which holds blood",
+          "vessels, lymphatics and nerve fibres."
+        ]
+      },
+      {
+        "id": "s3_fallopian",
+        "kind": "text",
+        "label": "The fallopian tubes",
+        "marks": 1,
+        "mark_note": "Fallopian tubes",
+        "why": "The tube is not joined to the ovary, so the fimbriae have to sweep the released ovum into the funnel before it can be fertilised.",
+        "common_mistakes": [
+          "Making the tube continuous with the ovary. It is not attached to it.",
+          "Placing fertilisation in the uterus. It happens in the fallopian tube."
+        ],
+        "memory_tip": "Infundibulum, ampulla, isthmus — funnel, wide part, narrow end.",
+        "margin_note": "Name the three regions in order and say where fertilisation happens.",
+        "lines": [
+          {
+            "text": "2. Fallopian tubes",
+            "style": "heading"
+          },
+          "Each fallopian tube runs from near the",
+          "ovary to the uterus.",
+          "Its funnel shaped end is the infundibulum.",
+          "The edge of the infundibulum has finger",
+          "like folds called fimbriae, which collect",
+          "the ovum after ovulation.",
+          "The infundibulum leads into the wide",
+          "ampulla. The isthmus is the last part and",
+          "joins the uterus.",
+          "The fallopian tube is the site of",
+          "fertilisation. It moves the ovum towards",
+          "the uterus by peristalsis."
+        ]
+      },
+      {
+        "id": "s4_uterus",
+        "kind": "text",
+        "label": "The uterus",
+        "marks": 1,
+        "mark_note": "Uterus",
+        "why": "The inner layer is rebuilt and shed every month, which is why the menstrual cycle is a change in the endometrium and not in the whole uterus.",
+        "common_mistakes": [
+          "Naming two layers. There are three: perimetrium, myometrium, endometrium.",
+          "Giving the cyclic changes to the myometrium. They occur in the endometrium."
+        ],
+        "memory_tip": "Peri outside, myo the muscle, endo the lining that sheds.",
+        "margin_note": "Three layers plus the cervix and birth canal.",
+        "lines": [
+          {
+            "text": "3. Uterus",
+            "style": "heading"
+          },
+          "The uterus, or womb, is single and lies",
+          "between the urinary bladder and the rectum.",
+          "It is a large pear shaped sac, highly",
+          "muscular and vascular, held by the",
+          "mesometrium.",
+          "The narrow part joining it to the vagina is",
+          "the cervix. The cervical canal and the",
+          "vagina together form the birth canal.",
+          "Its wall has three layers: outer",
+          "perimetrium, middle myometrium and inner",
+          "endometrium.",
+          "The endometrium undergoes cyclic changes",
+          "called the menstrual cycle."
+        ]
+      },
+      {
+        "id": "s5_vagina_vulva",
+        "kind": "text",
+        "label": "Vagina and vulva",
+        "marks": 1,
+        "mark_note": "Vagina and vulva",
+        "why": "The vulva is a group name for the external parts, so the answer must list what it covers rather than describe one organ.",
+        "common_mistakes": [
+          "Treating vulva as a single organ. It is the external genitals together.",
+          "Leaving out the hymen and the clitoris."
+        ],
+        "memory_tip": "Vagina is the tube; vulva is everything outside it.",
+        "margin_note": "Two headings. Keep each to three or four lines.",
+        "lines": [
+          {
+            "text": "4. Vagina",
+            "style": "heading"
+          },
+          "It is a large fibro-muscular tube from the",
+          "cervix to the vaginal orifice. It is lined",
+          "by non-keratinised stratified squamous",
+          "epithelium and is highly vascular.",
+          {
+            "text": "5. Vulva",
+            "style": "heading"
+          },
+          "Vulva means the external genitals of the",
+          "female.",
+          "The vestibule has two openings: the upper",
+          "urethral orifice and the lower vaginal",
+          "orifice, often partly covered by a membrane",
+          "called the hymen.",
+          "The clitoris is a sensitive erectile",
+          "structure at the upper junction of the two",
+          "labia minora. It is homologous to the penis.",
+          "Mons pubis is a cushion of fatty tissue",
+          "above the labia majora."
+        ]
+      },
+      {
+        "id": "s6_glands",
+        "kind": "text",
+        "label": "Bartholin's and Skene's glands",
+        "marks": 1,
+        "mark_note": "Two glands",
+        "why": "Both glands lubricate, which is why each is homologous to a lubricating gland of the male system.",
+        "common_mistakes": [
+          "Swapping the two positions. Bartholin's are beside the vaginal opening.",
+          "Leaving out what each secretes."
+        ],
+        "memory_tip": "Bartholin's beside the vagina, Skene's beside the urethra.",
+        "margin_note": "Position and function for each. Two lines each.",
+        "lines": [
+          {
+            "text": "6. Accessory glands",
+            "style": "heading"
+          },
+          "Bartholin's glands are two glands slightly",
+          "behind and to each side of the opening of",
+          "the vagina. They secrete mucus that",
+          "lubricates the vagina, and are homologous",
+          "to the bulbourethral glands of the male.",
+          "Skene's glands lie on the anterior wall of",
+          "the vagina around the lower end of the",
+          "urethra. They secrete a lubricating fluid."
+        ]
+      },
+      {
+        "id": "s7_mammary",
+        "kind": "text",
+        "label": "Mammary glands",
+        "marks": 1,
+        "mark_note": "Mammary glands",
+        "why": "Milk is made in the alveoli and then travels through wider and wider tubes, which is why the path has four named stages.",
+        "common_mistakes": [
+          "Leaving the mammary glands out. They are one of the accessory glands.",
+          "Naming the ducts out of order."
+        ],
+        "memory_tip": "Alveoli, tubules, duct, ampulla, lactiferous duct — narrow to wide.",
+        "margin_note": "Follow the milk from where it is made to where it leaves.",
+        "lines": [
+          "Mammary glands are paired structures with",
+          "glandular tissue and a variable amount of",
+          "fat.",
+          "They contain alveoli, which secrete milk",
+          "after the birth of the child.",
+          "The alveoli open into mammary tubules. The",
+          "tubules of each lobe join to form a",
+          "mammary duct.",
+          "Several mammary ducts join into a wider",
+          "mammary ampulla, which connects to the",
+          "lactiferous duct through which the baby",
+          "sucks the milk out."
+        ]
+      },
+      {
+        "id": "s8_figure",
+        "kind": "diagram",
+        "label": "Diagram — female reproductive system",
+        "marks": 1,
+        "mark_note": "Labelled diagram",
+        "why": "The frontal view is the only one that shows both ovaries, both tubes and the single uterus in their true relation.",
+        "common_mistakes": [
+          "Joining the fallopian tube directly to the ovary. There is a gap.",
+          "Leaving out the three layers of the uterine wall."
+        ],
+        "memory_tip": "Uterus in the middle, a tube each side, an ovary at each end.",
+        "margin_note": "Draw it large. Label at least ten parts.",
+        "figure": {
+          "id": "hrs_female_system",
+          "width": 520,
+          "height": 424,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the uterus"
+            },
+            {
+              "type": "stroke",
+              "id": "uterus_top",
+              "d": "M 158 164 C 160 122 192 100 232 100 C 272 100 304 122 306 164",
+              "ms": 3120
+            },
+            {
+              "type": "stroke",
+              "id": "uterus_side_l",
+              "d": "M 158 164 C 164 208 186 244 204 268",
+              "ms": 1640
+            },
+            {
+              "type": "stroke",
+              "id": "uterus_side_r",
+              "d": "M 306 164 C 300 208 278 244 260 268",
+              "ms": 1640
+            },
+            {
+              "type": "stroke",
+              "id": "cavity_top",
+              "d": "M 190 158 C 194 130 210 118 232 118 C 254 118 270 130 274 158",
+              "ms": 1840
+            },
+            {
+              "type": "stroke",
+              "id": "cavity_side_l",
+              "d": "M 190 158 C 196 200 212 234 222 264",
+              "ms": 1590
+            },
+            {
+              "type": "stroke",
+              "id": "cavity_side_r",
+              "d": "M 274 158 C 268 200 252 234 242 264",
+              "ms": 1590
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the cervix and the vagina"
+            },
+            {
+              "type": "stroke",
+              "id": "cervix_l",
+              "d": "M 204 268 L 208 306",
+              "ms": 550
+            },
+            {
+              "type": "stroke",
+              "id": "cervix_r",
+              "d": "M 260 268 L 256 306",
+              "ms": 550
+            },
+            {
+              "type": "stroke",
+              "id": "cervical_canal",
+              "d": "M 222 266 L 224 306 M 242 266 L 240 306",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "vagina_l",
+              "d": "M 208 306 C 204 336 202 362 200 386",
+              "ms": 1150
+            },
+            {
+              "type": "stroke",
+              "id": "vagina_r",
+              "d": "M 256 306 C 260 336 262 362 264 386",
+              "ms": 1150
+            },
+            {
+              "type": "stroke",
+              "id": "vagina_canal",
+              "d": "M 224 306 L 222 386 M 240 306 L 242 386",
+              "ms": 2290
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the two fallopian tubes"
+            },
+            {
+              "type": "stroke",
+              "id": "tube_l_upper",
+              "d": "M 160 150 C 140 128 120 122 104 136",
+              "ms": 930
+            },
+            {
+              "type": "stroke",
+              "id": "tube_l_lower",
+              "d": "M 166 168 C 146 150 128 144 112 154",
+              "ms": 860
+            },
+            {
+              "type": "stroke",
+              "id": "tube_r_upper",
+              "d": "M 304 150 C 324 128 344 122 360 136",
+              "ms": 930
+            },
+            {
+              "type": "stroke",
+              "id": "tube_r_lower",
+              "d": "M 298 168 C 318 150 336 144 352 154",
+              "ms": 860
+            },
+            {
+              "type": "stroke",
+              "id": "infundibulum_l",
+              "d": "M 104 136 C 92 144 90 158 96 166 L 112 154",
+              "ms": 780
+            },
+            {
+              "type": "stroke",
+              "id": "infundibulum_r",
+              "d": "M 360 136 C 372 144 374 158 368 166 L 352 154",
+              "ms": 780
+            },
+            {
+              "type": "stroke",
+              "id": "fimbriae_l",
+              "d": "M 96 146 L 82 138 M 94 156 L 78 154 M 96 166 L 82 172",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "fimbriae_r",
+              "d": "M 368 146 L 382 138 M 370 156 L 386 154 M 368 166 L 382 172",
+              "ms": 680
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the two ovaries"
+            },
+            {
+              "type": "stroke",
+              "id": "ovary_l",
+              "d": "M 118 176 C 104 178 98 192 106 202 C 116 212 134 206 136 192 C 137 182 128 175 118 176",
+              "ms": 1450
+            },
+            {
+              "type": "stroke",
+              "id": "ovary_r",
+              "d": "M 346 176 C 360 178 366 192 358 202 C 348 212 330 206 328 192 C 327 182 336 175 346 176",
+              "ms": 1450
+            },
+            {
+              "type": "stroke",
+              "id": "mesovarium_l",
+              "d": "M 136 190 C 150 184 158 176 164 166",
+              "ms": 540
+            },
+            {
+              "type": "stroke",
+              "id": "mesovarium_r",
+              "d": "M 328 190 C 314 184 306 176 300 166",
+              "ms": 540
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the labels"
+            },
+            {
+              "type": "label",
+              "id": "lb_fundus",
+              "x": 150,
+              "y": 66,
+              "text": "Uterine fundus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_fundus",
+              "d": "M 232 74 L 232 100",
+              "ms": 370,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_cavity",
+              "x": 6,
+              "y": 118,
+              "text": "Uterine cavity",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cavity",
+              "d": "M 116 112 L 198 142",
+              "ms": 1250,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_endometrium",
+              "x": 6,
+              "y": 210,
+              "text": "Endometrium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_endometrium",
+              "d": "M 100 204 L 196 196",
+              "ms": 1380,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_myometrium",
+              "x": 6,
+              "y": 250,
+              "text": "Myometrium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_myometrium",
+              "d": "M 98 244 L 180 232",
+              "ms": 1180,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_perimetrium",
+              "x": 6,
+              "y": 290,
+              "text": "Perimetrium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_perimetrium",
+              "d": "M 102 284 L 194 254",
+              "ms": 1380,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_cervix",
+              "x": 6,
+              "y": 336,
+              "text": "Cervix",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cervix",
+              "d": "M 60 330 L 206 296",
+              "ms": 2140,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_vagina",
+              "x": 6,
+              "y": 390,
+              "text": "Vagina",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vagina",
+              "d": "M 60 384 L 202 368",
+              "ms": 2040,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_isthmus",
+              "x": 396,
+              "y": 118,
+              "text": "Isthmus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_isthmus",
+              "d": "M 394 112 L 310 148",
+              "ms": 1310,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ampulla",
+              "x": 396,
+              "y": 156,
+              "text": "Ampulla",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ampulla",
+              "d": "M 394 150 L 330 142",
+              "ms": 920,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_infundibulum",
+              "x": 396,
+              "y": 194,
+              "text": "Infundibulum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_infundibulum",
+              "d": "M 394 188 L 370 168",
+              "ms": 450,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_fimbriae",
+              "x": 396,
+              "y": 232,
+              "text": "Fimbriae",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_fimbriae",
+              "d": "M 394 226 L 384 176",
+              "ms": 730,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ovary",
+              "x": 396,
+              "y": 270,
+              "text": "Ovary",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ovary",
+              "d": "M 394 264 L 356 204",
+              "ms": 1010,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_canal",
+              "x": 396,
+              "y": 330,
+              "text": "Cervical canal",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_canal",
+              "d": "M 394 324 L 242 296",
+              "ms": 2210,
+              "w": 1.4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "Six parts, so six headings plus the diagram. Number them at the top of the answer — an examiner marking eight points cannot find them in a paragraph."
+}

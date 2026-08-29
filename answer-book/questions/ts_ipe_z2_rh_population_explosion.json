@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_rh_population_explosion",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Reproductive Health",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What in your view are the reasons for population explosion, especially in India?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Better health care",
+      "marks": 1
+    },
+    {
+      "label": "Falling death rates",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.56, VSAQ 113. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Reproductive Health · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_health",
+        "kind": "text",
+        "label": "Better health care",
+        "marks": 1,
+        "mark_note": "Health care",
+        "why": "When fewer people die each year but the same number are born, the population grows even with no change in birth rate.",
+        "common_mistakes": [
+          "Blaming a rising birth rate alone.",
+          "Leaving out better living conditions."
+        ],
+        "memory_tip": "More people surviving, not more people being born.",
+        "margin_note": "Number the reasons.",
+        "lines": [
+          "1. Increased health care facilities and",
+          "better living conditions.",
+          "2. Decline in the death rate."
+        ]
+      },
+      {
+        "id": "s2_mortality",
+        "kind": "boxed_final",
+        "label": "Falling death rates",
+        "marks": 1,
+        "mark_note": "MMR and IMR",
+        "why": "Mothers and infants were once the likeliest to die, so improving their survival changes the population fastest.",
+        "common_mistakes": [
+          "Giving the abbreviations without their full forms.",
+          "Naming only one of the two rates."
+        ],
+        "memory_tip": "MMR is for mothers, IMR is for infants.",
+        "margin_note": "Expand both abbreviations once.",
+        "lines": [
+          "3. Decline in the maternal mortality rate,",
+          "the MMR.",
+          {
+            "text": "4. Decline in the infant mortality rate, IMR",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The answer is about the death rate falling, not the birth rate rising. Name MMR and IMR — those two abbreviations are what the examiner looks for."
+}

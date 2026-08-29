@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_rh_mtp_legalised",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Reproductive Health",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "It is true that 'MTP is not meant for population control'. Then why did the Government of India legalize MTP?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What MTP is",
+      "marks": 1
+    },
+    {
+      "label": "Why it was legalised",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.56, VSAQ 114. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Reproductive Health · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What MTP is",
+        "marks": 1,
+        "mark_note": "Full form",
+        "why": "The question turns on what MTP is for, so the full name has to come first.",
+        "common_mistakes": [
+          "Leaving MTP as an abbreviation.",
+          "Writing that it is a contraceptive method. It is not."
+        ],
+        "memory_tip": "MTP means Medical Termination of Pregnancy.",
+        "margin_note": "Expand the abbreviation, then give the reasons.",
+        "lines": [
+          "MTP means Medical Termination of Pregnancy.",
+          "It is legalised in India with some",
+          "restrictions."
+        ]
+      },
+      {
+        "id": "s2_reasons",
+        "kind": "boxed_final",
+        "label": "Why it was legalised",
+        "marks": 1,
+        "mark_note": "Three reasons",
+        "why": "It exists to protect the woman, not to control numbers, which is exactly what the question is testing.",
+        "common_mistakes": [
+          "Giving population control as a reason. The question says it is not one.",
+          "Naming only one of the three cases."
+        ],
+        "memory_tip": "Unwanted pregnancy, rape, and danger to the mother.",
+        "margin_note": "Three numbered cases complete the answer.",
+        "lines": [
+          "It is allowed to deal with:",
+          "1. Unwanted pregnancy from unprotected",
+          "intercourse.",
+          "2. Pregnancy in cases of rape.",
+          {
+            "text": "3. Danger to the mother from the pregnancy",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Expand MTP in the first line. The three reasons that follow are the answer, and each is a separate tick."
+}

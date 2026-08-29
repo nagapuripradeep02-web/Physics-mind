@@ -10377,6 +10377,157 @@
           "question_id": "ts_ipe_z2_imm_perforins_vs_granzymes"
         }
       ]
+    },
+    {
+      "subject": "zoology_2",
+      "number": 5,
+      "name": "Human Reproduction (Zoology-II)",
+      "questions": [
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Describe female reproductive system of a woman with the help of a labelled diagram.",
+          "question_id": "ts_ipe_z2_hrs_laq_female_reproductive_system"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Describe male reproductive system of a man. Draw a labelled diagram of it.",
+          "question_id": "ts_ipe_z2_hrs_laq_male_reproductive_system"
+        },
+        {
+          "ref": "vsaq101",
+          "section": "VSAQ",
+          "number": 101,
+          "stars": 0,
+          "text": "Where are the testes located in man? Name the protective coverings of each testis.",
+          "question_id": "ts_ipe_z2_hrs_testes_location_coverings"
+        },
+        {
+          "ref": "vsaq102",
+          "section": "VSAQ",
+          "number": 102,
+          "stars": 2,
+          "text": "What are the functions of Sertoli cells of the seminiferous tubules and the Leydig cells in man?",
+          "question_id": "ts_ipe_z2_hrs_sertoli_leydig_cells"
+        },
+        {
+          "ref": "vsaq103",
+          "section": "VSAQ",
+          "number": 103,
+          "stars": 2,
+          "text": "Name the yellow mass of cells accumulated in the empty follicle after ovulation. Name the hormone secreted by it and what is its function?",
+          "question_id": "ts_ipe_z2_hrs_corpus_luteum"
+        },
+        {
+          "ref": "vsaq104",
+          "section": "VSAQ",
+          "number": 104,
+          "stars": 0,
+          "text": "Define gestation period. What is the duration of gestation period in the human beings?",
+          "question_id": "ts_ipe_z2_hrs_gestation_period"
+        },
+        {
+          "ref": "vsaq105",
+          "section": "VSAQ",
+          "number": 105,
+          "stars": 0,
+          "text": "What is implantation, with reference to embryo?",
+          "question_id": "ts_ipe_z2_hrs_implantation"
+        },
+        {
+          "ref": "vsaq106",
+          "section": "VSAQ",
+          "number": 106,
+          "stars": 0,
+          "text": "What is menstrual cycle? Which hormones regulate menstrual cycle?",
+          "question_id": "ts_ipe_z2_hrs_menstrual_cycle"
+        },
+        {
+          "ref": "vsaq107",
+          "section": "VSAQ",
+          "number": 107,
+          "stars": 1,
+          "text": "Define spermiogenesis and spermiation.",
+          "question_id": "ts_ipe_z2_hrs_spermiogenesis_spermiation"
+        },
+        {
+          "ref": "vsaq108",
+          "section": "VSAQ",
+          "number": 108,
+          "stars": 0,
+          "text": "What is parturition? Which hormones are involved in inducing parturition?",
+          "question_id": "ts_ipe_z2_hrs_parturition"
+        },
+        {
+          "ref": "vsaq109",
+          "section": "VSAQ",
+          "number": 109,
+          "stars": 1,
+          "text": "What is capacitation of sperms?",
+          "question_id": "ts_ipe_z2_hrs_capacitation"
+        },
+        {
+          "ref": "vsaq110",
+          "section": "VSAQ",
+          "number": 110,
+          "stars": 1,
+          "text": "What is compaction in the human development?",
+          "question_id": "ts_ipe_z2_hrs_compaction"
+        },
+        {
+          "ref": "vsaq111",
+          "section": "VSAQ",
+          "number": 111,
+          "stars": 0,
+          "text": "Draw a labelled diagram of a sperm.",
+          "question_id": "ts_ipe_z2_hrs_sperm_diagram"
+        },
+        {
+          "ref": "vsaq112",
+          "section": "VSAQ",
+          "number": 112,
+          "stars": 2,
+          "text": "What are the measures one has to take to prevent contracting STDs?",
+          "question_id": "ts_ipe_z2_rh_prevent_stds"
+        },
+        {
+          "ref": "vsaq113",
+          "section": "VSAQ",
+          "number": 113,
+          "stars": 2,
+          "text": "What in your view are the reasons for population explosion, especially in India?",
+          "question_id": "ts_ipe_z2_rh_population_explosion"
+        },
+        {
+          "ref": "vsaq114",
+          "section": "VSAQ",
+          "number": 114,
+          "stars": 1,
+          "text": "It is true that 'MTP is not meant for population control'. Then why did the Government of India legalize MTP?",
+          "question_id": "ts_ipe_z2_rh_mtp_legalised"
+        },
+        {
+          "ref": "vsaq115",
+          "section": "VSAQ",
+          "number": 115,
+          "stars": 3,
+          "text": "What is 'amniocentesis'? Name any two disorders that can be detected by amniocentesis.",
+          "question_id": "ts_ipe_z2_rh_amniocentesis"
+        },
+        {
+          "ref": "vsaq116",
+          "section": "VSAQ",
+          "number": 116,
+          "stars": 2,
+          "text": "Mention the advantages of 'lactational amenorrhea method'.",
+          "question_id": "ts_ipe_z2_rh_lactational_amenorrhea"
+        }
+      ]
     }
   ]
 }

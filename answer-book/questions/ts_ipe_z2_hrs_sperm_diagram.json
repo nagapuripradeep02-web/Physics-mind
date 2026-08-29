@@ -1,0 +1,318 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_sperm_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Draw a labelled diagram of a sperm.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Head with acrosome and nucleus",
+      "marks": 1
+    },
+    {
+      "label": "Neck, middle piece and tail with labels",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 111. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts",
+        "kind": "text",
+        "label": "The four regions",
+        "marks": 0,
+        "why": "Naming the four regions before drawing keeps them in proportion: the tail is far longer than the head.",
+        "common_mistakes": [
+          "Drawing the head as long as the tail. The tail is much longer.",
+          "Leaving out the middle piece."
+        ],
+        "memory_tip": "Head, neck, middle piece, tail — front to back.",
+        "margin_note": "A one-line note. The marks are in the figure.",
+        "lines": [
+          "A sperm has four regions: head, neck,",
+          "middle piece and tail.",
+          "The whole sperm is covered by a plasma",
+          "membrane."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Diagram — a sperm",
+        "marks": 2,
+        "mark_note": "Labelled figure",
+        "why": "The middle piece is packed with mitochondria because the tail needs a constant energy supply to beat.",
+        "common_mistakes": [
+          "Leaving the mitochondria out. They are what power the tail.",
+          "Drawing the acrosome as part of the nucleus. It is a cap over it."
+        ],
+        "memory_tip": "Acrosome caps the nucleus; mitochondria wrap the middle piece.",
+        "margin_note": "Label at least six parts.",
+        "figure": {
+          "id": "hrs_sperm",
+          "width": 520,
+          "height": 444,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the head and its acrosome"
+            },
+            {
+              "type": "stroke",
+              "id": "head",
+              "d": "M 246 66 C 214 70 200 100 202 130 C 204 162 224 184 250 184 C 276 184 296 162 298 130 C 300 100 286 70 254 66",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "acrosome",
+              "d": "M 246 66 C 226 72 216 92 218 112 C 232 122 268 122 282 112 C 284 92 274 72 254 66",
+              "ms": 2620
+            },
+            {
+              "type": "stroke",
+              "id": "plasma_membrane",
+              "d": "M 244 56 C 206 62 190 98 192 132 C 194 170 218 194 250 194 C 282 194 306 170 308 132",
+              "ms": 4150,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "plasma_membrane2",
+              "d": "M 308 132 C 310 98 294 62 256 56",
+              "ms": 1450,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the nucleus inside the head"
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus",
+              "d": "M 250 132 C 240 132 234 140 236 148 C 238 158 252 160 258 154 C 264 148 260 134 250 132",
+              "ms": 1140
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the neck and the middle piece"
+            },
+            {
+              "type": "stroke",
+              "id": "neck_l",
+              "d": "M 232 186 L 234 208",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "neck_r",
+              "d": "M 268 186 L 266 208",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "middle_l",
+              "d": "M 234 208 L 238 292",
+              "ms": 1200
+            },
+            {
+              "type": "stroke",
+              "id": "middle_r",
+              "d": "M 266 208 L 262 292",
+              "ms": 1200
+            },
+            {
+              "type": "stroke",
+              "id": "mitochondria",
+              "d": "M 238 222 C 250 218 254 226 262 224 M 238 240 C 250 236 254 244 262 242 M 238 258 C 250 254 254 262 262 260 M 238 276 C 250 272 254 280 262 278",
+              "ms": 1410
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the tail"
+            },
+            {
+              "type": "stroke",
+              "id": "tail_l",
+              "d": "M 238 292 C 240 340 236 380 222 408",
+              "ms": 1690
+            },
+            {
+              "type": "stroke",
+              "id": "tail_r",
+              "d": "M 262 292 C 264 340 260 382 246 412",
+              "ms": 1740
+            },
+            {
+              "type": "stroke",
+              "id": "tail_tip",
+              "d": "M 222 408 C 232 416 240 416 246 412",
+              "ms": 370
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the labels"
+            },
+            {
+              "type": "stroke",
+              "id": "head_bracket",
+              "d": "M 156 62 L 148 62 L 148 194 L 156 194",
+              "ms": 2110
+            },
+            {
+              "type": "label",
+              "id": "lb_head",
+              "x": 86,
+              "y": 132,
+              "text": "Head",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_plasma",
+              "x": 350,
+              "y": 66,
+              "text": "Plasma membrane",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_plasma",
+              "d": "M 348 60 L 300 84",
+              "ms": 770,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_acrosome",
+              "x": 350,
+              "y": 110,
+              "text": "Acrosome",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_acrosome",
+              "d": "M 348 104 L 286 100",
+              "ms": 890,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_nucleus",
+              "x": 350,
+              "y": 152,
+              "text": "Nucleus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nucleus",
+              "d": "M 348 146 L 262 146",
+              "ms": 1230,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_neck",
+              "x": 350,
+              "y": 200,
+              "text": "Neck",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_neck",
+              "d": "M 348 194 L 270 198",
+              "ms": 1120,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_middle",
+              "x": 350,
+              "y": 244,
+              "text": "Middle piece",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_middle",
+              "d": "M 348 238 L 266 240",
+              "ms": 1170,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_mitochondria",
+              "x": 350,
+              "y": 288,
+              "text": "Mitochondria",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mitochondria",
+              "d": "M 348 282 L 262 278",
+              "ms": 1230,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_tail",
+              "x": 350,
+              "y": 356,
+              "text": "Tail",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_tail",
+              "d": "M 348 350 L 262 356",
+              "ms": 1230,
+              "w": 1.4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "Both marks are in the drawing. The acrosome must be a separate cap over the nucleus — one blob labelled 'head' earns half."
+}

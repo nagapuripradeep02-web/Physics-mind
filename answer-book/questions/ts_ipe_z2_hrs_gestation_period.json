@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_gestation_period",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define gestation period. What is the duration of gestation period in the human beings?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Its duration",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 104. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_def",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "The period is measured between two events, so the definition has to name both ends of it.",
+        "common_mistakes": [
+          "Defining it as the time from birth. It ends at birth.",
+          "Leaving out where the embryo develops."
+        ],
+        "memory_tip": "From fertilisation to delivery.",
+        "margin_note": "Definition, then the number.",
+        "lines": [
+          "The gestation period is the time for which",
+          "an embryo develops inside the uterus.",
+          "It runs from fertilisation to delivery."
+        ]
+      },
+      {
+        "id": "s2_duration",
+        "kind": "boxed_final",
+        "label": "Its duration",
+        "marks": 1,
+        "mark_note": "Duration",
+        "why": "A doctor counts from the last period because that date is known, while the date of fertilisation usually is not.",
+        "common_mistakes": [
+          "Giving nine months without a number of weeks.",
+          "Quoting 40 weeks from fertilisation. That count starts at the last period."
+        ],
+        "memory_tip": "38 weeks from fertilisation, 40 from the last period.",
+        "margin_note": "Give both counts and say what each is measured from.",
+        "lines": [
+          "Human gestation is about 38 weeks from",
+          "fertilisation.",
+          {
+            "text": "It is 40 weeks from the last menstrual cycle",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two figures are correct and they differ: 38 weeks from fertilisation, 40 from the last period. Say which is which."
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_capacitation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is capacitation of sperms?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What changes",
+      "marks": 1
+    },
+    {
+      "label": "Why it matters",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 109. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_changes",
+        "kind": "text",
+        "label": "What changes",
+        "marks": 1,
+        "mark_note": "The changes",
+        "why": "The sperm has to be altered inside the female tract before its acrosome can work.",
+        "common_mistakes": [
+          "Calling it a change in shape. The changes are physiological, not structural.",
+          "Confusing it with spermiogenesis."
+        ],
+        "memory_tip": "Capacitation gives the sperm the capacity to fertilise.",
+        "margin_note": "Say the changes are physiological.",
+        "lines": [
+          "Capacitation is the set of physiological",
+          "changes in the spermatozoa that take place",
+          "in the female reproductive tract."
+        ]
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why it matters",
+        "marks": 1,
+        "mark_note": "Why it matters",
+        "why": "Without it the sperm cannot penetrate the egg, so fertilisation cannot happen at all.",
+        "common_mistakes": [
+          "Leaving out the purpose. The second mark is for it.",
+          "Writing that it happens in the testis."
+        ],
+        "memory_tip": "Only a capacitated sperm can enter the egg.",
+        "margin_note": "One line for the purpose.",
+        "lines": [
+          {
+            "text": "Only then can a sperm penetrate and fertilise an egg",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The point is that a freshly ejaculated sperm cannot fertilise. Say so, and the definition earns both marks."
+}

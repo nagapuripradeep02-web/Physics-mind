@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_rh_amniocentesis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Reproductive Health",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is 'amniocentesis'? Name any two disorders that can be detected by amniocentesis.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Two disorders it detects",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.56, VSAQ 115. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Reproductive Health · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "The fluid around the foetus carries its own cells, so testing the fluid tests the baby without touching it.",
+        "common_mistakes": [
+          "Calling it a treatment. It is a diagnostic test.",
+          "Leaving out that foetal cells are tested."
+        ],
+        "memory_tip": "Amniotic fluid is drawn and the baby's own cells are tested.",
+        "margin_note": "Definition and how it is done.",
+        "lines": [
+          "Amniocentesis is a diagnostic procedure to",
+          "detect genetic defects in the unborn baby.",
+          "Amniotic fluid is drawn and the foetal",
+          "cells in it are tested."
+        ]
+      },
+      {
+        "id": "s2_disorders",
+        "kind": "boxed_final",
+        "label": "Two disorders",
+        "marks": 1,
+        "mark_note": "Disorders",
+        "why": "All three are chromosome disorders, which is exactly what a test on foetal cells can show.",
+        "common_mistakes": [
+          "Naming a disease that is not chromosomal.",
+          "Giving only one disorder when two are asked."
+        ],
+        "memory_tip": "Down, Edward's, Turner's — all chromosome disorders.",
+        "margin_note": "End with the misuse. It is a strong closing line.",
+        "lines": [
+          "The disorders detected include Down",
+          "syndrome, Edward's syndrome and Turner's",
+          "syndrome.",
+          {
+            "text": "It is misused to learn the sex of the child",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The most repeated two-mark question in the paper — eight printed appearances. Two named disorders are compulsory; the misuse note is a good closing line."
+}

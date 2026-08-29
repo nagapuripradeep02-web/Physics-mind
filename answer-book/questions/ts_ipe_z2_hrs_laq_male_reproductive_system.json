@@ -1,0 +1,700 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_laq_male_reproductive_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe male reproductive system of a man. Draw a labelled diagram of it.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The six parts and the testes",
+      "marks": 1
+    },
+    {
+      "label": "Inside the testis",
+      "marks": 1
+    },
+    {
+      "label": "Sertoli and Leydig cells",
+      "marks": 1
+    },
+    {
+      "label": "Epididymis",
+      "marks": 1
+    },
+    {
+      "label": "Vasa deferentia and urethra",
+      "marks": 1
+    },
+    {
+      "label": "Penis",
+      "marks": 1
+    },
+    {
+      "label": "Accessory glands",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.18-19, LAQ 5. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Human Reproductive System · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_testes",
+        "kind": "text",
+        "label": "The six parts and the testes",
+        "marks": 1,
+        "mark_note": "Parts and testes",
+        "why": "Sperm will not develop at body temperature, so the testes hang outside the abdomen where it is a few degrees cooler.",
+        "common_mistakes": [
+          "Leaving out why the testes lie outside. That is the marked reason.",
+          "Calling the scrotum a gland."
+        ],
+        "memory_tip": "Outside the body because sperm need it cooler.",
+        "margin_note": "Six parts listed, then the testis.",
+        "lines": [
+          "The male reproductive system has 6 parts:",
+          "testes, epididymis, vasa deferentia,",
+          "urethra, penis and accessory glands.",
+          {
+            "text": "1. Testes",
+            "style": "heading"
+          },
+          "The testes are a pair of oval pinkish male",
+          "primary sex organs.",
+          "They hang outside the abdominal cavity in a",
+          "pouch called the scrotum, because sperms do",
+          "not develop at body temperature.",
+          "The scrotum joins the abdominal cavity",
+          "through the inguinal canal, and the testis",
+          "is held inside it by the gubernaculum."
+        ]
+      },
+      {
+        "id": "s2_inside_testis",
+        "kind": "text",
+        "label": "Inside the testis",
+        "marks": 1,
+        "mark_note": "Lobules and tubules",
+        "why": "Packing 250 lobules of coiled tubules into one small organ is what gives the enormous surface needed to make sperm continuously.",
+        "common_mistakes": [
+          "Giving one seminiferous tubule per testis. Each lobule holds two or three.",
+          "Leaving out the spermatic cord."
+        ],
+        "memory_tip": "250 lobules, two or three coiled tubules in each.",
+        "margin_note": "The numbers are marked. Write them.",
+        "lines": [
+          "The spermatic cord is formed by the blood",
+          "vessels, nerve and vas deferens. It runs",
+          "from the abdomen to each testis through the",
+          "inguinal canal.",
+          "The tunica albuginea projects inside the",
+          "testis as septa. There are about 250",
+          "testicular lobules in each testis.",
+          "Each lobule holds two or three highly",
+          "coiled seminiferous tubules."
+        ]
+      },
+      {
+        "id": "s3_cells",
+        "kind": "text",
+        "label": "Sertoli and Leydig cells",
+        "marks": 1,
+        "mark_note": "The two cell types",
+        "why": "One cell type feeds the developing sperm inside the tubule while the other makes the hormone outside it, so the two jobs never interfere.",
+        "common_mistakes": [
+          "Giving Sertoli cells the hormone job. Leydig cells make testosterone.",
+          "Placing Leydig cells inside the tubules. They lie between them."
+        ],
+        "memory_tip": "Sertoli cells feed the sperm inside; Leydig cells make testosterone outside.",
+        "margin_note": "Say where each cell sits as well as what it does.",
+        "lines": [
+          "Each seminiferous tubule has germinal",
+          "epithelium and Sertoli cells.",
+          "The germinal epithelium produces sperms and",
+          "the Sertoli cells nourish them.",
+          "The regions outside the seminiferous",
+          "tubules are the interstitial spaces, which",
+          "contain Leydig cells.",
+          "Leydig cells make the male hormone",
+          "testosterone, an androgen, which controls",
+          "the secondary sexual characters and",
+          "spermatogenesis."
+        ]
+      },
+      {
+        "id": "s4_epididymis",
+        "kind": "text",
+        "label": "Epididymis",
+        "marks": 1,
+        "mark_note": "Epididymis",
+        "why": "Sperm leaving the testis cannot yet swim, so they are held in the epididymis until they mature.",
+        "common_mistakes": [
+          "Writing that sperm are made in the epididymis. They mature and are stored there.",
+          "Naming only two of its three regions."
+        ],
+        "memory_tip": "Caput, corpus, cauda — head, body, tail.",
+        "margin_note": "Name the path from the tubules to the epididymis.",
+        "lines": [
+          "The seminiferous tubules open into the rete",
+          "testis, which opens into the vasa",
+          "efferentia, which open into the epididymis.",
+          {
+            "text": "2. Epididymis",
+            "style": "heading"
+          },
+          "It is a narrow tightly coiled tube along",
+          "the posterior surface of each testis.",
+          "It gives space for the maturation and",
+          "storage of sperms.",
+          "It has three regions: caput epididymis,",
+          "corpus epididymis and cauda epididymis."
+        ]
+      },
+      {
+        "id": "s5_vas_urethra",
+        "kind": "text",
+        "label": "Vasa deferentia and urethra",
+        "marks": 1,
+        "mark_note": "Vas deferens and urethra",
+        "why": "The urethra is shared by two systems, which is why it is called the urinogenital duct in the male.",
+        "common_mistakes": [
+          "Giving the male a separate duct for urine and semen. There is one.",
+          "Leaving out where the vas deferens opens."
+        ],
+        "memory_tip": "One tube for two jobs: the urinogenital duct.",
+        "margin_note": "Follow the tube: epididymis, abdomen, prostate, urethra.",
+        "lines": [
+          {
+            "text": "3. Vasa deferentia",
+            "style": "heading"
+          },
+          "Each is a long narrow muscular tube. It",
+          "starts at the tail of the epididymis,",
+          "passes through the inguinal canal into the",
+          "abdomen and loops over the urinary bladder.",
+          "The two ducts open into the urethra at the",
+          "centre of the prostate gland.",
+          {
+            "text": "4. Urethra",
+            "style": "heading"
+          },
+          "The urethra starts from the urinary bladder",
+          "and runs through the penis to its external",
+          "opening, the urethral meatus.",
+          "It is the shared terminal duct of the",
+          "reproductive and urinary systems, so it is",
+          "called the urinogenital duct of man."
+        ]
+      },
+      {
+        "id": "s6_penis",
+        "kind": "text",
+        "label": "Penis",
+        "marks": 1,
+        "mark_note": "Penis",
+        "why": "Three columns of spongy tissue fill with blood, which is what makes the organ stiff enough to deliver sperm.",
+        "common_mistakes": [
+          "Naming two columns. There are three.",
+          "Leaving out the term intromittent organ."
+        ],
+        "memory_tip": "Two corpora cavernosa above, one corpus spongiosum below.",
+        "margin_note": "Name the three columns and the covering.",
+        "lines": [
+          {
+            "text": "5. Penis",
+            "style": "heading"
+          },
+          "The penis serves as a urinal duct. It is",
+          "the intromittent organ that carries",
+          "spermatozoa to the vagina of the female.",
+          "It has three columns of tissue: two upper",
+          "corpora cavernosa and one ventral corpus",
+          "spongiosum.",
+          "The enlarged terminal part is the glans",
+          "penis, covered by loose skin called the",
+          "prepuce or foreskin.",
+          "The special tissue of the three columns",
+          "helps the penis to become erect."
+        ]
+      },
+      {
+        "id": "s7_glands",
+        "kind": "text",
+        "label": "Accessory glands",
+        "marks": 1,
+        "mark_note": "Three glands",
+        "why": "Each gland adds something the sperm needs: fuel, activation, and an alkaline fluid to protect them from acid.",
+        "common_mistakes": [
+          "Naming two glands. There are three.",
+          "Leaving out fructose, which is the sperm's fuel."
+        ],
+        "memory_tip": "Seminal vesicle feeds, prostate activates, bulbourethral lubricates.",
+        "margin_note": "Give the percentage each contributes. Those figures are marked.",
+        "lines": [
+          {
+            "text": "6. Accessory glands",
+            "style": "heading"
+          },
+          "Seminal vesicles are a pair of simple",
+          "tubular glands below the urinary bladder.",
+          "Each opens into its own vas deferens.",
+          "Their secretion is 60% of the seminal",
+          "fluid. It is alkaline and viscous, and its",
+          "fructose is the main energy source of the",
+          "sperm.",
+          "The prostate gland lies below the urinary",
+          "bladder and gives 15 to 30% of the seminal",
+          "fluid. Its slightly acid secretion",
+          "activates the sperms and feeds them.",
+          "Bulbourethral glands lie below the prostate",
+          "and add an alkaline fluid during",
+          "ejaculation, which lubricates the urethra."
+        ]
+      },
+      {
+        "id": "s8_figure",
+        "kind": "diagram",
+        "label": "Diagram — male reproductive system",
+        "marks": 1,
+        "mark_note": "Labelled diagram",
+        "why": "The diagram shows the one thing the description cannot: that the vas deferens loops up and over the bladder before reaching the urethra.",
+        "common_mistakes": [
+          "Drawing the vas deferens straight to the urethra. It loops over the bladder.",
+          "Leaving out the three accessory glands."
+        ],
+        "memory_tip": "Testis, epididymis, up and over the bladder, down the urethra.",
+        "margin_note": "Label at least ten parts, including all three glands.",
+        "figure": {
+          "id": "hrs_male_system",
+          "width": 520,
+          "height": 444,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the urinary bladder and the ureters"
+            },
+            {
+              "type": "stroke",
+              "id": "bladder",
+              "d": "M 214 150 C 200 168 202 196 220 208 C 242 222 288 222 310 208 C 328 196 330 168 316 150 C 298 130 232 130 214 150",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "ureter_l",
+              "d": "M 224 146 L 220 74 M 236 144 L 232 74",
+              "ms": 2030
+            },
+            {
+              "type": "stroke",
+              "id": "ureter_r",
+              "d": "M 306 146 L 310 74 M 294 144 L 298 74",
+              "ms": 2030
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the seminal vesicles and the prostate"
+            },
+            {
+              "type": "stroke",
+              "id": "vesicle_l",
+              "d": "M 222 206 C 204 212 198 232 210 242 C 222 250 238 242 240 228",
+              "ms": 1220
+            },
+            {
+              "type": "stroke",
+              "id": "vesicle_r",
+              "d": "M 308 206 C 326 212 332 232 320 242 C 308 250 292 242 290 228",
+              "ms": 1220
+            },
+            {
+              "type": "stroke",
+              "id": "prostate",
+              "d": "M 240 236 C 230 252 236 272 252 278 C 272 286 296 280 302 266 C 310 252 304 238 292 234",
+              "ms": 2070
+            },
+            {
+              "type": "stroke",
+              "id": "bulbo_l",
+              "d": "M 240 290 C 232 300 238 312 250 310 C 260 308 262 296 254 290",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "bulbo_r",
+              "d": "M 302 290 C 310 300 304 312 292 310 C 282 308 280 296 288 290",
+              "ms": 800
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the urethra and the penis"
+            },
+            {
+              "type": "stroke",
+              "id": "urethra_l",
+              "d": "M 260 218 C 258 280 256 340 254 398",
+              "ms": 2570
+            },
+            {
+              "type": "stroke",
+              "id": "urethra_r",
+              "d": "M 282 218 C 284 280 286 340 288 398",
+              "ms": 2570
+            },
+            {
+              "type": "stroke",
+              "id": "penis_l",
+              "d": "M 244 308 C 242 348 240 376 238 404",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "penis_r",
+              "d": "M 298 308 C 300 348 302 376 304 404",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "glans",
+              "d": "M 238 404 C 236 422 248 434 271 434 C 294 434 306 422 304 404",
+              "ms": 1470
+            },
+            {
+              "type": "stroke",
+              "id": "foreskin",
+              "d": "M 240 398 L 302 398",
+              "ms": 890
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the testis, epididymis and vas deferens"
+            },
+            {
+              "type": "stroke",
+              "id": "testis_l",
+              "d": "M 162 322 C 140 326 130 348 140 368 C 152 388 182 388 194 370 C 204 354 190 326 162 322",
+              "ms": 2720
+            },
+            {
+              "type": "stroke",
+              "id": "testis_r",
+              "d": "M 380 322 C 402 326 412 348 402 368 C 390 388 360 388 348 370 C 338 354 352 326 380 322",
+              "ms": 2720
+            },
+            {
+              "type": "stroke",
+              "id": "epididymis_l",
+              "d": "M 160 316 C 138 320 126 342 130 364 C 134 380 144 390 156 394",
+              "ms": 1490
+            },
+            {
+              "type": "stroke",
+              "id": "epididymis_r",
+              "d": "M 382 316 C 404 320 416 342 412 364 C 408 380 398 390 386 394",
+              "ms": 1490
+            },
+            {
+              "type": "stroke",
+              "id": "vas_l_a",
+              "d": "M 156 310 C 166 262 190 220 216 196",
+              "ms": 1870
+            },
+            {
+              "type": "stroke",
+              "id": "vas_l_b",
+              "d": "M 166 312 C 176 264 198 226 222 204",
+              "ms": 1760
+            },
+            {
+              "type": "stroke",
+              "id": "vas_r_a",
+              "d": "M 386 310 C 376 262 352 220 326 196",
+              "ms": 1870
+            },
+            {
+              "type": "stroke",
+              "id": "vas_r_b",
+              "d": "M 376 312 C 366 264 344 226 320 204",
+              "ms": 1760
+            },
+            {
+              "type": "stroke",
+              "id": "lobules_l",
+              "d": "M 150 344 L 172 344 M 148 358 L 176 358 M 152 372 L 176 372",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "lobules_r",
+              "d": "M 392 344 L 370 344 M 394 358 L 366 358 M 390 372 L 366 372",
+              "ms": 1060
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the labels"
+            },
+            {
+              "type": "label",
+              "id": "lb_ureter",
+              "x": 6,
+              "y": 82,
+              "text": "Ureter",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ureter",
+              "d": "M 58 76 L 218 80",
+              "ms": 2290,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_vas",
+              "x": 6,
+              "y": 150,
+              "text": "Vas deferens",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vas",
+              "d": "M 102 144 L 178 246",
+              "ms": 1820,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_epididymis",
+              "x": 6,
+              "y": 246,
+              "text": "Epididymis",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_epididymis",
+              "d": "M 92 240 L 130 344",
+              "ms": 1580,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_lobules",
+              "x": 6,
+              "y": 292,
+              "text": "Testicular lobules",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lobules",
+              "d": "M 144 286 L 158 342",
+              "ms": 820,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_scrotum",
+              "x": 6,
+              "y": 396,
+              "text": "Scrotum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_scrotum",
+              "d": "M 68 390 L 142 378",
+              "ms": 1070,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_glans",
+              "x": 96,
+              "y": 434,
+              "text": "Glans penis",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_glans",
+              "d": "M 190 428 L 240 424",
+              "ms": 720,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_bladder",
+              "x": 390,
+              "y": 76,
+              "text": "Urinary bladder",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bladder",
+              "d": "M 388 70 L 316 142",
+              "ms": 1450,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_vesicle",
+              "x": 390,
+              "y": 150,
+              "text": "Seminal vesicle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vesicle",
+              "d": "M 388 144 L 326 224",
+              "ms": 1450,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_prostate",
+              "x": 390,
+              "y": 206,
+              "text": "Prostate",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_prostate",
+              "d": "M 388 200 L 304 256",
+              "ms": 1440,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_bulbo",
+              "x": 390,
+              "y": 258,
+              "text": "Bulbourethral",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bulbo",
+              "d": "M 388 252 L 308 296",
+              "ms": 1300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_urethra",
+              "x": 390,
+              "y": 300,
+              "text": "Urethra",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_urethra",
+              "d": "M 388 294 L 286 320",
+              "ms": 1500,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_testis",
+              "x": 390,
+              "y": 412,
+              "text": "Testis",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_testis",
+              "d": "M 388 406 L 396 378",
+              "ms": 420,
+              "w": 1.4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "The most repeated 8-mark question in the paper — nine printed appearances. The scrotum question ('why outside the body?') is worth one line and is often the difference between a good answer and a full one."
+}

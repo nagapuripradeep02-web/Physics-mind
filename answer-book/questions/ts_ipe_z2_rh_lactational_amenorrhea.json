@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_rh_lactational_amenorrhea",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Reproductive Health",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the advantages of 'lactational amenorrhea method'.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "It prevents conception",
+      "marks": 1
+    },
+    {
+      "label": "It helps the baby",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.56, VSAQ 116. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Reproductive Health · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conception",
+        "kind": "text",
+        "label": "It prevents conception",
+        "marks": 1,
+        "mark_note": "Contraception",
+        "why": "Breast feeding suppresses ovulation, so no ovum is released to be fertilised.",
+        "common_mistakes": [
+          "Calling it a barrier method. It works through hormones.",
+          "Writing that it works after breast feeding stops. It works only while it continues."
+        ],
+        "memory_tip": "No periods while breast feeding, so no ovulation.",
+        "margin_note": "The condition matters: only while breast feeding continues.",
+        "lines": [
+          "As long as the mother breast feeds her",
+          "child, the chances of conception are",
+          "almost zero."
+        ]
+      },
+      {
+        "id": "s2_baby",
+        "kind": "boxed_final",
+        "label": "It helps the baby",
+        "marks": 1,
+        "mark_note": "For the baby",
+        "why": "The milk carries the mother's antibodies, so the baby is protected while its own defences develop.",
+        "common_mistakes": [
+          "Giving only the contraceptive advantage.",
+          "Leaving out the protection against allergies."
+        ],
+        "memory_tip": "The same method feeds the baby and protects it.",
+        "margin_note": "One line for the baby's advantage.",
+        "lines": [
+          "Breast fed babies have better immunity",
+          {
+            "text": "and are protected against allergies",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two advantages, one for the mother and one for the baby. Most answers give only the contraceptive one."
+}

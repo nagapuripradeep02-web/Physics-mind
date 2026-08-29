@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_corpus_luteum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the yellow mass of cells accumulated in the empty follicle after ovulation. Name the hormone secreted by it and what is its function?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The yellow mass",
+      "marks": 1
+    },
+    {
+      "label": "Its hormone and function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 103. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_corpus",
+        "kind": "text",
+        "label": "The yellow mass",
+        "marks": 1,
+        "mark_note": "Corpus luteum",
+        "why": "The follicle does not disappear after releasing the ovum: it turns into a temporary gland.",
+        "common_mistakes": [
+          "Naming the graafian follicle. That is what it was before ovulation.",
+          "Calling it corpus albicans, which is what it becomes later."
+        ],
+        "memory_tip": "Corpus luteum means yellow body.",
+        "margin_note": "Name the structure first.",
+        "lines": [
+          "After ovulation the empty follicle fills",
+          "with a yellow mass of glandular cells",
+          "called the corpus luteum."
+        ]
+      },
+      {
+        "id": "s2_hormone",
+        "kind": "boxed_final",
+        "label": "Its hormone and function",
+        "marks": 1,
+        "mark_note": "Hormone and function",
+        "why": "Progesterone keeps the uterine lining in place, so the pregnancy can only continue while it is being made.",
+        "common_mistakes": [
+          "Naming oestrogen as the chief hormone here. It is progesterone.",
+          "Leaving out the function."
+        ],
+        "memory_tip": "Progesterone is pro-gestation: it keeps the pregnancy.",
+        "margin_note": "Hormone and function on one line each.",
+        "lines": [
+          "It secretes progesterone.",
+          {
+            "text": "Progesterone maintains the pregnancy",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Three things are asked in one line: the structure, its hormone, and the function. Answer all three or the mark is halved."
+}

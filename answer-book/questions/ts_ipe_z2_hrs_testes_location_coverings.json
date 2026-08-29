@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_testes_location_coverings",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Where are the testes located in man? Name the protective coverings of each testis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Where they lie",
+      "marks": 1
+    },
+    {
+      "label": "The two coverings",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 101. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_location",
+        "kind": "text",
+        "label": "Where they lie",
+        "marks": 1,
+        "mark_note": "Location",
+        "why": "The scrotum keeps the testes a few degrees below body temperature, which sperm need in order to develop.",
+        "common_mistakes": [
+          "Placing the testes inside the abdomen. They hang outside it.",
+          "Leaving out the word scrotum."
+        ],
+        "memory_tip": "Outside the abdomen, in the scrotal sacs.",
+        "margin_note": "One line for the place, one for the coverings.",
+        "lines": [
+          "The testes of man lie in a pouch outside",
+          "the abdomen called the scrotal sacs, or",
+          "scrotum."
+        ]
+      },
+      {
+        "id": "s2_coverings",
+        "kind": "boxed_final",
+        "label": "The two coverings",
+        "marks": 1,
+        "mark_note": "Coverings",
+        "why": "The inner fibrous coat holds the testis together and the outer peritoneal coat lets it move smoothly inside the scrotum.",
+        "common_mistakes": [
+          "Naming only one covering. Two are asked.",
+          "Confusing tunica albuginea with tunica vaginalis."
+        ],
+        "memory_tip": "Albuginea is the white fibrous coat; vaginalis is the outer sheath.",
+        "margin_note": "Both names carry the second mark.",
+        "lines": [
+          "Each testis is enclosed in a fibrous",
+          "envelope, the tunica albuginea.",
+          {
+            "text": "Outside it is a peritoneal tunica vaginalis",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two questions, two marks. Name both coverings — tunica albuginea and tunica vaginalis — or half the answer is missing."
+}

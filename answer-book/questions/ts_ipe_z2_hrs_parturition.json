@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_parturition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is parturition? Which hormones are involved in inducing parturition?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "The hormone",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 108. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Parturition is simply the medical name for birth, so the definition should be one plain line.",
+        "common_mistakes": [
+          "Confusing parturition with gestation. Gestation is the pregnancy; parturition is the birth.",
+          "Leaving out the word delivery."
+        ],
+        "memory_tip": "Parturition is the delivery itself.",
+        "margin_note": "One line for the definition.",
+        "lines": [
+          "Parturition is the process of delivery of",
+          "the child at birth."
+        ]
+      },
+      {
+        "id": "s2_hormone",
+        "kind": "boxed_final",
+        "label": "The hormone",
+        "marks": 1,
+        "mark_note": "Oxytocin",
+        "why": "Oxytocin makes the smooth muscle of the uterus contract, and those contractions push the baby out.",
+        "common_mistakes": [
+          "Naming progesterone. That maintains the pregnancy rather than ending it.",
+          "Leaving out what oxytocin does."
+        ],
+        "memory_tip": "Oxytocin from the posterior pituitary contracts the uterus.",
+        "margin_note": "Name it and say what it does.",
+        "lines": [
+          {
+            "text": "Oxytocin induces parturition by uterine contractions",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Oxytocin is the single marked name. Add that it contracts the uterine muscle, which is why it works."
+}

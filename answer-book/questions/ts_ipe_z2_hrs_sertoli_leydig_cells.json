@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_sertoli_leydig_cells",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the functions of Sertoli cells of the seminiferous tubules and the Leydig cells in man?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Sertoli cells",
+      "marks": 1
+    },
+    {
+      "label": "Leydig cells",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 102. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sertoli",
+        "kind": "text",
+        "label": "Sertoli cells",
+        "marks": 1,
+        "mark_note": "Sertoli cells",
+        "why": "Developing sperm are cut off from the blood supply, so a nurse cell has to feed them from inside the tubule.",
+        "common_mistakes": [
+          "Giving Sertoli cells the testosterone job. Leydig cells make it.",
+          "Leaving out inhibin."
+        ],
+        "memory_tip": "Sertoli cells are the nurse cells; inhibin is their hormone.",
+        "margin_note": "Function first, then the hormone.",
+        "lines": [
+          "Sertoli cells are nourishing cells. They",
+          "nourish the spermatozoa.",
+          "They also produce a hormone called inhibin,",
+          "which stops the production of FSH."
+        ]
+      },
+      {
+        "id": "s2_leydig",
+        "kind": "boxed_final",
+        "label": "Leydig cells",
+        "marks": 1,
+        "mark_note": "Leydig cells",
+        "why": "The hormone must reach the whole body, so it is made outside the tubules where the blood vessels run.",
+        "common_mistakes": [
+          "Placing Leydig cells inside the tubules. They lie between them.",
+          "Naming oestrogen instead of testosterone."
+        ],
+        "memory_tip": "Leydig cells lie between the tubules and make testosterone.",
+        "margin_note": "Say where they are and what they make.",
+        "lines": [
+          "Leydig cells are interstitial cells between",
+          "the seminiferous tubules.",
+          {
+            "text": "They secrete androgens, chiefly testosterone",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two cells, one mark each. Sertoli cells also make inhibin — that extra fact is what lifts the answer from a bare naming."
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_rh_prevent_stds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Reproductive Health",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the measures one has to take to prevent contracting STDs?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Avoiding infection",
+      "marks": 1
+    },
+    {
+      "label": "Detection and treatment",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.56, VSAQ 112. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Reproductive Health · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_avoid",
+        "kind": "text",
+        "label": "Avoiding infection",
+        "marks": 1,
+        "mark_note": "Avoiding infection",
+        "why": "These diseases spread by contact, so the first defence is to prevent the contact itself.",
+        "common_mistakes": [
+          "Giving only one measure when several are asked.",
+          "Naming a vaccine. Most STDs have none."
+        ],
+        "memory_tip": "Avoid the contact first, then protect the contact.",
+        "margin_note": "Number the measures. The examiner ticks each one.",
+        "lines": [
+          "1. Avoid sex with an unknown partner or",
+          "with multiple partners.",
+          "2. Use condoms during intercourse."
+        ]
+      },
+      {
+        "id": "s2_treatment",
+        "kind": "boxed_final",
+        "label": "Detection and treatment",
+        "marks": 1,
+        "mark_note": "Detection and treatment",
+        "why": "Many of these infections are silent early on, so only a check-up finds them while they can still be cured.",
+        "common_mistakes": [
+          "Stopping at prevention. Early detection is also asked.",
+          "Writing that treatment can be stopped once the symptoms go."
+        ],
+        "memory_tip": "Test early, treat fully.",
+        "margin_note": "Two more numbered measures finish the answer.",
+        "lines": [
+          "3. Consult a qualified doctor for early",
+          "detection of STDs.",
+          {
+            "text": "4. Take the complete treatment if infected",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four measures, two marks. Give at least three — a single line about condoms is marked as half an answer."
+}
