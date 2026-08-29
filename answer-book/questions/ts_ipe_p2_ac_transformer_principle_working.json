@@ -1,0 +1,390 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_transformer_principle_working",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "State the principle on which a transformer works. Describe the working of a transformer with necessary theory.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "Construction and working",
+      "marks": 1
+    },
+    {
+      "label": "The two induced emfs",
+      "marks": 1
+    },
+    {
+      "label": "Turns ratio and the ideal transformer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: mutual induction is the principle, and the device works on a.c. only, because a steady current gives a steady flux and no induced emf; eₛ = −Nₛ dφ/dt and eₚ = −Nₚ dφ/dt share the same core flux φ, so dividing gives vₛ/vₚ = Nₛ/Nₚ; for an ideal (100% efficient) transformer iₛvₛ = iₚvₚ, hence vₛ/vₚ = Nₛ/Nₚ = iₚ/iₛ — the current ratio is the INVERSE of the voltage ratio; the core is laminated to cut eddy-current loss. The book's printed answer carries all of this on printed pp.40–41; the lamination reason is not printed there and is added because the word 'laminated' appears in its own figure and construction line. NOTE: this content is an 8-mark Long Answer in many syllabuses, but this book prints exactly one Short Answer question in the chapter and no Long Answer section, so the card keeps the book's 4-mark section (docs/SR_PHYSICS_START_HERE.md §4). The figure cannot rely on occlusion (outline-only renderer, no fills), so the core is a plain rectangle and each winding is a run of semicircular arcs in its own clear lane on the outer edge of its limb."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alternating Current · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Mutual induction named",
+        "lines": [
+          "A transformer is a device that changes",
+          "electric power in one circuit into electric",
+          "power of the same frequency in another",
+          "circuit.",
+          "It works on the principle of mutual",
+          "induction: a changing current in one coil",
+          "induces an emf in a second coil linked to it",
+          "by a common magnetic flux.",
+          "It works on a.c. only, because the flux must",
+          "keep changing."
+        ],
+        "margin_note": "First mark. Name mutual induction. The a.c.-only line is the usual follow-up question.",
+        "why": "The device is Faraday's law used twice — the primary current makes a changing flux, and that flux induces an emf in the secondary — and the name for that pair is mutual induction.",
+        "common_mistakes": [
+          "Saying self induction. The emf appears in a second, separate coil, so it is mutual induction.",
+          "Saying a transformer works on d.c. A steady current gives a steady flux and no induced emf."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a transformer works on mutual induction between two coils linked by a common magnetic flux.",
+          "accept": [
+            "mutual induction",
+            "mutual inductance between two coils",
+            "common magnetic flux links the two coils"
+          ],
+          "reject": [
+            "self induction"
+          ],
+          "heard_as": [
+            "mutual induction",
+            "mutual inductance"
+          ]
+        },
+        "memory_tip": "Two coils, one flux — mutual, not self."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Figure: transformer on a laminated core",
+        "marks": 0,
+        "margin_note": "Draw the laminated iron core as a rectangle, the primary winding on the left limb and the secondary on the right limb, each in its own lane.",
+        "why": "The figure fixes the three parts every later line names — the laminated core, the primary on the a.c. source and the secondary on the load — so the theory has something to point at.",
+        "common_mistakes": [
+          "Drawing both coils on one limb. Put the primary and the secondary on opposite limbs of the same core.",
+          "Leaving the core unlabelled. The word laminated is part of the answer."
+        ],
+        "figure": {
+          "id": "transformer_core",
+          "width": 580,
+          "height": 275,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "core_left_top",
+              "d": "M 190 238 L 190 58 L 400 58",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "core_right_bottom",
+              "d": "M 400 58 L 400 238 L 190 238",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "core_window",
+              "d": "M 228 96 L 362 96 L 362 200 L 228 200 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "laminations",
+              "d": "M 250 62 L 250 92 M 278 62 L 278 92 M 306 62 L 306 92",
+              "ms": 1290
+            },
+            {
+              "type": "stroke",
+              "id": "coil_primary",
+              "d": "M 190 102 A 12 12 0 0 0 190 126 A 12 12 0 0 0 190 150 A 12 12 0 0 0 190 174 A 12 12 0 0 0 190 198",
+              "ms": 2150
+            },
+            {
+              "type": "stroke",
+              "id": "coil_secondary",
+              "d": "M 400 102 A 12 12 0 0 1 400 126 A 12 12 0 0 1 400 150 A 12 12 0 0 1 400 174 A 12 12 0 0 1 400 198",
+              "ms": 2150
+            },
+            {
+              "type": "stroke",
+              "id": "leads_primary",
+              "d": "M 190 102 L 110 102 L 110 132 M 190 198 L 110 198 L 110 168",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "source_ac",
+              "d": "M 92 150 A 18 18 0 1 0 128 150 A 18 18 0 1 0 92 150 M 99 150 A 5.5 5.5 0 0 1 110 150 A 5.5 5.5 0 0 0 121 150",
+              "ms": 2110
+            },
+            {
+              "type": "stroke",
+              "id": "leads_secondary",
+              "d": "M 400 102 L 480 102 L 480 132 M 400 198 L 480 198 L 480 168",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "load_box",
+              "d": "M 462 132 L 498 132 L 498 168 L 462 168 Z",
+              "ms": 2060
+            },
+            {
+              "type": "label",
+              "id": "lbl_core",
+              "x": 210,
+              "y": 42,
+              "text": "Laminated iron core",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_source",
+              "x": 62,
+              "y": 224,
+              "text": "a.c. source",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_primary",
+              "x": 125,
+              "y": 262,
+              "text": "Primary, Nₚ turns",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_secondary",
+              "x": 385,
+              "y": 262,
+              "text": "Secondary, Nₛ turns",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_load",
+              "x": 510,
+              "y": 156,
+              "text": "Load",
+              "ms": 450
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a labelled figure is drawn: a laminated iron core with the primary on one limb joined to the a.c. source and the secondary on the other limb joined to the load.",
+          "accept": [
+            "draw the transformer",
+            "laminated core with two coils",
+            "primary on the source and secondary on the load"
+          ],
+          "reject": [
+            "vs by vp equals Ns by Np"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "laminated core"
+          ]
+        },
+        "memory_tip": "One rectangle for the core, one coil on each upright limb, source on the left and load on the right."
+      },
+      {
+        "id": "s3_construction",
+        "kind": "text",
+        "label": "Construction and working",
+        "marks": 1,
+        "mark_note": "Two coils on a laminated core; the flux links both",
+        "lines": [
+          "A transformer has two insulated coils wound",
+          "on a laminated iron core of high magnetic",
+          "permeability.",
+          "The primary has Nₚ turns and is joined to",
+          "the a.c. source; the secondary has Nₛ turns",
+          "and is joined to the load.",
+          "When an alternating emf is applied to the",
+          "primary, the flux in the core changes with",
+          "time. This changing flux links the secondary",
+          "through the core and induces an emf in it.",
+          "The core is laminated to cut eddy current",
+          "loss."
+        ],
+        "margin_note": "Second mark. Two coils, one laminated core, and the flux path from the primary to the secondary.",
+        "why": "The core does two jobs: its high permeability keeps almost all the flux inside it, so nearly every line that leaves the primary reaches the secondary, and the laminations break up the eddy current paths.",
+        "common_mistakes": [
+          "Saying the two coils are joined by wires. They are joined only by the magnetic flux in the core.",
+          "Calling the core solid iron. It is laminated, and the reason is eddy current loss."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two coils of Nₚ and Nₛ turns sit on a laminated iron core, and the changing flux made by the primary links the secondary and induces an emf in it.",
+          "accept": [
+            "two coils on a laminated iron core",
+            "primary joined to the source and secondary to the load",
+            "changing flux links the secondary"
+          ],
+          "reject": [
+            "es equals minus Ns d phi by dt"
+          ],
+          "heard_as": [
+            "primary",
+            "secondary",
+            "laminated"
+          ]
+        },
+        "memory_tip": "Source, primary, core, secondary, load — name the five parts in that order."
+      },
+      {
+        "id": "s4_theory",
+        "kind": "equation",
+        "label": "The two induced emfs",
+        "marks": 1,
+        "mark_note": "eₛ = −Nₛ dφ/dt and eₚ = −Nₚ dφ/dt",
+        "lines": [
+          {
+            "text": "Let φ be the flux through each turn of the",
+            "style": "normal"
+          },
+          {
+            "text": "core at time t. By Faraday's law the emf",
+            "style": "normal"
+          },
+          {
+            "text": "induced in the secondary is",
+            "style": "normal"
+          },
+          {
+            "text": "eₛ = −Nₛ dφ/dt",
+            "style": "eq"
+          },
+          {
+            "text": "The same changing flux induces a back emf",
+            "style": "normal"
+          },
+          {
+            "text": "in the primary:",
+            "style": "normal"
+          },
+          {
+            "text": "eₚ = −Nₚ dφ/dt",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Both equations, and say once that φ is the SAME flux in both.",
+        "why": "Both coils sit on one core, so the same dφ/dt appears in both equations. That shared flux is the only reason the two voltages are related at all.",
+        "common_mistakes": [
+          "Dropping the minus sign. Lenz's law puts it there, and the induced emf is written with it.",
+          "Using a different flux for each coil. The core carries one flux through every turn of both coils."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the same core flux induces eₛ = −Nₛ dφ/dt in the secondary and a back emf eₚ = −Nₚ dφ/dt in the primary.",
+          "accept": [
+            "es equals minus Ns d phi by dt",
+            "ep equals minus Np d phi by dt",
+            "same flux in both coils"
+          ],
+          "reject": [
+            "is vs equals ip vp"
+          ],
+          "heard_as": [
+            "d phi by dt",
+            "Faraday"
+          ]
+        },
+        "memory_tip": "Same dφ/dt, two turn counts — that is the whole theory in one line."
+      },
+      {
+        "id": "s5_ratio",
+        "kind": "boxed_final",
+        "label": "Turns ratio and the ideal transformer",
+        "marks": 1,
+        "mark_note": "vₛ/vₚ = Nₛ/Nₚ = iₚ/iₛ",
+        "lines": [
+          "Taking eₛ = vₛ and eₚ = vₚ and dividing,",
+          {
+            "text": "vₛ / vₚ = Nₛ / Nₚ",
+            "style": "eq"
+          },
+          "For an ideal transformer, 100% efficient,",
+          "output power = input power, so",
+          {
+            "text": "iₛ vₛ = iₚ vₚ",
+            "style": "eq"
+          },
+          {
+            "text": "∴ vₛ / vₚ = Nₛ / Nₚ = iₚ / iₛ",
+            "style": "boxed"
+          },
+          "If Nₛ > Nₚ it is a step-up transformer; if",
+          "Nₛ < Nₚ it is a step-down transformer."
+        ],
+        "margin_note": "Fourth mark. Box the three-way ratio. Note the current ratio is turned the other way round.",
+        "why": "Dividing the two emf equations cancels dφ/dt, which is why the voltage ratio is just the turns ratio; conservation of energy then fixes the current ratio as its inverse.",
+        "common_mistakes": [
+          "Writing the current ratio the same way round as the voltage ratio. It is iₚ/iₛ, the inverse.",
+          "Saying a transformer increases power. It raises the voltage and lowers the current; in an ideal transformer the power is unchanged."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That vₛ/vₚ = Nₛ/Nₚ, and for an ideal transformer iₛvₛ = iₚvₚ, so the ratio equals iₚ/iₛ as well.",
+          "accept": [
+            "vs by vp equals Ns by Np",
+            "is vs equals ip vp",
+            "equals ip by is"
+          ],
+          "reject": [
+            "mutual induction"
+          ],
+          "heard_as": [
+            "turns ratio",
+            "ideal transformer"
+          ]
+        },
+        "memory_tip": "Voltage and turns go the same way; the current goes the other way."
+      }
+    ]
+  },
+  "insider_note": "Four things earn the four marks: mutual induction, the two coils on a laminated core, the two emf equations with one shared flux, and the boxed ratio vₛ/vₚ = Nₛ/Nₚ = iₚ/iₛ. Write the current ratio the other way round and the last mark is lost."
+}

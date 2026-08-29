@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_drug_abuse_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define drug abuse.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.59, VSAQ 142). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Taking a drug in excess, or taking it for a",
+          "purpose other than its medicinal use, is called",
+          "drug abuse."
+        ],
+        "why": "The definition has two separate arms, too much of a medicine and the wrong purpose for a medicine, and a student who writes only one of them has written half the definition.",
+        "common_mistakes": [
+          "Writing that any use of a drug is drug abuse. Medicinal use in the correct dose is not abuse.",
+          "Confusing it with addiction. Abuse is the act of taking; addiction is the attachment to the effect."
+        ],
+        "memory_tip": "Two arms: wrong amount, or right amount for the wrong reason.",
+        "margin_note": "One sentence carrying both arms. Do not stop after 'in excess'."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "Result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "Physical and psychological damage",
+            "style": "boxed"
+          },
+          "Drug abuse leads to physical and psychological",
+          "disturbance.",
+          "Sometimes it causes damage to the body that",
+          "cannot be repaired."
+        ],
+        "why": "The second mark is for what abuse does, and naming both the body and the mind keeps the answer from repeating the definition in other words.",
+        "common_mistakes": [
+          "Repeating the definition instead of stating the result.",
+          "Writing only 'it is bad for health'. Name the physical and the psychological damage."
+        ],
+        "memory_tip": "Damage on two sides: the body and the mind.",
+        "margin_note": "Two short lines. Name both kinds of damage."
+      }
+    ]
+  },
+  "insider_note": "A two-mark definition question expects a definition AND its consequence; a one-line definition alone caps the answer at one mark."
+}

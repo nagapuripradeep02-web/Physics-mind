@@ -1,0 +1,268 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_steel_wire_wave_speed",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "A steel wire 0.72m long has a mass of 5.0 × 10⁻³ kg. If the wire is under a tension of 60N, what is the speed of transverse waves on the wire?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Data listed",
+      "marks": 1
+    },
+    {
+      "label": "Linear density",
+      "marks": 2
+    },
+    {
+      "label": "Wave speed formula",
+      "marks": 2
+    },
+    {
+      "label": "Substitution",
+      "marks": 2
+    },
+    {
+      "label": "Result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+2+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. It needs that teacher pass more than most cards on this paper: an 8-mark split for a SHORT numerical is not a thing any printed scheme shows, because the book files this numerical under Long Answer numbering with no Problems banner, so the 8 marks come from the section it sits in and the five-way split across them is entirely this bank's invention. A teacher may well mark it as a 4-mark question. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Arithmetic hand-checked: μ = m/l = 5.0 × 10⁻³ / 0.72 = 6.944 × 10⁻³ ≈ 6.9 × 10⁻³ kg m⁻¹; v = √(T/μ) = √(60 / 6.9 × 10⁻³) = √8696 = 93.25 ≈ 93 m s⁻¹ — agrees with the book's printed 93 m s⁻¹ (carrying μ unrounded gives √8640 = 92.95, which rounds to the same 93). The book's question text prints \"transvere waves\"; the misspelling is corrected to \"transverse\" here, and the wording is otherwise preserved."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order — the data, the linear density, the speed formula, the substitution, and the result.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Waves · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_data",
+        "kind": "text",
+        "label": "Data listed",
+        "marks": 1,
+        "mark_note": "l = 0.72 m, m = 5.0 × 10⁻³ kg, T = 60 N",
+        "lines": [
+          "Transverse waves on a stretched wire.",
+          {
+            "text": "l = 0.72 m",
+            "style": "eq"
+          },
+          {
+            "text": "m = 5.0 × 10⁻³ kg",
+            "style": "eq"
+          },
+          {
+            "text": "T = 60 N",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Three data lines, all in SI units already.",
+        "why": "Every quantity here is already in SI units, so the only place an error can enter is the powers of ten in the mass — writing them on their own line keeps them visible.",
+        "common_mistakes": [
+          "Reading 5.0 × 10⁻³ kg as the linear density. It is the mass of the whole wire.",
+          "Using the tension as a mass. T = 60 N is a force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That l = 0.72 m, m = 5.0 × 10⁻³ kg and T = 60 N.",
+          "accept": [
+            "length zero point seven two metre",
+            "mass 5 into 10 power minus 3 kilogram",
+            "tension 60 newton"
+          ],
+          "reject": [
+            "mu is m by l"
+          ],
+          "heard_as": [
+            "ten power minus three",
+            "sixty newton"
+          ]
+        },
+        "memory_tip": "Three numbers, three lines — length, mass, tension, in that order."
+      },
+      {
+        "id": "s2_linear_density",
+        "kind": "equation",
+        "label": "Linear density",
+        "marks": 2,
+        "mark_note": "μ = m/l ≈ 6.9 × 10⁻³ kg m⁻¹",
+        "lines": [
+          "Linear density is the mass per unit",
+          "length of the wire:",
+          {
+            "text": "μ = m/l",
+            "style": "eq"
+          },
+          {
+            "text": "μ = 5.0 × 10⁻³ / 0.72",
+            "style": "eq"
+          },
+          {
+            "text": "μ ≈ 6.9 × 10⁻³ kg m⁻¹",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: the definition μ = m/l, then its value with the unit kg m⁻¹.",
+        "why": "The speed formula needs mass per metre, not the mass of the wire, so this division is a separate step and carries its own marks.",
+        "common_mistakes": [
+          "Putting the total mass straight into √(T/μ). The wire is 0.72 m long, so divide first.",
+          "Dropping the unit kg m⁻¹, which is what shows μ is a density and not a mass."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That μ = m/l = 5.0 × 10⁻³ / 0.72 ≈ 6.9 × 10⁻³ kg m⁻¹.",
+          "accept": [
+            "mu is mass by length",
+            "linear density is mass per unit length",
+            "6 point 9 into 10 power minus 3"
+          ],
+          "reject": [
+            "square root of T by mu"
+          ],
+          "heard_as": [
+            "mu",
+            "mass per unit length",
+            "six point nine"
+          ]
+        },
+        "memory_tip": "Mass of the wire divided by its length — a per-metre number, so the unit is kg m⁻¹."
+      },
+      {
+        "id": "s3_formula",
+        "kind": "equation",
+        "label": "Wave speed formula",
+        "marks": 2,
+        "mark_note": "v = √(T/μ)",
+        "lines": [
+          "The speed of a transverse wave on a",
+          "stretched wire depends on the tension",
+          "and on the linear density:",
+          {
+            "text": "v = √(T/μ)",
+            "style": "eq"
+          },
+          "Tension is above the line and linear",
+          "density below it."
+        ],
+        "margin_note": "Two marks for the formula alone. Write it before any number goes in.",
+        "why": "The dimensional-analysis question earlier in this chapter derives this same result, so quoting it here is enough; the marks are for the correct placing of T and μ.",
+        "common_mistakes": [
+          "Writing v = √(μ/T). A tighter wire carries faster waves, so T belongs on top.",
+          "Forgetting the square root and reporting T/μ as the speed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the speed of a transverse wave on a stretched wire is v = √(T/μ).",
+          "accept": [
+            "v is root T by mu",
+            "square root of tension by linear density",
+            "root of T over mu"
+          ],
+          "reject": [
+            "6 point 9 into 10 power minus 3"
+          ],
+          "heard_as": [
+            "root T by mu",
+            "square root"
+          ]
+        },
+        "memory_tip": "Tighter wire, faster wave — so tension goes on top of the fraction."
+      },
+      {
+        "id": "s4_substitution",
+        "kind": "equation",
+        "label": "Substitution",
+        "marks": 2,
+        "mark_note": "v = √(60 / 6.9 × 10⁻³)",
+        "lines": [
+          "Substituting the tension and the linear",
+          "density:",
+          {
+            "text": "v = √(60 N / 6.9 × 10⁻³ kg m⁻¹)",
+            "style": "eq"
+          },
+          {
+            "text": "v = √(8.70 × 10³)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: one substitution line, then the value under the root.",
+        "why": "Reducing the fraction to 8.70 × 10³ before taking the root keeps the powers of ten in one place, which is where this numerical is usually lost.",
+        "common_mistakes": [
+          "Dividing 60 by 6.9 and forgetting the 10⁻³, which gives 8.7 instead of 8700.",
+          "Taking the root of the tension and the density separately."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives v = √(60 / 6.9 × 10⁻³) = √(8.70 × 10³).",
+          "accept": [
+            "60 divided by 6 point 9 into 10 power minus 3",
+            "root of 8700",
+            "eight point seven into ten cube"
+          ],
+          "reject": [
+            "93 metre per second"
+          ],
+          "heard_as": [
+            "eight thousand seven hundred",
+            "under the root"
+          ]
+        },
+        "memory_tip": "Dividing by 10⁻³ multiplies by 1000 — the number under the root jumps to about 8700."
+      },
+      {
+        "id": "s5_result",
+        "kind": "boxed_final",
+        "label": "Result",
+        "marks": 1,
+        "mark_note": "v ≈ 93 m s⁻¹",
+        "lines": [
+          "Taking the square root:",
+          {
+            "text": "v ≈ 93 m s⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. Give the answer with the unit m s⁻¹.",
+        "why": "90² is 8100 and 95² is 9025, so the root of 8700 has to sit between them — a check that takes a moment and catches a misplaced power of ten.",
+        "common_mistakes": [
+          "Writing 93 with no unit. Speed is in metres per second."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the square root of about 8700 is about 93 m s⁻¹.",
+          "accept": [
+            "93 metre per second",
+            "about 93",
+            "ninety three"
+          ],
+          "reject": [
+            "root of 8700"
+          ],
+          "heard_as": [
+            "ninety three",
+            "metre per second"
+          ]
+        },
+        "memory_tip": "90² = 8100 and 95² = 9025, so √8700 has to land near 93."
+      }
+    ]
+  },
+  "insider_note": "Two divisions decide this numerical: mass by length to reach μ, then tension by μ under the root. A student who skips the first one puts the whole 5.0 × 10⁻³ kg into the formula and reports about 110 m s⁻¹ instead of 93 m s⁻¹."
+}

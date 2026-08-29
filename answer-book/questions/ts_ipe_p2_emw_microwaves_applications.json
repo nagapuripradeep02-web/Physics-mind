@@ -1,0 +1,108 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_microwaves_applications",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the applications of microwaves?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use in radar",
+      "marks": 1
+    },
+    {
+      "label": "Use in microwave ovens",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the book (p.42) lists exactly two applications — radar and microwave ovens — and both are genuine: radar uses short-wavelength beams that diffract little, and ovens heat food because water molecules absorb microwave energy."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_radar",
+        "kind": "text",
+        "label": "Use in radar",
+        "marks": 1,
+        "mark_note": "Used in radar",
+        "lines": [
+          "Microwaves are used in radar."
+        ],
+        "margin_note": "First mark. Radar is the standard first application.",
+        "why": "Microwaves have very short wavelengths, so they diffract little and a radar can send them as a narrow beam toward a target.",
+        "common_mistakes": [
+          "Writing radio waves for radar. Radar uses microwaves because their shorter wavelength keeps the beam narrow."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That microwaves are used in radar.",
+          "accept": [
+            "radar",
+            "used in radars"
+          ],
+          "reject": [
+            "radio broadcasting"
+          ],
+          "heard_as": [
+            "radar",
+            "microwave"
+          ]
+        },
+        "memory_tip": "One outdoor use and one kitchen use: radar and the oven."
+      },
+      {
+        "id": "s2_ovens",
+        "kind": "text",
+        "label": "Use in microwave ovens",
+        "marks": 1,
+        "mark_note": "Used in microwave ovens",
+        "lines": [
+          "Microwaves are used in microwave ovens",
+          "for cooking food."
+        ],
+        "margin_note": "Second mark. The oven takes its name from the waves it uses.",
+        "why": "Water molecules in food absorb microwave energy, so the food heats through quickly.",
+        "common_mistakes": [
+          "Stopping after one application. The question asks for applications, so give both radar and ovens."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That microwaves are used in microwave ovens.",
+          "accept": [
+            "microwave oven",
+            "cooking food in ovens"
+          ],
+          "reject": [
+            "solar cooker"
+          ],
+          "heard_as": [
+            "oven",
+            "cooking"
+          ]
+        },
+        "memory_tip": "The oven is named after the wave — hard to forget once noticed."
+      }
+    ]
+  },
+  "insider_note": "Applications is plural — the book marks two, radar and microwave ovens, one mark each."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_enterocoelom",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Enterocoelom? Name the enterocoelomate phyla in the animal kingdom.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Phyla",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.51, VSAQ 77). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What enterocoelom is",
+        "marks": 1,
+        "why": "Entero means gut, so the name itself records where this coelom comes from, and that is the one fact separating it from a schizocoelom.",
+        "common_mistakes": [
+          "Confusing it with schizocoelom. A schizocoelom appears as a split in a solid block of mesoderm; an enterocoelom buds off the gut."
+        ],
+        "memory_tip": "Entero means gut: the coelom starts as a pouch of the embryonic gut.",
+        "margin_note": "One sentence naming the archenteron. Do not describe the whole of development.",
+        "mark_note": "Definition",
+        "lines": [
+          "Enterocoelom is a true coelom that forms from",
+          "outpouchings of the archenteron, the embryonic",
+          "gut.",
+          "The pouches pinch off, and their walls form the",
+          "mesoderm that lines the cavity."
+        ]
+      },
+      {
+        "id": "s2_phyla",
+        "kind": "boxed_final",
+        "label": "The enterocoelomate phyla",
+        "marks": 1,
+        "why": "The three enterocoelomate phyla are exactly the three deuterostome phyla, so one list serves two different questions.",
+        "common_mistakes": [
+          "Adding Annelida or Arthropoda. Those are schizocoelomates."
+        ],
+        "memory_tip": "The three deuterostome phyla are the three enterocoelomate phyla — one list, two questions.",
+        "margin_note": "Three names in a box. Nothing else is needed for this mark.",
+        "mark_note": "Phyla",
+        "lines": [
+          {
+            "text": "Echinodermata, Hemichordata, Chordata",
+            "style": "boxed"
+          },
+          "These three phyla are the enterocoelomates.",
+          "They are also the deuterostomes, so the same",
+          "three names answer both questions."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The three phyla are the easy mark and the definition is the hard one — write the archenteron sentence first, while it is fresh."
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_endocrine_vs_exocrine_glands",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between endocrine and exocrine glands with examples.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Endocrine glands",
+      "marks": 1
+    },
+    {
+      "label": "Exocrine glands",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.51, VSAQ 78). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_endocrine",
+        "kind": "text",
+        "label": "Endocrine glands",
+        "marks": 1,
+        "why": "A gland with no duct has only one route out for its secretion, and that route is the blood.",
+        "common_mistakes": [
+          "Writing that endocrine glands have fine ducts. They have none, and that is the whole difference.",
+          "Calling the secretion an enzyme. Endocrine glands secrete hormones."
+        ],
+        "memory_tip": "Endo means inside: the secretion goes inside, into the blood.",
+        "margin_note": "Ductless, hormones into blood, two examples. Three short lines.",
+        "mark_note": "Endocrine",
+        "lines": [
+          "Endocrine glands are ductless glands.",
+          "They pour their secretions, called hormones,",
+          "straight into the blood.",
+          "Examples: pituitary gland, thyroid gland."
+        ]
+      },
+      {
+        "id": "s2_exocrine",
+        "kind": "boxed_final",
+        "label": "Exocrine glands",
+        "marks": 1,
+        "why": "A duct is a tube, so an exocrine secretion can be delivered to one named place, while a hormone with no duct reaches the whole body through the blood.",
+        "common_mistakes": [
+          "Using the same example for both. Salivary glands are exocrine; the thyroid is endocrine."
+        ],
+        "memory_tip": "Exo means outside: the duct carries the secretion outside the gland.",
+        "margin_note": "The duct is the marked difference. Add two examples on each side.",
+        "mark_note": "Exocrine",
+        "lines": [
+          {
+            "text": "Endocrine: no duct  ·  Exocrine: with duct",
+            "style": "boxed"
+          },
+          "Exocrine glands are glands with ducts.",
+          "The duct carries the secretion to a surface or",
+          "into a cavity.",
+          "They secrete saliva, mucus, ear wax, oil, milk",
+          "and digestive juices.",
+          "Examples: salivary glands, mucous glands."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Write this one as two named halves, not as prose — the examiner ticks 'ductless, hormones, blood' on one side and 'duct' on the other."
+}

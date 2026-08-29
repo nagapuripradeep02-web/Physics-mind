@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_zener_voltage_and_connection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is zener voltage and how will a zener diode be connected in circuits generally.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Zener voltage defined",
+      "marks": 1
+    },
+    {
+      "label": "How it is connected",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the book prints 'revererse bias' in its answer; the word is spelled correctly here."
+  },
+  "recall_prompt": "Define the zener voltage, then say which way round a zener diode is connected.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zener_voltage",
+        "kind": "text",
+        "label": "Zener voltage",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Zener voltage: the reverse voltage at",
+          "which the current through a zener diode",
+          "increases suddenly. It is also called the",
+          "breakdown voltage of the diode."
+        ],
+        "margin_note": "First mark. The word 'reverse' must appear — a forward voltage of this name does not exist.",
+        "why": "The zener voltage is a point on the reverse part of the characteristic curve. Up to it the reverse current is tiny and almost fixed; at it the current rises steeply while the voltage hardly changes, and that steep piece is what every zener circuit uses.",
+        "common_mistakes": [
+          "Defining it as the forward voltage at which the diode starts to conduct. That is the knee voltage, about 0.7 V for silicon.",
+          "Saying the voltage increases suddenly. It is the CURRENT that increases suddenly."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the zener voltage is the reverse voltage at which the current increases suddenly.",
+          "accept": [
+            "reverse voltage at which current rises sharply",
+            "breakdown voltage in reverse bias",
+            "voltage where the diode breaks down"
+          ],
+          "reject": [
+            "connected in reverse bias"
+          ],
+          "heard_as": [
+            "zener voltage",
+            "breakdown",
+            "reverse"
+          ]
+        },
+        "memory_tip": "Zener voltage is a reverse voltage where the CURRENT jumps, not the voltage."
+      },
+      {
+        "id": "s2_connection",
+        "kind": "boxed_final",
+        "label": "How it is connected",
+        "marks": 1,
+        "mark_note": "Reverse bias",
+        "lines": [
+          "In circuits a zener diode is generally",
+          "connected in reverse bias, so that it",
+          "works in its breakdown region.",
+          {
+            "text": "Zener diode: always in reverse bias",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Reverse bias, and say why: to keep it in breakdown.",
+        "why": "A zener diode connected forward is just an ordinary diode, so the whole reason for choosing a zener disappears. It is put in reverse so the circuit sits on the flat breakdown part of the curve where the voltage is fixed.",
+        "common_mistakes": [
+          "Saying it is connected in forward bias like other diodes.",
+          "Connecting it in reverse with no series resistor. Without one the breakdown current is not limited and the diode is damaged."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a zener diode is connected in reverse bias.",
+          "accept": [
+            "connected in reverse bias",
+            "reverse biased in the circuit",
+            "so that it works in breakdown"
+          ],
+          "reject": [
+            "current increases suddenly"
+          ],
+          "heard_as": [
+            "reverse bias",
+            "connected",
+            "breakdown region"
+          ]
+        },
+        "memory_tip": "Both halves of this answer are the same word: reverse."
+      }
+    ]
+  },
+  "insider_note": "Both parts turn on the word reverse — the reverse voltage in the definition and the reverse connection in the circuit."
+}

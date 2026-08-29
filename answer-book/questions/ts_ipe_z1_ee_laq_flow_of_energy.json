@@ -1,0 +1,483 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_laq_flow_of_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give an account of flow of energy in an ecosystem.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Source of energy and PAR",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "First law of thermodynamics",
+      "marks": 1
+    },
+    {
+      "label": "Second law and energy flow",
+      "marks": 2
+    },
+    {
+      "label": "Standing crop",
+      "marks": 1
+    },
+    {
+      "label": "The 10% law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.27, LAQ 11). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Ecology and Environment · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_source",
+        "kind": "text",
+        "label": "Source of energy and PAR",
+        "marks": 1,
+        "mark_note": "Source",
+        "lines": [
+          "The sun is the only source of energy for all",
+          "the ecosystems on the earth.",
+          "The solar energy captured by plants passes",
+          "through the different organisms of an",
+          "ecosystem.",
+          "Less than 50% of the incident solar energy",
+          "is Photosynthetically Active Radiation",
+          "(PAR).",
+          "Plants capture only 2 to 10% of PAR, and",
+          "this sustains the entire living world.",
+          "All heterotrophs depend on the producers for",
+          "their food, either directly or indirectly."
+        ],
+        "why": "Energy flow is a one-way street from the sun, so the answer starts at the sun and follows the energy down through two losses — the part of sunlight that is not PAR, and the part of PAR the plant cannot capture.",
+        "common_mistakes": [
+          "Writing that plants capture 2 to 10% of sunlight. It is 2 to 10% of PAR, not of all sunlight.",
+          "Calling the sun the main source. In this answer it is the ONLY source."
+        ],
+        "memory_tip": "Two cuts before the food chain even starts: under half of sunlight is PAR, and only 2 to 10% of that is captured.",
+        "margin_note": "Both percentages with the quantity each belongs to. Five short statements."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — energy flow",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "ee_energy_flow",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the four tiers of the pyramid"
+            },
+            {
+              "type": "stroke",
+              "id": "tier1",
+              "d": "M 70 270 L 350 270 L 325.5 226 L 94.5 226 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "tier2",
+              "d": "M 94.5 226 L 325.5 226 L 301 182 L 119 182 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "tier3",
+              "d": "M 119 182 L 301 182 L 276.5 138 L 143.5 138 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "tier4",
+              "d": "M 143.5 138 L 276.5 138 L 252 94 L 168 94 Z",
+              "ms": 4500
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the energy stored at each level"
+            },
+            {
+              "type": "label",
+              "id": "val1",
+              "x": 186.9,
+              "y": 253,
+              "text": "100 kJ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "val2",
+              "x": 191.2,
+              "y": 209,
+              "text": "10 kJ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "val3",
+              "x": 195.4,
+              "y": 165,
+              "text": "1 kJ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "val4",
+              "x": 189.2,
+              "y": 121,
+              "text": "0.1 kJ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the 10% arrows going up the pyramid"
+            },
+            {
+              "type": "stroke",
+              "id": "up1",
+              "d": "M 44 239 L 44 221",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "uphead1",
+              "d": "M 48 219.9 L 44 213 L 40 219.9",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "pct1",
+              "x": 8,
+              "y": 232,
+              "text": "10%",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "up2",
+              "d": "M 44 195 L 44 177",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "uphead2",
+              "d": "M 48 175.9 L 44 169 L 40 175.9",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "pct2",
+              "x": 8,
+              "y": 188,
+              "text": "10%",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "up3",
+              "d": "M 44 151 L 44 133",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "uphead3",
+              "d": "M 48 131.9 L 44 125 L 40 131.9",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "pct3",
+              "x": 8,
+              "y": 144,
+              "text": "10%",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — sunlight entering the producers"
+            },
+            {
+              "type": "stroke",
+              "id": "sun",
+              "d": "M 45 44 A 15 15 0 1 0 75 44 A 15 15 0 1 0 45 44",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "sun_rays",
+              "d": "M 80 44 L 87 44 M 74.1 58.1 L 79.1 63.1 M 60 64 L 60 71 M 45.9 58.1 L 40.9 63.1 M 40 44 L 33 44 M 45.9 29.9 L 40.9 24.9 M 60 24 L 60 17 M 74.1 29.9 L 79.1 24.9",
+              "ms": 800,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "sun_arrow",
+              "d": "M 84 62 C 118 104 132 180 116 256",
+              "ms": 2890,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "sun_head",
+              "d": "M 113 254.6 L 116 262 L 120.9 255.7",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "lbl_sun",
+              "x": 96,
+              "y": 40,
+              "text": "Sunlight",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the names of the trophic levels"
+            },
+            {
+              "type": "label",
+              "id": "lvl1",
+              "x": 362,
+              "y": 253,
+              "text": "Producers",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ldlvl1",
+              "d": "M 358 249 L 344 247",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lvl2",
+              "x": 362,
+              "y": 209,
+              "text": "Herbivores",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ldlvl2",
+              "d": "M 358 205 L 319.5 203",
+              "ms": 550,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lvl3",
+              "x": 362,
+              "y": 165,
+              "text": "Carnivores",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ldlvl3",
+              "d": "M 358 161 L 295 159",
+              "ms": 900,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lvl4",
+              "x": 362,
+              "y": 121,
+              "text": "Top carnivores",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ldlvl4",
+              "d": "M 358 117 L 270.5 115",
+              "ms": 1250,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "Energy flow is a quantity that shrinks at every step, so the picture that carries it is a stack of tiers that narrow upwards; drawing it to scale makes the 10% law visible instead of merely stated.",
+        "common_mistakes": [
+          "Drawing the tiers the same width. Each level must be visibly smaller than the one below it.",
+          "Putting the producers at the top. The producers are the widest tier at the BOTTOM.",
+          "Leaving the energy values off. The numbers 100, 10 and 1 kJ are what show the 10% law."
+        ],
+        "memory_tip": "Draw the widest tier at the bottom first, then stack narrower ones on it. Write the energy inside each tier.",
+        "margin_note": "Label the trophic levels and write the energy in each tier. The 10% arrows carry the marks."
+      },
+      {
+        "id": "s3_first_law",
+        "kind": "text",
+        "label": "First law of thermodynamics",
+        "marks": 1,
+        "mark_note": "First law",
+        "lines": [
+          "The first law of thermodynamics is the law",
+          "of conservation of energy.",
+          "It states that energy is neither created nor",
+          "destroyed. It may change from one form to",
+          "another.",
+          "The energy that reaches the earth is",
+          "balanced by the energy that leaves it as",
+          "heat radiation.",
+          "Transfer of energy is essential for the",
+          "survival of life, and it needs a continuous",
+          "flow of energy."
+        ],
+        "why": "The first law explains why energy has to keep arriving: none of it is lost from the universe, but it changes into forms an organism cannot use, so the supply must be continuous.",
+        "common_mistakes": [
+          "Writing that energy is destroyed at each level. It is not destroyed; it CHANGES FORM.",
+          "Leaving out the balance between energy arriving and heat leaving."
+        ],
+        "memory_tip": "First law says nothing is lost; second law says what is left is not always usable.",
+        "margin_note": "State the law, then the balance, then why the flow must be continuous."
+      },
+      {
+        "id": "s4_second_law",
+        "kind": "text",
+        "label": "Second law and energy flow",
+        "marks": 2,
+        "mark_note": "Second law",
+        "lines": [
+          "The second law of thermodynamics states that",
+          "there is degradation of energy at each",
+          "level.",
+          "The degraded energy is in the form of",
+          "unavailable heat energy.",
+          "It constitutes entropy, that is, energy that",
+          "is not available for work.",
+          "The transfer of energy through a food chain",
+          "is known as energy flow.",
+          "The amount of energy available decreases at",
+          "successive trophic levels.",
+          "When an organism dies, it becomes a source",
+          "of energy for its decomposers."
+        ],
+        "why": "This step defines energy flow itself and gives the reason it runs one way only: at every transfer some energy is degraded to heat, so less is available at each level up.",
+        "common_mistakes": [
+          "Writing that entropy is heat. Entropy is the energy that is NOT AVAILABLE for work.",
+          "Writing that energy increases up the chain. It DECREASES at successive trophic levels.",
+          "Leaving out the decomposers. Dead organisms pass their energy on to them."
+        ],
+        "memory_tip": "At every step some energy turns into heat that no organism can use. That is why the chain is short.",
+        "margin_note": "Two marks, so keep all six points. Define energy flow in the middle of them."
+      },
+      {
+        "id": "s5_standing_crop",
+        "kind": "text",
+        "label": "Standing crop",
+        "marks": 1,
+        "mark_note": "Standing crop",
+        "lines": [
+          "Each trophic level has a certain mass of",
+          "living material, and this is called the",
+          "standing crop.",
+          "The standing crop is the biomass of that",
+          "level.",
+          "Biomass can be expressed in terms of fresh",
+          "weight or dry weight.",
+          "Dry weight is more accurate, because the",
+          "water content of a body varies."
+        ],
+        "why": "Energy at a trophic level is measured through the mass of living material there, so the standing crop is the bridge between the energy account and something that can actually be weighed.",
+        "common_mistakes": [
+          "Calling the standing crop the number of organisms. It is their MASS.",
+          "Writing that fresh weight is more accurate. DRY weight is the accurate measure."
+        ],
+        "memory_tip": "Standing crop is what is standing there now, weighed. Dry weight, because water is not food.",
+        "margin_note": "Define it, name it as biomass, then the two weights with dry weight preferred."
+      },
+      {
+        "id": "s6_ten_percent",
+        "kind": "boxed_final",
+        "label": "The 10% law",
+        "marks": 1,
+        "mark_note": "10% law",
+        "lines": [
+          {
+            "text": "Only 10% passes up; 90% is spent as heat",
+            "style": "boxed"
+          },
+          "The 10% law was introduced by Lindeman.",
+          "During the transfer of energy, only 10% of",
+          "the energy is stored in the next trophic",
+          "level. The rest is used for metabolic",
+          "activities such as respiration.",
+          "Lindeman's 10% rule is the most widely used",
+          "measure of ecological efficiency.",
+          "Ex: if the net primary production of the",
+          "plants is 100 kJ, the biomass available to",
+          "the herbivores is 10 kJ, and the next",
+          "carnivores get only 1 kJ."
+        ],
+        "why": "The 10% law puts a number on everything said above, and the worked example with 100, 10 and 1 kJ is what proves the loss at each step rather than just asserting it.",
+        "common_mistakes": [
+          "Writing that 10% is lost. Ten per cent is what is PASSED ON; ninety per cent is used up.",
+          "Leaving out Lindeman's name, which the question paper looks for.",
+          "Giving the law without the worked numbers."
+        ],
+        "memory_tip": "100, 10, 1 — drop a zero at every trophic level.",
+        "margin_note": "Name Lindeman, state the law, then the three numbers. Close the answer here."
+      }
+    ]
+  },
+  "insider_note": "Two things are checked by name in this answer: Lindeman for the 10% law, and the worked example of 100 kJ, 10 kJ and 1 kJ."
+}

@@ -1,0 +1,360 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_gauss_law_magnetism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Obtain Gauss's law for magnetism and explain it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Statement",
+      "marks": 1
+    },
+    {
+      "label": "Flux through an element",
+      "marks": 1
+    },
+    {
+      "label": "Net flux is zero",
+      "marks": 1
+    },
+    {
+      "label": "Contrast with electrostatics",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: the net magnetic flux through any closed surface is zero — Δφ = B·ΔS cos θ per element, φ = Σ B·ΔS = 0 summed over the closed surface — because isolated magnetic poles (monopoles) do not exist; the electric contrast is φ = Σ E·ΔS = q/ε₀, nonzero when charge is enclosed. The figure (closed surface, area element ΔS, outward normal n, field B at angle θ) is drawn without diagram marks because the question does not ask for a diagram."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Magnetism and Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "Statement",
+        "marks": 1,
+        "mark_note": "Net flux zero, any closed surface",
+        "lines": [
+          "Gauss's law for magnetism: the net",
+          "magnetic flux through any closed surface",
+          "is zero. The number of field lines leaving",
+          "the surface equals the number entering it."
+        ],
+        "margin_note": "First mark. Two words carry it: net and closed — the law says nothing about open surfaces.",
+        "why": "The statement is the law itself, so it opens the answer. Net and closed are the load-bearing words: through an open surface the magnetic flux need not be zero at all.",
+        "common_mistakes": [
+          "Dropping the word closed. Flux through an open surface (one turn of a coil) is not zero — that flux drives induction in the next chapter.",
+          "Saying the flux is small. The law says exactly zero, always."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the net magnetic flux through any closed surface is zero.",
+          "accept": [
+            "net magnetic flux through a closed surface is zero",
+            "as many lines leave as enter"
+          ],
+          "reject": [
+            "flux is q by epsilon nought"
+          ],
+          "heard_as": [
+            "closed surface",
+            "net flux",
+            "zero"
+          ]
+        },
+        "memory_tip": "Closed surface, net flux, zero — the three words that are the law."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The closed surface",
+        "marks": 0,
+        "margin_note": "No diagram mark is asked, but the figure fixes S, ΔS, n and θ for the working below it.",
+        "why": "The figure names everything the derivation uses: a closed surface S sitting in a field B, one small area element ΔS on it, the outward normal n, and the angle θ between n and B.",
+        "common_mistakes": [
+          "Drawing an open surface such as a flat disc. The law is about a CLOSED surface — draw a surface that encloses a volume."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a closed surface is drawn in a magnetic field with one area element ΔS marked, its outward normal n at angle θ to B.",
+          "accept": [
+            "draw the closed surface in the field",
+            "mark an area element with its normal",
+            "show theta between the normal and B"
+          ],
+          "reject": [],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "delta S"
+          ]
+        },
+        "memory_tip": "Draw the surface first, then one small patch on it — the whole law is that patch, summed.",
+        "figure": {
+          "id": "closed_surface_flux",
+          "width": 340,
+          "height": 192,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "field_line_1",
+              "d": "M 22 52 L 305 22",
+              "ms": 4070
+            },
+            {
+              "type": "stroke",
+              "id": "field_line_2",
+              "d": "M 20 108 L 315 74",
+              "ms": 4240
+            },
+            {
+              "type": "stroke",
+              "id": "field_line_3",
+              "d": "M 28 162 L 318 126",
+              "ms": 4170
+            },
+            {
+              "type": "stroke",
+              "id": "surface",
+              "d": "M 65 110 A 85 48 0 1 0 235 110 A 85 48 0 1 0 65 110",
+              "ms": 4500
+            },
+            {
+              "type": "label",
+              "id": "lbl_surface",
+              "x": 128,
+              "y": 182,
+              "text": "closed surface S",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "element_patch",
+              "d": "M 138 66 L 166 60 L 174 70 L 146 76 L 138 66",
+              "ms": 1180
+            },
+            {
+              "type": "label",
+              "id": "lbl_ds",
+              "x": 178,
+              "y": 88,
+              "text": "ΔS",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "normal_shaft",
+              "d": "M 156 64 L 156 16",
+              "ms": 690
+            },
+            {
+              "type": "stroke",
+              "id": "normal_head",
+              "d": "M 151 26 L 156 16 L 161 26",
+              "ms": 320
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 138,
+              "y": 30,
+              "text": "n",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "field_arrow",
+              "d": "M 158 65 L 218 50",
+              "ms": 880
+            },
+            {
+              "type": "stroke",
+              "id": "field_arrow_head",
+              "d": "M 209 47 L 219 50 L 211 56",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 224,
+              "y": 44,
+              "text": "B",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "theta_arc",
+              "d": "M 156 40 A 26 26 0 0 1 181 60",
+              "ms": 490
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 166,
+              "y": 38,
+              "text": "θ",
+              "ms": 450
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_element_flux",
+        "kind": "equation",
+        "label": "Flux through an element",
+        "marks": 1,
+        "mark_note": "Δφ = B·ΔS cos θ",
+        "lines": [
+          "Divide the closed surface S into many",
+          "small area elements. Take one element of",
+          "area ΔS, with outward normal n at angle θ",
+          "to the field B at that place.",
+          "The magnetic flux through this element is",
+          {
+            "text": "Δφ = B·ΔS cos θ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "One patch at a time: only the part of B along the normal sends flux through the patch, hence cos θ.",
+        "why": "Flux counts field lines crossing the patch, and only the component of B along the normal crosses it — that is what cos θ selects. The whole law is this one patch, summed.",
+        "common_mistakes": [
+          "Writing sin θ. Flux uses the component of B along the normal, so cos θ.",
+          "Measuring θ from the surface instead of from the normal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the surface is divided into small elements and the flux through one element is B times ΔS times cos θ.",
+          "accept": [
+            "divide the surface into small elements",
+            "flux is B delta S cos theta",
+            "component of B along the normal"
+          ],
+          "reject": [
+            "the total flux is zero"
+          ],
+          "heard_as": [
+            "delta S",
+            "cos theta",
+            "normal"
+          ]
+        },
+        "memory_tip": "Flux through a patch = field × area × cos θ, with θ taken from the normal."
+      },
+      {
+        "id": "s4_net_zero",
+        "kind": "equation",
+        "label": "Net flux is zero",
+        "marks": 1,
+        "mark_note": "Sum over the closed surface",
+        "lines": [
+          "Add the flux from every element of the",
+          "closed surface. As many field lines enter",
+          "the surface as leave it, so the sum is",
+          "zero:",
+          {
+            "text": "φ = Σ B·ΔS = 0",
+            "style": "eq"
+          },
+          "This holds for every closed surface,",
+          "whatever its shape or size."
+        ],
+        "margin_note": "The sum runs over ALL the area elements of the closed surface — that is what Σ stands for.",
+        "why": "Field lines close into loops, so any line that enters the closed surface must come out again. Entering flux is negative, leaving flux positive, and over the whole surface they cancel exactly.",
+        "common_mistakes": [
+          "Claiming the flux through each element is zero. Individual elements carry flux — only the SUM over the closed surface vanishes.",
+          "Restricting the result to special surfaces. It holds for any closed surface, of any shape."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That summing B·ΔS over all elements of the closed surface gives zero, for any closed surface.",
+          "accept": [
+            "sum of B delta S is zero",
+            "lines in equal lines out",
+            "true for any closed surface"
+          ],
+          "reject": [
+            "q by epsilon nought"
+          ],
+          "heard_as": [
+            "sigma",
+            "sum",
+            "zero"
+          ]
+        },
+        "memory_tip": "Every line that goes in must come out — the sum cancels to zero."
+      },
+      {
+        "id": "s5_contrast",
+        "kind": "boxed_final",
+        "label": "Contrast with electrostatics",
+        "marks": 1,
+        "mark_note": "No monopoles",
+        "lines": [
+          "In electrostatics the flux through a",
+          "closed surface is q/ε₀, not zero, because",
+          "isolated charges exist:",
+          {
+            "text": "φ = Σ E·ΔS = q/ε₀",
+            "style": "eq"
+          },
+          "Isolated magnetic poles (monopoles) do",
+          "not exist. The simplest magnetic unit is",
+          "a dipole, so the flux in and the flux out",
+          "always cancel:",
+          {
+            "text": "Net magnetic flux: φ = Σ B·ΔS = 0",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The explain part of the question lives here: the zero says magnetic monopoles do not exist.",
+        "why": "The two Gauss laws differ in exactly one physical fact: charge can be enclosed alone, a magnetic pole cannot. That is why one flux is q/ε₀ and the other is always zero.",
+        "common_mistakes": [
+          "Writing the magnetic flux as m/μ₀ by copying the electric form. There is no enclosed pole strength — the flux is zero.",
+          "Ending without saying WHY it is zero. The examiner reads for the words monopoles do not exist."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the electric flux is q/ε₀ because isolated charges exist, while the magnetic flux is zero because monopoles do not.",
+          "accept": [
+            "electric flux is q by epsilon nought",
+            "monopoles do not exist",
+            "the basic magnetic unit is a dipole"
+          ],
+          "reject": [
+            "B delta S cos theta"
+          ],
+          "heard_as": [
+            "monopole",
+            "epsilon nought",
+            "dipole"
+          ]
+        },
+        "memory_tip": "Charges can sit alone, poles cannot — so one flux is q/ε₀ and the other is zero."
+      }
+    ]
+  },
+  "insider_note": "Obtain and explain are two halves: the sum reaching zero is the obtain, and the sentence monopoles do not exist is the explain — answers that stop at the equation lose the last mark."
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_rectifier_efficiency_expressions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the expressions for the efficiency of a full wave rectifier and a half wave rectifier.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Full wave efficiency expression",
+      "marks": 1
+    },
+    {
+      "label": "Half wave efficiency expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked against the book (p.55): full wave 0.812 on top, half wave 0.406 on top, both over the same denominator (forward resistance of the diode plus load resistance). The symbols carry capital-letter subscripts, which Unicode does not encode, so those lines are authored as KaTeX."
+  },
+  "recall_prompt": "Write both efficiency expressions and say what each symbol in them stands for.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_full_wave",
+        "kind": "equation",
+        "label": "Full wave efficiency",
+        "marks": 1,
+        "mark_note": "0.812 on top",
+        "lines": [
+          "i) Efficiency of a full wave rectifier:",
+          {
+            "text": "\\eta = \\dfrac{0.812\\,R_L}{r_f + R_L}",
+            "style": "eq",
+            "render": "katex"
+          },
+          "Its maximum value is 81.2%."
+        ],
+        "margin_note": "First mark. The number 0.812 and the denominator together.",
+        "why": "Efficiency is output d.c. power divided by input a.c. power. The denominator is the total resistance the current passes through — the diode's own forward resistance plus the load — so as the diode resistance becomes small compared with the load, the efficiency rises towards its maximum of 0.812.",
+        "common_mistakes": [
+          "Putting 0.406 on top for the full wave rectifier. That number belongs to the half wave rectifier.",
+          "Writing the load resistance alone in the denominator. The diode's forward resistance is in series with it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the full wave efficiency is 0.812 times the load resistance divided by the sum of the forward resistance and the load resistance.",
+          "accept": [
+            "zero point eight one two R L over r f plus R L",
+            "0.812 load resistance by forward plus load",
+            "eta is 0.812 R L by r f plus R L"
+          ],
+          "reject": [
+            "zero point four zero six on top"
+          ],
+          "heard_as": [
+            "0.812",
+            "eta",
+            "load resistance"
+          ]
+        },
+        "memory_tip": "Same fraction twice — only the number on top changes."
+      },
+      {
+        "id": "s2_half_wave",
+        "kind": "boxed_final",
+        "label": "Half wave efficiency",
+        "marks": 1,
+        "mark_note": "0.406 on top",
+        "lines": [
+          "ii) Efficiency of a half wave rectifier:",
+          {
+            "text": "\\eta = \\dfrac{0.406\\,R_L}{r_f + R_L}",
+            "style": "eq",
+            "render": "katex"
+          },
+          "Its maximum value is 40.6%.",
+          {
+            "text": "R_L = \\text{load resistance}",
+            "style": "eq",
+            "render": "katex"
+          },
+          {
+            "text": "r_f = \\text{forward resistance of the diode}",
+            "style": "eq",
+            "render": "katex"
+          }
+        ],
+        "margin_note": "Second mark. 0.406 on top, and both symbols named below.",
+        "why": "The half wave rectifier uses one half of each cycle, so its output d.c. power is half that of the full wave rectifier for the same input, and the constant on top is exactly half: 0.406 against 0.812.",
+        "common_mistakes": [
+          "Leaving the symbols undefined. The examiner looks for what the load resistance and the forward resistance are.",
+          "Writing 0.812 for the half wave rectifier."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the half wave efficiency is 0.406 times the load resistance divided by the sum of the forward resistance and the load resistance.",
+          "accept": [
+            "zero point four zero six R L over r f plus R L",
+            "0.406 load resistance by forward plus load",
+            "eta is 0.406 R L by r f plus R L"
+          ],
+          "reject": [
+            "zero point eight one two on top"
+          ],
+          "heard_as": [
+            "0.406",
+            "eta",
+            "forward resistance"
+          ]
+        },
+        "memory_tip": "Write the fraction once, then change 0.812 to 0.406."
+      }
+    ]
+  },
+  "insider_note": "The denominator is the same in both expressions. Write it once, then change only the number on top."
+}

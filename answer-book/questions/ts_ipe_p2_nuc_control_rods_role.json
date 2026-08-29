@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_control_rods_role",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the role of controlling rods in a nuclear reactor?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "They absorb neutrons",
+      "marks": 1
+    },
+    {
+      "label": "They hold K = 1; the materials",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: cadmium and boron have very large neutron-absorption cross-sections and are the standard control-rod materials. The book also lists BERYLLIUM as a control-rod substance; beryllium is a moderator and reflector — it scatters neutrons and slows them rather than absorbing them — so this card names cadmium and boron only."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_absorb",
+        "kind": "text",
+        "label": "They absorb neutrons",
+        "marks": 1,
+        "mark_note": "Rods absorb neutrons in the core",
+        "lines": [
+          "Control rods absorb the neutrons produced by",
+          "fission inside the reactor core.",
+          "Pushing the rods in removes more neutrons;",
+          "pulling them out leaves more neutrons free",
+          "to cause fission."
+        ],
+        "margin_note": "First mark. The word absorb, and the effect of moving the rods.",
+        "why": "The rods are the only fast adjustment a reactor has: their depth in the core sets how many neutrons survive to start the next generation.",
+        "common_mistakes": [
+          "Saying control rods slow the neutrons down. That is the moderator.",
+          "Saying they cool the reactor. That is the coolant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That control rods absorb neutrons in the reactor core, and moving them in or out changes how many neutrons remain.",
+          "accept": [
+            "they absorb neutrons",
+            "pushing them in absorbs more neutrons",
+            "rods control the number of neutrons"
+          ],
+          "reject": [
+            "they slow down the neutrons"
+          ],
+          "heard_as": [
+            "control rods",
+            "absorb",
+            "neutrons"
+          ]
+        },
+        "memory_tip": "Rods in, fewer neutrons; rods out, more neutrons."
+      },
+      {
+        "id": "s2_k_equals_one",
+        "kind": "boxed_final",
+        "label": "They hold K = 1; the materials",
+        "marks": 1,
+        "mark_note": "Keeps the chain reaction steady; cadmium, boron",
+        "lines": [
+          "This holds the multiplication factor at K = 1,",
+          "so the chain reaction stays steady and",
+          "controlled.",
+          "Cadmium and boron are used, because they",
+          "absorb neutrons strongly.",
+          {
+            "text": "Control rods absorb neutrons, holding K = 1",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Link the rods to K = 1 and name cadmium or boron.",
+        "why": "The book also lists beryllium here. Beryllium scatters neutrons and slows them, so it works as a moderator and reflector, not as an absorber; cadmium and boron are the materials with the large absorption cross-sections a control rod needs.",
+        "common_mistakes": [
+          "Naming graphite or heavy water. Those are moderators, not control rods.",
+          "Omitting K = 1. The purpose of the rods is the steady reaction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That control rods keep the multiplication factor at 1 so the chain reaction is steady, and that cadmium and boron are used.",
+          "accept": [
+            "they keep K equal to one",
+            "cadmium and boron",
+            "chain reaction stays steady"
+          ],
+          "reject": [
+            "they absorb neutrons in the core"
+          ],
+          "heard_as": [
+            "cadmium",
+            "boron",
+            "K equals one"
+          ]
+        },
+        "memory_tip": "Cadmium and boron are neutron sponges; the rods dial K to exactly 1."
+      }
+    ]
+  },
+  "insider_note": "Say what the rods do (absorb neutrons) and what that achieves (K held at 1). Naming a material alone is half an answer."
+}

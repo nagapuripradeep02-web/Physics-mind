@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_meter_bridge_left_gap",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The balance point in a meter bridge experiment is obtained at 30 cm from the left. If the right gap contains 3.5 Ω, what is the resistance in the left gap?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The balance condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitution and answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: R/S = l₁/(100 − l₁); R = 3.5 × 30/70 = 1.5 Ω — matches the book's printed 1.5 Ω."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "The balance condition",
+        "marks": 1,
+        "mark_note": "R/S = l₁/(100 − l₁)",
+        "lines": [
+          "Given: l₁ = 30 cm, S = 3.5 Ω.",
+          "At balance in a meter bridge,",
+          {
+            "text": "R/S = l₁/(100 − l₁)",
+            "style": "eq"
+          },
+          "R is in the left gap, S in the right gap,",
+          "and l₁ is measured from the left end."
+        ],
+        "margin_note": "First mark. The left resistance goes with the left length l₁; the right with (100 − l₁).",
+        "why": "The bridge wire is uniform, so its two parts have resistances in the ratio of their lengths. At balance the two gaps divide in the same ratio as the two wire parts.",
+        "common_mistakes": [
+          "Writing R/S = (100 − l₁)/l₁ — the left resistance pairs with the LEFT length.",
+          "Using 50 instead of 100 — the bridge wire is 100 cm long."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at balance R by S equals l one by 100 minus l one, with R in the left gap.",
+          "accept": [
+            "R by S equals l1 by 100 minus l1",
+            "left gap goes with the left length",
+            "balance condition of the meter bridge"
+          ],
+          "reject": [
+            "1.5 ohm"
+          ],
+          "heard_as": [
+            "meter bridge",
+            "balance",
+            "100 minus l1"
+          ]
+        },
+        "memory_tip": "Left with left: R (left gap) over S = l₁ (left length) over the rest."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitution and answer",
+        "marks": 1,
+        "mark_note": "1.5 Ω",
+        "lines": [
+          {
+            "text": "R = 3.5 × 30/(100 − 30)",
+            "style": "eq"
+          },
+          {
+            "text": "R = 3.5 × 30/70 = 1.5 Ω",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. 30/70 = 3/7, and 3.5 × 3/7 = 1.5.",
+        "why": "The balance point sits nearer the left end, so the left resistance must be the smaller one — 1.5 Ω against 3.5 Ω checks that sense.",
+        "common_mistakes": [
+          "Computing 3.5 × 70/30 = 8.17 Ω — that answers the inverted ratio.",
+          "Dropping the unit Ω from the final answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R equals 3.5 times 30 by 70, which is 1.5 ohm.",
+          "accept": [
+            "3.5 into 30 by 70",
+            "1.5 ohm",
+            "three by seven of 3.5"
+          ],
+          "reject": [
+            "R by S equals l1 by 100 minus l1"
+          ],
+          "heard_as": [
+            "1.5",
+            "ohm"
+          ]
+        },
+        "memory_tip": "Balance nearer the left means the left resistance is smaller — expect less than 3.5 Ω."
+      }
+    ]
+  },
+  "insider_note": "A quick sense check saves this question: the balance point is left of centre, so the left gap must hold the SMALLER resistance."
+}

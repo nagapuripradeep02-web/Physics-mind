@@ -29,6 +29,10 @@ const STREAM = streamArg ? streamArg.slice('--stream='.length) : null;
 
 const LABELS: Record<string, { title: string; subjects: string }> = {
     mpc: { title: 'Junior Inter · MPC', subjects: 'Maths · Physics · Chemistry' },
+    // Senior Inter carries Physics-II and Chemistry-II; Maths 2A/2B are not
+    // written, so the card names the two papers that exist. It must describe the
+    // artifact, not the ambition (see STREAMS.mpc_2 in build_answer_book.ts).
+    mpc_2: { title: 'Senior Inter · MPC', subjects: 'Physics · Chemistry' },
 };
 
 function fail(msg: string): never {

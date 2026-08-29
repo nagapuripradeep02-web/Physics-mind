@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_pneumonia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write short notes on pneumonia and its prophylaxis.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The disease and its cause",
+      "marks": 1
+    },
+    {
+      "label": "Mode of infection",
+      "marks": 1
+    },
+    {
+      "label": "Symptoms",
+      "marks": 1
+    },
+    {
+      "label": "Prophylaxis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.67, Star Q 187). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. SPELLING CORRECTED: the book prints the bacterial names as 'streptococcus pneumonia' and 'Haemophilus influenza'; the accepted binomials are Streptococcus pneumoniae and Haemophilus influenzae, which is what this card writes. ADDED BEYOND THE BOOK: the fluid-filled alveoli, the chest pain and the grey-to-blue lips and nails are standard NCERT and are not printed in this book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cause",
+        "kind": "text",
+        "label": "The disease and its cause",
+        "marks": 1,
+        "mark_note": "Cause",
+        "lines": [
+          "Pneumonia is a bacterial disease of the lungs.",
+          "It is caused by the gram positive bacteria",
+          "Streptococcus pneumoniae and by Haemophilus",
+          "influenzae.",
+          "These bacteria infect the alveoli of the lungs."
+        ],
+        "why": "The site of the infection is the alveoli, and that single fact explains both the symptom and the treatment written later in the answer.",
+        "common_mistakes": [
+          "Writing that pneumonia is a viral disease. It is bacterial.",
+          "Naming the bacteria without the site. The alveoli are where they settle."
+        ],
+        "memory_tip": "Two bacteria, one site: Streptococcus and Haemophilus in the alveoli.",
+        "margin_note": "Three short lines: the disease, the two bacteria, the site."
+      },
+      {
+        "id": "s2_mode",
+        "kind": "text",
+        "label": "Mode of infection",
+        "marks": 1,
+        "mark_note": "Spread",
+        "lines": [
+          "The infection spreads when a healthy person",
+          "inhales the aerosols, that is the fine droplets,",
+          "released by an infected person while coughing or",
+          "sneezing.",
+          "Sharing utensils with an infected person can",
+          "also pass on the infection."
+        ],
+        "why": "The route decides the prevention, so naming the droplets here is what makes masks and boiled utensils the obvious measures at the end.",
+        "common_mistakes": [
+          "Writing that pneumonia spreads through water. It spreads through droplets in the air.",
+          "Leaving out the shared utensils, which is why boiled utensils appear in the prophylaxis."
+        ],
+        "memory_tip": "It travels in the air and on shared utensils, so masks and boiling stop it.",
+        "margin_note": "Two lines, one route each."
+      },
+      {
+        "id": "s3_symptoms",
+        "kind": "text",
+        "label": "Symptoms",
+        "marks": 1,
+        "mark_note": "Symptoms",
+        "lines": [
+          "The infected alveoli fill with fluid, so the",
+          "exchange of gases is reduced.",
+          "The patient has severe difficulty in breathing,",
+          "with fever, cough and pain in the chest.",
+          "The lips and the finger nails may turn grey to",
+          "blue in a severe case."
+        ],
+        "why": "The breathing difficulty is not a separate fact: it follows straight from fluid filling the alveoli, so the two lines are written as cause and effect.",
+        "common_mistakes": [
+          "Writing the symptoms without the fluid in the alveoli. The fluid is the reason for them.",
+          "Writing that pneumonia causes loose motions. It is a lung disease."
+        ],
+        "memory_tip": "Fluid in the alveoli means less gas exchange, so breathing becomes hard.",
+        "margin_note": "Three short lines: the fluid, the breathing, the severe signs."
+      },
+      {
+        "id": "s4_prophylaxis",
+        "kind": "boxed_final",
+        "label": "Prophylaxis",
+        "marks": 1,
+        "mark_note": "Prevention",
+        "lines": [
+          {
+            "text": "Masks, boiled utensils, vaccines, antibiotics",
+            "style": "boxed"
+          },
+          "Use masks, so the droplets are not inhaled.",
+          "Use boiled utensils, so the bacteria on shared",
+          "utensils are killed.",
+          "Vaccines are available and give protection.",
+          "Antibiotics are used to treat a patient who has",
+          "already been infected."
+        ],
+        "why": "Prophylaxis means stopping the disease before it starts, so the first three measures are preventive and the antibiotic is added last as treatment, not prevention.",
+        "common_mistakes": [
+          "Listing only antibiotics. Antibiotics treat; masks, boiled utensils and vaccines prevent.",
+          "Writing 'keep clean' with no measure named."
+        ],
+        "memory_tip": "Block the route, then build the defence: masks and boiling first, vaccine next, antibiotic last.",
+        "margin_note": "Four named measures in the box, one line each. Closing mark."
+      }
+    ]
+  },
+  "insider_note": "Prophylaxis is a separate mark from treatment, so name the preventive measures first and keep antibiotics to the end."
+}

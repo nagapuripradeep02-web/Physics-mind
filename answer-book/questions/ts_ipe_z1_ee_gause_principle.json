@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_gause_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Gause's principle? When is it applicable?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "When it applies",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.62, VSAQ 171). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "Gause's principle, also called the",
+          "competitive exclusion principle, states that",
+          "two closely related species competing for",
+          "the same resources cannot co-exist",
+          "indefinitely.",
+          "The weaker competitor is eliminated in due",
+          "course of time."
+        ],
+        "why": "The principle has a result as well as a statement, so the second line is needed: it names what happens to the loser, which is the part that makes the principle useful.",
+        "common_mistakes": [
+          "Writing that the two species cannot live in the same place at all. They cannot co-exist INDEFINITELY.",
+          "Leaving out the outcome. The weaker competitor is eliminated."
+        ],
+        "memory_tip": "Same resource, same place, long enough time — one of the two species goes.",
+        "margin_note": "The statement in one sentence, then one line on what happens to the weaker species."
+      },
+      {
+        "id": "s2_condition",
+        "kind": "boxed_final",
+        "label": "When it applies",
+        "marks": 1,
+        "mark_note": "Condition",
+        "lines": [
+          {
+            "text": "It holds only when resources are limited",
+            "style": "boxed"
+          },
+          "The principle is applicable only when the",
+          "resources are limited.",
+          "If the resources are plentiful, both species",
+          "can live together, because they are no",
+          "longer competing."
+        ],
+        "why": "The second half of the question is a condition, and it is the part most often left out; without a shortage there is no competition, so the principle simply does not apply.",
+        "common_mistakes": [
+          "Writing that the principle always applies. It applies only when resources are LIMITED.",
+          "Answering only the first half of the question. The condition is a separate mark."
+        ],
+        "memory_tip": "No shortage, no competition. The principle needs the resources to run short.",
+        "margin_note": "One line for the condition and one for why. Both halves of the question must be answered."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves and the second one, the condition, carries a full mark — never stop after the statement."
+}

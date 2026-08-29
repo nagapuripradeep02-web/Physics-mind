@@ -355,7 +355,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), and at Chemistry-II (1326). Never trim the sweep.
+    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), and at Chemistry-II (~1814 entries). Never trim the sweep.
     // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -389,7 +389,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), and at Chemistry-II (1326). Never trim the sweep.
+    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), and at Chemistry-II (~1814 entries). Never trim the sweep.
     // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -426,6 +426,208 @@ test('no two figure labels overlap, in any question', async ({ page }) => {
         const id = await page.evaluate(() => (window as any).PM_ANSWER.question.question_id);
         expect(clashes, `${id} figure labels collide`).toEqual([]);
     }
+});
+
+test('a tap mid-draw on an unphased figure completes the whole figure (legacy pin)', async ({ page }) => {
+    // Pins the pre-phase impatience semantics: a figure WITHOUT pause elements
+    // must fast-forward to fully drawn on ONE tap, exactly as before phased
+    // figures existed. Nothing tested this while it was the only behavior;
+    // now that playFigure branches on pauses, it needs a pin. (Phased-figure
+    // behavior gets its own constant-work tests targeting a zoology question.)
+    await openFirst(page);
+    const pick = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        for (const q of qs) {
+            const steps = q.answer.steps as any[];
+            const di = steps.findIndex((s: any) => {
+                if (s.kind !== 'diagram') return false;
+                const els = s.figure.elements as any[];
+                if (els.some((e) => e.type === 'pause')) return false;
+                // long enough that a 200ms tap is genuinely mid-draw
+                return els.reduce((t, e) => t + (e.ms || 0), 0) >= 2000;
+            });
+            if (di >= 0) return { qid: q.question_id, di };
+        }
+        return null;
+    });
+    expect(pick, 'no unphased figure question in the bank').not.toBeNull();
+    await openQ(page, pick!.qid);
+
+    // reveal every step BEFORE the diagram (impatient-tap each one)
+    for (let i = 0; i < pick!.di; i++) {
+        await page.evaluate(() => new Promise<void>((resolve) => {
+            document.addEventListener('pm:step-revealed', () => resolve(), { once: true });
+            (window as any).PM_ANSWER.revealNext();
+            setTimeout(() => (window as any).PM_ANSWER.revealNext(), 60);
+        }));
+    }
+
+    // start the diagram, let it draw ~200ms, then exactly ONE impatient tap
+    const finished = await page.evaluate(() => new Promise<boolean>((resolve) => {
+        let done = false;
+        document.addEventListener('pm:step-revealed', () => { done = true; resolve(true); }, { once: true });
+        (window as any).PM_ANSWER.revealNext();
+        setTimeout(() => { if (!done) (window as any).PM_ANSWER.revealNext(); }, 200);
+        setTimeout(() => { if (!done) resolve(false); }, 4000);
+    }));
+    expect(finished, 'one mid-draw tap did not complete the unphased figure').toBe(true);
+
+    const undrawn = await page.evaluate(() => {
+        const bad: string[] = [];
+        document.querySelectorAll('.figure-wrap svg path').forEach((p) => {
+            const off = parseFloat((p as SVGPathElement).style.strokeDashoffset || '0');
+            if (off > 0.5) bad.push('stroke at dashoffset ' + off);
+        });
+        document.querySelectorAll('.figure-wrap svg text').forEach((t) => {
+            const el = t as SVGTextElement;
+            if (el.style.opacity !== '' && parseFloat(el.style.opacity) < 1) {
+                bad.push('label "' + el.textContent + '" at opacity ' + el.style.opacity);
+            }
+        });
+        document.querySelectorAll('.figure-wrap clipPath rect').forEach((r) => {
+            const w = parseFloat(r.getAttribute('width') || '0');
+            const h = parseFloat(r.getAttribute('height') || '0');
+            if (w <= 0 || h <= 0) bad.push('clip rect ' + w + 'x' + h);
+        });
+        return bad;
+    });
+    expect(undrawn).toEqual([]);
+});
+
+/**
+ * Phased figures ("watch it drawn", zoology 2026-08-25). A figure may carry
+ * `pause` elements: the player stops at each one, shows its caption under the
+ * figure, and waits for a tap. These tests INJECT pauses into an existing long
+ * figure at runtime (PM_QUESTIONS is the live array the player reads), so they
+ * are constant-work and do not depend on any particular authored question.
+ * Element objects are shared with the player, which hangs `_node` on them —
+ * that is how the tests read each element's drawn/undrawn state.
+ */
+async function injectPhasedFigure(page: any): Promise<{ qid: string; di: number; pauseAt: number; n: number }> {
+    const pick = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        for (const q of qs) {
+            const steps = q.answer.steps as any[];
+            const di = steps.findIndex((s: any) => {
+                if (s.kind !== 'diagram') return false;
+                const els = s.figure.elements as any[];
+                if (els.some((e) => e.type === 'pause')) return false;
+                return els.length >= 8 && els.reduce((t, e) => t + (e.ms || 0), 0) >= 2000;
+            });
+            if (di < 0) continue;
+            const els = steps[di].figure.elements as any[];
+            const mid = Math.floor(els.length / 2);
+            els.splice(mid, 0, { type: 'pause', id: 'p_mid', caption: 'Step 2 — test phase' });
+            els.unshift({ type: 'pause', id: 'p_0', caption: 'Step 1 — outline' });
+            return { qid: q.question_id, di, pauseAt: mid + 1, n: els.length };
+        }
+        return null;
+    });
+    expect(pick, 'no long unphased figure to inject pauses into').not.toBeNull();
+    return pick!;
+}
+
+async function revealBefore(page: any, di: number): Promise<void> {
+    for (let i = 0; i < di; i++) {
+        await page.evaluate(() => new Promise<void>((resolve) => {
+            document.addEventListener('pm:step-revealed', () => resolve(), { once: true });
+            (window as any).PM_ANSWER.revealNext();
+            setTimeout(() => (window as any).PM_ANSWER.revealNext(), 60);
+        }));
+    }
+}
+
+/** drawn state of every non-pause element of the figure at step `di` */
+const figureStates = (page: any, qid: string, di: number) => page.evaluate(([id, d]: [string, number]) => {
+    const q = ((window as any).PM_QUESTIONS as any[]).find((x) => x.question_id === id);
+    const els = q.answer.steps[d].figure.elements as any[];
+    const caption = document.querySelector('.figure-caption');
+    return {
+        caption: caption ? caption.textContent : null,
+        states: els.map((e) => {
+            if (e.type === 'pause') return 'pause';
+            const n = e._node;
+            if (!n) return 'nonode';
+            if (e.type === 'label') return n.style.opacity === '1' ? 'on' : 'off';
+            if (e._clipRect) {
+                const w = parseFloat(e._clipRect.getAttribute('width') || '0');
+                const h = parseFloat(e._clipRect.getAttribute('height') || '0');
+                return w > 0 && h > 0 ? 'on' : 'off';
+            }
+            return parseFloat(n.style.strokeDashoffset || '0') < 0.5 ? 'on' : 'off';
+        }),
+    };
+}, [qid, di]);
+
+test('a phased figure stops at each pause, and a mid-phase tap completes only the current phase', async ({ page }) => {
+    await openFirst(page);
+    const pick = await injectPhasedFigure(page);
+    await openQ(page, pick.qid);
+    await revealBefore(page, pick.di);
+
+    // start the diagram: the index-0 pause names phase 1 without waiting
+    let revealed = false;
+    await page.evaluate(() => {
+        document.addEventListener('pm:step-revealed', () => { (window as any).__phaseDone = true; }, { once: true });
+        (window as any).__phaseDone = false;
+        (window as any).PM_ANSWER.revealNext();
+    });
+    await page.waitForTimeout(300);
+    let s = await figureStates(page, pick.qid, pick.di);
+    expect(s.caption).toBe('Step 1 — outline');
+
+    // ONE tap mid-phase: phase 1 completes instantly, phase 2 stays undrawn, step not done
+    await page.evaluate(() => (window as any).PM_ANSWER.revealNext());
+    await page.waitForTimeout(150);
+    s = await figureStates(page, pick.qid, pick.di);
+    revealed = await page.evaluate(() => (window as any).__phaseDone);
+    expect(revealed, 'step completed on the first tap — the pause was skipped').toBe(false);
+    expect(s.caption).toBe('Step 2 — test phase');
+    const before = s.states.slice(1, pick.pauseAt).filter((x: string) => x !== 'pause');
+    const after = s.states.slice(pick.pauseAt + 1);
+    expect(before.every((x: string) => x === 'on'), 'phase 1 not fully drawn: ' + before.join(',')).toBe(true);
+    expect(after.every((x: string) => x === 'off'), 'phase 2 drew before its tap: ' + after.join(',')).toBe(true);
+
+    // tap at the boundary starts phase 2; a further mid-phase tap finishes the figure
+    await page.evaluate(() => (window as any).PM_ANSWER.revealNext());
+    await page.waitForTimeout(200);
+    const finished = await page.evaluate(() => new Promise<boolean>((resolve) => {
+        if ((window as any).__phaseDone) { resolve(true); return; }
+        document.addEventListener('pm:step-revealed', () => resolve(true), { once: true });
+        (window as any).PM_ANSWER.revealNext();
+        setTimeout(() => resolve(false), 4000);
+    }));
+    expect(finished, 'the last phase did not complete on its tap').toBe(true);
+    s = await figureStates(page, pick.qid, pick.di);
+    expect(s.caption).toBe('');
+    expect(s.states.filter((x: string) => x !== 'pause').every((x: string) => x === 'on')).toBe(true);
+});
+
+test('the instant path draws a phased figure completely, with no caption and one reserved caption rule', async ({ page }) => {
+    await openFirst(page);
+    const pick = await injectPhasedFigure(page);
+    await openQ(page, pick.qid);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await page.waitForTimeout(400);
+
+    const s = await figureStates(page, pick.qid, pick.di);
+    expect(s.caption, 'a caption survived the instant path').toBe('');
+    expect(s.states.filter((x: string) => x !== 'pause').every((x: string) => x === 'on')).toBe(true);
+
+    const geom = await page.evaluate(([id, d]: [string, number]) => {
+        const q = ((window as any).PM_QUESTIONS as any[]).find((x) => x.question_id === id);
+        const fig = q.answer.steps[d].figure;
+        const wrap = document.querySelector(`[data-step-id="${q.answer.steps[d].id}"] .figure-wrap`) as HTMLElement;
+        const collapsed: string[] = [];
+        wrap.querySelectorAll('clipPath rect').forEach((r) => {
+            const w = parseFloat(r.getAttribute('width') || '0');
+            const h = parseFloat(r.getAttribute('height') || '0');
+            if (w <= 0 || h <= 0) collapsed.push(w + 'x' + h);
+        });
+        return { height: wrap.style.height, expected: (Math.ceil(fig.height / 32) + 1) * 32 + 'px', collapsed };
+    }, [pick.qid, pick.di] as [string, number]);
+    expect(geom.collapsed).toEqual([]);
+    expect(geom.height, 'a captioned figure reserves exactly one extra rule').toBe(geom.expected);
 });
 
 test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
@@ -468,8 +670,23 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
     // never trim the sweep or the waits to fit, because a shortened sweep silently
     // stops checking the questions it drops.
-    test.setTimeout(1_800_000);   // the WIDEST sweep: questions × cuts. ~1485 entries after Chemistry-II opened (was ~1150 at botany); at the measured ~0.9 s/entry that is ~1335 s, past the old 1200 s budget.
-    // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~0.9 s/question.
+    test.setTimeout(2_400_000);   // the WIDEST sweep: questions x cuts. ~1600 entries with zoology AND Physics-II.
+    // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~1.05 s/question.
+    // Raised to 2_400_000 on 2026-08-29. Two papers landed at once — zoology took
+    // the bank to ~1340 and Senior Inter Physics adds 256 more — and this sweep had
+    // already TIMED OUT at 20 min on Physics-II alone (1247 x 1.05 s = ~21.8 min, so
+    // that ceiling held ~7% headroom). At ~1600 entries the projection is ~28 min,
+    // which the 30-min figure this merge superseded would have cut very fine.
+    // The timeout is NOT an assertion; it reports "failed" while naming nothing,
+    // which is this sweep's recorded failure mode — so the product was verified
+    // independently BEFORE the budget was touched: sum(steps.marks) and
+    // sum(mark_split.marks) are held to marks_total by both
+    // answer-book/tools/check_p2_cards.ts and build_answer_book.ts, both green.
+    // 40 min also covers Chemistry-II and Maths-2A/2B without another mid-paper raise.
+    // Chemistry-II landed 2026-08-29 and the projection held: the bank is now 1814
+    // entries, which at the ~1.05 s/entry slope above is ~32 min against this 40-min
+    // ceiling. Left as it is — the comment above already budgeted for this paper, so
+    // raising it again here would be churn, not headroom.
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 

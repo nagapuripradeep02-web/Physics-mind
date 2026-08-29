@@ -1,0 +1,1577 @@
+{
+ "pa_circulatory_system": {
+  "id": "pa_circulatory_system",
+  "width": 520,
+  "height": 352,
+  "elements": [
+   {
+    "type": "pause",
+    "id": "p1",
+    "caption": "Step 1 \u2014 body outline, aorta and the dorsal heart"
+   },
+   {
+    "type": "stroke",
+    "id": "body_l",
+    "d": "M 149 62 L 147.6 62.4 L 145.8 62.8 L 143.7 63.2 L 141.3 63.8 L 138.8 64.4 L 136.1 65.1 L 133.6 66 L 131.1 67.1 L 128.9 68.4 L 127 70 L 125.4 71.8 L 123.8 73.9 L 122.4 76.2 L 121.1 78.7 L 119.9 81.4 L 118.7 84.2 L 117.7 87 L 116.7 90 L 115.8 93 L 115 96 L 114.3 99 L 113.6 102 L 113.1 105.1 L 112.7 108.3 L 112.3 111.5 L 112 114.9 L 111.7 118.4 L 111.5 122 L 111.2 125.9 L 111 130 L 110.8 134.4 L 110.6 139 L 110.4 143.8 L 110.3 148.8 L 110.2 154 L 110.1 159.2 L 110.1 164.5 L 110 169.7 L 110 174.9 L 110 180 L 110 185 L 110 190 L 110 195.1 L 110.1 200.1 L 110.1 205.1 L 110.2 210.1 L 110.3 215.1 L 110.5 220.1 L 110.7 225.1 L 111 230 L 111.3 234.9 L 111.6 240 L 111.9 245 L 112.2 250 L 112.6 255 L 113.1 259.9 L 113.6 264.7 L 114.3 269.3 L 115.1 273.8 L 116 278 L 117 282 L 118.2 286 L 119.4 289.8 L 120.7 293.5 L 122.1 297 L 123.7 300.4 L 125.3 303.6 L 127.1 306.6 L 129 309.4 L 131 312 L 133.3 314.4 L 136.1 316.6 L 139.1 318.6 L 142.2 320.5 L 145.4 322.1 L 148.6 323.6 L 151.5 324.9 L 154.1 326.1 L 156.3 327.1 L 158 328",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "body_r",
+    "d": "M 167 62 L 168.4 62.4 L 170.2 62.8 L 172.3 63.2 L 174.7 63.8 L 177.2 64.4 L 179.9 65.1 L 182.4 66 L 184.9 67.1 L 187.1 68.4 L 189 70 L 190.6 71.8 L 192.2 73.9 L 193.6 76.2 L 194.9 78.7 L 196.1 81.4 L 197.3 84.2 L 198.3 87 L 199.3 90 L 200.2 93 L 201 96 L 201.7 99 L 202.4 102 L 202.9 105.1 L 203.3 108.3 L 203.7 111.5 L 204 114.9 L 204.3 118.4 L 204.5 122 L 204.8 125.9 L 205 130 L 205.2 134.4 L 205.4 139 L 205.6 143.8 L 205.7 148.8 L 205.8 154 L 205.9 159.2 L 205.9 164.5 L 206 169.7 L 206 174.9 L 206 180 L 206 185 L 206 190 L 206 195.1 L 205.9 200.1 L 205.9 205.1 L 205.8 210.1 L 205.7 215.1 L 205.5 220.1 L 205.3 225.1 L 205 230 L 204.7 234.9 L 204.4 240 L 204.1 245 L 203.8 250 L 203.4 255 L 202.9 259.9 L 202.4 264.7 L 201.7 269.3 L 200.9 273.8 L 200 278 L 199 282 L 197.8 286 L 196.6 289.8 L 195.3 293.5 L 193.9 297 L 192.3 300.4 L 190.7 303.6 L 188.9 306.6 L 187 309.4 L 185 312 L 182.7 314.4 L 179.9 316.6 L 176.9 318.6 L 173.8 320.5 L 170.6 322.1 L 167.4 323.6 L 164.5 324.9 L 161.9 326.1 L 159.7 327.1 L 158 328",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "aorta_l",
+    "d": "M 152 34 L 152 70",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "aorta_r",
+    "d": "M 164 34 L 164 70",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "aorta_cap",
+    "d": "M 152 34 Q 158 28 164 34",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "heart_l",
+    "d": "M 146 72 L 146 316",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "heart_r",
+    "d": "M 170 72 L 170 316",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "heart_end",
+    "d": "M 146 316 Q 158 325 170 316",
+    "ms": 0
+   },
+   {
+    "type": "pause",
+    "id": "p2",
+    "caption": "Step 2 \u2014 the 13 chambers and the pairs of ostia"
+   },
+   {
+    "type": "stroke",
+    "id": "chambers_a",
+    "d": "M 146 90.8 L 170 90.8 M 146 109.5 L 170 109.5 M 146 128.3 L 170 128.3 M 146 147.1 L 170 147.1 M 146 165.8 L 170 165.8 M 146 184.6 L 170 184.6",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "stroke",
+    "id": "chambers_b",
+    "d": "M 146 203.4 L 170 203.4 M 146 222.2 L 170 222.2 M 146 240.9 L 170 240.9 M 146 259.7 L 170 259.7 M 146 278.5 L 170 278.5 M 146 297.2 L 170 297.2",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "stroke",
+    "id": "ostia_l",
+    "d": "M 139 86.8 L 146 86.8 M 139 105.5 L 146 105.5 M 139 124.3 L 146 124.3 M 139 143.1 L 146 143.1 M 139 161.8 L 146 161.8 M 139 180.6 L 146 180.6 M 139 199.4 L 146 199.4 M 139 218.2 L 146 218.2 M 139 236.9 L 146 236.9 M 139 255.7 L 146 255.7 M 139 274.5 L 146 274.5 M 139 293.2 L 146 293.2",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "stroke",
+    "id": "ostia_r",
+    "d": "M 177 86.8 L 170 86.8 M 177 105.5 L 170 105.5 M 177 124.3 L 170 124.3 M 177 143.1 L 170 143.1 M 177 161.8 L 170 161.8 M 177 180.6 L 170 180.6 M 177 199.4 L 170 199.4 M 177 218.2 L 170 218.2 M 177 236.9 L 170 236.9 M 177 255.7 L 170 255.7 M 177 274.5 L 170 274.5 M 177 293.2 L 170 293.2",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "pause",
+    "id": "p3",
+    "caption": "Step 3 \u2014 alary muscles on both sides"
+   },
+   {
+    "type": "stroke",
+    "id": "alary_la",
+    "d": "M 118.5 98 L 145 107.6 L 115.8 117.2 L 145 126.8 L 114.7 136.4 L 145 146 L 114.2 155.6 L 145 165.2 L 114 174.8 L 145 184.4 L 114 194",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "stroke",
+    "id": "alary_ra",
+    "d": "M 197.5 98 L 171 107.6 L 200.2 117.2 L 171 126.8 L 201.3 136.4 L 171 146 L 201.8 155.6 L 171 165.2 L 202 174.8 L 171 184.4 L 202 194",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "stroke",
+    "id": "alary_lb",
+    "d": "M 114 194 L 145 203.6 L 114.3 213.2 L 145 222.8 L 115.1 232.4 L 145 242 L 116.4 251.6 L 145 261.2 L 118.6 270.8 L 145 280.4 L 123.5 290",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "stroke",
+    "id": "alary_rb",
+    "d": "M 202 194 L 171 203.6 L 201.7 213.2 L 171 222.8 L 200.9 232.4 L 171 242 L 199.6 251.6 L 171 261.2 L 197.4 270.8 L 171 280.4 L 192.5 290",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "pause",
+    "id": "p4",
+    "caption": "Step 4 \u2014 cross section: body wall and the two diaphragms"
+   },
+   {
+    "type": "stroke",
+    "id": "sec_wall",
+    "d": "M 256 196 A 54 48 0 1 0 364 196 A 54 48 0 1 0 256 196",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "dorsal_diaphragm",
+    "d": "M 264 171 L 356 171",
+    "ms": 0,
+    "w": 2.0
+   },
+   {
+    "type": "stroke",
+    "id": "ventral_diaphragm",
+    "d": "M 264 221 L 356 221",
+    "ms": 0,
+    "w": 2.0
+   },
+   {
+    "type": "pause",
+    "id": "p5",
+    "caption": "Step 5 \u2014 heart, gut and nerve cord in the section"
+   },
+   {
+    "type": "stroke",
+    "id": "sec_heart",
+    "d": "M 302.5 159 A 7.5 7.5 0 1 0 317.5 159 A 7.5 7.5 0 1 0 302.5 159",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "sec_gut",
+    "d": "M 295.5 196 A 14.5 14.5 0 1 0 324.5 196 A 14.5 14.5 0 1 0 295.5 196",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "sec_cord",
+    "d": "M 305 233 A 5 5 0 1 0 315 233 A 5 5 0 1 0 305 233",
+    "ms": 0
+   },
+   {
+    "type": "pause",
+    "id": "p6",
+    "caption": "Step 6 \u2014 leader lines and labels"
+   },
+   {
+    "type": "label",
+    "id": "lbl_aorta",
+    "x": 6,
+    "y": 62,
+    "text": "Anterior aorta",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_aorta",
+    "d": "M 110.3 58 L 150 52",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_chamber",
+    "x": 6,
+    "y": 122,
+    "text": "Heart chamber",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_chamber",
+    "d": "M 118.8 118 L 146 128",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_alary",
+    "x": 6,
+    "y": 186,
+    "text": "Alary muscles",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_alary",
+    "d": "M 110.2 182 L 126 187",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_ostia",
+    "x": 6,
+    "y": 246,
+    "text": "Ostia",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_ostia",
+    "d": "M 47.3 242 L 139 243",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_pericardial",
+    "x": 378,
+    "y": 108,
+    "text": "Pericardial sinus",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_pericardial",
+    "d": "M 374 104 L 326 154",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_dorsaldia",
+    "x": 378,
+    "y": 150,
+    "text": "Dorsal diaphragm",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_dorsaldia",
+    "d": "M 374 146 L 344 171",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_perivisceral",
+    "x": 378,
+    "y": 192,
+    "text": "Perivisceral sinus",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_perivisceral",
+    "d": "M 374 188 L 338 196",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_ventraldia",
+    "x": 378,
+    "y": 234,
+    "text": "Ventral diaphragm",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_ventraldia",
+    "d": "M 374 230 L 342 221",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_cord",
+    "x": 378,
+    "y": 276,
+    "text": "Ventral nerve cord",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_cord",
+    "d": "M 374 272 L 316 235",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_perineural",
+    "x": 378,
+    "y": 318,
+    "text": "Perineural sinus",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_perineural",
+    "d": "M 374 314 L 288 235",
+    "ms": 0,
+    "w": 1.4
+   }
+  ]
+ },
+ "pa_tracheal_system": {
+  "id": "pa_tracheal_system",
+  "width": 520,
+  "height": 384,
+  "elements": [
+   {
+    "type": "pause",
+    "id": "p1",
+    "caption": "Step 1 \u2014 body outline and the head"
+   },
+   {
+    "type": "stroke",
+    "id": "body_l",
+    "d": "M 240 62 L 238.9 62.4 L 237.4 62.9 L 235.5 63.4 L 233.5 64 L 231.4 64.6 L 229.2 65.4 L 227.1 66.3 L 225.1 67.4 L 223.4 68.6 L 222 70 L 220.9 71.6 L 220 73.4 L 219.3 75.4 L 218.6 77.6 L 218.1 79.9 L 217.7 82.2 L 217.3 84.7 L 216.9 87.1 L 216.5 89.6 L 216 92 L 215.5 94.4 L 215 96.8 L 214.6 99.3 L 214.2 101.8 L 213.8 104.4 L 213.4 107 L 213 109.6 L 212.6 112.4 L 212.3 115.1 L 212 118 L 211.7 120.9 L 211.5 123.9 L 211.2 126.9 L 211 130 L 210.8 133.1 L 210.6 136.3 L 210.5 139.6 L 210.3 143 L 210.2 146.4 L 210 150 L 209.8 153.7 L 209.7 157.5 L 209.5 161.4 L 209.4 165.4 L 209.2 169.5 L 209.1 173.6 L 209 177.7 L 209 181.9 L 209 186 L 209 190 L 209.1 194 L 209.1 198 L 209.3 202.1 L 209.4 206.1 L 209.6 210.1 L 209.8 214.1 L 210 218.1 L 210.3 222.1 L 210.6 226.1 L 211 230 L 211.4 233.9 L 211.8 237.9 L 212.3 241.8 L 212.8 245.7 L 213.3 249.6 L 213.9 253.5 L 214.6 257.3 L 215.3 260.9 L 216.1 264.5 L 217 268 L 218 271.4 L 219 274.8 L 220.2 278.1 L 221.4 281.3 L 222.6 284.4 L 224 287.5 L 225.4 290.4 L 226.8 293.1 L 228.4 295.6 L 230 298 L 231.8 300.2 L 233.9 302.2 L 236.1 304.1 L 238.5 305.8 L 240.8 307.4 L 243.1 308.8 L 245.2 310.1 L 247.2 311.2 L 248.8 312.2 L 250 313",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "body_r",
+    "d": "M 280 62 L 281.1 62.4 L 282.6 62.9 L 284.5 63.4 L 286.5 64 L 288.6 64.6 L 290.8 65.4 L 292.9 66.3 L 294.9 67.4 L 296.6 68.6 L 298 70 L 299.1 71.6 L 300 73.4 L 300.7 75.4 L 301.4 77.6 L 301.9 79.9 L 302.3 82.2 L 302.7 84.7 L 303.1 87.1 L 303.5 89.6 L 304 92 L 304.5 94.4 L 305 96.8 L 305.4 99.3 L 305.8 101.8 L 306.2 104.4 L 306.6 107 L 307 109.6 L 307.4 112.4 L 307.7 115.1 L 308 118 L 308.3 120.9 L 308.5 123.9 L 308.8 126.9 L 309 130 L 309.2 133.1 L 309.4 136.3 L 309.5 139.6 L 309.7 143 L 309.8 146.4 L 310 150 L 310.2 153.7 L 310.3 157.5 L 310.5 161.4 L 310.6 165.4 L 310.8 169.5 L 310.9 173.6 L 311 177.7 L 311 181.9 L 311 186 L 311 190 L 310.9 194 L 310.9 198 L 310.7 202.1 L 310.6 206.1 L 310.4 210.1 L 310.2 214.1 L 310 218.1 L 309.7 222.1 L 309.4 226.1 L 309 230 L 308.6 233.9 L 308.2 237.9 L 307.7 241.8 L 307.2 245.7 L 306.7 249.6 L 306.1 253.5 L 305.4 257.3 L 304.7 260.9 L 303.9 264.5 L 303 268 L 302 271.4 L 301 274.8 L 299.8 278.1 L 298.6 281.3 L 297.4 284.4 L 296 287.5 L 294.6 290.4 L 293.2 293.1 L 291.6 295.6 L 290 298 L 288.2 300.2 L 286.1 302.2 L 283.9 304.1 L 281.5 305.8 L 279.2 307.4 L 276.9 308.8 L 274.8 310.1 L 272.8 311.2 L 271.2 312.2 L 270 313",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "head",
+    "d": "M 234 46 A 26 17 0 1 0 286 46 A 26 17 0 1 0 234 46",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "thorax_line",
+    "d": "M 213 122 L 307 122",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p2",
+    "caption": "Step 2 \u2014 ten pairs of spiracles: 2 thoracic, 8 abdominal"
+   },
+   {
+    "type": "stroke",
+    "id": "spiracles_l",
+    "d": "M 213.6 86 A 3.5 3.5 0 1 0 220.6 86 A 3.5 3.5 0 1 0 213.6 86 M 209.4 110 A 3.5 3.5 0 1 0 216.4 110 A 3.5 3.5 0 1 0 209.4 110 M 206.9 142 A 3.5 3.5 0 1 0 213.9 142 A 3.5 3.5 0 1 0 206.9 142 M 205.9 164 A 3.5 3.5 0 1 0 212.9 164 A 3.5 3.5 0 1 0 205.9 164 M 205.5 186 A 3.5 3.5 0 1 0 212.5 186 A 3.5 3.5 0 1 0 205.5 186 M 206 208 A 3.5 3.5 0 1 0 213 208 A 3.5 3.5 0 1 0 206 208 M 207.5 230 A 3.5 3.5 0 1 0 214.5 230 A 3.5 3.5 0 1 0 207.5 230 M 210.2 252 A 3.5 3.5 0 1 0 217.2 252 A 3.5 3.5 0 1 0 210.2 252 M 215.3 274 A 3.5 3.5 0 1 0 222.3 274 A 3.5 3.5 0 1 0 215.3 274 M 223.9 294 A 3.5 3.5 0 1 0 230.9 294 A 3.5 3.5 0 1 0 223.9 294",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "stroke",
+    "id": "spiracles_r",
+    "d": "M 306.4 86 A 3.5 3.5 -0 1 1 299.4 86 A 3.5 3.5 -0 1 1 306.4 86 M 310.6 110 A 3.5 3.5 -0 1 1 303.6 110 A 3.5 3.5 -0 1 1 310.6 110 M 313.1 142 A 3.5 3.5 -0 1 1 306.1 142 A 3.5 3.5 -0 1 1 313.1 142 M 314.1 164 A 3.5 3.5 -0 1 1 307.1 164 A 3.5 3.5 -0 1 1 314.1 164 M 314.5 186 A 3.5 3.5 -0 1 1 307.5 186 A 3.5 3.5 -0 1 1 314.5 186 M 314 208 A 3.5 3.5 -0 1 1 307 208 A 3.5 3.5 -0 1 1 314 208 M 312.5 230 A 3.5 3.5 -0 1 1 305.5 230 A 3.5 3.5 -0 1 1 312.5 230 M 309.8 252 A 3.5 3.5 -0 1 1 302.8 252 A 3.5 3.5 -0 1 1 309.8 252 M 304.7 274 A 3.5 3.5 -0 1 1 297.7 274 A 3.5 3.5 -0 1 1 304.7 274 M 296.1 294 A 3.5 3.5 -0 1 1 289.1 294 A 3.5 3.5 -0 1 1 296.1 294",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "pause",
+    "id": "p3",
+    "caption": "Step 3 \u2014 atria and the three longitudinal trunks"
+   },
+   {
+    "type": "stroke",
+    "id": "trunk_lat_l",
+    "d": "M 224 100 L 224 298",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "trunk_lat_r",
+    "d": "M 296 100 L 296 298",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "trunk_dor_l",
+    "d": "M 236 100 L 236 298",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "trunk_dor_r",
+    "d": "M 284 100 L 284 298",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "trunk_ven_l",
+    "d": "M 248 100 L 248 298",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "trunk_ven_r",
+    "d": "M 272 100 L 272 298",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "connect_l",
+    "d": "M 220.6 86 L 224 86 M 216.4 110 L 224 110 M 213.9 142 L 224 142 M 212.9 164 L 224 164 M 212.5 186 L 224 186 M 213 208 L 224 208 M 214.5 230 L 224 230 M 217.2 252 L 224 252 M 222.3 274 L 224 274 M 230.9 294 L 224 294",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "stroke",
+    "id": "connect_r",
+    "d": "M 299.4 86 L 296 86 M 303.6 110 L 296 110 M 306.1 142 L 296 142 M 307.1 164 L 296 164 M 307.5 186 L 296 186 M 307 208 L 296 208 M 305.5 230 L 296 230 M 302.8 252 L 296 252 M 297.7 274 L 296 274 M 289.1 294 L 296 294",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p4",
+    "caption": "Step 4 \u2014 cephalic trunks and commissural tracheae"
+   },
+   {
+    "type": "stroke",
+    "id": "ceph_dor_l",
+    "d": "M 236 100 C 234 82 244 68 252 60",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "ceph_dor_r",
+    "d": "M 284 100 C 286 82 276 68 268 60",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "ceph_ven_l",
+    "d": "M 248 100 C 248 84 252 72 258 64",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "ceph_ven_r",
+    "d": "M 272 100 C 272 84 268 72 262 64",
+    "ms": 0,
+    "w": 1.8
+   },
+   {
+    "type": "stroke",
+    "id": "commissure1",
+    "d": "M 224 152 L 296 152",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "stroke",
+    "id": "commissure2",
+    "d": "M 224 214 L 296 214",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "stroke",
+    "id": "commissure3",
+    "d": "M 224 276 L 296 276",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p5",
+    "caption": "Step 5 \u2014 a trachea ending in tracheoles"
+   },
+   {
+    "type": "stroke",
+    "id": "trachea_top",
+    "d": "M 150 336 L 246 336",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "trachea_bot",
+    "d": "M 150 350 L 246 350",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "taenidia",
+    "d": "M 162 337 L 162 349 M 174 337 L 174 349 M 186 337 L 186 349 M 198 337 L 198 349 M 210 337 L 210 349 M 222 337 L 222 349 M 234 337 L 234 349",
+    "ms": 0,
+    "w": 1.2
+   },
+   {
+    "type": "stroke",
+    "id": "tracheoblast",
+    "d": "M 245 343 A 13 10 0 1 0 271 343 A 13 10 0 1 0 245 343",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "tracheoles",
+    "d": "M 270 343 L 308 318 M 270 343 L 314 330 M 270 343 L 316 343 M 270 343 L 314 356 M 270 343 L 308 368",
+    "ms": 0,
+    "w": 1.2
+   },
+   {
+    "type": "pause",
+    "id": "p6",
+    "caption": "Step 6 \u2014 leader lines and labels"
+   },
+   {
+    "type": "label",
+    "id": "lbl_venceph",
+    "x": 6,
+    "y": 76,
+    "text": "Ventral cephalic trunk",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_venceph",
+    "d": "M 169.4 72 L 254 66",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_thoracic",
+    "x": 6,
+    "y": 120,
+    "text": "Thoracic spiracles",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_thoracic",
+    "d": "M 136.9 116 L 211 110",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_abdominal",
+    "x": 6,
+    "y": 170,
+    "text": "Abdominal spiracles",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_abdominal",
+    "d": "M 152.4 166 L 209 172",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_atrium",
+    "x": 6,
+    "y": 222,
+    "text": "Atrium",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_atrium",
+    "d": "M 59.8 218 L 223 208",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_lattrunk",
+    "x": 6,
+    "y": 272,
+    "text": "Lateral longitudinal trunk",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_lattrunk",
+    "d": "M 193.9 268 L 224 262",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_trachea",
+    "x": 6,
+    "y": 336,
+    "text": "Trachea",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_trachea",
+    "d": "M 66 332 L 172 340",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_dorceph",
+    "x": 318,
+    "y": 76,
+    "text": "Dorsal cephalic trunk",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_dorceph",
+    "d": "M 314 72 L 268 64",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_dortrunk",
+    "x": 318,
+    "y": 124,
+    "text": "Dorsal longitudinal trunk",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_dortrunk",
+    "d": "M 314 120 L 284 132",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_ventrunk",
+    "x": 318,
+    "y": 172,
+    "text": "Ventral longitudinal trunk",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_ventrunk",
+    "d": "M 314 168 L 272 166",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_commissure",
+    "x": 318,
+    "y": 220,
+    "text": "Commissural trachea",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_commissure",
+    "d": "M 314 216 L 282 214",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_tracheole",
+    "x": 336,
+    "y": 336,
+    "text": "Tracheoles",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_tracheole",
+    "d": "M 332 332 L 314 332",
+    "ms": 0,
+    "w": 1.4
+   }
+  ]
+ },
+ "pa_mouthparts": {
+  "id": "pa_mouthparts",
+  "width": 520,
+  "height": 384,
+  "elements": [
+   {
+    "type": "pause",
+    "id": "p1",
+    "caption": "Step 1 \u2014 labrum and the pair of mandibles"
+   },
+   {
+    "type": "stroke",
+    "id": "labrum",
+    "d": "M 232 30 C 236 20 284 20 288 30 C 290 46 280 58 260 60 C 240 58 230 46 232 30 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "mandible_l",
+    "d": "M 226 70 C 204 68 192 82 194 96 C 196 110 210 118 226 112 L 220 104 L 226 96 L 220 88 L 226 80 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "mandible_r",
+    "d": "M 294 70 C 316 68 328 82 326 96 C 324 110 310 118 294 112 L 300 104 L 294 96 L 300 88 L 294 80 Z",
+    "ms": 0
+   },
+   {
+    "type": "pause",
+    "id": "p2",
+    "caption": "Step 2 \u2014 the hypopharynx in the middle"
+   },
+   {
+    "type": "stroke",
+    "id": "hypopharynx",
+    "d": "M 250 78 C 246 96 248 118 254 132 C 258 137 262 137 266 132 C 272 118 274 96 270 78 C 266 71 254 71 250 78 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "hypo_line",
+    "d": "M 260 88 L 260 126",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p3",
+    "caption": "Step 3 \u2014 the pair of maxillae: cardo, stipes, galea, lacinia"
+   },
+   {
+    "type": "stroke",
+    "id": "cardo_l",
+    "d": "M 176 258 L 202 252 L 206 230 L 178 234 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "stipes_l",
+    "d": "M 178 234 L 206 230 L 210 190 L 176 194 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "galea_l",
+    "d": "M 162 152 A 14 34 0 1 0 190 152 A 14 34 0 1 0 162 152",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lacinia_l",
+    "d": "M 195 154 A 11 32 0 1 0 217 154 A 11 32 0 1 0 195 154",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lacinia_teeth_l",
+    "d": "M 200 126 L 197 116 M 210 127 L 213 117",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "stroke",
+    "id": "cardo_r",
+    "d": "M 344 258 L 318 252 L 314 230 L 342 234 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "stipes_r",
+    "d": "M 342 234 L 314 230 L 310 190 L 344 194 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "galea_r",
+    "d": "M 358 152 A 14 34 -0 1 1 330 152 A 14 34 -0 1 1 358 152",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lacinia_r",
+    "d": "M 325 154 A 11 32 -0 1 1 303 154 A 11 32 -0 1 1 325 154",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lacinia_teeth_r",
+    "d": "M 320 126 L 323 116 M 310 127 L 307 117",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p4",
+    "caption": "Step 4 \u2014 the jointed maxillary palps"
+   },
+   {
+    "type": "stroke",
+    "id": "mxpalp_a_l",
+    "d": "M 178.3 195.8 L 176 193.5 L 172.9 190.4 L 169.3 186.7 L 165.6 182.7 L 162 178.6 L 158.9 174.5 L 156.1 170.3 L 153.2 165.7 L 150.5 160.9 L 148 156 L 145.7 150.9 L 143.6 145.9 L 141.8 140.7 L 140.2 135.1 L 138.7 129.5 L 137.5 123.9 L 136.6 118.5 L 136 113.5 L 135.7 108.8 L 135.8 104.3 L 136.1 99.8 L 136.6 95.5 L 137.2 91.2 L 137.9 87.1 L 138.7 83 L 139.7 79 L 140.9 75 L 142 71.3 L 143 68.1 L 143.7 65.7",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "mxpalp_b_l",
+    "d": "M 169.7 204.2 L 167.5 201.9 L 164.4 198.8 L 160.7 195 L 156.7 190.8 L 152.7 186.2 L 149.1 181.5 L 146 176.7 L 142.9 171.8 L 140 166.6 L 137.2 161.2 L 134.7 155.7 L 132.4 150.1 L 130.4 144.3 L 128.6 138.3 L 127 132.2 L 125.7 126.2 L 124.7 120.2 L 124 114.5 L 123.7 109 L 123.8 103.7 L 124.2 98.7 L 124.7 93.9 L 125.4 89.3 L 126.1 84.9 L 127 80.4 L 128.1 75.8 L 129.4 71.5 L 130.6 67.7 L 131.6 64.5 L 132.3 62.3",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "mxpalp_joints_l",
+    "d": "M 149.1 181.5 L 158.9 174.5 M 132.4 150.1 L 143.6 145.9 M 124 114.5 L 136 113.5 M 126.1 84.9 L 137.9 87.1",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "stroke",
+    "id": "mxpalp_a_r",
+    "d": "M 341.7 195.8 L 344 193.5 L 347.1 190.4 L 350.7 186.7 L 354.4 182.7 L 358 178.6 L 361.1 174.5 L 363.9 170.3 L 366.8 165.7 L 369.5 160.9 L 372 156 L 374.3 150.9 L 376.4 145.9 L 378.2 140.7 L 379.8 135.1 L 381.3 129.5 L 382.5 123.9 L 383.4 118.5 L 384 113.5 L 384.3 108.8 L 384.2 104.3 L 383.9 99.8 L 383.4 95.5 L 382.8 91.2 L 382.1 87.1 L 381.3 83 L 380.3 79 L 379.1 75 L 378 71.3 L 377 68.1 L 376.3 65.7",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "mxpalp_b_r",
+    "d": "M 350.3 204.2 L 352.5 201.9 L 355.6 198.8 L 359.3 195 L 363.3 190.8 L 367.3 186.2 L 370.9 181.5 L 374 176.7 L 377.1 171.8 L 380 166.6 L 382.8 161.2 L 385.3 155.7 L 387.6 150.1 L 389.6 144.3 L 391.4 138.3 L 393 132.2 L 394.3 126.2 L 395.3 120.2 L 396 114.5 L 396.3 109 L 396.2 103.7 L 395.8 98.7 L 395.3 93.9 L 394.6 89.3 L 393.9 84.9 L 393 80.4 L 391.9 75.8 L 390.6 71.5 L 389.4 67.7 L 388.4 64.5 L 387.7 62.3",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "mxpalp_joints_r",
+    "d": "M 370.9 181.5 L 361.1 174.5 M 387.6 150.1 L 376.4 145.9 M 396 114.5 L 384 113.5 M 393.9 84.9 L 382.1 87.1",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p5",
+    "caption": "Step 5 \u2014 the labium and its palps"
+   },
+   {
+    "type": "stroke",
+    "id": "submentum",
+    "d": "M 226 344 L 294 344 L 300 314 L 220 314 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "mentum",
+    "d": "M 220 314 L 300 314 L 296 284 L 224 284 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "prementum",
+    "d": "M 224 284 L 296 284 L 292 250 L 228 250 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "glossa_l",
+    "d": "M 242 234 A 8 16 0 1 0 258 234 A 8 16 0 1 0 242 234",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "glossa_r",
+    "d": "M 278 234 A 8 16 -0 1 1 262 234 A 8 16 -0 1 1 278 234",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "paraglossa_l",
+    "d": "M 218 230 A 10 20 0 1 0 238 230 A 10 20 0 1 0 218 230",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "paraglossa_r",
+    "d": "M 302 230 A 10 20 -0 1 1 282 230 A 10 20 -0 1 1 302 230",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lbpalp_a_l",
+    "d": "M 223.1 261.3 L 221.2 262.5 L 218.4 264.2 L 215 266.2 L 211.3 268.5 L 207.6 271.2 L 204.3 273.9 L 201.4 276.7 L 198.7 279.7 L 196.1 282.8 L 193.6 286.2 L 191.2 289.7 L 189.1 293.5 L 187.1 297.9 L 185.4 302.7 L 183.9 307.5 L 182.6 312.1 L 181.5 315.8 L 180.7 318.4",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lbpalp_b_l",
+    "d": "M 228.9 270.7 L 226.8 272 L 224 273.6 L 220.8 275.6 L 217.4 277.7 L 214.3 279.9 L 211.7 282.1 L 209.3 284.4 L 206.9 287 L 204.7 289.7 L 202.6 292.5 L 200.6 295.5 L 198.9 298.5 L 197.3 302 L 195.8 306.2 L 194.4 310.7 L 193.1 315.1 L 192.1 318.8 L 191.3 321.6",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lbpalp_joints_l",
+    "d": "M 208 272 L 216 282 M 196 288 L 204 300",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "stroke",
+    "id": "lbpalp_a_r",
+    "d": "M 296.9 261.3 L 298.8 262.5 L 301.6 264.2 L 305 266.2 L 308.7 268.5 L 312.4 271.2 L 315.7 273.9 L 318.6 276.7 L 321.3 279.7 L 323.9 282.8 L 326.4 286.2 L 328.8 289.7 L 330.9 293.5 L 332.9 297.9 L 334.6 302.7 L 336.1 307.5 L 337.4 312.1 L 338.5 315.8 L 339.3 318.4",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lbpalp_b_r",
+    "d": "M 291.1 270.7 L 293.2 272 L 296 273.6 L 299.2 275.6 L 302.6 277.7 L 305.7 279.9 L 308.3 282.1 L 310.7 284.4 L 313.1 287 L 315.3 289.7 L 317.4 292.5 L 319.4 295.5 L 321.1 298.5 L 322.7 302 L 324.2 306.2 L 325.6 310.7 L 326.9 315.1 L 327.9 318.8 L 328.7 321.6",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lbpalp_joints_r",
+    "d": "M 312 272 L 304 282 M 324 288 L 316 300",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p6",
+    "caption": "Step 6 \u2014 leader lines and labels"
+   },
+   {
+    "type": "label",
+    "id": "lbl_mxpalp",
+    "x": 6,
+    "y": 40,
+    "text": "Maxillary palp",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_mxpalp",
+    "d": "M 109.7 36 L 137 66",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_lacinia",
+    "x": 6,
+    "y": 96,
+    "text": "Lacinia",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_lacinia",
+    "d": "M 61 92 L 204 124",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_galea",
+    "x": 6,
+    "y": 144,
+    "text": "Galea",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_galea",
+    "d": "M 49.2 140 L 164 152",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_stipes",
+    "x": 6,
+    "y": 192,
+    "text": "Stipes",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_stipes",
+    "d": "M 55.4 188 L 180 206",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_cardo",
+    "x": 6,
+    "y": 236,
+    "text": "Cardo",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_cardo",
+    "d": "M 51.3 232 L 182 244",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_lbpalp",
+    "x": 6,
+    "y": 288,
+    "text": "Labial palp",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_lbpalp",
+    "d": "M 89.4 284 L 194 296",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_submentum",
+    "x": 6,
+    "y": 332,
+    "text": "Submentum",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_submentum",
+    "d": "M 97.1 328 L 234 332",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_labrum",
+    "x": 400,
+    "y": 40,
+    "text": "Labrum",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_labrum",
+    "d": "M 396 36 L 286 34",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_mandible",
+    "x": 400,
+    "y": 88,
+    "text": "Mandible",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_mandible",
+    "d": "M 396 84 L 300 88",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_hypopharynx",
+    "x": 400,
+    "y": 136,
+    "text": "Hypopharynx",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_hypopharynx",
+    "d": "M 396 132 L 272 116",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_paraglossa",
+    "x": 400,
+    "y": 184,
+    "text": "Paraglossa",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_paraglossa",
+    "d": "M 396 180 L 300 222",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_glossa",
+    "x": 400,
+    "y": 228,
+    "text": "Glossa",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_glossa",
+    "d": "M 396 224 L 277 232",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_prementum",
+    "x": 400,
+    "y": 272,
+    "text": "Prementum",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_prementum",
+    "d": "M 396 268 L 294 266",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_mentum",
+    "x": 400,
+    "y": 320,
+    "text": "Mentum",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_mentum",
+    "d": "M 396 316 L 298 300",
+    "ms": 0,
+    "w": 1.4
+   }
+  ]
+ },
+ "pa_ommatidium": {
+  "id": "pa_ommatidium",
+  "width": 480,
+  "height": 384,
+  "elements": [
+   {
+    "type": "pause",
+    "id": "p1",
+    "caption": "Step 1 \u2014 the lens and the two corneagen cells"
+   },
+   {
+    "type": "stroke",
+    "id": "lens_top",
+    "d": "M 206 62 Q 240 32 274 62",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "lens_bot",
+    "d": "M 206 62 Q 240 80 274 62",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "corneagen_l",
+    "d": "M 210 74 L 236 72 L 236 93 L 208 93 Z",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "corneagen_r",
+    "d": "M 270 74 L 244 72 L 244 93 L 272 93 Z",
+    "ms": 0
+   },
+   {
+    "type": "pause",
+    "id": "p2",
+    "caption": "Step 2 \u2014 the crystalline cone made of cone cells"
+   },
+   {
+    "type": "stroke",
+    "id": "cone_l",
+    "d": "M 210 96 L 228 152",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "cone_r",
+    "d": "M 270 96 L 252 152",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "cone_top",
+    "d": "M 210 96 L 270 96",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "stroke",
+    "id": "cone_bot",
+    "d": "M 228 152 L 252 152",
+    "ms": 0,
+    "w": 1.6
+   },
+   {
+    "type": "stroke",
+    "id": "cone_mid",
+    "d": "M 240 96 L 240 152",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p3",
+    "caption": "Step 3 \u2014 the iris pigment sheath on both sides"
+   },
+   {
+    "type": "stroke",
+    "id": "iris_out_l",
+    "d": "M 186 80 L 200 156",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "iris_in_l",
+    "d": "M 200 80 L 214 156",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "iris_dots_l",
+    "d": "M 190 96 L 197 95 M 192 112 L 199 111 M 195 128 L 202 127 M 198 144 L 205 143",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "stroke",
+    "id": "iris_out_r",
+    "d": "M 294 80 L 280 156",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "iris_in_r",
+    "d": "M 280 80 L 266 156",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "iris_dots_r",
+    "d": "M 290 96 L 283 95 M 288 112 L 281 111 M 285 128 L 278 127 M 282 144 L 275 143",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p4",
+    "caption": "Step 4 \u2014 retinular cells around the rhabdom"
+   },
+   {
+    "type": "stroke",
+    "id": "retin_wall_l",
+    "d": "M 212 158 L 208 306",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "retin_wall_r",
+    "d": "M 268 158 L 272 306",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "rhabdom_l",
+    "d": "M 232 162 L 232 300",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "rhabdom_r",
+    "d": "M 248 162 L 248 300",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "rhabdom_bars",
+    "d": "M 232 176 L 248 176 M 232 196 L 248 196 M 232 216 L 248 216 M 232 236 L 248 236 M 232 256 L 248 256 M 232 276 L 248 276 M 232 296 L 248 296",
+    "ms": 0,
+    "w": 1.2
+   },
+   {
+    "type": "stroke",
+    "id": "retin_nucleus_l",
+    "d": "M 214 204 A 6 6 0 1 0 226 204 A 6 6 0 1 0 214 204",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "retin_nucleus_r",
+    "d": "M 266 204 A 6 6 -0 1 1 254 204 A 6 6 -0 1 1 266 204",
+    "ms": 0
+   },
+   {
+    "type": "pause",
+    "id": "p5",
+    "caption": "Step 5 \u2014 pigment sheath, basement membrane, nerve fibres"
+   },
+   {
+    "type": "stroke",
+    "id": "rpig_l",
+    "d": "M 198 158 L 194 306",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "rpig_r",
+    "d": "M 282 158 L 286 306",
+    "ms": 0
+   },
+   {
+    "type": "stroke",
+    "id": "rpig_dots_l",
+    "d": "M 200 178 L 208 178 M 199 210 L 207 210 M 198 242 L 206 242 M 197 274 L 205 274",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "stroke",
+    "id": "rpig_dots_r",
+    "d": "M 280 178 L 272 178 M 281 210 L 273 210 M 282 242 L 274 242 M 283 274 L 275 274",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "stroke",
+    "id": "basement",
+    "d": "M 188 312 L 292 312",
+    "ms": 0,
+    "w": 2.4
+   },
+   {
+    "type": "stroke",
+    "id": "nerve",
+    "d": "M 208 314 C 206 330 212 342 208 358 M 226 314 C 224 330 230 342 226 358 M 254 314 C 252 330 258 342 254 358 M 272 314 C 270 330 276 342 272 358",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "pause",
+    "id": "p6",
+    "caption": "Step 6 \u2014 leader lines and labels"
+   },
+   {
+    "type": "label",
+    "id": "lbl_lens",
+    "x": 6,
+    "y": 56,
+    "text": "Lens (facet)",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_lens",
+    "d": "M 104 52 L 218 52",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_corneagen",
+    "x": 6,
+    "y": 104,
+    "text": "Corneagen cell",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_corneagen",
+    "d": "M 115.2 100 L 216 84",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_irispig",
+    "x": 6,
+    "y": 156,
+    "text": "Iris pigment sheath",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_irispig",
+    "d": "M 151.6 152 L 196 120",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_retinular",
+    "x": 6,
+    "y": 214,
+    "text": "Retinular cell",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_retinular",
+    "d": "M 105.4 210 L 220 216",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_rpigsheath",
+    "x": 6,
+    "y": 266,
+    "text": "Retinular pigment sheath",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_rpigsheath",
+    "d": "M 192.6 262 L 200 250",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_basement",
+    "x": 6,
+    "y": 322,
+    "text": "Basement membrane",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_basement",
+    "d": "M 163.6 318 L 200 312",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_nerve",
+    "x": 6,
+    "y": 366,
+    "text": "Nerve fibres",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_nerve",
+    "d": "M 96.6 362 L 210 348",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_cone",
+    "x": 302,
+    "y": 90,
+    "text": "Crystalline cone",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_cone",
+    "d": "M 298 86 L 262 118",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_conecell",
+    "x": 302,
+    "y": 140,
+    "text": "Cone cell",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_conecell",
+    "d": "M 298 136 L 250 130",
+    "ms": 0,
+    "w": 1.4
+   },
+   {
+    "type": "label",
+    "id": "lbl_rhabdom",
+    "x": 302,
+    "y": 200,
+    "text": "Rhabdom",
+    "ms": 0,
+    "sm": true
+   },
+   {
+    "type": "stroke",
+    "id": "ld_rhabdom",
+    "d": "M 298 196 L 249 200",
+    "ms": 0,
+    "w": 1.4
+   }
+  ]
+ }
+}

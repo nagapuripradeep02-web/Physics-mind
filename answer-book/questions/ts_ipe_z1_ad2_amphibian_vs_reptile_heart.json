@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_amphibian_vs_reptile_heart",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How does the heart of an amphibian differ from that of a reptile?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Amphibian heart",
+      "marks": 1
+    },
+    {
+      "label": "Reptile heart",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.55, VSAQ 114). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book answers that the reptile heart is 'with sinus venosus and without conus arteriosus'. In reptiles the sinus venosus is REDUCED (and is absent in crocodiles), so the card writes reduced rather than simply present."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_amphibian",
+        "kind": "text",
+        "label": "Amphibian heart",
+        "marks": 1,
+        "mark_note": "Amphibian",
+        "margin_note": "Chamber count, then the two extra parts. Three short lines.",
+        "lines": [
+          "In amphibians the heart is three chambered.",
+          "There are two auricles and one ventricle.",
+          "The sinus venosus and the conus arteriosus are",
+          "both present."
+        ],
+        "why": "The count of chambers is the first difference, and the sinus venosus and conus arteriosus are the two extra parts that a reptile has lost or reduced.",
+        "common_mistakes": [
+          "Writing four chambers for an amphibian. The amphibian ventricle is single and undivided.",
+          "Leaving out the sinus venosus and the conus arteriosus. They are the marked extras."
+        ],
+        "memory_tip": "Amphibian: two plus one, with both extra chambers still there."
+      },
+      {
+        "id": "s2_reptile",
+        "kind": "boxed_final",
+        "label": "Reptile heart",
+        "marks": 1,
+        "mark_note": "Reptile",
+        "margin_note": "Give the reptile side, then the crocodile exception in one line.",
+        "lines": [
+          {
+            "text": "Amphibian 3 chambers, reptile 4 incomplete",
+            "style": "boxed"
+          },
+          "In reptiles the heart is incompletely four",
+          "chambered. There are two auricles and a",
+          "ventricle that is only partly divided.",
+          "The sinus venosus is reduced and the conus",
+          "arteriosus is absent.",
+          "In crocodiles the heart is completely four",
+          "chambered."
+        ],
+        "why": "The reptile heart is halfway to the mammal heart, so the answer is written as a partial division rather than as a fourth chamber.",
+        "common_mistakes": [
+          "Writing that a reptile heart has four full chambers. Only the crocodile heart is fully divided.",
+          "Saying the conus arteriosus is present in reptiles. It is absent; separate trunks leave the heart."
+        ],
+        "memory_tip": "Reptile: the wall in the ventricle is half built, so the heart is four chambered but not fully."
+      }
+    ]
+  },
+  "insider_note": "The crocodile line is a short bonus that examiners notice, but the marks sit on three chambers against incompletely four."
+}

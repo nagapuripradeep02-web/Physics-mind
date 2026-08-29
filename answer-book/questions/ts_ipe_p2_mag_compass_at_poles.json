@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_compass_at_poles",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to compass needles at the Earth's poles?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Field at the poles",
+      "marks": 1
+    },
+    {
+      "label": "The needle's behaviour",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in a Telangana IPE paper: the book prints the citation '(Mar 17 TS)' beside this question — March 2017. The appearances schema carries year and board but no month field, so March is recorded here; the question number is not printed. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: at the magnetic poles the dip is 90°, the field is vertical and its horizontal component is zero, so a compass needle pivoted in the horizontal plane feels no aligning torque and settles in no particular direction; a needle free to turn in a vertical plane stands vertical — the book words this as the needle aligning perpendicular to the earth's surface."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_field_vertical",
+        "kind": "text",
+        "label": "Field at the poles",
+        "marks": 1,
+        "mark_note": "Vertical field, H = 0",
+        "lines": [
+          "At the earth's magnetic poles the field is",
+          "vertical. The angle of dip is 90°, so the",
+          "horizontal component of the field is zero."
+        ],
+        "margin_note": "First mark. State the field there: vertical, dip 90°, horizontal component zero.",
+        "why": "Everything the needle does follows from the field's direction. At the poles the total field points straight into or out of the ground, so the horizontal part — the only part a flat compass can use — vanishes.",
+        "common_mistakes": [
+          "Saying the field is strongest at the poles instead of saying it is vertical. The direction, not the strength, is what answers this question.",
+          "Writing dip = 0° at the poles. Dip is 90° at the poles and 0° at the magnetic equator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at the magnetic poles the earth's field is vertical, the dip is 90° and the horizontal component is zero.",
+          "accept": [
+            "the field is vertical at the poles",
+            "dip is ninety degrees",
+            "horizontal component is zero"
+          ],
+          "reject": [
+            "the needle points any way"
+          ],
+          "heard_as": [
+            "vertical",
+            "dip",
+            "horizontal component"
+          ]
+        },
+        "memory_tip": "At the poles the field goes straight down (or up): dip 90°, nothing left for the horizontal."
+      },
+      {
+        "id": "s2_needle_behaviour",
+        "kind": "text",
+        "label": "The needle's behaviour",
+        "marks": 1,
+        "mark_note": "No direction shown",
+        "lines": [
+          "A compass needle turns in the horizontal",
+          "plane. With no horizontal component there",
+          "is no torque to set its direction, so the",
+          "needle can rest pointing any way — it",
+          "shows no useful direction at the poles.",
+          "A needle free to turn in a vertical plane",
+          "stands vertical there."
+        ],
+        "margin_note": "Second mark. Two behaviours: the flat compass loses its direction; a vertically pivoted needle stands straight up and down.",
+        "why": "The book words this as the needle aligning perpendicular to the earth's surface — that is what a needle free to tilt in a vertical plane does, since only the vertical component remains. A compass pivoted flat cannot tilt, so what it shows is a needle with no set direction.",
+        "common_mistakes": [
+          "Saying the compass points to the geographic pole. With zero horizontal field it points nowhere in particular.",
+          "Saying the flat compass needle turns vertical. A horizontally pivoted needle cannot tilt — only a vertically pivoted one stands vertical."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with zero horizontal component the compass needle has no set direction, while a vertically pivoted needle stands vertical.",
+          "accept": [
+            "the compass shows no direction",
+            "the needle can rest any way",
+            "a vertical-plane needle stands vertical"
+          ],
+          "reject": [
+            "dip is ninety degrees"
+          ],
+          "heard_as": [
+            "no direction",
+            "torque",
+            "vertical"
+          ]
+        },
+        "memory_tip": "A flat compass reads only the horizontal field — at the poles that is zero, so it has nothing to read."
+      }
+    ]
+  },
+  "insider_note": "The asked-in-2017 phrasing wants the mechanism, not just the fact — zero horizontal component, therefore no torque, therefore no direction."
+}

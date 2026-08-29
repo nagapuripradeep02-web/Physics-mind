@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_museum_preservation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Where and how do we preserve skeletons of animals, dry specimens etc.?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Where they are kept",
+      "marks": 1
+    },
+    {
+      "label": "How they are prepared",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.50, VSAQ 72). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book prints no year citation for this question, so `appearances` is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_where",
+        "kind": "text",
+        "label": "Where they are kept",
+        "marks": 1,
+        "mark_note": "Where",
+        "why": "The question has two halves, and the first is a single word — the place — so it is written first and plainly.",
+        "common_mistakes": [
+          "Writing 'zoo'. A zoo holds living animals; a museum holds preserved ones.",
+          "Writing 'herbarium'. A herbarium holds pressed and dried plants."
+        ],
+        "memory_tip": "Living animals go to a zoo; preserved animals go to a museum.",
+        "margin_note": "One word answers the first half. Add one line on what a museum is.",
+        "lines": [
+          "Skeletons and dry specimens are kept in a",
+          "museum.",
+          "A museum is a place where preserved animal",
+          "material is stored and displayed for study."
+        ]
+      },
+      {
+        "id": "s2_how",
+        "kind": "boxed_final",
+        "label": "How they are prepared",
+        "marks": 1,
+        "mark_note": "How",
+        "why": "Each step has a name the examiner looks for — cleaning and bleaching, articulation of the skeleton, and taxidermy for the skin — so the answer is those named steps in order.",
+        "common_mistakes": [
+          "Leaving out the word taxidermy, which names the stuffing of specimens.",
+          "Writing that skeletons are preserved in a liquid. They are cleaned, bleached and articulated as dry material."
+        ],
+        "memory_tip": "Bones: clean, bleach, articulate. Skins: stuff, and that is taxidermy.",
+        "margin_note": "Two named methods, articulation and taxidermy. One line each.",
+        "lines": [
+          {
+            "text": "Skeletons are articulated; skins stuffed",
+            "style": "boxed"
+          },
+          "Skeletons are first cleaned and bleached.",
+          "The cleaned bones are then joined together in",
+          "their natural position. This is called",
+          "articulation.",
+          "Animal skins are stuffed to give the shape of",
+          "the living animal. This is called taxidermy.",
+          "The prepared material is then put on display."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The two technical words, articulation and taxidermy, are what the examiner ticks — a general answer about 'keeping them safely' earns nothing."
+}

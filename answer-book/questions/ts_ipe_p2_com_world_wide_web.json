@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_com_world_wide_web",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Communication System"
+  },
+  "chapter": "Communication System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is \"World Wide web\" (www)?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the Web is",
+      "marks": 1
+    },
+    {
+      "label": "Who can reach it, and how",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Whether Communication Systems is still on the current Telangana second-year syllabus is UNCONFIRMED — NCERT removed this chapter in the 2023 rationalisation, but this book prints it. A lecturer's pen tick marks this question as expected. Physics hand-checked: the book's answer ('IT IS AMAMMOTH ENCYCLOPEDIA OF KNOWLEDGE', a run-on of 'a mammoth') is reworded here in plain literal English with the same content — a very large store of information on internet-connected computers, open to everyone at any time."
+  },
+  "recall_prompt": "Say what the World Wide Web is — what it holds, where that is stored, and who can reach it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Communication System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What the Web is",
+        "marks": 1,
+        "mark_note": "A large information store on the internet",
+        "lines": [
+          "The World Wide Web is a very large store",
+          "of information kept on computers that are",
+          "connected to the internet."
+        ],
+        "margin_note": "First mark. Information, stored on computers connected to the internet.",
+        "why": "The definition has two parts that both matter: WHAT the Web holds (information) and WHERE that lives (on computers connected to the internet). Leaving either out makes the answer a slogan.",
+        "common_mistakes": [
+          "Writing that the Web and the internet are the same thing. The internet is the network of computers; the Web is the information stored and shared on it.",
+          "Calling it a device or a machine. It is a store of information, not hardware."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the World Wide Web is a very large store of information held on computers connected to the internet.",
+          "accept": [
+            "a very large store of information",
+            "an encyclopedia of knowledge on the internet",
+            "information kept on internet-connected computers"
+          ],
+          "reject": [
+            "anyone can read it at any time"
+          ],
+          "heard_as": [
+            "world wide web",
+            "www",
+            "internet",
+            "information"
+          ]
+        },
+        "memory_tip": "Two parts: what it holds (information) and where it lives (computers on the internet)."
+      },
+      {
+        "id": "s2_access",
+        "kind": "boxed_final",
+        "label": "Who can reach it, and how",
+        "marks": 1,
+        "mark_note": "Open to everyone at any time",
+        "lines": [
+          "Anyone can read it at any time of day,",
+          "through a computer connected to the",
+          "internet.",
+          {
+            "text": "WWW: information for everyone, any time",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Everyone, at any time, through an internet-connected computer.",
+        "why": "What makes the Web useful is open access: it is not limited to one place, one time or one group. The book states this too, in its 'accessible to every one round the clock' line.",
+        "common_mistakes": [
+          "Leaving out how it is reached. Access is through a computer connected to the internet.",
+          "Saying only some people can use it. The Web is open to everyone with an internet connection."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That anyone can reach the Web at any time through a computer connected to the internet.",
+          "accept": [
+            "open to everyone at any time",
+            "reached through a computer connected to the internet",
+            "anyone with an internet connection can use it"
+          ],
+          "reject": [
+            "a very large store of information"
+          ],
+          "heard_as": [
+            "everyone",
+            "any time",
+            "connected to the internet"
+          ]
+        },
+        "memory_tip": "Three alls: all people, all hours, all through the internet."
+      }
+    ]
+  },
+  "insider_note": "First mark: information stored on internet-connected computers. Second mark: open to everyone at any time. The book's own wording is a run-on in capitals — write it plainly."
+}

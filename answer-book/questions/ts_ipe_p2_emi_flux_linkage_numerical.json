@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_flux_linkage_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A pair of adjacent coils has a mutual inductance of 1.5 H. If the current in one coil changes from 0 to 20 A in 0.5 s, what is the change of flux linkage with the other coil?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The right formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitution and result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Arithmetic hand-checked: the ASKED quantity is the change of flux linkage, Δ(NΦ) = M Δi = 1.5 × 20 = 30 Wb — agrees with the book's printed 30 Wb. The 0.5 s is not needed; it would enter only for the average emf, M Δi/Δt = 60 V, a different question."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "text",
+        "label": "The right formula",
+        "marks": 1,
+        "mark_note": "Flux linkage = M i, so ΔΦ link = M Δi",
+        "lines": [
+          "The flux linkage of the second coil is set",
+          "by the current in the first:",
+          {
+            "text": "N₂Φ₂ = M i₁",
+            "style": "eq"
+          },
+          "So the change of flux linkage is",
+          {
+            "text": "Δ(N₂Φ₂) = M Δi₁",
+            "style": "eq"
+          },
+          "The 0.5 s is not needed here; time enters",
+          "only if the emf is asked."
+        ],
+        "margin_note": "First mark. Read the last words of the question: change of FLUX LINKAGE, not emf — so no time appears.",
+        "why": "The question asks for the change of flux linkage, not the emf. Flux linkage is M times current, so its change is M times the change of current — no time anywhere.",
+        "common_mistakes": [
+          "Computing the emf ε = M Δi/Δt = 60 V. The 0.5 s is given to invite this; the question asks the flux linkage, which needs no time.",
+          "Using L in place of M. Two coils share flux through their MUTUAL inductance."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the change of flux linkage equals M times the change of current, and the 0.5 s is not needed.",
+          "accept": [
+            "M delta i",
+            "flux linkage is M i",
+            "time is not needed"
+          ],
+          "reject": [
+            "60 volts"
+          ],
+          "heard_as": [
+            "flux linkage",
+            "M delta i"
+          ]
+        },
+        "memory_tip": "Read the last words of the question first: change of flux linkage. Linkage = M i, so its change = M Δi."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "Substitution and result",
+        "marks": 1,
+        "mark_note": "1.5 × 20 = 30 Wb",
+        "lines": [
+          {
+            "text": "Δ(N₂Φ₂) = 1.5 × (20 − 0)",
+            "style": "eq"
+          },
+          {
+            "text": "Change of flux linkage = 30 Wb",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. One multiplication; the unit is the weber.",
+        "why": "One multiplication finishes it, and the unit is the weber — flux linkage carries the unit of flux.",
+        "common_mistakes": [
+          "Writing 60 V as the answer. 60 V is the average emf, a different question."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the change of flux linkage is 1.5 times 20, equal to 30 weber.",
+          "accept": [
+            "thirty weber",
+            "1.5 into 20",
+            "30 Wb"
+          ],
+          "reject": [
+            "60 volt"
+          ],
+          "heard_as": [
+            "thirty",
+            "weber"
+          ]
+        },
+        "memory_tip": "1.5 × 20 = 30, unit weber. If your answer came out in volts, you answered a different question."
+      }
+    ]
+  },
+  "insider_note": "The 0.5 s is given to invite the emf answer, 60 V. The asked quantity is the flux linkage, M Δi = 30 Wb — no time needed."
+}

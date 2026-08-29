@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_isotones_isomers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are isotones and isomers?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Isotones",
+      "marks": 1
+    },
+    {
+      "label": "Isomers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: ⁴⁰Ca has Z = 20 and N = 40 − 20 = 20; ³⁹K has Z = 19 and N = 39 − 19 = 20, so the two are isotones. ⁸⁰Brᵐ and ⁸⁰Brᵍ share Z = 35 and A = 80 and differ only in nuclear energy state, so they are isomers."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_isotones",
+        "kind": "text",
+        "label": "Isotones",
+        "marks": 1,
+        "mark_note": "Same N, different Z, with example",
+        "lines": [
+          "Isotones: nuclei with the same neutron",
+          "number N but different atomic numbers Z",
+          "are called isotones.",
+          {
+            "text": "Ex: ⁴⁰Ca and ³⁹K, both with N = A − Z = 20.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "First mark. Same N and different Z, plus one named example.",
+        "why": "N counts only the neutrons, so isotones are different elements that happen to hold the same number of neutrons.",
+        "common_mistakes": [
+          "Writing \"same mass number\" — that is isobars, not isotones.",
+          "Giving no example. The pair ⁴⁰Ca and ³⁹K carries part of the credit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That isotones have the same neutron number N but different atomic numbers Z, with an example such as calcium-40 and potassium-39.",
+          "accept": [
+            "same neutron number different atomic number",
+            "same N different Z",
+            "calcium forty and potassium thirty nine"
+          ],
+          "reject": [
+            "same atomic number and same mass number"
+          ],
+          "heard_as": [
+            "isotone",
+            "neutron number",
+            "calcium forty"
+          ]
+        },
+        "memory_tip": "isotoNe — the N says same Neutron number."
+      },
+      {
+        "id": "s2_isomers",
+        "kind": "boxed_final",
+        "label": "Isomers",
+        "marks": 1,
+        "mark_note": "Same Z and same A, different nuclear state",
+        "lines": [
+          "Isomers: nuclei with the same atomic number",
+          "Z and the same mass number A but different",
+          "nuclear properties are called isomers.",
+          {
+            "text": "Ex: ⁸⁰Brᵐ and ⁸⁰Brᵍ are isomers.",
+            "style": "indent"
+          },
+          {
+            "text": "Isotones: same N · Isomers: same Z and A",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Same Z AND same A; only the nuclear state differs.",
+        "why": "The two isomers are the same nucleus at two different energy levels: the m form sits in a long-lived excited state and reaches the ground state g by emitting a γ ray, so the half-lives differ.",
+        "common_mistakes": [
+          "Saying isomers are different elements. They are the same nucleus in two states.",
+          "Confusing isomers with isotopes. Isotopes differ in A; isomers do not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That isomers have the same atomic number Z and the same mass number A but different nuclear properties, with an example such as the two forms of bromine-80.",
+          "accept": [
+            "same Z and same A but different nuclear properties",
+            "bromine eighty m and g",
+            "same nucleus in two energy states"
+          ],
+          "reject": [
+            "same neutron number"
+          ],
+          "heard_as": [
+            "isomer",
+            "bromine eighty",
+            "nuclear state"
+          ]
+        },
+        "memory_tip": "Isomer: everything on the label is the same, only the inside energy differs."
+      }
+    ]
+  },
+  "insider_note": "Both halves need the defining pair of numbers AND one named example; a definition with no example loses part of the mark."
+}

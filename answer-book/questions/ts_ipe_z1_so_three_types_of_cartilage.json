@@ -1,0 +1,169 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_three_types_of_cartilage",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the three types of cartilage.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cartilage",
+      "marks": 1
+    },
+    {
+      "label": "Hyaline cartilage",
+      "marks": 1
+    },
+    {
+      "label": "Elastic cartilage",
+      "marks": 1
+    },
+    {
+      "label": "Fibrous cartilage",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.33, SAQ 20). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book writes that cartilage has 'chondroblasts enclosed in lacunae'. Chondroblasts are the young dividing cells; the cells lying in the lacunae of mature cartilage are chondrocytes, and the card uses chondrocytes."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cartilage",
+        "kind": "text",
+        "label": "Cartilage",
+        "marks": 1,
+        "why": "Cartilage has no blood vessels inside it, so every fact about how it grows and how it repairs follows from the perichondrium lying on its surface.",
+        "common_mistakes": [
+          "Writing that cartilage has its own blood supply. It has none; the perichondrium supplies it.",
+          "Calling the cells osteocytes. Bone has osteocytes; cartilage has chondrocytes."
+        ],
+        "memory_tip": "No blood inside cartilage — everything it needs comes from the perichondrium on the outside.",
+        "margin_note": "Definition, cells, lacunae, perichondrium, no blood supply. This is one mark, so keep the lines short.",
+        "mark_note": "Cartilage",
+        "lines": [
+          "Cartilage is a solid but flexible connective",
+          "tissue.",
+          "Its matrix holds collagen fibres and, in some",
+          "kinds, elastic fibres.",
+          "The cartilage cells (chondrocytes) lie in small",
+          "spaces called lacunae.",
+          "The whole cartilage is covered by a sheath",
+          "called the perichondrium.",
+          "Cartilage has no blood supply of its own. The",
+          "perichondrium carries the blood capillaries, and",
+          "its cells carry out growth and repair."
+        ]
+      },
+      {
+        "id": "s2_hyaline",
+        "kind": "text",
+        "label": "Hyaline cartilage",
+        "marks": 1,
+        "why": "Hyaline is the plain form with only fine collagen fibres, which is why it is both the weakest and the one found in the largest number of places.",
+        "common_mistakes": [
+          "Calling hyaline cartilage the strongest. It is the weakest; fibrous cartilage is the strongest.",
+          "Giving the pinna as an example. The pinna is elastic cartilage."
+        ],
+        "memory_tip": "Hyaline means glassy: bluish white, see-through, weakest, and found almost everywhere.",
+        "margin_note": "Colour, fibres, strength, examples. Four short lines for each type.",
+        "mark_note": "Hyaline",
+        "lines": [
+          "1) Hyaline cartilage:",
+          "It is bluish white and translucent.",
+          "It has delicate collagen fibres.",
+          "It is the weakest and the commonest cartilage.",
+          "Examples: walls of the nose, costal cartilage,",
+          "trachea, bronchus and larynx."
+        ]
+      },
+      {
+        "id": "s3_elastic",
+        "kind": "text",
+        "label": "Elastic cartilage",
+        "marks": 1,
+        "why": "The extra elastic fibres are the only difference from hyaline, and they account for both the yellow colour and the springiness of the ear.",
+        "common_mistakes": [
+          "Leaving out collagen. Elastic cartilage has elastic fibres IN ADDITION to collagen fibres.",
+          "Giving the intervertebral disc as an example. That is fibrous cartilage."
+        ],
+        "memory_tip": "Bend the ear and let it go: that is elastic cartilage, yellow and springy.",
+        "margin_note": "The same four points in the same order as hyaline. The examiner reads the pattern.",
+        "mark_note": "Elastic",
+        "lines": [
+          "2) Elastic cartilage:",
+          "It is yellow.",
+          "It has elastic fibres in addition to collagen",
+          "fibres.",
+          "So it has both strength and elasticity: it",
+          "springs back to its shape.",
+          "Examples: pinna of the ear, Eustachian tube and",
+          "epiglottis."
+        ]
+      },
+      {
+        "id": "s4_fibrous",
+        "kind": "boxed_final",
+        "label": "Fibrous cartilage",
+        "marks": 1,
+        "why": "Thick collagen bundles make it the strongest, and it is the one type with no perichondrium, so both facts are asked again and again in short-answer papers.",
+        "common_mistakes": [
+          "Writing that fibrous cartilage has a perichondrium. It is the only type without one.",
+          "Calling it the commonest. It is the strongest; hyaline is the commonest."
+        ],
+        "memory_tip": "Fibrous means fibre bundles, so it is the strongest — and the only one with no perichondrium.",
+        "margin_note": "Strength and the missing perichondrium are the two marked facts here.",
+        "mark_note": "Fibrous",
+        "lines": [
+          {
+            "text": "Fibrous: strongest, no perichondrium",
+            "style": "boxed"
+          },
+          "3) Fibrous cartilage:",
+          "Its matrix holds thick bundles of collagen",
+          "fibres.",
+          "It is the strongest cartilage.",
+          "The perichondrium is absent.",
+          "Examples: intervertebral discs and the pubic",
+          "symphysis."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Write the three types in a fixed order with the same four headings each time — colour, fibres, strength, examples — because the examiner is comparing your three blocks against one another."
+}

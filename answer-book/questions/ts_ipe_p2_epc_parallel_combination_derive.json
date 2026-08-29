@@ -1,0 +1,299 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_parallel_combination_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain parallel combination of capacitors. Derive the formula for equivalent capacitance.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The arrangement",
+      "marks": 1
+    },
+    {
+      "label": "Adding the charges",
+      "marks": 2
+    },
+    {
+      "label": "The equivalent capacitance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). Hand-checked: in parallel V is common, Q = Q₁+Q₂+Q₃ with Qᵢ = CᵢV gives C = C₁+C₂+C₃ — the book's chain, correct (its 'cahrge' typo not copied)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Potential and Capacitance · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_arrangement",
+        "kind": "text",
+        "label": "The arrangement",
+        "marks": 1,
+        "mark_note": "Arrangement",
+        "lines": [
+          "In parallel, the first plates of all the",
+          "capacitors join one common terminal and the",
+          "second plates join the other. The two common",
+          "terminals go to the battery.",
+          "Each capacitor has the full applied V; the",
+          "total charge divides between them."
+        ],
+        "margin_note": "First mark. Common terminals; same V on each, charge divides.",
+        "why": "Joined to the same two terminals, every capacitor reads the same potential difference — so here it is the CHARGE that splits, the mirror image of the series case.",
+        "common_mistakes": [
+          "Saying the charge is the same on each — in parallel it is V that is common.",
+          "Describing plate-to-plate joining — that is the series arrangement."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all first plates join one terminal and all second plates the other, so each capacitor has the full V and the charge divides.",
+          "accept": [
+            "joined to common terminals",
+            "same V on each",
+            "charge divides"
+          ],
+          "reject": [
+            "C is C one plus C two plus C three"
+          ],
+          "heard_as": [
+            "parallel",
+            "same voltage"
+          ]
+        },
+        "memory_tip": "Parallel: one V for all, the Q splits."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "three_capacitors_parallel",
+          "width": 420,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "left_bus",
+              "d": "M 100 60 L 100 260",
+              "ms": 2860
+            },
+            {
+              "type": "stroke",
+              "id": "right_bus",
+              "d": "M 320 60 L 320 260",
+              "ms": 2860
+            },
+            {
+              "type": "stroke",
+              "id": "branch1",
+              "d": "M 100 60 L 195 60 M 225 60 L 320 60",
+              "ms": 2710
+            },
+            {
+              "type": "stroke",
+              "id": "cap1_plates",
+              "d": "M 195 36 L 195 84 M 225 36 L 225 84",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "branch2",
+              "d": "M 100 130 L 195 130 M 225 130 L 320 130",
+              "ms": 2710
+            },
+            {
+              "type": "stroke",
+              "id": "cap2_plates",
+              "d": "M 195 106 L 195 154 M 225 106 L 225 154",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "branch3",
+              "d": "M 100 200 L 195 200 M 225 200 L 320 200",
+              "ms": 2710
+            },
+            {
+              "type": "stroke",
+              "id": "cap3_plates",
+              "d": "M 195 176 L 195 224 M 225 176 L 225 224",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "bottom_wires",
+              "d": "M 100 260 L 190 260 M 250 260 L 320 260",
+              "ms": 2290
+            },
+            {
+              "type": "stroke",
+              "id": "battery_plates",
+              "d": "M 190 244 L 190 276 M 250 252 L 250 268",
+              "ms": 690
+            },
+            {
+              "type": "label",
+              "id": "lbl_c1",
+              "x": 236,
+              "y": 52,
+              "text": "C₁",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_c2",
+              "x": 236,
+              "y": 122,
+              "text": "C₂",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_c3",
+              "x": 236,
+              "y": 192,
+              "text": "C₃",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_v",
+              "x": 148,
+              "y": 250,
+              "text": "V",
+              "ms": 300
+            }
+          ]
+        },
+        "margin_note": "Three branches between the same two vertical wires, battery at the bottom.",
+        "why": "The three branches hang between the same two wires — the picture of why one V reaches every capacitor while the battery's charge has three ways to divide.",
+        "common_mistakes": [
+          "Chaining the capacitors along one wire — that is the series figure."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That three capacitors are drawn as three branches between the same two wires with the battery across them.",
+          "accept": [
+            "three branches between two wires",
+            "battery across the pair"
+          ],
+          "reject": [
+            "Q is Q one plus Q two plus Q three"
+          ],
+          "heard_as": [
+            "parallel circuit",
+            "branches"
+          ]
+        },
+        "memory_tip": "A ladder: two rails, three rungs, each rung a capacitor."
+      },
+      {
+        "id": "s3_add_charges",
+        "kind": "equation",
+        "label": "Adding the charges",
+        "marks": 2,
+        "mark_note": "Q = ΣCᵢV",
+        "lines": [
+          "The total charge drawn from the battery is",
+          "the sum of the three:",
+          {
+            "text": "Q = Q₁ + Q₂ + Q₃",
+            "style": "eq"
+          },
+          "With the common V across each capacitor,",
+          {
+            "text": "Q₁ = C₁V, Q₂ = C₂V, Q₃ = C₃V",
+            "style": "eq"
+          },
+          "If C is the equivalent capacitance, Q = CV:",
+          {
+            "text": "CV = C₁V + C₂V + C₃V",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. Q adds; each Qᵢ is its own Cᵢ times the same V.",
+        "why": "The equivalent capacitor is the one that draws the same total Q at the same V — writing Q = CV beside the sum is what turns the arrangement into the formula.",
+        "common_mistakes": [
+          "Adding potential differences instead of charges — the V's are all equal here.",
+          "Using different voltages V₁, V₂, V₃ — parallel forces one common V."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the total charge is the sum of the three, each equal to its C times the common V.",
+          "accept": [
+            "Q is Q one plus Q two plus Q three",
+            "each Q is C times V",
+            "same V in every term"
+          ],
+          "reject": [
+            "joined to common terminals"
+          ],
+          "heard_as": [
+            "sum of charges",
+            "C times V"
+          ]
+        },
+        "memory_tip": "Parallel: the Q's add up, the V factors out."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The equivalent capacitance",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Dividing every term by V:",
+          {
+            "text": "C = C₁ + C₂ + C₃",
+            "style": "boxed"
+          },
+          "The equivalent C is larger than the largest",
+          "of C₁, C₂, C₃."
+        ],
+        "margin_note": "Last mark. Box the plain sum and note that C comes out larger.",
+        "why": "Plates side by side act as one capacitor of combined area, and C grows with area — so parallel capacitances simply add.",
+        "common_mistakes": [
+          "Writing 1/C = 1/C₁ + 1/C₂ + 1/C₃ — that is the series formula."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C equals C one plus C two plus C three, larger than the largest.",
+          "accept": [
+            "C is C one plus C two plus C three",
+            "capacitances add",
+            "larger than the largest"
+          ],
+          "reject": [
+            "one by C is the sum of one by C i"
+          ],
+          "heard_as": [
+            "add",
+            "C one plus C two"
+          ]
+        },
+        "memory_tip": "Parallel plates pool their area — capacitances add straight."
+      }
+    ]
+  },
+  "insider_note": "The middle marks want Q₁ = C₁V etc. with the SAME V in every term — the mirror of the series card, and the two are the classic mix-up pair."
+}

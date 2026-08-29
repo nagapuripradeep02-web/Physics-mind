@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# answer-book figure gallery / wrap-measure output (regenerated per run)
+/answer-book/tools/out/
+
 # production
 /build
 

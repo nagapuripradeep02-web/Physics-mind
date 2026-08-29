@@ -40,13 +40,15 @@ export type PaperPattern = {
     total: number;
     /**
      * Marks outside the written paper (practical / activity-based learning).
-     * OPTIONAL, deliberately: notebook.js builds Vidi's student-facing PAPER line
-     * from this ("...plus N marks practical outside the written paper"), so an
-     * unsourced number here is a number a student reads as fact. A second-year
-     * paper has no sourced figure in this corpus - the reform's 15 is FIRST year
-     * and the pre-reform 30 describes the old arrangement - so second-year rows
-     * omit the key and the player's own `pat.internal ? ...` guard drops the
-     * clause. Say nothing rather than assert.
+     *
+     * OPTIONAL since 2026-08-29. notebook.js renders this into the PAPER line
+     * Vidi shows the STUDENT — "plus N marks practical outside the written
+     * paper" — so a number here is a number a student reads. The SECOND-YEAR
+     * practical mark is not sourced for either physics_2 or chemistry_2: the
+     * 30 in docs/SYLLABUS_2026_27.md describes the PRE-reform arrangement and
+     * the reform's 15 is first-year, so copying either would be inventing a
+     * figure. Omit the key until one is sourced; the renderer already guards
+     * with `pat.internal ? …`. Agreed with the Senior Chemistry desk.
      */
     internal?: { marks: number; kind: string };
     sections: PaperSection[];
@@ -63,10 +65,19 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     mathematics: { label: 'Maths 1A', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
     mathematics_1b: { label: 'Maths 1B', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
     botany: { label: 'Botany', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
-    // Second year. Its shape is the same 60-mark A/B/C paper and the reform does not
-    // reach second year until 2027-28, so `wef` names the syllabus year this row
-    // DESCRIBES - the sense in which physics, also untouched by the reform, carries
-    // it. `internal` is omitted on purpose: see the type above.
+    // Junior Zoology is the same ABC_60 shape: Section A 10 of 10 x 2, B any 6 of 8 x 4,
+    // C any 2 of 3 x 8 = 60, plus the 15-mark practical (docs/ZOOLOGY_START_HERE.md).
+    zoology: { label: 'Zoology', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
+
+    // Senior Inter Physics Paper-II (2026-08-29). Same ABC_60 shape: the 2026-27
+    // reform is FIRST YEAR ONLY and second year switches in 2027-28, so this paper
+    // is unchanged. `internal` is deliberately omitted — see the type above.
+    physics_2: { label: 'Physics II', total: 60, sections: ABC_60, wef: '2026-27' },
+
+    // Senior Inter Chemistry Paper-II (2026-08-29). Same ABC_60 shape and the same
+    // reasoning as physics_2 above: the reform is first year only and second year
+    // switches in 2027-28, so `wef` names the syllabus year this row DESCRIBES.
+    // `internal` is deliberately omitted — see the type above.
     chemistry_2: { label: 'Chemistry II', total: 60, sections: ABC_60, wef: '2026-27' },
 };
 /** The marks a question of this qtype carries on this subject's paper. */
@@ -107,12 +118,45 @@ const figureLabelSchema = z.object({
     sm: z.boolean().optional(),
 });
 
-const figureSchema = z.object({
+/**
+ * A phase boundary inside a figure. The player STOPS here, shows `caption`
+ * under the figure ("Step 2 — internal organs"), and waits for the student's
+ * tap before drawing the next phase — the student watches each stage and can
+ * copy it before continuing. A pause at index 0 is a caption-only marker for
+ * phase 1 (no wait: the tap that opened the step is the consent). On the
+ * instant path (revealAll / print / reduced-motion) pauses are skipped and no
+ * caption shows — captions are drawing pedagogy, not answer content.
+ */
+const figurePauseSchema = z.object({
+    type: z.literal('pause'),
     id: z.string().min(1),
-    width: z.number().positive(),
-    height: z.number().positive(),
-    elements: z.array(z.discriminatedUnion('type', [figureStrokeSchema, figureLabelSchema])),
+    /** Phase name shown while the phase that FOLLOWS this pause draws. */
+    caption: z.string().min(1).max(64).optional(),
 });
+
+const figureSchema = z
+    .object({
+        id: z.string().min(1),
+        width: z.number().positive(),
+        height: z.number().positive(),
+        elements: z.array(
+            z.discriminatedUnion('type', [figureStrokeSchema, figureLabelSchema, figurePauseSchema])
+        ),
+    })
+    .superRefine((fig, ctx) => {
+        fig.elements.forEach((el, i) => {
+            if (el.type !== 'pause') return;
+            if (i === fig.elements.length - 1) {
+                ctx.addIssue({ code: 'custom', message: `figure "${fig.id}": pause "${el.id}" is the last element — a pause introduces the phase that follows it` });
+            }
+            if (i > 0 && fig.elements[i - 1].type === 'pause') {
+                ctx.addIssue({ code: 'custom', message: `figure "${fig.id}": pauses "${fig.elements[i - 1].id}" and "${el.id}" are adjacent — a phase may not be empty` });
+            }
+            if (i === 0 && !el.caption) {
+                ctx.addIssue({ code: 'custom', message: `figure "${fig.id}": a pause at index 0 is a caption-only phase-1 marker and requires a caption` });
+            }
+        });
+    });
 
 // ── answer steps ─────────────────────────────────────────────────────────────
 
@@ -286,8 +330,13 @@ export const answerBookQuestionSchema = z
         board_label: z.string().min(1),
         // One PAPER = one subject value (same list as build_answer_book.ts
         // SUBJECTS): mathematics = Maths-1A (predates 1B), mathematics_1b =
-        // Maths-1B. Unit numbers namespace per subject.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'chemistry_2']),
+        // Maths-1B, physics_2 = Senior Inter Physics Paper-II (year_cycle
+        // 'second_year'). Unit numbers namespace per subject — and physics_2
+        // rather than "physics units 15-30" is load-bearing, not cosmetic:
+        // notebook.js LEGACY_PHYSICS_KEYS remaps exact `physics-N` keys for the
+        // 2026-27 first-year renumbering, so second-year chapters filed under
+        // `physics` would be silently remapped onto first-year units.
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),

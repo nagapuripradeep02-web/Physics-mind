@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_acid_rain_pollutants",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which air pollutants are chiefly responsible for acid rains?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The pollutants",
+      "marks": 1
+    },
+    {
+      "label": "Effects of acid rain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.61, VSAQ 161). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pollutants",
+        "kind": "text",
+        "label": "The pollutants",
+        "marks": 1,
+        "mark_note": "Pollutants",
+        "lines": [
+          "Sulphur dioxide (SO₂) and the oxides of",
+          "nitrogen (NO, NO₂) are the air pollutants",
+          "chiefly responsible for acid rain.",
+          "They come mainly from the burning of fossil",
+          "fuels and from automobile exhaust."
+        ],
+        "why": "The question names one thing only — which pollutants — so both gases must be written with their formulae, and the source line shows the examiner they were not guessed.",
+        "common_mistakes": [
+          "Naming carbon dioxide. Carbon dioxide causes global warming, not acid rain.",
+          "Naming only one of the two gases. Both sulphur dioxide and the nitrogen oxides are asked."
+        ],
+        "memory_tip": "Acid rain has two parents: sulphur dioxide and the nitrogen oxides. S and N, not C.",
+        "margin_note": "Name the two gases with their formulae, then one line on where they come from."
+      },
+      {
+        "id": "s2_effects",
+        "kind": "boxed_final",
+        "label": "Effects of acid rain",
+        "marks": 1,
+        "mark_note": "Effects",
+        "lines": [
+          {
+            "text": "SO₂ and nitrogen oxides make acid rain",
+            "style": "boxed"
+          },
+          "Acid rain acidifies lakes and streams, and",
+          "the fish in them die.",
+          "It speeds up the corrosion of buildings and",
+          "monuments.",
+          "It also spoils standing crops."
+        ],
+        "why": "A two-mark question wants a second point, and the effects are the natural one because they explain why these two gases are singled out from every other pollutant.",
+        "common_mistakes": [
+          "Stopping after the names of the gases. The second mark is for what acid rain does.",
+          "Writing that acid rain causes skin cancer. That is the effect of UV after ozone depletion."
+        ],
+        "memory_tip": "Acid attacks three things: water bodies, stone buildings and crops.",
+        "margin_note": "Three short effects, one line each. Do not write the chemistry of the reaction."
+      }
+    ]
+  },
+  "insider_note": "Carbon dioxide is the wrong answer here and is the commonest one written — acid rain comes from the sulphur and nitrogen gases."
+}

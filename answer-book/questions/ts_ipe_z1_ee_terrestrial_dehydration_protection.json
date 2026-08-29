@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_terrestrial_dehydration_protection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How do terrestrial animals protect themselves from the danger of dehydration of bodies?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Why water matters",
+      "marks": 1
+    },
+    {
+      "label": "Behavioural adaptation",
+      "marks": 1
+    },
+    {
+      "label": "Body covering",
+      "marks": 1
+    },
+    {
+      "label": "Excretory adaptation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.68, Star Questions Plus, SAQ 189). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecology and Environment · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_water",
+        "kind": "text",
+        "label": "Why water matters",
+        "marks": 1,
+        "mark_note": "The problem",
+        "lines": [
+          "Water is a very important ingredient of the",
+          "body of an animal.",
+          "Any reduction in the amount of body water",
+          "leads to dehydration, and the animal dies.",
+          "Land animals lose water all the time through",
+          "the body surface and in the urine, so they",
+          "have evolved adaptations to conserve it."
+        ],
+        "why": "The question asks how animals protect themselves, so the answer names the two routes by which water is lost — the skin and the urine — because every adaptation below closes one of those two routes.",
+        "common_mistakes": [
+          "Starting straight with the examples. The problem must be stated first.",
+          "Writing that land animals do not lose water. They lose it through the skin and the urine."
+        ],
+        "memory_tip": "Water leaves by two doors: the body surface and the urine. Every adaptation shuts one of them.",
+        "margin_note": "Two or three lines. Name both routes of water loss before listing anything."
+      },
+      {
+        "id": "s2_behaviour",
+        "kind": "text",
+        "label": "Behavioural adaptation",
+        "marks": 1,
+        "mark_note": "Behaviour",
+        "lines": [
+          "Certain desert animals are active only",
+          "during the night.",
+          "The night air is cooler and more humid, so",
+          "less water is lost from the body surface.",
+          "They stay in burrows during the hot day."
+        ],
+        "why": "This adaptation changes the animal's timing rather than its body, so it is written separately from the structural ones; it also explains itself, because a cooler night means slower evaporation.",
+        "common_mistakes": [
+          "Writing only that desert animals are active at night, without the reason.",
+          "Calling this hibernation. Being active at night is a daily habit, not a winter sleep."
+        ],
+        "memory_tip": "Same body, different clock: come out when the air is cool and damp.",
+        "margin_note": "One line for the habit and one for the reason. Do not leave the reason out."
+      },
+      {
+        "id": "s3_covering",
+        "kind": "text",
+        "label": "Body covering",
+        "marks": 1,
+        "mark_note": "Covering",
+        "lines": [
+          "(i) Reptiles have a dry scaly skin, which",
+          "prevents the escape of water.",
+          "(ii) Birds have a dry skin, which prevents",
+          "the escape of water.",
+          "(iii) Insects and other arthropods have a",
+          "cuticle over the body, which prevents the",
+          "escape of water."
+        ],
+        "why": "Three groups are given because the question is about terrestrial animals in general, and naming a covering for each group shows the same solution reached in three different ways.",
+        "common_mistakes": [
+          "Naming only one group. Reptiles, birds and insects are all expected.",
+          "Writing that reptiles have a moist skin. That is the amphibians, which is why they stay near water."
+        ],
+        "memory_tip": "Three coverings, one job: dry scales, dry skin and cuticle all stop water leaving.",
+        "margin_note": "One line per group, each with the covering named. A list scores as fast as sentences."
+      },
+      {
+        "id": "s4_excretion",
+        "kind": "boxed_final",
+        "label": "Excretory adaptation",
+        "marks": 1,
+        "mark_note": "Excretion",
+        "lines": [
+          {
+            "text": "Uric acid is passed out with almost no water",
+            "style": "boxed"
+          },
+          "All these groups of animals release dry uric",
+          "acid as their excretory product.",
+          "Uric acid needs very little water to be",
+          "passed out, unlike ammonia or urea.",
+          "So very little water is lost in excretion."
+        ],
+        "why": "The urine is the second route of water loss named at the start, and uric acid is how it is closed; comparing it with ammonia and urea shows why the choice of waste product matters.",
+        "common_mistakes": [
+          "Writing that these animals excrete urea. Land animals that must save water excrete URIC ACID.",
+          "Naming uric acid without saying why. It needs very little water to be passed out."
+        ],
+        "memory_tip": "Ammonia needs a lot of water, urea needs some, uric acid needs almost none.",
+        "margin_note": "Name uric acid, then one line on why it saves water. Close the second route here."
+      }
+    ]
+  },
+  "insider_note": "Uric acid is the answer the examiner is looking for and is the point most often missed — write it by name and say that it needs almost no water."
+}

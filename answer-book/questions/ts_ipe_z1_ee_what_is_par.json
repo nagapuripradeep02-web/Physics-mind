@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_what_is_par",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is PAR?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Expansion",
+      "marks": 1
+    },
+    {
+      "label": "How much of it",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.62, VSAQ 168). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expansion",
+        "kind": "text",
+        "label": "What PAR stands for",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "lines": [
+          "PAR stands for Photosynthetically Active",
+          "Radiation.",
+          "It is the part of sunlight that green plants",
+          "can use for photosynthesis."
+        ],
+        "why": "The expansion is one mark on its own, and the second line explains why only part of sunlight counts — a plant cannot use every wavelength that reaches it.",
+        "common_mistakes": [
+          "Writing Photosynthetic Active Rays. The words are Photosynthetically Active Radiation.",
+          "Writing that PAR is all the sunlight that reaches the earth. It is only the usable part."
+        ],
+        "memory_tip": "Three words for three letters: Photosynthetically, Active, Radiation.",
+        "margin_note": "The expansion in full, then one line on what it means."
+      },
+      {
+        "id": "s2_percentages",
+        "kind": "boxed_final",
+        "label": "How much of it",
+        "marks": 1,
+        "mark_note": "Amounts",
+        "lines": [
+          {
+            "text": "PAR is under 50% of the incoming sunlight",
+            "style": "boxed"
+          },
+          "PAR is less than 50% of the incident solar",
+          "radiation that reaches the earth.",
+          "Of this PAR, green plants capture only",
+          "2 to 10%."
+        ],
+        "why": "Two different percentages are asked about PAR in this chapter and they are easily swapped, so both are written together with the word they belong to beside each.",
+        "common_mistakes": [
+          "Writing that plants capture 50% of PAR. Fifty per cent is the share of SUNLIGHT that is PAR.",
+          "Giving 2 to 10% of sunlight. It is 2 to 10% of PAR, not of all the sunlight."
+        ],
+        "memory_tip": "Less than half the sunlight is PAR; only 2 to 10% of THAT is captured by plants.",
+        "margin_note": "Both numbers with the thing each one is a percentage of. Two lines."
+      }
+    ]
+  },
+  "insider_note": "The two percentages belong to different quantities — under 50% of sunlight is PAR, and 2 to 10% of PAR is captured — and swapping them is the usual mistake."
+}

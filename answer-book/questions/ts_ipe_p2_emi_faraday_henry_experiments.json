@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_faraday_henry_experiments",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What did the experiments of Faraday and Henry show?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The observation",
+      "marks": 1
+    },
+    {
+      "label": "What the experiments show",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: a galvanometer joined to a coil deflects when a magnet moves relative to the coil, or when the current in a neighbouring coil changes; the deflection lasts only while the change lasts, so the common cause is a changing magnetic flux."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_observation",
+        "kind": "text",
+        "label": "The observation",
+        "marks": 1,
+        "mark_note": "Moving magnet, or changing current",
+        "lines": [
+          "When a magnet is moved towards a coil or",
+          "away from it, the galvanometer joined to",
+          "the coil shows a deflection. The same",
+          "happens when the current in a nearby coil",
+          "is changed.",
+          "The deflection lasts only while the motion",
+          "or the change of current continues."
+        ],
+        "margin_note": "First mark. Name both experiments: a moving magnet, and a changing current in a nearby coil.",
+        "why": "The two experiments differ in the cause — motion in one, a changing current in the other — but both change the magnetic flux through the coil. Showing both is what points to flux as the common cause.",
+        "common_mistakes": [
+          "Saying a magnet near the coil induces a current. A stationary magnet induces nothing; something must change.",
+          "Naming only the moving-magnet experiment. Henry's changing-current experiment carries the same point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That relative motion between a magnet and a coil, or a changing current in a nearby coil, gives a deflection only while the change continues.",
+          "accept": [
+            "moving magnet gives a deflection",
+            "changing current in a nearby coil",
+            "only while the change continues"
+          ],
+          "reject": [
+            "changing flux induces an emf"
+          ],
+          "heard_as": [
+            "galvanometer",
+            "deflection",
+            "Faraday",
+            "Henry"
+          ]
+        },
+        "memory_tip": "Two set-ups, one result: move the magnet, or change the current next door. The needle moves only while something is changing."
+      },
+      {
+        "id": "s2_conclusion",
+        "kind": "boxed_final",
+        "label": "What the experiments show",
+        "marks": 1,
+        "mark_note": "Changing flux induces an emf",
+        "lines": [
+          "So the experiments show: whenever the",
+          "magnetic flux linked with a coil changes,",
+          "an emf is induced in the coil. This is",
+          "electromagnetic induction.",
+          {
+            "text": "A changing magnetic flux induces an emf",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The one-line conclusion in terms of flux is what the examiner reads for.",
+        "why": "Motion and a changing current look different, but both change the flux through the coil. Stating the conclusion in terms of flux covers both experiments in one law.",
+        "common_mistakes": [
+          "Stopping at the observations. The question asks what the experiments SHOW, so the flux conclusion must be written."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a changing magnetic flux through a coil induces an emf in it.",
+          "accept": [
+            "changing flux induces an emf",
+            "emf is induced when flux changes",
+            "this is electromagnetic induction"
+          ],
+          "reject": [
+            "the deflection lasts while the motion lasts"
+          ],
+          "heard_as": [
+            "flux",
+            "emf",
+            "induced"
+          ]
+        },
+        "memory_tip": "The conclusion is one line: change the flux, get an emf."
+      }
+    ]
+  },
+  "insider_note": "The observation alone is half the answer; the examiner reads for the one-line conclusion that a changing flux induces an emf."
+}

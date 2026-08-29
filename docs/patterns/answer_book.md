@@ -156,6 +156,36 @@ numbers, so a student picking physics Units 2+3 silently also scheduled maths Un
 2+3 — Matrices' 17 LAQs — and every plan flipped into crunch. A colliding dimension
 has to be re-keyed EVERYWHERE the old key travels, not just where it renders.
 
+## The YEAR dimension — second year opens (added 2026-08-28)
+
+`year_cycle` has been a two-value enum since the schema was written and had **zero
+second-year users** until Senior Inter Physics landed. Opening it cost no new mechanism,
+because the year had already been designed for twice and used neither time:
+
+- **One PAPER = one subject value** — the rule that made Maths-1B `mathematics_1b` makes
+  Senior Physics `physics_2`. Here it is load-bearing rather than tidy: `notebook.js`
+  `LEGACY_PHYSICS_KEYS` remaps exact `physics-N` unit keys for the 2026-27 first-year
+  renumbering, so second-year chapters filed as "physics units 15-30" would have been
+  **silently remapped onto first-year units**. `physics_2-N` passes through untouched.
+  Chemistry-II, Maths-2A and Maths-2B follow the same rule (`chemistry_2`, and their own
+  values); each gets its own `PAPER_PATTERNS` row, `SUBJ_LABEL` entry and Vidi terms.
+- **One STREAM = one artifact = one (group, year) cell.** `mpc` is Junior Inter MPC;
+  `mpc_2` is Senior. The door's `TRACKS` already carried "Second year — Not started yet"
+  tiles, and a cell goes live purely by naming a stream, with the build failing unless
+  **exactly one** cell resolves live. So a second-year book is a stream, never a second
+  catalog and never duplicated question files — the same doctrine the board picker follows.
+- **The year is emitted, not written.** It had been hardcoded in three places — the
+  catalog eyebrow, the shell's static fallback, and the og description — so a second-year
+  student would have read "First year" on all three. It is now `STREAMS[stream].year`,
+  emitted as `window.PM_YEAR`. The generalisable shape: **the moment a constant appears in
+  more than one student-facing string, it is data, and the copy that disagrees is the one
+  nobody will look at.**
+
+The trap this leaves for the next paper: the marks gate reads
+`if (want !== undefined)`, and `paperMarksFor` returns `undefined` for a subject with no
+`PAPER_PATTERNS` row. **A missing row does not fail the build — it switches the marks gate
+off for that whole paper.** Register the row in the same commit that registers the subject.
+
 ## Vidi — the assistant layer (landed 2026-08-22; design: docs/ANSWER_BOOK_VIDI_DESIGN.md)
 
 The seam grew into the layer. What exists now:

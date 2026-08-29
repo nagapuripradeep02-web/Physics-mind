@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_trematoda_flukes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the class to which the flukes belong? Write short notes on the chief characters of that group.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The class",
+      "marks": 1
+    },
+    {
+      "label": "Body and suckers",
+      "marks": 1
+    },
+    {
+      "label": "Gut and reproduction",
+      "marks": 1
+    },
+    {
+      "label": "Life cycle and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.64, SAQ 180). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK IMPRECISION: the book's point 6 says flukes are 'bisexual' (its word for hermaphrodite) and its point 9 names Schistosoma as an example on the same page. Schistosoma is unisexual, so the two points contradict each other. The card states the general rule and names the exception, and the book's wording is recorded in that step's `why`."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-I (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_class",
+        "kind": "text",
+        "label": "The class",
+        "marks": 1,
+        "why": "The question asks for the class first, so the name Trematoda and its phylum are written before any character of the group.",
+        "common_mistakes": [
+          "Writing Cestoda. Cestoda is the class of the tapeworms; the flukes are Trematoda.",
+          "Naming the phylum Nematoda. Flukes are flatworms, phylum Platyhelminthes."
+        ],
+        "memory_tip": "Trematoda for the flukes, Cestoda for the tapeworms, Turbellaria for the free-living flatworms.",
+        "margin_note": "Class and phylum in the first line. That is the first mark.",
+        "mark_note": "The class",
+        "lines": [
+          "Flukes belong to the class Trematoda of the",
+          "phylum Platyhelminthes.",
+          "All flukes are parasites.",
+          "Most of them live inside the body of the",
+          "host, in the liver, the gut or the blood",
+          "vessels."
+        ]
+      },
+      {
+        "id": "s2_body",
+        "kind": "text",
+        "label": "Body and suckers",
+        "marks": 1,
+        "why": "A parasite in a moving gut or a flowing blood vessel has to stay in place, so the suckers and the protective tegument are the two features every fluke shows.",
+        "common_mistakes": [
+          "Calling the covering a cuticle. In a fluke it is a living tegument.",
+          "Naming only one sucker. The oral sucker and the ventral acetabulum are both expected."
+        ],
+        "memory_tip": "Two suckers: one at the mouth, one on the belly, and that one is the acetabulum.",
+        "margin_note": "Covering, then the two suckers by name. Five or six lines.",
+        "mark_note": "Body and suckers",
+        "lines": [
+          "The body is covered by a thick tegument.",
+          "The tegument resists the digestive juices of",
+          "the host.",
+          "Two suckers are generally present:",
+          "1) an oral sucker around the mouth,",
+          "2) a ventral sucker, called the acetabulum.",
+          "The suckers hold the fluke to the wall of the",
+          "organ it lives in."
+        ]
+      },
+      {
+        "id": "s3_gut",
+        "kind": "text",
+        "label": "Gut and reproduction",
+        "marks": 1,
+        "why": "A forked blind gut carries the food to both sides of a flat body, so no circulatory system is needed to distribute it. BOOK NOTE: the source book lists flukes flatly as 'bisexual' and names Schistosoma as an example on the same page; Schistosoma is unisexual, so this card states the general rule and the exception.",
+        "common_mistakes": [
+          "Giving the fluke an anus. The gut is blind; the waste leaves by the mouth.",
+          "Writing that every fluke is hermaphrodite. Schistosoma has separate sexes."
+        ],
+        "memory_tip": "A forked blind gut, and one body with both sets of organs — except in Schistosoma.",
+        "margin_note": "Gut in two lines, reproduction in two. Name the exception if there is room.",
+        "mark_note": "Gut and reproduction",
+        "lines": [
+          "The intestine is bifurcated, that is, it is",
+          "forked into two blind branches.",
+          "There is no anus. The undigested matter is",
+          "thrown out through the mouth.",
+          "Most flukes are bisexual, that is,",
+          "hermaphrodite. One animal carries both the",
+          "male and the female organs.",
+          "Schistosoma, the blood fluke, is an",
+          "exception. Its sexes are separate."
+        ]
+      },
+      {
+        "id": "s4_lifecycle",
+        "kind": "boxed_final",
+        "label": "Life cycle and examples",
+        "marks": 1,
+        "why": "Each larval stage multiplies in number inside the intermediate host, which is why a fluke with a two-host life cycle can still reach a new final host.",
+        "common_mistakes": [
+          "Giving the larval stages in the wrong order. It runs miracidium, sporocyst, redia, cercaria.",
+          "Writing that the fluke needs one host only. There is more than one host in the life history."
+        ],
+        "memory_tip": "Miracidium, sporocyst, redia, cercaria — four stages, in that order, inside the snail.",
+        "margin_note": "The list of larval stages is the marked part. Keep it in order, then close with the examples.",
+        "mark_note": "Life cycle and examples",
+        "lines": [
+          {
+            "text": "Two suckers, forked blind gut, many larvae",
+            "style": "boxed"
+          },
+          "The life history passes through more than",
+          "one host.",
+          "There are several larval stages, in this",
+          "order: miracidium, sporocyst, redia and",
+          "cercaria.",
+          "Examples:",
+          "Fasciola — the liver fluke.",
+          "Schistosoma — the blood fluke."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The four larval names in the right order are worth as much here as the whole description of the body — write them as a chain, not as a set."
+}

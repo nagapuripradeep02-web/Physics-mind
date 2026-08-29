@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_amu_equivalent_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a.m.u? What is its equivalent energy?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Atomic mass unit",
+      "marks": 1
+    },
+    {
+      "label": "Equivalent energy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: 1 u = 1.660539 × 10⁻²⁷ kg; E = uc² = 1.660539 × 10⁻²⁷ × (2.998 × 10⁸)² = 1.4924 × 10⁻¹⁰ J = 931.5 MeV. The book prints \"1u = 931.5 MeV\", which equates a mass with an energy; this card writes it as the ENERGY EQUIVALENT of 1 u, which is what the mark scheme means. The book's spacing \"a.m.u ?\" is written here without the space before the question mark."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Atomic mass unit",
+        "marks": 1,
+        "mark_note": "One twelfth of the mass of a ¹²C atom",
+        "lines": [
+          "Atomic mass unit (u): one twelfth of the mass",
+          "of one neutral ¹²C atom is called one atomic",
+          "mass unit.",
+          {
+            "text": "1 u = 1.66 × 10⁻²⁷ kg",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The definition must name carbon-12 and the factor one twelfth.",
+        "why": "Nuclear masses are all close to a whole number of nucleons, so a unit built from one nucleus makes every mass a number near A — that is why the scale is tied to ¹²C and not to the kilogram.",
+        "common_mistakes": [
+          "Saying \"one twelfth of a carbon atom\" without naming ¹²C. The isotope matters.",
+          "Writing 1.66 × 10⁻²⁴ kg. That is the value in grams, not kilograms."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one atomic mass unit is one twelfth of the mass of a carbon-12 atom, equal to 1.66 × 10⁻²⁷ kg.",
+          "accept": [
+            "one twelfth of the mass of carbon twelve",
+            "one point six six into ten power minus twenty seven kilogram",
+            "u is defined from carbon twelve"
+          ],
+          "reject": [
+            "nine hundred thirty one point five mega electron volt"
+          ],
+          "heard_as": [
+            "atomic mass unit",
+            "carbon twelve",
+            "one twelfth"
+          ]
+        },
+        "memory_tip": "Twelve nucleons in ¹²C, so one nucleon-sized unit is one twelfth of it."
+      },
+      {
+        "id": "s2_energy",
+        "kind": "boxed_final",
+        "label": "Equivalent energy",
+        "marks": 1,
+        "mark_note": "931.5 MeV from E = mc²",
+        "lines": [
+          "By the relation E = mc², a mass of 1 u is",
+          "equivalent to the energy",
+          {
+            "text": "E = 1.66 × 10⁻²⁷ × (3 × 10⁸)² J",
+            "style": "eq"
+          },
+          {
+            "text": "1 u ≡ 931.5 MeV",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The number 931.5 MeV is the one the examiner looks for.",
+        "why": "Every mass defect in this chapter is measured in u, so 931.5 MeV per u is the single conversion that turns a mass defect straight into a binding energy.",
+        "common_mistakes": [
+          "Writing 931.5 eV or 931.5 J. The unit is MeV.",
+          "Saying 1 u equals 931.5 MeV of mass. Mass and energy are equivalent, not identical."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the energy equivalent of one atomic mass unit is 931.5 MeV, obtained from E = mc².",
+          "accept": [
+            "nine hundred thirty one point five mega electron volt",
+            "E equals m c squared",
+            "energy equivalent of one u"
+          ],
+          "reject": [
+            "one twelfth of carbon twelve"
+          ],
+          "heard_as": [
+            "nine thirty one point five",
+            "MeV",
+            "m c squared"
+          ]
+        },
+        "memory_tip": "931.5 MeV per u is the exchange rate between mass defect and binding energy."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two facts: the definition tied to carbon-12, and the number 931.5 MeV from E = mc²."
+}

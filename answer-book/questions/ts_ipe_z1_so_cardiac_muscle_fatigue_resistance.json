@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_cardiac_muscle_fatigue_resistance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "\"Cardiac muscle is highly resistant to fatigue\". Justify.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Reasons",
+      "marks": 1
+    },
+    {
+      "label": "Justification",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.52, VSAQ 87). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: the lactic-acid explanation of fatigue is standard physiology; this book's answer stops at the three facts."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reasons",
+        "kind": "text",
+        "label": "The three reasons",
+        "marks": 1,
+        "why": "All three facts point one way, to a steady supply of oxygen, so they are listed together before the conclusion is drawn.",
+        "common_mistakes": [
+          "Naming only one reason. Three facts are expected: sarcosomes, myoglobin and blood supply.",
+          "Writing haemoglobin for myoglobin. Myoglobin is the oxygen store of muscle."
+        ],
+        "memory_tip": "Three oxygen facts: many mitochondria, plenty of myoglobin, and blood always arriving.",
+        "margin_note": "Three short facts, one line each.",
+        "mark_note": "Reasons",
+        "lines": [
+          "Cardiac muscle cells hold very many sarcosomes",
+          "(mitochondria).",
+          "They hold a large amount of myoglobin, which",
+          "stores oxygen.",
+          "The heart muscle has a rich blood supply."
+        ]
+      },
+      {
+        "id": "s2_conclusion",
+        "kind": "boxed_final",
+        "label": "The justification",
+        "marks": 1,
+        "why": "Fatigue in muscle comes from lactic acid built up during anaerobic respiration, so a muscle that never runs short of oxygen never fatigues.",
+        "common_mistakes": [
+          "Listing the facts and stopping. 'Justify' asks for the conclusion: respiration stays aerobic, so no lactic acid builds up."
+        ],
+        "memory_tip": "Fatigue comes from lactic acid, and enough oxygen means no lactic acid, so no fatigue.",
+        "margin_note": "Join the facts to the conclusion in one sentence. That is what 'justify' asks for.",
+        "mark_note": "Justification",
+        "lines": [
+          {
+            "text": "Aerobic respiration always, so no fatigue",
+            "style": "boxed"
+          },
+          "Because of these, cardiac muscle respires",
+          "aerobically all the time.",
+          "No lactic acid collects in it, so the muscle",
+          "does not tire, and the heart beats without",
+          "rest through life."
+        ]
+      }
+    ]
+  },
+  "insider_note": "A 'justify' question is only half answered by a list — the sentence that links the facts to the conclusion is the second mark."
+}

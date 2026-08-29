@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_com_modulation_methods",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Communication System"
+  },
+  "chapter": "Communication System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention basic methods of modulation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three methods named",
+      "marks": 1
+    },
+    {
+      "label": "What each method varies",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Whether Communication Systems is still on the current Telangana second-year syllabus is UNCONFIRMED — NCERT removed this chapter in the 2023 rationalisation, but this book prints it. A lecturer's pen tick marks this question as expected. Physics hand-checked: the three basic methods are amplitude modulation (AM), frequency modulation (FM) and phase modulation (PM) — the book misprints the third abbreviation as '(FM)'; this card corrects it to (PM)."
+  },
+  "recall_prompt": "Name the three basic methods of modulation with their abbreviations, and say which property of the carrier each one varies.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Communication System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three_methods",
+        "kind": "text",
+        "label": "The three methods named",
+        "marks": 1,
+        "mark_note": "AM, FM and PM",
+        "lines": [
+          "There are three basic methods of",
+          "modulation:",
+          {
+            "text": "i) amplitude modulation (AM)",
+            "style": "indent"
+          },
+          {
+            "text": "ii) frequency modulation (FM)",
+            "style": "indent"
+          },
+          {
+            "text": "iii) phase modulation (PM)",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Second abbreviation FM, third PM — the book misprints the third as FM.",
+        "why": "A carrier wave has exactly three properties that can be varied — amplitude, frequency and phase — so there are exactly three basic methods, one per property. The book prints 'iii) phase modulation (FM)': a misprint. The abbreviation for phase modulation is PM; FM is frequency modulation.",
+        "common_mistakes": [
+          "Copying the book's '(FM)' for phase modulation. Phase modulation is PM.",
+          "Naming only AM and FM. Phase modulation is the third basic method."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three basic methods are amplitude modulation (AM), frequency modulation (FM) and phase modulation (PM).",
+          "accept": [
+            "amplitude, frequency and phase modulation",
+            "AM, FM and PM",
+            "the three are AM FM PM"
+          ],
+          "reject": [
+            "the amplitude of the carrier is varied"
+          ],
+          "heard_as": [
+            "amplitude modulation",
+            "frequency modulation",
+            "phase modulation",
+            "a m",
+            "f m",
+            "p m"
+          ]
+        },
+        "memory_tip": "Each abbreviation is the first letter of what changes: A for amplitude, F for frequency, P for phase."
+      },
+      {
+        "id": "s2_what_varies",
+        "kind": "boxed_final",
+        "label": "What each method varies",
+        "marks": 1,
+        "mark_note": "One carrier property per method",
+        "lines": [
+          "In each method, one property of the",
+          "high-frequency carrier is varied according",
+          "to the message signal: its amplitude in AM,",
+          "its frequency in FM, and its phase in PM.",
+          {
+            "text": "AM: amplitude · FM: frequency · PM: phase",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Match each method to the one property it varies.",
+        "why": "Naming the methods is memory; saying what each one varies shows the idea — the message is written onto the carrier by changing exactly one of the carrier's three properties.",
+        "common_mistakes": [
+          "Saying AM varies the message signal's amplitude. It varies the CARRIER's amplitude according to the message.",
+          "Mixing the pairs — FM varies frequency, PM varies phase, never the other way around."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AM varies the carrier's amplitude, FM its frequency and PM its phase, in each case according to the message signal.",
+          "accept": [
+            "AM changes the carrier amplitude",
+            "FM changes the carrier frequency",
+            "PM changes the carrier phase",
+            "one property of the carrier per method"
+          ],
+          "reject": [
+            "there are three basic methods"
+          ],
+          "heard_as": [
+            "amplitude",
+            "frequency",
+            "phase",
+            "carrier"
+          ]
+        },
+        "memory_tip": "Three properties of a wave, three methods — the name of the method tells you the property it varies."
+      }
+    ]
+  },
+  "insider_note": "The book prints phase modulation as (FM); write (PM). First mark is the three names, second is the property each varies — the abbreviation already encodes it."
+}

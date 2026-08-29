@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_pin_image_at_object_position",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A concave mirror produces an image of a long vertical pin, placed 40 cm from the mirror, at the position of the object. Find the focal length of the mirror.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reading the setup: v = u = −40 cm",
+      "marks": 1
+    },
+    {
+      "label": "Mirror formula and f",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: u = v = −40 cm in the mirror formula 1/f = 1/v + 1/u gives f = −20 cm (matches the book); the object sits at the centre of curvature, R = 2f = −40 cm, which is exactly the image-on-object condition."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Read the setup",
+        "marks": 1,
+        "mark_note": "v = u = −40 cm",
+        "lines": [
+          "The image forms at the position of the",
+          "object, so v = u. Object and image are both",
+          "real, in front of the mirror:",
+          {
+            "text": "u = −40 cm ,   v = −40 cm",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Image at the object means v = u, and both are negative (in front of the mirror).",
+        "why": "The image lands on the object only when the object is at the centre of curvature: every ray then strikes the mirror along a radius, hits it normally, and returns along its own path. That geometry is what v = u is saying.",
+        "common_mistakes": [
+          "Taking v = +40 cm. The image is real and in front of the mirror, so v is negative.",
+          "Using the lens formula 1/f = 1/v − 1/u. A mirror uses 1/f = 1/v + 1/u."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That image at the object position means v = u = −40 cm, both negative because both are real and in front of the mirror.",
+          "accept": [
+            "v equals u equals minus forty",
+            "image on the object so v and u are the same",
+            "both distances are minus forty centimetres",
+            "u v rendu minus forty"
+          ],
+          "reject": [
+            "f is minus twenty centimetres"
+          ],
+          "heard_as": [
+            "v equals u",
+            "minus forty",
+            "at the position of the object",
+            "real image"
+          ]
+        },
+        "memory_tip": "Image sitting on the object = object at the centre of curvature = v equals u."
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Mirror formula and f",
+        "marks": 1,
+        "mark_note": "f = −20 cm",
+        "lines": [
+          {
+            "text": "1/f = 1/v + 1/u   (mirror formula)",
+            "style": "eq"
+          },
+          {
+            "text": "1/f = −1/40 − 1/40 = −2/40 = −1/20",
+            "style": "eq"
+          },
+          "The object sits at the centre of curvature:",
+          {
+            "text": "R = 2f = −40 cm",
+            "style": "eq"
+          },
+          {
+            "text": "f = −20 cm  (a concave mirror)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Keep the minus sign — it is what says the mirror is concave.",
+        "why": "With both distances equal, the mirror formula collapses to 1/f = 2/u, which is just R = 2f seen from the numbers: an object at C images onto itself.",
+        "common_mistakes": [
+          "Dropping the minus sign and reporting f = 20 cm. State f = −20 cm; the sign carries the mirror type.",
+          "Adding 1/v and 1/u with opposite signs and getting 1/f = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mirror formula with both distances −40 cm gives f = −20 cm, magnitude 20 cm, a concave mirror.",
+          "accept": [
+            "one by f is minus one by forty minus one by forty so f is minus twenty",
+            "f comes out minus twenty centimetres",
+            "focal length twenty centimetres concave",
+            "mirror formula petti minus twenty vastundi"
+          ],
+          "reject": [
+            "v equals u equals minus forty"
+          ],
+          "heard_as": [
+            "minus twenty",
+            "one by f",
+            "mirror formula",
+            "concave"
+          ]
+        },
+        "memory_tip": "v = u makes the mirror formula read 2/u = 1/f — the R = 2f fact in disguise."
+      }
+    ]
+  },
+  "insider_note": "The physics is one recognition: image on the object means the object is at C, so f is half of 40 cm — the working is only the mirror formula saying that."
+}

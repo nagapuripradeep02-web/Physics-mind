@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_conjugation_in_ciliates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define conjugation with reference to ciliates. Give two examples.",
+  "appearances": [
+    { "year": 2015, "board": "ts_ipe" },
+    { "year": 2018, "board": "ap_ipe" },
+    { "year": 2018, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Definition", "marks": 1 },
+    { "label": "Result and examples", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, VSAQ chapter 16 'Locomotion & Reproduction' (book p.57, question 130). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. MARKS: the VSAQ chapter header prints '2+2=4 MARKS', which is the blueprint's two 2-mark questions drawn from this unit, not 4 marks for one question; this card is authored at the Section A standard of 2 marks. APPEARANCES: the book prints [AP,TS-18] and [TS M-15]; the 2018 citation carries no month and is stored as the year alone for both boards. TEXT BEYOND THE BOOK: the book's single definition line is kept in substance; the lines saying the two cells separate afterwards as ex-conjugants and that the number of individuals does not increase are added here as standard zoology, because they are what makes conjugation sexual and not reproductive."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Locomotion and Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Conjugation is the temporary union of two",
+          "senile ciliates of different mating types for",
+          "the exchange of nuclear material.",
+          "The two cells join at their oral surfaces and",
+          "each passes a migratory nucleus to the other."
+        ],
+        "why": "Three words carry the definition mark — temporary, two different mating types, and exchange of nuclear material — so all three must appear in the sentence.",
+        "common_mistakes": [
+          "Writing that the union is permanent. The two cells separate after the exchange.",
+          "Writing that two ciliates of the SAME mating type conjugate. They must be of different mating types."
+        ],
+        "memory_tip": "Temporary union, different mating types, nuclear exchange: three conditions in one sentence.",
+        "margin_note": "One sentence, all three conditions. Do not describe the nuclear divisions."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "Result and examples",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "After the exchange the two cells separate as",
+          "ex-conjugants and their nuclei reorganise.",
+          "This restores the vigour and vitality of the",
+          "old cells. The number of individuals does not",
+          "increase, so conjugation is a sexual process",
+          "and not a method of reproduction.",
+          "Examples: Paramecium and Vorticella.",
+          {
+            "text": "Conjugation: nuclear exchange, no new cells",
+            "style": "boxed"
+          }
+        ],
+        "why": "Two cells go in and two come out, so nothing has multiplied; what has changed is the nuclear material, and that is why the process renews an ageing ciliate instead of increasing the population.",
+        "common_mistakes": [
+          "Calling conjugation a method of reproduction. The number of individuals stays the same.",
+          "Giving no examples. Two are asked for, and Paramecium alone is half the mark."
+        ],
+        "memory_tip": "Two in, two out: nothing is added, so it renews rather than reproduces.",
+        "margin_note": "The second mark needs BOTH examples written out."
+      }
+    ]
+  },
+  "insider_note": "The question says give two examples, so Paramecium alone will not earn the second mark — write Vorticella beside it."
+}

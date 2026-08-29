@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_de_broglie_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write down de Broglie's relation and explain the terms therein.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "Meaning of each term",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed pp.42-43); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: λ = h/mv = h/p is the de Broglie wavelength of a particle of momentum p = mv, with h = 6.63 × 10⁻³⁴ J s; the matter-wave hypothesis and both forms match the book. A lecturer's pen tick marks this question in the source scan as one to expect."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Dual Nature of Radiation and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "λ = h/mv",
+        "lines": [
+          "Every moving particle has a wave associated",
+          "with it, called a matter wave or a de Broglie",
+          "wave. The wavelength of this wave is",
+          {
+            "text": "λ = h/mv = h/p",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. One sentence for the hypothesis, then the relation λ = h/mv.",
+        "why": "Light shows both wave and particle behaviour. De Broglie proposed the same duality for matter: a particle of momentum p moves with an associated wave of wavelength h/p.",
+        "common_mistakes": [
+          "Writing λ = h·mv. Momentum divides Planck's constant; a faster or heavier particle has a SHORTER wavelength.",
+          "Applying the relation only to electrons. It holds for every moving particle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every moving particle has a matter wave with wavelength lambda equals h by m v.",
+          "accept": [
+            "lambda equals h by m v",
+            "lambda equals h by p",
+            "matter wave",
+            "de Broglie wave"
+          ],
+          "reject": [
+            "h is Planck's constant"
+          ],
+          "heard_as": [
+            "lambda",
+            "h by m v",
+            "de Broglie",
+            "matter wave"
+          ]
+        },
+        "memory_tip": "Constant over momentum: λ = h/p, so more momentum means less wavelength."
+      },
+      {
+        "id": "s2_terms",
+        "kind": "text",
+        "label": "Meaning of each term",
+        "marks": 1,
+        "mark_note": "All terms named",
+        "lines": [
+          "Here λ is the de Broglie wavelength of the",
+          "particle, h is Planck's constant, m is the",
+          "mass of the particle, v is its speed, and",
+          "p = mv is its momentum."
+        ],
+        "margin_note": "Second mark. Name every symbol: λ, h, m, v and p.",
+        "why": "The question asks for the terms by name, so each of the five symbols needs its own words — the wavelength, the constant, the mass, the speed, the momentum.",
+        "common_mistakes": [
+          "Skipping p = mv. The book writes both forms, and naming p costs one short phrase.",
+          "Calling v the velocity of light. Here v is the speed of the particle; c belongs to photons."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That lambda is the wavelength, h is Planck's constant, m the mass, v the speed and p = mv the momentum of the particle.",
+          "accept": [
+            "h is Planck's constant",
+            "m is the mass and v is the speed",
+            "p is the momentum"
+          ],
+          "reject": [
+            "lambda equals h by m v"
+          ],
+          "heard_as": [
+            "Planck's constant",
+            "mass",
+            "velocity",
+            "momentum"
+          ]
+        },
+        "memory_tip": "Five symbols to name: λ, h, m, v, p — count them off as you write."
+      }
+    ]
+  },
+  "insider_note": "State the hypothesis in one sentence before the formula — the relation without the words matter wave reads as half an answer."
+}

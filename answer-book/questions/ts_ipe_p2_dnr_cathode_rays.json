@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_cathode_rays",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are \"cathode rays\"?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "How they are produced",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.42); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: cathode rays are streams of electrons coming from the cathode of a discharge tube; they are produced at a low gas pressure of about 0.001 mm of mercury with a potential difference of about 10 kV across the electrodes — the book's figures, consistent with the standard discharge-tube account."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Dual Nature of Radiation and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Stream of electrons from the cathode",
+        "lines": [
+          "Cathode rays are a stream of electrons",
+          "coming from the cathode in a discharge tube."
+        ],
+        "margin_note": "First mark. Name the particle (electrons) and where the stream starts (the cathode).",
+        "why": "Cathode rays were named before anyone knew what they were. J. J. Thomson showed they are charged particles — electrons — so the definition names the particle, not just the glow.",
+        "common_mistakes": [
+          "Calling cathode rays electromagnetic waves. They are moving electrons, with charge and mass.",
+          "Saying they come from the anode. They come from the cathode, the negative electrode."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cathode rays are a stream of electrons coming from the cathode of a discharge tube.",
+          "accept": [
+            "stream of electrons",
+            "electrons from the cathode",
+            "electrons in a discharge tube"
+          ],
+          "reject": [
+            "low pressure and high potential difference"
+          ],
+          "heard_as": [
+            "cathode rays",
+            "electrons",
+            "discharge tube"
+          ]
+        },
+        "memory_tip": "CAthode rays CArry Charge — they are electrons leaving the cathode."
+      },
+      {
+        "id": "s2_production",
+        "kind": "boxed_final",
+        "label": "How they are produced",
+        "marks": 1,
+        "mark_note": "Low pressure, high potential difference",
+        "lines": [
+          "They are produced in a discharge tube kept at",
+          "a low pressure of about 0.001 mm of mercury,",
+          "with a high potential difference of about",
+          "10 kV between the electrodes.",
+          {
+            "text": "Cathode rays: electrons from the cathode",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Give both conditions with their values: the low pressure and the high potential difference.",
+        "why": "At ordinary pressure the gas does not conduct. Only at a very low pressure with a high potential difference do electrons leave the cathode and cross the tube as a beam.",
+        "common_mistakes": [
+          "Leaving out the two conditions. The low pressure and the high potential difference carry this mark.",
+          "Writing 0.001 mm of mercury as the potential or 10 kV as the pressure. Keep each value with its own quantity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cathode rays are produced in a discharge tube at a low pressure of about 0.001 mm of mercury with a high potential difference of about 10 kV.",
+          "accept": [
+            "low pressure",
+            "0.001 mm of mercury",
+            "high potential difference of 10 kV"
+          ],
+          "reject": [
+            "stream of electrons"
+          ],
+          "heard_as": [
+            "discharge tube",
+            "low pressure",
+            "10 kV",
+            "ten kilovolt"
+          ]
+        },
+        "memory_tip": "Two conditions, two values: pressure DOWN to 0.001 mm of Hg, potential UP to 10 kV."
+      }
+    ]
+  },
+  "insider_note": "The two marks are the particle and the tube conditions — write electrons from the cathode, then 0.001 mm of mercury and 10 kV."
+}

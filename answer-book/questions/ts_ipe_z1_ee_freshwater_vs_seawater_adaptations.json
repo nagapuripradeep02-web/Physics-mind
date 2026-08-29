@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_freshwater_vs_seawater_adaptations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Compare the adaptations of animals with freshwater and seawater mode of life.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The freshwater problem",
+      "marks": 1
+    },
+    {
+      "label": "Freshwater adaptations",
+      "marks": 1
+    },
+    {
+      "label": "The seawater problem",
+      "marks": 1
+    },
+    {
+      "label": "Seawater adaptations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.47, SAQ 57). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecology and Environment · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fresh_problem",
+        "kind": "text",
+        "label": "The freshwater problem",
+        "marks": 1,
+        "mark_note": "Problem",
+        "lines": [
+          "Fresh water holds less salt than the body",
+          "fluids of the animals living in it.",
+          "So water passes INTO their bodies through",
+          "the body surface. This is endosmosis.",
+          "A freshwater animal therefore has to remove",
+          "the extra water that keeps entering."
+        ],
+        "why": "Both halves of this answer are the same story told in opposite directions, so the problem is stated first in each half; every adaptation that follows is a way of solving that one problem.",
+        "common_mistakes": [
+          "Writing that fresh water is saltier than the body. It holds LESS salt than the body fluids.",
+          "Using the word exosmosis here. Water moves IN, so it is endosmosis."
+        ],
+        "memory_tip": "Water always moves towards the saltier side. In fresh water the animal is the salty side, so water comes in.",
+        "margin_note": "State the direction of the water first. Every adaptation below answers it."
+      },
+      {
+        "id": "s2_fresh_adapt",
+        "kind": "text",
+        "label": "Freshwater adaptations",
+        "marks": 1,
+        "mark_note": "Adaptations",
+        "lines": [
+          "(i) Freshwater fishes have glomerular",
+          "kidneys, which remove the excess water as a",
+          "large amount of dilute urine.",
+          "(ii) Freshwater sponges produce gemmules to",
+          "survive the summer.",
+          "(iii) The African lung fish undergoes",
+          "aestivation by forming a gelatinous cocoon",
+          "to survive the summer."
+        ],
+        "why": "The first adaptation answers the water problem directly; the other two answer a second freshwater problem — a pond may dry up — which is why they are about surviving the summer and not about salt.",
+        "common_mistakes": [
+          "Writing that freshwater fishes have aglomerular kidneys. Those belong to the MARINE fishes.",
+          "Leaving out the gemmules and the cocoon. Drying up is a freshwater problem too."
+        ],
+        "memory_tip": "Glomerular kidney for the water, gemmule and cocoon for the dry season.",
+        "margin_note": "Three adaptations, one line each. Keep the kidney first."
+      },
+      {
+        "id": "s3_sea_problem",
+        "kind": "text",
+        "label": "The seawater problem",
+        "marks": 1,
+        "mark_note": "Problem",
+        "lines": [
+          "Sea water holds more salt than the body",
+          "fluids of the animals living in it.",
+          "So water passes OUT of their bodies. This is",
+          "exosmosis.",
+          "A marine animal therefore keeps losing water",
+          "and has to save it."
+        ],
+        "why": "Writing this half in the same shape as the freshwater half makes the comparison the question asks for visible on the page, with only the direction of the water changed.",
+        "common_mistakes": [
+          "Using endosmosis here. In sea water the water moves OUT, so it is exosmosis.",
+          "Writing that marine animals gain water. They lose it continuously."
+        ],
+        "memory_tip": "Same rule, opposite direction: the sea is the salty side, so the water leaves the animal.",
+        "margin_note": "Mirror the freshwater half exactly, with the direction reversed."
+      },
+      {
+        "id": "s4_sea_adapt",
+        "kind": "boxed_final",
+        "label": "Seawater adaptations",
+        "marks": 1,
+        "mark_note": "Adaptations",
+        "lines": [
+          {
+            "text": "Fresh water: take it in. Sea water: keep it",
+            "style": "boxed"
+          },
+          "(i) Marine fishes have aglomerular kidneys",
+          "with fewer nephrons, so little water is",
+          "lost as urine.",
+          "(ii) They have salt-secreting chloride cells",
+          "in the gills, which throw out the extra",
+          "salt.",
+          "(iii) Marine birds and penguins pass out",
+          "salt drops through the nostrils.",
+          "(iv) Sharks retain urea and trimethylamine",
+          "oxide (TMO) in the body fluids to keep the",
+          "salt balance."
+        ],
+        "why": "Four adaptations are given because they solve two different sides of the same problem — saving water and getting rid of salt — and an answer with only the kidney has covered one side.",
+        "common_mistakes": [
+          "Writing that marine fishes pass a lot of urine. They pass very little, to save water.",
+          "Leaving out the shark. Retaining urea and TMO is the named example in this answer."
+        ],
+        "memory_tip": "Two jobs at sea: hold the water in (kidney) and push the salt out (gills, nostrils).",
+        "margin_note": "Four adaptations, one line each. The box states the whole comparison in one line."
+      }
+    ]
+  },
+  "insider_note": "The question says compare, so write the two halves in the same order with the same headings — a page of freshwater adaptations followed by nothing on the sea scores half."
+}

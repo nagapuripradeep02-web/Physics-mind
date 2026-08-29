@@ -1,0 +1,182 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_evil_quartet",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the 'evil quartet'?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The four causes named",
+      "marks": 1
+    },
+    {
+      "label": "Habitat loss and fragmentation",
+      "marks": 1
+    },
+    {
+      "label": "Over-exploitation and alien species",
+      "marks": 1
+    },
+    {
+      "label": "Co-extinctions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.30, SAQ 14). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Diversity of Living World (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "The four causes",
+        "marks": 1,
+        "mark_note": "The four",
+        "why": "Naming the four first fixes the order of the answer and secures a mark even if time runs out before all four are explained.",
+        "common_mistakes": [
+          "Giving only three causes. All four are needed.",
+          "Writing 'pollution' as the fourth cause. Pollution comes under habitat loss; the fourth cause is co-extinction."
+        ],
+        "memory_tip": "Four causes in order: habitat lost, too many taken, alien species brought in, partner species lost.",
+        "margin_note": "Name all four first, as a numbered list. The list alone is worth a mark.",
+        "lines": [
+          "The 'evil quartet' is the name given to the",
+          "four major causes of the loss of biodiversity.",
+          "They are:",
+          "1) Habitat loss and fragmentation",
+          "2) Over-exploitation",
+          "3) Invasion by alien species",
+          "4) Co-extinctions"
+        ]
+      },
+      {
+        "id": "s2_habitat",
+        "kind": "text",
+        "label": "Habitat loss and fragmentation",
+        "marks": 1,
+        "mark_note": "Habitat loss",
+        "why": "This is the largest cause, and every part of it works the same way: the area of usable habitat falls, so the number of animals the area can hold falls with it.",
+        "common_mistakes": [
+          "Treating fragmentation as the same as habitat loss. Fragmentation breaks a habitat into small patches even when the total area is still large.",
+          "Leaving out an example such as deforestation."
+        ],
+        "memory_tip": "Habitat loss removes the area; fragmentation cuts what is left into small pieces.",
+        "margin_note": "Four short points: deforestation, farm land, pollution, fragmentation.",
+        "lines": [
+          "1) Habitat loss and fragmentation:",
+          "Cutting down forests destroys the habitat of",
+          "many species.",
+          "Forest land turned into farm land and into",
+          "built-up land removes habitat as well.",
+          "Pollution lowers the quality of the habitat",
+          "that is left.",
+          "Fragmentation cuts one large habitat into",
+          "small separated patches. Animals that need a",
+          "large territory cannot survive in them, and",
+          "their populations fall."
+        ]
+      },
+      {
+        "id": "s3_over_alien",
+        "kind": "text",
+        "label": "Over-exploitation and alien species",
+        "marks": 1,
+        "mark_note": "Two causes",
+        "why": "Both causes are about numbers — over-exploitation removes individuals faster than they are replaced, and an alien species takes the food and the space the native species needs.",
+        "common_mistakes": [
+          "Giving an alien-species example for over-exploitation. Keep each example with its own cause.",
+          "Writing that every introduced species is harmful. Only those that spread at the cost of native species are counted here."
+        ],
+        "memory_tip": "Steller's sea cow for taking too many; Nile perch for bringing one in.",
+        "margin_note": "Two causes with one example each. Keep each to three or four lines.",
+        "lines": [
+          "2) Over-exploitation:",
+          "When humans take a natural resource far faster",
+          "than it can be replaced, the species declines",
+          "and may be lost.",
+          "Examples: Steller's sea cow and the passenger",
+          "pigeon became extinct through",
+          "over-exploitation.",
+          "3) Invasion by alien species:",
+          "When a species from another region is brought",
+          "into a habitat, it may spread and establish",
+          "itself at the cost of the native species.",
+          "Example: the Nile perch introduced into Lake",
+          "Victoria caused the extinction of many native",
+          "fish species."
+        ]
+      },
+      {
+        "id": "s4_coextinction",
+        "kind": "boxed_final",
+        "label": "Co-extinctions",
+        "marks": 1,
+        "mark_note": "Co-extinction",
+        "why": "Obligate means the two species cannot live apart, so the extinction of one is automatically the extinction of the other — this is the cause students most often leave out.",
+        "common_mistakes": [
+          "Writing that any two species living together show co-extinction. The association must be obligate.",
+          "Giving no example. The host with its parasite and the plant with its pollinator are the standard pairs."
+        ],
+        "memory_tip": "Obligate means cannot live apart: lose one, lose the other.",
+        "margin_note": "Definition, then the two standard example pairs. One mark.",
+        "lines": [
+          {
+            "text": "Co-extinction: the partner species is lost",
+            "style": "boxed"
+          },
+          "4) Co-extinctions:",
+          "Two species may live in an obligate",
+          "association, so that one cannot live without",
+          "the other.",
+          "When one of them becomes extinct, the other",
+          "becomes extinct with it.",
+          "Examples: a parasite dies out with its host,",
+          "and a plant with only one pollinator is lost",
+          "when that pollinator is lost."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Name all four causes before you explain any of them — an answer that explains two causes well but never names the other two loses half the marks."
+}

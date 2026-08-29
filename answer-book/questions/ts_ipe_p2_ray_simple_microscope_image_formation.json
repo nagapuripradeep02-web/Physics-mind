@@ -1,0 +1,381 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_simple_microscope_image_formation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "With a neat labelled diagram explain the formation of image in a simple microscope.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a simple microscope is",
+      "marks": 1
+    },
+    {
+      "label": "Image at the near point",
+      "marks": 1
+    },
+    {
+      "label": "Magnifying power at the near point",
+      "marks": 1
+    },
+    {
+      "label": "Image at infinity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.13 — Section B, 4 marks. The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The figure carries ZERO marks because the printed question does not use the phrase 'draw a neat labelled diagram of', although it does ask for a neat labelled diagram — a teacher may well award a diagram mark, and that is one of the things to confirm. Hand-checked physically: with the object inside the focal length the image is virtual, erect and magnified; for the final image at the near point D the magnifying power is m = 1 + D/f, and for the final image at infinity (object exactly at F, relaxed eye) it is m = D/f. The printed answer describes both cases in words but does not print either formula; both are added here as standard board content."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ray Optics and Optical Instruments · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Converging lens, small f",
+        "lines": [
+          {
+            "text": "Simple microscope:",
+            "style": "heading"
+          },
+          "A simple microscope, or magnifier, is a",
+          "single converging lens of short focal",
+          "length.",
+          "The lens is held near the object, at a",
+          "distance of one focal length or less, and",
+          "the eye is placed close to the lens on the",
+          "other side."
+        ],
+        "margin_note": "First mark. Two facts: one converging lens, and the object within one focal length.",
+        "why": "The object has to sit inside the focal length, because that is the only position where a converging lens gives an erect virtual image. Placing it outside would give a real inverted image, which the eye could not use this way.",
+        "common_mistakes": [
+          "Describing two lenses. That is the compound microscope.",
+          "Placing the object outside the focal length. The image would then be real and inverted."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a simple microscope is one converging lens of short focal length, with the object placed within one focal length.",
+          "accept": [
+            "a single convex lens of short focal length",
+            "converging lens held within one focal length of the object",
+            "one lens, object inside the focal length",
+            "oke convex lens, chinna focal length"
+          ],
+          "reject": [
+            "m equals one plus D by f"
+          ],
+          "heard_as": [
+            "simple microscope",
+            "magnifier",
+            "converging lens",
+            "focal length"
+          ]
+        },
+        "memory_tip": "One lens, object inside f. Everything else follows from those five words."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Ray diagram",
+        "marks": 0,
+        "figure": {
+          "id": "simple_microscope",
+          "width": 360,
+          "height": 210,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis",
+              "d": "M 20 120 L 340 120",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "lens_r",
+              "d": "M 210 58 Q 238 120 210 182",
+              "ms": 1830
+            },
+            {
+              "type": "stroke",
+              "id": "lens_l",
+              "d": "M 210 58 Q 182 120 210 182",
+              "ms": 1830
+            },
+            {
+              "type": "stroke",
+              "id": "object",
+              "d": "M 170 120 L 170 92",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "object_head",
+              "d": "M 165 99 L 170 92 L 175 99",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "ray1a",
+              "d": "M 170 92 L 210 92",
+              "ms": 570
+            },
+            {
+              "type": "stroke",
+              "id": "ray1b",
+              "d": "M 210 92 L 306 137",
+              "ms": 1510
+            },
+            {
+              "type": "stroke",
+              "id": "ray2",
+              "d": "M 170 92 L 306 187",
+              "ms": 2370
+            },
+            {
+              "type": "stroke",
+              "id": "image",
+              "d": "M 90 120 L 90 36",
+              "ms": 1200,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "image_head",
+              "d": "M 84 44 L 90 36 L 96 44",
+              "ms": 300,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "virtual_ray",
+              "d": "M 90 36 L 210 92",
+              "ms": 1890,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_eye",
+              "x": 310,
+              "y": 170,
+              "text": "Eye",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 272,
+              "y": 110,
+              "text": "F",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_object",
+              "x": 120,
+              "y": 138,
+              "text": "Object",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_image",
+              "x": 20,
+              "y": 52,
+              "text": "Image",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "The object sits inside the focal length. The two emerging rays diverge, and their backward extensions give the erect magnified virtual image.",
+        "why": "The dashed lines matter as much as the solid ones: they show that no light actually comes from the image, which is what the word virtual means.",
+        "common_mistakes": [
+          "Drawing the image on the far side of the lens. A simple microscope forms the image on the same side as the object."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the diagram shows the object inside the focal length, two rays through the lens, and a large erect virtual image on the same side as the object.",
+          "accept": [
+            "draw the lens with the object inside the focal length",
+            "two rays diverging after the lens and extended back",
+            "the virtual image is erect and larger on the object side"
+          ],
+          "reject": [
+            "m equals one plus D by f"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "virtual image",
+            "lens"
+          ]
+        },
+        "memory_tip": "The image is on the same side as the object, and it is drawn with dashed lines."
+      },
+      {
+        "id": "s3_near_point",
+        "kind": "text",
+        "label": "Image at the near point",
+        "marks": 1,
+        "mark_note": "Erect, virtual, magnified at D",
+        "lines": [
+          "Rays from the object are refracted by the",
+          "lens and leave it as a diverging beam.",
+          "To the eye they appear to come from a",
+          "point further away, so the image formed is",
+          "erect, virtual and magnified.",
+          "The lens is usually placed so that this",
+          "image lies at the near point, at the least",
+          "distance of distinct vision D = 25 cm, where",
+          "the eye sees it comfortably."
+        ],
+        "margin_note": "Second mark. Three words for the image — erect, virtual, magnified — and the distance D = 25 cm.",
+        "why": "The image is placed at the near point because that is the closest the eye can focus, and the closer the image the larger the angle it makes at the eye. The largest useful magnification therefore comes with the image at D.",
+        "common_mistakes": [
+          "Calling the image real. It is virtual, and no screen can catch it.",
+          "Writing D = 25 m or leaving D unnamed. D is the least distance of distinct vision, 25 cm."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the image is erect, virtual and magnified, and is usually formed at the near point D = 25 cm.",
+          "accept": [
+            "erect virtual and magnified image at the near point",
+            "the image is formed at twenty five centimetres",
+            "virtual image at the least distance of distinct vision",
+            "image erect virtual magnified, near point daggara"
+          ],
+          "reject": [
+            "m equals D by f for the relaxed eye"
+          ],
+          "heard_as": [
+            "erect",
+            "virtual",
+            "magnified",
+            "near point"
+          ]
+        },
+        "memory_tip": "Erect, virtual, magnified — the three words that describe every simple-microscope image."
+      },
+      {
+        "id": "s4_magnification",
+        "kind": "equation",
+        "label": "Magnifying power at D",
+        "marks": 1,
+        "mark_note": "m = 1 + D/f",
+        "lines": [
+          "The magnifying power is the ratio of the",
+          "angle made at the eye by the image to the",
+          "angle made by the object placed at D.",
+          "With the final image at the near point,",
+          {
+            "text": "m = 1 + D/f",
+            "style": "boxed"
+          },
+          "where f is the focal length of the lens and",
+          "D = 25 cm."
+        ],
+        "margin_note": "Third mark. Write the definition in words first, then the formula. The 1 is part of the formula.",
+        "why": "Magnifying power compares angles, not sizes, because what the eye judges is the angle a thing covers. A shorter focal length makes D/f larger, which is why a magnifier is a strongly curved lens.",
+        "common_mistakes": [
+          "Writing m = D/f for the near-point case. That form belongs to the image at infinity.",
+          "Using f in metre with D in centimetre. Both must be in the same unit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the magnifying power with the image at the near point is m = 1 + D/f.",
+          "accept": [
+            "m equals one plus D by f",
+            "magnifying power is one plus D over f at the near point",
+            "one plus twenty five by f",
+            "m equals one plus D by f, near point ki"
+          ],
+          "reject": [
+            "erect virtual and magnified image at the near point"
+          ],
+          "heard_as": [
+            "one plus D by f",
+            "magnifying power",
+            "near point",
+            "focal length"
+          ]
+        },
+        "memory_tip": "Near point carries the extra 1. Infinity does not."
+      },
+      {
+        "id": "s5_infinity",
+        "kind": "boxed_final",
+        "label": "Image at infinity",
+        "marks": 1,
+        "mark_note": "m = D/f",
+        "lines": [
+          "If the object is placed exactly at the focus,",
+          "at a distance f from the lens, the refracted",
+          "rays leave parallel and the image is formed",
+          "at infinity.",
+          "The eye is then fully relaxed, so this",
+          "setting is the most comfortable for long",
+          "viewing.",
+          {
+            "text": "m = D/f   (image at infinity)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Object at f gives parallel rays, image at infinity, relaxed eye, and m = D/f.",
+        "why": "The two cases trade a little magnification for comfort: moving the object from just inside f out to f itself lowers the magnifying power by exactly 1 but lets the eye rest. That is why both formulas are worth knowing.",
+        "common_mistakes": [
+          "Saying the image at infinity gives the larger magnification. It gives one less than the near-point value.",
+          "Placing the object beyond f. It must be exactly at f for the image to be at infinity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with the object at the focus the image forms at infinity, the eye is relaxed, and m = D/f.",
+          "accept": [
+            "object at the focus gives the image at infinity and m is D by f",
+            "for the relaxed eye the magnifying power is D over f",
+            "m equals D by f when the image is at infinity",
+            "image infinity daggara ayite m equals D by f"
+          ],
+          "reject": [
+            "m equals one plus D by f"
+          ],
+          "heard_as": [
+            "D by f",
+            "infinity",
+            "relaxed eye",
+            "at the focus"
+          ]
+        },
+        "memory_tip": "Object at f, image at infinity, and the 1 disappears from the formula."
+      }
+    ]
+  },
+  "insider_note": "Two settings, two formulas, and they differ by exactly 1. The near-point case is the larger one."
+}

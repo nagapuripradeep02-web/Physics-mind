@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_osmotrophic_nutrition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by osmotrophic nutrition?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.61, VSAQ 156). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Osmotrophic nutrition is the mode of",
+          "nutrition in which an organism takes in",
+          "pre-digested food through its body wall from",
+          "the surrounding medium."
+        ],
+        "why": "Two things make this mode different from every other one — the food is already digested, and it comes in through the body wall — and both must be in the sentence or the definition fits ordinary absorption.",
+        "common_mistakes": [
+          "Leaving out the words pre-digested. Food taken in undigested is not osmotrophic nutrition.",
+          "Writing that the food enters through a mouth. It passes through the BODY WALL."
+        ],
+        "memory_tip": "Osmo is about soaking in through the wall; trophic is about food. Food soaked in through the wall.",
+        "margin_note": "One sentence. It must carry both pre-digested and body wall."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Digested outside the body, absorbed inside",
+            "style": "boxed"
+          },
+          "Ex: fungi.",
+          "They secrete enzymes on to dead and waste",
+          "material and break it down outside the body.",
+          "They then absorb the digested food through",
+          "the body wall."
+        ],
+        "why": "The example has to show WHERE the digestion happens, because outside-the-body digestion is what makes the food pre-digested by the time it is absorbed.",
+        "common_mistakes": [
+          "Writing that the fungus swallows the food. It digests the food outside and then absorbs it.",
+          "Giving Amoeba as the example. Amoeba engulfs solid food, which is a different mode."
+        ],
+        "memory_tip": "Enzymes go out, digested food comes in. The digestion happens outside the fungus.",
+        "margin_note": "Name the example, then two lines: enzymes out, digested food in."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for the two words pre-digested and body wall; a student who describes ordinary absorption without them loses the definition mark."
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_infrared_uv_speed_ratio",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the ratio of speed of infrared rays and ultraviolet rays in vacuum?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Both travel at the speed of light",
+      "marks": 1
+    },
+    {
+      "label": "The ratio 1 : 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: every electromagnetic wave travels through vacuum at c = 3 × 10⁸ m s⁻¹ regardless of wavelength, so infrared and ultraviolet have the same vacuum speed and the ratio is 1 : 1, as the book answers (p.41)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_same_speed",
+        "kind": "text",
+        "label": "Both travel at the speed of light",
+        "marks": 1,
+        "mark_note": "Both move at c = 3 × 10⁸ m s⁻¹",
+        "lines": [
+          "In vacuum, infrared rays and ultraviolet",
+          "rays both travel at the speed of light,",
+          {
+            "text": "c = 3 × 10⁸ m s⁻¹",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The reason: speed in vacuum does not depend on wavelength.",
+        "why": "Every electromagnetic wave, whatever its wavelength, moves through vacuum at the same speed c. The speed changes only inside a material medium.",
+        "common_mistakes": [
+          "Giving ultraviolet a higher speed because it has a higher frequency. In vacuum, frequency changes nothing about the speed.",
+          "Quoting c without units. Write 3 × 10⁸ m s⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That infrared and ultraviolet rays both travel at the speed of light in vacuum.",
+          "accept": [
+            "both travel at three into ten power eight",
+            "same speed c",
+            "both travel at the speed of light"
+          ],
+          "reject": [
+            "ultraviolet is faster"
+          ],
+          "heard_as": [
+            "speed of light",
+            "three into ten power eight",
+            "vacuum"
+          ]
+        },
+        "memory_tip": "In vacuum every part of the electromagnetic spectrum shares one speed, c."
+      },
+      {
+        "id": "s2_ratio",
+        "kind": "boxed_final",
+        "label": "The ratio 1 : 1",
+        "marks": 1,
+        "mark_note": "Ratio = 1 : 1",
+        "lines": [
+          "So the ratio of their speeds is 1 : 1.",
+          {
+            "text": "Ratio of speeds = 1 : 1",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write the ratio itself, not only that the speeds are equal.",
+        "why": "The question asks for a ratio, so the answer line must show 1 : 1. Equal speeds is the reason; 1 : 1 is the asked answer.",
+        "common_mistakes": [
+          "Stopping at both have the same speed and never writing 1 : 1. The asked quantity is the ratio.",
+          "Writing a ratio of wavelengths or frequencies. Those differ between infrared and ultraviolet; only the vacuum speeds are equal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ratio of the speeds is one to one.",
+          "accept": [
+            "one to one",
+            "one is to one",
+            "ratio is one one"
+          ],
+          "reject": [
+            "ratio of wavelengths"
+          ],
+          "heard_as": [
+            "one to one",
+            "ratio"
+          ]
+        },
+        "memory_tip": "Same speed, so the ratio can only be 1 : 1."
+      }
+    ]
+  },
+  "insider_note": "The trap is inventing a difference — the examiner wants 1 : 1 with the reason that vacuum speed does not depend on wavelength."
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_claspers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are claspers? Which group of fishes possesses them?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What claspers are",
+      "marks": 1
+    },
+    {
+      "label": "The group",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.55, VSAQ 113). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book writes that claspers are 'formed near pelvic fins'. They are formed FROM the pelvic fins — the inner edges of the pelvic fins are modified into the claspers — and the card says so."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Claspers",
+        "margin_note": "Say what they are, where they come from and what they do. Three short lines.",
+        "lines": [
+          "Claspers are the copulatory organs of a male",
+          "fish.",
+          "They are formed from the modified inner edges",
+          "of the pelvic fins.",
+          "They carry sperm into the cloaca of the female,",
+          "so fertilisation is internal."
+        ],
+        "why": "A clasper is a fin turned into a copulatory organ, so naming the fin it comes from explains both its position and its use.",
+        "common_mistakes": [
+          "Writing that claspers are found in the female. They are a male character.",
+          "Placing claspers on the pectoral fins. They are modified pelvic fins."
+        ],
+        "memory_tip": "Pelvic fin plus male equals clasper: the fin becomes the organ."
+      },
+      {
+        "id": "s2_group",
+        "kind": "boxed_final",
+        "label": "The group",
+        "marks": 1,
+        "mark_note": "Group",
+        "margin_note": "Name the group and one example. The second mark is for the group, not for more detail.",
+        "lines": [
+          {
+            "text": "Male cartilaginous fishes (Chondrichthyes)",
+            "style": "boxed"
+          },
+          "Claspers are found in the males of",
+          "cartilaginous fishes.",
+          "Examples: Scoliodon (dog fish), Torpedo.",
+          "They are absent in the males of bony fishes."
+        ],
+        "why": "Claspers go with internal fertilisation, and internal fertilisation is the cartilaginous pattern, so the group follows from the organ.",
+        "common_mistakes": [
+          "Naming bony fishes. Claspers are absent in the males of bony fishes.",
+          "Giving no example. One named fish makes the group answer complete."
+        ],
+        "memory_tip": "Internal fertilisation needs a clasper, and only cartilaginous fishes fertilise inside."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves and each is worth one mark, so an answer that describes claspers beautifully but never names cartilaginous fishes loses half."
+}

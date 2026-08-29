@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_mixed_grouping_maximum_current",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Under what conditions is the current through the mixed grouping of cells maximum?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The condition in words",
+      "marks": 1
+    },
+    {
+      "label": "The condition in symbols",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcribed verbatim from the book (p28, VSAQ 19). Hand-checked: with m rows in parallel and n cells in series per row, I = mnε/(mR + nr); for a fixed total number of cells mn the denominator is least when mR = nr, that is R = nr/m — the same condition the book prints. The symbols n and m are defined on the card because the book prints nr/m without saying which is which."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "text",
+        "label": "The condition in words",
+        "marks": 1,
+        "mark_note": "External = total internal",
+        "lines": [
+          "In a mixed grouping the cells are arranged in",
+          "m parallel rows, with n cells in series in",
+          "each row.",
+          "The current in the circuit is maximum when",
+          "the external resistance is equal to the total",
+          "internal resistance of the battery."
+        ],
+        "margin_note": "First mark. State the equality in words before writing any symbols.",
+        "why": "The current is mnε/(mR + nr). With the number of cells fixed, the current is largest when the denominator is least, and that happens when mR and nr are equal.",
+        "common_mistakes": [
+          "Saying the internal resistance must be as small as possible. The condition is an equality, not a minimum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the current is maximum when the external resistance equals the total internal resistance of the battery.",
+          "accept": [
+            "external resistance equals total internal resistance",
+            "R equals the internal resistance of the battery",
+            "when the two resistances are equal"
+          ],
+          "reject": [
+            "n r by m"
+          ],
+          "heard_as": [
+            "external resistance",
+            "internal resistance",
+            "equal"
+          ]
+        },
+        "memory_tip": "Matched resistances: outside equals inside."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "The condition in symbols",
+        "marks": 1,
+        "mark_note": "R = nr/m",
+        "lines": [
+          "Each cell has emf ε and internal resistance r.",
+          "The n cells of a row give nr, and the m rows",
+          "in parallel divide it by m:",
+          {
+            "text": "total internal resistance = nr/m",
+            "style": "eq"
+          },
+          {
+            "text": "Current is maximum when R = nr/m",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write nr/m and say that n counts cells in a row and m counts rows.",
+        "why": "Cells in series add their internal resistances, giving nr for one row; m such rows in parallel divide that by m. Substituting R = nr/m gives the largest current, I = nε/2R.",
+        "common_mistakes": [
+          "Writing mr/n. The n cells in series come first, then the m rows divide.",
+          "Leaving n and m undefined."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the total internal resistance is n r by m and the current is maximum when R equals it.",
+          "accept": [
+            "R equals n r by m",
+            "n r by m",
+            "n cells in a row m rows in parallel"
+          ],
+          "reject": [
+            "external equals internal"
+          ],
+          "heard_as": [
+            "n r by m",
+            "internal resistance"
+          ]
+        },
+        "memory_tip": "Series first, parallel second: n multiplies r, then m divides it."
+      }
+    ]
+  },
+  "insider_note": "The book prints nr/m without saying what n and m stand for. Define them in one line and the second mark is safe."
+}

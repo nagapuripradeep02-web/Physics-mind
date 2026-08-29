@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_cnidarian_body_forms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the two chief morphological 'body forms' of cnidarians? What are their chief functions?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Polyp",
+      "marks": 1
+    },
+    {
+      "label": "Medusa",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.54, VSAQ 98). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_polyp",
+        "kind": "text",
+        "label": "The polyp",
+        "marks": 1,
+        "why": "Each form is built for the work it does, and the fixed polyp is the form that feeds where it is attached.",
+        "common_mistakes": [
+          "Writing that the polyp swims. The polyp is fixed to the substratum.",
+          "Giving the shape without the function. The question asks for both."
+        ],
+        "memory_tip": "Polyp is fixed and feeds. Medusa floats and forms gametes.",
+        "margin_note": "Name the form, its shape, its chief function, one example. Keep each to a line.",
+        "mark_note": "Polyp",
+        "lines": [
+          "The two body forms of cnidarians are the",
+          "polyp and the medusa.",
+          "1) Polyp: a cylindrical form fixed to the",
+          "substratum, with the mouth and the tentacles",
+          "turned upwards.",
+          "Its chief function is nutrition.",
+          "It reproduces asexually, by budding.",
+          "Example: Hydra."
+        ]
+      },
+      {
+        "id": "s2_medusa",
+        "kind": "boxed_final",
+        "label": "The medusa",
+        "marks": 1,
+        "why": "The medusa swims away from the parent colony, so the gametes it makes are shed at a distance from where the polyp stands.",
+        "common_mistakes": [
+          "Swapping the two functions. The polyp feeds; the medusa reproduces sexually.",
+          "Writing that the medusa is attached. The medusa is free-swimming."
+        ],
+        "memory_tip": "Umbrella hangs mouth-down and drifts; the cylinder stands mouth-up and feeds.",
+        "margin_note": "One boxed contrast line, then the medusa's own facts.",
+        "mark_note": "Medusa",
+        "lines": [
+          {
+            "text": "Polyp: nutrition · Medusa: reproduction",
+            "style": "boxed"
+          },
+          "2) Medusa: an umbrella-shaped, free-swimming",
+          "form, with the mouth and the tentacles",
+          "hanging downwards.",
+          "Its chief function is sexual reproduction.",
+          "Example: Aurelia, the jelly fish."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four things are asked for in one 2-mark question — two forms and two functions — so a table of two rows is the fastest safe layout."
+}

@@ -1,0 +1,167 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_rivet_popper_hypothesis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the 'Rivet Popper' hypothesis.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What the hypothesis explains",
+      "marks": 1
+    },
+    {
+      "label": "The comparison",
+      "marks": 1
+    },
+    {
+      "label": "Removing the rivets",
+      "marks": 1
+    },
+    {
+      "label": "Which rivet is removed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.31, SAQ 15). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: the hypothesis is credited to Paul Ehrlich, which is standard and is not printed in this book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Diversity of Living World (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it explains",
+        "marks": 1,
+        "mark_note": "Purpose",
+        "why": "The hypothesis is an argument about how much loss an ecosystem can take, so the answer must first say what question it answers before the comparison is described.",
+        "common_mistakes": [
+          "Writing that the hypothesis is about how new species are formed. It is about the effect of losing species.",
+          "Leaving out what the aeroplane stands for. The aeroplane stands for the ecosystem."
+        ],
+        "memory_tip": "Rivets hold an aeroplane together; species hold an ecosystem together.",
+        "margin_note": "Name the worker and say what the hypothesis explains. Three lines.",
+        "lines": [
+          "The 'rivet popper' hypothesis was put forward",
+          "by Paul Ehrlich.",
+          "It explains what happens to an ecosystem when",
+          "its species are lost one after another.",
+          "It is stated as a comparison between an",
+          "aeroplane and an ecosystem."
+        ]
+      },
+      {
+        "id": "s2_comparison",
+        "kind": "text",
+        "label": "The comparison",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "why": "Every part of the comparison has to be matched to a real thing, because the marks are for the matching and not for the story.",
+        "common_mistakes": [
+          "Describing the aeroplane without saying what each part stands for. The matching is what carries the mark."
+        ],
+        "memory_tip": "Aeroplane = ecosystem, rivet = species, the passenger removing rivets = human activity.",
+        "margin_note": "Three matched pairs. Write them as pairs, not as a story.",
+        "lines": [
+          "In the comparison:",
+          "The aeroplane stands for the ecosystem.",
+          "The rivets that hold the parts of the",
+          "aeroplane together stand for the species that",
+          "make up the ecosystem.",
+          "A passenger who removes the rivets one at a",
+          "time stands for the loss of species caused by",
+          "human activity."
+        ]
+      },
+      {
+        "id": "s3_removal",
+        "kind": "text",
+        "label": "Removing the rivets",
+        "marks": 1,
+        "mark_note": "Effect",
+        "why": "The point of the hypothesis is that the damage does not show at first, so the answer must give both halves: one loss shows nothing, many losses bring the whole thing down.",
+        "common_mistakes": [
+          "Writing that the loss of a single species always destroys an ecosystem. The hypothesis says the effect builds up over many losses."
+        ],
+        "memory_tip": "One rivet gone, the plane still flies; many rivets gone, the plane comes down.",
+        "margin_note": "The build-up is the point here. Three or four lines.",
+        "lines": [
+          "Removing one rivet may not damage the",
+          "aeroplane, and it may still fly safely.",
+          "As more and more rivets are removed, the",
+          "aeroplane becomes weaker.",
+          "After enough rivets are gone the aeroplane is",
+          "no longer safe, and it crashes.",
+          "In the same way, the loss of one species may",
+          "not show at once, but the loss of many",
+          "species slowly damages the whole ecosystem."
+        ]
+      },
+      {
+        "id": "s4_which_rivet",
+        "kind": "boxed_final",
+        "label": "Which rivet is removed",
+        "marks": 1,
+        "mark_note": "Key species",
+        "why": "Species are not equal in their effect, so the last mark is for saying that the place of the lost species in the ecosystem decides how much damage the loss does.",
+        "common_mistakes": [
+          "Treating all species as equally important. The hypothesis says a key species matters far more than a minor one.",
+          "Ending at the crash. The last mark is for turning the aeroplane back into the ecosystem."
+        ],
+        "memory_tip": "A seat rivet or a wing rivet: a minor species or a key species.",
+        "margin_note": "The seat-and-wing contrast, then the same point for species. This is the closing mark.",
+        "lines": [
+          {
+            "text": "Losing a key species harms the ecosystem",
+            "style": "boxed"
+          },
+          "Which rivet is removed also matters.",
+          "A rivet taken from a seat is a small loss and",
+          "the aeroplane still flies.",
+          "A rivet taken from a wing is a serious loss",
+          "and the aeroplane can crash.",
+          "In the same way, the loss of a species with a",
+          "small part in the ecosystem does little harm,",
+          "but the loss of a key species affects the",
+          "whole community and the ecosystem."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for the matched pairs — aeroplane to ecosystem, rivet to species — and for the seat-versus-wing point at the end, which is the half most students never reach."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_kinety",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a kinety?",
+  "appearances": [
+    { "year": 2014 },
+    { "year": 2016, "board": "ap_ipe" },
+    { "year": 2016, "board": "ts_ipe" },
+    { "year": 2017, "board": "ts_ipe" },
+    { "year": 2019, "board": "ap_ipe" },
+    { "year": 2019, "board": "ts_ipe" },
+    { "year": 2022, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "What a kinety is", "marks": 1 },
+    { "label": "Where it belongs", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, VSAQ chapter 16 'Locomotion & Reproduction' (book p.57, question 126). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. MARKS: the VSAQ chapter header prints '2+2=4 MARKS', which is the blueprint's two 2-mark questions drawn from this unit, not 4 marks for one question; this card is authored at the Section A standard of 2 marks. APPEARANCES: the book prints [AP May-19,22], [TS M-19], [TS May-17], [AP, TS M-16] and [IPE-14]; the bare IPE-14 citation predates the bifurcation and is stored with no board. TEXT BEYOND THE BOOK: the book gives two lines only; the line naming Paramecium as the example and the line saying the kinetosome is the basal body of a cilium are added here as standard zoology, because a definition of a kinety is unreadable without them."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Locomotion and Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What a kinety is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Every cilium of a ciliate arises from a basal",
+          "body called a kinetosome, which lies just",
+          "below the pellicle.",
+          "A lengthwise row of kinetosomes, together with",
+          "the kinetodesmata that connect them, is called",
+          "a kinety."
+        ],
+        "why": "The word names two things at once — the row of basal bodies and the fibrils joining them — so the definition has to mention both or it is only half the answer.",
+        "common_mistakes": [
+          "Writing that a kinety is a row of cilia. It is the row of KINETOSOMES under the cilia.",
+          "Leaving out the kinetodesmata. The connecting fibrils are part of the definition."
+        ],
+        "memory_tip": "Kinetosome is one basal body; kinety is the whole lengthwise row of them plus their connecting fibrils.",
+        "margin_note": "One sentence with both parts named. Do not describe ciliary beat here."
+      },
+      {
+        "id": "s2_system",
+        "kind": "boxed_final",
+        "label": "Where it belongs",
+        "marks": 1,
+        "mark_note": "System",
+        "lines": [
+          {
+            "text": "Kinety: row of kinetosomes + kinetodesmata",
+            "style": "boxed"
+          },
+          "A kinety is a part of the infraciliary system",
+          "of ciliates.",
+          "All the kineties of the cell together form the",
+          "infraciliature, which lies below the pellicle",
+          "and coordinates the beating of the cilia.",
+          "Example: the kineties of Paramecium run from",
+          "the anterior end to the posterior end."
+        ],
+        "why": "Naming the system the kinety belongs to is what turns a definition into a full two-mark answer, and it also explains why the rows matter: they carry the beat from one cilium to the next.",
+        "common_mistakes": [
+          "Writing that the kinety lies outside the pellicle. The infraciliary system lies below it.",
+          "Confusing the infraciliary system with the contractile system. The kineties coordinate ciliary beat."
+        ],
+        "memory_tip": "Kinetosome, kinety, infraciliature: one basal body, one row, all the rows.",
+        "margin_note": "The second mark is the words 'infraciliary system of ciliates'."
+      }
+    ]
+  },
+  "insider_note": "This question is asked almost every year, and the mark that goes missing is the second one — many students define the row and then stop without naming the infraciliary system."
+}

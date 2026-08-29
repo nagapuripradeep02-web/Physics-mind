@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_multiplication_factor_controlled_uncontrolled",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the value of neutron multiplication factor in a controlled chain reaction and in an uncontrolled chain reaction?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Controlled: K = 1",
+      "marks": 1
+    },
+    {
+      "label": "Uncontrolled: K > 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. PRINTED ERROR CORRECTED. The book (p.49) prints both lines with the word \"controlled\": \"In controlled chain reaction, the value of multiplication factor K = 1. In controlled chain reaction, K > 1.\" The second line must read UNCONTROLLED — K > 1 is the runaway case. Controlled: K = 1, the neutron population stays steady, as in a reactor. Uncontrolled: K > 1, each generation is larger than the last, as in an atom bomb. Hand-checked against the definition K = (neutrons in the present generation)/(neutrons in the previous generation), which the book itself prints correctly in SAQ 5."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_controlled",
+        "kind": "text",
+        "label": "Controlled: K = 1",
+        "marks": 1,
+        "mark_note": "K = 1, steady reaction, nuclear reactor",
+        "lines": [
+          "The neutron multiplication factor K is the",
+          "number of neutrons in one generation divided",
+          "by the number in the previous generation.",
+          {
+            "text": "Controlled chain reaction: K = 1",
+            "style": "eq"
+          },
+          "The number of fissions per second stays",
+          "steady, as in a nuclear reactor."
+        ],
+        "margin_note": "First mark. K = 1 and the word steady.",
+        "why": "K = 1 means every fission produces exactly one further fission, so the reaction neither grows nor dies away. Control rods are moved to hold K at this value.",
+        "common_mistakes": [
+          "Writing K < 1 for a reactor. K < 1 means the reaction stops.",
+          "Giving the value with no reason. Say that the rate stays steady."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in a controlled chain reaction the multiplication factor K equals 1 and the rate of fission stays steady, as in a reactor.",
+          "accept": [
+            "K equals one",
+            "controlled reaction K is one",
+            "steady rate of fission"
+          ],
+          "reject": [
+            "K greater than one"
+          ],
+          "heard_as": [
+            "multiplication factor",
+            "K equals one",
+            "controlled"
+          ]
+        },
+        "memory_tip": "One fission hands on exactly one — K = 1 keeps a reactor level."
+      },
+      {
+        "id": "s2_uncontrolled",
+        "kind": "boxed_final",
+        "label": "Uncontrolled: K > 1",
+        "marks": 1,
+        "mark_note": "K > 1, growing reaction, atom bomb",
+        "lines": [
+          {
+            "text": "Uncontrolled chain reaction: K > 1",
+            "style": "eq"
+          },
+          "Each generation has more neutrons than the",
+          "one before, so the number of fissions grows",
+          "very fast, as in an atom bomb.",
+          {
+            "text": "Controlled K = 1 · Uncontrolled K > 1",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. K > 1 belongs to the UNCONTROLLED reaction.",
+        "why": "The book prints this second line as \"In controlled chain reaction, K > 1\", repeating the word controlled. That is a printing slip: K > 1 makes the neutron number grow in geometric progression, which is the uncontrolled case. A controlled reaction is exactly the one held at K = 1.",
+        "common_mistakes": [
+          "Copying the book and writing \"controlled\" on both lines. The second is uncontrolled.",
+          "Writing K = 0 for uncontrolled. The value is greater than 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in an uncontrolled chain reaction the multiplication factor K is greater than 1, so the number of fissions grows rapidly, as in an atom bomb.",
+          "accept": [
+            "K greater than one",
+            "uncontrolled reaction K is more than one",
+            "number of fissions grows"
+          ],
+          "reject": [
+            "K equals one"
+          ],
+          "heard_as": [
+            "K greater than one",
+            "uncontrolled",
+            "atom bomb"
+          ]
+        },
+        "memory_tip": "Reactor holds K at 1; a bomb lets K go above 1."
+      }
+    ]
+  },
+  "insider_note": "Write both values with the word controlled or uncontrolled beside each. The printed book repeats \"controlled\" on both lines; copying that costs the second mark."
+}

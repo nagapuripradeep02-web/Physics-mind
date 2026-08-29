@@ -1,0 +1,859 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_rectifier_half_and_full_wave",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is a rectifier? Explain the working of half wave and full wave rectifiers with diagrams.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rectifier defined",
+      "marks": 1
+    },
+    {
+      "label": "Half wave circuit diagram",
+      "marks": 1
+    },
+    {
+      "label": "Working of the half wave rectifier",
+      "marks": 2
+    },
+    {
+      "label": "Full wave circuit diagram",
+      "marks": 1
+    },
+    {
+      "label": "Working of the full wave rectifier",
+      "marks": 2
+    },
+    {
+      "label": "Efficiency of both",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+2+1+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two CIRCUIT figures carry 1 mark each because the question asks for the working 'with diagrams'; the two waveform figures carry 0 marks, as they are supporting graphs rather than the asked circuit diagrams. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the book's answer prints 'postive half cycles', 'does not conducts current' and 'p-n juncition'; all are written correctly here. Physics hand-checked: half wave — one diode, positive halves conducted, one pulse per cycle, maximum efficiency 4/π² = 40.6%; full wave — two diodes on a centre-tapped secondary, one conducting in each half cycle with the load current in the same direction both times, two pulses per cycle, maximum efficiency 8/π² = 81.2%. FIGURE NOTE: each rectifier's circuit and its waveforms are drawn as SEPARATE figures so that no figure exceeds 15 drawn elements. In the full wave circuit the load is drawn in the wire between the centre tap and the joined cathodes so that no two wires cross — the renderer has no crossing marks. All four figures were rendered and inspected before this card was filed."
+  },
+  "recall_prompt": "Define a rectifier, then take the half wave and the full wave rectifier in turn — circuit, both half cycles, and efficiency.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Semiconductor Electronics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rectifier",
+        "kind": "text",
+        "label": "Rectifier",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Rectifier:",
+            "style": "heading"
+          },
+          "A rectifier is a device used to convert",
+          "alternating voltage or current into direct",
+          "voltage or current.",
+          "The process of doing this is called",
+          "rectification.",
+          "A p-n junction diode is used as a",
+          "rectifier because it conducts in forward",
+          "bias and blocks in reverse bias."
+        ],
+        "margin_note": "First mark. The device, the process, and why a diode can do it.",
+        "why": "Rectification is possible only because the diode's behaviour depends on the direction of the applied voltage. That one property is what both rectifier circuits are built on, so it belongs in the opening lines.",
+        "common_mistakes": [
+          "Confusing a rectifier with a transformer. A transformer changes the size of an a.c. voltage; it does not convert a.c. to d.c.",
+          "Saying the output is steady d.c. The output of either rectifier is a pulsating d.c."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a rectifier converts a.c. to d.c., and that a diode works as one because it conducts only in forward bias.",
+          "accept": [
+            "converts alternating into direct current",
+            "the process is called rectification",
+            "a diode conducts in forward bias and blocks in reverse"
+          ],
+          "reject": [
+            "one diode is used and only one half cycle appears"
+          ],
+          "heard_as": [
+            "rectifier",
+            "rectification",
+            "direct current"
+          ]
+        },
+        "memory_tip": "One-direction conduction is the whole reason a diode can rectify."
+      },
+      {
+        "id": "s2_hw_circuit",
+        "kind": "diagram",
+        "label": "Half wave circuit",
+        "marks": 1,
+        "mark_note": "Circuit drawn and labelled",
+        "figure": {
+          "id": "l1_hw_circuit",
+          "width": 400,
+          "height": 210,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "l1hw_primary",
+              "d": "M 34 90 L 34 60 L 96 60 L 96 66 Q 110 76 96 86 Q 110 96 96 106 Q 110 116 96 126 Q 110 136 96 146 L 96 152 L 34 152 L 34 122",
+              "ms": 4250
+            },
+            {
+              "type": "stroke",
+              "id": "l1hw_source",
+              "d": "M 18 106 A 16 16 0 0 1 50 106 A 16 16 0 0 1 18 106",
+              "ms": 1440
+            },
+            {
+              "type": "stroke",
+              "id": "l1hw_core",
+              "d": "M 116 52 L 116 160",
+              "ms": 1540
+            },
+            {
+              "type": "stroke",
+              "id": "l1hw_secondary",
+              "d": "M 136 60 L 136 66 Q 122 76 136 86 Q 122 96 136 106 Q 122 116 136 126 Q 122 136 136 146 L 136 152",
+              "ms": 1620
+            },
+            {
+              "type": "stroke",
+              "id": "l1hw_diode",
+              "d": "M 136 60 L 210 60 M 216 46 L 216 74 L 246 60 Z M 246 46 L 246 74 M 246 60 L 330 60",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "l1hw_load",
+              "d": "M 330 60 L 330 80 L 320 88 L 340 98 L 320 108 L 340 118 L 330 126 L 330 152",
+              "ms": 1980
+            },
+            {
+              "type": "stroke",
+              "id": "l1hw_bottom",
+              "d": "M 136 152 L 330 152",
+              "ms": 2770
+            },
+            {
+              "type": "label",
+              "id": "l1hw_lbl_ac",
+              "x": 27,
+              "y": 114,
+              "text": "~",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "l1hw_lbl_d",
+              "x": 222,
+              "y": 38,
+              "text": "D",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hw_lbl_load",
+              "x": 348,
+              "y": 110,
+              "text": "Load",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hw_lbl_p",
+              "x": 84,
+              "y": 42,
+              "text": "P",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hw_lbl_s",
+              "x": 142,
+              "y": 42,
+              "text": "S",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Second mark. Transformer, ONE diode, load — and every part labelled.",
+        "why": "The question asks for the working with diagrams, so the circuit itself carries a mark. An unlabelled circuit is worth less than a labelled one: the labels are what let the working refer to D and to the load.",
+        "common_mistakes": [
+          "Leaving the diode unlabelled. The working refers to it by name.",
+          "Drawing the diode in parallel with the load instead of in series with it."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the half wave circuit is a transformer with one diode in series with the load across the secondary.",
+          "accept": [
+            "transformer, one diode, load in series",
+            "draw the secondary with a diode and load resistance",
+            "single diode circuit"
+          ],
+          "reject": [
+            "two diodes with a centre tap"
+          ],
+          "heard_as": [
+            "circuit",
+            "diode",
+            "load"
+          ]
+        },
+        "memory_tip": "Secondary, diode, load — one loop, in that order."
+      },
+      {
+        "id": "s3_hw_working",
+        "kind": "text",
+        "label": "Half wave working",
+        "marks": 2,
+        "mark_note": "Both half cycles",
+        "lines": [
+          {
+            "text": "Working of the half wave rectifier:",
+            "style": "heading"
+          },
+          "i) The a.c. signal to be rectified is",
+          {
+            "text": "applied across the primary. The output",
+            "style": "indent"
+          },
+          {
+            "text": "is taken across the load resistance",
+            "style": "indent"
+          },
+          {
+            "text": "connected across the secondary.",
+            "style": "indent"
+          },
+          "ii) For all the positive half cycles the",
+          {
+            "text": "diode D is forward biased and conducts,",
+            "style": "indent"
+          },
+          {
+            "text": "so current passes through the load.",
+            "style": "indent"
+          },
+          "iii) For all the negative half cycles the",
+          {
+            "text": "diode D is reverse biased and does not",
+            "style": "indent"
+          },
+          {
+            "text": "conduct, so no current passes through",
+            "style": "indent"
+          },
+          {
+            "text": "the load and the output is zero.",
+            "style": "indent"
+          },
+          "iv) Only the positive half cycles are",
+          {
+            "text": "converted into rectified d.c. output.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Two marks: one for the positive half cycle, one for the negative half cycle. Name the bias in each.",
+        "why": "Each half cycle reverses the polarity across the diode, so the same circuit is forward biased for one half and reverse biased for the other. Saying the bias first and the current second keeps cause before effect, which is what the examiner is reading for.",
+        "common_mistakes": [
+          "Saying only that the diode conducts. Name the BIAS that makes it conduct.",
+          "Saying the negative half is inverted. In a half wave rectifier it is missing.",
+          "Leaving out the load. The current has to pass through the load to give an output."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the diode is forward biased and conducts in the positive half cycle and reverse biased with no output in the negative half cycle.",
+          "accept": [
+            "forward biased in the positive half so it conducts",
+            "reverse biased in the negative half so no current flows",
+            "only the positive half cycles appear at the output"
+          ],
+          "reject": [
+            "D two conducts in the negative half cycle"
+          ],
+          "heard_as": [
+            "positive half cycle",
+            "forward bias",
+            "reverse bias"
+          ]
+        },
+        "memory_tip": "Positive half, forward, current. Negative half, reverse, nothing."
+      },
+      {
+        "id": "s4_hw_waveform",
+        "kind": "diagram",
+        "label": "Half wave output",
+        "marks": 0,
+        "figure": {
+          "id": "l1_hw_waveforms",
+          "width": 360,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "l1hww_in_axis",
+              "d": "M 40 70 L 330 70 M 322 65 L 330 70 L 322 75",
+              "ms": 4410
+            },
+            {
+              "type": "stroke",
+              "id": "l1hww_in_yaxis",
+              "d": "M 46 26 L 46 114",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "l1hww_in_wave",
+              "d": "M 46 70 Q 76 18 106 70 Q 136 122 166 70 Q 196 18 226 70 Q 256 122 286 70",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "l1hww_out_axis",
+              "d": "M 40 190 L 330 190 M 322 185 L 330 190 L 322 195",
+              "ms": 4410
+            },
+            {
+              "type": "stroke",
+              "id": "l1hww_out_yaxis",
+              "d": "M 46 146 L 46 226",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "l1hww_out_wave",
+              "d": "M 46 190 Q 76 138 106 190 L 166 190 Q 196 138 226 190 L 286 190",
+              "ms": 4080
+            },
+            {
+              "type": "label",
+              "id": "l1hww_lbl_in",
+              "x": 246,
+              "y": 40,
+              "text": "input",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hww_lbl_out",
+              "x": 240,
+              "y": 160,
+              "text": "output",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hww_lbl_v1",
+              "x": 24,
+              "y": 36,
+              "text": "V",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hww_lbl_v2",
+              "x": 24,
+              "y": 156,
+              "text": "V",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hww_lbl_t1",
+              "x": 336,
+              "y": 88,
+              "text": "t",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hww_lbl_t2",
+              "x": 336,
+              "y": 208,
+              "text": "t",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hww_lbl_o1",
+              "x": 24,
+              "y": 90,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1hww_lbl_o2",
+              "x": 24,
+              "y": 210,
+              "text": "O",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Not marked, but it makes the working visible: humps where the diode conducts, flat where it blocks.",
+        "why": "The two graphs share one time axis, so the gaps in the output line up exactly with the negative halves of the input. That is the picture of everything written in the working.",
+        "common_mistakes": [
+          "Drawing the negative humps flipped upwards. That is the full wave output."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the half wave output keeps the positive humps and is flat during the negative half cycles.",
+          "accept": [
+            "humps with gaps between them",
+            "flat during the negative half cycles",
+            "draw the input sine and the output pulses"
+          ],
+          "reject": [
+            "humps with no gaps"
+          ],
+          "heard_as": [
+            "waveform",
+            "graph",
+            "output"
+          ]
+        },
+        "memory_tip": "Hump, gap, hump, gap."
+      },
+      {
+        "id": "s5_fw_circuit",
+        "kind": "diagram",
+        "label": "Full wave circuit",
+        "marks": 1,
+        "mark_note": "Circuit drawn and labelled",
+        "figure": {
+          "id": "l1_fw_circuit",
+          "width": 440,
+          "height": 230,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "l1fwc_primary",
+              "d": "M 34 96 L 34 50 L 96 50 L 96 58 Q 110 70 96 82 Q 110 94 96 106 Q 110 118 96 130 Q 110 142 96 154 L 96 162 L 34 162 L 34 128",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "l1fwc_source",
+              "d": "M 18 112 A 16 16 0 0 1 50 112 A 16 16 0 0 1 18 112",
+              "ms": 1440
+            },
+            {
+              "type": "stroke",
+              "id": "l1fwc_core",
+              "d": "M 116 42 L 116 172",
+              "ms": 1860
+            },
+            {
+              "type": "stroke",
+              "id": "l1fwc_secondary",
+              "d": "M 136 50 L 136 58 Q 122 70 136 82 Q 122 94 136 106 Q 122 118 136 130 Q 122 142 136 154 L 136 162",
+              "ms": 1870
+            },
+            {
+              "type": "stroke",
+              "id": "l1fwc_d1",
+              "d": "M 136 50 L 186 50 M 192 36 L 192 64 L 220 50 Z M 220 36 L 220 64 M 220 50 L 330 50 L 330 106",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "l1fwc_d2",
+              "d": "M 136 162 L 186 162 M 192 148 L 192 176 L 220 162 Z M 220 148 L 220 176 M 220 162 L 330 162 L 330 106",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "l1fwc_load",
+              "d": "M 136 106 L 210 106 L 218 96 L 234 116 L 250 96 L 266 116 L 274 106 L 330 106",
+              "ms": 3320
+            },
+            {
+              "type": "label",
+              "id": "l1fwc_lbl_ac",
+              "x": 27,
+              "y": 120,
+              "text": "~",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "l1fwc_lbl_d1",
+              "x": 196,
+              "y": 28,
+              "text": "D₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fwc_lbl_d2",
+              "x": 196,
+              "y": 198,
+              "text": "D₂",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fwc_lbl_c",
+              "x": 170,
+              "y": 98,
+              "text": "C",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "l1fwc_lbl_load",
+              "x": 226,
+              "y": 140,
+              "text": "Load",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fwc_lbl_p",
+              "x": 84,
+              "y": 34,
+              "text": "P",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fwc_lbl_s",
+              "x": 142,
+              "y": 34,
+              "text": "S",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Fourth mark. Centre tap C marked, both diodes named, load between the joined cathodes and the centre tap.",
+        "why": "The centre tap is the one feature that makes this a full wave circuit rather than two half wave circuits, so it must be marked on the diagram. Both diodes point the same way, towards the load.",
+        "common_mistakes": [
+          "Leaving out the centre tap. Without it the circuit does not work.",
+          "Drawing the two diodes facing opposite ways. Both point towards the load.",
+          "Connecting the load across one half of the secondary."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the full wave circuit is a centre-tapped secondary with a diode at each end, their outputs joined, and the load returning to the centre tap.",
+          "accept": [
+            "centre tapped secondary with two diodes",
+            "load between the joined diodes and the centre tap",
+            "draw the transformer with D one and D two"
+          ],
+          "reject": [
+            "one diode in series with the load"
+          ],
+          "heard_as": [
+            "circuit",
+            "centre tap",
+            "two diodes"
+          ]
+        },
+        "memory_tip": "Two diodes pointing the same way, one centre tap, one load."
+      },
+      {
+        "id": "s6_fw_working",
+        "kind": "text",
+        "label": "Full wave working",
+        "marks": 2,
+        "mark_note": "Both half cycles",
+        "lines": [
+          {
+            "text": "Working of the full wave rectifier:",
+            "style": "heading"
+          },
+          "i) The secondary is centre tapped. With",
+          {
+            "text": "respect to the centre tap C the voltages",
+            "style": "indent"
+          },
+          {
+            "text": "at the two ends are out of phase.",
+            "style": "indent"
+          },
+          "ii) For all the positive half cycles the",
+          {
+            "text": "diode D₁ is forward biased and conducts;",
+            "style": "indent"
+          },
+          {
+            "text": "D₂ is reverse biased and does not",
+            "style": "indent"
+          },
+          {
+            "text": "conduct.",
+            "style": "indent"
+          },
+          "iii) For all the negative half cycles the",
+          {
+            "text": "diode D₂ is forward biased and conducts;",
+            "style": "indent"
+          },
+          {
+            "text": "D₁ is reverse biased and does not",
+            "style": "indent"
+          },
+          {
+            "text": "conduct.",
+            "style": "indent"
+          },
+          "iv) In both half cycles the current",
+          {
+            "text": "through the load runs in the SAME",
+            "style": "indent"
+          },
+          {
+            "text": "direction, so both half cycles are",
+            "style": "indent"
+          },
+          {
+            "text": "converted into rectified d.c. output.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Two marks: one for each half cycle. Name both diodes each time, and end with the same-direction line.",
+        "why": "The two diodes are fed from opposite ends of the secondary but return through the same load, so the current crosses the load the same way whichever diode is conducting. Without that last line the answer has not explained why the output is d.c. rather than a.c.",
+        "common_mistakes": [
+          "Saying both diodes conduct together. Only one conducts at a time.",
+          "Leaving out the same-direction line. That is what makes the output d.c.",
+          "Naming only the conducting diode in each half cycle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That D₁ conducts in the positive half and D₂ in the negative half, one always reverse biased, and the load current keeps the same direction.",
+          "accept": [
+            "D one conducts and D two is reverse biased",
+            "D two conducts in the negative half cycle",
+            "current through the load is in the same direction both times"
+          ],
+          "reject": [
+            "the diode blocks so the output is zero"
+          ],
+          "heard_as": [
+            "D one",
+            "D two",
+            "same direction"
+          ]
+        },
+        "memory_tip": "They take turns, but the load current never turns round."
+      },
+      {
+        "id": "s7_fw_waveform",
+        "kind": "diagram",
+        "label": "Full wave output",
+        "marks": 0,
+        "figure": {
+          "id": "l1_fw_waveforms",
+          "width": 360,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "l1fww_in_axis",
+              "d": "M 40 70 L 330 70 M 322 65 L 330 70 L 322 75",
+              "ms": 4410
+            },
+            {
+              "type": "stroke",
+              "id": "l1fww_in_yaxis",
+              "d": "M 46 26 L 46 114",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "l1fww_in_wave",
+              "d": "M 46 70 Q 76 18 106 70 Q 136 122 166 70 Q 196 18 226 70 Q 256 122 286 70",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "l1fww_out_axis",
+              "d": "M 40 190 L 330 190 M 322 185 L 330 190 L 322 195",
+              "ms": 4410
+            },
+            {
+              "type": "stroke",
+              "id": "l1fww_out_yaxis",
+              "d": "M 46 146 L 46 226",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "l1fww_out_wave",
+              "d": "M 46 190 Q 76 138 106 190 Q 136 138 166 190 Q 196 138 226 190 Q 256 138 286 190",
+              "ms": 4500
+            },
+            {
+              "type": "label",
+              "id": "l1fww_lbl_in",
+              "x": 246,
+              "y": 40,
+              "text": "input",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fww_lbl_out",
+              "x": 246,
+              "y": 160,
+              "text": "output",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fww_lbl_v1",
+              "x": 24,
+              "y": 36,
+              "text": "V",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fww_lbl_v2",
+              "x": 24,
+              "y": 156,
+              "text": "V",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fww_lbl_t1",
+              "x": 336,
+              "y": 88,
+              "text": "t",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fww_lbl_t2",
+              "x": 336,
+              "y": 208,
+              "text": "t",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fww_lbl_o1",
+              "x": 24,
+              "y": 90,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "l1fww_lbl_o2",
+              "x": 24,
+              "y": 210,
+              "text": "O",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Not marked, but drawing it beside the half wave graph shows the difference at a glance: no gaps.",
+        "why": "Both graphs are drawn on the same scale, so the full wave output plainly has twice as many pulses in the same time. That is where the doubled efficiency and the doubled ripple frequency come from.",
+        "common_mistakes": [
+          "Leaving gaps between the humps. That is the half wave output."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the full wave output has a hump for every half cycle with no gaps.",
+          "accept": [
+            "humps with no gaps",
+            "two pulses per cycle",
+            "negative halves turned over"
+          ],
+          "reject": [
+            "humps with gaps between them"
+          ],
+          "heard_as": [
+            "waveform",
+            "graph",
+            "output"
+          ]
+        },
+        "memory_tip": "Full wave: no gaps."
+      },
+      {
+        "id": "s8_efficiency",
+        "kind": "boxed_final",
+        "label": "Efficiency of both",
+        "marks": 1,
+        "mark_note": "Both expressions and maxima",
+        "lines": [
+          "Efficiency is the ratio of the output d.c.",
+          "power to the input a.c. power.",
+          {
+            "text": "\\text{Half wave: } \\eta = \\dfrac{0.406\\,R_L}{r_f + R_L}",
+            "style": "eq",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Full wave: } \\eta = \\dfrac{0.812\\,R_L}{r_f + R_L}",
+            "style": "eq",
+            "render": "katex"
+          },
+          {
+            "text": "R_L = \\text{load resistance},\\; r_f = \\text{forward resistance}",
+            "style": "eq",
+            "render": "katex"
+          },
+          "The half wave rectifier gives one d.c.",
+          "pulse per cycle; the full wave rectifier",
+          "gives two.",
+          {
+            "text": "Maximum efficiency: 40.6% and 81.2%",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Eighth mark. Both expressions and both maximum values, plus the pulse counts.",
+        "why": "The two expressions differ only in the number on top, and that number is doubled for exactly the reason given in the working — both half cycles now reach the load. Ending on the pulse counts ties the numbers back to the two graphs.",
+        "common_mistakes": [
+          "Swapping the two constants between the rectifiers.",
+          "Giving the same pulse rate for both. Half wave gives one pulse per cycle, full wave two."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the half wave maximum is 40.6% and the full wave maximum 81.2%, with one and two pulses per cycle.",
+          "accept": [
+            "forty point six and eighty one point two per cent",
+            "0.406 for half wave and 0.812 for full wave",
+            "one pulse per cycle against two"
+          ],
+          "reject": [
+            "both are eighty one point two per cent"
+          ],
+          "heard_as": [
+            "efficiency",
+            "forty point six",
+            "eighty one point two"
+          ]
+        },
+        "memory_tip": "Everything about the full wave rectifier is double: pulses, constant, efficiency."
+      }
+    ]
+  },
+  "insider_note": "Two circuits, two marks — the question says 'with diagrams', so draw and label both. The line that earns the full wave marks is that the load current keeps the same direction in both half cycles."
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_prepatent_period",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define prepatent period. What is its duration in the life cycle of Plasmodium vivax?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Duration",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.58, VSAQ 136). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR: the book's second line reads 'The duration of life cycle of plasmodium vivax is nearly 8 days', which states the wrong quantity — 8 days is the duration of the PREPATENT PERIOD, not of the whole life cycle. This card gives the 8 days to the prepatent period."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The interval between the first entry of",
+          "Plasmodium into the blood of man as sporozoites",
+          "and its second entry into the blood as",
+          "cryptozoites is called the prepatent period."
+        ],
+        "why": "The period is defined by two entries into the BLOOD, and the gap between them is the time the parasite spends inside the liver cells where no test can find it.",
+        "common_mistakes": [
+          "Defining it as the time before the symptoms appear. That is the incubation period.",
+          "Writing only 'the time the parasite spends in the liver' without naming sporozoites and cryptozoites."
+        ],
+        "memory_tip": "Prepatent counts blood to blood: sporozoite in, cryptozoite back out.",
+        "margin_note": "One sentence naming both stages. The two stage names carry the mark."
+      },
+      {
+        "id": "s2_duration",
+        "kind": "boxed_final",
+        "label": "Duration",
+        "marks": 1,
+        "mark_note": "Duration",
+        "lines": [
+          {
+            "text": "Prepatent period = about 8 days",
+            "style": "boxed"
+          },
+          "During this period no symptoms of malaria are",
+          "seen."
+        ],
+        "why": "The number is asked directly, and the extra line that no symptoms appear is what tells the examiner the student has not confused it with the incubation period.",
+        "common_mistakes": [
+          "Writing 10 to 14 days. That is the incubation period.",
+          "Writing that the whole life cycle takes 8 days. Only the prepatent period does."
+        ],
+        "memory_tip": "Prepatent 8 days, incubation 10 to 14 days. Prepatent is the shorter one.",
+        "margin_note": "The number in a box and one line on symptoms. Two lines."
+      }
+    ]
+  },
+  "insider_note": "Prepatent and incubation are asked as a pair in this chapter, so state the 8 days and add the no-symptoms line to keep them apart."
+}

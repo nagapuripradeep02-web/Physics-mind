@@ -1,0 +1,312 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_gauss_law_and_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State Gauss's law in electrostatics and its importance.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Statement of the law",
+      "marks": 1
+    },
+    {
+      "label": "The equation with q and ε₀ named",
+      "marks": 1
+    },
+    {
+      "label": "Importance: fields of charge distributions",
+      "marks": 1
+    },
+    {
+      "label": "Importance: any surface, moving charges",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: ∮E·dS = q/ε₀ where q is the NET charge enclosed by the closed surface — matches NCERT and the book (printed p.21). The book lists three points under Importance and all three are kept; the condition of symmetry is added to the first, because Gauss's law yields the field quickly only when the distribution is symmetric enough that E is constant over the chosen surface — without that the integral cannot be taken out. The book prints 'permitivity' (p.20) and 'permittivity of free spaced' (p.19); both are written correctly here. This chapter also carries a 2-mark VSAQ, ts_ipe_p2_ecf_gauss_law_statement, that asks the statement alone; the two cards are the book's own separate questions, not a duplication."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Charges and Fields · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "Statement of Gauss's law",
+        "marks": 1,
+        "mark_note": "Flux = enclosed charge / ε₀",
+        "lines": [
+          "Gauss's law: the total electric flux through",
+          "any closed surface is 1/ε₀ times the net",
+          "charge enclosed by that surface.",
+          "Here ε₀ is the permittivity of free space."
+        ],
+        "margin_note": "First mark. The words closed surface, net charge and enclosed all have to appear.",
+        "why": "Each word in the statement is doing work: the surface must be closed, the charge must be the net charge, and it must be inside. Charges outside the surface add nothing to the total flux.",
+        "common_mistakes": [
+          "Saying every charge nearby. Only the charge enclosed by the surface counts.",
+          "Writing flux = qε₀. It is q divided by ε₀."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the total flux through any closed surface equals 1/ε₀ times the net charge enclosed.",
+          "accept": [
+            "total electric flux through a closed surface",
+            "one by epsilon nought times the charge enclosed",
+            "net charge inside the surface"
+          ],
+          "reject": [
+            "applicable for any shape and size"
+          ],
+          "heard_as": [
+            "flux",
+            "closed surface",
+            "epsilon nought"
+          ]
+        },
+        "memory_tip": "Three words carry the statement: closed, net, enclosed."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "gaussian_surface",
+          "width": 300,
+          "height": 170,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "surface",
+              "d": "M 58 95 A 72 58 0 1 0 202 95 A 72 58 0 1 0 58 95",
+              "ms": 4500
+            },
+            {
+              "type": "label",
+              "id": "lbl_S",
+              "x": 40,
+              "y": 40,
+              "text": "S",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "charge",
+              "d": "M 118 100 A 6 6 0 1 0 130 100 A 6 6 0 1 0 118 100",
+              "ms": 540
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 136,
+              "y": 98,
+              "text": "q",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "patch",
+              "d": "M 197 80 L 205 110",
+              "ms": 440
+            },
+            {
+              "type": "label",
+              "id": "lbl_ds",
+              "x": 206,
+              "y": 126,
+              "text": "dS",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "e_arrow",
+              "d": "M 204 95 L 254 95",
+              "ms": 710
+            },
+            {
+              "type": "stroke",
+              "id": "e_head",
+              "d": "M 247 90.5 L 254 95 L 247 99.5",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_E",
+              "x": 260,
+              "y": 89,
+              "text": "E",
+              "ms": 450,
+              "em": true
+            }
+          ]
+        },
+        "margin_note": "A closed surface S of any shape with the charge q inside, a small area element dS on it, and the field E through that element.",
+        "why": "The integral in the law is a sum over small pieces of the surface, so the figure has to show one such piece dS and the field E crossing it — that is what E·dS means.",
+        "common_mistakes": [
+          "Drawing an open sheet. The surface in Gauss's law must be closed.",
+          "Putting the charge outside the surface. Then the enclosed charge is zero."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure shows a closed surface S with charge q inside, an area element dS and the field E through it.",
+          "accept": [
+            "draw a closed surface with the charge inside",
+            "mark a small area element dS",
+            "show the field arrow through the element"
+          ],
+          "reject": [
+            "flux equals q by epsilon nought"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "closed surface"
+          ]
+        },
+        "memory_tip": "One closed loop, one charge inside, one small patch with an arrow through it."
+      },
+      {
+        "id": "s3_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "∮ E · dS = q / ε₀",
+        "lines": [
+          "Mathematically,",
+          {
+            "text": "∮ E · dS = q / ε₀",
+            "style": "eq"
+          },
+          "Here q is the total charge enclosed by the",
+          "closed surface S, and dS is a small area",
+          "element of that surface. The circle on the",
+          "integral sign shows the surface is closed."
+        ],
+        "margin_note": "Second mark. The equation alone is not enough — name q, S and dS under it.",
+        "why": "The equation is the statement written in symbols, so every symbol in it must be tied back to the words: the circle on the integral is the word closed, and q is the word enclosed.",
+        "common_mistakes": [
+          "Leaving the circle off the integral sign. It is what makes the surface closed.",
+          "Writing E dS instead of E · dS. It is a dot product, so only the part of E across the surface counts."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the law in symbols is ∮E·dS = q/ε₀, with q the enclosed charge and dS an area element of the closed surface S.",
+          "accept": [
+            "closed integral of E dot dS",
+            "equals q by epsilon nought",
+            "q is the charge enclosed by the surface"
+          ],
+          "reject": [
+            "one by epsilon nought times the charge enclosed"
+          ],
+          "heard_as": [
+            "integral",
+            "E dot dS",
+            "q by epsilon nought"
+          ]
+        },
+        "memory_tip": "Circle on the integral = closed surface; the letter after the equals sign is always the enclosed charge."
+      },
+      {
+        "id": "s4_importance_fields",
+        "kind": "text",
+        "label": "Importance: finding the field",
+        "marks": 1,
+        "mark_note": "Gives E for symmetric charge distributions",
+        "lines": [
+          "Importance:",
+          "1. It gives the electric field intensity of",
+          "charged bodies whose charge distribution is",
+          "symmetric — a long straight wire, a large",
+          "charged sheet, a charged spherical shell —",
+          "far more quickly than Coulomb's law does."
+        ],
+        "margin_note": "Third mark. Name the use and give at least one body it is used on.",
+        "why": "Coulomb's law needs the field of every element added up by integration. Gauss's law replaces that with one surface integral, and when the distribution is symmetric E is the same size all over the chosen surface, so it comes out of the integral in one line.",
+        "common_mistakes": [
+          "Saying it works for every charge distribution. The law is always true, but it gives E easily only when there is enough symmetry.",
+          "Listing no example. One named body earns the mark."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Gauss's law is used to find the field of symmetric charge distributions, such as a wire, a sheet or a shell.",
+          "accept": [
+            "to find the electric intensity of charged bodies",
+            "used for a wire a sheet or a sphere",
+            "quicker than Coulomb's law"
+          ],
+          "reject": [
+            "true for any shape and size of surface"
+          ],
+          "heard_as": [
+            "intensity",
+            "charge distribution",
+            "symmetry"
+          ]
+        },
+        "memory_tip": "Wire, sheet, shell — the three bodies Gauss's law is always used on."
+      },
+      {
+        "id": "s5_importance_general",
+        "kind": "text",
+        "label": "Importance: how general it is",
+        "marks": 1,
+        "mark_note": "Any closed surface; charges at rest or moving",
+        "lines": [
+          "2. It holds for a closed surface of any",
+          "shape and any size, so you can pick a",
+          "surface that suits the symmetry of the",
+          "problem.",
+          "3. It applies to charges at rest and to",
+          "moving charges as well."
+        ],
+        "margin_note": "Last mark. Two separate points: any surface, and moving charges too.",
+        "why": "The freedom to pick the surface is what makes the law useful, and it is a freedom only because the law puts no condition on the shape or the size. Its validity for moving charges is what carries it into the rest of electromagnetism.",
+        "common_mistakes": [
+          "Saying the surface must be a sphere. Any closed shape works.",
+          "Saying it holds only for charges at rest. It holds for moving charges too."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the law holds for a closed surface of any shape and size, and for moving charges as well as charges at rest.",
+          "accept": [
+            "any shape and any size of closed surface",
+            "we can choose a convenient surface",
+            "applies to moving charges also"
+          ],
+          "reject": [
+            "used to find the field of a wire or a sheet"
+          ],
+          "heard_as": [
+            "any shape",
+            "any size",
+            "moving charges"
+          ]
+        },
+        "memory_tip": "Two freedoms: any surface, and charges need not be at rest."
+      }
+    ]
+  },
+  "insider_note": "The question asks for two things — the law and its importance — so a script that stops after the integral can score only half."
+}

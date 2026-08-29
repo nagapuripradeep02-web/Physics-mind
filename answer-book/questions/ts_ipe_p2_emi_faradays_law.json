@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_faradays_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Faraday's law of electromagnetic induction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation with the minus sign",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: ε = −N dΦ/dt, the minus sign carrying Lenz's law — the induced emf opposes the change of flux that produced it. PRINT SLIP recorded: the book heads this question 'State Fataday's law of electromagnetic induction' — a misprint for Faraday's; the card writes it correctly."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Flux changes, emf is induced",
+        "lines": [
+          "Whenever the magnetic flux linked with a",
+          "closed circuit changes, an emf is induced",
+          "in the circuit. The induced emf lasts only",
+          "as long as the change of flux continues."
+        ],
+        "margin_note": "First mark. Two halves: the cause (change of flux) and the duration (as long as the change lasts).",
+        "why": "The law names the cause exactly: not the flux itself but its CHANGE. A large steady flux induces nothing; a small changing flux does.",
+        "common_mistakes": [
+          "Writing that flux induces an emf. Only a CHANGING flux induces an emf.",
+          "Leaving out that the emf lasts only while the change lasts."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an emf is induced whenever the flux linked with a circuit changes, and lasts while the change lasts.",
+          "accept": [
+            "emf whenever flux changes",
+            "lasts as long as the change",
+            "changing flux induces an emf"
+          ],
+          "reject": [
+            "N d phi by d t"
+          ],
+          "heard_as": [
+            "flux",
+            "emf",
+            "induced"
+          ]
+        },
+        "memory_tip": "Cause: change of flux. Duration: as long as the change. Two halves of one sentence."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation with the minus sign",
+        "marks": 1,
+        "mark_note": "ε = −N dΦ/dt, minus sign kept",
+        "lines": [
+          "The induced emf equals the negative rate",
+          "of change of magnetic flux linkage. For a",
+          "coil of N turns,",
+          {
+            "text": "ε = −N dΦ/dt",
+            "style": "boxed"
+          },
+          "The minus sign carries Lenz's law: the",
+          "induced emf opposes the change of flux",
+          "that produced it."
+        ],
+        "margin_note": "Second mark. The minus sign is part of the law — writing the equation without it loses the direction.",
+        "why": "The minus sign is physics, not decoration: it records the direction rule (Lenz's law), and conservation of energy stands behind it. Dropping it changes the law.",
+        "common_mistakes": [
+          "Writing ε = N dΦ/dt without the minus sign. The sign carries the direction of the induced emf.",
+          "Forgetting N for a coil of N turns. The flux LINKAGE NΦ is what changes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the induced emf is minus N times the rate of change of flux, with the minus sign kept.",
+          "accept": [
+            "minus N d phi by d t",
+            "negative rate of change of flux",
+            "the minus is Lenz's law"
+          ],
+          "reject": [
+            "B l v"
+          ],
+          "heard_as": [
+            "d phi by d t",
+            "minus",
+            "rate of change"
+          ]
+        },
+        "memory_tip": "Rate of change of flux linkage, with a minus in front. Say the minus out loud when you memorise it."
+      }
+    ]
+  },
+  "insider_note": "The book prints this as two laws; the emf equation with its minus sign is where the second mark sits, and the minus is part of the law."
+}

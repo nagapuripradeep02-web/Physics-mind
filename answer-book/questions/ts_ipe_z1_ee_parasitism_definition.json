@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_parasitism_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define parasitism. Give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.62, VSAQ 165). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Parasitism is an interaction between two",
+          "organisms of different species in which one",
+          "is benefited and the other is harmed.",
+          "The one that gains is the parasite; the one",
+          "that is harmed is the host."
+        ],
+        "why": "Naming the two partners in the definition itself saves a sentence later and shows the examiner that the words parasite and host are being used correctly.",
+        "common_mistakes": [
+          "Writing that the other partner is unaffected. That is commensalism.",
+          "Calling the host the parasite. The host is the one that is harmed."
+        ],
+        "memory_tip": "Count the gains again: mutualism two, commensalism one and a zero, parasitism one and a minus.",
+        "margin_note": "One sentence, then one line naming the parasite and the host."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "The parasite gains, the host is harmed",
+            "style": "boxed"
+          },
+          "Ex: Plasmodium vivax, the malarial parasite,",
+          "in the body of man.",
+          "The parasite gets food and shelter from the",
+          "man.",
+          "The man gets malaria, so he is harmed."
+        ],
+        "why": "The example must show the harm as well as the gain, because the harm is the one thing that separates parasitism from the other two interactions.",
+        "common_mistakes": [
+          "Naming the parasite without saying what harm it does. The harm carries the mark.",
+          "Giving a lion and a deer. The lion kills the deer outright, so that is predation."
+        ],
+        "memory_tip": "Plasmodium in man: food and shelter for the parasite, malaria for the host.",
+        "margin_note": "Name the parasite and the host, then one line of gain and one of harm."
+      }
+    ]
+  },
+  "insider_note": "Parasitism, predation, commensalism and mutualism are marked as a set — always write what happens to BOTH partners."
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_wavelength_doubled_photon_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the wavelength of electromagnetic radiation is doubled, what happens to the energy of photon?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation E = hc/λ",
+      "marks": 1
+    },
+    {
+      "label": "Energy becomes half",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: E = hc/λ, so E ∝ 1/λ; replacing λ by 2λ gives E′ = hc/(2λ) = E/2 — doubling the wavelength halves the photon energy, matching the book's E₂ = E/2 (p.41)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation E = hc/λ",
+        "marks": 1,
+        "mark_note": "E = hc/λ, so E ∝ 1/λ",
+        "lines": [
+          {
+            "text": "Energy of a photon: E = hc/λ",
+            "style": "eq"
+          },
+          {
+            "text": "So E ∝ 1/λ",
+            "style": "eq"
+          },
+          "Here λ is the wavelength of the radiation."
+        ],
+        "margin_note": "First mark. The relation must be on paper before the conclusion.",
+        "why": "The whole answer follows from E = hc/λ: h and c are constants, so the energy depends on the wavelength alone, as 1/λ.",
+        "common_mistakes": [
+          "Writing E = hcλ. The wavelength divides, it does not multiply: E = hc/λ.",
+          "Treating E as proportional to λ. The relation is inverse — a longer wavelength must mean a smaller energy."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That photon energy is E = hc/λ, so energy is inversely proportional to wavelength.",
+          "accept": [
+            "E equals h c by lambda",
+            "inversely proportional to wavelength",
+            "E proportional to one by lambda"
+          ],
+          "reject": [
+            "directly proportional to wavelength"
+          ],
+          "heard_as": [
+            "h c by lambda",
+            "inverse",
+            "lambda"
+          ]
+        },
+        "memory_tip": "h and c are fixed; only λ can change, and it sits below the line."
+      },
+      {
+        "id": "s2_halved",
+        "kind": "boxed_final",
+        "label": "The energy becomes half",
+        "marks": 1,
+        "mark_note": "E′ = E/2",
+        "lines": [
+          {
+            "text": "When λ is doubled: E′ = hc/(2λ) = E/2",
+            "style": "eq"
+          },
+          "So the energy of the photon becomes half.",
+          {
+            "text": "Doubling λ halves the photon energy",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Say half, and show where the 2 comes from.",
+        "why": "Replacing λ by 2λ in E = hc/λ puts the 2 in the denominator, so the new energy is E/2.",
+        "common_mistakes": [
+          "Saying the energy doubles. E and λ change in opposite directions.",
+          "Answering half with no working. Write E′ = hc/(2λ) = E/2 so the relation mark is also safe."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That doubling the wavelength makes the photon energy half.",
+          "accept": [
+            "energy becomes half",
+            "E by two",
+            "halved"
+          ],
+          "reject": [
+            "energy doubles"
+          ],
+          "heard_as": [
+            "half",
+            "double the wavelength"
+          ]
+        },
+        "memory_tip": "λ up two times means E down two times — the product hc never changes."
+      }
+    ]
+  },
+  "insider_note": "One mark is for E = hc/λ on paper and one for the word half — an answer with only the word half loses the relation mark."
+}

@@ -1,0 +1,179 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_three_capacitors_series_120v",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Three capacitors each of capacitance 9 pF are connected in series. (a) What is the total capacitance of the combination? (b) What is the potential difference across each capacitor, if the combination is connected to a 120 V supply?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The total capacitance",
+      "marks": 2
+    },
+    {
+      "label": "The common charge",
+      "marks": 1
+    },
+    {
+      "label": "The potential difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). Hand-checked against the book: 1/C = 3/9 gives C = 3 pF; Q = 3 pF × 120 V = 360 pC; V across each = 360 pC / 9 pF = 40 V and 3 × 40 = 120 V — every printed figure is correct. Transcription: the printed misspelling 'capcitance' is corrected to 'capacitance'; the printed spaces before the question marks are dropped. The book also prints a bold solving hint after the question ('Use the formula of equivalent capacitance when two or more capacitors are connected in series and remember that charges at the plates of each capacitor in series remain same.') — that is guidance, not part of the asked question, so it is not in question_text. This item is answered under 'Sol.' rather than the book's usual 'A.'"
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Potential and Capacitance · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_series_rule",
+        "kind": "equation",
+        "label": "The total capacitance",
+        "marks": 2,
+        "mark_note": "C = 3 pF",
+        "lines": [
+          "In a series combination the reciprocals add:",
+          {
+            "text": "1/C = 1/C₁ + 1/C₂ + 1/C₃",
+            "style": "eq"
+          },
+          "Here C₁ = C₂ = C₃ = 9 pF, so",
+          {
+            "text": "1/C = 1/9 + 1/9 + 1/9 = 3/9",
+            "style": "eq"
+          },
+          {
+            "text": "C = 9/3 = 3 pF",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. The series rule, then invert 3/9 — not 3/9 itself.",
+        "why": "Capacitors in series behave like one capacitor with the plate separation added up, and capacitance falls as the separation grows — so the equivalent value is below the smallest of the three.",
+        "common_mistakes": [
+          "Leaving the answer as 3/9 and writing C = 0.33 pF — the reciprocal still has to be taken.",
+          "Adding the capacitances to get 27 pF, which is the parallel rule."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in series the reciprocals add, 1/C = 3/9, so C = 3 pF.",
+          "accept": [
+            "one by C is the sum of one by C i",
+            "three by nine so C is 3 pF",
+            "reciprocals add in series"
+          ],
+          "reject": [
+            "charge is the same on each"
+          ],
+          "heard_as": [
+            "series",
+            "3 pF"
+          ]
+        },
+        "memory_tip": "Three equal capacitors in series give one third of the value: 9 pF becomes 3 pF."
+      },
+      {
+        "id": "s2_common_charge",
+        "kind": "equation",
+        "label": "The common charge",
+        "marks": 1,
+        "mark_note": "Q = 360 pC",
+        "lines": [
+          "In series the same charge appears on every",
+          "capacitor, and it is the charge drawn by the",
+          "equivalent capacitance from the supply:",
+          {
+            "text": "Q = CV = 3 pF × 120 V = 360 pC",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Use the equivalent C, not 9 pF, to get the charge.",
+        "why": "The inner plates of a series chain are isolated, so whatever charge leaves one plate arrives on the next, so a single charge value applies to the whole chain.",
+        "common_mistakes": [
+          "Using 9 pF instead of the equivalent 3 pF and getting 1080 pC.",
+          "Working out three different charges — in series there is only one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the charge is common in series and equals CV = 3 pF × 120 V = 360 pC.",
+          "accept": [
+            "same charge on each capacitor",
+            "Q is C times V",
+            "three sixty picocoulomb"
+          ],
+          "reject": [
+            "reciprocals add in series"
+          ],
+          "heard_as": [
+            "same charge",
+            "360 pC"
+          ]
+        },
+        "memory_tip": "Series: one charge for all, the voltage splits."
+      },
+      {
+        "id": "s3_potential_difference",
+        "kind": "boxed_final",
+        "label": "The potential difference",
+        "marks": 1,
+        "mark_note": "40 V each",
+        "lines": [
+          "The potential difference across each capacitor",
+          "is its own charge divided by its own value:",
+          {
+            "text": "V₁ = Q/C₁ = 360 pC / 9 pF = 40 V",
+            "style": "eq"
+          },
+          "The three capacitances are equal, so V₂ and V₃",
+          "come to the same value.",
+          {
+            "text": "40 V across each capacitor",
+            "style": "boxed"
+          },
+          "Check: 40 + 40 + 40 = 120 V, the supply."
+        ],
+        "margin_note": "Last mark. Divide by 9 pF, not 3 pF, and add the three back to 120 V.",
+        "why": "Equal capacitors carrying the same charge must share the supply voltage equally, so the check 3 × 40 = 120 V is the fastest proof the arithmetic is sound.",
+        "common_mistakes": [
+          "Dividing by the equivalent 3 pF and getting 120 V across each capacitor.",
+          "Skipping the check, so a wrong charge goes unnoticed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That V = Q/C = 360 pC / 9 pF = 40 V across each capacitor, and the three add to 120 V.",
+          "accept": [
+            "forty volts across each",
+            "V is Q by C",
+            "three forties make one twenty"
+          ],
+          "reject": [
+            "same charge on each capacitor"
+          ],
+          "heard_as": [
+            "40 V",
+            "Q by C"
+          ]
+        },
+        "memory_tip": "Equal capacitors in series split the supply equally: 120 V over three is 40 V."
+      }
+    ]
+  },
+  "insider_note": "The last mark turns on which capacitance is used in V = Q/C — the equivalent 3 pF gives the charge, but the individual 9 pF gives the potential difference."
+}

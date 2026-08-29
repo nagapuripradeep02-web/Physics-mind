@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_circular_coil_magnetic_moment",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A circular coil of radius r having N turns carries a current i. What is its magnetic moment?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "M = N i A",
+      "marks": 1
+    },
+    {
+      "label": "M = N i πr²",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: the magnetic moment of a flat current loop is M = NiA; for a circle A = πr², so M = Niπr², with unit A·m². Matches the book's answer M = Ni(πr²)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Both marks are formula marks: write M = N i A first, then put in the circle's area πr².",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Moving Charges and Magnetism · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The formula M = N i A",
+        "marks": 1,
+        "mark_note": "M = N i A",
+        "lines": [
+          "The magnetic moment of a flat coil is",
+          {
+            "text": "M = N i A",
+            "style": "eq"
+          },
+          "where N is the number of turns, i is the",
+          "current and A is the area of the coil."
+        ],
+        "margin_note": "First mark. Name all three symbols — N, i and A — beside the formula.",
+        "why": "A current loop behaves like a small magnet, and its strength grows with more turns, more current and more area — the formula is those three together.",
+        "common_mistakes": [
+          "Writing M = N i A but not saying what A is.",
+          "Dropping N for a coil of many turns."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the magnetic moment of the coil is M = N i A.",
+          "accept": [
+            "M equals N i A",
+            "magnetic moment is turns times current times area",
+            "N i A"
+          ],
+          "reject": [
+            "pi r squared"
+          ],
+          "heard_as": [
+            "magnetic moment",
+            "N i A"
+          ]
+        },
+        "memory_tip": "Three growers: more turns, more current, more area — multiply them."
+      },
+      {
+        "id": "s2_area",
+        "kind": "boxed_final",
+        "label": "Put in the circle's area",
+        "marks": 1,
+        "mark_note": "A = πr² put in",
+        "lines": [
+          "For a circular coil of radius r,",
+          {
+            "text": "A = πr²",
+            "style": "eq"
+          },
+          {
+            "text": "∴ M = N i πr²",
+            "style": "boxed"
+          },
+          "The unit of magnetic moment is A·m²."
+        ],
+        "margin_note": "Second mark. The examiner wants the answer in terms of r, so A = πr² must be substituted.",
+        "why": "The question gives the radius r, not the area, so the answer is complete only after A = πr² is put into M = N i A.",
+        "common_mistakes": [
+          "Writing A = 2πr (the circumference) instead of πr² (the area).",
+          "Leaving the answer as M = N i A without using r."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A = πr² for a circle, giving M = N i πr².",
+          "accept": [
+            "area is pi r squared",
+            "M equals N i pi r squared"
+          ],
+          "reject": [
+            "2 pi r"
+          ],
+          "heard_as": [
+            "pi r squared",
+            "area"
+          ]
+        },
+        "memory_tip": "Area, not circumference: πr² carries the square, and the unit A·m² carries a square too."
+      }
+    ]
+  }
+}

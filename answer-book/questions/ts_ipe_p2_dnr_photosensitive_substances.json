@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_photosensitive_substances",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give examples of \"photosensitive substances\". Why are they called so?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Examples",
+      "marks": 1
+    },
+    {
+      "label": "Why they are called photosensitive",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.42); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: the alkali metals sodium, potassium, lithium and caesium have work functions near 2 eV (caesium 2.14 eV), and visible-light photons carry roughly 1.6 to 3.1 eV, so visible light can emit photoelectrons from them — the book's reason (very low work function) is correct. The book's example list also names calcium, zinc, cadmium and magnesium; those respond to ultraviolet rather than visible light, but the list is reproduced as the book prints it. A lecturer's pen tick marks this question in the source scan as one to expect."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Dual Nature of Radiation and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_examples",
+        "kind": "text",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Named examples",
+        "lines": [
+          "Sodium, potassium, lithium, caesium, calcium,",
+          "zinc, cadmium and magnesium are examples of",
+          "photosensitive substances."
+        ],
+        "margin_note": "First mark. Two or three named metals are enough; the alkali metals are the safest picks.",
+        "why": "The examiner wants named substances, and the alkali metals head every textbook list because their work functions are the lowest.",
+        "common_mistakes": [
+          "Naming compounds or non-metals. The standard examples are metals.",
+          "Giving one example when the question asks for examples. Write at least two."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "At least two named photosensitive metals, such as sodium, potassium, lithium or caesium.",
+          "accept": [
+            "sodium and potassium",
+            "lithium",
+            "caesium",
+            "alkali metals"
+          ],
+          "reject": [
+            "low work function"
+          ],
+          "heard_as": [
+            "sodium",
+            "potassium",
+            "caesium",
+            "cesium"
+          ]
+        },
+        "memory_tip": "Start with the alkali metals in order: lithium, sodium, potassium, caesium."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "Why they are called photosensitive",
+        "marks": 1,
+        "mark_note": "Low work function, visible light works",
+        "lines": [
+          "These metals have a very low work function.",
+          "Even a visible-light photon carries enough",
+          "energy to remove an electron, so they emit",
+          "photoelectrons under ordinary light. Because",
+          "light makes them emit electrons, they are",
+          "called photosensitive substances.",
+          {
+            "text": "Low work function: visible light is enough",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The reason is the low work function; connect it to visible light emitting photoelectrons.",
+        "why": "A visible photon carries about 1.6 to 3.1 eV. Only a metal whose work function sits at or below this range can emit electrons under visible light, which is why low work function is the whole reason.",
+        "common_mistakes": [
+          "Saying they are sensitive because they are metals. All the examples are metals; the low work function is what sets them apart.",
+          "Writing high work function. The work function must be LOW for visible light to be enough."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That these substances have a very low work function, so even visible light can make them emit photoelectrons.",
+          "accept": [
+            "very low work function",
+            "visible light can emit electrons",
+            "light makes them give out electrons"
+          ],
+          "reject": [
+            "sodium and potassium"
+          ],
+          "heard_as": [
+            "work function",
+            "visible light",
+            "photoelectrons"
+          ]
+        },
+        "memory_tip": "Photo plus sensitive: sensitive even to ordinary visible light, because the work function is low."
+      }
+    ]
+  },
+  "insider_note": "Examples earn one mark and the reason the other — and the reason must contain the words low work function."
+}

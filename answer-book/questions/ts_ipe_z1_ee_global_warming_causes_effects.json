@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_global_warming_causes_effects",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Discuss the causes and effects of global warming. What measures need to be taken to control 'Global Warming'?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Causes",
+      "marks": 1
+    },
+    {
+      "label": "Effects",
+      "marks": 1
+    },
+    {
+      "label": "Control measures",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.46, SAQ 54). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecology and Environment · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Global warming is the rise of the",
+          "temperature of the atmosphere above its",
+          "normal level.",
+          "It happens because of the increase in the",
+          "emission of greenhouse gases."
+        ],
+        "why": "The question has three parts, so the definition is kept to two lines; naming the greenhouse gases here also links this answer to the greenhouse effect without repeating it.",
+        "common_mistakes": [
+          "Defining global warming as the greenhouse effect. Global warming is the RISE above the normal level.",
+          "Leaving out the greenhouse gases. They are the named reason for the rise."
+        ],
+        "memory_tip": "Three-part question, three-part answer: causes, effects, measures. Split the page before writing.",
+        "margin_note": "Two lines only. The three asked parts each need their own space."
+      },
+      {
+        "id": "s2_causes",
+        "kind": "text",
+        "label": "Causes",
+        "marks": 1,
+        "mark_note": "Causes",
+        "lines": [
+          "Carbon dioxide (CO₂) is the air pollutant",
+          "chiefly responsible for global warming.",
+          "It is produced by:",
+          "(i) incomplete combustion of fossil fuels",
+          "(ii) automobile exhaust",
+          "(iii) factory fumes",
+          "(iv) emissions from power plants",
+          "(v) forest fires"
+        ],
+        "why": "The causes are all sources of one gas, so naming carbon dioxide first and listing the sources under it keeps the answer short and shows the examiner they are not five separate causes.",
+        "common_mistakes": [
+          "Listing the sources without naming carbon dioxide first.",
+          "Naming chlorofluorocarbons. Those are the ozone question, not this one."
+        ],
+        "memory_tip": "One gas, five taps: engines, factories, power plants, fires and unburnt fuel.",
+        "margin_note": "Name the gas, then the sources as a numbered list. A list scores as fast as sentences."
+      },
+      {
+        "id": "s3_effects",
+        "kind": "text",
+        "label": "Effects",
+        "marks": 1,
+        "mark_note": "Effects",
+        "lines": [
+          "(i) Climatic changes across the world.",
+          "(ii) The El Nino effect.",
+          "(iii) Melting of the snow caps of mountains",
+          "and of the polar ice.",
+          "This raises the sea level and results in the",
+          "submergence of coastal areas."
+        ],
+        "why": "Three effects is enough for one mark, and the melting one is written with its consequence attached because the rise in sea level is the fact examiners look for.",
+        "common_mistakes": [
+          "Writing only that the earth gets hotter. That is the definition, not an effect.",
+          "Leaving out the sea level. Melting ice matters because coastal land goes under water."
+        ],
+        "memory_tip": "Warmer air changes three things: the climate, the ocean currents and the ice.",
+        "margin_note": "Three effects, one line each, with the sea level attached to the melting one."
+      },
+      {
+        "id": "s4_measures",
+        "kind": "boxed_final",
+        "label": "Control measures",
+        "marks": 1,
+        "mark_note": "Measures",
+        "lines": [
+          {
+            "text": "Burn less, plant more, and hold to the limits",
+            "style": "boxed"
+          },
+          "(i) Reducing the use of fossil fuels.",
+          "(ii) Improving the efficiency of energy use.",
+          "(iii) Planting trees and avoiding",
+          "deforestation.",
+          "(iv) Slowing the growth of the human",
+          "population.",
+          "(v) The Kyoto Protocol: 191 countries signed",
+          "it at Kyoto in Japan, agreeing to cut",
+          "greenhouse gas emissions to the 1990 level."
+        ],
+        "why": "The Kyoto Protocol is the only named agreement in this part of the syllabus, so it is written last and in full with its number and its target — those two facts are what mark it out from a general statement.",
+        "common_mistakes": [
+          "Leaving out the Kyoto Protocol. It is the named measure and carries most of this mark.",
+          "Writing the Kyoto Protocol without its target. The agreed level is that of 1990."
+        ],
+        "memory_tip": "Four ordinary measures and one named agreement: Kyoto, 191 countries, back to 1990 levels.",
+        "margin_note": "Four short measures, then the Kyoto Protocol with its number and its target year."
+      }
+    ]
+  },
+  "insider_note": "The question asks three things and the marks are split evenly, so a long answer on the causes and nothing on the measures scores about half."
+}

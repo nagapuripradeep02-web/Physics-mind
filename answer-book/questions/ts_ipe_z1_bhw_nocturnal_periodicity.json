@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_nocturnal_periodicity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by nocturnal periodicity with reference to the life history of a nematode parasite you have studied?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The movement",
+      "marks": 1
+    },
+    {
+      "label": "The term",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.59, VSAQ 139). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_movement",
+        "kind": "text",
+        "label": "The movement",
+        "marks": 1,
+        "mark_note": "Movement",
+        "lines": [
+          "The sheathed microfilaria larva of Wuchereria",
+          "bancrofti stays in the deep blood vessels of man",
+          "during the day.",
+          "At night, between 10 PM and 4 AM, it moves to",
+          "the peripheral blood vessels near the skin."
+        ],
+        "why": "Both halves of the day must be described, because the point of the term is the regular change of position between day and night, not the night position alone.",
+        "common_mistakes": [
+          "Naming the wrong parasite. The nematode meant here is Wuchereria bancrofti.",
+          "Writing only where the larva is at night. The day position is half the answer."
+        ],
+        "memory_tip": "Deep by day, near the skin by night, between 10 PM and 4 AM.",
+        "margin_note": "Two lines: day position, then night position with the timing."
+      },
+      {
+        "id": "s2_term",
+        "kind": "boxed_final",
+        "label": "The term",
+        "marks": 1,
+        "mark_note": "Term",
+        "lines": [
+          {
+            "text": "Regular night movement to surface vessels",
+            "style": "boxed"
+          },
+          "This regular movement of the microfilaria larva",
+          "to the surface blood vessels at night is called",
+          "nocturnal periodicity.",
+          "The Culex mosquito bites at night, so the larva",
+          "is in the surface vessels at the time it can be",
+          "picked up."
+        ],
+        "why": "The word periodicity means the movement repeats on a fixed timetable, and the last line links that timetable to the biting time of the vector, which is what the examiner looks for.",
+        "common_mistakes": [
+          "Writing that the larva hides during the day. Describe the position, not a purpose.",
+          "Leaving out the vector. The night biting of Culex is what makes the timing matter."
+        ],
+        "memory_tip": "Night biter, night larva: Culex bites at night and the larva is at the surface then.",
+        "margin_note": "Name the term, then one line linking it to the night-biting Culex."
+      }
+    ]
+  },
+  "insider_note": "Naming Wuchereria bancrofti is part of the mark, because the question says 'a nematode parasite you have studied' and expects that name."
+}

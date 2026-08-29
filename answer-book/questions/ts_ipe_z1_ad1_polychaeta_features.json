@@ -1,0 +1,467 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_polychaeta_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the salient features exhibited by polychaetes?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Head and parapodia",
+      "marks": 1
+    },
+    {
+      "label": "Breeding",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.35, SAQ 25). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR: the book's point 8 says polychaetes are 'bisexual'. The book uses 'bisexual' to mean hermaphrodite (it uses it that way again for the flukes on p.64). Polychaetes are UNISEXUAL — the sexes are separate — and the book's own following points (gametes shed into the coelom, passed out through the nephridiopores, external fertilisation, trochophore larva) describe a unisexual animal. The card is written correctly and the book's wording is recorded in that step's `why`. The book also misspells lugworm as 'lugwarm'. FIGURE SCOPE: the book prints a shaded drawing of Nereis beside this question but does NOT ask for a diagram, so the diagram step carries 0 marks. The figure is an exam-standard simplified line drawing of the same animal: prostomium with four eyes, one pair of antennae and one pair of palps, the peristomium, seven trunk segments each with a pair of setae-bearing parapodia, and the anal cirri. The four pairs of peristomial (tentacular) cirri that a full anatomical drawing shows are deliberately NOT drawn — at exam scale they crowd the palps and the antennae, and they are not named in the book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-I (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What the polychaetes are",
+        "marks": 1,
+        "why": "Every later feature follows from a free-moving marine life, which is why the habit is stated before the organs.",
+        "common_mistakes": [
+          "Calling Polychaeta a phylum. It is a class of the phylum Annelida.",
+          "Writing that they are fresh-water worms. Polychaetes are mainly marine."
+        ],
+        "memory_tip": "Marine annelids with bristles: free-moving forms and tube-living forms.",
+        "margin_note": "Class, phylum, common names, habit. Four lines.",
+        "mark_note": "What they are",
+        "lines": [
+          "Polychaeta is a class of the phylum Annelida.",
+          "Its members are marine annelids, commonly",
+          "called bristle worms or clam worms.",
+          "Many are free-moving. Others live inside",
+          "tubes that they build."
+        ]
+      },
+      {
+        "id": "s2_head_parapodia",
+        "kind": "text",
+        "label": "Head and parapodia",
+        "marks": 1,
+        "why": "The parapodium is a flap of the body wall with a large surface and a rich blood supply, which is why one organ serves both for movement and for the exchange of gases.",
+        "common_mistakes": [
+          "Writing that the head is not distinct. A distinct head is a mark of the class.",
+          "Giving parapodia on a few segments only. They are on every segment."
+        ],
+        "memory_tip": "A distinct head in front, and a pair of bristly parapodia on every segment behind it.",
+        "margin_note": "The head sense organs and the parapodia are the two blocks ticked here.",
+        "mark_note": "Head and parapodia",
+        "lines": [
+          "The head is distinct and carries sense",
+          "organs: eyes, tentacles and palps.",
+          "Parapodia are present, one pair on every",
+          "segment. They are the locomotor organs.",
+          "Each parapodium carries many chitinous setae,",
+          "and that is what the name polychaete records.",
+          "The parapodia are thin and hold many blood",
+          "vessels, so they carry out respiration as",
+          "well, in addition to the gills."
+        ]
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Diagram — Nereis, a polychaete",
+        "marks": 0,
+        "why": "The drawing puts the two marked features side by side: a distinct head at one end, and an identical pair of parapodia on every segment behind it.",
+        "common_mistakes": [
+          "Drawing parapodia on only part of the body. Every segment carries a pair.",
+          "Leaving the head blank. The eyes, antennae and palps are what make the head distinct."
+        ],
+        "memory_tip": "Draw the tapering tube first, rule the segments across it, then hang one pair of parapodia on each segment.",
+        "margin_note": "This question does not ask for a diagram, so it carries no marks. Draw it only if there is time — the four marks are all in the written points.",
+        "figure": {
+          "id": "ad1_nereis",
+          "width": 520,
+          "height": 352,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the long body and its segments"
+            },
+            {
+              "type": "stroke",
+              "id": "body_left",
+              "d": "M 245 80 L 245.7 112 L 246.4 144 L 247.1 176 L 247.9 208 L 248.6 240 L 249.3 272 L 250 304",
+              "ms": 3200
+            },
+            {
+              "type": "stroke",
+              "id": "body_right",
+              "d": "M 275 80 L 274.3 112 L 273.6 144 L 272.9 176 L 272.1 208 L 271.4 240 L 270.7 272 L 270 304",
+              "ms": 3200
+            },
+            {
+              "type": "stroke",
+              "id": "tail_cap",
+              "d": "M 250 304 C 250 318 270 318 270 304",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "seg_lines_a",
+              "d": "M 245.7 112 L 274.3 112 M 246.4 144 L 273.6 144 M 247.1 176 L 272.9 176",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "seg_lines_b",
+              "d": "M 247.9 208 L 272.1 208 M 248.6 240 L 271.4 240 M 249.3 272 L 270.7 272",
+              "ms": 980
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the head: eyes, antennae and palps"
+            },
+            {
+              "type": "stroke",
+              "id": "prostomium",
+              "d": "M 246 52 C 241 42 246 24 260 19 C 274 24 279 42 274 52 Z",
+              "ms": 1540
+            },
+            {
+              "type": "stroke",
+              "id": "eyes",
+              "d": "M 252 32 A 3 3 0 1 0 258 32 A 3 3 0 1 0 252 32 M 262 32 A 3 3 0 1 0 268 32 A 3 3 0 1 0 262 32 M 249 44 A 3 3 0 1 0 255 44 A 3 3 0 1 0 249 44 M 265 44 A 3 3 0 1 0 271 44 A 3 3 0 1 0 265 44",
+              "ms": 1080
+            },
+            {
+              "type": "stroke",
+              "id": "antennae",
+              "d": "M 256 21 L 247 7 M 264 21 L 273 7",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "palp_l",
+              "d": "M 243.3 43 L 223.3 25 A 4 4 0 0 1 228.7 19 L 248.7 37",
+              "ms": 950
+            },
+            {
+              "type": "stroke",
+              "id": "palp_r",
+              "d": "M 271.3 37 L 291.3 19 A 4 4 0 0 1 296.7 25 L 276.7 43",
+              "ms": 950
+            },
+            {
+              "type": "stroke",
+              "id": "peristomium",
+              "d": "M 246 52 L 245 80 M 274 52 L 275 80",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "head_dividers",
+              "d": "M 246 52 L 274 52 M 245 80 L 275 80",
+              "ms": 830
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — a pair of parapodia on every segment"
+            },
+            {
+              "type": "stroke",
+              "id": "para_l_a",
+              "d": "M 245.4 103 L 219.4 103 A 7 7 0 0 1 219.4 89 L 245.4 89 M 246.1 135 L 220.1 135 A 7 7 0 0 1 220.1 121 L 246.1 121 M 246.8 167 L 220.8 167 A 7 7 0 0 1 220.8 153 L 246.8 153 M 247.5 199 L 221.5 199 A 7 7 0 0 1 221.5 185 L 247.5 185",
+              "ms": 4230
+            },
+            {
+              "type": "stroke",
+              "id": "para_l_b",
+              "d": "M 248.2 231 L 222.2 231 A 7 7 0 0 1 222.2 217 L 248.2 217 M 248.9 263 L 222.9 263 A 7 7 0 0 1 222.9 249 L 248.9 249 M 249.6 295 L 223.6 295 A 7 7 0 0 1 223.6 281 L 249.6 281",
+              "ms": 3170
+            },
+            {
+              "type": "stroke",
+              "id": "para_r_a",
+              "d": "M 274.6 89 L 300.6 89 A 7 7 0 0 1 300.6 103 L 274.6 103 M 273.9 121 L 299.9 121 A 7 7 0 0 1 299.9 135 L 273.9 135 M 273.2 153 L 299.2 153 A 7 7 0 0 1 299.2 167 L 273.2 167 M 272.5 185 L 298.5 185 A 7 7 0 0 1 298.5 199 L 272.5 199",
+              "ms": 4230
+            },
+            {
+              "type": "stroke",
+              "id": "para_r_b",
+              "d": "M 271.8 217 L 297.8 217 A 7 7 0 0 1 297.8 231 L 271.8 231 M 271.1 249 L 297.1 249 A 7 7 0 0 1 297.1 263 L 271.1 263 M 270.4 281 L 296.4 281 A 7 7 0 0 1 296.4 295 L 270.4 295",
+              "ms": 3170
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the setae, and the cirri at the tail"
+            },
+            {
+              "type": "stroke",
+              "id": "setae_l_a",
+              "d": "M 222.4 92 L 202.4 87 M 222.4 96 L 202.4 96 M 222.4 100 L 202.4 105 M 223.1 124 L 203.1 119 M 223.1 128 L 203.1 128 M 223.1 132 L 203.1 137 M 223.8 156 L 203.8 151 M 223.8 160 L 203.8 160 M 223.8 164 L 203.8 169 M 224.5 188 L 204.5 183 M 224.5 192 L 204.5 192 M 224.5 196 L 204.5 201",
+              "ms": 3500,
+              "w": 1.1
+            },
+            {
+              "type": "stroke",
+              "id": "setae_l_b",
+              "d": "M 225.2 220 L 205.2 215 M 225.2 224 L 205.2 224 M 225.2 228 L 205.2 233 M 225.9 252 L 205.9 247 M 225.9 256 L 205.9 256 M 225.9 260 L 205.9 265 M 226.6 284 L 206.6 279 M 226.6 288 L 206.6 288 M 226.6 292 L 206.6 297",
+              "ms": 2620,
+              "w": 1.1
+            },
+            {
+              "type": "stroke",
+              "id": "setae_r_a",
+              "d": "M 297.6 92 L 317.6 87 M 297.6 96 L 317.6 96 M 297.6 100 L 317.6 105 M 296.9 124 L 316.9 119 M 296.9 128 L 316.9 128 M 296.9 132 L 316.9 137 M 296.2 156 L 316.2 151 M 296.2 160 L 316.2 160 M 296.2 164 L 316.2 169 M 295.5 188 L 315.5 183 M 295.5 192 L 315.5 192 M 295.5 196 L 315.5 201",
+              "ms": 3500,
+              "w": 1.1
+            },
+            {
+              "type": "stroke",
+              "id": "setae_r_b",
+              "d": "M 294.8 220 L 314.8 215 M 294.8 224 L 314.8 224 M 294.8 228 L 314.8 233 M 294.1 252 L 314.1 247 M 294.1 256 L 314.1 256 M 294.1 260 L 314.1 265 M 293.4 284 L 313.4 279 M 293.4 288 L 313.4 288 M 293.4 292 L 313.4 297",
+              "ms": 2620,
+              "w": 1.1
+            },
+            {
+              "type": "stroke",
+              "id": "anal_cirri",
+              "d": "M 254 313 L 236 342 M 266 313 L 284 342",
+              "ms": 980,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_prostomium",
+              "x": 6,
+              "y": 32,
+              "text": "Prostomium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_prostomium",
+              "d": "M 107 28 L 246 48",
+              "ms": 2010,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_peristomium",
+              "x": 6,
+              "y": 74,
+              "text": "Peristomium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_peristomium",
+              "d": "M 116.9 70 L 246 70",
+              "ms": 1840,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_parapodium",
+              "x": 6,
+              "y": 121,
+              "text": "Parapodium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_parapodium",
+              "d": "M 107 117 L 240 154",
+              "ms": 1970,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_setae",
+              "x": 6,
+              "y": 198,
+              "text": "Setae",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_setae",
+              "d": "M 57.5 194 L 204.2 215",
+              "ms": 2120,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_anal_cirri",
+              "x": 6,
+              "y": 320,
+              "text": "Anal cirri",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_anal_cirri",
+              "d": "M 107 316 L 245 328",
+              "ms": 1980,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_antenna",
+              "x": 340,
+              "y": 22,
+              "text": "Antenna (tentacle)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_antenna",
+              "d": "M 338 18 L 273 11",
+              "ms": 930,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_palp",
+              "x": 340,
+              "y": 64,
+              "text": "Palp",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_palp",
+              "d": "M 338 60 L 292 25",
+              "ms": 830,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_eye",
+              "x": 340,
+              "y": 106,
+              "text": "Eye",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_eye",
+              "d": "M 338 102 L 272 46",
+              "ms": 1240,
+              "w": 1.4
+            }
+          ]
+        }
+      },
+      {
+        "id": "s4_breeding",
+        "kind": "text",
+        "label": "What is absent, and breeding",
+        "marks": 1,
+        "why": "With no gonoduct of their own the gametes have to leave by the excretory openings, which is why fertilisation can only take place outside the body. BOOK NOTE: the source book lists polychaetes as 'bisexual'; standard zoology, and the rest of that same list (gametes shed into the coelom, external fertilisation, trochophore larva), describe a UNISEXUAL animal, so this card is written as unisexual.",
+        "common_mistakes": [
+          "Writing that polychaetes are hermaphrodite. The sexes are separate.",
+          "Giving them a clitellum. The clitellum belongs to the earthworm and the leech."
+        ],
+        "memory_tip": "No clitellum, no gonoducts, separate sexes, external fertilisation, trochophore larva.",
+        "margin_note": "Two things absent, then four facts on breeding. One line each.",
+        "mark_note": "Breeding",
+        "lines": [
+          "A clitellum is absent, and gonoducts are",
+          "absent.",
+          "Polychaetes are unisexual. The sexes are",
+          "separate.",
+          "The sex cells are shed into the coelom and",
+          "pass out through the nephridiopores.",
+          "Fertilisation is external, in the sea water.",
+          "The larva is a trochophore."
+        ]
+      },
+      {
+        "id": "s5_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "why": "The three named worms cover both habits of the class: Nereis moves about freely and Arenicola lives in a burrow.",
+        "common_mistakes": [
+          "Naming Pheretima or Hirudinaria. Those are an oligochaete and a leech.",
+          "Giving no example. Two or three named worms are expected."
+        ],
+        "memory_tip": "Nereis, Aphrodite, Arenicola — sand worm, sea mouse, lugworm.",
+        "margin_note": "Two or three examples with the common name. Close with the boxed line.",
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Distinct head · Parapodia with many setae",
+            "style": "boxed"
+          },
+          "Examples:",
+          "Nereis — the sand worm or clam worm.",
+          "Aphrodite — the sea mouse.",
+          "Arenicola — the lugworm."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Parapodia are what the word polychaete is built on, so a script that names them and their setae has already earned half the question."
+}

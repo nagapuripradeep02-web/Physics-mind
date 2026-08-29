@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_sponge_canal_system_functions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the functions of the canal system of sponges?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Water current",
+      "marks": 1
+    },
+    {
+      "label": "Functions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.53, VSAQ 89). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_water_path",
+        "kind": "text",
+        "label": "The water current",
+        "marks": 1,
+        "why": "Every function of the canal system is carried out by the one water current that runs through it, so the path of the water is written first.",
+        "common_mistakes": [
+          "Writing that the water leaves through the ostia. Water enters by the ostia and leaves by the osculum.",
+          "Calling the canal system a digestive system. It is a water current system."
+        ],
+        "memory_tip": "One current, three jobs: in through the ostia, out through the osculum.",
+        "margin_note": "Name the parts of the water path first. Three short lines.",
+        "mark_note": "Water current",
+        "lines": [
+          "The canal system is the network of pores and",
+          "canals through which water flows through the",
+          "body of a sponge.",
+          "Water enters through the ostia, passes into",
+          "the spongocoel, and leaves through the",
+          "osculum."
+        ]
+      },
+      {
+        "id": "s2_functions",
+        "kind": "boxed_final",
+        "label": "The three functions",
+        "marks": 1,
+        "why": "One current does three different things depending on what is taken from it or added to it, which is why a single structure answers three functions.",
+        "common_mistakes": [
+          "Giving only one function. The question asks for the functions, so name all three.",
+          "Writing that the sponge pumps water with muscles. The flagella of the choanocytes drive the current."
+        ],
+        "memory_tip": "Food in, gases exchanged, waste out — all on the same stream of water.",
+        "margin_note": "Three numbered functions, one line each. Name the process beside each one.",
+        "mark_note": "Functions",
+        "lines": [
+          {
+            "text": "Nutrition · Respiration · Excretion",
+            "style": "boxed"
+          },
+          "1) Nutrition: the current brings in food",
+          "particles, which the choanocytes take up.",
+          "2) Respiration: oxygen dissolved in the water",
+          "is taken up and carbon dioxide is given out.",
+          "3) Excretion: the outgoing current carries",
+          "away the nitrogenous waste.",
+          "The same current also carries out the sperms",
+          "and the larvae at the breeding season."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two marks for three functions, so the examiner is ticking the words nutrition, respiration and excretion — write all three even if the third takes only four words."
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_small_angle_prism_refractive_index",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A small angled prism of 4° deviates a ray through 2.48°. Find the refractive index of the prism.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Small-angle prism formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "Refractive index",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked numerically: δ = (μ − 1)A with A = 4° and δ = 2.48° gives μ − 1 = 0.62 and μ = 1.62, which matches the printed answer. The formula δ = (μ − 1)A holds only for a small refracting angle, and the question says the prism is small angled."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Small-angle prism formula",
+        "marks": 1,
+        "mark_note": "δ = (μ − 1)A",
+        "lines": [
+          {
+            "text": "Given:",
+            "style": "heading"
+          },
+          "A = 4° ,   δ = 2.48° ,   μ = ?",
+          "For a prism of small refracting angle the",
+          "deviation is",
+          {
+            "text": "δ = (μ − 1)A",
+            "style": "eq"
+          },
+          {
+            "text": "2.48° = (μ − 1) × 4°",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Write the small-angle formula and put the two given angles into it.",
+        "why": "The deviation of a prism depends on the angle of incidence, but for a small refracting angle that dependence drops out and the deviation becomes δ = (μ − 1)A, a single fixed number. The question says small angled so that this short formula may be used instead of the full prism formula.",
+        "common_mistakes": [
+          "Using the full prism formula μ = sin((A + δ)/2) / sin(A/2) here. It is not needed for a small angled prism.",
+          "Writing δ = μA and losing the −1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a small angled prism δ = (μ − 1)A, with A = 4° and δ = 2.48° substituted.",
+          "accept": [
+            "delta equals mu minus one into A",
+            "for a small angle prism the deviation is mu minus one times A",
+            "two point four eight equals mu minus one into four",
+            "chinna angle prism ki delta equals mu minus one into A"
+          ],
+          "reject": [
+            "mu is one point six two"
+          ],
+          "heard_as": [
+            "mu minus one into A",
+            "small angle prism",
+            "deviation",
+            "refracting angle"
+          ]
+        },
+        "memory_tip": "Small angle, short formula: δ = (μ − 1)A. The full prism formula belongs to minimum deviation."
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Refractive index",
+        "marks": 1,
+        "mark_note": "μ = 1.62",
+        "lines": [
+          {
+            "text": "μ − 1 = 2.48/4 = 0.62",
+            "style": "eq"
+          },
+          {
+            "text": "μ = 1 + 0.62",
+            "style": "eq"
+          },
+          {
+            "text": "μ = 1.62",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Add the 1 back. A refractive index has no unit.",
+        "why": "The division gives μ − 1, not μ. Adding 1 is the step students drop, and dropping it turns an ordinary glass prism into an impossible one.",
+        "common_mistakes": [
+          "Reporting 0.62 as the refractive index. That value is μ − 1.",
+          "Writing a unit after 1.62. A refractive index is a ratio and has no unit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That μ − 1 = 0.62 and so μ = 1.62.",
+          "accept": [
+            "mu minus one is point six two so mu is one point six two",
+            "mu is one point six two",
+            "refractive index one point six two",
+            "mu viluva one point six two"
+          ],
+          "reject": [
+            "delta equals mu minus one into A"
+          ],
+          "heard_as": [
+            "one point six two",
+            "point six two",
+            "refractive index",
+            "mu"
+          ]
+        },
+        "memory_tip": "Divide, then add one. The division only ever gives μ − 1."
+      }
+    ]
+  },
+  "insider_note": "Two lines of work. The mark that goes missing is the +1 at the end."
+}

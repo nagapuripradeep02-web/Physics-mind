@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_doppler_applications",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the applications of Doppler effect?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "SONAR and RADAR",
+      "marks": 1
+    },
+    {
+      "label": "Speed of vehicles and of rotation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: all four listed uses are real Doppler applications — SONAR and RADAR read the frequency shift of a reflected wave to get a target's speed, traffic radar does the same for vehicles, and astronomers read the opposite Doppler shifts of light from the two edges of the Sun to measure its rotation. The book's fourth item prints 'speed of rotation of earth'; the standard astronomy application measures the rotation of the Sun and stars, and that is what is written here."
+  },
+  "recall_prompt": "Name four applications of the Doppler effect.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sonar_radar",
+        "kind": "text",
+        "label": "SONAR and RADAR",
+        "marks": 1,
+        "mark_note": "Two applications named",
+        "lines": [
+          "1) In SONAR — to find the speed and",
+          "position of objects under water.",
+          "2) In RADAR — to find the speed of an",
+          "aircraft."
+        ],
+        "margin_note": "First mark. Name the systems in capitals — SONAR under water, RADAR in air.",
+        "why": "Both systems send a wave at a moving target and read the frequency of the reflected wave; the Doppler shift of that reflection gives the target's speed.",
+        "common_mistakes": [
+          "Writing SONAR and RADAR without saying what they measure — each item needs the use, not just the name."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That SONAR (under water) and RADAR (aircraft) are two Doppler applications.",
+          "accept": [
+            "SONAR",
+            "RADAR",
+            "finding underwater objects and aircraft speeds"
+          ],
+          "reject": [
+            "speed of vehicles on the road"
+          ],
+          "heard_as": [
+            "sonar",
+            "radar"
+          ]
+        },
+        "memory_tip": "One under water, one in the sky: SONAR, RADAR."
+      },
+      {
+        "id": "s2_speeds",
+        "kind": "text",
+        "label": "Speed of vehicles and of rotation",
+        "marks": 1,
+        "mark_note": "Two more applications named",
+        "lines": [
+          "3) To measure the speed of vehicles",
+          "(traffic radar).",
+          "4) In astronomy — to measure the speed of",
+          "rotation of the Sun and stars."
+        ],
+        "margin_note": "Second mark. Two more uses: traffic speed checks, and rotation measured from light.",
+        "why": "The book prints the fourth item as 'speed of rotation of earth'; the standard application measures the rotation of the SUN — light from the edge turning toward us is Doppler-shifted up in frequency and light from the receding edge down, and the difference gives the rotation speed. The corrected body is written here.",
+        "common_mistakes": [
+          "Giving only one further use — the answer needs two items for the second mark.",
+          "Repeating RADAR as the third item — traffic radar counts as the vehicle-speed use, so name rotation as the fourth."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That vehicle speed measurement and the rotation of the Sun and stars are two more Doppler applications.",
+          "accept": [
+            "speed of automobiles",
+            "traffic radar",
+            "rotation of the sun and stars"
+          ],
+          "reject": [
+            "SONAR under water"
+          ],
+          "heard_as": [
+            "vehicles",
+            "automobiles",
+            "rotation",
+            "stars"
+          ]
+        },
+        "memory_tip": "Four uses, all speeds: under water, in the sky, on the road, in the stars."
+      }
+    ]
+  },
+  "insider_note": "Every item is a speed measurement — say what each system measures, not just its name, and the list earns both marks."
+}

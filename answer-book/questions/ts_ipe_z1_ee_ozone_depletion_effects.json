@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_ozone_depletion_effects",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the deleterious effects of depletion of ozone in the stratosphere?",
+  "appearances": [
+    {
+      "year": 2014
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Depletion of the ozone layer",
+      "marks": 1
+    },
+    {
+      "label": "Effect on DNA",
+      "marks": 1
+    },
+    {
+      "label": "Effect on the skin",
+      "marks": 1
+    },
+    {
+      "label": "Effect on the eyes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.46, SAQ 55). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecology and Environment · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_depletion",
+        "kind": "text",
+        "label": "Depletion of the ozone layer",
+        "marks": 1,
+        "mark_note": "Depletion",
+        "lines": [
+          "The ozone layer lies in the stratosphere and",
+          "absorbs the ultraviolet (UV) radiation of",
+          "sunlight.",
+          "When the ozone layer is depleted markedly it",
+          "leads to an ozone hole.",
+          "The layer becomes very thin and can no",
+          "longer stop the UV radiation completely.",
+          "The shorter wavelength rays, UV-B, then",
+          "reach the earth's surface."
+        ],
+        "why": "Every harmful effect that follows is caused by UV-B, so this step must get the radiation to the ground first; an answer that lists the effects without naming UV-B has left out the cause.",
+        "common_mistakes": [
+          "Writing that the ozone hole itself burns the skin. The harm is done by the UV-B that passes through.",
+          "Naming UV-A. The harmful shorter wavelength radiation here is UV-B."
+        ],
+        "memory_tip": "Thin layer, more UV-B through, and every effect below follows from that one fact.",
+        "margin_note": "Get UV-B to the ground before listing any effect. Four short lines."
+      },
+      {
+        "id": "s2_dna",
+        "kind": "text",
+        "label": "Effect on DNA",
+        "marks": 1,
+        "mark_note": "DNA",
+        "lines": [
+          "UV rays damage the DNA of the cells.",
+          "This may lead to mutations.",
+          "Mutations change the working of the cell and",
+          "can be passed on when the cell divides."
+        ],
+        "why": "DNA damage is placed first among the effects because it is the deepest one — the changes to the skin and the eyes are what a person sees, but the damage begins in the molecule.",
+        "common_mistakes": [
+          "Writing that UV kills the cell outright. It DAMAGES the DNA and causes mutations.",
+          "Leaving out the word mutation, which is the named result here."
+        ],
+        "memory_tip": "Work from the inside out: DNA first, then the skin, then the eyes.",
+        "margin_note": "Two short lines. The word mutation must appear."
+      },
+      {
+        "id": "s3_skin",
+        "kind": "text",
+        "label": "Effect on the skin",
+        "marks": 1,
+        "mark_note": "Skin",
+        "lines": [
+          "UV rays cause ageing of the skin.",
+          "They damage the skin cells and can cause",
+          "skin cancer.",
+          "They also cause sunburn on exposed skin."
+        ],
+        "why": "Skin cancer is the effect examiners look for by name, so it is written in full rather than being left inside a general statement about damage.",
+        "common_mistakes": [
+          "Writing damage to the skin without naming skin cancer.",
+          "Writing that UV causes leprosy or any infection. UV damage is not an infection."
+        ],
+        "memory_tip": "Skin gets three things from UV: it ages, it burns, and it may turn cancerous.",
+        "margin_note": "Three short effects. Skin cancer must be named in words."
+      },
+      {
+        "id": "s4_eyes",
+        "kind": "boxed_final",
+        "label": "Effect on the eyes",
+        "marks": 1,
+        "mark_note": "Eyes",
+        "lines": [
+          {
+            "text": "UV-B harms the DNA, the skin and the eyes",
+            "style": "boxed"
+          },
+          "A high concentration of UV-B causes",
+          "inflammation of the cornea.",
+          "This leads to snow blindness and to",
+          "cataract.",
+          "Sometimes it damages the cornea permanently."
+        ],
+        "why": "The eye effects are the ones with named conditions attached, and naming the cornea shows exactly which part of the eye is struck, which is what separates a full answer from a vague one.",
+        "common_mistakes": [
+          "Writing that UV causes blindness. The named conditions are snow blindness and cataract.",
+          "Naming the retina. The part named in this answer is the CORNEA."
+        ],
+        "memory_tip": "Three eye words in order: cornea inflamed, snow blindness, cataract.",
+        "margin_note": "Name the cornea and both conditions. The box gathers the three targets of UV-B."
+      }
+    ]
+  },
+  "insider_note": "Every effect must be traced back to UV-B — an answer that says the ozone hole causes cancer without naming the radiation loses the first mark."
+}

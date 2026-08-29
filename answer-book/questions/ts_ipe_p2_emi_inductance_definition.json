@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_inductance_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define 'inductance'.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The emf forms and the unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: inductance = flux linkage per unit current; ε = −L di/dt for the same circuit (self), ε = −M di/dt for a neighbouring circuit (mutual); scalar; depends only on geometry and medium; SI unit henry — matching the book's own two-equation answer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Flux linkage per unit current",
+        "lines": [
+          "Inductance is the ratio of the flux",
+          "linkage of a circuit to the current that",
+          "produces it.",
+          "The current can be in the same circuit",
+          "(self inductance L) or in a neighbouring",
+          "circuit (mutual inductance M)."
+        ],
+        "margin_note": "First mark. One ratio, two names — self for the same circuit, mutual for a neighbouring one.",
+        "why": "One ratio covers both cases; which circuit carries the current is what splits it into self and mutual inductance.",
+        "common_mistakes": [
+          "Defining only self inductance. The word inductance covers both self and mutual."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That inductance is flux linkage per unit current, self for the same circuit and mutual for a neighbouring one.",
+          "accept": [
+            "flux linkage per unit current",
+            "self and mutual",
+            "ratio of flux linkage to current"
+          ],
+          "reject": [
+            "henry"
+          ],
+          "heard_as": [
+            "inductance",
+            "flux linkage"
+          ]
+        },
+        "memory_tip": "One definition, two names: same circuit = L, neighbouring circuit = M."
+      },
+      {
+        "id": "s2_emf_unit",
+        "kind": "boxed_final",
+        "label": "The emf forms and the unit",
+        "marks": 1,
+        "mark_note": "Both emf forms; unit henry",
+        "lines": [
+          "The emf induced when the current changes:",
+          {
+            "text": "ε = −L di/dt (self), ε = −M di/dt (mutual)",
+            "style": "eq"
+          },
+          "Inductance is a scalar. It depends only on",
+          "the geometry of the circuit and the",
+          "medium.",
+          {
+            "text": "SI unit of inductance: henry (H)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The book's own answer gives both emf equations — write the pair, then the unit.",
+        "why": "The emf forms show what inductance does in a circuit; that L and M depend only on geometry and medium is what makes them constants of the circuit.",
+        "common_mistakes": [
+          "Writing the emf without the minus sign. The sign records the opposition (Lenz's law).",
+          "Giving one emf form only. The definition covers both circuits, so both forms belong here."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the induced emf is minus L or minus M times di by dt, and the SI unit is the henry.",
+          "accept": [
+            "minus L d i by d t",
+            "minus M d i by d t",
+            "henry"
+          ],
+          "reject": [
+            "weber"
+          ],
+          "heard_as": [
+            "henry",
+            "d i by d t"
+          ]
+        },
+        "memory_tip": "Same formula twice: −L di/dt for self, −M di/dt for mutual, both measured in henry."
+      }
+    ]
+  },
+  "insider_note": "Cover both L and M — the book's own answer gives the two emf equations, and the examiner reads for the pair."
+}

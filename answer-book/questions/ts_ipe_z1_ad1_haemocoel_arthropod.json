@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_haemocoel_arthropod",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you call the perivisceral cavity of an arthropod? Where from is it derived during development?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Haemocoel",
+      "marks": 1
+    },
+    {
+      "label": "Its origin",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.54, VSAQ 105). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "text",
+        "label": "The name of the cavity",
+        "marks": 1,
+        "why": "The cavity is named after what fills it, so the word haemocoel already states that blood and not coelomic fluid is inside.",
+        "common_mistakes": [
+          "Calling it a true coelom. The true coelom of an arthropod is reduced to small cavities.",
+          "Writing that it is filled with coelomic fluid. It is filled with blood."
+        ],
+        "memory_tip": "Haemo means blood, coel means cavity: a cavity full of blood.",
+        "margin_note": "Name the cavity and say what fills it. Three lines.",
+        "mark_note": "Haemocoel",
+        "lines": [
+          "The perivisceral cavity of an arthropod is",
+          "called a haemocoel.",
+          "It is the space around the viscera, and it is",
+          "filled with blood, that is, with haemolymph.",
+          "The organs therefore lie bathed directly in",
+          "blood."
+        ]
+      },
+      {
+        "id": "s2_origin",
+        "kind": "boxed_final",
+        "label": "Where it comes from",
+        "marks": 1,
+        "why": "A true coelom is a cavity lined by mesoderm and the blastocoel is not, which is why the arthropod cavity keeps a separate name.",
+        "common_mistakes": [
+          "Writing that it is derived from the mesoderm. It is mainly the blastocoel that persists.",
+          "Writing that arthropods have no coelom at all. A small true coelom remains around the gonads."
+        ],
+        "memory_tip": "The embryo's blastocoel never closes, so the adult keeps it as a blood space.",
+        "margin_note": "Say what it is NOT, then what it comes from. Three or four lines.",
+        "mark_note": "Its origin",
+        "lines": [
+          {
+            "text": "Haemocoel = the blastocoel that persists",
+            "style": "boxed"
+          },
+          "The haemocoel is not a true coelom.",
+          "Most of it is formed from the blastocoel,",
+          "the cavity of the blastula, which persists",
+          "into the adult.",
+          "The true coelom is reduced to small spaces",
+          "around the gonads and the excretory organs."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The second half is the one that is asked and skipped — write the word blastocoel, because 'from the embryo' earns nothing."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_growth_living_vs_nonliving",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you differentiate between growth in a living organism and growth in a non-living object?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Growth in living organisms",
+      "marks": 1
+    },
+    {
+      "label": "Growth in non-living objects",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.50, VSAQ 70). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. CROSS-BANK: botany asks the same contrast in ts_ipe_b1_lw_growth_living_vs_nonliving. The book prints no year citation for this question, so `appearances` is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_living",
+        "kind": "text",
+        "label": "Growth in a living organism",
+        "marks": 1,
+        "mark_note": "Living",
+        "why": "Growth in a living body comes from cell division inside it, so new material is added within and not on the surface — that is the one difference the whole answer rests on.",
+        "common_mistakes": [
+          "Writing that living things grow by adding matter on the outside. That is how non-living objects grow.",
+          "Writing that growth in animals continues for life. Animal growth stops at a certain age."
+        ],
+        "memory_tip": "Living growth is from inside by cell division; non-living growth is from outside by added matter.",
+        "margin_note": "Definition first, then the living half. Three or four short lines.",
+        "lines": [
+          "Growth is an increase in size and mass.",
+          "In a living organism growth takes place from",
+          "inside the body, by an increase in the number",
+          "of cells and in the size of the cells.",
+          "It is therefore called growth from inside, or",
+          "intrinsic growth.",
+          "In animals growth stops at a certain age; in",
+          "plants it goes on through life."
+        ]
+      },
+      {
+        "id": "s2_nonliving",
+        "kind": "boxed_final",
+        "label": "Growth in a non-living object",
+        "marks": 1,
+        "mark_note": "Non-living",
+        "why": "A non-living object gains material only where the outside world touches it, so its growth is a surface process and stops the moment nothing more is added.",
+        "common_mistakes": [
+          "Calling this true growth. It is only the piling up of matter, so it is not a sign of life."
+        ],
+        "memory_tip": "A sand mound grows only where sand lands on it: outside only.",
+        "margin_note": "The contrast in the same words as the living half, plus one example.",
+        "lines": [
+          {
+            "text": "Living grows from inside, non-living outside",
+            "style": "boxed"
+          },
+          "In a non-living object growth takes place by",
+          "the piling up (accretion) of matter on the",
+          "outer surface.",
+          "It is therefore called growth from outside, or",
+          "extrinsic growth.",
+          "Example: a mound of sand grows taller as more",
+          "sand falls on it.",
+          "Such growth is not counted as a sign of life."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The mark is for the contrast, not for the definition — write 'from inside by cell division' against 'from outside by piling up of matter', and give one non-living example."
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_jacobsons_organs",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are Jacobson's organs? What is their function?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Their function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.56, VSAQ 119). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Organs",
+        "margin_note": "Say what kind of organ and where it lies. Two lines.",
+        "lines": [
+          "Jacobson's organs are a pair of highly",
+          "specialised olfactory structures.",
+          "They lie in the roof of the mouth of snakes and",
+          "of some lizards."
+        ],
+        "why": "Jacobson's organs are organs of smell placed inside the mouth, so their position explains why the tongue has to carry the scent to them.",
+        "common_mistakes": [
+          "Calling them organs of taste. They are organs of smell.",
+          "Giving them to all reptiles. They are found in snakes and in some lizards."
+        ],
+        "memory_tip": "A nose in the roof of the mouth: that is Jacobson's organ."
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "Their function",
+        "marks": 1,
+        "mark_note": "Function",
+        "margin_note": "The function needs the tongue in it. Three short lines.",
+        "lines": [
+          {
+            "text": "Smell: forked tongue brings scent to them",
+            "style": "boxed"
+          },
+          "They help in smelling.",
+          "The snake flicks out its bifid (forked) tongue",
+          "and collects scent particles from the air.",
+          "The tongue is drawn back and placed on these",
+          "organs, and the animal smells its prey and its",
+          "path."
+        ],
+        "why": "The forked tongue and the paired organ work as one system, so describing the tongue is part of describing the function.",
+        "common_mistakes": [
+          "Writing that the tongue tastes the air. The tongue only carries the particles; the organ smells them.",
+          "Leaving the tongue out. The link between the tongue and the organ is the marked point."
+        ],
+        "memory_tip": "Tongue out, particles picked up, tongue in, organ smells. Four steps in one picture."
+      }
+    ]
+  },
+  "insider_note": "The examiner wants the tongue and the organ connected in one sentence; an answer that only says they help in smelling reads as half learnt."
+}

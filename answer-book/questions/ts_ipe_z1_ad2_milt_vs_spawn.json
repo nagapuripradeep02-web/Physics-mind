@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_milt_vs_spawn",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between milt and spawn.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Spawn",
+      "marks": 1
+    },
+    {
+      "label": "Milt",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.56, VSAQ 116). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_spawn",
+        "kind": "text",
+        "label": "Spawn",
+        "marks": 1,
+        "mark_note": "Spawn",
+        "margin_note": "One line for what it is and one for who releases it.",
+        "lines": [
+          "Spawn is the mass of eggs released into the",
+          "water by the female.",
+          "It is seen in frogs and in other lower aquatic",
+          "vertebrates."
+        ],
+        "why": "The two words name the two gametes released into water, so each is fixed by the sex that releases it.",
+        "common_mistakes": [
+          "Swapping the two words. Spawn is eggs from the female; milt is sperms from the male.",
+          "Writing that spawn is laid on land. It is released into water."
+        ],
+        "memory_tip": "Spawn has the same s as she: eggs from the female. Milt has the m of male."
+      },
+      {
+        "id": "s2_milt",
+        "kind": "boxed_final",
+        "label": "Milt",
+        "marks": 1,
+        "mark_note": "Milt",
+        "margin_note": "Give the contrast in one boxed line, then add that fertilisation is external.",
+        "lines": [
+          {
+            "text": "Spawn: eggs, female · Milt: sperms, male",
+            "style": "boxed"
+          },
+          "Milt is the mass of sperms released into the",
+          "water by the male.",
+          "The male releases the milt over the spawn, so",
+          "fertilisation is external."
+        ],
+        "why": "Naming where the two masses meet explains why frogs need no copulatory organ: the gametes are shed together in water.",
+        "common_mistakes": [
+          "Calling milt a gland. It is the mass of sperms itself.",
+          "Writing that fertilisation is internal. The milt meets the spawn outside the body."
+        ],
+        "memory_tip": "Milt over spawn in the water: that is external fertilisation in one picture."
+      }
+    ]
+  },
+  "insider_note": "The examiner accepts a one-line contrast, but the external fertilisation line is what lifts a half answer to a full one."
+}

@@ -1,0 +1,497 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_bohr_hydrogen_spectrum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Discuss Bohr's theory of the spectrum of hydrogen atom?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The transition rule and Rydberg's formula",
+      "marks": 1
+    },
+    {
+      "label": "Lyman series — ultraviolet",
+      "marks": 1
+    },
+    {
+      "label": "Balmer series — visible",
+      "marks": 1
+    },
+    {
+      "label": "Paschen, Brackett and Pfund — infrared",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. SOURCE DEFECT CORRECTED: under \"Lyman Series\" the book prints \"This series lies in the ultra violet region which is the visible region\" — the sentence contradicts itself. The Lyman series is ULTRAVIOLET; the VISIBLE series is Balmer, which the book itself states correctly in the next paragraph. The card writes the physics correctly and records the book's wording in that step's why. The book's own energy-level figure also mis-spells the series as \"Blamer\", \"Bracket\" and \"Pfund\" run together; the spellings are corrected here. Physics hand-checked with 1/λ = R(1/n₁² − 1/n₂²), R = 1.097 × 10⁷ m⁻¹: Lyman n₁ = 1 gives 912 Å to 1216 Å (ultraviolet); Balmer n₁ = 2 gives 3646 Å to 6563 Å (visible); Paschen n₁ = 3, Brackett n₁ = 4 and Pfund n₁ = 5 all lie beyond 8000 Å (infrared)."
+  },
+  "recall_prompt": "Say the transition rule and Rydberg's formula, then name each series with its final orbit and its region of the spectrum.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atoms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "text",
+        "label": "The transition rule",
+        "marks": 1,
+        "mark_note": "hν = E₂ − E₁ and Rydberg's formula",
+        "lines": [
+          "When the electron moves from an outer orbit n₂",
+          "to an inner orbit n₁, the atom emits a photon:",
+          {
+            "text": "hν = E₂ − E₁",
+            "style": "eq"
+          },
+          "The wavelength of each line follows from Bohr's",
+          "energy levels:",
+          {
+            "text": "1/λ = R (1/n₁² − 1/n₂²)",
+            "style": "eq"
+          },
+          "where R = 1.097 × 10⁷ m⁻¹ is Rydberg's",
+          "constant. Each value of n₁ gives one series."
+        ],
+        "margin_note": "First mark. Both equations: the photon condition and the wavelength formula.",
+        "why": "Bohr's energy levels are Eₙ = −13.6/n² eV. Subtracting two of them and dividing by hc turns the level diagram into a wavelength formula, which is what makes the spectrum a set of separate lines rather than a band.",
+        "common_mistakes": [
+          "Writing 1/λ = R(1/n₂² − 1/n₁²). The smaller n comes first, or λ comes out negative.",
+          "Leaving out the value of R. The constant is part of the formula mark."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a photon of energy hν = E₂ − E₁ is emitted and 1/λ = R(1/n₁² − 1/n₂²).",
+          "accept": [
+            "h nu equals E two minus E one",
+            "one by lambda equals R into one by n one squared minus one by n two squared",
+            "R is Rydberg's constant"
+          ],
+          "reject": [
+            "Lyman series is ultraviolet"
+          ],
+          "heard_as": [
+            "one by lambda",
+            "Rydberg constant",
+            "h nu"
+          ]
+        },
+        "memory_tip": "Smaller n first inside the bracket, or the wavelength comes out negative."
+      },
+      {
+        "id": "s2_figure_levels",
+        "kind": "diagram",
+        "label": "The energy level diagram",
+        "marks": 0,
+        "figure": {
+          "id": "hydrogen_levels_lyman_balmer",
+          "width": 480,
+          "height": 340,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "lvl_inf",
+              "d": "M 110 40 L 390 40",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "lvl_3",
+              "d": "M 110 90 L 390 90",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "lvl_2",
+              "d": "M 110 145 L 390 145",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "lvl_1",
+              "d": "M 110 300 L 390 300",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "lyman_shaft",
+              "d": "M 160 145 L 160 296",
+              "ms": 2160
+            },
+            {
+              "type": "stroke",
+              "id": "lyman_head",
+              "d": "M 154 286 L 160 298 L 166 286",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "balmer_shaft",
+              "d": "M 300 90 L 300 141",
+              "ms": 730
+            },
+            {
+              "type": "stroke",
+              "id": "balmer_head",
+              "d": "M 294 131 L 300 143 L 306 131",
+              "ms": 380
+            },
+            {
+              "type": "label",
+              "id": "n_inf",
+              "x": 400,
+              "y": 44,
+              "text": "n = ∞",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "n_3",
+              "x": 400,
+              "y": 94,
+              "text": "n = 3",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "n_2",
+              "x": 400,
+              "y": 149,
+              "text": "n = 2",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "n_1",
+              "x": 400,
+              "y": 304,
+              "text": "n = 1",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_lyman",
+              "x": 168,
+              "y": 210,
+              "text": "Lyman",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_balmer",
+              "x": 308,
+              "y": 122,
+              "text": "Balmer",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_e1",
+              "x": 14,
+              "y": 304,
+              "text": "−13.6 eV",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Levels for n = 1, 2, 3 and ∞, with one Lyman arrow down to n = 1 and one Balmer arrow down to n = 2.",
+        "why": "The levels are drawn in the right ORDER and with the right shape — they crowd closer together as n rises, because Eₙ = −13.6/n² flattens towards zero — but the gaps are not to scale. True to scale, with n = 1 at the foot and n = ∞ at the top, n = 2 would sit three quarters of the way down: the n = 1 to n = 2 step alone is 10.2 eV of the 13.6 eV total. The drawing opens the top gaps so the labels stay readable.",
+        "common_mistakes": [
+          "Drawing the levels equally spaced. They crowd together towards n = ∞."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That an energy level diagram is drawn with arrows coming down to n = 1 for Lyman and to n = 2 for Balmer.",
+          "accept": [
+            "draw the energy level diagram",
+            "arrows down to n equals one and n equals two"
+          ],
+          "reject": [
+            "one by lambda equals R"
+          ],
+          "heard_as": [
+            "energy level diagram",
+            "arrows"
+          ]
+        },
+        "memory_tip": "Levels crowd at the top; the gap down to n = 1 is the biggest on the page."
+      },
+      {
+        "id": "s3_lyman",
+        "kind": "text",
+        "label": "Lyman series",
+        "marks": 1,
+        "mark_note": "n₁ = 1, ultraviolet",
+        "lines": [
+          "Lyman series: the electron moves to the first",
+          "orbit (n₁ = 1) from outer orbits n₂ = 2, 3, 4 …",
+          {
+            "text": "1/λ = R (1/1² − 1/n₂²)",
+            "style": "eq"
+          },
+          "This series lies in the ultraviolet region",
+          "(912 Å to 1216 Å)."
+        ],
+        "margin_note": "Second mark. Final orbit n₁ = 1, and the region is ULTRAVIOLET.",
+        "why": "The book prints \"This series lies in the ultra violet region which is the visible region\" — the sentence contradicts itself. Lyman is ultraviolet; the visible series is Balmer, which the book states correctly in the very next paragraph. The n = 1 level lies 10.2 eV below n = 2, and a 10.2 eV photon is far outside the visible band.",
+        "common_mistakes": [
+          "Calling the Lyman series visible. It is ultraviolet — the eye cannot detect it.",
+          "Writing n₂ = 1, 2, 3. The outer orbit must be above the inner one, so n₂ starts at 2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Lyman transitions end on n₁ = 1 and the series is ultraviolet.",
+          "accept": [
+            "electron comes to the first orbit",
+            "n one equals one",
+            "it lies in the ultraviolet region"
+          ],
+          "reject": [
+            "it lies in the visible region"
+          ],
+          "heard_as": [
+            "Lyman",
+            "ultraviolet",
+            "first orbit"
+          ]
+        },
+        "memory_tip": "Lyman ends on 1 and is the only ultraviolet series."
+      },
+      {
+        "id": "s4_balmer",
+        "kind": "text",
+        "label": "Balmer series",
+        "marks": 1,
+        "mark_note": "n₁ = 2, visible",
+        "lines": [
+          "Balmer series: the electron moves to the second",
+          "orbit (n₁ = 2) from outer orbits n₂ = 3, 4, 5 …",
+          {
+            "text": "1/λ = R (1/2² − 1/n₂²)",
+            "style": "eq"
+          },
+          "This series lies in the visible region",
+          "(6563 Å down to the limit at 3646 Å)."
+        ],
+        "margin_note": "Third mark. Final orbit n₁ = 2, and this is the VISIBLE series.",
+        "why": "Balmer is the series the eye can detect, and the red 6563 Å line (n₂ = 3) is the one seen in a hydrogen discharge tube. This is the series the book's Lyman paragraph confuses with Lyman.",
+        "common_mistakes": [
+          "Writing n₁ = 3 for Balmer. That is the Paschen series.",
+          "Saying the whole series is red. Only the first line is red; the rest run towards violet."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Balmer transitions end on n₁ = 2 and the series is visible.",
+          "accept": [
+            "electron comes to the second orbit",
+            "n one equals two",
+            "it lies in the visible region"
+          ],
+          "reject": [
+            "it lies in the infrared region"
+          ],
+          "heard_as": [
+            "Balmer",
+            "visible",
+            "second orbit"
+          ]
+        },
+        "memory_tip": "Balmer ends on 2 and is the only series the eye can see."
+      },
+      {
+        "id": "s5_figure_infrared",
+        "kind": "diagram",
+        "label": "The infrared transitions",
+        "marks": 0,
+        "figure": {
+          "id": "paschen_brackett_infrared",
+          "width": 480,
+          "height": 220,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "lvl_6",
+              "d": "M 110 40 L 390 40",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "lvl_5",
+              "d": "M 110 75 L 390 75",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "lvl_4",
+              "d": "M 110 120 L 390 120",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "lvl_3",
+              "d": "M 110 180 L 390 180",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "paschen_shaft",
+              "d": "M 170 120 L 170 176",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "paschen_head",
+              "d": "M 164 166 L 170 178 L 176 166",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "brackett_shaft",
+              "d": "M 290 75 L 290 116",
+              "ms": 590
+            },
+            {
+              "type": "stroke",
+              "id": "brackett_head",
+              "d": "M 284 106 L 290 118 L 296 106",
+              "ms": 380
+            },
+            {
+              "type": "label",
+              "id": "n6",
+              "x": 400,
+              "y": 44,
+              "text": "n = 6",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "n5",
+              "x": 400,
+              "y": 79,
+              "text": "n = 5",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "n4",
+              "x": 400,
+              "y": 124,
+              "text": "n = 4",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "n3",
+              "x": 400,
+              "y": 184,
+              "text": "n = 3",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_paschen",
+              "x": 178,
+              "y": 155,
+              "text": "Paschen",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_brackett",
+              "x": 298,
+              "y": 100,
+              "text": "Brackett",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "The upper levels only: Paschen comes down to n = 3, Brackett to n = 4. Pfund comes down to n = 5.",
+        "why": "The upper levels sit close together, so the drops between them are small, the photon energies are low and every one of these series lies in the infrared.",
+        "common_mistakes": [
+          "Drawing these arrows down to n = 1. Each infrared series has its own final orbit."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That arrows are drawn down to n = 3 for Paschen and down to n = 4 for Brackett.",
+          "accept": [
+            "draw arrows to n equals three and n equals four",
+            "the upper levels"
+          ],
+          "reject": [
+            "arrows down to n equals one"
+          ],
+          "heard_as": [
+            "Paschen arrow",
+            "Brackett arrow"
+          ]
+        },
+        "memory_tip": "Close levels, small drops, long waves — everything above n = 3 is infrared."
+      },
+      {
+        "id": "s6_infrared",
+        "kind": "boxed_final",
+        "label": "The infrared series",
+        "marks": 1,
+        "mark_note": "n₁ = 3, 4, 5 — all infrared",
+        "lines": [
+          "Paschen series: n₁ = 3, n₂ = 4, 5, 6 …",
+          "Brackett series: n₁ = 4, n₂ = 5, 6, 7 …",
+          "Pfund series: n₁ = 5, n₂ = 6, 7, 8 …",
+          "All three lie in the infrared region.",
+          {
+            "text": "n₁ = 1 UV · n₁ = 2 visible · n₁ ≥ 3 infrared",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Three series, each with its final orbit, all infrared.",
+        "why": "Above n = 3 the levels are so close that every transition between them releases less than 1.5 eV, which is below the red end of the visible band — so Paschen, Brackett and Pfund are all infrared.",
+        "common_mistakes": [
+          "Naming only Paschen. The question asks for the spectrum, so all the series are wanted.",
+          "Putting Brackett at n₁ = 3. Paschen is 3, Brackett is 4, Pfund is 5."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Paschen ends on n₁ = 3, Brackett on n₁ = 4, Pfund on n₁ = 5, and all three are infrared.",
+          "accept": [
+            "Paschen third orbit",
+            "Brackett fourth orbit, Pfund fifth orbit",
+            "all in the infrared region"
+          ],
+          "reject": [
+            "Balmer is visible"
+          ],
+          "heard_as": [
+            "Paschen",
+            "Brackett",
+            "Pfund",
+            "infrared"
+          ]
+        },
+        "memory_tip": "Count the final orbits in order: 1, 2, 3, 4, 5 — Lyman, Balmer, Paschen, Brackett, Pfund."
+      }
+    ]
+  },
+  "insider_note": "The book's own Lyman paragraph says the ultraviolet region \"is the visible region\" — write ultraviolet for Lyman and visible for Balmer, and the marks are safe."
+}

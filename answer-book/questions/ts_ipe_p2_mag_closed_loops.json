@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_closed_loops",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Magnetic lines form continuous closed loops. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The path of a field line",
+      "marks": 1
+    },
+    {
+      "label": "No monopoles",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: field lines run north to south outside a magnet and south to north inside it, closing every loop; the underlying reason is that isolated magnetic poles do not exist, so the net magnetic flux through any closed surface is zero (Gauss's law for magnetism) — the book gives only the path description; the no-monopole reason is added because the question asks why."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_path",
+        "kind": "text",
+        "label": "The path of a field line",
+        "marks": 1,
+        "mark_note": "Outside N→S, inside S→N",
+        "lines": [
+          "Outside a magnet, field lines run from the",
+          "north pole to the south pole. Inside the",
+          "magnet they continue from the south pole",
+          "back to the north pole. So every line",
+          "closes on itself."
+        ],
+        "margin_note": "First mark. The inside part is what most answers miss — the line does not stop at the south pole.",
+        "why": "A field line seen only outside the magnet looks like it starts at N and ends at S. Following it through the magnet's inside shows it never ends — the outside and inside parts join into one loop.",
+        "common_mistakes": [
+          "Saying lines start at the north pole and end at the south pole. They pass through the poles and continue inside the magnet.",
+          "Drawing the inside lines from north to south. Inside the magnet the direction is south to north."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That lines go north to south outside the magnet and south to north inside it, so each line closes into a loop.",
+          "accept": [
+            "north to south outside, south to north inside",
+            "the line continues inside the magnet",
+            "every line closes on itself"
+          ],
+          "reject": [
+            "monopoles do not exist"
+          ],
+          "heard_as": [
+            "north to south",
+            "inside the magnet",
+            "closed loop"
+          ]
+        },
+        "memory_tip": "Follow one line all the way: out at N, around to S, and back through the body of the magnet to N."
+      },
+      {
+        "id": "s2_no_monopoles",
+        "kind": "text",
+        "label": "No monopoles",
+        "marks": 1,
+        "mark_note": "Flux through a closed surface is zero",
+        "lines": [
+          "Isolated magnetic poles (monopoles) do not",
+          "exist, so a field line cannot start or end",
+          "on a single pole, the way an electric line",
+          "starts and ends on charges. The net",
+          "magnetic flux through any closed surface",
+          "is zero:",
+          {
+            "text": "φ = Σ B·ΔS = 0",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. The word why in the question asks for this reason — no monopoles, so no place for a line to start or end.",
+        "why": "Electric lines can end because isolated charges exist. No isolated magnetic pole has ever been found, so magnetic lines have nowhere to start or stop — closing into loops is the only possibility, and Gauss's law for magnetism states it as zero net flux.",
+        "common_mistakes": [
+          "Answering only with the path description. The question asks why, and the reason is that monopoles do not exist.",
+          "Writing the flux as q/ε₀. That is the electric case — the magnetic flux through a closed surface is zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That isolated magnetic poles do not exist, so the net magnetic flux through any closed surface is zero.",
+          "accept": [
+            "monopoles do not exist",
+            "no isolated magnetic pole",
+            "net flux through a closed surface is zero"
+          ],
+          "reject": [
+            "south to north inside the magnet"
+          ],
+          "heard_as": [
+            "monopole",
+            "flux",
+            "closed surface"
+          ]
+        },
+        "memory_tip": "Electric lines can end because lone charges exist; magnetic lines cannot because lone poles do not."
+      }
+    ]
+  },
+  "insider_note": "This question is the 2-mark seed of the Gauss's law SAQ in this chapter — the phrase 'monopoles do not exist' earns in both places."
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_botryoidal_tissue",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is botryoidal tissue?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Functions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.53, VSAQ 93). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "why": "The tissue is defined by where it lies, because the leech coelom is reduced to channels and this tissue is what fills the rest of that space.",
+        "common_mistakes": [
+          "Naming it for the earthworm. Botryoidal tissue is characteristic of leeches.",
+          "Writing that it lies in the gut. It lies in the coelomic space."
+        ],
+        "memory_tip": "Leech only. Botryoidal means grape-like, and the cells lie in clusters.",
+        "margin_note": "Which animal, where it lies, what it looks like. Three or four lines.",
+        "mark_note": "What it is",
+        "lines": [
+          "Botryoidal tissue is a tissue found only in",
+          "leeches.",
+          "In a leech the coelom is reduced to narrow",
+          "channels, and this tissue fills the space",
+          "around them.",
+          "Its brown cells lie in rounded clusters.",
+          "Botryoidal means grape-like."
+        ]
+      },
+      {
+        "id": "s2_functions",
+        "kind": "boxed_final",
+        "label": "Its functions",
+        "marks": 1,
+        "why": "The tissue lies in the coelomic channels themselves, which is why it can both clear waste from them and rebuild them after an injury.",
+        "common_mistakes": [
+          "Giving only excretion. Three functions are expected for the full mark.",
+          "Writing that it stores food. It stores iron and calcium."
+        ],
+        "memory_tip": "Three jobs: clears waste, stores iron and calcium, rebuilds channels.",
+        "margin_note": "Three numbered functions, one line each.",
+        "mark_note": "Functions",
+        "lines": [
+          {
+            "text": "Excretion · storage · new blood channels",
+            "style": "boxed"
+          },
+          "Its functions are:",
+          "1) Excretion of nitrogenous waste.",
+          "2) Storage of iron and calcium.",
+          "3) Formation of new blood channels in a part",
+          "of the body that has been injured."
+        ]
+      }
+    ]
+  },
+  "insider_note": "A short question with a long answer — the second mark is for the list of three functions, not for a longer description of the tissue."
+}

@@ -1,0 +1,402 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_motional_emf",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Obtain an expression for the emf induced across a conductor which is moved in a uniform magnetic field which is perpendicular to the plane of motion.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Setup with the figure",
+      "marks": 1
+    },
+    {
+      "label": "Flux through the loop",
+      "marks": 1
+    },
+    {
+      "label": "Faraday's law applied",
+      "marks": 1
+    },
+    {
+      "label": "The result ε = Blv",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: loop area A = lx; Φ = BA = Blx with B perpendicular to the plane of the loop; ε = −dΦ/dt = −Bl(dx/dt) = −Blv, so the magnitude is ε = Blv. PRINT SLIP recorded: the book writes this step as ε = dΦ/dt with NO minus sign, and prints 'faraday's law' in lower case. The card keeps the minus sign — it carries Lenz's law, and dropping it removes the statement that the induced current opposes the change and so removes the energy-conservation content of the law. The magnitude Blv is unaffected, which is why the book's final answer still agrees. The question asks for an expression, not for a neat labelled diagram, so the figure step carries 0 marks and no mark note. The figure is drawn for an outline-only renderer with no fills and no occlusion: the field into the page is a grid of ⊗ glyphs, never a shaded box."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electromagnetic Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "Figure: rod sliding on rails",
+        "marks": 0,
+        "margin_note": "Draw the two rails joined at one end, the rod PQ across them, and the field into the page as ⊗ marks. Mark l, x and v.",
+        "why": "Every symbol in the derivation is read off this one picture: l is the rail separation, x is the distance of the rod from the closed end, and the ⊗ marks show that the field is into the page, perpendicular to the plane of the loop.",
+        "common_mistakes": [
+          "Drawing the field in the plane of the loop. The ⊗ marks mean it goes into the page, at right angles to the plane the rod moves in.",
+          "Leaving out x. Without it there is nothing to differentiate in the next step."
+        ],
+        "figure": {
+          "id": "rod_on_rails",
+          "width": 470,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "rail_top_and_end",
+              "d": "M 400 90 L 92 90 L 92 230",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "rail_bottom",
+              "d": "M 92 230 L 400 230",
+              "ms": 4400
+            },
+            {
+              "type": "stroke",
+              "id": "rod_pq",
+              "d": "M 300 64 L 300 256",
+              "ms": 2740
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 294,
+              "y": 56,
+              "text": "P",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 294,
+              "y": 278,
+              "text": "Q",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_l",
+              "x": 70,
+              "y": 166,
+              "text": "l",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "fld_1",
+              "x": 118,
+              "y": 128,
+              "text": "⊗    ⊗    ⊗    ⊗",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fld_2",
+              "x": 326,
+              "y": 128,
+              "text": "⊗    ⊗",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fld_3",
+              "x": 118,
+              "y": 202,
+              "text": "⊗    ⊗    ⊗    ⊗",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fld_4",
+              "x": 326,
+              "y": 202,
+              "text": "⊗    ⊗    B",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "v_line",
+              "d": "M 314 160 L 378 160",
+              "ms": 910
+            },
+            {
+              "type": "stroke",
+              "id": "v_head",
+              "d": "M 368 152 L 378 160 L 368 168",
+              "ms": 370
+            },
+            {
+              "type": "label",
+              "id": "lbl_v",
+              "x": 384,
+              "y": 150,
+              "text": "v",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "x_dim",
+              "d": "M 94 248 L 298 248",
+              "ms": 2910,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 190,
+              "y": 270,
+              "text": "x",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure is drawn of a rod PQ on two rails joined at one end, in a field into the page, with l, x and v marked.",
+          "accept": [
+            "draw the rod on the rails",
+            "figure with the field into the page",
+            "mark l x and v"
+          ],
+          "reject": [
+            "B l v"
+          ],
+          "heard_as": [
+            "rails",
+            "rod",
+            "figure"
+          ]
+        },
+        "memory_tip": "Two rails, one sliding rod, crosses everywhere: that picture holds every symbol you need."
+      },
+      {
+        "id": "s2_setup",
+        "kind": "text",
+        "label": "Setup and the symbols",
+        "marks": 1,
+        "mark_note": "Rails, rod PQ, field B and speed v declared",
+        "lines": [
+          "Two long parallel rails are joined at one end.",
+          "A straight conductor PQ rests across them and",
+          "can slide along them. The rails are a distance",
+          "l apart, so the length of the rod between them",
+          "is l.",
+          "A uniform magnetic field B acts into the page,",
+          "perpendicular to the plane of the loop.",
+          "The rod is moved to the right with a constant",
+          "speed v. Let x be its distance from the closed",
+          "end."
+        ],
+        "margin_note": "First mark. Declare l, x, v and B once, before any formula uses them.",
+        "why": "The field must be perpendicular to the plane the rod moves in, because only then does the whole of B count in the flux and the area change alone drives the emf.",
+        "common_mistakes": [
+          "Not saying that the rod, the rails and the closed end form a complete loop. Without a loop there is no enclosed area and no flux to change."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a rod PQ of length l slides on rails at speed v, in a uniform field B perpendicular to the plane of the loop, at a distance x from the closed end.",
+          "accept": [
+            "rod of length l on two rails",
+            "field perpendicular to the plane",
+            "distance x from the closed end"
+          ],
+          "reject": [
+            "flux is B l x"
+          ],
+          "heard_as": [
+            "rod",
+            "rails",
+            "perpendicular"
+          ]
+        },
+        "memory_tip": "Four symbols before any formula: l across, x along, v to the right, B into the page."
+      },
+      {
+        "id": "s3_flux",
+        "kind": "equation",
+        "label": "Flux through the loop",
+        "marks": 1,
+        "mark_note": "Φ = BA = Blx",
+        "lines": [
+          {
+            "text": "The rod, the two rails and the closed end form",
+            "style": "normal"
+          },
+          {
+            "text": "a loop. Its area is",
+            "style": "normal"
+          },
+          {
+            "text": "A = lx",
+            "style": "eq"
+          },
+          {
+            "text": "B is perpendicular to the plane of the loop,",
+            "style": "normal"
+          },
+          {
+            "text": "so the magnetic flux through it is",
+            "style": "normal"
+          },
+          {
+            "text": "Φ = BA = Blx",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Write the area as lx first — that is the only quantity in the flux that changes.",
+        "why": "B and l are fixed, so the flux depends on x alone. Writing Φ = Blx makes the next step a single differentiation instead of a product rule.",
+        "common_mistakes": [
+          "Writing Φ = BA cos θ with θ left in. Here B is along the normal to the loop, so cos θ = 1 and the flux is simply BA."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the loop area is lx and the flux through it is Φ = Blx.",
+          "accept": [
+            "area is l x",
+            "flux is B l x",
+            "phi equals B A"
+          ],
+          "reject": [
+            "epsilon equals B l v"
+          ],
+          "heard_as": [
+            "flux",
+            "area",
+            "phi"
+          ]
+        },
+        "memory_tip": "Area lx, flux Blx — only x moves."
+      },
+      {
+        "id": "s4_faraday",
+        "kind": "equation",
+        "label": "Faraday's law applied",
+        "marks": 1,
+        "mark_note": "ε = −dΦ/dt, with the minus sign kept",
+        "lines": [
+          {
+            "text": "As the rod moves, x increases, so the flux",
+            "style": "normal"
+          },
+          {
+            "text": "changes. By Faraday's law the induced emf is",
+            "style": "normal"
+          },
+          {
+            "text": "ε = −dΦ/dt = −d(Blx)/dt",
+            "style": "eq"
+          },
+          {
+            "text": "B and l are constants, so only x changes:",
+            "style": "normal"
+          },
+          {
+            "text": "ε = −Bl (dx/dt)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Keep the minus sign. It is Lenz's law written into the equation.",
+        "why": "The minus sign says the induced current opposes the change of flux that produced it, which is conservation of energy: work must be done to move the rod. The book prints this line as ε = dΦ/dt with the sign dropped; the magnitude is unchanged, but the physics of direction is lost, so this card keeps it.",
+        "common_mistakes": [
+          "Dropping the minus sign. It carries Lenz's law, and an examiner reading for the law will look for it.",
+          "Differentiating B and l as well. Only x depends on time here."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Faraday's law gives ε = −dΦ/dt, and with B and l constant this becomes −Bl times dx/dt.",
+          "accept": [
+            "epsilon equals minus d phi by d t",
+            "only x changes with time",
+            "minus B l d x by d t"
+          ],
+          "reject": [
+            "epsilon equals B l v"
+          ],
+          "heard_as": [
+            "faraday",
+            "d phi by d t",
+            "minus sign"
+          ]
+        },
+        "memory_tip": "The minus sign is Lenz's law. Write it, then say what it means."
+      },
+      {
+        "id": "s5_result",
+        "kind": "boxed_final",
+        "label": "The result: motional emf",
+        "marks": 1,
+        "mark_note": "ε = Blv, named as motional emf",
+        "lines": [
+          "The rod moves with speed v, so dx/dt = v and",
+          {
+            "text": "ε = −Blv",
+            "style": "eq"
+          },
+          "The magnitude of the emf induced across the",
+          "conductor is therefore",
+          {
+            "text": "|ε| = Blv",
+            "style": "boxed"
+          },
+          "This is called motional emf. The minus sign",
+          "gives its direction: the induced current",
+          "opposes the change of flux."
+        ],
+        "margin_note": "Fourth mark. Box Blv, then say the words motional emf — both are read for.",
+        "why": "The result says the emf grows with the field, with the length of the rod and with its speed, because each of the three makes the flux change faster. It is the working equation behind every generator.",
+        "common_mistakes": [
+          "Boxing Blv but never naming it. The question is a book question and the words motional emf are part of the answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dx/dt = v gives ε = Blv in magnitude, and that this is called motional emf.",
+          "accept": [
+            "epsilon equals B l v",
+            "motional emf",
+            "d x by d t is v"
+          ],
+          "reject": [
+            "flux is B l x"
+          ],
+          "heard_as": [
+            "B l v",
+            "motional",
+            "emf"
+          ]
+        },
+        "memory_tip": "Field, length, speed — multiply the three and you have the emf."
+      }
+    ]
+  },
+  "insider_note": "The figure carries no mark here, but the flux line is unwritable without it; students who skip the picture usually also skip the area lx."
+}

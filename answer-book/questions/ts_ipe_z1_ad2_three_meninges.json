@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_three_meninges",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the three meninges. In which group of animals do you find all of them?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The three meninges",
+      "marks": 1
+    },
+    {
+      "label": "The group",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.56, VSAQ 123). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The three meninges",
+        "marks": 1,
+        "mark_note": "Names",
+        "margin_note": "Three names with outer, middle and inner marked. That is the first mark.",
+        "lines": [
+          "Meninges are the membranes that cover the brain",
+          "and the spinal cord.",
+          "The three meninges, from outside inwards, are:",
+          "1) Duramater (outer)",
+          "2) Arachnoid (middle)",
+          "3) Piamater (inner)"
+        ],
+        "why": "The three names are always asked in order from outside inwards, so writing the order into the answer protects the mark even if one name is misspelt.",
+        "common_mistakes": [
+          "Naming only duramater and piamater. The arachnoid is the middle one and completes the three.",
+          "Reversing the order. Duramater is the outermost and piamater the innermost."
+        ],
+        "memory_tip": "Hard outside, cobweb in the middle, soft inside: dura, arachnoid, pia."
+      },
+      {
+        "id": "s2_group",
+        "kind": "boxed_final",
+        "label": "The group",
+        "marks": 1,
+        "mark_note": "Group",
+        "margin_note": "One word answers the second half. The amphibian contrast is a short bonus line.",
+        "lines": [
+          {
+            "text": "All three meninges are found in mammals",
+            "style": "boxed"
+          },
+          "All three meninges are found in mammals.",
+          "In amphibians there are only two, the",
+          "piamater and the duramater."
+        ],
+        "why": "The second half of the question is a single word answer, and the amphibian line is the contrast that shows the answer was not a guess.",
+        "common_mistakes": [
+          "Answering vertebrates. Not all vertebrates have three; the answer is mammals.",
+          "Writing that amphibians have three. Amphibians have two."
+        ],
+        "memory_tip": "Three membranes for the group with the biggest brain: mammals."
+      }
+    ]
+  },
+  "insider_note": "Two halves, one mark each — the group is a single word, so an answer with three perfect names and no group still loses half the paper's credit."
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_doppler_effect_illustrative",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is 'Doppler effect'? Give illustrative examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Approaching train example",
+      "marks": 1
+    },
+    {
+      "label": "Apparent frequency, approaching",
+      "marks": 1
+    },
+    {
+      "label": "Receding train and its frequency",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: for a source moving toward a stationary observer n′ = n·V/(V − Vₛ) > n, and moving away n′ = n·V/(V + Vₛ) < n — the same formulas the book derives in the Long Answer section. The book's example spellings ('peroson') are corrected."
+  },
+  "recall_prompt": "Say the definition of the Doppler effect, then the two train examples with the apparent-frequency formula for each.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Waves · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Apparent change due to relative motion",
+        "lines": [
+          "The apparent change in the frequency of",
+          "sound heard by an observer, due to",
+          "relative motion between the source and",
+          "the observer, is called the Doppler",
+          "effect."
+        ],
+        "margin_note": "First mark. Apparent change and relative motion are the two phrases the examiner checks.",
+        "why": "The source's own frequency never changes — only what the observer hears. Naming the cause as RELATIVE motion covers both cases: a moving source and a moving observer.",
+        "common_mistakes": [
+          "Dropping the word apparent — the emitted frequency is constant.",
+          "Writing motion of the source only — the effect also appears when the observer moves."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Doppler effect is the apparent change in heard frequency caused by relative motion between source and observer.",
+          "accept": [
+            "apparent change in frequency",
+            "relative motion between source and observer",
+            "the heard frequency changes, not the emitted one"
+          ],
+          "reject": [
+            "the approaching train sounds higher"
+          ],
+          "heard_as": [
+            "Doppler",
+            "apparent",
+            "relative motion"
+          ]
+        },
+        "memory_tip": "Apparent + relative: the frequency only seems to change, and either party may be the one moving."
+      },
+      {
+        "id": "s2_approaching",
+        "kind": "text",
+        "label": "Example — approaching train",
+        "marks": 1,
+        "mark_note": "Heard frequency increases",
+        "lines": [
+          "Example 1: When a whistling train",
+          "approaches a station, a person standing",
+          "on the platform hears the frequency of",
+          "the whistle increase, because the train",
+          "is in relative motion toward the",
+          "observer."
+        ],
+        "margin_note": "Second mark. The first illustration: source approaching, frequency appears higher.",
+        "why": "As the source closes in, each successive sound crest is emitted from a nearer point, so the crests reach the ear more closely spaced — more per second, a higher heard frequency.",
+        "common_mistakes": [
+          "Saying the whistle becomes louder — the effect changes the frequency (pitch), not the loudness."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the whistle of an approaching train appears higher in frequency to a person on the platform.",
+          "accept": [
+            "approaching train sounds higher",
+            "frequency appears to increase",
+            "the crests arrive more closely spaced"
+          ],
+          "reject": [
+            "moving away it sounds lower"
+          ],
+          "heard_as": [
+            "train",
+            "approaching",
+            "increase"
+          ]
+        },
+        "memory_tip": "Closing in packs the crests together — more arrive each second."
+      },
+      {
+        "id": "s3_formula_approach",
+        "kind": "equation",
+        "label": "Apparent frequency, approaching",
+        "marks": 1,
+        "mark_note": "n′ = n[V/(V − Vₛ)]",
+        "lines": [
+          "For a source moving toward a stationary",
+          "observer with velocity Vₛ (V = speed of",
+          "sound, n = actual frequency):",
+          {
+            "text": "n′ = n[V/(V − Vₛ)] , n′ > n",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Minus sign in the denominator for approach — the fraction exceeds 1.",
+        "why": "The denominator V − Vₛ is smaller than V, so the fraction is greater than 1 and n′ comes out above n — the formula agrees with the example it describes, which is the quickest sanity check in the exam.",
+        "common_mistakes": [
+          "Using the plus sign for approach — V + Vₛ gives n′ < n, the receding case.",
+          "Putting Vₛ in the numerator — the source's motion changes the wavelength, which sits in the denominator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for an approaching source n′ = nV/(V − Vₛ), which is greater than n.",
+          "accept": [
+            "n prime is n V by V minus V s",
+            "minus in the denominator for approach",
+            "n prime is greater than n"
+          ],
+          "reject": [
+            "V plus V s in the denominator"
+          ],
+          "heard_as": [
+            "V minus V s",
+            "n prime",
+            "denominator"
+          ]
+        },
+        "memory_tip": "Approach shrinks the denominator, so the frequency grows — the sign always matches the story."
+      },
+      {
+        "id": "s4_receding",
+        "kind": "boxed_final",
+        "label": "Example — receding train",
+        "marks": 1,
+        "mark_note": "n′ = n[V/(V + Vₛ)]",
+        "lines": [
+          "Example 2: When the whistling train",
+          "moves away from the station, the person",
+          "on the platform hears the frequency of",
+          "the whistle decrease.",
+          {
+            "text": "n′ = n[V/(V + Vₛ)] , n′ < n",
+            "style": "eq"
+          },
+          {
+            "text": "Approaching: n′ > n · Receding: n′ < n",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The mirror case: plus sign, fraction below 1, frequency lower.",
+        "why": "Moving away stretches the spacing between crests, so fewer reach the ear each second; the plus sign in the denominator makes the fraction less than 1, matching the lower heard frequency.",
+        "common_mistakes": [
+          "Writing the same formula for both cases — the two differ only in the sign of Vₛ, and the sign IS the physics."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a receding source the heard frequency falls, n′ = nV/(V + Vₛ) < n.",
+          "accept": [
+            "moving away it sounds lower",
+            "n prime is n V by V plus V s",
+            "plus in the denominator for receding"
+          ],
+          "reject": [
+            "minus in the denominator"
+          ],
+          "heard_as": [
+            "receding",
+            "V plus V s",
+            "decrease"
+          ]
+        },
+        "memory_tip": "Away stretches the crest spacing — plus in the denominator, lower pitch."
+      }
+    ]
+  },
+  "insider_note": "The two formulas differ only in one sign, and that sign is where the marks move — check each against its own story: approach must give n′ > n."
+}

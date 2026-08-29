@@ -1,0 +1,421 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_nand_and_nor_gates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define NAND & NOR gates. Give their truth table.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "NAND gate defined",
+      "marks": 1
+    },
+    {
+      "label": "Truth table of the NAND gate",
+      "marks": 1
+    },
+    {
+      "label": "NOR gate defined",
+      "marks": 1
+    },
+    {
+      "label": "Truth table of the NOR gate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two symbol figures carry 0 marks because the question does not ask for a diagram; they are drawn because a gate is recognised by its symbol. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. PRINTED ERRORS CORRECTED (book p.56): under the NOR gate the book reprints the caption 'Combination of AND Gate with NOT Gate' from the NAND page, and labels the NOR symbol's output 'Y = A.B' with a bar. Both belong to the NAND gate. A NOR gate is an OR gate followed by a NOT gate and its output is the complement of A + B. The book's NOR truth table itself is correct (1, 0, 0, 0). Truth tables hand-checked row by row against both definitions. Overbars are authored as KaTeX because Unicode does not encode them honestly."
+  },
+  "recall_prompt": "Define the NAND gate and give its four rows, then do the same for the NOR gate.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Semiconductor Electronics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nand_definition",
+        "kind": "text",
+        "label": "NAND gate",
+        "marks": 1,
+        "mark_note": "AND followed by NOT",
+        "lines": [
+          {
+            "text": "NAND gate:",
+            "style": "heading"
+          },
+          "A NAND gate is an AND gate followed by a",
+          "NOT gate. It has two input terminals and",
+          "one output terminal.",
+          "Its output is 0 only when both inputs",
+          "are 1.",
+          {
+            "text": "Y = \\overline{A \\cdot B}",
+            "style": "eq",
+            "render": "katex"
+          }
+        ],
+        "margin_note": "First mark. 'AND gate plus NOT gate' and the output expression with the bar.",
+        "why": "Every property of the gate follows from the words AND followed by NOT: the expression carries a bar over A · B, the symbol is the AND shape with a bubble, and the output column is the AND column inverted.",
+        "common_mistakes": [
+          "Writing Y = A · B without the bar. That is the AND gate.",
+          "Calling it an OR gate followed by NOT. That is the NOR gate."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a NAND gate is an AND gate followed by a NOT gate, with output the complement of A · B.",
+          "accept": [
+            "AND gate followed by a NOT gate",
+            "Y equals bar of A dot B",
+            "output is zero only when both inputs are one"
+          ],
+          "reject": [
+            "OR gate followed by a NOT gate"
+          ],
+          "heard_as": [
+            "nand",
+            "and plus not",
+            "A dot B bar"
+          ]
+        },
+        "memory_tip": "N-AND: read the name backwards — AND first, then the N for NOT."
+      },
+      {
+        "id": "s2_nand_symbol",
+        "kind": "diagram",
+        "label": "NAND symbol",
+        "marks": 0,
+        "figure": {
+          "id": "nand_symbol",
+          "width": 260,
+          "height": 170,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "nand_body",
+              "d": "M 70 50 L 118 50 A 32 32 0 0 1 118 114 L 70 114 Z",
+              "ms": 3720
+            },
+            {
+              "type": "stroke",
+              "id": "nand_bubble",
+              "d": "M 150 82 A 7 7 0 0 1 164 82 A 7 7 0 0 1 150 82",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "nand_in_a",
+              "d": "M 34 64 L 70 64",
+              "ms": 510
+            },
+            {
+              "type": "stroke",
+              "id": "nand_in_b",
+              "d": "M 34 100 L 70 100",
+              "ms": 510
+            },
+            {
+              "type": "stroke",
+              "id": "nand_out",
+              "d": "M 164 82 L 220 82",
+              "ms": 800
+            },
+            {
+              "type": "label",
+              "id": "nand_lbl_a",
+              "x": 12,
+              "y": 72,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "nand_lbl_b",
+              "x": 12,
+              "y": 108,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "nand_lbl_y",
+              "x": 228,
+              "y": 90,
+              "text": "Y",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The AND shape — flat back, round nose — with a small circle on the output. The circle is the NOT part.",
+        "why": "The small circle at the output is the whole difference between the AND symbol and the NAND symbol, so a student who draws the shape but forgets the circle has drawn the wrong gate.",
+        "common_mistakes": [
+          "Leaving out the small circle at the output. Without it the drawing is an AND gate.",
+          "Drawing a curved back. The AND shape has a straight back; the curved back belongs to OR."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the NAND symbol is the AND shape with a small circle on the output.",
+          "accept": [
+            "AND shape with a bubble",
+            "D shape with a circle at the output",
+            "draw the AND symbol and add the small circle"
+          ],
+          "reject": [
+            "curved back with a pointed nose"
+          ],
+          "heard_as": [
+            "symbol",
+            "bubble",
+            "circle"
+          ]
+        },
+        "memory_tip": "The bubble means NOT. AND shape plus bubble is NAND."
+      },
+      {
+        "id": "s3_nand_truth_table",
+        "kind": "text",
+        "label": "NAND truth table",
+        "marks": 1,
+        "mark_note": "All four rows",
+        "lines": [
+          {
+            "text": "Truth table of NAND gate:",
+            "style": "heading"
+          },
+          "A = 0, B = 0 → Y = 1",
+          "A = 1, B = 0 → Y = 1",
+          "A = 0, B = 1 → Y = 1",
+          "A = 1, B = 1 → Y = 0"
+        ],
+        "margin_note": "Second mark. Only the last row gives 0.",
+        "why": "Take the AND column 0, 0, 0, 1 and invert every entry. That is faster than working out four rows separately, and it cannot go wrong if the definition is remembered.",
+        "common_mistakes": [
+          "Writing the AND column 0, 0, 0, 1 by mistake.",
+          "Missing a row. All four input pairs must appear."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the NAND output is 1, 1, 1, 0 for the four input pairs.",
+          "accept": [
+            "one one one zero",
+            "zero only when both inputs are one",
+            "high for the first three rows"
+          ],
+          "reject": [
+            "one zero zero zero"
+          ],
+          "heard_as": [
+            "truth table",
+            "one one one zero"
+          ]
+        },
+        "memory_tip": "Three ones then a zero."
+      },
+      {
+        "id": "s4_nor_definition",
+        "kind": "text",
+        "label": "NOR gate",
+        "marks": 1,
+        "mark_note": "OR followed by NOT",
+        "lines": [
+          {
+            "text": "NOR gate:",
+            "style": "heading"
+          },
+          "A NOR gate is an OR gate followed by a",
+          "NOT gate. It has two input terminals and",
+          "one output terminal.",
+          "Its output is 1 only when both inputs",
+          "are 0.",
+          {
+            "text": "Y = \\overline{A + B}",
+            "style": "eq",
+            "render": "katex"
+          }
+        ],
+        "margin_note": "Third mark. OR plus NOT, and the bar goes over A + B, not over A · B.",
+        "why": "The book's page 56 repeats the NAND caption and the NAND expression under the NOR gate. Reading the name — NOR is NOT-OR — gives the correct expression every time and catches that misprint.",
+        "common_mistakes": [
+          "Writing the output with a bar over A · B. That is the NAND expression; the book prints it here by mistake.",
+          "Calling it an AND gate followed by NOT, which is what the book's caption says here."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a NOR gate is an OR gate followed by a NOT gate, with output the complement of A + B.",
+          "accept": [
+            "OR gate followed by a NOT gate",
+            "Y equals bar of A plus B",
+            "output is one only when both inputs are zero"
+          ],
+          "reject": [
+            "AND gate followed by a NOT gate"
+          ],
+          "heard_as": [
+            "nor",
+            "or plus not",
+            "A plus B bar"
+          ]
+        },
+        "memory_tip": "N-OR: OR first, then the N for NOT."
+      },
+      {
+        "id": "s5_nor_symbol",
+        "kind": "diagram",
+        "label": "NOR symbol",
+        "marks": 0,
+        "figure": {
+          "id": "nor_symbol",
+          "width": 280,
+          "height": 170,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "nor_back",
+              "d": "M 62 50 Q 84 82 62 114",
+              "ms": 980
+            },
+            {
+              "type": "stroke",
+              "id": "nor_top",
+              "d": "M 62 50 Q 122 50 158 82",
+              "ms": 1480
+            },
+            {
+              "type": "stroke",
+              "id": "nor_bottom",
+              "d": "M 62 114 Q 122 114 158 82",
+              "ms": 1480
+            },
+            {
+              "type": "stroke",
+              "id": "nor_bubble",
+              "d": "M 158 82 A 7 7 0 0 1 172 82 A 7 7 0 0 1 158 82",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "nor_in_a",
+              "d": "M 34 63 L 69 63",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "nor_in_b",
+              "d": "M 34 101 L 69 101",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "nor_out",
+              "d": "M 172 82 L 228 82",
+              "ms": 800
+            },
+            {
+              "type": "label",
+              "id": "nor_lbl_a",
+              "x": 12,
+              "y": 71,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "nor_lbl_b",
+              "x": 12,
+              "y": 109,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "nor_lbl_y",
+              "x": 236,
+              "y": 90,
+              "text": "Y",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The OR shape — curved back, pointed nose — with a small circle on the output.",
+        "why": "The two symbols differ only in the back and the nose: the AND shape has a straight back and a round nose, the OR shape a curved back and a pointed nose. Both take the same small circle for NOT.",
+        "common_mistakes": [
+          "Drawing the AND shape with a bubble. That is NAND, not NOR.",
+          "Leaving out the small circle at the output. Without it the drawing is an OR gate."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the NOR symbol is the OR shape with a small circle on the output.",
+          "accept": [
+            "OR shape with a bubble",
+            "curved back and pointed nose with a circle",
+            "draw the OR symbol and add the small circle"
+          ],
+          "reject": [
+            "flat back with a round nose"
+          ],
+          "heard_as": [
+            "symbol",
+            "bubble",
+            "or shape"
+          ]
+        },
+        "memory_tip": "Curved back = OR. Add the bubble and it is NOR."
+      },
+      {
+        "id": "s6_nor_truth_table",
+        "kind": "text",
+        "label": "NOR truth table",
+        "marks": 1,
+        "mark_note": "All four rows",
+        "lines": [
+          {
+            "text": "Truth table of NOR gate:",
+            "style": "heading"
+          },
+          "A = 0, B = 0 → Y = 1",
+          "A = 1, B = 0 → Y = 0",
+          "A = 0, B = 1 → Y = 0",
+          "A = 1, B = 1 → Y = 0"
+        ],
+        "margin_note": "Fourth mark. Only the first row gives 1.",
+        "why": "Take the OR column 0, 1, 1, 1 and invert every entry. The NOR column is the exact opposite of the NAND column, which is a useful check: three zeros here against three ones there.",
+        "common_mistakes": [
+          "Copying the NAND column 1, 1, 1, 0. The NOR column is 1, 0, 0, 0.",
+          "Writing the OR column 0, 1, 1, 1 without inverting it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the NOR output is 1, 0, 0, 0 for the four input pairs.",
+          "accept": [
+            "one zero zero zero",
+            "one only when both inputs are zero",
+            "high only for the first row"
+          ],
+          "reject": [
+            "one one one zero"
+          ],
+          "heard_as": [
+            "truth table",
+            "one zero zero zero"
+          ]
+        },
+        "memory_tip": "One one then three zeros — the mirror image of the NAND column."
+      }
+    ]
+  },
+  "insider_note": "Watch the book here: on page 56 it repeats the NAND caption and the NAND expression under the NOR gate. NOR is OR followed by NOT, and its output is the complement of A + B."
+}

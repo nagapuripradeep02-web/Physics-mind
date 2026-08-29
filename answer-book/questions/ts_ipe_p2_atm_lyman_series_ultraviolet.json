@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_lyman_series_ultraviolet",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The Lyman series of hydrogen spectrum lies in the ultraviolet region. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The transitions end on n₁ = 1",
+      "marks": 1
+    },
+    {
+      "label": "The wavelengths 912 Å to 1216 Å are ultraviolet",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The book prints \"lyman\" in lower case; the name is capitalised here and the angstrom is written Å rather than the book's \"A°\". Physics hand-checked with 1/λ = R(1/n₁² − 1/n₂²), R = 1.097 × 10⁷ m⁻¹: n₂ = 2 → n₁ = 1 gives λ = 1216 Å (the longest line) and n₂ = ∞ → n₁ = 1 gives λ = 912 Å (the series limit). Both are shorter than 4000 Å, the short-wavelength end of the visible band, so the whole series is ultraviolet."
+  },
+  "recall_prompt": "Say which level the Lyman transitions end on, and the two wavelengths that fix the series in the ultraviolet.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atoms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transitions",
+        "kind": "text",
+        "label": "Transitions end on n₁ = 1",
+        "marks": 1,
+        "mark_note": "Largest energy drop",
+        "lines": [
+          "The Lyman series is emitted when the electron",
+          "moves from an outer orbit to the first orbit",
+          "(n₁ = 1). This is the largest energy drop in",
+          "hydrogen, so the photon energy is the largest",
+          "and the wavelength the shortest."
+        ],
+        "margin_note": "First mark. Name the final level n₁ = 1 and link big energy to short wavelength.",
+        "why": "λ = hc/ΔE. The n = 1 level lies far below all the others, so every Lyman transition releases a large ΔE and therefore a short wavelength.",
+        "common_mistakes": [
+          "Saying the transitions end on n = 2. That is the Balmer series.",
+          "Saying a large energy gives a long wavelength. λ is inversely proportional to ΔE."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Lyman transitions end on n₁ = 1, the largest energy drop, so the wavelength is shortest.",
+          "accept": [
+            "electron comes to the first orbit",
+            "n one equals one",
+            "largest energy difference so shortest wavelength"
+          ],
+          "reject": [
+            "912 angstrom to 1216 angstrom"
+          ],
+          "heard_as": [
+            "Lyman series",
+            "n1 equals 1",
+            "shortest wavelength"
+          ]
+        },
+        "memory_tip": "Lowest final level, biggest drop, shortest wavelength."
+      },
+      {
+        "id": "s2_range",
+        "kind": "boxed_final",
+        "label": "The wavelength range",
+        "marks": 1,
+        "mark_note": "912 Å to 1216 Å",
+        "lines": [
+          "The shortest and longest wavelengths of the",
+          "Lyman series are 912 Å and 1216 Å.",
+          "The visible band starts near 4000 Å, so both",
+          "of these lie well below it.",
+          {
+            "text": "912 Å – 1216 Å: ultraviolet region",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Quote both limits and compare with 4000 Å.",
+        "why": "The two limits bracket the whole series: 1216 Å from n₂ = 2 and 912 Å from n₂ = ∞. Every line between them is shorter than 4000 Å, which is what makes the series ultraviolet.",
+        "common_mistakes": [
+          "Calling this the visible region. The visible band is 4000 Å to 7000 Å.",
+          "Quoting only one wavelength. Both limits show the whole series is ultraviolet."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series runs from 912 Å to 1216 Å, below the visible band, so it is ultraviolet.",
+          "accept": [
+            "nine one two angstrom to one two one six angstrom",
+            "below four thousand angstrom",
+            "so it is ultraviolet"
+          ],
+          "reject": [
+            "electron comes to the first orbit"
+          ],
+          "heard_as": [
+            "912 A",
+            "1216 A",
+            "ultraviolet"
+          ]
+        },
+        "memory_tip": "912 and 1216 — both are far short of the 4000 Å where visible light begins."
+      }
+    ]
+  },
+  "insider_note": "The reason earns the first mark and the two numbers earn the second — 912 Å and 1216 Å are the ones to quote."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_clone_asexual_offspring",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why do we refer to the offspring, formed by asexual method of reproduction, a clone?",
+  "appearances": [
+    { "year": 2017, "board": "ts_ipe" },
+    { "year": 2019, "board": "ap_ipe" },
+    { "year": 2020, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "One parent, no gametes", "marks": 1 },
+    { "label": "Why they are clones", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, Star Questions Plus, VSAQ under the LOCOMOTION heading (book p.63, question 175). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [AP Mar-19,20] and [TS Mar-17]. TEXT BEYOND THE BOOK: the book gives the term, the phrase 'uniparental inheritance' and the conclusion, but does not say WHY there is no variation. The line naming mitosis as the division that copies the parent's DNA exactly is added here, because that is the reason the question asks for. CROSS-BANK: the botany card ts_ipe_b1_mr_asexual_vs_sexual covers clones from the plant side; both books ask it, so both are authored."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Locomotion and Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_parent",
+        "kind": "text",
+        "label": "One parent, no gametes",
+        "marks": 1,
+        "mark_note": "One parent",
+        "lines": [
+          "Asexual reproduction needs only one parent.",
+          "There are no gametes and there is no",
+          "fertilisation.",
+          "The new individuals are produced by mitosis,",
+          "which copies the parent's DNA exactly.",
+          "This is called uniparental inheritance."
+        ],
+        "why": "A new gene combination can only come from two gametes fusing; with one parent and mitosis there is no place for that combination to be made, so the reason has to start there.",
+        "common_mistakes": [
+          "Writing that asexual offspring are 'similar' to the parent. They are IDENTICAL.",
+          "Writing meiosis. Asexual reproduction uses mitosis."
+        ],
+        "memory_tip": "One parent, no gametes, mitosis: three reasons there is nothing new to inherit.",
+        "margin_note": "Start with one parent and mitosis. That is the reason the question asks for."
+      },
+      {
+        "id": "s2_clone",
+        "kind": "boxed_final",
+        "label": "Why they are clones",
+        "marks": 1,
+        "mark_note": "Clone",
+        "lines": [
+          "So the offspring show no genetic variation.",
+          "They are morphologically and genetically",
+          "identical to the parent and to one another.",
+          "A group of such identical individuals is",
+          "called a clone.",
+          "Many lower organisms, such as Amoeba and",
+          "Paramecium, multiply in this way.",
+          {
+            "text": "Clone = identical offspring of one parent",
+            "style": "boxed"
+          }
+        ],
+        "why": "The word clone is a claim about sameness in two ways at once — in appearance and in genes — so both words are written, and the examples show where it actually happens.",
+        "common_mistakes": [
+          "Writing that a clone means one offspring. A clone is the whole group of identical individuals.",
+          "Writing that clones show slight variation. Any variation would come from mutation, not from the method."
+        ],
+        "memory_tip": "No gamete fusion means no new combination, so every offspring is a copy: that group is the clone.",
+        "margin_note": "Use both words, morphologically and genetically identical, then name the term."
+      }
+    ]
+  },
+  "insider_note": "The question asks WHY, so the answer must give the reason — one parent and mitosis — before the word clone; defining clone alone is usually one mark."
+}

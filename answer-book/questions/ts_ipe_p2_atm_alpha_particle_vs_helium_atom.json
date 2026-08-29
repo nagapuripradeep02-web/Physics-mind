@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_alpha_particle_vs_helium_atom",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the difference between α-particle and helium atom?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The α-particle carries +2e",
+      "marks": 1
+    },
+    {
+      "label": "The helium atom is neutral",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: an α-particle is a helium nucleus — 2 protons and 2 neutrons, charge +2e, no electrons; a helium atom is that same nucleus with 2 electrons around it, so the charges cancel and the atom is neutral."
+  },
+  "recall_prompt": "Say what an α-particle is made of and what its charge is, then say how a helium atom differs.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atoms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_alpha",
+        "kind": "text",
+        "label": "The α-particle",
+        "marks": 1,
+        "mark_note": "Helium nucleus, +2e",
+        "lines": [
+          "An α-particle is the nucleus of a helium atom.",
+          "It has 2 protons and 2 neutrons and no",
+          "electrons, so its charge is +2e.",
+          "It is emitted in radioactive decay."
+        ],
+        "margin_note": "First mark. Say helium NUCLEUS and give the charge +2e.",
+        "why": "The α-particle is not a small helium atom — it is the bare nucleus. Naming the two protons fixes the charge at +2e.",
+        "common_mistakes": [
+          "Writing the charge as +e. Two protons give +2e.",
+          "Saying the α-particle has electrons. It has none."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an α-particle is a helium nucleus with charge +2e and no electrons.",
+          "accept": [
+            "it is a helium nucleus",
+            "charge is plus two e",
+            "two protons and two neutrons, no electrons"
+          ],
+          "reject": [
+            "the atom is neutral"
+          ],
+          "heard_as": [
+            "alpha particle",
+            "plus 2 e",
+            "helium nucleus"
+          ]
+        },
+        "memory_tip": "Strip both electrons off helium and what is left is the α-particle."
+      },
+      {
+        "id": "s2_helium",
+        "kind": "boxed_final",
+        "label": "The helium atom",
+        "marks": 1,
+        "mark_note": "Neutral atom",
+        "lines": [
+          "A helium atom is the same nucleus with 2",
+          "electrons around it. The +2e of the nucleus and",
+          "the −2e of the electrons cancel, so the atom is",
+          "electrically neutral.",
+          {
+            "text": "α-particle: +2e · helium atom: neutral",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The atom has its 2 electrons, so it carries no net charge.",
+        "why": "The whole difference is the two electrons: with them the atom is neutral, without them the same nucleus is a charged α-particle.",
+        "common_mistakes": [
+          "Saying the helium atom has a different nucleus. The nucleus is the same.",
+          "Leaving out the reason. The mark is for the cancelling charges."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a helium atom is that nucleus plus 2 electrons, so it is neutral.",
+          "accept": [
+            "it has two electrons",
+            "the atom is neutral",
+            "the charges cancel"
+          ],
+          "reject": [
+            "two protons and two neutrons"
+          ],
+          "heard_as": [
+            "helium atom",
+            "neutral",
+            "two electrons"
+          ]
+        },
+        "memory_tip": "Same nucleus, two extra electrons: +2e becomes zero."
+      }
+    ]
+  },
+  "insider_note": "Both halves are needed — the charge +2e on the α-particle, and the reason the helium atom is neutral."
+}

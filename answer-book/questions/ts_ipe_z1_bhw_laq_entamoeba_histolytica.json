@@ -1,0 +1,1163 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_laq_entamoeba_histolytica",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the structure and life cycle of Entamoeba histolytica with the help of neat labelled diagrams.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identity of the parasite",
+      "marks": 1
+    },
+    {
+      "label": "Diagram — the three stages",
+      "marks": 2
+    },
+    {
+      "label": "Trophozoite stage",
+      "marks": 1
+    },
+    {
+      "label": "Precystic and cystic stages",
+      "marks": 1
+    },
+    {
+      "label": "Life cycle diagram",
+      "marks": 1
+    },
+    {
+      "label": "Life cycle",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.10, LAQ 1). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. FIGURE SCOPE: the book prints three shaded stage drawings and an elaborate life-cycle plate with the human digestive tract drawn in the middle. This card draws the simplified exam figures — three stage outlines side by side, and a numbered ring of stages with no host organs drawn."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Biology in Human Welfare · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "text",
+        "label": "Identity of the parasite",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "Entamoeba histolytica: Phylum Protozoa, Class",
+          "Rhizopodea.",
+          "It is a monogenetic histozoic parasite, so it",
+          "completes its life cycle in ONE host and lives",
+          "in the tissues of that host.",
+          "It lives in the large intestine of man and",
+          "causes amoebic dysentery.",
+          "Its structure passes through three stages: the",
+          "trophozoite stage, the precystic stage and the",
+          "cystic stage."
+        ],
+        "why": "The opening fixes the parasite, the host and the count of stages, so the examiner knows the answer will describe three stages and not wander into another parasite.",
+        "common_mistakes": [
+          "Writing that Entamoeba has two hosts. It is monogenetic and needs only man.",
+          "Naming the small intestine. The parasite lives in the large intestine.",
+          "Skipping the three stage names, which are the plan of the whole structure section."
+        ],
+        "memory_tip": "One host, one gut, three stages: trophozoite, precystic, cystic.",
+        "margin_note": "Four short lines. Name the phylum, the class, the host and the three stages."
+      },
+      {
+        "id": "s2_diagram_stages",
+        "kind": "diagram",
+        "label": "Diagram — the three stages",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "bhw_entamoeba_stages",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the trophozoite outline and pseudopodium"
+            },
+            {
+              "type": "stroke",
+              "id": "tro_out_a",
+              "d": "M 179.1 176 L 178.7 178.9 L 178 183.1 L 177 187.7 L 175.5 191.7 L 173.1 195 L 170.1 198 L 166.8 200.9 L 163.6 203.6 L 160.6 206.2 L 157.5 208.7 L 154.3 211.1 L 151 213.2 L 147.5 215.1 L 143.9 216.9 L 140.1 218.5 L 136.3 219.6 L 132.3 220.1 L 128.2 220.2 L 124.1 220.1 L 120 219.9 L 116.1 219.7 L 112.2 219.3 L 108.3 218.8 L 104.2 218.4 L 99.8 218.1 L 95.2 217.9 L 90.6 217.4 L 86.2 216.4 L 81.9 214.8 L 77.6 212.7 L 73.7 210.1 L 70.8 207.1 L 69.2 203.5 L 68.7 199.4 L 68.3 195 L 67.3 190.9 L 65.1 187.2 L 62.3 183.7 L 59.4 180.1 L 56.9 176",
+              "ms": 2410
+            },
+            {
+              "type": "stroke",
+              "id": "tro_out_b",
+              "d": "M 56.9 176 L 54.4 171.3 L 51.9 166.2 L 50 161 L 49.5 156.1 L 50.5 151.1 L 52.6 146 L 55.8 141.4 L 59.8 137.9 L 65.2 136 L 71.9 135.1 L 78.9 134.7 L 85 134.1 L 90 133.1 L 94.5 132.2 L 98.6 131.2 L 102.9 130.2 L 107.2 129 L 111.5 127.6 L 115.7 126.5 L 120 125.9 L 124.5 126 L 129.1 126.4 L 133.5 127.4 L 137.6 129 L 141.1 131.2 L 144.2 134.1 L 147.1 137.3 L 149.7 140.4 L 152 143.3 L 154 146.2 L 155.9 149.1 L 158.1 151.9 L 160.9 154.4 L 164 156.7 L 167.1 159.1 L 170 161.9 L 172.7 165.4 L 175.3 169.6 L 177.6 173.4 L 179.1 176",
+              "ms": 2660
+            },
+            {
+              "type": "stroke",
+              "id": "tro_endo_a",
+              "d": "M 169.7 176 L 169.3 178.4 L 168.8 182 L 167.9 185.8 L 166.6 189.2 L 164.6 191.9 L 162.1 194.5 L 159.3 196.9 L 156.7 199.2 L 154.1 201.4 L 151.5 203.5 L 148.9 205.4 L 146.1 207.2 L 143.1 208.9 L 140.1 210.4 L 136.9 211.7 L 133.7 212.6 L 130.3 213.1 L 126.9 213.2 L 123.4 213 L 120 212.9 L 116.7 212.7 L 113.4 212.3 L 110.2 212 L 106.7 211.6 L 103 211.3 L 99.2 211.2 L 95.3 210.8 L 91.6 210 L 88 208.6 L 84.4 206.8 L 81.1 204.7 L 78.7 202.1 L 77.3 199.1 L 76.9 195.6 L 76.6 192 L 75.7 188.5 L 73.9 185.4 L 71.5 182.5 L 69.1 179.4 L 67 176",
+              "ms": 2020,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "tro_endo_b",
+              "d": "M 67 176 L 64.9 172.1 L 62.8 167.8 L 61.2 163.4 L 60.8 159.2 L 61.6 155.1 L 63.4 150.8 L 66 147 L 69.4 144 L 74 142.4 L 79.6 141.7 L 85.5 141.3 L 90.6 140.8 L 94.8 140 L 98.5 139.2 L 102.1 138.3 L 105.6 137.5 L 109.3 136.5 L 112.8 135.3 L 116.4 134.4 L 120 133.9 L 123.8 134 L 127.6 134.4 L 131.4 135.2 L 134.7 136.5 L 137.7 138.4 L 140.3 140.8 L 142.7 143.5 L 145 146.1 L 146.9 148.5 L 148.5 151 L 150.1 153.4 L 152 155.7 L 154.4 157.8 L 157 159.8 L 159.6 161.8 L 162 164.1 L 164.2 167.1 L 166.4 170.6 L 168.3 173.8 L 169.7 176",
+              "ms": 2230,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — inside it: nucleus and food vacuoles"
+            },
+            {
+              "type": "stroke",
+              "id": "tro_nuc",
+              "d": "M 95 204 A 13 13 0 1 0 121 204 A 13 13 0 1 0 95 204",
+              "ms": 1170,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "tro_kar",
+              "d": "M 104.8 204 A 3.2 3.2 0 1 0 111.2 204 A 3.2 3.2 0 1 0 104.8 204",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "tro_spokes",
+              "d": "M 111.5 204.7 L 119.2 206.3 M 110 207 L 114.3 213.5 M 107.3 207.5 L 105.7 215.2 M 105 206 L 98.5 210.3 M 104.5 203.3 L 96.8 201.7 M 106 201 L 101.7 194.5 M 108.7 200.5 L 110.3 192.8 M 111 202 L 117.5 197.7",
+              "ms": 890,
+              "w": 1.2
+            },
+            {
+              "type": "stroke",
+              "id": "tro_fv1",
+              "d": "M 144 180 A 10 10 0 1 0 164 180 A 10 10 0 1 0 144 180",
+              "ms": 900,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "tro_rbc",
+              "d": "M 148.6 180 A 5.4 5.4 0 1 0 159.4 180 A 5.4 5.4 0 1 0 148.6 180",
+              "ms": 480,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "tro_fv2",
+              "d": "M 94 150 A 8 8 0 1 0 110 150 A 8 8 0 1 0 94 150",
+              "ms": 720,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "tro_bact",
+              "d": "M 98 150 L 106 148",
+              "ms": 300,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "tro_fv3",
+              "d": "M 135.5 210 A 6.5 6.5 0 1 0 148.5 210 A 6.5 6.5 0 1 0 135.5 210",
+              "ms": 580,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "tro_fv4",
+              "d": "M 128 146 A 6 6 0 1 0 140 146 A 6 6 0 1 0 128 146",
+              "ms": 540,
+              "w": 1.5
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the precystic stage: oval with granules"
+            },
+            {
+              "type": "stroke",
+              "id": "pre_out",
+              "d": "M 242 176 A 38 50 0 1 0 318 176 A 38 50 0 1 0 242 176",
+              "ms": 3970
+            },
+            {
+              "type": "stroke",
+              "id": "pre_nuc",
+              "d": "M 270 154 A 10 10 0 1 0 290 154 A 10 10 0 1 0 270 154",
+              "ms": 900,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "pre_kar",
+              "d": "M 277.2 154 A 2.8 2.8 0 1 0 282.8 154 A 2.8 2.8 0 1 0 277.2 154",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "pre_gr0",
+              "d": "M 257 170 A 5 5 0 1 0 267 170 A 5 5 0 1 0 257 170",
+              "ms": 450,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "pre_gr1",
+              "d": "M 293.6 176 A 4.4 4.4 0 1 0 302.4 176 A 4.4 4.4 0 1 0 293.6 176",
+              "ms": 390,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "pre_gr2",
+              "d": "M 261.4 190 A 4.6 4.6 0 1 0 270.6 190 A 4.6 4.6 0 1 0 261.4 190",
+              "ms": 410,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "pre_gr3",
+              "d": "M 292 196 A 4 4 0 1 0 300 196 A 4 4 0 1 0 292 196",
+              "ms": 360,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "pre_bar1",
+              "d": "M 264 206 L 284 202",
+              "ms": 300,
+              "w": 4.2
+            },
+            {
+              "type": "stroke",
+              "id": "pre_bar2",
+              "d": "M 274 216 L 294 212",
+              "ms": 300,
+              "w": 4.2
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the cystic stage: thick wall, four nuclei"
+            },
+            {
+              "type": "stroke",
+              "id": "cys_out",
+              "d": "M 394 176 A 46 46 0 1 0 486 176 A 46 46 0 1 0 394 176",
+              "ms": 4130
+            },
+            {
+              "type": "stroke",
+              "id": "cys_wall",
+              "d": "M 400 176 A 40 40 0 1 0 480 176 A 40 40 0 1 0 400 176",
+              "ms": 3590,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cys_n0",
+              "d": "M 411.5 158 A 8.5 8.5 0 1 0 428.5 158 A 8.5 8.5 0 1 0 411.5 158",
+              "ms": 760,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cys_k0",
+              "d": "M 417.4 158 A 2.6 2.6 0 1 0 422.6 158 A 2.6 2.6 0 1 0 417.4 158",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cys_n1",
+              "d": "M 451.5 158 A 8.5 8.5 0 1 0 468.5 158 A 8.5 8.5 0 1 0 451.5 158",
+              "ms": 760,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cys_k1",
+              "d": "M 457.4 158 A 2.6 2.6 0 1 0 462.6 158 A 2.6 2.6 0 1 0 457.4 158",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cys_n2",
+              "d": "M 411.5 194 A 8.5 8.5 0 1 0 428.5 194 A 8.5 8.5 0 1 0 411.5 194",
+              "ms": 760,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cys_k2",
+              "d": "M 417.4 194 A 2.6 2.6 0 1 0 422.6 194 A 2.6 2.6 0 1 0 417.4 194",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cys_n3",
+              "d": "M 451.5 194 A 8.5 8.5 0 1 0 468.5 194 A 8.5 8.5 0 1 0 451.5 194",
+              "ms": 760,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cys_k3",
+              "d": "M 457.4 194 A 2.6 2.6 0 1 0 462.6 194 A 2.6 2.6 0 1 0 457.4 194",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cys_bar",
+              "d": "M 428 176 L 452 172",
+              "ms": 350,
+              "w": 4.2
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_pseudopodium",
+              "x": 4,
+              "y": 40,
+              "text": "Pseudopodium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pseudopodium",
+              "d": "M 63.4 50 L 62 150",
+              "ms": 1430,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_glycogen",
+              "x": 210,
+              "y": 40,
+              "text": "Glycogen granules",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_glycogen",
+              "d": "M 294.1 50 L 296 152",
+              "ms": 1460,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cystwall",
+              "x": 420,
+              "y": 40,
+              "text": "Cyst wall",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cystwall",
+              "d": "M 464.6 50 L 450 134",
+              "ms": 1220,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_ectoplasm",
+              "x": 4,
+              "y": 84,
+              "text": "Ectoplasm",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ectoplasm",
+              "d": "M 48.6 94 L 76 152",
+              "ms": 920,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_fournuclei",
+              "x": 400,
+              "y": 84,
+              "text": "Four nuclei",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_fournuclei",
+              "d": "M 454.4 94 L 422 156",
+              "ms": 1000,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_endoplasm",
+              "x": 4,
+              "y": 290,
+              "text": "Endoplasm",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_endoplasm",
+              "d": "M 48.6 270 L 74 202",
+              "ms": 1040,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_chromatoid",
+              "x": 215,
+              "y": 290,
+              "text": "Chromatoid bar",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_chromatoid",
+              "d": "M 284.3 270 L 280 214",
+              "ms": 800,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cartwheel",
+              "x": 4,
+              "y": 334,
+              "text": "Cart-wheel nucleus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cartwheel",
+              "d": "M 93.1 314 L 104 216",
+              "ms": 1410,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_vacrbc",
+              "x": 200,
+              "y": 334,
+              "text": "Vacuole with RBC",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vacrbc",
+              "d": "M 279.2 314 L 158 190",
+              "ms": 2480,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_st1",
+              "x": 50,
+              "y": 376,
+              "text": "TROPHOZOITE",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_st2",
+              "x": 222,
+              "y": 376,
+              "text": "PRECYSTIC",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_st3",
+              "x": 401,
+              "y": 376,
+              "text": "CYSTIC",
+              "ms": 450
+            }
+          ]
+        },
+        "why": "The three stages are told apart by their outline before anything else — irregular, oval, round — so drawing them side by side makes the sequence of the structure section visible at a glance.",
+        "common_mistakes": [
+          "Drawing the cyst as an oval. The cyst is ROUND; the precystic stage is the oval one.",
+          "Drawing fewer than four nuclei in the cyst. The mature cyst is tetranucleate.",
+          "Leaving the food vacuole with the red blood cell out of the trophozoite. It is a marked label."
+        ],
+        "memory_tip": "Irregular, oval, round: the outline alone tells you which stage you are drawing.",
+        "margin_note": "Label the pseudopodium, ectoplasm, endoplasm, cart-wheel nucleus, food vacuoles, glycogen granules, chromatoid bars, cyst wall and the four nuclei."
+      },
+      {
+        "id": "s3_trophozoite",
+        "kind": "text",
+        "label": "Trophozoite stage",
+        "marks": 1,
+        "mark_note": "Stage 1",
+        "lines": [
+          "Trophozoite stage: it lives in the mucous and",
+          "submucous layers of the large intestine of man.",
+          "The body is bounded by a plasmalemma and puts",
+          "out a blunt pseudopodium for movement.",
+          "The cytoplasm is divided into an outer non-",
+          "granular ectoplasm and an inner granular",
+          "endoplasm.",
+          "The endoplasm holds ribosomes, food vacuoles",
+          "with bacteria, food vacuoles with red blood",
+          "cells, and a cart-wheel shaped nucleus.",
+          "It secretes the tissue-digesting enzyme",
+          "histolysin.",
+          "It is the most active, motile, feeding and",
+          "disease-causing stage."
+        ],
+        "why": "This is the only stage that feeds and damages the host, so every feature named here is one the other two stages have lost — the pseudopodium, the food vacuoles and the enzyme.",
+        "common_mistakes": [
+          "Writing that the trophozoite is round. It is irregular and puts out a blunt pseudopodium.",
+          "Leaving out histolysin. It is the enzyme that makes the ulcers and it is a marked word.",
+          "Swapping ectoplasm and endoplasm. The outer layer is the non-granular ectoplasm."
+        ],
+        "memory_tip": "The trophozoite is the eating stage: pseudopodium to move, food vacuoles to feed, histolysin to dig in.",
+        "margin_note": "Six short lines. The cart-wheel nucleus and histolysin must both appear."
+      },
+      {
+        "id": "s4_precystic_cystic",
+        "kind": "text",
+        "label": "Precystic and cystic stages",
+        "marks": 1,
+        "mark_note": "Stages 2 and 3",
+        "lines": [
+          "Precystic stage: it is found in the lumen of the",
+          "large intestine. It becomes small and oval.",
+          "Its cytoplasm holds glycogen granules and",
+          "chromatoid bars, which act as reserve food.",
+          "It is the non-feeding, non-motile and non-",
+          "pathogenic stage.",
+          "Cystic stage: it is round in shape and is found",
+          "in the lumen of the large intestine.",
+          "A thin, delicate and highly resistant cyst wall",
+          "is formed around it.",
+          "The nucleus divides twice by mitosis, so four",
+          "nuclei are formed. It is therefore called a",
+          "tetranucleate cyst, and it is the infective",
+          "stage to man."
+        ],
+        "why": "Both stages are resting stages that store food and stop feeding, so they are described together, and the difference between them is only the wall and the four nuclei.",
+        "common_mistakes": [
+          "Writing that the precystic stage causes the disease. It is non-pathogenic.",
+          "Giving two nuclei in the cyst. Two mitotic divisions give FOUR nuclei.",
+          "Calling the trophozoite the infective stage. The tetranucleate cyst is infective."
+        ],
+        "memory_tip": "Precystic packs the food, cystic builds the wall and makes four nuclei.",
+        "margin_note": "Three lines for each stage. The words tetranucleate and infective stage carry the mark."
+      },
+      {
+        "id": "s5_diagram_cycle",
+        "kind": "diagram",
+        "label": "Diagram — life cycle",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "bhw_entamoeba_life_cycle",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — trophozoite, binary fission and the precystic stage"
+            },
+            {
+              "type": "stroke",
+              "id": "g1_out",
+              "d": "M 307.5 85.1 L 307 86.3 L 306.5 88.1 L 305.7 90 L 304.9 92 L 303.9 93.6 L 302.8 95 L 301.5 96.3 L 300.1 97.5 L 298.6 98.4 L 297.1 99 L 295.6 99.2 L 294 99 L 292.4 98.5 L 290.8 98.2 L 289.1 98 L 287.4 98.3 L 285.7 98.8 L 284 99.4 L 282.3 99.8 L 280.7 99.7 L 278.8 99.2 L 276.8 98.5 L 274.8 97.4 L 273.3 96.2 L 272.3 94.8 L 272.3 93.1 L 272.9 91.1 L 273.8 89 L 274.8 87 L 275.5 85.1 L 275.7 83.4 L 275.7 81.9 L 275.7 80.4 L 275.8 79 L 276.2 77.6 L 276.8 76.3 L 277.7 75 L 278.7 73.7 L 279.9 72.5 L 281.1 71.3 L 282.6 70 L 284.1 68.6 L 285.8 67.3 L 287.5 66.4 L 289.1 66 L 290.7 66.5 L 292.4 67.6 L 294 69 L 295.4 70.6 L 296.7 72 L 297.5 73.3 L 298.1 74.7 L 298.6 76.1 L 299.2 77.4 L 300 78.8 L 301.4 80.2 L 303.1 81.6 L 304.8 83.1 L 306.4 84.2 L 307.5 85.1",
+              "ms": 1540
+            },
+            {
+              "type": "stroke",
+              "id": "g1_nuc",
+              "d": "M 281.9 87.1 A 4.2 4.2 0 1 0 290.3 87.1 A 4.2 4.2 0 1 0 281.9 87.1",
+              "ms": 380,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g2a_out",
+              "d": "M 333.2 147.1 L 332.8 147.9 L 332.2 149.1 L 331.6 150.4 L 330.9 151.7 L 330.1 152.8 L 329.3 153.7 L 328.4 154.6 L 327.5 155.4 L 326.6 156 L 325.6 156.4 L 324.6 156.5 L 323.5 156.4 L 322.4 156.2 L 321.3 156 L 320.2 156 L 319 156.4 L 317.7 156.9 L 316.4 157.4 L 315.2 157.8 L 314 157.8 L 312.8 157.4 L 311.6 156.6 L 310.5 155.7 L 309.7 154.6 L 309.1 153.5 L 309.1 152.3 L 309.6 151 L 310.2 149.7 L 310.8 148.3 L 311.2 147.1 L 311.2 146 L 311.1 144.9 L 310.9 143.8 L 310.9 142.8 L 311.1 141.8 L 311.5 140.9 L 312.1 139.9 L 312.8 139 L 313.7 138.1 L 314.6 137.3 L 315.6 136.5 L 316.7 135.5 L 317.9 134.7 L 319.1 134.2 L 320.2 134 L 321.2 134.5 L 322.3 135.4 L 323.2 136.6 L 324.2 137.8 L 325 138.8 L 325.7 139.6 L 326.3 140.3 L 326.9 141 L 327.5 141.7 L 328.2 142.5 L 329.2 143.4 L 330.3 144.5 L 331.4 145.5 L 332.5 146.5 L 333.2 147.1",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "g2a_nuc",
+              "d": "M 313 149.1 A 4.2 4.2 0 1 0 321.4 149.1 A 4.2 4.2 0 1 0 313 149.1",
+              "ms": 380,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g2b_out",
+              "d": "M 352.3 153.1 L 351.9 153.8 L 351.2 154.8 L 350.5 156 L 349.7 157.1 L 348.9 158.1 L 348.2 158.9 L 347.5 159.7 L 346.7 160.4 L 346 161 L 345.1 161.7 L 344.3 162.3 L 343.3 162.8 L 342.4 163.4 L 341.3 163.8 L 340.2 164.2 L 338.9 164.6 L 337.3 165 L 335.8 165.3 L 334.4 165.3 L 333.4 164.9 L 332.8 163.9 L 332.6 162.5 L 332.5 160.8 L 332.4 159.1 L 332.2 157.7 L 331.9 156.6 L 331.5 155.7 L 331 154.9 L 330.6 154.1 L 330.3 153.1 L 330.1 152 L 329.8 150.7 L 329.6 149.5 L 329.6 148.3 L 329.9 147.1 L 330.4 146.1 L 331.1 145 L 332.1 144 L 333.1 143.2 L 334.1 142.6 L 335.3 142.2 L 336.5 141.9 L 337.8 141.9 L 339.1 141.9 L 340.2 142.2 L 341.1 142.7 L 341.9 143.5 L 342.6 144.4 L 343.4 145.2 L 344.4 145.8 L 345.7 146.1 L 347.2 146.1 L 348.8 146.1 L 350.2 146.2 L 351.3 146.7 L 351.9 147.7 L 352.2 149.2 L 352.3 150.7 L 352.3 152.1 L 352.3 153.1",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "g2b_nuc",
+              "d": "M 333 155.1 A 4.2 4.2 0 1 0 341.4 155.1 A 4.2 4.2 0 1 0 333 155.1",
+              "ms": 380,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g3_out",
+              "d": "M 319.2 241.9 A 11 16 0 1 0 341.2 241.9 A 11 16 0 1 0 319.2 241.9",
+              "ms": 1220
+            },
+            {
+              "type": "stroke",
+              "id": "g3_gr0",
+              "d": "M 329.8 248.3 A 2.6 2.6 0 1 0 335 248.3 A 2.6 2.6 0 1 0 329.8 248.3",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_gr1",
+              "d": "M 322.7 241.5 A 2.6 2.6 0 1 0 327.9 241.5 A 2.6 2.6 0 1 0 322.7 241.5",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_gr2",
+              "d": "M 330.3 235.9 A 2.6 2.6 0 1 0 335.5 235.9 A 2.6 2.6 0 1 0 330.3 235.9",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_bar0",
+              "d": "M 324.2 250.9 L 336.2 248.9",
+              "ms": 300,
+              "w": 3
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the cyst and its journey out with the faeces"
+            },
+            {
+              "type": "stroke",
+              "id": "g4_out",
+              "d": "M 274.1 306.9 A 15 15 0 1 0 304.1 306.9 A 15 15 0 1 0 274.1 306.9",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "g4_wall",
+              "d": "M 277.7 306.9 A 11.4 11.4 0 1 0 300.5 306.9 A 11.4 11.4 0 1 0 277.7 306.9",
+              "ms": 1020,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g4_n0",
+              "d": "M 290.6 311.8 A 3.4 3.4 0 1 0 297.4 311.8 A 3.4 3.4 0 1 0 290.6 311.8",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g4_n1",
+              "d": "M 280.8 311.8 A 3.4 3.4 0 1 0 287.6 311.8 A 3.4 3.4 0 1 0 280.8 311.8",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g4_n2",
+              "d": "M 280.8 302 A 3.4 3.4 0 1 0 287.6 302 A 3.4 3.4 0 1 0 280.8 302",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g4_n3",
+              "d": "M 290.6 302 A 3.4 3.4 0 1 0 297.4 302 A 3.4 3.4 0 1 0 290.6 302",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g5_out",
+              "d": "M 217.9 306.9 A 13 13 0 1 0 243.9 306.9 A 13 13 0 1 0 217.9 306.9",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "g5_n0",
+              "d": "M 231.7 311.1 A 3.4 3.4 0 1 0 238.5 311.1 A 3.4 3.4 0 1 0 231.7 311.1",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g5_n1",
+              "d": "M 223.3 311.1 A 3.4 3.4 0 1 0 230.1 311.1 A 3.4 3.4 0 1 0 223.3 311.1",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g5_n2",
+              "d": "M 223.3 302.7 A 3.4 3.4 0 1 0 230.1 302.7 A 3.4 3.4 0 1 0 223.3 302.7",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g5_n3",
+              "d": "M 231.7 302.7 A 3.4 3.4 0 1 0 238.5 302.7 A 3.4 3.4 0 1 0 231.7 302.7",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g6_out",
+              "d": "M 176.8 241.9 A 13 13 0 1 0 202.8 241.9 A 13 13 0 1 0 176.8 241.9",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "g6_n0",
+              "d": "M 190.6 246.1 A 3.4 3.4 0 1 0 197.4 246.1 A 3.4 3.4 0 1 0 190.6 246.1",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g6_n1",
+              "d": "M 182.2 246.1 A 3.4 3.4 0 1 0 189 246.1 A 3.4 3.4 0 1 0 182.2 246.1",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g6_n2",
+              "d": "M 182.2 237.7 A 3.4 3.4 0 1 0 189 237.7 A 3.4 3.4 0 1 0 182.2 237.7",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g6_n3",
+              "d": "M 190.6 237.7 A 3.4 3.4 0 1 0 197.4 237.7 A 3.4 3.4 0 1 0 190.6 237.7",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g6_wv",
+              "d": "M 171.8 261.9 Q 180.8 256.9 189.8 261.9 Q 198.8 266.9 207.8 261.9",
+              "ms": 540,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the metacyst and the eight daughter amoebae"
+            },
+            {
+              "type": "stroke",
+              "id": "g7_out",
+              "d": "M 207.5 150.1 L 206.9 151.1 L 205.9 152.6 L 204.8 154.3 L 203.6 156 L 202.4 157.4 L 201.3 158.5 L 200.2 159.6 L 199.1 160.5 L 197.9 161.3 L 196.7 162 L 195.4 162.5 L 194.1 162.7 L 192.8 162.9 L 191.3 163 L 189.8 163.3 L 188 164 L 186 164.9 L 183.9 165.8 L 182.1 166.3 L 180.5 166.2 L 179.4 165.2 L 178.4 163.5 L 177.7 161.5 L 177.2 159.4 L 176.8 157.6 L 176.7 156 L 176.9 154.5 L 177.2 153.1 L 177.4 151.6 L 177.5 150.1 L 177.3 148.6 L 176.9 147 L 176.5 145.4 L 176.3 143.8 L 176.4 142.4 L 177 141 L 177.9 139.6 L 179.1 138.2 L 180.3 137 L 181.7 136 L 183.2 135.1 L 184.8 134.2 L 186.6 133.6 L 188.3 133.2 L 189.8 133.3 L 191.1 134.2 L 192.2 135.6 L 193.2 137.3 L 194.3 138.9 L 195.5 140.2 L 196.9 140.9 L 198.5 141.2 L 200 141.5 L 201.5 141.8 L 202.8 142.6 L 204 143.9 L 205.1 145.6 L 206.1 147.4 L 206.9 149 L 207.5 150.1",
+              "ms": 1440
+            },
+            {
+              "type": "stroke",
+              "id": "g7_n0",
+              "d": "M 180.4 145.1 A 3.4 3.4 0 1 0 187.2 145.1 A 3.4 3.4 0 1 0 180.4 145.1",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g7_n1",
+              "d": "M 188.4 145.1 A 3.4 3.4 0 1 0 195.2 145.1 A 3.4 3.4 0 1 0 188.4 145.1",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g7_n2",
+              "d": "M 180.4 155.1 A 3.4 3.4 0 1 0 187.2 155.1 A 3.4 3.4 0 1 0 180.4 155.1",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g7_n3",
+              "d": "M 188.4 155.1 A 3.4 3.4 0 1 0 195.2 155.1 A 3.4 3.4 0 1 0 188.4 155.1",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g8_c0",
+              "d": "M 227.1 85.1 A 3.8 5.1 0 1 0 234.7 85.1 A 3.8 5.1 0 1 0 227.1 85.1",
+              "ms": 400,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g8_c1",
+              "d": "M 233.1 94.1 A 3.8 5.1 0 1 0 240.7 94.1 A 3.8 5.1 0 1 0 233.1 94.1",
+              "ms": 400,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g8_c2",
+              "d": "M 225 95.7 A 3.8 5.1 0 1 0 232.6 95.7 A 3.8 5.1 0 1 0 225 95.7",
+              "ms": 400,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g8_c3",
+              "d": "M 218.1 91.1 A 3.8 5.1 0 1 0 225.7 91.1 A 3.8 5.1 0 1 0 218.1 91.1",
+              "ms": 400,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g8_c4",
+              "d": "M 216.5 83 A 3.8 5.1 0 1 0 224.1 83 A 3.8 5.1 0 1 0 216.5 83",
+              "ms": 400,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g8_c5",
+              "d": "M 221.1 76.1 A 3.8 5.1 0 1 0 228.7 76.1 A 3.8 5.1 0 1 0 221.1 76.1",
+              "ms": 400,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g8_c6",
+              "d": "M 229.2 74.5 A 3.8 5.1 0 1 0 236.8 74.5 A 3.8 5.1 0 1 0 229.2 74.5",
+              "ms": 400,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g8_c7",
+              "d": "M 236.1 79.1 A 3.8 5.1 0 1 0 243.7 79.1 A 3.8 5.1 0 1 0 236.1 79.1",
+              "ms": 400,
+              "w": 1.5
+            },
+            {
+              "type": "pause",
+              "id": "pa",
+              "caption": "Step 4 — the arrows that close the ring"
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar0",
+              "d": "M 304.9 99.2 L 306.5 101.1 L 308 103 L 309.5 104.9 L 310.9 106.9 L 312.4 109 L 313.7 111.1 L 315.1 113.3 L 316.4 115.6 L 317.7 117.9 L 318.9 120.2 L 320.1 122.6",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah0",
+              "d": "M 314.6 120.6 L 321.3 125 L 321.8 117.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar1",
+              "d": "M 335.1 177.7 L 335.4 180.8 L 335.6 183.8 L 335.8 186.8 L 335.9 189.9 L 336 192.9 L 336 196 L 336 199.1 L 335.9 202.1 L 335.8 205.2 L 335.6 208.2 L 335.4 211.2",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah1",
+              "d": "M 331.7 207 L 335.1 214.3 L 339.7 207.7",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar2",
+              "d": "M 321.3 267 L 320.1 269.4 L 318.9 271.8 L 317.7 274.1 L 316.4 276.4 L 315.1 278.7 L 313.7 280.9 L 312.4 283 L 310.9 285.1 L 309.5 287.1 L 308 289 L 306.5 290.9",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah2",
+              "d": "M 306.2 284.9 L 304.9 292.8 L 312.4 289.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar3",
+              "d": "M 271.6 314.6 L 269.6 315 L 267.7 315.4 L 265.8 315.7 L 263.9 315.8 L 261.9 316 L 260 316 L 258.1 316 L 256.1 315.8 L 254.2 315.7 L 252.3 315.4 L 250.4 315",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah3",
+              "d": "M 256 312.1 L 248.4 314.6 L 254.4 319.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar4",
+              "d": "M 215.1 292.8 L 213.5 290.9 L 212 289 L 210.5 287.1 L 209.1 285.1 L 207.6 283 L 206.3 280.9 L 204.9 278.7 L 203.6 276.4 L 202.3 274.1 L 201.1 271.8 L 199.9 269.4",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah4",
+              "d": "M 205.4 271.4 L 198.7 267 L 198.2 274.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar5",
+              "d": "M 184.9 214.3 L 184.6 211.2 L 184.4 208.2 L 184.2 205.2 L 184.1 202.1 L 184 199.1 L 184 196 L 184 192.9 L 184.1 189.9 L 184.2 186.8 L 184.4 183.8 L 184.6 180.8",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah5",
+              "d": "M 188.3 185 L 184.9 177.7 L 180.3 184.3",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar6",
+              "d": "M 198.7 125 L 199.9 122.6 L 201.1 120.2 L 202.3 117.9 L 203.6 115.6 L 204.9 113.3 L 206.3 111.1 L 207.6 109 L 209.1 106.9 L 210.5 104.9 L 212 103 L 213.5 101.1",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah6",
+              "d": "M 213.8 107.1 L 215.1 99.2 L 207.6 102.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar7",
+              "d": "M 248.4 77.4 L 250.4 77 L 252.3 76.6 L 254.2 76.3 L 256.1 76.2 L 258.1 76 L 260 76 L 261.9 76 L 263.9 76.2 L 265.8 76.3 L 267.7 76.6 L 269.6 77",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah7",
+              "d": "M 264 79.9 L 271.6 77.4 L 265.6 72.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "pl",
+              "caption": "Step 5 — numbered stage names"
+            },
+            {
+              "type": "label",
+              "id": "n_l0",
+              "x": 300.6,
+              "y": 49.4,
+              "text": "1. Trophozoite",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l1",
+              "x": 357.9,
+              "y": 130.6,
+              "text": "2. Fission",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l2",
+              "x": 357.9,
+              "y": 267.4,
+              "text": "3. Precystic",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l3",
+              "x": 300.6,
+              "y": 348.6,
+              "text": "4. Mature cyst",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l4",
+              "x": 100.6,
+              "y": 348.6,
+              "text": "5. In faeces",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l5",
+              "x": 23.5,
+              "y": 267.4,
+              "text": "6. Food, water",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l6",
+              "x": 53.2,
+              "y": 130.6,
+              "text": "7. Metacyst",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l7",
+              "x": 61,
+              "y": 49.4,
+              "text": "8. Eight amoebae",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The cycle is a closed ring with one exit into the outside world and one entry back into a new host, and drawing it as a ring shows at once that the parasite returns to where it began.",
+        "common_mistakes": [
+          "Drawing the arrows the wrong way round. The ring runs trophozoite to cyst to new host to trophozoite.",
+          "Showing the cyst forming inside the intestinal wall. Encystation happens in the LUMEN.",
+          "Leaving the numbers off the stages. The numbered order is what makes the wheel readable."
+        ],
+        "memory_tip": "Draw the ring first, then place the stages on it in order and put the arrowheads on last.",
+        "margin_note": "Eight numbered stages around the ring with the two halves marked: inside man, and outside in food and water."
+      },
+      {
+        "id": "s6_lifecycle",
+        "kind": "boxed_final",
+        "label": "Life cycle",
+        "marks": 2,
+        "mark_note": "Life cycle",
+        "lines": [
+          {
+            "text": "Trophozoite - cyst - new host - trophozoite",
+            "style": "boxed"
+          },
+          "1. The trophozoites in the large intestine feed",
+          "on bacteria and on host tissue, grow in size and",
+          "multiply by binary fission.",
+          "2. Some of them enter the lumen of the large",
+          "intestine and change into the precystic stage.",
+          "3. There the precystic stage develops into the",
+          "cystic stage, and each cyst becomes a",
+          "tetranucleate cyst within a few hours.",
+          "4. The tetranucleate cysts pass out with the",
+          "faecal matter. They remain alive for about 10",
+          "days.",
+          "5. The cysts reach a new host through",
+          "contaminated food and water.",
+          "6. In the small intestine of the new host the",
+          "enzyme trypsin ruptures the cyst wall and a",
+          "tetranucleate amoeba comes out. It is called the",
+          "metacyst.",
+          "7. The four nuclei of the metacyst divide once",
+          "more by mitosis and produce eight daughter",
+          "nuclei. Each nucleus takes a little cytoplasm,",
+          "so eight daughter amoebae are formed.",
+          "8. They reach the wall of the large intestine",
+          "and become mature trophozoites, causing amoebic",
+          "dysentery.",
+          "Extra-intestinal amoebiasis: sometimes the",
+          "trophozoites reach the liver and form abscesses.",
+          "From there they may go to the lungs, heart,",
+          "brain and kidneys and cause severe conditions."
+        ],
+        "why": "The cycle is a closed ring, so numbering the steps keeps the order fixed and makes it clear that the cyst is the form that leaves the body and the trophozoite is the form that returns.",
+        "common_mistakes": [
+          "Writing that the cyst breaks open in the large intestine. Trypsin opens it in the SMALL intestine.",
+          "Giving four daughter amoebae. Four nuclei divide once more, so EIGHT are produced.",
+          "Leaving out extra-intestinal amoebiasis, which is the last marked point of this answer."
+        ],
+        "memory_tip": "Four nuclei out of the body, eight amoebae into the new host: one more division on arrival.",
+        "margin_note": "Eight numbered points, one or two lines each, then the extra-intestinal line. Two marks."
+      }
+    ]
+  },
+  "insider_note": "The two numbers are what examiners check in this answer: FOUR nuclei in the cyst and EIGHT daughter amoebae from the metacyst."
+}

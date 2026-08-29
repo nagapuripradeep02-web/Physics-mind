@@ -1,0 +1,267 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_compare_para_dia_ferro",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Compare the properties of para, dia and ferromagnetic substances.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How they magnetise",
+      "marks": 1
+    },
+    {
+      "label": "Behaviour in a field",
+      "marks": 1
+    },
+    {
+      "label": "χ and μ_r",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: dia — feeble magnetisation opposite to the field, moves strong→weak, χ small negative, μ_r < 1; para — feeble along the field, moves weak→strong, χ small positive, μ_r slightly > 1; ferro — strong along the field, moves strongly weak→strong, χ large positive, μ_r very large; μ_r = 1 + χ links the signs; example sets match the book's table. The book's three-column table is rendered as six property rows, each row comparing the three classes, property name leading."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Magnetism and Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_magnetisation",
+        "kind": "text",
+        "label": "How they magnetise",
+        "marks": 1,
+        "mark_note": "Direction and strength",
+        "lines": [
+          "1. Magnetisation in an applied field:",
+          {
+            "text": "Dia: feeble, opposite to the applied field.",
+            "style": "indent"
+          },
+          {
+            "text": "Para: feeble, along the applied field.",
+            "style": "indent"
+          },
+          {
+            "text": "Ferro: strong, along the applied field.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Answer as labelled rows — property first, then Dia / Para / Ferro on their own lines. This row is the defining one.",
+        "why": "The three classes are defined by their response to the same applied field — with it or against it, feeble or strong. Every later row follows from this one.",
+        "common_mistakes": [
+          "Swapping dia and para. Dia is the class magnetised OPPOSITE to the field.",
+          "Writing strongly for para. Para and dia are both feeble; only ferro is strong."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That diamagnetic substances magnetise feebly against the field, paramagnetic feebly along it, and ferromagnetic strongly along it.",
+          "accept": [
+            "dia is opposite to the field",
+            "para is feebly along the field",
+            "ferro is strongly along the field"
+          ],
+          "reject": [
+            "moves from strong field to weak"
+          ],
+          "heard_as": [
+            "feeble",
+            "opposite",
+            "along the field"
+          ]
+        },
+        "memory_tip": "Dia = against, para = along but weak, ferro = along and strong."
+      },
+      {
+        "id": "s2_behaviour_in_field",
+        "kind": "text",
+        "label": "Behaviour in a field",
+        "marks": 1,
+        "mark_note": "Rod and non-uniform field",
+        "lines": [
+          "2. A rod suspended freely in a uniform field:",
+          {
+            "text": "Dia: rests perpendicular to the field.",
+            "style": "indent"
+          },
+          {
+            "text": "Para: rests along the field direction.",
+            "style": "indent"
+          },
+          {
+            "text": "Ferro: rests along the field direction.",
+            "style": "indent"
+          },
+          "3. Behaviour in a non-uniform field:",
+          {
+            "text": "Dia: moves from strong field to weak field.",
+            "style": "indent"
+          },
+          {
+            "text": "Para: moves from weak field to strong field.",
+            "style": "indent"
+          },
+          {
+            "text": "Ferro: moves strongly from weak to strong.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Rows 2 and 3 together are one mark — the rod test and the non-uniform-field test.",
+        "why": "Both rows restate row 1 as motion: a substance magnetised along the field is pulled toward the stronger field and settles along it; one magnetised against the field is pushed toward the weaker field and settles across it.",
+        "common_mistakes": [
+          "Saying a diamagnetic rod rests along the field. It rests perpendicular — its magnetisation opposes the field.",
+          "Saying a diamagnetic material moves to the stronger field. It is repelled, strong to weak.",
+          "Forgetting that ferro also moves weak to strong — the same way as para, only strongly."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a diamagnetic rod rests across the field and moves toward the weak field, while para and ferro rest along it and move toward the strong field.",
+          "accept": [
+            "dia rests perpendicular",
+            "dia moves strong to weak",
+            "para and ferro move weak to strong"
+          ],
+          "reject": [
+            "susceptibility is negative"
+          ],
+          "heard_as": [
+            "perpendicular",
+            "non-uniform",
+            "strong to weak"
+          ]
+        },
+        "memory_tip": "Whatever magnetises along the field goes to the strong region; against the field, to the weak region."
+      },
+      {
+        "id": "s3_chi_mu",
+        "kind": "text",
+        "label": "χ and μ_r",
+        "marks": 1,
+        "mark_note": "Signs and sizes",
+        "lines": [
+          "4. Susceptibility χ:",
+          {
+            "text": "Dia: χ is small and negative.",
+            "style": "indent"
+          },
+          {
+            "text": "Para: χ is small and positive.",
+            "style": "indent"
+          },
+          {
+            "text": "Ferro: χ is large and positive.",
+            "style": "indent"
+          },
+          "5. Relative permeability μ_r (= 1 + χ):",
+          {
+            "text": "Dia: μ_r is slightly less than 1.",
+            "style": "indent"
+          },
+          {
+            "text": "Para: μ_r is slightly greater than 1.",
+            "style": "indent"
+          },
+          {
+            "text": "Ferro: μ_r is very large (in thousands).",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Rows 4 and 5 together are one mark. μ_r = 1 + χ makes row 5 follow from row 4.",
+        "why": "χ and μ_r turn row 1 into numbers: magnetised against the field means negative χ and μ_r below 1; along the field means positive χ; strong response means large χ. The link is μ_r = 1 + χ.",
+        "common_mistakes": [
+          "Writing μ_r negative for diamagnetic. Only χ is negative; μ_r = 1 + χ stays positive, just below 1.",
+          "Writing χ large for paramagnetic. Para χ is small and positive; large positive χ is the mark of ferro."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That χ is small negative for dia, small positive for para, large positive for ferro, and μ_r = 1 + χ sits below 1, just above 1, and far above 1 in the same order.",
+          "accept": [
+            "chi negative for dia",
+            "chi small positive for para",
+            "mu r much greater than one for ferro",
+            "mu r is one plus chi"
+          ],
+          "reject": [
+            "rests perpendicular to the field"
+          ],
+          "heard_as": [
+            "susceptibility",
+            "chi",
+            "mu r",
+            "permeability"
+          ]
+        },
+        "memory_tip": "μ_r = 1 + χ: put each χ into it and row 5 writes itself."
+      },
+      {
+        "id": "s4_examples",
+        "kind": "text",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "One set per class",
+        "lines": [
+          "6. Examples:",
+          {
+            "text": "Dia: copper, bismuth, water, gold.",
+            "style": "indent"
+          },
+          {
+            "text": "Para: aluminium, platinum, manganese, oxygen.",
+            "style": "indent"
+          },
+          {
+            "text": "Ferro: iron, cobalt, nickel, gadolinium.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Named substances, one row per class — iron, cobalt, nickel must appear under ferro.",
+        "why": "The examples row is marked on named substances. The ferromagnetic set is the fixed trio iron, cobalt, nickel (with gadolinium); the other two rows need any two correct names each.",
+        "common_mistakes": [
+          "Putting manganese under ferromagnetic — it is paramagnetic.",
+          "Putting oxygen under diamagnetic — oxygen is paramagnetic.",
+          "Listing steel as a separate example — steel is an iron alloy; the table asks for elements."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That copper and bismuth are diamagnetic, aluminium and manganese paramagnetic, and iron, cobalt, nickel ferromagnetic.",
+          "accept": [
+            "copper and bismuth for dia",
+            "aluminium and platinum for para",
+            "iron cobalt nickel for ferro"
+          ],
+          "reject": [
+            "chi is large and positive"
+          ],
+          "heard_as": [
+            "bismuth",
+            "aluminium",
+            "gadolinium"
+          ]
+        },
+        "memory_tip": "Ferro examples are the magnet metals: iron, cobalt, nickel."
+      }
+    ]
+  },
+  "insider_note": "Six numbered property rows with Dia, Para and Ferro on their own labelled lines read as the book's table on ruled paper — a prose paragraph loses the comparison and the marks with it."
+}

@@ -1,0 +1,661 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_laq_plasmodium_in_mosquito",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the life cycle of Plasmodium vivax in mosquito.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Entry into the mosquito",
+      "marks": 1
+    },
+    {
+      "label": "Gametogony",
+      "marks": 2
+    },
+    {
+      "label": "Fertilization",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Ookinete and oocyst",
+      "marks": 1
+    },
+    {
+      "label": "Sporogony",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.14, LAQ 3). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. FIGURE SCOPE: the book prints a shaded plate showing the whole gut of the mosquito with the stages arranged inside it. This card draws the simplified exam figure — a numbered ring of the named stages with a short section of the crop wall where the oocyst sits."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Biology in Human Welfare · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_entry",
+        "kind": "text",
+        "label": "Entry into the mosquito",
+        "marks": 1,
+        "mark_note": "Entry",
+        "lines": [
+          "The gametocytes of Plasmodium are formed in man,",
+          "and their further development takes place in the",
+          "female Anopheles mosquito. This phase is called",
+          "the Ross cycle.",
+          "When a female Anopheles mosquito bites a malaria",
+          "patient and sucks the blood, the gametocytes",
+          "reach the crop of the mosquito along with the",
+          "other stages of the erythrocytic cycle.",
+          "All the other stages are digested there. Only",
+          "the gametocytes survive.",
+          "The cycle in the mosquito has four phases:",
+          "gametogony, fertilization, formation of the",
+          "ookinete and the oocyst, and sporogony."
+        ],
+        "why": "Only one stage survives the mosquito's gut, so saying which stage that is explains why the sexual phase can begin nowhere else, and the four phase names give the plan of the answer.",
+        "common_mistakes": [
+          "Writing that a male Anopheles carries the parasite. Only the FEMALE mosquito sucks blood.",
+          "Writing that all stages develop in the mosquito. All are digested except the gametocytes.",
+          "Skipping the four phase names, which are the headings of the rest of the answer."
+        ],
+        "memory_tip": "Only the gametocyte survives the crop, so only the gametocyte can start the mosquito cycle.",
+        "margin_note": "Four short lines ending with the four phase names. Then take each phase in turn."
+      },
+      {
+        "id": "s2_gametogony",
+        "kind": "text",
+        "label": "Gametogony",
+        "marks": 2,
+        "mark_note": "Phase 1",
+        "lines": [
+          "Gametogony is the formation of male and female",
+          "gametes from the gametocytes. It occurs in the",
+          "lumen of the crop of the mosquito.",
+          "Formation of male gametes: the nucleus of the",
+          "microgametocyte divides into eight daughter",
+          "nuclei.",
+          "The eight daughter nuclei pass into eight",
+          "flagella-like structures and form the male",
+          "gametes.",
+          "The flagella-like structures then begin lashing",
+          "movements and get separated from the flagellated",
+          "body. This process is called exflagellation.",
+          "Formation of the female gamete: the female",
+          "gametocyte undergoes a few changes and",
+          "transforms into a female gamete. This process is",
+          "called maturation.",
+          "The nucleus moves towards the periphery and the",
+          "cytoplasm forms a projection called the",
+          "fertilization cone."
+        ],
+        "why": "The two gametes are made in completely different ways — the male splits into eight, the female stays one and grows a cone — and that difference is what the two marks of this step are for.",
+        "common_mistakes": [
+          "Writing that the female gametocyte also divides into eight. Only the MALE does.",
+          "Calling the female projection a flagellum. It is the fertilization cone.",
+          "Writing that gametogony happens in the salivary glands. It happens in the crop."
+        ],
+        "memory_tip": "Male splits into eight and lashes; female stays one and grows a cone.",
+        "margin_note": "Two named sub-headings, three lines each. Exflagellation and fertilization cone are both marked words."
+      },
+      {
+        "id": "s3_fertilization",
+        "kind": "text",
+        "label": "Fertilization",
+        "marks": 1,
+        "mark_note": "Phase 2",
+        "lines": [
+          "Fertilization is the fusion of the male gamete",
+          "with the female gamete.",
+          "One of the active male gametes comes in contact",
+          "with the fertilization cone of the female gamete",
+          "and enters into it.",
+          "The pronuclei and the cytoplasm of the two",
+          "gametes fuse with each other, and a zygote is",
+          "formed.",
+          "The two gametes are dissimilar in size, so this",
+          "process is called anisogamy."
+        ],
+        "why": "The cone is the doorway: the male gamete enters exactly there, and because the two gametes are unlike in size the fusion has its own name, anisogamy.",
+        "common_mistakes": [
+          "Writing that many male gametes enter. Only ONE enters the female gamete.",
+          "Calling the fusion isogamy. The gametes are unlike in size, so it is anisogamy."
+        ],
+        "memory_tip": "One male gamete, one cone, one zygote, and unequal sizes, so anisogamy.",
+        "margin_note": "Four short lines. The word anisogamy is the closing mark of this step."
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "Diagram — the cycle in the mosquito",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "bhw_plasmodium_mosquito_cycle",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — gametocytes and the male and female gametes"
+            },
+            {
+              "type": "stroke",
+              "id": "g1_m",
+              "d": "M 271.1 81.1 A 9 9 0 1 0 289.1 81.1 A 9 9 0 1 0 271.1 81.1",
+              "ms": 810
+            },
+            {
+              "type": "stroke",
+              "id": "g1_mn",
+              "d": "M 276.9 81.1 A 3.2 3.2 0 1 0 283.3 81.1 A 3.2 3.2 0 1 0 276.9 81.1",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g1_f",
+              "d": "M 287.1 90.1 A 11 11 0 1 0 309.1 90.1 A 11 11 0 1 0 287.1 90.1",
+              "ms": 990
+            },
+            {
+              "type": "stroke",
+              "id": "g1_fn",
+              "d": "M 294.3 90.1 A 3.8 3.8 0 1 0 301.9 90.1 A 3.8 3.8 0 1 0 294.3 90.1",
+              "ms": 340,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g2_out",
+              "d": "M 319.2 150.1 A 11 11 0 1 0 341.2 150.1 A 11 11 0 1 0 319.2 150.1",
+              "ms": 990
+            },
+            {
+              "type": "stroke",
+              "id": "g2_fl",
+              "d": "M 341 152.3 L 351.8 154.5 M 336.3 159.3 L 342.4 168.4 M 328 160.9 L 325.8 171.7 M 321 156.2 L 311.9 162.3 M 319.4 147.9 L 308.6 145.7 M 324.1 140.9 L 318 131.8 M 332.4 139.3 L 334.6 128.5 M 339.4 144 L 348.5 137.9",
+              "ms": 1260,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g3_out",
+              "d": "M 322.5 230.3 A 14 14 0 1 1 322.5 253.5 L 352.2 241.9 Z",
+              "ms": 1780
+            },
+            {
+              "type": "stroke",
+              "id": "g3_nuc",
+              "d": "M 322.6 241.9 A 3.6 3.6 0 1 0 329.8 241.9 A 3.6 3.6 0 1 0 322.6 241.9",
+              "ms": 320,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — fertilization, the zygote and the ookinete"
+            },
+            {
+              "type": "stroke",
+              "id": "g4_out",
+              "d": "M 281.4 295.3 A 14 14 0 1 1 281.4 318.5 L 311.1 306.9 Z",
+              "ms": 1780
+            },
+            {
+              "type": "stroke",
+              "id": "g4_nuc",
+              "d": "M 281.5 306.9 A 3.6 3.6 0 1 0 288.7 306.9 A 3.6 3.6 0 1 0 281.5 306.9",
+              "ms": 320,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g4t_th",
+              "d": "M 307.1 304.9 Q 315.1 297.9 323.1 304.9 M 307.1 309.4 Q 315.1 305.9 323.1 309.4",
+              "ms": 490,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g5_z",
+              "d": "M 216.9 306.9 A 14 14 0 1 0 244.9 306.9 A 14 14 0 1 0 216.9 306.9",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "g5_zn",
+              "d": "M 226.7 306.9 A 4.2 4.2 0 1 0 235.1 306.9 A 4.2 4.2 0 1 0 226.7 306.9",
+              "ms": 380,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g6_out",
+              "d": "M 176.8 252.9 Q 194.3 247.3 202.8 230.9 Q 185.3 236.5 176.8 252.9",
+              "ms": 1000
+            },
+            {
+              "type": "stroke",
+              "id": "g6_nuc",
+              "d": "M 186.4 241.9 A 3.4 3.4 0 1 0 193.2 241.9 A 3.4 3.4 0 1 0 186.4 241.9",
+              "ms": 310,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the oocyst on the crop wall and the sporozoites"
+            },
+            {
+              "type": "stroke",
+              "id": "g7_out",
+              "d": "M 174.8 150.1 A 15 15 0 1 0 204.8 150.1 A 15 15 0 1 0 174.8 150.1",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "g7_g0",
+              "d": "M 194.2 153.1 A 2.8 2.8 0 1 0 199.8 153.1 A 2.8 2.8 0 1 0 194.2 153.1",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_g1",
+              "d": "M 189.1 157.6 A 2.8 2.8 0 1 0 194.7 157.6 A 2.8 2.8 0 1 0 189.1 157.6",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_g2",
+              "d": "M 182.4 156.4 A 2.8 2.8 0 1 0 188 156.4 A 2.8 2.8 0 1 0 182.4 156.4",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_g3",
+              "d": "M 179.2 150.5 A 2.8 2.8 0 1 0 184.8 150.5 A 2.8 2.8 0 1 0 179.2 150.5",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_g4",
+              "d": "M 181.8 144.2 A 2.8 2.8 0 1 0 187.4 144.2 A 2.8 2.8 0 1 0 181.8 144.2",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_g5",
+              "d": "M 188.4 142.4 A 2.8 2.8 0 1 0 194 142.4 A 2.8 2.8 0 1 0 188.4 142.4",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_g6",
+              "d": "M 193.9 146.4 A 2.8 2.8 0 1 0 199.5 146.4 A 2.8 2.8 0 1 0 193.9 146.4",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_wall",
+              "d": "M 165.8 169.1 L 213.8 169.1",
+              "ms": 690,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g80_a",
+              "d": "M 211.1 82.3 Q 226 80.7 228.7 65.9",
+              "ms": 370
+            },
+            {
+              "type": "stroke",
+              "id": "g80_b",
+              "d": "M 211.1 82.3 Q 221.3 75.6 228.7 65.9",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "g81_a",
+              "d": "M 220.4 90.9 Q 235.2 93 241.4 79.3",
+              "ms": 370
+            },
+            {
+              "type": "stroke",
+              "id": "g81_b",
+              "d": "M 220.4 90.9 Q 231.9 86.9 241.4 79.3",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "g82_a",
+              "d": "M 230.3 99.1 Q 244.1 104.8 253.5 93.1",
+              "ms": 370
+            },
+            {
+              "type": "stroke",
+              "id": "g82_b",
+              "d": "M 230.3 99.1 Q 242.4 98.1 253.5 93.1",
+              "ms": 340
+            },
+            {
+              "type": "pause",
+              "id": "pa",
+              "caption": "Step 4 — the arrows that close the ring"
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar0",
+              "d": "M 304.9 99.2 L 306.5 101.1 L 308 103 L 309.5 104.9 L 310.9 106.9 L 312.4 109 L 313.7 111.1 L 315.1 113.3 L 316.4 115.6 L 317.7 117.9 L 318.9 120.2 L 320.1 122.6",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah0",
+              "d": "M 314.6 120.6 L 321.3 125 L 321.8 117.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar1",
+              "d": "M 335.1 177.7 L 335.4 180.8 L 335.6 183.8 L 335.8 186.8 L 335.9 189.9 L 336 192.9 L 336 196 L 336 199.1 L 335.9 202.1 L 335.8 205.2 L 335.6 208.2 L 335.4 211.2",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah1",
+              "d": "M 331.7 207 L 335.1 214.3 L 339.7 207.7",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar2",
+              "d": "M 321.3 267 L 320.1 269.4 L 318.9 271.8 L 317.7 274.1 L 316.4 276.4 L 315.1 278.7 L 313.7 280.9 L 312.4 283 L 310.9 285.1 L 309.5 287.1 L 308 289 L 306.5 290.9",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah2",
+              "d": "M 306.2 284.9 L 304.9 292.8 L 312.4 289.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar3",
+              "d": "M 271.6 314.6 L 269.6 315 L 267.7 315.4 L 265.8 315.7 L 263.9 315.8 L 261.9 316 L 260 316 L 258.1 316 L 256.1 315.8 L 254.2 315.7 L 252.3 315.4 L 250.4 315",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah3",
+              "d": "M 256 312.1 L 248.4 314.6 L 254.4 319.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar4",
+              "d": "M 215.1 292.8 L 213.5 290.9 L 212 289 L 210.5 287.1 L 209.1 285.1 L 207.6 283 L 206.3 280.9 L 204.9 278.7 L 203.6 276.4 L 202.3 274.1 L 201.1 271.8 L 199.9 269.4",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah4",
+              "d": "M 205.4 271.4 L 198.7 267 L 198.2 274.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar5",
+              "d": "M 184.9 214.3 L 184.6 211.2 L 184.4 208.2 L 184.2 205.2 L 184.1 202.1 L 184 199.1 L 184 196 L 184 192.9 L 184.1 189.9 L 184.2 186.8 L 184.4 183.8 L 184.6 180.8",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah5",
+              "d": "M 188.3 185 L 184.9 177.7 L 180.3 184.3",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar6",
+              "d": "M 198.7 125 L 199.9 122.6 L 201.1 120.2 L 202.3 117.9 L 203.6 115.6 L 204.9 113.3 L 206.3 111.1 L 207.6 109 L 209.1 106.9 L 210.5 104.9 L 212 103 L 213.5 101.1",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah6",
+              "d": "M 213.8 107.1 L 215.1 99.2 L 207.6 102.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar7",
+              "d": "M 248.4 77.4 L 250.4 77 L 252.3 76.6 L 254.2 76.3 L 256.1 76.2 L 258.1 76 L 260 76 L 261.9 76 L 263.9 76.2 L 265.8 76.3 L 267.7 76.6 L 269.6 77",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah7",
+              "d": "M 264 79.9 L 271.6 77.4 L 265.6 72.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "pl",
+              "caption": "Step 5 — numbered stage names"
+            },
+            {
+              "type": "label",
+              "id": "n_l0",
+              "x": 300.6,
+              "y": 49.4,
+              "text": "1. Gametocytes",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l1",
+              "x": 357.9,
+              "y": 130.6,
+              "text": "2. Male gametes",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l2",
+              "x": 357.6,
+              "y": 267.4,
+              "text": "3. Female gamete",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l3",
+              "x": 300.6,
+              "y": 348.6,
+              "text": "4. Fertilization",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l4",
+              "x": 130.3,
+              "y": 348.6,
+              "text": "5. Zygote",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l5",
+              "x": 53.2,
+              "y": 267.4,
+              "text": "6. Ookinete",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l6",
+              "x": 73,
+              "y": 130.6,
+              "text": "7. Oocyst",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l7",
+              "x": 80.8,
+              "y": 49.4,
+              "text": "8. Sporozoites",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The stages in the mosquito change shape in a fixed order — round gametocyte, lashing male, elongated ookinete, round oocyst, sickle sporozoite — so the drawing is really a sequence of five outlines.",
+        "common_mistakes": [
+          "Drawing the ookinete as a round body. It is elongated and motile.",
+          "Drawing the oocyst inside the crop cavity. It settles BENEATH the basement membrane of the crop wall.",
+          "Drawing the sporozoites as round bodies. They are sickle or spindle shaped."
+        ],
+        "memory_tip": "Five outlines in order: round gametocyte, lashing male, long ookinete, round oocyst, sickle sporozoite.",
+        "margin_note": "Label the male and female gametocytes, exflagellation, fertilization cone, zygote, ookinete, oocyst on the crop wall, sporozoites and the salivary glands."
+      },
+      {
+        "id": "s5_ookinete",
+        "kind": "text",
+        "label": "Ookinete and oocyst",
+        "marks": 1,
+        "mark_note": "Phase 3",
+        "lines": [
+          "The zygote elongates and becomes motile within",
+          "18 to 24 hours. It is then called the ookinete",
+          "or vermicule.",
+          "The ookinete pierces the wall of the crop and",
+          "settles beneath the basement membrane.",
+          "There it becomes round and secretes a cyst",
+          "around its body.",
+          "This encysted ookinete is called the oocyst."
+        ],
+        "why": "The parasite has to get out of the gut cavity before it can multiply, so this step is a move and a change of shape: it bores through the wall, then rounds up and encysts.",
+        "common_mistakes": [
+          "Writing that the zygote becomes the oocyst directly. The ookinete stage comes in between.",
+          "Writing that the oocyst lies inside the crop cavity. It lies beneath the basement membrane."
+        ],
+        "memory_tip": "Long and moving is the ookinete; round and walled is the oocyst.",
+        "margin_note": "Four short lines. Give the 18 to 24 hours and the basement membrane."
+      },
+      {
+        "id": "s6_sporogony",
+        "kind": "boxed_final",
+        "label": "Sporogony",
+        "marks": 1,
+        "mark_note": "Phase 4",
+        "lines": [
+          {
+            "text": "Sporozoites reach the salivary glands",
+            "style": "boxed"
+          },
+          "The oocyst enlarges in size and begins",
+          "sporogony.",
+          "According to Bano, the nucleus of the oocyst",
+          "first undergoes reduction division.",
+          "The nucleus then divides repeatedly by mitosis",
+          "and produces a large number of nuclei.",
+          "Each nucleus is surrounded by a little bit of",
+          "cytoplasm and transforms into a sickle shaped",
+          "sporozoite. An oocyst holding about 10,000",
+          "sporozoites is called a sporocyst.",
+          "The sporocyst bursts and liberates the spindle",
+          "shaped sporozoites.",
+          "From there they travel into the salivary glands",
+          "and become ready to infect a healthy person.",
+          "The life cycle in the mosquito is completed in",
+          "about 10 to 24 days."
+        ],
+        "why": "Sporogony is the multiplication step, and it ends in the salivary glands because that is the only place from which the parasite can be injected back into man.",
+        "common_mistakes": [
+          "Writing that the first division of the oocyst nucleus is mitotic. According to Bano it is a reduction division.",
+          "Writing that the sporozoites stay in the gut. They travel to the salivary glands.",
+          "Giving 10 to 24 hours instead of 10 to 24 days for the mosquito cycle."
+        ],
+        "memory_tip": "One oocyst, about 10,000 sporozoites, and all of them end in the salivary glands.",
+        "margin_note": "Seven short lines ending at the salivary glands. Give the 10,000 and the 10 to 24 days."
+      }
+    ]
+  },
+  "insider_note": "The examiner follows the four phase names, so write Gametogony, Fertilization, Ookinete and oocyst, and Sporogony as headings in the answer."
+}

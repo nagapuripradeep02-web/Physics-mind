@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_euryhaline_vs_stenohaline",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between euryhaline and stenohaline animals.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Euryhaline",
+      "marks": 1
+    },
+    {
+      "label": "Euryhaline examples",
+      "marks": 1
+    },
+    {
+      "label": "Stenohaline",
+      "marks": 1
+    },
+    {
+      "label": "Stenohaline examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.68, Star Questions Plus, SAQ 190). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecology and Environment · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_eury",
+        "kind": "text",
+        "label": "Euryhaline",
+        "marks": 1,
+        "mark_note": "Euryhaline",
+        "lines": [
+          "Euryhaline animals are adapted to withstand",
+          "wide fluctuations of salinity.",
+          "They can live in water whose salt content",
+          "changes over a wide range."
+        ],
+        "why": "The whole distinction is the width of the salinity range an animal can bear, so the definition must carry the word wide; the two Greek beginnings, eury and steno, then do the rest of the work.",
+        "common_mistakes": [
+          "Writing that euryhaline animals live only in the sea. They live across a WIDE range of salinity.",
+          "Leaving out the word salinity. The range being described is a range of salt content."
+        ],
+        "memory_tip": "Eury means wide, steno means narrow. Haline means salt. Wide-salt and narrow-salt.",
+        "margin_note": "One sentence with the word wide in it. Keep the examples for the next step."
+      },
+      {
+        "id": "s2_eury_ex",
+        "kind": "text",
+        "label": "Euryhaline examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Ex: brackish water fishes such as salmon",
+          "and Hilsa.",
+          "They withstand fresh water during low tide",
+          "and saline water during high tide.",
+          "Migrating fishes move from the sea into",
+          "fresh water to breed. This is anadromous",
+          "migration."
+        ],
+        "why": "The examples are the proof of the definition, and the migration is included because a fish that swims from the sea into a river passes through the whole range of salinity in one journey.",
+        "common_mistakes": [
+          "Naming the fishes without saying what range they cross.",
+          "Calling the movement from the sea into fresh water catadromous. It is ANADROMOUS migration."
+        ],
+        "memory_tip": "Anadromous: up the river from the sea to breed. Salmon and Hilsa both do it.",
+        "margin_note": "Name the fishes, then the tide line and the named migration."
+      },
+      {
+        "id": "s3_steno",
+        "kind": "text",
+        "label": "Stenohaline",
+        "marks": 1,
+        "mark_note": "Stenohaline",
+        "lines": [
+          "Stenohaline animals are unable to tolerate",
+          "fluctuations in salinity.",
+          "They can live only within a narrow range of",
+          "salt content."
+        ],
+        "why": "The second half is written in the same shape as the first with the one word changed from wide to narrow, which is what makes a distinguish answer read as a comparison.",
+        "common_mistakes": [
+          "Writing that stenohaline animals live only in fresh water. They may be marine or freshwater; the point is the NARROW range.",
+          "Swapping the two terms. Steno is the narrow one."
+        ],
+        "memory_tip": "Steno is the same beginning as in stenosis, a narrowing. Narrow range of salt.",
+        "margin_note": "Mirror the euryhaline sentence with wide changed to narrow."
+      },
+      {
+        "id": "s4_steno_ex",
+        "kind": "boxed_final",
+        "label": "Stenohaline examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Eury = wide range, Steno = narrow range",
+            "style": "boxed"
+          },
+          "Ex: marine fishes die when they are placed",
+          "in fresh water.",
+          "Ex: freshwater fishes die when they are",
+          "placed in sea water.",
+          "Each of them can live only in the salinity",
+          "it is adapted to."
+        ],
+        "why": "The stenohaline examples are stated as what happens when the animal is moved, because the narrow range shows itself only when the salinity is changed.",
+        "common_mistakes": [
+          "Naming a fish species. The examples here are the two groups, marine and freshwater fishes.",
+          "Writing that stenohaline fishes can adjust slowly. They cannot tolerate the change."
+        ],
+        "memory_tip": "Move a stenohaline fish across the salinity line and it dies. That is the test.",
+        "margin_note": "Both directions of the test, one line each. The box states the whole distinction."
+      }
+    ]
+  },
+  "insider_note": "This is a distinguish question, so write the two definitions in the same shape with only wide and narrow changed — the paired examples then carry the other two marks."
+}
