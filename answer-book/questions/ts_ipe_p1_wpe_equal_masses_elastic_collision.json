@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Work Power Energy"
   },
   "chapter": "Work Power Energy",
@@ -54,6 +54,7 @@
           "with u₁. If the second was at rest, the first",
           "stops and the second moves off with u₁."
         ],
+        "margin_note": "First mark. One boxed sentence. Say which body ends with which velocity.",
         "why": "This is the case a student can check by eye on a line of identical balls, which is why boards use it to test whether the general formula was understood.",
         "common_mistakes": [
           "Saying both bodies move on together, which is the perfectly INELASTIC result."
@@ -72,7 +73,8 @@
             "exchange",
             "velocities"
           ]
-        }
+        },
+        "memory_tip": "Test it: exchange u₁ and u₂ and both the momentum sum and the energy sum are unchanged."
       },
       {
         "id": "s2_why",
@@ -89,6 +91,7 @@
             "style": "eq"
           }
         ],
+        "margin_note": "Second mark. The substitution earns it, not the answer. Show the terms going to zero.",
         "why": "Equal masses make the difference term zero, and that single cancellation is the whole reason the exchange is exact.",
         "common_mistakes": [
           "Quoting the exchange without showing it comes from the general formula."
@@ -108,8 +111,10 @@
             "equal masses",
             "vanishes"
           ]
-        }
+        },
+        "memory_tip": "Try m₁ = m₂ = 2 kg with u₁ = 5 and u₂ = 0: the formula returns v₁ = 0 and v₂ = 5."
       }
     ]
-  }
+  },
+  "insider_note": "The result is one line, so the second mark is the reason. Put m₁ = m₂ into the general formula and show the terms cancel."
 }

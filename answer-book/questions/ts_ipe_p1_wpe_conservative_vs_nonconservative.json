@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Work Power Energy"
   },
   "chapter": "Work Power Energy",
@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. The TSBIE Basic Learning Material has no SAQ section for this unit, so the Fastrack is the only source for it."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. The TSBIE Basic Learning Material has no SAQ section for this unit, so the Fastrack is the only source for it. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -161,7 +161,8 @@
         "margin_note": "Unmarked, but it is the reason behind both columns. Write it if there is room.",
         "why": "This is the useful half of the distinction: it tells you when you are allowed to use mgh or ½kx² at all.",
         "common_mistakes": [
-          "Claiming friction has a potential energy."
+          "Claiming friction has a potential energy.",
+          "Thinking every non-conservative force removes energy. A push from a hand is also non-conservative and can add energy; the real point is that its work cannot be stored as a potential energy."
         ],
         "recall": {
           "credit": "name_it",
@@ -183,5 +184,6 @@
         "memory_tip": "The useful line: only conservative forces store energy you can get back — that is when mgh and ½kx² exist."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks a column, with no separate mark for the example — a column is complete only when its properties and its example are both there."
 }

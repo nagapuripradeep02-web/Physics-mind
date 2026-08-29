@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -71,7 +71,8 @@
             "towards the hand",
             "one side"
           ]
-        }
+        },
+        "memory_tip": "One bag: the centre of mass shifts TOWARDS that hand. Two equal bags: no shift. Learn the pair."
       },
       {
         "id": "s2_two_hands",
@@ -108,8 +109,10 @@
             "symmetry",
             "both hands"
           ]
-        }
+        },
+        "memory_tip": "The cancellation needs the two bags EQUAL. Unequal bags still shift the centre of mass."
       }
     ]
-  }
+  },
+  "insider_note": "This one is in the TSBIE material only, not in the Fastrack. One mark for each of the two cases."
 }

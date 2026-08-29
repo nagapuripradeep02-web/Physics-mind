@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+2+2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's group counts use the old A/B labels (p-block: IIIA to VIIA and the zero group; d-block: IB to VIIB and VIII as three vertical columns); the card keeps them and adds the modern group numbers. Exceptions the book does not mention (helium sitting over the p-block with an s² configuration; the d-block configurations of Cr and Cu) are left to their own cards rather than loaded into this essay."
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+2+2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's group counts use the old A/B labels (p-block: IIIA to VIIA and the zero group; d-block: IB to VIIB and VIII as three vertical columns); the card keeps them and adds the modern group numbers. Exceptions the book does not mention (helium sitting over the p-block with an s² configuration; the d-block configurations of Cr and Cu) are left to their own cards rather than loaded into this essay. AI chemistry check 2026-08-25: the four differentiating-electron rules, the four general configurations, the group counts and the positions were all re-checked and nothing marked was changed; the s-block why now records that hydrogen and helium are s-block by configuration but are not metals. Status stays unverified."
   },
   "answer": {
     "page_header": [
@@ -191,7 +191,7 @@
           "table; they are metals and form ionic",
           "compounds."
         ],
-        "why": "The group count is not memorised, it is computed: an s orbital holds at most two electrons, so exactly two columns of the table fill it. The same electron-capacity argument gives every block's group count.",
+        "why": "The group count is not memorised, it is computed: an s orbital holds at most two electrons, so exactly two columns of the table fill it. The same electron-capacity argument gives every block's group count. Hydrogen and helium also have s-block configurations but are not metals; the metal-and-ionic description applies to the alkali and alkaline earth metals of groups 1 and 2 that the question means.",
         "common_mistakes": [
           "Writing the configuration as ns² only. Group IA has ns¹, so the range is ns¹⁻².",
           "Leaving out either the position or the property. Each block needs its place and one property."

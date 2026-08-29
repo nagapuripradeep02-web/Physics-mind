@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -55,7 +55,7 @@
           "Dividing by r³ rather than r² supplies the",
           "direction, since r itself has length r."
         ],
-        "why": "The r³ is not a different law — it is r²  with one extra r used to turn the vector r into a direction.",
+        "why": "The r³ is not a different law — it is r²  with one extra r used to turn the vector r into a direction. Fix the convention before writing it: r is drawn FROM m₁ TO m₂ and F is the force ON m₂; the minus sign then points F from m₂ back towards m₁. The force on m₁ is equal and opposite.",
         "common_mistakes": [
           "Writing r² in the denominator with the vector r on top, which gets the magnitude wrong by a factor r."
         ],
@@ -74,7 +74,8 @@
             "vector form"
           ]
         },
-        "memory_tip": "The r³ is not a new law — it is r² times one extra r that turns the vector r into a direction."
+        "memory_tip": "The r³ is not a new law — it is r² times one extra r that turns the vector r into a direction.",
+        "margin_note": "First mark. The vector equation, with r named and its direction fixed."
       },
       {
         "id": "s2_sign",
@@ -111,7 +112,8 @@
             "minus sign"
           ]
         },
-        "memory_tip": "The minus sign IS the attraction. Keep it, and say what it means."
+        "memory_tip": "The minus sign IS the attraction. Keep it, and say what it means.",
+        "margin_note": "Second mark. Say in words what the minus sign means: attraction."
       }
     ]
   },

@@ -44,8 +44,15 @@ for (const f of readdirSync(QDIR).filter((x) => x.startsWith(prefix) && x.endsWi
         }
     }
     for (const c of q.cuts || []) {
-        for (const s of c.steps || []) {
-            for (const raw of s.lines || []) push(s.id, raw, 'cut:' + c.key);
+        // cut.steps is a Record keyed by step id, not an array (physics has 5
+        // cards with cuts; zoology has none, which is why this never fired).
+        const kindOf = new Map(q.answer.steps.map((s) => [s.id, s.kind]));
+        for (const [sid, s] of Object.entries(c.steps || {})) {
+            const dflt = kindOf.get(sid) === 'equation' ? 'eq' : 'normal';
+            for (const raw of s.lines || []) {
+                const spec = typeof raw === 'string' ? { text: raw, style: dflt } : { style: dflt, ...raw };
+                push(sid, spec, 'cut:' + c.key);
+            }
         }
     }
 }

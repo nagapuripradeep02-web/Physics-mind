@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the reaction quotient Q and its comparison with K is a standard NCERT syllabus object the Fastrack chemistry section (book pp.75-79) skips entirely. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the reaction quotient Q and its comparison with K is a standard NCERT syllabus object the Fastrack chemistry section (book pp.75-79) skips entirely. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. All three cases verified correct (Q below Kc forward, Q above Kc backward, Q equal to Kc at equilibrium); one memory tip rewritten for Rule 41 ('climbs'). No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -84,7 +84,7 @@
           "Swapping the two cases. Small Q means too few products yet, so the reaction goes forward.",
           "Forgetting the third case Q = Kc, which defines equilibrium."
         ],
-        "memory_tip": "Q climbs or falls until it reaches Kc. Below means forward, above means backward.",
+        "memory_tip": "Q rises or falls until it equals Kc. Q below Kc means forward, Q above Kc means backward.",
         "margin_note": "Write all three cases — the equality case is the definition of equilibrium."
       }
     ]

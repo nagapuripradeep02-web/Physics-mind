@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the Fastrack chemistry section (book pp.73-75) asks Define system (VSAQ 1) and the isolated system (VSAQ 9) but never the open and closed types, so this cell fills that gap. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the Fastrack chemistry section (book pp.73-75) asks Define system (VSAQ 1) and the isolated system (VSAQ 9) but never the open and closed types, so this cell fills that gap. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Definitions and examples verified against the isolated-system card. Replaced a Rule 41 metaphor in the closed-system memory tip (closed door, open window) with the literal statement. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -79,7 +79,7 @@
         "common_mistakes": [
           "Confusing closed with isolated — an isolated system blocks energy as well, a closed system does not."
         ],
-        "memory_tip": "Closed door, open window: matter is stopped, energy still passes.",
+        "memory_tip": "Sealed but conducting walls: matter is stopped, energy still passes.",
         "margin_note": "The boundary material decides: sealed but conducting = closed."
       }
     ]

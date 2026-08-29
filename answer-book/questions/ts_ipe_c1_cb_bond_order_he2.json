@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the book uses bond order inside its MO long answer but never asks the definition or the standard He₂ non-existence check that NCERT teaches with it. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the book uses bond order inside its MO long answer but never asks the definition or the standard He₂ non-existence check that NCERT teaches with it. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Reworded one common mistake that read as if Nb − Na were the wrong subtraction order; the He₂ configuration, the Nb/Na counts and the bond-order arithmetic all verified correct."
   },
   "answer": {
     "page_header": [
@@ -57,7 +57,7 @@
         "why": "Each bonding pair adds a bond and each antibonding pair cancels one, so halving the difference counts the net number of bonds.",
         "common_mistakes": [
           "Forgetting the half. Two electrons make one bond, so the difference is halved.",
-          "Subtracting the wrong way: bonding minus antibonding."
+          "Subtracting the wrong way round. The correct order is bonding minus antibonding, Nb − Na, never Na − Nb."
         ],
         "memory_tip": "Net electrons that bond, divided by two per bond.",
         "margin_note": "Define Nb and Na in words beside the formula."

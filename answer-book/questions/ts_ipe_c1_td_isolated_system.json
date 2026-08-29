@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round 3): the s2 marked line writes hot water while the source book prints ice, and the departure was recorded only in the margin_note. It is now stated in the why as well, and the margin_note leads with the book's version, so the student sees it before writing. The marked line is unchanged — neither container is wrong. OPEN QUESTION for the teacher gate: confirm the two examples are accepted interchangeably."
   },
   "answer": {
     "page_header": [
@@ -72,12 +72,12 @@
             "style": "boxed"
           }
         ],
-        "why": "A thermos flask is the standard example, although it is only approximately isolated — over many hours some heat still passes its walls.",
+        "why": "A thermos flask is the standard example, although it is only approximately isolated — over many hours some heat still passes its walls. The source book prints the example as ice in a thermos flask; the hot water written above is the same physics in the same container, and either wording earns the mark.",
         "common_mistakes": [
           "Giving an open beaker or a sealed metal can as the example — the first is open, the second is closed."
         ],
         "memory_tip": "One picture: a sealed, insulated flask. Sealed stops matter; insulation stops energy.",
-        "margin_note": "The book's example is ice in a thermos flask; any sealed insulated flask is accepted."
+        "margin_note": "The book prints ice in a thermos flask; the hot water written here is the same idea. Any sealed insulated flask is accepted."
       }
     ]
   },

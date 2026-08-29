@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -70,7 +70,8 @@
             "sun"
           ]
         },
-        "memory_tip": "One comparison decides it: escape velocity against the typical molecular speed. The sun has an enormous v_e, so hydrogen stays."
+        "memory_tip": "One comparison decides it: escape velocity against the typical molecular speed. The sun has an enormous v_e, so hydrogen stays.",
+        "margin_note": "First mark. Name both speeds being compared, not the sun’s mass alone."
       },
       {
         "id": "s2_earth",
@@ -88,7 +89,7 @@
           },
           "Heavier gases move more slowly and stay."
         ],
-        "why": "The same rule explains why the earth keeps nitrogen and oxygen: a heavier molecule at the same temperature moves more slowly.",
+        "why": "The same rule explains why the earth keeps nitrogen and oxygen: a heavier molecule at the same temperature moves more slowly. In truth hydrogen’s r.m.s. speed near the earth (about 2 km s⁻¹) is below 11.2 km s⁻¹; escape happens because the fastest molecules in the distribution exceed v_e over long times. The marked line is the book’s simplified comparison.",
         "common_mistakes": [
           "Saying the earth has no hydrogen at all; it has very little free hydrogen, not none."
         ],
@@ -108,8 +109,10 @@
             "escapes"
           ]
         },
-        "memory_tip": "On earth, light and fast hydrogen moves faster than our smaller v_e and escapes; heavier gases stay."
+        "memory_tip": "On earth, light and fast hydrogen moves faster than our smaller v_e and escapes; heavier gases stay.",
+        "margin_note": "Second mark. State the same comparison the other way round for the earth."
       }
     ]
-  }
+  },
+  "insider_note": "The mark is for the comparison itself — write escape velocity against r.m.s. speed on both sides, not just the words light gas."
 }

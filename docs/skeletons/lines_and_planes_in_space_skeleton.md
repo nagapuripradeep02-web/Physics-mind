@@ -9,7 +9,48 @@
 > Probed against **`dfca9cf`**. Every camera pose, distance, angle and frame number below was **re-computed at CYCLE 1** by a node probe (§14).
 > **Projection parameters, named beside every camera number (A10 / A14 THE WORST-CASE LAW):** `PerspectiveCamera(60, aspect, …)` — vertical **FOV 60°** (`field_3d_renderer.ts:3733`, corroborated `:56905`), **reference aspect 16:9** (the aspect the file itself solves at, `:57121`, `:57319`; `camera.aspect` is live `innerWidth/innerHeight`, so no frame figure is defined without a declared reference). Frustum half-extents in the normalised units used below: **y = tan 30° = 0.5774**, **x = 1.0264**. Axes swept and the worst value are stated per row. **The ROUND-0 poses were solved at an assumed 50° FOV and are all superseded.**
 
-> ## ⚠ STATUS — THIS SKELETON IS A **SPEC**, NOT A BUILD ORDER
+> ## ✅ STATUS SUPERSEDED 2026-08-09 — THE ENGINE IS BUILT AND MERGED; THIS IS NOW A BUILD ORDER
+> **Everything in the ⚠ block below is STALE and is kept only as history.** `vector_geometry_3d` IS on
+> `master` (PRs #75/#77/#78/#79), gated by `npm run check:vector-geometry-3d` — **570 assertions / 60
+> negative controls**. VG-A/B/C all landed. Verified against `master` this session, every skeleton delta
+> SHIPPED except Δ7: **Δ1** (`d.points[]`, `d.segments[]`, `d.projection`) · **Δ2** (per-object
+> `reveal_at_ms`/`hide_at_ms` via `vgRevealFrac`) · **Δ4** (`no_meeting_point`) · **Δ5** (`d.angle_arcs`
+> with a subject) · **Δ6** (the full 13-token `lines_planes` `value_readouts` enum) · **Δ8.3**
+> (`span_u`/`span_v`) · **Δ9** (`vg.camera_steps` + `camera_mode:"steps"`) · **Δ10** (`d.scene_groups`).
+> Also shipped: per-state `vg.control_ranges`. `LP_KNOBS` = `lambda · lambda_span · half_extent ·
+> q_height · line2_offset · theta_deg · aux_a · aux_b · scene_group`. **States MAY now be marked
+> buildable.** Companion: `docs/skeletons/lines_and_planes_in_space_mathematics_block.md`.
+>
+> ### ⚠ THREE ENGINE DIFFS — the shipped surface is NOT what this document requests
+> 1. **Δ3 `animate[]`** ships as `{knob, from, to, start_ms?, duration_ms?, easing?:'linear'|'smoothstep'|'ease_out_cubic'}`
+>    — **NOT** this document's `{at_ms, ramp_ms, mode:"once"|"ping_pong"}`. There is **no `ping_pong` FIELD**
+>    (**⚠ CORRECTED 2026-08-21, QA pass-11 F9:** looping itself IS supported — `vg.animate_loop_ms` wraps the state clock, and shipped S9 uses
+>    it: `animate_loop_ms: 18000` over two 9 s legs. Do NOT hand-unroll a long finite sweep instead;
+>    that is the `vg_explore_animate_windows_are_finite_so_the_free_running_sandbox_freezes` bug).
+>    Authoring the names below renders NO MOTION. Several entries may name the SAME knob with disjoint
+>    windows; that is how a multi-segment sweep is authored.
+> 2. **Δ7 WAS NEVER BUILT.** `camera_gate.exempt_pairs` and `min_screen_length_frac` have **zero hits in
+>    both the renderer and `check_vector_geometry_3d.ts`**. §ENGINE DELTA Δ7's three by-construction-parallel
+>    exemptions (S1's `d̂`, S3's perpendicular, S8's `d₁ × d₂`) are discharged against a mechanism that does
+>    not exist. **OPEN RISK — not discharged.**
+> 3. **Four fields the renderer reads but its own TS type does not declare:** `scene_group`, `scene_groups`,
+>    `camera_mode:'group'` (dispatched `:14525`) and `d.group_cameras` (`:14532`). Zod is `.passthrough()`
+>    so authoring them validates and runs. Authorability defect only — same shape as the fixed
+>    `field3d_vg_value_readouts_type_union_omits_every_lines_planes_token_the_renderer_already_prints`.
+>
+> ### ⚠ THREE NUMBERS IN THIS DOCUMENT ARE WRONG — corrected, with evidence
+> Each was re-derived independently against shipped source; each site below carries an inline `⚠ AMENDED`.
+> | What | This document says | **Verified truth** | Evidence |
+> |---|---|---|---|
+> | Act I's chapter-seam camera radius | `R 9` | **`R 16`** (az 90 / el 30 confirmed) | Act I's own `STATE_5.camera_position = [0.0, 8.0, 13.8564]`, ‖·‖ = 16.0000. **S1 enters at R 16 and `camera_steps` pulls IN to 13** — the opposite direction to the ease authored below |
+> | `n·d` on the cutting line | `0.624` | **`0.574`** | `vgLinePlaneMeet` normalizes **both** operands (`field_3d_renderer.ts:12775`), so `d_dot_n` is a cosine: `cos 55° = sin 35° = 0.5736` — **which is what §11 of this document itself states**. `0.624` is `d̂ · n_raw` (‖n_raw‖ = 1.0886) and **will never appear on the rendered HUD**. `λ = 2.600` is UNAFFECTED (scale-invariant: `n` cancels between numerator and denominator) |
+> | S5 screen-crossing parameter | `t = 0.495` **and** `t = 0.815` — **this document contradicts itself** | **neither** | Re-derived in closed form at the S5 pose (R 13/az 146/el 4): crossing at `s₁ ≈ −0.639` on line 1 = `≈ 0.305` of its drawn span. The qualitative claim SURVIVES — the two images genuinely do cross (two 3D points 2.805 apart projecting to the same pixel) — but **author the marker as a literal 3D point at `(−1.797, −0.990, 0.391)`, never from either `t`** |
+>
+> *The `n·d` error is the exact bug class this document's own queue table (line 77) claims to have
+> discharged — "every surface identity evaluated against its own HUD numbers this session." It was not,
+> for this one token.*
+
+> ## ⚠ STATUS [STALE — superseded above, kept as history] — THIS SKELETON IS A **SPEC**, NOT A BUILD ORDER
 > Per §0b, **#9 specs the engine and #7 ships first.** The scenario `vector_geometry_3d` does not exist on
 > `master`; the `lines_planes` half is dispatch **VG-C**, not yet dispatched. Therefore:
 > - **NO state in this document may be marked `buildable`.** Scar
@@ -114,7 +155,7 @@ is narrowed **by named, enumerable exclusion** rather than by a wildcard:
 | Visual need (state) | F-row | Tier | Evidence |
 |---|---|---|---|
 | Per-state camera pose with eased transition (all) | **F2** | **EXISTS** | ungated block inside `applyState()` — `field_3d_renderer.ts:67195`, resolved to its **enclosing function** (the survey's `:66995` scenario-local twin was checked and rejected) |
-| Per-state contextual slider rows over one shared panel (S1, S3, S5, S6, S9) | **F10** | **EXISTS** | `show_sliders` / `visible_controls` / `slider_controls` plumbing, 100 / 37 / 424 sites |
+| Per-state contextual slider rows over one shared panel (S1, S2, S6, S9 — list corrected 2026-08-20, pass-7 F2, to the shipped `controls` arrays; S3/S5 ship none, S2 ships `half_extent`) | **F10** | **EXISTS** | `show_sliders` / `visible_controls` / `slider_controls` plumbing, 100 / 37 / 424 sites |
 | Focal brightening + peer dim (S1, S2, S4, S5) | — | **EXISTS** | `applyGlowEmphasis`, 129 sites (Rule 29 / 32e) |
 | Arrows (`d̂`, `n`, `d₁ × d₂`) | — | **EXISTS** | `ArrowHelper`, 205 sites |
 | Scenario shell + `apply…State()` + per-frame update (all) | **F1** | **SPEC (VG-A)** | — |
@@ -155,11 +196,11 @@ have shown a gap number before any state explained what a shortest distance is (
 | # | Title (Rule 41d — short, first words carry) | Purpose | teaching_method | ring |
 |---|---|---|---|---|
 | S1 | One Number Names Every Point on a Line | `r = a + λd`; λ is the address along the line | *(straightforward)* | core |
-| S2 | A Normal Direction Fixes a Whole Plane | `n·(r − a) = 0`; the patch is Act I's parallelogram, now defined by what it is perpendicular to | *(straightforward)* | core |
+| S2 | A Normal Direction Sets a Whole Plane | `n·(r − a) = 0`; the patch is Act I's parallelogram, now defined by what it is perpendicular to | *(straightforward)* | core |
 | S3 | The Perpendicular Is the Shortest Segment | **PRIMARY AHA** — of all the segments from a point to a plane, the perpendicular is the short one | *(straightforward)* | core |
 | S4 | A Line Meets a Plane Once, or Never | one point, or none; `n·d = 0` is the "never" case | *(straightforward)* | core |
 | S5 | Two Lines That Never Meet | **SUPPORTING AHA** — skew: not parallel, and still no meeting point; the gap is a real length | *(straightforward)* | core |
-| S6 | Directions Alone Fix the Angle | directions alone give it — positions do not matter | *(straightforward)* | core |
+| S6 | Directions Alone Set the Angle | directions alone give it — positions do not matter; the reported angle never passes 90° | *(straightforward)* | core |
 | S7 | Measure to the Normal, Then Subtract | a plane has no single direction, so measure to the normal and take the complement | *(straightforward)* | **extended** |
 | S8 | The Gap Runs Along d₁ × d₂ | the gap runs along `d₁ × d₂`; the formula reads it off | `derivation_first_principles` | **advanced** |
 | S9 | Explore: Move Every Part | teacher sandbox, all controls | `exploration_sliders` | core |
@@ -198,15 +239,15 @@ moving from #7 to #9 must recognise the workspace instantly (Rule 32d promoted t
 
 | St | Teaches (one idea) | Ring | Archetype | Distinct motion | Delta cue (≤5 words) | Live controls | Words | **→ hand-off (§arc rule 6)** |
 |---|---|---|---|---|---|---|---|---|
-| S1 | A line is one point plus one direction; λ counts your position along it | core | `parameter-sweep` | **Entry = Act I's S5 FINAL FRAME, unchanged (§arc rule 5 / A12): the violet parallelogram with the GREEN `a×b` standing perpendicular on it, at Act I's own pose az 90° / el 30°. Nothing about that frame changes; only the words do** — the narration re-labels the green arrow `n` and the violet quad "a patch of a plane". **The green arrow is never deleted and no violet normal is ever grown** (the ROUND-0 seam defect). Then patch and normal both DIM to ghosts, keeping their colours, and one patch edge survives as the amber `d̂` at `a`; the line extends to the scene bounds and the λ marker slides `−3.5 → +3.5`, coordinate readout live. `camera_steps` (F24) eases az 90→94, el 30→6, R 9→13 across the dim-down | **One point, one direction** | `lambda` | 34–42 | *"One number now names every place on this line. Naming a whole flat sheet needs more than a direction."* |
-| S2 | A plane is one point plus one perpendicular direction — **and the dot product is the test for "perpendicular"** | core | `reveal-build` | The **green normal `n` is already present from S1** (never re-grown); it brightens, and the **violet** patch re-unfolds around it edge by edge out to `half_extent = 3.0`. **The dot-product introduction beat (one beat, 3.5 s):** a neutral test vector `v` is drawn from `a` and swung inside the patch while the HUD row `n·v` holds `0.000`; it is then tipped off the patch and `n·v` moves off zero. That is the whole introduction — `n·v = 0` means "perpendicular to `n`". The S1 line retires to a dim ghost | **One point, one normal** | `half_extent` | 44–52 | *"Every point on the sheet is now named. Take a point that is not on it — how far away is it?"* |
-| S3 | **PRIMARY AHA** — of all the ways to get from a point to a plane, the perpendicular one is the shortest | core | **`sweep-to-extremum`** *(coined: a driven parameter passes through a stationary value and the readout DIPS and rises again — distinct from `parameter-sweep`, whose readout is monotone in its driver. No seed archetype names a minimum being found by motion.)* | The point `q` sits above the patch. A neutral segment runs from `q` to a foot that slides along **ONE straight in-plane path — the `u` axis through the true foot** (ROUND 0 authored the two comparison feet on different axes, `+1.6u` and `−2.2v`, which no single straight sweep can pass through; measured, both lie on the `u` path: `s = −2.2 → 3.110`, `s = +1.6 → 2.721`, `s = 0 → 2.200`). **One path, one dip:** the foot runs `s = −2.2 → +1.6` and the readout falls `3.11`, reaches `2.20` at `s = 0`, rises to `2.72`; the foot then returns to `s = 0`, the readout falls back to `2.20`, and the segment turns **GREEN** and locks with a right-angle mark | **The perpendicular is shortest** | `q_height` | 40–48 | *"That perpendicular is the whole distance idea. Now replace the single point with a whole line: does it hit the sheet, or pass by it?"* |
-| S4 | A line and a plane meet at one point, unless `n·d = 0`, when they never meet | core | `translate-through` | TWO lines, sequential. First the cyan line whose `n·d = 0` slides bodily toward the patch and passes clean over it — no marker ever appears, and the readout holds `n·d = 0.000`. Then the amber line arrives on a different heading, punches through the patch, and the intersection marker snaps on at `λ = 2.600` | **Crosses, or never touches** | none | 42–50 | *"A line and a plane settle into one of two cases. Two lines in space have a third case, and it exists only in three dimensions."* |
-| S5 | **SUPPORTING AHA** — two lines can be neither parallel nor meeting: they pass at different depths | core | `rotate-to-reveal` | **The `shortest distance = 1.80` readout is LIVE from t = 0** — the false picture is never on screen unnumbered (ROUND 0 rendered it for 3.5 s with nothing contradicting it; the §camera invariant says the number is what makes "they do not meet" true on screen). The two amber/cyan lines draw and their images visibly CROSS (measured: at `t = 0.495` along line 1 at the S5 pose); a marker pulses at the crossing pixel for **1.5 s** while the readout already says 1.80, then is removed. The **green** common perpendicular grows between the true nearest points. `camera_steps` (F24) then eases to the S8 pose, where the miss is plain | **Same picture, different depths** | none | 44–52 | *"They never meet, so there is no crossing point to measure an angle at. The angle must come from the directions alone."* |
-| S6 | The angle between two lines is fixed by their directions; moving either line does not change it | core | `rotate/flip` | Both directions are re-drawn from ONE origin with the arc between them. First each line's anchor slides along itself and the arc holds at **69.4°** — position does nothing. Then `d₂` rotates about the pair's normal, 25° → 115°, and the arc and readout track it continuously | **Directions alone give the angle** | `theta_deg` | 38–46 | *"That worked because each line has a direction. A plane does not have one direction. It has a normal, and the angle is measured from the normal."* **· RING-CUT ALTERNATE (`core_only`, S7 and S8 hidden — S6 is terminal):** *"Every distance and every angle so far came from one point, one direction, and one perpendicular."* |
-| S7 | The angle between a line and a plane is measured to the normal, then subtracted from 90° | **extended** | `decompose` | The cutting line of S4 returns. It splits into two drawn parts: its shadow lying in the plane, and its component along `n`. Two arcs appear in sequence — first the 55.0° arc to the normal, then the 35.0° arc to the shadow — and the readouts show them summing to 90.0° | **Measure from the normal** | none | 40–48 | *"A plane supplies a normal. Two skew lines supply no normal, so the perpendicular has to be built from the two directions."* **· RING-CUT ALTERNATE (`no_advanced`, S8 hidden — S7 is terminal):** *"A normal answers both questions about a plane: how far a point is from it, and at what angle a line meets it."* |
-| S8 | The shortest gap between skew lines lies along `d₁ × d₂`, and its length is `\|(a₂−a₁)·(d₁×d₂)\| ⁄ ‖d₁×d₂‖` | **advanced** | **`overlay-match`** *(coined: an independently-built object is moved onto a previously-drawn one to show the two coincide. No seed archetype names proof-by-superposition; `translate-through` is already S4's and describes passage, not identity.)* | The S5 scene returns with the common perpendicular already present (concrete before abstract). A separate violet `d₁ × d₂` arrow is built at the origin from the two directions, then translated onto the common perpendicular — the two coincide exactly. The formula surface writes itself and its three HUD terms fill in | **Gap direction: d₁ × d₂** | none | 44–52 | *"Every measurement in this chapter is now a number you can change. The last state gives you the controls."* |
-| S9 | Teacher sandbox | core | `drag-sandbox` | Free-running (Rule 37). λ ping-pongs until a slider is seized; every readout stays live | **Move every part** | **ALL:** `scene_group` (**A** line+plane+perpendicular / **B** skew pair+common perpendicular — forced by the camera solve, §5), `lambda`, `lambda_span`, `half_extent`, `q_height`, `theta_deg`, `line2_offset` | 0 / open | — |
+| S1 | A line is one point plus one direction; λ counts your position along it | core | `parameter-sweep` | **Entry = Act I's S5 FINAL FRAME, unchanged (§arc rule 5 / A12): the violet parallelogram with the GREEN `a×b` standing perpendicular on it, at Act I's own pose az 90° / el 30°. Nothing about that frame changes; only the words do** — the narration re-labels the green arrow `n` and the violet quad "a patch of a plane". **The green arrow is never deleted and no violet normal is ever grown** (the ROUND-0 seam defect). Then the patch DIMs to a ghost, keeping its colour — **the normal arrow is AUTHORED to dim but measurably does NOT: at the frozen frame it holds rgb(91, 217, 122), identical to its own t = 0 value (the quad dims; the arrow does not — engine half owned by the OPEN row `vg_lp_plane_ghost_multiplier_applies_to_the_quad_but_not_to_its_normal_arrow`, `peter_parker:field3d_surgeon`; until it lands, the arrow stays full-bright into S2, which is therefore also the frame S2's brighten beat starts from)** — and one patch edge survives as the amber `d̂` at `a`; the line extends to the scene bounds and the λ marker slides `−3.5 → +3.5`, coordinate readout live. `camera_steps` (F24) eases az 90→94, el 30→6, ~~R 9→13~~ **⚠ AMENDED: R 16→13 (a pull-IN, not a pull-back)** across the dim-down | **One point, one direction** | `lambda` | **52** | *"One number now names every place on this line. Naming a whole flat sheet needs more than a direction."* |
+| S2 | A plane is one point plus one perpendicular direction — **and the dot product is the test for "perpendicular"** | core | `reveal-build` | The **green normal `n` is already present from S1** (never re-grown); it brightens, and the **violet** patch re-unfolds around it edge by edge out to `half_extent = 3.0`. **The dot-product introduction beat (one beat, 3.5 s):** a neutral test vector `v` is drawn from `a` and swung inside the patch while the HUD row `n·v` holds `0.000`; it is then tipped off the patch and `n·v` moves off zero. That is the whole introduction — `n·v = 0` means "perpendicular to `n`". The S1 line retires to a dim ghost | **One point, one normal** | `half_extent` | **55** | *"Every point on the sheet is now named. Take a point that is not on it — how far away is it?"* |
+| S3 | **PRIMARY AHA** — of all the ways to get from a point to a plane, the perpendicular one is the shortest | core | **`sweep-to-extremum`** *(coined: a driven parameter passes through a stationary value and the readout DIPS and rises again — distinct from `parameter-sweep`, whose readout is monotone in its driver. No seed archetype names a minimum being found by motion.)* | The point `q` sits above the patch. A neutral segment runs from `q` to a foot that slides along **ONE straight in-plane path — the `u` axis through the true foot** (ROUND 0 authored the two comparison feet on different axes, `+1.6u` and `−2.2v`, which no single straight sweep can pass through; measured, both lie on the `u` path: `s = −2.2 → 3.110`, `s = +1.6 → 2.721`, `s = 0 → 2.200`). **One path, one dip:** the foot runs `s = −2.2 → +1.6` and the readout falls `3.11`, reaches `2.20` at `s = 0`, rises to `2.72`; the foot then returns to `s = 0`, the readout falls back to `2.20`, and the segment turns **GREEN** and locks with a right-angle mark | **The perpendicular is shortest** | none *(corrected 2026-08-20, QA pass-7 F2 — the sweep is choreography-driven by `aux_a` on the state clock (§12), so under Rule 31 this guided state exposes no slider; a live `q_height` mid-sweep would move a second variable (Rule 32b) and would per-scenario-smuggle the point-`q` manipulation the §ENGINE DELTAS ledger deliberately holds for the fleet-wide `teach_field3d_explore_grab_and_move_field_point` directive. `q_height` goes live only in S9, where the ledger already says "Sliders serve S9". Shipped `STATE_3` `controls: []` is the correct build.)* | **54** | *"That perpendicular is the whole distance idea. Now replace the single point with a whole line: does it hit the sheet, or pass by it?"* |
+| S4 | A line and a plane meet at one point, unless `n·d = 0`, when they never meet | core | `translate-through` | TWO lines, sequential, a CONTRAST PAIR of slides. First the cyan line — labelled `d′` (prime; NOT `d₁`/`d₂`, which are reserved for the skew pair of S5–S9 — one symbol, one meaning — and the HUD's fixed token `n·d` must keep exactly one on-screen line named `d`) — whose `n·d′ = 0` **slides sideways ABOVE the patch at a constant 1.400 wu height — its `offset.along` is the in-plane axis `n̂×û` (`along·n̂ = −5.5e−8`), so the height CANNOT change; "slides toward the plane" was FALSE on the shipped geometry and all four surfaces now say constant height (F-A, 2026-08-20)** — crossing over the patch centre, no marker ever appears, and the readout holds `n·d = 0.000`. **The slide is bounded at displacement +0.25 wu (`animate to: 0.55`, home pose unchanged): the withdrawn −2.5 → +2.5 sweep drove the line to 0.22 wu from the CAMERA ITSELF and it collapsed end-on to 6.8 px while `s4_2` was narrated; re-solved floor = image diagonal ≥ 78.9 px over the whole slide (probe model validated against run `20260820-213712` ink: 128.6/119/43 px at t = 0/4000/6000 vs measured 127/118/40), so the `90.0°` arc and `n·d = 0.000` readouts never outlive a visible object.** Then the amber line arrives on a different heading — it is drawn LIFTED 1.4 units along `n̂` and slides bodily DOWN onto its home pose (fix-round 2026-08-20, F2) — **the deliberately OPPOSITE slide axis: the in-plane slide changes nothing, the along-`n̂` slide closes the gap, and only when it is home does the intersection marker snap on at `λ = 2.600`. **CYCLE-1 (P1-B): the numbers no longer wait for the marker — an invisible readout carrier `X_live` (`size: 0`) arrives with the amber line at 10300 and hides at 15000, so `n·d = 0.574` + live λ + the moving meeting point publish through the whole slide (the engine publishes the intersection readout family only while exactly ONE intersection is arrived, `field_3d_renderer.ts` `arrivedMeets.length === 1` — two simultaneous `n·d` values are unauthorable, and co-arrived windows blank the panel with a recorded conflict). The ghosted `d′` carries its own on-scene tag ~~`n·d′ = 0, no meeting point`~~ ⚠ AMENDED 2026-08-21 (post S4-camera-tighten re-probe): shortened to bare `n·d′ = 0` — a dense param sweep at the new dist=9.6 pose found the long form still could not clear the `d`/`d′`/`n` labels clustered at this corner of the scene (best achievable separation 69-105px vs a ~155px text half-width); the bare form (half-width ~48px) at param -4.45 clears all three with real margin, pixel-verified. The dropped "no meeting point" half is already carried by the HUD for the whole 0-9500ms window from 9500 (free point `par_tag`, size 0, label-only), so the pinned frame shows BOTH cases' numbers: the tag on the ghost beside the HUD's `0.574` / `λ = 2.600` / `(0.57, −0.60, 0.00)`, bound to `d` by the marker `X`.**** | **Crosses, or never touches** | none | **53** | *"A line and a plane settle into one of two cases. Two lines in space have a third case, and it exists only in three dimensions."* |
+| S5 | **SUPPORTING AHA** — two lines can be neither parallel nor meeting: they pass at different depths | core | `rotate-to-reveal` | **The `shortest distance = 1.80` readout is LIVE from ≈1800 ms** (corrected 2026-08-21, QA pass-13: ~~LIVE from t = 0~~ — the readout waits for `common_perp` to ARRIVE, `vgArrived` threshold 0.999 against `grow_ms:1800`; the guarantee still holds because the false crossing pulse reveals at 2000 ms) — the false picture is never on screen unnumbered (ROUND 0 rendered it for 3.5 s with nothing contradicting it; the §camera invariant says the number is what makes "they do not meet" true on screen). The two amber/cyan lines draw and their images visibly CROSS (~~measured: at `t = 0.495` along line 1 at the S5 pose~~ — **⚠ AMENDED: this document states `0.495` here and `0.815` in §4/§14 for the SAME event; re-derivation in closed form matches NEITHER. The crossing is real (two 3D points 2.805 apart projecting to one pixel) and sits at `s₁ ≈ −0.639` on line 1. Author the marker as a literal 3D point at `(−1.797, −0.990, 0.391)`, never from a `t` value**); a marker pulses at the crossing pixel for **1.5 s** while the readout already says 1.80, then is removed. The **green** common perpendicular grows between the true nearest points. `camera_steps` (F24) then eases to the S8 pose, where the miss is plain | **Same picture, different depths** | none | **55** | *"They never meet, so there is no crossing point to measure an angle at. The angle must come from the directions alone."* |
+| S6 | The angle between two lines is set by their directions alone; moving either line does not change it — and the angle is never obtuse: when one direction turns past perpendicular the reported angle turns back down, which is what the `|·|` on the formula surface does | core | `rotate/flip` | Both directions are re-drawn from ONE origin with the arc between them (`apex_at_origin`). **The visible carrier of the slide is the pair of drawn LINE ENDPOINTS plus the anchor point `a1`: both lines are clipped to `lambda_span: [−4.5, 4.5]` (= `VG_SCENE_RADIUS`, so the rest pose at `aux_a = 0` is pixel-identical to the infinite-line picture — Rule 32d home pose kept), and a neutral white point `a1` (size 0.13) rides M1's anchor on the same `offset`/`aux_a` knob as STATE_3's `foot_sweep`. The earlier arrow carrier (`show_dir_arrow`) was FALSIFIED by probe 2026-08-20: `THREE.ArrowHelper` draws collinear with, and in the same role colour as, its tube (`field_3d_renderer.ts:14559-14566`) — measured 52–99 changed px/s, 0.006–0.011 % of canvas, under THE EYE's D5 floor. With endpoints + `a1` the slide measures 261–560 px/s (run `20260820-211735`).** First M1's endpoints and `a1` slide along the stationary line, out and back, and the arc holds at **69.4°** — position does nothing. M2 carries no offset (rotate only — this is what closed the OPEN apex scar; closed-form probe 0.0000 wu over the full θ × aux_a sweep). Then `d₂` rotates about the pair's normal, **its direction turning 69.4° → 115°** *(AMENDED 2026-08-10: the sweep STARTS at the pair's own inherited angle, not at 25° — a 25° start silently changed the angle STATE_5 handed over, on the state that teaches the angle; 25° survives only as the slider's floor)*. **The readout does NOT follow the direction all the way (engine fold, founder option (b) 2026-08-21, `angle_lines_deg` folded to acute in `lines_planes` mode only): it rises 69.4° → 90.0° and then FALLS back to 65.0° while the line keeps turning, and the arc re-draws on the acute side. The turn-around at 90° is the beat: the angle between two lines is the smaller of the two angles they make, never more than 90°, and `|d₁·d₂|` on the formula surface is the algebra of that fold. Contrast beat (Rule 16a, M4 in §4): the student who expects "115°" watches the number come back down.** The arc and readout track continuously throughout | **Directions alone give the angle** | `theta_deg` | **54** (re-written 2026-08-21 with the acute fold — s6_3 narrates the turn-around, s6_4 states the rule; was 51) | *"That worked because each line has a direction. A plane does not have one direction. It has a normal, and the angle is measured from the normal."* **· RING-CUT ALTERNATE — UNAUTHORABLE, SUPERSEDED 2026-08-10:** `presets` carries only `hidden_states` and `tts_sentences` have no preset condition, so a per-preset alternate sentence cannot ship. The single authored closing sentence is now CUT-SAFE in both directions instead (it summarises what this state proved and promises no later state). Original text kept for the record: (`core_only`, S7 and S8 hidden — S6 is terminal): *"Every distance and every angle so far came from one point, one direction, and one perpendicular."* |
+| S7 | The angle between a line and a plane is measured to the normal, then subtracted from 90° | **extended** | `decompose` | The cutting line of S4 returns. It splits into two drawn parts: **its component along `n` — a neutral segment dropped from the point at `λ = 4.6` straight to the plane (fix-round 2026-08-20: the narration names this part and the shipped build never drew it) —** and its shadow lying in the plane. Two arcs appear in sequence — first the 55.0° arc to the normal, then the 35.0° arc to the shadow — and the readouts show them summing to 90.0° | **Measure from the normal** | none | **47 (re-written, was 53 — see §12 fix-round note)** | *"A plane supplies a normal. Two skew lines supply no normal, so the perpendicular has to be built from the two directions."* **· RING-CUT ALTERNATE (`no_advanced`, S8 hidden — S7 is terminal):** *"A normal answers both questions about a plane: how far a point is from it, and at what angle a line meets it."* |
+| S8 | The shortest gap between skew lines lies along `d₁ × d₂`, and its length is `\|(a₂−a₁)·(d₁×d₂)\| ⁄ ‖d₁×d₂‖` | **advanced** | **`overlay-match`** *(coined: an independently-built object is moved onto a previously-drawn one to show the two coincide. No seed archetype names proof-by-superposition; `translate-through` is already S4's and describes passage, not identity.)* | The S5 scene returns with the common perpendicular already present (concrete before abstract). A separate **green** (`role: derived`, Act I role 4 — "violet" here was a stale word) `d₁ × d₂` arrow is built at the origin from the two directions, then translated onto the common perpendicular — the two coincide exactly. The magenta `a₂ − a₁` is drawn WITH the common perpendicular (both complete at 2000) because the renderer publishes all three readouts on the perpendicular's arrival (F13b, `field_3d_renderer.ts:13310-13326`) — the numerator may never precede its vector; its later arrival (13000) was a 2026-08-20 re-timing error, reverted. **The formula surface is on screen from t = 0 (the vg `#formula_overlay` has no timed reveal — §12 fix-round note, Δ11)** | **Gap direction: d₁ × d₂** | none | **55** | *"Every measurement in this chapter is now a number you can change. The last state gives you the controls."* |
+| S9 | Teacher sandbox | core | `drag-sandbox` | Free-running (Rule 37). λ ping-pongs until a slider is seized; every readout stays live | **Move every part** | **ALL:** `scene_group` (**A** line+plane+perpendicular / **B** skew pair+common perpendicular — forced by the camera solve, §5), `lambda`, `lambda_span`, `half_extent`, `q_height`, `theta_deg`, `line2_offset` | 0 / open | — · **F6 ruling (2026-08-21): the S3 comparison-foot sweep (`aux_a`) SHOULD be teacher-slidable on S9 group A — "let me slide it and show you" is the right instinct and Rule 32b does not bind the explore state. It is NOT authorable today: `aux_a` is animation-only in `LP_KNOBS` (resolve by symbol in `field_3d_renderer.ts`; read through `vgAnimValue`, no `knob()` entry, no `PM_vgAuxA` global, no `vgSc` row). Filed as a `peter_parker:field3d_surgeon` directive (founder call, Rule 40 — lands on master separately, not on this desk); until it lands S9-A stays as shipped, and `q_height` remains the only live handle on the distance idea. When it lands: S9-A gains `foot_sweep` + `cmp` cloned from STATE_3 with `segment_length` in `value_readouts`, slider label "foot position", range **[−1.5, 1.5]** (bounded by `half_extent`'s S9 floor of 1.5 so the foot never leaves the patch — ASSUMPTION — probe-before-authoring: re-run the S9-A camera solve with the sweep as a fourth axis).** |
 
 **Archetype no-repeat check:** `parameter-sweep` · `reveal-build` · `sweep-to-extremum`* · `translate-through` ·
 `rotate-to-reveal` · `rotate/flip` · `decompose` · `overlay-match`* · `drag-sandbox` — **nine distinct**, two
@@ -228,16 +269,17 @@ coinages each justified inline, `drag-sandbox` on the explore state only ✓.
   (`state_glow_focal_dims_one_half_of_the_relation_the_state_exists_to_teach`: Rule 32e caps the focal count at
   one, it does not require one).
 
-## 4. Misconception confrontation plan (Rule 16a — **exactly 3** genuine pivots)
+## 4. Misconception confrontation plan (Rule 16a — **exactly 4** genuine pivots)
 
-`misconception_watch` is authored on **S3, S4 and S5 only**. The other six states are straightforward teaching and
+`misconception_watch` is authored on **S3, S4, S5 and S6 only** (S6 added 2026-08-21 with the engine fold). The other five states are straightforward teaching and
 carry none (founder guardrail 2026-07-04).
 
 | # | Wrong belief (NCERT Exemplar-class, belief only) | State | Straightforward contrast beat — consequence first, then the mathematics, no prediction and no pause |
 |---|---|---|---|
 | M1 | "The distance from a point to a plane is just how far it is to the nearest bit of the plane you can see — any line down to it will do" | S3 | The sweeping segment SHOWS the consequence: at the patch centre it reads `3.11`, further along `2.72` — several different "distances" for one point, which cannot all be the answer. Only when the segment turns perpendicular does the readout stop falling, at `2.20`. `one_line_fix`: "Every segment from the point to the plane is longer than the perpendicular one, so the perpendicular length is the distance." |
-| M2 | "`n·d = 0` means the line is perpendicular to the plane" (the normal is confused for the plane itself) | S4 | The cyan `n·d = 0` line is shown doing what that condition actually forces: it glides past the patch, parallel, and never touches — with the readout pinned at `0.000` the whole time. The amber line that DOES cut through has `n·d = 0.624`, plainly not zero. `one_line_fix`: "`n·d = 0` means the direction is perpendicular to the NORMAL, which puts the line parallel to the plane." |
-| M3 | "If two lines are not parallel they must cross somewhere" (plane geometry carried into space) | S5 | The wrong picture is performed by the engine, because the screen genuinely draws it: from the entry pose the two lines cross at a pixel (**measured: they cross at t = 0.815 along line 1** — see §14), and the marker pulses there. Then the common perpendicular is drawn between the true nearest points, reading **1.80**, and the camera swings so the miss is visible. `one_line_fix`: "Their pictures cross, but at that place they are 1.80 apart along the line joining them — in space, not parallel does not mean meeting." |
+| M2 | "`n·d = 0` means the line is perpendicular to the plane" (the normal is confused for the plane itself) | S4 | The cyan line — labelled `d′` — is shown doing what its condition `n·d′ = 0` actually forces: it glides past the patch, parallel, and never touches, with the readout pinned at `0.000` the whole time; from 9.5 s the fact rides the ghost itself as the on-scene tag ~~"n·d′ = 0, no meeting point"~~ ⚠ AMENDED 2026-08-21: shortened to bare "n·d′ = 0" (see S4 row + §token-table note — full separation from the `d`/`n` labels sharing this corner is unreachable at any length above ~50px half-width, so the short form was taken all the way to bare). The amber line that DOES cut through keeps the label `d` and reads `n·d = 0.574` (the HUD prints the normalized cosine) beside its marker `X` — plainly not zero. At the pin BOTH numbers are on screen: the tag on the ghost, the HUD bound to `d` by the marker. `one_line_fix`: "`n·d = 0` means the direction is perpendicular to the NORMAL, which puts the line parallel to the plane." |
+| M3 | "If two lines are not parallel they must cross somewhere" (plane geometry carried into space) | S5 | The wrong picture is performed by the engine, because the screen genuinely draws it: from the entry pose the two lines cross at a pixel (~~**measured: they cross at t = 0.815 along line 1** — see §14~~ — **⚠ AMENDED: contradicts §3's own `t = 0.495` for this same event; re-derivation matches neither. The crossing is REAL; author the marker at the literal 3D point `(−1.797, −0.990, 0.391)`**), and the marker pulses there. Then the common perpendicular is drawn between the true nearest points, reading **1.80**, and the camera swings so the miss is visible. `one_line_fix`: "Their pictures cross, but at that place they are 1.80 apart along the line joining them — in space, not parallel does not mean meeting." |
+| M4 | "The angle between two lines can be obtuse — if one line turns 115° from the other, the angle between them is 115°" | S6 | The consequence is shown, not stated: `d₂` keeps turning past perpendicular while the readout climbs to `90.0°` and then comes back down to `65.0°`. Two lines make two angles that add to 180°; the angle between the lines is the smaller one. `one_line_fix`: "The angle between two lines is the smaller of the two angles they make, so it is never more than 90°; that is why the formula takes the absolute value of d₁·d₂." |
 
 **Cue cross-check (`delta_cue_restates_the_declared_misconception_verbatim`):** no delta cue states a wrong belief as
 fact. S5's cue names the held thing — "Same picture, different depths" — never "these lines cross". S4's cue,
@@ -260,12 +302,12 @@ of them changes.**
 
 | St | R | az / el | axes swept | min pairwise sep | length floors met | worst fill |
 |---|---|---|---|---|---|---|
-| S1 | **9 → 13** | **entry az 90 / el 30 (Act I's S5 final frame, verbatim)** → `camera_steps` eases to **az 94 / el 6** | az × el, R fixed per phase | **59.6°** | — (`d̂` on its own line = exempt pair) | **0.382** (entry frame at R 9: **0.223**) |
+| S1 | ~~**9 → 13**~~ **⚠ AMENDED: 16 → 13** | **entry az 90 / el 30 (Act I's S5 final frame, verbatim)** → `camera_steps` eases to **az 94 / el 6** | az × el, R fixed per phase | **59.6°** | — (`d̂` on its own line = exempt pair — **⚠ Δ7 exemption mechanism WAS NEVER BUILT**) | **0.382** (entry frame ~~at R 9: **0.223**~~ — **⚠ AMENDED: at R 16 the entry fill is SMALLER than 0.223, so no off-frame hazard; the exact fill + min-separation for this row are UNVERIFIED until re-solved at R 16**) |
 | S2 | 13 | az **−62** / el **16** | az × el | **59.5°** | normal **48.3 %** of patch width | 0.338 |
 | S3 | 13 | az **−44** / el **42** | az × el | **23.6°** (the length floor is BINDING — the pure-pairwise optimum draws the perpendicular shorter) | perpendicular **33.1 %** of patch width | 0.566 |
-| S4 | 13 | az **−176** / el **22** | az × el | **34.8°** | — | 0.326 |
+| S4 | 13 | az **−176** / el **22** | az × el, **plus the full `aux_a` slide (displacement −2.5 → +0.25 wu along `n̂×û`, 0.01 wu steps) and the `aux_b` lift 1.4 → 0** | **34.8°** at the home pose; over the slide `Lpar` vs the normal's image holds **≥ 85.1°**. `Lpar` vs the patch's `u`-edge = **EXEMPT pair** (parallel by design — the taught fact) | **`Lpar` image diagonal ≥ 78.9 px** (1280×720) across the whole slide, home 128.6 px, worst at the +0.25 end; closest camera approach **1.90 wu** (the withdrawn +2.5 end reached **0.22 wu** → 6.8 px — a line through the camera projects to a point); `Lcut` 279–297 px through its lift window (measured, run `20260820-213712`) | 0.326 |
 | S5 | 13 | az **146** / el **4** → `camera_steps` to the S8 pose | az × el, **plus a hard constraint that the two line images CROSS** | **52.1°** | common perpendicular **33.4 %** of the L1 image | 0.451 |
-| S6 | **5** | az **−58** / el **68** | az × el × R, **and the full `theta_deg` sweep 25°–115° at 1° steps** | **25.5 %→ 25.5°** minimum over the whole sweep | direction arrows drawn at **length 2.5** (at R 13 two unit arrows fill only 0.074 of the frame — a ROUND-0 miss) | 0.526 |
+| S6 | **13.0** (shipped `camera_position [2.58076, 12.05334, −4.12984]`; the R 5 solve is WITHDRAWN — see note 2) | az **−58** / el **68** | az × el, **and the full `theta_deg` sweep 25°–115° at 1° steps** | **25.5 % → 25.5°** minimum over the sweep at R 5 (HISTORICAL); at R 13 the A3 worst-case arc error (≈6°) returns and is tolerated — the readout, not the arc, carries the number | the motion carrier is the `±4.5` line endpoints + `a1`: at R 13 the d₁ endpoints project to screen x ≈ 415 / 835 of 1280 and slide ≈ 70 px through the ±1.5 sweep (measured, run `20260820-211735`) — on-screen with ≥ 400 px margin | not re-solved at R 13; the fill objection of note 2 no longer applies because the carrier is the clipped line, not a unit arrow |
 | S7 | 13 | az **140** / el **26** | az × el | **29.5°** | normal **87.4 %** | 0.357 |
 | S8 | 13 | az **−38** / el **56** | az × el | **59.2°** | common perpendicular **39.2 %** | 0.304 |
 | **S9-A** | **14** | az **138** / el **20** | **az × el × R × `lambda_span` × `half_extent` × `q_height`** | **41.1°** | perpendicular **25.2 %**, normal **54.9 %** | **0.420** · max arm **0.444** |
@@ -305,8 +347,7 @@ is; group A is unconstrained by framing (0.420 at cap 5.0, 0.656 even at cap 8.0
    objects, unreadable. S7 now takes **its own** pose (az 140 / el 26, **29.5°**), reached from the shared
    home pose by an eased **`camera_steps`** move, which is how Rule 32d is honoured when a state genuinely
    needs a new frame (Act I S7's declared reframe is the precedent).
-2. **S6 was solved at the chapter radius R 13** with two unit direction arrows — **fill 0.074**. The whole
-   state was 7 % of the frame. R 5 with arrows drawn at length 2.5 fixes it and improves fidelity 7×.
+2. **S6 was first solved at R 13 with two unit direction arrows as the carrier (fill 0.074)**, and R 5 was proposed to fix it. **SUPERSEDED 2026-08-20:** the carrier is now the `lambda_span ±4.5` line endpoints + the anchor point `a1`. A ±4.5 line overflows the frame at R 5 — the endpoints leave the screen and the slide renders no carrier — so **R 13 is the shipped and required pose.** Cost: the A3 arc-fidelity gain at R 5 is forfeited (worst error ≈ 6° at R 13 / FOV 50); accepted because the 69.4° readout is the number the state teaches and the arc's role is to HOLD visibly, which it does.
 
 **Azimuth vs swept ranges:** the only state that sweeps an angle is S6 (25°–115°) at azimuth **−58°**;
 `−58 mod 180 = 122` lies outside [25, 115] and clears 180° by 58° ✓.
@@ -360,9 +401,9 @@ that `a·b` and `a×b` are "each introduced on canvas by a state of THIS concept
 defined-in row for the dot product** and three states rendered one before any state introduced it (S4's
 `n·d` HUD, S6's `cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖)`, S7's `sin θ = |d·n| ⁄ (‖d‖‖n‖)`). Under §arc rule 7 there is
 no rescue — `dot_product` is not shipped product. **Fix: a one-beat dot-product introduction is authored
-into S2** (the perpendicularity test `n·v = 0`, §3's control table, S2's budget raised 33–40 → 44–52 words),
+into S2** (the perpendicularity test `n·v = 0`, §3's control table, S2's budget raised 33–40 → 44–52 words; shipped final: 55, at the Rule 31 cap),
 and `n·v` gains a defined-in row in §10(b). The introduction sits at **S2 rather than S4** because S3's
-formula surface `d = |n·(q − a)| ⁄ ‖n‖` renders a dot product before S4 ever runs — a fix at S4 would have
+formula surface `D = |n·(q − a)| ⁄ ‖n‖` renders a dot product before S4 ever runs — a fix at S4 would have
 been one state too late. So the ledger claim is now TRUE as restated: `a`, `d`, `n`, `λ` and `a·b` are each
 introduced on canvas by a state of this concept before any later state uses them; **`a×b` alone is carried
 from Act I** and is named for the first time at S8, which is the advanced ring and is cut first. Act I's callback in S1 is a **recognition, not a requirement** — a teacher opening #9 first gets a complete
@@ -386,11 +427,11 @@ Anchors are **state assignments with words reserved inside that state's own budg
 (`real_world_anchor_declared_in_the_skeleton_with_no_state_and_no_word_budget`;
 `skeleton_anchor_specified_in_section_9_reaches_no_narration_line`).
 
-**PRIMARY — a straight track with distance markers. Assigned to S1**, verbatim, 24 words inside its 34–42 budget:
+**PRIMARY — a straight track with distance markers. Assigned to S1**, 25 words inside its shipped 52-word total (Rule 31 cap 55; shipped as `s1_1` + `s1_2`, dashes as commas):
 
 > **"A straight track has a starting post and one heading. After that, a single number — how far along you are — names every place on it."**
 
-**SECONDARY — a road overpass. Assigned to S5**, verbatim, 21 words inside its 44–52 budget:
+**SECONDARY — a road overpass. Assigned to S5**, 20 words inside its shipped 55-word total (Rule 31 cap 55; shipped as `s5_1` + `s5_2`):
 
 > **"On a flat map two straight roads cross. On the ground one runs over the other, and they never touch."**
 
@@ -427,14 +468,15 @@ contract, and every entry is a real rendering path.
 | the perpendicular distance | `distance = 2.20` | HUD row (live) + the drawn **green** segment | S3 | S3, S9 |
 | the foot of the perpendicular | right-angle mark, no letter | mesh mark | S3 | S3, S9 |
 | the intersection point | `X` | marker mesh + sprite + HUD `X = (0.57, −0.60, 0.00)` | S4 | S4, S9 |
-| the test value | `n·d` | HUD row (live) — **`0.000` for the parallel line, `0.624` for the cutting line** | S4 | S4, S7, S9 |
+| the test value | `n·d` | HUD row (live) — **`0.000` for the parallel line (until 9.5 s; then carried by the on-scene tag), ~~`0.624`~~ ⚠ AMENDED **`0.574`** for the cutting line** | S4 | S4, S7, S9 |
+| the parallel line's direction | `d′` | sprite label on the cyan line + the on-scene tag ~~`n·d′ = 0, no meeting point`~~ ⚠ AMENDED 2026-08-21: bare `n·d′ = 0` (free point, label-only) — shortened per the S4-camera-tighten separation re-probe | S4 | S4 |
 | the second line | `d₂`, `a₂` | arrow + sprite + HUD | S5 | S5, S6, S8, S9 |
-| the shortest gap | `shortest distance = 1.80` | HUD row (**live from t = 0 in S5**) + the drawn **green** common perpendicular | S5 | S5, S8, S9 |
+| the shortest gap | `shortest distance = 1.80` | HUD row (**live from ≈1800 ms in S5** — the readout waits for `common_perp` to finish growing; still ~200 ms ahead of the false crossing pulse) + the drawn **green** common perpendicular | S5 | S5, S8, S9 |
 | the point-to-point vector | `a₂ − a₁` | `ArrowHelper` (**magenta** — Act I role 3, restored) + HUD | S8 | S8 |
 | the angle between lines | `θ = 69.4°` | angle arc + HUD row | S6 | S6, S9 |
 | the angle to the plane | `θ = 35.0°`, `to normal = 55.0°` | two arcs + two HUD rows | **S7 (extended)** | S7 |
 | the cross product | `d₁ × d₂` | `ArrowHelper` + sprite | **S8 (advanced)** | S8 |
-| the skew formula | `d = \|(a₂−a₁)·(d₁×d₂)\| ⁄ ‖d₁×d₂‖` | formula surface | **S8 (advanced)** | S8 |
+| the skew formula | `D = \|(a₂−a₁)·(d₁×d₂)\| ⁄ ‖d₁×d₂‖` | formula surface | **S8 (advanced)** | S8 |
 
 Every symbol above also has a **DOM-readable home** (HUD row or formula overlay), because a 3D sprite's text is
 invisible to THE EYE and to every DOM probe (`field3d_sprite_label_text_and_ink_box_are_invisible_to_every_dom_probe`).
@@ -449,8 +491,7 @@ handedness is Act I's, assumed not re-taught (§arc rule 4). What this concept m
 - **Drawn intervals:** `λ ∈ [−3.5, 3.5]` guided, `lambda_span ∈ [2.5, 5.0]` explore; `half_extent ∈ [1.5, 4.5]`;
   `theta_deg ∈ [25, 115]`. Every displayed relation holds on its drawn interval (hazard 1).
 
-**(d) Motion plan:** §3 + §12. Every guided state has continuous motion for ≥ 75 % of its timeline (§12), so
-`rule31_motion_floor_satisfied_by_a_late_label_reveal_over_a_frozen_canvas` cannot be satisfied vacuously here.
+**(d) Motion plan:** §3 + §12. **Re-timed 2026-08-20 (pass-4 F2):** the shipped build held a frozen canvas for up to 15 s (S3, 63 %) while narration continued — the reverse of Rule 31. After the §12 re-timing every guided state's longest consecutive static run is **≤ 4.5 s and ≤ 25 % of its duration**, and every state's LAST motion completes no earlier than ~2.5 s before the state's end, so `rule31_motion_floor_satisfied_by_a_late_label_reveal_over_a_frozen_canvas` is satisfied by choreography, not by a label. The earlier sentence "≥ 75 % continuous motion on every state" was FALSE as built and is withdrawn; the per-state numbers are the §12 table, to be re-measured by THE EYE after json_author applies the directives. **Re-measured 2026-08-20 on run `20260820-211735`:** S6’s carrier is the clipped-line endpoints + `a1` (the arrow carrier was falsified by probe). S8 re-sequenced to interim (B): every number arrives with or after the common perpendicular it belongs to; the `cross_norm`-before-`cross_vec` 4 s lead is a documented residual pending engine Δ12.
 
 **(e) Modes:** conceptual only. **No `mode_overrides`** (Rule 20 [D]).
 
@@ -481,8 +522,7 @@ the `.min(6)` floor holds under `core_only` with nothing removed.
 
 **(g) Register-triangle plan (Rule 33 / `patterns/mathematics.md` §0).** Leading register per state:
 **graphical** leads S1, S2, S3, S4, S5, S8, S9; **numeric** leads S6 (the angle readout is the state's subject);
-**symbolic never leads a core-ring state** — the formula surface always appears AFTER its graphical story has
-played (S3's surface writes at 12.0 s, after the minimum has locked; S8's after the superposition). Every state
+**symbolic never leads a core-ring state** — the INTENT is that the formula surface appears AFTER its graphical story has played. **AS BUILT THIS IS NOT TRUE FOR S3 AND S8 (pass-4 F4, 2026-08-20):** the vg apply path writes `#formula_overlay` once at state entry with no reveal path (`field_3d_renderer.ts:25527`-class write; measured ink constant from frame 0 — S3 382 px, S8 682 px). The claims "S3's surface writes at 12.0 s" / "S8's after the superposition" are withdrawn. A timed single-surface reveal ALREADY EXISTS on two scenarios as `formula_lines[{text, at_ms}]` (`:1371` nlb, `:1976`/`:51035` rbr) — porting it into the vg apply path is **engine delta Δ11 `[owner: peter_parker:field3d_surgeon]`** (Rule 40: routed, not built here). Until Δ11 lands the formula is on screen from t = 0; for S8 (advanced derivation, target-first) that is tolerable; for S3 (PRIMARY aha) it weakens the extremum reveal — **whether to hold the concept on Δ11 is a founder call, recorded in the fix-round report.** Every state
 exposes a real number that changes as the picture changes: λ, the swept distance, `n·d`, the gap, θ, and the three
 terms of the skew formula.
 
@@ -492,12 +532,12 @@ terms of the skew formula.
 |---|---|---|---|
 | S1 | `r = a + λd` | `λ`, `a`, `d̂` | positional, no identity |
 | S2 | `n·(r − a) = 0` | `n`, `‖n‖ = 1.089` | — |
-| S3 | `d = \|n·(q − a)\| ⁄ ‖n‖` | `n·(q−a) = 2.393`, `‖n‖ = 1.089`, `distance = 2.20` | **2.393 ⁄ 1.0886 = 2.198 → 2.20 ✓** |
-| S4 | `λ = n·(a_P − a) ⁄ (n·d)` | `n·d`, `λ`, `X` | **1.617 ⁄ 0.6244 = 2.590 → authored λ = 2.600 (the 2 dp print of `a` rounds; author `a` exactly) ✓** |
+| S3 | `D = \|n·(q − a)\| ⁄ ‖n‖` | `n·(q−a) = 2.393`, `‖n‖ = 1.089`, `distance = 2.20` | **2.393 ⁄ 1.0886 = 2.198 → 2.20 ✓** |
+| S4 | `λ = n·(a_P − a) ⁄ (n·d)` | `n·d`, `λ`, `X` | **1.617 ⁄ 0.6244 = 2.590 → authored λ = 2.600 (the 2 dp print of `a` rounds; author `a` exactly) ✓** — **⚠ NOTE: this line's intermediates are in the RAW-normal convention the HUD never prints; the RESULT is nonetheless correct because `n` cancels between numerator and denominator. Normalized: `1.485 ⁄ 0.5736 = 2.589`. λ = 2.600 stands as authored** |
 | S5 | **none** (a formula-free state is Rule-34-clean and precedented) | `shortest distance = 1.80` | the number IS the claim |
 | S6 | `cos θ = \|d₁·d₂\| ⁄ (‖d₁‖‖d₂‖)` | `d₁·d₂ = 0.352`, `θ = 69.4°` | **arccos 0.352 = 69.38° ✓.** Unit note (`formula_surface_states_an_identity_in_a_unit_the_hud_never_renders`): the surface is unit-free, the readout is **degrees**, declared as the single dialect for this concept |
-| S7 | `sin θ = \|d·n\| ⁄ (‖d‖‖n‖)` | `d·n = 0.624`, `‖n‖ = 1.089`, `θ = 35.0°`, `to normal = 55.0°` | **arcsin(0.624/1.0886) = 35.00° ✓; 35.0 + 55.0 = 90.0 ✓** |
-| S8 | `d = \|(a₂−a₁)·(d₁×d₂)\| ⁄ ‖d₁×d₂‖` | `(a₂−a₁)·(d₁×d₂) = 1.685`, `‖d₁×d₂‖ = 0.936`, `distance = 1.80` | **1.685 ⁄ 0.936 = 1.800 ✓** |
+| S7 | `sin θ = \|d·n\| ⁄ (‖d‖‖n‖)` | ~~`d·n = 0.624`~~ **⚠ AMENDED: the HUD renders `n·d = 0.574`**, `‖n‖ = 1.089`, `θ = 35.0°`, `to normal = 55.0°` | ~~arcsin(0.624/1.0886) = 35.00°~~ **⚠ AMENDED — that identity is stated in the RAW-normal convention the HUD never prints. Against the rendered number: `arcsin(0.574) = 35.02°` and `arccos(0.574) = 55.0°` ✓; 35.0 + 55.0 = 90.0 ✓. This is the `formula_surface_states_an_identity_in_a_unit_the_hud_never_renders` class** |
+| S8 | `D = \|(a₂−a₁)·(d₁×d₂)\| ⁄ ‖d₁×d₂‖` | `(a₂−a₁)·(d₁×d₂) = 1.685`, `‖d₁×d₂‖ = 0.936`, `distance = 1.80` | **1.685 ⁄ 0.936 = 1.800 ✓** |
 | S9 | `r = a + λd` (**CORE-ring, derived by S1**) | all rows live | ✓ |
 
 Precision doctrine: distances and dot products **3 dp**, angles **1 dp**, coordinates **2 dp**, λ **3 dp** —
@@ -534,11 +574,13 @@ formula surface bottom-centre; HUD top-right; delta cue top-centre. Zones are di
   cuts — discharged by **ring assignment**, deliberately NOT by the `min_ring` field, which
   `patterns/mathematics.md` hazard 11 measures as inert (present only at `field_3d_renderer.ts:55484–55492` and
   deferring to a preset builder that does not exist).
-- **(i-3) `curriculum_tags` — CLAIMS, not facts (38g).** CBSE/NCERT **full**, `verified: true` under the
-  authoring-time allowance (my own reading of the NCERT Class-12 Mathematics chapter index, Ch. 11
-  Three-Dimensional Geometry — this is NOT a teacher confirmation and is stated as such). ICSE/ISC **full** ·
+- **(i-3) `curriculum_tags` — CLAIMS, not facts (38g).** CBSE/NCERT **full**, `verified: false`,
+  `needs_teacher_verification: true` (corrected 2026-08-21, Checkpoint B F5: my reading of the NCERT Class-12
+  Mathematics chapter index, Ch. 11 Three-Dimensional Geometry, is a chapter-index reading, NOT a teacher
+  confirmation — the evidence string said so and the flags now agree with it; the "authoring-time allowance"
+  is a scope-claim allowance, not a verification allowance). ICSE/ISC **full** ·
   JEE Main + Advanced **full** · IB DP AA **HL full, SL not offered** · **AP — absent** · **Cambridge IGCSE —
-  absent** · A-level **partial** (3D vector lines in Pure; planes are Further Maths). **Every non-CBSE cell ships
+  absent** · A-level **partial** (3D vector lines in Pure; planes are Further Maths). **Every cell, CBSE included, ships
   `needs_teacher_verification: true`** and no preset goes teacher-visible until a teacher of that curriculum
   confirms it. Recorded honestly (survey §0a): this is the weakest international-breadth wave mathematics has
   scheduled and is a deliberate CBSE/JEE/IB-HL depth play.
@@ -564,7 +606,7 @@ point q  : (1.93, 1.19, 0.51)      → foot (1.23, −0.83, 0.00)   perpendicula
            comparison feet: ONE straight in-plane path along u through the foot (CYCLE-1 FIX)
              s = −2.2u → 3.110 | s = 0 → 2.200 (the minimum) | s = +1.6u → 2.721
              ROUND 0 wrote “−2.2v” — no single straight sweep reaches both that and “+1.6u”
-line  Lpar: through (0, −0.4, 0) + 1.4n̂, direction ⊥ n   → n·d = 2.8e−17 (exactly 0)
+line  Lpar (label d′): through (0, −0.4, 0) + 1.4n̂, direction ⊥ n   → n·d′ = 2.8e−17 (float zero; classified parallel by VG_MEET_EPS = 1e-9)
 line  Lcut: hits the patch at X = (0.57, −0.60, 0.00), |X − p₀| = 0.60 ≤ 3.0 ✓, λ = 2.600, n·d̂ = 0.5736
            → angle to plane 35.00°, to normal 55.00°
 skew  M1 : point (−1.2, −0.9, 0.6)  d₁ = (1, 0.15, 0.35)/‖·‖
@@ -605,20 +647,38 @@ sprite labels ride their own objects with a screen-space de-collision pass. The 
 Pin = `0.60 × duration` unless `eye_capture_ms` is named; every pin lands **≥ 167 ms after the completion of the
 last reveal its DoD sentence asserts** (never after a phase START).
 
-| St | Dur | Sub-beats (ms) | Longest static run | Pin → what the frozen frame shows | Margin |
-|---|---|---|---|---|---|
-| S1 | 20 s | 0–2000 patch dims to ghost, edge survives as `d̂`; 2000–4000 line extends; 4000–17000 λ sweeps −3.5→3.5; hold | 3 s (15 %) | 12000 → full line, λ marker mid-sweep, live coordinate | 8000 |
-| S2 | 18 s | 0–2500 normal grows; 2500–6500 patch unfolds; 6500–15000 patch breathes to `half_extent` 1.5↔3.0; hold | 3 s (17 %) | `eye_capture_ms: 12000` → normal + full patch | 5500 |
-| S3 | 24 s | 0–2000 `q` appears; **2000–7000 the foot sweeps `s = −2.2 → +1.6` along ONE straight path, readout `3.11` → dips to `2.20` at `s = 0` (≈ t 5100) → rises to `2.72`**; 7000–9000 the foot returns to `s = 0` and the readout falls `2.72 → 2.20`; 9000–9600 the segment turns **GREEN** and locks; 9600–11000 right-angle mark; 11000–12500 formula surface writes; hold | 4 s (17 %) | `eye_capture_ms: 16000` → green perpendicular locked, `2.20`, right-angle mark, surface | **3500** after the last reveal ✓ |
-| S4 | 24 s | 0–2000 patch + parallel line enter; **2000–8000 the `n·d = 0` line slides over and past — no marker ever**; 8000–9500 it retires; 9500–15000 the cutting line arrives and punches through; 15000–15600 marker snaps on at `X`; hold | 3.5 s (15 %) | `eye_capture_ms: 18000` → marker present, `n·d = 0.624`, `λ = 2.600` | 2400 ✓ |
-| S5 | 26 s | 0–2000 both lines draw **and `shortest distance = 1.80` is already live**; **2000–3500 the crossing marker pulses — 1.5 s, and the contradicting number is on screen for every frame of it**; 3500–3800 marker removed; 3800–6000 green common perpendicular grows between the true feet; 6000–13000 **`camera_steps` (F24)** eases to the S8 pose; hold | 3 s (12 %) | `eye_capture_ms: 16500` → common perpendicular + `1.80`, no crossing marker, camera arrived | **10500** after the last reveal ✓. **`camera_steps` is closed-form on state-local ms, so the pin reproduces byte-identically and the DoD MAY now assert the camera arrival** — ROUND 0 could not, and had to raise a FLAG |
-| S6 | 22 s | 0–2000 directions re-drawn from one origin; 2000–8000 anchors slide, arc HOLDS at 69.4°; 8000–19000 `d₂` rotates 25°→115°, arc tracks; hold | 2 s (9 %) | 13200 → arc mid-rotation with its live readout | 5200 |
-| S7 | 22 s | 0–1800 **`camera_steps` eases from the shared home pose to S7's own pose (az 140 / el 26)** as the cutting line returns; 1800–2000 settle; 2000–7000 it splits into shadow + normal component; 7000–10000 arc to normal (55.0°); 10000–13000 arc to shadow (35.0°); 13000–14000 the sum row fills; hold | 4 s (18 %) | `eye_capture_ms: 16000` → both arcs, both readouts, `35.0 + 55.0 = 90.0` | 2000 ✓ |
-| S8 | 24 s | 0–2000 S5 scene returns with the common perpendicular already present; 2000–7000 `d₁ × d₂` builds at the origin; 7000–12000 it translates onto the common perpendicular and coincides; 12000–15000 formula surface + three HUD terms; hold | 4 s (17 %) | `eye_capture_ms: 17500` → the two overlaid, surface, `1.685 / 0.936 / 1.80` | 2500 ✓ |
-| S9 | open | 0–2500 full scene assembles; λ ping-pongs until seized; **free-running** (Rule 37) | — | none | n/a |
+> **FIX ROUND 2026-08-20 (pass-4 `quality_auditor` F2/F4, routed `[reason: pass-1]`).** The previous table
+> described a build that did not exist: measured longest static runs were S3 **15 s (63 %)**, S8 **12 s (50 %)**,
+> S5 9 s, S4 8 s, S7 7 s, S6 6 s (S6's 0–8000 slide rendered ZERO pixels — a scene-clipped infinite line is
+> invariant under a translation along its own direction). Every cell below is now either (a) the shipped JSON
+> value, or (b) a **DIRECTIVE** to `alex:json_author` marked `→JSON`, listed verbatim in the fix-round report.
+> Durations were set from the word budget at ≈2.75 words/s (Rule 31: 55 words ≈ 20 s) so the motion ENDS at or
+> after the narration does, never 8–12 s before it. Pacing truths recorded here for the record: the vg formula
+> surface has NO timed reveal (Δ11, §10(g)); `hide_at_ms` is an instant cut; `reveal_at_ms` with no `grow_ms`
+> is instant presence.
 
-Every guided state's longest static run is **≤ 18 %** of its timeline, under the 25 % bar of
-`rule31_motion_floor_satisfied_by_a_late_label_reveal_over_a_frozen_canvas`.
+| St | Dur | Sub-beats (ms) — shipped, or `→JSON` directive | Longest static run | Pin → what the frozen frame shows | Margin |
+|---|---|---|---|---|---|
+| S1 | 20 s | 0–4000 `camera_steps` eases to az 94 / el 6 / R 13; **300→ the patch ghosts** (`ghost_at_ms: 300` is authored on both, but the engine's ghost multiplier does not reach the normal arrow — see the OPEN row cited in §3 S1; the arrow renders full-bright); 1200–1600 point `a` grows; 2000–4000 line `L1` grows; 4000–17000 λ sweeps −3.5→3.5 (linear); 17000–20000 hold | 3 s (15 %) — measured 3 s ✓ | `eye_capture_ms: 12000` → full line, λ marker mid-sweep, live coordinate | 8000 |
+| S2 | 18 s | 0–4000 the patch unfolds (`half_extent` 0.4→3.0, smoothstep) with `n` up from the start; 4000–6500 hold; 6500–10500 `aux_a` sweeps `v` ACROSS the patch, `n·v` holds 0.000; **11150 `v` hands off IN PLACE** (`grow_ms: 0`, 50 ms before its predecessor hides at 11200); 11200–14000 `aux_b` tips it OUT and `n·v` leaves zero; 14000–18000 hold | **4 s (22 %)** — measured 4 s, under the bar; the old "3 s" was wrong | `eye_capture_ms: 12000` → normal + full patch + `v` | 5500 |
+| S3 | **20 s** `→JSON` (was 24) | 0–400 `q` and the sweep foot appear; **2500–12000 `aux_a` −2.2→+1.6 linear `→JSON` (was 2000–7000)** — readout `3.11` → dips to `2.20` at `s = 0` (≈ t 8000) → rises to `2.72`; **12000–15500 `aux_a` +1.6→0 smoothstep `→JSON` (was 7000–9000)**, readout falls `2.72 → 2.20`; **15450 `perp` LOCKS GREEN IN PLACE (`reveal_at_ms: 15450`, `grow_ms: 0`) and `cmp` hides at 15500 `→JSON` (were 8950 / 9000)**, right-angle mark on the same beat; 15500–20000 hold. The slow sweep (0.4 units/s) still changes the readout every sampled second. Formula surface present from t = 0 (Δ11) | **4.5 s (22.5 %)** (was 15 s / 63 %) | `eye_capture_ms: 17500` `→JSON` (was 16000) → green perpendicular locked, `2.20`, right-angle mark | **2050** after the lock ✓ |
+| S4 | **20 s** `→JSON` (was 24) | 0–2000 patch + `Lpar` (label `d′`) + its arc enter; 2000–8000 `aux_a` slides `Lpar` sideways above the patch at constant height, **bounded at `to: 0.55`** — no marker ever, `n·d = 0.000` + `no meeting point`; **at 9500 it dims to a ghost (`ghost_at_ms: 9500`, engine 600 ms fade — cycle-0 F3; on screen to the pin) and its fact hands over from the HUD to the on-scene tag `par_tag` = ~~"n·d′ = 0, no meeting point"~~ ⚠ AMENDED 2026-08-21: bare "n·d′ = 0" (free point, `size: 0`, `reveal_at_ms: 9500`) — shortened, see §4/§12 amendments**; 9500–10300 `Lcut` grows LIFTED; **10300–15000 `X_live` (invisible carrier, `size: 0`) publishes `n·d = 0.574` + live λ (0.159 → 2.600) + the moving meeting point — MECHANISM constraint: the intersection family publishes only while exactly ONE intersection is arrived (`arrivedMeets.length === 1`), so `X_live` MUST hide at 15000, before `X` arrives (15000 + 600 grow ≈ 15600); moving either boundary blanks the panel with a recorded conflict**; 10500–15000 `aux_b` 1.4→0 smoothstep — the CONTRAST slide to `Lpar`'s in-plane glide, along `n̂`, closing the gap (meeting point stays inside the patch: 1.40 → 0.40 → 0.60 wu from centre, all < 3.0); 15000–15600 marker `X` snaps on — **HUD silent exactly this 0.6 s hand-over (was 6.0 s blank)**; 15600–20000 hold | **4.4 s (22 %)** | `eye_capture_ms: 17500` → marker present, `n·d = 0.574`, `λ = 2.600`, **ghost `d′` + its tag on screen** | 1900 ✓ |
+| S5 | **21 s** `→JSON` (was 26) | 0–1500 both lines grow; 0–1800 the green common perpendicular grows and `shortest distance = 1.80` is live from ≈1798 (readout waits for its subject — PR #93; the threshold is `VG_SUBJECT_SHOWN_MIN` 0.999, not 0.9, so the arrival is 0.999×1800 ≈ 1798 ms — corrected 2026-08-21 from ≈1620); 2000–3500 the crossing marker pulses, the contradicting number on screen for every frame of it; 3500 marker removed; **5000–17000 `camera_steps` eases to the S8 pose `→JSON` (`at_ms: 5000, ease_ms: 12000`; was 7500 / 9000 — a slower swing, starting on the sentence "cross on screen, but not in space")**; terminal hold step `at_ms: 20000` unchanged; 17000–21000 hold | **4 s (19 %)** (was 9 s / 35 %); the 3500–5000 gap is 1.5 s | `eye_capture_ms: 17500` `→JSON` (was 16500) → common perpendicular + `1.80`, no marker, camera arrived | 500 after arrival ✓ (closed-form `camera_steps`, byte-identical under the pin) |
+| S6 | 22 s | **`M1`/`M2`: `lambda_span: [−4.5, 4.5]` (not `show_dir_arrow` — falsified, see §3), `reveal_at_ms: 0`, `grow_ms: 1200`; new neutral point `a1` at `[0,0,0]`, `offset.along` = M1's unit dir, `knob: aux_a`, `reveal_at_ms: 1200`, `grow_ms: 300`; `vg_lp_point` (not `vg_lp_dir`) in `visible_elements` — APPLIED, verified run `20260820-211735`**; 0–1200 lines draw in, arc up with them; 1500–5000 `aux_a` 0→+1.5; 5000–9000 +1.5→−1.5; 9000–10500 −1.5→0 (smoothstep) — endpoints + `a1` slide, arc HOLDS 69.4°; `theta_deg` hold 0–10500, then 10500–19500 the `d₂` DIRECTION turns 69.4°→115° linear; the readout tracks it up to `90.0°` (t ≈ 14567) and then falls to `65.0°` at 19500 (engine acute fold); the arc re-draws on the acute side; 19500–22000 hold; static value `aux_a: 0` | **2.5 s (11 %)** — the 19500–22000 hold; **MEASURED** adjacent-second deltas 1→10 s: 261 / 413 / 455 / 408 / 439 / 560 / 531 / 385 / 549 px, rotation 10→11 s 2133 px; longest pre-motion run 0–1.5 s | `eye_capture_ms: 15000` → arc just past the turn: direction 92.2°, readout **87.8°** (computed 69.3846 + 0.5·(115 − 69.3846) = 92.19° → 180 − 92.19) — the pin now shows the fold itself | n/a |
+| S7 | **19 s** `→JSON` (was 22) + narration re-write (`alex:mathematics_author`, 53 → 47 words) | 0–1800 `camera_steps` to az 140 / el 26 as `Lcut` grows (0–1000); **2500–5000 NEW neutral segment `normal_part` — `from: [2.485307, −0.086981, 0.263557]` (the point at λ = 4.6) `to: [2.11647, −1.14078, 0.00010]` (its foot; 2.24 from the patch centre, on the patch), `reveal_at_ms: 2500`, `grow_ms: 2500`, no readout `→JSON`** — the part "along the normal" the narration names; **4000–7000 `shadow` grows `→JSON` (was 2000–3500)**; **8000–10500 `arc_normal` (55.0°, r 0.62) `→JSON` (was 9000–10200)**; **12000–15000 `arc_plane` (35.0°, r 0.95) `→JSON` (was 13000–14500)**, sum row fills with it; 15000–19000 hold | **4 s (21 %)** (was 7 s / 32 %; the old 3500–9000 gap was 5.5 s) | `eye_capture_ms: 16000` (unchanged) → both arcs, both readouts, `35.0 + 55.0 = 90.0`, shadow + normal part | 1000 ✓ |
+| S8 | **20 s** | 0–1500 `M1`/`M2` draw in; 1000–2000 `common_perp` grows **and `a2_minus_a1` grows with it (`reveal 1000, grow 1000` — APPLIED, was 13000/2500)** — the numerator `1.685` and the `1.80` now arrive at 2000 WITH the object the numerator names (eye_walker MAJOR closed: number preceded its vector by 11–13 s); 3000–6000 `cross_vec` builds at the origin; **8500–15500 `aux_a` translates it onto the common perpendicular (`start_ms 8500, duration_ms 7000` — APPLIED, was 7000/5000)**; 15500–20000 hold. Formula surface present from t = 0 (Δ11) | **4.5 s (22.5 %)** = the end hold; gaps 2000–3000 (1 s), 6000–8500 (2.5 s) | `eye_capture_ms: 17500` → overlaid pair, `a₂−a₁`, `1.685 / 0.936 / 1.80` | 2000 ✓ — **RESIDUAL: `cross_norm = 0.936` publishes at 2000, `cross_vec` completes at 6000 — a 4 s lead of the same class, closable only by Δ12 (engine, founder call)** |
+| S9 | open | every object present at t = 0 (`reveal_at_ms: 0`, no `grow_ms` — nothing "assembles"); λ ping-pongs 0–9000–18000 and loops until seized; **free-running** (Rule 37) | — | none | n/a |
+
+Every guided state's longest static run is **≤ 22.5 %** of its timeline after the directives above are applied,
+under the 25 % bar of `rule31_motion_floor_satisfied_by_a_late_label_reveal_over_a_frozen_canvas` — **to be
+re-measured by THE EYE (1 s sampling, zero tolerance) before the class is recorded closed**; S2 and S3 sit
+closest to the bar (22 % / 22.5 %).
+
+**S7 narration re-write (forces the 19 s duration):** sentences 4 + 5 (*"Together, the two always add to ninety
+degrees."* / *"Measure to the normal first, then subtract: that is the angle to the plane."*) merge into ONE:
+*"Measure to the normal first, then subtract from ninety: that is the angle to the plane."* — 53 → 47 words, the
+sum claim kept, one idea fewer spoken over an empty canvas. Owned by `alex:mathematics_author`; json_author must
+not truncate.
 
 **Rule 19 — `scene_composition.primitives.length ≥ 3`, stated per state (P3-3; it belongs in the DoD).**
 S1 line + direction arrow + λ marker + ghost patch + ghost normal = **5** · S2 patch + normal + test vector
@@ -661,10 +721,10 @@ surfaced the largest delta.** For every knob a state ANIMATES, does a cue triple
 | S2 | `half_extent` 1.5 ↔ 3.0; patch unfold | **NO** |
 | S3 | the foot's position along the patch | **NO** (and the knob itself is unnamed — Δ1) |
 | S4 | each line's anchor offset (the slide) | **NO** |
-| S1 | the seam camera ease (az 90→94, el 30→6, R 9→13) | **NO — and F21 cannot help: it ramps scalar knobs, not a pose. → F24 `vg.camera_steps`, which ALREADY EXISTS as `os.camera_steps`** |
+| S1 | the seam camera ease (az 90→94, el 30→6, ~~R 9→13~~ **⚠ AMENDED R 16→13**) | **NO — and F21 cannot help: it ramps scalar knobs, not a pose. → F24 `vg.camera_steps`, which ALREADY EXISTS as `os.camera_steps`** |
 | S5 | camera azimuth (the swing to the S8 pose) | **NO. `camera_position` is entry-only (`applyState:67196`).** ROUND 0 wrote "partially" and buried the ninth delta. → **F24** |
 | S7 | the reframe from the home pose to S7's own pose | **NO → F24** |
-| S6 | `theta_deg` 25 → 115; each anchor's slide | **NO** |
+| S6 | `theta_deg` 69.4 → 115 on the direction, readout 69.4 → 90.0 → 65.0 (acute fold 2026-08-21; slider floor stays 25); each anchor's slide | **NO** |
 | S7 | the split reveal | **NO** |
 | S8 | the `d₁ × d₂` arrow's translation | **NO** |
 
@@ -832,6 +892,8 @@ el 20, min sep **41.1°**; S9-B R 13 / az −58 / el 64, min sep **11.0°**). Bo
 so Rule 38b is untouched. **If refused, the honest fallback is to drop one group from the sandbox — never to
 ship the 1.35° scene.**
 
+**⚠ AMENDED 2026-08-21 (S4/S9 bbox-fill camera-tighten round):** the shipped R values moved from this row's R 14/R 13 to **R 10.0 (group A)** and **R 9.8 (group B)** — az/el UNCHANGED on both, so the pairwise screen-separation angles above are not re-derived here (they are a function of viewing DIRECTION, which is untouched; distance-only pulls were verified NOT to clip on either group by dense analytical worst-NDC solves + pixel-checked renders at the slider maxima / theta+offset extremes — see the json-author camera-pass notes). The 41.1°/11.0° figures are left as the historical justification for WHY `scene_group` exists, not as a claim about the current R — a full re-solve of this specific metric at R 10/9.8 was not run this round.
+
 ### Not requested — declared, so a later build is a decision and not an alarm
 - **Teacher-draggable points.** S3's `q` and S9 are exactly the shape of the OPEN directive
   `teach_field3d_explore_grab_and_move_field_point` (`alex:architect`). It is deliberately **not** smuggled into a
@@ -847,6 +909,15 @@ ship the 1.35° scene.**
 ---
 
 ## 14. Probe output — RE-MEASURED AT CYCLE 1
+
+> **⚠ THREE VALUES IN THE BLOCK BELOW ARE SUPERSEDED (2026-08-09).** The raw output is kept unedited as
+> the historical record of what CYCLE 1 actually measured. Do not author from it. (1) `S1 R 9 -> 13` and
+> `entry frame at R 9: fill 0.223` — the real seam radius is **R 16**, read from Act I's shipped JSON;
+> the ease is a pull-IN to 13 and this row's fill/min-separation are unverified at R 16. (2) `skew images
+> CROSS on screen? YES, at t = 0.495 along line 1` — the crossing is REAL but the parameter is wrong, and
+> §4 of this same document cites `t = 0.815` for the identical event. Author the marker at the literal 3D
+> point `(−1.797, −0.990, 0.391)`. (3) Any `n·d = 0.624` — the HUD renders **0.574**. See the amendment
+> table in the status block at the top of this file.
 
 **Projection parameters (A10 — a camera number is not measured until these are named beside it):**
 `PerspectiveCamera(60, …)` → **FOV 60° vertical**, **reference aspect 16:9**, target = origin, up = +Y,
@@ -872,7 +943,7 @@ CAMERA SOLVE  (FOV 60, aspect 16:9, perspective, PAIRWISE undirected over every 
   S4  R 13  az -176 el 22  minSep 34.76                                    fill 0.326
   S5  R 13  az 146 el  4   minSep 52.06   commonPerp 33.4% of L1 image     fill 0.451
             skew images CROSS on screen? YES, at t = 0.495 along line 1
-  S6  R 5   az -58 el 68   arrows drawn at length 2.5
+  S6  R 5   az -58 el 68   arrows drawn at length 2.5   [HISTORICAL PROBE INPUT — the renderer fixes arrow length at 1.2, see §5 amendment 2026-08-20; R 5 itself withdrawn 2026-08-20 — shipped R 13, see note 2]
             worst |screen-true| over the FULL 25..115 sweep (1 deg steps) = 0.88 deg   [was 5.99 at FOV 50/R13]
             min taught-pair screen separation over the sweep = 25.47      fill 0.526
             (at R 13 with unit arrows the whole state fills 0.074 of the frame - a ROUND-0 miss)
@@ -925,7 +996,7 @@ path `:1339`** · `lerpSpherical:4214` · `F3D_REVEAL_KEYS` `deriveStateMeta.ts:
    5.99°) at R 13 / FOV 50. Re-solved over R as well as az × el at FOV 60: **R 5 / az −58 / el 68 gives worst
    |screen − true| = 0.88° across the full 25°–115° sweep**, and the S9-B pose gives **3.70°** over the same
    sweep (P2-2, which ROUND 0 never measured at the S9 pose at all). The arc no longer lies. The narration
-   duty is kept as a preference, not a necessity.
+   duty is kept as a preference, not a necessity. **Re-opened as ACCEPTED RESIDUAL 2026-08-20:** R 5 cannot hold the ±4.5 endpoint carrier on screen; S6 ships at R 13 and the ≈6° arc error is tolerated, readout authoritative.
 4. **A4 — the camera swing's frame-rate dependence. DISSOLVED, not mitigated.** All three camera moves route
    through **F24 `camera_steps`**, which its own header declares closed-form on state-local ms and therefore
    frame-rate independent and byte-identical under `SET_TIME_FREEZE`. `lerpSpherical` is never called. → Δ9.
@@ -934,7 +1005,7 @@ path `:1339`** · `lerpSpherical:4214` · `F3D_REVEAL_KEYS` `deriveStateMeta.ts:
 
 **1. Prerequisite cliff.** The real prerequisite is **reading a 3D position as an ordered triple** — and it is
 `scalar_vs_vector`'s (baseline-locked ✓). This concept breaks at **S1** for a student who has never seen a vector
-added to a point. Patch sentence, inside S1's 34–42-word budget: *"Start at the point a, then travel along the
+added to a point. Patch sentence, inside S1's shipped 52-word total (compressed in the build as `s1_3`: "A line works like this: one point, one direction d, and lambda slides along it."): *"Start at the point a, then travel along the
 direction d. The number λ says how far — one number for every place on the line."* No condescension: it reads as
 the definition, not as remediation. The second cliff is `a×b`, which belongs to Act I and is met at **S8** — which
 is why S8 is **advanced** and cut first: a student without Act I still gets a complete, coherent lesson under
@@ -952,7 +1023,7 @@ trace or is the sandbox.
 plane; confronted at **S3** by drawing several. **M2** is planted by the algebra itself — `n` appears in both the
 "parallel" and "perpendicular" conditions; confronted at **S4**, and the narration is forbidden from saying "the
 normal test" without saying which way the test points. **M3** is planted by twelve years of plane geometry, and
-also by THIS SIM's own screen, which genuinely draws the lines crossing (measured, t = 0.815); confronted at **S5**
+also by THIS SIM's own screen, which genuinely draws the lines crossing (~~measured, t = 0.815~~ — **⚠ AMENDED: the crossing is real; the parameter is not. See the status block**); confronted at **S5**
 by drawing the gap. **Planting duty logged:** S5's own entry frame plants M3, which is why the state must not end
 there — the camera swing and the drawn perpendicular are the state's obligation, not decoration.
 
@@ -990,7 +1061,7 @@ figure imported. HC Verma / DC Pandey not consulted (physics-only).*
 - [x] **Rule 19 stated per state** (min 4 primitives, floor 3) under every preset and both explore groups.
 - [x] **Ring-cut walk covers the `→ hand-off` column** (A13); S6 and S7 each author a cut-safe alternate.
 - [x] Rule 16a: exactly 3 `misconception_watch` states; contrast beats show the consequence then the mathematics; no prediction, no pause; no cue restates a wrong belief.
-- [x] Rule 38: rings monotone, advanced contiguous before explore, BOTH cuts checked coherent in both directions, explore surfaces core only, controls ring-discharged by ASSIGNMENT (not the inert `min_ring`), `curriculum_tags` with `needs_teacher_verification` on every non-CBSE cell, presets derived, graph axes N/A with reason.
+- [x] Rule 38: rings monotone, advanced contiguous before explore, BOTH cuts checked coherent in both directions, explore surfaces core only, controls ring-discharged by ASSIGNMENT (not the inert `min_ring`), `curriculum_tags` with `needs_teacher_verification: true` on EVERY cell (CBSE included — none teacher-confirmed), presets derived, graph axes N/A with reason.
 - [x] Rule 41 on every rendered string; no idiom, no personification; "skew", "normal", "perpendicular" used as the plain words they are.
 - [x] Rule 35 / 38f: both anchors universal (a straight track with distance markers; a road overpass); no country-specific content anywhere.
 - [x] **7 assessment items** vs the floor `.min(6)` (`conceptJson.ts:328`), **all answerable from CORE-ring states** because `quizQuestionSchema.difficulty` is `z.enum(['core','stretch'])` (`:314`) and carries **no ring field** — so an item on a cuttable state can never be hidden.
@@ -1013,7 +1084,7 @@ later reader cannot audit is not a correction.
 | Ruling | Status | Where |
 |---|---|---|
 | **Colour language conforms to Act I's table VERBATIM** — green = derived object, violet = measured region, magenta restored, no sixth colour | **APPLIED** | §3 colour table rewritten as Act I's five rows; `n`, the perpendicular segment, the common perpendicular and `d₁×d₂` are **green**; the patch is **violet**; `a₂−a₁` is **magenta**, restored; the invented "pale grey-blue" is deleted and points are declared **neutral apparatus ink** (the ink Act I already uses for its origin marker and axis triad) — a statement of the five-role table, not a sixth role. Propagated to §3 32e, §10(b) and §12. **Act I's load-bearing claim — "green never means an input" — now survives into Act II: a plane's normal is a DERIVED object and is green for exactly that reason.** |
-| **§arc rule 5's handoff frame is Act I's S5 FINAL FRAME, unchanged — same pose, same colours, same objects present; only the words change** | **APPLIED** | §3 S1 row. S1 now **enters at az 90 / el 30** (Act I's pose, not ROUND 0's az 36 / el 6) on the **violet parallelogram with the GREEN `a×b` standing perpendicular on it**. The narration re-labels that green arrow `n` and that violet quad "a patch of a plane" — **the green arrow is never deleted and no violet normal is ever grown at the seam** (ROUND 0's defect, which taught that the same object is two different things). Both objects then dim to ghosts *keeping their colours*, and S2 brightens the same green normal rather than re-growing one. §5 carries the pose; §14 measures the entry frame at fill **0.223**. |
+| **§arc rule 5's handoff frame is Act I's S5 FINAL FRAME, unchanged — same pose, same colours, same objects present; only the words change** | **APPLIED** | §3 S1 row. S1 now **enters at az 90 / el 30** (Act I's pose, not ROUND 0's az 36 / el 6) on the **violet parallelogram with the GREEN `a×b` standing perpendicular on it**. The narration re-labels that green arrow `n` and that violet quad "a patch of a plane" — **the green arrow is never deleted and no violet normal is ever grown at the seam** (ROUND 0's defect, which taught that the same object is two different things). The patch then dims to a ghost *keeping its colour*; the normal arrow is authored to dim but does not on pixels (rgb(91, 217, 122) at the frozen frame = its t = 0 value — OPEN engine row, cited in §3 S1). S2 brightens the same green normal rather than re-growing one. §5 carries the pose; §14 measures the entry frame at fill **0.223**. |
 | **A3 CORRECTED — Δ3's justification was FALSE though the request is right** | **APPLIED, in full and quoted** | Δ3 rewritten. ROUND 0's *"without an `animate[]` block every guided state is byte-static and Rule 31's no-static floor fails by construction"* is quoted and refuted: `param_ramp` ships in **three** scenarios (`:1050`, `:1968`, `:2097`), `idle_auto_sweep` in **four** (`:374`, `:926`, `:1052`, `:1951`), all routing through one path (`:1339`). **F21 is a PORT and its dispatch names both as clone targets.** The genuine need is restated as *authorability by `json_author` without a renderer edit per re-time*. Root cause recorded: **the Rule-40a sweep was run on the scenario NAME and never on the MECHANISMS declared missing** — a sweep of the wrapper, not the contents. §13b's summary and the queue disposition of `field3d_param_ramp_authoring_contract` (P3-1, ROUND 0 said "N/A") are corrected with it. |
 | **F-row numbers fixed: F21 `animate[]` · F22 free point · F23 comparison segment/projection · F24 `vg.camera_steps`** | **APPLIED** | Δ1 renumbered (ROUND 0 called `points` "F21"); §⓿ rows re-tiered; F24 added. |
 | **F21 folds into VG-A, not VG-C** | **APPLIED** | Δ3 header. |
@@ -1042,7 +1113,7 @@ whole S9 row), which is the argument for A10 being a standing rule rather than a
 **P1-3 · The dot product is an untaught term. — APPLIED, by introduction, at S2 rather than S4.**
 The §9 claim is quoted and corrected; §10(b) gains a defined-in row for `n·v`; §3's S2 row gains a
 **one-beat introduction** (a neutral test vector swung inside the patch with `n·v` reading `0.000`, then
-tipped off it) and its budget rises 33–40 → **44–52** words. **The dispatch offered S4; S4 is one state too
+tipped off it) and its budget rises 33–40 → **44–52** words (shipped final: 55, at the Rule 31 cap). **The dispatch offered S4; S4 is one state too
 late** — S3's formula surface renders `|n·(q − a)|` before S4 ever runs. Callout 3 is corrected: `a×b` alone
 is Act I's and is held to S8; `a·b` is this concept's and is introduced at S2.
 
@@ -1059,7 +1130,7 @@ So the numbers were right and only the `v` was wrong. **One path authored**: foo
 that single motion, and the `sweep-to-extremum` coinage earns its definition.
 
 **P1-6 · S5 renders the misconception for 3.5 s with nothing contradicting it. — APPLIED.**
-`shortest distance = 1.80` is **live from t = 0**, and the crossing marker's pulse is cut **3.5 s → 1.5 s**.
+`shortest distance = 1.80` is **live from ≈1800 ms** (the readout waits for its subject to ARRIVE — `vgArrived`, threshold 0.999 — so a `grow_ms:1800` perpendicular publishes at ≈1798 ms, still ~200 ms before the false pulse at 2000), and the crossing marker's pulse is cut **3.5 s → 1.5 s**.
 The false picture is never on screen unnumbered for a single frame.
 
 ## P2 / P3
@@ -1136,11 +1207,15 @@ a document whose value is engine deltas is judged on the deltas it does not need
    note.**
 6. **NEW — the handoff frame's RADIUS.** A12 requires *"same pose, same colours, same objects present."*
    Pose (az 90 / el 30) and colours are matched **verbatim**. Radius cannot be: Act I frames a `|a| ≤ 3`
-   apparatus at **R 9**, Act II a 4.5-extent one at **R 13**. Authored resolution — S1 **enters at Act I's
-   R 9 with the patch at Act I's parallelogram size** (measured fill **0.223**, comfortable), so the seam
-   frame is pixel-comparable, and `camera_steps` eases R 9 → 13 as the patch grows. **Flagged rather than
-   assumed: if the founder reads "same pose" as including R, S1's entry is already compliant and only the
-   ease is at issue.**
+   apparatus at ~~**R 9**~~ **⚠ AMENDED: R 16**, Act II a 4.5-extent one at **R 13**. Authored resolution — S1
+   **enters at Act I's ~~R 9~~ ⚠ R 16 with the patch at Act I's parallelogram size** (~~measured fill **0.223**~~
+   — at R 16 the fill is SMALLER than 0.223, so still comfortable and no off-frame hazard), so the seam
+   frame is pixel-comparable, and `camera_steps` eases ~~R 9 → 13~~ **R 16 → 13** as the patch grows.
+   **⚠ THIS FLAG IS NOW RESOLVED, and in the direction it hedged against:** the `|a| ≤ 3` half of the
+   reasoning was right (verified: `a_mag` = 3.0, `b_mag` ramps 2.0→2.5 in that exact state), but the
+   radius was **assumed rather than read**. Act I's own `STATE_5.camera_position = [0.0, 8.0, 13.8564]`
+   gives ‖·‖ = **16.0000**, az 90, el 30. R **is** part of the pose, so S1's entry must be that literal
+   vector, and the ease reverses direction — the camera moves IN, not out.
 
 *Handoff: `founder_proxy` Checkpoint A. On `DESIGN_OK` → the amended `vg` contract folds into the **VG-C dispatch
 prompt** (0c), not into an authoring desk. The `mathematics_author` desk opens only after VG-A…VG-C are on master.*

@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -76,7 +76,8 @@
             "equator"
           ]
         },
-        "memory_tip": "Cause 1 — spin: the equator travels the biggest circle, so it loses the most to rotation; the poles lose nothing."
+        "memory_tip": "Cause 1 — spin: the equator travels the biggest circle, so it loses the most to rotation; the poles lose nothing.",
+        "margin_note": "First mark. The rotation cause, with the cos²φ term written out."
       },
       {
         "id": "s2_shape",
@@ -113,8 +114,10 @@
             "poles"
           ]
         },
-        "memory_tip": "Cause 2 — shape: the earth bulges at the equator, so the surface there is farther from the centre. Two causes, one direction."
+        "memory_tip": "Cause 2 — shape: the earth bulges at the equator, so the surface there is farther from the centre. Two causes, one direction.",
+        "margin_note": "Second mark. The shape cause — smaller polar radius, so larger g."
       }
     ]
-  }
+  },
+  "insider_note": "Two causes, one mark each. However well the rotation is explained, an answer without the shape of the earth can earn only half."
 }

@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_magnus_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Magnus effect?",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 5,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 5,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Spin makes the air speeds differ",
+      "marks": 1
+    },
+    {
+      "label": "Bernoulli gives the sideways force",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2016 (Q5) and March 2019 (Q5) — Section A, 2 marks each time. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a spinning body drags the boundary layer of air with it, so the relative air speed is larger on the side where the surface moves with the oncoming stream and smaller on the opposite side; Bernoulli's principle then gives a lower pressure on the fast side, and the resulting pressure difference produces a force towards that side."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_spin_drags_air",
+        "kind": "text",
+        "label": "Spin makes the air speeds differ",
+        "marks": 1,
+        "mark_note": "Spin drags the air",
+        "lines": [
+          "A ball spinning as it moves through air",
+          "drags the thin layer of air touching its",
+          "surface around with it.",
+          "On one side this dragged air moves in the",
+          "same direction as the oncoming air, so the",
+          "air speed there is larger. On the other",
+          "side the two are opposite, so the air",
+          "speed there is smaller."
+        ],
+        "margin_note": "First mark. Name the spin, then say the air speed is larger on one side and smaller on the other.",
+        "why": "The spin is the whole cause. A ball moving without spin has the same air speed on both sides, so there is no pressure difference and no sideways force.",
+        "common_mistakes": [
+          "Saying the ball curves because of wind or gravity. The cause is the ball's own spin.",
+          "Describing the spin but never saying that the air speeds on the two sides are different."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the spinning ball drags the air with it, so the air speed is larger on one side and smaller on the other.",
+          "accept": [
+            "the spin drags the air",
+            "air moves faster on one side",
+            "different speeds on the two sides"
+          ],
+          "reject": [
+            "lower pressure where the air is faster"
+          ],
+          "heard_as": [
+            "spin",
+            "drags the air",
+            "faster on one side"
+          ]
+        },
+        "memory_tip": "Spin drags air. Same direction on one side, opposite on the other."
+      },
+      {
+        "id": "s2_bernoulli_force",
+        "kind": "boxed_final",
+        "label": "Bernoulli gives the sideways force",
+        "marks": 1,
+        "mark_note": "Fast side, low pressure",
+        "lines": [
+          "By Bernoulli's principle, larger air speed",
+          "means smaller pressure. So the pressure is",
+          "lower on the fast side and higher on the",
+          "slow side.",
+          "This pressure difference gives a sideways",
+          "force on the ball, and the ball curves",
+          "towards the fast side. This is the Magnus",
+          "effect.",
+          {
+            "text": "Spin ⇒ speed difference ⇒ sideways force",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name Bernoulli and give the direction: the ball curves to the fast side.",
+        "why": "Bernoulli's principle is what turns a difference of speed into a difference of pressure, and a pressure difference across the ball is a force.",
+        "common_mistakes": [
+          "Saying the pressure is higher where the air moves faster. Bernoulli gives the opposite.",
+          "Stopping at the pressure difference without saying which way the ball curves."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That by Bernoulli the fast side is at lower pressure, and the pressure difference pushes the ball towards the fast side.",
+          "accept": [
+            "Bernoulli, faster means lower pressure",
+            "pressure difference gives a sideways force",
+            "the ball curves to the fast side"
+          ],
+          "reject": [
+            "the spin drags the air with it"
+          ],
+          "heard_as": [
+            "Bernoulli",
+            "low pressure",
+            "sideways force"
+          ]
+        },
+        "memory_tip": "Fast side, low pressure, and the ball curves to that side."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two parts: the spin makes the air speeds differ, and Bernoulli turns that into a pressure difference. The name Bernoulli is checked."
+}

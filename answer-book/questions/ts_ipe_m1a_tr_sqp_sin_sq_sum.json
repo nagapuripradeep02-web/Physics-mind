@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
-    "name": "Trigonometric Ratios upto Transformations"
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
   },
-  "chapter": "Trigonometric Ratios upto Transformations",
+  "chapter": "Trigonometric Ratios and Transformations",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "If A, B, C are angles in a triangle, then prove that sin²A + sin²B − sin²C = 2 sin A sin B cos C.",
@@ -29,7 +29,7 @@
     },
     {
       "label": "Replace B + C by 180° − A",
-      "marks": 1
+      "marks": 2
     },
     {
       "label": "Take sin A common",
@@ -47,13 +47,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.107 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 167. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 19. The condition A + B + C = 180° is used TWICE — once to turn sin(B+C) into sin A, and once to turn sin A back into sin(B+C). Those are not the same move, and both are needed. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.107 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 167. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 19. The condition A + B + C = 180° is used TWICE — once to turn sin(B+C) into sin A, and once to turn sin A back into sin(B+C). Those are not the same move, and both are needed. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Replace B + C by 180° − A."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Trigonometric Ratios upto Transformations · 7 marks"
+      "Trigonometric Ratios upto Transformations · 8 marks"
     ],
     "steps": [
       {
@@ -62,7 +62,7 @@
         "label": "Group the last two terms",
         "marks": 2,
         "mark_note": "Difference of squares",
-        "margin_note": "Two of the seven marks. Bracket sin²B − sin²C — the two that differ in sign — and apply sin²A − sin²B = sin(A+B) sin(A−B).",
+        "margin_note": "Two of the eight marks. Bracket sin²B − sin²C — the two that differ in sign — and apply sin²A − sin²B = sin(A+B) sin(A−B).",
         "lines": [
           {
             "text": "Sol:",
@@ -104,9 +104,9 @@
         "id": "s2_replace_b_c_by_180_a",
         "kind": "equation",
         "label": "Replace B + C by 180° − A",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Angle sum",
-        "margin_note": "Third mark. From A + B + C = 180°, B + C = 180° − A, and sin(180° − A) = sin A.",
+        "margin_note": "Two marks (third and fourth). From A + B + C = 180°, B + C = 180° − A, and sin(180° − A) = sin A.",
         "lines": [
           "B + C = 180° − A",
           "⇒ sin(B + C) = sin(180° − A) = sin A",

@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_excess_pressure_air_bubble",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the expression for the excess pressure in an air bubble inside the liquid.",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 5,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 5,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The bubble has one liquid surface",
+      "marks": 1
+    },
+    {
+      "label": "ΔP = 2T/r",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2020 (Q5) and March 2025 (Q5) — Section A, 2 marks each time. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: an air bubble inside a liquid has liquid on the outside only, so there is ONE liquid–air surface and ΔP = 2T/r — the same expression as a liquid drop, and NOT the 4T/r of a soap bubble in air, which is a film with two liquid surfaces. ΔP here is the excess over the local pressure in the liquid just outside the bubble, which itself already includes atmospheric pressure and ρgh."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_liquid_surface",
+        "kind": "text",
+        "label": "The bubble has one liquid surface",
+        "marks": 1,
+        "mark_note": "One liquid surface only",
+        "lines": [
+          "An air bubble inside a liquid is air with",
+          "liquid all around it. The liquid is on the",
+          "outside only.",
+          "So there is just ONE liquid surface, the",
+          "boundary between the air and the liquid.",
+          "In this respect the air bubble is like a",
+          "liquid drop, not like a soap bubble in",
+          "air, which is a film with two surfaces."
+        ],
+        "margin_note": "First mark. Say the count: one liquid surface, because the liquid is outside only.",
+        "why": "The word bubble is what misleads. What sets the formula is the number of liquid–air surfaces, and here the air sits in a hole in the liquid, so there is only one.",
+        "common_mistakes": [
+          "Writing 4T/r because the word bubble appears. Only a soap bubble in air has two liquid surfaces.",
+          "Saying the air inside is a second surface. A surface needs liquid on one side of it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an air bubble inside a liquid has liquid outside only, so it has one liquid surface, like a drop.",
+          "accept": [
+            "only one surface",
+            "liquid is outside only",
+            "same as a drop, not a soap bubble"
+          ],
+          "reject": [
+            "delta P is 2T by r"
+          ],
+          "heard_as": [
+            "one surface",
+            "air bubble in liquid"
+          ]
+        },
+        "memory_tip": "Air bubble in liquid: liquid on the outside only. One surface, not two."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "ΔP = 2T/r",
+        "marks": 1,
+        "mark_note": "ΔP = 2T/r",
+        "lines": [
+          "One surface gives one contribution of 2T/r:",
+          {
+            "text": "ΔP = 2T/r",
+            "style": "eq"
+          },
+          "ΔP is the pressure inside the bubble minus",
+          "the pressure in the liquid just outside it,",
+          "T is the surface tension of the liquid and",
+          "r is the radius of the bubble.",
+          {
+            "text": "ΔP = 2T/r",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Same formula as the drop. Write it with T and r named.",
+        "why": "Because the surface count is one, the single-surface result 2T/r is the whole answer, and no factor of two is added.",
+        "common_mistakes": [
+          "Confusing ΔP with the total pressure inside the bubble. The total also carries the atmospheric pressure and the ρgh of the liquid above the bubble.",
+          "Writing 2T/r² instead of 2T/r."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the excess pressure in an air bubble inside a liquid is 2T by r, with T the surface tension and r the radius.",
+          "accept": [
+            "delta P is 2T by r",
+            "two T by r",
+            "T is the surface tension, r the radius"
+          ],
+          "reject": [
+            "the liquid is on the outside only"
+          ],
+          "heard_as": [
+            "2T by r",
+            "two T over r"
+          ]
+        },
+        "memory_tip": "Drop and air bubble each have one surface, so they share the same 2T/r."
+      }
+    ]
+  },
+  "insider_note": "Same formula as the liquid drop, so the mark turns on the reason: the examiner looks for one liquid surface stated, not just 2T/r."
+}

@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -17,6 +17,21 @@
   "expected_time_min": 8,
   "question_text": "Define vector product. Explain the properties of a vector product with two examples.",
   "appearances": [
+    {
+      "year": 2025,
+      "q_no": 14,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "q_no": 15,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 15,
+      "board": "ts_ipe"
+    },
     {
       "year": 2026,
       "q_no": 27,
@@ -198,5 +213,6 @@
         "memory_tip": "Both examples start with r: r × F is torque, r × p is angular momentum."
       }
     ]
-  }
+  },
+  "insider_note": "The properties carry 2 of the 4 marks, so list four of them. Two properties reads as a half answer."
 }

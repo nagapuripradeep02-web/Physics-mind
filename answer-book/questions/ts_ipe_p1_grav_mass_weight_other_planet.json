@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -68,7 +68,9 @@
             "mass",
             "same"
           ]
-        }
+        },
+        "memory_tip": "Mass belongs to the BODY. Change the planet and the body is unchanged.",
+        "margin_note": "First mark. Define mass, then say plainly that it does not change."
       },
       {
         "id": "s2_weight",
@@ -103,8 +105,11 @@
             "weight changes",
             "m g"
           ]
-        }
+        },
+        "memory_tip": "Same 60 kg on the moon, one sixth the weight — g there is about 1/6 of ours.",
+        "margin_note": "Second mark. Write W = mg and name g as the part that changes."
       }
     ]
-  }
+  },
+  "insider_note": "One mark for each of the two answers — mass unchanged, weight changed. Explaining gravity without writing both words drops one."
 }

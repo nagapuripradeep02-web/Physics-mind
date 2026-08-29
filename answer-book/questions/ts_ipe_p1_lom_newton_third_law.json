@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -70,7 +70,9 @@
             "action",
             "reaction"
           ]
-        }
+        },
+        "memory_tip": "Write it as F(A on B) and F(B on A). The two bodies are then visible in the notation.",
+        "margin_note": "First mark. All three parts — equal, opposite, and acting on two different bodies."
       },
       {
         "id": "s2_example",
@@ -107,8 +109,11 @@
             "walking",
             "ground pushes"
           ]
-        }
+        },
+        "memory_tip": "On smooth ice the ground cannot push the foot forward. Walking fails without that reaction.",
+        "margin_note": "Second mark. Name both forces of the pair. A single force is not an example of this law."
       }
     ]
-  }
+  },
+  "insider_note": "The example carries a full mark, equal to the statement. Name both forces of the pair and the two bodies they act on."
 }

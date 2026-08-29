@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 2,
+    "number": 4,
     "name": "Mathematical Induction"
   },
   "chapter": "Mathematical Induction",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 14,
   "question_text": "Show that 1/(1·4) + 1/(4·7) + 1/(7·10) + … + n terms = n/(3n+1), ∀ n ∈ N.",
@@ -45,7 +45,7 @@
     },
     {
       "label": "Step 3 — S(k+1) follows",
-      "marks": 3
+      "marks": 4
     },
     {
       "label": "Conclusion by P.M.I",
@@ -55,13 +55,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.19 — LAQ chapter 2, question 8. The 1+1+1+3+1 split is PRINTED in that book's margin. Publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.19 — LAQ chapter 2, question 8. The 1+1+1+3+1 split is PRINTED in that book's margin. Publisher's claims until a Telangana IPE teacher confirms them. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows."
   },
   "recall_prompt": "Say how you would prove this by induction — the nth term, and what cancels in the third step.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Mathematical Induction · 7 marks"
+      "Mathematical Induction · 8 marks"
     ],
     "steps": [
       {
@@ -189,9 +189,9 @@
         "id": "s4_inductive",
         "kind": "equation",
         "label": "Show S(k+1) follows",
-        "marks": 3,
+        "marks": 4,
         "mark_note": "Step 3",
-        "margin_note": "Three marks. Identical shape to question 7: add, combine, factorise, cancel.",
+        "margin_note": "Four marks. Identical shape to question 7: add, combine, factorise, cancel.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = 1/((3k+1)(3k+4))",

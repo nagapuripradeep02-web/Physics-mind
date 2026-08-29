@@ -107,6 +107,23 @@
  *      at the frozen pin / the dense probe / the ramp end / a trusted drag,
  *      and STATE_9 group B, where there is no angle readout at all), which
  *      is the read clause (h) made only for products.
+ *  31  THE ROW NAMES THE OBJECT IT MEASURES — a readout label that names an
+ *      AUTHORED object is derived from that object's authored label, never a
+ *      compile-time constant. VG_READOUT_LABEL.d_dot_n was the string "n·d",
+ *      justified by a comment quoting a fact about CONCEPT DATA ("both lines
+ *      carry the same generic label d"); an authoring fix renamed
+ *      lines_and_planes_in_space STATE_4's parallel line to d′ and falsified
+ *      it silently, so the misconception state printed "n·d = 0.000" for 9.5 s
+ *      beside a line labelled d′, with no line called d on screen. Scored as
+ *      the ROW LABEL against the subject derived independently FROM THE
+ *      AUTHORING, over both authored reveal windows and a dense 100 ms sweep
+ *      of the whole state (the boundary instants included, as a
+ *      biconditional). The control is the shipped resolver with the one
+ *      publish line deleted, and it FAILS on [1000, 9500] and PASSES from
+ *      10300 ms on — which is why the frozen pin looked fine. STATE_2's n·v
+ *      passes at every sample (both its segments genuinely carry "v"), which
+ *      is what proves the probe scores the SUBJECT and not label
+ *      multiplicity; products mode is asserted untouched.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -159,6 +176,11 @@ const FNS = [
   "vgFootOnPlane", "vgCommonPerp", "vgLinePlaneMeet", "vgLinePlaneAngles",
   "vgProjectLineOntoPlane", "vgRevealFrac", "vgGhostFactor", "vgInGroup", "vgArrived",
   "vgKnobVal", "vgObjOffset", "vgObjRotate", "vgAddr", "vgList",
+  // §31 · the dot-product row's NAME, derived from the authored label of the
+  // object the row is describing (the sibling of vgCrossMagLabelText). Called
+  // by vgResolveLinesPlanes at both of its publish sites, so the sandbox must
+  // carry it or the resolver throws.
+  "vgDotLabelText",
   "vgResolveLinesPlanes",
   // §22 · the one predicate that decides whether the a/b scaffolding pair is
   // on screen at all, read by BOTH the apply pass and the per-frame writer.
@@ -3600,7 +3622,14 @@ console.log("\n=== 19c. Δ2c — ONE CONSTRUCT, TWO TOKENS, TWO BEATS: THE ARC O
 
   const ARC_N = { id: "arc_normal", between: ["Lcut", "P1.normal"], readout: "angle_line_normal_deg", reveal_at_ms: 9000, grow_ms: 1200 };
   const ARC_P = { id: "arc_plane", between: ["Lcut", "P1"], readout: "angle_line_plane_deg", reveal_at_ms: 13000, grow_ms: 1500 };
-  /** STATE_7's authoring, to the ms: the shadow at 2000/1500, then the arcs. */
+  /**
+   * STATE_7's SHAPE — a line, a plane, its projection, then two staggered arcs.
+   * A reconstruction of the defect's geometry, NOT a transcription: the reveal
+   * windows here are the ones that exercise the hold-and-settle path, and the
+   * shipped authoring has since retimed its own (shadow 4000/3000, arcs
+   * 8000/2500 and 12000/3000). Nothing in this section reads the concept file,
+   * so there is no fidelity claim to keep — the mechanism is what is measured.
+   */
   const s7 = (arcs: unknown[] | null, dir: V3 = dCut): Record<string, unknown> => {
     const b: Record<string, unknown> = {
       mode: "lines_planes", reveal_ms: 0,
@@ -6062,12 +6091,13 @@ console.log("\n=== 28. EVERY VISIBLE ROW MOVES SOMETHING IN THE GROUP IT IS SHOW
     theta_deg: 69.3846, line2_offset: 0.0,
     lines: [
       { id: "L1", point: [-0.8, 0.6, -0.5], dir: [1, 0.35, 0.6], role: "dir1", label: "d",
-        groups: ["A"], bind_lambda_span: true, show_lambda_marker: true, lambda: { knob: "lambda" }, reveal_at_ms: 0 },
+        groups: ["A"], bind_lambda_span: true, show_lambda_marker: true, lambda: { knob: "lambda" },
+        lambda_label: "r", reveal_at_ms: 0 },
       { id: "M1", point: [-1.2, -0.9, 0.6], dir: [1, 0.15, 0.35], role: "dir1", label: "d₁",
         groups: ["B"], reveal_at_ms: 0 },
       { id: "M2", point: [0.479887, -1.725775, -0.749677], dir: [0.15, -0.5, 1], role: "dir2", label: "d₂",
         groups: ["B"],
-        offset: { along: [0.132973, -0.443242, 0.886484], zero: 0, knob: "line2_offset" },
+        offset: { along: [0.287668, -0.838664, -0.462482], zero: 0, knob: "line2_offset" },
         rotate: { about: [0.287668, -0.838664, -0.462482], zero: 69.3846, knob: "theta_deg" },
         reveal_at_ms: 0 },
     ],
@@ -6076,6 +6106,7 @@ console.log("\n=== 28. EVERY VISIBLE ROW MOVES SOMETHING IN THE GROUP IT IS SHOW
         bind_half_extent: true, role: "region", show_normal: true, normal_label: "n", groups: ["A"], reveal_at_ms: 0 },
     ],
     points: [
+      { id: "a", position: [-0.8, 0.6, -0.5], role: "neutral", label: "a", groups: ["A"], reveal_at_ms: 0 },
       { id: "q", position: [1.93, 1.19, 0.51], role: "neutral", label: "q", groups: ["A"],
         offset: { along: [0, 1, 0], zero: 1.19, knob: "q_height" }, reveal_at_ms: 0 },
     ],
@@ -6440,17 +6471,34 @@ console.log("\n=== 28. EVERY VISIBLE ROW MOVES SOMETHING IN THE GROUP IT IS SHOW
     if (!s9) {
       console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the S9 partition follow-up is advisory");
     } else {
-      // FIDELITY: the transcribed fixture still models the shipped state.
-      const sig = (vg: Record<string, any>) => JSON.stringify({
-        groups: (vg.scene_groups || []).map((g: any) => g.key),
-        controls: vg.controls,
-        lines: (vg.lines || []).map((l: any) => [l.id, l.groups, l.bind_lambda_span === true,
-          l.show_lambda_marker === true, l.offset ? l.offset.knob : null, l.rotate ? l.rotate.knob : null]),
-        planes: (vg.planes || []).map((p: any) => [p.id, p.groups, p.bind_half_extent === true]),
-        points: (vg.points || []).map((p: any) => [p.id, p.groups, p.offset ? p.offset.knob : null]),
-      });
-      assertTrue("the §28 fixture still mirrors the shipped STATE_9 (groups, controls, and every knob binding)",
-        sig(s9.vg) === sig(S9_VG));
+      // FIDELITY — BEHAVIOURAL, never a verbatim structural snapshot.
+      //   This used to be a structural signature over "every object and every
+      //   knob binding", and it hard-failed on an authoring edit that could not
+      //   possibly invalidate the section: a json-author run added a decorative
+      //   size-0 label point ("a") to STATE_9, plus a forward-compatible
+      //   lambda_label and an authoring note, and the gate went red while the
+      //   engine claim it guards was untouched. A fidelity gate that cries wolf
+      //   on legitimate authoring gets refreshed by reflex instead of read —
+      //   which is the exact failure mode it exists to prevent.
+      //   So the fixture is measured against the THREE facts this section
+      //   actually rests on, each read through the SHIPPED resolver and the
+      //   SHIPPED range table rather than off the authored text: the group
+      //   keys, the knob-row list, and the LIVE-KNOB MATRIX (which knobs move
+      //   something in which group). An authoring edit that rebinds a knob,
+      //   moves an object between groups, or changes the row list still fails
+      //   this loudly — those are precisely the edits that turn the
+      //   transcription into a lie about the sim it models.
+      const behaviour = (vg: Record<string, any>) => {
+        const keys: string[] = (vg.scene_groups || []).map((g: any) => g.key);
+        return JSON.stringify({
+          groups: keys,
+          controls: vg.controls,
+          live: keys.map((g) => [g, KNOBS.filter((k) => movesSomething(vg, g, k))]),
+        });
+      };
+      const bShipped = behaviour(s9.vg), bFixture = behaviour(S9_VG);
+      assertTrue(`the §28 fixture still MODELS the shipped STATE_9 — same groups, same knob rows, same live-knob matrix (${bShipped}${bShipped === bFixture ? "" : " SHIPPED vs FIXTURE " + bFixture})`,
+        bShipped === bFixture);
       const gc = s9.vg.group_controls;
       assertTrue(`STATE_9 authors group_controls, partitioning its ${(s9.vg.controls || []).length - 1} knob rows across ${(s9.vg.scene_groups || []).length} groups (authored: ${JSON.stringify(gc) || "none"})`,
         !!gc && typeof gc === "object");
@@ -7254,6 +7302,464 @@ console.log("\n=== 30. THE ANGLE BETWEEN TWO LINES IS ACUTE — the readout obey
       const prodNow = readAt({ a_mag: 3, b_mag: 2, theta_deg: 115, controls: ["theta_deg"], value_readouts: ["theta_deg"] }, 9000);
       assertTrue(`a products row is unchanged by this fix — "${prodNow.lab}" (pre-fix "${prodPre.lab}"), and still the built label`,
         prodNow.lab === prodPre.lab && prodNow.lab === SHIPPED_ROW_LABEL.theta_deg && prodNow.lab === "θ (a, b)");
+    }
+  }
+}
+
+console.log("\n=== 31. THE ROW NAMES THE OBJECT IT MEASURES — a readout label that names an AUTHORED object is DERIVED from that object's label, never a compile-time constant (bug_class readout_family_label_is_a_hardcoded_constant_so_renaming_an_authored_object_makes_the_panel_name_the_wrong_one) ===");
+{
+  // bug_class readout_family_label_is_a_hardcoded_constant_so_renaming_an_
+  // authored_object_makes_the_panel_name_the_wrong_one (CRITICAL, founder-proxy
+  // Checkpoint B cycle 2, finding F1).
+  //
+  // VG_READOUT_LABEL.d_dot_n was the string "n·d", and the comment above the
+  // intersection publish site JUSTIFIED that constant by quoting a fact about
+  // CONCEPT DATA: "on the state this exists for, both lines carry the same
+  // generic label d". It was true the day it was written. A Checkpoint-B
+  // cycle-1 AUTHORING fix then renamed lines_and_planes_in_space STATE_4's
+  // parallel line to d′ — to cure a DIFFERENT defect, two lines both labelled
+  // d — and falsified it. Nothing recomputed the constant; nothing failed.
+  //
+  // WHAT SHIPPED: for the first 9.5 s of the concept's MISCONCEPTION state
+  // (declared belief: "n·d = 0 means the line is perpendicular to the plane")
+  // the panel printed "n·d = 0.000" while the only line on screen was labelled
+  // d′ and no line called d existed yet; at t = 17500 the same token printed
+  // "n·d = 0.574" for the OTHER line. One symbol, two lines, one state — and
+  // attaching that arithmetic to the right line is the state's entire job.
+  //
+  // THE DISCRIMINATING QUANTITY IS THE ROW'S LABEL MEASURED AGAINST THE
+  // AUTHORED LABEL OF THE SUBJECT THE FAMILY IS DESCRIBING, sampled inside
+  // EVERY authored reveal window — not the value (0.000 and 0.574 were both
+  // arithmetically right), not the reveal gating (§19b/§23 are green on the
+  // defect: the number waited correctly for its intersection and then said the
+  // wrong name), and not the settled frame (at t ≥ 10300 the subject IS the
+  // line labelled d, so a probe that sampled only the pin sees nothing wrong —
+  // which is exactly why STATE_4__frozen.png looks fine).
+  //
+  // THE SUBJECT IS DERIVED FROM THE AUTHORING, never from the label bag the
+  // fix introduces: this probe walks the authored intersections with the
+  // SHIPPED reveal gate, finds the ONE whose window contains the sample, and
+  // reads the authored label off the line THAT intersection names. A probe
+  // that read out.readout_labels would be a restatement of the fix.
+  const runFrame = FRAME_HARNESS.run!;
+  const panelAt = (block: Record<string, unknown>, ms: number) => {
+    const dom = fakeDom();
+    const win: Record<string, unknown> = {};
+    runFrame(block, ms, dom, win);
+    const el = dom.get("vg_readout");
+    return { html: el.innerHTML, shown: el.style.display, lp: win.PM_vgLinesPlanes as any };
+  };
+  const rowText = (html: string, tok: string): string | null => {
+    const m = new RegExp('<div id="vg_readout_' + tok + '">([^<]*)</div>').exec(html);
+    return m ? m[1] : null;
+  };
+  /** The LABEL half of a row, as a teacher reads it (everything left of "="). */
+  const rowLabel = (html: string, tok: string): string | null => {
+    const t = rowText(html, tok);
+    return t == null ? null : t.split("=")[0].trim();
+  };
+
+  // ── THE TWO STATES, TRANSCRIBED FROM THE SHIPPED AUTHORING ───────────────
+  //   lines_and_planes_in_space is not on master, so the transcription is what
+  //   makes this gate runnable there at all. Clause (f) asserts, whenever the
+  //   desk DOES carry the concept, that these still MODEL it — same subject
+  //   spine, byte-identical readout panel out of the shipped driver — rather
+  //   than that they still match it byte for byte (see (f) for why).
+  //   Decoration the authoring carries but this section never reads (a size-0
+  //   label point, an authoring note) is copied for faithfulness, and is
+  //   deliberately NOT what the fidelity gate measures.
+  const STATE_4_VG: Record<string, any> = {
+    mode: "lines_planes", reveal_ms: 1, aux_a: 0, aux_b: 1.4,
+    planes: [{ id: "P1", point: [0, -0.4, 0], normal: [0.35, 1, 0.25], span_u: [1, -0.35, 0], half_extent: 3.0, role: "region", show_normal: true, normal_label: "n" }],
+    points: [{ id: "par_tag", position: [-3.731074, 2.410332, 0.078203], size: 0, role: "neutral", label: "n·d′ = 0", reveal_at_ms: 12000 }],
+    lines: [
+      { id: "Lpar", point: [0.450129, 0.886082, 0.321521], dir: [1, -0.35, 0], role: "dir2", label: "d′", reveal_at_ms: 0, ghost_at_ms: 12000, offset: { along: [0.379337, 1.083821, -4.866357], zero: 0.5, knob: "aux_a" } },
+      { id: "Lcut", point: [-1.919561, -1.265952, -0.342383], dir: [0.95758, 0.256298, 0.131726], role: "dir1", label: "d", reveal_at_ms: 12050, grow_ms: 800, offset: { along: [0.32152, 0.91862, 0.22966], zero: 0, knob: "aux_b" } },
+    ],
+    angle_arcs: [{ id: "arc_par", between: ["Lpar", "P1.normal"], readout: "angle_line_normal_deg", reveal_at_ms: 500, hide_at_ms: 12000 }],
+    intersections: [
+      { id: "X_par", line: "Lpar", plane: "P1", role: "derived", reveal_at_ms: 1000, hide_at_ms: 12000, grow_ms: 600, show_right_angle: false },
+      { id: "X_live", line: "Lcut", plane: "P1", role: "derived", reveal_at_ms: 13300, hide_at_ms: 17500, size: 0, show_right_angle: false },
+      { id: "X", line: "Lcut", plane: "P1", role: "derived", reveal_at_ms: 17500, grow_ms: 0, show_right_angle: false },
+    ],
+    animate: [
+      { knob: "aux_a", from: 0, to: 0.55, start_ms: 1500, duration_ms: 10500, easing: "smoothstep" },
+      { knob: "aux_b", from: 1.4, to: 0, start_ms: 12900, duration_ms: 4600, easing: "smoothstep" },
+      { knob: "aux_b", from: 0, to: 0.5, start_ms: 18500, duration_ms: 6000, easing: "smoothstep" },
+      { knob: "aux_b", from: 0.5, to: 0, start_ms: 24800, duration_ms: 6200, easing: "smoothstep" },
+    ],
+    value_readouts: ["angle_line_normal_deg", "d_dot_n", "no_meeting_point", "lambda", "intersection_point"],
+    controls: [],
+  };
+  const STATE_2_VG: Record<string, any> = {
+    mode: "lines_planes", reveal_ms: 1, half_extent: 3.0,
+    planes: [{ id: "P1", point: [0, -0.4, 0], normal: [0.35, 1, 0.25], span_u: [1, -0.35, 0], half_extent: 3.0, bind_half_extent: true, role: "region", show_normal: true, normal_label: "n" }],
+    points: [{ id: "a", position: [0, -0.4, 0], role: "neutral", label: "a", reveal_at_ms: 0, grow_ms: 400 }],
+    lines: [{ id: "L1", point: [-0.8, 0.6, -0.5], dir: [1, 0.35, 0.6], role: "dir1", label: "d", ghost_at_ms: 0 }],
+    segments: [
+      { id: "test_v_inplane", role: "neutral", label: "v", from: "P1", to: { lerp: [{ on: "P1", u: -1.3, v: 0.6 }, { on: "P1", u: 1.1, v: -0.8 }], t: { knob: "aux_a" } }, reveal_at_ms: 4800, hide_at_ms: 15300, readout: "n_dot_v", against: "P1" },
+      { id: "test_v_offplane", role: "neutral", label: "v", from: "P1", to: { lerp: [{ on: "P1", u: 1.1, v: -0.8 }, [1.556288, 0.716738, 1.192001]], t: { knob: "aux_b" } }, reveal_at_ms: 15250, grow_ms: 0, readout: "n_dot_v", against: "P1" },
+    ],
+    animate: [
+      { knob: "half_extent", from: 0.4, to: 3.0, start_ms: 0, duration_ms: 4000, easing: "smoothstep" },
+      { knob: "aux_a", from: 0, to: 1, start_ms: 4800, duration_ms: 10450, easing: "smoothstep" },
+      { knob: "aux_b", from: 0, to: 1, start_ms: 15300, duration_ms: 3000, easing: "smoothstep" },
+      { knob: "aux_b", from: 1, to: 0.62, start_ms: 18600, duration_ms: 3400, easing: "smoothstep" },
+      { knob: "aux_b", from: 0.62, to: 1, start_ms: 22300, duration_ms: 4400, easing: "smoothstep" },
+    ],
+    value_readouts: ["n_dot_v"],
+    controls: ["half_extent"],
+  };
+
+  /**
+   * THE SUBJECT, read off the AUTHORING with the SHIPPED reveal gate.
+   * Returns the authored label of the object the d_dot_n family describes at
+   * `ms`, or null where no single subject is arrived (the engine publishes
+   * nothing there, and the invariant that makes this answerable at all).
+   */
+  const dDotNSubject = (vg: Record<string, any>, ms: number): string | null => {
+    const growMs = (typeof vg.reveal_ms === "number") ? vg.reveal_ms : 900;
+    const arrived = (vg.intersections || []).filter((x: any) => E.vgArrived(E.vgRevealFrac(x, ms, growMs)));
+    if (arrived.length !== 1) return null;
+    const ln = (vg.lines || []).find((l: any) => l.id === arrived[0].line);
+    return (ln && typeof ln.label === "string" && ln.label !== "") ? ln.label : null;
+  };
+  /** The same, for the n_dot_v family: the arrived comparison segment. */
+  const nDotVSubject = (vg: Record<string, any>, ms: number): string | null => {
+    const growMs = (typeof vg.reveal_ms === "number") ? vg.reveal_ms : 900;
+    const arrived = (vg.segments || []).filter((s: any) => s.readout === "n_dot_v" && E.vgArrived(E.vgRevealFrac(s, ms, growMs)));
+    if (!arrived.length) return null;
+    // The segments pass runs in authored order and the LAST arrived one owns
+    // the token, so the subject is the last — read off the authoring, exactly
+    // as the resolver walks it.
+    const s = arrived[arrived.length - 1];
+    return (typeof s.label === "string" && s.label !== "") ? s.label : null;
+  };
+
+  // ── (a) EVERY AUTHORED REVEAL WINDOW OF STATE_4, SAMPLED ─────────────────
+  //   The two windows the concept authors are disjoint by construction (the
+  //   engine refuses co-arrived intersections rather than picking a winner),
+  //   so every sample inside one has exactly ONE right answer.
+  {
+    const WINDOWS: Array<{ name: string; ms: number[]; label: string }> = [
+      { name: "the PARALLEL window (X_par, 1000-12000 ms)", label: "d′", ms: [1600, 2000, 3000, 5600, 7000, 9000, 9400, 10400, 11000, 11900] },
+      { name: "the CUTTING window (X_live/X, 13300 ms onward)", label: "d", ms: [13400, 14000, 15100, 16800, 17400, 18200, 20000, 24000] },
+    ];
+    let wrong = 0;
+    for (const w of WINDOWS) {
+      for (const ms of w.ms) {
+        const subj = dDotNSubject(STATE_4_VG, ms);
+        const lab = rowLabel(panelAt(STATE_4_VG, ms).html, "d_dot_n");
+        const ok = subj === w.label && lab === "n·" + subj;
+        if (!ok) wrong++;
+      }
+      const shown = w.ms.map((ms) => `${ms}:"${rowLabel(panelAt(STATE_4_VG, ms).html, "d_dot_n")}"`).join(" ");
+      assertTrue(`${w.name}: the row is labelled for the line the sim is describing (${w.label}) at every sample — ${shown}`,
+        w.ms.every((ms) => rowLabel(panelAt(STATE_4_VG, ms).html, "d_dot_n") === "n·" + w.label
+          && dDotNSubject(STATE_4_VG, ms) === w.label));
+    }
+    check("across both authored windows, NOT ONE sample prints a name other than its subject's", wrong, 0, 0);
+    // THE ROW MOVES: a label that never changed would satisfy nothing.
+    assertTrue(`the name CHANGES with the subject — "${rowLabel(panelAt(STATE_4_VG, 5600).html, "d_dot_n")}" at 5600 ms, "${rowLabel(panelAt(STATE_4_VG, 18200).html, "d_dot_n")}" at 18200 ms`,
+      rowLabel(panelAt(STATE_4_VG, 5600).html, "d_dot_n") !== rowLabel(panelAt(STATE_4_VG, 18200).html, "d_dot_n"));
+    // ...and the two frames founder-proxy actually read, by name.
+    const f56 = panelAt(STATE_4_VG, 5600), f175 = panelAt(STATE_4_VG, 18200);
+    assertTrue(`STATE_4__dense_t05600.png (t=5600 ms): the panel now reads "${rowText(f56.html, "d_dot_n")}" beside a line labelled d′ (it read "n·d = 0.000")`,
+      rowText(f56.html, "d_dot_n") === "n·d′ = 0.000");
+    assertTrue(`STATE_4__frozen.png (t=18200 ms, the authored eye_capture_ms): unchanged, "${rowText(f175.html, "d_dot_n")}" beside the line labelled d`,
+      rowText(f175.html, "d_dot_n") === "n·d = 0.574");
+    // The NUMBERS are untouched by a label fix — the value surface still holds.
+    check("t=5600 ms: the value is still Lpar's own 0 (a name fix moves no number)", f56.lp.readouts.d_dot_n, 0, 1e-12);
+    assertTrue(`t=18200 ms: the value is still Lcut's own (${(f175.lp.readouts.d_dot_n as number).toFixed(3)})`,
+      Math.abs((f175.lp.readouts.d_dot_n as number) - 0.574) < 5e-4);
+    // NO NAME WITHOUT A SUBJECT: in the 12000-13300 handover gap the family
+    // publishes nothing at all, so there is no row to be labelled wrongly.
+    for (const ms of [12100, 12500, 13200]) {
+      assertTrue(`t=${ms} ms (the authored handover gap): no subject is arrived, so there is NO n·d row at all`,
+        dDotNSubject(STATE_4_VG, ms) === null && rowText(panelAt(STATE_4_VG, ms).html, "d_dot_n") === null);
+    }
+    // ── THE WHOLE STATE, DENSELY, AS A BICONDITIONAL ────────────────────
+    //   Named windows can only be as good as the instants this file picked.
+    //   The binding form is: at EVERY 100 ms of the state, a row exists if and
+    //   only if a single subject is arrived, and when it exists it wears that
+    //   subject's authored name. This is what makes the three authored
+    //   boundary instants (12000 / 13300 / 17500, where the outgoing object has
+    //   hidden and the incoming one is at frac 0) part of the claim rather
+    //   than a hole in the sampling — at those the panel prints NO n·d row at
+    //   all, which is the one-subject invariant doing its job, not a defect.
+    {
+      const badName: string[] = [], badPresence: string[] = [];
+      let rows = 0, silent = 0;
+      for (let ms = 0; ms <= 31000; ms += 100) {
+        const subj = dDotNSubject(STATE_4_VG, ms);
+        const lab = rowLabel(panelAt(STATE_4_VG, ms).html, "d_dot_n");
+        if ((subj === null) !== (lab === null)) badPresence.push(`${ms}ms:subj=${subj},row=${lab}`);
+        else if (subj !== null && lab !== "n·" + subj) badName.push(`${ms}ms:${lab}!=n·${subj}`);
+        if (lab === null) silent++; else rows++;
+      }
+      check(`dense sweep 0-31000 ms at 100 ms: a row exists exactly where ONE subject is arrived (${badPresence.slice(0, 4).join(", ") || "none"})`, badPresence.length, 0, 0);
+      check(`...and every one of the ${rows} rows printed wears its own subject's authored name (${badName.slice(0, 4).join(", ") || "none"})`, badName.length, 0, 0);
+      assertTrue(`...and the sweep really exercised both halves: ${rows} instants print a row, ${silent} print none (the authored handover)`,
+        rows > 150 && silent > 5);
+    }
+
+    // THE SHARPER FORM OF THE DEFECT: the printed name is not the name of a
+    // DIFFERENT authored object of the same state. This is what "n·d beside
+    // d′" actually was — the panel wearing its sibling's name.
+    let stolen = 0;
+    for (const ms of [1600, 2000, 3000, 5600, 7000, 9000, 9400]) {
+      const lab = rowLabel(panelAt(STATE_4_VG, ms).html, "d_dot_n");
+      if (lab === "n·d") stolen++;                    // "d" is Lcut's label, not Lpar's
+    }
+    check("during the parallel window the panel never wears the OTHER line's name (\"n·d\" is Lcut's)", stolen, 0, 0);
+  }
+
+  // ── (b) NEGATIVE CONTROL — THE CONSTANT, RESTORED ────────────────────────
+  //   The SHIPPED resolver with exactly ONE statement removed: the line that
+  //   publishes the derived name. Everything else — the values, the gating,
+  //   the one-subject invariant — is the master body, so the control EXECUTES
+  //   the defect founder-proxy read off the frames rather than paraphrasing
+  //   it. Guarded: if the anchor stops matching this THROWS, because a control
+  //   that silently fails to plant its defect is worse than none.
+  {
+    const PUB = 'out.readout_labels.d_dot_n = vgDotLabelText("n", arrivedMeets[0].subject, "d");';
+    const dropDerived = (name: string, src: string) => {
+      if (name !== "vgResolveLinesPlanes") return src;
+      if (src.indexOf(PUB) < 0) {
+        throw new Error(
+          "§31 NEGATIVE CONTROL CANNOT BE BUILT: the d_dot_n label publish line no longer matches "
+          + JSON.stringify(PUB) + ". Re-anchor it and re-watch the control fail.");
+      }
+      return src.replace(PUB, "");
+    };
+    const PRE = buildVgSandbox(dropDerived) as any;
+    const T = vgTextFns({}, fakeDom().document);
+    // The panel, composed from the SHIPPED display path, validated against the
+    // real frame driver on the SHIPPED resolver FIRST: if the composition ever
+    // drifts from the driver this fails before it is used as a stand-in.
+    const compose = (res: any) => {
+      const vals: Record<string, unknown> = { ...res.readouts, __readout_labels: res.readout_labels };
+      let html = "";
+      for (const k of STATE_4_VG.value_readouts as string[]) {
+        const line = T.vgReadoutLine(k, vals);
+        if (line != null) html += '<div id="vg_readout_' + k + '">' + line + "</div>";
+      }
+      return html;
+    };
+    const knobsAt = (ms: number) => ({
+      aux_a: E.vgAnimValue(STATE_4_VG.animate, "aux_a", ms, 0),
+      aux_b: E.vgAnimValue(STATE_4_VG.animate, "aux_b", ms, 1.4),
+    });
+    for (const ms of [5600, 17500]) {
+      assertTrue(`the composed panel is BYTE-IDENTICAL to the shipped frame driver's at t=${ms} ms (the stand-in is faithful)`,
+        compose(E.vgResolveLinesPlanes(STATE_4_VG, knobsAt(ms), ms)) === panelAt(STATE_4_VG, ms).html);
+    }
+    assertTrue("the pre-fix build really was planted (the resolver publishes NO derived name for d_dot_n, so the constant renders)",
+      PRE.vgResolveLinesPlanes(STATE_4_VG, knobsAt(5600), 5600).readout_labels.d_dot_n === undefined
+      && PRE.vgResolveLinesPlanes(STATE_4_VG, knobsAt(5600), 5600).readouts.d_dot_n != null);
+
+    // THE CONTROL MUST FAIL ON [1000, 9500] — the parallel window.
+    let preWrong = 0;
+    for (const ms of [1600, 2000, 3000, 5600, 7000, 9000, 9400]) {
+      const lab = rowLabel(compose(PRE.vgResolveLinesPlanes(STATE_4_VG, knobsAt(ms), ms)), "d_dot_n");
+      const subj = dDotNSubject(STATE_4_VG, ms);
+      if (lab !== "n·" + subj) preWrong++;
+    }
+    expectFail(`the pre-fix panel names its subject during the parallel window (it prints "${rowText(compose(PRE.vgResolveLinesPlanes(STATE_4_VG, knobsAt(5600), 5600)), "d_dot_n")}" at t=5600 ms beside a line labelled d′)`,
+      preWrong === 0);
+    check(`...and it is wrong at EVERY sample of that window, not one unlucky instant`, preWrong, 7, 0);
+
+    // ...AND MUST PASS AT t >= 13300 — which is why the frozen pin looked fine
+    // and why a settled-frame probe would have shipped this twice.
+    let preLateWrong = 0;
+    for (const ms of [13400, 14000, 15100, 16800, 17400, 18200, 20000, 24000]) {
+      const lab = rowLabel(compose(PRE.vgResolveLinesPlanes(STATE_4_VG, knobsAt(ms), ms)), "d_dot_n");
+      if (lab !== "n·" + dDotNSubject(STATE_4_VG, ms)) preLateWrong++;
+    }
+    check("the pre-fix panel is CORRECT from 13300 ms on (the subject is genuinely the line labelled d) — a settled-frame probe sees nothing",
+      preLateWrong, 0, 0);
+    assertTrue(`...and prints the very string the frozen baseline holds — "${rowText(compose(PRE.vgResolveLinesPlanes(STATE_4_VG, knobsAt(18200), 18200)), "d_dot_n")}"`,
+      rowText(compose(PRE.vgResolveLinesPlanes(STATE_4_VG, knobsAt(18200), 18200)), "d_dot_n")
+      === rowText(panelAt(STATE_4_VG, 18200).html, "d_dot_n"));
+    // The fix is exactly one name: with the label bag ignored, every VALUE the
+    // resolver publishes is bit-identical across the two builds.
+    for (const ms of [1600, 5600, 9400, 10300, 15000, 20000]) {
+      const a = JSON.stringify(PRE.vgResolveLinesPlanes(STATE_4_VG, knobsAt(ms), ms).readouts);
+      const b = JSON.stringify(E.vgResolveLinesPlanes(STATE_4_VG, knobsAt(ms), ms).readouts);
+      assertTrue(`t=${ms} ms: every published VALUE is bit-identical across the pre-fix and shipped builds (the change is a name, and only a name)`, a === b);
+    }
+  }
+
+  // ── (c) STATE_2's n·v PASSES AT EVERY SAMPLE ─────────────────────────────
+  //   founder-proxy's second control, and it is the one that proves the probe
+  //   scores THE SUBJECT rather than mere label multiplicity: STATE_2 has TWO
+  //   segments publishing the same token, and n·v is correct at every instant
+  //   because BOTH of them genuinely carry the authored label v. A probe that
+  //   flagged "two claimants" would fail here; this one does not.
+  {
+    const MS = [5000, 6000, 8000, 11000, 14000, 15200, 15400, 16000, 18000, 21000];
+    let wrong = 0;
+    for (const ms of MS) {
+      const subj = nDotVSubject(STATE_2_VG, ms);
+      const lab = rowLabel(panelAt(STATE_2_VG, ms).html, "n_dot_v");
+      if (subj === null || lab !== "n·" + subj) wrong++;
+    }
+    check(`STATE_2: the n·v row names its subject at all ${MS.length} samples across BOTH authored segment windows`, wrong, 0, 0);
+    assertTrue(`STATE_2: and the printed name is the one the constant always gave — "${rowLabel(panelAt(STATE_2_VG, 8000).html, "n_dot_v")}" (both segments are authored label "v", so this fix changes NOT ONE PIXEL of STATE_2)`,
+      MS.every((ms) => rowLabel(panelAt(STATE_2_VG, ms).html, "n_dot_v") === "n·v"));
+    // The row is genuinely live — it must be measuring something, or the
+    // clause above is satisfied by an empty panel.
+    assertTrue(`STATE_2: the row carries a real, MOVING number (t=8000 "${rowText(panelAt(STATE_2_VG, 8000).html, "n_dot_v")}", t=18000 "${rowText(panelAt(STATE_2_VG, 18000).html, "n_dot_v")}")`,
+      rowText(panelAt(STATE_2_VG, 8000).html, "n_dot_v") !== null
+      && rowText(panelAt(STATE_2_VG, 18000).html, "n_dot_v") !== null
+      && rowText(panelAt(STATE_2_VG, 8000).html, "n_dot_v") !== rowText(panelAt(STATE_2_VG, 18000).html, "n_dot_v"));
+    // AND THE RENAME THIS FIX EXISTS FOR: rename one segment and the row
+    // follows it, with no engine edit. This is the whole claim, run forward.
+    const renamed = JSON.parse(JSON.stringify(STATE_2_VG));
+    renamed.segments[1].label = "w";
+    assertTrue(`renaming the second segment to "w" moves the row with it — "${rowLabel(panelAt(renamed, 18000).html, "n_dot_v")}" at t=18000, while the first segment's window still reads "${rowLabel(panelAt(renamed, 8000).html, "n_dot_v")}"`,
+      rowLabel(panelAt(renamed, 18000).html, "n_dot_v") === "n·w"
+      && rowLabel(panelAt(renamed, 8000).html, "n_dot_v") === "n·v");
+    // ...and an UNLABELLED subject falls back to the generic form rather than
+    // rendering "n·" with nothing after it.
+    const unlabelled = JSON.parse(JSON.stringify(STATE_2_VG));
+    delete unlabelled.segments[0].label;
+    assertTrue(`an unlabelled subject falls back to the generic name, never a dangling operator — "${rowLabel(panelAt(unlabelled, 8000).html, "n_dot_v")}"`,
+      rowLabel(panelAt(unlabelled, 8000).html, "n_dot_v") === "n·v");
+    const noLineLabel = JSON.parse(JSON.stringify(STATE_4_VG));
+    delete noLineLabel.lines[0].label;
+    assertTrue(`...and so does an unlabelled LINE — "${rowLabel(panelAt(noLineLabel, 5600).html, "d_dot_n")}"`,
+      rowLabel(panelAt(noLineLabel, 5600).html, "d_dot_n") === "n·d");
+  }
+
+  // ── (d) THE TABLE IS STILL THE FALLBACK, AND STILL BINDS ─────────────────
+  //   The §17/§15 arrangement: the constant stays in VG_READOUT_LABEL as the
+  //   unlabelled-subject form (§11c needs every token to have one), and the
+  //   derived text is what reaches the screen. The two are bound here so they
+  //   cannot drift.
+  {
+    const T = vgTextFns({}, fakeDom().document);
+    assertTrue(`VG_READOUT_LABEL.d_dot_n is exactly the unlabelled-subject form ("${T.VG_READOUT_LABEL.d_dot_n}" === vgDotLabelText("n", null, "d"))`,
+      T.VG_READOUT_LABEL.d_dot_n === E.vgDotLabelText("n", null, "d"));
+    assertTrue(`VG_READOUT_LABEL.n_dot_v likewise ("${T.VG_READOUT_LABEL.n_dot_v}")`,
+      T.VG_READOUT_LABEL.n_dot_v === E.vgDotLabelText("n", null, "v"));
+    assertTrue("a row with NO label bag at all renders the table constant, unchanged (the products path, and any older caller)",
+      T.vgReadoutLine("d_dot_n", { d_dot_n: 0.5 }) === "n·d = 0.500"
+      && T.vgReadoutLine("n_dot_v", { n_dot_v: 0.5 }) === "n·v = 0.500");
+    assertTrue("...and a bag carrying a name for the token overrides it",
+      T.vgReadoutLine("d_dot_n", { d_dot_n: 0.5, __readout_labels: { d_dot_n: "n·d₂" } }) === "n·d₂ = 0.500");
+    // The label is a NAME, never a value: the precision, the unit decision and
+    // the number are all untouched by the override.
+    assertTrue("the override changes the NAME and nothing else — still 3 dp, still no unit",
+      /^n·d₂ = -?[0-9]+\.[0-9]{3}$/.test(T.vgReadoutLine("d_dot_n", { d_dot_n: -1 / 3, __readout_labels: { d_dot_n: "n·d₂" } })!));
+    // Rule 34c — the derived text is real Unicode, exactly like the constant
+    // it replaces: the middle dot is U+00B7 and the prime is U+2032, never an
+    // ASCII "." or "'".
+    const derived = rowLabel(panelAt(STATE_4_VG, 5600).html, "d_dot_n")!;
+    assertTrue(`the derived name is real Unicode (U+00B7 middle dot, U+2032 prime) — ${JSON.stringify(derived)} = [${Array.from(derived).map((ch) => "U+" + ch.codePointAt(0)!.toString(16).toUpperCase().padStart(4, "0")).join(" ")}]`,
+      derived === "n·d′" && derived.indexOf("'") < 0 && derived.indexOf(".") < 0);
+  }
+
+  // ── (e) PRODUCTS MODE IS UNTOUCHED ───────────────────────────────────────
+  //   The guard is the mode gate itself (§25's shape): the resolver never runs
+  //   in "products", so the label bag is never present and every row renders
+  //   its table constant. Asserted as TEXT, on the shipped frame driver.
+  {
+    const PROD = { a_mag: 3, b_mag: 2, theta_deg: 60, show_cross_vector: true, cross_reveal_frac: 1,
+      value_readouts: ["a_mag", "b_mag", "theta_deg", "a_dot_b", "cross_mag"] };
+    const f = panelAt(PROD, 9000);
+    assertTrue("a products-mode frame never enters the resolver (PM_vgLinesPlanes === null) — vector_products_in_space cannot see this fix",
+      f.lp === null);
+    assertTrue(`...and every products row renders its table label — ${["a_mag", "b_mag", "theta_deg", "a_dot_b", "cross_mag"].map((k) => JSON.stringify(rowText(f.html, k))).join(" ")}`,
+      rowLabel(f.html, "a_mag") === "|a|" && rowLabel(f.html, "b_mag") === "|b|"
+      && rowLabel(f.html, "a_dot_b") === "a·b" && rowLabel(f.html, "cross_mag") === "|a×b|"
+      && rowText(f.html, "theta_deg") === "θ = 60°");
+  }
+
+  // ── (f) FIDELITY — the transcription still mirrors the concept on disk ────
+  //   The §28 pattern. lines_and_planes_in_space is not on master, so this is
+  //   advisory here and binding on any desk that carries the concept: a probe
+  //   whose fixture has drifted from the authoring proves nothing about it.
+  {
+    const CONCEPT = "src/data/concepts/mathematics/lines_and_planes_in_space.json";
+    let cfg: Record<string, any> | null = null;
+    try {
+      const j = JSON.parse(readFileSync(CONCEPT, "utf-8"));
+      const findCfg = (o: unknown): Record<string, any> | null => {
+        if (!o || typeof o !== "object") return null;
+        const r = o as Record<string, any>;
+        if (r.states && r.scenario_type === "vector_geometry_3d") return r;
+        for (const k of Object.keys(r)) { const f = findCfg(r[k]); if (f) return f; }
+        return null;
+      };
+      cfg = findCfg(j);
+    } catch { cfg = null; }
+    if (!cfg || !cfg.states || !cfg.states.STATE_4 || !cfg.states.STATE_2) {
+      console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the fixture-fidelity check is advisory");
+    } else {
+      // FIDELITY — BEHAVIOURAL + a narrow structural SPINE, never a verbatim
+      //   JSON.stringify snapshot of the authoring.
+      //   The verbatim form hard-failed the moment a json-author run added a
+      //   decorative label point ("a") to STATE_2 — an edit that changes not
+      //   one pixel of the dot-product row this section is about. A snapshot
+      //   that goes red on every legitimate authoring edit trains the next
+      //   reader to re-copy it without looking, so it stops being evidence.
+      //   What makes the transcription trustworthy is not that it matches the
+      //   file byte for byte; it is that the SHIPPED driver publishes the SAME
+      //   READOUT PANEL from it as from the file, and that the fields the
+      //   subject resolution reads are the same. Both are asserted, and both
+      //   still fail loudly on the edits that would make the fixture a lie:
+      //   a relabelled line or segment, a retimed reveal, a changed token
+      //   list, a moved line, a different number.
+      const spine = (vg: Record<string, any>) => JSON.stringify({
+        reveal_ms: vg.reveal_ms,
+        value_readouts: vg.value_readouts,
+        lines: (vg.lines || []).map((l: any) => [l.id, l.label]),
+        segments: (vg.segments || []).map((sg: any) => [sg.id, sg.label, sg.readout,
+          sg.reveal_at_ms ?? null, sg.hide_at_ms ?? null, sg.grow_ms ?? null]),
+        intersections: (vg.intersections || []).map((x: any) => [x.id, x.line,
+          x.reveal_at_ms ?? null, x.hide_at_ms ?? null, x.grow_ms ?? null]),
+      });
+      /** The panel, sampled the way the dense sweep below samples it. */
+      const panelSweep = (vg: Record<string, any>) => {
+        const out: string[] = [];
+        for (let ms = 0; ms <= 31000; ms += 100) {
+          const f = panelAt(vg, ms);
+          out.push(f.shown + "\u0001" + f.html);
+        }
+        return out;
+      };
+      const fidelity = (sid: string, shipped: Record<string, any>, fixture: Record<string, any>) => {
+        const a = spine(shipped), b = spine(fixture);
+        assertTrue(`the §31 ${sid} fixture carries the shipped SUBJECT SPINE — every line/segment/intersection id, label, readout token and reveal window this probe resolves a subject from${a === b ? "" : `\n         shipped ${a}\n         fixture ${b}`}`,
+          a === b);
+        const pa = panelSweep(shipped), pb = panelSweep(fixture);
+        let first = -1;
+        for (let i = 0; i < pa.length; i++) if (pa[i] !== pb[i]) { first = i * 100; break; }
+        assertTrue(`...and the SHIPPED driver publishes a byte-identical readout panel from the fixture at all ${pa.length} samples over 0-31000 ms (${first < 0 ? "no divergence" : "first divergence at " + first + " ms"})`,
+          first < 0);
+      };
+      fidelity("STATE_4", cfg.states.STATE_4.vg, STATE_4_VG);
+      fidelity("STATE_2", cfg.states.STATE_2.vg, STATE_2_VG);
+      // ...and EVERY authored state, swept: no other state may print a
+      // dot-product row under a name its own subject does not carry.
+      let bad: string[] = [];
+      for (const sid of Object.keys(cfg.states)) {
+        const vg = cfg.states[sid].vg || {};
+        const toks: string[] = vg.value_readouts || [];
+        if (toks.indexOf("d_dot_n") < 0 && toks.indexOf("n_dot_v") < 0) continue;
+        for (let ms = 500; ms <= 31000; ms += 500) {
+          const html = panelAt(vg, ms).html;
+          for (const tok of ["d_dot_n", "n_dot_v"]) {
+            if (toks.indexOf(tok) < 0) continue;
+            const lab = rowLabel(html, tok);
+            if (lab == null) continue;
+            const subj = (tok === "d_dot_n") ? dDotNSubject(vg, ms) : nDotVSubject(vg, ms);
+            if (lab !== "n·" + (subj == null ? (tok === "d_dot_n" ? "d" : "v") : subj)) bad.push(`${sid}@${ms}ms:${lab}`);
+          }
+        }
+      }
+      check(`every authored state that prints a dot-product row names its own subject, swept 500-31000 ms (${bad.slice(0, 6).join(", ") || "none wrong"})`, bad.length, 0, 0);
     }
   }
 }

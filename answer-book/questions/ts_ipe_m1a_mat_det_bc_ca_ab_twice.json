@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "Show that the determinant with rows (b+c, c+a, a+b), (c+a, a+b, b+c) and (a+b, b+c, c+a) is equal to twice the determinant with rows (a, b, c), (b, c, a) and (c, a, b).",
@@ -49,19 +49,19 @@
     },
     {
       "label": "Take −1 from R₂ and R₃ to finish",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 3 Matrices, answer 17, the last determinant proof before the chapter turns to solving systems. The mark split is PRINTED in that book's margin as 1+1+1+2+1+1 across the six working lines — a sourced split, and the one this answer book uses as the model for the two questions on book p.24 where no split is printed. The book's own margin note reads 'I was asked TWICE', matching the two printed appearances (AP 15,16). Star rank is the CHAPTER's ★★★, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 3 Matrices, answer 17, the last determinant proof before the chapter turns to solving systems. The mark split is PRINTED in that book's margin as 1+1+1+2+1+1 across the six working lines — a sourced split, and the one this answer book uses as the model for the two questions on book p.24 where no split is printed. The book's own margin note reads 'I was asked TWICE', matching the two printed appearances (AP 15,16). Star rank is the CHAPTER's ★★★, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Take −1 from R₂ and R₃ to finish\" step."
   },
   "recall_prompt": "Say how you would prove this — this one uses the same row-adding move twice, so say where each one goes and what happens in between.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -291,9 +291,9 @@
         "id": "s6_final",
         "kind": "boxed_final",
         "label": "Take −1 from R₂ and R₃",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Sign factors",
-        "margin_note": "Last mark. A −1 leaves each of the two lower rows, and (−1)(−1) = 1 — so the signs vanish and only the 2 is left in front, which is exactly what was to be shown.",
+        "margin_note": "Last two marks. A −1 leaves each of the two lower rows, and (−1)(−1) = 1 — so the signs vanish and only the 2 is left in front, which is exactly what was to be shown.",
         "lines": [
           "Taking −1 common from R₂ and from R₃:",
           "(−1)(−1) = 1, so the signs cancel:",

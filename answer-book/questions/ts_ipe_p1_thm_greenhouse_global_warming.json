@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_greenhouse_global_warming",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is greenhouse effect? Explain global warming.",
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 9,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The greenhouse effect",
+      "marks": 1
+    },
+    {
+      "label": "Global warming",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2023 (Q9) — Section A, 2 marks. The 1 + 1 mark split, one mark for each of the two parts asked, is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: short wavelength solar radiation passes through the atmosphere, the Earth re-emits it as long wavelength infrared, which carbon dioxide and water vapour absorb and return to the surface; global warming is the extra rise in mean temperature caused by the added carbon dioxide."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_greenhouse",
+        "kind": "text",
+        "label": "The greenhouse effect",
+        "marks": 1,
+        "mark_note": "Greenhouse effect",
+        "lines": [
+          "Short wavelength radiation from the Sun",
+          "passes through the atmosphere and warms",
+          "the Earth.",
+          "The Earth sends it back as long wavelength",
+          "infrared, which carbon dioxide and water",
+          "vapour absorb and return to the surface.",
+          "This trapping of energy is the greenhouse",
+          "effect."
+        ],
+        "margin_note": "First mark. Both directions are needed: short waves in, infrared absorbed.",
+        "why": "The glass of a greenhouse behaves the same way, letting visible light in and holding the infrared inside. In the atmosphere carbon dioxide and water vapour do the work of the glass.",
+        "common_mistakes": [
+          "Saying the atmosphere blocks the sunlight. It lets the short wavelength radiation in and absorbs the long wavelength radiation going out."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That short wavelength sunlight enters, the Earth re-emits infrared, and carbon dioxide and water vapour absorb it.",
+          "accept": [
+            "short waves come in",
+            "infrared is absorbed",
+            "carbon dioxide traps the heat"
+          ],
+          "reject": [
+            "burning fuels raise the temperature"
+          ],
+          "heard_as": [
+            "greenhouse effect",
+            "infrared",
+            "carbon dioxide"
+          ]
+        },
+        "memory_tip": "Short wavelength in, long wavelength absorbed. Carbon dioxide is the absorber."
+      },
+      {
+        "id": "s2_warming",
+        "kind": "boxed_final",
+        "label": "Global warming",
+        "marks": 1,
+        "mark_note": "Global warming",
+        "lines": [
+          "Burning fuels adds more carbon dioxide to",
+          "the atmosphere, so more infrared is held",
+          "back and the average temperature of the",
+          "Earth rises.",
+          {
+            "text": "Global warming: mean temperature rises",
+            "style": "boxed"
+          },
+          "Melting ice and a rising sea level follow."
+        ],
+        "margin_note": "Second mark. Name the added carbon dioxide as the cause.",
+        "why": "The greenhouse effect itself is natural and keeps the Earth warm enough to live on. Global warming is the further heating caused by the extra carbon dioxide.",
+        "common_mistakes": [
+          "Treating the greenhouse effect and global warming as the same thing. The first is natural; the second is the increase caused by the added gases."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That extra carbon dioxide from burning fuels raises the average temperature of the Earth.",
+          "accept": [
+            "burning fuels raise the temperature",
+            "more carbon dioxide",
+            "average temperature rises"
+          ],
+          "reject": [
+            "short waves come in"
+          ],
+          "heard_as": [
+            "global warming",
+            "carbon dioxide",
+            "temperature rises"
+          ]
+        },
+        "memory_tip": "More carbon dioxide, more infrared held back, higher average temperature."
+      }
+    ]
+  },
+  "insider_note": "The question has two parts, one mark each — define the effect, then say what raises it. Answering only the definition earns one mark."
+}

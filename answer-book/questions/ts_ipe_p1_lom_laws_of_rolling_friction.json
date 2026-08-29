@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -16,7 +16,13 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "State the laws of rolling friction.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 13,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "What it is",
@@ -34,7 +40,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -74,7 +80,8 @@
             "rolls over",
             "rolling friction"
           ]
-        }
+        },
+        "memory_tip": "A rolling body never drags — a new point touches down each instant. That is the difference."
       },
       {
         "id": "s2_laws",
@@ -106,7 +113,7 @@
         "margin_note": "Three numbered laws. Each is one sentence — do not explain them, the question says \"state\".",
         "why": "These are the board statements, and they are what earns the marks. The physical cause behind all three is the same: rolling friction comes from the surfaces deforming under the load, so anything that reduces the squashing reduces the friction. Read law 2 as a good approximation, not an exact law.",
         "common_mistakes": [
-          "Writing that rolling friction is INDEPENDENT of the normal reaction. That is the area-independence of sliding friction, a different law."
+          "Writing that rolling friction is independent of the area of contact. Area-independence is a law of SLIDING friction; rolling friction depends on the contact area (law 1) and is proportional to the normal reaction (law 3)."
         ],
         "recall": {
           "credit": "say_it",
@@ -125,7 +132,8 @@
             "radius",
             "normal reaction"
           ]
-        }
+        },
+        "memory_tip": "Three quantities in order: contact AREA, rolling RADIUS, normal REACTION. Smaller, larger, proportional."
       },
       {
         "id": "s3_coefficient",
@@ -164,8 +172,10 @@
             "coefficient",
             "normal reaction"
           ]
-        }
+        },
+        "memory_tip": "Steel wheel on rail gives μ_R near 0.001, against μ_k near 0.5 for sliding steel."
       }
     ]
-  }
+  },
+  "insider_note": "Half the marks sit in the three numbered laws. Write the book’s three as printed — the examiner is ticking a list, not reading an argument."
 }

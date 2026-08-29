@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "Show that the determinant with rows (a−b−c, 2a, 2a), (2b, b−c−a, 2b) and (2c, 2c, c−a−b) is equal to (a+b+c)³.",
@@ -33,7 +33,7 @@
     },
     {
       "label": "Column operations C₂−C₁ and C₃−C₁",
-      "marks": 2
+      "marks": 3
     },
     {
       "label": "Expand along the first row",
@@ -47,13 +47,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 15, on a ★★★ SSP (Super Scoring Page), the book's self-declared 'No.3 in Dets'. Printed appearance: AP 18 only. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this question, and the 2+1+2+1+1 above is inferred from the split the same book DOES print for the structurally identical answer 17 on book p.26 (1+1+1+2+1+1). It is deliberately the same split this book's answer 14 is given on the facing half of the page, because the two proofs are the same proof with rows and columns exchanged. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 15, on a ★★★ SSP (Super Scoring Page), the book's self-declared 'No.3 in Dets'. Printed appearance: AP 18 only. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this question, and the 2+1+2+1+1 above is inferred from the split the same book DOES print for the structurally identical answer 17 on book p.26 (1+1+1+2+1+1). It is deliberately the same split this book's answer 14 is given on the facing half of the page, because the two proofs are the same proof with rows and columns exchanged. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Column operations C₂−C₁ and C₃−C₁\" step."
   },
   "recall_prompt": "Say how you would prove this — say which rows or columns you add together first, what comes out common, and how the determinant finishes.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -105,7 +105,7 @@
         "label": "Add all three rows into R₁",
         "marks": 2,
         "mark_note": "Row operation",
-        "margin_note": "Two of the seven marks, and the whole idea. Down each column the entries cancel to a+b+c: for column 1 that is (a−b−c) + 2b + 2c. Do the arithmetic once and the rest is routine.",
+        "margin_note": "Two of the eight marks, and the whole idea. Down each column the entries cancel to a+b+c: for column 1 that is (a−b−c) + 2b + 2c. Do the arithmetic once and the rest is routine.",
         "lines": [
           "R₁ → R₁ + R₂ + R₃",
           "Column 1:  (a−b−c) + 2b + 2c = a+b+c",
@@ -192,9 +192,9 @@
         "id": "s4_column_ops",
         "kind": "equation",
         "label": "Do C₂−C₁ and C₃−C₁",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Column operations",
-        "margin_note": "Two more marks. Row 1 is all 1s now, so subtracting column 1 clears it. Watch the signs: both surviving entries come out NEGATIVE, and the two minus signs cancel at the end.",
+        "margin_note": "Three marks. Row 1 is all 1s now, so subtracting column 1 clears it. Watch the signs: both surviving entries come out NEGATIVE, and the two minus signs cancel at the end.",
         "lines": [
           "C₂ → C₂ − C₁ and C₃ → C₃ − C₁:",
           "(b−c−a) − 2b = −(a+b+c),  (c−a−b) − 2c = −(a+b+c)",

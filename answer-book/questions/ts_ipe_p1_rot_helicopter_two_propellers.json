@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -72,7 +72,8 @@
             "angular momentum",
             "body rotates"
           ]
-        }
+        },
+        "memory_tip": "The engine turns the rotor one way; the rotor turns the body the OTHER way. Equal, opposite torques."
       },
       {
         "id": "s2_solution",
@@ -110,8 +111,10 @@
             "counter",
             "balance"
           ]
-        }
+        },
+        "memory_tip": "The tail rotor stands vertical and pushes air sideways. A sideways push at a long arm turns the body."
       }
     ]
-  }
+  },
+  "insider_note": "Both marks are for naming the physics: conservation of angular momentum first, counter-torque second."
 }

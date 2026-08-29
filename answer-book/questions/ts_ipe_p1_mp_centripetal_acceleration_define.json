@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 3,
     "name": "Motion in a Plane"
   },
   "chapter": "Motion in a Plane",
@@ -51,6 +51,7 @@
           "keeps turning. That change of direction is",
           "an acceleration, called centripetal."
         ],
+        "margin_note": "First mark. The change of direction is the definition — say it in words before any formula.",
         "why": "Acceleration means a change of VELOCITY, and a velocity changes when its direction changes even if its size never does.",
         "common_mistakes": [
           "Saying there is no acceleration because the speed is constant."
@@ -69,7 +70,8 @@
             "centripetal",
             "direction changes"
           ]
-        }
+        },
+        "memory_tip": "Constant SPEED is not constant VELOCITY. A turning direction is already an acceleration."
       },
       {
         "id": "s2_expression",
@@ -86,6 +88,7 @@
           "centre of the circle. That is why it is",
           "called centripetal, meaning centre-seeking."
         ],
+        "margin_note": "Second mark. The formula alone will not earn it — the words \"towards the centre\" must appear.",
         "why": "The direction is the part students drop, and it is the part that makes the motion circular rather than straight.",
         "common_mistakes": [
           "Writing the direction as along the velocity, or outward instead of inward."
@@ -105,8 +108,10 @@
             "v squared by r",
             "towards the centre"
           ]
-        }
+        },
+        "memory_tip": "v²/r and ω²r are the same number, since v = ωr. Use whichever the question gives."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks: what it is, then a = v²/r. The direction towards the centre is part of the second mark, so write it."
 }

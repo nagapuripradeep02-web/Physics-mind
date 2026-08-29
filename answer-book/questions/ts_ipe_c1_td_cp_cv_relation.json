@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. CUTS: the book asks this content at two lengths — SAQ 4 asks the definition plus the derivation (4 marks), and VSAQ 11 asks only the relation between Cp and Cv (2 marks) — so this one file carries both cuts of one step list. The book derives the relation by differentiating H = E + PV; this card uses the equivalent NCERT algebra route with ΔT, which needs no calculus."
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. CUTS: the book asks this content at two lengths — SAQ 4 asks the definition plus the derivation (4 marks), and VSAQ 11 asks only the relation between Cp and Cv (2 marks) — so this one file carries both cuts of one step list. The book derives the relation by differentiating H = E + PV; this card uses the equivalent NCERT algebra route with ΔT, which needs no calculus. AI chemistry check 2026-08-25 (audit round): the insider_note said Section A asks 'only for the relation', which contradicted the VSAQ cut split (Cp and Cv 1M · The relation 1M). The insider_note is not cut-overridable, so it is now written true at both lengths."
   },
   "answer": {
     "page_header": [
@@ -136,7 +136,7 @@
       }
     ]
   },
-  "insider_note": "Asked at two lengths: Section A asks only for the relation, Section B asks for the definition and the derivation. Check which section the paper puts it in before deciding how much to write.",
+  "insider_note": "Asked at two lengths. The Section A form (2 marks) is named for the relation, but its split still pays one mark for saying what Cp and Cv are and one for the relation itself, so write both. The Section B form (4 marks) adds the definition of heat capacity and the derivation. Check which section the paper puts it in before deciding how much to write.",
   "cuts": [
     {
       "key": "saq",

@@ -1573,7 +1573,7 @@ sources, forbidden for mathematics.*
       claim is negative), presets derived from rings, graph-axis convention decided (no conflict),
       dialect ruling made, anchor is a household object.
 - [x] Rule 41: every rendered string checked — titles, delta cues, captions, labels, HUD, narration.
-      No idiom, no metaphor, no personification. "Disc" and "ring", never "washer" outside one
+      No idiom, no metaphor, no personification. "Disc" and "ring", with "washer" dual-labelled once
       dual-label.
 - [x] Rule 16a: exactly three `misconception_watch` states; six states carry none.
 - [x] **Seven** assessment items against the code-verified `.min(6)` floor; `non_assessed_states`
@@ -1693,3 +1693,68 @@ not name), and both departures are shown with the measurement that forced them r
 *Handoff: this document makes `solid_of_revolution` buildable — two dispatches, checkable before a
 line of renderer code lands on master. **Not** handoff-ready to `mathematics_author` until SR-A and
 SR-B are on master; ready for **founder_proxy Checkpoint A re-verdict** at cycle 1.*
+
+
+---
+
+## POST-BUILD CORRECTIONS — Checkpoint B round 1 (2026-08-28, quality-auditor FAIL → `alex:json_author`)
+
+Three places where this document disagreed with itself or with the shipped engine, resolved in the
+JSON and recorded here so the skeleton stops being a source of the same defect.
+
+1. **S8's formula surface (§2 / §10a say `f(x)²`, §10b's symbol table says `x`).** The JSON had
+   shipped the §10b form `V = π ∫₀ᵇ x dx` while the narration said "f of x squared" — the ear and the
+   eye disagreed, and the bare `x` hid the SQUARE on the one state carrying the concept's only `∫`,
+   in a concept whose flagship misconception (M1) IS the missing square. Resolved as
+   **`V = π ∫₀ᵇ (√x)² dx`**: it shows the square, it uses only symbols already on screen (`√x` from
+   S1, `²` from S3 — `f(x)` is defined on NO surface, so `f(x)²` would have been a Rule-25 untaught
+   term), and the narration now says "root x squared". §10b's row is superseded.
+2. **"washer" (§3 noun discipline vs §10(i-5) dialect ruling).** §3 says the word never appears in
+   reader-facing text; §10(i-5) said dual-label it once on S6. Round 1 applied §3 + Rule 41c and
+   DELETED `, or washer` from `s6_3`. **REVERSED at Checkpoint B, founder-delegated: the dual-label
+   is RESTORED, and §3's ABSOLUTE clause is the thing that gives way.** Rule 41c's test is whether a
+   word needs explaining and is NOT subject vocabulary; the washer method is the technique's NAME,
+   which puts it under Rule 41b ("use the word the formula uses"), and Rule 38d prescribes exactly
+   one dual-label for cross-board dialect. This concept's own `curriculum_tags` mark AP Calculus
+   AB/BC `full` while CBSE/JEE are `partial` with the topic absent — it is the wave's INTERNATIONAL
+   concept, authored FOR the audience whose textbook says washer, and a student who only ever learns
+   "ring" is stranded on their own exam paper. `s6_3` reads "a ring, or washer" once, then bare;
+   S6 = 47 words, inside its 45–50 budget. **§3's ban still holds for "shell", "cylinder", "slab"
+   and "element"** — none of those is an examined technique name, and that is the distinction §3 was
+   missing.
+3. **S7's HUD (§10b claims `R = 4.000`, `r = y²`).** The JSON authors `readouts: ["theta",
+   "V_about_x", "V_about_y"]` and that is CORRECT: the engine's `R` / `r_inner` keys compute
+   `srF(outer, x_cut)` — the slice radii for the x-axis case — and would print WRONG numbers for the
+   y-axis bowl. The DoD line is withdrawn; the fixed outer radius 4 and the growing inner radius are
+   carried by the drawn ring stack, not by a readout.
+
+Also applied in the same round: S8's `b` ramp now starts at 0.5 (§10c's range, "grows from nearly
+nothing" — the 1.0 start showed a finite solid at t = 0); narration `5.333` → `5.3333` to match the
+HUD's own decimals; three figurative constructions replaced ("paints" → "sweeps out", "staircase
+thins / total climbs" → "steps get smaller / total increases", "not a horn" → "open at the top");
+duplicate primitive ids removed from S5 / S7 `scene_composition`; advisory `prerequisites` authored.
+
+4. **S8's `b` ramp (§10a / §3 say "b sweeps 0 → 4 … grows from nothing"; §10c says `[0.5, 4.0]`).**
+   Round 1 authored `from: 0.5` to honour it and **regressed**: the `b` slider row is SHARED with
+   S9, whose explore camera was solved over `b ∈ [1.0, 4.0]` (§3b, gate §12), so the range cannot
+   be widened — and a ramp below the slider's `min` leaves the thumb frozen at 1.0 while the HUD
+   reads 0.50…0.85 for 4.7 s, the exact "slider reads one value beside a HUD reading another"
+   topology SR-D3 was written against. Reverted to `from: 1.0`; the "0 → 4" / "from nothing"
+   line is withdrawn. The solid opens as the b = 1 solid and grows to b = 4.
+5. **S2's camera timing note.** `osCamScheduleAt` treats `at_ms` as the ease START, so the
+   two-step schedule the JSON first authored eased 11000→20000, not 2000→11000 as §11 states.
+   Re-authored as ONE step at 2000 with `ease_ms 9000` from `camera_base`, which is what §11
+   meant. (Checkpoint B round 2, N1.)
+6. **S6's §12 sub-beats were prose with no driver behind them (founder-proxy Checkpoint B, cycle 1).**
+   §12 authored "wrong solid builds 1500–7000 · reads 7000–9000 · dissolves 9000–11000". The JSON
+   shipped a STATIC `discs.n` with `reveal.stack_at_ms 1500`, which is an INSTANT placement — three
+   of the four sub-beats were never built, and the state held **13 byte-identical frames (8.4 s, a
+   third of its length)** under live narration. THE EYE's D5 passed it, because D5 scores a state as
+   a whole and this state moved elsewhere. Fixed by giving `discs` an `n_ramp` (n: 4 → 1000 over
+   1500–7000), so the wrong solid builds and its total visibly climbs 1.6598 → 1.6744 → 1.6754 →
+   1.6755 into the read window; and by cutting `duration` 28 → 22 s, since θ closes at 20000 and the
+   pin is 21000 — the last 7 s were dead. **Durable rule: a sub-beat table that names MOTION must
+   resolve to a named driver in the shipped JSON (a `*_ramp`, a `*_ms` window, or a `camera_steps`
+   entry); an `at_ms` with no duration and no ramp is an instant placement that satisfies every gate.**
+   The 2 s *dissolve* is still unauthorable — `srStackReveal` fades in only — and is filed as an
+   engine ride-along rather than pretended.

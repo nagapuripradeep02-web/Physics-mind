@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 2,
     "name": "Motion in a Straight Line"
   },
   "chapter": "Motion in a Straight Line",
@@ -16,7 +16,18 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "A ball is dropped from the roof of a tall building and simultaneously another ball is thrown horizontally with some velocity from the same roof. Which ball lands first? Explain your answer.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 11,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 12,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The figure",

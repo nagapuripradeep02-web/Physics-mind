@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -95,7 +95,8 @@
             "coordinates",
             "root three"
           ]
-        }
+        },
+        "memory_tip": "Side 0.5 m gives height 0.25√3 ≈ 0.43 m. Height = (√3/2) × side, never the side."
       },
       {
         "id": "s2_figure",
@@ -229,7 +230,8 @@
             "figure",
             "centre of mass"
           ]
-        }
+        },
+        "memory_tip": "Whatever the numbers give, the point must lie INSIDE the triangle. Outside means an error."
       },
       {
         "id": "s3_xcm",
@@ -268,7 +270,8 @@
             "five by eighteen",
             "x c m"
           ]
-        }
+        },
+        "memory_tip": "125/450 = 5/18 ≈ 0.28 m, between 0.25 and 0.5 where the two heavier masses sit."
       },
       {
         "id": "s4_ycm",
@@ -313,8 +316,10 @@
             "y c m",
             "towards"
           ]
-        }
+        },
+        "memory_tip": "1/(3√3) = √3/9 ≈ 0.19 m, well below B’s own height of 0.43 m."
       }
     ]
-  }
+  },
+  "insider_note": "Half the marks sit on the y-coordinate, and its one hard number is the height (√3/2) × side. The rest is substitution."
 }

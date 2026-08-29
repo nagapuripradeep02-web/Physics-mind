@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 2,
     "name": "Motion in a Straight Line"
   },
   "chapter": "Motion in a Straight Line",
@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 3 has NO Long Answer section in either source book. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY and no VSAQ section at all. So this VSAQ is the Fastrack’s alone. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "Unit 3 has NO Long Answer section in either source book. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY and no VSAQ section at all. So this VSAQ is the Fastrack’s alone. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -53,7 +53,7 @@
           },
           "Average speed = total distance ÷ total time."
         ],
-        "why": "The two halves take different times, so the slower half occupies more of the journey. That is why the two speeds cannot simply be averaged.",
+        "why": "The two halves take different times, so the slower half occupies more of the journey. That is why the two speeds cannot simply be averaged. The question says velocity: along one straight line in one direction, distance equals the magnitude of displacement, so average velocity and average speed are the same number here.",
         "common_mistakes": [
           "Assuming each half takes the same time, which leads to the wrong answer (V₁+V₂)/2."
         ],

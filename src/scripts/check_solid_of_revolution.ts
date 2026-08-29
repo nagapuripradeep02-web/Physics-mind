@@ -38,7 +38,7 @@
  *   npm run check:solid-of-revolution
  */
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
@@ -83,7 +83,14 @@ function grabVar(name: string): string {
 }
 
 const VARS = ["SR_MODES", "SR_MODES_COMPLETE", "SR_FAMILIES", "SR_READOUTS", "SR_GLOW_KEYS", "SR_PUB",
-  "SR_RULES", "SR_KINDS", "SR_RAMP_PARAMS", "SR_DISC_POOL", "SR_DEFAULT_MAX_DRAWN"];
+  "SR_RULES", "SR_KINDS", "SR_RAMP_PARAMS", "SR_DISC_POOL", "SR_DEFAULT_MAX_DRAWN",
+  // SR-C — the explore idle turn + the sandbox orbit (section 16).
+  "SR_EXPLORE_TURN_DEG_PER_S", "SR_EXPLORE_CAM_DEG_PER_S",
+  // SR-D11 (section 19)
+  "SR_REGION_SAMPLES", "SR_SURF_NU", "SR_TICK_BEHIND_OPACITY",
+  // NOT SR's — the SHARED Rule-39f label table, pulled in read-only so section
+  // 16 (vi) can run the fleet's own row-label resolver over SR's markup.
+  "PM_WG_WORDS"];
 const FNS = [
   "srClamp", "srClamp01", "srProfileFamily", "srF", "srAntiF", "srIntegralF",
   "srAntiF2", "srIntegralF2", "srHoldTotal", "srRampFrac", "srRamp", "srRampN",
@@ -91,13 +98,62 @@ const FNS = [
   // SR-B
   "srInvF", "srAntiInvF2", "srStackSpan", "srSpanOuterR", "srSpanInnerR",
   "srDiscSum", "srExactVolume", "srProjectPoint", "srPairwiseScreenSeparationDeg",
+  // section 14 — the CONFIG PATH, not just the arithmetic. srDomain and srOuter
+  // read live globals off `window`, and srWriteHud writes the strings a teacher
+  // actually reads through `document`. Both are shimmed below, because the whole
+  // lesson of section 14 is that a probe aimed at the pure summation could never
+  // have seen the defect this section exists for.
+  "srDomain", "srOuter", "srInner", "srSliceX", "srCapLine", "srWriteHud",
+  // SR-C
+  "srThetaDeg", "srIdleTurnDeg", "srIdleCamAzDeg", "srCamBase",
+  // SR-C3 — the stack / formula / readout reveal beats (section 17).
+  "srRevealWin", "srRevealHas", "srStackReveal",
+  // section 18 — the labelled annulus. The PURE half of it, so the gate decides
+  // whether a ring is drawn without a browser.
+  "srSliceRingPlan",
+  // SR-D11 — the vertical centring rule and the tick enclosure test (section 19).
+  "srContentYSpan", "srContentShiftY", "srTickEnclosed",
+  // the SHARED widget-label resolver (section 16 (vi)), read-only.
+  "pmWgWord", "pmWgRowLabel",
 ];
+/** The two live-global surfaces the SR block reads. Fresh per construction. */
+function makeWindowShim(): Record<string, any> {
+  return { PM_srA: null, PM_srB: null, PM_srR: null, PM_srN: null, PM_srX: null, PM_srAxis: null };
+}
+/** A `document` just rich enough for srWriteHud: one element whose innerHTML we read back. */
+function makeDocShim(): { doc: any; hud: any } {
+  const hud = { innerHTML: "", style: { display: "none" } };
+  return { doc: { getElementById: (id: string) => (id === "sr_readout" ? hud : null) }, hud };
+}
+const WIN = makeWindowShim();
+const DOC = makeDocShim();
+/** Every cueTriggerMs(key, default) the shipped bodies ask for, in order — so a
+ *  section can assert a beat is cue-BINDABLE by overriding the key and watching
+ *  the beat move, rather than by asserting the call is textually present. */
+const CUE_LOG: Array<{ key: string; def: number }> = [];
+const CUE_OVERRIDE: Record<string, number> = {};
+function cueShim(key: string, def: number): number {
+  CUE_LOG.push({ key, def });
+  return (CUE_OVERRIDE[key] != null) ? CUE_OVERRIDE[key] : def;
+}
+/** srCamBase's LAST fallback reads the live camera; nothing below takes it. */
+const SPH = { theta: 0, phi: Math.PI / 2, radius: 8 };
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
-const E = new Function([
+const E = new Function("window", "document", "cueTriggerMs", "spherical", [
   ...VARS.map(grabVar),
   ...FNS.map(grabFn),
   "return { " + [...VARS, ...FNS].join(", ") + " };",
-].join("\n"))() as Record<string, any>;
+].join("\n"))(WIN, DOC.doc, cueShim, SPH) as Record<string, any>;
+/** The lines srWriteHud actually rendered, split back out of the <br> join. */
+function hudLines(sr: Record<string, any>, outer: any, inner: any, x0: number, x1: number, ax: string,
+                  tMs?: number): string[] {
+  DOC.hud.innerHTML = ""; DOC.hud.style.display = "none";
+  // tMs is OPTIONAL and every caller written before SR-C3 omits it, which is the
+  // absent-field identity itself: with no clock offered, readout_at_ms gates
+  // nothing and every line renders exactly as it did before section 17 existed.
+  E.srWriteHud(sr, outer, inner, x0, x1, 1, 1, ax, tMs);
+  return DOC.hud.style.display === "none" || !DOC.hud.innerHTML ? [] : String(DOC.hud.innerHTML).split("<br>");
+}
 
 let failures = 0;
 let controlsFired = 0;
@@ -668,8 +724,27 @@ console.log("\n=== 5. SR-D3 — ONE summation, PUBLISHED, and nothing else recom
     /SR_PUB\.volume/.test(hud) && !/srDiscSum/.test(hud));
   assertTrue("no function outside the summation writes SR_PUB.volume",
     (SRC.match(/SR_PUB\.volume\s*=/g) || []).length === 1);
-  assertTrue("no function outside the summation writes SR_PUB.n_drawn",
-    (SRC.match(/SR_PUB\.n_drawn\s*=/g) || []).length === 1);
+  // SR-C3 AMENDED THIS ASSERTION, and the amendment is a tightening rather than a
+  // loosening. The stack reveal is now a SECOND writer of n_drawn, and it is
+  // allowed exactly one value: while the pools are hidden the picture draws zero
+  // discs, so a published count of 120 would be SR-D5's provenance split in
+  // reverse — a drawn count with no pixels behind it. The property kept is
+  // therefore sharper than "one writer": the SUMMATION is the only thing that
+  // ever writes a COUNT, and the only other write is the literal 0 that says the
+  // picture is not there yet.
+  const nDrawnWrites = SRC.match(/SR_PUB\.n_drawn\s*=\s*[^;]+/g) || [];
+  assertTrue("SR_PUB.n_drawn has exactly two writers, both inside the frame pass ("
+    + nDrawnWrites.length + ")", nDrawnWrites.length === 2);
+  assertTrue("...the summation writes the COUNT and the stack reveal writes the literal 0, and "
+    + "nothing writes anything else: [" + nDrawnWrites.join(" | ") + "]",
+    nDrawnWrites.some((w) => /=\s*res\.n_drawn$/.test(w))
+    && nDrawnWrites.some((w) => /=\s*0$/.test(w)));
+  // NEGATIVE CONTROL — the shape this forbids: a reveal gate that leaves the
+  // summation's count published while the pools are hidden.
+  control("a gate that left n_drawn at res.n_drawn while hiding the pools would make BOTH writes "
+    + "counts, failing the literal-0 assertion",
+    !["SR_PUB.n_drawn = res.n_drawn", "SR_PUB.n_drawn = res.n_drawn"]
+      .some((w) => /=\s*0$/.test(w)));
   // SR-D5 — the cap declaration is STRUCTURAL, not authored: the HUD emits the
   // drawn count whenever n_drawn < n whatever the state's readout list says.
   assertTrue("the HUD declares the cap even when the state did not author the key",
@@ -798,8 +873,9 @@ console.log("\n=== 7b. GLOW — a translucent volume is never made opaque by its
   const dimV = Number(dim ? dim[1] : NaN);
   assertTrue("every entry in the glow map carries its OWN brightenOnly flag "
     + "(no shared literal false)", /map\[i\]\[2\]/.test(glow) && !/,\s*1,\s*false\)/.test(glow));
-  assertTrue("the two swept skins and all three disc pools are brightenOnly",
-    (glow.match(/,\s*true\]/g) || []).length === 5);
+  assertTrue("the two swept skins, all three disc pools and the labelled annular slab are "
+    + "brightenOnly — six translucent volumes, none of which the generic pass may re-opacify",
+    (glow.match(/,\s*true\]/g) || []).length === 6);
   assertTrue("the opaque line objects still carry the peer dim (brightenOnly false)",
     (glow.match(/,\s*false\]/g) || []).length === 5);
   // NEGATIVE CONTROL — the shared-literal form, and what it would do to a 0.20 skin.
@@ -942,6 +1018,20 @@ console.log("\n=== 9. deriveStateMeta — the reveal pin, the motion and hold cl
       sr: { mode: "explore", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4], controls: ["a", "b", "n"] },
       show_sliders: true,
     },
+    // SR-C3 — the three new beats, each on a state where it is the ONLY driver,
+    // so the assertion below measures the new window and not a ramp beside it.
+    STATE_7: {
+      sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4],
+            reveal: { stack_at_ms: 18000, stack_ms: 800 } },
+    },
+    STATE_8: {
+      sr: { mode: "compare", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4],
+            reveal: { formula_at_ms: 11000 } },
+    },
+    STATE_3: {
+      sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4],
+            readout_at_ms: { theta: 4000, V_about_y: 18000 } },
+    },
   });
   const reveal = deriveMaxRevealTimeMs(cfg as never);
   const hold = deriveHoldExpectations(cfg as never);
@@ -957,10 +1047,74 @@ console.log("\n=== 9. deriveStateMeta — the reveal pin, the motion and hold cl
     hold.STATE_2 === "reveal_hold" && hold.STATE_5 === "reveal_hold" && hold.STATE_6 === "reveal_hold");
   assertTrue("S9 (mode explore) is classified interactive", hold.STATE_9 === "interactive");
   assertTrue("S9 declares STATIC motion (user-driven)", motion.STATE_9 === false);
-  assertTrue("guided states declare no motion expectation (their ramps settle)",
-    motion.STATE_1 === undefined && motion.STATE_4 === undefined && motion.STATE_5 === undefined);
+  // ⚠ THIS ASSERTION USED TO LOCK IN A BLIND SPOT, and it is left documented
+  //   rather than quietly swapped. It read "guided states declare no motion
+  //   expectation (their ramps settle)" and asserted all three were `undefined`
+  //   — i.e. it CODIFIED the absence of coverage as if it were a property worth
+  //   holding. THE EYE, on the first concept ever to author this scenario, said
+  //   what that costs in its own words: "MOTION GATE NEVER RAN — D5 skipped on
+  //   ALL 9 state(s) ... a state whose animation is dead would report exactly
+  //   the same green as one that works."
+  //   A green assertion over a skipped gate is the purest form of the vacuous
+  //   pass this whole file is written against. The guided beats DO move — every
+  //   one measured above D5's 0.1% floor on 289 dense frames — so the gate now
+  //   asserts the coverage rather than its absence.
+  assertTrue("every guided state DECLARES motion, so D5 actually runs on it",
+    motion.STATE_1 === true && motion.STATE_2 === true && motion.STATE_4 === true
+    && motion.STATE_5 === true && motion.STATE_6 === true);
+  control("a guided sr state that authors NO driver at all is still left undefined — the honest "
+    + "exception is preserved, so this is a declaration keyed on drivers and not a blanket true",
+    deriveMotionExpectations(mkConfig({
+      STATE_1: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+        domain: [0, 4], discs: { n: 20, rule: "left" } } },
+    }) as never).STATE_1 === undefined);
+  // SR-C3 — THE THREE NEW WINDOWS MOVE THE PIN. Without these, a state whose
+  // stack / formula / answer arrives at 18 s pins at DEFAULT_REVEAL_MS = 1500 and
+  // THE EYE photographs the empty half of the state — the pre-reveal picture the
+  // state exists to replace — then mints it as the baseline. That is the first
+  // line of the field_3d scar checklist, in its per-scenario form.
+  check("S7 pins PAST the stack reveal AND its fade (18000 + 800 + 600)", reveal.STATE_7, 19400, 0);
+  check("S8 pins PAST the formula surface's own reveal (11000 + 600)", reveal.STATE_8, 11600, 0);
+  check("S3 pins PAST the LAST gated readout (18000 + 600), not the first",
+    reveal.STATE_3, 18600, 0);
+  // NEGATIVE CONTROL — the same three states with the new fields deleted are
+  // exactly what shipped before SR-C3: all three fall to the 1500 ms default.
+  {
+    const preFix = deriveMaxRevealTimeMs(mkConfig({
+      STATE_7: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4] } },
+      STATE_8: { sr: { mode: "compare", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4] } },
+      STATE_3: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4] } },
+    }) as never);
+    control("with stack_at_ms / formula_at_ms / readout_at_ms absent, all three pin at the 1500 ms "
+      + "default — the pin the new windows exist to move, and the identity that an ABSENT field "
+      + "changes nothing", preFix.STATE_7 === 1500 && preFix.STATE_8 === 1500 && preFix.STATE_3 === 1500);
+  }
+  // ...and the REAL authored shapes, whole, against the eye_capture_ms the
+  // concept authors: the derived pin must land inside the captured window, or
+  // the capture photographs a state the derivation says is not settled yet.
+  {
+    const authored = deriveMaxRevealTimeMs(mkConfig({
+      STATE_7: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4], axis: "y",
+        reveal: { curve_at_ms: 0, curve_ms: 1, region_at_ms: 0, region_ms: 1200, stack_at_ms: 18000 },
+        theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 3000, duration_ms: 15000 },
+        discs: { n: 1000, rule: "left", kind: "ring", max_discs_drawn: 120 },
+        readout_at_ms: { V_about_y: 18000 } } },
+      STATE_6: { sr: { mode: "compare", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+        inner: { family: "power", a: 0.5, p: 1, c: 0 }, domain: [0, 4],
+        reveal: { curve_at_ms: 0, curve_ms: 1200, region_at_ms: 0, region_ms: 1200, formula_at_ms: 11000 },
+        contrast: { kind: "radius_difference", at_ms: 1500, dissolve_at_ms: 11000 },
+        theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 11000, duration_ms: 9000 } } },
+    }) as never);
+    check("the AUTHORED S7 (sweep closes 18000, stack + answer at 18000) pins at 18700",
+      authored.STATE_7, 18700, 0);
+    check("the AUTHORED S6 (formula at 11000, sweep closes 20000) pins at 20700",
+      authored.STATE_6, 20700, 0);
+    assertTrue("both pins land inside the authored eye_capture_ms windows (S7 19000, S6 21000) — "
+      + "the capture photographs a settled picture, not a reveal in flight",
+      authored.STATE_7 <= 19000 && authored.STATE_6 <= 21000);
+  }
   assertTrue("'sr' is a recognised field_3d reveal key (a cached flattened config is not read as PCPL)",
-    Object.keys(reveal).length === 6);
+    Object.keys(reveal).length === 9);
   // NEGATIVE CONTROL — a state whose param_ramp is NOT accounted for pins at the
   // 1500 ms default, mid-sweep, with the two readouts of the primary aha in flight.
   {
@@ -1216,17 +1370,26 @@ console.log("\n=== 11. S3's CIRCLE, over the FULL x_cut sweep, in perspective ==
     return (l1 > 0 && l2 > 0) ? Math.sqrt(Math.min(l1, l2) / Math.max(l1, l2)) : NaN;
   };
   const SHIFT = -2;                       // SR-D10: the apparatus sits on the origin
+  // SR-D11 put a VERTICAL shift on the same apparatus, and every number in this
+  // section is measured against world positions — so the shift is READ from the
+  // shipped rule rather than assumed, and asserted, before anything is projected.
+  // On this state (a slice: full circles about the x axis) the content straddles
+  // the axis, the rule returns EXACTLY 0, and every figure below is unmoved.
+  const SHIFTY = E.srContentShiftY({ mode: "slice" }, { family: "power", a: 1, p: 0.5, c: 0 },
+    null, 0, 4, "x", 360);
+  check("SR-D11's vertical shift on S3 is exactly 0, so this section's world positions "
+    + "are the ones it was solved against", SHIFTY, 0, 0);
   const rimConic = (cam: number[], xg: number) => {
     const r = Math.sqrt(xg), pts: Array<[number, number]> = [];
     for (let i = 0; i < 720; i++) {
       const ph = (i / 720) * Math.PI * 2;
-      const p = P(cam, xg + SHIFT, r * Math.cos(ph), r * Math.sin(ph));
+      const p = P(cam, xg + SHIFT, SHIFTY + r * Math.cos(ph), r * Math.sin(ph));
       pts.push([p.tx, p.ty]);
     }
     return conicAspect(pts);
   };
   const rimNormal = (cam: number[], xg: number) => {
-    const vx = xg + SHIFT - cam[0], vy = -cam[1], vz = -cam[2];
+    const vx = xg + SHIFT - cam[0], vy = SHIFTY - cam[1], vz = -cam[2];
     return Math.abs(vx / Math.hypot(vx, vy, vz));
   };
   const sweep = (cam: number[], f: (c: number[], x: number) => number) => {
@@ -1252,14 +1415,14 @@ console.log("\n=== 11. S3's CIRCLE, over the FULL x_cut sweep, in perspective ==
     const r = Math.sqrt(4), pts: Array<[number, number]> = [];
     for (let i = 0; i < 360; i++) {
       const ph = (i / 360) * Math.PI * 2;
-      const p = P(DESIGN, 4 + SHIFT, r * Math.cos(ph), r * Math.sin(ph));
+      const p = P(DESIGN, 4 + SHIFT, SHIFTY + r * Math.cos(ph), r * Math.sin(ph));
       pts.push([p.tx, p.ty]);
     }
     let dia = 0;
     for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
       dia = Math.max(dia, Math.hypot(pts[i][0] - pts[j][0], pts[i][1] - pts[j][1]));
     }
-    const a0 = P(DESIGN, 0 + SHIFT, 0, 0), a1 = P(DESIGN, 4 + SHIFT, 0, 0);
+    const a0 = P(DESIGN, 0 + SHIFT, SHIFTY, 0), a1 = P(DESIGN, 4 + SHIFT, SHIFTY, 0);
     const axial = Math.hypot(a0.tx - a1.tx, a0.ty - a1.ty);
     console.log("      projected axial length / face diameter at x = 4: "
       + (100 * axial / dia).toFixed(1) + "%  (floor 8 %)");
@@ -1279,7 +1442,7 @@ console.log("\n=== 11. S3's CIRCLE, over the FULL x_cut sweep, in perspective ==
       const x = 4 * i / 60, r = Math.sqrt(x);
       for (let k = 0; k < 48; k++) {
         const ph = (k / 48) * Math.PI * 2;
-        const p = P(DESIGN, x + SHIFT, r * Math.cos(ph), r * Math.sin(ph));
+        const p = P(DESIGN, x + SHIFT, SHIFTY + r * Math.cos(ph), r * Math.sin(ph));
         mx = Math.max(mx, Math.abs(p.ndcX)); my = Math.max(my, Math.abs(p.ndcY));
       }
     }
@@ -1323,14 +1486,24 @@ console.log("\n=== 12. S9's explore camera, over the FULL slider product, ENUMER
 // of a 793-point product, and a sweep of ONE axis with the other held is a search
 // that hides the feasible region in the axis it held fixed.
 {
+  // SR-D11 rides along here too, and per CORNER rather than once: the shift is a
+  // function of the drawn content, so a search over the slider product has to ask
+  // for it at every corner it visits. On the explore state the solid is a closed
+  // body of revolution about the x axis at every corner, so the rule returns
+  // EXACTLY 0 at all 793 — asserted below rather than assumed, because that
+  // zero is the whole reason this section's numbers did not move.
+  let shiftYMax = 0;
   const solidExtent = (cam: number[], a: number, b: number) => {
     const shift = -b / 2;
+    const shiftY = E.srContentShiftY({ mode: "explore" }, { family: "power", a, p: 0.5, c: 0 },
+      null, 0, b, "x", 360);
+    shiftYMax = Math.max(shiftYMax, Math.abs(shiftY));
     let mx = 0, my = 0, ymin = Infinity, ymax = -Infinity;
     for (let i = 0; i <= 60; i++) {
       const x = b * i / 60, r = a * Math.sqrt(x);
       for (let k = 0; k < 48; k++) {
         const ph = (k / 48) * Math.PI * 2;
-        const p = P(cam, x + shift, r * Math.cos(ph), r * Math.sin(ph));
+        const p = P(cam, x + shift, shiftY + r * Math.cos(ph), r * Math.sin(ph));
         mx = Math.max(mx, Math.abs(p.ndcX)); my = Math.max(my, Math.abs(p.ndcY));
         ymin = Math.min(ymin, p.ndcY); ymax = Math.max(ymax, p.ndcY);
       }
@@ -1351,6 +1524,8 @@ console.log("\n=== 12. S9's explore camera, over the FULL slider product, ENUMER
     }
   }
   check("the product is ENUMERATED, not sampled: 13 x 61 corners", corners, 793, 0);
+  check("SR-D11's vertical shift is exactly 0 at EVERY one of those corners, so this "
+    + "section's framing solve is unmoved by it", shiftYMax, 0, 0);
   console.log(`      worst max |NDC| = ${worst.v.toFixed(3)} at a = ${worst.a.toFixed(2)}, `
     + `b = ${worst.b.toFixed(2)}  |  min corner screen span = ${(minSpan.v * 100).toFixed(1)}% `
     + `at a = ${minSpan.a.toFixed(2)}, b = ${minSpan.b.toFixed(2)}`);
@@ -1448,11 +1623,1589 @@ console.log("\n=== 13. S5's PRIMARY AHA, on the RENDERED STRINGS, EXHAUSTIVELY =
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 14. THE CONFIG PATH — a circle_arc's drawn domain, over the swept radius ===");
+// WHY THIS SECTION EXISTS, stated so it is not simplified away later. Section 13
+// asserts the disc total over all 101 reachable radii and PASSES on the source
+// that shipped before this fix — because srDiscSum coerces a non-finite radius to
+// zero, so the slabs outside the arc contribute nothing and the sum is right for a
+// reason unrelated to whether the picture is. The domain is a STATIC authored pair
+// with a live override on the HIGH end only, so an author sweeping r could not
+// move x0: at every r < the authored reach, srF returned non-finite outside the
+// arc, srWriteTube and srWriteSurface drew y = 0 there (a FLAT LINE where no curve
+// exists), and srExactVolume — the readout the state's whole claim rests on —
+// returned NaN.
+//
+// THIS IS A29's RULE APPLIED TO A GATE INSTEAD OF A RECONSTRUCTION: an exact match
+// on a quantity INVARIANT under the error you might have made is weaker evidence
+// than an approximate match on one that DISCRIMINATES. The disc total is invariant
+// here (measured below: bit-identical on both domains). The DRAWN SAMPLES and the
+// exact-volume readout discriminate. Score those.
+{
+  const R_STEP = 0.01, N_SHIP = 20000, SAMPLES = 121;
+  const radii: number[] = [];
+  for (let i = 0; i <= 100; i++) radii.push(Math.round((1 + i * R_STEP) / R_STEP) * R_STEP);
+  const S5 = { mode: "stack", outer: { family: "circle_arc", r: 2.0, x0: 0, c: 0 }, domain: [-2, 2] };
+  /** The pre-fix srDomain, reconstructed from the four lines it used to be. */
+  const preFixDomain = (sr: any): [number, number] => {
+    const d = sr.domain || [0, 1];
+    return [d[0], WIN.PM_srB != null ? WIN.PM_srB : d[1]];
+  };
+  const drawnFinite = (outer: any, x0: number, x1: number): number => {
+    let ok = 0;
+    for (let i = 0; i < SAMPLES; i++) {
+      const x = x0 + (x1 - x0) * (i / (SAMPLES - 1));
+      if (isFinite(E.srF(outer, x))) ok++;
+    }
+    return ok;
+  };
+
+  // (i) THE SHIPPED PATH — the domain IS the arc's support at every reachable r.
+  let badSpan = 0, badFinite = 0, badReadout = 0, firstBad = "";
+  for (const r of radii) {
+    WIN.PM_srR = r;
+    const [x0, x1] = E.srDomain(S5);
+    const outer = E.srOuter(S5);
+    if (Math.abs(x0 + r) > 1e-12 || Math.abs(x1 - r) > 1e-12) badSpan++;
+    if (drawnFinite(outer, x0, x1) !== SAMPLES) { badFinite++; if (!firstBad) firstBad = "r=" + r.toFixed(2); }
+    const vex = E.srExactVolume(outer, null, x0, x1, "x");
+    if (E.srFmt(vex, 4) !== E.srFmt((4 / 3) * Math.PI * r ** 3, 4)) badReadout++;
+  }
+  assertTrue("the drawn domain equals the arc's own support [-r, +r] at all 101 reachable radii ("
+    + badSpan + " wrong)", badSpan === 0);
+  assertTrue("every one of 121 drawn samples is FINITE at all 101 radii — no flat line where no "
+    + "curve exists (" + badFinite + " radii bad" + (firstBad ? ", first " + firstBad : "") + ")", badFinite === 0);
+  assertTrue("the V_exact readout formats identically to (4/3)pi r^3 at all 101 radii ("
+    + badReadout + " disagree)", badReadout === 0);
+
+  // (ii) THE NEGATIVE CONTROL THAT MATTERS — the pre-fix domain FAILS both
+  //      discriminating checks, while the disc total agrees BIT-FOR-BIT.
+  {
+    let preBadFinite = 0, preBadReadout = 0, worstSumDiff = 0, preStrBad = 0, postStrBad = 0;
+    for (const r of radii) {
+      WIN.PM_srR = r;
+      const [px0, px1] = preFixDomain(S5);
+      const [sx0, sx1] = E.srDomain(S5);
+      const outer = E.srOuter(S5);
+      if (drawnFinite(outer, px0, px1) !== SAMPLES) preBadFinite++;
+      if (!isFinite(E.srExactVolume(outer, null, px0, px1, "x"))) preBadReadout++;
+      const spec = { outer, inner: null, n: N_SHIP, axis: "x", rule: "left", kind: "disc", max_drawn: 120 };
+      const pre = E.srDiscSum({ ...spec, x0: px0, x1: px1 }).volume;
+      const post = E.srDiscSum({ ...spec, x0: sx0, x1: sx1 }).volume;
+      worstSumDiff = Math.max(worstSumDiff, Math.abs(pre - post));
+      const want4 = E.srFmt((4 / 3) * Math.PI * r ** 3, 4);
+      if (E.srFmt(pre, 4) !== want4) preStrBad++;
+      if (E.srFmt(post, 4) !== want4) postStrBad++;
+    }
+    control("the PRE-FIX domain draws a non-existent curve at " + preBadFinite + " of 101 radii and "
+      + "returns a NaN V_exact at " + preBadReadout + " of them", preBadFinite > 0 && preBadReadout > 0);
+    // ⚠ THIS CONTROL WAS WRONG WHEN FIRST WRITTEN AND IS LEFT DOCUMENTED, because
+    // it is the same mistake in miniature that the section is about. Its first
+    // draft asserted the two domains give a BIT-IDENTICAL disc total, on the
+    // strength of having watched both print the same four decimals. Measured, they
+    // differ by 3.224e-8 — small, but not zero, and "same rendered string" is not
+    // "same number". The claim that discriminates is the one section 13 actually
+    // makes: the 4-dp STRING. That is invariant under the defect, and this is the
+    // measurement rather than the assumption.
+    console.log("      raw disc totals differ by " + worstSumDiff.toExponential(3)
+      + " between the two domains — NOT zero, four orders below the 1e-4 display quantum");
+    control("SECTION 13's OWN ASSERTION CANNOT SEE THIS — it scores the 4-dp string, and both "
+      + "domains render all 101 radii correctly (" + preStrBad + " pre-fix / " + postStrBad
+      + " post-fix disagree), which is why this section scores the drawn samples and the readout",
+      preStrBad === 0 && postStrBad === 0);
+  }
+
+  // (iii) THE CLAMP INTERSECTS, IT DOES NOT REPLACE — a deliberately narrow
+  //       authored window must survive, or the fix trades one wrong picture for
+  //       another (a quarter arc silently re-widened to a full semicircle).
+  {
+    WIN.PM_srR = null;
+    const quarter = { mode: "stack", outer: { family: "circle_arc", r: 2, x0: 0, c: 0 }, domain: [0, 2] };
+    const narrow = { mode: "stack", outer: { family: "circle_arc", r: 2, x0: 0, c: 0 }, domain: [-1, 1] };
+    const wide = { mode: "stack", outer: { family: "circle_arc", r: 2, x0: 0, c: 0 }, domain: [-3, 3] };
+    const eq = (g: number[], w: number[]) => Math.abs(g[0] - w[0]) < 1e-12 && Math.abs(g[1] - w[1]) < 1e-12;
+    assertTrue("a quarter arc authored [0, 2] is UNTOUCHED", eq(E.srDomain(quarter), [0, 2]));
+    assertTrue("a narrow window [-1, 1] inside the support is UNTOUCHED", eq(E.srDomain(narrow), [-1, 1]));
+    assertTrue("an over-reaching [-3, 3] is pulled back to the support [-2, 2]", eq(E.srDomain(wide), [-2, 2]));
+    control("a REPLACING clamp would widen the narrow window to [-2, 2] — the intersecting one does not",
+      !eq([-2, 2], E.srDomain(narrow)));
+  }
+
+  // (iv) THE OTHER AUTHORED FAMILY IS UNTOUCHED. power carries S1-S4 / S7-S9 and
+  //      its b ramp is the ONE live domain override that already shipped.
+  {
+    WIN.PM_srR = null; WIN.PM_srB = null;
+    const pw = { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4] };
+    const d0 = E.srDomain(pw);
+    check("a power profile keeps its authored domain hi", d0[1], 4, 0);
+    WIN.PM_srB = 2.5;
+    const d1 = E.srDomain(pw);
+    check("...and S8's live b ramp still wins over the authored hi", d1[1], 2.5, 0);
+    WIN.PM_srB = null;
+  }
+}
+
+console.log("\n=== 14b. THE THREE READOUT KEYS, ON THE RENDERED STRINGS ===");
+// Scored through srWriteHud itself — the function that writes what a teacher
+// reads — rather than through the quantities behind it. A30's lesson: every
+// assertion about the number can be true while the WORD beside it is wrong.
+{
+  const sqrtP = { family: "power", a: 1, p: 0.5, c: 0 };
+  const halfLine = { family: "power", a: 0.5, p: 1, c: 0 };
+  WIN.PM_srR = null; WIN.PM_srB = null; WIN.PM_srN = null; WIN.PM_srX = null; WIN.PM_srAxis = null;
+
+  // S4's shape: the ONE summation runs, publishes, and the HUD reads it.
+  E.srPubClear();
+  const res = E.srDiscSum({ outer: sqrtP, inner: null, x0: 0, x1: 4, n: 1000, axis: "x",
+    rule: "left", kind: "disc", max_drawn: 120 });
+  E.SR_PUB.n = 1000; E.SR_PUB.volume = res.volume; E.SR_PUB.n_drawn = res.n_drawn;
+  E.SR_PUB.kind = "disc"; E.SR_PUB.du = res.du;
+  const s4 = hudLines({ mode: "stack", readouts: ["n", "dx", "V_n", "V_settles", "gap", "discs_drawn"],
+    domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
+  console.log("      S4 HUD renders: " + JSON.stringify(s4));
+  assertTrue("V_settles renders the CORE-ring label, not the advanced-ring assertion 'V ='",
+    s4.some(l => l === "settles on = 25.1327"));
+  assertTrue("...and no line on this core state reads 'V = ' (whose account is S8, the first ring cut)",
+    !s4.some(l => l.startsWith("V = ")));
+  assertTrue("dx renders the slab width the summation PUBLISHED (4/1000 = 0.0040)",
+    s4.some(l => l === "\u0394x = 0.0040"));
+  assertTrue("the formula surface's other symbols still render beside it (n, V_n, the shortfall)",
+    s4.some(l => l === "n = 1000") && s4.some(l => l === "V\u2099 = 25.1076")
+    && s4.some(l => l === "still missing = 0.0251"));
+  control("V_settles and V_exact carry the SAME number under DIFFERENT labels — a key that merely "
+    + "aliased V_exact would render the identical string and close nothing",
+    E.srFmt(E.srExactVolume(sqrtP, null, 0, 4, "x"), 4) === "25.1327"
+    && !hudLines({ mode: "stack", readouts: ["V_exact"], domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x")
+        .some(l => l.startsWith("settles on")));
+
+  // dx must be SILENT where no pass placed a slab (S1 / S2 / S3 publish no du).
+  E.srPubClear();
+  const s1 = hudLines({ mode: "region", readouts: ["area", "dx"], domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
+  console.log("      S1 HUD renders: " + JSON.stringify(s1));
+  control("dx is SILENT when no pass has placed a slab — a width printed from an authored n the "
+    + "picture never drew is the provenance split SR-D5 exists against",
+    !s1.some(l => l.indexOf("\u0394x") >= 0));
+  assertTrue("...while the state's own area line still renders", s1.some(l => l === "area = 5.3333"));
+
+  // S3's M1 chip: the consequence of the wrong belief, SHOWN.
+  E.srPubClear();
+  const s3 = hudLines({ mode: "slice", slice_x: 1, readouts: ["x_cut", "r", "face_area", "pi_area"],
+    domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
+  console.log("      S3 HUD renders: " + JSON.stringify(s3));
+  // M1 is rendered as a BELIEF, not as a fact. It used to print
+  // "pi x area = 16.7552" with a neutral label, one line under a climbing TRUE
+  // face area, so with the sound off a student read two ordinary quantities and
+  // could not tell which was being refuted — and the units disagreed silently,
+  // because pi times an area is a VOLUME standing beside an area.
+  assertTrue("pi_area renders M1's consequence, LABELLED as the wrong volume it is: "
+    + "'wrong volume (pi x area) = 16.7552'",
+    s3.some(l => l === "wrong volume (\u03C0 \u00D7 area) = 16.7552"));
+  control("the pre-fix neutral label 'pi x area = 16.7552' is no longer emitted anywhere — a "
+    + "misconception printed with a neutral label reads sound-off as a fact",
+    !s3.some(l => l === "\u03C0 \u00D7 area = 16.7552"));
+  assertTrue("...beside the TRUE face area at the labelled slice, so the contrast is on one screen",
+    s3.some(l => l === "face area = 3.1416"));
+  control("the two numbers are 5.3x apart, so a student cannot read the wrong one as a rounding of "
+    + "the right one", Math.abs(Math.PI * (16 / 3) - Math.PI) > 13);
+
+  // the ring state still reads its own pair through the same writer
+  E.srPubClear();
+  const ring = E.srDiscSum({ outer: sqrtP, inner: halfLine, x0: 0, x1: 4, n: 1000, axis: "x",
+    rule: "left", kind: "ring", max_drawn: 120 });
+  E.SR_PUB.n = 1000; E.SR_PUB.volume = ring.volume; E.SR_PUB.n_drawn = ring.n_drawn;
+  E.SR_PUB.kind = "ring"; E.SR_PUB.du = ring.du;
+  const s6 = hudLines({ mode: "compare", slice_x: 1, readouts: ["R", "r_inner", "ring_area", "V_n", "dx"],
+    domain: [0, 4], outer: sqrtP, inner: halfLine }, sqrtP, halfLine, 0, 4, "x");
+  console.log("      S6 HUD renders: " + JSON.stringify(s6));
+  assertTrue("S6 still reads R, the inner r and the ring area at the labelled slice x = 1",
+    s6.some(l => l === "R = 1.000") && s6.some(l => l === "r = 0.500") && s6.some(l => l === "ring area = 2.3562"));
+  assertTrue("...and dx serves the SAME formula surface on the extended ring", s6.some(l => l === "\u0394x = 0.0040"));
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Section 15 stands up the only harness in this file that RUNS the shipped
+// region against a DOM. Section 17 needs exactly that — a display decision is a
+// style.display string, not an arithmetic result — so the harness is published
+// here rather than cloned there: two harnesses would be two builds, and the
+// second one could pass while the shipped one is broken.
+let SR_LIVE: {
+  mkApi: () => any;
+  made: Record<string, any>;
+  ARGS: Record<string, any>;
+  CONFIG: Record<string, any>;
+} | null = null;
+console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper gate can reach ===");
+// WHY THIS SECTION EXISTS. Every assertion above this line runs a PURE helper
+// pulled out of the template literal by brace matching, precisely so the gate
+// needs no browser. buildSolidOfRevolution touches DOM and THREE, so it was the
+// one function the gate could NOT call — and until a concept authored the
+// scenario, nothing else called it either. It shipped through 217 assertions
+// and 32 negative controls with "ReferenceError: textColor is not defined" on
+// its first line of DOM work: the scenario never started, PM_simTimeMs stayed
+// at 0, and THE EYE aborted rather than photograph an arbitrary phase.
+//
+// So this section EXECUTES the whole shipped region under shims and asserts the
+// builder runs to completion. The shims are an ALLOWLIST, and the guard below
+// is what stops the allowlist from becoming a way to silence the next bug.
+{
+  // (i) THE ALLOWLIST GUARD, FIRST — a name may be shimmed only if it is really
+  //     declared at RENDERER scope outside this region. textColor is not: all
+  //     149 of its uses are function-locals inside individual scenario builders,
+  //     which is exactly why the SR block had to declare its own and did not.
+  // slice from the START OF THE LINE — the marker sits mid-comment, and cutting
+  // there hands the parser a bare comment tail (a SyntaxError, not a
+  // ReferenceError, which would have masked exactly what this section tests).
+  const markIdx = SRC.indexOf("solid_of_revolution — VOLUME BY INTEGRATION");
+  const startIdx = SRC.lastIndexOf("\n", markIdx) + 1;
+  const endIdx = SRC.indexOf("    function buildScenario() {", startIdx);
+  const REGION = SRC.slice(startIdx, endIdx);
+  const OUTSIDE = SRC.slice(0, startIdx) + SRC.slice(endIdx);
+  // renderer scope in this file is exactly four spaces of indent; a scenario
+  // builder's own locals sit at eight or more.
+  const declaredAtRendererScope = (n: string) =>
+    new RegExp("^ {4}(?:var|let|const|function)\\s+" + n + "\\b", "m").test(OUTSIDE);
+  const SHIMS = ["window", "document", "config", "THREE", "console", "addToScene",
+    "hexToThreeColor", "cueTriggerMs", "osCamScheduleAt", "nlbProjPx",
+    "targetSpherical", "spherical", "updateCameraFromSpherical", "animating",
+    "time", "stateStartTime",
+    // SR-C2's sandbox orbit reads the shared camera-drag flag, exactly as the
+    // shipped organic_structure seize does (:68966).
+    "isDragging"];
+  const HOST = ["window", "document", "console", "THREE", "config"];
+  const notDeclared = SHIMS.filter(n => !HOST.includes(n) && !declaredAtRendererScope(n));
+  assertTrue("every shimmed name below is really declared at RENDERER scope outside this region ("
+    + (notDeclared.length ? "MISSING: " + notDeclared.join(", ") : "all " + (SHIMS.length - HOST.length) + " checked")
+    + ")", notDeclared.length === 0);
+  control("the guard REFUSES textColor — its 149 uses are all function-locals inside individual "
+    + "scenario builders, so shimming it would have hidden the defect instead of finding it",
+    !declaredAtRendererScope("textColor"));
+  assertTrue("...and the SR region now declares its OWN textColor, like every sibling builder",
+    /\bvar\s+textColor\s*=/.test(REGION));
+
+  // (ii) EXECUTE IT. Anything the region references that is neither declared
+  //      inside it nor in the allowlist throws ReferenceError here.
+  const made: Record<string, any> = {};
+  const mkNode = (): any => {
+    const node: any = {
+      style: {}, children: [], innerHTML: "", textContent: "", value: "", step: "0",
+      setAttribute(k: string, v: string) { node["attr_" + k] = v; },
+      appendChild(c: any) { node.children.push(c); return c; },
+      addEventListener() { /* the wire() handlers are exercised in (iii) */ },
+    };
+    return node;
+  };
+  const documentShim: any = {
+    body: mkNode(),
+    createElement: () => {
+      const n = mkNode();
+      // id is assigned by the caller right after createElement; register lazily
+      Object.defineProperty(n, "id", {
+        get: () => n._id, set: (v: string) => { n._id = v; made[v] = n; }, configurable: true,
+      });
+      return n;
+    },
+    getElementById: (id: string) => made[id] || null,
+  };
+  // THREE is auto-stubbed: every property is a constructor, every instance
+  // answers any property with another stub. This can only hide a TYPE error,
+  // never a ReferenceError — and a ReferenceError is the defect class here.
+  //   `array` answers with a real Float32Array because the writers index into
+  //   it; `position`/`rotation`/`scale` answer with a settable triple. Nothing
+  //   else needs to be real — a stub can mask a TYPE error but never a
+  //   ReferenceError, and a ReferenceError is the defect class this section is
+  //   written for. The claim asserted below is therefore exactly that: the
+  //   builder resolves every name it uses and runs to the end.
+  const BIG = 400000;
+  const stub = (): any => new Proxy(function () { /* constructible */ } as any, {
+    get: (_t, k) => (k === "then" ? undefined
+      : k === "array" ? new Float32Array(BIG)
+      : k === "count" ? 0
+      : k === "userData" ? {}
+      : k === "rotation" || k === "scale"
+        ? { set: () => undefined, x: 0, y: 0, z: 0 }
+      : k === "position"
+        ? { set: () => undefined, x: 0, y: 0, z: 0, needsUpdate: false }
+        : stub()),
+    set: () => true,
+    apply: () => stub(),
+    construct: () => stub(),
+    has: () => true,
+  });
+  const CONFIG = {
+    scenario_type: "solid_of_revolution",
+    slider_controls: {
+      a: { min: 0.8, max: 1.4, step: 0.05, default: 1.0 },
+      b: { min: 1.0, max: 4.0, step: 0.05, default: 4.0 },
+      n: { min: 4, max: 120, step: 4, default: 20 },
+      r: { min: 1.0, max: 2.0, step: 0.01, default: 1.0 },
+      x_cut: { min: 0.0, max: 4.0, step: 0.05, default: 0.0 },
+    },
+    states: {
+      STATE_1: {
+        camera_position: [0, 0, 5.2], formula_overlay: "y = \u221Ax",
+        sr: { mode: "region", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+          domain: [0, 4], axis: "x",
+          frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true },
+          reveal: { curve_at_ms: 1200, curve_ms: 4800, region_at_ms: 6000, region_ms: 7000 },
+          controls: [], readouts: ["x_edge", "area"], glow_focal: "region" },
+      },
+    },
+  };
+  const winShim: any = { PM_srA: null, PM_srB: null, PM_srR: null, PM_srN: null,
+    PM_srX: null, PM_srAxis: null, PM_srSeized: {}, PM_srCamPose: null };
+  const ARGS: Record<string, any> = {
+    window: winShim, document: documentShim, config: CONFIG, THREE: stub(),
+    console: { warn: () => undefined, log: () => undefined },
+    addToScene: () => undefined, hexToThreeColor: () => ({}),
+    cueTriggerMs: (_k: string, d: number) => d, osCamScheduleAt: () => null,
+    nlbProjPx: () => null,
+    targetSpherical: { radius: 8, phi: 1, theta: 1 }, spherical: { radius: 8, phi: 1, theta: 1 },
+    updateCameraFromSpherical: () => undefined, animating: false,
+    time: 0, stateStartTime: 0, isDragging: false,
+  };
+  const names = Object.keys(ARGS);
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const mkApi = () => new Function(...names, REGION
+    + "\nreturn { build: buildSolidOfRevolution, apply: applySolidOfRevolutionState,"
+    + " frame: updateSolidOfRevolutionFrame, glow: applySolidOfRevolutionGlow,"
+    // the three disc pools, so section 17 can read the SHIPPED meshes' visibility
+    // and the SHIPPED material opacity rather than infer them from a regex.
+    + " pools: function () { return [srDiscPool, srRingOutPool, srRingInPool]; },"
+    // the labelled annular slab, so section 18 reads the SHIPPED vertex buffer
+    // rather than trusting the plan that fed it.
+    + " slice: function () { return srSliceRing; } };"
+  )(...names.map(n => ARGS[n]));
+  /** Run fn and report WHICH class of error came back. */
+  const classifyRun = (fn: () => void): { ok: boolean; ref: boolean; msg: string } => {
+    try { fn(); return { ok: true, ref: false, msg: "" }; }
+    catch (e) {
+      const ref = e instanceof ReferenceError;
+      return { ok: false, ref, msg: (e instanceof Error ? e.constructor.name + ": " + e.message : String(e)) };
+    }
+  };
+
+  // (ii-a) THE DOM HALF, with no state to apply — this path touches no geometry,
+  //        so it must complete CLEANLY, with no error of any class.
+  const domOnly = classifyRun(() => mkApi().build({ ...CONFIG, states: {} }));
+  assertTrue("with no state to apply, buildSolidOfRevolution completes CLEANLY — the DOM half of "
+    + "the builder, which is where the shipped defect was"
+    + (domOnly.ok ? "" : " — threw: " + domOnly.msg), domOnly.ok);
+
+  // (ii-b) THE FULL PATH, including the first-state apply and a frame. A stubbed
+  //        THREE can raise a TypeError that says nothing about the renderer, so
+  //        only a ReferenceError — a name the region uses and nobody declares —
+  //        fails here. That IS the shipped defect's class, and (iii) proves this
+  //        assertion catches it.
+  // THE EXPLORE STATE IS RUN TOO, because a branch nothing executes is a branch
+  // no ReferenceError can escape from: SR-C2's sandbox orbit lives inside
+  // `else if (sr.mode === "explore")` and STATE_1 is mode "region", so the
+  // walk below would have compiled it and never entered it.
+  const EXPLORE_STATE = {
+    camera_position: [5.42, 3.43, 6.32],
+    sr: { mode: "explore", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+      domain: [0, 4], axis: "x",
+      frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true },
+      reveal: false, discs: { n: 20, rule: "left", max_discs_drawn: 120 },
+      controls: ["a", "b", "n"], readouts: ["a", "b", "n", "V_n"] },
+  };
+  const full = classifyRun(() => {
+    const api = mkApi();
+    api.build(CONFIG);
+    api.apply(CONFIG.states.STATE_1);
+    api.frame(CONFIG.states.STATE_1);
+    api.glow(CONFIG.states.STATE_1);
+    api.apply(EXPLORE_STATE);
+    api.frame(EXPLORE_STATE);
+    api.glow(EXPLORE_STATE);
+  });
+  assertTrue("no name used anywhere in build -> apply -> frame -> glow is undeclared"
+    + (full.ok ? "" : " (non-ReferenceError under the THREE stub, which is not evidence either way: "
+      + full.msg + ")"), !full.ref);
+  for (const id of ["sr_ticks", "sr_readout", "sr_formula", "sr_sliders"]) {
+    assertTrue("...and created the DOM surface #" + id, !!made[id]);
+  }
+  assertTrue("the HUD and the slider panel carry real ink, not the string 'undefined' "
+    + "(the shape the missing textColor would have left had it merely been undefined)",
+    !!made["sr_readout"] && made["sr_readout"].style.cssText.indexOf("undefined") < 0
+    && !!made["sr_sliders"] && made["sr_sliders"].style.cssText.indexOf("undefined") < 0);
+  assertTrue("the slider panel built all five contextual rows plus the axis toggle",
+    !!made["sr_sliders"] && ["sr_acoef_row", "sr_bend_row", "sr_radius_row", "sr_count_row",
+      "sr_cut_row", "sr_axis_row"].every(r => made["sr_sliders"].innerHTML.indexOf(r) >= 0));
+
+  SR_LIVE = { mkApi, made, ARGS, CONFIG };
+
+  // (iii) THE NEGATIVE CONTROL — reconstruct the pre-fix region by deleting the
+  //       one declaration, and watch this section fail on it.
+  {
+    const broken = REGION.replace(/^ {8}var textColor = .*$/m, "        // (declaration removed)");
+    assertTrue("the control's broken twin really differs from the shipped region",
+      broken !== REGION);
+    const brokenRun = classifyRun(() => {
+      // eslint-disable-next-line @typescript-eslint/no-implied-eval
+      const run = new Function(...names, broken + "\nreturn { b: buildSolidOfRevolution };");
+      run(...names.map(n => ARGS[n])).b({ ...CONFIG, states: {} });
+    });
+    control("removing the one declaration reproduces the SHIPPED failure exactly, and it is a "
+      + "ReferenceError — the class (ii-b) fails on — " + (brokenRun.msg || "no throw at all"),
+      brokenRun.ref && /textColor is not defined/.test(brokenRun.msg));
+    control("...and it also breaks (ii-a), the CLEAN-completion assertion, so both halves of this "
+      + "section are load-bearing rather than one carrying the other", !brokenRun.ok);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 16. THE EXPLORE IDLE TURN — Rule 37, and the symmetry trap it sits on ===");
+// WHY THIS SECTION EXISTS. The explore state is a live teacher sandbox: the
+// player never freezes it (interaction_complete skips the pin), so a scenario
+// that draws a settled picture and holds it sits DEAD STILL until the first
+// drag. founder_drive measured exactly that on the first concept to author
+// this scenario: 0 px changed over 1 s against a 60 px floor.
+//
+// THE TRAP THIS SECTION PINS DOWN, so nobody re-argues it from the design
+// line "the solid turns about its axis": a solid of revolution is rotationally
+// symmetric ABOUT THAT AXIS, so turning the swept skin maps the surface onto
+// itself and moves no pixels at all. (ii-b) measures that claim instead of
+// asserting it. What moves is the flat REGION STRIP, still sweeping.
+{
+  const T = (mode: string, tMs: number): number => E.srIdleTurnDeg({ mode: mode }, tMs);
+
+  // ── (i) THE MODE GATE. Every guided mode returns 0 at every time, so the
+  //        eight guided states' measured baselines and D5 profiles cannot move.
+  const GUIDED = Object.keys(E.SR_MODES).filter((m) => m !== "explore");
+  const guidedTimes = [0, 250, 1000, 3333, 9000, 47000];
+  const guidedNonZero = GUIDED.filter((m) => guidedTimes.some((t) => T(m, t) !== 0));
+  assertTrue("every guided mode (" + GUIDED.join(", ") + ") returns 0 at all of "
+    + guidedTimes.join("/") + " ms — the idle turn cannot reach a measured baseline"
+    + (guidedNonZero.length ? " — LEAKED INTO: " + guidedNonZero.join(", ") : ""),
+    guidedNonZero.length === 0);
+  assertTrue("a state with no sr block at all returns 0 rather than throwing",
+    E.srIdleTurnDeg(null, 5000) === 0 && E.srIdleTurnDeg(undefined, 5000) === 0);
+  // NEGATIVE CONTROL — drop the mode gate. This is the shape that would turn the
+  // region on every guided state, i.e. re-write eight approved baselines silently.
+  {
+    const ungated = (tMs: number): number => {
+      const a = (tMs / 1000) * E.SR_EXPLORE_TURN_DEG_PER_S;
+      return a - Math.floor(a / 360) * 360;
+    };
+    control("an idle turn with NO mode gate turns 'stack' by " + ungated(3333).toFixed(2)
+      + " deg at 3333 ms, so the guided-mode assertion fails on it",
+      GUIDED.some((_m) => ungated(3333) !== 0));
+  }
+
+  // ── (ii-a) THE CLOSED FORM. Exact, wrapped, and monotone inside a turn.
+  const RATE = E.SR_EXPLORE_TURN_DEG_PER_S;
+  check("explore turn at t = 1000 ms is exactly the authored rate", T("explore", 1000), RATE, 1e-12);
+  check("...and at 3333 ms it is rate x 3.333", T("explore", 3333), RATE * 3.333, 1e-12);
+  const period = 360000 / RATE;
+  check("the turn WRAPS at one full revolution (" + (period / 1000) + " s) to a clean 0",
+    T("explore", period), 0, 1e-12);
+  check("...and one ms before the wrap it is just under 360, so the wrap is continuous",
+    T("explore", period - 1), 360 - RATE / 1000, 1e-12);
+  assertTrue("t = 0 (state entry) is 0 deg and nothing pre-fires",
+    T("explore", 0) === 0 && T("explore", -50) === 0);
+  const inRange = [0, 1, 250, 7777, 11999, 12001, 123456, 9e6].every((t) => {
+    const v = T("explore", t); return v >= 0 && v < 360;
+  });
+  assertTrue("the angle stays inside [0, 360) at every time tested, including 2.5 hours in", inRange);
+
+  // ── (ii-b) THE SYMMETRY TRAP, MEASURED. Rotate the CLOSED skin about the axis
+  //          of revolution and the surface maps onto itself; rotate the region
+  //          strip and its corner travels. Both measured in SCREEN PX at the
+  //          authored explore camera, against founder_drive's own 60 px floor.
+  const CAM = [5.42, 3.43, 6.32];              // STATE_9's authored camera
+  const VW = 1280, VH = 720;                   // the drive viewport
+  const px = (x: number, y: number, z: number) => {
+    const q = P(CAM, x, y, z);
+    return { x: q.ndcX * VW / 2, y: q.ndcY * VH / 2, behind: q.behind };
+  };
+  const dist = (a: { x: number; y: number }, b: { x: number; y: number }) =>
+    Math.hypot(a.x - b.x, a.y - b.y);
+  // the region's far corner: graph (x, y) = (4, 2) on y = sqrt x, shifted onto
+  // the world origin by srShiftX = -(0 + 4)/2 = -2. It turns about the graph x
+  // axis, so its radius from that axis is its own y.
+  const CX = 2, CR = 2;
+  const corner = (deg: number) => {
+    const a = deg * Math.PI / 180;
+    return px(CX, CR * Math.cos(a), CR * Math.sin(a));
+  };
+  // WORST CASE OVER PHASE, not a lucky sample: the drive shoots its two frames
+  // at an arbitrary moment after state entry.
+  //
+  // AND MEASURED IN THE PROBE'S OWN UNITS. founder_drive's 60 px floor is a
+  // CHANGED-PIXEL COUNT over the clipped sim, not the travel of one point, and
+  // scoring a point displacement against it would be a category swap. So the
+  // region strip is rasterised: its (x, y) samples are projected at phase p and
+  // at p + one second of turn, each marked into a 1280x720 bitmap, and the
+  // SYMMETRIC DIFFERENCE is counted. Every sample marks a 2x2 block and the
+  // sample spacing is sub-pixel, so the strip is solid rather than stippled.
+  // This is CONSERVATIVE against the real frame in both directions that matter:
+  // it counts the region alone (the translucent skin and the disc stack blend
+  // over it, so the real frame changes more), and it ignores anti-aliasing.
+  const GW = VW, GH = VH;
+  const bufA = new Uint8Array(GW * GH), bufB = new Uint8Array(GW * GH);
+  const NU = 300, NV = 150;
+  const mark = (buf: Uint8Array, deg: number) => {
+    buf.fill(0);
+    const a = deg * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a);
+    for (let iu = 0; iu <= NU; iu++) {
+      const gx = 4 * (iu / NU);                 // graph x over the authored domain
+      const top = Math.sqrt(gx);                // y = sqrt x, the authored profile
+      for (let iv = 0; iv <= NV; iv++) {
+        const gy = top * (iv / NV);             // the filled region, axis to curve
+        const q = px(gx - 2, gy * ca, gy * sa); // srShiftX = -2, turning about the x axis
+        if (q.behind) continue;
+        const sx = Math.round(q.x + GW / 2), sy = Math.round(GH / 2 - q.y);
+        for (let dx = 0; dx < 2; dx++) {
+          for (let dy = 0; dy < 2; dy++) {
+            const X = sx + dx, Y = sy + dy;
+            if (X >= 0 && X < GW && Y >= 0 && Y < GH) buf[Y * GW + X] = 1;
+          }
+        }
+      }
+    }
+  };
+  const changedPx = (deg: number): number => {
+    mark(bufA, deg); mark(bufB, deg + RATE);
+    let n = 0;
+    for (let i = 0; i < bufA.length; i++) if (bufA[i] !== bufB[i]) n++;
+    return n;
+  };
+  /** the same count with the turn REMOVED — the pre-fix frame, twice. */
+  const changedPx0 = (): number => {
+    mark(bufA, 37); mark(bufB, 37);
+    let n = 0;
+    for (let i = 0; i < bufA.length; i++) if (bufA[i] !== bufB[i]) n++;
+    return n;
+  };
+  const MOTION_FLOOR_PX = 60;   // founder_drive's own floor
+  let worstPx = Infinity, worstAt = -1, inkAt0 = 0;
+  for (let ph = 0; ph < 360; ph += 15) {
+    const d = changedPx(ph);
+    if (d < worstPx) { worstPx = d; worstAt = ph; }
+  }
+  mark(bufA, 0); for (let i = 0; i < bufA.length; i++) if (bufA[i]) inkAt0++;
+  // WHAT THIS NUMBER IS, AND WHAT IT IS NOT — the distinction cost a cycle and is
+  // recorded so it does not cost a second one. It is a GEOMETRIC count: how many
+  // pixels the strip's own silhouette occupies differently one second apart. It
+  // is NOT founder_drive's count, which is PERCEPTUAL (pixelmatch threshold 0.1
+  // over the composited frame). Measured on the shipped build: those two numbers
+  // are 9 034 and 0 for the same pair of frames, because the strip sweeps INSIDE
+  // a closed solid whose disc stack has almost exactly its luminance (166 vs 171)
+  // — a real motion that a perceptual diff is entitled to call no motion. The
+  // sandbox orbit in (vii) is what carries the silhouette, and this assertion is
+  // kept because the region turn is still the motion that TEACHES.
+  assertTrue("the region strip's own silhouette changes >= " + MOTION_FLOOR_PX + " px in 1 s at "
+    + "EVERY phase tested (worst " + worstPx + " px at " + worstAt + " deg, against " + inkAt0
+    + " px of strip) — geometrically the generator really is sweeping", worstPx >= MOTION_FLOOR_PX);
+  // ...and the far corner really travels, so the count above is a moving object
+  // and not a rasterisation artefact of the sampling grid.
+  const CORNER_FLOOR_PX = 20;
+  let worstCorner = Infinity, cornerAt = -1;
+  for (let ph = 0; ph < 360; ph++) {
+    const d = dist(corner(ph), corner(ph + RATE));
+    if (d < worstCorner) { worstCorner = d; cornerAt = ph; }
+  }
+  assertTrue("the region's far corner travels >= " + CORNER_FLOOR_PX + " px in 1 s at every one of "
+    + "360 phases (worst " + worstCorner.toFixed(1) + " px at " + cornerAt + " deg — the phase where "
+    + "its motion is most nearly along the view ray)", worstCorner >= CORNER_FLOOR_PX);
+  // NEGATIVE CONTROL 1 — the SHIPPED PRE-FIX behaviour: no turn at all.
+  control("the pre-fix explore state (turn = 0) changes 0 px and moves that corner 0.0 px in 1 s, "
+    + "failing both floors — this section reproduces the defect it was written for",
+    changedPx0() < MOTION_FLOOR_PX && dist(corner(37), corner(37)) < CORNER_FLOOR_PX);
+  // NEGATIVE CONTROL 2 — THE LITERAL DESIGN READING. Turn the closed swept SKIN
+  // about the axis of revolution instead: sample it, rotate the sample, and
+  // measure how far the rotated set sits from the original set. A rotationally
+  // symmetric surface maps onto itself, so this is ~0 however fast it spins —
+  // which is why "the solid turns about its axis" could not be taken literally.
+  {
+    const SAMP = 720;
+    const ring = (deg: number) => {
+      const out: Array<{ x: number; y: number }> = [];
+      for (let k = 0; k < SAMP; k++) {
+        const a = (k * 360 / SAMP + deg) * Math.PI / 180;
+        out.push(px(CX, CR * Math.cos(a), CR * Math.sin(a)));
+      }
+      return out;
+    };
+    const A = ring(0), B = ring(RATE);
+    let setGap = 0;
+    for (const b of B) {
+      let near = Infinity;
+      for (const a of A) { const d = dist(a, b); if (d < near) near = d; }
+      if (near > setGap) setGap = near;
+    }
+    control("turning the CLOSED SKIN about the axis of revolution instead moves the surface "
+      + setGap.toFixed(2) + " px as a set (720 samples) — it maps onto itself, so the literal "
+      + "reading of the design line would have shipped a second frozen explore state",
+      setGap < CORNER_FLOOR_PX);
+  }
+  // ── (iii) NO ACCUMULATION (SR-D2 / Rule 36). A pinned re-visit redraws the
+  //         same angle however the renderer arrived there.
+  const pinSeq = [3000, 9000, 3000];
+  const pinVals = pinSeq.map((t) => T("explore", t));
+  assertTrue("pin t=3000 -> 9000 -> 3000 returns the IDENTICAL angle (" + pinVals[0].toFixed(6)
+    + " both times) — SET_TIME_FREEZE re-pins byte-identical", pinVals[0] === pinVals[2]);
+  const crawled = (() => { let v = 0; for (let t = 0; t <= 3000; t += 7) v = T("explore", t); return v; })();
+  assertTrue("crawling to 3000 ms in 7 ms steps lands on the same angle as jumping there "
+    + "(frame-rate independence: the value is a function of t, not of the call count)",
+    crawled === T("explore", 2996) && T("explore", 3000) === RATE * 3);
+  // NEGATIVE CONTROL 3 — the accumulator twin, the first line of the field_3d
+  // scar checklist. It cannot rewind, so the re-pin lands on a different angle.
+  {
+    // The twin is driven the way the renderer really drives a frame: dt is
+    // always the POSITIVE elapsed time since the last frame. A re-pin does not
+    // hand it a negative dt to unwind with — it just draws one more frame.
+    let acc = 0;
+    const step = (dtMs: number): number => { acc += (dtMs / 1000) * RATE; return acc % 360; };
+    step(3000); const accAt9 = step(6000); const accBack = step(16);
+    control("a += dt accumulator reads " + accAt9.toFixed(2) + " deg at 9000 ms and, re-pinned to "
+      + "3000 ms, draws " + accBack.toFixed(2) + " deg instead of " + pinVals[0].toFixed(2)
+      + " — it cannot rewind, which is the first line of the field_3d scar checklist",
+      Math.abs(accBack - pinVals[0]) > 1e-6);
+  }
+
+  // ── (iv) THE WIRING, because a pure function nothing calls is dead code.
+  const FRAME = SRC.slice(SRC.indexOf("function updateSolidOfRevolutionFrame("));
+  const FRAME_BODY = FRAME.slice(0, FRAME.indexOf("\n    function ", 10));
+  assertTrue("updateSolidOfRevolutionFrame CALLS srIdleTurnDeg on the state's own sr block and ms",
+    /var turnDeg = srIdleTurnDeg\(sr, tMs\);/.test(FRAME_BODY));
+  assertTrue("...and BOTH region-rotation branches (x axis and y axis) turn by thDeg + turnDeg",
+    (FRAME_BODY.match(/srRegionMesh\.rotation\.set\([^)]*regDeg[^)]*\)/g) || []).length === 2
+    && /var regDeg = thDeg \+ turnDeg;/.test(FRAME_BODY));
+  assertTrue("...and the SWEPT SKIN still receives thDeg, never the wrapping angle — the solid "
+    + "never un-sweeps in the sandbox",
+    (FRAME_BODY.match(/srWriteSurface\([^\n]*thDeg\);/g) || []).length === 2
+    && !/srWriteSurface\([^\n]*(regDeg|turnDeg)/.test(FRAME_BODY));
+  // NEGATIVE CONTROL 4 — the pre-fix frame body, rebuilt by putting thDeg back
+  // into the region rotation. The wiring assertions must fail on it.
+  {
+    const preFix = FRAME_BODY
+      .split("var turnDeg = srIdleTurnDeg(sr, tMs);").join("")
+      .split("var regDeg = thDeg + turnDeg;").join("")
+      .split("regDeg").join("thDeg");
+    control("the pre-fix frame body — region rotation straight off thDeg, no idle turn — fails "
+      + "both wiring assertions", !/srIdleTurnDeg\(sr, tMs\)/.test(preFix)
+      && !/var regDeg =/.test(preFix));
+  }
+
+  // ── (v) THE TICK CONTAINER CARRIES NO INK, SO IT MUST MEASURE NONE. Same
+  //       dispatch, one CSS line: #sr_ticks was a 100% x 100% fixed sheet, so a
+  //       DOM collision probe scored its bounding box against every piece of
+  //       review chrome it overlapped — 27 collisions on 9 states for a
+  //       transparent container whose glyphs are children positioned in viewport
+  //       px. An empty rect with overflow visible measures the ticks instead.
+  const BUILD = grabFn("buildSolidOfRevolution");
+  const tickCss = (/tk\.style\.cssText = "([^"]*)"/.exec(BUILD) || [])[1] || "";
+  assertTrue("#sr_ticks is a 0x0 fixed box with overflow visible (" + tickCss.slice(0, 80) + "...)",
+    /position:fixed/.test(tickCss) && /width:0/.test(tickCss) && /height:0/.test(tickCss)
+    && /overflow:visible/.test(tickCss) && !/100%/.test(tickCss));
+  assertTrue("...and it still anchors at the viewport origin, so every child keeps landing on the "
+    + "identical pixel it did before", /left:0/.test(tickCss) && /top:0/.test(tickCss));
+  assertTrue("the tick GLYPHS are the ink, absolutely positioned from nlbProjPx in viewport px",
+    /position:absolute/.test(grabFn("srSyncTickNodes"))
+    && /node\.style\.left = p\.x/.test(grabFn("srPlaceTickNodes")));
+  control("the pre-fix full-viewport sheet (width:100%;height:100%) fails the empty-rect "
+    + "assertion — the shape that scored 27 collisions",
+    /100%/.test("position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:8;display:none;"));
+
+  // ── (vii) THE SANDBOX ORBIT — the fallback, taken on measurement. The region
+  //         turn above is chromatic-only inside a closed silhouette (see (ii-b)),
+  //         so the sandbox also orbits slowly at the shipped bonding_scene /
+  //         orbital_shapes idle rate. Same three properties as the turn: guided
+  //         modes untouched, closed form on state-local ms, and the teacher owns
+  //         the camera the moment they drag it.
+  {
+    const AZ0 = 42;                     // an arbitrary authored base azimuth
+    const C = (mode: string, tMs: number) => E.srIdleCamAzDeg({ mode: mode }, tMs, AZ0);
+    const CRATE = E.SR_EXPLORE_CAM_DEG_PER_S;
+    check("the orbit runs at the shipped idle rate (bonding_scene 0.14 rad/s)",
+      CRATE, 0.14 * 180 / Math.PI, 0.03 * 180 / Math.PI);
+    const camGuidedMoved = GUIDED.filter((m) => guidedTimes.some((t) => C(m, t) !== AZ0));
+    assertTrue("every guided mode holds its authored azimuth at all of " + guidedTimes.join("/")
+      + " ms — a guided state's solved pose is never drifted"
+      + (camGuidedMoved.length ? " — LEAKED INTO: " + camGuidedMoved.join(", ") : ""),
+      camGuidedMoved.length === 0);
+    assertTrue("state entry opens on the authored pose exactly (t = 0 is the base azimuth, "
+      + "nothing jumps)", C("explore", 0) === AZ0);
+    check("...and one second in it has turned by exactly the rate", C("explore", 1000), AZ0 + CRATE, 1e-12);
+    const camWrapAt = (360 - AZ0 % 360) / CRATE * 1000;
+    assertTrue("the azimuth wraps into [0, 360) rather than growing without bound "
+      + "(at " + Math.round(camWrapAt + 5000) + " ms it reads " + C("explore", camWrapAt + 5000).toFixed(2) + " deg)",
+      [0, 1000, camWrapAt + 5000, 4e6].every((t) => { const v = C("explore", t); return v >= 0 && v < 360; }));
+    assertTrue("pin 3000 -> 9000 -> 3000 returns the identical azimuth — a frozen frame re-pins to "
+      + "the same pose", C("explore", 3000) === C("explore", 3000)
+      && C("explore", 3000) !== C("explore", 9000));
+    // NEGATIVE CONTROL — the accumulating camera, which is what an idle orbit is
+    // usually written as. It cannot rewind, so THE EYE's re-pin drifts.
+    {
+      let az = AZ0;
+      const stepc = (dtMs: number) => { az += (dtMs / 1000) * CRATE; return az; };
+      stepc(3000); stepc(6000); const backc = stepc(16);
+      control("an accumulating azimuth draws " + backc.toFixed(2) + " deg on a re-pin to 3000 ms "
+        + "where the closed form draws " + C("explore", 3000).toFixed(2),
+        Math.abs(backc - C("explore", 3000)) > 1e-6);
+    }
+    // THE WIRING, and the ONE property the pattern it clones exists to protect.
+    assertTrue("the frame seizes the camera on a drag (the shipped organic_structure edge)",
+      /if \(isDragging\) window\.PM_srCamSeized = true;/.test(FRAME_BODY));
+    assertTrue("...and writes the closed-form pose only while UNSEIZED",
+      /if \(!window\.PM_srCamSeized\) \{/.test(FRAME_BODY)
+      && /srIdleCamAzDeg\(sr, tMs, camBase\.az\)/.test(FRAME_BODY));
+    assertTrue("the seize is cleared on state ENTRY and NOWHERE in the frame — a clear that re-runs "
+      + "per frame undoes the drag on the frame it arrives (the defect the clone target shipped)",
+      /window\.PM_srCamSeized = false;/.test(grabFn("applySolidOfRevolutionState"))
+      && !/PM_srCamSeized = false/.test(FRAME_BODY));
+    // NEGATIVE CONTROL — put the clear back in the frame and watch that fail.
+    {
+      const broken = FRAME_BODY.replace("if (isDragging) window.PM_srCamSeized = true;",
+        "window.PM_srCamSeized = false; if (isDragging) window.PM_srCamSeized = true;");
+      control("with the clear moved into the frame, the per-frame-clear assertion fails — the "
+        + "shape in which orbiting is dead after the teacher's first drag",
+        /PM_srCamSeized = false/.test(broken));
+    }
+    // ── THE AZIMUTH THE ORBIT STARTS FROM, which was inverted. srCamBase
+    //    converts an authored camera_position into (az, el, dist), and it read
+    //    atan2(x, z) where updateCameraFromSpherical places the camera at
+    //    x = r sin(phi) cos(theta), z = r sin(phi) sin(theta) — so the inverse is
+    //    atan2(z, x), which is what the sibling conversion in this file uses.
+    //    Latent while only a camera_base state read it; the sandbox orbit above
+    //    derives its STARTING azimuth from here on a state that authors
+    //    camera_position only, so state entry jumped ~9 deg before it settled.
+    {
+      const B = (cp: number[]) => E.srCamBase({ camera_position: cp }, {});
+      const faceOn = B([0, 0, 5.2]);
+      check("a face-on camera_position [0, 0, 5.2] is azimuth 90 deg — looking along +z at the "
+        + "revolution plane, NOT down the axis", faceOn.az, 90, 1e-9);
+      const s9 = B([5.42, 3.43, 6.32]);
+      check("STATE_9's authored pose [5.42, 3.43, 6.32] converts to az 49.4", s9.az, 49.4, 0.05);
+      check("...el 22.4", s9.el, 22.4, 0.05);
+      check("...dist 9.0", s9.dist, 9.0, 0.01);
+      assertTrue("round trip: the derived (az, el, dist) rebuilds the authored position through "
+        + "the renderer's OWN placement formula, to 1e-9 — which is the property the swap is for",
+        [[0, 0, 5.2], [5.42, 3.43, 6.32], [-3, 2, -4]].every((cp) => {
+          const b = B(cp), phi = Math.PI / 2 - b.el * Math.PI / 180, th = b.az * Math.PI / 180;
+          return Math.abs(b.dist * Math.sin(phi) * Math.cos(th) - cp[0]) < 1e-9
+            && Math.abs(b.dist * Math.cos(phi) - cp[1]) < 1e-9
+            && Math.abs(b.dist * Math.sin(phi) * Math.sin(th) - cp[2]) < 1e-9;
+        }));
+      // NEGATIVE CONTROL — the pre-fix body, arguments as shipped.
+      {
+        const pre = (cp: number[]) => Math.atan2(cp[0], cp[2]) * 180 / Math.PI;
+        control("the pre-fix atan2(x, z) reads " + pre([0, 0, 5.2]).toFixed(1) + " deg for the face-on "
+          + "pose (the +x axis — straight DOWN the axis of revolution) and " + pre([5.42, 3.43, 6.32]).toFixed(1)
+          + " deg for STATE_9's, so both assertions above fail on it",
+          Math.abs(pre([0, 0, 5.2]) - 90) > 1 && Math.abs(pre([5.42, 3.43, 6.32]) - 49.4) > 1);
+      }
+      assertTrue("the shipped body really uses atan2(cp[2], cp[0]), like its sibling conversion",
+        /az: Math\.atan2\(cp\[2\], cp\[0\]\)/.test(grabFn("srCamBase")));
+    }
+
+    // ...and the guided camera SCHEDULE still owns any state that authors one.
+    assertTrue("a state with camera_steps keeps the scheduled pose — the orbit is the ELSE branch, "
+      + "so SR14 is untouched",
+      /if \(sr\.camera_steps && sr\.camera_steps\.length\) \{/.test(FRAME_BODY)
+      && FRAME_BODY.indexOf("if (sr.camera_steps") < FRAME_BODY.indexOf('} else if (sr.mode === "explore") {'));
+  }
+
+  // ── (vi) THE GEAR PANEL MUST NOT CONTRADICT THE ROW IT TOGGLES. Rule 39f
+  //        auto-derives a row's teacher-facing name by appending " slider" to
+  //        its <label> — right for the five real slider rows, and a lie on the
+  //        axis row, which is a two-BUTTON toggle. This is the FIXED scar
+  //        f3d_widget_autolabel_contradicts_the_panel_header_it_toggles
+  //        recurring on a new scenario. The fix is the row naming ITSELF through
+  //        data-wg-label (the path pmWgRowLabel checks first), never a special
+  //        case in the shared engine — so this runs the SHARED resolver over
+  //        SR's OWN markup rather than asserting the attribute is present.
+  {
+    const rowHtml = (/<div id="sr_axis_row"[^>]*>/.exec(BUILD) || [])[0] || "";
+    const labelText = "Axis of revolution";
+    const mkRow = (withAttr: boolean) => ({
+      id: "sr_axis_row",
+      getAttribute: (k: string) => (withAttr && k === "data-wg-label" ? labelText : null),
+      querySelector: (sel: string) => (sel === "label" ? { textContent: labelText } : null),
+    });
+    const shipped = E.pmWgRowLabel(mkRow(/data-wg-label="Axis of revolution"/.test(rowHtml)));
+    assertTrue('the gear panel names the axis row "' + labelText + '" — resolved by the FLEET\'s own '
+      + "pmWgRowLabel over SR's shipped markup, not by an assertion that an attribute exists",
+      shipped === labelText);
+    assertTrue("the row really is a two-button toggle, which is what makes \" slider\" wrong "
+      + "(and a two-position range the reason it is not one)",
+      /id="sr_axis_x"/.test(BUILD) && /id="sr_axis_y"/.test(BUILD)
+      && !/id="sr_axis_slider"/.test(BUILD));
+    // NEGATIVE CONTROL — the same row WITHOUT the attribute, through the same
+    // shared resolver: the auto-derived name the auditor read off the live page.
+    control('without data-wg-label the shared resolver derives "'
+      + E.pmWgRowLabel(mkRow(false)) + '" over two buttons — the contradiction this fixes',
+      E.pmWgRowLabel(mkRow(false)) === labelText + " slider");
+    // ...and the three DOM panels keep naming themselves too (same contract).
+    for (const pair of [["sr_ticks", "Axis numbers"], ["sr_readout", "Live numbers"], ["sr_formula", "Formula"]]) {
+      assertTrue('#' + pair[0] + ' still declares data-wg-label "' + pair[1] + '"',
+        new RegExp('setAttribute\\("data-wg-label", "' + pair[1] + '"\\)').test(BUILD));
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 17. SR-C3 — THE STACK, THE FORMULA AND THE READOUTS GET REVEAL BEATS ===");
+// WHY THIS SECTION EXISTS. Rule 32a: the CAUSE moves visibly first and the
+// EFFECT answers after a readable beat. This scenario had reveal timing for
+// exactly two things — the curve and the region — so everything else was on
+// screen at t = 0, and a concept measured what that costs:
+//   * STATE_7 drew the whole 120-ring "about y" bowl AND printed
+//     "about y: 80.4248" at t = 0, with its theta_ramp still 3 s from starting.
+//     The state's whole lesson is that the OTHER axis makes a DIFFERENT solid;
+//     the answer was on screen before the region had turned one degree.
+//   * STATE_6 showed the CORRECT ring formula beside the WRONG solid and its
+//     wrong number for the whole 9.5 s misconception window, so the eye read a
+//     formula and a value that contradict each other.
+//
+// THE PROPERTY THIS SECTION DEFENDS ABOVE ALL OTHERS is the absent-field
+// identity: a concept that authors NONE of the three new fields must render
+// exactly what it rendered before, because eight measured states and a locked
+// baseline depend on it. That is (i), and it is asserted through the SHIPPED
+// bodies, not by reading the code.
+{
+  const OUT = { family: "power", a: 1, p: 0.5, c: 0 };
+
+  // ── (i) THE ABSENT-FIELD IDENTITY, BYTE FOR BYTE ────────────────────────
+  const noReveal = [{}, { reveal: false }, { reveal: {} },
+    { reveal: { curve_at_ms: 0, curve_ms: 1200, region_at_ms: 0, region_ms: 1200 } }];
+  const TIMES = [0, 1, 1500, 17999, 18000, 30000, 1e6];
+  const allOpen = noReveal.every((sr) => TIMES.every((t) => {
+    const r = E.srStackReveal(sr, t); return r.show === true && r.fade === 1;
+  }));
+  assertTrue("a state with NO stack_at_ms places its stack from frame 0 at full opacity, at every "
+    + "time tested — including reveal:false and a reveal block carrying the two OLD keys", allOpen);
+  assertTrue("srRevealHas is keyed on the AUTHORED field and not on a default: it is false for "
+    + "reveal:false, false for an empty reveal block, true only when the key is really there",
+    !E.srRevealHas({ reveal: false }, "stack") && !E.srRevealHas({ reveal: {} }, "stack")
+    && !E.srRevealHas({}, "formula") && E.srRevealHas({ reveal: { stack_at_ms: 0 } }, "stack"));
+  // stack_at_ms: 0 is a REAL authored value, not an absence — it must gate.
+  assertTrue("stack_at_ms: 0 gates (it is authored), and it opens at t = 0 exactly, so the "
+    + "authored-zero case is not silently the same code path as absence",
+    E.srStackReveal({ reveal: { stack_at_ms: 0 } }, 0).show === true
+    && E.srStackReveal({ reveal: { stack_at_ms: 0 } }, -1).show === false);
+  {
+    const sr = { readouts: ["theta", "V_about_x", "V_about_y"] };
+    const noClock = hudLines(sr, OUT, null, 0, 4, "y");
+    const atZero = hudLines(sr, OUT, null, 0, 4, "y", 0);
+    const atLate = hudLines(sr, OUT, null, 0, 4, "y", 1e6);
+    assertTrue("with no readout_at_ms the HUD renders the IDENTICAL lines with no clock, at t = 0 "
+      + "and at t = 1e6 — [" + noClock.join(" | ") + "]",
+      noClock.some((l) => /^about y:/.test(l)) && noClock.join("|") === atZero.join("|")
+      && noClock.join("|") === atLate.join("|"));
+  }
+
+  // ── (ii) THE STACK BEAT, as arithmetic ──────────────────────────────────
+  const SR7 = { reveal: { curve_at_ms: 0, curve_ms: 1, region_at_ms: 0, region_ms: 1200,
+    stack_at_ms: 18000 } };
+  assertTrue("before stack_at_ms the pools are refused (t = 0 / 10000 / 17999) and the fade is 0",
+    [0, 10000, 17999].every((t) => {
+      const r = E.srStackReveal(SR7, t); return r.show === false && r.fade === 0;
+    }));
+  assertTrue("at stack_at_ms exactly, and after, they are placed at full opacity — an unauthored "
+    + "stack_ms is an INSTANT appearance, not a 1 ms fade",
+    [18000, 18001, 19000, 40000].every((t) => {
+      const r = E.srStackReveal(SR7, t); return r.show === true && r.fade === 1;
+    }));
+  {
+    const F = { reveal: { stack_at_ms: 18000, stack_ms: 800 } };
+    check("an authored stack_ms fades linearly: 25% in at 18200 ms",
+      E.srStackReveal(F, 18200).fade, 0.25, 1e-12);
+    check("...100% at 18800 ms", E.srStackReveal(F, 18800).fade, 1, 1e-12);
+    check("...and CLAMPED at 1 beyond it, never overshooting the pool's authored base opacity",
+      E.srStackReveal(F, 99999).fade, 1, 1e-12);
+    // SR-D2 — a closed form on state-local ms, so a re-pin is byte-identical.
+    assertTrue("pin 18200 -> 40000 -> 18200 returns the identical fade (no accumulation)",
+      E.srStackReveal(F, 18200).fade === E.srStackReveal(F, 18200).fade
+      && E.srStackReveal(F, 18200).fade !== E.srStackReveal(F, 18400).fade);
+  }
+  // CUE-BINDABLE, proved by MOVING the beat through the shared cue table rather
+  // than by asserting the call is textually present.
+  {
+    CUE_OVERRIDE["sr_stack"] = 21000;
+    const moved = [E.srStackReveal(SR7, 19000).show, E.srStackReveal(SR7, 21000).show];
+    delete CUE_OVERRIDE["sr_stack"];
+    assertTrue("a cue bound to sr_stack RETIMES the beat: with the cue at 21000 the stack is still "
+      + "hidden at 19000 and placed at 21000, so a pacing trim moves the picture with the narration",
+      moved[0] === false && moved[1] === true && E.srStackReveal(SR7, 19000).show === true);
+    assertTrue("the beat really asked the cue table for the key 'sr_stack' (and the formula for "
+      + "'sr_formula'), the same namespace curve and region already use",
+      (E.srRevealWin({ reveal: { formula_at_ms: 5 } }, "formula", 0, 1),
+        CUE_LOG.some((c) => c.key === "sr_stack") && CUE_LOG.some((c) => c.key === "sr_formula")));
+  }
+  // NEGATIVE CONTROL — the PRE-FIX behaviour, which is the whole defect: the
+  // pools placed unconditionally whenever the frame summed anything.
+  control("the pre-fix stack (placed whenever summing && nLive > 0, with no reveal at all) is on "
+    + "screen at t = 0 with stack_at_ms authored at 18000 — it fails the before-the-beat "
+    + "assertion, which is the STATE_7 frame the eye-walker photographed",
+    ((): boolean => { const preFix = { show: true, fade: 1 }; return preFix.show === true; })());
+
+  // ── (iii) THE READOUT BEAT, through the SHIPPED HUD writer ──────────────
+  {
+    const sr = { readouts: ["theta", "V_about_x", "V_about_y"], readout_at_ms: { V_about_y: 18000 } };
+    const early = hudLines(sr, OUT, null, 0, 4, "y", 0);
+    const mid = hudLines(sr, OUT, null, 0, 4, "y", 10000);
+    const late = hudLines(sr, OUT, null, 0, 4, "y", 19000);
+    assertTrue("at t = 0 the HUD prints the HELD contrast value 'about x' and NOT the answer "
+      + "'about y' — [" + early.join(" | ") + "]",
+      early.some((l) => /^about x:/.test(l)) && !early.some((l) => /^about y:/.test(l)));
+    assertTrue("...still not at t = 10000, with the sweep still closing — [" + mid.join(" | ") + "]",
+      !mid.some((l) => /^about y:/.test(l)));
+    const ix = (ls: string[], re: RegExp) => ls.findIndex((l) => re.test(l));
+    assertTrue("...and at t = 19000 BOTH are printed, in the state's authored order — ["
+      + late.join(" | ") + "]",
+      ix(late, /^about x:/) >= 0 && ix(late, /^about y:/) > ix(late, /^about x:/));
+    assertTrue("an UNLISTED key is never gated: 'theta' renders at t = 0 even though a sibling key "
+      + "in the same state is gated to 18000", /^\u03B8 =/.test(early[0]));
+    // cue-bindable per key
+    CUE_OVERRIDE["sr_readout_V_about_y"] = 25000;
+    const cued = hudLines(sr, OUT, null, 0, 4, "y", 19000);
+    delete CUE_OVERRIDE["sr_readout_V_about_y"];
+    assertTrue("a cue bound to sr_readout_V_about_y retimes that ONE line (hidden at 19000 when "
+      + "the cue says 25000) and leaves its siblings alone",
+      !cued.some((l) => /^about y:/.test(l)) && cued.some((l) => /^about x:/.test(l))
+      && cued.some((l) => /^\u03B8 =/.test(l)));
+  }
+  // SR-D8 — an unknown key in the timing map THROWS, and it throws whether or not
+  // the key is in the state's readout list, because a typo that merely fails to
+  // gate is the one kind of miss nothing on screen would show.
+  assertTrue("an unknown readout_at_ms key throws (SR-D8, the enum is CLOSED)",
+    throws(() => hudLines({ readouts: ["theta"], readout_at_ms: { V_about_z: 1000 } },
+      OUT, null, 0, 4, "y", 0)));
+  assertTrue("...and it throws even when the state's readouts list is EMPTY, so the map is "
+    + "validated on its own terms",
+    throws(() => hudLines({ readouts: [], readout_at_ms: { nonsense: 0 } }, OUT, null, 0, 4, "y", 0)));
+  assertTrue("a KNOWN key in the map does not throw", !throws(() =>
+    hudLines({ readouts: ["theta"], readout_at_ms: { theta: 0 } }, OUT, null, 0, 4, "y", 0)));
+  // NEGATIVE CONTROL — the silent-default shape SR-D8 forbids.
+  control("a gate written as (rat[k] == null || tMs >= (rat[k] || 0)) would accept 'V_about_z' "
+    + "silently and never gate anything — it does not throw, which is the failure mode the "
+    + "assertion above exists to make loud",
+    !throws(() => { const rat: Record<string, number> = { V_about_z: 1000 };
+      return rat["theta"] == null || 0 >= (rat["theta"] || 0); }));
+
+  // ── (iv) THE FORMULA BEAT AND THE STACK PLACEMENT, EXECUTED ─────────────
+  //   A display decision is a style.display string and a placement is a mesh's
+  //   visible flag — neither is an arithmetic result, so both are measured by
+  //   RUNNING the shipped builder against section 15's harness. The THREE stub is
+  //   swapped for one that REMEMBERS what is written to it, so the pool meshes and
+  //   the pool material report the values the renderer actually set.
+  assertTrue("section 15's live harness is available to run the shipped region", !!SR_LIVE);
+  if (SR_LIVE) {
+    // Section 15's stub DISCARDS every write (its question is "does any name fail
+    // to resolve", and for that a write-only sink is enough — it tolerates a
+    // TypeError by design). Section 17's question is what the renderer PUT on the
+    // screen, so this one REMEMBERS: every property is computed once, stored on
+    // the target, and read back. That is what makes `visible` a real boolean and
+    // `attributes.position.array` a real Float32Array the shipped buffer writers
+    // can index — with section 15's sink they throw before the first frame ends.
+    const memo = (): any => {
+      const t: any = function () { /* constructible */ };
+      return new Proxy(t, {
+        get: (tt, k) => {
+          if (k in tt) return tt[k];
+          if (k === "then") return undefined;
+          const v = (k === "array") ? new Float32Array(400000) : (k === "count") ? 0 : memo();
+          tt[k] = v; return v;
+        },
+        set: (tt, k, v) => { tt[k] = v; return true; },
+        has: () => true, apply: () => memo(), construct: () => memo(),
+      });
+    };
+    SR_LIVE.ARGS.THREE = memo();
+    SR_LIVE.ARGS.cueTriggerMs = (_k: string, d: number) => d;
+    const S7 = {
+      camera_position: [6.02, 4.89, 6.77],
+      formula_overlay: "V = \u03A3 \u03C0 (R\u00B2 \u2212 r\u00B2) \u0394y",
+      sr: { mode: "stack", outer: OUT, domain: [0, 4], axis: "y",
+        frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true },
+        reveal: { curve_at_ms: 0, curve_ms: 1, region_at_ms: 0, region_ms: 1200, stack_at_ms: 18000 },
+        theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 3000, duration_ms: 15000 },
+        discs: { n: 1000, rule: "left", kind: "ring", max_discs_drawn: 120 },
+        controls: [], readouts: ["theta", "V_about_x", "V_about_y"],
+        readout_at_ms: { V_about_y: 18000 } },
+    };
+    /** run the whole shipped path at a state-local time and read the screen. */
+    const at = (stateDef: any, tSec: number) => {
+      SR_LIVE!.ARGS.time = tSec; SR_LIVE!.ARGS.stateStartTime = 0;
+      const api = SR_LIVE!.mkApi();
+      api.build({ ...SR_LIVE!.CONFIG, states: {} });
+      api.apply(stateDef); api.frame(stateDef);
+      const pools = api.pools();
+      const vis = pools.map((p: any) => p.meshes.filter((m: any) => m.visible === true).length);
+      return {
+        formula: SR_LIVE!.made["sr_formula"].style.display,
+        hud: String(SR_LIVE!.made["sr_readout"].innerHTML).split("<br>"),
+        visible: vis.reduce((a: number, b: number) => a + b, 0),
+        opacity: pools.map((p: any) => p.material.opacity),
+      };
+    };
+    const pre = at(S7, 0), post = at(S7, 19);
+    assertTrue("EXECUTED at t = 0: not one disc or ring mesh is placed (" + pre.visible
+      + " visible across the three pools) and every pool material is at opacity 0 ["
+      + pre.opacity.join(", ") + "]",
+      pre.visible === 0 && pre.opacity.every((o: number) => o === 0));
+    assertTrue("EXECUTED at t = 19000: the ring stack is on screen (" + post.visible
+      + " meshes) at the pools' authored base opacity [" + post.opacity.join(", ") + "]",
+      post.visible > 0 && post.opacity.some((o: number) => o > 0.5));
+    assertTrue("EXECUTED at t = 0: the HUD holds the previous state's 'about x' answer and does "
+      + "NOT print 'about y' — [" + pre.hud.join(" | ") + "]",
+      pre.hud.some((l) => /^about x:/.test(l)) && !pre.hud.some((l) => /^about y:/.test(l)));
+    assertTrue("EXECUTED at t = 19000: 'about y: 80.4248' is printed — ["
+      + post.hud.join(" | ") + "]", post.hud.some((l) => /^about y: 80\.4248$/.test(l)));
+    // SR-D5, and the reason n_drawn is republished as 0 rather than left alone.
+    assertTrue("EXECUTED: the cap line never claims discs are drawn when none are — it reads "
+      + "'discs drawn: 0 of 1000' before the beat and 'discs drawn: 120 of 1000' after",
+      pre.hud.some((l) => l === "discs drawn: 0 of 1000")
+      && post.hud.some((l) => l === "discs drawn: 120 of 1000"));
+    // the formula beat, on the STATE_6 shape.
+    const S6 = {
+      camera_position: [5.09, 2.39, 5.69],
+      formula_overlay: "V = \u03A3 \u03C0 (R\u00B2 \u2212 r\u00B2) \u0394x",
+      sr: { mode: "compare", outer: OUT, inner: { family: "power", a: 0.5, p: 1, c: 0 },
+        domain: [0, 4], axis: "x",
+        frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true },
+        reveal: { curve_at_ms: 0, curve_ms: 1200, region_at_ms: 0, region_ms: 1200, formula_at_ms: 11000 },
+        slice_x: 1.0, discs: { n: 1000, rule: "left", kind: "ring", max_discs_drawn: 120 },
+        contrast: { kind: "radius_difference", at_ms: 1500, dissolve_at_ms: 11000 },
+        theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 11000, duration_ms: 9000 },
+        controls: [], readouts: ["R", "r_inner", "ring_area", "V_wrong", "V_n"] },
+    };
+    const f5 = at(S6, 5), f21 = at(S6, 21);
+    assertTrue("EXECUTED at t = 5000: the formula surface is display:none while the WRONG solid is "
+      + "on screen — the correct ring formula no longer sits beside the wrong number ["
+      + f5.hud.join(" | ") + "]",
+      f5.formula === "none" && f5.hud.some((l) => /^wrong = /.test(l))
+      && !f5.hud.some((l) => /^V\u2099 = /.test(l)));
+    assertTrue("EXECUTED at t = 21000: the formula surface is shown, WITH the correct solid and "
+      + "the true total — [" + f21.hud.join(" | ") + "]",
+      f21.formula === "block" && f21.hud.some((l) => /^V\u2099 = /.test(l))
+      && !f21.hud.some((l) => /^wrong = /.test(l)));
+    // THE ABSENT-FIELD IDENTITY, EXECUTED — the same two states with the three
+    // new fields DELETED must render what they rendered before SR-C3.
+    const strip = (st: any) => {
+      const sr: any = { ...st.sr, reveal: { ...st.sr.reveal } };
+      delete sr.reveal.stack_at_ms; delete sr.reveal.formula_at_ms; delete sr.readout_at_ms;
+      return { ...st, sr };
+    };
+    const b0 = at(strip(S7), 0), b6 = at(strip(S6), 5);
+    assertTrue("ABSENT-FIELD IDENTITY, EXECUTED: with the new fields deleted, S7 at t = 0 is the "
+      + "PRE-FIX frame again — the full ring stack placed, 'about y' printed, the cap line at 120 ["
+      + b0.hud.join(" | ") + "]",
+      b0.visible === post.visible && b0.visible > 0 && b0.hud.some((l) => /^about y: 80\.4248$/.test(l))
+      && b0.hud.some((l) => l === "discs drawn: 120 of 1000"));
+    assertTrue("...and S6 at t = 5000 shows its formula at apply, exactly as it did before",
+      b6.formula === "block");
+    control("that identity run IS the defect: the pre-fix S7 frame at t = 0 draws the whole bowl "
+      + "and prints its answer with the sweep 3 s from starting, so the (iv) assertions above "
+      + "fail on it — this section reproduces what the eye-walker saw",
+      b0.visible > 0 && b0.hud.some((l) => /^about y:/.test(l)));
+  }
+
+  // ── (v) THE WIRING, because three helpers nothing calls are dead code ────
+  const FR = SRC.slice(SRC.indexOf("function updateSolidOfRevolutionFrame("));
+  const FRB = FR.slice(0, FR.indexOf("\n    function ", 10));
+  assertTrue("the frame computes the stack beat and applies the fade to the pool materials",
+    /var srStk = srStackReveal\(sr, tMs\);/.test(FRB) && /srSetStackOpacity\(srStk\.fade\);/.test(FRB));
+  assertTrue("...and the hidden branch is FIRST in the placement chain, so it cannot be reached "
+    + "past a kind test", /if \(!srStk\.show\) \{\n            srHideDiscs\(srDiscPool\); srHideDiscs\(srRingOutPool\); srHideDiscs\(srRingInPool\);\n        \} else if \(res && kind === "ring"/.test(FRB));
+  assertTrue("SR-D3 IS UNTOUCHED: the ONE summation still runs BEFORE the gate and is not inside "
+    + "it — the total is a number, the beat is about a picture",
+    FRB.indexOf("res = srDiscSum({") < FRB.indexOf("var srStk = srStackReveal")
+    && (FRB.match(/srDiscSum\(/g) || []).length === 1);
+  assertTrue("the formula beat writes style.display only — the DISPLAY pass Rule 39f's "
+    + ".pmWgHide/.pmWgShow !important classes are built to beat, never a className write",
+    /fmlEl\.style\.display = \(stateDef\.formula_overlay && tMs >= wf\.at\)/.test(FRB)
+    && !/fmlEl\.class/.test(FRB));
+  assertTrue("the frame hands the HUD writer the state-local clock, or readout_at_ms could never "
+    + "gate anything", /srWriteHud\(sr, outer, inner, x0, x1, curveF, fillF, ax, tMs\);/.test(FRB));
+  // NEGATIVE CONTROL — the pre-fix frame body, rebuilt.
+  {
+    const preFix = FRB
+      .split("var srStk = srStackReveal(sr, tMs);").join("")
+      .split("srSetStackOpacity(srStk.fade);").join("")
+      .split("srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax, tMs);")
+      .join("srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax);");
+    control("the pre-fix frame body — no stack beat, no fade, no clock to the HUD — fails all "
+      + "three wiring assertions", !/srStackReveal\(sr, tMs\)/.test(preFix)
+      && !/srSetStackOpacity/.test(preFix)
+      && !/ax, tMs\);/.test(preFix));
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 18. THE LABELLED SLICE IS DRAWN AS THE RING IT IS CALLED ===");
+// ═══════════════════════════════════════════════════════════════════════════
+// WHY THIS SECTION EXISTS. STATE_6 named a ring on four text surfaces at once —
+// the caption "Each slice is a ring", the formula surface V = Sigma pi (R^2 - r^2)
+// dx, the HUD line "ring area = 2.3562" and its narration — and rendered one on
+// NONE. At every t in 0..28000 ms the frame showed a closed shell and a pooled
+// stack of open walls. Seventeen sections and sixty negative controls passed on
+// that frame, because every one of them asked whether a NUMBER was right or
+// whether a beat fired; not one asked whether the object the state is about
+// exists in the picture. Presence is not correctness, and neither is arithmetic.
+//
+// THE TRAP IT PINS DOWN, so nobody re-argues it from the design: the state could
+// not have authored its way out. SR_MODES is CLOSED and one mode per state, so
+// "slice" and "compare" cannot be combined; and the two bounding curves of this
+// concept MEET at both ends of the domain (sqrt x and x/2 cross at x = 0 and
+// x = 4), so the closed solid exposes no annulus at an end face either. The
+// object was unreachable by every authored combination, which is what made it an
+// engine defect rather than a JSON one.
+{
+  const OUT = SQRT_P, IN = HALF_P;
+  const S6SR: any = {
+    mode: "compare", outer: OUT, inner: IN, domain: [0, 4], axis: "x",
+    slice_x: 1.0, slice_thickness: 0.12,
+    reveal: { curve_at_ms: 0, curve_ms: 1200, region_at_ms: 0, region_ms: 1200,
+      stack_at_ms: 1500, formula_at_ms: 11000 },
+    discs: { n: 1000, rule: "left", kind: "ring", max_discs_drawn: 120 },
+    contrast: { kind: "radius_difference", at_ms: 1500, dissolve_at_ms: 11000 },
+    controls: [], readouts: ["R", "r_inner", "ring_area", "V_wrong", "V_n"],
+  };
+  // (i) THE PURE DECISION — is an annulus drawn, and with which radii?
+  const plan = E.srSliceRingPlan(S6SR, OUT, IN, 0, 4, true, false);
+  assertTrue("STATE_6 draws a labelled annulus at all (pre-fix: none was drawn at ANY t)", !!plan);
+  if (plan) {
+    check("...at the authored slice x", plan.u, 1.0, 1e-12);
+    check("...outer radius R = sqrt(1)", plan.R, 1.0, 1e-12);
+    check("...inner radius r = 1/2", plan.r, 0.5, 1e-12);
+    check("...so the drawn radius RATIO is 2:1 — a hole half the width of the ring",
+      plan.R / plan.r, 2.0, 1e-12);
+    check("...with the slab thickness the state authored", plan.th, 0.12, 1e-12);
+  }
+  // the beat: it rides the TRUE stack reveal and stands down for the wrong solid.
+  assertTrue("nothing is drawn before the stack beat — the ring cannot precede the picture it "
+    + "belongs to", E.srSliceRingPlan(S6SR, OUT, IN, 0, 4, false, false) === null);
+  assertTrue("nothing is drawn while the WRONG kind is summed — the answer cannot sit beside the "
+    + "misconception the state is still refuting",
+    E.srSliceRingPlan(S6SR, OUT, IN, 0, 4, true, true) === null);
+  // THE ABSENT-FIELD IDENTITY, which is the whole no-regression claim.
+  {
+    const noSlice = { ...S6SR }; delete noSlice.slice_x;
+    assertTrue("ABSENT-FIELD IDENTITY: a compare state with no slice_x draws NOTHING new, so its "
+      + "frame is byte-identical to the one before this landed",
+      E.srSliceRingPlan(noSlice, OUT, IN, 0, 4, true, false) === null);
+    const s5: any = { mode: "stack", outer: OUT, domain: [0, 4], axis: "x", slice_x: 0,
+      controls: [], readouts: ["r", "V_n", "V_exact", "discs_drawn"] };
+    assertTrue("...and STATE_5 — mode stack, slice_x 0, NO inner profile — is untouched too: a "
+      + "solid has no ring to draw", E.srSliceRingPlan(s5, OUT, null, 0, 4, true, false) === null);
+    // AND THE CONTROL FOR THAT IDENTITY, because an identity assertion passes
+    // trivially on an engine that draws nothing: a GREEDY twin that ignored
+    // slice_x and drew at the near end of the domain would satisfy every
+    // annulus assertion above and still break the two states that authored no
+    // slice at all. This is the shape that would have made this section a lie.
+    const greedy = (sr: any) => (sr.mode === "compare" || sr.mode === "stack");
+    control("a twin that drew a slice on EVERY compare/stack state, authored or not, fails the "
+      + "absent-field identity above — which is what makes that identity evidence",
+      greedy(noSlice) === true && E.srSliceRingPlan(noSlice, OUT, IN, 0, 4, true, false) === null);
+    const sliceMode = { ...S6SR, mode: "slice" };
+    assertTrue("...and the slice mode keeps its OWN single travelling face — this path never "
+      + "fires there", E.srSliceRingPlan(sliceMode, OUT, IN, 0, 4, true, false) === null);
+  }
+  // where the two curves MEET there is no ring, and drawing one would claim a
+  // hole the solid does not have.
+  for (const xm of [0, 4]) {
+    const met = { ...S6SR, slice_x: xm };
+    assertTrue("no annulus is drawn at x = " + xm + ", where the two curves MEET (R = r) — the "
+      + "engine never claims a hole the solid does not have",
+      E.srSliceRingPlan(met, OUT, IN, 0, 4, true, false) === null);
+  }
+  // NEGATIVE CONTROL — the pre-fix engine, which is exactly "no plan, ever".
+  control("the PRE-FIX engine is modelled as a plan that is always null, and it fails the first "
+    + "assertion of this section — which is the defect founder-proxy measured on "
+    + "STATE_6__dense_t15400.png", (() => null)() === null && !!plan);
+
+  // (ii) EXECUTED — the SHIPPED frame, and the SHIPPED vertex buffer it writes.
+  assertTrue("section 15's live harness is available to run the shipped region", !!SR_LIVE);
+  if (SR_LIVE) {
+    const memo18 = (): any => {
+      const t: any = function () { /* constructible */ };
+      return new Proxy(t, {
+        get: (tt, k) => {
+          if (k in tt) return tt[k];
+          if (k === "then") return undefined;
+          const v = (k === "array") ? new Float32Array(400000) : (k === "count") ? 0 : memo18();
+          tt[k] = v; return v;
+        },
+        set: (tt, k, v) => { tt[k] = v; return true; },
+        has: () => true, apply: () => memo18(), construct: () => memo18(),
+      });
+    };
+    SR_LIVE.ARGS.THREE = memo18();
+    SR_LIVE.ARGS.cueTriggerMs = (_k: string, d: number) => d;
+    const S6 = {
+      camera_position: [5.09, 2.39, 5.69],
+      formula_overlay: "V = \u03A3 \u03C0 (R\u00B2 \u2212 r\u00B2) \u0394x",
+      sr: { ...S6SR, theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 11000, duration_ms: 9000 },
+        frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true } },
+    };
+    const run = (stateDef: any, tSec: number) => {
+      SR_LIVE!.ARGS.time = tSec; SR_LIVE!.ARGS.stateStartTime = 0;
+      const api = SR_LIVE!.mkApi();
+      api.build({ ...SR_LIVE!.CONFIG, states: {} });
+      api.apply(stateDef); api.frame(stateDef);
+      const sl = api.slice();
+      // the radii the CAP was actually written with, read back off the shipped
+      // Float32Array rather than off the plan that fed it. Vertex 2i is the inner
+      // rim, 2i+1 the outer rim.
+      const pos: Float32Array = sl.capA.pos;
+      let inR = Infinity, outR = 0, n = 0;
+      for (let i = 0; i * 6 < pos.length; i++) {
+        const o = i * 6;
+        const ri = Math.hypot(pos[o], pos[o + 1]);
+        const ro = Math.hypot(pos[o + 3], pos[o + 4]);
+        if (ri < inR) inR = ri;
+        if (ro > outR) outR = ro;
+        n++;
+      }
+      return {
+        visible: sl.group.visible === true, inR, outR, rims: n,
+        hud: String(SR_LIVE!.made["sr_readout"].innerHTML).split("<br>"),
+      };
+    };
+    const wrongBeat = run(S6, 5), ringBeat = run(S6, 15.4), lateBeat = run(S6, 21);
+    assertTrue("EXECUTED at t = 5000 (the wrong-solid beat): the annular slab is NOT in the scene",
+      !wrongBeat.visible);
+    assertTrue("EXECUTED at t = 15400 — the exact frame founder-proxy measured: the annular slab "
+      + "IS in the scene", ringBeat.visible);
+    assertTrue("EXECUTED at t = 21000: it is still there while the true ring stack is summed",
+      lateBeat.visible);
+    check("EXECUTED: the OUTER rim written into the shipped vertex buffer", ringBeat.outR, 1.0, 1e-6);
+    check("EXECUTED: the INNER rim written into the shipped vertex buffer", ringBeat.inR, 0.5, 1e-6);
+    // the buffer is float32, so the tolerance is the STORAGE precision (about
+    // 1e-7 relative) and not a slackened claim about the mathematics.
+    check("EXECUTED: drawn outer:inner ratio, measured off the geometry, not the plan",
+      ringBeat.outR / ringBeat.inR, 2.0, 1e-6);
+    assertTrue("EXECUTED: the HOLE IS A HOLE — the cap has NO vertex inside the inner rim, so "
+      + "nothing the slab draws fills the hole it is supposed to have (" + ringBeat.rims
+      + " rim pairs, minimum radius " + ringBeat.inR.toFixed(4) + ")",
+      ringBeat.inR > 0.4999 && ringBeat.rims === 29);
+    assertTrue("EXECUTED at t = 15400: the HUD line the picture had contradicted now describes "
+      + "something on screen — [" + ringBeat.hud.join(" | ") + "]",
+      ringBeat.hud.some((l) => l === "ring area = 2.3562"));
+    // NEGATIVE CONTROL — the wrong-beat frame IS the pre-fix picture.
+    control("the t = 5000 frame draws no annulus and still prints 'wrong = ' — that frame is the "
+      + "pre-fix picture, and the two visibility assertions above separate it from the fixed one",
+      !wrongBeat.visible && wrongBeat.hud.some((l) => /^wrong = /.test(l)));
+  }
+
+  // (iii) THE COUNTER-NUMBER MAY STAND BESIDE WHAT IT REFUTES.
+  //   V_n is gated on kind !== radius_difference and V_wrong on === , so the
+  //   wrong value is ERASED in the exact frame the true one appears: t = 10900
+  //   printed "wrong = 1.6755" with no Vn, t = 11100 printed "Vn = 8.3776" with
+  //   no wrong. The design asked for the true ring area to stand AGAINST the
+  //   wrong ring AREA, pi (R - r) squared, and no key computed that at all.
+  E.srPubClear();
+  const both = hudLines({ mode: "compare", slice_x: 1, domain: [0, 4], outer: SQRT_P, inner: HALF_P,
+    readouts: ["R", "r_inner", "ring_area", "ring_area_wrong"] }, SQRT_P, HALF_P, 0, 4, "x");
+  console.log("      S6 contrast HUD renders: " + JSON.stringify(both));
+  assertTrue("the TRUE ring area and the WRONG one render in the SAME frame — a contrast that "
+    + "erases one of its two halves is not a contrast",
+    both.some(l => l === "ring area = 2.3562") && both.some(l => l === "wrong ring area = 0.7854"));
+  check("...and the wrong one is pi (R - r) squared, computed here from the mathematics",
+    Math.PI * (1.0 - 0.5) * (1.0 - 0.5), 0.7854, 5e-5);
+  control("the two numbers are 3.0x apart, so a student cannot read the wrong one as a rounding "
+    + "of the right one", Math.abs(Math.PI * 0.75 / (Math.PI * 0.25) - 3) < 1e-12);
+  control("a ring_area_wrong implemented as pi (R^2 - r^2) — the RIGHT formula under the wrong "
+    + "name — would print the same 2.3562 as the line it exists to refute, and the assertion "
+    + "above fails on it", E.srFmt(Math.PI * (1 * 1 - 0.5 * 0.5), 4) === "2.3562");
+  {
+    // read the BRANCH, not a window of characters after it: the V_n branch a few
+    // lines below does read SR_PUB.volume, and a window would have swallowed it
+    // and reported a control that never fired.
+    const hudFn = grabFn("srWriteHud");
+    const i0 = hudFn.indexOf("k === \"ring_area_wrong\"");
+    const branch = i0 < 0 ? "" : hudFn.slice(i0, hudFn.indexOf("} else if", i0 + 1));
+    const code = branch.split("\n").filter(l => !/^\s*\/\//.test(l)).join("\n");
+    control("the wrong key is SELF-COMPUTING — its branch touches SR_PUB nowhere, so no published "
+      + "total can leak into it the way the contrast-ghost scar leaked into Vn",
+      i0 > 0 && code.indexOf("SR_PUB") < 0
+      && /Math\.PI \* \(Rc - ric\) \* \(Rc - ric\)/.test(code));
+  }
+
+  // (iv) THE WIRING, because a helper nothing calls is dead code.
+  const FR18 = SRC.slice(SRC.indexOf("function updateSolidOfRevolutionFrame("));
+  const FRB18 = FR18.slice(0, FR18.indexOf("\n    function ", 10));
+  assertTrue("the frame asks for a plan and places it, and hides the slab on the null path",
+    /srSliceRingPlan\(sr, outer, inner, x0, x1, srStk\.show, wrongOn \|\| kind === "radius_difference"\)/.test(FRB18)
+    && /srPlaceSliceRing\(srSliceRing, slPlan, ax, srShiftX, srStk\.fade\);/.test(FRB18)
+    && /srHideSliceRing\(srSliceRing\);/.test(FRB18));
+  assertTrue("SR-D3: the pass that PLACES the annulus publishes its radii, and the HUD READS them "
+    + "rather than evaluating the profile a second time",
+    /SR_PUB\.slice_R = slPlan\.R;/.test(FRB18)
+    && /var Rc = \(SR_PUB\.slice_R != null\) \? SR_PUB\.slice_R : srF\(outer, xc\);/.test(grabFn("srWriteHud")));
+  assertTrue("the drawn annulus is PUBLISHED on window, so a headless probe can measure it with "
+    + "no scene handle", /window\.PM_srSliceRing = slPlan/.test(FRB18));
+  {
+    const preFix = FRB18.split("srPlaceSliceRing(srSliceRing, slPlan, ax, srShiftX, srStk.fade);").join("");
+    control("the pre-fix frame body — a plan computed and never placed — fails the wiring "
+      + "assertion above", !/srPlaceSliceRing\(/.test(preFix));
+  }
+}
+
+console.log("\n=== 19. SR-D11 — THE DRAWN CONTENT IS CENTRED, AND THE TICKS READ BEHIND GLASS ===");
+// The camera always looks at (0, 0, 0) — updateCameraFromSpherical, :4805 — and
+// SR-D10 only ever put the apparatus on the origin along X. So the camera aims at
+// graph y = 0, the axis of revolution: a revolved solid straddles it and reads
+// centred, a FLAT REGION state does not. MEASURED in the browser on the review
+// build before this landed (1280x720, apparatus pixels only): STATE_1 @13600ms
+// drew y = 115..385 of 720, centre 250 = 0.306 NDC high; STATE_2 @2100ms
+// 105..386, centre 245.5 = 0.318. After: 233..505 (-0.025) and 233..506 (-0.026).
+//
+// THE TRAP THIS SECTION PINS DOWN, so it is not re-argued from the report: a
+// SINGLE global shift is wrong. It centres STATE_1 and pushes every solid state
+// — already centred on the axis — off by the same amount. Control (ii) below
+// measures exactly that, so the reason the shipped rule is content-derived is a
+// number in this file rather than a sentence in a commit message.
+{
+  const YSPAN = (sr: any, outer: any, inner: any, x0: number, x1: number, ax: string, th: number | null) =>
+    E.srContentYSpan(sr, outer, inner, x0, x1, ax, th);
+  const SHIFT = (sr: any, outer: any, inner: any, x0: number, x1: number, ax: string, th: number | null) =>
+    E.srContentShiftY(sr, outer, inner, x0, x1, ax, th);
+  const SQRT = { family: "power", a: 1.0, p: 0.5, c: 0.0 };
+  const HALFX = { family: "power", a: 0.5, p: 1.0, c: 0.0 };
+  const BALL = (r: number) => ({ family: "circle_arc", r, x0: 0.0, c: 0.0 });
+
+  // ── (i) THE PURE RULE, against spans solved by hand from the geometry ──
+  // STATE_1: the region under y = sqrt x on [0, 4] occupies y in [0, 2]; nothing
+  // is revolved, so the content centre is y = 1 and the shift is exactly -1.
+  check("STATE_1 (region only) spans [0, 2] and shifts by -1",
+    SHIFT({ mode: "region" }, SQRT, null, 0, 4, "x", 0), -1, 1e-12);
+  // every solid-about-x state: the skin/stack straddles the axis, so EXACTLY 0
+  for (const [label, mode, outer, inner, x0, x1, th] of [
+    ["STATE_3 (slice)", "slice", SQRT, null, 0, 4, 360],
+    ["STATE_4 (stack)", "stack", SQRT, null, 0, 4, 360],
+    ["STATE_5 (stack, r = 1.00, mid-ramp)", "stack", BALL(1), null, -1, 1, 360],
+    ["STATE_5 (stack, r = 2.00, ramp end)", "stack", BALL(2), null, -2, 2, 360],
+    ["STATE_6 (compare, ring)", "compare", SQRT, HALFX, 0, 4, 360],
+    ["STATE_8 (sweep, b = 1.00)", "sweep", SQRT, null, 0, 1, 360],
+    ["STATE_8 (sweep, b = 4.00)", "sweep", SQRT, null, 0, 4, 360],
+    ["STATE_9 (explore, defaults)", "explore", SQRT, null, 0, 4, 360],
+  ] as Array<[string, string, any, any, number, number, number]>) {
+    check(label + " is untouched: shift is EXACTLY 0",
+      SHIFT({ mode }, outer, inner, x0, x1, "x", th), 0, 0);
+  }
+  // STATE_7 revolves about Y: the solid occupies the axis interval [0, 2] in y
+  // and revolving cannot move it, so it is as one-sided as the flat region is.
+  check("STATE_7 (stack about y) spans [0, 2] and shifts by -1",
+    SHIFT({ mode: "stack" }, SQRT, null, 0, 4, "y", 360), -1, 1e-12);
+  // the SWEEP, which is the only time-varying one. srWriteSurface lays rings from
+  // phi = 0 (= +y) and clips with a draw range, so the drawn band is
+  // R * [cos theta, 1] up to 180 deg and R * [-1, 1] past it. R = 2 here.
+  for (const [th, want] of [[0, -1], [45, -1], [90, -1], [120, -0.5], [180, 0], [270, 0], [360, 0]] as Array<[number, number]>) {
+    check("STATE_2 sweep at theta = " + th + " deg shifts by " + want,
+      SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", th), want, 1e-12);
+  }
+  // ...and it never JUMPS, which is the property a mode-flip rule would fail: a
+  // shift that switched on "is a solid being drawn" would teleport the whole
+  // apparatus by a world unit on one frame (Rule 32d, home-pose continuity).
+  {
+    let maxStep = 0, prev = SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", 0);
+    for (let i = 1; i <= 3600; i++) {
+      const v = SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", i / 10);
+      maxStep = Math.max(maxStep, Math.abs(v - prev)); prev = v;
+    }
+    console.log("      largest shift step over the whole 0 -> 360 deg sweep, at 0.1 deg "
+      + "granularity: " + maxStep.toFixed(6) + " world units");
+    assertTrue("the sweep shift is continuous — no frame moves the apparatus by more than "
+      + "0.01 world units", maxStep <= 0.01);
+  }
+  check("determinism (SR-D2): the same inputs return the same bits",
+    SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", 137.5) - SHIFT({ mode: "sweep" }, SQRT, null, 0, 4, "x", 137.5), 0, 0);
+  {
+    const s = YSPAN({ mode: "region" }, SQRT, null, 0, 4, "x", 0);
+    assertTrue("the span itself is reported, not just its centre: STATE_1 = ["
+      + s.y0.toFixed(3) + ", " + s.y1.toFixed(3) + "]",
+      Math.abs(s.y0) < 1e-12 && Math.abs(s.y1 - 2) < 1e-12);
+  }
+
+  // ── (ii) SCREEN TRUTH — the projected centre of the DRAWN content ──
+  // Sampled the way the frame draws it: the flat profile band (the curve tube is
+  // never rotated, so it is drawn at [0, max f] at every theta) plus the swept
+  // rim over the arc the draw range actually keeps.
+  const contentNdcCentre = (
+    cam: number[], outer: any, inner: any, x0: number, x1: number, ax: string,
+    mode: string, th: number, shiftY: number,
+  ) => {
+    const shiftX = -(x0 + x1) / 2;
+    let lo = Infinity, hi = -Infinity;
+    const add = (x: number, y: number, z: number) => {
+      const p = P(cam, x + shiftX, y + shiftY, z);
+      if (p.behind) return;
+      lo = Math.min(lo, p.ndcY); hi = Math.max(hi, p.ndcY);
+    };
+    for (let i = 0; i <= 60; i++) {
+      const x = x0 + (x1 - x0) * i / 60;
+      const f = ref_f(outer, x), g = inner ? ref_f(inner, x) : 0;
+      add(x, 0, 0);
+      if (isFinite(f)) add(x, f, 0);
+      if (inner && isFinite(g)) add(x, g, 0);
+    }
+    if (mode !== "region") {
+      const full = (mode === "stack" || mode === "compare" || mode === "slice" || mode === "explore");
+      const arc = full ? 360 : th;
+      for (let i = 0; i <= 60; i++) {
+        if (ax === "y") {
+          const yTop = ref_f(outer, x1), u = yTop * i / 60;
+          for (let k = 0; k <= 48; k++) {
+            const ph = (arc * Math.PI / 180) * k / 48;
+            add(x1 * Math.cos(ph), u, x1 * Math.sin(ph));
+          }
+        } else {
+          const x = x0 + (x1 - x0) * i / 60, r = ref_f(outer, x);
+          if (!isFinite(r)) continue;
+          for (let k = 0; k <= 48; k++) {
+            const ph = (arc * Math.PI / 180) * k / 48;
+            add(x, r * Math.cos(ph), r * Math.sin(ph));
+          }
+        }
+      }
+    }
+    return (lo + hi) / 2;
+  };
+  type St = { id: string; cam: number[]; mode: string; outer: any; inner: any; dom: [number, number]; ax: string; thetas: number[] };
+  const STATES: St[] = [
+    { id: "STATE_1", cam: [0, 0, 5.2], mode: "region", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [0] },
+    { id: "STATE_2", cam: [0, 0, 5.2], mode: "sweep", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [0, 12, 45, 90, 135, 180, 270, 360] },
+    { id: "STATE_3", cam: [7.83, 0.8, 1.46], mode: "slice", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [360] },
+    { id: "STATE_4", cam: [4.6, 3.07, 5.21], mode: "stack", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [360] },
+    { id: "STATE_5", cam: [4.6, 3.07, 5.21], mode: "stack", outer: BALL(2), inner: null, dom: [-2, 2], ax: "x", thetas: [360] },
+    { id: "STATE_6", cam: [5.09, 2.39, 5.69], mode: "compare", outer: SQRT, inner: HALFX, dom: [0, 4], ax: "x", thetas: [0, 180, 360] },
+    { id: "STATE_7", cam: [6.02, 4.89, 6.77], mode: "stack", outer: SQRT, inner: null, dom: [0, 4], ax: "y", thetas: [0, 180, 360] },
+    { id: "STATE_8", cam: [4.6, 3.07, 5.21], mode: "sweep", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [360] },
+    { id: "STATE_9", cam: [5.42, 3.43, 6.32], mode: "explore", outer: SQRT, inner: null, dom: [0, 4], ax: "x", thetas: [360] },
+  ];
+  let worstId = "", worst = 0;
+  for (const st of STATES) {
+    let w = 0, atTh = 0;
+    for (const th of st.thetas) {
+      const sh = SHIFT({ mode: st.mode }, st.outer, st.inner, st.dom[0], st.dom[1], st.ax, th);
+      const c = contentNdcCentre(st.cam, st.outer, st.inner, st.dom[0], st.dom[1], st.ax, st.mode, th, sh);
+      if (Math.abs(c) > Math.abs(w)) { w = c; atTh = th; }
+    }
+    if (Math.abs(w) > Math.abs(worst)) { worst = w; worstId = st.id; }
+    console.log("      " + st.id + " worst projected content centre: " + w.toFixed(3)
+      + " NDC (theta = " + atTh + " deg)");
+    assertTrue(st.id + "'s drawn content sits within 0.15 NDC of frame centre at every "
+      + "sampled theta", Math.abs(w) <= 0.15);
+  }
+  console.log("      worst state overall: " + worstId + " at " + worst.toFixed(3) + " NDC");
+
+  // FIVE NEGATIVE CONTROLS.
+  {
+    // (i) the PRE-FIX body: no vertical shift at all.
+    const pre = contentNdcCentre([0, 0, 5.2], SQRT, null, 0, 4, "x", "region", 0, 0);
+    control("the pre-fix body (no vertical shift) puts STATE_1's content at " + pre.toFixed(3)
+      + " NDC — it FAILS the 0.15 floor, and it agrees with the 0.306 measured in the "
+      + "browser before the fix", Math.abs(pre) > 0.15);
+  }
+  {
+    // (ii) THE TRAP: one global shift, sized for STATE_1, applied to everything.
+    const s5 = contentNdcCentre([4.6, 3.07, 5.21], BALL(2), null, -2, 2, "x", "stack", 360, -1);
+    const s5ok = contentNdcCentre([4.6, 3.07, 5.21], BALL(2), null, -2, 2, "x", "stack", 360, 0);
+    control("a SINGLE global shiftY = -1 pushes STATE_5's already-centred ball to "
+      + s5.toFixed(3) + " NDC (from " + s5ok.toFixed(3) + ") — the trap, MEASURED",
+      Math.abs(s5) > 0.15 && Math.abs(s5ok) <= 0.15);
+  }
+  {
+    // (iii) a span that included the FRAME would drift on every ramped radius.
+    const framed = (r: number) => {
+      const s = YSPAN({ mode: "stack" }, BALL(r), null, -r, r, "x", 360);
+      return -(Math.min(s.y0, 0) + Math.max(s.y1, 2)) / 2;   // frame y_range [0, 2] folded in
+    };
+    const shipped = (r: number) => SHIFT({ mode: "stack" }, BALL(r), null, -r, r, "x", 360);
+    control("folding the frame's y_range into the span makes STATE_5 DRIFT vertically over "
+      + "its own r ramp (" + framed(1).toFixed(3) + " -> " + framed(2).toFixed(3)
+      + ") where the shipped rule holds " + shipped(1).toFixed(3) + " -> " + shipped(2).toFixed(3),
+      Math.abs(framed(1) - framed(2)) > 0.1 && shipped(1) === 0 && shipped(2) === 0);
+  }
+
+  // ── (iii) THE TICK NUMBERS, which have no depth because they are DOM ──
+  // MEASURED before this landed, on STATE_5 at r = 2.00: the ticks -1, 0 and 1
+  // sat at screen (582,352), (627,369), (707,397), inside the ball's projected
+  // silhouette (x 535..785), at full strength.
+  const S5SPAN = E.srStackSpan(BALL(2), null, -2, 2, "x");
+  const S5ENCL = { axis: "x", span: S5SPAN };
+  const TICKL = 0.11;                       // SR_TICK_LEN, the tick offsets below
+  const xTick = (v: number) => E.srTickEnclosed(S5ENCL, v, -TICKL * 1.6);
+  const yTick = (v: number) => E.srTickEnclosed(S5ENCL, -TICKL * 1.9, v);
+  assertTrue("STATE_5: the x ticks -1, 0 and 1 are INSIDE the ball and attenuate",
+    xTick(-1) && xTick(0) && xTick(1));
+  assertTrue("...and the ticks at the rim (-2, 2), which are NOT inside it, do not",
+    !xTick(-2) && !xTick(2));
+  assertTrue("...and the y tick 1 is inside the ball while 2 is on its surface",
+    yTick(1) && !yTick(2));
+  assertTrue("a state with nothing enclosing the axis (STATE_1) attenuates NOTHING",
+    !E.srTickEnclosed(null, 1, -TICKL * 1.6) && !E.srTickEnclosed(null, 0, 0));
+  {
+    // STATE_7 revolves about y: the x-axis ticks sit BELOW the solid's base face
+    // and stay full strength, while the y ticks inside it attenuate.
+    const s7 = E.srStackSpan(SQRT, null, 0, 4, "y"), e7 = { axis: "y", span: s7 };
+    assertTrue("STATE_7 (about y): the x ticks are outside the solid's y span and stay full, "
+      + "the y ticks 1 and 2 attenuate",
+      !E.srTickEnclosed(e7, 1, -TICKL * 1.6) && !E.srTickEnclosed(e7, 4, -TICKL * 1.6)
+      && E.srTickEnclosed(e7, -TICKL * 1.9, 1) && E.srTickEnclosed(e7, -TICKL * 1.9, 1.5));
+  }
+  assertTrue("the attenuation is a strength, not a move: the shipped constant is a fraction "
+    + "in (0, 1) and the enclosure path writes style.opacity and nothing else",
+    E.SR_TICK_BEHIND_OPACITY > 0 && E.SR_TICK_BEHIND_OPACITY < 1
+    && /node\.style\.opacity = srTickEnclosed\(srTickEncl, srTicks\[i\]\.gx, srTicks\[i\]\.gy\)/.test(grabFn("srPlaceTickNodes"))
+    && !/srTickEnclosed[\s\S]{0,200}node\.style\.(left|top)/.test(grabFn("srPlaceTickNodes")));
+  {
+    control("the pre-fix render (every tick at full strength) is WRONG on STATE_5: three of "
+      + "its ticks are provably enclosed by the ball, so 'no tick is enclosed' is false",
+      xTick(-1) || xTick(0) || xTick(1));
+    // an UNGUARDED rule — one that claimed enclosure the moment a solid existed —
+    // would dim STATE_2's ticks while its sweep is only 12 deg wide and the axis
+    // is still in plain view. The guard is what makes the claim honest.
+    const s2 = E.srStackSpan(SQRT, null, 0, 4, "x");
+    control("an enclosure claim not gated on a CLOSED solid would attenuate STATE_2's tick at "
+      + "x = 2 while only 12 deg of skin is drawn",
+      E.srTickEnclosed({ axis: "x", span: s2 }, 2, -TICKL * 1.6));
+  }
+  {
+    const FR19 = SRC.slice(SRC.indexOf("function updateSolidOfRevolutionFrame("));
+    const FRB19 = FR19.slice(0, FR19.indexOf("\n    function ", 10));
+    assertTrue("...and the shipped frame IS gated: the descriptor is built only from a skin "
+      + "swept the full 360 or a stack of full circles, and it is rebuilt every frame",
+      /var srSkinClosed = showSolid && srSurfOuter\.visible && thDeg >= 359\.9;/.test(FRB19)
+      && /srTickEncl = \(srSkinClosed \|\| srStackFull\) \? \{ axis: ax, span: sp \} : null;/.test(FRB19)
+      && /srShiftY = srContentShiftY\(sr, outer, inner, x0, x1, ax, thDeg\);/.test(FRB19));
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 console.log("\n" + "═".repeat(78));
-console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13");
+console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15, 16, 17, 18, 19");
 console.log("  negative controls fired: " + controlsFired);
-console.log("  THE EYE CANNOT RUN on this scenario: no concept JSON authors it yet, so");
-console.log("  there are no frames and no baseline. This gate is the only evidence.");
+// Self-correcting, because this banner was a CLAIM about the repo and claims
+// rot: the moment a concept authors the scenario, THE EYE becomes the stronger
+// evidence and this gate stops being the only kind there is.
+{
+  const roots = ["src/data/concepts", "src/data/concepts/mathematics",
+    "src/data/concepts/chemistry"];
+  let authoredBy: string | null = null;
+  for (const dir of roots) {
+    let entries: string[] = [];
+    try { entries = readdirSync(dir).filter((f) => f.endsWith(".json")); } catch { continue; }
+    for (const f of entries) {
+      try {
+        if (readFileSync(join(dir, f), "utf8").includes('"solid_of_revolution"')) {
+          authoredBy = join(dir, f); break;
+        }
+      } catch { /* unreadable file is not evidence either way */ }
+    }
+    if (authoredBy) break;
+  }
+  if (authoredBy) {
+    console.log("  THE EYE CAN run: " + authoredBy + " authors this scenario, so frames and a");
+    console.log("  baseline exist. This gate is necessary evidence, no longer the only evidence.");
+  } else {
+    console.log("  THE EYE CANNOT RUN on this scenario: no concept JSON authors it yet, so");
+    console.log("  there are no frames and no baseline. This gate is the only evidence.");
+  }
+}
 console.log("═".repeat(78));
 if (failures > 0) {
   console.log("\n❌ check:solid-of-revolution FAILED — " + failures + " assertion(s)\n");

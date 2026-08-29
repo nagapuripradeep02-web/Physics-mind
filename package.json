@@ -32,7 +32,7 @@
     "deploy:review": "npm run deploy:app",
     "deploy:cf-site": "npx wrangler deploy",
     "deploy:app": "npx wrangler deploy -c wrangler.app.toml",
-    "deploy:answers": "npm run build:answers:hosted && npx wrangler deploy -c wrangler.answers.toml",
+    "deploy:answers": "npm run build:answers:gated:mpc && npx wrangler deploy -c wrangler.answers.toml",
     "check:scenarios": "npx tsx src/scripts/check-scenarios.ts",
     "check:renderer-syntax": "npx tsx src/scripts/check-renderer-syntax.ts",
     "check:motion-registry": "npx tsx src/scripts/audit_motion_registry.ts",
@@ -73,21 +73,30 @@
     "build:answers": "npx tsx src/scripts/build_answer_book.ts",
     "build:answers:hosted": "npx tsx src/scripts/build_answer_book.ts --hosted",
     "build:answers:gated": "npx tsx src/scripts/build_answer_book.ts --gated",
+    "build:answers:mpc": "npx tsx src/scripts/build_answer_book.ts --hosted --stream=mpc && npx tsx src/scripts/build_og_card.ts --stream=mpc",
     "content:push": "npx tsx --env-file=.env.local src/scripts/push_answer_content.ts",
     "serve:answers:gated": "npx --yes http-server answer-book/dist-gated -p 8101 -c-1",
     "smoke:answers:gated": "playwright test e2e/answer_book_gated.spec.ts",
     "vidi:server": "npx tsx src/scripts/answerbook_vidi_server.ts",
     "vidi:contexts": "npx tsx src/scripts/dump_vidi_contexts.ts",
     "vidi:shakedown": "npx tsx src/scripts/vidi_shakedown.ts",
+    "vidi:audit": "npx tsx src/scripts/vidi_audit.ts",
+    "vidi:slice": "npx tsx src/scripts/vidi_slice.ts",
     "vidi:grade": "npx tsx src/scripts/vidi_grade_log.ts",
     "serve:answers": "npx --yes http-server answer-book/dist -p 8100 -c-1",
+    "serve:answers:mpc": "npx --yes http-server answer-book/dist-mpc -p 8100 -c-1",
     "smoke:answers": "playwright test e2e/answer_book.spec.ts",
+    "probe:recall": "npx tsx --env-file=.env.local src/scripts/probe_recall.ts",
+    "backtest:physics": "npx tsx src/scripts/backtest_ipe_papers.ts",
+    "tag:appearances": "npx tsx src/scripts/tag_appearances.ts",
+    "check:papers": "npx tsx src/scripts/check_ipe_papers.ts",
+    "build:answers:gated:mpc": "npx tsx src/scripts/build_answer_book.ts --hosted --stream=mpc --gated && npx tsx src/scripts/build_og_card.ts --stream=mpc",
+    "content:push:mpc": "npx tsx --env-file=.env.local src/scripts/push_answer_content.ts --stream=mpc",
     "check:figure-pace": "npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_z1",
     "backtest:zoology": "npx tsx src/scripts/backtest_zoology.ts",
     "pace:figures": "npx tsx src/scripts/pace_figures.ts",
     "figures:gallery": "python answer-book/tools/render_figures.py",
-    "measure:wrap": "node answer-book/tools/measure_wrap.mjs",
-    "probe:recall": "npx tsx --env-file=.env.local src/scripts/probe_recall.ts"
+    "measure:wrap": "node answer-book/tools/measure_wrap.mjs"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
@@ -137,5 +146,8 @@
     "three": "0.128.0",
     "typescript": "^5",
     "vitest": "^4.1.4"
+  },
+  "allowScripts": {
+    "ffmpeg-static@5.3.0": true
   }
 }

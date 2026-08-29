@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them. AI chemistry check 2026-08-25: W₀ = hν₀ and both definitions verified; one common mistake reworded to say that intensity does not give each photon more energy, in place of not making it stronger (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -52,7 +52,7 @@
         ],
         "why": "One photon frees one electron, so the photon must carry at least enough energy on its own. The frequency at which it carries exactly enough is the threshold frequency, and it is different for every metal.",
         "common_mistakes": [
-          "Saying it is the minimum intensity. Intensity sends more photons, it does not make each one stronger.",
+          "Saying it is the minimum intensity. Intensity sends more photons, it does not give each one more energy.",
           "Leaving out the word minimum."
         ],
         "memory_tip": "Threshold is the lowest frequency that works. Below it, nothing happens at all.",

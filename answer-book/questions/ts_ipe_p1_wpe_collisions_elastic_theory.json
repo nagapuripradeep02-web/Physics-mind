@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Work Power Energy"
   },
   "chapter": "Work Power Energy",
@@ -16,7 +16,13 @@
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "What are collisions? Explain the possible types of collisions. Develop the theory of one-dimensional elastic collision.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 19,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "What a collision is",
@@ -50,7 +56,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 LONG ANSWER 3, and the TSBIE Basic Learning Material carries the same question in its Unit 6 Long Answer set. The Fastrack ALSO asks the relative-velocity result alone as SHORT ANSWER 1, which is why this file carries two cuts rather than two answers. Both splits are invented and need a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 LONG ANSWER 3, and the TSBIE Basic Learning Material carries the same question in its Unit 6 Long Answer set. The Fastrack ALSO asks the relative-velocity result alone as SHORT ANSWER 1, which is why this file carries two cuts rather than two answers. Both splits are invented and need a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -470,7 +476,8 @@
         "margin_note": "Finish with the sentence in words. The examiner is looking for that statement, not only the algebra.",
         "why": "Dividing is only allowed because the bodies actually collide and separate, so u₁ ≠ v₁ and the factors being cancelled are not zero. The book never says this, but a division by zero is what it would otherwise be.",
         "common_mistakes": [
-          "Writing u₁ − u₂ = v₁ − v₂, with the two final velocities the wrong way round."
+          "Writing u₁ − u₂ = v₁ − v₂, with the two final velocities the wrong way round.",
+          "Reading (3) as 'the speed one body loses, the other gains'. True only for equal masses — momentum gives m₁(u₁ − v₁) = m₂(v₂ − u₂), so the velocity changes are equal only when m₁ = m₂."
         ],
         "recall": {
           "credit": "say_it",

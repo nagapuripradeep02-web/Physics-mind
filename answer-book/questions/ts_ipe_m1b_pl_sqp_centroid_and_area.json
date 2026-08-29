@@ -12,7 +12,7 @@
   },
   "chapter": "Pair of Straight Lines",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Find the centroid and area of the triangle formed by the lines 3x²−4xy+y²=0, 2x−y=6.",
@@ -37,19 +37,19 @@
     },
     {
       "label": "Find the area",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.105 — the STAR QUESTIONS PLUS bank, answer 186, under its 'PAIR OF LINES' heading. Printed appearance: AP 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from LAQ chapter 2 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as LAQ because Pair of Straight Lines has NO Section-A or Section-B slot on the paper at all — the Blue Print gives it 7+7 in Section C and nothing else — so an LAQ is the only cut this unit admits, the same way 1A's Units 2, 7 and 8 fix their own section. ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; it follows the shape of the chapter answer this question mirrors. It applies chapter answer 7 (book p.20), which derives the area formula in general; this bank question does the same job with numbers, and additionally asks for the centroid. Its split follows the same 1+2+2+2 shape. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.105 — the STAR QUESTIONS PLUS bank, answer 186, under its 'PAIR OF LINES' heading. Printed appearance: AP 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from LAQ chapter 2 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as LAQ because Pair of Straight Lines has NO Section-A or Section-B slot on the paper at all — the Blue Print gives it 7+7 in Section C and nothing else — so an LAQ is the only cut this unit admits, the same way 1A's Units 2, 7 and 8 fix their own section. ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; it follows the shape of the chapter answer this question mirrors. It applies chapter answer 7 (book p.20), which derives the area formula in general; this bank question does the same job with numbers, and additionally asks for the centroid. Its split follows the same 1+2+2+2 shape. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find the area."
   },
   "recall_prompt": "Say how you would solve this — say where the third vertex is, and how that shortens the area formula.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Pair of Straight Lines · 7 marks"
+      "Pair of Straight Lines · 8 marks"
     ],
     "steps": [
       {
@@ -185,8 +185,8 @@
         "id": "s4_area",
         "kind": "boxed_final",
         "label": "Find the area",
-        "marks": 2,
-        "margin_note": "The last two marks. With one vertex at the origin the area determinant collapses to ½|x₁y₂ − x₂y₁| — only the two other vertices appear.",
+        "marks": 3,
+        "margin_note": "The last three marks. With one vertex at the origin the area determinant collapses to ½|x₁y₂ − x₂y₁| — only the two other vertices appear.",
         "lines": [
           "Area of △OAB = ½ |x₁y₂ − x₂y₁|",
           "= ½ |6(−18) − (−6)(6)|",

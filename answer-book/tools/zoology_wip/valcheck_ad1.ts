@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { answerBookQuestionSchema } from 'C:/Tutor/physics-mind-ipe-zoology/src/schemas/answerBook';
+import { answerBookQuestionSchema } from '../../../src/schemas/answerBook';
 const dir = path.resolve('answer-book/questions');
 const files = fs.readdirSync(dir).filter((f) => f.startsWith('ts_ipe_z1_ad1_') && f.endsWith('.json'));
 let bad = 0;

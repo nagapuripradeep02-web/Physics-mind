@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -75,7 +75,9 @@
             "banking",
             "outer edge"
           ]
-        }
+        },
+        "memory_tip": "A cycle track is tilted inward on its curves. The tilt gives N a part pointing to the centre.",
+        "margin_note": "First mark. Say the outer edge is raised, and say what that does — friction is not needed."
       },
       {
         "id": "s2_equations",
@@ -114,7 +116,9 @@
             "N sin theta",
             "N cos theta"
           ]
-        }
+        },
+        "memory_tip": "N is tilted θ from the VERTICAL, so cos θ goes with the weight and sin θ with the turning.",
+        "margin_note": "Second and third marks. One equation each, both starting from the same tilted N."
       },
       {
         "id": "s3_result",
@@ -149,8 +153,11 @@
             "tan theta",
             "v squared by r g"
           ]
-        }
+        },
+        "memory_tip": "v = 20 m/s on a 100 m curve gives tan θ = 400/980 ≈ 0.41, about 22°.",
+        "margin_note": "Fourth mark. Divide, do not substitute. The division is what removes both N and m."
       }
     ]
-  }
+  },
+  "insider_note": "One mark is the description, before any algebra. The two resolved equations carry 2 more, and dividing them gives the last."
 }

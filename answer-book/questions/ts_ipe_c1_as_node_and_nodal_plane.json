@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. SOURCE WORDING, recorded not resolved: the Fastrack (p.49) prints \"number of nodes = n − l − 1\". That expression is the number of RADIAL nodes; the TOTAL number of nodes is n − 1, of which l are angular (the nodal planes). This card writes radial nodes = n − l − 1 and states the total as well, so the worked count for 3d agrees with the book while the naming stays correct."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. SOURCE WORDING, recorded not resolved: the Fastrack (p.49) prints \"number of nodes = n − l − 1\". That expression is the number of RADIAL nodes; the TOTAL number of nodes is n − 1, of which l are angular (the nodal planes). This card writes radial nodes = n − l − 1 and states the total as well, so the worked count for 3d agrees with the book while the naming stays correct. AI chemistry check 2026-08-25: the node counts recomputed and correct (radial n − l − 1, angular l, total n − 1, and 0, 2 and 2 for 3d); the why now adds that the angular nodes of dz² are cones rather than flat planes (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -72,7 +72,7 @@
           "For a 3d electron: n = 3, l = 2",
           "radial nodes = 3 − 2 − 1 = 0, nodal planes = 2"
         ],
-        "why": "A nodal plane is a flat surface of zero probability passing through the nucleus, which is why a p orbital has two lobes separated by one such plane. The count of nodal planes is simply l.",
+        "why": "A nodal plane is a flat surface of zero probability passing through the nucleus, which is why a p orbital has two lobes separated by one such plane. The count is simply l. The general name for them is angular nodes: for p orbitals, and for four of the five d orbitals, the angular nodes are flat planes, while for dz² they are cones.",
         "common_mistakes": [
           "Using n − l − 1 for the nodal planes. That expression counts the radial nodes.",
           "Saying an s orbital has a nodal plane. For s, l = 0, so there is none."

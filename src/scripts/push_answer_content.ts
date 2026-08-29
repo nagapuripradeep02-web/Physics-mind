@@ -23,7 +23,23 @@ import { join } from 'path';
 import { tmpdir } from 'os';
 
 const ROOT = process.cwd();
-const CONTENT_DIR = join(ROOT, 'answer-book', 'content');
+// --stream=<name> must match the build that wrote the bundles (2026-08-27).
+// Bundles are scoped per stream, and so is the drift check below: an MPC push
+// is complete when every MPC unit has a bundle, and Botany's absence is the
+// point, not an error.
+const streamArg = process.argv.find((a) => a.startsWith('--stream='));
+const STREAM = streamArg ? streamArg.slice('--stream='.length) : null;
+const STREAM_SUBJECTS: Record<string, string[]> = {
+    mpc: ['physics', 'chemistry', 'mathematics', 'mathematics_1b'],
+};
+if (STREAM !== null && !STREAM_SUBJECTS[STREAM]) {
+    console.error(`✗ --stream="${STREAM}" is not one of ${Object.keys(STREAM_SUBJECTS).join('/')}`);
+    process.exit(1);
+}
+const WANT_SUBJECTS = STREAM ? new Set(STREAM_SUBJECTS[STREAM]) : null;
+const CONTENT_DIR = STREAM
+    ? join(ROOT, 'answer-book', 'content', STREAM)
+    : join(ROOT, 'answer-book', 'content');
 const MANIFEST = join(ROOT, 'answer-book', 'units.json');
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -33,13 +49,21 @@ if (!url || !key) {
     process.exit(1);
 }
 if (!existsSync(CONTENT_DIR)) {
-    console.error('✗ answer-book/content/ missing — run npm run build:answers:gated first');
+    console.error(`✗ ${CONTENT_DIR} missing — run npm run build:answers:gated${STREAM ? `:${STREAM}` : ''} first`);
     process.exit(1);
 }
 
 type ManifestUnit = { number: number; name: string; subject?: string; questions: unknown[] };
 const manifest = JSON.parse(readFileSync(MANIFEST, 'utf8')) as { units: ManifestUnit[] };
-const expected = new Set(manifest.units.map((u) => `${u.subject || 'physics'}-${u.number}`));
+const expected = new Set(
+    manifest.units
+        .filter((u) => !WANT_SUBJECTS || WANT_SUBJECTS.has(u.subject || 'physics'))
+        .map((u) => `${u.subject || 'physics'}-${u.number}`)
+);
+if (!expected.size) {
+    console.error(`✗ --stream="${STREAM}" matched no units in units.json`);
+    process.exit(1);
+}
 
 const files = readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.json'));
 const onDisk = new Set(files.map((f) => f.replace(/\.json$/, '')));
@@ -100,3 +124,25 @@ for (const f of files.sort()) {
 rmSync(tmp, { recursive: true, force: true });
 console.log(`✓ content:push — ${files.length} units, ${totalQ} questions, ${(totalB / 1024).toFixed(0)} KB`);
 if (totalQ === 0) { console.error('✗ zero questions uploaded — refusing to call that success'); process.exit(1); }
+
+// ── which chapters are FREE, after the push ──────────────────────────────────
+// The `free` flag lives on the ab_content ROW, keyed by unit_key, and an upsert
+// leaves it alone. That is right until a unit_key changes meaning: the 2026-27
+// physics renumbering (2026-08-28) moved every physics chapter down one key, so
+// a row flagged free as "physics-4 Motion in a Plane" is, after this push,
+// "physics-4 Laws of Motion" — still flagged free. Nothing in the push can
+// know which chapter the founder MEANT to be free, so it prints the free rows
+// by NAME and leaves the UPDATE to a human:
+//   UPDATE ab_content SET free = (unit_key IN ('physics-3','chemistry-3','mathematics-4','mathematics_1b-3'));
+try {
+    const listed = execFileSync('curl', [
+        '-s', `${url}/rest/v1/ab_content?select=unit_key,name,question_n&free=is.true&order=unit_key`,
+        '-H', `apikey: ${key}`, '-H', `Authorization: Bearer ${key}`, '-H', 'Expect:',
+    ], { encoding: 'utf8' });
+    const rows = JSON.parse(listed) as { unit_key: string; name: string; question_n: number }[];
+    console.log(`  free chapters now (ab_content.free): ${rows.length ? '' : 'NONE'}`);
+    for (const r of rows) console.log(`    ${r.unit_key.padEnd(18)} ${r.name} (${r.question_n})`);
+    console.log('  → if a free row names the wrong chapter (a renumbered unit_key), fix it with one UPDATE — see the comment above this report.');
+} catch (e) {
+    console.error(`  (could not list free rows: ${(e as Error).message.slice(0, 120)})`);
+}

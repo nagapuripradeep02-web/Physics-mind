@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists six properties (hard heavy metals; variable oxidation states; 'colour compounds'; complex compounds; alloys; high M.P and B.P). The question asks for any four, so the card folds high melting and boiling points into the metallic-character point and alloys in with complexes, writes 'coloured compounds' for the book's 'colour compounds', and adds the one-line reasons the book omits."
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists six properties (hard heavy metals; variable oxidation states; 'colour compounds'; complex compounds; alloys; high M.P and B.P). The question asks for any four, so the card folds high melting and boiling points into the metallic-character point and alloys in with complexes, writes 'coloured compounds' for the book's 'colour compounds', and adds the one-line reasons the book omits. AI chemistry check 2026-08-25 (audit round): the insider note treated the reasons as optional while step 3 called the reason the marked phrase, so the note now says the reason is required on every point; the first step was titled 'Hard, heavy metals' while the mark split calls that mark 'Metallic character', so the step label now matches the split. AI chemistry check 2026-08-25 (audit round 3): step 4 gave 'similar atomic sizes' as the reason for both brass and steel, but steel is an interstitial alloy of small carbon atoms in iron, so the sanctioned example contradicted the sanctioned mechanism; the marked line now gives brass and steel their own reasons and keeps both book examples. This is the only marked-line change on this card; marks and mark split untouched."
   },
   "answer": {
     "page_header": [
@@ -49,7 +49,7 @@
       {
         "id": "s1_metals",
         "kind": "text",
-        "label": "Hard, heavy metals",
+        "label": "Metallic character",
         "marks": 1,
         "mark_note": "Property 1",
         "lines": [
@@ -120,18 +120,20 @@
           "4. Their small, highly charged ions with",
           "empty d orbitals accept electron pairs from",
           "other molecules to give complex compounds,",
-          "and their similar atomic sizes let the metals",
-          "mix into alloys such as brass and steel."
+          "and they form alloys: brass (Cu and Zn atoms",
+          "of similar size replace each other) and steel",
+          "(small carbon atoms fit between iron atoms)."
         ],
-        "why": "Complex formation needs an ion that can accept electron pairs, and the empty d orbitals provide the space; alloy formation needs atoms of similar size that can replace one another in the metal.",
+        "why": "Complex formation needs an ion that can accept electron pairs, and the empty d orbitals provide the space. Alloys form in two ways, and the book's two examples are one of each. Brass is a substitutional alloy: Cu and Zn atoms are close in size, so they replace each other in the lattice. Steel is an interstitial alloy: carbon is a small non-metal, so its atoms fit in the gaps between the iron atoms and no size match is needed.",
         "common_mistakes": [
           "Naming complexes and alloys with no reason for either.",
-          "Giving a non-transition alloy example. Brass (Cu-Zn) and steel (Fe with carbon) are the expected ones."
+          "Giving a non-transition alloy example. Brass (Cu-Zn) and steel (Fe with carbon) are the expected ones.",
+          "Giving similar atomic size as the reason for steel. Carbon is a small non-metal that fits between the iron atoms, so steel is the interstitial kind of alloy."
         ],
-        "memory_tip": "Empty d orbitals take electron pairs (complexes); equal-sized atoms swap places (alloys).",
+        "memory_tip": "Empty d orbitals accept electron pairs (complexes). Two kinds of alloy: atoms of similar size replace each other (brass), small atoms fit in the gaps (steel).",
         "margin_note": "The question says any four, so these four with reasons are a complete answer; high M.P and B.P is already inside property 1."
       }
     ]
   },
-  "insider_note": "The book's answer is a bare six-item list; examiners award full marks for four properties, and a one-line reason on each is what separates this from a memorised list when the wording is checked."
+  "insider_note": "The book's answer is a bare six-item list and the question asks for any four, so four properties fill the four marks. Each numbered point must carry its one-line reason or example with it: the reason is the marked phrase, and a property named on its own is what loses the mark."
 }

@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -112,5 +112,6 @@
         "memory_tip": "The ring: all its mass is on the rim, yet the centre of mass is at the empty centre."
       }
     ]
-  }
+  },
+  "insider_note": "The one-word answer \"No\" earns only the first mark. The second is the example, so the ring has to be written down."
 }

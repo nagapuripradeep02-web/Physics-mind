@@ -1,0 +1,488 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_carnot_engine_efficiency",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain reversible and irreversible processes. Describe the working of Carnot engine. Obtain an expression for the efficiency.",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 21,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "q_no": 21,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 21,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Reversible and irreversible",
+      "marks": 2
+    },
+    {
+      "label": "The P–V diagram",
+      "marks": 1
+    },
+    {
+      "label": "The four processes",
+      "marks": 2
+    },
+    {
+      "label": "Heat taken and rejected",
+      "marks": 1
+    },
+    {
+      "label": "The efficiency",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2017 (Q21), March 2019 (Q21) and March 2025 (Q21) — TS Inter I-Year Physics Paper-I, Section C, 8 marks each time. The five-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the cycle is isothermal expansion at T₁ (A→B), adiabatic expansion (B→C), isothermal compression at T₂ (C→D), adiabatic compression (D→A); for one mole Q₁ = RT₁ ln(V₂/V₁) and Q₂ = RT₂ ln(V₃/V₄); the adiabatic relations TV^(γ−1) = constant applied to B→C and D→A give V₂/V₁ = V₃/V₄, so the two logarithms cancel and η = 1 − Q₂/Q₁ = 1 − T₂/T₁."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Thermodynamics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reversible",
+        "kind": "text",
+        "label": "Reversible and irreversible",
+        "marks": 2,
+        "mark_note": "Reversible / irreversible",
+        "lines": [
+          "A reversible process can be made to run",
+          "backwards through the same states, so that at",
+          "the end the system and the surroundings are",
+          "both back in their starting conditions.",
+          "It must be quasi-static (very slow) and free",
+          "of friction, viscosity and every other loss.",
+          "An irreversible process does not retrace its",
+          "path. Free expansion of a gas, heat flow",
+          "across a large temperature difference and any",
+          "process with friction are irreversible.",
+          "All natural processes are irreversible. A",
+          "reversible process is an ideal limit."
+        ],
+        "margin_note": "First two marks. One for the definition with both conditions, one for the contrast plus examples.",
+        "why": "The Carnot cycle is built out of reversible steps only, so this part is not a preface — it is the assumption the efficiency formula rests on.",
+        "common_mistakes": [
+          "Saying a reversible process only returns the SYSTEM to its starting state. The surroundings must return as well.",
+          "Leaving out the two conditions. Quasi-static and loss-free are what make a process reversible."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a reversible process retraces the same states and returns both system and surroundings to their starting conditions, needs to be quasi-static and loss-free, and that all natural processes are irreversible.",
+          "accept": [
+            "retraces the same path",
+            "system and surroundings both return",
+            "quasi static and no friction",
+            "all natural processes are irreversible"
+          ],
+          "reject": [
+            "isothermal expansion at T one"
+          ],
+          "heard_as": [
+            "reversible",
+            "irreversible",
+            "quasi static"
+          ]
+        },
+        "memory_tip": "Reversible needs BOTH back: the system and the surroundings, by the same path."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "The Carnot cycle on a P–V diagram",
+        "marks": 1,
+        "mark_note": "P–V diagram",
+        "figure": {
+          "id": "carnot_cycle_pv",
+          "width": 460,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "yaxis",
+              "d": "M 78 278 L 78 46",
+              "ms": 420,
+              "w": 2.4
+            },
+            {
+              "type": "stroke",
+              "id": "yhead",
+              "d": "M 72 57 L 78 45 L 84 57",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "xaxis",
+              "d": "M 78 278 L 436 278",
+              "ms": 420,
+              "w": 2.4
+            },
+            {
+              "type": "stroke",
+              "id": "xhead",
+              "d": "M 425 272 L 437 278 L 425 284",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_paxis",
+              "x": 48,
+              "y": 38,
+              "text": "P",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_vaxis",
+              "x": 402,
+              "y": 306,
+              "text": "V",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "dot_a",
+              "d": "M 146 78 A 4 4 0 1 0 154 78 A 4 4 0 1 0 146 78",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 126,
+              "y": 68,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "curve_ab",
+              "d": "M 150 78 Q 188 118 250 128",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "head_ab",
+              "d": "M 187 101 L 196 111 L 183 110",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "dot_b",
+              "d": "M 246 128 A 4 4 0 1 0 254 128 A 4 4 0 1 0 246 128",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 258,
+              "y": 116,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "iso1_ext",
+              "d": "M 250 128 Q 272 134 296 139",
+              "ms": 320,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_t1",
+              "x": 302,
+              "y": 150,
+              "text": "T₁",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "curve_bc",
+              "d": "M 250 128 Q 288 178 350 196",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "head_bc",
+              "d": "M 289 160 L 296 171 L 283 168",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "dot_c",
+              "d": "M 346 196 A 4 4 0 1 0 354 196 A 4 4 0 1 0 346 196",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 358,
+              "y": 190,
+              "text": "C",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "iso2_ext",
+              "d": "M 350 196 Q 372 205 392 214",
+              "ms": 320,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_t2",
+              "x": 398,
+              "y": 232,
+              "text": "T₂",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "curve_cd",
+              "d": "M 350 196 Q 288 194 232 178",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "head_cd",
+              "d": "M 300 187 L 287 190 L 298 197",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "dot_d",
+              "d": "M 228 178 A 4 4 0 1 0 236 178 A 4 4 0 1 0 228 178",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 224,
+              "y": 208,
+              "text": "D",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "curve_da",
+              "d": "M 232 178 Q 190 148 150 78",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "head_da",
+              "d": "M 201 143 L 189 137 L 193 150",
+              "ms": 110
+            }
+          ]
+        },
+        "margin_note": "Third mark. Letter the four states A, B, C, D, put an arrow on each step, and mark T₁ and T₂ on the two isotherms.",
+        "why": "The derivation below is written off this diagram: V₁ to V₄ are the volumes at A, B, C and D, and the two isotherms are the only steps that exchange heat.",
+        "common_mistakes": [
+          "Drawing the adiabats less steep than the isotherms. An adiabat is always the steeper of the two through a given point.",
+          "Leaving the arrows off. Without them the same drawing is a refrigerator."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the answer needs a P-V diagram with two isotherms, two adiabats, the states A, B, C, D and arrows showing the direction of the cycle.",
+          "accept": [
+            "draw the P V diagram of the cycle",
+            "two isothermals and two adiabatics",
+            "mark A B C D with arrows"
+          ],
+          "reject": [
+            "Q one is R T one log V two by V one"
+          ],
+          "heard_as": [
+            "indicator diagram",
+            "P V diagram",
+            "figure"
+          ]
+        },
+        "memory_tip": "Adiabats are the steeper pair. A to B and C to D are the flatter isotherms, at T₁ and T₂."
+      },
+      {
+        "id": "s3_cycle",
+        "kind": "equation",
+        "label": "The four processes",
+        "marks": 2,
+        "mark_note": "The four steps",
+        "lines": [
+          "A Carnot engine uses an ideal gas working",
+          "between a source at T₁ and a sink at T₂.",
+          "1. A → B: isothermal expansion at T₁. The gas",
+          "takes heat Q₁ from the source.",
+          "2. B → C: adiabatic expansion. No heat enters",
+          "or leaves and the gas cools to T₂.",
+          "3. C → D: isothermal compression at T₂. The",
+          "gas rejects heat Q₂ to the sink.",
+          "4. D → A: adiabatic compression. The gas",
+          "warms back to T₁ and the cycle closes."
+        ],
+        "margin_note": "Fourth and fifth marks. All four steps, in order, each named isothermal or adiabatic with its temperature.",
+        "why": "Heat is exchanged on the isothermal steps only, so naming which two steps are adiabatic is what allows Q₁ and Q₂ to be written for the isothermal steps alone.",
+        "common_mistakes": [
+          "Starting with the adiabatic expansion. The cycle begins with the isothermal expansion at T₁.",
+          "Saying the temperature changes on an isothermal step. The gas stays at T₁ or at T₂; the temperature changes only on the adiabatic steps."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The four steps in order: isothermal expansion at T one taking Q one, adiabatic expansion cooling to T two, isothermal compression at T two rejecting Q two, adiabatic compression back to T one.",
+          "accept": [
+            "isothermal expansion then adiabatic expansion",
+            "isothermal compression then adiabatic compression",
+            "takes Q one at T one and rejects Q two at T two"
+          ],
+          "reject": [
+            "a reversible process retraces its path"
+          ],
+          "heard_as": [
+            "isothermal",
+            "adiabatic",
+            "expansion",
+            "compression"
+          ]
+        },
+        "memory_tip": "Expand twice, then compress twice, alternating isothermal and adiabatic each time."
+      },
+      {
+        "id": "s4_heat_work",
+        "kind": "equation",
+        "label": "Heat taken and rejected",
+        "marks": 1,
+        "mark_note": "Q₁ and Q₂",
+        "lines": [
+          "For one mole of an ideal gas the work in an",
+          "isothermal step equals the heat exchanged:",
+          {
+            "text": "Q₁ = R T₁ ln(V₂/V₁)",
+            "style": "eq"
+          },
+          {
+            "text": "Q₂ = R T₂ ln(V₃/V₄)",
+            "style": "eq"
+          },
+          "The adiabatic steps exchange no heat, so the",
+          "net work in the cycle is W = Q₁ − Q₂ and",
+          {
+            "text": "η = W/Q₁ = 1 − Q₂/Q₁",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Sixth mark. Both heats with the correct volume ratios, and the efficiency written as 1 − Q₂/Q₁.",
+        "why": "On an isothermal step the internal energy of an ideal gas does not change, so the first law makes the heat exchanged equal to the work done. That is why both heats reduce to a logarithm of a volume ratio.",
+        "common_mistakes": [
+          "Writing Q₂ = R T₂ ln(V₄/V₃) and getting a negative value. Q₂ is written as the heat REJECTED, so the larger volume V₃ goes on top.",
+          "Adding the adiabatic steps into Q₁ or Q₂. No heat crosses the boundary on an adiabatic step."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Q one is R T one log of V two by V one, Q two is R T two log of V three by V four, and eta is one minus Q two by Q one.",
+          "accept": [
+            "Q one is R T one log V two by V one",
+            "Q two is R T two log V three by V four",
+            "eta is one minus Q two by Q one"
+          ],
+          "reject": [
+            "V two by V one equals V three by V four"
+          ],
+          "heard_as": [
+            "R T log V two by V one",
+            "one minus Q two by Q one"
+          ]
+        },
+        "memory_tip": "Both heats have the form R × T × ln(larger V / smaller V)."
+      },
+      {
+        "id": "s5_efficiency",
+        "kind": "boxed_final",
+        "label": "The efficiency",
+        "marks": 2,
+        "mark_note": "η = 1 − T₂/T₁",
+        "lines": [
+          "Apply the adiabatic relation TV^(γ−1) =",
+          "constant to the two adiabatic steps:",
+          {
+            "text": "B → C:  T₁ V₂^(γ−1) = T₂ V₃^(γ−1)",
+            "style": "eq"
+          },
+          {
+            "text": "D → A:  T₁ V₁^(γ−1) = T₂ V₄^(γ−1)",
+            "style": "eq"
+          },
+          "Dividing the first by the second gives",
+          {
+            "text": "V₂/V₁ = V₃/V₄",
+            "style": "eq"
+          },
+          "so ln(V₂/V₁) = ln(V₃/V₄). The two logarithms",
+          "cancel in the ratio Q₂/Q₁:",
+          {
+            "text": "Q₂/Q₁ = T₂ ln(V₃/V₄) / T₁ ln(V₂/V₁) = T₂/T₁",
+            "style": "eq"
+          },
+          {
+            "text": "η = 1 − Q₂/Q₁ = 1 − T₂/T₁",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The last two marks. One for the two adiabatic relations and the division, one for the final formula.",
+        "why": "Once the logarithms cancel, the efficiency depends on the two temperatures alone and on nothing about the gas or the size of the engine. That is the result the whole derivation is for.",
+        "common_mistakes": [
+          "Writing η = 1 − T₂/T₁ straight after the diagram. The two adiabatic relations and the division are where the marks are.",
+          "Putting the temperatures in degrees Celsius. T₁ and T₂ are absolute temperatures in kelvin."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the adiabatic relation applied to both adiabatic steps and divided gives V two by V one equal to V three by V four, so the logarithms cancel and eta is one minus T two by T one.",
+          "accept": [
+            "T V to the power gamma minus one is constant",
+            "V two by V one equals V three by V four",
+            "the logarithms cancel",
+            "eta is one minus T two by T one"
+          ],
+          "reject": [
+            "Q one is R T one log V two by V one"
+          ],
+          "heard_as": [
+            "gamma minus one",
+            "logs cancel",
+            "one minus T two by T one"
+          ]
+        },
+        "memory_tip": "Divide the two adiabatic relations: the volume ratios come out equal and the logarithms cancel."
+      }
+    ]
+  },
+  "insider_note": "The two logarithms cancelling is worth 2 of the 8 marks and is where most answers stop. Write both adiabatic relations first."
+}

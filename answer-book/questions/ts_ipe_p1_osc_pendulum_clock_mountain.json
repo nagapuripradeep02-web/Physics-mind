@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 8,
+    "number": 7,
     "name": "Oscillations"
   },
   "chapter": "Oscillations",
@@ -68,7 +68,9 @@
             "g decreases",
             "height"
           ]
-        }
+        },
+        "memory_tip": "At the top of Everest g is about 9.78 m s⁻², against 9.8 at sea level.",
+        "margin_note": "First mark. State that g is smaller up there before using the formula."
       },
       {
         "id": "s2_clock",
@@ -104,8 +106,11 @@
             "loses time",
             "slow"
           ]
-        }
+        },
+        "memory_tip": "A slower swing always means a slow clock: up a mountain, down a mine, or on a longer string.",
+        "margin_note": "Second mark. Write T ∝ 1/√g, then the word LOSES."
       }
     ]
-  }
+  },
+  "insider_note": "One word decides the second mark — write that the clock LOSES time, rather than leaving it to be read out of T ∝ 1/√g."
 }

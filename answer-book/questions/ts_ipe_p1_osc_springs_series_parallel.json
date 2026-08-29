@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 8,
+    "number": 7,
     "name": "Oscillations"
   },
   "chapter": "Oscillations",
@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -79,7 +79,9 @@
             "series",
             "reciprocals add"
           ]
-        }
+        },
+        "memory_tip": "Two equal springs of constant k in series give k/2 — softer than either one alone.",
+        "margin_note": "Two marks here. The same-force line is what allows the two stretches to be added."
       },
       {
         "id": "s2_parallel",
@@ -104,7 +106,8 @@
         ],
         "why": "Two springs side by side share the load, so the pair resists more than either alone — the stiffness simply adds.",
         "common_mistakes": [
-          "Using the reciprocal rule in parallel, which is the series rule."
+          "Using the reciprocal rule in parallel, which is the series rule.",
+          "Calling a mass held between two springs, one on each side, a series case — both springs push it back together, so k = k₁ + k₂ even though the springs lie in one line."
         ],
         "recall": {
           "credit": "say_it",
@@ -121,8 +124,11 @@
             "parallel",
             "k one plus k two"
           ]
-        }
+        },
+        "memory_tip": "The same pair in parallel gives 2k. Series halves it, parallel doubles it.",
+        "margin_note": "The other two marks. Box k = k₁ + k₂, then one line comparing the two cases."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks for each half, and they sit in the reason: same force in series, same stretch in parallel."
 }

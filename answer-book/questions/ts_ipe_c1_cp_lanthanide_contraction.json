@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book states the consequences as: 4d and 5d elements almost similar in size; 'they are not separated by the crystallization method'; Zr and Hf almost equal in size. The standard statement is that separation of the lanthanides is DIFFICULT because their sizes are nearly equal — crystallisation separates them poorly and ion-exchange methods are used — and the card says that; the book's flat 'not separated by crystallization' is recorded here rather than copied."
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book states the consequences as: 4d and 5d elements almost similar in size; 'they are not separated by the crystallization method'; Zr and Hf almost equal in size. The standard statement is that separation of the lanthanides is DIFFICULT because their sizes are nearly equal — crystallisation separates them poorly and ion-exchange methods are used — and the card says that; the book's flat 'not separated by crystallization' is recorded here rather than copied. AI chemistry check 2026-08-25: the definition, the 4f poor-screening cause and both consequences were re-checked and nothing marked was changed; the phrase fourteen elements was removed from two explanations because it did not match the card's own La-to-Lu range (La to Lu spans fifteen elements; the fourteen 4f elements are Ce to Lu). Status stays unverified."
   },
   "answer": {
     "page_header": [
@@ -57,10 +57,10 @@
         ],
         "why": "The definition is a trend, so it needs all three parts: which elements (the lanthanides), what changes (atomic and ionic size decrease), and along what (increasing atomic number).",
         "common_mistakes": [
-          "Writing that the size decreases suddenly. The decrease is small and steady across the fourteen elements.",
+          "Writing that the size decreases suddenly. The decrease is small and steady across the whole series.",
           "Leaving out ionic size. The contraction shows in the ions as clearly as in the atoms."
         ],
-        "memory_tip": "Fourteen elements, one slow shrink: La to Lu, each atom slightly smaller than the one before.",
+        "memory_tip": "One slow decrease in size from La to Lu: each atom is slightly smaller than the one before.",
         "margin_note": "The words gradually and atomic number increases carry the definition."
       },
       {
@@ -106,7 +106,7 @@
             "style": "boxed"
           }
         ],
-        "why": "The contraction of the fourteen lanthanides cancels the size increase expected between the 4d and 5d rows, which is why Zr and Hf come out almost identical; inside the series, near-equal sizes mean near-equal properties and therefore difficult separations.",
+        "why": "The contraction across the lanthanide series cancels the size increase expected between the 4d and 5d rows, which is why Zr and Hf come out almost identical; inside the series, near-equal sizes mean near-equal properties and therefore difficult separations.",
         "common_mistakes": [
           "Giving only one consequence for the two marks. Zr-Hf similarity and the difficult separation are both expected.",
           "Writing that Zr and Hf are the same element. They are different elements of almost the same size."

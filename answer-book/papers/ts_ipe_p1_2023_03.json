@@ -1,0 +1,211 @@
+{
+  "schema_version": "ipe_paper_v1",
+  "paper_id": "ts_ipe_p1_2023_03",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "paper": "Paper-I",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "year": 2023,
+  "month": 3,
+  "month_label": "March 2023",
+  "date_confidence": "inferred",
+  "paper_code": "0119",
+  "set": "A",
+  "provenance": {
+    "source_pdf": "TS_Physics_Paper_1.pdf",
+    "transcribed_on": "2026-08-26",
+    "transcribed_from": "the PDF scan itself, read page by page — never a prior transcription",
+    "year_source": "INFERRED — the sheet carries no printed year. The scan’s camera timestamp reads 2023/3/25 12:34 and the TS Inter I-year Physics paper sat in March 2023. Founder confirmed 2023 on 2026-08-26. The year is a CLAIM, like every mark split in this bank.",
+    "header_note": "Header reads \"Part – III PHYSICS, Paper – I (English Version)\"; booklet code 0119, set A. Total questions 21, printed pages 2. No year is printed anywhere on the sheet."
+  },
+  "exam_pattern": {
+    "max_marks": 60,
+    "duration_hours": 3,
+    "sections": [
+      {
+        "name": "Section A",
+        "qtype": "VSAQ",
+        "marks_each": 2,
+        "count": 10,
+        "choose": 10,
+        "q_range": [
+          1,
+          10
+        ]
+      },
+      {
+        "name": "Section B",
+        "qtype": "SAQ",
+        "marks_each": 4,
+        "count": 8,
+        "choose": 6,
+        "q_range": [
+          11,
+          18
+        ]
+      },
+      {
+        "name": "Section C",
+        "qtype": "LAQ",
+        "marks_each": 8,
+        "count": 3,
+        "choose": 2,
+        "q_range": [
+          19,
+          21
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q_no": 1,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is the contribution of S. Chandra Sekhar to Physics?"
+    },
+    {
+      "q_no": 2,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Can the coefficient of friction be greater than one?"
+    },
+    {
+      "q_no": 3,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "When does a real gas behave like an ideal gas?"
+    },
+    {
+      "q_no": 4,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "State Dalton’s law of partial pressures."
+    },
+    {
+      "q_no": 5,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "How can systematic errors be minimised or eliminated?"
+    },
+    {
+      "q_no": 6,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Give the expression for the excess pressure in a liquid drop."
+    },
+    {
+      "q_no": 7,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is the principle behind the carburetor of an automobile?"
+    },
+    {
+      "q_no": 8,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Can a substance contract on heating? Give an example."
+    },
+    {
+      "q_no": 9,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is greenhouse effect? Explain global warming."
+    },
+    {
+      "q_no": 10,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "A = i + j. What is the angle between the vector and x-axis?"
+    },
+    {
+      "q_no": 11,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "If |a+b| = |a−b| prove that the angle between a and b is 90°."
+    },
+    {
+      "q_no": 12,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "A ball is dropped from the roof of a tall building and simultaneously another ball is thrown horizontally with some velocity from the same roof. Which ball lands first? Explain your answer."
+    },
+    {
+      "q_no": 13,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Explain advantages and disadvantages of friction."
+    },
+    {
+      "q_no": 14,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Distinguish between centre of mass and centre of gravity."
+    },
+    {
+      "q_no": 15,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Define angular acceleration and torque. Establish the relation between angular acceleration and torque."
+    },
+    {
+      "q_no": 16,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "What is orbital velocity? Obtain an expression for it."
+    },
+    {
+      "q_no": 17,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Define Young’s modulus, Bulk modulus and Shear modulus."
+    },
+    {
+      "q_no": 18,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Pendulum clocks generally go fast in winter and slow in summer. Why?"
+    },
+    {
+      "q_no": 19,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "What are collisions? Explain the possible types of collisions? Develop the theory of one dimensional elastic collision."
+    },
+    {
+      "q_no": 20,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "Show that the motion of a simple pendulum is simple harmonic and hence derive an equation for its time period. What is seconds pendulum?"
+    },
+    {
+      "q_no": 21,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "State second law of thermodynamics. How is heat engine different from a refrigerator."
+    }
+  ]
+}

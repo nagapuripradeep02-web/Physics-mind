@@ -12,7 +12,7 @@
   },
   "chapter": "Pair of Straight Lines",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Find the condition for the chord lx+my=1 of the circle x²+y²=a² to subtend a right angle at the origin.",
@@ -32,19 +32,19 @@
     },
     {
       "label": "Apply the right-angle condition",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 15 PQ, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 15 PQ, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Apply the right-angle condition."
   },
   "recall_prompt": "Say how you would solve this — say what subtending a right angle at the origin means for the homogenised pair.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Pair of Straight Lines · 7 marks"
+      "Pair of Straight Lines · 8 marks"
     ],
     "steps": [
       {
@@ -173,8 +173,8 @@
         "id": "s4_apply_the_condition",
         "kind": "boxed_final",
         "label": "Apply the right-angle condition",
-        "marks": 2,
-        "margin_note": "The last two marks. 'Subtends a right angle at the origin' is a statement about the two lines from the origin — which is precisely the homogenised pair — so the condition is a + b = 0, the same one used three times earlier in this run.",
+        "marks": 3,
+        "margin_note": "The last three marks. 'Subtends a right angle at the origin' is a statement about the two lines from the origin — which is precisely the homogenised pair — so the condition is a + b = 0, the same one used three times earlier in this run.",
         "lines": [
           "The chord subtends a right angle AT THE ORIGIN, and the homogenised pair is exactly the pair of lines from the origin to the chord's ends — so that pair must be perpendicular:",
           "Coeff. x² + Coeff. y² = 0",

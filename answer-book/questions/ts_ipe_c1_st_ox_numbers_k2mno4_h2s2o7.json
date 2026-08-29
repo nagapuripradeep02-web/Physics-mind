@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. The book underlines Mn and S; underlining cannot be reproduced here, so the elements are named in brackets instead. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. The book underlines Mn and S; underlining cannot be reproduced here, so the elements are named in brackets instead. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round): step s2 jumped from 2x = +12 straight to the box, so a student copying the model answer committed the exact error the step's own common_mistakes warns about. The line 'x = +6, so each S in H₂S₂O₇ is +6' was added to the marked lines; marks and mark split unchanged."
   },
   "answer": {
     "page_header": [
@@ -73,6 +73,7 @@
           "Let the oxidation number of S be x.",
           "2(+1) + 2x + 7(−2) = 0",
           "2 + 2x − 14 = 0  ⟹  2x = +12",
+          "x = +6, so each S in H₂S₂O₇ is +6",
           {
             "text": "Mn in K₂MnO₄ = +6 ;  S in H₂S₂O₇ = +6",
             "style": "boxed"
@@ -84,7 +85,7 @@
           "Multiplying oxygen by 6 instead of 7."
         ],
         "memory_tip": "H₂S₂O₇ is two H₂SO₄ units minus one water — sulphur stays at +6, the same as in sulphuric acid.",
-        "margin_note": "Box both results together, each with its + sign."
+        "margin_note": "Divide 2x by 2 on its own line, then box both results, each with its + sign."
       }
     ]
   },

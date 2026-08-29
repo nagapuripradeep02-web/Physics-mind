@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_heat_vs_temperature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between heat and temperature.",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 7,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 8,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Heat",
+      "marks": 1
+    },
+    {
+      "label": "Temperature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2020 (Q8) and March 2024 (Q7) — Section A, 2 marks each time. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from those papers. Physics hand-checked: heat is the energy transferred between two bodies because of a temperature difference and is measured in joule; temperature is the degree of hotness, measured in kelvin, and it decides the direction of the transfer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_heat",
+        "kind": "text",
+        "label": "Heat",
+        "marks": 1,
+        "mark_note": "Heat",
+        "lines": [
+          "Heat is the energy that passes from one",
+          "body to another because of a difference of",
+          "temperature between them.",
+          "Its SI unit is the joule."
+        ],
+        "margin_note": "First mark. Define heat as transferred energy and give the joule.",
+        "why": "Heat is not stored in a body. It is the energy crossing the boundary between two bodies, and once it has crossed it becomes internal energy of the receiving body.",
+        "common_mistakes": [
+          "Saying a hot body contains more heat. A body contains internal energy; heat is only what is transferred."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That heat is energy transferred because of a temperature difference and is measured in joule.",
+          "accept": [
+            "energy transferred",
+            "because of temperature difference",
+            "unit is joule"
+          ],
+          "reject": [
+            "degree of hotness"
+          ],
+          "heard_as": [
+            "heat",
+            "joule",
+            "transferred"
+          ]
+        },
+        "memory_tip": "Heat is energy that is being transferred, and it is measured in joule."
+      },
+      {
+        "id": "s2_temperature",
+        "kind": "boxed_final",
+        "label": "Temperature",
+        "marks": 1,
+        "mark_note": "Temperature",
+        "lines": [
+          "Temperature is the degree of hotness of a",
+          "body. Its SI unit is the kelvin.",
+          {
+            "text": "Temperature sets the heat flow direction",
+            "style": "boxed"
+          },
+          "Heat passes from the body at the higher",
+          "temperature to the one at the lower",
+          "temperature."
+        ],
+        "margin_note": "Second mark. Give the kelvin and the direction of flow.",
+        "why": "Two bodies at the same temperature exchange no net heat however large they are, so it is the temperature and not the quantity of energy that sets the direction.",
+        "common_mistakes": [
+          "Treating heat and temperature as the same quantity. A large cold body can hold more internal energy than a small hot one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That temperature is the degree of hotness, measured in kelvin, and it decides which way heat flows.",
+          "accept": [
+            "degree of hotness",
+            "unit is kelvin",
+            "decides the direction of flow"
+          ],
+          "reject": [
+            "energy transferred"
+          ],
+          "heard_as": [
+            "temperature",
+            "kelvin",
+            "hotness"
+          ]
+        },
+        "memory_tip": "Temperature in kelvin, heat in joule. Temperature sets which way the heat goes."
+      }
+    ]
+  },
+  "insider_note": "Two marks means two contrasts — what each quantity is, and its unit. A pair of definitions written with no units usually loses one mark."
+}

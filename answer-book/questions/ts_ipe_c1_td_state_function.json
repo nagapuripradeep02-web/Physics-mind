@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: state functions underlie Hess law and every ΔH argument in the chapter, yet the Fastrack chemistry section (book pp.73-75) never asks the definition itself. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: state functions underlie Hess law and every ΔH argument in the chapter, yet the Fastrack chemistry section (book pp.73-75) never asks the definition itself. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25 (audit round 3): the s2 mark_note said Examples, and the margin_note called the q and w contrast a finishing extra, while the mark_split row reads Examples and contrast — three fields, three answers. All three now match the split row, which is untouched. The phrase strong finish was also removed under the plain-language rule. OPEN QUESTION for the teacher gate: whether the contrast is genuinely required for the second mark rests on that unverified split."
   },
   "answer": {
     "page_header": [
@@ -62,7 +62,7 @@
         "kind": "boxed_final",
         "label": "Examples and contrast",
         "marks": 1,
-        "mark_note": "Examples",
+        "mark_note": "Examples and contrast",
         "lines": [
           "Examples: internal energy U, enthalpy H,",
           "entropy S, Gibbs energy G, pressure,",
@@ -74,12 +74,12 @@
             "style": "boxed"
           }
         ],
-        "why": "Listing q and w as the exceptions shows the definition is understood — they describe the transfer of energy along a path, not a state of the system.",
+        "why": "The mark_split row is Examples and contrast, so both halves belong to this one mark: the list of state functions, and q and w named as path functions beside it. Listing q and w as the exceptions shows the definition is understood — they describe the transfer of energy along a path, not a state of the system.",
         "common_mistakes": [
           "Listing heat or work among the state functions — both are path functions."
         ],
         "memory_tip": "The big four letters U, H, S, G are state functions; q and w are the two path functions.",
-        "margin_note": "Naming q and w as path functions is the strong finish."
+        "margin_note": "This one mark covers both halves of the row: the examples, and q and w named as path functions."
       }
     ]
   }

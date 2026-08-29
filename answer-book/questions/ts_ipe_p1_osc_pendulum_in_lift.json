@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 8,
+    "number": 7,
     "name": "Oscillations"
   },
   "chapter": "Oscillations",
@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip); a factually wrong marked line was corrected."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -47,7 +47,7 @@
         "mark_note": "Effective g",
         "lines": [
           "In a lift going up with acceleration a, the",
-          "floor pushes up harder on the bob, and the",
+          "string pulls up harder on the bob, and the",
           "effective value of g acting on it becomes",
           {
             "text": "g_eff = g + a",
@@ -72,7 +72,9 @@
             "g plus a",
             "effective"
           ]
-        }
+        },
+        "memory_tip": "In a lift accelerating upward you feel heavier, and the string pulls harder on the bob. Hence g + a.",
+        "margin_note": "First mark. One line: g_eff = g + a."
       },
       {
         "id": "s2_period",
@@ -92,7 +94,7 @@
         ],
         "why": "In free fall a = g, the effective value is zero and T becomes infinite — the same answer as a pendulum in a satellite.",
         "common_mistakes": [
-          "Using g + a for a lift moving down as well; the sign follows the direction of the acceleration, not the motion."
+          "Choosing the sign from the lift's MOTION. Use the acceleration: acceleration upward → g + a, acceleration downward → g − a. A lift moving down but slowing down accelerates upward, so g + a applies."
         ],
         "recall": {
           "credit": "say_it",
@@ -109,8 +111,11 @@
             "smaller",
             "faster"
           ]
-        }
+        },
+        "memory_tip": "A lift accelerating at a = g doubles the effective value, so T drops to T/√2 — about 30% shorter.",
+        "margin_note": "Second mark. Box T = 2π√(l/(g + a)), then one line for the downward case."
       }
     ]
-  }
+  },
+  "insider_note": "Write g_eff = g + a as a line of its own — it carries the first mark, and the period is then one substitution."
 }

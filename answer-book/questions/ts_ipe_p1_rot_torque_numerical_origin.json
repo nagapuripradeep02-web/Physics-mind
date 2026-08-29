@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -78,7 +78,8 @@
             "cross product",
             "determinant"
           ]
-        }
+        },
+        "memory_tip": "Write r on the top row of the determinant and F below. That order decides the sign."
       },
       {
         "id": "s2_value",
@@ -116,8 +117,10 @@
             "twelve",
             "ten"
           ]
-        }
+        },
+        "memory_tip": "Check it: τ·F = 2(7) + 12(3) + 10(−5) = 0. A cross product is perpendicular to both."
       }
     ]
-  }
+  },
+  "insider_note": "Only two marks, and the middle term is where they are lost: the j component carries the extra minus sign of the expansion."
 }

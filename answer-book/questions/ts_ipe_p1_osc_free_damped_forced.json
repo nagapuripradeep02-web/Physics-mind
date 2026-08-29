@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 8,
+    "number": 7,
     "name": "Oscillations"
   },
   "chapter": "Oscillations",
@@ -75,7 +75,9 @@
             "free",
             "natural frequency"
           ]
-        }
+        },
+        "memory_tip": "Free means left alone: one push at the start, and nothing touches it after that.",
+        "margin_note": "First mark. One definition and one example. Both are needed for it."
       },
       {
         "id": "s2_damped",
@@ -110,7 +112,9 @@
             "damped",
             "amplitude decreases"
           ]
-        }
+        },
+        "memory_tip": "Picture the peaks getting smaller each swing while the spacing between them stays the same.",
+        "margin_note": "Two marks here. Say what happens to the amplitude and what happens to the frequency."
       },
       {
         "id": "s3_forced",
@@ -148,8 +152,11 @@
             "forced",
             "driving force"
           ]
-        }
+        },
+        "memory_tip": "Free: its own frequency. Damped: its own frequency, smaller each swing. Forced: the outside frequency.",
+        "margin_note": "The last mark. Name the driving frequency, then write the resonance condition."
       }
     ]
-  }
+  },
+  "insider_note": "Damped carries two of the four marks, and each of the three needs its example — an answer with definitions only is incomplete."
 }

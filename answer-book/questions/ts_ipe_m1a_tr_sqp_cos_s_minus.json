@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
-    "name": "Trigonometric Ratios upto Transformations"
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
   },
-  "chapter": "Trigonometric Ratios upto Transformations",
+  "chapter": "Trigonometric Ratios and Transformations",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "If A + B + C = 2S, then prove that cos(S−A) + cos(S−B) + cos(S−C) + cos S = 4 cos(A/2) cos(B/2) cos(C/2).",
@@ -33,7 +33,7 @@
     },
     {
       "label": "Simplify the second pair",
-      "marks": 1
+      "marks": 2
     },
     {
       "label": "Take 2 cos(C/2) common",
@@ -47,13 +47,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.108 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 170. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: TS 18. FOUR terms, so they pair off — and the pairing is chosen so that the shared letter cancels. Pair the first two together and the last two together. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.108 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 170. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: TS 18. FOUR terms, so they pair off — and the pairing is chosen so that the shared letter cancels. Pair the first two together and the last two together. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Simplify the second pair."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Trigonometric Ratios upto Transformations · 7 marks"
+      "Trigonometric Ratios upto Transformations · 8 marks"
     ],
     "steps": [
       {
@@ -62,7 +62,7 @@
         "label": "Pair the four terms",
         "marks": 2,
         "mark_note": "Two pairs",
-        "margin_note": "Two of the seven marks. Bracket the first two and the last two, then apply cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2) to each.",
+        "margin_note": "Two of the eight marks. Bracket the first two and the last two, then apply cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2) to each.",
         "lines": [
           {
             "text": "Sol:",
@@ -145,9 +145,9 @@
         "id": "s3_simplify_the_second_pair",
         "kind": "equation",
         "label": "Simplify the second pair",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Second pair",
-        "margin_note": "Fifth mark. (2S − C)/2 = (A + B)/2, and cos(−C/2) = cos(C/2). Both pairs now carry cos(C/2).",
+        "margin_note": "Two marks (fifth and sixth). (2S − C)/2 = (A + B)/2, and cos(−C/2) = cos(C/2). Both pairs now carry cos(C/2).",
         "lines": [
           "2S − C = A + B ⇒ cos((2S − C)/2) = cos((A+B)/2)",
           "and cos(−C/2) = cos(C/2)",

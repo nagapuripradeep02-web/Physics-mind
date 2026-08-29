@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 8,
+    "number": 7,
     "name": "Oscillations"
   },
   "chapter": "Oscillations",
@@ -68,7 +68,9 @@
             "periodic",
             "repeats"
           ]
-        }
+        },
+        "memory_tip": "The earth takes one year, every year. Repeating on time is the only requirement.",
+        "margin_note": "First mark. Definition and example together. The example is half of it."
       },
       {
         "id": "s2_oscillatory",
@@ -105,8 +107,11 @@
             "oscillatory",
             "to and fro"
           ]
-        }
+        },
+        "memory_tip": "Oscillate means to and fro. The turning back is what the word adds to periodic.",
+        "margin_note": "Second mark. Add the one-way line: every oscillation is periodic, not the reverse."
       }
     ]
-  }
+  },
+  "insider_note": "One mark each, and each needs its example — the earth around the sun shows that periodic is the more general word."
 }

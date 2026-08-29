@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -71,7 +71,8 @@
             "poles"
           ]
         },
-        "memory_tip": "Polar = passes over the poles: a low orbit running north to south."
+        "memory_tip": "Polar = passes over the poles: a low orbit running north to south.",
+        "margin_note": "First mark. North to south over the poles, and a low orbit."
       },
       {
         "id": "s2_use",
@@ -108,8 +109,10 @@
             "survey"
           ]
         },
-        "memory_tip": "The earth turns underneath it, so strip by strip it photographs the WHOLE surface — mapping and weather."
+        "memory_tip": "The earth turns underneath it, so strip by strip it photographs the WHOLE surface — mapping and weather.",
+        "margin_note": "Second mark. The whole-earth survey is the use being marked."
       }
     ]
-  }
+  },
+  "insider_note": "The question asks only what they are, but at 2 marks the use is expected as well; a definition on its own reads as one mark."
 }

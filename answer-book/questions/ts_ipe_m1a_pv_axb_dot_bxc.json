@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 7,
     "name": "Product of Vectors"
   },
   "chapter": "Product of Vectors",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "If a = 2i+j−k, b = −i+2j−4k and c = i+j+k, then find (a×b)·(b×c).",
@@ -41,7 +41,7 @@
     },
     {
       "label": "Take the dot product",
-      "marks": 2
+      "marks": 3
     },
     {
       "label": "State the value",
@@ -51,13 +51,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.35 — LAQ chapter 4 Product of Vectors, answer 21.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.35 — LAQ chapter 4 Product of Vectors, answer 21.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Take the dot product."
   },
   "recall_prompt": "Say how you would work out this product — say which pieces you compute first and how you finish.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Product of Vectors · 7 marks"
+      "Product of Vectors · 8 marks"
     ],
     "steps": [
       {
@@ -107,7 +107,7 @@
         "label": "Find a×b",
         "marks": 2,
         "mark_note": "First product",
-        "margin_note": "Two of the seven marks. Write the determinant with i, j, k on top and the two vectors as the rows BELOW, in the order they appear in the product — a first, then b.",
+        "margin_note": "Two of the eight marks. Write the determinant with i, j, k on top and the two vectors as the rows BELOW, in the order they appear in the product — a first, then b.",
         "lines": [
           {
             "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & -1 \\\\ -1 & 2 & -4 \\end{vmatrix}",
@@ -194,9 +194,9 @@
         "id": "s4_combine",
         "kind": "equation",
         "label": "Take the dot product",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Combine",
-        "margin_note": "Two marks. This is a DOT product of the two results — multiply matching components and add. The answer is a single number, not a vector.",
+        "margin_note": "Three marks. This is a DOT product of the two results — multiply matching components and add. The answer is a single number, not a vector.",
         "lines": [
           "From (1) and (2),",
           "(a×b)·(b×c) = (−2i + 9j + 5k)·(6i − 3j − 3k)",

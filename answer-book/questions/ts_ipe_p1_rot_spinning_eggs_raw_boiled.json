@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -119,5 +119,6 @@
         "memory_tip": "Spin both the same way: the boiled egg spins fast and steadily; the raw egg turns slowly and stops sooner."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks for two different things: the reason, a larger I for the raw egg, and the test actually performed."
 }
