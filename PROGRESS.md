@@ -14625,3 +14625,44 @@ the live `engine_bug_queue` table (file-only discipline held). State recorded in
 **Next session's first task: the founder ruling on item 5** — whether to re-scope 0c-1 against the full survey union table before 0d, or to accept per-concept engine edits and amend the SUCCESS TEST. Everything else is either closed or explicitly deferred. **Blockers:** none for the merged work; item 5 blocks a clean 0d start, and item 2 blocks trusting any sub-0.3% H2 delta on a solid-body focal without a negative control.
 
 **Note for whoever reads this next:** the `feat/rotmech-engine` worktree at `C:\Tutor\physics-mind-rotmech-engine` has since been **removed** (empty directory), and master has moved past the merge (`4b289d4` pre-register 8 Ch.7 concept ids; `2443a74` settle the v = ωr boundary). Desks `physics-mind-rotmech-0c3`, `-a` and `-b` are active — treat the renderer as shared and diff-first (scar row 2 above exists precisely because two sessions raced this file).
+
+---
+
+## 2026-08-28/29 — **Zoology-II opens and completes: subject `zoology_2`, 8 units, 145 cards, 14 phased figures**
+
+**A second zoology PAPER, not more of the first.** Senior Inter Zoology (Class 12) is a different paper from the Junior Inter `zoology` book already in the catalog, and unit numbers namespace per subject, so it takes its own subject value `zoology_2` with its own units 1–8 and ids `ts_ipe_z2_*` — the same reasoning that gave Maths-1B `mathematics_1b`. Registered at the four sites that hardcode the subject list: the `subject` z.enum in `src/schemas/answerBook.ts`, `SUBJECTS` in `src/scripts/build_answer_book.ts`, and notebook.js's two label maps. The catalog chips now read **Zoology-I / Zoology-II** rather than a bare "Zoology" beside "Zoology-II", which named the first year by omission.
+
+**Desk:** `feat/ipe-answerbook-zoology-2`, branched off **`origin/feat/ipe-answerbook-zoology`, not master** — the phased "watch it drawn" figure engine (`pause` elements, `pace_figures.ts`, `check_figure_pace.ts`, the 70 u/s gate) exists only on that branch. Master's figures still run at 200–770 u/s. Branching off master would have silently lost the engine.
+
+**Source:** *My Baby Bullet-Q — Senior Inter Zoology* (Star-Q Pass Track Series, Sri Publishers, 2022), 81 scanned pages, **no OCR text layer** — the pages are DCTDecode JPEGs and poppler is not installed on this Mac, so they were extracted with a short Python loop over the PDF's image objects and read as images. Scan page = book page + 1.
+
+**`ref` is the book's own global answer numbering** (LAQ 1–10, SAQ 11–48, VSAQ 49–145), which is why a unit's refs are not contiguous: the book is ordered by section, the catalog by unit. **`stars` is derived from the exam years the book PRINTS beside each question** — 5+ appearances = 3 stars, 2–4 = 2, one = 1, none printed = 0 — not from its per-chapter star rating, which is a chapter-importance claim rather than a per-question one. The same evidence is carried per card in `appearances[]` with its board.
+
+| Unit | Chapter(s) | Cards |
+|---|---|---|
+| 1 | Digestion and Absorption · Breathing and Exchange of Gases | 20 |
+| 2 | Body Fluids and Circulation · Excretory Products | 17 |
+| 3 | Musculo-Skeletal System · Neural Control and Coordination | 18 |
+| 4 | Endocrine System · Immune System | 21 |
+| 5 | Human Reproductive System · Reproductive Health | 18 |
+| 6 | Genetics | 9 |
+| 7 | Organic Evolution | 11 |
+| 8 | Applied Biology | 31 |
+
+All 145 cards carry `memory_tip`, `margin_note` and `insider_note` at **100%**, matching the z1 fleet.
+
+**Fourteen phased figures**, every one built as the schematic a student can copy rather than a shaded anatomical plate: L.S. of a tooth · internal structure of the heart · the urinary system · a nephron · a synovial joint · the pelvic girdle · an antibody · female and male reproductive systems · a sperm · the human XX-XY cross · the normal ECG trace.
+
+**The render gallery earned its keep.** `answer-book/tools/render_figures.py` + `shot_gallery.mjs` caught what every automated gate passed: the tooth read first as a capsule and then as a lollipop before the crown was given near-vertical sides and two cusps; the heart read as an egg until the top was notched between the two atria; the kidneys read as crescents until the hilum notch was made shallower; the pelvic girdle's pubis and ischium read as a separate object below the hip bones until a strut joined each acetabulum to its obturator ring; the uterus was drawn far too narrow and read as a keyhole; and the male figure's "Bulbourethral gland" label ran off the 520-unit canvas. **Author, render, LOOK — the gates cannot see shape.**
+
+**One reusable scar, worth knowing before authoring any new figure:** `paceMs` (`src/lib/answerBook/pathLength.ts`) clamps a single stroke to **4500 ms**, so any stroke longer than about **315 units draws faster than the 160 u/s gate ceiling no matter what speed is authored**. The heart outline was one 788-unit path and came out at 175 u/s. The fix is to split the path into several pen strokes — which is also how a hand draws it. Nothing warns you at authoring time; the gate catches it after `pace_figures.ts --write` has already run.
+
+**A process failure to record.** `npm run check:figure-pace` was run inside a pipeline (`… | tail -1`), so its non-zero exit was masked by `tail` and unit 2 was committed and auto-pushed with the gate failing. Caught on the next run and fixed forward in `4e1471e4`; the commit message that made the false claim is corrected there in writing. **Never gate a commit on a command whose exit status a pipe has swallowed.** A second, smaller instance: unit 4's commit message claimed a verification note that had not been written; corrected in `1d50137a`.
+
+**Honesty of the content.** Every card's `verification.note` records that Zoology-II holds **one** source book in the corpus, so the two-book union check is structurally impossible and "not checked" does not mean "checked and clean"; the mark split is our reading and a claim until a TS IPE teacher confirms it. Two deliberate departures from the source are flagged rather than absorbed: the lipid-soluble hormone mechanism (the book's answer stops where its page ends; the closing step is authored here), and Lamarck's disproof (the book's "it has been a practise in India"; the card says "in many communities" — same fact, no country).
+
+**Also fixed:** `answer-book/tools/zoology_wip/valcheck_ad1.ts`, a leftover from the z1 desk, imported the schema by an absolute Windows path (`C:/Tutor/…`) and was the **only** `tsc --noEmit` error on this branch. Now relative. `check:figure-pace` runs strict on `ts_ipe_z` so it covers both zoology papers.
+
+**Verified at every unit commit:** `tsc --noEmit` 0 errors · `npm run build:answers` PASS · `npm run check:figure-pace` PASS for `ts_ipe_z` · `npx vitest run src/lib/answerBook` 42/42. Built page: 8.1 MB, all 145 z2 ids embedded, both Zoology chips present.
+
+**Next session's first task: the PR — but NOT before the botany-2 desk's.** Both desks edit `answer-book/units.json`, `src/schemas/answerBook.ts`, `src/scripts/build_answer_book.ts` and `answer-book/notebook.js`, and will conflict. **Merge ONE PR to master, then in the other desk `git merge origin/master`, resolve those four files additively (keep BOTH new subject values in the enum, the array and the maps), re-run `build:answers`, and only then open its PR.** Do not open both at once. **Blockers:** none for the content; the merge order is the only coordination needed.
