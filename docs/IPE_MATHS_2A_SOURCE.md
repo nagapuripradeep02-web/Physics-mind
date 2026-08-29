@@ -125,11 +125,57 @@ Treatment of the other sections, as executed:
 - **"IPE 24 QF" (pp.4–5)** — the formula sheet; not questions.
 
 **Two structural checks cannot be run for this subject, and that is recorded, not hidden:** no
-two-book union check (no second Maths-2A source in the corpus) and no board back-test
+two-book union check (no second Maths-2A source in the corpus) and no BOARD back-test
 (`answer-book/papers/` holds first-year physics only). Same call as 1A/1B/Chemistry-II: proceed
 single-source and say so on every card and in the `units.json` comment. What replaced them here was
 the boundary walk (read the page after the one you think is last — it is what found corrections 1–3
-above) and re-deriving every printed answer.
+above), re-deriving every printed answer, and the model-paper back-test below.
+
+## The model-paper back-test (2026-08-29) — 199 of 199, zero mis-cut cards
+
+Run on the sibling Maths-2B session's advice, using the book's OWN papers as a substitute corpus
+because no real second-year maths paper exists in `answer-book/papers/`. **This is not a board
+back-test** and cannot show what the board asks that this book omits — but it is the only external
+check available, and on 2B it caught three cards cut at the wrong marks.
+
+The corpus is **199 slot-instances, not the 144 first assumed**: the five Model Guess Papers give
+120 (5 × 24), and the **Bullet Model Paper is not a 24-question paper** — it is a multi-question
+paper grouped under the 24 slot headings, carrying **79 questions** with no page pointers, which
+makes it *better* evidence than a pointer since it assigns each question to a numbered slot and
+therefore to a section and a mark value directly.
+
+**Result: all 199 resolve to an authored card (136 distinct questions), and every one carries the
+qtype and marks its slot implies. No card needed re-cutting.** Matching was done on question TEXT,
+never on the printed pointer — which mattered, see below. 121 of the 257 cards are exercised by no
+paper: that is bank depth beyond the papers, not a gap.
+
+**The two Star-bank cards a paper actually places both CONFIRM the inferred section:** answer 182
+(`sqp_locus_mod_z_1`, authored VSAQ/2) sits at Model Paper 4 Q2, a Section A slot; answer 201
+(`saq_piston_four_letter_words_repeated`, authored SAQ/4) sits at Model Paper 5 Q13, a Section B
+slot.
+
+**The residual risk is seven cards, and it is now written on each of them.** Twenty-two of the 29
+Star-bank cards are VSAQ/2 on VSAQ-routed pages and are coherent. Seven are authored non-VSAQ with
+no paper placing them, and the back-test found real evidence pointing the other way: **the book
+routes readers into the Star pages from its VSAQ chapters**, via a footer verified at four chapter
+ends — book p.72 → "Few More VSAQ are in Page 89", p.73 → 90, p.75 → 91, p.81 → 93, p.84 → 94. No
+such footer was found from the SAQ chapter end (p.58) or the one LAQ chapter end checked (p.35);
+routing into pp.92 and 95 is unverified. Each of the seven now carries a `⚠ COUNTER-EVIDENCE`
+paragraph in its `verification.note` giving both readings, following the Maths-1A answer-150
+precedent. The weakest is answer 203 (`bt_successive_coefficients_36_84_126`), authored LAQ/7 on a
+VSAQ-routed page; kept because its method and length are those of book answer 20, a 7-mark LAQ, and
+because Binomial holds two Section-C slots — but a teacher settles it.
+
+**Frequency: the papers are NOT independent**, so cross-paper repetition is a weak signal here. The
+Bullet Model Paper is largely the union of the five numbered ones, so "appears in 3 papers" almost
+always means "one Model Paper plus the Bullet". Across the five *numbered* papers only two questions
+repeat at all — `x/(x² − 5x + 9)` lies between 1 and −1/11 (MP2 Q12, MP5 Q12) and
+`(2 − ω)(2 − ω²)(2 − ω¹⁰)(2 − ω¹¹) = 49` (MP3 Q3, MP5 Q3). **The per-answer year chips the book
+prints are a far better frequency signal**, and they are already in each card's `appearances`.
+
+One trap for future tooling: the four unsolved **PQ** practice questions share a `book page + answer
+number` citation with the numbered answer they sit under (58#76, 68#104, 25#16, 31#25), so any index
+keyed on page+answer collides. Match on question text.
 
 ## Notation ledger — MEASURED 2026-08-29, quoted in every unit agent's prompt
 
@@ -224,10 +270,26 @@ Chemistry Fastrack** (~130 findings there), and four units found nothing mathema
 - **p.45, ans 51 (Dispersion)** — "Median deviation about median" for *mean* deviation.
 - **p.109, ans 47 (Random Variables)** — prints `2ᴷ` with a capital K mid-expression.
 
-**Its own cross-references, off by one.** Model Paper 2's Q22 index cites "P 45(50)" for an answer
-that is 49 on p.44; Model Paper 3's Q18 cites "P 15(3)" for answer 4 on p.16; Model Paper 4's Q18
-cites "P 16(4)" for answer 5. The Bullet Model Paper's internal labels "22." and "29." point at book
-answers 24 and 30.
+**Its own cross-references are wrong in EIGHT places** — four found during authoring, four more by
+the 2026-08-29 back-test, every one confirmed against the source page. None misroutes a card's
+section; the affected slots' true cards already carry the right marks.
+
+| Slot | Book prints | Actual |
+|---|---|---|
+| MP2 Q2 | `[P 72(111.1)]` | **111.2** — p.72 prints 111.1 as `z₂ = −i, Arg(z₁z₂)`, 111.2 as `z₂ = i, Arg(z₁/z₂)` |
+| MP2 Q11 | `[P 49(55)]` | **49(56)** — 55 is the Argand rhombus, 56 is `(x − iy)^(1/3)` |
+| MP2 Q22 | `[P 45(50)]` | **44(49)** |
+| MP3 Q18 | `[P 15(3)]` | **16(4)** |
+| MP4 Q18 | `[P 16(4)]` | **16(5)** |
+| MP4 Q21 | `[P 33(28)]` | **35(31)** — 33(28) is the unrelated `1.3/3.6` series |
+| Bullet p.106 | bullet labelled `22.` | answer **24** |
+| Bullet p.107 | bullet labelled `29.` | answer **30** |
+
+A wrong pointer is **not** a missing card — in all eight cases the correct card exists. Resolve by
+the mathematics before recording a gap (the sibling 2B session reached the same conclusion from
+three of its own book's bad pointers). Note also that the scan's "Ans-Page Index" column is offset
+by one row against its questions; resolving by ordinal position and cross-checking against
+answer-number order is what made all 120 pointers readable.
 
 **Year chips printed twice** (AP 18,18 · AP 17,17 · TS 15,15 · TS 16,16 · AP 16,16 · AP 19,19 and
 others) are recorded ONCE in `appearances` with the doubled chip quoted in the note — two papers in
