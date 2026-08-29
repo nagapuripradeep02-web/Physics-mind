@@ -102,7 +102,7 @@
           "117(x²−2x+1+y²−4y+4)",
           "= 4(4x²+9y²+36+12xy+24x+36y)",
           "117x²+117y²−234x−468y+585",
-          "= 16x²+36y²+144xy+96x+144y+144"
+          "= 16x²+36y²+48xy+96x+144y+144"
         ],
         "why": "(2x + 3y + 6)² expands with three cross terms — 12xy, 24x and 36y — because it is a sum of three parts, not two; missing any one of them changes the final equation.",
         "common_mistakes": [

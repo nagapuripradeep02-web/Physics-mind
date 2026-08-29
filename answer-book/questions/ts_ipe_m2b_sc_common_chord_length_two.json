@@ -44,7 +44,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles, answer 54.2, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tag: TS 18. ⚠ THE MARK SPLIT IS OURS, same 1+1+1+1 reasoning as the twin answer 54.1 (justified in full in that card's note against Circle SAQ answer 48, book p.51). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52, and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75)."
   },
-  "insider_note": "Both circles here have half-integer centres and radii — keep every fraction over a common denominator of 4 through the whole answer, or the final surd will not match the book's 3/√2.",
+  "insider_note": "Both circles here have half-integer centres, so the radius is the surd 3/√2 and the perpendicular distance 1/√2. Keep both over a common denominator: r² − p² is then 9/2 − 1/2 = 4 exactly, and the chord length comes out as the whole number 4.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

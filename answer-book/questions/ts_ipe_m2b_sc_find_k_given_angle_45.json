@@ -17,12 +17,23 @@
   "expected_time_min": 4,
   "question_text": "If the angle between the circles x² + y² − 12x − 6y + 41 = 0, x² + y² + kx + 6y − 59 = 0 is 45° then find k.",
   "appearances": [
-    { "year": 2018, "board": "ap_ipe" },
-    { "year": 2018 }
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    }
   ],
   "mark_split": [
-    { "label": "Find the centres, radii and distance", "marks": 1 },
-    { "label": "Apply the angle formula and solve for k", "marks": 1 }
+    {
+      "label": "Find the centres, radii and distance",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula and solve for k",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -44,7 +55,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. g′ is now the unknown k, so both r₂ and d carry k inside a square root.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "From the given circles, g = −6, f = −3, c = 41",
           "and g′ = k/2, f′ = 3, c′ = −59",
           "r₁ = √(36 + 9 − 41) = 2",
@@ -66,17 +80,24 @@
         "margin_note": "Second mark. Two rounds of squaring are needed to clear the surds and isolate k.",
         "lines": [
           "cos 45° = (c + c′ − 2gg′ − 2ff′) / (2r₁r₂)",
-          "1/√2 = 3k / (4√(k²/4 + 68))",
+          "1/√2 = 6k / (4√(k²/4 + 68))",
           "⇒ √(k²/4 + 68) = 3k/√2 · 1",
           "Squaring, k² + 272 = 18k² ⇒ 17k² = 272",
-          { "text": "⇒ k² = 16 ⇒ k = ±4", "style": "boxed" }
+          "Squaring gave k² = 16, so k = 4 or k = −4.",
+          "k = −4 fails √(k²/4 + 68) = 3k/√2:",
+          "the left side is ≥ 0, the right side is not.",
+          "It gives cos θ = −1/√2, an angle of 135°.",
+          {
+            "text": "∴ k = 4",
+            "style": "boxed"
+          }
         ],
-        "why": "Setting cos θ equal to cos 45° = 1/√2 and cross-multiplying gives an equation with k inside a square root; squaring both sides once clears that root and leaves a simple quadratic in k, whose two roots are both valid since the original angle formula only involves squared quantities.",
+        "why": "Setting cos θ equal to cos 45° = 1/√2 and cross-multiplying leaves k inside a square root, and squaring clears it. The numerator c + c′ − 2gg′ − 2ff′ is LINEAR in k, not squared, so squaring can introduce a root the original equation never had — here k = −4 satisfies k² = 16 but makes the right-hand side of √(k²/4 + 68) = 3k/√2 negative, and puts the circles at 135° instead of 45°. Every root has to be tested against the unsquared equation before it is kept.",
         "common_mistakes": [
-          "Taking only the positive root k = 4 and discarding k = −4, when both satisfy the squared equation equally.",
-          "Squaring only one side of the equation and leaving a stray unsquared term on the other."
+          "Keeping both roots of k² = 16. k = −4 is extraneous: it makes 3k/√2 negative while the square root beside it cannot be, and it gives an angle of 135°, not 45°.",
+          "Writing the numerator as 3k. With g = −6 and g′ = k/2, −2gg′ = +6k, so c + c′ − 2gg′ − 2ff′ = 6k."
         ],
-        "memory_tip": "An angle-condition question that leaves k inside a square root always ends in a ± answer once squared — do not discard the negative root without checking the question actually excludes it."
+        "memory_tip": "Squaring can create roots. After solving, put each one back into the line BEFORE the squaring and keep only the roots that survive."
       }
     ]
   }

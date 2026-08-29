@@ -137,7 +137,7 @@
         ],
         "why": "Squaring e² = b/a gives e⁴ = b²/a², and substituting b² = a²(1 − e²) once more shows this equals 1 − e², which rearranges directly to the required identity.",
         "common_mistakes": [
-          "Dividing ab = a²e² by a² instead of by a, which gives b/a = ae² instead of e² = b/a.",
+          "Dividing ab = a²e² by a instead of by a², which gives b = ae². Dividing by a² is the move that isolates e² = b/a.",
           "Stopping at e⁴ = 1 − e² without writing the final rearranged form e⁴ + e² = 1."
         ]
       }

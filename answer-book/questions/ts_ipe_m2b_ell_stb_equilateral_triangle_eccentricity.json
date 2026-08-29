@@ -66,8 +66,8 @@
             "style": "heading"
           },
           "Let the ellipse be x²/a² + y²/b² = 1, (a > b)",
-          "Foci S(ae, 0), T(−ae, 0); B(0,",
-          "b) is one end of the minor axis",
+          "Foci S(ae, 0) and T(−ae, 0);",
+          "B(0, b) is one end of the minor axis",
           "ST = 2ae,  SB = TB = √((ae)² + b²)"
         ],
         "why": "The distance between the foci is 2ae, and SB (or TB) is found by the distance formula between a focus and the top of the minor axis — these are the three sides of triangle STB.",

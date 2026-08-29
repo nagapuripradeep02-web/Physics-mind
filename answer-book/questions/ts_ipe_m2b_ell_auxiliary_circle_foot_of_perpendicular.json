@@ -92,8 +92,7 @@
         "margin_note": "Second mark. P(x₁, y₁) satisfies both (1) and (2), since it is their point of intersection.",
         "memory_tip": "The foot of the perpendicular is exactly the intersection point of the two lines.",
         "lines": [
-          "P(x₁,",
-          "y₁) is the point of intersection of (1) and (2):",
+          "P(x₁, y₁) is where (1) and (2) meet:",
           "y₁ − mx₁ = ±√(a²m² + b²)  and  my₁ + x₁ = ±ae"
         ],
         "why": "Since P lies on both lines by construction, its coordinates satisfy both equations simultaneously — this is what makes the next 'square and add' step possible.",
@@ -114,8 +113,8 @@
           "Squaring and adding:",
           "(y₁−mx₁)² + (my₁+x₁)² = (a²m²+b²) + (ae)²",
           "⇒ (y₁²+m²x₁²−2mx₁y₁) + (m²y₁²+x₁²+2mx₁y₁)",
-          "= a²m² + b²(1−e²) + a²e²  [since b²",
-          "= a²(1−e²)]",
+          "= a²m² + a²(1−e²) + a²e²",
+          "[since b² = a²(1−e²)]",
           "⇒ x₁²(1+m²) + y₁²(1+m²) = a²(m²+1)"
         ],
         "why": "Squaring both equations before adding cancels the cross terms 2mx₁y₁ against each other, and replacing b² with a²(1 − e²) makes the right-hand side collapse to a single multiple of a².",
