@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_panspermia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are panspermia?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What the theory says",
+      "marks": 1
+    },
+    {
+      "label": "How life reached the earth",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 117. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Evolution · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_theory",
+        "kind": "text",
+        "label": "What the theory says",
+        "marks": 1,
+        "mark_note": "The theory",
+        "why": "The theory moves the origin of life elsewhere rather than explaining it, which is the usual criticism of it.",
+        "common_mistakes": [
+          "Saying panspermia explains how life began. It says life came from elsewhere.",
+          "Leaving out the word spores."
+        ],
+        "memory_tip": "Pan means everywhere, sperma means seed: seeds of life everywhere.",
+        "margin_note": "Say what panspermia ARE, not only what the theory claims.",
+        "lines": [
+          "According to the panspermia theory of",
+          "evolution, life might have existed",
+          "elsewhere in the universe in the form of",
+          "resistant spores called panspermia."
+        ]
+      },
+      {
+        "id": "s2_reached",
+        "kind": "boxed_final",
+        "label": "How life reached earth",
+        "marks": 1,
+        "mark_note": "Arrival",
+        "why": "The spores had to survive the journey, which is why the theory insists they are resistant.",
+        "common_mistakes": [
+          "Saying the spores were sent deliberately.",
+          "Leaving the second half out."
+        ],
+        "memory_tip": "They arrived by accident, not by design.",
+        "margin_note": "One line completes the answer.",
+        "lines": [
+          {
+            "text": "The life might have reached earth accidentally",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Panspermia is the SPORES, not the theory. Name both — the resistant spores and the idea that they arrived from space."
+}

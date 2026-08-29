@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_connecting_links",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the names of any four connecting links that you have studied.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Two connecting links",
+      "marks": 1
+    },
+    {
+      "label": "Two more connecting links",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 118. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Evolution · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_two",
+        "kind": "text",
+        "label": "Two connecting links",
+        "marks": 1,
+        "mark_note": "First two",
+        "why": "A connecting link shows features of two groups at once, so it is evidence that one group gave rise to the other.",
+        "common_mistakes": [
+          "Naming the animal without the groups it links.",
+          "Naming Archaeopteryx as a link between amphibians and reptiles."
+        ],
+        "memory_tip": "Fish→amphibian, amphibian→reptile, reptile→bird, reptile→mammal.",
+        "margin_note": "Write each name with its two groups.",
+        "lines": [
+          "1. Eusthenopteron — between fishes and",
+          "amphibians.",
+          "2. Seymouria — between amphibians and",
+          "reptiles."
+        ]
+      },
+      {
+        "id": "s2_next_two",
+        "kind": "boxed_final",
+        "label": "Two more",
+        "marks": 1,
+        "mark_note": "Next two",
+        "why": "Archaeopteryx had feathers like a bird and teeth like a reptile, which is exactly what a connecting link means.",
+        "common_mistakes": [
+          "Giving only three links when four are asked.",
+          "Placing Cynognathus between birds and mammals."
+        ],
+        "memory_tip": "Archaeopteryx to birds, Cynognathus to mammals.",
+        "margin_note": "Four named links complete the answer.",
+        "lines": [
+          "3. Archaeopteryx — between reptiles and",
+          "birds.",
+          {
+            "text": "4. Cynognathus — between reptiles and mammals",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Each name must be followed by the two groups it links. A bare list of four names is usually cut to one mark."
+}

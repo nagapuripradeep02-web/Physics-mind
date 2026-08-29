@@ -10607,6 +10607,101 @@
           "question_id": "ts_ipe_z2_gen_genic_balance_theory"
         }
       ]
+    },
+    {
+      "subject": "zoology_2",
+      "number": 7,
+      "name": "Organic Evolution (Zoology-II)",
+      "questions": [
+        {
+          "ref": "saq36",
+          "section": "SAQ",
+          "number": 36,
+          "stars": 3,
+          "text": "Distinguish between homologous and analogous organs.",
+          "question_id": "ts_ipe_z2_oev_homologous_vs_analogous"
+        },
+        {
+          "ref": "saq37",
+          "section": "SAQ",
+          "number": 37,
+          "stars": 2,
+          "text": "Write a short note on the theory of mutations.",
+          "question_id": "ts_ipe_z2_oev_mutation_theory"
+        },
+        {
+          "ref": "saq38",
+          "section": "SAQ",
+          "number": 38,
+          "stars": 3,
+          "text": "Explain Darwin's theory of Natural Selection with industrial melanism as an experimental proof.",
+          "question_id": "ts_ipe_z2_oev_natural_selection_melanism"
+        },
+        {
+          "ref": "saq39",
+          "section": "SAQ",
+          "number": 39,
+          "stars": 2,
+          "text": "Write a short note on Neo-Darwinism.",
+          "question_id": "ts_ipe_z2_oev_neo_darwinism"
+        },
+        {
+          "ref": "saq40",
+          "section": "SAQ",
+          "number": 40,
+          "stars": 2,
+          "text": "What is meant by genetic drift? Explain genetic drift citing the example of Founder Effect.",
+          "question_id": "ts_ipe_z2_oev_genetic_drift_founder_effect"
+        },
+        {
+          "ref": "vsaq117",
+          "section": "VSAQ",
+          "number": 117,
+          "stars": 1,
+          "text": "What are panspermia?",
+          "question_id": "ts_ipe_z2_oev_panspermia"
+        },
+        {
+          "ref": "vsaq118",
+          "section": "VSAQ",
+          "number": 118,
+          "stars": 1,
+          "text": "Mention the names of any four connecting links that you have studied.",
+          "question_id": "ts_ipe_z2_oev_connecting_links"
+        },
+        {
+          "ref": "vsaq119",
+          "section": "VSAQ",
+          "number": 119,
+          "stars": 1,
+          "text": "Define Biogenetic Law, giving an example.",
+          "question_id": "ts_ipe_z2_oev_biogenetic_law"
+        },
+        {
+          "ref": "vsaq120",
+          "section": "VSAQ",
+          "number": 120,
+          "stars": 2,
+          "text": "Define atavism with an example.",
+          "question_id": "ts_ipe_z2_oev_atavism"
+        },
+        {
+          "ref": "vsaq121",
+          "section": "VSAQ",
+          "number": 121,
+          "stars": 0,
+          "text": "Cite two examples to disprove Lamarck's inheritance of acquired characters.",
+          "question_id": "ts_ipe_z2_oev_disprove_lamarck"
+        },
+        {
+          "ref": "vsaq122",
+          "section": "VSAQ",
+          "number": 122,
+          "stars": 1,
+          "text": "What is meant by genetic load? Give an example.",
+          "question_id": "ts_ipe_z2_oev_genetic_load"
+        }
+      ]
     }
   ]
 }
