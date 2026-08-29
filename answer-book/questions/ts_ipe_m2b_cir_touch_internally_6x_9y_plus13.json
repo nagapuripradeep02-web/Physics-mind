@@ -187,19 +187,19 @@
               "type": "stroke",
               "id": "cir_touch_int_1_c1",
               "d": "M 110 130 A 90 90 0 1 0 290 130 A 90 90 0 1 0 110 130",
-              "ms": 1257
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cir_touch_int_1_c2",
               "d": "M 200 130 A 45 45 0 1 0 290 130 A 45 45 0 1 0 200 130",
-              "ms": 628
+              "ms": 4040
             },
             {
               "type": "stroke",
               "id": "cir_touch_int_1_axis",
               "d": "M 102 130 L 302 130",
-              "ms": 444,
+              "ms": 2860,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -207,25 +207,25 @@
               "type": "stroke",
               "id": "cir_touch_int_1_tan",
               "d": "M 290 48 L 290 212",
-              "ms": 364
+              "ms": 2340
             },
             {
               "type": "stroke",
               "id": "cir_touch_int_1_d1",
               "d": "M 196.5 130 A 3.5 3.5 0 1 0 203.5 130 A 3.5 3.5 0 1 0 196.5 130",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "stroke",
               "id": "cir_touch_int_1_d2",
               "d": "M 241.5 130 A 3.5 3.5 0 1 0 248.5 130 A 3.5 3.5 0 1 0 241.5 130",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "stroke",
               "id": "cir_touch_int_1_dp",
               "d": "M 286.5 130 A 3.5 3.5 0 1 0 293.5 130 A 3.5 3.5 0 1 0 286.5 130",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "label",

@@ -155,32 +155,44 @@
             {
               "type": "stroke",
               "id": "hdc_branch",
-              "d": "M 250 60 Q 170 90 170 130 Q 170 170 250 200",
-              "ms": 900
+              "d": "M 267 80 Q 210 110 210 140 Q 210 170 267 200",
+              "ms": 2470
+            },
+            {
+              "type": "stroke",
+              "id": "hdc_branch_left_stub",
+              "d": "M 45 115 Q 70 125 70 140 Q 70 155 45 165",
+              "ms": 1070
             },
             {
               "type": "stroke",
               "id": "hdc_circle",
-              "d": "M 70 130 A 40 40 0 1 0 150 130 A 40 40 0 1 0 70 130",
-              "ms": 700
+              "d": "M 83 140 A 57 57 0 1 0 197 140 A 57 57 0 1 0 83 140",
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "hdc_tangent_1",
-              "d": "M 235 55 L 251 68",
-              "ms": 400
+              "d": "M 194 120 L 245 89",
+              "ms": 850
             },
             {
               "type": "stroke",
               "id": "hdc_tangent_2",
-              "d": "M 235 55 L 216 190",
-              "ms": 400
+              "d": "M 194 120 L 220 163",
+              "ms": 720
+            },
+            {
+              "type": "stroke",
+              "id": "hdc_right_angle_p",
+              "d": "M 204 114 L 211 124 L 200 130",
+              "ms": 350
             },
             {
               "type": "label",
               "id": "hdc_lbl_p",
-              "x": 220,
-              "y": 45,
+              "x": 177,
+              "y": 100,
               "text": "P",
               "ms": 400,
               "em": true
@@ -188,15 +200,15 @@
             {
               "type": "label",
               "id": "hdc_lbl_c",
-              "x": 100,
-              "y": 130,
+              "x": 128,
+              "y": 148,
               "text": "C",
               "ms": 400
             },
             {
               "type": "label",
               "id": "hdc_lbl_branch",
-              "x": 200,
+              "x": 220,
               "y": 205,
               "text": "hyperbola",
               "ms": 400,

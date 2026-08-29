@@ -114,13 +114,13 @@
               "type": "stroke",
               "id": "cir_tangent_normal_1_circle",
               "d": "M 88 115 A 62 62 0 1 0 212 115 A 62 62 0 1 0 88 115",
-              "ms": 866
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cir_tangent_normal_1_normal",
               "d": "M 106 159 L 238 27",
-              "ms": 416,
+              "ms": 2670,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -128,25 +128,25 @@
               "type": "stroke",
               "id": "cir_tangent_normal_1_tan",
               "d": "M 142 19 L 246 123",
-              "ms": 327
+              "ms": 2100
             },
             {
               "type": "stroke",
               "id": "cir_tangent_normal_1_ra",
               "d": "M 183 70 L 193 60 L 203 70",
-              "ms": 260
+              "ms": 400
             },
             {
               "type": "stroke",
               "id": "cir_tangent_normal_1_dc",
               "d": "M 146.5 115 A 3.5 3.5 0 1 0 153.5 115 A 3.5 3.5 0 1 0 146.5 115",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "stroke",
               "id": "cir_tangent_normal_1_dp",
               "d": "M 190.5 71 A 3.5 3.5 0 1 0 197.5 71 A 3.5 3.5 0 1 0 190.5 71",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "label",

@@ -129,25 +129,25 @@
               "type": "stroke",
               "id": "cir_pair_angle_1_circle",
               "d": "M 182 115 A 58 58 0 1 0 298 115 A 58 58 0 1 0 182 115",
-              "ms": 810
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cir_pair_angle_1_t1",
               "d": "M 60 115 L 360 217",
-              "ms": 689
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cir_pair_angle_1_t2",
               "d": "M 60 115 L 360 13",
-              "ms": 689
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cir_pair_angle_1_rad",
               "d": "M 240 115 L 221 170",
-              "ms": 220,
+              "ms": 830,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -155,19 +155,19 @@
               "type": "stroke",
               "id": "cir_pair_angle_1_arc",
               "d": "M 102 101 A 44 44 0 0 0 102 129",
-              "ms": 300
+              "ms": 410
             },
             {
               "type": "stroke",
               "id": "cir_pair_angle_1_dc",
               "d": "M 236.5 115 A 3.5 3.5 0 1 0 243.5 115 A 3.5 3.5 0 1 0 236.5 115",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "stroke",
               "id": "cir_pair_angle_1_do",
               "d": "M 56.5 115 A 3.5 3.5 0 1 0 63.5 115 A 3.5 3.5 0 1 0 56.5 115",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "label",

@@ -155,25 +155,25 @@
               "type": "stroke",
               "id": "mn_xaxis",
               "d": "M 30 150 L 270 150",
-              "ms": 500
+              "ms": 3430
             },
             {
               "type": "stroke",
               "id": "mn_yaxis",
               "d": "M 150 40 L 150 260",
-              "ms": 500
+              "ms": 3140
             },
             {
               "type": "stroke",
               "id": "mn_ellipse",
               "d": "M 60 150 A 90 55 0 1 0 240 150 A 90 55 0 1 0 60 150",
-              "ms": 900
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "mn_tangent",
               "d": "M 150 55 L 255 150",
-              "ms": 500
+              "ms": 2020
             },
             {
               "type": "label",
@@ -209,24 +209,6 @@
               "text": "P",
               "ms": 400,
               "em": true
-            },
-            {
-              "type": "label",
-              "id": "mn_lbl_x",
-              "x": 274,
-              "y": 150,
-              "text": "X",
-              "ms": 400,
-              "sm": true
-            },
-            {
-              "type": "label",
-              "id": "mn_lbl_y",
-              "x": 150,
-              "y": 34,
-              "text": "Y",
-              "ms": 400,
-              "sm": true
             }
           ]
         },

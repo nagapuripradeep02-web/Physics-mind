@@ -161,30 +161,30 @@
               "type": "stroke",
               "id": "ac_ellipse",
               "d": "M 70 110 A 90 55 0 1 0 250 110 A 90 55 0 1 0 70 110",
-              "ms": 900
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "ac_circle",
               "d": "M 70 110 A 90 90 0 1 0 250 110 A 90 90 0 1 0 70 110",
-              "ms": 900
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "ac_tangent",
-              "d": "M 150 35 L 290 95",
-              "ms": 500
+              "d": "M 182 50 L 298 109",
+              "ms": 1860
             },
             {
               "type": "stroke",
               "id": "ac_perp",
-              "d": "M 200 110 L 238 65",
-              "ms": 500
+              "d": "M 231 110 L 245 82",
+              "ms": 450
             },
             {
               "type": "label",
               "id": "ac_lbl_s",
-              "x": 195,
+              "x": 222,
               "y": 128,
               "text": "S",
               "ms": 400,
@@ -193,8 +193,8 @@
             {
               "type": "label",
               "id": "ac_lbl_p",
-              "x": 242,
-              "y": 52,
+              "x": 250,
+              "y": 78,
               "text": "P",
               "ms": 400,
               "em": true
@@ -211,9 +211,9 @@
             {
               "type": "label",
               "id": "ac_lbl_circle",
-              "x": 250,
-              "y": 190,
-              "text": "auxiliary circle",
+              "x": 195,
+              "y": 200,
+              "text": "auxiliary",
               "ms": 400,
               "sm": true
             }

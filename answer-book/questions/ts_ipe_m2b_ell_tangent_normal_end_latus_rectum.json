@@ -142,25 +142,25 @@
               "type": "stroke",
               "id": "ell_outline",
               "d": "M 60 130 A 90 68 0 1 0 240 130 A 90 68 0 1 0 60 130",
-              "ms": 900
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "ell_latus_rectum",
               "d": "M 209 79 L 209 181",
-              "ms": 500
+              "ms": 1460
             },
             {
               "type": "stroke",
               "id": "ell_tangent_line",
               "d": "M 160 65 L 260 93",
-              "ms": 500
+              "ms": 1480
             },
             {
               "type": "stroke",
               "id": "ell_normal_line",
               "d": "M 189 150 L 229 8",
-              "ms": 500
+              "ms": 2110
             },
             {
               "type": "label",
@@ -182,7 +182,7 @@
             {
               "type": "label",
               "id": "ell_lbl_tangent",
-              "x": 255,
+              "x": 130,
               "y": 60,
               "text": "tangent",
               "ms": 400,

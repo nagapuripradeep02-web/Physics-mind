@@ -165,19 +165,19 @@
               "type": "stroke",
               "id": "cir_tangent_touch_1_circle",
               "d": "M 96 108 A 64 64 0 1 0 224 108 A 64 64 0 1 0 96 108",
-              "ms": 894
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cir_tangent_touch_1_tan",
               "d": "M 143 1 L 279 137",
-              "ms": 427
+              "ms": 2750
             },
             {
               "type": "stroke",
               "id": "cir_tangent_touch_1_rad",
               "d": "M 160 108 L 205 63",
-              "ms": 220,
+              "ms": 910,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -185,19 +185,19 @@
               "type": "stroke",
               "id": "cir_tangent_touch_1_ra",
               "d": "M 193 61 L 203 51 L 213 61",
-              "ms": 260
+              "ms": 400
             },
             {
               "type": "stroke",
               "id": "cir_tangent_touch_1_dc",
               "d": "M 156.5 108 A 3.5 3.5 0 1 0 163.5 108 A 3.5 3.5 0 1 0 156.5 108",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "stroke",
               "id": "cir_tangent_touch_1_dp",
               "d": "M 201.5 63 A 3.5 3.5 0 1 0 208.5 63 A 3.5 3.5 0 1 0 201.5 63",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "label",

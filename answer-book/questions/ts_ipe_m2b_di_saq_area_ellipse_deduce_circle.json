@@ -88,13 +88,13 @@
               "type": "stroke",
               "id": "axis_x",
               "d": "M 30 150 L 275 150 M 268 144 L 278 150 L 268 156",
-              "ms": 400
+              "ms": 3830
             },
             {
               "type": "stroke",
               "id": "axis_y",
               "d": "M 150 230 L 150 20 M 144 28 L 150 18 L 156 28",
-              "ms": 400
+              "ms": 3330
             },
             {
               "type": "label",
@@ -109,19 +109,19 @@
               "type": "stroke",
               "id": "ellipse_upper",
               "d": "M 40 150 Q 40 80 150 80 Q 260 80 260 150",
-              "ms": 600
+              "ms": 4210
             },
             {
               "type": "stroke",
               "id": "ellipse_lower",
               "d": "M 260 150 Q 260 220 150 220 Q 40 220 40 150",
-              "ms": 600
+              "ms": 4210
             },
             {
               "type": "label",
               "id": "lbl_a",
-              "x": 262,
-              "y": 145,
+              "x": 230,
+              "y": 180,
               "text": "A(a,0)",
               "ms": 250,
               "em": true
@@ -137,25 +137,25 @@
             },
             {
               "type": "stroke",
-              "id": "hatch1",
-              "d": "M 200 120 L 208 110",
-              "ms": 200,
+              "id": "oab_side_oa",
+              "d": "M 150 150 L 260 150",
+              "ms": 1570,
               "pen": "pencil",
-              "wipe": "y"
+              "wipe": "x"
             },
             {
               "type": "stroke",
-              "id": "hatch2",
-              "d": "M 220 135 L 228 125",
-              "ms": 200,
+              "id": "oab_arc_ab",
+              "d": "M 260 150 Q 260 80 150 80",
+              "ms": 2110,
               "pen": "pencil",
-              "wipe": "y"
+              "wipe": "x"
             },
             {
               "type": "stroke",
-              "id": "hatch3",
-              "d": "M 235 148 L 243 138",
-              "ms": 200,
+              "id": "oab_side_ob",
+              "d": "M 150 150 L 150 80",
+              "ms": 1000,
               "pen": "pencil",
               "wipe": "y"
             }

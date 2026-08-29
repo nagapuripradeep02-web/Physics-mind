@@ -89,13 +89,13 @@
               "type": "stroke",
               "id": "ax_x",
               "d": "M 30 200 L 275 200 M 268 194 L 278 200 L 268 206",
-              "ms": 500
+              "ms": 3830
             },
             {
               "type": "stroke",
               "id": "ax_y",
               "d": "M 60 220 L 60 25 M 54 33 L 60 23 L 66 33",
-              "ms": 500
+              "ms": 3120
             },
             {
               "type": "label",
@@ -110,7 +110,7 @@
               "type": "stroke",
               "id": "curve_y2_4x",
               "d": "M 60 200 Q 105 200 128 152 Q 142 122 150 100",
-              "ms": 650
+              "ms": 2070
             },
             {
               "type": "label",
@@ -125,7 +125,7 @@
               "type": "stroke",
               "id": "curve_x2_4y",
               "d": "M 60 200 Q 62 145 92 122 Q 122 104 150 100",
-              "ms": 650
+              "ms": 2140
             },
             {
               "type": "label",
@@ -135,15 +135,6 @@
               "text": "x² = 4y",
               "ms": 300,
               "sm": true
-            },
-            {
-              "type": "label",
-              "id": "lbl_a_pt",
-              "x": 140,
-              "y": 88,
-              "text": "A",
-              "ms": 300,
-              "em": true
             },
             {
               "type": "stroke",

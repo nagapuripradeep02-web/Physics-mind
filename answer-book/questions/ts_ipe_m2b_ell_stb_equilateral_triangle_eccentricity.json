@@ -150,32 +150,32 @@
             {
               "type": "stroke",
               "id": "stb_ellipse",
-              "d": "M 45 140 A 85 45 0 1 0 215 140 A 85 45 0 1 0 45 140",
-              "ms": 900
+              "d": "M 40 110 A 90 78 0 1 0 220 110 A 90 78 0 1 0 40 110",
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "stb_side_st",
-              "d": "M 70 140 L 190 140",
-              "ms": 500
+              "d": "M 85 110 L 175 110",
+              "ms": 1290
             },
             {
               "type": "stroke",
               "id": "stb_side_sb",
-              "d": "M 190 140 L 130 95",
-              "ms": 500
+              "d": "M 175 110 L 130 32",
+              "ms": 1290
             },
             {
               "type": "stroke",
               "id": "stb_side_tb",
-              "d": "M 70 140 L 130 95",
-              "ms": 500
+              "d": "M 85 110 L 130 32",
+              "ms": 1290
             },
             {
               "type": "label",
               "id": "stb_lbl_s",
-              "x": 195,
-              "y": 145,
+              "x": 180,
+              "y": 128,
               "text": "S",
               "ms": 400,
               "em": true
@@ -183,8 +183,8 @@
             {
               "type": "label",
               "id": "stb_lbl_t",
-              "x": 58,
-              "y": 145,
+              "x": 65,
+              "y": 128,
               "text": "T",
               "ms": 400,
               "em": true
@@ -193,7 +193,7 @@
               "type": "label",
               "id": "stb_lbl_b",
               "x": 130,
-              "y": 80,
+              "y": 20,
               "text": "B",
               "ms": 400,
               "em": true

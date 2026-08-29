@@ -106,49 +106,49 @@
               "type": "stroke",
               "id": "par_yaxis",
               "d": "M 130 20 L 130 280",
-              "ms": 500
+              "ms": 3710
             },
             {
               "type": "stroke",
               "id": "par_xaxis",
               "d": "M 20 150 L 335 150",
-              "ms": 600
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "par_directrix",
               "d": "M 95 30 L 95 270",
-              "ms": 500
+              "ms": 3430
             },
             {
               "type": "stroke",
               "id": "par_curve_upper",
               "d": "M 130 150 Q 175 150 195 90 Q 208 58 220 40",
-              "ms": 650
+              "ms": 2160
             },
             {
               "type": "stroke",
               "id": "par_curve_lower",
               "d": "M 130 150 Q 175 150 195 210 Q 208 242 220 260",
-              "ms": 650
+              "ms": 2160
             },
             {
               "type": "stroke",
               "id": "par_pm_pn_segment",
               "d": "M 195 90 L 95 90",
-              "ms": 500
+              "ms": 1430
             },
             {
               "type": "stroke",
               "id": "par_sp_segment",
               "d": "M 165 150 L 195 90",
-              "ms": 350
+              "ms": 960
             },
             {
               "type": "stroke",
               "id": "par_right_angle_m",
               "d": "M 95 84 L 101 84 L 101 90",
-              "ms": 150
+              "ms": 300
             },
             {
               "type": "label",
@@ -169,8 +169,8 @@
             {
               "type": "label",
               "id": "par_lbl_a",
-              "x": 105,
-              "y": 172,
+              "x": 92,
+              "y": 205,
               "text": "A(0,0)",
               "ms": 300,
               "em": true
@@ -178,8 +178,8 @@
             {
               "type": "label",
               "id": "par_lbl_s",
-              "x": 168,
-              "y": 168,
+              "x": 170,
+              "y": 205,
               "text": "S(a,0)",
               "ms": 300,
               "em": true

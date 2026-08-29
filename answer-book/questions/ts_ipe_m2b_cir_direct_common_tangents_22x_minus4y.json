@@ -217,19 +217,19 @@
               "type": "stroke",
               "id": "cir_direct_tangents_1_c1",
               "d": "M 45 130 A 75 75 0 1 0 195 130 A 75 75 0 1 0 45 130",
-              "ms": 1047
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cir_direct_tangents_1_c2",
               "d": "M 250 130 A 25 25 0 1 0 300 130 A 25 25 0 1 0 250 130",
-              "ms": 349
+              "ms": 2240
             },
             {
               "type": "stroke",
               "id": "cir_direct_tangents_1_axis",
               "d": "M 37 130 L 360 130",
-              "ms": 667,
+              "ms": 4500,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -237,31 +237,31 @@
               "type": "stroke",
               "id": "cir_direct_tangents_1_t1",
               "d": "M 352 130 L 60 30",
-              "ms": 686
+              "ms": 4410
             },
             {
               "type": "stroke",
               "id": "cir_direct_tangents_1_t2",
               "d": "M 352 130 L 60 230",
-              "ms": 686
+              "ms": 4410
             },
             {
               "type": "stroke",
               "id": "cir_direct_tangents_1_d1",
               "d": "M 116.5 130 A 3.5 3.5 0 1 0 123.5 130 A 3.5 3.5 0 1 0 116.5 130",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "stroke",
               "id": "cir_direct_tangents_1_d2",
               "d": "M 271.5 130 A 3.5 3.5 0 1 0 278.5 130 A 3.5 3.5 0 1 0 271.5 130",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "stroke",
               "id": "cir_direct_tangents_1_ds",
               "d": "M 348.5 130 A 3.5 3.5 0 1 0 355.5 130 A 3.5 3.5 0 1 0 348.5 130",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "label",

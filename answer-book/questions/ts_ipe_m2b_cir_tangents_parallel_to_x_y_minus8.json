@@ -130,25 +130,25 @@
               "type": "stroke",
               "id": "cir_parallel_tangents_2_circle",
               "d": "M 123 115 A 62 62 0 1 0 247 115 A 62 62 0 1 0 123 115",
-              "ms": 866
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cir_parallel_tangents_2_t1",
               "d": "M 177 19 L 281 123",
-              "ms": 327
+              "ms": 2100
             },
             {
               "type": "stroke",
               "id": "cir_parallel_tangents_2_t2",
               "d": "M 89 107 L 193 211",
-              "ms": 327
+              "ms": 2100
             },
             {
               "type": "stroke",
               "id": "cir_parallel_tangents_2_given",
               "d": "M 272 62 L 368 158",
-              "ms": 302,
+              "ms": 1940,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -156,7 +156,7 @@
               "type": "stroke",
               "id": "cir_parallel_tangents_2_dc",
               "d": "M 181.5 115 A 3.5 3.5 0 1 0 188.5 115 A 3.5 3.5 0 1 0 181.5 115",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "label",
@@ -169,8 +169,8 @@
             {
               "type": "label",
               "id": "cir_parallel_tangents_2_ll",
-              "x": 296,
-              "y": 184,
+              "x": 245,
+              "y": 178,
               "text": "x + y − 8 = 0",
               "ms": 520,
               "sm": true

@@ -131,19 +131,19 @@
               "type": "stroke",
               "id": "cir_chord_1_circle",
               "d": "M 110 100 A 80 80 0 1 0 270 100 A 80 80 0 1 0 110 100",
-              "ms": 1117
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cir_chord_1_chord",
               "d": "M 126 148 L 254 148",
-              "ms": 284
+              "ms": 1830
             },
             {
               "type": "stroke",
               "id": "cir_chord_1_perp",
               "d": "M 190 100 L 190 148",
-              "ms": 220,
+              "ms": 690,
               "pen": "pencil",
               "wipe": "y"
             },
@@ -151,19 +151,19 @@
               "type": "stroke",
               "id": "cir_chord_1_ra",
               "d": "M 200 148 L 200 138 L 190 138",
-              "ms": 240
+              "ms": 300
             },
             {
               "type": "stroke",
               "id": "cir_chord_1_rad",
               "d": "M 190 100 L 126 148",
-              "ms": 220
+              "ms": 1140
             },
             {
               "type": "stroke",
               "id": "cir_chord_1_dc",
               "d": "M 186.5 100 A 3.5 3.5 0 1 0 193.5 100 A 3.5 3.5 0 1 0 186.5 100",
-              "ms": 240
+              "ms": 310
             },
             {
               "type": "label",

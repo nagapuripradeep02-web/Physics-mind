@@ -79,25 +79,25 @@
               "type": "stroke",
               "id": "sq_curve_left",
               "d": "M 110 60 Q 90 60 78 110 Q 70 140 68 165",
-              "ms": 500
+              "ms": 1700
             },
             {
               "type": "stroke",
               "id": "sq_curve_right",
               "d": "M 110 60 Q 130 60 142 110 Q 150 140 152 165",
-              "ms": 500
+              "ms": 1700
             },
             {
               "type": "stroke",
               "id": "sq_axis",
               "d": "M 110 60 L 110 175",
-              "ms": 400
+              "ms": 1640
             },
             {
               "type": "stroke",
               "id": "sq_axis_arrow",
               "d": "M 105 170 L 110 177 L 115 170",
-              "ms": 120
+              "ms": 300
             },
             {
               "type": "label",

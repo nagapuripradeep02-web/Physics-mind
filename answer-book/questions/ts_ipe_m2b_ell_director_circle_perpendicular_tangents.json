@@ -151,25 +151,25 @@
               "type": "stroke",
               "id": "dc_ellipse",
               "d": "M 75 130 A 85 50 0 1 0 245 130 A 85 50 0 1 0 75 130",
-              "ms": 900
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "dc_circle",
               "d": "M 61 130 A 99 99 0 1 0 259 130 A 99 99 0 1 0 61 130",
-              "ms": 900
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "dc_tangent_1",
               "d": "M 236 66 L 170 80",
-              "ms": 500
+              "ms": 960
             },
             {
               "type": "stroke",
               "id": "dc_tangent_2",
               "d": "M 236 66 L 243 132",
-              "ms": 500
+              "ms": 950
             },
             {
               "type": "label",
