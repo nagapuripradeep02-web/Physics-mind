@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_x2_over_1plusx2_0_to_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀¹ x²/(1 + x²) dx.",
+  "appearances": [
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split into a proper fraction",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and apply the limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.90 — VSAQ chapter 17 'Definite Integrals', answer 169, on the printed Super Scoring Page (SSP 90). Printed appearance: TS 18. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used elsewhere in this chapter. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.105 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∑∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "The add-and-subtract-1 trick works for any rational function whose numerator and denominator have the same degree — always look for it before trying a harder substitution.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "equation",
+        "label": "Split into a proper fraction",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. x²/(1+x²) = 1 − 1/(1+x²) — always rewrite an improper fraction this way before integrating.",
+        "memory_tip": "Numerator degree equals denominator degree ⇒ subtract 1 to make the fraction proper.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀¹ x²/(1+x²) dx = ∫₀¹ (1+x² − 1)/(1+x²) dx",
+          "= ∫₀¹ [1 − 1/(1+x²)] dx"
+        ],
+        "why": "Adding and subtracting 1 in the numerator rewrites x² as (1+x²)−1, splitting the improper fraction into a constant 1 minus the standard form 1/(1+x²), which integrates directly.",
+        "common_mistakes": [
+          "Attempting a substitution instead of the simpler add-and-subtract trick.",
+          "Losing the minus sign in front of 1/(1+x²)."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and apply the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Tan⁻¹1 = π/4 is a standard value — memorise it alongside Tan⁻¹0 = 0.",
+        "memory_tip": "x − Tan⁻¹x is the antiderivative to remember whenever x²/(1+x²) appears.",
+        "lines": [
+          "= [x − Tan⁻¹x]₀¹ = (1 − Tan⁻¹1) − (0 − Tan⁻¹0)",
+          {
+            "text": "∴ I = 1 − π/4",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫dx = x and ∫dx/(1+x²) = Tan⁻¹x, so the antiderivative is x − Tan⁻¹x; substituting x=1 gives Tan⁻¹1 = π/4 and x=0 gives Tan⁻¹0 = 0.",
+        "common_mistakes": [
+          "Forgetting that Tan⁻¹1 = π/4, not π/2.",
+          "Dropping the −Tan⁻¹0 term even though it equals 0."
+        ]
+      }
+    ]
+  }
+}

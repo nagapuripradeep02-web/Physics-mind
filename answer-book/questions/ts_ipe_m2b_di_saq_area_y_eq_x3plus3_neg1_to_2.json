@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_saq_area_y_eq_x3plus3_neg1_to_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the area of the region bounded by y = x³ + 3, the x-axis and the lines x = −1, x = 2.",
+  "appearances": [
+    {
+      "year": 2019
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up the area integral",
+      "marks": 1
+    },
+    {
+      "label": "Find the antiderivative",
+      "marks": 1
+    },
+    {
+      "label": "Apply the limits and simplify",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.102 — Star Q+ share, under the banner 'DEFINITE INTEGRALS-VSAQ', answer 216, the first of three area questions on this page. Printed appearance: TS 19. Chapter star rank ★★★ applies (Star Q+ entries take their chapter-section's rank). No margin mark tags are printed, so the 1+1+2 split is OURS, patterned on the 1+1+2 shape already used for this unit's other AREA questions (e.g. ts_ipe_m2b_di_saq_area_y_eq_x2_and_y_eq_x3 in the printed SAQ chapter). We classify this answer as SAQ shape, not VSAQ (the book's page header says 'VSAQ' for the whole 212–218 run, but a three-step area derivation matches the 4-mark SAQ form used elsewhere in this book, not a 2-mark VSAQ) — this classification is OURS. No figure is authored: y=x³+3 never crosses the x-axis on [−1,2] (it is already +2 at x=−1), so there is no boundary or sign-change picture to draw and the algebra is self-contained. Boundary reading: printed p.100 confirms the Hyperbola Star Q+ share ends at answer 211; printed p.103 confirms the Bullet Model Paper begins at Q1&2 Circles — so this chapter's Star Q+ share is exactly answers 212–218. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "Because the curve never crosses the x-axis on this interval, this question is simpler than it first looks — the only care needed is checking the sign before integrating, which the book itself does not show explicitly.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Definite Integrals · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the area integral",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. Confirm y stays positive on the whole interval before writing down a single, unsplit integral.",
+        "memory_tip": "x³+3 is increasing, and its smallest value on [−1,2] is at x=−1, where it is already +2 — so it never dips below the x-axis.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The curve is y = x³ + 3. On [−1, 2], y = x³+3 ≥ 2 > 0 throughout",
+          "[check: at x=−1, y=−1+3=2]",
+          "So the curve stays above the x-axis over the whole interval, and the required area is",
+          "A = ∫_{−1}^{2} y dx = ∫_{−1}^{2} (x³+3) dx"
+        ],
+        "why": "Since y=x³+3 is positive at both ends of the interval and is a strictly increasing function, it never crosses the x-axis on [−1,2], so the area under the curve is simply the plain definite integral with no sign-splitting needed.",
+        "common_mistakes": [
+          "Splitting the integral at x=0 out of habit, which is unnecessary here since the curve never goes negative.",
+          "Forgetting to check the sign of y before setting up the integral."
+        ]
+      },
+      {
+        "id": "s2_antideriv",
+        "kind": "equation",
+        "label": "Find the antiderivative",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. x⁴/4 + 3x is the antiderivative — check both terms are present before substituting limits.",
+        "memory_tip": "∫xⁿ dx = xⁿ⁺¹/(n+1) — increase the power by one and divide by the new power.",
+        "lines": [
+          "∫(x³+3) dx = x⁴/4 + 3x + c",
+          "∴ A = [x⁴/4 + 3x]_{−1}^{2}"
+        ],
+        "why": "Integrating x³ term by term gives x⁴/4, and integrating the constant 3 gives 3x, so the antiderivative is x⁴/4+3x.",
+        "common_mistakes": [
+          "Integrating x³ incorrectly as x⁴ without dividing by 4.",
+          "Forgetting the +3x term from the constant part of the integrand."
+        ]
+      },
+      {
+        "id": "s3_final",
+        "kind": "boxed_final",
+        "label": "Apply the limits and simplify",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Last two marks. Subtracting a negative value at x=−1 turns the subtraction into an addition.",
+        "memory_tip": "(−1)⁴ = 1, not −1 — an even power of a negative number is always positive.",
+        "lines": [
+          "= [(2⁴/4 + 3(2)) − ((−1)⁴/4 + 3(−1))] = (16/4 + 6) − (1/4 − 3) = 10 − (−11/4)",
+          {
+            "text": "∴ Area = 40/4 + 11/4 = 51/4 sq. units",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting x=2 gives 16/4+6=10, and substituting x=−1 gives 1/4−3=−11/4; subtracting the lower value from the upper value (10 minus a negative) adds the two magnitudes together, giving 51/4.",
+        "common_mistakes": [
+          "Losing the sign when subtracting the negative lower-limit value −11/4.",
+          "An arithmetic slip converting 10 to the fraction 40/4 before adding 11/4."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_sin2xcos4x_neg_pi2_to_pi2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate the integral from −π/2 to π/2 of sin²x cos⁴x dx.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Show the integrand is an even function",
+      "marks": 1
+    },
+    {
+      "label": "Double the half-range integral and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.92 — VSAQ chapter 17 'Definite Integrals', answer 179, on a printed Super Scoring Page (SSP 92). Printed appearance: AP 18, 20. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.106 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "The parity check (even vs odd) is the standard first move whenever the limits are symmetric about zero — it either halves the work (even) or makes the whole integral zero (odd).",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_even",
+        "kind": "equation",
+        "label": "Show the integrand is an even function",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. An even power of sine or cosine is always unaffected by x→−x.",
+        "memory_tip": "Even power + even power = even function — always confirm f(−x)=f(x) before halving the interval.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = sin²x cos⁴x",
+          "f(−x) = sin²(−x) cos⁴(−x) = (−sinx)² (cosx)⁴ = sin²x cos⁴x = f(x)",
+          "∴ f(x) is an even function"
+        ],
+        "why": "Squaring sin(−x)=−sinx removes the sign, and raising cos(−x)=cosx to the fourth power also stays positive, so the whole product is unchanged under x→−x, which is exactly the definition of an even function.",
+        "common_mistakes": [
+          "Checking only one factor's parity and not multiplying the two effects together.",
+          "Confusing 'even function' with 'even power' — they must be verified, not assumed."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Double the half-range integral and evaluate",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Both m=2 and n=4 are even, so Walli's formula needs the π/2 factor before doubling.",
+        "memory_tip": "The integral over [−a,a] equals twice the integral over [0,a] only when f is even — always prove this first.",
+        "lines": [
+          "Integral from −π/2 to π/2 of sin²x cos⁴x dx = 2∫₀^(π/2) sin²x cos⁴x dx",
+          "= 2 · [(1)][(3)(1)]/[(6)(4)(2)] · π/2",
+          {
+            "text": "∴ I = π/16",
+            "style": "boxed"
+          }
+        ],
+        "why": "For an even function, the integral over a symmetric interval [−a,a] equals twice the integral over [0,a]; applying Walli's mixed-power formula to sin²xcos⁴x (both powers even, so K=π/2) and doubling gives π/16.",
+        "common_mistakes": [
+          "Forgetting to double the integral after establishing the function is even.",
+          "Missing the π/2 factor since both powers (2 and 4) are even."
+        ]
+      }
+    ]
+  }
+}
