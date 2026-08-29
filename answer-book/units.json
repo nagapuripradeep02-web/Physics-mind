@@ -10528,6 +10528,85 @@
           "question_id": "ts_ipe_z2_rh_lactational_amenorrhea"
         }
       ]
+    },
+    {
+      "subject": "zoology_2",
+      "number": 6,
+      "name": "Genetics (Zoology-II)",
+      "questions": [
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "What are multiple alleles? Describe multiple alleles with the help of ABO blood groups in man.",
+          "question_id": "ts_ipe_z2_gen_laq_multiple_alleles_abo"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Describe chromosomal theory of sex determination.",
+          "question_id": "ts_ipe_z2_gen_laq_sex_determination_theory"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "What is crisscross inheritance? Explain the inheritance of one sex linked recessive character in human beings.",
+          "question_id": "ts_ipe_z2_gen_laq_crisscross_inheritance"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Write an essay on common genetic disorders.",
+          "question_id": "ts_ipe_z2_gen_laq_genetic_disorders"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 1,
+          "text": "What is DNA fingerprinting? Mention its applications.",
+          "question_id": "ts_ipe_z2_gen_laq_dna_fingerprinting"
+        },
+        {
+          "ref": "saq32",
+          "section": "SAQ",
+          "number": 32,
+          "stars": 2,
+          "text": "How is sex determined in human beings?",
+          "question_id": "ts_ipe_z2_gen_sex_determination_humans"
+        },
+        {
+          "ref": "saq33",
+          "section": "SAQ",
+          "number": 33,
+          "stars": 3,
+          "text": "Describe erythroblastosis foetalis.",
+          "question_id": "ts_ipe_z2_gen_erythroblastosis_foetalis"
+        },
+        {
+          "ref": "saq34",
+          "section": "SAQ",
+          "number": 34,
+          "stars": 1,
+          "text": "Describe the genetic basis of ABO blood grouping.",
+          "question_id": "ts_ipe_z2_gen_abo_genetic_basis"
+        },
+        {
+          "ref": "saq35",
+          "section": "SAQ",
+          "number": 35,
+          "stars": 2,
+          "text": "Describe the Genic Balance Theory of sex determination.",
+          "question_id": "ts_ipe_z2_gen_genic_balance_theory"
+        }
+      ]
     }
   ]
 }

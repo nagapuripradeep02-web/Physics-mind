@@ -1,0 +1,322 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_laq_genetic_disorders",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write an essay on common genetic disorders.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two categories",
+      "marks": 1
+    },
+    {
+      "label": "Haemophilia",
+      "marks": 1
+    },
+    {
+      "label": "Colour blindness",
+      "marks": 1
+    },
+    {
+      "label": "Sickle cell anaemia and phenylketonuria",
+      "marks": 1
+    },
+    {
+      "label": "Thalassemia and cystic fibrosis",
+      "marks": 1
+    },
+    {
+      "label": "What chromosomal disorders are",
+      "marks": 1
+    },
+    {
+      "label": "Klinefelter, Turner and Down",
+      "marks": 1
+    },
+    {
+      "label": "Edwards, Patau, Cri-du-chat and CML",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.24-25, LAQ 9. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Genetics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_categories",
+        "kind": "text",
+        "label": "The two categories",
+        "marks": 1,
+        "mark_note": "Two categories",
+        "why": "One kind is caused by a change in a single gene and the other by a change in a whole chromosome, so the two are counted separately.",
+        "common_mistakes": [
+          "Mixing the two lists together.",
+          "Calling Mendelian disorders chromosomal."
+        ],
+        "memory_tip": "Mendelian = one gene. Chromosomal = a whole chromosome.",
+        "margin_note": "Name both categories, then take them in order.",
+        "lines": [
+          "Genetic disorders are associated with genes",
+          "or chromosomes. They fall into two",
+          "categories:",
+          "1. Mendelian disorders",
+          "2. Chromosomal disorders",
+          {
+            "text": "1. Mendelian disorders",
+            "style": "heading"
+          },
+          "These show Mendelian inheritance. They are",
+          "caused by a single mutation in DNA, so they",
+          "are called monogenic diseases. They may be",
+          "autosomal or sex linked."
+        ]
+      },
+      {
+        "id": "s2_haemophilia",
+        "kind": "text",
+        "label": "Haemophilia",
+        "marks": 1,
+        "mark_note": "Haemophilia",
+        "why": "A woman would need the faulty gene on both her X chromosomes, which is far rarer than a man needing it on his only one.",
+        "common_mistakes": [
+          "Swapping the factors. A is factor VIII, B is factor IX.",
+          "Saying it is common in women. It is common in men."
+        ],
+        "memory_tip": "Haemophilia A is factor 8; B is factor 9.",
+        "margin_note": "Name both types with their clotting factors.",
+        "lines": [
+          {
+            "text": "Haemophilia",
+            "style": "heading"
+          },
+          "It is a bleeder's disease. Blood does not",
+          "clot easily when a wound occurs.",
+          "Haemophilia A is due to a deficiency of",
+          "clotting factor VIII.",
+          "Haemophilia B is due to a deficiency of",
+          "clotting factor IX.",
+          "It is rare in women, because they need two",
+          "recessive genes. It is common in men."
+        ]
+      },
+      {
+        "id": "s3_colour_blindness",
+        "kind": "text",
+        "label": "Colour blindness",
+        "marks": 1,
+        "mark_note": "Colour blindness",
+        "why": "Red and green blindness are X-linked but blue blindness is not, which is why the third kind is grouped apart.",
+        "common_mistakes": [
+          "Calling tritanopia sex linked. It is autosomal.",
+          "Swapping protanopia and deuteranopia."
+        ],
+        "memory_tip": "Pro-tan is red, deuter is green, tri is blue.",
+        "margin_note": "Three named kinds, one line each.",
+        "lines": [
+          {
+            "text": "Colour blindness",
+            "style": "heading"
+          },
+          "It is a sex linked recessive disorder.",
+          "Protanopia is red colour blindness and",
+          "deuteranopia is green colour blindness.",
+          "Tritanopia is an autosomal disorder called",
+          "blue colour blindness."
+        ]
+      },
+      {
+        "id": "s4_sickle_pku",
+        "kind": "text",
+        "label": "Sickle cell anaemia, PKU",
+        "marks": 1,
+        "mark_note": "Sickle cell, PKU",
+        "why": "Both are recessive, so a carrier is healthy and only a person with two faulty copies shows the disease.",
+        "common_mistakes": [
+          "Giving sickle cell anaemia the wrong chromosome. It is chromosome 11.",
+          "Leaving out that it shows only in the homozygous condition."
+        ],
+        "memory_tip": "Sickle cell on 11, phenylketonuria on 12.",
+        "margin_note": "Give the chromosome number for each.",
+        "lines": [
+          {
+            "text": "Sickle cell anaemia",
+            "style": "heading"
+          },
+          "It is an autosomal recessive metabolic",
+          "disorder caused by a defective gene on",
+          "chromosome 11, expressed in the homozygous",
+          "condition.",
+          "Symptoms: physical weakness, pain, organ",
+          "damage from internal bleeding, paralysis.",
+          {
+            "text": "Phenylketonuria",
+            "style": "heading"
+          },
+          "It is an autosomal metabolic disorder due",
+          "to a gene on chromosome 12. Phenyl ketone",
+          "builds up and causes mental retardation."
+        ]
+      },
+      {
+        "id": "s5_thalassemia_cf",
+        "kind": "text",
+        "label": "Thalassemia, cystic fibrosis",
+        "marks": 1,
+        "mark_note": "Thalassemia, CF",
+        "why": "The cystic fibrosis gene controls salt and water movement, so the mucus everywhere in the body becomes thick.",
+        "common_mistakes": [
+          "Placing the cystic fibrosis gene on the wrong chromosome. It is chromosome 7.",
+          "Giving no symptoms."
+        ],
+        "memory_tip": "Cystic fibrosis: chromosome 7, salty sweat, sticky mucus.",
+        "margin_note": "Finish the Mendelian half here.",
+        "lines": [
+          {
+            "text": "Thalassemia",
+            "style": "heading"
+          },
+          "It is an autosomal recessive disorder. The",
+          "patient becomes anaemic.",
+          {
+            "text": "Cystic fibrosis",
+            "style": "heading"
+          },
+          "It is an autosomal recessive disorder. The",
+          "affected gene is on the long arm of",
+          "chromosome 7 and influences salt and water",
+          "movement.",
+          "Symptoms: increased sodium and chloride in",
+          "sweat, thick sticky mucus building up in",
+          "the lungs, pancreas and alimentary canal."
+        ]
+      },
+      {
+        "id": "s6_chromosomal",
+        "kind": "text",
+        "label": "Chromosomal disorders",
+        "marks": 1,
+        "mark_note": "What they are",
+        "why": "A whole chromosome added or lost changes hundreds of genes at once, which is why these disorders affect many organs.",
+        "common_mistakes": [
+          "Swapping monosomy and trisomy.",
+          "Leaving out non-disjunction as the cause."
+        ],
+        "memory_tip": "Mono is one missing, tri is one extra.",
+        "margin_note": "Define both words before the examples.",
+        "lines": [
+          {
+            "text": "2. Chromosomal disorders",
+            "style": "heading"
+          },
+          "These are caused by the addition or",
+          "deletion of a chromosome, or by accidental",
+          "exchange of chromosomal bits during meiosis",
+          "and non-disjunction.",
+          "When a chromosome is deleted from a pair it",
+          "is monosomy.",
+          "When a chromosome is added to a pair it is",
+          "trisomy."
+        ]
+      },
+      {
+        "id": "s7_klinefelter_turner_down",
+        "kind": "text",
+        "label": "Klinefelter, Turner, Down",
+        "marks": 1,
+        "mark_note": "Three syndromes",
+        "why": "The first two involve the sex chromosomes and the third an autosome, which is why their effects are so different.",
+        "common_mistakes": [
+          "Swapping Klinefelter and Turner. 47,XXY is Klinefelter; 45,X is Turner.",
+          "Giving Down syndrome the wrong pair. It is trisomy of pair 21."
+        ],
+        "memory_tip": "Klinefelter 47 XXY, Turner 45 X, Down trisomy 21.",
+        "margin_note": "Give the karyotype and one or two symptoms for each.",
+        "lines": [
+          {
+            "text": "Klinefelter syndrome",
+            "style": "heading"
+          },
+          "Trisomy of the 23rd pair in males, written",
+          "as 47,XXY. Symptoms: hypogonadism, reduced",
+          "fertility, slight enlargement of breasts.",
+          {
+            "text": "Turner's syndrome",
+            "style": "heading"
+          },
+          "Monosomy of the 23rd pair in females,",
+          "written as 45,X. Symptoms: flat chest,",
+          "short stature, webbed neck, no Barr bodies.",
+          {
+            "text": "Down syndrome",
+            "style": "heading"
+          },
+          "Trisomy of pair 21. Symptoms: delay in",
+          "physical and mental development, small",
+          "round head, furrowed tongue, open mouth."
+        ]
+      },
+      {
+        "id": "s8_rest",
+        "kind": "boxed_final",
+        "label": "Edwards, Patau, Cri-du-chat, CML",
+        "marks": 1,
+        "mark_note": "Four more",
+        "why": "The last one is not an added or lost chromosome but a swap between two, which is why it causes a cancer rather than a syndrome from birth.",
+        "common_mistakes": [
+          "Swapping Edwards and Patau. Edwards is 18, Patau is 13.",
+          "Describing CML as a trisomy. It is a translocation."
+        ],
+        "memory_tip": "Edwards 18, Patau 13, Cri-du-chat 5, CML 9 and 22.",
+        "margin_note": "Four short entries close the essay.",
+        "lines": [
+          {
+            "text": "Edwards syndrome",
+            "style": "heading"
+          },
+          "Trisomy of the 18th pair, more common in",
+          "females. Symptoms: cardiac abnormalities",
+          "and kidney malfunction.",
+          {
+            "text": "Patau syndrome",
+            "style": "heading"
+          },
+          "Trisomy of the 13th pair. Symptoms: heart",
+          "and kidney defects, brain and spinal cord",
+          "abnormalities, poorly developed eyes.",
+          {
+            "text": "Cri-du-chat syndrome",
+            "style": "heading"
+          },
+          "Partial deletion of the short arm of",
+          "chromosome 5. Symptoms: cat like cry,",
+          "mental retardation, small head.",
+          {
+            "text": "CML: a piece of chromosome 9 and 22 swap",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Split the answer in two halves — Mendelian, then chromosomal — and give each disorder its own line with the chromosome number. The numbers are what the examiner ticks."
+}

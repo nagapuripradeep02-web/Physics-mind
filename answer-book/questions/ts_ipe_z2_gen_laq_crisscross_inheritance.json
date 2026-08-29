@@ -1,0 +1,279 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_laq_crisscross_inheritance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is crisscross inheritance? Explain the inheritance of one sex linked recessive character in human beings.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What crisscross inheritance is",
+      "marks": 1
+    },
+    {
+      "label": "Why males are more affected",
+      "marks": 1
+    },
+    {
+      "label": "What colour blindness is",
+      "marks": 1
+    },
+    {
+      "label": "Normal woman × colour blind man",
+      "marks": 1
+    },
+    {
+      "label": "Carrier daughter × normal man",
+      "marks": 1
+    },
+    {
+      "label": "Both parents colour blind",
+      "marks": 1
+    },
+    {
+      "label": "Colour blind mother × normal father",
+      "marks": 1
+    },
+    {
+      "label": "The rule that follows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.23, LAQ 8. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Genetics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "A father passes his only X to his daughters, never to his sons, so his X-linked character can only reach a grandson through a daughter.",
+        "common_mistakes": [
+          "Saying the character passes from father to son. It cannot.",
+          "Leaving out Morgan and Drosophila."
+        ],
+        "memory_tip": "Father to daughter to grandson: the path crosses twice.",
+        "margin_note": "Definition, discoverer and two examples.",
+        "lines": [
+          "T.H. Morgan observed sex linked inheritance",
+          "in Drosophila melanogaster.",
+          "An X-linked recessive character present in",
+          "a man is inherited by his grandson through",
+          "his daughter. This is crisscross",
+          "inheritance.",
+          "The two best examples are colour blindness",
+          "and haemophilia."
+        ]
+      },
+      {
+        "id": "s2_males_prone",
+        "kind": "text",
+        "label": "Why males are more affected",
+        "marks": 1,
+        "mark_note": "Males more prone",
+        "why": "A man has only one X, so a single recessive allele on it has no partner to mask it and shows at once.",
+        "common_mistakes": [
+          "Saying the gene is stronger in males. The reason is that they have only one X.",
+          "Leaving out why females are less affected."
+        ],
+        "memory_tip": "One X means nothing to hide behind.",
+        "margin_note": "Four numbered points cover this mark.",
+        "lines": [
+          "Every gene, dominant or recessive, is",
+          "expressed phenotypically.",
+          "Males have only one X chromosome, so they",
+          "are more prone to X-linked recessive gene",
+          "expression.",
+          "Females have two X chromosomes, so there is",
+          "more than a 50% chance of carrying a",
+          "dominant gene. They are less prone."
+        ]
+      },
+      {
+        "id": "s3_colour_blindness",
+        "kind": "text",
+        "label": "What colour blindness is",
+        "marks": 1,
+        "mark_note": "Colour blindness",
+        "why": "The gene for the cone pigment sits on the X chromosome, which is why the defect is inherited with sex.",
+        "common_mistakes": [
+          "Placing the gene on an autosome. Red-green colour blindness is X-linked.",
+          "Blaming the rods. The cones give colour vision."
+        ],
+        "memory_tip": "Cones give colour; the faulty gene rides on the X.",
+        "margin_note": "Three short facts before the crosses.",
+        "lines": [
+          "The retina of the eye has rods and cones.",
+          "The cone cells are responsible for colour",
+          "vision.",
+          "A recessive gene on the X chromosome causes",
+          "red-green colour blindness.",
+          "The dominant gene gives normal colour",
+          "vision."
+        ]
+      },
+      {
+        "id": "s4_cross_one",
+        "kind": "text",
+        "label": "Normal woman × colour blind man",
+        "marks": 1,
+        "mark_note": "First cross",
+        "why": "The father gives his single Xᶜᵇ to every daughter and his Y to every son, so all daughters carry it and no son does.",
+        "common_mistakes": [
+          "Giving the sons the defect in this cross. They get the father's Y.",
+          "Saying the daughters are colour blind. They are carriers."
+        ],
+        "memory_tip": "All daughters carry it, all sons escape it.",
+        "margin_note": "Write the karyotype for every person named.",
+        "lines": [
+          "A woman with normal vision (AAXᶜXᶜ)",
+          "marries a colour blind man (AAXᶜᵇY).",
+          "All the daughters will be carriers with",
+          "normal vision (AAXᶜXᶜᵇ).",
+          "All the sons have normal vision (AAXᶜY)."
+        ]
+      },
+      {
+        "id": "s5_cross_two",
+        "kind": "text",
+        "label": "Carrier daughter × normal man",
+        "marks": 1,
+        "mark_note": "Second cross",
+        "why": "The carrier mother passes either of her two X chromosomes, so half her sons receive the faulty one.",
+        "common_mistakes": [
+          "Giving all the sons the defect. Half of them get it.",
+          "Missing that the grandfather's character has now reappeared."
+        ],
+        "memory_tip": "Half the sons affected, half the daughters carriers.",
+        "margin_note": "Point out the grandson. That is the crisscross.",
+        "lines": [
+          "When the carrier daughter marries a man",
+          "with normal colour vision, 50% of the sons",
+          "get colour blindness.",
+          "All the others have normal vision, and 50%",
+          "of the daughters are carriers.",
+          "The colour blind character of the",
+          "grandfather has reached the grandson",
+          "through the carrier daughter."
+        ]
+      },
+      {
+        "id": "s6_both_blind",
+        "kind": "text",
+        "label": "Both parents colour blind",
+        "marks": 1,
+        "mark_note": "Both affected",
+        "why": "If neither parent has a normal allele to give, no child can receive one.",
+        "common_mistakes": [
+          "Expecting some normal children. There are none.",
+          "Treating the daughters differently from the sons here."
+        ],
+        "memory_tip": "No normal gene in either parent means no normal child.",
+        "margin_note": "One line for this case.",
+        "lines": [
+          {
+            "text": "Other possible inheritances",
+            "style": "heading"
+          },
+          "When both parents are colour blind, all",
+          "their children will be colour blind."
+        ]
+      },
+      {
+        "id": "s7_blind_mother",
+        "kind": "text",
+        "label": "Colour blind mother",
+        "marks": 1,
+        "mark_note": "Blind mother",
+        "why": "A son takes his only X from his mother, so a colour blind mother passes the defect to every son.",
+        "common_mistakes": [
+          "Giving the sons a chance of escaping. They cannot: their only X is hers.",
+          "Making the daughters colour blind. They get a normal X from the father."
+        ],
+        "memory_tip": "A son's only X comes from his mother.",
+        "margin_note": "Two more cases, one line each.",
+        "lines": [
+          "When the mother is colour blind and the",
+          "father has normal vision, all their sons",
+          "inherit colour blindness from the mother.",
+          "All the daughters will be carriers, because",
+          "they get a dominant gene from the father",
+          "and a recessive gene from the mother.",
+          "When the mother is a carrier and the father",
+          "is colour blind, 50% of daughters and 50%",
+          "of sons get colour blindness."
+        ]
+      },
+      {
+        "id": "s8_rule",
+        "kind": "boxed_final",
+        "label": "The rule that follows",
+        "marks": 1,
+        "mark_note": "The rule",
+        "why": "Stating the rule at the end shows the examiner that the crosses were understood and not just copied.",
+        "common_mistakes": [
+          "Ending without a conclusion.",
+          "Reversing the rule."
+        ],
+        "memory_tip": "Daughters take the father's X; sons take the mother's.",
+        "margin_note": "One boxed line closes the essay.",
+        "lines": [
+          "So the X-linked characters are inherited by",
+          "daughters from their father, and by sons",
+          "from their mother.",
+          {
+            "text": "This is why it is called crisscross inheritance",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Write the karyotypes in every cross — AAXᶜXᶜ, AAXᶜᵇY and so on. An answer in words alone rarely earns more than half, because the examiner cannot check the reasoning."
+}

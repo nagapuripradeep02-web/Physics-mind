@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_erythroblastosis_foetalis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe erythroblastosis foetalis.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "How the mother is sensitised",
+      "marks": 1
+    },
+    {
+      "label": "Why the second child is at risk",
+      "marks": 1
+    },
+    {
+      "label": "The name and the prevention",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.38, SAQ 33. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Genetics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "The trouble arises only when the foetus carries an antigen the mother does not have, so the combination of parents matters.",
+        "common_mistakes": [
+          "Reversing the parents. The mother is Rh negative and the foetus Rh positive.",
+          "Calling it an infection. It is an alloimmune condition."
+        ],
+        "memory_tip": "Rh negative mother, Rh positive baby.",
+        "margin_note": "Name the two blood types in the first line.",
+        "lines": [
+          "Erythroblastosis foetalis, or haemolytic",
+          "disease, is an alloimmune condition that",
+          "develops in an Rh positive foetus whose",
+          "father is Rh positive and whose mother is",
+          "Rh negative.",
+          "The genetic consequence is Rh",
+          "incompatibility between the mother (Rh⁻)",
+          "and the growing foetus (Rh⁺)."
+        ]
+      },
+      {
+        "id": "s2_sensitised",
+        "kind": "text",
+        "label": "How the mother is sensitised",
+        "marks": 1,
+        "mark_note": "Sensitisation",
+        "why": "The two blood supplies are normally kept apart, so the mother only meets the foetal antigen when the placenta tears at birth.",
+        "common_mistakes": [
+          "Saying the bloods mix throughout pregnancy. They are kept separate.",
+          "Leaving out the ruptured placenta."
+        ],
+        "memory_tip": "The bloods meet at delivery, not before.",
+        "margin_note": "Say exactly when the two bloods meet.",
+        "lines": [
+          "At the time of delivery, the Rh⁺ blood",
+          "cells may enter the mother's blood through",
+          "the ruptured placenta.",
+          "The mother's immune system is sensitised",
+          "and anti-Rh antibodies are produced."
+        ]
+      },
+      {
+        "id": "s3_second_child",
+        "kind": "text",
+        "label": "Why the second child is at risk",
+        "marks": 1,
+        "mark_note": "Second pregnancy",
+        "why": "By the second pregnancy the antibodies already exist, and unlike red cells they can cross the placenta.",
+        "common_mistakes": [
+          "Saying the first child is affected. The first child is safe.",
+          "Leaving out that the antibodies cross the placenta."
+        ],
+        "memory_tip": "First child safe, second child at risk.",
+        "margin_note": "Explain why the first child escapes.",
+        "lines": [
+          "The first child is safe, because the",
+          "delivery is over before the antibodies",
+          "form.",
+          "During a second pregnancy, if the child is",
+          "Rh positive, these antibodies cross the",
+          "placenta and enter the foetal blood.",
+          "The blood cells of the Rh positive foetus",
+          "are destroyed, causing haemolytic disease",
+          "of the new born."
+        ]
+      },
+      {
+        "id": "s4_name_prevention",
+        "kind": "boxed_final",
+        "label": "The name and prevention",
+        "marks": 1,
+        "mark_note": "Name and prevention",
+        "why": "The foetus replaces the destroyed cells with immature ones called erythroblasts, and those give the disease its name.",
+        "common_mistakes": [
+          "Leaving out why the disease is called erythroblastosis.",
+          "Naming the wrong injection. It is anti-D."
+        ],
+        "memory_tip": "Erythroblasts in the blood give the disease its name; anti-D prevents it.",
+        "margin_note": "End with the prevention. It is a full mark on its own.",
+        "lines": [
+          "To make up the loss, the foetal",
+          "haemopoietic system releases erythroblasts,",
+          "an early stage of red blood cells, into the",
+          "circulation. That is why the disease is",
+          "called erythroblastosis foetalis.",
+          "The mother is now given anti-D, that is",
+          "anti-Rh antibodies, when she is pregnant.",
+          {
+            "text": "This stops her immune system being sensitised",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The whole answer turns on why the FIRST child is safe. Say that antibody formation takes time and the first delivery is already over."
+}
