@@ -17,16 +17,25 @@
   "expected_time_min": 4,
   "question_text": "Find the equation of the radical axis of the circles 2x² + 2y² + 3x + 6y − 5 = 0, 3x² + 3y² − 7x + 8y − 11 = 0.",
   "appearances": [
-    { "year": 2017, "board": "ap_ipe" }
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Write both circles in standard form", "marks": 1 },
-    { "label": "Subtract to find the radical axis", "marks": 1 }
+    {
+      "label": "Write both circles in standard form",
+      "marks": 1
+    },
+    {
+      "label": "Subtract to find the radical axis",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 118.1, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tag: AP 17. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this VSAQ chapter. Cut 1+1: one mark for putting both circles into standard form (both here have leading coefficients other than 1, unlike most of this chapter's other questions), one mark for the subtraction and final line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 118.1, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tag: AP 17. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this VSAQ chapter. Cut 1+1: one mark for putting both circles into standard form (both here have leading coefficients other than 1, unlike most of this chapter's other questions), one mark for the subtraction and final line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "Both circles here have a leading coefficient other than 1 — dividing each by its own leading coefficient before subtracting is the entire difficulty of this question; the subtraction itself is routine once that is done.",
   "answer": {
@@ -43,7 +52,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. Divide by 2 and by 3 respectively before doing anything else.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given circles, divided to standard form:",
           "S ≡ x² + y² + 3/2 x + 3y − 5/2 = 0",
           "S′ ≡ x² + y² − 7/3 x + 8/3 y − 11/3 = 0"
@@ -66,7 +78,10 @@
           "Radical axis is S − S′ = 0",
           "⇒ (3/2 + 7/3)x + (3 − 8/3)y + (−5/2 + 11/3) = 0",
           "⇒ (23/6)x + (1/3)y + 7/6 = 0",
-          { "text": "⇒ 23x + 2y + 7 = 0", "style": "boxed" }
+          {
+            "text": "⇒ 23x + 2y + 7 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Subtracting the two standard-form circles cancels x² and y², leaving the radical axis; multiplying through by the common denominator 6 clears every fraction to give whole-number coefficients.",
         "common_mistakes": [

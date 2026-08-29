@@ -17,17 +17,28 @@
   "expected_time_min": 4,
   "question_text": "Find k if the pairs of circles x² + y² + 4x + 8 = 0, x² + y² − 16y + k = 0 are orthogonal.",
   "appearances": [
-    { "year": 2016, "board": "ap_ipe" },
-    { "year": 2016 }
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    }
   ],
   "mark_split": [
-    { "label": "Write g, f, c for both circles", "marks": 1 },
-    { "label": "Apply the orthogonal condition", "marks": 1 }
+    {
+      "label": "Write g, f, c for both circles",
+      "marks": 1
+    },
+    {
+      "label": "Apply the orthogonal condition",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 116.2, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: AP 16, TS 16. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 116.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 116.2, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: AP 16, TS 16. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 116.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "Both circles here have a zero coefficient somewhere (no y-term in the first, no x-term in the second) — that halves the arithmetic, since g′ and f both vanish in the orthogonality formula.",
   "answer": {
@@ -44,7 +55,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. Note f = 0 (no y term in the first circle) and g′ = 0 (no x term in the second).",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "From the given circles, we get",
           "g = 2, f = 0, c = 8 and",
           "g′ = 0, f′ = −8, c′ = k"
@@ -67,7 +81,10 @@
           "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
           "⇒ 2(2)(0) + 2(0)(−8) = 8 + k",
           "⇒ 0 = 8 + k",
-          { "text": "∴ k = −8", "style": "boxed" }
+          {
+            "text": "∴ k = −8",
+            "style": "boxed"
+          }
         ],
         "why": "With g′ = 0 and f = 0, both terms on the left of the orthogonality condition vanish, leaving the simplest possible equation to solve for k.",
         "common_mistakes": [

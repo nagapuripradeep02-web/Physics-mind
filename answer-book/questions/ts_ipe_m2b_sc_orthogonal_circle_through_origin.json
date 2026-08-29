@@ -17,18 +17,33 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the circle which passes through the origin and intersects the circles x² + y² − 4x + 6y + 10 = 0 and x² + y² + 12y + 6 = 0 orthogonally.",
   "appearances": [
-    { "year": 2018, "board": "ap_ipe" }
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Set up the circle and use the origin", "marks": 1 },
-    { "label": "Apply the first orthogonal condition", "marks": 1 },
-    { "label": "Apply the second orthogonal condition", "marks": 1 },
-    { "label": "Write the final circle", "marks": 1 }
+    {
+      "label": "Set up the circle and use the origin",
+      "marks": 1
+    },
+    {
+      "label": "Apply the first orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Apply the second orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Write the final circle",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 System of Circles, answer 57.1. Book p.56 is NOT a Super Scoring Page — the SSP list on book p.49 names pages 50,53,54,55,57,58,59,60,66,68,69,72,73, and 56 is absent from it, and the page's own header carries no 'SSP' banner (unlike pp.54/55/57). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tag: AP 18. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this chapter. Cut 1+1+1+1: one mark each for the through-the-origin condition, each of the two orthogonality conditions, and the final substitution — the same four-flat-marks shape used for the radical-centre and common-chord answers in this chapter (justified in full in ts_ipe_m2b_sc_radical_centre_three_circles_one's note, against Circle SAQ answer 48, book p.51), since this answer also has four genuinely separate algebraic facts to establish. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 System of Circles, answer 57.1. Book p.56 is NOT a Super Scoring Page — the SSP list on book p.49 names pages 50,53,54,55,57,58,59,60,66,68,69,72,73, and 56 is absent from it, and the page's own header carries no 'SSP' banner (unlike pp.54/55/57). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tag: AP 18. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this chapter. Cut 1+1+1+1: one mark each for the through-the-origin condition, each of the two orthogonality conditions, and the final substitution — the same four-flat-marks shape used for the radical-centre and common-chord answers in this chapter (justified in full in ts_ipe_m2b_sc_radical_centre_three_circles_one's note, against Circle SAQ answer 48, book p.51), since this answer also has four genuinely separate algebraic facts to establish. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "Passing through the origin makes c = 0 immediately — use that fact to simplify BOTH orthogonality equations from the start, rather than carrying c through the algebra and setting it to 0 only at the end.",
   "answer": {
@@ -45,7 +60,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. c = 0 is the whole reason to use the origin — it removes one unknown at once.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let the required circle be",
           "S ≡ x² + y² + 2gx + 2fy + c = 0",
           "S = 0 passes through the origin O(0, 0)",
@@ -109,7 +127,10 @@
           "From (1), 4g = 6f − 10 = 6(1/2) − 10 = −7",
           "⇒ 2g = −7/2",
           "Substituting 2g, 2f, c in S = 0,",
-          { "text": "2x² + 2y² − 7x + 2y = 0", "style": "boxed" }
+          {
+            "text": "2x² + 2y² − 7x + 2y = 0",
+            "style": "boxed"
+          }
         ],
         "why": "With f, and then g, and c already known, substituting all three back into x² + y² + 2gx + 2fy + c = 0 gives the one specific circle satisfying every condition.",
         "common_mistakes": [

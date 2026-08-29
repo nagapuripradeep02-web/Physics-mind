@@ -18,14 +18,23 @@
   "question_text": "If the straight line 2x + 3y = 1 intersects the circle x² + y² = 4 at the points A and B, find the equation of the circle having AB as diameter.",
   "appearances": [],
   "mark_split": [
-    { "label": "Write the family through S and L", "marks": 1 },
-    { "label": "Write the centre of the family", "marks": 1 },
-    { "label": "Apply the diameter condition", "marks": 2 }
+    {
+      "label": "Write the family through S and L",
+      "marks": 1
+    },
+    {
+      "label": "Write the centre of the family",
+      "marks": 1
+    },
+    {
+      "label": "Apply the diameter condition",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 System of Circles, answer 55.2, on a ★★★ Super Scoring Page (SSP 55). Chapter star rank ★★★, per the SAQ section table (book p.49). NO appearance year is printed against this answer — the book prints no black tag beside it, unlike its twin 55.1. ⚠ THE MARK SPLIT IS OURS, same 1+1+2 reasoning as the twin answer 55.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 System of Circles, answer 55.2, on a ★★★ Super Scoring Page (SSP 55). Chapter star rank ★★★, per the SAQ section table (book p.49). NO appearance year is printed against this answer — the book prints no black tag beside it, unlike its twin 55.1. ⚠ THE MARK SPLIT IS OURS, same 1+1+2 reasoning as the twin answer 55.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "The circle here is the simple x² + y² = 4, with no linear terms at all — do not let that simplicity skip the family-of-circles setup; the marks are for the METHOD, not just the final line.",
   "answer": {
@@ -42,7 +51,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. Clear the line to the form (expression) − 1 = 0 before writing the family.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "S ≡ x² + y² − 4 = 0",
           "L ≡ 2x + 3y − 1 = 0",
           "Any circle through the points of intersection",
@@ -88,7 +100,10 @@
           "⇒ −4λ − 9λ − 2 = 0 ⇒ 13λ = −2",
           "⇒ λ = −2/13",
           "From (1), the required circle is",
-          { "text": "13(x² + y²) − 4x − 6y − 50 = 0", "style": "boxed" }
+          {
+            "text": "13(x² + y²) − 4x − 6y − 50 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting the family's centre into L = 0 finds the exact λ whose member circle has L as a diameter; multiplying through by 13 clears the fraction from λ = −2/13 into a whole-number equation.",
         "common_mistakes": [

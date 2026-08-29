@@ -17,17 +17,29 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the common chord of (x − a)² + (y − b)² = c², (x − b)² + (y − a)² = c².",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Write both circles in expanded form", "marks": 1 },
-    { "label": "Subtract to find the common chord", "marks": 1 },
-    { "label": "Simplify to the final line", "marks": 2 }
+    {
+      "label": "Write both circles in expanded form",
+      "marks": 1
+    },
+    {
+      "label": "Subtract to find the common chord",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the final line",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.98 — Star Questions Plus, under the 'SYSTEM OF CIRCLES' banner (this unit's Star Q+ run is answers 206-207, both on p.98), answer 206. No printed 'SAQ' or 'VSAQ' label appears on this banner — ⚠ THE SECTION IS OURS: classed as SAQ because the working (expand two circles, subtract, simplify a general parametric result to a final line) matches the four-step SAQ shape used elsewhere in this chapter for common-chord questions (answers 54.1/54.2), not the one-or-two-line VSAQ shape. Printed appearance tag: AP 15. Chapter star rank taken as the SAQ section's ★★★ (per book p.49), since this entry is classed SAQ. ⚠ THE MARK SPLIT IS ALSO OURS — Star Questions Plus pages print no per-line mark tags at all. Cut 1+1+2, following the same shape as the 1B Locus template (set up, subtract/substitute, simplify to the final boxed line) since this question is a single derivation chain to one closing result, not four separate named quantities. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked: book p.97 is a Circle VSAQ Star Q+ page (answers 199-205, a different unit) and book p.99 opens the Parabola VSAQ Star Q+ run at answer 208 — so this unit's entire Star Q+ contribution is answers 206 and 207, both on p.98. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.98 — Star Questions Plus, under the 'SYSTEM OF CIRCLES' banner (this unit's Star Q+ run is answers 206-207, both on p.98), answer 206. No printed 'SAQ' or 'VSAQ' label appears on this banner — ⚠ THE SECTION IS OURS: classed as SAQ because the working (expand two circles, subtract, simplify a general parametric result to a final line) matches the four-step SAQ shape used elsewhere in this chapter for common-chord questions (answers 54.1/54.2), not the one-or-two-line VSAQ shape. Printed appearance tag: AP 15. Chapter star rank taken as the SAQ section's ★★★ (per book p.49), since this entry is classed SAQ. ⚠ THE MARK SPLIT IS ALSO OURS — Star Questions Plus pages print no per-line mark tags at all. Cut 1+1+2, following the same shape as the 1B Locus template (set up, subtract/substitute, simplify to the final boxed line) since this question is a single derivation chain to one closing result, not four separate named quantities. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked: book p.97 is a Circle VSAQ Star Q+ page (answers 199-205, a different unit) and book p.99 opens the Parabola VSAQ Star Q+ run at answer 208 — so this unit's entire Star Q+ contribution is answers 206 and 207, both on p.98. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "The two circles are mirror images of each other, swapping a and b — that symmetry is exactly why the second-degree terms cancel completely and only a straight line survives.",
   "answer": {
@@ -44,7 +56,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. Expanding both circles fully is needed before any subtraction can cancel the squared terms.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let S ≡ (x − a)² + (y − b)² − c² = 0",
           "⇒ S ≡ x² − 2ax + a² + y² − 2by + b² − c² = 0",
           "Let S′ ≡ (x − b)² + (y − a)² − c² = 0",
@@ -86,7 +101,10 @@
         "lines": [
           "⇒ 2(b − a)x − 2(b − a)y = 0",
           "⇒ 2(b − a)(x − y) = 0",
-          { "text": "∴ Common chord is x − y = 0", "style": "boxed" }
+          {
+            "text": "∴ Common chord is x − y = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Factoring out (b − a) — which is nonzero whenever the two circles are genuinely different — leaves x − y = 0 as the only possibility, so the common chord is always this one fixed line, independent of the actual values of a, b, c.",
         "common_mistakes": [

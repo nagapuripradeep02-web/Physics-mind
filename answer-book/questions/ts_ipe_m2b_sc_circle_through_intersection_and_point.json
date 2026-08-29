@@ -17,19 +17,36 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the circle passing through the points of intersection of the circles x² + y² − 8x − 6y + 21 = 0, x² + y² − 2x − 15 = 0 and the point (1, 2).",
   "appearances": [
-    { "year": 2017 },
-    { "year": 2019, "board": "ap_ipe" },
-    { "year": 2022, "board": "ap_ipe" }
+    {
+      "year": 2017
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Find the radical axis", "marks": 1 },
-    { "label": "Write the family through S′ and L", "marks": 1 },
-    { "label": "Apply the given point", "marks": 2 }
+    {
+      "label": "Find the radical axis",
+      "marks": 1
+    },
+    {
+      "label": "Write the family through S′ and L",
+      "marks": 1
+    },
+    {
+      "label": "Apply the given point",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 System of Circles, answer 56, on a ★★★ Super Scoring Page (SSP 55). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tags: TS 17, AP 19, AP 22. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this chapter. Cut 1+1+2: radical axis, family setup, then the point-substitution and final equation together as the closing two-mark step (the same 1+1+2 shape used for the neighbouring 'AB as diameter' answers on this page, justified there against the 1B Locus template). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The Bullet Model Paper (book p.107, Q12: System of Circles) reprints ANSWER 53.1's radical-centre question verbatim, not this one — no Bullet Model Paper duplicate check was needed for this particular card. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 System of Circles, answer 56, on a ★★★ Super Scoring Page (SSP 55). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tags: TS 17, AP 19, AP 22. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this chapter. Cut 1+1+2: radical axis, family setup, then the point-substitution and final equation together as the closing two-mark step (the same 1+1+2 shape used for the neighbouring 'AB as diameter' answers on this page, justified there against the 1B Locus template). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The Bullet Model Paper (book p.107, Q12: System of Circles) reprints ANSWER 53.1's radical-centre question verbatim, not this one — no Bullet Model Paper duplicate check was needed for this particular card. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "This looks like a two-circle family question, but the family is built from S′ and the RADICAL AXIS L, not from the two original circles directly — writing S + λS′ = 0 by mistake is the single most common slip here.",
   "answer": {
@@ -46,7 +63,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. This L is not the final answer — it is the tool used to build the family in the next step.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "S ≡ x² + y² − 8x − 6y + 21 = 0",
           "S′ ≡ x² + y² − 2x − 15 = 0",
           "Radical axis of the circles is L = S − S′ = 0",
@@ -92,7 +112,10 @@
           "⇒ −12 + λ(−3) = 0 ⇒ λ = −4",
           "Put λ = −4 in (1), then",
           "(x² + y² − 2x − 15) − 4(x + y − 6) = 0",
-          { "text": "⇒ x² + y² − 6x − 4y + 9 = 0", "style": "boxed" }
+          {
+            "text": "⇒ x² + y² − 6x − 4y + 9 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting the given point into the family equation pins down the single value of λ whose circle passes through that exact point, in addition to the two intersection points already guaranteed by the family.",
         "common_mistakes": [

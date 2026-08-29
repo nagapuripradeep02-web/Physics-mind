@@ -18,15 +18,27 @@
   "question_text": "Find the equation of the circle passing through the point (1, 1) and cutting orthogonally the circles x² + y² − 8x − 2y + 16 = 0, x² + y² − 4x − 4y − 1 = 0.",
   "appearances": [],
   "mark_split": [
-    { "label": "Set up the circle and use the point", "marks": 1 },
-    { "label": "Apply the first orthogonal condition", "marks": 1 },
-    { "label": "Apply the second orthogonal condition", "marks": 1 },
-    { "label": "Solve for g, f, c and write the circle", "marks": 1 }
+    {
+      "label": "Set up the circle and use the point",
+      "marks": 1
+    },
+    {
+      "label": "Apply the first orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Apply the second orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Solve for g, f, c and write the circle",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 System of Circles, the practice question ('PQ') printed directly under answer 57.2, at the foot of the page, immediately before the Ellipse SAQ chapter opens on p.57. Book p.56 is NOT a Super Scoring Page. Chapter star rank ★★★, per the SAQ section table (book p.49). No appearance year is printed against this practice question. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED — '[Ans: 3x²+3y²−14x+23y−15=0]' — and no worked solution. THE WORKING BELOW IS OURS, checked independently against the book's own printed final answer, and it reproduces that answer exactly: 3x² + 3y² − 14x + 23y − 15 = 0. Precedent for authoring a PQ as a full card with our own steps: Maths-1B Unit 2 laq8/answer-15-PQ (see docs/IPE_MATHS_1B_SOURCE.md). ⚠ THE MARK SPLIT IS ALSO OURS, patterned on the same 1+1+1+1 shape used for the twin orthogonal-circle answers 57.1/57.2 immediately above it on the same page and of the identical question type. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 System of Circles, the practice question ('PQ') printed directly under answer 57.2, at the foot of the page, immediately before the Ellipse SAQ chapter opens on p.57. Book p.56 is NOT a Super Scoring Page. Chapter star rank ★★★, per the SAQ section table (book p.49). No appearance year is printed against this practice question. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED — '[Ans: 3x²+3y²−14x+23y−15=0]' — and no worked solution. THE WORKING BELOW IS OURS, checked independently against the book's own printed final answer, and it reproduces that answer exactly: 3x² + 3y² − 14x + 23y − 15 = 0. Precedent for authoring a PQ as a full card with our own steps: Maths-1B Unit 2 laq8/answer-15-PQ (see docs/IPE_MATHS_1B_SOURCE.md). ⚠ THE MARK SPLIT IS ALSO OURS, patterned on the same 1+1+1+1 shape used for the twin orthogonal-circle answers 57.1/57.2 immediately above it on the same page and of the identical question type. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "This is the book's own practice question for the orthogonal-circle method — the working here is fully ours, but it lands on the book's printed final answer exactly, so it is a reliable extra worked example of the same technique as answers 57.1 and 57.2.",
   "answer": {
@@ -43,7 +55,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. The point (1, 1) links all three unknowns g, f, c together in one equation.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let the required circle be",
           "S ≡ x² + y² + 2gx + 2fy + c = 0",
           "S = 0 passes through (1, 1)",
@@ -110,7 +125,10 @@
           "⇒ f = 3/2 − g = 23/6",
           "c = −2 − 2g − 2f = −5",
           "Substituting g, f, c in S = 0,",
-          { "text": "3x² + 3y² − 14x + 23y − 15 = 0", "style": "boxed" }
+          {
+            "text": "3x² + 3y² − 14x + 23y − 15 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Eliminating c between the three equations reduces the system to two equations in g and f, which solve directly; substituting all three values back into the general circle gives the one circle satisfying every condition — matching the book's printed final answer exactly.",
         "common_mistakes": [

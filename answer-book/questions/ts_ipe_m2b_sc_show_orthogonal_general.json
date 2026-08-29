@@ -18,13 +18,19 @@
   "question_text": "Show that the circles x² + y² − 2lx + g = 0, x² + y² + 2my − g = 0 intersect each other orthogonally.",
   "appearances": [],
   "mark_split": [
-    { "label": "Write g, f, c for both circles", "marks": 1 },
-    { "label": "Check the orthogonal condition", "marks": 1 }
+    {
+      "label": "Write g, f, c for both circles",
+      "marks": 1
+    },
+    {
+      "label": "Check the orthogonal condition",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 117.2, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). No appearance year is printed against this answer. NOTATION NOTE: the question reuses the letters l, m, g as ARBITRARY constants (a common textbook habit), which collides with the standard circle notation g = half the x-coefficient; this card keeps the book's own letters in the question and working, and uses capital G₁, G₂ / F₁, F₂ / C₁, C₂ for the circle-parameter reading in step 1 to avoid the reader confusing the constant g in the question with the circle-formula symbol g. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 117.1 (justified in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 117.2, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). No appearance year is printed against this answer. NOTATION NOTE: the question reuses the letters l, m, g as ARBITRARY constants (a common textbook habit), which collides with the standard circle notation g = half the x-coefficient; this card keeps the book's own letters in the question and working, and uses capital G₁, G₂ / F₁, F₂ / C₁, C₂ for the circle-parameter reading in step 1 to avoid the reader confusing the constant g in the question with the circle-formula symbol g. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 117.1 (justified in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "This result is TRUE for every value of l, m, g — the two given circles are orthogonal no matter what the constants are, because the cross terms in the orthogonality condition vanish by the very shape of the two equations.",
   "answer": {
@@ -41,7 +47,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. Write G₁, F₁, C₁ for the first circle's parameters, so they are not confused with the question's own constant g.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Here, G₁ = −l, F₁ = 0, C₁ = g and",
           "G₂ = 0, F₂ = m, C₂ = −g"
         ],
@@ -63,7 +72,10 @@
           "Orthogonal condition: 2G₁G₂ + 2F₁F₂ = C₁ + C₂",
           "L.H.S = 2(−l)(0) + 2(0)(m) = 0",
           "R.H.S = C₁ + C₂ = g + (−g) = 0",
-          { "text": "∴ L.H.S = R.H.S ⇒ circles are orthogonal.", "style": "boxed" }
+          {
+            "text": "∴ L.H.S = R.H.S ⇒ circles are orthogonal.",
+            "style": "boxed"
+          }
         ],
         "why": "Because one circle has no y-term and the other has no x-term, the product terms G₁G₂ and F₁F₂ both involve a factor of 0 and vanish identically; and the two constant terms g and −g cancel to 0 as well — so both sides equal 0 for EVERY choice of l, m, g, not just particular numbers.",
         "common_mistakes": [

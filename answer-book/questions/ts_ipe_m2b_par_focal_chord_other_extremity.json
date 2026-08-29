@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 125, printed alone below answers 123/124. Printed appearance: AP 2018. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 125, printed alone below answers 123/124. Printed appearance: AP 2018. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "answer": {
     "page_header": [

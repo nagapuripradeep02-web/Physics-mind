@@ -17,18 +17,32 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the circle passing through the point (0, −3) and cutting the circles x² + y² − 6x + 3y + 5 = 0, x² + y² − x − 7y = 0 orthogonally.",
   "appearances": [
-    { "year": 2015 }
+    {
+      "year": 2015
+    }
   ],
   "mark_split": [
-    { "label": "Set up the circle and use the point", "marks": 1 },
-    { "label": "Apply the first orthogonal condition", "marks": 1 },
-    { "label": "Apply the second orthogonal condition", "marks": 1 },
-    { "label": "Solve for g, f, c and write the circle", "marks": 1 }
+    {
+      "label": "Set up the circle and use the point",
+      "marks": 1
+    },
+    {
+      "label": "Apply the first orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Apply the second orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Solve for g, f, c and write the circle",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 System of Circles, answer 57.2. Book p.56 is NOT a Super Scoring Page (the SSP list on book p.49 omits page 56; its header carries no 'SSP' banner). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tag: TS 15. ⚠ THE MARK SPLIT IS OURS — same 1+1+1+1 reasoning as the twin answer 57.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 System of Circles, answer 57.2. Book p.56 is NOT a Super Scoring Page (the SSP list on book p.49 omits page 56; its header carries no 'SSP' banner). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tag: TS 15. ⚠ THE MARK SPLIT IS OURS — same 1+1+1+1 reasoning as the twin answer 57.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "Three unknowns (g, f, c) need exactly three equations here — the given point supplies one, and each orthogonality condition supplies one more; solve them as a genuine simultaneous system, not by guessing which to substitute first.",
   "answer": {
@@ -45,7 +59,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. This point is not the origin, so c does not vanish — it stays linked to f through this equation.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let the required circle be",
           "S ≡ x² + y² + 2gx + 2fy + c = 0",
           "S = 0 passes through (0, −3)",
@@ -112,7 +129,10 @@
           "From (4), g = 2f − 1 = 1/3",
           "From (1), c = 6f − 9 = −5",
           "Substituting g, f, c in S = 0,",
-          { "text": "3x² + 3y² + 2x + 4y − 15 = 0", "style": "boxed" }
+          {
+            "text": "3x² + 3y² + 2x + 4y − 15 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Combining the three linear equations (1), (2), (3) by elimination solves for g, f, c uniquely; substituting them back into the general circle gives the one circle meeting the point condition and both orthogonality conditions.",
         "common_mistakes": [

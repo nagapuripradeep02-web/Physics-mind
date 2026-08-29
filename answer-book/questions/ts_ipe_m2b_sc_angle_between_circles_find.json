@@ -17,18 +17,31 @@
   "expected_time_min": 4,
   "question_text": "Find the angle between the circles x² + y² − 12x − 6y + 41 = 0, x² + y² + 4x + 6y − 59 = 0.",
   "appearances": [
-    { "year": 2015 },
-    { "year": 2017 },
-    { "year": 2019, "board": "ap_ipe" }
+    {
+      "year": 2015
+    },
+    {
+      "year": 2017
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Find the centres, radii and distance", "marks": 1 },
-    { "label": "Apply the angle formula", "marks": 1 }
+    {
+      "label": "Find the centres, radii and distance",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 119.2. Book p.81 is NOT a Super Scoring Page (the SSP list on book p.76 omits page 81; its header carries no 'SSP' banner). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: TS 15, TS 17, AP 19 (printed as 'TS 15,17' and 'AP 19'). ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 119.1 (justified in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This same pair of circles reappears in the next answer, 120, where one coefficient is replaced by an unknown k and the angle 45° is given as data instead of asked for — the two questions test the same formula from opposite directions. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75)."
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 119.2. Book p.81 is NOT a Super Scoring Page (the SSP list on book p.76 omits page 81; its header carries no 'SSP' banner). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: TS 15, TS 17, AP 19 (printed as 'TS 15,17' and 'AP 19'). ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 119.1 (justified in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This same pair of circles reappears in the next answer, 120, where one coefficient is replaced by an unknown k and the angle 45° is given as data instead of asked for — the two questions test the same formula from opposite directions. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
   "insider_note": "These same two circles return in the very next answer with a letter in place of one coefficient — recognising the pair saves re-deriving the centres and one of the radii from scratch.",
   "answer": {
@@ -45,7 +58,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. Both circles are already in standard form, coefficient 1 on x² and y².",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given circles are",
           "x² + y² − 12x − 6y + 41 = 0 ...(1)",
           "x² + y² + 4x + 6y − 59 = 0 ...(2)",
@@ -72,7 +88,10 @@
           "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
           "= (100 − 4 − 72) / (2 · 2 · √72)",
           "= 24 / (4√72) = 24 / (24√2) = 1/√2",
-          { "text": "∴ Angle between the circles is θ = 45° = π/4", "style": "boxed" }
+          {
+            "text": "∴ Angle between the circles is θ = 45° = π/4",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting d, r₁, r₂ into cos θ = (d² − r₁² − r₂²) / (2r₁r₂) and simplifying √72 = 6√2 collapses the fraction to the standard value 1/√2, which is cos 45°.",
         "common_mistakes": [
