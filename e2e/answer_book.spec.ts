@@ -355,7 +355,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), and at zoology (~1136). Never trim the sweep.
+    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), and at Chemistry-II (~1814 entries). Never trim the sweep.
     // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -389,7 +389,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), and at zoology (~1136). Never trim the sweep.
+    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), and at Chemistry-II (~1814 entries). Never trim the sweep.
     // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -683,6 +683,10 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // sum(mark_split.marks) are held to marks_total by both
     // answer-book/tools/check_p2_cards.ts and build_answer_book.ts, both green.
     // 40 min also covers Chemistry-II and Maths-2A/2B without another mid-paper raise.
+    // Chemistry-II landed 2026-08-29 and the projection held: the bank is now 1814
+    // entries, which at the ~1.05 s/entry slope above is ~32 min against this 40-min
+    // ceiling. Left as it is — the comment above already budgeted for this paper, so
+    // raising it again here would be churn, not headroom.
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 

@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_osmotic_pressure_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define osmotic pressure.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.65, VSAQ 3): the printed answer is one line, \"the pressure required to just stop osmosis\". It never says WHERE the pressure is applied (on the solution side), never names the semi-permeable membrane, and never gives π = CRT. All three are written here, and the equation is what VSAQ 14 of the same unit is marked on."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Osmotic pressure is the extra pressure that",
+          "has to be applied on the solution side to",
+          "just stop the flow of solvent into the",
+          "solution through a semi-permeable membrane.",
+          "It is written as π."
+        ],
+        "why": "Solvent flows into the solution on its own, so stopping that flow needs an opposing push. The size of that push measures how strongly the solution takes in solvent, and that is what the definition turns into a number.",
+        "common_mistakes": [
+          "Saying it is the pressure that causes osmosis. It is the pressure applied to STOP osmosis.",
+          "Leaving out the semi-permeable membrane. Without a membrane there is no osmosis, so there is no osmotic pressure."
+        ],
+        "memory_tip": "Osmosis is the flow. Osmotic pressure is the push that stops the flow.",
+        "margin_note": "The words \"just stop\" and \"semi-permeable membrane\" are the two marked words in this line."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "For a dilute solution:",
+          {
+            "text": "π = CRT",
+            "style": "boxed"
+          },
+          "C = molar concentration of the solution",
+          "R = gas constant",
+          "T = temperature in kelvin",
+          "Osmotic pressure is a colligative property:",
+          "it depends on the number of solute",
+          "particles, not on what they are."
+        ],
+        "why": "The equation has the same form as the ideal gas equation with C written for n/V, so a solution of known concentration has a fixed osmotic pressure at a fixed temperature. Because it depends only on the number of particles, osmotic pressure is the colligative property used to find the molar mass of large molecules such as proteins.",
+        "common_mistakes": [
+          "Using the temperature in degrees Celsius. T in π = CRT must be in kelvin.",
+          "Using a value of R that does not match the unit of pressure. Pressure in bar needs R = 0.083 L bar mol⁻¹ K⁻¹."
+        ],
+        "memory_tip": "π = CRT is the gas equation with concentration in place of n/V.",
+        "margin_note": "Write the colligative-property line as well. It is one sentence and it is what the follow-up parts of this question are marked on."
+      }
+    ]
+  },
+  "insider_note": "The two words that carry this mark are \"just stop\". A definition that says osmotic pressure drives the solvent across the membrane describes the opposite of what is being asked."
+}

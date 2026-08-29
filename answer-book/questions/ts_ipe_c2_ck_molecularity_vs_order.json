@@ -1,0 +1,202 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_molecularity_vs_order",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is the \"molecularity\" of a reaction? How is it different from the order of reaction? Name one bimolecular and trimolecular gaseous reaction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Molecularity defined",
+      "marks": 2
+    },
+    {
+      "label": "Examples of molecularity",
+      "marks": 2
+    },
+    {
+      "label": "Order defined",
+      "marks": 1
+    },
+    {
+      "label": "The differences",
+      "marks": 2
+    },
+    {
+      "label": "The two named reactions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 2+2+1+2+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO in the printed question (book p.75, LAQ 2): it reads \"Name one bimolecular and trimlecular gaseous reaction\". The question text on this card is the tidied form. BOOK TYPO in the printed answer: \"which must colloid simultaneously\" for COLLIDE. All three printed examples were balanced and are CORRECT: NH₄NO₂ → N₂ + 2H₂O (N 2=2, H 4=4, O 2=2), 2HI → H₂ + I₂, and 2NO + O₂ → 2NO₂ (N 2=2, O 4=4). BOOK GAP: the printed list of differences has three points and omits two that a strict examiner looks for, namely that the order may be a FRACTION or negative while the molecularity is always a whole number, and that the molecularity is never more than 3. Both are added. NOTE ON THE NAMED REACTIONS: the question asks for GASEOUS ones, so 2HI(g) → H₂(g) + I₂(g) and 2NO(g) + O₂(g) → 2NO₂(g) are the two that answer it; NH₄NO₂ → N₂ + 2H₂O is a solution reaction and is quoted only as the unimolecular illustration."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Chemical Kinetics — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_molecularity",
+        "kind": "text",
+        "label": "Molecularity defined",
+        "marks": 2,
+        "mark_note": "Molecularity",
+        "lines": [
+          "Molecularity is the number of atoms, ions",
+          "or molecules that must collide at the same",
+          "instant in one elementary step for the",
+          "reaction to take place.",
+          "It is obtained from the balanced equation",
+          "of the elementary step, not by experiment.",
+          "It is always a whole number: 1, 2 or 3.",
+          "It can never be zero and never a fraction.",
+          "A molecularity above 3 is not found,",
+          "because four particles meeting at the",
+          "same instant is very unlikely."
+        ],
+        "why": "Molecularity counts particles, so it can only take the values a count can take. That single fact settles most of the comparison with order: a count cannot be zero, cannot be a fraction, and cannot be large, because the chance of many particles arriving together decreases quickly.",
+        "common_mistakes": [
+          "Defining molecularity for an overall reaction. It is defined only for an elementary step.",
+          "Counting the product molecules as well. Only the species that collide are counted."
+        ],
+        "memory_tip": "Molecularity is a count of the colliding particles. 1, 2 or 3, nothing else.",
+        "margin_note": "Two marks: the definition, then the whole number restriction. Write both as separate sentences."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "equation",
+        "label": "Examples of molecularity",
+        "marks": 2,
+        "mark_note": "Examples",
+        "lines": [
+          "Unimolecular (one particle):",
+          {
+            "text": "NH₄NO₂ → N₂ + 2H₂O",
+            "style": "eq"
+          },
+          "Bimolecular (two particles collide):",
+          {
+            "text": "2HI(g) → H₂(g) + I₂(g)",
+            "style": "eq"
+          },
+          "Trimolecular (three particles collide):",
+          {
+            "text": "2NO(g) + O₂(g) → 2NO₂(g)",
+            "style": "eq"
+          },
+          "The molecularity is read from the number",
+          "of reactant particles on the left."
+        ],
+        "why": "Each example is chosen so the count is visible on the left of the arrow: one NH₄NO₂, two HI, and two NO with one O₂. Reading the count straight off the equation is the whole method, and it works only because each of these is an elementary step.",
+        "common_mistakes": [
+          "Calling 2NO + O₂ → 2NO₂ bimolecular because there are two substances. Three particles collide, so it is trimolecular.",
+          "Using an overall equation such as 2N₂O₅ → 4NO₂ + O₂ as an example. That reaction goes in steps, so its molecularity is not read off the equation."
+        ],
+        "memory_tip": "One, two, three: ammonium nitrite, HI, then NO with O₂.",
+        "margin_note": "Name each type beside its equation. An equation with no label earns nothing here."
+      },
+      {
+        "id": "s3_order",
+        "kind": "equation",
+        "label": "Order defined",
+        "marks": 1,
+        "mark_note": "Order",
+        "lines": [
+          "Order of a reaction is the sum of the",
+          "powers of the concentration terms in the",
+          "experimentally found rate law.",
+          {
+            "text": "rate = k[A]¹[B]²",
+            "style": "eq"
+          },
+          {
+            "text": "order = 1 + 2 = 3",
+            "style": "eq"
+          }
+        ],
+        "why": "Order describes a measured rate law, not a collision. It is therefore free of every restriction molecularity has, which is exactly what the comparison in the next step depends on.",
+        "common_mistakes": [
+          "Adding the coefficients of the balanced equation. Order is the sum of the powers in the measured rate law.",
+          "Defining order for an elementary step only. It applies to any reaction whose rate law can be measured."
+        ],
+        "memory_tip": "Order adds powers. Molecularity counts particles.",
+        "margin_note": "One worked sum, 1 + 2 = 3, is enough. The differences step needs the definition to be on the page first."
+      },
+      {
+        "id": "s4_differences",
+        "kind": "text",
+        "label": "The differences",
+        "marks": 2,
+        "mark_note": "Differences",
+        "lines": [
+          "1. Molecularity comes from the balanced",
+          "    elementary step; order comes from",
+          "    experiment.",
+          "2. Molecularity is a whole number, 1, 2 or",
+          "    3, and is never zero. Order may be zero,",
+          "    a whole number or a fraction.",
+          "3. Molecularity applies only to an",
+          "    elementary step; order applies to both",
+          "    elementary and complex reactions.",
+          "4. For an elementary step order equals",
+          "    molecularity; for a complex reaction",
+          "    the two may differ."
+        ],
+        "why": "The four points fall into two pairs: where each quantity comes from, and what values each is allowed. Every marked difference in this comparison is one of those two ideas applied once, which is why numbering them is worth doing.",
+        "common_mistakes": [
+          "Writing that molecularity can be zero for a zero order reaction. It is the ORDER that is zero there; molecularity is never zero.",
+          "Saying order and molecularity are always different. For an elementary step they are equal."
+        ],
+        "memory_tip": "Where it comes from, and what values it may take. Two ideas, four points.",
+        "margin_note": "Number the points. Two marks here means the examiner is counting, and four points is the safe number."
+      },
+      {
+        "id": "s5_named_reactions",
+        "kind": "boxed_final",
+        "label": "The two named reactions",
+        "marks": 1,
+        "mark_note": "Named reactions",
+        "lines": [
+          "Bimolecular gaseous reaction:",
+          {
+            "text": "2HI(g) → H₂(g) + I₂(g)",
+            "style": "boxed"
+          },
+          "Trimolecular gaseous reaction:",
+          {
+            "text": "2NO(g) + O₂(g) → 2NO₂(g)",
+            "style": "boxed"
+          },
+          "Both are elementary steps, so for both",
+          "the order equals the molecularity.",
+          "A pseudo first order reaction such as the",
+          "hydrolysis of ethyl acetate is the",
+          "opposite case: molecularity 2, order 1."
+        ],
+        "why": "The last three lines join the two halves of the question. The two gaseous reactions show the case where order and molecularity agree; the ester hydrolysis shows the case where they do not, which is the strongest single piece of evidence that the two ideas are separate.",
+        "common_mistakes": [
+          "Naming a reaction in solution. The question asks for gaseous reactions, so the state symbols (g) must be written.",
+          "Giving the same reaction for both. One must have two colliding particles and the other three."
+        ],
+        "memory_tip": "HI decomposing is two. NO with O₂ is three.",
+        "margin_note": "Mark the states (g) on both. The word gaseous is part of what is being asked."
+      }
+    ]
+  },
+  "insider_note": "The difference examiners look hardest for is that order can be zero or fractional while molecularity cannot. It is point 2 of the four; make sure it reaches the page even if the list has to be cut short."
+}

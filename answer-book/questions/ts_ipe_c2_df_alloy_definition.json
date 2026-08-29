@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_alloy_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is an alloy? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example with composition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 7. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK EXAMPLE KEPT AND QUALIFIED (book p.91, VSAQ 7): the printed example is \"Nichrome - 60% Ni and 25% Fe, 15% Cr\". Those figures add to 100 and match a real commercial grade, so they are kept. They are NOT the only nichrome: the widely sold 80% Ni with 20% Cr grade contains no iron at all, so the card writes \"a composition\", not \"the composition\". BOOK WORDING SHARPENED: the printed definition says an alloy has \"physical properties similar to that of metal\"; the card names the properties (conduction, malleability, metallic lustre) so the sentence says something checkable, and adds that an alloy is a mixture with no fixed formula."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An alloy is a homogeneous mixture of a",
+          "metal with one or more other metals, or",
+          "with metalloids or non-metals.",
+          "Its physical properties stay metallic: it",
+          "conducts, it is malleable and it has a",
+          "metallic lustre.",
+          "An alloy is a mixture and not a compound,",
+          "so its composition can be varied."
+        ],
+        "why": "The word homogeneous is what separates an alloy from two metals lying side by side: the components are mixed at the atomic scale, usually by melting them together. Because it is a mixture and not a compound, an alloy has no fixed formula and no sharp melting point, and its composition is quoted as percentages.",
+        "common_mistakes": [
+          "Writing that an alloy is a compound of two metals. It is a mixture, and its composition can be varied.",
+          "Leaving out non-metals. Steel is iron with carbon, and carbon is a non-metal."
+        ],
+        "memory_tip": "Alloy = a metal mixed with something else, still behaving as a metal.",
+        "margin_note": "The word homogeneous and the phrase \"properties similar to a metal\" are the two marked ideas."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Example: nichrome",
+            "style": "boxed"
+          },
+          "Nichrome is about 60% Ni, 25% Fe and",
+          "15% Cr.",
+          "It has a high electrical resistance and",
+          "resists oxidation when hot, so it is used",
+          "as the heating wire in electric heaters.",
+          "Steel (Fe with C) and brass (Cu with Zn)",
+          "are two further examples."
+        ],
+        "why": "One named alloy with its percentages is what this mark asks for. The three figures add to 100 and match a real grade of nichrome, but they are a composition and not the composition: the common 80% Ni with 20% Cr grade contains no iron at all. Quoting percentages that add to 100 is the part an examiner can check quickly.",
+        "common_mistakes": [
+          "Giving an example with no composition. The percentages are half of this mark.",
+          "Naming a pure metal. Copper is a metal, not an alloy; brass is copper with zinc."
+        ],
+        "memory_tip": "Nichrome: nickel and chromium with iron, used as heater wire.",
+        "margin_note": "Percentages must add to 100. Write 60, 25 and 15 and check the sum before moving on."
+      }
+    ]
+  },
+  "insider_note": "Two demands, one mark each. A perfect definition with no example is half marks, and so is nichrome named with no percentages."
+}

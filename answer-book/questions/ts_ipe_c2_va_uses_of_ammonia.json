@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_uses_of_ammonia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give uses of Ammonia?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Fertilizers and refrigeration",
+      "marks": 1
+    },
+    {
+      "label": "Industrial and laboratory uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 10. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.83, VSAQ 10): the printed answer lists exactly two uses, fertilizers and refrigerant, and names no fertilizer. For a 2-mark question that is thin. This card names the three fertilizers and adds the two industrial uses that the NCERT Class 12 p-block chapter lists, so that a student writing four points has four to write. The book's own wording of the question, \"Give uses of Ammonia?\", is a statement punctuated as a question; it is kept exactly as printed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fertilizers_refrigerant",
+        "kind": "text",
+        "label": "Fertilizers and refrigeration",
+        "marks": 1,
+        "mark_note": "Two uses",
+        "lines": [
+          "1. In the manufacture of nitrogen",
+          "fertilizers: urea, ammonium sulphate and",
+          "ammonium nitrate.",
+          "2. As a refrigerant in ice plants and in cold",
+          "storage, because liquid ammonia takes in a",
+          "large amount of heat when it evaporates."
+        ],
+        "why": "These are the two uses the book prints and the two an examiner expects first. Naming the actual fertilizers turns a one-word use into a marked point, and stating why ammonia works as a refrigerant shows the property behind the use.",
+        "common_mistakes": [
+          "Writing \"fertilizer\" with no example. Name urea or ammonium sulphate.",
+          "Writing that ammonia gives out heat when it evaporates. It takes heat in, which is what cools the surroundings."
+        ],
+        "memory_tip": "The two main uses: fertilizer for crops, refrigerant for ice plants.",
+        "margin_note": "Two clearly numbered uses is what this mark is given for. Number the points; do not write a paragraph."
+      },
+      {
+        "id": "s2_industrial_uses",
+        "kind": "boxed_final",
+        "label": "Industrial and laboratory uses",
+        "marks": 1,
+        "mark_note": "Two more uses",
+        "lines": [
+          "3. In the manufacture of nitric acid by",
+          "Ostwald's process.",
+          "4. In the manufacture of sodium carbonate",
+          "by the Solvay process.",
+          {
+            "text": "5. As a ligand, to form complexes.",
+            "style": "boxed"
+          },
+          "Ammoniacal silver nitrate and Nessler's",
+          "reagent both use this property."
+        ],
+        "why": "The second mark needs uses that are different in kind from the first two, not more examples of the same one. Ostwald and Solvay are the two large chemical industries that start from ammonia, and the ligand use links this question to the complexing-agent question in the same set.",
+        "common_mistakes": [
+          "Repeating fertilizers in different words. Ammonium sulphate and urea are one use, not two.",
+          "Writing that ammonia is used to make sulphuric acid. It is used for nitric acid, by Ostwald's process."
+        ],
+        "memory_tip": "Ostwald for nitric acid, Solvay for washing soda, ligand for complexes.",
+        "margin_note": "Any two of these three finish the mark. Keep the whole answer to four or five numbered lines."
+      }
+    ]
+  },
+  "insider_note": "The book lists only two uses, and a 2-mark answer usually needs four. Write urea and ammonium sulphate by name, then add Ostwald's process for nitric acid."
+}

@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_steam_distillation_of_nitrophenols",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "While separating a mixture of ortho and para nitrophenols by steam distillation, name the isomer which will be steam volatile. Give reason.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Naming the steam volatile isomer",
+      "marks": 1
+    },
+    {
+      "label": "Intramolecular hydrogen bonding in the ortho isomer",
+      "marks": 1
+    },
+    {
+      "label": "Intermolecular hydrogen bonding in the para isomer",
+      "marks": 1
+    },
+    {
+      "label": "How the separation is carried out",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.109 as Short Answer 2. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer names the two hydrogen bond types and stops. It never says HOW the separation is finished — which isomer comes over with the steam and which stays in the flask — although the question is about a separation. That is added here. The melting points added (o-nitrophenol 318 K, p-nitrophenol 387 K) are the standard values and are not in the book. BOOK TYPOGRAPHY: the printed answer writes \"P-Nitrophenol\" with a capital P; the locant prefix is a lower case italic p-. BOOK CIRCULARITY: the printed last sentence reads \"So it is separated by steam distillation from p-nitrophenol\", which restates the question rather than answering it. TREND AND EXCEPTION: the card states that the ortho isomer is the more volatile one, and names the exception on the same card — this holds only where the ortho group can form a hydrogen bond with the -OH. An ortho substituent that cannot hydrogen bond gives no such effect, so o-cresol (464 K) and p-cresol (475 K) boil within a few degrees of each other."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_which_isomer",
+        "kind": "text",
+        "label": "Naming the steam volatile isomer",
+        "marks": 1,
+        "mark_note": "The answer",
+        "lines": [
+          "o-Nitrophenol is the steam volatile isomer.",
+          "p-Nitrophenol is not steam volatile.",
+          "Both have the same molecular formula,",
+          "C₆H₅NO₃, so the difference comes only from",
+          "where the –NO₂ group is placed."
+        ],
+        "why": "The two isomers differ in nothing but the position of the nitro group, so the answer has to come from what that position makes possible. In the ortho isomer the –OH and the –NO₂ are on neighbouring carbons and can reach each other; in the para isomer they are on opposite sides of the ring and cannot.",
+        "common_mistakes": [
+          "Naming the para isomer. The para isomer is the one held back in the flask.",
+          "Saying the two isomers have different molecular formulae. Both are C₆H₅NO₃; only the position differs."
+        ],
+        "memory_tip": "Ortho means the neighbouring carbon, so the two groups can reach each other. Only the ortho isomer comes over with the steam.",
+        "margin_note": "Answer the question in the first line. The reason then has three marks to fill."
+      },
+      {
+        "id": "s2_ortho_intramolecular",
+        "kind": "text",
+        "label": "Intramolecular hydrogen bonding in the ortho isomer",
+        "marks": 1,
+        "mark_note": "Ortho isomer",
+        "lines": [
+          "In o-nitrophenol the –OH and the –NO₂ are",
+          "on adjacent carbons.",
+          "The hydrogen of the –OH forms a hydrogen",
+          "bond with an oxygen of the –NO₂ in the",
+          "SAME molecule.",
+          "This is intramolecular hydrogen bonding,",
+          "also called chelation.",
+          "The O–H is used up inside the molecule, so",
+          "the molecules are not joined to one another",
+          "and the solid is easily vaporised."
+        ],
+        "why": "A hydrogen bond that closes inside one molecule is not available to link that molecule to its neighbours. The molecules are therefore held together only by weak forces, the melting point is low (318 K) and the compound passes over with steam.",
+        "common_mistakes": [
+          "Calling the ortho bond intermolecular. It is inside one molecule, so it is intramolecular.",
+          "Saying the ortho isomer has no hydrogen bonding at all. It has hydrogen bonding, but of the intramolecular kind."
+        ],
+        "memory_tip": "Intra means inside. The ortho isomer uses its own O–H on itself, so no O–H is left to bond to a neighbouring molecule.",
+        "margin_note": "The words intramolecular and chelation both belong here. Write at least one of them."
+      },
+      {
+        "id": "s3_para_intermolecular",
+        "kind": "text",
+        "label": "Intermolecular hydrogen bonding in the para isomer",
+        "marks": 1,
+        "mark_note": "Para isomer",
+        "lines": [
+          "In p-nitrophenol the two groups are on",
+          "opposite carbons and cannot reach each",
+          "other.",
+          "The O–H of one molecule therefore bonds to",
+          "the –NO₂ of a NEIGHBOURING molecule.",
+          "This is intermolecular hydrogen bonding.",
+          "The molecules are linked into a large",
+          "associated group, the melting point is high",
+          "(387 K), and the compound is not carried",
+          "over by steam."
+        ],
+        "why": "Once the hydrogen bonds run between molecules rather than inside them, a molecule cannot leave the solid until several of those bonds are broken. That raises the melting point and lowers the volatility, which is the whole reason the separation works. The rule is about the hydrogen bonding, not about the ortho position itself: o-cresol and p-cresol, where the ortho group cannot hydrogen bond, boil within a few degrees of each other.",
+        "common_mistakes": [
+          "Writing that the para isomer has no hydrogen bonding. It has more of it, not less, and that is why it stays behind.",
+          "Assuming every ortho isomer is more volatile than its para isomer. It is true only when the ortho group can hydrogen bond with the –OH."
+        ],
+        "memory_tip": "Inter means between. The para isomer links molecule to molecule, so the whole set has to be pulled apart.",
+        "margin_note": "Contrast the two isomers in the same sentence. The comparison is what earns the mark, not the definition."
+      },
+      {
+        "id": "s4_the_separation",
+        "kind": "boxed_final",
+        "label": "How the separation is carried out",
+        "marks": 1,
+        "mark_note": "The separation",
+        "lines": [
+          "Steam is passed through the mixture.",
+          {
+            "text": "o-Nitrophenol distils over with the steam",
+            "style": "boxed"
+          },
+          "and is collected from the distillate.",
+          "p-Nitrophenol stays behind in the flask.",
+          "The two isomers are separated in one",
+          "operation."
+        ],
+        "why": "Steam distillation carries over whatever has an appreciable vapour pressure at the temperature of the steam. Only the ortho isomer does, so the mixture separates without heating either compound to its own boiling point.",
+        "common_mistakes": [
+          "Saying both isomers distil and are separated later. Only the ortho isomer comes over.",
+          "Confusing this with fractional distillation. Steam distillation works below the boiling point of either isomer."
+        ],
+        "memory_tip": "Ortho goes over with the steam, para stays in the flask.",
+        "margin_note": "The question asks about a separation, so finish by saying where each isomer ends up."
+      }
+    ]
+  },
+  "insider_note": "The book gives the two hydrogen bond types and never says which isomer ends up where. Naming o-nitrophenol as the one that distils over, and p-nitrophenol as the one left in the flask, is the sentence that answers the question as asked."
+}

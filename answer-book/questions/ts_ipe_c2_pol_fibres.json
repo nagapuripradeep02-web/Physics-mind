@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_fibres",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are fibres? Give example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples with their monomers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 18 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer is \"Fibers are thread forming solid having high tensile strength and high modulus\" plus \"Polymers chain contains intermolecular H-bond, which gives crystalline nature\", with examples \"Nylon-6, 6; polyesters\". The chemistry is correct and is kept; the broken grammar is rewritten. GAP: the book gives no monomers for its examples, and names polyesters only as a class; the monomers of nylon-6,6 and terylene are supplied."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Fibres are polymers that can be drawn",
+          "into long threads.",
+          "They have high tensile strength and a",
+          "high modulus.",
+          "Their chains lie side by side and are",
+          "held by strong intermolecular forces,",
+          "mainly hydrogen bonds, so the solid is",
+          "closely packed and crystalline."
+        ],
+        "why": "Strong forces between neighbouring chains are what let a thread carry a load without the chains sliding apart, and the same forces hold the chains in a regular, crystalline arrangement. That is the exact opposite of the weak forces that make an elastomer.",
+        "common_mistakes": [
+          "Writing that fibre chains are held by weak forces. Weak forces give an elastomer; fibres need strong ones.",
+          "Leaving out the hydrogen bonding. It is what the structure half of this mark is given for."
+        ],
+        "memory_tip": "Strong forces between chains give a fibre; weak forces give an elastomer.",
+        "margin_note": "Thread forming, high tensile strength and strong intermolecular forces are the three items in this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples with their monomers",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: nylon-6,6, terylene (dacron)",
+            "style": "boxed"
+          },
+          "Nylon-6,6: from hexamethylene diamine",
+          "and adipic acid. Its amide links hydrogen",
+          "bond to one another between chains.",
+          "Terylene: from ethylene glycol and",
+          "terephthalic acid. It is a polyester.",
+          "Nylon-6, from caprolactam, is a fibre",
+          "as well."
+        ],
+        "why": "Both examples carry a polar link in every repeat unit, an amide in nylon and an ester in terylene, so neighbouring chains attract strongly all along their length. A fibre is not a separate kind of chemistry; it is a polymer whose links line up between chains.",
+        "common_mistakes": [
+          "Giving polythene as a fibre. Its chain has no polar group, so the forces between chains are weak.",
+          "Naming a fibre without its monomers. The monomers are where the marks are in this chapter."
+        ],
+        "memory_tip": "Both standard fibres are condensation polymers with a polar link in every repeat unit.",
+        "margin_note": "Two named fibres finish this mark. Nylon-6,6 and terylene are the pair the book prints."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for thread forming, high tensile strength and strong intermolecular forces. The example is usually nylon-6,6."
+}

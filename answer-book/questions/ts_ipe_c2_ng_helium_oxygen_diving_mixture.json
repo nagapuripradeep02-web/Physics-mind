@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_helium_oxygen_diving_mixture",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In modern diving apparatus, a mixture of He and O₂ is used. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Helium replaces nitrogen as the diluent",
+      "marks": 1
+    },
+    {
+      "label": "Low solubility, so the bends are avoided",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.89 as VSAQ 7. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK OVERSTATEMENT CORRECTED (book p.89, VSAQ 7): the printed answer says \"helium does not dissolve in blood\". That is not true. Helium does dissolve in blood; it is much less soluble than nitrogen at the same partial pressure, and less soluble again in fatty tissue, and that difference is the reason for the mixture. The card writes the comparison, not the absolute. The rest of the printed answer, that the He-O2 mixture is used as a diluent by sea divers and that the painful condition is called the bends, is correct and is kept. The printed sentence \"it does not cause a painful sensations called bends\" is also ungrammatical; it is rewritten."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Noble Gases — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diluent",
+        "kind": "text",
+        "label": "Helium replaces nitrogen as the diluent",
+        "marks": 1,
+        "mark_note": "The mixture and its purpose",
+        "lines": [
+          "A diver breathes gas at high pressure, because",
+          "the water above presses on the body.",
+          "Pure oxygen is harmful at that pressure, so it",
+          "is diluted with a second gas.",
+          "In modern diving apparatus that second gas is",
+          "helium, not the nitrogen of ordinary air."
+        ],
+        "why": "The mixture has two jobs: it must supply oxygen and it must dilute it, because oxygen at a high partial pressure damages the lungs and the nervous system. Ordinary air uses nitrogen as the diluent, and the whole question is about why that diluent is changed.",
+        "common_mistakes": [
+          "Writing that the diver breathes pure helium. Helium alone carries no oxygen; it only replaces the nitrogen.",
+          "Saying helium is used because it is light. The reason is how little of it dissolves in blood, not its density."
+        ],
+        "memory_tip": "Air is oxygen plus nitrogen. A diver's mixture is oxygen plus helium, with helium swapped in for the nitrogen.",
+        "margin_note": "Name both gases and say that helium takes the place of nitrogen. That naming is this mark."
+      },
+      {
+        "id": "s2_solubility",
+        "kind": "boxed_final",
+        "label": "Low solubility, so the bends are avoided",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "Helium is far less soluble in blood than N₂",
+            "style": "boxed"
+          },
+          "So at high pressure much less gas dissolves",
+          "in the blood of the diver.",
+          "When the diver comes up and the pressure",
+          "falls, little gas comes out of solution.",
+          "The painful condition called the bends is",
+          "avoided.",
+          "Nitrogen dissolves far more, and its bubbles",
+          "in the blood cause the bends."
+        ],
+        "why": "The amount of a gas that dissolves is proportional to its partial pressure, so at depth a diver's blood takes up a large amount of whatever diluent is breathed. Helium is much less soluble in blood, and less soluble again in fatty tissue, than nitrogen, so far less is taken up and far less is released as bubbles during the climb back up. Helium does dissolve; the book's \"does not dissolve\" overstates the difference.",
+        "common_mistakes": [
+          "Writing that helium does not dissolve in blood at all. It does dissolve, but far less than nitrogen at the same pressure.",
+          "Naming the wrong cause of the bends. The bubbles form because dissolved gas comes out of solution when the pressure falls, not because the gas reacts."
+        ],
+        "memory_tip": "Less dissolves going down, so fewer bubbles form coming up.",
+        "margin_note": "The word \"bends\" and the words \"less soluble\" are both needed. One without the other usually reads as half the mark."
+      }
+    ]
+  },
+  "insider_note": "The second mark is for the comparison with nitrogen, not for describing helium on its own. Write \"helium is much less soluble in blood than nitrogen\" and then name the bends."
+}

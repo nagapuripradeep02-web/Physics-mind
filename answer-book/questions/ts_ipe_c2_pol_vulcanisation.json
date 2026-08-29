@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_vulcanisation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is vulcanisation?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "What the sulphur does",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 5 on book p.95. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer is \"The process of heating of raw rubber with sulphur at 373-415K temperature to improve its physical properties is called vulcanisation\". That is correct and is kept. What the sulphur does, namely cross linking the chains at their leftover double bonds, is added here, along with the 5% and 30% figures, because the next printed question (VSAQ 10) prints \"5% sulphur\" without ever saying what the percentage refers to. GAP: the book never names the monomer of natural rubber; it is isoprene, 2-methyl-1,3-butadiene, and natural rubber is cis-1,4-polyisoprene."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Vulcanisation is the process of heating",
+          "raw natural rubber with sulphur at",
+          "373 K to 415 K.",
+          "Sulphur atoms form cross links between",
+          "the rubber chains at their leftover",
+          "double bonds.",
+          "About 5% sulphur is used for the flexible",
+          "rubber of tyres."
+        ],
+        "why": "Raw rubber is cis-1,4-polyisoprene, a set of coiled chains with nothing joining one to another, so the chains slide and the rubber goes soft in heat and brittle in cold. Heating with sulphur builds –S–S– cross links between the chains, and the amount of sulphur sets how many form.",
+        "common_mistakes": [
+          "Leaving out the temperature range. The printed answer gives 373 K to 415 K and it is part of the mark.",
+          "Writing that sulphur is added to raw rubber without heating. Heat is needed before the cross links form."
+        ],
+        "memory_tip": "Rubber plus sulphur plus heat gives cross links between the chains.",
+        "margin_note": "Heating, raw rubber, sulphur and the temperature range are the four items in this mark."
+      },
+      {
+        "id": "s2_effect",
+        "kind": "boxed_final",
+        "label": "What the sulphur does",
+        "marks": 1,
+        "mark_note": "Effect",
+        "lines": [
+          {
+            "text": "Raw rubber + S → vulcanised rubber",
+            "style": "boxed"
+          },
+          "The –S–S– cross links stop the chains",
+          "sliding past one another.",
+          "So the rubber becomes harder, stronger,",
+          "no longer sticky, and stays elastic over",
+          "a wider temperature range.",
+          "About 30% sulphur gives the hard rubber",
+          "called ebonite."
+        ],
+        "why": "Sliding chains are why raw rubber deforms permanently; joining them means a stretched sample must return. The same cross links raise the softening temperature, which is why a vulcanised tyre keeps its shape on a hot road.",
+        "common_mistakes": [
+          "Writing that vulcanisation makes rubber soft. It makes rubber harder and stronger.",
+          "Writing that vulcanisation changes the monomer. The chains stay the same; only cross links are added between them."
+        ],
+        "memory_tip": "More sulphur means more cross links, so 5% gives tyre rubber and 30% gives ebonite.",
+        "margin_note": "Naming one improved property is enough for this mark; two is safer."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two halves: the method with its temperature range, then the improvement. The range 373 K to 415 K is the item most often left out."
+}

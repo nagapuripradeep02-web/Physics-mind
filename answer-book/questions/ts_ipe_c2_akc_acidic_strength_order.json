@@ -1,0 +1,110 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_acidic_strength_order",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Compare the acidic strength of acetic acid, chloro acetic acid, benzoic acid and phenol.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The order",
+      "marks": 1
+    },
+    {
+      "label": "The reason for the order",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.112 as VSAQ 4. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO: the printed answer reads \"chloro acetic acid > benzoinc acid > acetic acid > phenol\" — \"benzoinc\" is a misprint for benzoic. The ORDER itself is correct and is kept; the pKa values 2.86, 4.20, 4.76 and 10.0 are added from NCERT to make it checkable. BOOK GAP: the printed answer is one line of order with NO reason at all, which is half the question. The reason (the stability of the anion left behind, the –I effect of chlorine, and the two equivalent oxygens of a carboxylate against the ring carbons of a phenoxide) is written here. TREND AND EXCEPTION recorded on the card: the general statement \"every carboxylic acid is stronger than every phenol\" is FALSE — picric acid, 2,4,6-trinitrophenol, has pKa about 0.4 and is a far stronger acid than acetic acid."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_order",
+        "kind": "equation",
+        "label": "The order",
+        "marks": 1,
+        "mark_note": "The order",
+        "lines": [
+          "Acidic strength in decreasing order:",
+          {
+            "text": "ClCH₂COOH > C₆H₅COOH >",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃COOH > C₆H₅OH",
+            "style": "indent"
+          },
+          "chloroacetic > benzoic > acetic > phenol",
+          {
+            "text": "pKa:  2.86    4.20    4.76    10.0",
+            "style": "indent"
+          },
+          "A smaller pKa means a stronger acid."
+        ],
+        "why": "The order is set by how stable the anion left behind is. Chlorine pulls electron density away from the carboxylate ion, so chloroacetic acid is the strongest; the methyl group of acetic acid pushes electron density towards it, so acetic acid is the weakest of the three acids; benzoic acid comes between them because a phenyl group withdraws electron density less strongly than chlorine but does not push it like a methyl group.",
+        "common_mistakes": [
+          "Putting phenol above acetic acid. Phenol has pKa about 10 and is the weakest of these four.",
+          "Writing the order without saying whether it increases or decreases. State clearly which way the order runs.",
+          "Placing benzoic acid above chloroacetic acid. Chlorine withdraws electron density much more strongly than a phenyl group."
+        ],
+        "memory_tip": "Chlorine first, ring next, methyl after, and phenol last. The pKa numbers 2.9, 4.2, 4.8, 10 run in the same order.",
+        "margin_note": "Write the four formulae, not only the names, and mark the order with > signs. Add the word decreasing or increasing so the direction cannot be misread."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason for the order",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          {
+            "text": "The more stable the anion, the stronger",
+            "style": "boxed"
+          },
+          {
+            "text": "the acid.",
+            "style": "boxed"
+          },
+          "In RCOO⁻ the negative charge is shared",
+          "equally by two oxygen atoms, so it is more",
+          "stable than C₆H₅O⁻, where the charge is",
+          "spread onto ring carbon atoms.",
+          "Cl withdraws electron density by the –I",
+          "effect and stabilises ClCH₂COO⁻ further.",
+          "Exception: not every acid beats every",
+          "phenol — picric acid, 2,4,6-trinitrophenol,",
+          "has pKa 0.4 and is stronger than all four."
+        ],
+        "why": "A carboxylate ion has two oxygen atoms of equal value carrying the charge, and oxygen is strongly electronegative, so the charge is held well. A phenoxide ion delocalises its charge onto carbon atoms of the ring, which hold it far less well, so phenol loses a proton much less readily. Three nitro groups on the ring change that completely, which is why the exception exists.",
+        "common_mistakes": [
+          "Saying phenol is not acidic. It is acidic, just much weaker than a carboxylic acid.",
+          "Explaining the order by the size of the molecule. Size is not the reason; the stability of the anion is.",
+          "Stating that a carboxylic acid is always stronger than a phenol. Picric acid is the standing exception."
+        ],
+        "memory_tip": "Compare the anions, not the acids. Two equal oxygens hold the charge better than a ring, and an electron withdrawing group spreads it further.",
+        "margin_note": "One sentence about anion stability plus one about the –I effect of chlorine finishes this mark. The picric acid line is extra credit, not required."
+      }
+    ]
+  },
+  "insider_note": "The book prints the order and stops. Half of this question is the reason, so add one line on the stability of the carboxylate ion against the phenoxide ion; an order with no reason is usually marked as one mark, not two."
+}

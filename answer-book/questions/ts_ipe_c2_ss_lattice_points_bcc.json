@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_lattice_points_bcc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many lattice points are there in one unit cell of a body centred cubic lattice?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Where the points lie",
+      "marks": 1
+    },
+    {
+      "label": "The count",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. SPELLING: the book prints \"centered\"; \"centred\" is used here to match the rest of the bank. The distinction between the 9 lattice POINTS and the 2 effective particles is the book's own bracketed line and is kept, because a student who reports 2 to a question asking for lattice points is answering a different question."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_positions",
+        "kind": "text",
+        "label": "Where the points lie",
+        "marks": 1,
+        "mark_note": "Positions",
+        "lines": [
+          "In a body centred arrangement there are",
+          "8 lattice points at the corners of the cube",
+          "and 1 lattice point at the centre of the body.",
+          "There are no lattice points on the faces."
+        ],
+        "why": "The count follows from the positions, so the positions come first. Body centred means the corners of the cube plus one extra point right at the middle of the cube, and nothing on the faces.",
+        "common_mistakes": [
+          "Adding face centres as well. A body centred cell has points only at the corners and at the body centre.",
+          "Counting the body centre as shared. It lies wholly inside one cell, so it counts as a full point."
+        ],
+        "memory_tip": "Body centred = 8 corners plus the one in the middle of the body.",
+        "margin_note": "Name the two sets of positions before the arithmetic. The positions carry the first mark on their own."
+      },
+      {
+        "id": "s2_count",
+        "kind": "boxed_final",
+        "label": "The count",
+        "marks": 1,
+        "mark_note": "Count",
+        "lines": [
+          {
+            "text": "Total lattice points = 8 + 1 = 9",
+            "style": "boxed"
+          },
+          "Number of particles per unit cell:",
+          {
+            "text": "8 × ⅛ + 1 × 1 = 1 + 1 = 2",
+            "style": "eq"
+          },
+          "So 9 lattice points, 2 particles."
+        ],
+        "why": "The question asks for lattice points, so the answer is the plain count 9. The second line answers the question students confuse with it: each corner point is shared by 8 cells and contributes ⅛, while the body centre lies inside one cell and contributes 1, giving 2 particles per cell.",
+        "common_mistakes": [
+          "Writing 2 as the number of lattice points. 2 is the number of particles that belong to the cell; the number of lattice points is 9.",
+          "Multiplying the body centre by ½. It is not shared with any other cell, so its share is 1."
+        ],
+        "memory_tip": "Corners give 1, the body centre gives 1, so bcc holds 2 particles.",
+        "margin_note": "Box the 9 as the answer to the question asked, then add the 2 as the particle count with its working."
+      }
+    ]
+  },
+  "insider_note": "The question says lattice points, so 9 is the answer being marked. Write the 2 particles as a second line with its working; a student who writes only 2 has answered a different question."
+}

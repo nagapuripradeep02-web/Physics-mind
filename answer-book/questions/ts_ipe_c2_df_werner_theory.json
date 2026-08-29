@@ -1,0 +1,210 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_werner_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain Werner's theory of coordination compounds with a suitable example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The postulates",
+      "marks": 1
+    },
+    {
+      "label": "Primary valency",
+      "marks": 1
+    },
+    {
+      "label": "Secondary valency",
+      "marks": 1
+    },
+    {
+      "label": "Worked example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.92 as Short Answer 1. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CONTENT KEPT (book p.92, Short Answer 1): the two five-point lists for primary and secondary valency are the book's own and are correct; they are reproduced here with the wording tidied. BOOK EXAMPLE COMPLETED: the book's \"Ex:\" is two hand-drawn structures, (Co(NH₃)₆)Cl₃ with three dotted Cl⁻ and (Co(NH₃)₃Cl₃), with no words attached. The card writes out what those drawings show — primary valency 3 and secondary valency 6 for the first, and no free chloride for the second, so 3 moles of AgCl against none. That is the measurement Werner actually used, and it links to VSAQ 11 of the same chapter. NOTATION: the book writes the complexes with round brackets; square brackets are used here, which is the standard for a coordination sphere. NO FIGURE is authored: the question says \"explain\", not \"draw\", and the two formulas carry the example in one line each."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "d and f Block Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_postulates",
+        "kind": "text",
+        "label": "The postulates",
+        "marks": 1,
+        "mark_note": "Postulates",
+        "lines": [
+          "Werner's postulates:",
+          {
+            "text": "1. Every complex has a central metal",
+            "style": "indent"
+          },
+          {
+            "text": "   atom or ion.",
+            "style": "indent"
+          },
+          {
+            "text": "2. The metal shows two kinds of valency,",
+            "style": "indent"
+          },
+          {
+            "text": "   primary and secondary.",
+            "style": "indent"
+          },
+          {
+            "text": "3. Primary valency is ionisable;",
+            "style": "indent"
+          },
+          {
+            "text": "   secondary valency is not.",
+            "style": "indent"
+          },
+          {
+            "text": "4. Secondary valencies are directed in",
+            "style": "indent"
+          },
+          {
+            "text": "   space and fix the shape.",
+            "style": "indent"
+          }
+        ],
+        "why": "Werner had no way to see a molecule, so he worked from two measurements. The first was how many moles of AgCl a complex precipitates, which told him how many chloride ions are ionisable — that is the primary valency. The second was how many isomers of a complex exist, which told him the ligands are held in fixed directions in space — that is the secondary valency. Every postulate is a conclusion drawn from one of those two measurements.",
+        "common_mistakes": [
+          "Treating Werner's valency as the ordinary valency of the metal. The two valencies are separate ideas: one is the charge, the other is the coordination number.",
+          "Leaving out the fourth postulate. The directional nature of the secondary valency is what fixes the shape, and a mark usually sits there."
+        ],
+        "memory_tip": "Two valencies: primary is the charge and it ionises; secondary is the coordination number and it does not.",
+        "margin_note": "Number the postulates. There are four here, and an examiner counts numbered points."
+      },
+      {
+        "id": "s2_primary",
+        "kind": "text",
+        "label": "Primary valency",
+        "marks": 1,
+        "mark_note": "Primary valency",
+        "lines": [
+          "Primary valency:",
+          {
+            "text": "1. It equals the oxidation number of the",
+            "style": "indent"
+          },
+          {
+            "text": "   central metal.",
+            "style": "indent"
+          },
+          {
+            "text": "2. It is ionisable.",
+            "style": "indent"
+          },
+          {
+            "text": "3. It is satisfied by negative ions only.",
+            "style": "indent"
+          },
+          {
+            "text": "4. It is non-directional.",
+            "style": "indent"
+          },
+          {
+            "text": "5. It is shown by broken lines.",
+            "style": "indent"
+          }
+        ],
+        "why": "Primary valency is the charge on the metal ion written as the number of anions needed to balance it, so it is satisfied by anions and by nothing else. Those anions sit outside the coordination sphere and are free in solution, which is why the valency is ionisable and has no direction in space — and why it is drawn with a broken line.",
+        "common_mistakes": [
+          "Saying primary valency is satisfied by neutral molecules. Only negative ions satisfy it.",
+          "Drawing primary valency with a full line. The full line is the secondary valency."
+        ],
+        "memory_tip": "Primary: charge, ionisable, anions only, broken line.",
+        "margin_note": "Five short points, one line each. Do not write them as prose; the examiner ticks the points."
+      },
+      {
+        "id": "s3_secondary",
+        "kind": "text",
+        "label": "Secondary valency",
+        "marks": 1,
+        "mark_note": "Secondary valency",
+        "lines": [
+          "Secondary valency:",
+          {
+            "text": "1. It equals the coordination number.",
+            "style": "indent"
+          },
+          {
+            "text": "2. It is not ionisable.",
+            "style": "indent"
+          },
+          {
+            "text": "3. It is satisfied by negative ions and",
+            "style": "indent"
+          },
+          {
+            "text": "   by neutral molecules.",
+            "style": "indent"
+          },
+          {
+            "text": "4. It is directional and sets the shape.",
+            "style": "indent"
+          },
+          {
+            "text": "5. It is shown by full lines.",
+            "style": "indent"
+          }
+        ],
+        "why": "The secondary valency count is the coordination number, and because those ligands sit at fixed positions around the metal — six at the corners of an octahedron, four in a square or a tetrahedron — they cannot be removed in solution. That fixed geometry is what allows cis and trans isomers to exist, and it is drawn with a full line.",
+        "common_mistakes": [
+          "Writing that secondary valency equals the oxidation number. That is the primary valency; secondary valency equals the coordination number.",
+          "Saying secondary valency is satisfied only by neutral molecules. Negative ions such as Cl⁻ and CN⁻ satisfy it as well."
+        ],
+        "memory_tip": "Secondary: coordination number, not ionisable, directional, full line.",
+        "margin_note": "Set these five points against the five for primary valency. Marks come from the contrast."
+      },
+      {
+        "id": "s4_example",
+        "kind": "boxed_final",
+        "label": "Worked example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Example: CoCl₃·6NH₃ is [Co(NH₃)₆]Cl₃",
+            "style": "boxed"
+          },
+          "Primary valency 3, satisfied by the three",
+          "Cl⁻ outside, so 3 moles of AgCl are",
+          "precipitated by silver nitrate.",
+          "Secondary valency 6, satisfied by the six",
+          "NH₃ inside, held in an octahedron.",
+          "CoCl₃·3NH₃ is [Co(NH₃)₃Cl₃]: no free Cl⁻,",
+          "so no AgCl is precipitated."
+        ],
+        "why": "The two formulas make the theory testable in one line each. In [Co(NH₃)₆]Cl₃ all three chloride ions lie outside and are precipitated; in [Co(NH₃)₃Cl₃] all three have moved inside, are held by secondary valencies and none is precipitated. Chloride is the one ligand here that can occupy either position, which is what makes the pair such a clean demonstration.",
+        "common_mistakes": [
+          "Writing 3 moles of AgCl for [Co(NH₃)₃Cl₃]. Every chloride there is inside the coordination sphere, so none is precipitated.",
+          "Giving the example with no valency numbers. This mark is for saying primary 3 and secondary 6."
+        ],
+        "memory_tip": "Count what is outside the bracket for primary valency and what is inside for secondary.",
+        "margin_note": "One worked example finishes this mark. The second formula is worth adding because it makes the ionisation test visible."
+      }
+    ]
+  },
+  "insider_note": "The two lists of five points carry two of the four marks, so write them as numbered lines and not as a paragraph. The example earns its mark only if the numbers 3 and 6 appear beside it."
+}

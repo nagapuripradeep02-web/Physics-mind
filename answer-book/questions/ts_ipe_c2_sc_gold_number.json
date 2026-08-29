@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_gold_number",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is gold number?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "What the value means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAPS (book p.76, VSAQ 6): the printed definition, \"The weight in milligrams of protective colloid which prevent the coagulation of 10 ml of given gold solution on adding 1 ml of 10% NaCl\", omits three things. First, the word JUST: it is the minimum amount that only prevents coagulation, and without minimum the number is not defined, because any larger amount also prevents it. Second, the SIGN of coagulation, the colour change of the gold sol from red to blue. Third, the fact that a SMALLER gold number means a stronger protective colloid, which is the only reason the quantity is used. All three are written here. The printed answer also omits the word standard before gold sol."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Gold number is the minimum number of",
+          "milligrams of a protective colloid which",
+          "must be added to 10 mL of a standard gold",
+          "sol so that it is just prevented from",
+          "coagulating when 1 mL of 10% sodium",
+          "chloride solution is added to it.",
+          "Coagulation is seen as a colour change of",
+          "the gold sol from red to blue."
+        ],
+        "why": "The number is a measurement, so every part of the recipe has to be fixed: which sol, how much of it, how much electrolyte, and the smallest mass of protective colloid that still prevents coagulation. Leaving out the word minimum makes the value meaningless, because any larger mass also prevents coagulation.",
+        "common_mistakes": [
+          "Leaving out the word minimum or just. Without it the number is not fixed and the definition is incomplete.",
+          "Writing 10 mL of NaCl and 1 mL of gold sol. The volumes are the other way round: 10 mL of gold sol, 1 mL of 10% NaCl."
+        ],
+        "memory_tip": "10 mL gold sol, 1 mL of 10% NaCl, and the least milligrams of colloid that just prevent the red to blue change.",
+        "margin_note": "Write both volumes and the word minimum. Examiners mark this definition on those three details."
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What the value means",
+        "marks": 1,
+        "mark_note": "Meaning of the value",
+        "lines": [
+          {
+            "text": "Smaller gold number, stronger colloid.",
+            "style": "boxed"
+          },
+          "A small gold number means only a small",
+          "mass is needed, so the protective power of",
+          "that colloid is high.",
+          "Gelatin has a gold number of about 0.005",
+          "to 0.01, and starch about 25.",
+          "So gelatin is a far better protective",
+          "colloid than starch."
+        ],
+        "why": "The gold number counts how much of the colloid the job takes, so it runs opposite to protective power: the better the colloid, the less of it is needed and the smaller the number. Two contrasting values make the relation clear in one line.",
+        "common_mistakes": [
+          "Writing that a larger gold number means better protection. The relation is inverse.",
+          "Quoting a gold number with no units of mass. It is a number of milligrams, so the value has that meaning built in."
+        ],
+        "memory_tip": "Small number, small amount needed, strong protection. Gelatin about 0.005, starch about 25.",
+        "margin_note": "The inverse relation is the second mark. One pair of example values is enough to show it."
+      }
+    ]
+  },
+  "insider_note": "The book's printed definition leaves out the word minimum and the red to blue colour change; both are commonly asked for. Write the two volumes, the word minimum, and the inverse relation with protective power."
+}

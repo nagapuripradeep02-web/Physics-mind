@@ -35,7 +35,7 @@ const STREAM_SUBJECTS: Record<string, string[]> = {
     // BY HAND: the bundles this pushes are written by that build, so a stream
     // listed in one and not the other either pushes nothing or pushes content
     // the artifact does not serve.
-    mpc_2: ['physics_2'],
+    mpc_2: ['physics_2', 'chemistry_2'],
 };
 if (STREAM !== null && !STREAM_SUBJECTS[STREAM]) {
     console.error(`✗ --stream="${STREAM}" is not one of ${Object.keys(STREAM_SUBJECTS).join('/')}`);

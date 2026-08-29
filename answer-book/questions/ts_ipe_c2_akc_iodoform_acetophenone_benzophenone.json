@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_iodoform_acetophenone_benzophenone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you distinguish acetophenone and benzophenone?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The test and what is seen",
+      "marks": 1
+    },
+    {
+      "label": "The equation and the negative result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.112 as VSAQ 2. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK EQUATION CHECKED AND CORRECT: C₆H₅COCH₃ + 3I₂ + 4NaOH → CHI₃ + C₆H₅COONa + 3NaI + 3H₂O balances at C8 H12 O5 I6 Na4 on both sides. BOOK GAP: the printed answer says only \"Benzo phenone does not give this test\" and never says WHY. The reason — benzophenone C₆H₅COC₆H₅ carries two phenyl groups on the carbonyl carbon and no CH₃CO– group — is added, together with the general rule that the iodoform test needs a CH₃CO– group or a CH₃CH(OH)– group. BOOK GAP: the printed answer does not name the colour of the precipitate in the equation line or state that iodoform is a solid; ↓ and \"yellow\" are added. TREND AND EXCEPTION recorded on the card: the test is not a ketone test — ethanol and propan-2-ol are alcohols that give it (they carry CH₃CH(OH)–), and acetaldehyde is the one aldehyde that gives it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_test",
+        "kind": "text",
+        "label": "The test and what is seen",
+        "marks": 1,
+        "mark_note": "The test",
+        "lines": [
+          "The two are distinguished by the iodoform",
+          "test, using iodine and sodium hydroxide.",
+          "Acetophenone C₆H₅COCH₃ has a CH₃CO– group,",
+          "so it gives a yellow precipitate of",
+          "iodoform CHI₃.",
+          "Benzophenone C₆H₅COC₆H₅ has a phenyl group",
+          "on each side of the carbonyl carbon and no",
+          "CH₃CO– group, so it gives no precipitate."
+        ],
+        "why": "The iodoform test does not detect a ketone; it detects the CH₃CO– group (or a CH₃CH(OH)– group, which alkaline iodine first oxidises to CH₃CO–). All three hydrogens of that methyl group are replaced by iodine, and the resulting CI₃ group is then cleaved off by the alkali as CHI₃. Benzophenone has no methyl group at all, so there is nothing for the iodine to replace.",
+        "common_mistakes": [
+          "Calling this a ketone test. It detects the CH₃CO– group; ethanol and propan-2-ol also give it.",
+          "Writing that benzophenone gives a white precipitate. It gives no precipitate at all.",
+          "Using iodine alone. The alkali is needed; without NaOH there is no iodoform."
+        ],
+        "memory_tip": "The test looks for CH₃CO–. Acetophenone has one methyl group; benzophenone has two rings and no methyl group.",
+        "margin_note": "Name the test and name the yellow solid CHI₃. Those two words carry this mark."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation and the negative result",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          {
+            "text": "C₆H₅COCH₃ + 3I₂ + 4NaOH →",
+            "style": "eq"
+          },
+          {
+            "text": "CHI₃↓ + C₆H₅COONa + 3NaI + 3H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "Yellow CHI₃: acetophenone only.",
+            "style": "boxed"
+          },
+          "Benzophenone gives no yellow precipitate.",
+          "The test needs a CH₃CO– or a CH₃CH(OH)–",
+          "group, so ethanol and propan-2-ol give it",
+          "too, and acetaldehyde is the one aldehyde",
+          "that does."
+        ],
+        "why": "Three iodine molecules are used because three hydrogens of the methyl group are replaced, and four hydroxide ions are used because three of them supply the NaI and the fourth cleaves the C–C bond. Counting those two numbers is how the equation is balanced without memorising it.",
+        "common_mistakes": [
+          "Writing 3NaOH instead of 4NaOH. Four are needed, and the equation does not balance with three.",
+          "Giving the second product as benzoic acid. In alkali it is the salt, sodium benzoate C₆H₅COONa.",
+          "Writing that only ketones give the test. Ethanol, propan-2-ol and acetaldehyde give it as well."
+        ],
+        "memory_tip": "Three iodines replace three hydrogens, and one extra hydroxide breaks the C–C bond, so it is 3I₂ and 4NaOH.",
+        "margin_note": "Write the reagents I₂ and NaOH above the arrow on your answer sheet. Balance the equation before you leave it: 3I₂ and 4NaOH, not 3 and 3."
+      }
+    ]
+  },
+  "insider_note": "Both marks turn on one group: acetophenone has CH₃CO– and benzophenone does not, so say that first. The second mark is the equation, so attempt it even if you are unsure of the coefficients — the products alone earn part of it."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_f_centres",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are F-centres?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Colour and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer says only that the site is occupied by unpaired electrons and that colour results (book p.62, VSAQ 9). It does not say where the electron comes from, and it does not say why the colour appears. Both are added here from NCERT: heating the crystal in the vapour of the metal leaves electrons in the anion vacancies, and the trapped electron absorbs visible light. The three named colours are the book's own."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An F-centre is an anion vacancy in a crystal",
+          "that is occupied by an unpaired electron.",
+          "It is formed when the crystal is heated in",
+          "the vapour of its own metal: the extra metal",
+          "atoms give up electrons, and those electrons",
+          "fill the empty anion sites."
+        ],
+        "why": "The defining fact is which vacancy is filled and by what. An anion site carries a negative charge, so an electron sitting there keeps the crystal neutral. This is a metal excess defect: there is now more metal than the formula allows.",
+        "common_mistakes": [
+          "Writing that a cation vacancy holds the electron. The electron takes the place of a missing anion, because both are negative.",
+          "Calling it a Schottky or Frenkel defect. Those two do not change the composition; an F-centre is a metal excess defect."
+        ],
+        "memory_tip": "F is for the German word Farbe, which means colour. F-centre = colour centre.",
+        "margin_note": "Name the anion vacancy and the unpaired electron in one sentence. Those two words carry the definition mark."
+      },
+      {
+        "id": "s2_colour_examples",
+        "kind": "boxed_final",
+        "label": "Colour and examples",
+        "marks": 1,
+        "mark_note": "Colour and examples",
+        "lines": [
+          {
+            "text": "F-centres give the crystal its colour.",
+            "style": "boxed"
+          },
+          "The trapped electron absorbs light from the",
+          "visible range and is excited, so the crystal",
+          "shows the remaining colour.",
+          "Examples: NaCl yellow, LiCl pink,",
+          "KCl violet."
+        ],
+        "why": "A trapped electron has energy levels close enough together that it absorbs visible light rather than ultraviolet. What is left of the white light after that absorption is the colour that is seen, which is why different crystals show different colours.",
+        "common_mistakes": [
+          "Writing that the metal itself is the colour. Sodium metal is silvery; the yellow comes from the trapped electrons.",
+          "Giving no example. In a two mark question one named crystal with its colour is a separate marking point."
+        ],
+        "memory_tip": "Sodium chloride turns yellow, the colour of sodium in a flame test. That one pair is enough to recall.",
+        "margin_note": "One crystal with its colour is enough. NaCl yellow is the example that appears most often."
+      }
+    ]
+  },
+  "insider_note": "Say anion vacancy, not just vacancy. The examiner is checking that you know an electron replaces a negative ion, and the colour example is the second marking point."
+}

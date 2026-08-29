@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_tyndall_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Tyndall effect?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Reason and use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed question ends \"Tyndall effect ?\" with a space before the mark; the space is typesetting and is not reproduced. BOOK GAPS (book p.76, VSAQ 3): the printed answer is one line, \"The scattering of light by colloidal particles is known as tyndall effect\". It does not say that the scattered light makes the PATH of the beam visible, does not give the reason (the particle size is comparable with the wavelength of light), and does not say that a true solution shows no such effect. All three are added here, because the last one is what makes the effect a test for a colloid."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When a beam of light is passed through a",
+          "colloidal solution, the colloidal particles",
+          "scatter the light and the path of the beam",
+          "becomes visible.",
+          "This scattering of light by colloidal",
+          "particles is called the Tyndall effect.",
+          "The bright visible path is called the",
+          "Tyndall cone."
+        ],
+        "why": "The eye does not see the beam itself; it sees light thrown sideways out of the beam by the particles it meets. Colloidal particles are large enough to scatter light in this way, so the whole track of the beam through the sol is lit up.",
+        "common_mistakes": [
+          "Writing that the colloidal particles absorb the light. They scatter it; absorbed light would make the sol darker, not brighter.",
+          "Writing that the particles themselves become visible. What is seen is the scattered light along the path of the beam."
+        ],
+        "memory_tip": "Scattering, not absorption. The beam becomes visible from the side.",
+        "margin_note": "The words \"scattering of light by colloidal particles\" carry this mark. Add the visible path if there is room."
+      },
+      {
+        "id": "s2_reason_use",
+        "kind": "boxed_final",
+        "label": "Reason and use",
+        "marks": 1,
+        "mark_note": "Reason and use",
+        "lines": [
+          {
+            "text": "A true solution shows no Tyndall effect.",
+            "style": "boxed"
+          },
+          "Scattering happens because the size of a",
+          "colloidal particle is close to the",
+          "wavelength of the light falling on it.",
+          "The particles of a true solution are far",
+          "smaller, so they scatter almost nothing.",
+          "The effect is therefore used to tell a",
+          "colloidal solution from a true solution."
+        ],
+        "why": "Scattering is strong only when the particle is about as large as the wavelength of the light. Colloidal particles, from 1 nm to 1000 nm across, are in that range; the ions and molecules of a true solution are about a hundred times smaller, so their scattering is too weak to see. This size difference is what turns the effect into a test.",
+        "common_mistakes": [
+          "Writing that a true solution also shows the effect faintly. In the exam answer a true solution shows no Tyndall effect.",
+          "Giving the reason as the number of particles. It is the size of the particle compared with the wavelength of light."
+        ],
+        "memory_tip": "Particle size close to the wavelength of light, so the beam is scattered and seen.",
+        "margin_note": "The contrast with a true solution is the second mark. Write it as a separate sentence."
+      }
+    ]
+  },
+  "insider_note": "Two marks are rarely given for the one printed line alone. Add why the scattering happens and that a true solution does not show it; that second sentence is what separates a full answer from a half one."
+}

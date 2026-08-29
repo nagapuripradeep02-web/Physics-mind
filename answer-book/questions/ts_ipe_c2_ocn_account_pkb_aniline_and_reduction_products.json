@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_account_pkb_aniline_and_reduction_products",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Account for the following. i) The pKb of aniline is more than that of methylamine. ii) Reduction of an alkyl cyanide forms a 1° amine, whereas an alkyl isocyanide forms a 2° amine.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why aniline has the larger pKb",
+      "marks": 2
+    },
+    {
+      "label": "Cyanide and isocyanide on reduction",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.116 as SAQ 2. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: both printed answers are correct in substance and are kept — conjugation of the aniline lone pair with the ring, and the two reduction products. EQUATIONS CHECKED: CH₃CN + 4[H] → CH₃CH₂NH₂ balances C 2/2, H 7/7, N 1/1; CH₃NC + 4[H] → CH₃NHCH₃ balances C 2/2, H 7/7, N 1/1. BOOK TYPO on the same answer: \"protanation\" for protonation, and \"cynide\" for cyanide in the printed question. BOOK GAP, filled here: the printed answer never states the simple structural reason for part (ii) — in R–C≡N the alkyl group is on CARBON, in R–N≡C it is on NITROGEN, so reduction leaves the new hydrogens on different sides of the bond. The numbers pKb(aniline) 9.38 and pKb(methylamine) 3.38 are added; the book prints no values."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_aniline_pkb",
+        "kind": "text",
+        "label": "Why aniline has the larger pKb",
+        "marks": 2,
+        "mark_note": "Part (i)",
+        "lines": [
+          "In aniline the nitrogen lone pair is in",
+          "conjugation with the benzene ring.",
+          "It is spread over the ring by resonance and",
+          "is therefore less available to a proton.",
+          "In methylamine there is no ring; the methyl",
+          "group releases electron density towards",
+          "nitrogen by the +I effect, so the lone pair",
+          "is more available there.",
+          "Aniline is the weaker base, so its Kb is",
+          "smaller and its pKb is larger.",
+          {
+            "text": "pKb: aniline 9.38, methylamine 3.38",
+            "style": "boxed"
+          }
+        ],
+        "why": "A base works by offering its lone pair to a proton, so anything that removes that lone pair from the nitrogen weakens the base. Conjugation with the ring does exactly this, and it is a much larger effect than the +I effect of a methyl group, which is why the two pKb values differ by about six units.",
+        "common_mistakes": [
+          "Concluding that aniline is the stronger base because its pKb is larger. A LARGER pKb means a WEAKER base.",
+          "Saying the ring makes aniline weak because it is big. The reason is conjugation of the lone pair with the ring, not size."
+        ],
+        "memory_tip": "The lone pair is shared with the ring in aniline, so less of it is left for the proton and the pKb rises.",
+        "margin_note": "Both halves are marked: conjugation in aniline, and +I in methylamine. Finish with the sentence linking a large pKb to a weak base."
+      },
+      {
+        "id": "s2_reduction_products",
+        "kind": "equation",
+        "label": "Cyanide and isocyanide",
+        "marks": 2,
+        "mark_note": "Part (ii)",
+        "lines": [
+          "In an alkyl cyanide R–C≡N the alkyl group",
+          "is on the CARBON atom.",
+          "Reduction adds four hydrogen atoms across",
+          "the triple bond, giving R–CH₂–NH₂.",
+          {
+            "text": "CH₃–C≡N + 4[H] → CH₃–CH₂–NH₂",
+            "style": "eq"
+          },
+          {
+            "text": "[Na/C₂H₅OH or LiAlH₄]",
+            "style": "indent"
+          },
+          "The product is a 1° amine with one carbon",
+          "more than the alkyl group.",
+          "In an alkyl isocyanide R–N≡C the alkyl",
+          "group is on the NITROGEN atom.",
+          "The same four hydrogen atoms now give",
+          "R–NH–CH₃, a 2° amine.",
+          {
+            "text": "CH₃–N≡C + 4[H] → CH₃–NH–CH₃",
+            "style": "eq"
+          },
+          {
+            "text": "[Na/C₂H₅OH]",
+            "style": "indent"
+          },
+          "One of the two alkyl groups is always",
+          "methyl, because it comes from the",
+          "isocyanide carbon."
+        ],
+        "why": "Both groups are reduced the same way, by adding four hydrogen atoms across the carbon-nitrogen triple bond. The only difference is which atom the alkyl group was joined to. In the cyanide the nitrogen ends up carrying two hydrogens, giving a primary amine; in the isocyanide the nitrogen already carries the alkyl group, so it can take only one hydrogen and a secondary amine results.",
+        "common_mistakes": [
+          "Writing R–NH₂ from the isocyanide as well. The nitrogen there already carries R, so the product must be R–NH–CH₃.",
+          "Forgetting that the cyanide product has one carbon MORE than the alkyl group. Ethanenitrile gives ethanamine, not methanamine."
+        ],
+        "memory_tip": "Ask which atom carries R. Carbon carries it in a cyanide, so the amine is 1°; nitrogen carries it in an isocyanide, so the amine is 2° with a methyl group.",
+        "margin_note": "Two equations are marked here. Write 4[H] over or beside the arrow so the count of added hydrogens is visible."
+      }
+    ]
+  },
+  "insider_note": "Part (ii) needs one structural sentence, not a memorised pair of products: in R–C≡N the alkyl group sits on carbon, in R–N≡C it sits on nitrogen, and adding four hydrogens to each then gives a 1° and a 2° amine. Part (i) is only earned once the sentence \"a larger pKb means a weaker base\" is written down."
+}

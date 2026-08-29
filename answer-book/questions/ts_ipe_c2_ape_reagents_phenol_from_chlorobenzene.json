@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_reagents_phenol_from_chlorobenzene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the reagents used for the preparation of phenol from chlorobenzene.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "NaOH at 623 K and 300 atm",
+      "marks": 1
+    },
+    {
+      "label": "Acidification of sodium phenoxide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.109 as Very Short Answer 5. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CONTRADICTS ITSELF: this scheme prints \"623K, 300 atm\" while the same reaction printed as Short Answer 8 on book p.111 reads \"623K and 320atms\". Two pressures for one reaction. The card writes 300 atm, which is the NCERT value, and records the disagreement. BOOK EQUATION INCOMPLETE, CORRECTED: the printed scheme shows only chlorobenzene going to sodium phenoxide with \"NaOH\" over the arrow. Two NaOH are consumed, not one — the first displaces the chlorine and the second neutralises the phenol that would otherwise be formed, so C₆H₅Cl + 2NaOH → C₆H₅ONa + NaCl + H₂O (C 6=6, H 7=7, O 2=2, Na 2=2, Cl 1=1). The book also omits NaCl and H₂O entirely. TREND AND EXCEPTION: the card states that an aryl halide resists nucleophilic substitution, which is why 623 K and 300 atm are needed at all, and names the exception on the same card — with strong electron withdrawing groups at positions 2, 4 and 6, the same substitution runs under mild conditions, so 2,4,6-trinitrochlorobenzene gives its phenol with warm water alone."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alcohols, Phenols and Ethers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_naoh_step",
+        "kind": "equation",
+        "label": "NaOH at 623 K and 300 atm",
+        "marks": 1,
+        "mark_note": "Reagent 1",
+        "lines": [
+          "Reagent 1: aqueous NaOH, at 623 K and",
+          "300 atm. This is Dow's process.",
+          {
+            "text": "C₆H₅Cl + 2NaOH → C₆H₅ONa + NaCl + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[623 K, 300 atm]",
+            "style": "indent"
+          },
+          "The product is sodium phenoxide."
+        ],
+        "why": "The carbon–chlorine bond of an aryl halide has partial double bond character from resonance, so it is short and strong and a nucleophile cannot displace the chlorine under ordinary conditions. That is why the high temperature and the high pressure are part of the answer and not decoration. The exception is a ring already carrying strong electron withdrawing groups at positions 2, 4 and 6: 2,4,6-trinitrochlorobenzene gives its phenol with warm water alone.",
+        "common_mistakes": [
+          "Writing one NaOH. Two are used, because the phenol formed is at once neutralised to the phenoxide.",
+          "Leaving out the temperature and the pressure. The question asks for reagents used, and the conditions are what make this reaction possible."
+        ],
+        "memory_tip": "Dow's process: strong alkali, 623 K, 300 atm, and the product is the phenoxide, not the phenol.",
+        "margin_note": "Give both numbers. An answer that says only NaOH does not distinguish this from an ordinary substitution."
+      },
+      {
+        "id": "s2_acidification",
+        "kind": "boxed_final",
+        "label": "Acidification of sodium phenoxide",
+        "marks": 1,
+        "mark_note": "Reagent 2",
+        "lines": [
+          "Reagent 2: dilute HCl, or any dilute acid.",
+          {
+            "text": "C₆H₅ONa + HCl → C₆H₅OH + NaCl",
+            "style": "boxed"
+          },
+          "Acidifying the sodium phenoxide gives",
+          "phenol.",
+          "So the two reagents are NaOH under",
+          "pressure and then dilute HCl."
+        ],
+        "why": "The alkaline reaction mixture cannot hold free phenol, because phenol is an acid and reacts with the NaOH present. The phenol only appears once acid is added, so the acidification is a separate reagent and a separate step, not a detail.",
+        "common_mistakes": [
+          "Stopping at sodium phenoxide. The question asks for phenol, so the acid step must be written.",
+          "Using concentrated H₂SO₄ for the acidification. A dilute acid is enough and does not sulphonate the ring."
+        ],
+        "memory_tip": "Alkali makes the salt, and acid then forms the phenol. Two reagents, two steps.",
+        "margin_note": "Two reagents are asked for. Numbering them 1 and 2 makes both marks easy for the examiner to find."
+      }
+    ]
+  },
+  "insider_note": "The book prints this reaction at 300 atm here and at 320 atm on book p.111 for the same conversion. Write 623 K and 300 atm, the NCERT value, and do not stop at sodium phenoxide — the acid step carries the second mark."
+}

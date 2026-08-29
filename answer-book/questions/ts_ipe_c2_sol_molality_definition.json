@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_molality_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define molality?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The formula and the unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the question is printed as \"Define molality?\", with a question mark after an instruction; the printed wording is kept here so the card matches the paper. BOOK GAP (book p.65, VSAQ 6): the printed answer gives the definition and the formula but never states the unit and never says that molality does NOT change with temperature. Both are written here, because the temperature line is what separates molality from molarity."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Molality (m) is the number of moles of",
+          "solute present in one kilogram of SOLVENT.",
+          {
+            "text": "m = (moles of solute) / (kg of solvent)",
+            "style": "eq"
+          }
+        ],
+        "why": "Molality is measured against the mass of solvent, not against the volume of solution, so both quantities in it are masses. That is exactly why it is the concentration term used in the boiling point and freezing point equations, where the temperature of the solution is being changed on purpose.",
+        "common_mistakes": [
+          "Writing \"one kilogram of solution\". Molality is per kilogram of SOLVENT.",
+          "Mixing up the symbols m and M. Small m is molality, capital M is molarity."
+        ],
+        "memory_tip": "Molality is per kilogram of solvent. Mass on both sides, so no volume anywhere in it.",
+        "margin_note": "The word SOLVENT is the marked word in this line. Underline it."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula and the unit",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "m = (w × 1000) / (GMW × W in gram)",
+            "style": "boxed"
+          },
+          "w = mass of solute in gram",
+          "GMW = gram molecular weight of the solute",
+          "W = mass of the solvent in gram",
+          "Unit: mol kg⁻¹, written m.",
+          "Molality does not change with temperature,",
+          "because a mass does not change with",
+          "temperature."
+        ],
+        "why": "The 1000 converts the mass of solvent from gram to kilogram, so the formula is the definition written for quantities that are weighed. Since only masses appear, heating the solution changes nothing in the formula, and this is why ΔTb = Kb m and ΔTf = Kf m are written in molality and not in molarity.",
+        "common_mistakes": [
+          "Putting the mass of the SOLUTION in the denominator. In a 10% w/w solution that mistake uses 100 g in place of 90 g.",
+          "Writing the unit as mol L⁻¹. Molality has no volume, so its unit is mol kg⁻¹."
+        ],
+        "memory_tip": "Molality is all mass, so temperature cannot change it.",
+        "margin_note": "Write the unit mol kg⁻¹ and the temperature line. Together they are usually the second half of this mark."
+      }
+    ]
+  },
+  "insider_note": "The elevation and depression formulas both use molality, never molarity. Saying why in one line, that a mass does not change when the solution is heated or cooled, is what a full answer adds."
+}

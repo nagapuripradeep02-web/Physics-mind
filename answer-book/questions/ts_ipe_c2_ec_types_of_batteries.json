@@ -1,0 +1,355 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_types_of_batteries",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give the different types of Batteries and explain the construction and working of each type of battery.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two types",
+      "marks": 1
+    },
+    {
+      "label": "Dry cell: construction",
+      "marks": 2
+    },
+    {
+      "label": "Dry cell: working",
+      "marks": 2
+    },
+    {
+      "label": "Secondary battery: what it is",
+      "marks": 1
+    },
+    {
+      "label": "Lead storage battery: construction and working",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+2+2+1+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EQUATIONS CHECKED (book p.72, LAQ 6). Dry cell cathode MnO₂ + NH₄⁺ + e⁻ → MnO(OH) + NH₃ balances: 1 Mn, 2 O, 4 H, 1 N and zero net charge each side. Lead accumulator anode Pb + SO₄²⁻ → PbSO₄ + 2e⁻ and cathode PbO₂ + SO₄²⁻ + 4H⁺ + 2e⁻ → PbSO₄ + 2H₂O both balance, and the overall Pb + PbO₂ + 2H₂SO₄ ⇌ 2PbSO₄ + 2H₂O balances with 2 Pb, 2 S, 10 O, 4 H. All are followed here. BOOK SELF-CONTRADICTION: point 5 of the printed list says \"20% aqueous H₂SO₄ is used as an electrolyte\" while point 9 of the SAME list quotes cell voltages up to 2.15 V \"(40% H₂SO₄)\". A working lead-acid cell uses acid of about 38% by mass, so the 20% figure is not the operating strength. No percentage is claimed on this card; it says aqueous sulphuric acid, and the contradiction is recorded here. BOOK GARBLE: the printed cell representation is \"Pb/PbSO₄. H₂SO₄. PbSO₄(2) PbO₂(s)/pb\", which is not a readable cell line; the standard form is written here. BOOK TYPOS on the same pages: \"cyllindrical\", \"caron rod\" for carbon rod, \"seperated\", \"study current\" for steady current, \"reserve direction\" for reverse direction, \"electrode eactions\" for reactions, \"stroage\" for storage. FIGURE SCOPE: the question says explain the construction, NOT draw, so the dry cell diagram carries NO marks and the whole split sits on the written steps. SHORT ANSWER PAIR: SAQ 1 asks for the two definitions with one example each (card ts_ipe_c2_ec_primary_and_secondary_batteries)."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Electro Chemistry — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_types",
+        "kind": "text",
+        "label": "The two types",
+        "marks": 1,
+        "mark_note": "The two types",
+        "lines": [
+          "A battery is a set of galvanic cells joined in",
+          "series so that their voltages add up to a",
+          "useful value.",
+          "There are two types:",
+          "1. Primary batteries, in which the cell",
+          "reaction happens once and cannot be",
+          "reversed, so they cannot be recharged.",
+          "Examples: the dry cell, the mercury cell.",
+          "2. Secondary batteries, whose reaction can be",
+          "reversed by an outside current, so they can",
+          "be recharged and used again.",
+          "Examples: the lead storage battery, the",
+          "nickel and cadmium cell."
+        ],
+        "why": "Naming the two types and the test that separates them sets up the rest of the answer, because the construction of each type follows from whether its products stay on the electrodes or move away.",
+        "common_mistakes": [
+          "Giving three or four types by listing named cells. There are two types; the named cells are examples within them.",
+          "Calling a fuel cell a secondary battery. A fuel cell is fed from outside and is never recharged."
+        ],
+        "memory_tip": "Primary means one way, secondary means two ways. Everything else follows from that.",
+        "margin_note": "Name both types with one example each before starting the detail. That opening carries this mark."
+      },
+      {
+        "id": "s2_dry_cell_construction",
+        "kind": "text",
+        "label": "Dry cell: construction",
+        "marks": 2,
+        "mark_note": "Construction",
+        "lines": [
+          "Primary battery: the dry cell, which is a",
+          "modified Leclanche cell.",
+          "Construction: the outer container is a",
+          "cylindrical zinc vessel, and it is the anode,",
+          "that is the negative electrode.",
+          "A graphite (carbon) rod stands down the",
+          "centre and is the cathode, the positive",
+          "electrode.",
+          "The rod is surrounded by a moist paste of",
+          "MnO₂ and powdered carbon.",
+          "The space between that paste and the zinc",
+          "wall holds a second moist paste of NH₄Cl and",
+          "ZnCl₂, which is the electrolyte.",
+          "The two pastes are kept apart by a porous",
+          "paper, and the whole cell is sealed at the",
+          "top so the paste cannot dry out or leak.",
+          "The cell is called dry because the",
+          "electrolyte is a paste and not a liquid."
+        ],
+        "why": "There are only two electrodes but four materials, so the order they are packed in is what has to be learnt: zinc on the outside, then the ammonium chloride paste, then the porous paper, then the manganese dioxide paste around the rod. The porous paper lets ions through while keeping the two pastes apart.",
+        "common_mistakes": [
+          "Saying the carbon rod is the anode. The zinc container is the anode; the carbon rod is the cathode.",
+          "Saying the carbon rod takes part in the reaction. It is inert and only carries the electrons; MnO₂ is what is reduced."
+        ],
+        "memory_tip": "Work inwards: zinc case, NH₄Cl paste, porous paper, MnO₂ paste, carbon rod at the centre.",
+        "margin_note": "Both electrodes and both pastes must be named for these two marks. Say which is the anode and which the cathode."
+      },
+      {
+        "id": "s3_dry_cell_diagram",
+        "kind": "diagram",
+        "label": "Dry cell sketch",
+        "marks": 0,
+        "figure": {
+          "id": "dry_cell_cutaway",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "dry_can",
+              "d": "M 120 100 L 120 280 L 300 280 L 300 100",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dry_can_top",
+              "d": "M 120 100 A 90 22 0 1 0 300 100 A 90 22 0 1 0 120 100",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dry_inner_paste",
+              "d": "M 172 110 L 172 262 L 248 262 L 248 110",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dry_carbon_rod",
+              "d": "M 198 70 L 198 250 L 222 250 L 222 70",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dry_cap",
+              "d": "M 192 62 L 228 62 L 228 70 L 192 70 Z",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "dry_seal",
+              "d": "M 132 118 L 288 118",
+              "ms": 2230
+            },
+            {
+              "type": "stroke",
+              "id": "dry_leader_mno2",
+              "d": "M 302 146 L 240 156 M 248 150 L 240 156 L 248 162",
+              "ms": 1180
+            },
+            {
+              "type": "stroke",
+              "id": "dry_leader_nh4cl",
+              "d": "M 302 210 L 272 202 M 280 198 L 272 202 L 278 210",
+              "ms": 710
+            },
+            {
+              "type": "stroke",
+              "id": "dry_leader_separator",
+              "d": "M 120 156 L 170 150 M 162 146 L 170 150 L 162 154",
+              "ms": 970
+            },
+            {
+              "type": "label",
+              "id": "dry_lbl_carbon",
+              "x": 240,
+              "y": 44,
+              "text": "carbon rod (cathode, +)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dry_lbl_mno2",
+              "x": 306,
+              "y": 150,
+              "text": "MnO₂ + carbon black",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dry_lbl_nh4cl",
+              "x": 306,
+              "y": 214,
+              "text": "NH₄Cl + ZnCl₂ paste",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dry_lbl_separator",
+              "x": 6,
+              "y": 160,
+              "text": "porous paper",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dry_lbl_zinc",
+              "x": 6,
+              "y": 302,
+              "text": "zinc container (anode, −)",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The picture shows the packing order that the written construction describes: the zinc wall outside, the ammonium chloride paste, the porous separator, the manganese dioxide paste and the carbon rod at the centre. Seeing the layers in order is what makes the construction easy to write out.",
+        "common_mistakes": [
+          "Drawing the carbon rod touching the zinc container. The two pastes and the separator keep them apart.",
+          "Drawing the rod as the outer case. The zinc is the case; the rod is at the centre."
+        ],
+        "memory_tip": "Five layers from the outside in: zinc, NH₄Cl paste, paper, MnO₂ paste, carbon rod.",
+        "margin_note": "The question says explain the construction, not draw it, so this sketch earns no marks. All eight sit on the written steps; draw it only if there is time."
+      },
+      {
+        "id": "s4_dry_cell_working",
+        "kind": "equation",
+        "label": "Dry cell: working",
+        "marks": 2,
+        "mark_note": "Working",
+        "lines": [
+          "Working: zinc is oxidised at the container",
+          "wall, and the electrons released travel",
+          "through the outside circuit to the carbon rod",
+          "where MnO₂ is reduced.",
+          {
+            "text": "Anode: Zn(s) → Zn²⁺(aq) + 2e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "Cathode: MnO₂ + NH₄⁺ + e⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "MnO(OH) + NH₃",
+            "style": "indent"
+          },
+          "MnO₂ acts as the depolariser: it removes the",
+          "hydrogen formed at the carbon rod, which",
+          "would otherwise collect there and stop the",
+          "cell.",
+          {
+            "text": "emf of a dry cell = 1.5 V",
+            "style": "boxed"
+          },
+          "It cannot be recharged, because the ammonia",
+          "escapes and the zinc wall is used up.",
+          "Dry cells are used in clocks, torches and",
+          "small radios."
+        ],
+        "why": "Manganese goes from the +4 state in MnO₂ to the +3 state in MnO(OH), so only one electron is taken at the cathode while two are released at the anode. That is why the two half reactions are not written with matching electron counts here.",
+        "common_mistakes": [
+          "Writing 2e⁻ in the cathode reaction. Manganese changes by one oxidation state, so only one electron is taken.",
+          "Saying the dry cell can be recharged. The ammonia leaves as a gas, so the reaction cannot be reversed."
+        ],
+        "memory_tip": "Zinc gives electrons at the wall, MnO₂ takes them at the rod, and MnO₂ also clears the hydrogen away.",
+        "margin_note": "Both electrode reactions, the word depolariser and the 1.5 V figure carry these two marks."
+      },
+      {
+        "id": "s5_secondary_definition",
+        "kind": "text",
+        "label": "Secondary battery: what it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Secondary battery: a battery that can be",
+          "recharged.",
+          "Passing current from an outside source in the",
+          "opposite direction reverses the cell reaction",
+          "and rebuilds the original substances, so the",
+          "cell can be discharged again.",
+          "During charging it stores electrical energy",
+          "as chemical energy, which is why it is also",
+          "called a storage cell.",
+          "Examples: the lead storage battery, the",
+          "nickel and cadmium cell, the Edison cell."
+        ],
+        "why": "Recharging works only when the products stay where they were formed. In a secondary cell the products are solids that stick to the plates, so the charging current can turn them back into the starting materials at the same place.",
+        "common_mistakes": [
+          "Saying it stores electricity. It stores chemical energy; the electricity is remade when the cell discharges.",
+          "Saying a secondary cell never needs recharging. It does discharge, and is then recharged."
+        ],
+        "memory_tip": "The products stay stuck to the plates, so the current can be sent back to undo them.",
+        "margin_note": "The word reversible, or the sentence about the outside source, earns this mark."
+      },
+      {
+        "id": "s6_lead_storage",
+        "kind": "boxed_final",
+        "label": "Lead storage battery: construction and working",
+        "marks": 2,
+        "mark_note": "Lead storage battery",
+        "lines": [
+          "Construction: the anode is a grid packed with",
+          "spongy lead, the cathode is a grid packed",
+          "with lead dioxide, PbO₂, and the electrolyte",
+          "is aqueous sulphuric acid.",
+          {
+            "text": "Pb | PbSO₄ | H₂SO₄ | PbSO₄ | PbO₂ | Pb",
+            "style": "eq"
+          },
+          "Working, on discharge:",
+          {
+            "text": "Anode: Pb + SO₄²⁻ → PbSO₄ + 2e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "Cathode: PbO₂ + SO₄²⁻ + 4H⁺ + 2e⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "PbSO₄ + 2H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "Pb + PbO₂ + 2H₂SO₄ ⇌ 2PbSO₄ + 2H₂O",
+            "style": "boxed"
+          },
+          "Left to right on discharge, right to left on",
+          "charging.",
+          "Each cell gives about 2 V, and six cells in",
+          "series give the 12 V battery used in cars",
+          "and inverters."
+        ],
+        "why": "Both plates turn into the same solid, PbSO₄, and the sulphuric acid is used up as they do, so the acid gets weaker as the battery discharges. That is why the state of charge can be judged by measuring the density of the acid.",
+        "common_mistakes": [
+          "Writing the overall equation with a single arrow. The double arrow is what shows the cell can be recharged.",
+          "Saying the electrolyte is unchanged. Sulphuric acid is consumed on discharge and remade on charging."
+        ],
+        "memory_tip": "Both plates end up as the same white PbSO₄, and the acid gets weaker. Charging reverses both changes.",
+        "margin_note": "The reversible overall equation is the marked line here. Box it and label which way is discharge."
+      }
+    ]
+  },
+  "insider_note": "This question asks for construction AND working of each type, so a list of names takes almost nothing. Write both electrode reactions for the dry cell and the reversible overall equation for the lead storage battery; those two blocks carry half the marks."
+}

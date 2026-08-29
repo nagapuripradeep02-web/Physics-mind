@@ -1,0 +1,371 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_activation_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the term activation energy of a reaction with a suitable diagram.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The energy relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed definition and the printed relation Eₐ = threshold energy − average energy of the normal molecules are CORRECT and are kept. FIGURE SCOPE: the question says \"with a suitable diagram\", not \"draw a neat labelled diagram\", so both diagram steps carry NO marks and the whole 1+1 split sits on the two written steps. Two profiles are drawn because the printed answer prints two, endothermic and exothermic, and because the reverse activation energy Eₐ' = ET − EP can only be read off the exothermic one. NOTATION: capital-letter subscripts have no Unicode form, so the threshold, reactant and product energies are written as the plain symbols ET, ER and EP, each defined in words on the card; the activation energy keeps the subscript form Eₐ."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Activation energy Eₐ is the extra energy",
+          "that the reacting molecules, starting from",
+          "their normal energy, must gain by",
+          "collisions to reach the threshold energy.",
+          "Only molecules that reach the threshold",
+          "energy can form products."
+        ],
+        "why": "Molecules at room temperature already carry energy; the activation energy is not the total energy needed but the difference between what they have on average and what they must have. That is why it is written as a difference and why raising the temperature, which raises the average, increases the rate.",
+        "common_mistakes": [
+          "Calling it the total energy of the reactants. It is the extra energy above their normal average energy.",
+          "Saying it is the energy released by the reaction. That is the difference between EP and ER, a separate quantity."
+        ],
+        "memory_tip": "Activation energy is a difference, not a total. Threshold minus average.",
+        "margin_note": "The word extra, or above the average, carries this mark. A definition without it reads as total energy."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The energy relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "Write:",
+          {
+            "text": "ER = energy of the reactants",
+            "style": "indent"
+          },
+          {
+            "text": "EP = energy of the products",
+            "style": "indent"
+          },
+          {
+            "text": "ET = threshold energy",
+            "style": "indent"
+          },
+          "Then, for the forward reaction:",
+          {
+            "text": "Eₐ = ET − ER",
+            "style": "boxed"
+          },
+          "and for the reverse reaction:",
+          {
+            "text": "Eₐ' = ET − EP",
+            "style": "eq"
+          },
+          "Both are positive quantities."
+        ],
+        "why": "The threshold energy is a single level that both directions have to reach, so the forward and the reverse activation energies are measured from different starting levels to the same top. Their difference, Eₐ − Eₐ', equals EP − ER, which is the heat of the reaction.",
+        "common_mistakes": [
+          "Writing Eₐ = ER − ET. The threshold is the higher level, so the threshold energy comes first.",
+          "Giving one value of Eₐ for both directions. The forward and reverse activation energies differ unless ER and EP are equal."
+        ],
+        "memory_tip": "Threshold minus where you start. Start at ER going forward, at EP coming back.",
+        "margin_note": "Define ER, EP and ET in words before using them. Undefined symbols usually cost half of this mark."
+      },
+      {
+        "id": "s3_endothermic_profile",
+        "kind": "diagram",
+        "label": "Endothermic profile",
+        "marks": 0,
+        "figure": {
+          "id": "ck_endothermic_energy_profile",
+          "width": 460,
+          "height": 230,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ep_axes",
+              "d": "M 70 25 L 70 195 L 400 195",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "ep_curve",
+              "d": "M 95 165 L 130 165 C 165 165 185 58 215 55 C 245 52 262 110 296 110 L 360 110",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "ep_level_er",
+              "d": "M 72 165 L 130 165",
+              "ms": 830,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "ep_level_et",
+              "d": "M 72 55 L 215 55",
+              "ms": 2040,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "ep_level_ep",
+              "d": "M 296 110 L 398 110",
+              "ms": 1460,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "ep_arrow_ea",
+              "d": "M 100 165 L 100 55 M 96 61 L 100 55 L 104 61 M 96 159 L 100 165 L 104 159",
+              "ms": 1980
+            },
+            {
+              "type": "label",
+              "id": "ep_lbl_axis_y",
+              "x": 14,
+              "y": 18,
+              "text": "Potential energy",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ep_lbl_axis_x",
+              "x": 250,
+              "y": 215,
+              "text": "Reaction coordinate",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ep_lbl_er",
+              "x": 44,
+              "y": 169,
+              "text": "ER",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "ep_lbl_et",
+              "x": 150,
+              "y": 59,
+              "text": "ET",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "ep_lbl_ep",
+              "x": 404,
+              "y": 114,
+              "text": "EP",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "ep_lbl_ea",
+              "x": 108,
+              "y": 112,
+              "text": "Eₐ",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "ep_lbl_title",
+              "x": 300,
+              "y": 35,
+              "text": "Endothermic",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "In an endothermic reaction the products sit above the reactants, so EP is higher than ER. The peak is the threshold level, and the arrow from the reactant level up to the peak is the activation energy. The picture shows that Eₐ is measured from the reactant level, not from the base line.",
+        "common_mistakes": [
+          "Drawing the arrow for Eₐ from the base line of the graph. It starts at the reactant level ER.",
+          "Drawing the products below the reactants. That is the exothermic picture."
+        ],
+        "memory_tip": "Endothermic: the curve ends higher than it started, and the peak is above both.",
+        "margin_note": "The question does not say draw, so this earns no marks. Both marks sit on the two written steps."
+      },
+      {
+        "id": "s4_exothermic_profile",
+        "kind": "diagram",
+        "label": "Exothermic profile",
+        "marks": 0,
+        "figure": {
+          "id": "ck_exothermic_energy_profile",
+          "width": 460,
+          "height": 230,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "xp_axes",
+              "d": "M 70 25 L 70 195 L 400 195",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "xp_curve",
+              "d": "M 95 110 L 130 110 C 165 110 185 48 215 45 C 245 42 262 175 296 175 L 360 175",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "xp_level_er",
+              "d": "M 72 110 L 130 110",
+              "ms": 830,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "xp_level_et",
+              "d": "M 72 45 L 352 45",
+              "ms": 4000,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "xp_level_ep",
+              "d": "M 296 175 L 398 175",
+              "ms": 1460,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "xp_arrow_ea",
+              "d": "M 100 110 L 100 45 M 96 51 L 100 45 L 104 51 M 96 104 L 100 110 L 104 104",
+              "ms": 1340
+            },
+            {
+              "type": "stroke",
+              "id": "xp_arrow_ea_rev",
+              "d": "M 336 175 L 336 45 M 332 51 L 336 45 L 340 51 M 332 169 L 336 175 L 340 169",
+              "ms": 2270
+            },
+            {
+              "type": "label",
+              "id": "xp_lbl_axis_y",
+              "x": 14,
+              "y": 18,
+              "text": "Potential energy",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "xp_lbl_axis_x",
+              "x": 250,
+              "y": 215,
+              "text": "Reaction coordinate",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "xp_lbl_er",
+              "x": 44,
+              "y": 114,
+              "text": "ER",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "xp_lbl_et",
+              "x": 150,
+              "y": 39,
+              "text": "ET",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "xp_lbl_ep",
+              "x": 404,
+              "y": 179,
+              "text": "EP",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "xp_lbl_ea",
+              "x": 108,
+              "y": 82,
+              "text": "Eₐ",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "xp_lbl_ea_rev",
+              "x": 300,
+              "y": 120,
+              "text": "Eₐ'",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "xp_lbl_title",
+              "x": 300,
+              "y": 32,
+              "text": "Exothermic",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "In an exothermic reaction the products sit below the reactants. The same threshold line serves both directions, so the second arrow, drawn from the product level up to the same peak, is the reverse activation energy Eₐ'. Here Eₐ' is larger than Eₐ, which is what the words Eₐ' = ET − EP say.",
+        "common_mistakes": [
+          "Drawing the peak below the reactant level. The threshold must lie above both ER and EP, or there would be no barrier at all.",
+          "Marking only one arrow on this diagram. The exothermic picture is drawn precisely because it shows both Eₐ and Eₐ'."
+        ],
+        "memory_tip": "Exothermic: the curve ends lower than it started, and the return arrow is the longer one.",
+        "margin_note": "This diagram also earns no marks. Draw it only if the endothermic one is already finished and there is time."
+      }
+    ]
+  },
+  "insider_note": "Two marks sit entirely on the words, because the question does not say draw. Write Eₐ = ET − ER first, then sketch, so a slow diagram cannot cost the marks."
+}

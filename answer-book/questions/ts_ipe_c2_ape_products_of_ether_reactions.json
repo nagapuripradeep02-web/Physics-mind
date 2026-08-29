@@ -1,0 +1,173 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_products_of_ether_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the products of the following reactions: i) C₆H₅–O–C₂H₅ + HBr →, ii) CH₃–CH₂–CH₂–O–CH₃ + HBr →, iii) C₆H₅–O–C₂H₅ with conc. H₂SO₄ and conc. HNO₃ →, iv) (CH₃)₃C–O–C₂H₅ + HI →.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Cleavage of phenetole with HBr",
+      "marks": 1
+    },
+    {
+      "label": "Cleavage of methyl propyl ether with HBr",
+      "marks": 1
+    },
+    {
+      "label": "Nitration of phenetole",
+      "marks": 1
+    },
+    {
+      "label": "Cleavage of a tertiary ether with HI",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.110 as Short Answer 4. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. QUESTION TEXT: the book draws parts i, iii and iv with benzene rings and no names; the ether drawn is phenetole, C₆H₅–O–C₂H₅, and the question_text here writes the four reactants as linear formulae. BOOK CHEMISTRY IS CORRECT on all four parts — this is one of the soundest answers in the sub-box. BOOK GAPS: it names none of the products, showing structures only, and it does not say which nitro isomer is the major one. Both are added. BALANCE CHECKED: C₈H₁₀O + HBr → C₆H₆O + C₂H₅Br (C 8=8, H 11=11, O 1=1, Br 1=1); C₄H₁₀O + HBr → CH₃Br + C₃H₈O (C 4=4, H 11=11, O 1=1, Br 1=1); C₈H₁₀O + HNO₃ → C₈H₉NO₃ + H₂O (C 8=8, H 11=11, N 1=1, O 4=4); C₆H₁₄O + HI → C₄H₉I + C₂H₆O (C 6=6, H 15=15, O 1=1, I 1=1). TREND AND EXCEPTION, both on this card: parts i and ii give the rule that the halide bonds to the LESS hindered alkyl carbon and never to a ring carbon, because the reaction is SN2; part iv IS the exception and is marked as such — when one group is tertiary the reaction goes by SN1 through a stable tertiary carbocation, so the iodide bonds to the TERTIARY carbon and the alcohol formed is the primary one."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_phenetole_hbr",
+        "kind": "equation",
+        "label": "Cleavage of phenetole with HBr",
+        "marks": 1,
+        "mark_note": "Part i",
+        "lines": [
+          {
+            "text": "C₆H₅–O–C₂H₅ + HBr →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅–OH + C₂H₅Br",
+            "style": "indent"
+          },
+          "The products are phenol and bromoethane.",
+          "The bromide bonds to the ETHYL carbon, so",
+          "the ring keeps the oxygen."
+        ],
+        "why": "The bond from the ring carbon to the oxygen has partial double bond character, because the oxygen lone pair is delocalised into the ring. That bond is short and strong and cannot be broken by a nucleophile, so the only bond left to break is the one to the ethyl group.",
+        "common_mistakes": [
+          "Writing bromobenzene and ethanol. The C(ring)–O bond is not broken, so bromobenzene is never formed.",
+          "Writing the alkyl product as ethane. The bromine is transferred, so the product is bromoethane."
+        ],
+        "memory_tip": "The ring keeps its oxygen. In an aryl alkyl ether the halide always goes to the alkyl side.",
+        "margin_note": "Name both products in words as well as formulae. One-mark parts are marked on whether the right product is identified."
+      },
+      {
+        "id": "s2_propyl_methyl_ether_hbr",
+        "kind": "equation",
+        "label": "Cleavage of methyl propyl ether with HBr",
+        "marks": 1,
+        "mark_note": "Part ii",
+        "lines": [
+          {
+            "text": "CH₃CH₂CH₂–O–CH₃ + HBr →",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃Br + CH₃CH₂CH₂–OH",
+            "style": "indent"
+          },
+          "The products are bromomethane and",
+          "propan-1-ol.",
+          "Both groups are primary, so the reaction is",
+          "SN2 and the bromide bonds to the smaller,",
+          "less hindered methyl carbon."
+        ],
+        "why": "In an SN2 reaction the nucleophile has to reach the carbon from the side opposite the leaving group, so steric hindrance controls the rate and the least crowded carbon reacts. A methyl carbon carries three hydrogens and nothing else, which makes it the least crowded of the two.",
+        "common_mistakes": [
+          "Writing 1-bromopropane and methanol. The bromide goes to the smaller group, so it is bromomethane and propan-1-ol.",
+          "Assuming the longer chain always keeps the oxygen for the wrong reason. The rule is about crowding at the carbon, not chain length as such."
+        ],
+        "memory_tip": "With two primary groups, the halide bonds to the smaller carbon and the alcohol keeps the bigger one.",
+        "margin_note": "Say SN2 and less hindered in the same line. The reason is what separates this part from part iv."
+      },
+      {
+        "id": "s3_nitration_of_phenetole",
+        "kind": "equation",
+        "label": "Nitration of phenetole",
+        "marks": 1,
+        "mark_note": "Part iii",
+        "lines": [
+          {
+            "text": "C₆H₅–O–C₂H₅ + HNO₃ →",
+            "style": "eq"
+          },
+          {
+            "text": "2-nitrophenetole (minor) +",
+            "style": "indent"
+          },
+          {
+            "text": "4-nitrophenetole (major) + H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "[conc. H₂SO₄, conc. HNO₃]",
+            "style": "indent"
+          },
+          "The –OC₂H₅ group releases electron density",
+          "into the ring, so the nitro group enters at",
+          "position 2 or position 4.",
+          "Position 4 is the major product because",
+          "position 2 is crowded by the ethoxy group."
+        ],
+        "why": "The ethoxy group is ortho and para directing, so only two products are possible and no substitution happens elsewhere on the ring. Crowding then determines which of the two is the major product: the ethoxy group blocks its two neighbouring positions, so the para product is the major one.",
+        "common_mistakes": [
+          "Giving 3-nitrophenetole. The meta position is not activated by an ethoxy group.",
+          "Marking the ortho product as major. The para product is the major one, because the ortho positions are crowded."
+        ],
+        "memory_tip": "Ethoxy directs the new group to 2 or 4, and 4 is the major one because 2 is crowded.",
+        "margin_note": "Label one product major and the other minor. The book does not, and the labels are usually marked."
+      },
+      {
+        "id": "s4_tertiary_ether_hi",
+        "kind": "boxed_final",
+        "label": "Cleavage of a tertiary ether with HI",
+        "marks": 1,
+        "mark_note": "Part iv",
+        "lines": [
+          {
+            "text": "(CH₃)₃C–O–C₂H₅ + HI →",
+            "style": "eq"
+          },
+          {
+            "text": "(CH₃)₃C–I + C₂H₅OH",
+            "style": "boxed"
+          },
+          "The products are 2-iodo-2-methylpropane",
+          "and ethanol.",
+          "Here the iodide bonds to the TERTIARY",
+          "carbon, the opposite of part ii."
+        ],
+        "why": "This part is the exception to part ii. A tertiary carbon carries too much steric hindrance for the SN2 path, so the protonated ether breaks on its own into a tertiary carbocation and ethanol, and the iodide then bonds to that carbocation. The tertiary carbocation is the stable one, which is why the reaction takes this route.",
+        "common_mistakes": [
+          "Writing C₂H₅I and (CH₃)₃C–OH by applying the part ii rule here. With a tertiary group the reaction is SN1 and the halide goes to the tertiary carbon.",
+          "Saying SN2 for this part. SN2 cannot happen at a carbon carrying three methyl groups."
+        ],
+        "memory_tip": "Two primary groups means SN2 and the halide bonds to the smaller carbon. A tertiary group means SN1 and the halide bonds to the tertiary carbon.",
+        "margin_note": "Write SN1 beside this part. Naming the mechanism is what shows the examiner you know why it reverses."
+      }
+    ]
+  },
+  "insider_note": "Parts ii and iv look alike and go opposite ways. With two primary groups the reaction is SN2 and the halide bonds to the smaller carbon; with a tertiary group it is SN1 and the halide bonds to the tertiary carbon. Applying one rule to both parts loses a mark."
+}

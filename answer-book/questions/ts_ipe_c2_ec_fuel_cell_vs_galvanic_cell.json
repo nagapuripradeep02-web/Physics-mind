@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_fuel_cell_vs_galvanic_cell",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a fuel cell? How is it different from a conventional galvanic cell?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a fuel cell is",
+      "marks": 1
+    },
+    {
+      "label": "How it differs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, the worst in this unit (book pp.69-70, VSAQ 9): point 2 of the printed FUEL CELL list reads \"it is a continuous source of energy converts stored chemical energy into electrical energy (discharging) is called a secondary battery. Ex: lead-acid storage battery\". Text from the secondary-battery answer has been spliced into the fuel-cell list. A fuel cell is NOT a secondary battery, is never recharged, and a lead-acid battery is not an example of one. The spliced sentence and its example are dropped here and the real difference, that a fuel cell is fed from outside while a galvanic cell holds its reactants sealed inside, is written instead. BOOK GAP: the printed list says the galvanic cell's \"efficiency of current is low\" and the fuel cell's is \"high\" with no figures. The figure written here is the one NCERT gives, about 70% for a hydrogen-oxygen fuel cell against about 40% for a thermal power plant; no efficiency figure is claimed for a galvanic cell, because none is sourced."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fuel_cell",
+        "kind": "text",
+        "label": "What a fuel cell is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A fuel cell is a galvanic cell in which the",
+          "energy released by burning a fuel is turned",
+          "directly into electrical energy, without the",
+          "fuel being burnt in a flame.",
+          "Fuels used are H₂, CH₄ and CH₃OH.",
+          "In the hydrogen and oxygen fuel cell:",
+          {
+            "text": "2H₂(g) + O₂(g) → 2H₂O(l)",
+            "style": "eq"
+          }
+        ],
+        "why": "Burning a fuel in a flame first makes heat and then the heat is turned into work, and that second step wastes most of the energy. A fuel cell carries out the same reaction as two half reactions at two electrodes, so the electrons go straight into the circuit and the heat step is skipped.",
+        "common_mistakes": [
+          "Calling it a battery that stores fuel. Nothing is stored; the fuel is supplied from outside while the cell runs.",
+          "Writing that the fuel is burnt. There is no flame; the same reaction is split into two electrode reactions."
+        ],
+        "memory_tip": "Same reaction as burning, but split across two electrodes, so the energy comes out as current and not as heat.",
+        "margin_note": "Name one fuel and give the overall reaction. A definition with no example rarely takes the full mark."
+      },
+      {
+        "id": "s2_differences",
+        "kind": "boxed_final",
+        "label": "How it differs",
+        "marks": 1,
+        "mark_note": "Difference",
+        "lines": [
+          {
+            "text": "Fuel cell: reactants fed in from outside.",
+            "style": "boxed"
+          },
+          "It runs without stopping as long as the fuel",
+          "is supplied, is never recharged, has an",
+          "efficiency of about 70%, and causes very",
+          "little pollution.",
+          "Galvanic cell: the reactants are sealed",
+          "inside, so it stops when they are used up.",
+          "Examples: dry cell, Daniel cell."
+        ],
+        "why": "Every other difference follows from where the reactants are. Reactants held inside are a fixed supply, so the cell stops when they are used up; reactants fed in from outside are a continuous supply, so the cell does not stop.",
+        "common_mistakes": [
+          "Saying a fuel cell can be recharged. It is not recharged; more fuel is supplied.",
+          "Calling a lead storage battery a fuel cell. It is a secondary battery, and its reactants stay inside it."
+        ],
+        "memory_tip": "Reactants outside means it keeps running; reactants inside means it stops when they are used up. Everything else follows.",
+        "margin_note": "One clean difference stated both ways earns this mark. A list of four loose points usually does not."
+      }
+    ]
+  },
+  "insider_note": "The single difference an examiner looks for is where the reactants are: fed in from outside in a fuel cell, sealed inside a conventional galvanic cell. State it both ways in one sentence."
+}

@@ -150,3 +150,7 @@ answer-book/dist-gated/
 # og.png), and any stream added later. Same rule as dist/ and dist-gated/ —
 # a ~6 MB generated artifact, rebuilt by npm run build:answers:<stream>.
 answer-book/dist-*/
+
+# Scratch output of the answer-book authoring tools (measure_wrap, render_figures):
+# a wrap report and a rendered figure gallery, both regenerated on every run.
+answer-book/tools/out/

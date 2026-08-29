@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_oxidation_products_of_carbonyl_compounds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the oxidation products of acetaldehyde, acetone and acetophenone.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why aldehydes and ketones differ",
+      "marks": 1
+    },
+    {
+      "label": "Acetaldehyde",
+      "marks": 1
+    },
+    {
+      "label": "Acetone",
+      "marks": 1
+    },
+    {
+      "label": "Acetophenone",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.113 as SAQ 1. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO, corrected on this card: the printed acetophenone equation begins \"C₆H₃–COCH₃\". Acetophenone is C₆H₅COCH₃; C₆H₃ would be a ring missing two hydrogens. The book's own product line writes C₆H₅COOH, so the subscript 3 is a misprint. BOOK SLOPPINESS: the printed prose for acetone says it is \"oxidised ... to form acetic acid\" while the equation on the same line also produces CO₂ and H₂O; the prose is incomplete and is written out in full here. ALL THREE BOOK EQUATIONS CHECKED AND CORRECT: CH₃CHO + [O] → CH₃COOH balances at C2 H4 O2; CH₃COCH₃ + 4[O] → CH₃COOH + CO₂ + H₂O balances at C3 H6 O5; C₆H₅COCH₃ + 4[O] → C₆H₅COOH + CO₂ + H₂O balances at C8 H8 O5. BOOK GAP: the printed answer never says WHY an aldehyde is oxidised easily and a ketone is not (the hydrogen on the carbonyl carbon), which is the whole point of the question; that is added, with Popoff's rule for an unsymmetrical ketone. TREND AND EXCEPTION recorded on the card: \"a ketone needs a strong oxidising agent\" has an exception — a methyl ketone is cleaved by alkaline sodium hypohalite under mild conditions in the haloform reaction."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "Why aldehydes and ketones differ",
+        "marks": 1,
+        "mark_note": "The principle",
+        "lines": [
+          "An aldehyde has a hydrogen atom on the",
+          "carbonyl carbon, so it is oxidised by both",
+          "mild and strong oxidising agents to the",
+          "acid with the SAME number of carbon atoms.",
+          "A ketone has no such hydrogen. It needs a",
+          "strong oxidising agent and a high",
+          "temperature, and a C–C bond is broken, so",
+          "the products have FEWER carbon atoms.",
+          "For an unsymmetrical ketone the carbonyl",
+          "group stays with the smaller alkyl group",
+          "(Popoff's rule)."
+        ],
+        "why": "Oxidising the carbonyl carbon means putting an oxygen on it, and an aldehyde already has a hydrogen there that can be replaced. A ketone has two carbon atoms bonded to the carbonyl carbon and no hydrogen, so an oxygen atom can be added only by breaking one of those C–C bonds, and that is why the conditions are harsh and the carbon chain is shortened.",
+        "common_mistakes": [
+          "Writing that ketones are not oxidised at all. They are, but only under strong conditions and with the chain broken.",
+          "Expecting a ketone to give an acid with the same number of carbon atoms. The chain is shortened.",
+          "Leaving out the hydrogen on the carbonyl carbon as the reason. That single hydrogen is the whole difference."
+        ],
+        "memory_tip": "One hydrogen on the carbonyl carbon is the whole difference: an aldehyde has it, a ketone does not.",
+        "margin_note": "Open with this contrast in two lines. It frames the three equations that follow and is marked on its own."
+      },
+      {
+        "id": "s2_acetaldehyde",
+        "kind": "equation",
+        "label": "Acetaldehyde",
+        "marks": 1,
+        "mark_note": "Acetaldehyde",
+        "lines": [
+          "Acetaldehyde is oxidised by mild as well as",
+          "strong oxidising agents to acetic acid:",
+          {
+            "text": "CH₃CHO + [O] → CH₃COOH",
+            "style": "eq"
+          },
+          {
+            "text": "[KMnO₄ / H₂SO₄]",
+            "style": "indent"
+          },
+          "Two carbon atoms in, two carbon atoms out."
+        ],
+        "why": "Only one oxygen atom is needed, because the hydrogen on the carbonyl carbon is simply replaced by an –OH group. That is also why the mild reagents used as tests, Tollens' reagent and Fehling's solution, oxidise this compound while leaving a ketone untouched.",
+        "common_mistakes": [
+          "Writing the product as formic acid or as CO₂. Acetaldehyde gives acetic acid with the same two carbon atoms.",
+          "Using 4[O]. One oxygen atom is enough for an aldehyde.",
+          "Naming a strong oxidising agent only. Mild agents oxidise an aldehyde too, and saying so is worth a line."
+        ],
+        "memory_tip": "One oxygen atom converts –CHO to –COOH, and the carbon count does not change.",
+        "margin_note": "Write KMnO₄/H₂SO₄ above the arrow on your answer sheet. Add the words mild and strong, because they are the contrast being tested."
+      },
+      {
+        "id": "s3_acetone",
+        "kind": "equation",
+        "label": "Acetone",
+        "marks": 1,
+        "mark_note": "Acetone",
+        "lines": [
+          "Acetone needs a strong oxidising agent and",
+          "heat. A C–C bond breaks and the products",
+          "are acetic acid, carbon dioxide and water:",
+          {
+            "text": "CH₃COCH₃ + 4[O] →",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃COOH + CO₂ + H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "[K₂Cr₂O₇ / H₂SO₄, Δ]",
+            "style": "indent"
+          },
+          "Three carbon atoms in; two in the acid and",
+          "one lost as CO₂."
+        ],
+        "why": "Acetone is symmetrical, so either C–C bond may break and both give the same pair of fragments. One fragment ends as acetic acid and the other, a one-carbon fragment, is oxidised all the way to carbon dioxide, which is why the equation needs four oxygen atoms and not one.",
+        "common_mistakes": [
+          "Writing CH₃COOH as the only product. CO₂ and H₂O are formed as well and the equation will not balance without them.",
+          "Using [O] instead of 4[O]. Count the atoms: three carbons, six hydrogens and five oxygens on each side.",
+          "Using a mild oxidising agent. Tollens' and Fehling's reagents do not oxidise a ketone."
+        ],
+        "memory_tip": "A ketone loses a carbon: three carbons in, a two-carbon acid out and one carbon away as CO₂.",
+        "margin_note": "Write K₂Cr₂O₇/H₂SO₄ and Δ above the arrow on your answer sheet. Check the balance before moving on: 4[O] is the number."
+      },
+      {
+        "id": "s4_acetophenone",
+        "kind": "boxed_final",
+        "label": "Acetophenone",
+        "marks": 1,
+        "mark_note": "Acetophenone",
+        "lines": [
+          "Acetophenone also needs a strong oxidising",
+          "agent. The bond to the methyl group breaks",
+          "and benzoic acid is formed:",
+          {
+            "text": "C₆H₅COCH₃ + 4[O] →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅COOH + CO₂ + H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "[K₂Cr₂O₇ / H₂SO₄, Δ]",
+            "style": "indent"
+          },
+          {
+            "text": "Aldehyde: same carbons. Ketone: fewer.",
+            "style": "boxed"
+          },
+          "Exception: a methyl ketone such as this is",
+          "also cleaved under mild conditions by",
+          "alkaline NaOI, giving CHI₃ and the acid."
+        ],
+        "why": "By Popoff's rule the carbonyl group stays with the smaller group, and here the smaller group is the methyl. The phenyl side therefore retains the carbonyl carbon and becomes benzoic acid, while the methyl carbon leaves as carbon dioxide. The haloform exception matters because it is the same cleavage done gently, and it is the iodoform test.",
+        "common_mistakes": [
+          "Writing the product as C₆H₅COCOOH or keeping all eight carbon atoms. One carbon leaves as CO₂.",
+          "Copying the book's C₆H₃–COCH₃. Acetophenone is C₆H₅COCH₃; the ring carries five hydrogens.",
+          "Saying a ketone is never cleaved under mild conditions. A methyl ketone is, by alkaline sodium hypohalite."
+        ],
+        "memory_tip": "The carbonyl carbon stays with the ring, so the acid is benzoic acid and the methyl carbon leaves as CO₂.",
+        "margin_note": "Finish with the one-line contrast between the aldehyde and the two ketones. It ties the three equations together and is easy to mark."
+      }
+    ]
+  },
+  "insider_note": "The book prints acetophenone as C₆H₃–COCH₃; the ring carries five hydrogens, so write C₆H₅COCH₃. The mark most often lost is on acetone: students write acetic acid alone and drop the CO₂ and H₂O that make the equation balance."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_structure_of_xeo3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the structure of XeO₃.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Hybridisation and the lone pair",
+      "marks": 1
+    },
+    {
+      "label": "Shape and bond angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.89 as VSAQ 1. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NOTATION (book p.89, VSAQ 1): the printed answer writes the hybridisation as \"SP3\"; it is written sp3 here, and the same book prints it lowercase two pages later, so the capitalisation is inconsistent rather than deliberate. BOOK GAP: the printed answer runs \"due to the presence of one lone pair shape is pyramidal and bond angle is 103\" together without saying what the four electron pairs are arranged as. The tetrahedral ARRANGEMENT of the four pairs and the pyramidal SHAPE of the molecule are separated on this card, because naming the arrangement as the shape is the commonest error in this unit. The printed shape (pyramidal) and bond angle (103 degrees) are correct and are kept."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Noble Gases — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hybridisation",
+        "kind": "text",
+        "label": "Hybridisation and the lone pair",
+        "marks": 1,
+        "mark_note": "sp³ and one lone pair",
+        "lines": [
+          "In XeO₃ xenon is joined to three oxygen",
+          "atoms and carries one lone pair.",
+          "Three σ bonds and one lone pair make four",
+          "electron pairs on xenon.",
+          {
+            "text": "Four electron pairs → xenon is sp³ hybridised",
+            "style": "eq"
+          }
+        ],
+        "why": "Hybridisation is counted from the σ bonds plus the lone pairs, never from the double bonds. Each Xe=O bond has one σ component, so three σ bonds and one lone pair give four pairs and sp³. The π parts of the Xe=O bonds are pπ–dπ overlap and do not enter the count.",
+        "common_mistakes": [
+          "Counting the double bonds. Only the three σ bonds and the one lone pair are counted, which is why the answer is sp³ and not sp³d³.",
+          "Leaving the lone pair out. Three bond pairs on their own would give sp² and a flat molecule."
+        ],
+        "memory_tip": "Count σ bonds plus lone pairs: 3 + 1 = 4, and 4 pairs always means sp³.",
+        "margin_note": "Write the count 3 + 1 = 4 before you write sp³. The count is what earns this mark, not the label."
+      },
+      {
+        "id": "s2_shape",
+        "kind": "boxed_final",
+        "label": "Shape and bond angle",
+        "marks": 1,
+        "mark_note": "Pyramidal, 103°",
+        "lines": [
+          "The four electron pairs are arranged",
+          "tetrahedrally around xenon.",
+          "One of the four positions holds the lone",
+          "pair, so only three bonds are seen.",
+          {
+            "text": "Shape of XeO₃ is pyramidal",
+            "style": "boxed"
+          },
+          "The O–Xe–O bond angle is about 103°.",
+          "It is less than 109°28′ because the lone",
+          "pair pushes the three bonds closer together."
+        ],
+        "why": "The arrangement of the electron pairs and the shape of the molecule are two different answers to two different questions. Four pairs are always arranged tetrahedrally; the SHAPE names only the positions of the atoms, and with one position taken by a lone pair those atoms form a pyramid. The lone pair repels the bond pairs more strongly than the bond pairs repel each other, so the angle closes from 109°28′ to about 103°.",
+        "common_mistakes": [
+          "Calling XeO₃ tetrahedral. The four electron pairs are arranged tetrahedrally, but one is a lone pair, so the SHAPE is pyramidal.",
+          "Writing the bond angle as 109°28′. The lone pair pushes the bonds closer, so the angle drops to about 103°."
+        ],
+        "memory_tip": "Tetrahedral is the arrangement of the pairs; pyramidal is the shape of the atoms. One lone pair turns the first into the second.",
+        "margin_note": "Both words are needed: pyramidal for the shape and about 103° for the angle. Naming the tetrahedral arrangement as the shape loses this mark."
+      }
+    ]
+  },
+  "insider_note": "This is a two-line answer, but the second mark is lost more often than the first. Write the tetrahedral arrangement and the pyramidal shape as two separate statements, then add the 103° angle."
+}

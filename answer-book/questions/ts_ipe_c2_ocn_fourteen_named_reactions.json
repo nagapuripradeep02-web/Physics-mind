@@ -1,0 +1,346 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_fourteen_named_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the following named reactions: i) Iodoform reaction  ii) Aldol condensation  iii) Clemmensen reduction  iv) Carbylamine test  v) Hell-Volhard-Zelinsky reaction  vi) Hoffmann bromamide reaction  vii) Rosenmund reduction  viii) Gattermann-Koch reaction  ix) Wolff-Kishner reaction  x) Finkelstein reaction  xi) Swarts reaction  xii) Gabriel phthalimide synthesis  xiii) Wurtz-Fittig reaction  xiv) Fittig reaction",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Carbonyl reactions — i, ii, iii, ix (four)",
+      "marks": 2
+    },
+    {
+      "label": "Amine reactions — iv, vi, xii (three)",
+      "marks": 2
+    },
+    {
+      "label": "Acid, acid chloride and ring — v, vii, viii (three)",
+      "marks": 2
+    },
+    {
+      "label": "Halide reactions — x, xi, xiii, xiv (four)",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book pp.118-120 as LAQ 1, the only Long Answer Question in the sub-box and the last question in the book. The 2+2+2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. THE SPLIT IS AN AUTHORED DESIGN: the board asks for fourteen named reactions in one eight-mark question, so no honest split can give each reaction a whole mark. The fourteen are grouped by the kind of compound they act on — four carbonyl reactions, three amine reactions, three acid/acid-chloride/ring reactions and four halide reactions — with two marks on each group, so each reaction is worth about half a mark: one sentence plus one balanced equation. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR 1, corrected here (part vii, book p.119): the printed Rosenmund scheme writes \"Lindlar's Catalyst\" over the arrow and then adds \"(Pd/BaSO₄ in quinoline)\" below. Those are two different catalysts. Rosenmund reduction uses hydrogen over palladium on barium sulphate, poisoned with sulphur or quinoline. Lindlar's catalyst is palladium on calcium carbonate poisoned with quinoline and lead acetate, and it is used to reduce an alkyne to a cis-alkene, not an acid chloride to an aldehyde. The card names Pd/BaSO₄ only. BOOK ERROR 2, corrected here (part v, book p.119): the printed second product of the Hell-Volhard-Zelinsky chain reads \"CH₂·Cl₂–COOH\". Dichloroacetic acid is CHCl₂–COOH — one hydrogen must still be on the α carbon at that stage, since the third chlorine replaces it in the next step. BOOK GAPS, filled here: (a) part ii jumps straight from two molecules of acetaldehyde to but-2-enal and never shows 3-hydroxybutanal, which is the aldol the reaction is named after; (b) part ix omits the hydrazone, so the two stages of the Wolff-Kishner reduction are collapsed into one arrow; (c) part vi never says that the amine formed has ONE CARBON LESS than the amide, which is the whole point of the Hoffmann bromamide reaction; (d) part xii omits the first step, phthalimide with KOH giving potassium phthalimide; (e) part x omits that NaBr and NaCl are almost insoluble in acetone, which is why the Finkelstein reaction goes to completion; (f) part iv never says that 2° and 3° amines give no isocyanide, which is what makes the carbylamine reaction a test. BOOK SPELLINGS: \"Wolf-Kishner\" for Wolff-Kishner, \"Gatterman - Koach\" for Gattermann-Koch, \"Pthalimide\" for phthalimide throughout, \"Bi Phenyl\" for biphenyl, \"red phosphorous\" for red phosphorus, \"α-hydroge\" for α-hydrogen. In part i the words \"(yellow crystalline solid)\" are printed straight after \"alkali\", so they read as describing the alkali; they describe iodoform. ALL EQUATIONS ON THIS CARD WERE BALANCED BY ATOM COUNT before authoring: iodoform C 2/2 H 12/12 I 8/8 K 6/6 O 7/7; carbylamine C 7/7 H 11/11 N 1/1 Cl 3/3 K 3/3 O 3/3; Hoffmann bromamide (R = CH₃) C 2/2 H 9/9 N 1/1 Br 2/2 Na 4/4 O 5/5; Gabriel hydrolysis (R = CH₃) C 9/9 H 9/9 N 1/1 O 4/4 Na 2/2; Clemmensen C 2/2 H 8/8 O 1/1; Wolff-Kishner over both stages C 2/2 H 8/8 N 2/2 O 1/1; Gattermann-Koch C 7/7 H 6/6 O 1/1; and the four halide equations each balance term by term."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Organic Compounds Containing Nitrogen — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_carbonyl_reactions",
+        "kind": "equation",
+        "label": "Carbonyl reactions (i, ii, iii, ix)",
+        "marks": 2,
+        "mark_note": "Four carbonyl reactions",
+        "lines": [
+          "i) Iodoform reaction. Ethanol warmed with",
+          "iodine and alkali gives iodoform, a yellow",
+          "crystalline solid.",
+          {
+            "text": "CH₃CH₂OH + 4I₂ + 6KOH →",
+            "style": "eq"
+          },
+          {
+            "text": "CHI₃ + HCOOK + 5KI + 5H₂O",
+            "style": "indent"
+          },
+          "Only compounds with a CH₃CO– or a",
+          "CH₃CH(OH)– group respond.",
+          "ii) Aldol condensation. Two molecules of an",
+          "aldehyde or ketone that has an α-hydrogen",
+          "join in dilute alkali to give the aldol,",
+          "which loses water on heating.",
+          {
+            "text": "2 CH₃CHO → CH₃CH(OH)CH₂CHO",
+            "style": "eq"
+          },
+          {
+            "text": "[dilute NaOH]   3-hydroxybutanal",
+            "style": "indent"
+          },
+          {
+            "text": "CH₃CH(OH)CH₂CHO → CH₃CH=CH–CHO",
+            "style": "eq"
+          },
+          {
+            "text": "[Δ, −H₂O]   but-2-enal",
+            "style": "indent"
+          },
+          "A carbonyl compound with no α-hydrogen,",
+          "such as HCHO, gives no aldol.",
+          "iii) Clemmensen reduction. The C=O group is",
+          "reduced to CH₂ with zinc amalgam and",
+          "concentrated hydrochloric acid.",
+          {
+            "text": "CH₃CHO + 4[H] → CH₃–CH₃ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[Zn–Hg / conc. HCl]",
+            "style": "indent"
+          },
+          "ix) Wolff-Kishner reduction. The same",
+          "C=O to CH₂ change, done in alkali.",
+          "Hydrazine first gives the hydrazone:",
+          {
+            "text": "CH₃CHO + H₂N–NH₂ →",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃CH=N–NH₂ + H₂O",
+            "style": "indent"
+          },
+          "The hydrazone is then heated with KOH:",
+          {
+            "text": "CH₃CH=N–NH₂ → CH₃–CH₃ + N₂",
+            "style": "eq"
+          },
+          {
+            "text": "[KOH, ethylene glycol, 453-473 K]",
+            "style": "indent"
+          },
+          "Clemmensen is used when the compound",
+          "survives acid, Wolff-Kishner when it",
+          "survives alkali."
+        ],
+        "why": "These four all act on a carbonyl group. The first two build a new bond at the α-carbon and need an α-hydrogen; the last two remove the oxygen and replace it with two hydrogens. Clemmensen and Wolff-Kishner give exactly the same product, which is why they are learned as a pair: the choice between them is determined by whether the rest of the molecule survives acid or alkali.",
+        "common_mistakes": [
+          "Writing the aldol condensation straight to but-2-enal. The aldol, 3-hydroxybutanal, is the compound the reaction is named after and must be shown.",
+          "Writing Wolff-Kishner as a single arrow. The hydrazone forms first and is then heated with KOH.",
+          "Writing the iodoform equation with only CHI₃ on the right. It also needs HCOOK, 5KI and 5H₂O to balance."
+        ],
+        "memory_tip": "Two build a new bond at the α-carbon and two replace the oxygen with two hydrogens. Clemmensen works in acid, Wolff-Kishner in alkali.",
+        "margin_note": "Four reactions in two marks means one sentence and one equation each. Do not start a mechanism here."
+      },
+      {
+        "id": "s2_amine_reactions",
+        "kind": "equation",
+        "label": "Amine reactions (iv, vi, xii)",
+        "marks": 2,
+        "mark_note": "Three amine reactions",
+        "lines": [
+          "iv) Carbylamine test. A 1° amine warmed",
+          "with chloroform and alcoholic KOH gives an",
+          "isocyanide with a strong unpleasant smell.",
+          {
+            "text": "C₆H₅NH₂ + CHCl₃ + 3KOH →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅–NC + 3KCl + 3H₂O",
+            "style": "indent"
+          },
+          "2° and 3° amines give no isocyanide, so",
+          "the reaction is a test for a 1° amine.",
+          "vi) Hoffmann bromamide reaction. An amide",
+          "warmed with bromine and alkali gives a",
+          "1° amine.",
+          {
+            "text": "R–CONH₂ + Br₂ + 4NaOH →",
+            "style": "eq"
+          },
+          {
+            "text": "R–NH₂ + Na₂CO₃ + 2NaBr + 2H₂O",
+            "style": "indent"
+          },
+          "The amine has ONE CARBON LESS than the",
+          "amide, because the carbonyl carbon leaves",
+          "as carbonate.",
+          "xii) Gabriel phthalimide synthesis. This",
+          "makes a pure 1° amine in three steps.",
+          {
+            "text": "C₆H₄(CO)₂NH + KOH →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₄(CO)₂N⁻K⁺ + H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "C₆H₄(CO)₂N⁻K⁺ + R–X →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₄(CO)₂N–R + KX",
+            "style": "indent"
+          },
+          {
+            "text": "C₆H₄(CO)₂N–R + 2NaOH →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₄(COONa)₂ + R–NH₂",
+            "style": "indent"
+          },
+          "Aromatic 1° amines cannot be made this",
+          "way, because an aryl halide does not",
+          "undergo the substitution in step two."
+        ],
+        "why": "All three concern the making or the testing of a primary amine. The carbylamine reaction identifies one, the Hoffmann bromamide reaction shortens an amide by one carbon to make one, and the Gabriel synthesis builds one that is free of any 2° or 3° amine. Each is worth stating with its own limit, because those limits are what the examiner can ask about.",
+        "common_mistakes": [
+          "Writing the Hoffmann product with the same number of carbons as the amide. One carbon is lost as carbonate, so ethanamide gives methanamine.",
+          "Showing only one step of the Gabriel synthesis. The potassium salt, the N-alkyl phthalimide and the hydrolysis are three separate arrows.",
+          "Saying every amine gives the carbylamine reaction. Only primary amines do."
+        ],
+        "memory_tip": "Test one, shorten one, build one: carbylamine tests, Hoffmann bromamide takes a carbon off, Gabriel builds a pure 1° amine.",
+        "margin_note": "State one limit for each: 1° only, one carbon less, aliphatic only. Those three clauses are what earn the full two marks here."
+      },
+      {
+        "id": "s3_acid_and_ring_reactions",
+        "kind": "equation",
+        "label": "Acid, acid chloride and ring (v, vii, viii)",
+        "marks": 2,
+        "mark_note": "Three reactions",
+        "lines": [
+          "v) Hell-Volhard-Zelinsky reaction. A",
+          "carboxylic acid with an α-hydrogen is",
+          "treated with chlorine in the presence of a",
+          "little red phosphorus; the α-hydrogens are",
+          "replaced one at a time.",
+          {
+            "text": "CH₃COOH + Cl₂ → ClCH₂COOH + HCl",
+            "style": "eq"
+          },
+          {
+            "text": "ClCH₂COOH + Cl₂ → Cl₂CH–COOH + HCl",
+            "style": "eq"
+          },
+          {
+            "text": "Cl₂CH–COOH + Cl₂ → Cl₃C–COOH + HCl",
+            "style": "eq"
+          },
+          {
+            "text": "[red P at each step]",
+            "style": "indent"
+          },
+          "Formic acid has no α-hydrogen and gives no",
+          "reaction.",
+          "vii) Rosenmund reduction. An acid chloride",
+          "is reduced to an aldehyde with hydrogen",
+          "over palladium on barium sulphate.",
+          {
+            "text": "C₆H₅COCl + H₂ → C₆H₅CHO + HCl",
+            "style": "eq"
+          },
+          {
+            "text": "[Pd/BaSO₄, poisoned with S or quinoline]",
+            "style": "indent"
+          },
+          "The poison stops the reduction at the",
+          "aldehyde instead of going on to the",
+          "alcohol.",
+          "viii) Gattermann-Koch reaction. Benzene is",
+          "treated with carbon monoxide and HCl in",
+          "the presence of anhydrous AlCl₃ and CuCl,",
+          "and a –CHO group enters the ring.",
+          {
+            "text": "C₆H₆ + CO → C₆H₅CHO",
+            "style": "eq"
+          },
+          {
+            "text": "[HCl, anhydrous AlCl₃ / CuCl]",
+            "style": "indent"
+          },
+          "It is the way benzaldehyde is made without",
+          "using formyl chloride, which is unstable."
+        ],
+        "why": "These three all put a new group where one could not easily be put before. The Hell-Volhard-Zelinsky reaction reaches the α-carbon of an acid, which ordinary halogenation does not reach; the Rosenmund reduction stops at the aldehyde instead of continuing to the alcohol; and the Gattermann-Koch reaction makes an aldehyde on a ring using a reagent pair in place of formyl chloride.",
+        "common_mistakes": [
+          "Calling Pd/BaSO₄ Lindlar's catalyst. Lindlar's catalyst is Pd on CaCO₃ with quinoline and lead acetate, and it is for alkynes.",
+          "Writing the second HVZ product as CH₂Cl₂–COOH. It is CHCl₂–COOH; one α-hydrogen is still there for the third step.",
+          "Leaving out the catalyst poison in Rosenmund. Without it the reduction goes past the aldehyde to the alcohol."
+        ],
+        "memory_tip": "α-carbon, aldehyde, ring: HVZ reaches the α-carbon, Rosenmund stops at the aldehyde, Gattermann-Koch puts –CHO on the ring.",
+        "margin_note": "Name red phosphorus, Pd/BaSO₄ and anhydrous AlCl₃/CuCl. In this block the reagents carry the marks."
+      },
+      {
+        "id": "s4_halide_reactions",
+        "kind": "boxed_final",
+        "label": "Halide reactions (x, xi, xiii, xiv)",
+        "marks": 2,
+        "mark_note": "Four halide reactions",
+        "lines": [
+          "x) Finkelstein reaction. An alkyl chloride",
+          "or bromide heated with sodium iodide in dry",
+          "acetone gives the alkyl iodide.",
+          {
+            "text": "CH₃Br + NaI → CH₃I + NaBr",
+            "style": "eq"
+          },
+          {
+            "text": "[dry acetone]",
+            "style": "indent"
+          },
+          "NaBr is almost insoluble in acetone and",
+          "separates out, so the reaction goes to",
+          "completion.",
+          "xi) Swarts reaction. An alkyl chloride or",
+          "bromide heated with a metal fluoride such",
+          "as AgF, Hg₂F₂, CoF₂ or SbF₃ gives the",
+          "alkyl fluoride.",
+          {
+            "text": "CH₃Br + AgF → CH₃F + AgBr",
+            "style": "eq"
+          },
+          "xiii) Wurtz-Fittig reaction. An aryl halide",
+          "and an alkyl halide together with sodium in",
+          "dry ether give an alkylbenzene.",
+          {
+            "text": "C₆H₅–X + R–X + 2Na → C₆H₅–R + 2NaX",
+            "style": "eq"
+          },
+          {
+            "text": "[dry ether]",
+            "style": "indent"
+          },
+          "xiv) Fittig reaction. Two molecules of an",
+          "aryl halide with sodium in dry ether give",
+          "a biaryl.",
+          {
+            "text": "2 C₆H₅–X + 2Na → C₆H₅–C₆H₅ + 2NaX",
+            "style": "eq"
+          },
+          {
+            "text": "[dry ether]   biphenyl",
+            "style": "indent"
+          },
+          {
+            "text": "Two aryl halides give Fittig",
+            "style": "boxed"
+          },
+          "One aryl plus one alkyl halide gives the",
+          "Wurtz-Fittig product."
+        ],
+        "why": "All four replace a halogen. The first two exchange one halogen for another, and the last two join two carbon skeletons with sodium. Wurtz-Fittig and Fittig are the same reaction with different halides, so writing them one under the other makes the single difference between them visible: two aryl halides give the biaryl, one aryl and one alkyl give the alkylbenzene.",
+        "common_mistakes": [
+          "Using NaI in water for the Finkelstein reaction. Dry acetone is required, because the sodium halide must separate out.",
+          "Swapping the two Fittig reactions. Fittig uses two aryl halides; Wurtz-Fittig uses one aryl and one alkyl halide.",
+          "Writing NaF as the Swarts reagent. Sodium fluoride is not used; AgF, Hg₂F₂, CoF₂ and SbF₃ are."
+        ],
+        "memory_tip": "Iodide by exchange, fluoride by exchange, then sodium in dry ether joins two skeletons — two aryls for Fittig, one of each for Wurtz-Fittig.",
+        "margin_note": "Write the last two equations one under the other. Seen together, the only difference is the second halide."
+      }
+    ]
+  },
+  "insider_note": "Fourteen reactions carry eight marks, so each one is worth about half a mark: write all fourteen, one sentence of words and one balanced equation for each, and no mechanisms. The four blocks on this card carry two marks each — four reactions in the first, three in the second, three in the third and four in the fourth. The real limit is the time, not the chemistry: fifteen minutes for fourteen reactions is about one minute each, so keep every entry to three lines."
+}

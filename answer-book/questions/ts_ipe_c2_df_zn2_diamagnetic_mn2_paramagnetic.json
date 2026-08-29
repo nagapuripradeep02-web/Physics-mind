@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_zn2_diamagnetic_mn2_paramagnetic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is Zn²⁺ diamagnetic whereas Mn²⁺ is paramagnetic?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Zn²⁺ configuration and why it is diamagnetic",
+      "marks": 1
+    },
+    {
+      "label": "Mn²⁺ configuration and why it is paramagnetic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 1. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NOTATION: the printed question writes the charges as Zn+2 and Mn+2; the standard form Zn²⁺ and Mn²⁺ is used here. The printed answer is correct as far as it goes. ADDED HERE: the spin-only moments are computed, μ = √(n(n+2)) BM, giving 0 BM for Zn²⁺ (n = 0) and √35 = 5.92 BM for Mn²⁺ (n = 5); and the trend is stated with its exception — Sc³⁺ (3d⁰) and Zn²⁺ (3d¹⁰) are the two diamagnetic, colourless ions at the ends of the first transition series while every ion between them is paramagnetic and coloured."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zinc",
+        "kind": "text",
+        "label": "Zn²⁺ is diamagnetic",
+        "marks": 1,
+        "mark_note": "Zn²⁺ configuration",
+        "lines": [
+          "Zn is [Ar] 3d¹⁰ 4s².",
+          "The two 4s electrons are removed first,",
+          "so Zn²⁺ is [Ar] 3d¹⁰ 4s⁰.",
+          "All ten d electrons are paired, so the",
+          "number of unpaired electrons n = 0.",
+          {
+            "text": "μ = √(n(n+2)) = 0 BM",
+            "style": "eq"
+          },
+          "With no unpaired electron, Zn²⁺ is",
+          "diamagnetic."
+        ],
+        "why": "The 4s electrons leave first when a d-block atom is ionised, so the ion is written 3d^x 4s⁰ and not 3d^(x-2) 4s². Zn²⁺ then has a completely filled 3d¹⁰ set in which every orbital holds a pair, so n = 0 and the spin-only moment is zero. Zn²⁺ is one of the two ends of the first transition series where this happens; the other is Sc³⁺, which is 3d⁰. Both are diamagnetic and colourless, while every ion between them is paramagnetic and coloured.",
+        "common_mistakes": [
+          "Writing Zn²⁺ as [Ar] 3d⁸ 4s². The 4s electrons are removed first, so the ion is 3d¹⁰ 4s⁰.",
+          "Calling a filled d¹⁰ set paramagnetic. Paramagnetism needs at least one unpaired electron, and d¹⁰ has none."
+        ],
+        "memory_tip": "Count unpaired electrons, not total electrons. d¹⁰ gives zero and d⁵ gives five.",
+        "margin_note": "Write the configuration of the ION, not the atom. The configuration plus the words \"no unpaired electrons\" earns this mark."
+      },
+      {
+        "id": "s2_manganese",
+        "kind": "boxed_final",
+        "label": "Mn²⁺ is paramagnetic",
+        "marks": 1,
+        "mark_note": "Mn²⁺ configuration",
+        "lines": [
+          "Mn is [Ar] 3d⁵ 4s².",
+          "Removing the two 4s electrons gives",
+          "Mn²⁺ as [Ar] 3d⁵ 4s⁰.",
+          "By Hund's rule the five d electrons",
+          "occupy five orbitals singly, so n = 5.",
+          {
+            "text": "μ = √(5 × 7) = √35 = 5.92 BM",
+            "style": "boxed"
+          },
+          "With five unpaired electrons, Mn²⁺ is",
+          "paramagnetic."
+        ],
+        "why": "Hund's rule fills the five d orbitals one electron at a time before any pairing begins, so 3d⁵ is the half-filled set with five unpaired electrons — the largest number available in the first transition series. That is why Mn²⁺ has the largest spin-only moment of the series, 5.92 BM, and why Zn²⁺ at the other extreme has none.",
+        "common_mistakes": [
+          "Pairing the five d electrons into two orbitals. Hund's rule fills all five orbitals singly first.",
+          "Giving the moment as 5 BM. The formula is √(n(n+2)), so five unpaired electrons give √35 = 5.92 BM."
+        ],
+        "memory_tip": "d¹⁰ is fully paired and gives 0 BM; d⁵ is half filled and gives the largest value, 5.92 BM.",
+        "margin_note": "The word paramagnetic must sit next to \"five unpaired electrons\". The number 5.92 BM is extra credit, not the mark."
+      }
+    ]
+  },
+  "insider_note": "Both marks are configuration marks. Write the ION configuration with 4s⁰ shown, then the unpaired-electron count, then the word diamagnetic or paramagnetic. The magnetic moment is not asked for here, so add it only after both halves are written."
+}

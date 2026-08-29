@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_nylon_2_nylon_6_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the structure of nylon-2–nylon-6.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two monomers",
+      "marks": 1
+    },
+    {
+      "label": "The structure",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 14 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK: the printed answer gives the two monomers correctly, \"glycine [H₂N-CH₂-COOH]\" and \"Amino caproic acid [H₂N–(CH₂)₅–COOH]\", and the structure –[NH–CH₂–CO–NH–(CH₂)₅–CO]ₙ–, which is correct and is kept. The systematic name 6-aminohexanoic acid is added. GAP: the book never says this polymer is biodegradable, even though its own VSAQ 7 four questions earlier asks for biodegradable examples; that link is made here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_monomers",
+        "kind": "text",
+        "label": "The two monomers",
+        "marks": 1,
+        "mark_note": "Monomers",
+        "lines": [
+          "Nylon-2–nylon-6 is a copolymer of two",
+          "monomers:",
+          {
+            "text": "glycine, H₂N–CH₂–COOH",
+            "style": "indent"
+          },
+          {
+            "text": "6-aminohexanoic acid,",
+            "style": "indent"
+          },
+          {
+            "text": "H₂N–(CH₂)₅–COOH",
+            "style": "indent"
+          },
+          "6-aminohexanoic acid is also called",
+          "amino caproic acid.",
+          "The 2 and the 6 are the carbon counts of",
+          "the two monomers."
+        ],
+        "why": "Glycine has two carbons and aminocaproic acid has six, and the name simply records those counts in order. Reading the name that way means the structure can be rebuilt from the name alone.",
+        "common_mistakes": [
+          "Writing glycine as H₂N–COOH. It has a –CH₂– between the two groups, H₂N–CH₂–COOH.",
+          "Writing 6-aminohexanoic acid with six –CH₂– groups. It has five, because the sixth carbon is the –COOH carbon."
+        ],
+        "memory_tip": "Nylon-2 is the two carbon amino acid and nylon-6 is the six carbon one.",
+        "margin_note": "Naming both monomers with their formulae earns this mark even if the chain is drawn badly."
+      },
+      {
+        "id": "s2_structure",
+        "kind": "boxed_final",
+        "label": "The structure",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          {
+            "text": "–[NH–CH₂–CO–NH–(CH₂)₅–CO]ₙ–",
+            "style": "boxed"
+          },
+          "The –NH₂ of one monomer joins the –COOH",
+          "of the next through an amide link, and",
+          "one water molecule is released each time.",
+          "So it is a condensation copolymer.",
+          "It is biodegradable, because the amide",
+          "links can be hydrolysed."
+        ],
+        "why": "The repeat unit holds one glycine residue and one aminocaproic residue in order, which is what the alternating name states. Writing NH and not NH₂ inside the bracket matters: the second hydrogen left in the water molecule.",
+        "common_mistakes": [
+          "Writing NH₂ inside the repeating unit. The amide nitrogen keeps only one hydrogen.",
+          "Leaving out the subscript n. Without it the formula is a single molecule, not a polymer."
+        ],
+        "memory_tip": "Two amide links per repeat unit, one for each monomer.",
+        "margin_note": "The bracketed unit with n outside is the mark. Add the word condensation on the same line if there is room."
+      }
+    ]
+  },
+  "insider_note": "This is the biodegradable polymer that is also asked in the biodegradable question, so learn the two together. Write NH, not NH₂, inside the bracket."
+}

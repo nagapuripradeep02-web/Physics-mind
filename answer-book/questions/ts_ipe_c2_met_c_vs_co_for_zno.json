@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_c_vs_co_for_zno",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Between C and CO, which is better reducing agent for ZnO?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.79, VSAQ 4): the printed reason is only \"the temperature required for reduction of ZnO with CO is very high\". The Ellingham reason behind it — the C to CO line falls below the CO to CO₂ line above about 983 K, the crossing the book itself quotes in the very next question — is added here so this card and VSAQ 5 give the same reason. The crossing temperature was checked against standard thermodynamic data: ΔG° for 2C + O₂ → 2CO and for 2CO + O₂ → 2CO₂ are equal at about 980 K, so the book's 983 K is sound."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "Carbon (coke) is the better reducing agent",
+          "for ZnO.",
+          {
+            "text": "ZnO + C → Zn + CO   (1673 K)",
+            "style": "eq"
+          },
+          "The reduction is carried out at about",
+          "1673 K in a fire clay retort."
+        ],
+        "why": "Zinc oxide is reduced in the furnace at about 1673 K, so the reducing agent has to be chosen for that temperature and not for room temperature. At 1673 K the carbon line on the Ellingham diagram lies well below the zinc line, so carbon reduces ZnO.",
+        "common_mistakes": [
+          "Answering CO because it is a gas. The Ellingham diagram determines the choice, not the state of the reducing agent.",
+          "Writing ZnO + C → Zn + CO₂. One carbon atom takes the one oxygen atom of ZnO, so the product is CO."
+        ],
+        "memory_tip": "Zinc is smelted with coke, and coke is carbon.",
+        "margin_note": "Name carbon first and then give the reason. The equation is worth writing even though it is not asked for."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "C is better than CO above 983 K",
+            "style": "boxed"
+          },
+          "Above 983 K the line for C → CO lies below",
+          "the line for CO → CO₂ on the Ellingham",
+          "diagram, so carbon has the more negative",
+          "ΔG° and is the stronger reducing agent.",
+          "The zinc furnace runs at 1673 K, which is",
+          "far above 983 K."
+        ],
+        "why": "The Ellingham diagram plots ΔG° against T. The C → CO line slopes downward because the reaction makes more gas than it uses, while the CO → CO₂ line slopes upward. The two cross at about 983 K, and above the crossing carbon lies lower and is the stronger reducing agent. The book gives the same answer with the reason written as the temperature needed with CO being very high.",
+        "common_mistakes": [
+          "Quoting the crossing temperature as 983 °C. It is 983 K, which is about 710 °C.",
+          "Giving the reason without naming the diagram. What is marked here is the position of the two Ellingham lines above 983 K."
+        ],
+        "memory_tip": "The two lines cross at 983 K. Above 983 K carbon is better, below it CO is better.",
+        "margin_note": "The Ellingham diagram must be named. A reason with no diagram in it usually earns half of this mark."
+      }
+    ]
+  },
+  "insider_note": "Learn the number 983 K. If the temperature in the question is above 983 K the answer is carbon; if it is below, the answer is CO."
+}

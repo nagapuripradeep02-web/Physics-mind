@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_zeta_potential",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is electro kinetic potential (or) zeta potential?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two layers",
+      "marks": 1
+    },
+    {
+      "label": "The definition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.77, VSAQ 14): the printed answer names the fixed layer and the diffuse layer but never says where they come from, so a student meeting the term for the first time has no picture of it. The card describes the two layers first: the colloidal particle adsorbs one kind of ion, which forms the fixed layer, and ions of the opposite charge from the medium collect around it as the diffuse layer. The book also does not say why the quantity matters, that it drives the particles in electrophoresis and keeps the sol stable; that is added. The book prints \"fixed layers\" in the plural, and the singular is written here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_layers",
+        "kind": "text",
+        "label": "The two layers",
+        "marks": 1,
+        "mark_note": "The two layers",
+        "lines": [
+          "A colloidal particle adsorbs one kind of",
+          "ion from the medium on its surface.",
+          "This is the fixed layer, and it gives the",
+          "particle its charge.",
+          "Ions of the opposite charge are then held",
+          "around it in the medium, and they form the",
+          "diffuse layer.",
+          "The two together are called the electrical",
+          "double layer."
+        ],
+        "why": "The zeta potential is a potential difference, so the two places between which it is measured have to be named first. Those two places are the fixed layer on the particle and the diffuse layer in the medium around it, and together they are the electrical double layer.",
+        "common_mistakes": [
+          "Writing that both layers carry the same charge. The fixed layer and the diffuse layer carry opposite charges.",
+          "Writing that the fixed layer is part of the dispersion medium. It is adsorbed on the surface of the particle and moves with it."
+        ],
+        "memory_tip": "One layer adsorbed on the particle, one layer spread around it. Opposite charges, so a potential difference between them.",
+        "margin_note": "Name both layers before defining the potential. An examiner marks the double layer as the first half."
+      },
+      {
+        "id": "s2_definition",
+        "kind": "boxed_final",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Fixed layer to diffuse layer potential.",
+            "style": "boxed"
+          },
+          "The potential difference between the fixed",
+          "layer and the diffuse layer of opposite",
+          "charge is called the electrokinetic",
+          "potential or zeta potential.",
+          "It is the potential that makes the",
+          "particles move in electrophoresis, and it",
+          "also keeps the sol stable."
+        ],
+        "why": "The word electrokinetic joins the two things the quantity explains: it is electrical, and it produces motion. Under an applied field the particle carries its fixed layer with it while the diffuse layer stays behind, and the potential difference across that separation is what is measured.",
+        "common_mistakes": [
+          "Calling it the charge on the particle. It is a potential difference between two layers, measured in volts.",
+          "Writing that it is the potential between the two electrodes. The two layers are both on and around one colloidal particle."
+        ],
+        "memory_tip": "Electro for the potential difference, kinetic for the motion it produces in electrophoresis.",
+        "margin_note": "The one sentence naming both layers carries this mark. The stability line is a useful addition."
+      }
+    ]
+  },
+  "insider_note": "The marked sentence is the one that names both layers. Describing only the fixed layer, or only the charge on the particle, is the common half answer."
+}

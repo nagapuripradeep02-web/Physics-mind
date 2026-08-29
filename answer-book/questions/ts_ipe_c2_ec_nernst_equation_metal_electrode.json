@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_nernst_equation_metal_electrode",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Nernst equation? Write the equation for an electrode with electrode reaction Mⁿ⁺(aq) + ne⁻ ⇌ M(s).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the Nernst equation is",
+      "marks": 1
+    },
+    {
+      "label": "The equation for the electrode",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed forms E = E° + (2.303RT/nF) log c and E = E° + (0.0591/n) log c (book p.70, VSAQ 10) are correct for this electrode and are followed. RECOMPUTED: 2.303RT/F at 298 K = 2.303 × 8.314 × 298 / 96500 = 0.05913 V, so 0.0591 V is right. BOOK INCONSISTENCY: this VSAQ prints 0.0591 while LAQ 2 on book p.71 prints 0.059 for the same constant. Both are the same number rounded differently; 0.0591 is used throughout this unit. BOOK GAP: the printed answer never says c is the concentration of Mⁿ⁺ and never says the concentration of the solid metal is taken as 1, which is the step that turns the general form into this one. Both are written here. LONG ANSWER PAIR: LAQ 2 of the same unit asks for the same equation explained for a metallic and a non-metallic electrode (card ts_ipe_c2_ec_nernst_equation_metal_and_nonmetal)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What the Nernst equation is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The Nernst equation gives the electrode",
+          "potential of an electrode at any concentration",
+          "of the ions with which the electrode is",
+          "reversible, in terms of its standard electrode",
+          "potential.",
+          "It shows how the potential changes when the",
+          "solution is made stronger or more dilute."
+        ],
+        "why": "Standard electrode potentials are quoted at 1 M, but no real cell stays at 1 M once it starts working. The Nernst equation is what carries a tabulated E° across to the concentration actually present, so it is the link between the table and the working cell.",
+        "common_mistakes": [
+          "Saying it gives the standard electrode potential. E° is the input; the equation gives E at the stated concentration.",
+          "Saying it applies only to cells. It is written for a single electrode as well, which is what this question asks for."
+        ],
+        "memory_tip": "The table gives E° at 1 M. The Nernst equation moves that value to whatever concentration is actually there.",
+        "margin_note": "The words at any given concentration must appear. Without them the sentence describes E°, not the Nernst equation."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation for the electrode",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "Mⁿ⁺(aq) + ne⁻ ⇌ M(s)",
+            "style": "eq"
+          },
+          "The concentration of the solid metal is taken",
+          "as 1, so",
+          {
+            "text": "E = E° − (2.303RT/nF) log (1/[Mⁿ⁺])",
+            "style": "eq"
+          },
+          {
+            "text": "E = E° + (0.0591/n) log [Mⁿ⁺]",
+            "style": "boxed"
+          },
+          "The second form holds at 298 K, where",
+          "2.303RT/F = 0.0591 V."
+        ],
+        "why": "The log term carries the products over the reactants. The product here is the solid metal, whose concentration is taken as 1, so only Mⁿ⁺ is left; turning the reciprocal the right way up is what changes the minus sign into a plus.",
+        "common_mistakes": [
+          "Keeping the minus sign in front of the log[Mⁿ⁺] form. Turning 1/[Mⁿ⁺] the right way up changes the sign to plus.",
+          "Putting the metal M into the log term. A pure solid is taken as 1 and does not appear."
+        ],
+        "memory_tip": "Solid metal counts as 1, so only the ion is left, and turning the fraction over changes the sign to plus.",
+        "margin_note": "Write the electrode reaction above the equation. It is what shows where n and the log term come from."
+      }
+    ]
+  },
+  "insider_note": "For a metal electrode the sign in front of the log is PLUS, because the solid metal is taken as 1 and the fraction is turned over. Students who copy the general minus-sign form lose the mark."
+}

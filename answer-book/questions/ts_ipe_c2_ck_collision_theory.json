@@ -1,0 +1,200 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_collision_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the salient features of the collision theory of reaction rate of bimolecular reactions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The basic idea",
+      "marks": 1
+    },
+    {
+      "label": "Threshold and activation energy",
+      "marks": 2
+    },
+    {
+      "label": "Activated collisions",
+      "marks": 2
+    },
+    {
+      "label": "Correct orientation",
+      "marks": 2
+    },
+    {
+      "label": "The rate expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer as seven numbered points. The 1+2+2+2+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. All seven printed points are covered on this card. BOOK ERROR (book p.76, LAQ 6): the printed answer opens \"Molecular collision theory was proposed by Arrhenius\". The collision theory of bimolecular gas reactions was developed by Max Trautz in 1916 and, independently, by William Lewis in 1918. Arrhenius gave the activation energy relation of 1889 that the theory uses. The correct attribution is written on the card, with the Arrhenius connection kept. BOOK GAP on the same answer: its point 1 reads \"A reaction takes place only when reactant molecules collide with proper orientation\" and omits the energy requirement, although points 3 to 6 of the same list are entirely about energy. Both conditions, sufficient energy AND correct orientation, are stated together here. The steric factor P and the rate expression rate = P·Z(AB)·e^(−Eₐ/RT) are not in the printed answer and are added from NCERT, because the orientation point is not quantitative without them. BOOK PUNCTUATION: the printed question is an instruction, \"Describe the salient features ...\", but is printed ending in a question mark; the question text on this card ends in a full stop and is otherwise word for word. NOTATION: capital-letter subscripts have no Unicode form, so the collision frequency is written Z(AB) and the threshold energy ET, each defined in words on the card."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Chemical Kinetics — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_basic_idea",
+        "kind": "text",
+        "label": "The basic idea",
+        "marks": 1,
+        "mark_note": "Basic idea",
+        "lines": [
+          "Collision theory was developed for",
+          "bimolecular gas reactions by Trautz and",
+          "by Lewis, using the activation energy idea",
+          "of Arrhenius.",
+          "It treats the molecules as hard spheres.",
+          "A reaction between A and B can take place",
+          "only when a molecule of A collides with a",
+          "molecule of B.",
+          "The number of such collisions per second",
+          "in unit volume is the collision frequency,",
+          "written Z(AB)."
+        ],
+        "why": "The theory starts from the one thing that must happen before anything else can: the two molecules have to meet. Everything that follows is a restriction on which of those meetings actually produce a reaction, which is why the collision frequency is the first quantity defined.",
+        "common_mistakes": [
+          "Writing that every collision produces a reaction. If that were so, gas reactions would all be complete in a fraction of a second.",
+          "Applying the theory to a unimolecular reaction. It is set up for bimolecular reactions, which is what the question asks about."
+        ],
+        "memory_tip": "First they must meet. Z(AB) counts the meetings per second.",
+        "margin_note": "Define Z(AB) in words. Every later step is a fraction of it."
+      },
+      {
+        "id": "s2_threshold",
+        "kind": "text",
+        "label": "Threshold and activation energy",
+        "marks": 2,
+        "mark_note": "Energy condition",
+        "lines": [
+          "Not all collisions form products.",
+          "The minimum energy that the colliding",
+          "molecules must possess for the reaction",
+          "to occur is called the threshold energy, ET.",
+          "The difference between the threshold",
+          "energy and the average energy of the",
+          "molecules in their normal state is called",
+          "the activation energy:",
+          {
+            "text": "Eₐ = ET − average energy",
+            "style": "eq"
+          },
+          "Molecules whose energy is equal to or",
+          "greater than the threshold energy are",
+          "called activated molecules."
+        ],
+        "why": "Two energy levels are needed, not one. The threshold is an absolute level that a collision must reach; the activation energy is the gap between that level and where the molecules already are. Defining both is why the theory can predict how the rate changes with temperature.",
+        "common_mistakes": [
+          "Treating threshold energy and activation energy as the same quantity. One is a level, the other is the difference between that level and the average.",
+          "Writing Eₐ = average energy − ET. The threshold is the higher of the two, so it comes first."
+        ],
+        "memory_tip": "Threshold is the level. Activation energy is the gap up to it.",
+        "margin_note": "Two marks: both definitions and the equation joining them. Do not merge the two terms."
+      },
+      {
+        "id": "s3_activated_collisions",
+        "kind": "text",
+        "label": "Activated collisions",
+        "marks": 2,
+        "mark_note": "Activated collisions",
+        "lines": [
+          "A collision between two activated",
+          "molecules is called an activated collision,",
+          "also called a fruitful or effective collision.",
+          "Only activated collisions can lead to the",
+          "formation of products.",
+          "The fraction of the total collisions that",
+          "are activated is",
+          {
+            "text": "e^(−Eₐ/RT)",
+            "style": "eq"
+          },
+          "and this fraction is very small at ordinary",
+          "temperature. That is why the observed",
+          "rate is far smaller than the collision",
+          "frequency."
+        ],
+        "why": "This is the step that makes the theory agree with measurement. A gas at room temperature has an enormous collision frequency, so if every collision reacted, every reaction would be instant. The exponential fraction is small enough to bring the predicted rate down to the observed one.",
+        "common_mistakes": [
+          "Writing that activated collisions are simply the more frequent ones. They are the collisions with energy at or above the threshold, not the common ones.",
+          "Leaving out the fraction e^(−Eₐ/RT). Naming activated collisions without saying how few there are misses the point of the step."
+        ],
+        "memory_tip": "Fruitful collisions are the ones with enough energy. Their share is e to the minus Eₐ over RT.",
+        "margin_note": "Two marks: the definition of an activated collision and the fraction. Write the exponential."
+      },
+      {
+        "id": "s4_orientation",
+        "kind": "text",
+        "label": "Correct orientation",
+        "marks": 2,
+        "mark_note": "Orientation",
+        "lines": [
+          "Energy alone is not enough. The colliding",
+          "molecules must also be lined up correctly",
+          "at the moment of collision, so that the",
+          "bonds that have to break and form are",
+          "facing each other.",
+          "A collision with enough energy but the",
+          "wrong orientation does not give products.",
+          "This requirement is measured by the",
+          "steric factor, or probability factor, P.",
+          "For most reactions P lies between 0 and 1;",
+          "a small P means that only a small share",
+          "of the energetic collisions are correctly",
+          "lined up."
+        ],
+        "why": "The energy condition alone predicts rates that are still too large for many reactions, sometimes by several powers of ten. The orientation requirement accounts for the remaining difference, and P is the number that measures it, so the two ideas belong together.",
+        "common_mistakes": [
+          "Writing that orientation matters only for large molecules. It applies to any reaction where the atoms that react are not the whole molecule.",
+          "Giving P a value greater than 1 for an ordinary reaction. P is a fraction of the energetic collisions and for most reactions lies between 0 and 1."
+        ],
+        "memory_tip": "Enough energy AND the correct orientation. P counts the collisions that have both.",
+        "margin_note": "Two marks: the orientation condition and the steric factor P. The energy condition alone is not this step."
+      },
+      {
+        "id": "s5_rate_expression",
+        "kind": "boxed_final",
+        "label": "The rate expression",
+        "marks": 1,
+        "mark_note": "Rate expression",
+        "lines": [
+          "Putting the three factors together, the",
+          "rate of a bimolecular reaction is",
+          {
+            "text": "rate = P · Z(AB) · e^(−Eₐ/RT)",
+            "style": "boxed"
+          },
+          "where Z(AB) is the collision frequency,",
+          "e^(−Eₐ/RT) is the fraction of collisions",
+          "with energy Eₐ or more, and P is the",
+          "steric factor."
+        ],
+        "why": "The expression is the whole theory in one line: how many collisions there are, what share of them carry enough energy, and what share of those are correctly lined up. Comparing it with k = Ae^(−Eₐ/RT) shows that the Arrhenius frequency factor A is the product P·Z(AB).",
+        "common_mistakes": [
+          "Leaving P out and writing rate = Z(AB)e^(−Eₐ/RT). Without P the predicted rate is too large for many reactions.",
+          "Writing the exponent as +Eₐ/RT. The fraction of energetic collisions must be less than 1, so the exponent is negative."
+        ],
+        "memory_tip": "How many meet, how many are energetic, how many are lined up. Multiply the three.",
+        "margin_note": "One mark for the boxed expression with all three factors named. It also ties the theory back to Arrhenius."
+      }
+    ]
+  },
+  "insider_note": "Most answers list only the energy points and stop. The orientation condition and the steric factor P carry two of the eight marks, so write them as a separate numbered feature."
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_gangue_and_slag",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the terms gangue and slag.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Gangue",
+      "marks": 1
+    },
+    {
+      "label": "Slag",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EQUATION CHECKED: FeO + SiO₂ → FeSiO₃ balances as printed (Fe 1=1, Si 1=1, O 3=3). BOOK GAP: the printed answer does not say that the slag is lighter than the molten metal and floats; that is what makes the slag removable and it is added here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gangue",
+        "kind": "text",
+        "label": "Gangue",
+        "marks": 1,
+        "mark_note": "Gangue",
+        "lines": [
+          "Gangue is the earthy and rocky impurity",
+          "present along with the mineral in an ore.",
+          "Sand, clay and rock fragments are common",
+          "examples of gangue.",
+          "It contains no metal that is wanted, and",
+          "it must be removed before the ore is",
+          "reduced."
+        ],
+        "why": "Gangue is defined by where it is, not by what it is made of: it is whatever comes with the ore that is not the mineral. Naming a couple of examples shows that it is earthy material and not a compound of the metal.",
+        "common_mistakes": [
+          "Calling gangue the impurity in the metal. Gangue is in the ore, before extraction; impurities in the metal are removed later by refining.",
+          "Confusing gangue with slag. Gangue is present before the flux is added; slag is what is formed after."
+        ],
+        "memory_tip": "Gangue comes with the ore. Slag is made in the furnace.",
+        "margin_note": "One line of definition plus one example is enough for this mark."
+      },
+      {
+        "id": "s2_slag",
+        "kind": "boxed_final",
+        "label": "Slag",
+        "marks": 1,
+        "mark_note": "Slag",
+        "lines": [
+          {
+            "text": "Slag = flux + gangue",
+            "style": "boxed"
+          },
+          "When a flux is added it combines with the",
+          "gangue and forms an easily fusible",
+          "product called slag.",
+          "The slag is lighter than the molten metal,",
+          "floats on it and is drawn off.",
+          {
+            "text": "FeO + SiO₂ → FeSiO₃",
+            "style": "eq"
+          },
+          "gangue + flux → slag"
+        ],
+        "why": "The slag is defined by the reaction that makes it, so the flux has to be in the definition. The example equation shows all three terms at once: FeO is the gangue, SiO₂ the flux and FeSiO₃ the slag.",
+        "common_mistakes": [
+          "Saying slag is the pure metal. Slag is the waste layer floating on the metal.",
+          "Writing the definition without the flux. Gangue on its own does not become slag."
+        ],
+        "memory_tip": "Flux plus gangue gives slag, and the slag floats.",
+        "margin_note": "The one-line equation with the three terms labelled under it answers both halves of this question."
+      }
+    ]
+  },
+  "insider_note": "Gangue and slag are two ends of the same step. Write FeO + SiO₂ → FeSiO₃ once and label all three terms under it."
+}

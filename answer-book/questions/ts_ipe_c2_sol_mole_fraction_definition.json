@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_mole_fraction_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define mole fraction.",
+  "appearances": [
+    {
+      "year": 2014
+    },
+    {
+      "year": 2015
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The equation and the check",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. APPEARANCES: this is one of only three questions in the whole book that carries a year citation. The book prints \"(March 2014, June 2015)\" beside it, so appearances is [2014, 2015]; the board of each sitting is not printed and is therefore not claimed. The years are a CLAIM taken from the book, not verified against a paper — no second-year chemistry paper is in the corpus to check them against. BOOK GAP (book p.66, VSAQ 16): the printed answer gives the definition and the ratio but never writes x₁ + x₂ = 1 and never says that mole fraction has no unit and does not change with temperature. All three are added here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The mole fraction of a component is the",
+          "ratio of the number of moles of that",
+          "component to the total number of moles of",
+          "all the components in the solution.",
+          "It is written as x."
+        ],
+        "why": "Concentration can be measured by mass, by volume or by number of particles, and a mole fraction is the third of these. It counts particles against particles, which is exactly what a colligative property responds to, so it is the term Raoult's law and Henry's law are both written in.",
+        "common_mistakes": [
+          "Writing the ratio of masses. A mole fraction counts moles, so each mass has to be divided by its molar mass first.",
+          "Dividing by the moles of the solvent alone. The denominator is the TOTAL moles of all the components."
+        ],
+        "memory_tip": "Moles of one component over moles of everything present.",
+        "margin_note": "The word TOTAL in the denominator is the marked word. Say \"all the components\", not \"the solvent\"."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation and the check",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "For a solution of one solute in one solvent",
+          "with n₁ moles of solvent and n₂ of solute:",
+          {
+            "text": "x₂ = n₂ / (n₁ + n₂)",
+            "style": "eq"
+          },
+          {
+            "text": "x₁ = n₁ / (n₁ + n₂)",
+            "style": "eq"
+          },
+          {
+            "text": "x₁ + x₂ = 1",
+            "style": "boxed"
+          },
+          "Mole fraction has no unit and does not",
+          "change with temperature."
+        ],
+        "why": "Writing both fractions over the same total shows at once why they add to 1, and that sum is the fastest check on any mole fraction calculation. Since only counts of moles appear, nothing in the definition depends on volume, so warming or cooling the solution leaves every mole fraction unchanged.",
+        "common_mistakes": [
+          "Giving the answer a unit such as mol L⁻¹. A mole fraction is moles divided by moles, so it has no unit.",
+          "Reporting two mole fractions that do not add to 1. That sum is the check, and it fails when the denominator was wrong."
+        ],
+        "memory_tip": "Every mole fraction is between 0 and 1, and they all add to 1.",
+        "margin_note": "Write x₁ + x₂ = 1 under the equations. It is one line and it usually completes this mark."
+      }
+    ]
+  },
+  "insider_note": "This is one of only three questions in the book with a printed year citation: March 2014 and June 2015. It is a two-line answer, so write the ratio, the formula and x₁ + x₂ = 1 and move on."
+}

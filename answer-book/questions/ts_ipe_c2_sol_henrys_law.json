@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_henrys_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Henry's law.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation and symbols",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.65, VSAQ 2): the printed answer names KH as \"Henry's law constant\" and stops. It never says that KH has a different value for every gas and solvent pair, and never says that a LARGE KH means a SMALL solubility. Both lines are written on this card, because the second is the one an application question is marked on. NOTATION: KH is written with a plain capital H because Unicode has no subscript capital H."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Henry's law states that, at a given",
+          "temperature, the partial pressure of a gas",
+          "in the vapour phase is directly",
+          "proportional to the mole fraction of that",
+          "gas dissolved in the solution.",
+          "Stated the other way round, the solubility",
+          "of a gas in a liquid is proportional to the",
+          "pressure of the gas above the liquid."
+        ],
+        "why": "A gas dissolves because its molecules are pushed into the liquid surface, so raising the pressure of that gas above the liquid raises the amount that dissolves. Measuring the dissolved amount as a mole fraction makes the relation a straight line through the origin, which is why the law can be written with a single constant.",
+        "common_mistakes": [
+          "Writing that the solubility depends on the TOTAL pressure. It is the partial pressure of that one gas that counts.",
+          "Leaving out \"at a given temperature\". Solubility of a gas falls as the temperature rises, so the condition is part of the statement."
+        ],
+        "memory_tip": "More pressure of the gas above the liquid, more of that gas dissolved in it.",
+        "margin_note": "Either wording is accepted, but the words \"partial pressure\" and \"mole fraction\" must both appear."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "p = KH x",
+            "style": "boxed"
+          },
+          "p = partial pressure of the gas",
+          "x = mole fraction of the gas in solution",
+          "KH = Henry's law constant",
+          "KH has a different value for every gas and",
+          "solvent pair, and it rises as the",
+          "temperature rises.",
+          "A large KH means a small solubility,",
+          "because x = p / KH."
+        ],
+        "why": "KH is the slope of the straight line of p against x, so it measures how hard it is to dissolve that gas: for the same pressure, a gas with a large KH reaches only a small mole fraction. This is why the gas in a sealed soft drink comes out of the solution when the bottle is opened and the partial pressure of carbon dioxide above the liquid drops.",
+        "common_mistakes": [
+          "Treating KH as one universal number like R. It is fixed only for one gas in one solvent at one temperature.",
+          "Saying a large KH means the gas dissolves easily. The relation is x = p / KH, so a large KH gives a small x."
+        ],
+        "memory_tip": "KH sits in the denominator of x = p / KH, so big KH means small solubility.",
+        "margin_note": "Define all three symbols under the boxed equation. The temperature line is the extra that separates a full answer from a copied formula."
+      }
+    ]
+  },
+  "insider_note": "The line examiners look for beyond the formula is that KH increases with temperature, which is why dissolved oxygen falls in warm water. One sentence, and it is the one most answers leave out."
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_addition_polymer",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is an addition polymer? Give an example of an addition polymer.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example with its equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 9 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer is \"Polymers formed by the addition of a large number of same or different molecules without the loss of any simple molecules are called addition polymers\", with examples PVC, neoprene and polythene. The chemistry is correct and is kept, but the printed definition never says the monomer must be unsaturated, which is the actual requirement; that is added here. The printed phrase \"same or different molecules\" is correct, since an addition polymer can be a copolymer, as Buna-S is. The book gives no monomers for its three examples; they are supplied."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An addition polymer is formed by the",
+          "repeated addition of monomer molecules",
+          "that carry a double or a triple bond.",
+          "The multiple bond of each monomer opens",
+          "and the units join end to end.",
+          "No simple molecule is released, so the",
+          "polymer and its monomers have the same",
+          "empirical formula."
+        ],
+        "why": "The multiple bond is the whole mechanism: opening it gives each monomer two free ends, and those ends join the neighbours. Because nothing leaves, the mass of the polymer equals the mass of the monomers used, and that is the test that separates addition from condensation.",
+        "common_mistakes": [
+          "Leaving out the double bond. A saturated molecule cannot add to itself.",
+          "Writing that a small molecule is released. That is condensation, not addition."
+        ],
+        "memory_tip": "Addition adds and loses nothing; condensation joins and releases a small molecule.",
+        "margin_note": "The words double bond and no small molecule released are the two halves of this mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example with its equation",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Ex: polythene, PVC, Teflon, neoprene",
+            "style": "boxed"
+          },
+          "Polythene from ethene:",
+          {
+            "text": "n CH₂=CH₂ → –[CH₂–CH₂]ₙ–",
+            "style": "eq"
+          },
+          "PVC from vinyl chloride, CH₂=CH–Cl",
+          "Teflon from tetrafluoroethene, CF₂=CF₂",
+          "Neoprene from chloroprene,",
+          "CH₂=C(Cl)–CH=CH₂"
+        ],
+        "why": "Any monomer with a C=C bond will do, so the safest example is the shortest one: ethene to polythene. Neoprene is worth knowing because it comes from a diene, so one double bond is used up and one is left in the chain.",
+        "common_mistakes": [
+          "Giving Bakelite or nylon-6,6 as an addition polymer. Both release a small molecule, so both are condensation.",
+          "Naming an example but writing no equation. The question says example, and a reaction is the safest way to give one."
+        ],
+        "memory_tip": "If the monomer name starts with vinyl or ends in -ene, the polymer is an addition polymer.",
+        "margin_note": "One named example is the mark. The equation costs one line and makes it certain."
+      }
+    ]
+  },
+  "insider_note": "The full mark for the definition needs the phrase without the loss of any simple molecule. That phrase is what an examiner scans for."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_antacids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are antacids? Give example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 1. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.105, VSAQ 1): the printed answer reads \"Chemicals that remove excess acid in stomach and maintain P(H) to normal level are called antacids. Ex: NaHCO3, MgCO3 etc.\" Three things are added here. First, the word neutralise, because that is the reaction. Second, the caution that sodium hydrogencarbonate in excess makes the stomach alkaline and more acid is then released, so magnesium hydroxide and aluminium hydroxide are the safer antacids. Third, cimetidine and ranitidine, which are the later class of antacid that stops acid being released rather than neutralising it; this also fixes the boundary with the antihistamine card in this same unit. The book's \"P(H)\" is written pH here. BOUNDARY WITH ts_ipe_c2_cel_antihistamines: cimetidine and ranitidine appear on both cards, correctly, because they are antihistamines of the stomach type that are used as antacids. Neither card claims they are simple neutralising antacids."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Antacids are chemicals that remove the",
+          "excess acid in the stomach and bring the",
+          "pH back to its normal level.",
+          "They neutralise the hydrochloric acid that",
+          "the stomach wall releases."
+        ],
+        "why": "The acid in the stomach is hydrochloric acid, and an antacid is a weak base or the salt of a weak acid, so the two react in a neutralisation reaction and the pH rises. An answer that says only \"removes excess acid\" leaves out the chemistry that earns the mark.",
+        "common_mistakes": [
+          "Writing that an antacid stops acid from being produced. A simple antacid only neutralises the acid already present.",
+          "Writing pH as PH or Ph. The p is small and the H is capital."
+        ],
+        "memory_tip": "Anti plus acid: a base that neutralises the acid already in the stomach.",
+        "margin_note": "The words neutralise and excess acid are both wanted for this mark. Name the acid as hydrochloric acid."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Ex: NaHCO₃, MgCO₃, Mg(OH)₂, Al(OH)₃.",
+          {
+            "text": "NaHCO₃ + HCl → NaCl + H₂O + CO₂",
+            "style": "boxed"
+          },
+          "The metal hydroxides are the safer choice.",
+          "Excess NaHCO₃ makes the stomach alkaline,",
+          "and more acid is then released.",
+          "Cimetidine and ranitidine are a later class:",
+          "they stop the acid being released at all."
+        ],
+        "why": "The book gives NaHCO₃ and MgCO₃, and both do neutralise acid. Sodium hydrogencarbonate taken in excess turns the stomach contents alkaline, and more acid is then released, so magnesium hydroxide and aluminium hydroxide are the safer antacids. Cimetidine and ranitidine belong to the next class: they act on the receptors in the stomach wall, so less acid is released in the first place.",
+        "common_mistakes": [
+          "Giving no example at all. The question asks for one, and one correct formula finishes this mark.",
+          "Calling cimetidine an antacid of the same kind as NaHCO₃. It stops acid being released; it does not neutralise acid."
+        ],
+        "memory_tip": "Carbonates and hydroxides neutralise the acid; cimetidine and ranitidine stop it being released.",
+        "margin_note": "One correct example finishes this mark. The neutralisation equation is extra and costs one line."
+      }
+    ]
+  },
+  "insider_note": "The whole answer is a short definition and one example. Write the neutralisation equation for NaHCO₃ as well; it takes one line and makes the answer complete."
+}

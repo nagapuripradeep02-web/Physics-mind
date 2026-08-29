@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_elastomer_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define an elastomer.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples with their monomers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 4 on book p.95. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer is \"The polymers which contain elastic properties are called elastomers\" plus \"In elastomers, polymer chains are held together by weak inter molecular forces\", with examples Buna-S, Buna-N and Neoprene. The first line is circular, since elastic property is the thing being defined, so it is replaced here by the literal statement of what an elastomer does. The weak-forces line and the three examples are correct and are kept, and the monomers are supplied, which the book does not give in this question."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Elastomers are polymers that can be",
+          "stretched to several times their length",
+          "and return to the original length as soon",
+          "as the stretching force is removed.",
+          "Their chains are coiled and are held to",
+          "one another by weak intermolecular",
+          "forces, so the coils can be straightened.",
+          "A few cross links restore the coils."
+        ],
+        "why": "Two facts make a polymer elastic. The chains must be coiled and only weakly held, so a small force straightens them; and there must be a few cross links, so the chains cannot slide away from one another and the coils re-form. Weak forces on their own would give a liquid.",
+        "common_mistakes": [
+          "Writing that elastomer chains are held by strong forces. Strong forces between chains give a fibre, not an elastomer.",
+          "Leaving out the return to the original length. Stretching on its own is not elasticity."
+        ],
+        "memory_tip": "Weak forces let the coils straighten; the few cross links restore them.",
+        "margin_note": "The words stretched and returns to its original length are both needed for this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples with their monomers",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: Buna-S, Buna-N, neoprene",
+            "style": "boxed"
+          },
+          "Buna-S: 1,3-butadiene + styrene",
+          "Buna-N: 1,3-butadiene + vinyl cyanide",
+          "Neoprene: chloroprene alone,",
+          "CH₂=C(Cl)–CH=CH₂",
+          "Natural rubber is an elastomer too; its",
+          "monomer is isoprene, and vulcanisation",
+          "adds the cross links."
+        ],
+        "why": "Every one of these is built from a diene, so one double bond is left over in the chain after polymerisation. That leftover double bond is where sulphur later forms the cross links, which is why the rubbers and the vulcanisation question belong together.",
+        "common_mistakes": [
+          "Giving nylon-6,6 or terylene as an elastomer. Those are fibres, held by strong hydrogen bonds.",
+          "Naming Buna-S and Buna-N without their monomers. The two differ only in the second monomer, styrene against vinyl cyanide."
+        ],
+        "memory_tip": "All three start from 1,3-butadiene; neoprene uses chloroprene, which is 1,3-butadiene with a chlorine on carbon 2.",
+        "margin_note": "Two examples are enough for this mark. Adding the monomers costs one line and protects the answer."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for stretched, returns to the original length, and weak intermolecular forces between the chains. One named example finishes the second mark."
+}

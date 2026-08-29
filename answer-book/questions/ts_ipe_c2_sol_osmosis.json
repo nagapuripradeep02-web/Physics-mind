@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_osmosis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is osmosis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The membrane and the direction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.65, VSAQ 10): the printed answer names only the pure solvent to solution case. Flow from a DILUTE solution into a concentrated one is the same process and is the case most application questions use, so it is written here. The book also never says what a semi-permeable membrane is, and never separates osmosis from diffusion; both lines are added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Osmosis is the flow of solvent molecules",
+          "through a semi-permeable membrane from the",
+          "pure solvent into the solution, or from a",
+          "dilute solution into a concentrated one.",
+          {
+            "text": "Solvent moves to the concentrated side.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The solvent is more concentrated on the pure side, so more solvent molecules reach the membrane per second from that side than from the solution side. The net result is a flow towards the solution, and it continues until an opposing pressure balances it.",
+        "common_mistakes": [
+          "Saying the solute moves. In osmosis only the SOLVENT crosses the membrane; the membrane blocks the solute.",
+          "Writing that the flow is from the solution into the pure solvent. The direction is the other way, towards the more concentrated side."
+        ],
+        "memory_tip": "Only the solvent crosses, and it moves towards the stronger solution.",
+        "margin_note": "The two marked ideas are \"solvent only\" and \"through a semi-permeable membrane\". Give the direction as well."
+      },
+      {
+        "id": "s2_membrane",
+        "kind": "text",
+        "label": "The membrane and diffusion",
+        "marks": 1,
+        "mark_note": "Membrane",
+        "lines": [
+          "A semi-permeable membrane allows solvent",
+          "molecules to pass through it but not the",
+          "larger solute particles.",
+          "Examples: parchment paper, cellophane,",
+          "copper ferrocyanide, and the membrane of",
+          "an animal cell.",
+          "Osmosis is the diffusion of the solvent",
+          "through such a membrane. In ordinary",
+          "diffusion there is no membrane and both",
+          "solute and solvent move."
+        ],
+        "why": "The membrane is what makes the process one-sided: it passes one kind of particle and blocks the other, so only the solvent can move to even out the concentration. Osmosis is therefore diffusion of the solvent through a semi-permeable membrane; without that membrane the solute would move as well and the process would be ordinary diffusion.",
+        "common_mistakes": [
+          "Describing the membrane as fully permeable. It has to block the solute, otherwise there is no osmosis.",
+          "Naming a filter paper as a semi-permeable membrane. Filter paper passes both solute and solvent."
+        ],
+        "memory_tip": "Semi means half: only one kind of particle passes, the solvent.",
+        "margin_note": "One named membrane is enough. The one-line contrast with diffusion is the usual second half of this mark."
+      }
+    ]
+  },
+  "insider_note": "Osmosis and osmotic pressure are asked as a pair in this book. Osmosis is the flow; osmotic pressure is the push applied to stop it. Answering one with the other loses the whole mark."
+}

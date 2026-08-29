@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_catalysis_classification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is catalysis? How is catalysis classified? Give two examples for each type of catalysis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Catalyst and catalysis",
+      "marks": 1
+    },
+    {
+      "label": "The two types",
+      "marks": 1
+    },
+    {
+      "label": "Homogeneous examples",
+      "marks": 1
+    },
+    {
+      "label": "Heterogeneous examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SLOPPINESS (book p.77, SAQ 2): the printed definition is \"A substance which increases rate of reaction without consuming itself\". A catalyst ALTERS the rate: a negative catalyst decreases it, and the book's own chapter on chemical kinetics uses that term. The card writes alters, then says that most catalysts increase the rate. The phrase \"without consuming itself\" is also loose, since a catalyst may take part in an intermediate step; the accurate statement is that it is chemically unchanged in mass and composition at the end, and that is what is written. HONEST NOTE ON THE EXAMPLES: the book prints 2SO₂ + O₂ → 2SO₃ under BOTH types, with NO(g) in the homogeneous list and Pt(s) in the heterogeneous one, and never says why the same reaction appears twice. It is not an error: the type is fixed by the phase of the CATALYST relative to the reactants, not by the reaction. The card states that explicitly, because a student who notices the repetition and is given no explanation is likely to write one of the two down as a mistake. All four printed examples are chemically correct and all four are kept. NOTATION: this book prints the catalyst above the reaction arrow. Unicode has no over-arrow form, so the catalyst is written after the equation in brackets and the margin note tells the student to place it above the arrow on the answer sheet."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Surface Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Catalyst and catalysis",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A catalyst is a substance which alters the",
+          "rate of a chemical reaction and is itself",
+          "chemically unchanged in mass and",
+          "composition at the end of the reaction.",
+          "The phenomenon is called catalysis.",
+          "Most catalysts increase the rate. One that",
+          "decreases the rate is called a negative",
+          "catalyst or an inhibitor."
+        ],
+        "why": "A catalyst provides a different path for the reaction, one with a lower activation energy, so more molecules can cross it in the same time. Because the catalyst is returned in the last step of that path, its mass and composition are the same at the end as at the start, and that is the part of the definition an examiner looks for.",
+        "common_mistakes": [
+          "Writing that a catalyst increases the rate, with no mention of a negative catalyst. A catalyst alters the rate; some decrease it.",
+          "Writing that a catalyst does not take part in the reaction. It does take part, and it is returned unchanged at the end."
+        ],
+        "memory_tip": "Alters the rate, and is returned unchanged in mass and composition.",
+        "margin_note": "The words chemically unchanged at the end carry this mark. Add the negative catalyst line if there is room."
+      },
+      {
+        "id": "s2_types",
+        "kind": "text",
+        "label": "The two types",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Catalysis is classified into two types.",
+          "1) Homogeneous catalysis: the catalyst and",
+          "the reactants are in the same phase.",
+          "2) Heterogeneous catalysis: the catalyst",
+          "and the reactants are in different phases.",
+          "So the type depends on the phase of the",
+          "catalyst, not on the reaction itself."
+        ],
+        "why": "The word phase, not substance, is what the classification rests on. The same reaction can be run with a gaseous catalyst or with a solid one, and it belongs to a different type each time, which is why the last line is written as part of the answer.",
+        "common_mistakes": [
+          "Writing same state instead of same phase for a liquid mixture. Two liquids that do not mix are two phases even though both are liquids.",
+          "Classifying by the reaction. The same reaction can appear under both types, depending on the catalyst used."
+        ],
+        "memory_tip": "Homo means the same phase, hetero means a different phase. Look at the catalyst, not the reaction.",
+        "margin_note": "Both definitions must appear. One line each is enough for this mark."
+      },
+      {
+        "id": "s3_homogeneous",
+        "kind": "text",
+        "label": "Homogeneous examples",
+        "marks": 1,
+        "mark_note": "Homogeneous examples",
+        "lines": [
+          "Homogeneous catalysis, both examples with",
+          "a gaseous catalyst and gaseous reactants:",
+          {
+            "text": "2SO₂(g) + O₂(g) → 2SO₃(g)   [NO(g)]",
+            "style": "eq"
+          },
+          {
+            "text": "2CO(g) + O₂(g) → 2CO₂(g)   [NO(g)]",
+            "style": "eq"
+          },
+          "In both, the catalyst NO is a gas and so",
+          "are the reactants, so all of them are in",
+          "one phase."
+        ],
+        "why": "An example counts only if the phases are written, because the phases are what put it in this class. Writing (g) after every species and after the catalyst shows in one glance that there is a single phase, which is the whole content of the word homogeneous.",
+        "common_mistakes": [
+          "Leaving out the phase labels. Without (g) or (s) the example does not show which type it belongs to.",
+          "Giving an enzyme reaction here. Enzyme catalysis is treated separately and is not what this part of the answer asks for."
+        ],
+        "memory_tip": "Gas catalyst with gas reactants. NO catalysing SO₂ and CO is the standard pair.",
+        "margin_note": "Write the catalyst above the arrow on the answer sheet. Both examples with phase labels carry this mark."
+      },
+      {
+        "id": "s4_heterogeneous",
+        "kind": "boxed_final",
+        "label": "Heterogeneous examples",
+        "marks": 1,
+        "mark_note": "Heterogeneous examples",
+        "lines": [
+          {
+            "text": "Solid catalyst, gaseous reactants.",
+            "style": "boxed"
+          },
+          {
+            "text": "N₂(g) + 3H₂(g) → 2NH₃(g)   [Fe(s)]",
+            "style": "eq"
+          },
+          {
+            "text": "2SO₂(g) + O₂(g) → 2SO₃(g)   [Pt(s)]",
+            "style": "eq"
+          },
+          "The first is the Haber process and the",
+          "second is the contact process.",
+          "The same reaction 2SO₂ + O₂ → 2SO₃ is",
+          "homogeneous with NO gas and heterogeneous",
+          "with solid platinum."
+        ],
+        "why": "In both examples the reactants are gases and the catalyst is a solid, so there are two phases and the reaction happens on the surface of the solid. The last line settles the one point a careful student notices: the same reaction stands in both lists because the type is fixed by the catalyst.",
+        "common_mistakes": [
+          "Writing that the sulphur trioxide reaction can be only one of the two types. It is homogeneous with NO gas and heterogeneous with solid platinum.",
+          "Leaving out the solid label on the catalyst. The (s) is what makes the example heterogeneous."
+        ],
+        "memory_tip": "Haber with iron and contact with platinum. Both have a solid catalyst and gaseous reactants.",
+        "margin_note": "Two examples with phase labels carry this mark. The closing line about the repeated reaction is worth writing."
+      }
+    ]
+  },
+  "insider_note": "Every example must carry its phase labels, because the phases are the classification. An equation written without (g) or (s) shows nothing about which type it belongs to."
+}

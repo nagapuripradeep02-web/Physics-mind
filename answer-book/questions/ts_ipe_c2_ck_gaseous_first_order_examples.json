@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_gaseous_first_order_examples",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give two examples for gaseous first order reactions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What first order means",
+      "marks": 1
+    },
+    {
+      "label": "The two examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. Both printed examples are CORRECT and are kept: hydrogenation of ethene, rate = k[C₂H₄], and decomposition of N₂O₅, rate = k[N₂O₅]. BOOK INCONSISTENCY: the book writes the N₂O₅ decomposition here as \"N₂O₅(g) → 2NO₂(g) + ½O₂(g)\" but on the previous page (VSAQ 3) as \"N₂O₅ → N₂O₄ + ½O₂\". Both are balanced, but the two forms are never reconciled. The NCERT integer form 2N₂O₅ → 4NO₂ + O₂ is used on this card and on VSAQ 3, so the unit reads consistently. NOTE ON THE FIRST EXAMPLE: the hydrogenation of ethene is first order only in ethene, with hydrogen usually held in excess. That is why the printed rate law is k[C₂H₄] and not k[C₂H₄][H₂]; the condition is written on the card."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "What first order means",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "In a first order reaction the rate is",
+          "directly proportional to the first power of",
+          "the concentration of one reactant.",
+          {
+            "text": "rate = k[A]",
+            "style": "eq"
+          },
+          "The unit of k is s⁻¹."
+        ],
+        "why": "First order is the most common kinetic behaviour for a gas that falls apart on its own, because one molecule breaking up is one event and its chance per second does not depend on how many other molecules are nearby.",
+        "common_mistakes": [
+          "Writing rate = k[A]² and still calling it first order. The power on the concentration must be 1.",
+          "Giving the unit of k as mol L⁻¹ s⁻¹. For first order the concentration unit cancels and only s⁻¹ is left."
+        ],
+        "memory_tip": "First order: double the concentration and the rate exactly doubles.",
+        "margin_note": "Write rate = k[A] before the examples. It is what makes each example an illustration."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "equation",
+        "label": "The two examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "1. Hydrogenation of ethene:",
+          {
+            "text": "C₂H₄(g) + H₂(g) → C₂H₆(g)",
+            "style": "eq"
+          },
+          {
+            "text": "rate = k[C₂H₄]",
+            "style": "indent"
+          },
+          "Hydrogen is taken in excess, so the rate",
+          "depends on ethene only.",
+          "2. Decomposition of dinitrogen pentoxide:",
+          {
+            "text": "2N₂O₅(g) → 4NO₂(g) + O₂(g)",
+            "style": "eq"
+          },
+          {
+            "text": "rate = k[N₂O₅]",
+            "style": "indent"
+          }
+        ],
+        "why": "The second example is the stronger one, because the balanced equation has a 2 in front of N₂O₅ and the measured order is still 1. It answers the question and shows at the same time that the order is not read off the equation.",
+        "common_mistakes": [
+          "Writing the rate law for the hydrogenation as k[C₂H₄][H₂]. With hydrogen in excess the measured law is first order in ethene only.",
+          "Giving a reaction in solution. The question asks for gaseous reactions, so every species must be marked (g)."
+        ],
+        "memory_tip": "Ethene plus hydrogen, and N₂O₅ decomposing. Both gases, both first order.",
+        "margin_note": "Write the rate law under each equation and mark the states (g). The word gaseous is part of the question."
+      }
+    ]
+  },
+  "insider_note": "The state symbols (g) are part of the answer here, because the question asks for gaseous reactions. Two correct equations without them are an incomplete answer."
+}

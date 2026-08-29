@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_glycosidic_linkage",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you understand by the term glycosidic linkage?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Where it occurs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 5. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer says the units are linked \"by an oxide or ether linkage\". \"Oxide\" is not the right word for a C-O-C bridge between two carbon atoms, so this card writes ether linkage only, and adds the α and β types, which the printed answer does not give."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When two monosaccharide units join, one",
+          "molecule of water is lost between them.",
+          "The two units are then linked through an",
+          "oxygen atom.",
+          "This C–O–C link is called the glycosidic",
+          "linkage. It is an ether linkage."
+        ],
+        "why": "Two facts carry the definition: a molecule of water is lost, and the bridge that is left is an oxygen atom joining two carbon atoms. Naming it an ether linkage tells a student what kind of bond it is and why dilute acid hydrolyses it back to the two sugars.",
+        "common_mistakes": [
+          "Calling it an ester or a peptide linkage. Those join an acid to an alcohol and an acid to an amine; this one joins two sugars through oxygen.",
+          "Leaving out the loss of water. The linkage forms by losing H₂O, and that is half the definition."
+        ],
+        "memory_tip": "Two sugars, minus one water, joined by one oxygen atom.",
+        "margin_note": "Write \"loss of a water molecule\" and \"through an oxygen atom\". Both phrases carry this mark."
+      },
+      {
+        "id": "s2_where",
+        "kind": "boxed_final",
+        "label": "Where it occurs",
+        "marks": 1,
+        "mark_note": "Occurrence and type",
+        "lines": [
+          {
+            "text": "Glycosidic linkage = the C–O–C sugar bridge",
+            "style": "boxed"
+          },
+          "It occurs in disaccharides, oligosaccharides",
+          "and polysaccharides.",
+          "Starch has α-glycosidic linkages between C₁",
+          "of one unit and C₄ of the next.",
+          "Cellulose has β-glycosidic linkages between",
+          "the same two carbon atoms."
+        ],
+        "why": "The α or β label is fixed by the configuration at the anomeric carbon of the first sugar, and it is the only structural difference between starch and cellulose. Naming both types here is what makes the starch-cellulose question in the short-answer section straightforward.",
+        "common_mistakes": [
+          "Writing that the linkage is only in disaccharides. Every polysaccharide is held together by the same linkage.",
+          "Giving no α or β label. The two types are what distinguish starch from cellulose."
+        ],
+        "memory_tip": "α in starch, β in cellulose; the same C₁ to C₄ bridge either way.",
+        "margin_note": "One example of each type, α in starch and β in cellulose, finishes this mark."
+      }
+    ]
+  },
+  "insider_note": "The first mark is in two phrases: loss of water, and a link through oxygen. The second mark is the two types, α in starch and β in cellulose."
+}

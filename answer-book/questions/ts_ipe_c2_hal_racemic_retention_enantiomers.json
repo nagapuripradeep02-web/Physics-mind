@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_hal_racemic_retention_enantiomers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Halo Alkanes and Halo Arenes (Chemistry-II)"
+  },
+  "chapter": "Halo Alkanes and Halo Arenes",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define the following: (i) Racemic mixture (ii) Retention of configuration (iii) Enantiomers",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Racemic mixture",
+      "marks": 1
+    },
+    {
+      "label": "Retention of configuration",
+      "marks": 1
+    },
+    {
+      "label": "Enantiomers",
+      "marks": 1
+    },
+    {
+      "label": "Optical rotation of the three",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 15 (Halo Alkanes and Halo Arenes) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.107-108, from the shaded sub-box \"HALO ALKANES & HALO ARENES\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container chapter whose four unnumbered sub-boxes each restart numbering at 1); the book prints this question on book p.108 as SAQ 3, the last question of the sub-box. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. THE SPLIT IS THREE PARTS OVER FOUR MARKS: the question has three numbered parts and the section carries four marks, so no whole-number split can give the three parts equal weight. The claim made here is one mark for each definition and a fourth for the optical behaviour that ties them together, which is real content and not padding: it is the link between the three terms and the two substitution mechanisms of this same chapter. A teacher may instead split it 2+1+1 with the extra mark on the racemic mixture. BOOK SPELLING (book p.108, SAQ 3): the printed words are \"Recemic mixture\", \"Retention configuration\" (with of missing), \"Enantiomeres\", \"non superimpo-sable\" and the example \"(d, l) 2-chlorobuatane\". The intended words are racemic, retention of configuration, enantiomers, non-superimposable and 2-chlorobutane, and those are used here. BOOK GAPS: the printed definition of a racemic mixture does not say that it is optically inactive, which is the consequence that makes the definition useful; the printed definition of enantiomers carries no example. Both are added. The book's three definitions are otherwise correct and are kept. CHECK: 2-chlorobutane is a valid example — C2 carries H, Cl, CH₃ and C₂H₅, four different groups, so it is chiral."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Halo Alkanes and Halo Arenes — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_racemic_mixture",
+        "kind": "text",
+        "label": "Racemic mixture",
+        "marks": 1,
+        "mark_note": "Definition (i)",
+        "lines": [
+          "i) Racemic mixture",
+          "An equimolar mixture of the dextrorotatory",
+          "(d) form and the laevorotatory (l) form of",
+          "an optically active compound.",
+          "Example: (d, l) 2-chlorobutane.",
+          "It does not rotate the plane of polarised",
+          "light, because the two rotations are equal",
+          "and opposite and cancel each other.",
+          "It is written (±) or (d, l)."
+        ],
+        "why": "Equimolar is the word that carries this definition: a 1 to 1 mixture, not any mixture of the two forms. The two forms rotate the plane of polarised light through the same angle in opposite directions, so a 1 to 1 mixture shows zero rotation and is described as optically inactive by external compensation. The book does not state that consequence, and it is what makes the definition useful.",
+        "common_mistakes": [
+          "Leaving out equimolar. Any other ratio still rotates the plane of polarised light and is not racemic.",
+          "Writing that a racemic mixture contains no optically active molecules. Every molecule in it is active; only the mixture as a whole shows zero rotation."
+        ],
+        "memory_tip": "Racemic means half d and half l, so the two rotations cancel to zero.",
+        "margin_note": "Write equimolar and give one example. Those two together earn this mark."
+      },
+      {
+        "id": "s2_retention_of_configuration",
+        "kind": "text",
+        "label": "Retention of configuration",
+        "marks": 1,
+        "mark_note": "Definition (ii)",
+        "lines": [
+          "ii) Retention of configuration",
+          "The arrangement in space of the bonds at the",
+          "asymmetric carbon is kept unchanged when a",
+          "reaction takes place at that carbon.",
+          "The new group takes the same position that",
+          "the old group occupied.",
+          "The opposite of retention is inversion, in",
+          "which the arrangement is reversed."
+        ],
+        "why": "Retention is defined at the asymmetric carbon: the incoming group takes exactly the position the leaving group occupied, so the three untouched bonds do not move. It is one of the three possible stereochemical results, the others being inversion and racemisation, and it happens when the bond to the chiral carbon is never broken, or when it is broken and re-formed on the same side.",
+        "common_mistakes": [
+          "Writing that no reaction takes place. A reaction does take place; only the arrangement in space is kept.",
+          "Confusing retention with racemisation. Racemisation gives both forms; retention gives one, the same one as the starting compound."
+        ],
+        "memory_tip": "Retention keeps the configuration, inversion reverses it, racemisation gives both.",
+        "margin_note": "One clear sentence naming the asymmetric carbon is the whole of this mark."
+      },
+      {
+        "id": "s3_enantiomers",
+        "kind": "text",
+        "label": "Enantiomers",
+        "marks": 1,
+        "mark_note": "Definition (iii)",
+        "lines": [
+          "iii) Enantiomers",
+          "Stereoisomers that are non-superimposable",
+          "mirror images of each other.",
+          "A compound has a pair of enantiomers when it",
+          "contains a chiral carbon, that is a carbon",
+          "joined to four different groups.",
+          "Example: (d) and (l) 2-chlorobutane, in",
+          "which C2 carries H, Cl, CH₃ and C₂H₅."
+        ],
+        "why": "Mirror image alone is not enough. The two must also be non-superimposable, because a molecule with a plane of symmetry has a mirror image that can be placed on top of it and is therefore the same compound, not an enantiomer. One chiral carbon, with four different groups on it, is the working test at this level.",
+        "common_mistakes": [
+          "Writing only mirror images. Non-superimposable is the word that makes them enantiomers.",
+          "Calling any two stereoisomers enantiomers. Stereoisomers that are not mirror images of each other are diastereomers."
+        ],
+        "memory_tip": "Mirror image is not enough; the two must also not fit on top of each other.",
+        "margin_note": "Both words, non-superimposable and mirror images, must appear. Add the example if there is room."
+      },
+      {
+        "id": "s4_optical_behaviour",
+        "kind": "text",
+        "label": "Optical rotation of the three",
+        "marks": 1,
+        "mark_note": "How the three fit together",
+        "lines": [
+          "How the three terms are used together:",
+          {
+            "text": "1. Two enantiomers rotate the plane of",
+            "style": "indent"
+          },
+          {
+            "text": "    polarised light through equal angles in",
+            "style": "indent"
+          },
+          {
+            "text": "    opposite directions.",
+            "style": "indent"
+          },
+          {
+            "text": "2. A 1 to 1 mixture of them is the racemic",
+            "style": "indent"
+          },
+          {
+            "text": "    mixture, and its rotation is zero.",
+            "style": "indent"
+          },
+          {
+            "text": "3. SN2 gives inversion, SN1 gives the",
+            "style": "indent"
+          },
+          {
+            "text": "    racemic mixture, and a reaction that",
+            "style": "indent"
+          },
+          {
+            "text": "    does not break the bond to the chiral",
+            "style": "indent"
+          },
+          {
+            "text": "    carbon gives retention.",
+            "style": "indent"
+          },
+          "All other physical properties of a pair of",
+          "enantiomers are the same."
+        ],
+        "why": "All three terms describe the same thing, the arrangement in space at a chiral carbon, and an examiner reading definitions alone cannot tell whether the student sees the link. Naming the optical rotation of each and tying them to the two substitution mechanisms of this chapter shows it in three lines. A pair of enantiomers has the same melting point, boiling point and solubility in an ordinary solvent; they differ only in the direction of optical rotation and in reactions with other chiral substances.",
+        "common_mistakes": [
+          "Writing that enantiomers have different melting points. They differ only in the direction of optical rotation and towards other chiral substances.",
+          "Writing that SN2 gives a racemic mixture. SN2 gives inversion; SN1 gives the racemic mixture."
+        ],
+        "memory_tip": "Equal amounts of d and l give zero rotation, which is why a racemic mixture is optically inactive.",
+        "margin_note": "Three short numbered lines are enough here. The definitions alone fill only three of the four marks."
+      }
+    ]
+  },
+  "insider_note": "Three definitions in a four-mark slot, so the definitions alone do not fill the page. Give each one a line with an example, then add a short numbered paragraph on optical rotation and on which mechanism gives which result."
+}

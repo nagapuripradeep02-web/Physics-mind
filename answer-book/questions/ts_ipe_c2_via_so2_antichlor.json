@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_so2_antichlor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "SO₂ can be used as an antichlor. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What an antichlor does",
+      "marks": 1
+    },
+    {
+      "label": "The reaction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 7 of that sub-box, book p.85. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed equation SO₂ + 2H₂O + Cl₂ → H₂SO₄ + 2HCl was checked and is balanced (S 1, O 4, H 4, Cl 2 on both sides) and the electron count balances too: sulphur loses two electrons going from +4 to +6, and chlorine gains two, one for each atom. BOOK GAP: the printed answer states the use in one phrase and gives the equation, but never says why chlorine has to be removed at all (it would otherwise slowly damage the fibre) and never identifies the redox roles. Both are written on this card. QUESTION WORDING: printed as \"SO₂ can be used as an antichlor. Explain\" with no closing full stop; one was added here. Nothing else in the wording was changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_antichlor_does",
+        "kind": "text",
+        "label": "What an antichlor does",
+        "marks": 1,
+        "mark_note": "The use",
+        "lines": [
+          "After bleaching with chlorine, some chlorine",
+          "is left in the fabric and would slowly",
+          "damage the fibre.",
+          "A substance added to remove this leftover",
+          "chlorine is called an antichlor.",
+          "Sulphur dioxide is used for this, because",
+          "it is a good reducing agent."
+        ],
+        "why": "Bleaching powder and chlorine leave free chlorine in the cloth, and free chlorine goes on oxidising the fibre after the bleaching is finished. An antichlor is anything that reduces that leftover chlorine to a harmless product, and sulphur dioxide is the cheap reducing agent used for the job.",
+        "common_mistakes": [
+          "Writing that SO₂ bleaches the fabric. Chlorine does the bleaching; SO₂ removes what the chlorine leaves behind.",
+          "Calling SO₂ an oxidising agent here. In this reaction SO₂ is the reducing agent and chlorine is reduced."
+        ],
+        "memory_tip": "Anti means against, so an antichlor is used against the chlorine left after bleaching.",
+        "margin_note": "The word antichlor plus the words removes leftover chlorine earn this mark. Name SO₂ as a reducing agent."
+      },
+      {
+        "id": "s2_reaction",
+        "kind": "boxed_final",
+        "label": "The reaction",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "SO₂ + 2H₂O + Cl₂ → H₂SO₄ + 2HCl",
+            "style": "boxed"
+          },
+          "In the presence of water, SO₂ reduces the",
+          "chlorine to hydrochloric acid.",
+          "Sulphur is oxidised from +4 in SO₂ to +6 in",
+          "H₂SO₄, and chlorine is reduced from 0 in Cl₂",
+          "to −1 in HCl.",
+          "Both products are soluble and wash out of",
+          "the fabric."
+        ],
+        "why": "The equation is what carries this mark, and the oxidation numbers show why it goes: sulphur can move from +4 up to +6 because it has a higher oxidation state available, and chlorine drops from 0 to −1. Two electrons move, one to each chlorine atom, which is why one molecule of SO₂ removes one molecule of Cl₂.",
+        "common_mistakes": [
+          "Leaving out the water. Without the two water molecules the equation does not balance and no H₂SO₄ can form.",
+          "Writing H₂SO₃ as the product. Sulphur ends at +6, so the product is sulphuric acid, H₂SO₄."
+        ],
+        "memory_tip": "Sulphur goes up from +4 to +6, chlorine goes down from 0 to −1. Two electrons, one for each chlorine atom.",
+        "margin_note": "Box the equation. The oxidation numbers are supporting content and are not separately marked."
+      }
+    ]
+  },
+  "insider_note": "The equation is the whole second mark, and the water is the part most often dropped. Write SO₂ + 2H₂O + Cl₂ first, then the sentence about bleaching."
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_primary_and_secondary_batteries",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are primary and secondary batteries? Give one example for each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Primary battery",
+      "marks": 1
+    },
+    {
+      "label": "Example of a primary battery",
+      "marks": 1
+    },
+    {
+      "label": "Secondary battery",
+      "marks": 1
+    },
+    {
+      "label": "Example of a secondary battery",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SLOPPINESS (book p.70, SAQ 1): the printed secondary-battery answer says the cell \"is made to operate in the reserve direction\"; the word is REVERSE. It also gives the example only as \"storage battery\", which names no cell; the lead storage battery is named here. ELECTRODE REACTIONS: the dry cell and lead accumulator reactions added on this card are taken from the book's own LAQ 6 answer (book p.72) and were checked for atom and charge balance. Cathode of the dry cell: MnO₂ + NH₄⁺ + e⁻ → MnO(OH) + NH₃ balances with 1 Mn, 2 O, 4 H, 1 N and zero net charge on each side. Lead accumulator overall: Pb + PbO₂ + 2H₂SO₄ → 2PbSO₄ + 2H₂O balances with 2 Pb, 2 S, 10 O, 4 H. LONG ANSWER PAIR: LAQ 6 of the same unit asks for the construction and working of each type (card ts_ipe_c2_ec_types_of_batteries); this SAQ is kept to the two definitions and one example each."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electro Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_primary_definition",
+        "kind": "text",
+        "label": "Primary battery",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A primary battery is a galvanic cell in which",
+          "the cell reaction happens only once.",
+          "When the reactants are used up the cell stops",
+          "working and cannot be used again, because its",
+          "reaction cannot be reversed by passing current",
+          "from an outside source."
+        ],
+        "why": "The dividing line between the two types is whether the cell reaction can be driven backwards. In a primary cell the products move away from the electrode or change form, so passing current the other way does not rebuild the original substances.",
+        "common_mistakes": [
+          "Saying a primary cell is one that is used first. Primary means the reaction cannot be reversed, not that it comes first.",
+          "Saying it has no electrolyte. Every cell has an electrolyte; the difference is whether it can be recharged."
+        ],
+        "memory_tip": "Primary means one way only: the reaction runs forward and cannot be driven back.",
+        "margin_note": "The words cannot be recharged, with the reason, carry this mark. A definition without the reason usually gets half."
+      },
+      {
+        "id": "s2_primary_example",
+        "kind": "equation",
+        "label": "Example of a primary battery",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: the dry cell, which is a modified",
+          "Leclanche cell.",
+          {
+            "text": "Anode: Zn(s) → Zn²⁺(aq) + 2e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "Cathode: MnO₂ + NH₄⁺ + e⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "MnO(OH) + NH₃",
+            "style": "indent"
+          },
+          "The emf of a dry cell is about 1.5 V.",
+          "The mercury cell is another example."
+        ],
+        "why": "The dry cell cannot be recharged because the ammonia formed at the cathode escapes as a gas and the zinc container is used up, so there is nothing left in place to be turned back into the starting materials.",
+        "common_mistakes": [
+          "Giving the lead storage battery as the example. That is a secondary battery and can be recharged.",
+          "Writing 2e⁻ in the dry cell cathode reaction. Manganese goes from +4 to +3, so only one electron is taken."
+        ],
+        "memory_tip": "Dry cell: zinc case is the anode, and MnO₂ around the carbon rod is the cathode. 1.5 V.",
+        "margin_note": "Name the cell and give at least the anode reaction. A bare name is usually half this mark."
+      },
+      {
+        "id": "s3_secondary_definition",
+        "kind": "text",
+        "label": "Secondary battery",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A secondary battery is a galvanic cell that",
+          "can be recharged.",
+          "Passing current from an outside source in the",
+          "opposite direction reverses the cell reaction",
+          "and rebuilds the original substances, so the",
+          "cell can be discharged again.",
+          "It is also called a storage cell."
+        ],
+        "why": "Recharging works only when the products stay where they were formed. In a secondary cell the products are solids that stick to the electrodes, so the reverse current can turn them back into the starting materials at the same place.",
+        "common_mistakes": [
+          "Saying a secondary battery stores electricity. It stores chemical energy; the electricity is remade when it discharges.",
+          "Writing that it never needs recharging. It does discharge, and is then recharged."
+        ],
+        "memory_tip": "Secondary means two ways: discharge runs the reaction forward, charging drives it back.",
+        "margin_note": "The word reversible, or the sentence about the outside source, is what earns this mark."
+      },
+      {
+        "id": "s4_secondary_example",
+        "kind": "boxed_final",
+        "label": "Example of a secondary battery",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: the lead storage battery, used in",
+          "cars and inverters.",
+          {
+            "text": "Pb + PbO₂ + 2H₂SO₄ ⇌ 2PbSO₄ + 2H₂O",
+            "style": "boxed"
+          },
+          "Left to right on discharge, right to left on",
+          "charging.",
+          "Each cell gives about 2 V.",
+          "The nickel and cadmium cell is another",
+          "example."
+        ],
+        "why": "Both electrodes turn into the same solid, PbSO₄, and that solid stays stuck to the plates. Because it does not move away, the charging current can convert it back into Pb at one plate and PbO₂ at the other.",
+        "common_mistakes": [
+          "Writing the equation with a single arrow. The double arrow is what shows the cell can be recharged.",
+          "Saying the electrolyte is unchanged. Sulphuric acid is used up on discharge, so the acid gets weaker."
+        ],
+        "memory_tip": "Both plates end up as the same white solid, PbSO₄. That is why charging can undo it.",
+        "margin_note": "Box the reversible equation and mark which direction is discharge. That is the line an examiner looks for."
+      }
+    ]
+  },
+  "insider_note": "The mark is for the REASON, not the label. A primary cell cannot be recharged because its reaction cannot be reversed; a secondary cell can, because its products stay on the electrodes. Write the reason beside each name."
+}

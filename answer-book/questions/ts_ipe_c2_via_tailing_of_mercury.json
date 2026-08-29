@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_tailing_of_mercury",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is tailing of mercury? How is it removed?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What tailing is",
+      "marks": 1
+    },
+    {
+      "label": "How it is removed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 2 of that sub-box, book p.85. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer states that the mercury loses its meniscus and sticks to the glass, but never says why. The reason, that the mercurous oxide formed mixes with the mercury and lowers its surface tension, is written on this card. The book also does not say that tailing is used as a test for ozone. INTRA-UNIT REPEAT: the same reaction is printed again inside LAQ 1 part (c) of this sub-box, card ts_ipe_c2_via_ozone_preparation_reactions. Both are authored because both are printed; the equation 2Hg + O₃ → Hg₂O + O₂ is deliberately identical on the two cards."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_tailing_is",
+        "kind": "text",
+        "label": "What tailing is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When ozone is passed through liquid mercury,",
+          "the mercury is oxidised to mercurous oxide:",
+          {
+            "text": "2Hg + O₃ → Hg₂O + O₂",
+            "style": "eq"
+          },
+          "The Hg₂O mixes with the mercury and lowers",
+          "its surface tension.",
+          "The mercury then loses its meniscus and",
+          "sticks to the glass. This is called tailing."
+        ],
+        "why": "Pure mercury does not wet glass, so its surface curves away from the glass and forms a meniscus. Ozone oxidises the surface to Hg₂O, and that oxide lowers the surface tension of the mercury, so the metal spreads over the glass instead of curving away from it. The change is in the surface, which is why the effect has a surface name.",
+        "common_mistakes": [
+          "Writing 2Hg + O₃ → 2HgO + O₂. The product is mercurous oxide Hg₂O, not mercuric oxide HgO, and the equation would not balance.",
+          "Saying the mercury evaporates or dissolves. It stays liquid; only its surface is oxidised."
+        ],
+        "memory_tip": "Ozone oxidises the surface, the surface tension falls, the meniscus goes flat.",
+        "margin_note": "The equation is the marked line. Write it even if the words are short."
+      },
+      {
+        "id": "s2_removal",
+        "kind": "boxed_final",
+        "label": "How it is removed",
+        "marks": 1,
+        "mark_note": "Removal",
+        "lines": [
+          {
+            "text": "Shaking with water removes the tailing.",
+            "style": "boxed"
+          },
+          "The water carries away the layer of Hg₂O.",
+          "Clean mercury is left, its surface tension",
+          "returns and the meniscus is formed again.",
+          "Tailing is used as a test for ozone."
+        ],
+        "why": "Only the oxide layer has to be taken off, and Hg₂O is not soluble in mercury once water is present, so plain water and shaking are enough. Nothing is added to the mercury and nothing chemical is needed, which is why the answer is one short sentence.",
+        "common_mistakes": [
+          "Writing that the mercury is heated or distilled. Shaking with water is the answer the question asks for.",
+          "Naming an acid or a solvent. Water alone removes the oxide layer."
+        ],
+        "memory_tip": "Take the oxide layer off with water and the meniscus comes back.",
+        "margin_note": "One line earns this mark: shaking with water. Add that the meniscus returns to make it complete."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two separate sentences: the oxidation to Hg₂O with its equation, and shaking with water. Students who write a long description of the meniscus and no equation still lose the first mark."
+}

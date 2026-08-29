@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_characteristic_properties_transition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the characteristic properties of transition elements.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Variable oxidation states",
+      "marks": 1
+    },
+    {
+      "label": "Colour and magnetic behaviour",
+      "marks": 1
+    },
+    {
+      "label": "Complex formation and catalysis",
+      "marks": 1
+    },
+    {
+      "label": "Alloys and interstitial compounds",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.93 as Short Answer 4. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK LIST BARE (book p.93, Short Answer 4): the printed answer is six labels with no example and no reason attached to any of them — variable oxidation states, paramagnetic character, complex compounds, coloured hydrated ions and salts, alloys, catalytic activity. The card keeps all six, adds one reason and one example to each, and adds a seventh, interstitial compounds, which the book treats as a separate question (Short Answer 5) but which belongs in this list. TRENDS AND THEIR EXCEPTIONS, all named on the card: Sc shows only +3 and Zn only +2, so variable oxidation state is not universal; Sc³⁺ (3d⁰) and Zn²⁺ (3d¹⁰) are colourless and diamagnetic while the rest of the series is coloured and paramagnetic; ionisation enthalpy rises across the series but NOT smoothly — the first ionisation enthalpy at V (650 kJ/mol) is below Ti (656), and Co (758) and Ni (736) are both below Fe (762); and two configurations break the plain 3d^x 4s² pattern, Cr at [Ar] 3d⁵ 4s¹ and Cu at [Ar] 3d¹⁰ 4s¹."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "d and f Block Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_oxidation_states",
+        "kind": "text",
+        "label": "Variable oxidation states",
+        "marks": 1,
+        "mark_note": "Oxidation states",
+        "lines": [
+          "1. Variable oxidation states.",
+          "The (n−1)d and ns electrons are close in",
+          "energy, so a varying number of them can",
+          "be used in bonding.",
+          "Mn shows +2 to +7; Fe shows +2 and +3.",
+          "Sc shows only +3 and Zn only +2.",
+          "Ionisation enthalpy rises across the",
+          "series, but not smoothly: V is below Ti,",
+          "and Co and Ni are both below Fe."
+        ],
+        "why": "Variable oxidation state comes straight from the configuration: the 4s and 3d levels are close enough in energy that both sets are available for bonding, so an element can lose two, three or more electrons. The series stops being variable at its two ends — Sc has only 3d¹ beyond the 4s pair, and Zn's 3d¹⁰ set is too stable for a further electron to be removed from it — so each of those shows one state only. Two configurations in the series are not the plain 3d^x 4s² pattern at all: Cr is [Ar] 3d⁵ 4s¹ and Cu is [Ar] 3d¹⁰ 4s¹, because the half-filled and completely filled d sets are lower in energy.",
+        "common_mistakes": [
+          "Writing Cr as [Ar] 3d⁴ 4s² and Cu as [Ar] 3d⁹ 4s². They are 3d⁵ 4s¹ and 3d¹⁰ 4s¹.",
+          "Saying every transition element shows many oxidation states. Sc shows +3 only and Zn shows +2 only."
+        ],
+        "memory_tip": "The middle of the series has the most oxidation states; the two ends have one each.",
+        "margin_note": "One property, one example. Mn from +2 to +7 is the example the examiner expects."
+      },
+      {
+        "id": "s2_colour_magnetism",
+        "kind": "text",
+        "label": "Colour and magnetism",
+        "marks": 1,
+        "mark_note": "Colour and magnetism",
+        "lines": [
+          "2. Coloured ions and salts.",
+          "A partly filled d subshell allows a d-d",
+          "transition, so the ion absorbs part of",
+          "the visible range and transmits the rest.",
+          "Cu²⁺ is blue and Ni²⁺ is green.",
+          "3. Paramagnetic behaviour.",
+          "Unpaired d electrons make an ion",
+          "paramagnetic; μ = √(n(n+2)) BM, so Mn²⁺",
+          "with five gives 5.92 BM.",
+          "Sc³⁺ (3d⁰) and Zn²⁺ (3d¹⁰) are the two",
+          "exceptions: colourless and diamagnetic."
+        ],
+        "why": "Colour and magnetism are the same fact read two ways: both need unpaired electrons in a partly filled d subshell. That is why the exceptions are the same pair of ions in both lists — Sc³⁺ with an empty d set and Zn²⁺ with a full one are colourless AND diamagnetic, while every ion between them in the series is coloured AND paramagnetic.",
+        "common_mistakes": [
+          "Saying all transition metal ions are coloured. Sc³⁺, Ti⁴⁺, Cu⁺ and Zn²⁺ are colourless.",
+          "Using the total number of d electrons in μ = √(n(n+2)). Here n is the number of UNPAIRED electrons."
+        ],
+        "memory_tip": "One cause, two properties: unpaired d electrons give both the colour and the paramagnetism.",
+        "margin_note": "Write the magnetic moment formula. It costs one line and is often worth part of this mark."
+      },
+      {
+        "id": "s3_complexes_catalysis",
+        "kind": "text",
+        "label": "Complexes and catalysis",
+        "marks": 1,
+        "mark_note": "Complexes and catalysis",
+        "lines": [
+          "4. Complex formation.",
+          "Their ions are small, highly charged and",
+          "have empty d orbitals, so they accept",
+          "lone pairs from ligands.",
+          "Examples: [Fe(CN)₆]³⁻, [Cu(NH₃)₄]²⁺.",
+          "5. Catalytic activity.",
+          "Variable oxidation states and surface",
+          "adsorption let them act as catalysts.",
+          "Examples: V₂O₅ in the contact process,",
+          "Fe in the Haber process."
+        ],
+        "why": "Complex formation and catalysis are listed separately but come from the same two features. The empty d orbitals accept lone pairs, which is complex formation; and the ability to change oxidation state easily lets the metal take part in one step of a reaction and be returned in the next, which is catalysis. Iron in the Haber process and V₂O₅ in the contact process are the two examples every board paper uses.",
+        "common_mistakes": [
+          "Naming a catalyst with no reaction. Write the reaction beside it: Fe for ammonia, V₂O₅ for sulphur trioxide.",
+          "Saying the catalyst is used up. A catalyst is returned unchanged at the end of the reaction."
+        ],
+        "memory_tip": "Empty d orbitals accept lone pairs; variable oxidation states make catalysis possible.",
+        "margin_note": "Two complexes and two catalysts. A named reaction earns more than the word catalyst alone."
+      },
+      {
+        "id": "s4_alloys_interstitial",
+        "kind": "boxed_final",
+        "label": "Alloys and interstitial compounds",
+        "marks": 1,
+        "mark_note": "Alloys and interstitial",
+        "lines": [
+          "6. Alloy formation.",
+          "Their atomic radii are similar, so one",
+          "metal replaces another in the lattice.",
+          "Examples: brass, bronze, steel.",
+          {
+            "text": "7. Interstitial compounds",
+            "style": "boxed"
+          },
+          "Small atoms of H, B, C or N occupy the",
+          "spaces in the metal lattice, giving hard,",
+          "high-melting solids such as TiC and TiN."
+        ],
+        "why": "Alloy formation works because the atoms across a transition series differ in radius by only a few picometres, so one metal atom can occupy another's position in the lattice without distorting it. An interstitial compound is different: the small atom does not replace anything, it occupies a space between the metal atoms, and the result is far harder and higher melting than the metal itself, which is why TiC is used as a cutting-tool material.",
+        "common_mistakes": [
+          "Confusing an alloy with an interstitial compound. In an alloy one metal atom replaces another; in an interstitial compound a small atom occupies a space.",
+          "Giving every interstitial compound a whole-number formula. Many are non-stoichiometric, such as TiH₁.₇ and VH₀.₅₆."
+        ],
+        "memory_tip": "Alloy: one metal atom replaces another. Interstitial: small atoms fill the spaces.",
+        "margin_note": "Seven properties, one example each. Number them; the examiner counts."
+      }
+    ]
+  },
+  "insider_note": "This is a list question, so write seven numbered properties with one example each rather than three explained in detail. The marks are spread across the list, not concentrated on any one property."
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_micelle_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is micelles? Give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed question reads \"What is micelles?\" and is kept verbatim. BOOK GAPS (book p.76, VSAQ 1): the printed example is garbled — \"Ex : Soap is formed micelled in water\" — so this card names the substance and its formula instead. The printed definition says the micelle is formed by \"the association of normal simple molecules\" and never names the associating species; the species is the soap ion, and the card says so. The book also omits the condition that association happens only above the critical micelle concentration, which its own VSAQ 13 states on the next page."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A micelle is the aggregate of soap or",
+          "detergent ions formed in water above a",
+          "certain concentration.",
+          "Each such ion has two parts: a hydrophilic",
+          "head with affinity for water, and a",
+          "hydrophobic tail with no affinity for water.",
+          "In the micelle the tails point inward and",
+          "the heads stay in contact with the water."
+        ],
+        "why": "Soap does not spread through water one ion at a time, because one end of the ion has affinity for water and the other end has none. Above a certain concentration the ions associate into a spherical aggregate with the tails inside and the heads outside, and that aggregate is the micelle.",
+        "common_mistakes": [
+          "Calling one soap molecule a micelle. A micelle is the aggregate of many of them.",
+          "Writing that the heads point inward. The heads have affinity for water, so they stay on the outside."
+        ],
+        "memory_tip": "Tails inside, away from the water. Heads outside, in the water.",
+        "margin_note": "Name both ends of the ion. A definition with only the tail usually earns half of this mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Ex: soap, sodium stearate, in water.",
+            "style": "boxed"
+          },
+          "Sodium stearate C₁₇H₃₅COONa dissolves and",
+          "gives the stearate ion C₁₇H₃₅COO⁻ and Na⁺.",
+          "Above the critical micelle concentration",
+          "these stearate ions associate into micelles."
+        ],
+        "why": "The example has to be a substance that actually forms micelles, and soap is the standard one. Writing the formula shows which ion associates: the stearate ion carries both the head and the tail, while the sodium ion stays in the water.",
+        "common_mistakes": [
+          "Giving common salt or sugar as the example. Neither has a hydrophobic tail, so neither forms a micelle.",
+          "Writing that soap forms micelles at any concentration. It forms them only above the critical micelle concentration."
+        ],
+        "memory_tip": "Soap is sodium stearate. The stearate ion is the part that forms the micelle.",
+        "margin_note": "One named example with its formula is enough for this mark."
+      }
+    ]
+  },
+  "insider_note": "The example mark is lost most often by naming soap and stopping there. Write the formula C₁₇H₃₅COONa and name the stearate ion beside it."
+}

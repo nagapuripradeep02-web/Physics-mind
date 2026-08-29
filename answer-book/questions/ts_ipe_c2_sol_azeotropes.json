@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_azeotropes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are meant by azeotropes?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The two types",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO (book p.65, VSAQ 9): the question is printed \"What are meant by azeotrope's?\" and the answer opens \"Azeotrope's are the binary mixtures\", both with a possessive apostrophe on a plural. The apostrophe is dropped here; nothing else in the wording is changed. BOOK GAP: the printed answer never says that an azeotrope cannot be separated by fractional distillation, and never gives the two types (minimum boiling and maximum boiling) or an example of either. All of that is added here from the standard NCERT treatment, because the deviation questions SAQ 2 and SAQ 3 of the same unit are the other half of it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An azeotrope is a binary liquid mixture",
+          "that boils at a constant temperature and",
+          "gives a vapour of the same composition as",
+          "the liquid.",
+          {
+            "text": "Liquid composition = vapour composition",
+            "style": "boxed"
+          },
+          "Its two components cannot be separated by",
+          "fractional distillation."
+        ],
+        "why": "Fractional distillation works only because the vapour is richer in one component than the liquid. When the two compositions are equal, boiling the mixture produces more of the same mixture, so no separation is possible and the temperature stays fixed while it boils.",
+        "common_mistakes": [
+          "Calling an azeotrope a pure compound. It is a mixture, and its composition changes if the pressure is changed.",
+          "Saying it can be separated by careful distillation. At the azeotropic composition distillation cannot separate the two liquids at all."
+        ],
+        "memory_tip": "Same composition in the liquid and in the vapour, so distilling it changes nothing.",
+        "margin_note": "The marked words are \"constant boiling temperature\" and \"same composition in liquid and vapour\". Both must appear."
+      },
+      {
+        "id": "s2_types",
+        "kind": "text",
+        "label": "The two types",
+        "marks": 1,
+        "mark_note": "Types",
+        "lines": [
+          "1. Minimum boiling azeotrope: formed by",
+          "solutions that show a large POSITIVE",
+          "deviation from Raoult's law.",
+          "Example: ethanol and water, at about 95%",
+          "ethanol.",
+          "2. Maximum boiling azeotrope: formed by",
+          "solutions that show a large NEGATIVE",
+          "deviation from Raoult's law.",
+          "Example: nitric acid and water, at about",
+          "68% nitric acid."
+        ],
+        "why": "A large positive deviation raises the vapour pressure of the mixture above that of either pure liquid, and a high vapour pressure means a low boiling point, so the mixture boils at a minimum. A large negative deviation lowers the vapour pressure and so raises the boiling point to a maximum. The two types are the two deviation cases taken far enough to form an azeotrope.",
+        "common_mistakes": [
+          "Pairing positive deviation with a maximum boiling azeotrope. Positive deviation raises the vapour pressure, so the boiling point is a MINIMUM.",
+          "Giving chloroform and acetone as a minimum boiling example. That pair shows negative deviation, so it forms a maximum boiling azeotrope."
+        ],
+        "memory_tip": "Positive deviation raises vapour pressure, so it lowers the boiling point: minimum boiling.",
+        "margin_note": "One named example under each type is enough. Name the deviation as well, because that is the link the examiner is checking."
+      }
+    ]
+  },
+  "insider_note": "The pairing is the whole question: positive deviation goes with the MINIMUM boiling azeotrope, negative deviation with the maximum. Getting the two the wrong way round is the single most common loss here."
+}

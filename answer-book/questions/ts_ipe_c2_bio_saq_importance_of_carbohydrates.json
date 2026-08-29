@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_importance_of_carbohydrates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the importance of carbohydrates.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Energy and storage",
+      "marks": 1
+    },
+    {
+      "label": "Structural uses",
+      "marks": 1
+    },
+    {
+      "label": "In the nucleic acids and in combination",
+      "marks": 1
+    },
+    {
+      "label": "In medicine and in industry",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.104 as SAQ 14. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book prints eight numbered points; all eight are carried here, grouped four ways so each mark covers two points. The scan of book p.104 has a torn bottom-left corner that hides its printed page number; the number is read from the run 99-100-101-102-103 on the preceding pages, and every line of content on the page is legible."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_energy",
+        "kind": "text",
+        "label": "Energy and storage",
+        "marks": 1,
+        "mark_note": "Energy and storage",
+        "lines": [
+          "Carbohydrates are needed by both plants and",
+          "animals.",
+          "1. They are the chief source of energy.",
+          "Honey gives energy at once, because it is",
+          "already a mixture of simple sugars.",
+          "2. They are stored as starch in plants and",
+          "as glycogen in animals."
+        ],
+        "why": "Energy and storage are two sides of the same use: a simple sugar is burned immediately, and a polysaccharide is the same energy held in an insoluble form until it is needed. Honey is the example the answer key gives because it is mostly glucose and fructose and needs no digestion.",
+        "common_mistakes": [
+          "Writing that starch is stored in animals. Starch is the plant store; glycogen is the animal store.",
+          "Giving no example for the energy point. Honey is the one the answer key prints."
+        ],
+        "memory_tip": "Sugar for now, starch and glycogen for later.",
+        "margin_note": "Number every point. This question is marked by counting the points you make."
+      },
+      {
+        "id": "s2_structural",
+        "kind": "text",
+        "label": "Structural uses",
+        "marks": 1,
+        "mark_note": "Structural uses",
+        "lines": [
+          "3. Cellulose forms the cell wall of plants",
+          "and of bacteria.",
+          "4. Wood and cotton fibre are largely",
+          "cellulose, so timber, paper and cloth all",
+          "come from a carbohydrate."
+        ],
+        "why": "The same glucose that stores energy also builds the structure, and the only difference is the β linkage of cellulose against the α linkage of starch. That one letter is why cellulose is strong and insoluble and why it is the most abundant organic material there is.",
+        "common_mistakes": [
+          "Naming starch as the material of the cell wall. Cellulose forms the wall; starch is the store.",
+          "Writing that cotton is a protein. Cotton fibre is almost pure cellulose."
+        ],
+        "memory_tip": "Cellulose is the structural one: walls, wood, cotton.",
+        "margin_note": "Two points here. Keep them short; the marks are for the count, not the length."
+      },
+      {
+        "id": "s3_nucleic",
+        "kind": "text",
+        "label": "In the nucleic acids and in combination",
+        "marks": 1,
+        "mark_note": "Nucleic acids and combinations",
+        "lines": [
+          "5. D-ribose and 2-deoxy-D-ribose are the",
+          "sugars of the nucleic acids RNA and DNA.",
+          "6. Carbohydrates occur in living systems in",
+          "combination with many proteins and lipids."
+        ],
+        "why": "These two points move carbohydrates out of the role of food and into the structure of the cell itself: a pentose sugar is part of every nucleotide, and sugars attached to proteins and lipids sit on the surface of cells. Neither use has anything to do with energy.",
+        "common_mistakes": [
+          "Naming glucose as the sugar of DNA. The sugar of DNA is 2-deoxy-D-ribose, a pentose.",
+          "Writing that carbohydrates are only used as food. They are part of the nucleic acids and of many cell components."
+        ],
+        "memory_tip": "Ribose in RNA, deoxyribose in DNA. Both are carbohydrates.",
+        "margin_note": "Name both pentoses and say which nucleic acid each belongs to."
+      },
+      {
+        "id": "s4_medicine",
+        "kind": "boxed_final",
+        "label": "In medicine and in industry",
+        "marks": 1,
+        "mark_note": "Medicine and industry",
+        "lines": [
+          {
+            "text": "Energy · storage · structure · raw material",
+            "style": "boxed"
+          },
+          "7. Streptomycin, a carbohydrate antibiotic,",
+          "stops protein synthesis in bacteria.",
+          "8. Carbohydrates are the raw material of",
+          "industries such as paper and textiles."
+        ],
+        "why": "The last two points show carbohydrates being used deliberately rather than found in nature: one as a medicine that acts on bacteria, one as the feedstock of two large industries. Together the eight points cover food, structure, heredity, medicine and industry.",
+        "common_mistakes": [
+          "Writing that streptomycin is a protein. It is a carbohydrate antibiotic.",
+          "Giving fewer than the eight points. The answer key lists eight, and this question is marked by the count."
+        ],
+        "memory_tip": "Streptomycin for medicine, paper and cloth for industry.",
+        "margin_note": "Eight numbered points in all, two per step. Check the count before you close the answer."
+      }
+    ]
+  },
+  "insider_note": "Eight numbered points, two for each mark. Number them on the page: this question is marked by counting, so an unnumbered paragraph is read as fewer points than it contains."
+}

@@ -1,0 +1,169 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_hal_sn2_mechanism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Halo Alkanes and Halo Arenes (Chemistry-II)"
+  },
+  "chapter": "Halo Alkanes and Halo Arenes",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the mechanism of nucleophilic bimolecular substitution (SN2) reaction with one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rate law and what bimolecular means",
+      "marks": 1
+    },
+    {
+      "label": "The single step and the transition state",
+      "marks": 1
+    },
+    {
+      "label": "Inversion of configuration",
+      "marks": 1
+    },
+    {
+      "label": "Order of reactivity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 15 (Halo Alkanes and Halo Arenes) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.107-108, from the shaded sub-box \"HALO ALKANES & HALO ARENES\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container chapter whose four unnumbered sub-boxes each restart numbering at 1); the book prints this question on book p.108 as SAQ 2. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NOTATION: the book writes \"SN²\", with a superscript 2. The accepted notation is SN2 — N is a subscript on S and the 2 is on the line — and it is written SN2 here throughout. BOOK TYPO: the printed answer writes the chloride ion as \"Cl⁻¹\". The charge on a chloride ion is written Cl⁻, with no 1. BOOK GAPS: the printed answer gives the rate law, the single step, the back side approach and complete inversion, all of which are correct, but it gives no order of reactivity and no solvent. Both are added here: the order is CH₃ > 1° > 2° > 3°, the exact reverse of SN1, and a polar aprotic solvent such as acetone or DMSO is used. The book also draws the transition state without naming it as a transition state; that word is added, because the absence of an intermediate is the point of the mechanism. BALANCE CHECK: CH₃Cl + OH⁻ → CH₃OH + Cl⁻ (C 1, H 4, O 1, Cl 1 each side; charge −1 each side). Balanced in atoms and in charge. LANGUAGE NOTE (Rule 41): \"back side attack\" and \"nucleophilic attack\" are the standard names of this step and are kept as NOUNS; the verb forms are written as approaches and bonds to, which is what physically happens."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Halo Alkanes and Halo Arenes — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rate_law",
+        "kind": "text",
+        "label": "Rate law and what bimolecular means",
+        "marks": 1,
+        "mark_note": "Rate law",
+        "lines": [
+          "SN2 means nucleophilic substitution,",
+          "bimolecular.",
+          "The rate depends on the concentration of the",
+          "alkyl halide and of the nucleophile.",
+          {
+            "text": "Rate = k[R–X][Nu⁻]",
+            "style": "boxed"
+          },
+          "It is a second order reaction.",
+          "Example: chloromethane with hydroxide ion.",
+          {
+            "text": "CH₃Cl + OH⁻ → CH₃OH + Cl⁻",
+            "style": "eq"
+          }
+        ],
+        "why": "Bimolecular means that two species appear in the rate law, and they appear there because both of them are present in the transition state of the one and only step. Doubling either concentration doubles the rate, and that measured fact is the evidence for a single step path.",
+        "common_mistakes": [
+          "Writing Rate = k[R–X] only. That is the SN1 rate law.",
+          "Reading bimolecular as two steps. SN2 has one step; bimolecular describes the rate law."
+        ],
+        "memory_tip": "The 2 in SN2 is the order of the reaction: two concentrations in the rate law.",
+        "margin_note": "Box the rate law. It states the whole difference from SN1 in one line."
+      },
+      {
+        "id": "s2_single_step",
+        "kind": "text",
+        "label": "The single step and the transition state",
+        "marks": 1,
+        "mark_note": "Single step",
+        "lines": [
+          "The reaction takes place in a single step.",
+          "Back side attack: the nucleophile approaches",
+          "the carbon from the side opposite the",
+          "halogen, because the halogen and its lone",
+          "pairs repel it from the near side.",
+          "Bond making and bond breaking happen",
+          "together, through a transition state:",
+          {
+            "text": "[HO···CH₃···Cl]⁻",
+            "style": "eq"
+          },
+          "In the transition state the carbon is sp²",
+          "and the three hydrogen atoms lie in a plane."
+        ],
+        "why": "There is no intermediate. The bond from oxygen to carbon is partly formed while the bond from carbon to chlorine is partly broken, and the highest energy point along that path is a transition state, not a species that can be isolated. Because both the alkyl halide and the nucleophile are present in that transition state, both concentrations appear in the rate law. Approach from the opposite side is forced by the halogen, whose lone pairs repel the incoming nucleophile.",
+        "common_mistakes": [
+          "Drawing a carbocation intermediate. SN2 has no intermediate, only a transition state.",
+          "Showing the nucleophile coming in on the same side as the halogen. The approach is from the opposite side."
+        ],
+        "memory_tip": "One step, one transition state, no intermediate, and the nucleophile comes in opposite the halogen.",
+        "margin_note": "Write the transition state inside square brackets with the charge outside. That is the picture this mark is for."
+      },
+      {
+        "id": "s3_inversion",
+        "kind": "text",
+        "label": "Inversion of configuration",
+        "marks": 1,
+        "mark_note": "Inversion",
+        "lines": [
+          "Because the nucleophile comes in from the",
+          "opposite side, the other three bonds move",
+          "through to the far side of the carbon.",
+          "The arrangement in space at that carbon is",
+          "reversed.",
+          {
+            "text": "This is inversion of configuration",
+            "style": "boxed"
+          },
+          "It is also called Walden inversion.",
+          "An optically pure halide gives an optically",
+          "pure product of the opposite configuration."
+        ],
+        "why": "The three bonds that stay on the carbon move through the plane as the new bond forms and the old one breaks, so the arrangement in space at that carbon is reversed. With an optically active substrate the product is the opposite enantiomer, and the change can be measured as a change in the sign of the optical rotation. This is the sharpest single difference from SN1, which gives a racemic mixture instead.",
+        "common_mistakes": [
+          "Writing that SN2 gives a racemic mixture. That is SN1; SN2 gives complete inversion.",
+          "Writing retention of configuration. The configuration is reversed, not kept."
+        ],
+        "memory_tip": "Entry at the back moves the other three bonds to the front, so every SN2 reaction inverts the centre.",
+        "margin_note": "The words inversion of configuration earn this mark on their own. Add Walden inversion if there is room."
+      },
+      {
+        "id": "s4_reactivity_order",
+        "kind": "text",
+        "label": "Order of reactivity",
+        "marks": 1,
+        "mark_note": "Reactivity order",
+        "lines": [
+          "Order of reactivity:",
+          {
+            "text": "CH₃ > 1° > 2° > 3°",
+            "style": "boxed"
+          },
+          "A methyl or primary halide has the least",
+          "steric hindrance, so nothing blocks the",
+          "approach from the back side.",
+          "A tertiary halide carries three alkyl groups",
+          "around that carbon, which block the back",
+          "side, so it does not react by SN2.",
+          "A polar aprotic solvent such as acetone or",
+          "DMSO is used."
+        ],
+        "why": "An SN2 reaction requires a clear path to the back of the carbon, so reactivity falls as alkyl groups are added: methyl reacts fastest and tertiary does not react by this path at all. That is the exact reverse of the SN1 order, and it is the reason a tertiary halide with aqueous KOH goes by SN1 while a primary halide goes by SN2. The solvent matters too: a polar protic solvent forms hydrogen bonds to the nucleophile and slows it down, so a polar aprotic solvent is chosen.",
+        "common_mistakes": [
+          "Giving the order 3° > 2° > 1°. That is the SN1 order; SN2 runs the other way.",
+          "Writing that a tertiary halide reacts slowly by SN2. It does not react by SN2 at all; it goes by SN1.",
+          "Writing that every primary halide is fast. Neopentyl halide, (CH₃)₃C–CH₂–X, is primary but very slow, because the bulky group next to that carbon blocks the back side."
+        ],
+        "memory_tip": "The fewer the alkyl groups on that carbon, the faster the SN2 reaction: methyl first, tertiary not at all.",
+        "margin_note": "Write the order and its reason on one line: fewer alkyl groups means less steric hindrance."
+      }
+    ]
+  },
+  "insider_note": "SN1 and SN2 are asked as a pair and the marks are lost by mixing them. Keep four contrasts straight: two steps against one, [R–X] against [R–X][Nu⁻], racemisation against inversion, and 3° > 2° > 1° against CH₃ > 1° > 2° > 3°."
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_metallic_vs_ionic_crystals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the similarities and differences between metallic and ionic crystals.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Similarities",
+      "marks": 2
+    },
+    {
+      "label": "Differences",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.64, which prints the question and a model answer. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book prints two similarities and three differences and they are correct as printed. This card adds a THIRD similarity (both are held by strong forces, so both have high melting points), so the card lists three of each while the book lists two and three. The reason for the third difference (why ionic solids are brittle and metals are not) is added from NCERT, because the printed answer states the property without it. The point that an ionic solid conducts when molten or dissolved is added for the same reason: the book writes \"bad conductors (in solid state)\" and never says what happens outside the solid state."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solid State — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_similarities",
+        "kind": "text",
+        "label": "Similarities",
+        "marks": 2,
+        "mark_note": "Similarities",
+        "lines": [
+          "Similarities between metallic and ionic",
+          "crystals:",
+          "i) In both, the forces holding the particles",
+          "together are electrostatic.",
+          "ii) In both, the bonding is non directional,",
+          "so it acts equally in every direction.",
+          "iii) Both are held by strong forces, so both",
+          "have high melting points."
+        ],
+        "why": "Both solids are held together by the attraction between opposite charges: cations and anions in an ionic crystal, and metal cations with the surrounding electrons in a metal. Because a charge attracts equally in every direction, neither bond points along a fixed line, and this is why both form large regular lattices rather than separate molecules.",
+        "common_mistakes": [
+          "Writing that both are held by covalent bonds. Covalent bonding is directional, and neither of these two is.",
+          "Listing only one similarity. Two marks means at least two separate points are expected."
+        ],
+        "memory_tip": "Both are charge attracting charge, and a charge pulls the same way in all directions.",
+        "margin_note": "Number the points i, ii, iii. An examiner marks numbered points faster than a paragraph."
+      },
+      {
+        "id": "s2_differences",
+        "kind": "boxed_final",
+        "label": "Differences",
+        "marks": 2,
+        "mark_note": "Differences",
+        "lines": [
+          {
+            "text": "Ionic: brittle. Metallic: malleable.",
+            "style": "boxed"
+          },
+          "Differences:",
+          "i) Ionic bonds are strong, while metallic",
+          "bonds may be weak or strong.",
+          "ii) Ionic solids do not conduct electricity in",
+          "the solid state, but they conduct when",
+          "molten or dissolved in water. Metallic solids",
+          "conduct in the solid state.",
+          "iii) Ionic solids are brittle, while metallic",
+          "solids are malleable and ductile. A blow",
+          "slides like charges together in an ionic",
+          "crystal and it splits, while a metal only",
+          "changes shape."
+        ],
+        "why": "Every difference comes from what carries the charge and what happens when the layers move. An ionic solid has no free electrons in the solid state, so it conducts only once the ions themselves are free to move. When its layers slide, ions of the same charge come face to face and push the crystal apart; in a metal the electrons are shared over the whole lattice, so sliding layers stay bonded.",
+        "common_mistakes": [
+          "Writing that ionic solids never conduct. They conduct in the molten state and in solution, where the ions can move.",
+          "Writing that metallic bonds are always weaker than ionic bonds. Metallic bonding ranges from weak to very strong; tungsten melts far above sodium chloride."
+        ],
+        "memory_tip": "Push an ionic crystal and like charges meet, so it cracks. Push a metal and the electrons stay shared, so it bends.",
+        "margin_note": "Three numbered differences are enough for both marks. The brittle against malleable pair is the one to write first."
+      }
+    ]
+  },
+  "insider_note": "The question asks for both halves, so a page of differences with no similarities can earn only half the marks. Two numbered similarities and three numbered differences are enough; this answer gives three of each."
+}

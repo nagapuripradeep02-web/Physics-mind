@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_biodegradable_detergents",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are biodegradable and non-biodegradable detergents? Give one example for each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Biodegradable detergents — what they are",
+      "marks": 1
+    },
+    {
+      "label": "Example of a biodegradable detergent",
+      "marks": 1
+    },
+    {
+      "label": "Non-biodegradable detergents — what they are",
+      "marks": 1
+    },
+    {
+      "label": "Example and the pollution point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.106 as SAQ 2. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CONTENT (book p.106, SAQ 2): the printed answer, the two definitions, the three biodegradable examples and the one branched example, is correct and is kept, including the closing note that non-biodegradable detergents collect in rivers and ponds and cause water pollution. BOOK NOTATION: the printed names are written with the locant separated by a hyphen, \"sodium-4-(1-dodecyl) benzenesulphonate\"; the standard form has no hyphen after sodium and no space before benzenesulphonate, and that form is used here. BOOK GAP: the book never says WHY a branched chain resists breakdown, only that it does. The reason, that the enzymes of the micro-organisms act on a straight chain and not on a branched one, is added in the why field of the third step; it is not written into the marked lines, because the printed answer does not carry it and a student should not be told it is required."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemistry in Everyday Life — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_biodegradable",
+        "kind": "text",
+        "label": "Biodegradable detergents — what they are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Biodegradable detergents have straight",
+          "hydrocarbon chains.",
+          "Micro-organisms break these chains down",
+          "easily, so the detergent does not stay in",
+          "the water after it has been used."
+        ],
+        "why": "The whole answer turns on the shape of the hydrocarbon chain, so the definition has to name it. Straight chain plus broken down by micro-organisms is the pair of facts that earns this mark; either one alone is half of it.",
+        "common_mistakes": [
+          "Writing that a biodegradable detergent dissolves in water. Every detergent dissolves; this one is broken down by micro-organisms.",
+          "Leaving out the words straight chain. The chain shape is the whole basis of the classification."
+        ],
+        "memory_tip": "Straight chain, broken down easily: that is biodegradable.",
+        "margin_note": "Name the straight chain and the micro-organisms. Both are wanted for this mark."
+      },
+      {
+        "id": "s2_biodegradable_example",
+        "kind": "text",
+        "label": "Example of a biodegradable detergent",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Ex: sodium lauryl sulphate.",
+          "Two more are:",
+          {
+            "text": "sodium 4-(1-dodecyl)benzenesulphonate",
+            "style": "indent"
+          },
+          {
+            "text": "sodium 4-(2-dodecyl)benzenesulphonate",
+            "style": "indent"
+          }
+        ],
+        "why": "The question asks for one example, so sodium lauryl sulphate alone finishes the mark and is the easiest to spell. The two dodecyl benzenesulphonates are written because they show the same idea in the harder form: a dodecyl group is a straight twelve carbon chain, so both are biodegradable.",
+        "common_mistakes": [
+          "Writing a branched name here. Anything with several methyl groups on the chain is non-biodegradable.",
+          "Writing only part of the long name. If it is uncertain, write sodium lauryl sulphate instead."
+        ],
+        "memory_tip": "Lauryl and dodecyl are both straight twelve carbon chains.",
+        "margin_note": "One example finishes this mark. Sodium lauryl sulphate is the safe one to write."
+      },
+      {
+        "id": "s3_non_biodegradable",
+        "kind": "text",
+        "label": "Non-biodegradable detergents — what they are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Non-biodegradable detergents have",
+          "branched hydrocarbon chains.",
+          "Micro-organisms cannot break a branched",
+          "chain down easily, so the detergent stays",
+          "in the water after it has been used."
+        ],
+        "why": "The enzymes of the micro-organisms act on a straight chain and not on a chain that carries methyl groups along its length, so a branched detergent stays in the water unchanged. The book states the fact without this reason; the reason is written here so the two definitions are not just opposites to memorise.",
+        "common_mistakes": [
+          "Writing that a non-biodegradable detergent does not clean. It cleans well; the problem is that it stays in the water afterwards.",
+          "Leaving out the word branched. That is the one word that separates the two classes."
+        ],
+        "memory_tip": "Branched chain, not broken down: that is non-biodegradable.",
+        "margin_note": "Write branched chain and the words not broken down easily. Those two are the mark."
+      },
+      {
+        "id": "s4_non_biodegradable_example",
+        "kind": "boxed_final",
+        "label": "Example and the pollution point",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Ex: sodium 4-(1,3,5,7-tetramethyloctyl)",
+          "benzenesulphonate.",
+          "The four methyl groups on the chain are",
+          "the branches.",
+          {
+            "text": "They cause severe water pollution",
+            "style": "boxed"
+          },
+          "because they collect in rivers and ponds."
+        ],
+        "why": "The name itself carries the answer: tetramethyloctyl means an eight carbon chain with four methyl branches on it, and those branches are the reason the chain is not broken down. Writing that line beside the name shows the examiner that the name was understood and not copied.",
+        "common_mistakes": [
+          "Writing the example with no pollution statement. The book's own note makes the pollution point part of this answer.",
+          "Writing tetramethyl octane. The group is tetramethyloctyl, and it is attached to a benzenesulphonate."
+        ],
+        "memory_tip": "Tetramethyloctyl: four methyl branches on an eight carbon chain.",
+        "margin_note": "The name plus one line on pollution finishes this mark."
+      }
+    ]
+  },
+  "insider_note": "Answer this as four short blocks, a definition and an example for each type. The word branched is what the examiner marks, so it must appear once in each definition."
+}

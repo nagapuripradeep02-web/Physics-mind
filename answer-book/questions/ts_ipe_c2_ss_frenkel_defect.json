@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_frenkel_defect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a Frenkel defect?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Density and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAPS (book p.62, VSAQ 8): the printed answer says only that an ion occupies an interstitial site. It never says that the ion LEAVES its own lattice site and leaves a vacancy behind, and it never says that the density is UNCHANGED. The second omission matters most, because the density is the one property that separates this defect from the Schottky defect, which the book answers on the same page. Both points are written on this card. BOOK TYPO: the example is printed \"Zns\"; it is written ZnS here. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A Frenkel defect is formed when an ion,",
+          "usually the smaller cation, leaves its own",
+          "lattice site and moves into an interstitial",
+          "site of the same crystal.",
+          "A vacancy is left behind at the site it left.",
+          "It is also called an interstitial defect or a",
+          "dislocation defect."
+        ],
+        "why": "The ion is displaced, not removed, so the answer has two halves: the empty site it came from and the interstitial site it now occupies. Naming both is what makes the definition complete, and it is the half the printed answer leaves out.",
+        "common_mistakes": [
+          "Writing only that an ion sits in an interstitial site. The vacancy it leaves behind is the other half of the defect.",
+          "Saying an ion is missing from the crystal. Nothing leaves the crystal in a Frenkel defect; the ion moves inside it."
+        ],
+        "memory_tip": "Frenkel: the ion stays inside the crystal, at an interstitial site. Schottky: the ion is missing from the crystal.",
+        "margin_note": "Write both halves: the vacant lattice site and the interstitial site. One half alone is usually half the mark."
+      },
+      {
+        "id": "s2_density_examples",
+        "kind": "boxed_final",
+        "label": "Density and examples",
+        "marks": 1,
+        "mark_note": "Effect and examples",
+        "lines": [
+          {
+            "text": "The density of the crystal does not change.",
+            "style": "boxed"
+          },
+          "No ion leaves the crystal, so the mass and",
+          "the volume are both unchanged.",
+          "The crystal also stays electrically neutral.",
+          "It appears when the cation is much smaller",
+          "than the anion.",
+          "Examples: AgCl, AgBr, ZnS."
+        ],
+        "why": "Density is mass divided by volume, and a Frenkel defect changes neither: the same ions are still inside the same lattice, only in different positions. A large size difference is needed because only a small cation can fit into an interstitial gap. AgBr is listed here and also in the Schottky examples, and that is not a contradiction: it is one of the few solids that shows both defects.",
+        "common_mistakes": [
+          "Writing that the density decreases. That is the Schottky defect; a Frenkel defect leaves the density unchanged.",
+          "Giving NaCl as the example. Na⁺ and Cl⁻ are close in size, so NaCl shows the Schottky defect instead."
+        ],
+        "memory_tip": "Nothing leaves the crystal, so nothing about the density can change.",
+        "margin_note": "The unchanged density plus one silver halide example completes the second mark."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "The diagram",
+        "marks": 0,
+        "figure": {
+          "id": "frenkel_defect_grid",
+          "width": 520,
+          "height": 200,
+          "elements": [
+            {
+              "type": "label",
+              "id": "fk_r0c0",
+              "x": 80,
+              "y": 70,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fk_r0c1",
+              "x": 128,
+              "y": 70,
+              "text": "−",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fk_r0c2",
+              "x": 176,
+              "y": 70,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fk_r1c0",
+              "x": 80,
+              "y": 118,
+              "text": "−",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fk_r1c2",
+              "x": 176,
+              "y": 118,
+              "text": "−",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fk_r2c0",
+              "x": 80,
+              "y": 166,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fk_r2c1",
+              "x": 128,
+              "y": 166,
+              "text": "−",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "fk_r2c2",
+              "x": 176,
+              "y": 166,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "fk_vacancy",
+              "d": "M 122 98 L 144 98 L 144 120 L 122 120 Z",
+              "ms": 1260
+            },
+            {
+              "type": "label",
+              "id": "fk_interstitial_ion",
+              "x": 152,
+              "y": 96,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "fk_move_arrow",
+              "d": "M 137 100 L 150 88 M 144 88 L 150 88 L 150 94",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "fk_leader_interstitial",
+              "d": "M 250 88 L 172 88 M 180 84 L 172 88 L 180 92",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "fk_leader_vacancy",
+              "d": "M 250 160 L 146 124 M 154 126 L 146 124 L 150 132",
+              "ms": 1820
+            },
+            {
+              "type": "label",
+              "id": "fk_lbl_interstitial",
+              "x": 256,
+              "y": 92,
+              "text": "cation in interstitial site",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "fk_lbl_vacancy",
+              "x": 256,
+              "y": 164,
+              "text": "vacant lattice site",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The picture shows one cation out of its own site and sitting in the gap between lattice sites, with the empty square marking where it came from. Both features have to appear, because either one alone describes a different defect.",
+        "common_mistakes": [
+          "Drawing two empty sites. Two vacancies is the Schottky picture.",
+          "Drawing the moved ion on top of another lattice site. It must sit in the gap between sites, which is what interstitial means."
+        ],
+        "memory_tip": "One empty square and one plus sign sitting in a gap, joined by an arrow.",
+        "margin_note": "The question does not ask for a diagram, so this earns no marks. Both marks sit on the two written steps; draw it only if there is time."
+      }
+    ]
+  },
+  "insider_note": "The line that earns the second mark is that the density does not change. Write it beside the definition, because the Schottky question on the same paper is marked on the opposite line."
+}

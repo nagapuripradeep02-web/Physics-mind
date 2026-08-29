@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_monomers_of_buna_s_buna_n_dacron_neoprene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the names and structures of the monomers of the following polymers: 1) Buna-S 2) Buna-N 3) Dacron 4) Neoprene.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Monomers of Buna-S and Buna-N",
+      "marks": 1
+    },
+    {
+      "label": "Monomers of dacron and neoprene",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 24 on book p.98. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer is a four row table on book p.98. Rows 1 to 3 give names with structures and are correct. Row 4, neoprene, gives only the name \"Chloroprene (or) 2-Chloro-1, 3-Butadiene\" and NO structure, although the question asks for structures; the structure, CH₂=C(Cl)–CH=CH₂, is supplied here. The printed Dacron row draws terephthalic acid as a ring with the two COOH groups at opposite corners but never labels them 1,4-; the label is added, because 1,2- would be phthalic acid and would give glyptal instead. OVERLAP: Buna-N and its two monomers are also printed at VSAQ 8 on book p.96, so the book asks the same item twice in one chapter; the two cards are kept separate because the printed questions are separate."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_buna",
+        "kind": "text",
+        "label": "Monomers of Buna-S and Buna-N",
+        "marks": 1,
+        "mark_note": "Buna-S and Buna-N",
+        "lines": [
+          "1. Buna-S — two monomers:",
+          {
+            "text": "1,3-butadiene, CH₂=CH–CH=CH₂",
+            "style": "indent"
+          },
+          {
+            "text": "styrene, C₆H₅–CH=CH₂",
+            "style": "indent"
+          },
+          "2. Buna-N — two monomers:",
+          {
+            "text": "1,3-butadiene, CH₂=CH–CH=CH₂",
+            "style": "indent"
+          },
+          {
+            "text": "vinyl cyanide, CH₂=CH–CN",
+            "style": "indent"
+          },
+          "Both are addition copolymers, and both",
+          "are elastomers."
+        ],
+        "why": "The two rubbers share 1,3-butadiene, so the only thing to remember for each is the second monomer, and the letter after Buna names it. Writing the shared monomer first turns the pair into one fact instead of two.",
+        "common_mistakes": [
+          "Writing 1,3-butadiene with only one double bond. It is a diene, CH₂=CH–CH=CH₂.",
+          "Swapping styrene and vinyl cyanide between the two rubbers. S is styrene and N is nitrile."
+        ],
+        "memory_tip": "Bu from butadiene in both; the last letter names the partner monomer.",
+        "margin_note": "Names and structures are both asked, so write the formula beside every name."
+      },
+      {
+        "id": "s2_dacron_neoprene",
+        "kind": "boxed_final",
+        "label": "Monomers of dacron and neoprene",
+        "marks": 1,
+        "mark_note": "Dacron and neoprene",
+        "lines": [
+          "3. Dacron (terylene) — two monomers:",
+          {
+            "text": "ethylene glycol, HO–CH₂–CH₂–OH",
+            "style": "indent"
+          },
+          {
+            "text": "terephthalic acid, HOOC–C₆H₄–COOH",
+            "style": "indent"
+          },
+          "with the two –COOH groups para, 1,4-",
+          "4. Neoprene — one monomer:",
+          {
+            "text": "chloroprene, CH₂=C(Cl)–CH=CH₂",
+            "style": "boxed"
+          },
+          "Chloroprene is also called",
+          "2-chloro-1,3-butadiene, so neoprene is a",
+          "homopolymer."
+        ],
+        "why": "Dacron is a condensation copolymer made from an alcohol and an acid, while neoprene is an addition homopolymer from a single diene. Setting them side by side shows that the number of monomers, not the type of chain, is what this question tests.",
+        "common_mistakes": [
+          "Writing neoprene as a copolymer. It has one monomer, chloroprene, so it is a homopolymer.",
+          "Writing terephthalic acid with the two groups next to each other. Those are 1,2-, which is phthalic acid and gives glyptal, not dacron."
+        ],
+        "memory_tip": "Chloroprene is 1,3-butadiene with a chlorine on carbon 2.",
+        "margin_note": "The question says structures, so the chloroprene formula must be written; the name on its own is usually half of this item."
+      }
+    ]
+  },
+  "insider_note": "Neoprene is the item most often lost, because the book gives its name and no structure. Write chloroprene as CH₂=C(Cl)–CH=CH₂."
+}

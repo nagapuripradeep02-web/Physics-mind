@@ -1,0 +1,166 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_negative_deviation_raoult",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is meant by negative deviation from Raoult's law and how is the sign of ΔHmix related to negative deviation from Raoult's law?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What negative deviation means",
+      "marks": 1
+    },
+    {
+      "label": "Why the vapour pressure is lower",
+      "marks": 1
+    },
+    {
+      "label": "The sign of ΔHmix",
+      "marks": 1
+    },
+    {
+      "label": "Characteristics and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed answer (book p.67, SAQ 3) is chemically correct: pA < pA⁰xA, ΔHmix < 0, ΔVmix < 0, and the four examples HNO₃ with water, chloroform with acetone, acetic acid with pyridine, and hydrochloric acid with water are all genuine negative-deviation pairs. BOOK SLOPPINESS: the book's point 2 reads \"weak A - A and B - B bonds are broken and strong A - B bonds is formed\", with a plural-singular disagreement and with the word BONDS used for what are intermolecular INTERACTIONS. The chemistry is right; the wording is corrected here. FIGURE SCOPE: the book prints a vapour-pressure against mole-fraction graph under \"Characteristics of a solutions showing negative deviation\" (its own heading also has a grammar slip), but the QUESTION does not ask for the characteristics or for a graph, so no figure is authored and the characteristics are written in words. NOTATION: pA, pB, xA and xB are written with plain capital letters because Unicode has no subscript capital A or B."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solutions — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "What negative deviation means",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "lines": [
+          "When the vapour pressure of a solution is",
+          "LOWER than the value predicted by Raoult's",
+          "law, the solution is said to show a",
+          "negative deviation from Raoult's law.",
+          "For a solution of two volatile liquids A",
+          "and B,",
+          {
+            "text": "pA < pA⁰ xA  and  pB < pB⁰ xB",
+            "style": "eq"
+          }
+        ],
+        "why": "Raoult's law gives the partial pressure an ideal solution would have at that composition, pA⁰xA. Deviation is measured against that predicted value, so a negative deviation is a partial pressure that falls below the straight line, whatever the actual pressure happens to be.",
+        "common_mistakes": [
+          "Saying the vapour pressure is lower than that of the pure liquids. It is lower than the value RAOULT'S LAW predicts for that composition.",
+          "Writing the inequality the wrong way round. Negative deviation means pA is less than pA⁰xA."
+        ],
+        "memory_tip": "Negative deviation, vapour pressure below the Raoult's law line.",
+        "margin_note": "Both the sentence and the inequality are wanted. The words \"predicted by Raoult's law\" carry the mark."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "Why the vapour pressure is lower",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "In such a solution the interactions between",
+          "the two different molecules (A–B) are",
+          "STRONGER than the interactions between",
+          "like molecules, solute–solute (A–A) and",
+          "solvent–solvent (B–B).",
+          "Molecules are therefore held more firmly",
+          "in the solution than in their pure liquids,",
+          "so fewer of them leave the surface and the",
+          "vapour pressure falls.",
+          "In chloroform and acetone the strong A–B",
+          "interaction is a hydrogen bond."
+        ],
+        "why": "A molecule enters the vapour only if it can separate from the molecules around it. Here each molecule has stronger neighbours in the solution than it had in its own pure liquid, so a smaller fraction reaches the vapour at the same temperature and both partial pressures fall below the ideal values.",
+        "common_mistakes": [
+          "Saying the A–B interaction is weaker. Weaker A–B interaction raises the vapour pressure, which is POSITIVE deviation.",
+          "Naming the strong A–B interaction as a covalent bond. It is an intermolecular interaction, in this pair a hydrogen bond."
+        ],
+        "memory_tip": "Stronger A–B interactions, fewer molecules leave the surface, lower vapour pressure.",
+        "margin_note": "Name all three interactions A–A, B–B and A–B. The chloroform and acetone hydrogen bond is the standard illustration."
+      },
+      {
+        "id": "s3_enthalpy",
+        "kind": "equation",
+        "label": "The sign of ΔHmix",
+        "marks": 1,
+        "mark_note": "Sign of ΔHmix",
+        "lines": [
+          "On mixing, the weaker A–A and B–B",
+          "interactions are broken and stronger A–B",
+          "interactions are formed.",
+          "Forming them releases more energy than is",
+          "taken in to break the like interactions,",
+          "so heat is given out.",
+          {
+            "text": "ΔHmix < 0  (negative, exothermic)",
+            "style": "eq"
+          },
+          {
+            "text": "ΔVmix < 0  (negative, volume decreases)",
+            "style": "eq"
+          }
+        ],
+        "why": "Enthalpy of mixing is the energy taken in to break the like interactions minus the energy released as the unlike ones form. When the unlike interactions are the stronger set, the released term is the larger of the two and ΔHmix is negative. The same strong A–B interaction pulls the molecules closer, so the volume decreases and ΔVmix is negative as well.",
+        "common_mistakes": [
+          "Giving ΔHmix a positive sign. Positive is endothermic and belongs to POSITIVE deviation.",
+          "Calling the mixing exothermic and then saying the solution cools. An exothermic mixing gives out heat, so the solution warms."
+        ],
+        "memory_tip": "Negative deviation goes with negative ΔHmix and negative ΔVmix. All three signs match.",
+        "margin_note": "The word exothermic beside ΔHmix < 0 shows the sign was reasoned. Mixing HNO₃ with water warming up is the everyday case."
+      },
+      {
+        "id": "s4_characteristics",
+        "kind": "boxed_final",
+        "label": "Characteristics and examples",
+        "marks": 1,
+        "mark_note": "Characteristics",
+        "lines": [
+          "Characteristics of a solution showing",
+          "negative deviation:",
+          {
+            "text": "pA < pA⁰ xA ;  pB < pB⁰ xB",
+            "style": "indent"
+          },
+          {
+            "text": "ΔHmix < 0 ;  ΔVmix < 0",
+            "style": "boxed"
+          },
+          "A large negative deviation gives a",
+          "MAXIMUM boiling azeotrope.",
+          "Examples: nitric acid and water;",
+          "chloroform and acetone; acetic acid and",
+          "pyridine; hydrochloric acid and water."
+        ],
+        "why": "The three signs all follow from the same cause: strong A–B interactions lower the vapour pressure, give out heat and pull the volume in. A low vapour pressure means the mixture boils at a higher temperature than either pure liquid, which is why these pairs form maximum boiling azeotropes.",
+        "common_mistakes": [
+          "Pairing negative deviation with a minimum boiling azeotrope. Low vapour pressure means a HIGH boiling point, so it is a maximum.",
+          "Giving ethanol and water as an example. That pair shows positive deviation and forms a minimum boiling azeotrope."
+        ],
+        "memory_tip": "Three negative signs together, and a maximum boiling azeotrope.",
+        "margin_note": "Two named examples are enough. The azeotrope line links this answer to the azeotrope question on the same paper."
+      }
+    ]
+  },
+  "insider_note": "This question and the positive deviation question are marked side by side, so every sign must be the mirror of the other card. Strong A–B interaction, pressure below the line, ΔHmix negative, ΔVmix negative, maximum boiling azeotrope."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_conductivity_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define conductivity of a material. Give its SI units.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The SI unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERRORS (book p.69, VSAQ 4). (a) The printed SI unit is \"mho m⁻¹ or sm⁻¹\" with a lower case s. The symbol for the siemens is a capital S, so the SI unit is S m⁻¹; mho is the older name for the same unit and is not SI. This card writes S m⁻¹ and names mho as the older word. (b) The printed definition is \"the conductance of a 1m³ (or) 1cm³ conductor\", which mixes the SI and the centimetre forms in one sentence and does not say the sample is a CUBE. A block of volume 1 m³ that is not a cube has a different conductance. The definition written here is the conductance of a conductor of unit length and unit area of cross section, which is a cube of unit side. NEIGHBOURING CARDS: unit 1 (Solid State) has band-theory cards that use the word conductivity for the movement of electrons in a solid. This card is about the conductivity κ = 1/ρ of a material, which is the quantity the electrochemistry chapter measures."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Conductivity κ is the conductance of a piece",
+          "of the material of unit length and unit area",
+          "of cross section, that is of a cube of unit",
+          "side.",
+          "It is the reciprocal of resistivity ρ.",
+          {
+            "text": "κ = 1/ρ = G × (l/A)",
+            "style": "boxed"
+          },
+          "G is the conductance and l/A is the cell",
+          "constant."
+        ],
+        "why": "Conductance depends on how big and how long the sample is, so it cannot describe the material itself. Fixing the length and the area at one unit each removes the shape from the number, and what is left is a property of the material alone.",
+        "common_mistakes": [
+          "Defining conductivity as the reciprocal of resistance. It is the reciprocal of resistivity; resistance is the reciprocal of conductance.",
+          "Leaving out the size. Without unit length and unit area the number describes the sample, not the material."
+        ],
+        "memory_tip": "Conductance is for a sample, conductivity is for the material. Fix the size at a unit cube and the shape drops out.",
+        "margin_note": "State the unit cube and the relation κ = 1/ρ. Either one alone is usually half the mark."
+      },
+      {
+        "id": "s2_si_unit",
+        "kind": "boxed_final",
+        "label": "The SI unit",
+        "marks": 1,
+        "mark_note": "SI unit",
+        "lines": [
+          {
+            "text": "SI unit of conductivity: S m⁻¹",
+            "style": "boxed"
+          },
+          "S is the siemens, and 1 S = 1 Ω⁻¹.",
+          "The older name for the same unit is the mho.",
+          "In laboratory work S cm⁻¹ is also used, and",
+          "1 S cm⁻¹ = 100 S m⁻¹."
+        ],
+        "why": "Resistivity is measured in Ω m, so its reciprocal is Ω⁻¹ m⁻¹, and Ω⁻¹ is given the name siemens. That is the whole of where the unit comes from, so it can be rebuilt rather than memorised.",
+        "common_mistakes": [
+          "Writing s m⁻¹ with a small s. A small s is the second; the siemens is a capital S.",
+          "Giving S cm⁻¹ as the SI unit. S cm⁻¹ is used in the laboratory, but the SI unit is S m⁻¹."
+        ],
+        "memory_tip": "Resistivity is Ω m, so conductivity is Ω⁻¹ m⁻¹, and Ω⁻¹ is written S.",
+        "margin_note": "The question asks for SI units, so write S m⁻¹. Adding mho m⁻¹ beside it does no harm."
+      }
+    ]
+  },
+  "insider_note": "The book prints the unit with a small s, which reads as seconds. Write a capital S: the SI unit is S m⁻¹."
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_nylon_6_and_nylon_66_monomers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the monomer repeating units of nylon-6 and nylon-6,6?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Nylon-6",
+      "marks": 1
+    },
+    {
+      "label": "Nylon-6,6",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 15 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SPELLING AND GAP: the printed answer is \"In Nylon-6, monomer is caprolactum. In Nylon-6, 6, monomers are hexamethylene diamine and adipic acid.\" The chemistry is correct and is kept; caprolactum is a misspelling of caprolactam and is corrected. The question asks for the repeating UNITS and the printed answer gives only monomer names, no units at all; both repeating units are written here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nylon6",
+        "kind": "text",
+        "label": "Nylon-6",
+        "marks": 1,
+        "mark_note": "Nylon-6",
+        "lines": [
+          "Nylon-6 is made from one monomer,",
+          "caprolactam, the cyclic amide of",
+          "6-aminohexanoic acid.",
+          "Its repeating unit is",
+          {
+            "text": "–[NH–(CH₂)₅–CO]–",
+            "style": "eq"
+          },
+          "One monomer means nylon-6 is a",
+          "homopolymer."
+        ],
+        "why": "Caprolactam is a ring, so no water is released when it opens: the ring breaks at its amide bond and the two ends join the neighbours. That is why nylon-6 needs only one starting material while nylon-6,6 needs two.",
+        "common_mistakes": [
+          "Writing the monomer of nylon-6 as hexamethylene diamine. That is a monomer of nylon-6,6.",
+          "Spelling it caprolactum. It is caprolactam, because it is a lactam, a cyclic amide."
+        ],
+        "memory_tip": "Nylon-6 has one 6 in its name, so one monomer with six carbons.",
+        "margin_note": "Naming caprolactam is the mark. The repeating unit is one extra line and makes it safe."
+      },
+      {
+        "id": "s2_nylon66",
+        "kind": "boxed_final",
+        "label": "Nylon-6,6",
+        "marks": 1,
+        "mark_note": "Nylon-6,6",
+        "lines": [
+          "Nylon-6,6 is made from two monomers:",
+          {
+            "text": "hexamethylene diamine,",
+            "style": "indent"
+          },
+          {
+            "text": "H₂N–(CH₂)₆–NH₂",
+            "style": "indent"
+          },
+          {
+            "text": "adipic acid, HOOC–(CH₂)₄–COOH",
+            "style": "indent"
+          },
+          {
+            "text": "–[NH–(CH₂)₆–NH–CO–(CH₂)₄–CO]–",
+            "style": "boxed"
+          },
+          "Two monomers mean nylon-6,6 is a",
+          "copolymer, and one water molecule is",
+          "released at every amide link."
+        ],
+        "why": "Both monomers have six carbons, and the two sixes in the name record that. Adipic acid shows only four –CH₂– groups because two of its six carbons are the –COOH carbons, and that count is the one students most often get wrong.",
+        "common_mistakes": [
+          "Writing adipic acid as HOOC–(CH₂)₆–COOH. It is HOOC–(CH₂)₄–COOH; the two –COOH carbons make the total six.",
+          "Giving caprolactam as a monomer of nylon-6,6. Caprolactam belongs to nylon-6."
+        ],
+        "memory_tip": "Nylon-6,6 has two sixes in its name, so two monomers of six carbons each.",
+        "margin_note": "Both monomer names are the mark. Add the repeating unit, because this question asks for units."
+      }
+    ]
+  },
+  "insider_note": "The number of sixes in the name is the number of monomers. Nylon-6 has one and nylon-6,6 has two."
+}

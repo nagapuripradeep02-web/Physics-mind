@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_half_life_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is half - life of a reaction ? Illustrate your answer with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed definition and the printed ¹⁴C example are both CORRECT and are kept. The half life symbol is written t1/2 in plain text throughout this unit. NOTE: the printed answer stops at the definition and the number 5730 years. The added sentence, that a first order half life does not depend on the starting amount, is the property the example actually illustrates, and it is the line VSAQ 8 and LAQ 1 are marked on."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The half life of a reaction, written t1/2, is",
+          "the time in which the concentration of a",
+          "reactant falls to one half of its initial",
+          "value.",
+          "It is a measure of how fast a reaction is:",
+          "a short half life means a fast reaction."
+        ],
+        "why": "The half life is useful because it is one number that does not need the starting concentration to be quoted with it. For a first order reaction it depends only on k, so two samples of different size have the same half life.",
+        "common_mistakes": [
+          "Saying it is the time for half the reaction to finish in every case. The definition is about the concentration of a reactant falling to half.",
+          "Writing that a long half life means a fast reaction. It is the opposite: a long half life means a slow reaction."
+        ],
+        "memory_tip": "Half life = time for the reactant to drop to half. Short half life, fast reaction.",
+        "margin_note": "The words one half of its initial concentration carry this mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "equation",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: the decay of ¹⁴C has",
+          {
+            "text": "t1/2 = 5730 years",
+            "style": "eq"
+          },
+          "In 5730 years half of the ¹⁴C present at the",
+          "start is left. In another 5730 years half of",
+          "that is left, that is one quarter.",
+          "For a first order reaction",
+          {
+            "text": "t1/2 = 0.693 / k",
+            "style": "eq"
+          },
+          "so the half life does not depend on how",
+          "much was there to begin with."
+        ],
+        "why": "Following the sample through two half lives is what shows the meaning: a fixed fraction is lost in each equal interval, not a fixed amount. That is the shape of first order decay, and it is why the formula contains only k.",
+        "common_mistakes": [
+          "Writing that all the ¹⁴C is gone after two half lives. After two half lives one quarter is still left.",
+          "Saying a bigger sample has a longer half life. For first order the half life is 0.693/k whatever the starting amount."
+        ],
+        "memory_tip": "Half, then half of that. One half life takes a sample to 1/2, two take it to 1/4.",
+        "margin_note": "One worked example plus t1/2 = 0.693/k completes this mark."
+      }
+    ]
+  },
+  "insider_note": "Follow the example through a second half life. Writing that a quarter is left after 11460 years is the line that shows the definition was understood rather than copied."
+}

@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_ethyl_cyanide_and_isocyanide_from_alkyl_halide",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How do you prepare ethyl cyanide and ethyl isocyanide from a common alkyl halide?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The common alkyl halide",
+      "marks": 1
+    },
+    {
+      "label": "Ethyl cyanide with alcoholic KCN",
+      "marks": 1
+    },
+    {
+      "label": "Ethyl isocyanide with alcoholic AgCN",
+      "marks": 1
+    },
+    {
+      "label": "Why the two reagents differ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.117 as SAQ 8. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, corrected on this card (book p.117, SAQ 8): both printed equations leave out the metal halide. They read \"C₂H₅Cl + KCN → C₂H₅CN + C₂H₅NC\" and \"C₂H₅Cl + AgCN → C₂H₅NC + C₂H₅CN\", so neither balances in potassium, silver or chlorine. The balanced forms C₂H₅Cl + KCN → C₂H₅CN + KCl and C₂H₅Cl + AgCN → C₂H₅NC + AgCl are written here, with the minor product noted separately in words. BOOK GAP, filled here: the printed answer states which product is major with each reagent but gives no reason at all. The reason — KCN is ionic and releases a free cyanide ion, which bonds through its more nucleophilic carbon, while AgCN is largely covalent so only the nitrogen lone pair is free — is the fourth mark on this card."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common_halide",
+        "kind": "text",
+        "label": "The common alkyl halide",
+        "marks": 1,
+        "mark_note": "The halide",
+        "lines": [
+          "The common alkyl halide is chloroethane,",
+          "C₂H₅Cl, also called ethyl chloride.",
+          "The same halide gives both products; only",
+          "the metal cyanide is changed.",
+          "Both reactions are carried out in alcohol,",
+          "and both are nucleophilic substitutions."
+        ],
+        "why": "The question asks for one starting material for two products, so the answer must open by naming it. Everything after this turns on the single change from potassium cyanide to silver cyanide.",
+        "common_mistakes": [
+          "Using a different halide for each product. The question asks for one common alkyl halide.",
+          "Changing the halide between the two equations. Bromoethane or iodoethane may be used instead, but the same one must appear in both."
+        ],
+        "memory_tip": "One halide, two reagents. Only the metal changes, from potassium to silver.",
+        "margin_note": "State the common halide in the first line. It is the part of the question most often skipped over."
+      },
+      {
+        "id": "s2_cyanide",
+        "kind": "equation",
+        "label": "Ethyl cyanide with KCN",
+        "marks": 1,
+        "mark_note": "With KCN",
+        "lines": [
+          {
+            "text": "C₂H₅Cl + KCN → C₂H₅CN + KCl",
+            "style": "eq"
+          },
+          {
+            "text": "[alcoholic KCN]",
+            "style": "indent"
+          },
+          "The major product is ethyl cyanide,",
+          "C₂H₅–C≡N, which is propanenitrile.",
+          "A small amount of ethyl isocyanide is also",
+          "formed as the minor product."
+        ],
+        "why": "The alkyl group bonds to the CARBON of the cyanide group, which is why the product is written C₂H₅–CN. Counting the nitrile carbon makes this a three-carbon compound, propanenitrile, even though the alkyl group has only two carbons.",
+        "common_mistakes": [
+          "Leaving KCl out of the equation. Without it the equation does not balance in potassium or chlorine.",
+          "Naming C₂H₅CN as ethanenitrile. The nitrile carbon counts, so it is propanenitrile."
+        ],
+        "memory_tip": "K for potassium, C for carbon: the ionic cyanide bonds through carbon and gives the cyanide.",
+        "margin_note": "Write major beside the cyanide and minor beside the isocyanide. The book prints both words."
+      },
+      {
+        "id": "s3_isocyanide",
+        "kind": "equation",
+        "label": "Ethyl isocyanide with AgCN",
+        "marks": 1,
+        "mark_note": "With AgCN",
+        "lines": [
+          {
+            "text": "C₂H₅Cl + AgCN → C₂H₅NC + AgCl",
+            "style": "eq"
+          },
+          {
+            "text": "[alcoholic AgCN]",
+            "style": "indent"
+          },
+          "The major product is ethyl isocyanide,",
+          "C₂H₅–N≡C, also called ethyl carbylamine.",
+          "A small amount of ethyl cyanide is formed",
+          "as the minor product."
+        ],
+        "why": "Here the alkyl group bonds to the NITROGEN of the cyanide group, so the product is written C₂H₅–NC. The two products have the same formula but different structures, which is why only the reagent needs to change.",
+        "common_mistakes": [
+          "Leaving AgCl out of the equation. Silver chloride is a product and the equation must show it.",
+          "Writing the same structure for both products. C₂H₅CN is joined through carbon and C₂H₅NC through nitrogen."
+        ],
+        "memory_tip": "Ag for silver, N for nitrogen: the covalent silver salt leaves only nitrogen free, so the isocyanide forms.",
+        "margin_note": "Draw the C≡N and N≡C linkages clearly. The difference between the two products is where the alkyl group is joined."
+      },
+      {
+        "id": "s4_reason",
+        "kind": "boxed_final",
+        "label": "Why the reagents differ",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "KCN is ionic, so it gives a free CN⁻ ion in",
+          "solution.",
+          "That ion can bond through either atom, but",
+          "carbon is the stronger nucleophile, so the",
+          "cyanide is the major product.",
+          "AgCN is largely covalent; its carbon is",
+          "already bonded to silver, so only the",
+          "nitrogen lone pair is free to bond.",
+          {
+            "text": "KCN → cyanide · AgCN → isocyanide",
+            "style": "boxed"
+          }
+        ],
+        "why": "The cyanide group is ambident: it has a lone pair on carbon and another on nitrogen, so it can bond through either atom. Which one is used depends on whether the metal salt releases the ion freely or keeps its carbon in a covalent bond.",
+        "common_mistakes": [
+          "Saying nitrogen is the stronger nucleophile in the free ion. Carbon is, which is why the ionic salt gives the cyanide.",
+          "Explaining the difference by the size of the metal. It is the ionic or covalent character of the metal cyanide that matters."
+        ],
+        "memory_tip": "A free ion bonds through carbon; when the carbon is already bonded to silver, only nitrogen is left to bond. Ionic gives the cyanide, covalent gives the isocyanide.",
+        "margin_note": "The word ambident is worth writing. It names the property that explains both products."
+      }
+    ]
+  },
+  "insider_note": "Three of the four marks are equations and names; the fourth is the reason, which the book leaves out entirely. Write that KCN is ionic and AgCN is largely covalent, and both printed equations need the metal halide added on the right before they balance."
+}

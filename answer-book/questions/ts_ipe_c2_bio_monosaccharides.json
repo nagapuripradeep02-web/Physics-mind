@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_monosaccharides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are monosaccharides?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 1. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Monosaccharides are the simplest",
+          "carbohydrates.",
+          "They cannot be hydrolysed into any simpler",
+          "carbohydrate unit.",
+          "General formula Cₙ(H₂O)ₙ, with n = 3 to 7."
+        ],
+        "why": "The whole definition sits in the words \"cannot be hydrolysed further\". A sugar that gives two units on hydrolysis is a disaccharide, so the no-hydrolysis clause is what separates a monosaccharide from every other carbohydrate.",
+        "common_mistakes": [
+          "Writing only \"a simple sugar\". The mark is for the words \"cannot be hydrolysed to a simpler carbohydrate\".",
+          "Calling sucrose a monosaccharide. Sucrose gives glucose and fructose on hydrolysis, so it is a disaccharide."
+        ],
+        "memory_tip": "Mono means one unit, so hydrolysis has nothing left to split.",
+        "margin_note": "Write the no-hydrolysis clause. A one-word answer such as \"simple sugars\" is usually half this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: glucose and fructose, both C₆H₁₂O₆",
+            "style": "boxed"
+          },
+          "Glucose is an aldose; it has a –CHO group.",
+          "Fructose is a ketose; it has a >C=O group",
+          "at carbon 2.",
+          "Ribose, C₅H₁₀O₅, is also a monosaccharide."
+        ],
+        "why": "Giving one aldose and one ketose shows that the class is defined by the number of units, not by the carbonyl group. Glucose and fructose have the same molecular formula and are still different sugars, which is the point the examples carry.",
+        "common_mistakes": [
+          "Writing fructose as an aldose. Fructose has a keto group at carbon 2, not a –CHO group.",
+          "Giving maltose or lactose as an example. Both are disaccharides."
+        ],
+        "memory_tip": "Glucose has the –CHO; fructose has the >C=O one carbon in.",
+        "margin_note": "Two named examples finish this mark. Adding the formula C₆H₁₂O₆ costs one second and is worth it."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for two things only: the words \"cannot be hydrolysed further\" and two named sugars. Write both in three lines and move on."
+}

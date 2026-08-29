@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_thermosetting_polymers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are thermosetting polymers? Give example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples with their monomers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 20 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR: the printed answer is \"Polymers which are not soft on heating and becomes hard on heating are called thermosetting polymers\". That is circular and wrong at its first clause: a thermosetting material IS soft when first heated in the mould, which is how it is shaped, and only after setting can it no longer be softened. The correct statement is written here — heavily cross linked polymers, prepared as a soft semi-fluid material, heated in a mould where more cross links form, setting into a hard infusible solid that cannot be remoulded. The printed examples, Bakelite and urea formaldehyde resins, are correct and are kept. GAP: the book never gives the monomers of urea-formaldehyde resin, which are urea, H₂N–CO–NH₂, and formaldehyde, HCHO; they are supplied."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Thermosetting polymers are heavily cross",
+          "linked polymers.",
+          "They are prepared first as a soft,",
+          "semi-fluid material, which is then heated",
+          "in a mould. The heating builds many more",
+          "cross links, and the polymer sets into a",
+          "hard, infusible solid.",
+          "Once set it cannot be softened again by",
+          "heating, so it cannot be remoulded."
+        ],
+        "why": "The cross links turn the whole moulded piece into one giant covalent network, so no separate chains are left to slide. Heating a set piece therefore cannot soften it; enough heat only decomposes it.",
+        "common_mistakes": [
+          "Writing that a thermosetting polymer is never soft on heating. It is soft when first heated in the mould; only after setting can it no longer be softened.",
+          "Leaving out the cross links. They are the reason for every other property in the answer."
+        ],
+        "memory_tip": "Heated once it sets; heated again it does not soften.",
+        "margin_note": "Cross linked, set in a mould, and cannot be remoulded are the three items in this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples with their monomers",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: Bakelite, urea–formaldehyde resin",
+            "style": "boxed"
+          },
+          "Bakelite: from phenol, C₆H₅OH, and",
+          "formaldehyde, HCHO.",
+          "Urea–formaldehyde resin: from urea,",
+          "H₂N–CO–NH₂, and formaldehyde, HCHO.",
+          "Both come from monomers with three or",
+          "more reactive sites, which is what builds",
+          "a network instead of a chain."
+        ],
+        "why": "Phenol reacts at two ortho positions and one para position, and urea has four N–H hydrogens, so each of them can link in more than two directions. A monomer with only two reactive sites can build a chain but never a network.",
+        "common_mistakes": [
+          "Giving polythene or PVC. Both are thermoplastic, with straight chains and no cross links.",
+          "Naming Bakelite without its monomers. Phenol and formaldehyde are what the examiner checks."
+        ],
+        "memory_tip": "Three or more reactive sites on a monomer build a network, not a chain.",
+        "margin_note": "Two examples finish this mark. Bakelite and urea-formaldehyde resin are the pair the book prints."
+      }
+    ]
+  },
+  "insider_note": "This whole answer depends on one term, cross linked. Write it in the first line, then the mould, then the fact that it cannot be remoulded."
+}

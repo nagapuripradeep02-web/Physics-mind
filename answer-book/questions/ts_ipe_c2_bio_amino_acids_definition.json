@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_amino_acids_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are amino acids? Give two examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.101 as VSAQ 23. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer calls amino acids \"the building blocks of proteins\". That is a figure of speech, so this card says they are the units from which proteins are made. The printed answer also gives no structures; glycine and alanine are written out here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An amino acid is an organic compound that",
+          "carries both an amino group, –NH₂, and a",
+          "carboxyl group, –COOH.",
+          "In the α-amino acids that make up proteins,",
+          "both groups are attached to the same carbon",
+          "atom, the α-carbon."
+        ],
+        "why": "Two groups on the same molecule is the definition, and it is the reason amino acids can join end to end into a protein: the –COOH of one reacts with the –NH₂ of the next. Saying \"α-amino acid\" fixes where the groups sit, which is what the proteins of the body are made of.",
+        "common_mistakes": [
+          "Naming only one of the two groups. Both –NH₂ and –COOH are needed for the definition.",
+          "Leaving out the word α. Amino acids with the groups on different carbon atoms exist but do not build proteins."
+        ],
+        "memory_tip": "Amino for –NH₂, acid for –COOH, both on the same carbon.",
+        "margin_note": "Write both group formulae, not just their names. That is what the examiner reads for."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: glycine and alanine",
+            "style": "boxed"
+          },
+          "Glycine is H₂N–CH₂–COOH.",
+          "Alanine is H₂N–CH(CH₃)–COOH.",
+          "Amino acids are the units from which all",
+          "proteins are made; about 20 of them occur",
+          "in the proteins of the body."
+        ],
+        "why": "Glycine is the simplest amino acid, with a hydrogen atom as its side chain, and alanine is the next simplest, with a methyl group; the pair shows that the side chain is the only part that varies. About 20 of them, in different orders, account for every protein in the body.",
+        "common_mistakes": [
+          "Giving a compound with only one functional group as an example. Acetic acid and methylamine are not amino acids.",
+          "Writing that there are 20 amino acids in nature. There are about 20 in proteins; many more exist elsewhere."
+        ],
+        "memory_tip": "Glycine has H as its side chain, alanine has CH₃.",
+        "margin_note": "Two names finish this mark, but write the structures too: they take one line and prove the definition."
+      }
+    ]
+  },
+  "insider_note": "Both groups, then two names. Adding the two structures costs one line and turns a memorised answer into a proved one."
+}

@@ -1,0 +1,262 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_colour_of_transition_metal_ions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Why do transition metal ions exhibit characteristic colours in aqueous solution? Explain giving an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Unpaired d electrons and the free ion",
+      "marks": 1
+    },
+    {
+      "label": "Crystal field splitting",
+      "marks": 1
+    },
+    {
+      "label": "The d-d transition and the complementary colour",
+      "marks": 1
+    },
+    {
+      "label": "Worked example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.94 as Short Answer 7 — the last question of the chapter, immediately before the \"9. POLYMERS\" banner on book p.95. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WAVELENGTH WRONG (book p.94, Short Answer 7): the printed answer says [Ti(H₂O)₆]³⁺ \"absorb green and yellow light (λ = 500-570 nm) ... and transmits a mixture of red and violet light (λ = 400-450 nm)\". The absorbed range is right. The transmitted range is not: 400-450 nm is violet and blue, while red light lies near 620-750 nm, so one range cannot cover both. The card keeps the correct absorbed range and names the transmitted light as blue and red without attaching the wrong single wavelength band to it. BOOK EXAMPLE LIST KEPT: MnCl₂ pink, CuCl₂ blue, NiSO₄ green and CuSO₄·5H₂O blue are all correct. TREND AND EXCEPTION NAMED HERE: the colour rule holds across the first series with two exceptions at its ends — Sc³⁺ (3d⁰) and Zn²⁺ (3d¹⁰) are colourless, and so are Ti⁴⁺ (3d⁰) and Cu⁺ (3d¹⁰). FIGURE SCOPE: the question says \"explain\", not \"draw\", so the splitting diagram carries NO marks and no mark note, and all four marks sit on the written steps. It is drawn because the splitting of one energy level into two is the one part of this answer that words alone do not settle. The book prints its own version of the same diagram."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "d and f Block Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_unpaired_electrons",
+        "kind": "text",
+        "label": "Unpaired d electrons",
+        "marks": 1,
+        "mark_note": "Unpaired d electrons",
+        "lines": [
+          "Hydrated ions and salts of most",
+          "transition metals are coloured.",
+          "Examples: MnCl₂ is pink, NiSO₄ is green,",
+          "CuCl₂ is blue, CuSO₄·5H₂O is blue.",
+          "The colour comes from unpaired electrons",
+          "in a partly filled d subshell.",
+          "In the free gaseous ion all five d",
+          "orbitals have the same energy; they are",
+          "degenerate, so no colour appears."
+        ],
+        "why": "Two conditions must be met before a d-block ion is coloured: a partly filled d subshell, and a set of ligands around it. The free gaseous ion meets only the first, and its five degenerate d orbitals leave no energy gap for light to be absorbed across, so it is colourless. Water supplies the second condition in aqueous solution.",
+        "common_mistakes": [
+          "Saying the colour comes from the anion. MnCl₂, NiSO₄ and CuSO₄ have different anions, and the colour follows the metal ion.",
+          "Saying a free gaseous transition metal ion is coloured. Its five d orbitals are degenerate, so there is no gap to absorb across."
+        ],
+        "memory_tip": "Colour needs two things at once: unpaired d electrons and ligands around the ion.",
+        "margin_note": "Give at least two coloured salts by name and colour. The examples are part of this mark."
+      },
+      {
+        "id": "s2_crystal_field_splitting",
+        "kind": "text",
+        "label": "Crystal field splitting",
+        "marks": 1,
+        "mark_note": "Splitting into two sets",
+        "lines": [
+          "When ligands such as H₂O approach, they",
+          "repel the d electrons unequally, because",
+          "the five d orbitals point in different",
+          "directions.",
+          "The five degenerate orbitals split into",
+          "two sets of different energy.",
+          "This is called crystal field splitting,",
+          "and the energy gap is written Δo.",
+          "In an octahedral field the lower set is",
+          "t2g, of three orbitals, and the upper",
+          "set is eg, of two orbitals."
+        ],
+        "why": "The splitting comes from where the orbitals point. In an octahedral complex the ligands approach along the x, y and z axes, so the two orbitals that point along those axes, dx²−y² and dz², are repelled more and rise in energy, while the three that point between the axes, dxy, dyz and dzx, are repelled less and fall. That is the whole reason the five-fold degeneracy is broken.",
+        "common_mistakes": [
+          "Saying the sets are three above and two below. In an octahedral field it is three below, t2g, and two above, eg.",
+          "Calling the splitting a change in the number of d electrons. The number is unchanged; only their energies separate."
+        ],
+        "memory_tip": "t2g has three orbitals and lies lower; eg has two and lies higher. Three below, two above.",
+        "margin_note": "Name both sets, t2g and eg, with their orbital counts. That naming is what earns this mark."
+      },
+      {
+        "id": "s3_splitting_figure",
+        "kind": "diagram",
+        "label": "Splitting diagram",
+        "marks": 0,
+        "figure": {
+          "id": "df_crystal_field_splitting",
+          "width": 580,
+          "height": 300,
+          "elements": [
+            {
+              "type": "label",
+              "id": "cfs_title",
+              "x": 44,
+              "y": 40,
+              "text": "Octahedral crystal field splitting",
+              "ms": 900,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cfs_free_title",
+              "x": 62,
+              "y": 128,
+              "text": "Free ion",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "cfs_free_level",
+              "d": "M 52 160 L 84 160 M 92 160 L 124 160 M 132 160 L 164 160 M 172 160 L 204 160 M 212 160 L 244 160",
+              "ms": 2290
+            },
+            {
+              "type": "label",
+              "id": "cfs_free_note",
+              "x": 40,
+              "y": 196,
+              "text": "five degenerate d orbitals",
+              "ms": 800,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "cfs_connectors",
+              "d": "M 250 157 L 344 112 M 250 163 L 334 232",
+              "ms": 3040,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cfs_eg_level",
+              "d": "M 350 108 L 392 108 M 402 108 L 444 108",
+              "ms": 1200
+            },
+            {
+              "type": "label",
+              "id": "cfs_eg_label",
+              "x": 350,
+              "y": 92,
+              "text": "eg (2 orbitals)",
+              "ms": 700,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "cfs_t2g_level",
+              "d": "M 338 236 L 376 236 M 386 236 L 424 236 M 434 236 L 472 236",
+              "ms": 1630
+            },
+            {
+              "type": "label",
+              "id": "cfs_t2g_label",
+              "x": 338,
+              "y": 264,
+              "text": "t2g (3 orbitals)",
+              "ms": 700,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "cfs_gap_arrow",
+              "d": "M 500 108 L 500 236 M 495 117 L 500 108 L 505 117 M 495 227 L 500 236 L 505 227",
+              "ms": 2420
+            },
+            {
+              "type": "label",
+              "id": "cfs_delta_label",
+              "x": 512,
+              "y": 178,
+              "text": "Δo",
+              "ms": 450
+            }
+          ]
+        },
+        "why": "The whole of this answer depends on one energy level becoming two, and that is a picture rather than a sentence. The single line on the left stands for the five degenerate d orbitals of the free ion; the two lines on the right are the eg set and the three lines are the t2g set, with the gap between them marked Δo.",
+        "common_mistakes": [
+          "Drawing the eg set below the t2g set. In an octahedral field eg is the higher of the two.",
+          "Marking the gap from the free-ion level to one of the split levels. Δo is the gap between the t2g set and the eg set."
+        ],
+        "memory_tip": "One line becomes two: three orbitals drop and two rise, and the gap between them is Δo.",
+        "margin_note": "The question says explain, not draw, so this earns no marks. All four marks sit on the written steps."
+      },
+      {
+        "id": "s4_dd_transition",
+        "kind": "text",
+        "label": "The d-d transition",
+        "marks": 1,
+        "mark_note": "d-d transition",
+        "lines": [
+          "When white light falls on the hydrated",
+          "ion, an electron in the lower t2g set",
+          "absorbs a photon of energy Δo and moves",
+          "to the upper eg set.",
+          "This is called a d-d transition.",
+          "The absorbed colour is removed from the",
+          "white light, and the light that passes",
+          "through is the complementary colour.",
+          "That transmitted colour is the one seen."
+        ],
+        "why": "For common aqua complexes the gap Δo happens to match photons in the visible range, which is why d-d transitions produce visible colour at all. Only the absorbed wavelength is removed and everything else passes through, so the colour observed is the complement of the colour absorbed, not the colour absorbed. The same argument explains why an ion with an empty or a full d subshell is colourless: no d-d transition is possible.",
+        "common_mistakes": [
+          "Saying the solution shows the colour it absorbs. It transmits the complementary colour; a solution absorbing orange-red looks blue.",
+          "Saying the electron is removed from the ion. It moves from the lower set to the upper set within the same subshell."
+        ],
+        "memory_tip": "Absorb one colour and transmit its complement. The complement is what is seen.",
+        "margin_note": "The words d-d transition and complementary colour are both marked. Write them in that order."
+      },
+      {
+        "id": "s5_example",
+        "kind": "boxed_final",
+        "label": "Worked example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Example: [Ti(H₂O)₆]³⁺",
+            "style": "boxed"
+          },
+          "Ti³⁺ is 3d¹, so it has one d electron.",
+          "The ion absorbs green and yellow light",
+          "(λ = 500–570 nm) and transmits blue and",
+          "red, so the solution looks purple.",
+          "Cu²⁺(aq) is 3d⁹: it absorbs orange-red",
+          "light and transmits greenish blue, so",
+          "copper salts look greenish blue.",
+          "Sc³⁺ (3d⁰) and Zn²⁺ (3d¹⁰) are",
+          "colourless: neither can make a d-d",
+          "transition."
+        ],
+        "why": "[Ti(H₂O)₆]³⁺ is the standard example because it has exactly one d electron and therefore exactly one absorption, so the argument is not complicated by several transitions at once. The book gives the transmitted light as λ = 400–450 nm; that range is violet and blue only, while red light lies near 620–750 nm, so one band cannot cover both. The transmitted light is written here as blue and red, which is the pair that mixes to purple. The two colourless ions at the ends of the series are worth naming because they show the rule from the other side.",
+        "common_mistakes": [
+          "Writing that Ti³⁺ has no d electron. Ti is 3d² 4s², so Ti³⁺ is 3d¹; it is Ti⁴⁺ that is 3d⁰.",
+          "Saying every d-block ion in water is coloured. Sc³⁺, Ti⁴⁺, Cu⁺ and Zn²⁺ are all colourless."
+        ],
+        "memory_tip": "[Ti(H₂O)₆]³⁺: one d electron, one absorption, a purple solution.",
+        "margin_note": "One worked example with the absorbed and the transmitted colour finishes the answer. The wavelength numbers are extra."
+      }
+    ]
+  },
+  "insider_note": "The order is fixed: unpaired d electrons, then splitting by the ligands, then the d-d transition, then the complementary colour. Write it in that order with one example; answers that start at the example usually lose the splitting mark."
+}

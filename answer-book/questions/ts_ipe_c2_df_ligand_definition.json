@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_ligand_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a ligand?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Types with examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.92 as VSAQ 12. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ANSWER KEPT AND COMPLETED (book p.92, VSAQ 12): the printed definition and the printed three-way split into positive, negative and neutral species are both correct, but the book gives examples of neutral and negative ligands only (NH₃, H₂O, Cl⁻) and none of a positive one, even though it lists the type. The card supplies NO⁺ and the hydrazinium ion NH₂–NH₃⁺. It also names the word LONE pair, which the book omits — a ligand donates a lone pair, which is why CH₄ with no lone pair is not a ligand."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A ligand is an ion or a molecule that",
+          "donates a lone pair of electrons to a",
+          "central metal atom or ion.",
+          "The bond formed is a coordinate covalent",
+          "bond, with both electrons supplied by",
+          "the ligand.",
+          "The atom of the ligand that donates the",
+          "pair is called the donor atom."
+        ],
+        "why": "Every ligand needs at least one lone pair, and that is why NH₃, H₂O and Cl⁻ are ligands while CH₄ is not. The metal supplies an empty orbital and the ligand supplies both electrons, which is what makes the bond coordinate rather than ordinary covalent.",
+        "common_mistakes": [
+          "Saying the metal donates the electron pair. The ligand donates it and the metal accepts it.",
+          "Calling CH₄ a ligand. It has no lone pair, so it has no donor atom."
+        ],
+        "memory_tip": "Ligand = lone pair donor. Metal = lone pair acceptor.",
+        "margin_note": "The words lone pair and coordinate covalent bond are the two marked terms."
+      },
+      {
+        "id": "s2_types",
+        "kind": "boxed_final",
+        "label": "Types with examples",
+        "marks": 1,
+        "mark_note": "Types and examples",
+        "lines": [
+          "A ligand may be negative, neutral or",
+          "positive.",
+          {
+            "text": "Negative: Cl⁻, CN⁻, OH⁻, C₂O₄²⁻",
+            "style": "indent"
+          },
+          {
+            "text": "Neutral: NH₃, H₂O, CO",
+            "style": "indent"
+          },
+          {
+            "text": "Positive: NO⁺, NH₂–NH₃⁺",
+            "style": "indent"
+          },
+          {
+            "text": "Every ligand is a Lewis base",
+            "style": "boxed"
+          },
+          "and the metal ion is the Lewis acid."
+        ],
+        "why": "Positive ligands are uncommon but real, and naming one shows the definition has been understood rather than copied, because a positive ion still has a lone pair to donate. Calling the ligand a Lewis base and the metal a Lewis acid states the same idea in the language of acids and bases used in the chemical bonding chapter.",
+        "common_mistakes": [
+          "Giving neutral examples only. One example from each of the three types is what completes this mark.",
+          "Writing Na⁺ as a ligand. Na⁺ has no lone pair to donate."
+        ],
+        "memory_tip": "Three kinds: negative such as Cl⁻, neutral such as NH₃, positive such as NO⁺.",
+        "margin_note": "Two or three examples are enough. Naming a positive ligand is the part most answers leave out."
+      }
+    ]
+  },
+  "insider_note": "A one-line definition is one mark. The second mark comes from examples that cover more than one charge type, so give a negative one and a neutral one at the least."
+}

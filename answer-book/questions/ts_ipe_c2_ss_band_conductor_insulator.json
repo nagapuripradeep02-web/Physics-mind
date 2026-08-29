@@ -1,0 +1,258 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_band_conductor_insulator",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "In terms of band theory, what is the difference between a conductor and an insulator?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two bands",
+      "marks": 1
+    },
+    {
+      "label": "The conductor",
+      "marks": 1
+    },
+    {
+      "label": "The insulator",
+      "marks": 1
+    },
+    {
+      "label": "The contrast",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.64, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer never defines the valence band or the conduction band, although the whole answer is written in those two terms (book p.64, SAQ 6). They are defined here from NCERT as step 1. The book also writes that an insulator has \"very small conductivity\"; the more exact statement, that it is too small to measure at ordinary temperatures, is used here. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks and the whole split sits on the four written steps. The book does print a band diagram, and it is reproduced because the size of the gap is the entire answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solid State — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bands",
+        "kind": "text",
+        "label": "The two bands",
+        "marks": 1,
+        "mark_note": "The bands",
+        "lines": [
+          "In a solid the atomic orbitals of all the atoms",
+          "combine into large groups of closely spaced",
+          "energy levels called bands.",
+          "The highest band that holds the valence",
+          "electrons is the valence band.",
+          "The empty band above it, in which an",
+          "electron is free to move through the solid, is",
+          "the conduction band.",
+          "The energy difference between them is the",
+          "energy gap or forbidden gap."
+        ],
+        "why": "The whole of band theory is a statement about these two bands and the space between them. An electron carries current only after it reaches the conduction band, so the size of the gap determines whether the solid conducts.",
+        "common_mistakes": [
+          "Writing that the valence band is always full. In a conductor it is only partly filled, and that is exactly why the metal conducts.",
+          "Treating the energy gap as a physical space inside the crystal. It is a range of energies that no electron in the solid can have."
+        ],
+        "memory_tip": "Valence band is where the electrons sit, conduction band is where they can travel.",
+        "margin_note": "Define both bands and the gap before comparing anything. Every later line uses these three terms."
+      },
+      {
+        "id": "s2_conductor",
+        "kind": "text",
+        "label": "The conductor",
+        "marks": 1,
+        "mark_note": "Conductor",
+        "lines": [
+          "In a conductor, such as a metal, the valence",
+          "band is only partly filled, or it overlaps the",
+          "conduction band.",
+          "So the energy gap is very small or there is",
+          "no gap at all.",
+          "Electrons move into the conduction band",
+          "with almost no extra energy, so a conductor",
+          "has a high conductivity."
+        ],
+        "why": "A partly filled band already has empty levels just above the filled ones, so a small applied voltage is enough to move an electron up and along. Where the two bands overlap the same thing is true, since there is no gap to cross.",
+        "common_mistakes": [
+          "Writing that a conductor has no valence band. It has one; it is either partly filled or overlapping the conduction band.",
+          "Saying a conductor needs no electrons in the conduction band. The current is carried by the electrons that move into it."
+        ],
+        "memory_tip": "Partly filled or overlapping. Either way an electron has an empty level just above it.",
+        "margin_note": "Both cases must appear: partly filled band AND overlapping bands. The book's diagram shows the two side by side."
+      },
+      {
+        "id": "s3_insulator",
+        "kind": "text",
+        "label": "The insulator",
+        "marks": 1,
+        "mark_note": "Insulator",
+        "lines": [
+          "In an insulator the valence band is completely",
+          "filled and the energy gap between it and the",
+          "conduction band is very large.",
+          "Electrons cannot take the energy needed to",
+          "cross such a large gap at room temperature.",
+          "The conduction band stays empty, so an",
+          "insulator has a conductivity too small to",
+          "measure."
+        ],
+        "why": "A full band cannot carry current, because an electron has no empty level to move into. The only way out is up into the conduction band, and in an insulator that step is far larger than the energy available at ordinary temperatures.",
+        "common_mistakes": [
+          "Writing that an insulator has no conduction band. It has one; the band is simply empty and out of reach.",
+          "Saying an insulator has no free electrons because its atoms have none. Its electrons exist but are all in a completely filled band."
+        ],
+        "memory_tip": "Full band below, large gap above, empty band on top. Nothing can move.",
+        "margin_note": "Say \"completely filled\" and \"very large gap\" in the same sentence. Those two phrases carry this mark."
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "The band diagram",
+        "marks": 0,
+        "figure": {
+          "id": "band_conductor_insulator",
+          "width": 500,
+          "height": 330,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "bci_conductor_bands",
+              "d": "M 50 100 L 115 100 L 115 160 L 50 160 Z M 50 160 L 115 160 L 115 220 L 50 220 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "bci_conductor_fill",
+              "d": "M 50 175 L 115 175 M 50 190 L 115 190 M 50 205 L 115 205",
+              "ms": 2790
+            },
+            {
+              "type": "stroke",
+              "id": "bci_insulator_bands",
+              "d": "M 200 62 L 265 62 L 265 110 L 200 110 Z M 200 190 L 265 190 L 265 240 L 200 240 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "bci_insulator_fill",
+              "d": "M 200 202 L 265 202 M 200 214 L 265 214 M 200 226 L 265 226",
+              "ms": 2790
+            },
+            {
+              "type": "stroke",
+              "id": "bci_gap_arrow",
+              "d": "M 274 110 L 274 190 M 269 118 L 274 110 L 279 118 M 269 182 L 274 190 L 279 182",
+              "ms": 1680
+            },
+            {
+              "type": "label",
+              "id": "bci_lbl_conductor",
+              "x": 46,
+              "y": 268,
+              "text": "Conductor",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "bci_lbl_overlap",
+              "x": 40,
+              "y": 310,
+              "text": "bands touch",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "bci_lbl_insulator",
+              "x": 198,
+              "y": 268,
+              "text": "Insulator",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "bci_lbl_conduction_band",
+              "x": 286,
+              "y": 90,
+              "text": "Conduction band",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "bci_lbl_gap",
+              "x": 286,
+              "y": 150,
+              "text": "Large energy gap",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "bci_lbl_valence_band",
+              "x": 286,
+              "y": 212,
+              "text": "Valence band",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two columns show the one thing that differs. In the conductor the filled band runs straight into the empty one with no space between them; in the insulator a wide empty stretch of energy separates the two.",
+        "common_mistakes": [
+          "Drawing the insulator gap the same size as the conductor gap. The width of the gap is the whole point of the diagram.",
+          "Shading the conduction band. It is empty in an insulator, so it is drawn as an empty box."
+        ],
+        "memory_tip": "Two boxes touching for the conductor, two boxes far apart for the insulator.",
+        "margin_note": "The question does not ask for a diagram, so this earns no marks. All four marks sit on the written steps; the sketch only saves writing."
+      },
+      {
+        "id": "s5_contrast",
+        "kind": "boxed_final",
+        "label": "The contrast",
+        "marks": 1,
+        "mark_note": "Contrast",
+        "lines": [
+          {
+            "text": "Conductor: gap very small or none.",
+            "style": "boxed"
+          },
+          {
+            "text": "Insulator: gap very large.",
+            "style": "boxed"
+          },
+          "So a conductor has a high conductivity and",
+          "an insulator has almost none.",
+          "The size of the energy gap is the only",
+          "difference between them."
+        ],
+        "why": "The question asks for a difference, so the comparison itself is the marked line. Everything else in the answer follows from the width of the gap, so naming the gap as the deciding quantity is what completes it.",
+        "common_mistakes": [
+          "Describing the two solids one after the other with no comparing sentence. The word difference is the instruction being marked.",
+          "Naming the number of electrons as the difference. Both have plenty of electrons; only the gap differs."
+        ],
+        "memory_tip": "The energy gap is the one quantity that separates them. Small means conductor, large means insulator.",
+        "margin_note": "Two boxed lines finish this answer. Write them even if the earlier steps ran long."
+      }
+    ]
+  },
+  "insider_note": "The answer is one quantity, the energy gap, so finish with a comparing sentence and not two separate descriptions. Saying that a conductor may have overlapping bands is the detail that separates a full answer from a half one."
+}

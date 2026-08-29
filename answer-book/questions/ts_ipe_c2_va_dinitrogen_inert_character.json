@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_dinitrogen_inert_character",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you account for the inert character of dinitrogen?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "High bond dissociation enthalpy",
+      "marks": 1
+    },
+    {
+      "label": "Reaction only under drastic conditions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question on book p.83 as VSAQ 3. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.83, VSAQ 3): the whole printed answer is four words, \"High Bond Dissociation Energy\". For a 2-mark question that is half an answer. The second half written here — that the molecule is non-polar, and that it DOES react under drastic conditions, with the three standard equations — is not in the book and is taken from the NCERT Class 12 p-block chapter. THIS QUESTION AND VSAQ 2 OVERLAP: the book asks the same chemistry twice. VSAQ 2 answers the structure half, this card the reactivity half."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bond_enthalpy",
+        "kind": "text",
+        "label": "High bond dissociation enthalpy",
+        "marks": 1,
+        "mark_note": "Bond strength",
+        "lines": [
+          "In N₂ the two atoms are joined by a triple",
+          "bond, one σ and two π.",
+          {
+            "text": "Bond enthalpy of N≡N = 941 kJ/mol",
+            "style": "eq"
+          },
+          "Breaking this bond needs a very large",
+          "amount of energy, so N₂ takes part in no",
+          "reaction at ordinary temperature.",
+          "The molecule is also non-polar and has no",
+          "dipole moment."
+        ],
+        "why": "Inertness depends on how much energy the first step of any reaction needs. For N₂ that first step is breaking a 941 kJ/mol triple bond, and no reaction at room temperature supplies that much energy. The non-polar molecule adds to it: there is no positive or negative end for a reagent to approach.",
+        "common_mistakes": [
+          "Writing that N₂ has a complete octet so it never reacts. It does react; the barrier is the energy of the triple bond, not the octet.",
+          "Confusing dinitrogen with a noble gas. N₂ is a molecule with a strong bond, not a single unreactive atom."
+        ],
+        "memory_tip": "941 kJ/mol must be supplied before any reaction of N₂ can start.",
+        "margin_note": "The examiner is looking for the phrase \"high bond dissociation enthalpy\" with the value. Write both."
+      },
+      {
+        "id": "s2_drastic_conditions",
+        "kind": "boxed_final",
+        "label": "Reaction only under drastic conditions",
+        "marks": 1,
+        "mark_note": "Conditions",
+        "lines": [
+          "N₂ reacts only when strongly heated or",
+          "under high pressure with a catalyst.",
+          {
+            "text": "6Li + N₂ → 2Li₃N   (on heating)",
+            "style": "eq"
+          },
+          {
+            "text": "3Mg + N₂ → Mg₃N₂   (on heating)",
+            "style": "eq"
+          },
+          {
+            "text": "N₂ + O₂ ⇌ 2NO   (about 2000 K)",
+            "style": "eq"
+          },
+          "With H₂ it reacts only in the Haber process."
+        ],
+        "why": "The word \"inert\" is a statement about ordinary conditions only, and an answer that says N₂ never reacts is wrong. Naming reactions that do work shows what \"drastic conditions\" means. The group trend is the same point from the other side: reactivity INCREASES down group 15, because the heavier elements have weak single bonds — white phosphorus, with six weak P–P bonds, ignites in air at about 35 °C, while N₂ does not react with oxygen below about 2000 K.",
+        "common_mistakes": [
+          "Writing that dinitrogen reacts with nothing at all. It reacts with lithium, magnesium, hydrogen and oxygen under the right conditions.",
+          "Giving the lithium product as LiN. Lithium is +1 and nitrogen is −3, so the nitride is Li₃N."
+        ],
+        "memory_tip": "Lithium and magnesium on heating, hydrogen under pressure, oxygen in an electric arc.",
+        "margin_note": "One or two of these equations is enough for the second mark. Do not write more than two in a 2-mark answer."
+      }
+    ]
+  },
+  "insider_note": "The book's whole answer is \"high bond dissociation energy\", which is worth about one mark. The second mark comes from showing you know N₂ is inert only at ordinary temperature, so add one equation such as 3Mg + N₂ → Mg₃N₂."
+}

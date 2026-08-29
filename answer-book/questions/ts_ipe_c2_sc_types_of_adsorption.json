@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_types_of_adsorption",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are different types of adsorption? Give any four difference between characteristics of these different types.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two types",
+      "marks": 1
+    },
+    {
+      "label": "Physical adsorption",
+      "marks": 1
+    },
+    {
+      "label": "Chemical adsorption",
+      "marks": 1
+    },
+    {
+      "label": "The four differences",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO (book p.77, SAQ 1): the printed answer writes \"vander wall's forces\"; the name is van der Waals and it is written correctly here. BOOK GAP: the printed answer gives no values for the heat of adsorption, only the words low and high; the NCERT figures, about 20 to 40 kJ/mol for physisorption and about 80 to 240 kJ/mol for chemisorption, are added, since a numerical answer is what separates the two in a mark scheme. BOOK SLOPPINESS: the printed line for chemisorption, \"It occurs at high temperature\", is stated with no reason. Chemisorption needs an activation energy, so it INCREASES with a rise in temperature and then decreases; physisorption decreases steadily as the temperature rises. Both are written with the reason here. The book's own six paired characteristics are all correct and all six are kept."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Surface Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_types",
+        "kind": "text",
+        "label": "The two types",
+        "marks": 1,
+        "mark_note": "The two types",
+        "lines": [
+          "Adsorption is of two types.",
+          "1) Physical adsorption, also called",
+          "physisorption: the gas is held on the",
+          "surface by weak van der Waals forces.",
+          "2) Chemical adsorption, also called",
+          "chemisorption: the gas is held on the",
+          "surface by chemical bonds, so a compound",
+          "is formed at the surface."
+        ],
+        "why": "The two types are separated by one thing only, the kind of force between the adsorbate and the surface. Every other difference in the answer follows from that: weak forces give a small heat of adsorption and easy reversal, chemical bonds give a large heat and a change that cannot be reversed easily.",
+        "common_mistakes": [
+          "Writing that the two types differ in the substance adsorbed. They differ in the force that holds it to the surface.",
+          "Calling chemisorption absorption. Both types are adsorption, which is a surface effect; absorption goes through the whole bulk."
+        ],
+        "memory_tip": "Physical means van der Waals forces. Chemical means a bond at the surface.",
+        "margin_note": "Name both types and give the force in each. That single contrast carries this mark."
+      },
+      {
+        "id": "s2_physisorption",
+        "kind": "text",
+        "label": "Physical adsorption",
+        "marks": 1,
+        "mark_note": "Physisorption",
+        "lines": [
+          "Physical adsorption:",
+          "1) It involves weak van der Waals forces.",
+          "2) The heat of adsorption is low, about",
+          "20 to 40 kJ/mol.",
+          "3) It is favoured at low temperature and",
+          "decreases as the temperature rises.",
+          "4) It is reversible.",
+          "5) It is not specific: any gas is adsorbed",
+          "on any solid to some extent.",
+          "6) Multilayers are formed at high pressure."
+        ],
+        "why": "Weak forces explain every entry in this list. A small amount of energy is released, so the heat of adsorption is small; the same small energy is easily supplied back by heating, so the process reverses and falls off as the temperature rises; and because van der Waals forces act between any pair of substances, the process is not specific.",
+        "common_mistakes": [
+          "Writing that physisorption forms only one layer. Multilayers are formed at high pressure; the single layer belongs to chemisorption.",
+          "Writing that physisorption increases with temperature. It decreases, because heating supplies the energy that removes the adsorbed gas."
+        ],
+        "memory_tip": "Weak forces, so small heat, easily reversed, not specific, many layers.",
+        "margin_note": "Four numbered points are enough for this mark. Numbering them makes each one easy to award."
+      },
+      {
+        "id": "s3_chemisorption",
+        "kind": "text",
+        "label": "Chemical adsorption",
+        "marks": 1,
+        "mark_note": "Chemisorption",
+        "lines": [
+          "Chemical adsorption:",
+          "1) It involves strong chemical forces.",
+          "2) The heat of adsorption is high, about",
+          "80 to 240 kJ/mol.",
+          "3) It needs an activation energy, so it",
+          "increases as the temperature rises and",
+          "then decreases.",
+          "4) It is irreversible.",
+          "5) It is highly specific: it happens only",
+          "if a chemical bond can be formed.",
+          "6) Only a single layer is formed."
+        ],
+        "why": "A chemical bond is formed at the surface, so the energy released is as large as a reaction enthalpy, and the change cannot be reversed by simple heating. Only the atoms in contact with the surface can bond to it, which is why the layer is one molecule thick and why the process happens only with particular pairs of gas and solid.",
+        "common_mistakes": [
+          "Writing that chemisorption forms multilayers. Only the first layer can bond to the surface, so it is a single layer.",
+          "Writing that it occurs at high temperature with no reason. It needs activation energy, which is why raising the temperature helps at first."
+        ],
+        "memory_tip": "A bond is formed, so large heat, one layer only, specific, and not reversed.",
+        "margin_note": "Keep the two lists in the same order as each other. That is what makes the differences readable."
+      },
+      {
+        "id": "s4_differences",
+        "kind": "boxed_final",
+        "label": "The four differences",
+        "marks": 1,
+        "mark_note": "Four differences",
+        "lines": [
+          {
+            "text": "Weak forces vs a chemical bond.",
+            "style": "boxed"
+          },
+          "1) Force: van der Waals against a",
+          "chemical bond.",
+          "2) Heat of adsorption: low against high.",
+          "3) Reversal: reversible against",
+          "irreversible.",
+          "4) Layers: multilayer against monolayer."
+        ],
+        "why": "The question asks for four differences, so the answer ends with them written as pairs rather than as two separate lists. Reading the two entries of a pair side by side is what an examiner marks, and one line for each pair is the shortest form that shows the contrast.",
+        "common_mistakes": [
+          "Writing four characteristics of one type only. A difference needs both sides written together.",
+          "Repeating the same difference in other words, such as weak forces and low heat. Those are two separate points and should be written as two."
+        ],
+        "memory_tip": "Force, heat, reversal, layers. Four words, four differences.",
+        "margin_note": "Write the four as pairs, one line each. This is the mark most often lost by listing one type only."
+      }
+    ]
+  },
+  "insider_note": "The question says give any four differences, so the answer must put the two types side by side. Two long separate lists with no paired comparison usually lose the last mark."
+}

@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_hal_sn1_mechanism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Halo Alkanes and Halo Arenes (Chemistry-II)"
+  },
+  "chapter": "Halo Alkanes and Halo Arenes",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the mechanism of nucleophilic unimolecular substitution (SN1) reaction with one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rate law and what unimolecular means",
+      "marks": 1
+    },
+    {
+      "label": "Step 1, the slow ionisation",
+      "marks": 1
+    },
+    {
+      "label": "Step 2, the fast substitution",
+      "marks": 1
+    },
+    {
+      "label": "Order of reactivity and stereochemistry",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 15 (Halo Alkanes and Halo Arenes) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.107-108, from the shaded sub-box \"HALO ALKANES & HALO ARENES\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container chapter whose four unnumbered sub-boxes each restart numbering at 1); the book prints this question on book p.107 as SAQ 1 and its answer runs on to book p.108. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NOTATION: the book writes the mechanism as \"SN¹\", with a superscript 1. The accepted notation is SN1 — N is a subscript on S and the 1 is on the line — and it is written SN1 here throughout. BOOK NAME: the printed answer calls the intermediate a \"carbonium ion\". The accepted modern name for a trivalent, six-electron cation such as (CH₃)₃C⁺ is carbocation (more precisely a carbenium ion); carbocation is used here and carbonium ion is noted as the older name. BOOK TYPOGRAPHY: the printed overall equation appears to read H₃C–C(CH₃)₂–OH – Br⁻, with a minus sign where a plus belongs, and the scan is not clean enough to rule out a scanning artefact; the correct form, (CH₃)₃C–Br + OH⁻ → (CH₃)₃C–OH + Br⁻, is written here. BOOK GAPS: the printed answer stops after the two steps. It gives no order of reactivity and does not say what happens to an optically active substrate. Both are standard marks and both are added: the order is 3° > 2° > 1° > CH₃, and SN1 on an optically active halide gives a racemic mixture, because the carbocation is planar. The book also draws step 1 with a reversible arrow labelled slow; the ionisation is reversible, but the word slow belongs to the forward step, and it is written that way here. BALANCE CHECK: (CH₃)₃C–Br + OH⁻ → (CH₃)₃C–OH + Br⁻ (C 4, H 9, O 1, Br 1 each side; charge −1 each side). Step 1: (CH₃)₃C–Br → (CH₃)₃C⁺ + Br⁻ (charge 0 each side). Step 2: (CH₃)₃C⁺ + OH⁻ → (CH₃)₃C–OH (charge 0 each side). All balanced in atoms and in charge."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Halo Alkanes and Halo Arenes — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rate_law",
+        "kind": "text",
+        "label": "Rate law and what unimolecular means",
+        "marks": 1,
+        "mark_note": "Rate law",
+        "lines": [
+          "SN1 means nucleophilic substitution,",
+          "unimolecular.",
+          "The rate depends on the concentration of the",
+          "alkyl halide only, not on the nucleophile.",
+          {
+            "text": "Rate = k[R–X]",
+            "style": "boxed"
+          },
+          "It is a first order reaction.",
+          "Example: tert-butyl bromide with aqueous KOH.",
+          {
+            "text": "(CH₃)₃C–Br + OH⁻ → (CH₃)₃C–OH + Br⁻",
+            "style": "eq"
+          }
+        ],
+        "why": "Unimolecular does not mean one step. It means that only ONE species, the alkyl halide, appears in the rate law, and that happens because the slowest step involves the alkyl halide alone. Doubling the concentration of hydroxide ion does not change the rate, and that measured fact is the evidence for the two step path that follows.",
+        "common_mistakes": [
+          "Reading unimolecular as one step. SN1 has two steps; unimolecular describes the rate law.",
+          "Putting [OH⁻] into the rate law. The nucleophile does not appear in it."
+        ],
+        "memory_tip": "The 1 in SN1 is the order of the reaction: one concentration in the rate law.",
+        "margin_note": "Box the rate law first. It is the quickest mark on this question and it introduces both steps."
+      },
+      {
+        "id": "s2_step_one",
+        "kind": "text",
+        "label": "Step 1, the slow ionisation",
+        "marks": 1,
+        "mark_note": "Slow step",
+        "lines": [
+          "Step 1: the alkyl halide ionises, giving a",
+          "carbocation and a bromide ion.",
+          {
+            "text": "(CH₃)₃C–Br →[slow] (CH₃)₃C⁺ + Br⁻",
+            "style": "eq"
+          },
+          "This is the slow step, so it is the rate",
+          "determining step.",
+          {
+            "text": "Rate = k[(CH₃)₃C–Br]",
+            "style": "eq"
+          },
+          "A polar protic solvent such as water or",
+          "aqueous ethanol is used."
+        ],
+        "why": "The nucleophile takes no part here, so only the alkyl halide is present in the transition state of this step. A reaction can go no faster than its slowest step, so the rate law is written from this step alone, and that is exactly why the nucleophile is absent from it. A polar protic solvent is used because it surrounds both ions as they form and lowers the energy needed to break the bond.",
+        "common_mistakes": [
+          "Calling the second step the rate determining step. The slow first step fixes the rate.",
+          "Writing the carbocation without its positive charge. The charge is what makes it a carbocation.",
+          "Bringing the nucleophile into this step. It does not appear until step 2."
+        ],
+        "memory_tip": "The slow step comes first, and the slow step alone writes the rate law.",
+        "margin_note": "Label this arrow slow and write the words rate determining step. Both are looked for."
+      },
+      {
+        "id": "s3_step_two",
+        "kind": "text",
+        "label": "Step 2, the fast substitution",
+        "marks": 1,
+        "mark_note": "Fast step",
+        "lines": [
+          "Step 2: the hydroxide ion bonds to the",
+          "carbocation and gives the product.",
+          {
+            "text": "(CH₃)₃C⁺ + OH⁻ →[fast] (CH₃)₃C–OH",
+            "style": "eq"
+          },
+          "This step is fast, so it does not affect the",
+          "overall rate.",
+          "The bromine has now been replaced by –OH.",
+          "The old name for the intermediate is",
+          "carbonium ion; carbocation is the name used",
+          "now."
+        ],
+        "why": "The carbocation is electron deficient and the hydroxide ion carries a lone pair, so the two combine at the first collision. This step is far faster than the ionisation and therefore never limits the rate, but it is the step that finishes the substitution, because the nucleophile has now taken the place of the halogen.",
+        "common_mistakes": [
+          "Showing the second step as slow. The ionisation is slow; this step is fast.",
+          "Writing a transition state here instead of the carbocation. SN1 has a real intermediate, not a transition state."
+        ],
+        "memory_tip": "A positive carbocation and a negative nucleophile combine at once, so step 2 is the fast one.",
+        "margin_note": "Two steps, two equations, one under the other, with slow and fast written on the arrows."
+      },
+      {
+        "id": "s4_reactivity_and_stereochemistry",
+        "kind": "text",
+        "label": "Order of reactivity and stereochemistry",
+        "marks": 1,
+        "mark_note": "Order and stereochemistry",
+        "lines": [
+          "Order of reactivity:",
+          {
+            "text": "3° > 2° > 1° > CH₃",
+            "style": "boxed"
+          },
+          "A tertiary carbocation is the most stable,",
+          "because three alkyl groups release electron",
+          "density towards the positive carbon.",
+          "Stereochemistry: the carbocation is planar,",
+          "so the nucleophile can bond to either face.",
+          "An optically active halide therefore gives a",
+          "racemic mixture."
+        ],
+        "why": "The rate of an SN1 reaction is set by how easily the carbocation forms, so it follows carbocation stability: tertiary is the most stable and reacts fastest, and a methyl halide does not go by this path at all. The intermediate carbocation is trigonal planar with an sp² carbon, and the nucleophile can bond to either face of it, so an optically active starting material gives close to equal amounts of the two products, which is a racemic mixture. The book gives neither of these two facts, and both are standard marks.",
+        "common_mistakes": [
+          "Giving the order 1° > 2° > 3°. That is the SN2 order; SN1 runs the other way.",
+          "Writing that SN1 gives inversion of configuration. Inversion belongs to SN2; SN1 gives a racemic mixture.",
+          "Writing that only tertiary halides go by SN1. Allyl and benzyl halides are primary but go by SN1, because resonance makes their carbocations stable."
+        ],
+        "memory_tip": "SN1 goes through a flat carbocation, so the nucleophile can bond to either face and the product is racemic.",
+        "margin_note": "One line of reactivity order and one line of racemisation finish this mark. Do not write inversion here."
+      }
+    ]
+  },
+  "insider_note": "The two mechanism steps carry two of the four marks, one each, and the rate law and the reactivity order carry one each. The book stops after the two steps, so the order 3° > 2° > 1° > CH₃ and the racemic product are what separate a full answer from a half one."
+}

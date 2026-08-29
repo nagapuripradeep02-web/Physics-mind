@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_emulsifying_agent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is emulsifying agent?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "How it acts, with examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.76, VSAQ 5): the printed answer says only that the substance is added to stabilise the emulsion. It never says HOW: the agent collects at the surface between the two liquids and lowers the interfacial tension there, so the droplets stay separate. That line is added. The printed example, \"Soap for Kerosine in water emulsion\", is kept and a second example for the water in oil type is added, because the two types take different agents."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A substance added to an emulsion to make",
+          "it stable is called an emulsifying agent",
+          "or an emulsifier.",
+          "Without it the two liquids separate into",
+          "two layers after some time."
+        ],
+        "why": "An emulsion of two liquids that do not mix is not stable by itself: the small droplets join into larger ones and the two liquids form separate layers. The emulsifying agent is the third substance added to stop that, so stability is the whole point of the definition.",
+        "common_mistakes": [
+          "Writing that the emulsifying agent makes the two liquids mix. They still do not mix; the agent only keeps the droplets separate.",
+          "Calling it a catalyst. It is used up in the emulsion and stays in it; a catalyst is recovered unchanged."
+        ],
+        "memory_tip": "Emulsifier equals stabiliser. Its one job is to stop the droplets joining.",
+        "margin_note": "The word stabilise carries this mark. A definition without it reads as a description of any additive."
+      },
+      {
+        "id": "s2_action_examples",
+        "kind": "boxed_final",
+        "label": "How it acts, with examples",
+        "marks": 1,
+        "mark_note": "Action and examples",
+        "lines": [
+          {
+            "text": "Ex: soap in a kerosene and water emulsion.",
+            "style": "boxed"
+          },
+          "The agent collects at the surface between",
+          "the two liquids and lowers the interfacial",
+          "tension, so the droplets stay separate.",
+          "For oil in water: soaps, detergents,",
+          "proteins and gums.",
+          "For water in oil: heavy metal salts of",
+          "fatty acids and long chain alcohols."
+        ],
+        "why": "The agent has one part with affinity for water and one part with affinity for oil, so it settles at the surface between the two liquids and stays there. A film of it around each droplet lowers the interfacial tension and keeps the droplets from joining, which is why the same soap that forms micelles also acts as an emulsifier.",
+        "common_mistakes": [
+          "Giving a water in oil agent for an oil in water emulsion. Soaps and detergents belong to the oil in water type.",
+          "Writing that the agent dissolves the oil. It surrounds the oil droplets; it does not dissolve them."
+        ],
+        "memory_tip": "One part of the agent has affinity for water, the other for oil, so it sits at the surface between them.",
+        "margin_note": "One named example is enough. Adding the interfacial tension line is what makes it a two-mark answer."
+      }
+    ]
+  },
+  "insider_note": "Most answers stop at \"a substance added to stabilise an emulsion\". The second mark is for saying where the agent goes, at the surface between the two liquids, and naming one example."
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_uses_of_helium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "List out two uses of helium.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Filling balloons",
+      "marks": 1
+    },
+    {
+      "label": "Liquid helium as a cryogenic liquid",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.89 as VSAQ 5. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CLAIM NOT REPRODUCED (book p.89, VSAQ 5): the printed answer is \"Filled in balloons and tyres of aeroplanes\". The balloon use is correct and is kept. The aeroplane-tyre use is NOT written on the answer page: aircraft tyres are inflated with dry nitrogen, not helium, and the claim survives in Indian textbooks without a source. It is named in this step's why so a student who has read it in the book is not left confused, and it is recorded here. The second printed use, liquid helium as a cryogenic liquid, is correct and is kept, with the MRI magnet added as the everyday example the book does not give."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Noble Gases — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_balloons",
+        "kind": "text",
+        "label": "Filling balloons",
+        "marks": 1,
+        "mark_note": "First use",
+        "lines": [
+          "1. Helium is used to fill balloons, including",
+          {
+            "text": "the weather balloons that carry",
+            "style": "indent"
+          },
+          {
+            "text": "instruments into the upper air.",
+            "style": "indent"
+          },
+          "It is very light and it does not burn, so it",
+          "is used in place of hydrogen."
+        ],
+        "why": "Hydrogen is lighter still, but it burns; helium takes part in no reaction, so it lifts without the fire risk. The book's second example here, filling the tyres of aeroplanes, is not written on the answer page: aircraft tyres are filled with dry nitrogen, and the helium version of that claim is repeated in textbooks without a source.",
+        "common_mistakes": [
+          "Writing that hydrogen is used for the same reason. Hydrogen lifts more, but it burns, which is why helium replaced it.",
+          "Saying helium is heavier than air. It is the second lightest gas, after hydrogen."
+        ],
+        "memory_tip": "Helium lifts and does not burn. That one sentence covers every balloon use.",
+        "margin_note": "Number the two uses. \"Light and does not burn\" is the reason worth adding to the first one."
+      },
+      {
+        "id": "s2_cryogenic",
+        "kind": "boxed_final",
+        "label": "Liquid helium as a cryogenic liquid",
+        "marks": 1,
+        "mark_note": "Second use",
+        "lines": [
+          {
+            "text": "2. Liquid helium is used as a cryogenic liquid",
+            "style": "boxed"
+          },
+          {
+            "text": "to reach very low temperatures.",
+            "style": "indent"
+          },
+          "It boils at about 4 K, the lowest boiling",
+          "point of any liquid.",
+          "It cools the superconducting magnets of an",
+          "MRI scanner."
+        ],
+        "why": "Helium atoms attract one another very weakly, so the liquid only forms near 4 K and nothing else stays liquid below that. That makes it the only working coolant for superconducting magnets, which need to be held near absolute zero to carry current with no resistance.",
+        "common_mistakes": [
+          "Writing that liquid nitrogen is used instead. Liquid nitrogen boils at 77 K, which is far too warm for these magnets.",
+          "Giving only one use when the question asks for two."
+        ],
+        "memory_tip": "Helium is the coldest liquid there is, about 4 K, so it is what cools an MRI magnet.",
+        "margin_note": "The two marks are for the two uses. The 4 K figure is extra and costs one line."
+      }
+    ]
+  },
+  "insider_note": "Two uses, numbered, earn both marks. If you can only recall one, write the balloon use and add the reason \"light and does not burn\" — a use with its reason often reads as the fuller answer."
+}

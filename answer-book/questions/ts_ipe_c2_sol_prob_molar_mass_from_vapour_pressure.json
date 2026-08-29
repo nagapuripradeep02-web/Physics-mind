@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_prob_molar_mass_from_vapour_pressure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": { "number": 2, "name": "Solutions (Chemistry-II)" },
+  "chapter": "Solutions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "The vapour pressure of pure benzene at a certain temperature is 0.850 bar. A non-volatile, non-electrolyte solid weighing 0.5 g is added to 39.0 g of benzene (molar mass 78 g mol⁻¹). The vapour pressure of the solution is then 0.845 bar. What is the molar mass of the solid substance?",
+  "appearances": [],
+  "mark_split": [
+    { "label": "The data and the relation", "marks": 1 },
+    { "label": "The relative lowering", "marks": 1 },
+    { "label": "Substituting the values", "marks": 1 },
+    { "label": "The molar mass", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From the boxed 'Problems : In text Questions' section of the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.68 (problem 4). A PROBLEM belongs to no printed paper section and the book prints no mark scheme for it, so both the Section-B placement and the 1+1+1+1 split are authored CLAIMS. Placed at 4 marks, not 2, because it is a multi-stage calculation using the same relation as this unit's Short Answer 4 (mass of a solute in octane) rather than a single-formula one. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. APPROXIMATION, and here it is SOUND: the relation used drops n₂ against n₁, and the relative lowering is 0.0059, so the solute is about six parts in a thousand of all the moles. The exact Raoult form gives 169.0 g mol⁻¹ against the approximate 170, a rounding-level difference. This is the opposite case from ts_ipe_c2_sol_mass_of_solute_in_octane, where the same approximation is applied at a relative lowering of 0.2 and the exact answer differs by a quarter — recorded on both cards so a student sees when the shortcut is safe and when it is not."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solutions — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_data",
+        "kind": "text",
+        "label": "The data and the relation",
+        "marks": 1,
+        "mark_note": "Symbols and the relation",
+        "lines": [
+          "p⁰ = 0.850 bar (pure benzene)",
+          "pₛ = 0.845 bar (the solution)",
+          "w₁ = 39.0 g, M₁ = 78 g mol⁻¹ (solvent)",
+          "w₂ = 0.5 g, M₂ = ? (solute)",
+          { "text": "(p⁰ − pₛ) / p⁰ = w₂M₁ / (M₂w₁)", "style": "eq" }
+        ],
+        "why": "Naming every symbol first is what keeps the solvent and the solute apart, and that is the only place this question is easy to get wrong. Benzene is the solvent because it is the one present in bulk and the one whose vapour pressure is quoted; the added solid is non-volatile, so it contributes no vapour of its own and the whole lowering is due to its presence.",
+        "common_mistakes": [
+          "Swapping the subscripts and calling benzene the solute. Benzene is the solvent, so its 39.0 g and 78 g mol⁻¹ are w₁ and M₁.",
+          "Using the solution's vapour pressure as p⁰. The zero superscript belongs to the PURE solvent."
+        ],
+        "memory_tip": "Subscript 1 is the solvent, subscript 2 is the solute. Write the four data lines before the formula.",
+        "margin_note": "List the four symbols with their values. The relation on its own line earns this mark."
+      },
+      {
+        "id": "s2_relative_lowering",
+        "kind": "text",
+        "label": "The relative lowering",
+        "marks": 1,
+        "mark_note": "The left-hand value",
+        "lines": [
+          { "text": "(p⁰ − pₛ) / p⁰ = (0.850 − 0.845) / 0.850", "style": "eq" },
+          { "text": "= 0.005 / 0.850 = 0.00588", "style": "eq" }
+        ],
+        "why": "The relative lowering is a ratio of two pressures, so the bar units cancel and the number that goes into the relation is pure. Working it out on its own line also shows how small it is, which is exactly the condition that makes the approximate relation in step 1 safe to use.",
+        "common_mistakes": [
+          "Using the lowering 0.005 bar on its own. The relation needs the RELATIVE lowering, so it must be divided by p⁰.",
+          "Dividing by pₛ instead of p⁰. The denominator is the pure solvent's vapour pressure."
+        ],
+        "memory_tip": "Relative lowering means divided by p⁰. Subtract first, then divide.",
+        "margin_note": "Show the subtraction and the division separately. Keep enough decimals to reach 0.00588."
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "text",
+        "label": "Substituting the values",
+        "marks": 1,
+        "mark_note": "Substitution",
+        "lines": [
+          { "text": "0.00588 = (0.5 × 78) / (M₂ × 39)", "style": "eq" },
+          { "text": "0.00588 = 39 / (39 × M₂)", "style": "eq" },
+          { "text": "0.00588 = 1 / M₂", "style": "eq" }
+        ],
+        "why": "The numerator 0.5 × 78 comes to 39, the same number as the mass of benzene in the denominator, so the two cancel and the whole right-hand side collapses to 1/M₂. Noticing that cancellation turns a four-quantity rearrangement into one division and removes most of the chance of an arithmetic slip.",
+        "common_mistakes": [
+          "Putting M₂ in the numerator. The molar mass of the SOLUTE sits in the denominator of this relation.",
+          "Cancelling the 39s before writing the substitution line. Show the substituted values first; the cancellation is worth seeing."
+        ],
+        "memory_tip": "Here 0.5 × 78 = 39 and the benzene is 39 g, so the fraction collapses to 1/M₂.",
+        "margin_note": "Write the substitution, then the cancellation. Two short lines."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The molar mass",
+        "marks": 1,
+        "mark_note": "The value with its unit",
+        "lines": [
+          { "text": "M₂ = 1 / 0.00588", "style": "eq" },
+          { "text": "M₂ = 170 g mol⁻¹", "style": "boxed" }
+        ],
+        "why": "Taking the reciprocal is the last step, and the answer is a molar mass, so it must carry g mol⁻¹. A value of 170 g mol⁻¹ is a reasonable size for a small non-volatile organic solid, which is a quick check that no factor of ten has been dropped.",
+        "common_mistakes": [
+          "Giving 0.00588 as the answer. That is the relative lowering; the question asks for the molar mass.",
+          "Leaving the unit off. A molar mass is in g mol⁻¹.",
+          "Rounding 0.00588 to 0.006 before the reciprocal. That would give 167 instead of 170."
+        ],
+        "memory_tip": "The last step is one division: M₂ is the reciprocal of the relative lowering here.",
+        "margin_note": "Box the value with g mol⁻¹. Do not round the relative lowering before dividing."
+      }
+    ]
+  },
+  "insider_note": "The four data lines in step 1 are where this question is won or lost — benzene is the SOLVENT even though the question opens with it. After that the arithmetic is kind: 0.5 × 78 = 39 cancels the 39 g of benzene, so the right-hand side is just 1/M₂."
+}

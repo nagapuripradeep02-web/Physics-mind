@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_dna_strands_complementary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "The two strands in DNA are not identical, but are complementary. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The double helix",
+      "marks": 1
+    },
+    {
+      "label": "The pairing rule",
+      "marks": 1
+    },
+    {
+      "label": "The hydrogen bonds",
+      "marks": 1
+    },
+    {
+      "label": "What complementary means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.102 as SAQ 7. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SPELLING: the printed question reads \"complimentary\"; the word is complementary, and it is written correctly in question_text. CROSS-SUBJECT: Junior Botany's ts_ipe_b1_bm_nucleic_acid_secondary_structure covers the same double helix and the same A=T two-bond, G≡C three-bond rule. This card uses the same numbers and the same pairing, so the two banks agree; the botany card treats the helix as an example of secondary structure, while this one answers the identical-versus-complementary question."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_helix",
+        "kind": "text",
+        "label": "The double helix",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          "DNA is a double helix. Two polynucleotide",
+          "strands coil around one common axis.",
+          "The sugar and phosphate groups form the",
+          "backbone on the outside of the helix.",
+          "The nitrogenous bases point inwards, and",
+          "the two strands are held together by",
+          "hydrogen bonds between them."
+        ],
+        "why": "The bases face each other across the axis, so each base on one strand is opposite a base on the other, and it is that facing arrangement which makes a pairing rule possible at all. The backbone stays on the outside and takes no part in the pairing.",
+        "common_mistakes": [
+          "Writing that the two strands are held by covalent bonds. They are held by hydrogen bonds between the bases.",
+          "Placing the bases on the outside. The bases point inwards; the sugar-phosphate backbone is outside."
+        ],
+        "memory_tip": "Backbone outside, bases inside, facing each other across the axis.",
+        "margin_note": "Set the structure up first. The pairing rule makes no sense until the bases are shown facing each other."
+      },
+      {
+        "id": "s2_rule",
+        "kind": "text",
+        "label": "The pairing rule",
+        "marks": 1,
+        "mark_note": "Base pairing rule",
+        "lines": [
+          "The pairing between the two strands is",
+          "fixed:",
+          {
+            "text": "Adenine (A) always pairs with thymine (T)",
+            "style": "indent"
+          },
+          {
+            "text": "Guanine (G) always pairs with cytosine (C)",
+            "style": "indent"
+          },
+          "A purine always pairs with a pyrimidine, so",
+          "every base pair is the same size and the",
+          "helix keeps a constant width."
+        ],
+        "why": "The rule is not a preference but a consequence of size and of where the hydrogen-bonding groups sit: only these two combinations fit the space and match up their donors and acceptors. Pairing a large purine with a small pyrimidine every time is what keeps the width of the helix constant.",
+        "common_mistakes": [
+          "Writing that adenine pairs with guanine. Both are purines and two purines are too wide to fit.",
+          "Writing that the pairing is random. It is fixed: A with T, and G with C."
+        ],
+        "memory_tip": "A with T, G with C. Always one big base with one small base.",
+        "margin_note": "Write the two pairs as two separate lines. That layout is what the examiner scans for."
+      },
+      {
+        "id": "s3_hbonds",
+        "kind": "text",
+        "label": "The hydrogen bonds",
+        "marks": 1,
+        "mark_note": "Number of bonds",
+        "lines": [
+          "The number of hydrogen bonds in each pair",
+          "is fixed as well:",
+          {
+            "text": "A = T   two hydrogen bonds",
+            "style": "eq"
+          },
+          {
+            "text": "G ≡ C   three hydrogen bonds",
+            "style": "eq"
+          },
+          "The number is set by how many bonding",
+          "groups the two bases can offer each other.",
+          "A G–C rich region is therefore harder to",
+          "separate than an A–T rich region."
+        ],
+        "why": "Two and three are fixed numbers, not approximations, and they are worth a mark on their own. They also have a consequence: three bonds hold more strongly than two, so a stretch rich in G and C needs more heat to separate the strands.",
+        "common_mistakes": [
+          "Giving three hydrogen bonds to A–T and two to G–C. It is the other way round: A=T has two, G≡C has three.",
+          "Writing that all base pairs are held by the same number of bonds. The two pairs differ."
+        ],
+        "memory_tip": "A=T is a double line, G≡C is a triple line. Two and three.",
+        "margin_note": "These two numbers are a whole mark and take one line. Never leave them out."
+      },
+      {
+        "id": "s4_complementary",
+        "kind": "boxed_final",
+        "label": "What complementary means",
+        "marks": 1,
+        "mark_note": "Meaning of complementary",
+        "lines": [
+          {
+            "text": "Opposite A is T; opposite G is C",
+            "style": "boxed"
+          },
+          "So the two strands are not copies of each",
+          "other: they are not identical.",
+          "The order of bases on one strand fixes the",
+          "order on the other strand completely.",
+          "That is what complementary means, and it is",
+          "how DNA is able to copy itself."
+        ],
+        "why": "The question is asking for the difference between identical and complementary, so the answer has to end by naming it. Identical would mean the same sequence on both strands; complementary means each base is matched by the one base that fits it, so one strand is enough to reconstruct the other.",
+        "common_mistakes": [
+          "Writing that the two strands have the same base sequence. They have matched sequences, not the same one.",
+          "Explaining the pairing and never using the word complementary. The question asks what the word means."
+        ],
+        "memory_tip": "Not the same strand twice; each one is the pattern for the other.",
+        "margin_note": "Answer the actual question in the last two lines: complementary, not identical."
+      }
+    ]
+  },
+  "insider_note": "Four steps: helix, pairing rule, bond counts, meaning. The last step is the one that answers the question as asked, so leave room for it."
+}

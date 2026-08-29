@@ -188,6 +188,7 @@
       // student 'the physics ... is checked' until 2026-08-25.
       var subjectWord = (question.subject || '').indexOf('mathematics') === 0 ? 'mathematics'
         : question.subject === 'chemistry' ? 'chemistry'
+        : question.subject === 'chemistry_2' ? 'chemistry'
         : question.subject === 'botany' ? 'botany'
         : question.subject === 'zoology' ? 'zoology'
         : question.subject === 'physics_2' ? 'physics' : 'physics';
@@ -412,7 +413,8 @@
   var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
                      mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
                      botany: 'Botany', zoology: 'Zoology',
-                     physics_2: 'Physics II' };
+                     physics_2: 'Physics II',
+                     chemistry_2: 'Chemistry II' };
   function subjLabel(s) {
     return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
   }
@@ -533,7 +535,7 @@
       display concern, and the notebook header still shows the full name. */
   function chapterLabel(u) {
     return String(u.name || '').replace(
-      /\s*\((?:Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B)\)\s*$/, ''
+      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B)\)\s*$/, ''
     );
   }
 

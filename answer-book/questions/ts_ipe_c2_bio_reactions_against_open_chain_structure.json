@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_reactions_against_open_chain_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Enumerate the reactions of D-glucose which cannot be explained by its open chain structure.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three negative tests",
+      "marks": 1
+    },
+    {
+      "label": "The two crystalline forms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 8. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, corrected here. The printed answer lists \"It does not react with hydroxylamine\" as a property of D-GLUCOSE. That is wrong, and the same book contradicts it: the SAQ 12 table on book p.103 lists \"With Hydroxyl amine / NH₂OH / Oxime / Presence of >C=O\" as evidence FOR the open chain structure. The standard statement, which this card writes, is that glucose PENTAACETATE does not react with hydroxylamine, showing the absence of a free -CHO group in the cyclic form. BOOK WORDING: the printed answer writes \"Schiff's base\"; the reagent is Schiff's reagent (fuchsin decolourised by SO₂). A Schiff base is a different thing, an imine R₂C=NR'. BOOK SHAPE: item (iv) of the printed list, existence in two crystalline forms, is a property of the solid and not a reaction, although the question says \"reactions\"; it is kept because it is the strongest evidence and the answer key expects it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tests",
+        "kind": "text",
+        "label": "The three negative tests",
+        "marks": 1,
+        "mark_note": "Negative tests",
+        "lines": [
+          "1. Glucose does not give the Schiff's",
+          "reagent test for an aldehyde group.",
+          "2. It does not form the hydrogensulphite",
+          "addition product with NaHSO₃.",
+          "3. Glucose pentaacetate does not react with",
+          "hydroxylamine, NH₂OH."
+        ],
+        "why": "Each of these is a test a free –CHO group should pass and glucose fails, so the aldehyde group cannot be free. The third one is stated for the PENTAACETATE, not for glucose itself: glucose does form an oxime with hydroxylamine, and that reaction is one of the pieces of evidence FOR the open chain form.",
+        "common_mistakes": [
+          "Writing that glucose itself does not react with hydroxylamine. Glucose does give an oxime; it is glucose pentaacetate that does not react.",
+          "Writing \"Schiff's base\" for the reagent. A Schiff base is an imine; the test uses Schiff's reagent."
+        ],
+        "memory_tip": "Three tests an aldehyde should pass and glucose fails: Schiff's, NaHSO₃, and the pentaacetate with NH₂OH.",
+        "margin_note": "Any three of the listed facts earn this mark. Take care to say pentaacetate in the hydroxylamine point."
+      },
+      {
+        "id": "s2_two_forms",
+        "kind": "boxed_final",
+        "label": "The two crystalline forms",
+        "marks": 1,
+        "mark_note": "Two forms and the conclusion",
+        "lines": [
+          {
+            "text": "Two forms: α-D-glucose and β-D-glucose",
+            "style": "boxed"
+          },
+          "4. Glucose crystallises in two forms that",
+          "differ only at carbon 1, and their solutions",
+          "show mutarotation.",
+          "An open chain has no such pair of forms.",
+          "So the –CHO group is not free: carbon 1 is",
+          "part of a six-membered ring."
+        ],
+        "why": "The two crystalline forms are the strongest single piece of evidence, because an open chain molecule has no carbon at which two separable forms could arise. Once carbon 1 joins the ring it becomes a new stereocentre, and the two configurations at it are α and β.",
+        "common_mistakes": [
+          "Stopping at the list. The mark is completed by the conclusion that carbon 1 is in a ring.",
+          "Calling α and β glucose structural isomers. They differ only in configuration at carbon 1, so they are anomers."
+        ],
+        "memory_tip": "Two crystals, one carbon, one ring: that is what the open chain cannot explain.",
+        "margin_note": "Finish with the conclusion sentence. A bare list of tests usually earns only the first mark."
+      }
+    ]
+  },
+  "insider_note": "Four facts, and the conclusion is what turns them into an answer: the aldehyde group is not free, so carbon 1 must be inside a ring. Say pentaacetate, not glucose, in the hydroxylamine point."
+}

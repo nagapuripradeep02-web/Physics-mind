@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_nucleic_acids_and_functions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are nucleic acids? Mention their two important functions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Two functions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 16. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer begins \"Nuclei acids:\", a misprint for \"Nucleic acids\". The printed definition also says only that they are \"the constituents of chromosomes... responsible for heredity along with proteins\"; the nucleotide, which is the repeating unit, is added here because a definition of a polymer that does not name its monomer is incomplete."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Nucleic acids are the long chain molecules",
+          "that make up the chromosomes.",
+          "They are polymers of nucleotides, each",
+          "nucleotide being a sugar, a base and a",
+          "phosphate group.",
+          "The two kinds are DNA and RNA."
+        ],
+        "why": "A nucleic acid is defined by what it is built from, so the answer must name the nucleotide as the repeating unit. Naming DNA and RNA together fixes the class and prepares the second half of the question, because the two functions divide between them.",
+        "common_mistakes": [
+          "Calling nucleic acids polymers of amino acids. Those are proteins; nucleic acids are polymers of nucleotides.",
+          "Naming only DNA. RNA is a nucleic acid as well."
+        ],
+        "memory_tip": "Nucleotide is the unit; DNA and RNA are the two polymers.",
+        "margin_note": "Name the repeating unit and both kinds. That is the definition mark."
+      },
+      {
+        "id": "s2_functions",
+        "kind": "boxed_final",
+        "label": "Two functions",
+        "marks": 1,
+        "mark_note": "Two functions",
+        "lines": [
+          {
+            "text": "Protein synthesis · heredity transfer",
+            "style": "boxed"
+          },
+          "1. They control the synthesis of proteins in",
+          "the cell; this is chiefly the work of RNA.",
+          "2. They transfer the characters of the",
+          "parent to the next generation; this is the",
+          "work of DNA."
+        ],
+        "why": "The two functions split cleanly between the two nucleic acids, so saying which one does which turns a memorised pair into an understood pair. DNA stores and passes on the information, and RNA carries it out by directing the making of proteins.",
+        "common_mistakes": [
+          "Giving one function only. The question asks for two, so half the mark is lost if only one is written.",
+          "Writing that DNA makes proteins directly. DNA holds the code; RNA carries it to the ribosome."
+        ],
+        "memory_tip": "DNA passes it on, RNA puts it to work.",
+        "margin_note": "Number the two functions. A numbered pair is read faster than a sentence containing both."
+      }
+    ]
+  },
+  "insider_note": "Two halves, two marks. The definition mark needs the word nucleotide; the function mark needs both functions numbered."
+}

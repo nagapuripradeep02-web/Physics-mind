@@ -1,0 +1,239 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_half_life_derivation_zero_first_order",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is half life (t1/2) of a reaction? Derive the equation for the half life value of zero and first order reaction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "First order rate equation",
+      "marks": 1
+    },
+    {
+      "label": "First order half life",
+      "marks": 2
+    },
+    {
+      "label": "Zero order rate equation",
+      "marks": 1
+    },
+    {
+      "label": "Zero order half life",
+      "marks": 2
+    },
+    {
+      "label": "Comparing the two",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1+2+1+2+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. Both printed derivations reach the CORRECT results and both were re-derived here: 2.303 × log 2 = 2.303 × 0.3010 = 0.6932, giving t1/2 = 0.693/k for first order, and k = (a/2)/t1/2 giving t1/2 = a/2k for zero order. BOOK SLOPPINESS (book p.75, LAQ 1): the printed definition reads \"The time required for completion of half of the concentration of reactant is known as half life\". A concentration is not completed; the correct wording, the time in which the concentration falls to half its initial value, is used here. BOOK TYPOGRAPHY on the same answer: the zero order line is printed \"k = a/(2xt₁/₂)\", where the x is meant as a multiplication sign but is the same letter used two lines earlier for the amount reacted. It is written a/(2 t1/2) here. The half life symbol is written t1/2 in plain text throughout this unit."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Chemical Kinetics — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The half life of a reaction, written t1/2, is",
+          "the time in which the concentration of a",
+          "reactant falls to one half of its initial",
+          "value.",
+          "Throughout the derivation let",
+          {
+            "text": "a = initial concentration of the reactant",
+            "style": "indent"
+          },
+          {
+            "text": "x = amount reacted in time t",
+            "style": "indent"
+          },
+          {
+            "text": "(a − x) = concentration left at time t",
+            "style": "indent"
+          }
+        ],
+        "why": "Both derivations are the same move made twice: write the integrated rate equation, then put x = a/2 into it. Fixing a, x and (a − x) at the start is what lets the substitution be done in one line for each order.",
+        "common_mistakes": [
+          "Using x for the concentration left. x is the amount that has reacted; the concentration left is (a − x).",
+          "Starting the derivation without defining a. Every later line contains it, so an undefined a costs marks in both halves."
+        ],
+        "memory_tip": "a is what you start with, x is what has gone, a − x is what is left.",
+        "margin_note": "Write the three symbol meanings before any algebra. Both derivations then read in one pass."
+      },
+      {
+        "id": "s2_first_order_law",
+        "kind": "equation",
+        "label": "First order rate equation",
+        "marks": 1,
+        "mark_note": "First order law",
+        "lines": [
+          "For a first order reaction the integrated",
+          "rate equation is",
+          {
+            "text": "k = (2.303/t) log [a/(a − x)]",
+            "style": "eq"
+          },
+          "This is the equation derived in the",
+          "integrated rate law question, and it is the",
+          "starting point here."
+        ],
+        "why": "The half life is not a separate law; it is one particular value read off the integrated rate equation. Quoting that equation first is therefore the whole of this mark, and it is also what makes the substitution that follows legal.",
+        "common_mistakes": [
+          "Starting from rate = k[A] instead of the integrated form. The differential form cannot be substituted into directly.",
+          "Writing k = log [a/(a − x)] / (2.303 t). In this equation the 2.303 multiplies the logarithm, because log is to base 10."
+        ],
+        "memory_tip": "2.303 over t, times log of a over what is left.",
+        "margin_note": "Quote the integrated equation before substituting. Half of this mark is the equation itself."
+      },
+      {
+        "id": "s3_first_order_half_life",
+        "kind": "equation",
+        "label": "First order half life",
+        "marks": 2,
+        "mark_note": "First order result",
+        "lines": [
+          "At the half life, half the reactant has",
+          "reacted, so",
+          {
+            "text": "t = t1/2  and  x = a/2",
+            "style": "eq"
+          },
+          {
+            "text": "a − x = a − a/2 = a/2",
+            "style": "eq"
+          },
+          "Substituting in the rate equation:",
+          {
+            "text": "k = (2.303/t1/2) log [a/(a/2)]",
+            "style": "eq"
+          },
+          {
+            "text": "= (2.303/t1/2) log 2",
+            "style": "indent"
+          },
+          {
+            "text": "= (2.303 × 0.3010)/t1/2",
+            "style": "indent"
+          },
+          {
+            "text": "t1/2 = 0.693/k",
+            "style": "boxed"
+          }
+        ],
+        "why": "The ratio a/(a/2) is 2 whatever a is, so a cancels completely and the logarithm becomes a pure number. That single cancellation is the reason the first order half life is independent of the starting concentration.",
+        "common_mistakes": [
+          "Writing a − x = a/2 without showing a − a/2 first. The substitution x = a/2 is what is being marked.",
+          "Leaving the answer as 2.303 log 2 / k. Finish the arithmetic: 2.303 × 0.3010 = 0.693."
+        ],
+        "memory_tip": "a over a-by-2 is just 2, so a cancels and only log 2 is left.",
+        "margin_note": "Two marks here: one for the substitution, one for the boxed result. Show both lines."
+      },
+      {
+        "id": "s4_zero_order_law",
+        "kind": "equation",
+        "label": "Zero order rate equation",
+        "marks": 1,
+        "mark_note": "Zero order law",
+        "lines": [
+          "For a zero order reaction the rate does not",
+          "depend on concentration:",
+          {
+            "text": "dx/dt = k",
+            "style": "eq"
+          },
+          "Integrating, with x = 0 at t = 0:",
+          {
+            "text": "x = kt  ⇒  k = x/t",
+            "style": "eq"
+          }
+        ],
+        "why": "With the rate equal to a constant, the amount reacted grows in a straight line with time. That is why the zero order integrated law needs no logarithm and why the derivation that follows is only one substitution long.",
+        "common_mistakes": [
+          "Writing dx/dt = k(a − x) for zero order. The concentration term is absent; the rate is just k.",
+          "Skipping the condition x = 0 at t = 0. Without it the integration constant is not zero and x = kt is not justified."
+        ],
+        "memory_tip": "Zero order: steady rate, so x = kt, a straight line.",
+        "margin_note": "One line of integration is enough here, but the condition x = 0 at t = 0 must be written."
+      },
+      {
+        "id": "s5_zero_order_half_life",
+        "kind": "equation",
+        "label": "Zero order half life",
+        "marks": 2,
+        "mark_note": "Zero order result",
+        "lines": [
+          "At the half life t = t1/2 and x = a/2:",
+          {
+            "text": "k = (a/2)/t1/2 = a/(2 t1/2)",
+            "style": "eq"
+          },
+          "Rearranging for t1/2:",
+          {
+            "text": "t1/2 = a/2k = [R]₀/2k",
+            "style": "boxed"
+          },
+          "where a = [R]₀ is the initial",
+          "concentration of the reactant."
+        ],
+        "why": "Because the reactant is used up at a steady k mol per litre per second, the time to use up half of it is simply half the starting amount divided by that steady rate. The starting concentration cannot cancel here, and that is the whole difference from the first order case.",
+        "common_mistakes": [
+          "Writing t1/2 = 2k/a. The rearrangement puts a on top and 2k underneath.",
+          "Dropping [R]₀ and quoting t1/2 = 1/2k. The zero order half life must carry the initial concentration."
+        ],
+        "memory_tip": "Half the starting amount, divided by the steady rate k.",
+        "margin_note": "Two marks: the substitution and the boxed result. Name a as [R]₀ so both notations are covered."
+      },
+      {
+        "id": "s6_comparison",
+        "kind": "boxed_final",
+        "label": "Comparing the two",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          "Comparing the two results:",
+          "First order: t1/2 = 0.693/k has no a in it,",
+          "so the half life does not depend on the",
+          "starting concentration.",
+          "Zero order: t1/2 = [R]₀/2k contains [R]₀,",
+          "so twice the starting concentration gives",
+          "twice the half life."
+        ],
+        "why": "The comparison is the point of asking for both. In first order the rate falls as the concentration falls, so a bigger sample also reacts faster and the two effects cancel; in zero order the rate never falls, so a bigger sample simply takes longer.",
+        "common_mistakes": [
+          "Swapping the two conclusions. Only the zero order half life depends on the starting concentration.",
+          "Ending at the algebra. The question asks for both derivations, and the sentence naming what each result means is what shows they were understood."
+        ],
+        "memory_tip": "First order does not depend on where it started. Zero order does.",
+        "margin_note": "Two sentences close the answer. An 8-mark derivation that stops at the boxed line usually drops this mark."
+      }
+    ]
+  },
+  "insider_note": "Both halves depend on one substitution, x = a/2. Write that line clearly in each derivation; it is where the method marks sit, not in the final formulas."
+}

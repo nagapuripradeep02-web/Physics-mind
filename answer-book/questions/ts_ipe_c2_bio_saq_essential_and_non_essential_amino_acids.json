@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_essential_and_non_essential_amino_acids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are essential and non-essential amino acids? Give two examples of each type.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The twenty amino acids",
+      "marks": 1
+    },
+    {
+      "label": "Non-essential amino acids",
+      "marks": 1
+    },
+    {
+      "label": "Essential amino acids",
+      "marks": 1
+    },
+    {
+      "label": "What the word essential means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.101 as SAQ 3. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. COUNT NOTE: the book gives the split as 10 synthesised and 10 essential out of 20, and that is the count written here. Modern nutrition lists nine amino acids as strictly essential for an adult, with histidine essential in children; the board answer key uses the 10 and 10 division, so this card follows it and records the difference here rather than on the page."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_twenty",
+        "kind": "text",
+        "label": "The twenty amino acids",
+        "marks": 1,
+        "mark_note": "The division",
+        "lines": [
+          "About 20 amino acids are needed to make the",
+          "proteins of the human body.",
+          "The body can synthesise 10 of them for",
+          "itself.",
+          "The other 10 it cannot make, so they must",
+          "come from the food.",
+          "This is the basis of the classification."
+        ],
+        "why": "The two classes are defined by one test only: can the body make it, or must the diet supply it. Giving the split as 10 and 10 out of about 20 states the classification as a whole before either half is named, so the two definitions that follow have something to divide.",
+        "common_mistakes": [
+          "Classifying by structure or by side chain. The division is by whether the body can synthesise the acid.",
+          "Writing that the body makes all 20. It makes about half; the rest must be eaten."
+        ],
+        "memory_tip": "About 20 in all: ten made in the body, ten from food.",
+        "margin_note": "Give the numbers. The 10 and 10 split is the frame the two definitions hang on."
+      },
+      {
+        "id": "s2_non_essential",
+        "kind": "text",
+        "label": "Non-essential amino acids",
+        "marks": 1,
+        "mark_note": "Non-essential",
+        "lines": [
+          "Non-essential amino acids are those the",
+          "body can synthesise for itself.",
+          "They need not be supplied by the diet.",
+          "Ex: glycine and alanine."
+        ],
+        "why": "These are the ones the body assembles from other compounds it already has, so a diet short of them causes no shortage in the body. Glycine and alanine are the two simplest amino acids and are the pair the answer key prints.",
+        "common_mistakes": [
+          "Writing that non-essential amino acids are not needed by the body. They are needed; they simply need not be eaten.",
+          "Giving leucine as a non-essential example. Leucine is essential."
+        ],
+        "memory_tip": "Non-essential means the body already makes it.",
+        "margin_note": "Definition plus two examples. Both halves are needed for this mark."
+      },
+      {
+        "id": "s3_essential",
+        "kind": "text",
+        "label": "Essential amino acids",
+        "marks": 1,
+        "mark_note": "Essential",
+        "lines": [
+          "Essential amino acids are those the body",
+          "cannot synthesise.",
+          "They must be supplied by the diet.",
+          "Ex: leucine and isoleucine."
+        ],
+        "why": "The body has no route to these, so the only source is protein in the food; a diet that lacks one of them cannot build the proteins that need it. Leucine and isoleucine are the pair the answer key gives, and both are common in ordinary protein foods.",
+        "common_mistakes": [
+          "Giving glycine or alanine as an essential example. Both are non-essential.",
+          "Writing that essential amino acids are found only in animal food. They occur in plant protein as well."
+        ],
+        "memory_tip": "Essential means the food must supply it; the body has no route.",
+        "margin_note": "Two examples for each type, four names in all. The question counts them."
+      },
+      {
+        "id": "s4_meaning",
+        "kind": "boxed_final",
+        "label": "What the word essential means",
+        "marks": 1,
+        "mark_note": "Meaning of the term",
+        "lines": [
+          {
+            "text": "Essential from food; the rest from body",
+            "style": "boxed"
+          },
+          "The word essential does not mean that one",
+          "group matters more than the other.",
+          "Both groups are needed to build a protein.",
+          "The word refers only to the diet: whether",
+          "the food must supply the amino acid."
+        ],
+        "why": "This is the single point students most often get wrong, and it is worth stating outright: essential is a statement about the diet, not about importance. A protein that needs alanine fails just as completely without alanine as one that needs leucine fails without leucine.",
+        "common_mistakes": [
+          "Writing that essential amino acids are the important ones. Both classes are equally needed by the body.",
+          "Writing that non-essential amino acids can be left out of the diet with no effect. They can be left out only because the body makes them."
+        ],
+        "memory_tip": "Essential is about the diet, not about importance.",
+        "margin_note": "One sentence on what the word means. It is the mark most students never write."
+      }
+    ]
+  },
+  "insider_note": "Four names and two definitions is the body of the answer. The fourth mark is for saying what the word essential actually means, and almost nobody writes it."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_polymerisation_types_four_polymers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the type of polymerisation involved in the formation of the following polymers: a) Bakelite b) PVC c) Polyethene d) Teflon.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three addition polymers",
+      "marks": 1
+    },
+    {
+      "label": "Bakelite as a condensation polymer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 1 on book p.95. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the question prints \"Polyethene\" in part c) while the printed answer table prints \"Polythene\" in the matching row. They are the same polymer; the wording of the question is kept here. The printed answers (condensation for Bakelite, addition for the other three) are correct and are kept. The book gives no monomers anywhere in this question; they are supplied here, because naming the monomer is what shows the type was reasoned rather than recalled."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_addition",
+        "kind": "text",
+        "label": "The three addition polymers",
+        "marks": 1,
+        "mark_note": "Addition polymers",
+        "lines": [
+          "b) PVC — addition polymerisation",
+          "c) Polyethene — addition polymerisation",
+          "d) Teflon — addition polymerisation",
+          "Their monomers all carry a C=C bond:",
+          "vinyl chloride CH₂=CH–Cl, ethene CH₂=CH₂",
+          "and tetrafluoroethene CF₂=CF₂.",
+          "The double bond opens and the units join",
+          "end to end. No small molecule is lost."
+        ],
+        "why": "All three come from a monomer with a carbon to carbon double bond. The bond opens and the units join end to end, so the polymer keeps the same empirical formula as its monomer and nothing is released. That is the test for addition polymerisation.",
+        "common_mistakes": [
+          "Calling Teflon a condensation polymer. It is made from tetrafluoroethene, CF₂=CF₂, by addition.",
+          "Writing the monomer of PVC without its double bond. Vinyl chloride is CH₂=CH–Cl, not CH₃–CH₂Cl."
+        ],
+        "memory_tip": "A double bond in the monomer means addition. Two functional groups and a small molecule released means condensation.",
+        "margin_note": "One word per polymer earns this mark. Writing the monomer beside each name protects it if the examiner asks for a reason."
+      },
+      {
+        "id": "s2_condensation",
+        "kind": "boxed_final",
+        "label": "Bakelite as a condensation polymer",
+        "marks": 1,
+        "mark_note": "Condensation polymer",
+        "lines": [
+          {
+            "text": "a) Bakelite — condensation",
+            "style": "boxed"
+          },
+          "It is made from two monomers, phenol",
+          "C₆H₅OH and formaldehyde HCHO.",
+          "They join through –CH₂– links, and one",
+          "water molecule is released at every",
+          "joining step.",
+          "That loss of a small molecule is what",
+          "makes it condensation, not addition."
+        ],
+        "why": "Phenol has three reactive positions on the ring, two ortho and one para, so formaldehyde can link it in more than one direction. Each link releases water, which is the test for condensation, and the many links build a network, which is why Bakelite is also thermosetting.",
+        "common_mistakes": [
+          "Writing addition for Bakelite. A water molecule is released at every step, so it is condensation.",
+          "Leaving out the water. The mark is earned by saying that a small molecule is released."
+        ],
+        "memory_tip": "Bakelite is the only one of the four made from two different monomers, and it is the only condensation polymer in the list.",
+        "margin_note": "Answer as a numbered list in the order the question gives, so the examiner can tick the four in turn."
+      }
+    ]
+  },
+  "insider_note": "Three of the four are addition and only Bakelite is condensation, so the whole question is one contrast. Write the monomer beside each polymer; that is what shows the answer was reasoned and not guessed."
+}

@@ -154,6 +154,24 @@ export const DE_MOIVRE_PROBE: OutOfBankProbe = {
  *  946 questions. The regex fires only on the SUBSTANCE, never on the wording of a
  *  refusal — the DE_MOIVRE_PROBE precedent, and the reason the physics probe was
  *  rewritten after 8 of its 69 criticals turned out to be proper refusals. */
+/** Chemistry-II cannot use NERNST_PROBE: the Nernst equation is a SECOND-year
+ *  topic and sits on two of its own cards, so that ask would test a refusal that
+ *  must never happen - the exact mistake chemistry inherited from physics and
+ *  that the note below was written about. (It also makes the note's own claim of
+ *  zero nernst hits across the bank stale as of Chemistry-II; it stays true for
+ *  the first-year chemistry cards the chemistry probe is actually asked against.)
+ *
+ *  Chosen the same way: grepped across all 1,326 questions first. henderson,
+ *  hasselbalch and clapeyron each return ZERO hits, while markovnikov and
+ *  diels-alder also return zero but carry no equation for the substance regex to
+ *  fire on. Henderson-Hasselbalch is a plausible ask for a chemistry student and
+ *  has a formula, so the regex matches the SUBSTANCE and never the wording of a
+ *  refusal. */
+export const HENDERSON_PROBE: OutOfBankProbe = {
+    askMatches: /henderson|hasselbalch/i,
+    formula: /pK\s*a?\s*\+\s*log|pH\s*=\s*pK|log\s*\(?\s*\[?\s*(salt|base|A[-−⁻])/i,
+};
+
 export const NERNST_PROBE: OutOfBankProbe = {
     askMatches: /nernst/i,
     formula: /0\.059\d*|RT\s*\/\s*\(?\s*nF|E\s*=\s*E\s*°/i,

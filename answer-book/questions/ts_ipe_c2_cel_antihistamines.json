@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_antihistamines",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are antihistamines? Give examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples and the two receptor types",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 2. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.105, VSAQ 2): the printed answer defines antihistamines as \"The drugs which prevent the interaction of histamine with receptors present in stomach walls\" and then gives \"cimetidine, Seldane, Ranitidine\" as examples. The definition covers only the stomach receptors, while the example list mixes both kinds: cimetidine and ranitidine act on the stomach receptors and are used to reduce stomach acid, but Seldane (terfenadine) acts on the receptors that produce an allergy and does nothing about stomach acid. The card names both kinds so the definition and the examples agree with each other. BOUNDARY WITH ts_ipe_c2_cel_antacids: cimetidine and ranitidine appear on both cards, correctly; they are antihistamines of the stomach type that are used as antacids, and neither card calls them neutralising antacids."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Antihistamines are drugs that prevent",
+          "histamine from acting on its receptors.",
+          "Histamine released in the body produces",
+          "the symptoms of an allergy, and it also",
+          "makes the stomach wall release more acid."
+        ],
+        "why": "Histamine is a compound the body itself releases. The drug does not destroy it; the drug occupies the receptor site so that histamine cannot act there. Saying \"prevents the interaction of histamine with its receptor\" is the wording that earns this mark, because it names both the substance and the site.",
+        "common_mistakes": [
+          "Writing that an antihistamine destroys histamine. It only prevents histamine acting on the receptor.",
+          "Naming only the allergy effect or only the stomach effect. Histamine produces both, and the definition should cover both."
+        ],
+        "memory_tip": "Anti plus histamine: the drug occupies the receptor, so histamine cannot act there.",
+        "margin_note": "Write the words histamine and receptor. A definition without the word receptor usually loses this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples and the two receptor types",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Ex: terfenadine (Seldane) and",
+          "brompheniramine act on the receptors",
+          "that produce an allergy.",
+          {
+            "text": "Cimetidine and ranitidine act on the",
+            "style": "boxed"
+          },
+          "receptors in the stomach wall, so less",
+          "acid is released and they are also used",
+          "as antacids."
+        ],
+        "why": "Histamine acts on more than one kind of receptor. Terfenadine and brompheniramine prevent it acting on the receptors that produce an allergy; cimetidine and ranitidine prevent it acting on the receptors in the stomach wall, which is why those two are also listed as antacids. The book's example list contains both kinds without saying so.",
+        "common_mistakes": [
+          "Writing that every antihistamine reduces stomach acid. Only the stomach type does; the allergy type does not.",
+          "Writing Seldane as an antacid. Seldane is terfenadine, and it acts on the allergy receptors."
+        ],
+        "memory_tip": "Two receptors, two uses: the allergy type for allergy, the stomach type for acid.",
+        "margin_note": "Any two of the named drugs finish this mark. Say which type each one is if there is room."
+      }
+    ]
+  },
+  "insider_note": "The definition mark is lost more often than the example mark. Name the two kinds of receptor, allergy and stomach, because a definition that mentions only one of them is half an answer."
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_oxidation_states_halogens",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the oxidation states of halogens in the following: a) Cl₂O b) ClO₂⁻ c) KBrO₃ d) NaClO₄",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cl₂O and ClO₂⁻",
+      "marks": 1
+    },
+    {
+      "label": "KBrO₃ and NaClO₄",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. APPEARANCE: this is the one question in this unit that carries a printed year citation, \"(June 2015 TS)\", set under part (d) of the question on book p.87. It is recorded as appearances [{year 2015, board ts_ipe}] and is still a claim until a teacher confirms it. BOOK GAP: the printed answer is a bare table of four answers with no working and no rule. The working is written here, along with the fact that fluorine is the exception that shows no positive oxidation state. All four printed values were recalculated and are correct: +1, +3, +5, +7."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_two",
+        "kind": "equation",
+        "label": "Cl₂O and ClO₂⁻",
+        "marks": 1,
+        "mark_note": "Parts (a) and (b)",
+        "lines": [
+          "Take oxygen as −2 and make the total equal",
+          "to the charge on the species.",
+          {
+            "text": "Cl₂O: 2x + (−2) = 0, so x = +1",
+            "style": "eq"
+          },
+          {
+            "text": "ClO₂⁻: x + 2(−2) = −1, so x = +3",
+            "style": "eq"
+          }
+        ],
+        "why": "Oxygen is −2 in all of these compounds because it is more electronegative than any halogen except fluorine. The total then has to equal the charge on the species: zero for a neutral compound, −1 for the ClO₂⁻ ion. That single rule answers all four parts.",
+        "common_mistakes": [
+          "Setting the total to zero for ClO₂⁻. It is an ion of charge −1, so the total must be −1.",
+          "Forgetting that Cl₂O has two chlorine atoms. 2x = +2 gives +1 for each chlorine, not +2."
+        ],
+        "memory_tip": "Oxygen −2, then make the sum equal the charge written on the species.",
+        "margin_note": "Show one line of working for each part. Bare answers are marked, but working protects you against an arithmetic slip."
+      },
+      {
+        "id": "s2_last_two",
+        "kind": "boxed_final",
+        "label": "KBrO₃ and NaClO₄",
+        "marks": 1,
+        "mark_note": "Parts (c) and (d)",
+        "lines": [
+          {
+            "text": "KBrO₃: (+1) + x + 3(−2) = 0, x = +5",
+            "style": "eq"
+          },
+          {
+            "text": "NaClO₄: (+1) + x + 4(−2) = 0, x = +7",
+            "style": "eq"
+          },
+          {
+            "text": "Cl +1, Cl +3, Br +5, Cl +7",
+            "style": "boxed"
+          },
+          "Chlorine, bromine and iodine show +1, +3,",
+          "+5 and +7 with oxygen. Fluorine is the",
+          "exception: it shows only −1 and 0."
+        ],
+        "why": "Potassium and sodium are always +1, so they enter the sum as a known number. The positive states arise only because the halogen is joined to oxygen, which is more electronegative than it. Fluorine is the most electronegative element of all and has no d orbitals, so it never takes a positive oxidation state; the +1, +3, +5, +7 series belongs to chlorine, bromine and iodine.",
+        "common_mistakes": [
+          "Taking potassium or sodium as −1. Both are group 1 metals and are always +1 in their compounds.",
+          "Writing a positive oxidation state for fluorine in a similar question. Fluorine is only −1 in compounds and 0 in F₂."
+        ],
+        "memory_tip": "One more oxygen atom raises the halogen by two: +1, +3, +5, +7.",
+        "margin_note": "Write the four answers together on one line at the end. An examiner marking four short parts looks for them in one place."
+      }
+    ]
+  },
+  "insider_note": "This is a four-part question worth two marks, so each part is about half a mark. Answer all four; three correct parts with long working scores less than four short ones."
+}

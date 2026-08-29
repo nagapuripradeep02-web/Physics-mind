@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_order_of_reaction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define Order of a reaction. Illustrate your answer with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.73, VSAQ 3): the printed definition says \"the sum of the powers of the concentration terms of the reactants in the rate equation\" and never says that those powers come from EXPERIMENT, nor that the order may be zero or a fraction. Both are written on this card, because they are exactly what the LAQ 2 comparison with molecularity is marked on. BOOK INCONSISTENCY: this answer prints the example as \"N₂O₅ → N₂O₄ + ½O₂\" while VSAQ 6 on the next page prints the same decomposition as \"N₂O₅ → 2NO₂ + ½O₂\". Both are balanced and both are first order, but the book never says they are the same reaction written two ways. The NCERT form 2N₂O₅ → 4NO₂ + O₂ is used on this card and on VSAQ 6, so the unit reads consistently."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The order of a reaction is the sum of the",
+          "powers of the concentration terms in the",
+          "experimentally found rate law.",
+          {
+            "text": "rate = k[A]ᵐ[B]ⁿ ⇒ order = m + n",
+            "style": "eq"
+          },
+          "The order is found by experiment. It can",
+          "be zero, a whole number or a fraction."
+        ],
+        "why": "Order is a description of the measured rate law and nothing else. That is why it is allowed values a count of molecules could never take: a zero order reaction has a rate that does not depend on concentration at all, and a fractional order comes out of a multi step mechanism.",
+        "common_mistakes": [
+          "Adding the coefficients of the balanced equation. The order is the sum of the powers in the measured rate law.",
+          "Writing that the order must be a whole number. Zero and fractional orders are both real."
+        ],
+        "memory_tip": "Add the powers, not the coefficients. Powers come from experiment.",
+        "margin_note": "Write the general form and the words found by experiment. Those two carry the mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "equation",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: decomposition of N₂O₅.",
+          {
+            "text": "2N₂O₅(g) → 4NO₂(g) + O₂(g)",
+            "style": "eq"
+          },
+          {
+            "text": "rate = k[N₂O₅]¹",
+            "style": "eq"
+          },
+          "The sum of the powers is 1, so this is a",
+          "first order reaction, although the",
+          "coefficient of N₂O₅ in the equation is 2.",
+          "Unit of k here is s⁻¹."
+        ],
+        "why": "This example is chosen because the power and the coefficient disagree. An example where they happen to agree would illustrate the words but would not show what the definition is guarding against.",
+        "common_mistakes": [
+          "Calling it second order because of the 2 in front of N₂O₅. The measured power is 1.",
+          "Stopping at the equation. The rate law and the sentence naming the order are what make it an illustration."
+        ],
+        "memory_tip": "Coefficient 2, order 1. The equation and the rate law are two different things.",
+        "margin_note": "Finish with the sentence that names the order. An example with no conclusion usually scores half."
+      }
+    ]
+  },
+  "insider_note": "Pick an example where the power and the coefficient differ. It shows the examiner that the word experimentally in the definition was understood, not copied."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_bleaching_needs_moisture",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Chlorine acts as a bleaching agent only in the presence of moisture – explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Nascent oxygen from water",
+      "marks": 1
+    },
+    {
+      "label": "Bleaching is by oxidation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.87, VSAQ 8): the printed answer never states the point the question turns on, that DRY chlorine has no bleaching action; it starts from the wet reaction. That sentence is written here as the first line. The printed equation Cl₂ + H₂O → 2HCl + [O] was atom-counted and balances as printed. The comparison with sulphur dioxide bleaching, which is a reduction and is temporary, is added because the two are asked together in this chapter."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nascent_oxygen",
+        "kind": "equation",
+        "label": "Nascent oxygen from water",
+        "marks": 1,
+        "mark_note": "Nascent oxygen",
+        "lines": [
+          "Dry chlorine has no bleaching action.",
+          "In the presence of water, chlorine reacts",
+          "with it and sets nascent oxygen free.",
+          {
+            "text": "Cl₂ + H₂O → 2HCl + [O]",
+            "style": "eq"
+          },
+          "[O] is nascent oxygen, the freshly formed",
+          "single oxygen atom."
+        ],
+        "why": "Water is a reactant here, not a solvent: it supplies the oxygen. Without water there is no nascent oxygen and no bleaching, which is exactly what the question asks about. Nascent oxygen is a much stronger oxidising agent than ordinary O₂ because it is a single atom.",
+        "common_mistakes": [
+          "Writing that chlorine itself removes the colour. Chlorine bleaches through the nascent oxygen made from water.",
+          "Writing O₂ in place of [O]. Ordinary oxygen gas does not bleach; the freshly formed single atom does."
+        ],
+        "memory_tip": "No water, no nascent oxygen, no bleaching. The water is a reactant.",
+        "margin_note": "The first sentence and the balanced equation together earn this mark."
+      },
+      {
+        "id": "s2_oxidation",
+        "kind": "equation",
+        "label": "Bleaching is by oxidation",
+        "marks": 1,
+        "mark_note": "Oxidation",
+        "lines": [
+          "The nascent oxygen oxidises the coloured",
+          "substance to a colourless one.",
+          {
+            "text": "Coloured substance + [O] → colourless",
+            "style": "eq"
+          },
+          "Bleaching by chlorine is an oxidation, so",
+          "it is permanent.",
+          "Bleaching by SO₂ is a reduction and the",
+          "colour returns in air, so it is temporary."
+        ],
+        "why": "The oxidised coloured substance is a new compound, so the original colour does not return. Sulphur dioxide works the opposite way: it reduces the coloured substance, and the air slowly oxidises it back, so that bleaching is temporary. The two are set as a pair in this chapter.",
+        "common_mistakes": [
+          "Writing that chlorine bleaching is temporary. Oxidation makes it permanent; the temporary one is SO₂.",
+          "Stopping at the equation. The word oxidation is what is being marked."
+        ],
+        "memory_tip": "Chlorine oxidises and the colour never returns; SO₂ reduces and the colour comes back.",
+        "margin_note": "Write the word oxidation and the word permanent. The equation alone is usually half this mark."
+      }
+    ]
+  },
+  "insider_note": "The first line, that dry chlorine does not bleach, is the line the question is really asking for, and the printed guide leaves it out."
+}

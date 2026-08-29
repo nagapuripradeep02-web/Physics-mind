@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_barbiturates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are barbiturates?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 4. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.105, VSAQ 4): the printed answer reads \"barbiturates are hypnotic drugs and produced sleep. Ex: Veronal, Amytal, Luminal etc.\" Two things are added here. First, that they are derivatives of barbituric acid, which is the chemistry behind the name and the only reason the class has one name. Second, that they are habit forming and are therefore given in controlled doses. The book never says which larger class they belong to; they are tranquillisers, and that is stated here so this card and the tranquilliser card in the same unit agree."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Barbiturates are the derivatives of",
+          "barbituric acid.",
+          "They are hypnotic drugs, that is, they",
+          "produce sleep.",
+          "They belong to the tranquiliser class."
+        ],
+        "why": "The name of the class comes from the parent compound, barbituric acid, so a definition that names the parent compound is the complete one. Hypnotic is the technical word for a sleep producing drug, and writing both the word and its meaning covers the mark either way.",
+        "common_mistakes": [
+          "Writing that a barbiturate reduces pain. It produces sleep; a drug that reduces pain is an analgesic.",
+          "Leaving out barbituric acid. The parent compound is what gives the class its name."
+        ],
+        "memory_tip": "Barbiturate comes from barbituric acid; hypnotic means sleep producing.",
+        "margin_note": "Name barbituric acid and write the word hypnotic with its meaning. That is the whole mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: veronal, amytal, luminal, seconal",
+            "style": "boxed"
+          },
+          "and nembutal.",
+          "They are habit forming, so they are given",
+          "only in controlled doses.",
+          "A hypnotic produces sleep. It does not",
+          "reduce pain, and it does not reduce fever."
+        ],
+        "why": "Any two of the five names finish the mark. The caution about controlled doses is the point the examiner looks for when the question is asked at four marks instead of two, and the last two lines keep the class separate from analgesics and antipyretics, which is where the marks are usually lost.",
+        "common_mistakes": [
+          "Giving aspirin or paracetamol as examples. Those are analgesics, not barbiturates.",
+          "Writing that barbiturates are safe in any dose. They are habit forming and are given in controlled doses."
+        ],
+        "memory_tip": "Veronal, amytal, luminal, seconal: the barbiturate names all end in -al.",
+        "margin_note": "Two names finish this mark. Add the words habit forming if there is room."
+      }
+    ]
+  },
+  "insider_note": "The word hypnotic is what the examiner looks for, and its meaning has to be written beside it. Naming barbituric acid as the parent compound turns a half answer into a full one."
+}

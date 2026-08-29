@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_flux_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is flux? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR CORRECTED (book p.79, VSAQ 3): the printed definition is \"An out side substance added to the ore to lower its m.p. is known as flux\". A flux does not lower the melting point of the ore; it reacts with the infusible gangue and turns it into an easily fusible slag. The correct definition is written on the card and the book's printed wording is recorded in the step's why. The book's examples (acidic flux SiO₂, P₄O₁₀; basic flux CaO, MgO) are chemically sound and are kept. SCAN NOTE: book p.79 is the darkest page in the book and the second acidic flux could be read as either P₄O₁₀ or P₂O₅. They are the same oxide written as the molecule and as the empirical formula, so the chemistry is unaffected either way; P₄O₁₀ is used."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A flux is a substance added to the ore",
+          "during smelting.",
+          "It combines with the infusible gangue and",
+          "changes it into an easily fusible slag,",
+          "which melts and is then removed.",
+          {
+            "text": "Flux + gangue → slag",
+            "style": "eq"
+          }
+        ],
+        "why": "A flux is added to remove the gangue, not to melt the ore. It reacts with the gangue to give a slag that melts at a lower temperature and floats on the metal, so the slag can be run off. The book defines a flux as a substance \"added to the ore to lower its m.p.\", which states an effect on the gangue as though it were an effect on the ore; the reaction with the gangue is what is being marked.",
+        "common_mistakes": [
+          "Saying the flux lowers the melting point of the metal. It reacts with the gangue, and it is the gangue that is turned into a fusible slag.",
+          "Saying the flux is the same as the slag. The slag is the product formed after the flux reacts with the gangue."
+        ],
+        "memory_tip": "Flux reacts with gangue and gives slag. Three words in that order.",
+        "margin_note": "Name the gangue and the slag in the definition. A definition with neither word rarely earns the full mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Acidic flux: SiO₂, P₄O₁₀",
+            "style": "boxed"
+          },
+          {
+            "text": "Basic flux: CaO, MgO, CaCO₃",
+            "style": "boxed"
+          },
+          "An acidic flux is used when the gangue is",
+          "basic, and a basic flux when the gangue",
+          "is acidic.",
+          {
+            "text": "FeO + SiO₂ → FeSiO₃",
+            "style": "eq"
+          },
+          "gangue + flux → slag"
+        ],
+        "why": "A flux works only if it is chemically opposite to the gangue, so the example has to match the gangue. Silica is an acidic oxide and removes a basic gangue such as FeO; lime is a basic oxide and removes an acidic gangue such as SiO₂.",
+        "common_mistakes": [
+          "Giving an acidic flux for an acidic gangue. Acid and acid do not react; the flux must be the opposite of the gangue.",
+          "Writing SiO₂ as a basic flux. Silica is an acidic oxide."
+        ],
+        "memory_tip": "Acidic gangue takes a basic flux; basic gangue takes an acidic flux. Opposites.",
+        "margin_note": "One acidic and one basic example, with the equation under them, completes this mark."
+      }
+    ]
+  },
+  "insider_note": "The word that earns the definition mark is \"gangue\". A flux defined without the gangue is describing something else."
+}

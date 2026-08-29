@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_nitrogen_molecule_stability",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Nitrogen molecule is highly stable. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The triple bond",
+      "marks": 1
+    },
+    {
+      "label": "The bond enthalpy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 2. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.83, VSAQ 2): the printed answer is the list \"Due to small size, high bond order, low bond length, high Bond Dissociation Energy\". \"Low bond length\" is written here as SHORT bond length, which is the literal word for it. The book gives no numbers; the values 110 pm and 941 kJ/mol are added so the claim can be checked. THIS QUESTION AND VSAQ 3 OVERLAP: the book asks the same chemistry twice, once as stability of the molecule and once as inert character of dinitrogen. This card answers the STRUCTURE half (why the bond is strong); the VSAQ 3 card answers the REACTIVITY half (what that strong bond does to the chemistry)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_triple_bond",
+        "kind": "text",
+        "label": "The triple bond",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          "The two nitrogen atoms are small, so their",
+          "2p orbitals overlap sideways very well.",
+          "They form one σ bond and two π bonds.",
+          {
+            "text": "N ≡ N   bond order = 3",
+            "style": "eq"
+          },
+          "The N–N bond length is short, only 110 pm."
+        ],
+        "why": "Bond order and bond length go together: three shared pairs pull the two nuclei closer than one shared pair would, so the bond is both short and strong. Naming the bond order is what turns \"small size\" into a reason.",
+        "common_mistakes": [
+          "Writing only \"small size\". Small size is the cause; the triple bond is the reason the molecule is stable.",
+          "Giving the bond order as 2. N₂ has ten valence electrons and a bond order of 3."
+        ],
+        "memory_tip": "Bond order 3, bond length 110 pm, one sigma and two pi.",
+        "margin_note": "Write bond order 3 in words or numbers. That is the marked idea in this step."
+      },
+      {
+        "id": "s2_bond_enthalpy",
+        "kind": "boxed_final",
+        "label": "The bond enthalpy",
+        "marks": 1,
+        "mark_note": "Energy",
+        "lines": [
+          {
+            "text": "Bond enthalpy of N≡N = 941 kJ/mol",
+            "style": "boxed"
+          },
+          "This is among the highest for any diatomic",
+          "molecule.",
+          "A very large amount of energy is needed to",
+          "break the bond, so N₂ is stable and does not",
+          "react at ordinary temperature."
+        ],
+        "why": "Stability is an energy statement, so the answer is finished only when the energy is named. The group trend supports it and has a clear exception: the E≡E multiple bond disappears after nitrogen, and the E–E SINGLE bond enthalpy is the opposite of the usual order, N–N (159 kJ/mol) being weaker than P–P (213 kJ/mol) because of lone-pair repulsion between two small atoms.",
+        "common_mistakes": [
+          "Writing high \"bond energy\" without saying it is the bond DISSOCIATION enthalpy of the triple bond.",
+          "Confusing stability with inertness at all temperatures. N₂ does react above about 700 K and in an electric arc."
+        ],
+        "memory_tip": "941 kJ/mol — nearly a thousand, the number to quote for N≡N.",
+        "margin_note": "One number, 941 kJ/mol, plus the words \"large energy needed to break the bond\" completes this mark."
+      }
+    ]
+  },
+  "insider_note": "Two words earn the two marks: triple bond and 941 kJ/mol. A list of four adjectives with no bond order and no number is where most of this question is lost."
+}

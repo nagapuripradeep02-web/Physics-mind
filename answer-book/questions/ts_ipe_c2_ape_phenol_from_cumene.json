@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_phenol_from_cumene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give the equation of reaction for the preparation of phenol from cumene.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What cumene is",
+      "marks": 1
+    },
+    {
+      "label": "Air oxidation to cumene hydroperoxide",
+      "marks": 1
+    },
+    {
+      "label": "Acid hydrolysis to phenol and acetone",
+      "marks": 1
+    },
+    {
+      "label": "Why this is the industrial route",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.109 as Short Answer 1. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NAMING ERROR, corrected on this card (book p.109, SAQ 1): the printed scheme labels the intermediate \"cumene peroxide\". It is cumene HYDROperoxide — its group is –O–O–H, not the R–O–O–R of a true peroxide. The card writes cumene hydroperoxide and records the book's label. BOOK SLOPPINESS: the printed arrow for the second stage carries \"H⁺ / H₂O\", which reads as though water were a reactant. It is not: the rearrangement is acid catalysed and the balanced equation C₉H₁₂O₂ → C₆H₆O + C₃H₆O needs no water at all (C 9=9, H 12=12, O 2=2). Dilute H₂SO₄ is the catalyst and the medium; the card says so. BALANCE CHECKED: C₆H₅CH(CH₃)₂ + O₂ → C₆H₅C(CH₃)₂OOH balances as C₉H₁₂ + O₂ = C₉H₁₂O₂. BOOK GAP: the printed answer gives no temperature; air oxidation is carried out at about 373 K. TREND AND EXCEPTION: the card states that oxidation happens at the tertiary benzylic C–H because it is the weakest C–H in the molecule, and names the exception on the same card — with a strong oxidising agent such as KMnO₄ any alkyl side chain carrying a benzylic hydrogen is oxidised right down to –COOH, so toluene gives benzoic acid rather than a hydroperoxide, and this mild route works only with the branched isopropyl side chain."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_cumene_is",
+        "kind": "text",
+        "label": "What cumene is",
+        "marks": 1,
+        "mark_note": "Starting material",
+        "lines": [
+          "Cumene is isopropylbenzene,",
+          "C₆H₅–CH(CH₃)₂.",
+          "Its side chain carries one hydrogen on a",
+          "carbon that holds the ring and two methyl",
+          "groups, so that C–H is a tertiary benzylic",
+          "hydrogen.",
+          "This is the C–H that is oxidised."
+        ],
+        "why": "Naming the tertiary benzylic hydrogen is the reason the whole route works: it is the weakest C–H bond in the molecule, so air alone can remove it. Every later step follows from where that first oxygen goes.",
+        "common_mistakes": [
+          "Writing cumene as propylbenzene. The side chain is branched, so it is isopropylbenzene.",
+          "Saying the ring is oxidised. The ring is untouched throughout; only the side chain reacts."
+        ],
+        "memory_tip": "Cumene is a benzene ring with an isopropyl group, and the single hydrogen on that branch carbon is the one that reacts.",
+        "margin_note": "Draw or write the structure once. The examiner needs to see that you know which hydrogen is oxidised."
+      },
+      {
+        "id": "s2_air_oxidation",
+        "kind": "equation",
+        "label": "Air oxidation to cumene hydroperoxide",
+        "marks": 1,
+        "mark_note": "Oxidation",
+        "lines": [
+          "Cumene is oxidised by air at about 373 K.",
+          {
+            "text": "C₆H₅–CH(CH₃)₂ + O₂ →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅–C(CH₃)₂–O–O–H",
+            "style": "indent"
+          },
+          {
+            "text": "[air, 373 K]",
+            "style": "indent"
+          },
+          "The product is cumene hydroperoxide."
+        ],
+        "why": "An oxygen molecule adds at the tertiary benzylic carbon, giving the –O–O–H group. The equation balances as it stands, C₉H₁₂ plus O₂ giving C₉H₁₂O₂, so nothing else is formed at this stage. The exception worth knowing is that a stronger oxidising agent such as KMnO₄ does not stop here at all; it oxidises an alkyl side chain right down to –COOH, which is why toluene gives benzoic acid and not a hydroperoxide.",
+        "common_mistakes": [
+          "Calling the product cumene peroxide, as the book does. A peroxide is R–O–O–R; this is R–O–O–H, a hydroperoxide.",
+          "Adding water to this step. Air is the only other reactant and the equation balances without water."
+        ],
+        "memory_tip": "Air puts O₂ straight onto the branch carbon, giving –O–O–H, the hydroperoxide.",
+        "margin_note": "Write air or O₂ above the arrow. The reagent is the cheap part of this process and the examiner looks for it."
+      },
+      {
+        "id": "s3_acid_hydrolysis",
+        "kind": "equation",
+        "label": "Acid hydrolysis to phenol and acetone",
+        "marks": 1,
+        "mark_note": "Rearrangement",
+        "lines": [
+          "The hydroperoxide is treated with dilute",
+          "H₂SO₄. The chain rearranges and breaks.",
+          {
+            "text": "C₆H₅–C(CH₃)₂–O–O–H →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅–OH + CH₃–CO–CH₃",
+            "style": "indent"
+          },
+          {
+            "text": "[dilute H₂SO₄]",
+            "style": "indent"
+          },
+          "Phenol and acetone are formed together."
+        ],
+        "why": "The acid is a catalyst, not a reactant: the equation C₉H₁₂O₂ giving C₆H₆O plus C₃H₆O balances with no water on either side. The ring migrates from carbon to oxygen and the C–C bond then breaks, which is how one molecule gives two.",
+        "common_mistakes": [
+          "Putting H₂O on the left of this equation. Water is the medium; the balanced equation needs none.",
+          "Giving propanal as the second product. The carbon that breaks away carries two methyl groups, so the product is acetone."
+        ],
+        "memory_tip": "One hydroperoxide splits into two useful products: phenol from the ring side, acetone from the branch side.",
+        "margin_note": "Name acetone in words as well as in the formula. It is half of what this step produces."
+      },
+      {
+        "id": "s4_industrial_point",
+        "kind": "boxed_final",
+        "label": "Why this is the industrial route",
+        "marks": 1,
+        "mark_note": "Industrial point",
+        "lines": [
+          "Phenol is separated from acetone by",
+          "distillation.",
+          "Both products are wanted, and the only",
+          "reagent used up is air.",
+          {
+            "text": "Cumene → phenol + acetone",
+            "style": "boxed"
+          },
+          "This is the main industrial method of",
+          "making phenol."
+        ],
+        "why": "Other routes to phenol consume an expensive reagent and give a by-product with no use, so the reason this method is used on a large scale is that its by-product is itself a saleable chemical and its oxidant is free.",
+        "common_mistakes": [
+          "Calling acetone a waste product. Acetone is sold as well, and that is the point of the route.",
+          "Writing that the two products are separated by filtration. Both are liquids, so they are separated by distillation."
+        ],
+        "memory_tip": "Air in, two useful liquids out. That is why industry uses cumene.",
+        "margin_note": "One sentence on why the route is used industrially finishes the answer. Do not stop at the last equation."
+      }
+    ]
+  },
+  "insider_note": "The intermediate is cumene HYDROperoxide, –O–O–H, although the book labels it cumene peroxide. Name it correctly, and do not write water on the left of the second equation — the acid is a catalyst and the equation balances without it."
+}

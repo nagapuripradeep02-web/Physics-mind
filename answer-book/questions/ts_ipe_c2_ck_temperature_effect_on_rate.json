@@ -1,0 +1,186 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_temperature_effect_on_rate",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the effect of temperature on the rate of reaction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The observed effect",
+      "marks": 2
+    },
+    {
+      "label": "Why the rate rises",
+      "marks": 2
+    },
+    {
+      "label": "The Arrhenius equation",
+      "marks": 2
+    },
+    {
+      "label": "The logarithmic form",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 2+2+2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.76, LAQ 5): the printed answer contains the line \"Rate of reaction ∝ temperature\". That is false, and it contradicts the Arrhenius equation printed four lines below it on the same page. The rate depends on temperature through the exponential e^(−Eₐ/RT), so it rises far faster than in proportion: a rise from 300 K to 310 K is a rise of about 3 % in T but roughly DOUBLES the rate. The proportionality line is not reproduced; the correct dependence is written instead, and the contradiction is named on the card. BOOK SLOPPINESS on the same answer: it explains the increase as \"By increasing temperature number collision increases then rate of reaction increases\". The collision frequency rises only in proportion to √T, which is about 1.7 % for a 10 K rise near 300 K, while the measured rate can double. The dominant cause is the larger FRACTION of molecules with energy at or above Eₐ, and that is what is written here. Both numbers were computed: √(310/300) = 1.0165, and for Eₐ = 50 kJ mol⁻¹, ln(k₂/k₁) = (50000/8.314)(1/300 − 1/310) = 0.647, so k₂/k₁ = 1.91."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Chemical Kinetics — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_observed",
+        "kind": "text",
+        "label": "The observed effect",
+        "marks": 2,
+        "mark_note": "The effect",
+        "lines": [
+          "The rate of almost every reaction increases",
+          "when the temperature is raised.",
+          "As a rough rule, a rise of 10 °C about",
+          "doubles or triples the rate.",
+          {
+            "text": "k(t+10) / k(t) ≈ 2 to 3",
+            "style": "eq"
+          },
+          "This ratio is called the temperature",
+          "coefficient of the reaction.",
+          "The increase is not proportional to the",
+          "temperature. A rise from 300 K to 310 K",
+          "is a rise of about 3 % in T, but it can",
+          "double the rate."
+        ],
+        "why": "The doubling rule is the fact a student can quote, and the last sentence is the one that keeps it from being misread. A rate proportional to T would rise by 3 % for a 3 % rise in T; the measured rise is about a hundred times larger than that, which is the evidence for an exponential dependence.",
+        "common_mistakes": [
+          "Writing that the rate is proportional to the temperature. It rises far faster than in proportion, through an exponential.",
+          "Quoting the coefficient as 10. The 10 is the temperature rise in °C, not the factor by which the rate grows."
+        ],
+        "memory_tip": "Ten degrees up, roughly two to three times faster. Three per cent in T, a hundred per cent in rate.",
+        "margin_note": "Two marks: the doubling rule with its ratio, then the sentence that it is not a proportionality."
+      },
+      {
+        "id": "s2_why",
+        "kind": "text",
+        "label": "Why the rate rises",
+        "marks": 2,
+        "mark_note": "The reason",
+        "lines": [
+          "Molecules react only when they collide",
+          "with energy equal to or greater than the",
+          "activation energy Eₐ.",
+          "At any temperature the molecular energies",
+          "are spread over a wide range, and only",
+          "the fraction above Eₐ can react.",
+          "Raising the temperature moves that",
+          "spread towards higher energies, so a much",
+          "larger fraction of the molecules has",
+          "energy at or above Eₐ.",
+          "The number of collisions per second also",
+          "rises, but only in proportion to √T, which",
+          "is a small effect. The large increase",
+          "comes from the larger fraction."
+        ],
+        "why": "This step separates the two things a temperature rise does. Collisions become slightly more frequent, and they become much more energetic; only the second effect is large. Near 300 K a 10 K rise raises the collision frequency by about 1.7 % and the reactive fraction by about 90 %.",
+        "common_mistakes": [
+          "Giving the extra number of collisions as the main reason. The collision frequency rises only as √T, which is far too small to explain a doubling.",
+          "Writing that the activation energy falls when the temperature rises. Eₐ is a property of the reaction and does not change with T."
+        ],
+        "memory_tip": "More collisions is the small effect. More energetic collisions is the large one.",
+        "margin_note": "Two marks: the fraction above Eₐ, and that it grows with temperature. Name the fraction explicitly."
+      },
+      {
+        "id": "s3_arrhenius",
+        "kind": "equation",
+        "label": "The Arrhenius equation",
+        "marks": 2,
+        "mark_note": "Arrhenius equation",
+        "lines": [
+          "Arrhenius related the rate constant to the",
+          "absolute temperature:",
+          {
+            "text": "k = Ae^(−Eₐ/RT)",
+            "style": "eq"
+          },
+          "where",
+          {
+            "text": "A = frequency factor",
+            "style": "indent"
+          },
+          {
+            "text": "Eₐ = activation energy",
+            "style": "indent"
+          },
+          {
+            "text": "R = gas constant",
+            "style": "indent"
+          },
+          {
+            "text": "T = absolute temperature in K",
+            "style": "indent"
+          },
+          "The factor e^(−Eₐ/RT) is the fraction of",
+          "collisions that carry energy Eₐ or more."
+        ],
+        "why": "The equation puts a number on the previous step: the exponential IS the reactive fraction. Because T is in the denominator of the exponent, raising T makes the exponent less negative, and the fraction, and with it k, rises steeply.",
+        "common_mistakes": [
+          "Writing the exponent without the minus sign. With a plus sign the equation would say a larger barrier gives a faster reaction.",
+          "Using temperature in °C. T in the Arrhenius equation is the absolute temperature in kelvin."
+        ],
+        "memory_tip": "A times the fraction that can react. The fraction is e to the minus Eₐ over RT.",
+        "margin_note": "Two marks: the equation and the meaning of every symbol in it. Define all four."
+      },
+      {
+        "id": "s4_log_form",
+        "kind": "boxed_final",
+        "label": "The logarithmic form",
+        "marks": 2,
+        "mark_note": "Log form",
+        "lines": [
+          "Taking logarithms of both sides:",
+          {
+            "text": "ln k = ln A − Eₐ/RT",
+            "style": "eq"
+          },
+          {
+            "text": "log k = log A − Eₐ/2.303RT",
+            "style": "boxed"
+          },
+          "A graph of log k against 1/T is a straight",
+          "line of slope −Eₐ/2.303R, and this is how",
+          "the activation energy is measured.",
+          "For two temperatures T₁ and T₂:",
+          {
+            "text": "log(k₂/k₁) = (Eₐ/2.303R)(1/T₁ − 1/T₂)",
+            "style": "eq"
+          }
+        ],
+        "why": "The logarithmic form turns the exponential into a straight line, which is what makes Eₐ measurable rather than merely assumed. The two-temperature form is the same equation written twice and subtracted, so A cancels and only Eₐ is left.",
+        "common_mistakes": [
+          "Plotting log k against T instead of against 1/T. Only the plot against 1/T is a straight line.",
+          "Writing the slope as −Eₐ/R when the graph uses log to base 10. The 2.303 belongs in the slope whenever log is used."
+        ],
+        "memory_tip": "log k against 1/T is a straight line sloping down. The slope carries Eₐ.",
+        "margin_note": "Two marks: the log form and the straight-line graph. The two-temperature equation is the usual follow-up numerical."
+      }
+    ]
+  },
+  "insider_note": "The book's own line that the rate is proportional to temperature contradicts the Arrhenius equation printed under it. Write the exponential dependence, not the proportionality."
+}

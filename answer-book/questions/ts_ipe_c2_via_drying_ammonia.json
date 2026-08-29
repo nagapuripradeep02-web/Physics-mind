@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_drying_ammonia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which is used for drying ammonia?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The drying agent",
+      "marks": 1
+    },
+    {
+      "label": "Why the other driers fail",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 1 of that sub-box, book p.84. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK MISPLACEMENT: this question is about ammonia, which is a VA group hydride, and it is printed as the FIRST question under the VIA GROUP ELEMENTS heading, immediately after the VA group Long Answer on Ostwald's process. It belongs to the VA group section. It is authored here because the book prints it here and the sub-box boundary is what defines this unit. BOOK GAP: the printed answer is one line, \"CaO is used for drying ammonia\", with no reason and no rejected drier. Both are written on this card, because a bare name is usually only half the mark."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_drying_agent",
+        "kind": "text",
+        "label": "The drying agent",
+        "marks": 1,
+        "mark_note": "The agent",
+        "lines": [
+          "Quicklime, CaO, is used for drying ammonia.",
+          "It is a basic oxide and ammonia is a base,",
+          "so the two do not react.",
+          "The quicklime takes up only the water:",
+          {
+            "text": "CaO + H₂O → Ca(OH)₂",
+            "style": "eq"
+          },
+          "The dry ammonia gas then passes through."
+        ],
+        "why": "A drying agent must remove water and leave the gas itself untouched. Quicklime is a basic oxide, so it reacts with water but not with a basic gas. That is the whole reason this one drier works when the common ones do not.",
+        "common_mistakes": [
+          "Naming concentrated H₂SO₄. It is the standard drier for most gases, but it reacts with ammonia.",
+          "Writing only the formula CaO with no reason. The examiner marks the word basic as much as the name."
+        ],
+        "memory_tip": "Ammonia is a base, so its drier must also be a base. Quicklime is the base.",
+        "margin_note": "Write the name quicklime, the formula CaO, and the word basic. The name alone is usually half the mark."
+      },
+      {
+        "id": "s2_rejected_driers",
+        "kind": "boxed_final",
+        "label": "Why the other driers fail",
+        "marks": 1,
+        "mark_note": "Rejected driers",
+        "lines": [
+          {
+            "text": "Acidic driers cannot dry ammonia.",
+            "style": "boxed"
+          },
+          "Concentrated H₂SO₄ and P₄O₁₀ are acidic, so",
+          "they react with ammonia to form a salt:",
+          {
+            "text": "2NH₃ + H₂SO₄ → (NH₄)₂SO₄",
+            "style": "eq"
+          },
+          "Anhydrous CaCl₂ is not acidic, but it forms",
+          "an addition compound with ammonia:",
+          {
+            "text": "CaCl₂ + 8NH₃ → CaCl₂·8NH₃",
+            "style": "eq"
+          }
+        ],
+        "why": "The second mark is for showing that the choice of CaO is forced, not free. An acid and a base react, so the two usual driers destroy the gas being dried; anhydrous calcium chloride is neutral but still binds ammonia as an addition compound, so it is also ruled out.",
+        "common_mistakes": [
+          "Writing that anhydrous CaCl₂ is acidic. It is neutral; it is rejected because it forms CaCl₂·8NH₃, not because of acidity.",
+          "Writing NH₃ + H₂SO₄ → NH₄SO₄. The sulphate ion carries two negative charges, so the salt is (NH₄)₂SO₄ and two moles of ammonia are needed."
+        ],
+        "memory_tip": "Two reasons to reject a drier: it is acidic (H₂SO₄, P₄O₁₀), or it forms an addition compound (CaCl₂).",
+        "margin_note": "One rejected drier with its equation is enough for this mark. Give the equation, not just the name."
+      }
+    ]
+  },
+  "insider_note": "The single word CaO earns the first mark. Most students stop there and lose the second, which is for naming one drier that cannot be used and saying why."
+}
