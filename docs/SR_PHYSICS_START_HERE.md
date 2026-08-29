@@ -45,16 +45,30 @@ Wired on this branch (grep `physics_2` to see them all):
 equals the stream being built, and the build **fails unless exactly one cell is live**. Building
 `--stream=mpc_2` therefore lights MPC to Second year and nothing else.
 
-**A hazard for whoever merges this.** Another desk carries an uncommitted `PAPER_PATTERNS` table
-whose marks gate reads `if (want !== undefined)`, and `paperMarksFor` returns `undefined` for an
-unregistered subject. A missing `physics_2` row does **not** fail the build — it switches the marks
-gate **off** for every Physics-II card. Whoever merges second must add the row in the same commit:
+**A hazard for whoever merges this — and it is worse than a missing row.** `PAPER_PATTERNS` is now
+on master (it arrived with the 2026-27 syllabus commit). Its gate reads
+`if (want !== undefined && q.marks_total !== want)`, and `paperMarksFor` returns `undefined` for an
+unregistered subject — so a missing `physics_2` row does **not** fail the build, it **switches the
+marks gate off for every Physics-II card, and the same short-circuit repeats for every cut**. All
+256 cards would pass a gate that never ran. Register the row in the same commit as the merge:
 
 ```ts
-physics_2: { label: 'Physics II', total: 60,
-             internal: { marks: 30, kind: 'practical' },   // 30 vs 15: see §1, unverified
-             sections: ABC_60, wef: '2026-27 (second year — the reform reaches it in 2027-28)' },
+physics_2: { label: 'Physics II', total: 60, sections: ABC_60, wef: '2026-27' },
 ```
+
+**`internal` is deliberately OMITTED, not set to 30.** `notebook.js:4985` renders it into the PAPER
+line Vidi shows the student — *"… plus N marks practical outside the written paper"* — so a number
+put here is a number a student reads. **The second-year practical mark is NOT sourced.** The 30 in
+`SYLLABUS_2026_27.md` describes the pre-reform arrangement ("practicals only in 2nd year (30)"), and
+the reform's 15 belongs to first year; copying either onto a second-year paper would be inventing a
+figure. The renderer already guards with `pat.internal ? …`, so omitting the key simply drops that
+clause. **Make `internal` optional in `PaperPattern` rather than assert a number** — agreed with the
+Senior Chemistry desk on 2026-08-29, which faces the identical gap for `chemistry_2`. Fill it in
+when a second-year practical mark is actually sourced.
+
+`wef: '2026-27'` is right by the table's own precedent: **physics-I's shape was also unchanged by
+the reform and its row still reads `wef: '2026-27'`**, so the field means "the syllabus year this
+row describes", not "the year this shape changed".
 
 Do **not** build a second marks table on this branch (Rule 40a).
 
