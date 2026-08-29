@@ -17,14 +17,32 @@
   "expected_time_min": 9,
   "question_text": "Show that the locus of the feet of the perpendiculars drawn from either of the foci to any tangent to the ellipse is the auxiliary circle.",
   "appearances": [
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2019, "board": "ap_ipe" }
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Set up the tangent and the perpendicular from the focus", "marks": 1 },
-    { "label": "Solve the two equations for P", "marks": 1 },
-    { "label": "Square and add", "marks": 1 },
-    { "label": "Conclude the locus", "marks": 1 }
+    {
+      "label": "Set up the tangent and the perpendicular from the focus",
+      "marks": 1
+    },
+    {
+      "label": "Solve the two equations for P",
+      "marks": 1
+    },
+    {
+      "label": "Square and add",
+      "marks": 1
+    },
+    {
+      "label": "Conclude the locus",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,10 +65,16 @@
         "margin_note": "First mark. The perpendicular from S(±ae, 0) to the tangent has slope −1/m.",
         "memory_tip": "A line perpendicular to a slope-m line always has slope −1/m.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let the ellipse be S ≡ x²/a² + y²/b² − 1 = 0",
-          "Let P(x₁, y₁) be a point on the locus. Tangent with slope m: y − mx = ±√(a²m² + b²) …(1)",
-          "The perpendicular to this tangent through focus (±ae, 0) has slope −1/m:",
+          "Let P(x₁, y₁) be a point on the locus.",
+          "Tangent with slope m:",
+          "y − mx = ±√(a²m² + b²) …(1)",
+          "The perpendicular to this tangent through",
+          "focus (±ae, 0) has slope −1/m:",
           "my + x = ±ae …(2)"
         ],
         "why": "The foot of the perpendicular P is the point that lies on BOTH the tangent line and the perpendicular dropped from the focus onto it, so both lines' equations are written first, then solved together.",
@@ -68,7 +92,8 @@
         "margin_note": "Second mark. P(x₁, y₁) satisfies both (1) and (2), since it is their point of intersection.",
         "memory_tip": "The foot of the perpendicular is exactly the intersection point of the two lines.",
         "lines": [
-          "P(x₁, y₁) is the point of intersection of (1) and (2):",
+          "P(x₁,",
+          "y₁) is the point of intersection of (1) and (2):",
           "y₁ − mx₁ = ±√(a²m² + b²)  and  my₁ + x₁ = ±ae"
         ],
         "why": "Since P lies on both lines by construction, its coordinates satisfy both equations simultaneously — this is what makes the next 'square and add' step possible.",
@@ -86,8 +111,11 @@
         "margin_note": "Third mark. Squaring each equation and adding eliminates m completely.",
         "memory_tip": "Whenever two equations both equal ± something, squaring and adding removes the sign and often removes another unknown too.",
         "lines": [
-          "Squaring and adding: (y₁−mx₁)² + (my₁+x₁)² = (a²m²+b²) + (ae)²",
-          "⇒ (y₁²+m²x₁²−2mx₁y₁) + (m²y₁²+x₁²+2mx₁y₁) = a²m² + b²(1−e²) + a²e²  [since b² = a²(1−e²)]",
+          "Squaring and adding:",
+          "(y₁−mx₁)² + (my₁+x₁)² = (a²m²+b²) + (ae)²",
+          "⇒ (y₁²+m²x₁²−2mx₁y₁) + (m²y₁²+x₁²+2mx₁y₁)",
+          "= a²m² + b²(1−e²) + a²e²  [since b²",
+          "= a²(1−e²)]",
           "⇒ x₁²(1+m²) + y₁²(1+m²) = a²(m²+1)"
         ],
         "why": "Squaring both equations before adding cancels the cross terms 2mx₁y₁ against each other, and replacing b² with a²(1 − e²) makes the right-hand side collapse to a single multiple of a².",
@@ -106,7 +134,10 @@
         "memory_tip": "The auxiliary circle always has the SAME radius as the semi-major axis a.",
         "lines": [
           "(x₁² + y₁²)(1 + m²) = a²(1 + m²) ⇒ x₁² + y₁² = a²",
-          { "text": "Locus of P(x₁, y₁) is x² + y² = a² — the auxiliary circle", "style": "boxed" }
+          {
+            "text": "Locus of P(x₁, y₁) is x² + y² = a² — the auxiliary circle",
+            "style": "boxed"
+          }
         ],
         "why": "Cancelling the common factor (1 + m²) from both sides removes the slope m entirely, leaving x² + y² = a², the circle of radius a centred at the ellipse's own centre — the auxiliary circle.",
         "common_mistakes": [
@@ -126,14 +157,66 @@
           "width": 320,
           "height": 220,
           "elements": [
-            { "type": "stroke", "id": "ac_ellipse", "d": "M 70 110 A 90 55 0 1 0 250 110 A 90 55 0 1 0 70 110", "ms": 900 },
-            { "type": "stroke", "id": "ac_circle", "d": "M 70 110 A 90 90 0 1 0 250 110 A 90 90 0 1 0 70 110", "ms": 900 },
-            { "type": "stroke", "id": "ac_tangent", "d": "M 150 35 L 290 95", "ms": 500 },
-            { "type": "stroke", "id": "ac_perp", "d": "M 200 110 L 238 65", "ms": 500 },
-            { "type": "label", "id": "ac_lbl_s", "x": 195, "y": 128, "text": "S", "ms": 400, "em": true },
-            { "type": "label", "id": "ac_lbl_p", "x": 242, "y": 52, "text": "P", "ms": 400, "em": true },
-            { "type": "label", "id": "ac_lbl_ellipse", "x": 95, "y": 165, "text": "ellipse", "ms": 400, "sm": true },
-            { "type": "label", "id": "ac_lbl_circle", "x": 250, "y": 190, "text": "auxiliary circle", "ms": 400, "sm": true }
+            {
+              "type": "stroke",
+              "id": "ac_ellipse",
+              "d": "M 70 110 A 90 55 0 1 0 250 110 A 90 55 0 1 0 70 110",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "ac_circle",
+              "d": "M 70 110 A 90 90 0 1 0 250 110 A 90 90 0 1 0 70 110",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "ac_tangent",
+              "d": "M 150 35 L 290 95",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "ac_perp",
+              "d": "M 200 110 L 238 65",
+              "ms": 500
+            },
+            {
+              "type": "label",
+              "id": "ac_lbl_s",
+              "x": 195,
+              "y": 128,
+              "text": "S",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "ac_lbl_p",
+              "x": 242,
+              "y": 52,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "ac_lbl_ellipse",
+              "x": 95,
+              "y": 165,
+              "text": "ellipse",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ac_lbl_circle",
+              "x": 250,
+              "y": 190,
+              "text": "auxiliary circle",
+              "ms": 400,
+              "sm": true
+            }
           ]
         },
         "why": "S is a focus, the slanted line is a tangent to the ellipse, and P is the foot of the perpendicular from S onto that tangent — P lands exactly on the auxiliary circle, which is what the proof shows algebraically.",

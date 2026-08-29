@@ -59,7 +59,8 @@
           "I = ∫₀^π sin³x cos³x dx",
           "By x → π−x: I = ∫₀^π sin³(π−x) cos³(π−x) dx",
           "sin(π−x) = sinx and cos(π−x) = −cosx",
-          "∴ I = ∫₀^π sin³x (−cosx)³ dx = −∫₀^π sin³x cos³x dx = −I"
+          "∴ I = ∫₀^π sin³x (−cosx)³ dx",
+          "= −∫₀^π sin³x cos³x dx = −I"
         ],
         "why": "Under x→π−x, sinx stays unchanged but cosx flips sign, so cos³x also flips sign (an odd power keeps the sign flip), giving the negative of the original integral.",
         "common_mistakes": [

@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "Evaluate ∫₀^(π/2) cos^(5/2)x/(sin^(5/2)x + cos^(5/2)x) dx.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2022, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Apply the property with a = π/2", "marks": 1 },
-    { "label": "Write the second form", "marks": 1 },
-    { "label": "Add and solve", "marks": 2 }
+    {
+      "label": "Apply the property with a = π/2",
+      "marks": 1
+    },
+    {
+      "label": "Write the second form",
+      "marks": 1
+    },
+    {
+      "label": "Add and solve",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,9 +61,14 @@
         "margin_note": "One mark. Label the given integral (1) before transforming it.",
         "memory_tip": "Any power of cosx or sinx follows the same swap rule under x → π/2 − x — only the base changes, not the exponent.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
-          "∴ I = ∫₀^(π/2) cos^(5/2)x/(sin^(5/2)x + cos^(5/2)x) dx …(1)"
+          "∴ I",
+          "= ∫₀^(π/2) cos^(5/2)x/(sin^(5/2)x +",
+          "cos^(5/2)x) dx …(1)"
         ],
         "why": "Labelling the original integral (1) sets up the transformed second form that the addition step needs.",
         "common_mistakes": [
@@ -66,8 +86,13 @@
         "memory_tip": "cos^(5/2)(π/2 − x) = sin^(5/2)x — the base swaps, the power 5/2 stays exactly as written.",
         "lines": [
           "By x → π/2 − x:",
-          "I = ∫₀^(π/2) cos^(5/2)(π/2−x)/[sin^(5/2)(π/2−x) + cos^(5/2)(π/2−x)] dx",
-          "⇒ I = ∫₀^(π/2) sin^(5/2)x/(sin^(5/2)x + cos^(5/2)x) dx …(2)"
+          "I",
+          "= ∫₀^(π/2)",
+          "cos^(5/2)(π/2−x)/[sin^(5/2)(π/2−x) +",
+          "cos^(5/2)(π/2−x)] dx",
+          "⇒ I",
+          "= ∫₀^(π/2) sin^(5/2)x/(sin^(5/2)x +",
+          "cos^(5/2)x) dx …(2)"
         ],
         "why": "Under the swap x → π/2 − x, cosx becomes sinx everywhere the base appears, while the denominator (a sum of both powers) reappears unchanged since it already contains both terms.",
         "common_mistakes": [
@@ -84,9 +109,14 @@
         "margin_note": "The last two marks. The numerator sum equals the denominator exactly, so the fraction becomes 1.",
         "memory_tip": "Whenever numerator1 + numerator2 = denominator exactly, the integral of the sum is just ∫1 dx.",
         "lines": [
-          "Adding (1) and (2): I + I = ∫₀^(π/2) [cos^(5/2)x + sin^(5/2)x]/[sin^(5/2)x + cos^(5/2)x] dx",
+          "Adding (1) and (2): I + I",
+          "= ∫₀^(π/2) [cos^(5/2)x +",
+          "sin^(5/2)x]/[sin^(5/2)x + cos^(5/2)x] dx",
           "⇒ 2I = ∫₀^(π/2) 1 dx = [x]₀^(π/2) = π/2",
-          { "text": "∴ I = π/4", "style": "boxed" }
+          {
+            "text": "∴ I = π/4",
+            "style": "boxed"
+          }
         ],
         "why": "The sum in the numerator is identical to the denominator, so the whole fraction equals 1 for every x — reducing the integral to the length of the interval.",
         "common_mistakes": [

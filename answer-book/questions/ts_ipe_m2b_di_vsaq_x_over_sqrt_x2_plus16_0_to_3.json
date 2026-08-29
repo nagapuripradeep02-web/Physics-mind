@@ -56,7 +56,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀³ x dx/√(x²+16) = (1/2)∫₀³ 2x dx/√(x²+16)",
+          "I = ∫₀³ x dx/√(x²+16)",
+          "= (1/2)∫₀³ 2x dx/√(x²+16)",
           "= (1/2)[2√(x²+16)]₀³ = [√(x²+16)]₀³"
         ],
         "why": "x dx is exactly half the derivative of x²+16 (which is 2x dx), so multiplying and dividing by 2 turns the integral into the standard form ∫f'(x)dx/√f(x), whose antiderivative is 2√f(x).",

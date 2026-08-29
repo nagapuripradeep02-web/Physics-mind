@@ -17,12 +17,23 @@
   "expected_time_min": 9,
   "question_text": "Evaluate ∫_(π/6)^(π/3) √sinx/(√sinx + √cosx) dx.",
   "appearances": [
-    { "year": 2020 }
+    {
+      "year": 2020
+    }
   ],
   "mark_split": [
-    { "label": "Apply the property with a + b = π/2", "marks": 1 },
-    { "label": "Write the second form", "marks": 1 },
-    { "label": "Add and solve", "marks": 2 }
+    {
+      "label": "Apply the property with a + b = π/2",
+      "marks": 1
+    },
+    {
+      "label": "Write the second form",
+      "marks": 1
+    },
+    {
+      "label": "Add and solve",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,9 +56,13 @@
         "margin_note": "One mark. Use the general ∫ₐ^b form here, not the 0-to-a special case — the limits are not 0 and π/2.",
         "memory_tip": "π/6 + π/3 = π/2 — check this sum first, it is what makes the sin↔cos swap appear.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "We know ∫ₐ^b f(x)dx = ∫ₐ^b f(a + b − x)dx",
-          "∴ I = ∫_(π/6)^(π/3) √sinx/(√sinx + √cosx) dx …(1)"
+          "∴ I",
+          "= ∫_(π/6)^(π/3) √sinx/(√sinx + √cosx) dx …(1)"
         ],
         "why": "The general King's property replaces x by (the sum of the two limits, minus x); here π/6 + π/3 = π/2, so the replacement is x → π/2 − x, the same swap that makes sinx and cosx exchange places.",
         "common_mistakes": [
@@ -65,8 +80,12 @@
         "memory_tip": "sin(π/2 − x) = cosx, so √sin(π/2−x) = √cosx.",
         "lines": [
           "By x → π/6 + π/3 − x = π/2 − x:",
-          "I = ∫_(π/6)^(π/3) √sin(π/2−x)/[√sin(π/2−x) + √cos(π/2−x)] dx",
-          "⇒ I = ∫_(π/6)^(π/3) √cosx/(√cosx + √sinx) dx …(2)"
+          "I",
+          "= ∫_(π/6)^(π/3) √sin(π/2−x)/[√sin(π/2−x)",
+          "+ √cos(π/2−x)] dx",
+          "⇒ I",
+          "= ∫_(π/6)^(π/3) √cosx/(√cosx + √sinx) dx",
+          "…(2)"
         ],
         "why": "Since π/6 + π/3 = π/2, the swap x → π/2 − x turns sinx into cosx and vice versa, so the numerator and denominator terms exchange places while the limits stay the same.",
         "common_mistakes": [
@@ -83,9 +102,15 @@
         "margin_note": "The last two marks. The added numerator equals the denominator, so the fraction is 1.",
         "memory_tip": "π/3 minus π/6 is π/6 — the length of the original interval survives into the final answer.",
         "lines": [
-          "Adding (1) and (2): I + I = ∫_(π/6)^(π/3) (√sinx + √cosx)/(√sinx + √cosx) dx",
-          "⇒ 2I = ∫_(π/6)^(π/3) 1 dx = [x]_(π/6)^(π/3) = π/3 − π/6 = π/6",
-          { "text": "∴ I = π/12", "style": "boxed" }
+          "Adding (1) and (2): I + I",
+          "= ∫_(π/6)^(π/3) (√sinx + √cosx)/(√sinx +",
+          "√cosx) dx",
+          "⇒ 2I = ∫_(π/6)^(π/3) 1 dx = [x]_(π/6)^(π/3)",
+          "= π/3 − π/6 = π/6",
+          {
+            "text": "∴ I = π/12",
+            "style": "boxed"
+          }
         ],
         "why": "The two numerators add up to exactly the denominator, so the integrand becomes 1 for every x, reducing the integral to the length of the interval between the two limits.",
         "common_mistakes": [

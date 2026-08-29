@@ -17,13 +17,27 @@
   "expected_time_min": 15,
   "question_text": "Evaluate ∫ₐ^b √((x − a)(b − x)) dx.",
   "appearances": [
-    { "year": 2018 }
+    {
+      "year": 2018
+    }
   ],
   "mark_split": [
-    { "label": "Expand the product under the root", "marks": 2 },
-    { "label": "Complete the square", "marks": 2 },
-    { "label": "Apply the standard √(k² − u²) formula", "marks": 2 },
-    { "label": "Evaluate at the limits", "marks": 1 }
+    {
+      "label": "Expand the product under the root",
+      "marks": 2
+    },
+    {
+      "label": "Complete the square",
+      "marks": 2
+    },
+    {
+      "label": "Apply the standard √(k² − u²) formula",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate at the limits",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,8 +60,12 @@
         "margin_note": "First two marks. Expand (x−a)(b−x) fully before touching the square root.",
         "memory_tip": "(x−a)(b−x) always expands to −x² + (a+b)x − ab — memorise the sign pattern.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "(x − a)(b − x) = bx − x² − ab + ax = −x² + (a + b)x − ab",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(x − a)(b − x) = bx − x² − ab + ax",
+          "= −x² + (a + b)x − ab",
           "∴ I = ∫ₐ^b √(−x² + (a + b)x − ab) dx"
         ],
         "why": "Multiplying out (x−a)(b−x) turns the product of two linear factors into a plain quadratic in x, which can then be handled by completing the square — the standard route to a √(k²−u²) form.",
@@ -65,8 +83,10 @@
         "margin_note": "Two more marks. The constant that comes out, (b−a)²/4, is the k² of the standard formula.",
         "memory_tip": "The half-sum (a+b)/2 is always the centre of the completed square; the half-difference (b−a)/2 is always the radius k.",
         "lines": [
-          "−x² + (a+b)x − ab = −[x² − (a+b)x + ab] = −[(x − (a+b)/2)² − ((a+b)/2)² + ab]",
-          "((a+b)/2)² − ab = (a² + 2ab + b² − 4ab)/4 = (a − b)²/4 = (b − a)²/4",
+          "−x² + (a+b)x − ab = −[x² − (a+b)x + ab]",
+          "= −[(x − (a+b)/2)² − ((a+b)/2)² + ab]",
+          "((a+b)/2)² − ab = (a² + 2ab + b² − 4ab)/4",
+          "= (a − b)²/4 = (b − a)²/4",
           "∴ (x − a)(b − x) = (b − a)²/4 − (x − (a+b)/2)²"
         ],
         "why": "Completing the square turns the quadratic into a fixed constant minus a squared deviation from the midpoint (a+b)/2, exactly the k² − u² shape the standard root-integral formula needs.",
@@ -85,7 +105,10 @@
         "memory_tip": "∫√(k² − u²) du = (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c — a formula to have ready for this whole chapter.",
         "lines": [
           "With k = (b − a)/2 and u = x − (a+b)/2:",
-          "I = [ (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) ]ₐ^b     [∵ ∫√(k² − u²) du = (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c]"
+          "I",
+          "= [ (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) ]ₐ^b",
+          "[∵ ∫√(k² − u²) du",
+          "= (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c]"
         ],
         "why": "The completed-square form is exactly k² − u² with k = (b−a)/2 fixed and u = x − (a+b)/2 varying, so the standard result for ∫√(k²−u²) du applies directly, ready to be evaluated at the two limits.",
         "common_mistakes": [
@@ -102,10 +125,16 @@
         "margin_note": "The last mark. At both endpoints, u = ±k, so √(k²−u²) = 0 and only the Sin⁻¹ terms survive.",
         "memory_tip": "At x = b, u = k so Sin⁻¹(1) = π/2; at x = a, u = −k so Sin⁻¹(−1) = −π/2 — the algebraic term vanishes at both ends.",
         "lines": [
-          "At x = b: u = k, so the first term is 0 and Sin⁻¹(1) = π/2",
-          "At x = a: u = −k, so the first term is 0 and Sin⁻¹(−1) = −π/2",
-          "I = (k²/2)(π/2) − (k²/2)(−π/2) = k²·(π/2) = ((b−a)²/4)(π/2)",
-          { "text": "∴ I = π(b − a)²/8", "style": "boxed" }
+          "At x = b:",
+          "u = k, so the first term is 0 and Sin⁻¹(1) = π/2",
+          "At x = a: u = −k,",
+          "so the first term is 0 and Sin⁻¹(−1) = −π/2",
+          "I = (k²/2)(π/2) − (k²/2)(−π/2) = k²·(π/2)",
+          "= ((b−a)²/4)(π/2)",
+          {
+            "text": "∴ I = π(b − a)²/8",
+            "style": "boxed"
+          }
         ],
         "why": "At both endpoints the point lies exactly on the boundary of the square-root term (u = ±k), so that term vanishes and only the two Sin⁻¹ terms, which add rather than cancel because Sin⁻¹(−1) = −π/2, are left.",
         "common_mistakes": [

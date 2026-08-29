@@ -57,9 +57,13 @@
             "style": "heading"
           },
           "We know ∫₀^a f(x)dx = ∫₀^a f(a−x)dx",
-          "I = ∫₀^π x sin⁷x cos⁶x dx = ∫₀^π (π−x) sin⁷(π−x) cos⁶(π−x) dx",
-          "sin(π−x)=sinx, cos(π−x)=−cosx ⇒ cos⁶(π−x)=cos⁶x   [even power keeps the sign positive]",
-          "∴ I = ∫₀^π (π−x) sin⁷x cos⁶x dx = π∫₀^π sin⁷x cos⁶x dx − I"
+          "I = ∫₀^π x sin⁷x cos⁶x dx",
+          "= ∫₀^π (π−x) sin⁷(π−x) cos⁶(π−x) dx",
+          "sin(π−x)=sinx, cos(π−x)=−cosx",
+          "⇒ cos⁶(π−x)=cos⁶x",
+          "[even power keeps the sign positive]",
+          "∴ I = ∫₀^π (π−x) sin⁷x cos⁶x dx",
+          "= π∫₀^π sin⁷x cos⁶x dx − I"
         ],
         "why": "Under x→π−x, sinx is unchanged and cosx flips sign, but the even power 6 removes that sign again, so the integrand's shape sin⁷xcos⁶x survives while only the factor x turns into π−x, splitting into a constant-times-integral term minus I itself.",
         "common_mistakes": [
@@ -76,9 +80,14 @@
         "margin_note": "Second mark. Dividing 32π/3003 by 2 gives the final answer 16π/3003.",
         "memory_tip": "The denominator product for m+n=13 has SEVEN descending terms, one more than the six-term products seen earlier in this chapter.",
         "lines": [
-          "2I = π∫₀^π sin⁷x cos⁶x dx = 2π∫₀^(π/2) sin⁷x cos⁶x dx",
-          "[sin⁷(π−x)cos⁶(π−x)=sin⁷xcos⁶x is symmetric about π/2]",
-          "= 2π · [(6)(4)(2)][(5)(3)(1)]/[(13)(11)(9)(7)(5)(3)(1)] · (1) = 32π/3003",
+          "2I = π∫₀^π sin⁷x cos⁶x dx",
+          "= 2π∫₀^(π/2) sin⁷x cos⁶x dx",
+          "[sin⁷(π−x)cos⁶(π−x)=sin⁷xcos⁶x is symmetric",
+          "about π/2]",
+          "= 2π ·",
+          "[(6)(4)(2)][(5)(3)(1)]/[(13)(11)(9)(7)(5)(3)(1)] ·",
+          "(1)",
+          "= 32π/3003",
           {
             "text": "∴ I = 16π/3003",
             "style": "boxed"

@@ -62,10 +62,18 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let D(at₁²,2at₁), E(at₂²,2at₂), F(at₃²,2at₃) be the three points on y² = 4ax.",
-          "The tangent at parameter t is ty = x + at²; so at D, E, F: t₁y=x+at₁² …(1), t₂y=x+at₂² …(2), t₃y=x+at₃² …(3)",
-          "(1) − (2): (t₁−t₂)y = a(t₁²−t₂²) ⇒ y = a(t₁+t₂); from (1), x = t₁y − at₁² = at₁t₂",
-          "So the tangents at D, E meet at P = (at₁t₂, a(t₁+t₂)); similarly Q = (at₂t₃, a(t₂+t₃)), R = (at₃t₁, a(t₃+t₁))"
+          "Let D(at₁²,2at₁), E(at₂²,2at₂),",
+          "F(at₃²,2at₃) be the three points on y²",
+          "= 4ax.",
+          "The tangent at parameter t is ty",
+          "= x + at²; so at D, E, F: t₁y=x+at₁² …(1),",
+          "t₂y=x+at₂² …(2), t₃y=x+at₃² …(3)",
+          "(1) − (2): (t₁−t₂)y = a(t₁²−t₂²)",
+          "⇒ y = a(t₁+t₂); from (1),",
+          "x = t₁y − at₁² = at₁t₂",
+          "So the tangents at D, E meet at P = (at₁t₂,",
+          "a(t₁+t₂)); similarly Q = (at₂t₃, a(t₂+t₃)),",
+          "R = (at₃t₁, a(t₃+t₁))"
         ],
         "why": "Every tangent to y² = 4ax at parameter t has the same shape ty = x + at², so subtracting two such equations cancels x immediately and gives y directly, which is the fastest way to the two tangents' meeting point.",
         "common_mistakes": [
@@ -86,9 +94,12 @@
             "text": "\\text{Area of }\\triangle PQR = \\frac{1}{2}\\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix}",
             "render": "katex"
           },
-          "x₁−x₂ = at₁t₂−at₂t₃ = at₂(t₁−t₃); x₁−x₃ = at₁t₂−at₃t₁ = at₁(t₂−t₃)",
+          "x₁−x₂ = at₁t₂−at₂t₃ = at₂(t₁−t₃); x₁−x₃",
+          "= at₁t₂−at₃t₁ = at₁(t₂−t₃)",
           "y₁−y₂ = a(t₁−t₃); y₁−y₃ = a(t₂−t₃)",
-          "Determinant = at₂(t₁−t₃)·a(t₂−t₃) − at₁(t₂−t₃)·a(t₁−t₃) = a²(t₁−t₃)(t₂−t₃)(t₂−t₁)"
+          "Determinant",
+          "= at₂(t₁−t₃)·a(t₂−t₃) − at₁(t₂−t₃)·a(t₁−t₃)",
+          "= a²(t₁−t₃)(t₂−t₃)(t₂−t₁)"
         ],
         "why": "Each coordinate difference of P, Q, R factors neatly because P, Q, R were themselves built from t₁, t₂, t₃ — substituting those factored forms into the determinant leaves one common factor (t₁−t₃)(t₂−t₃) that can be pulled straight out.",
         "common_mistakes": [
@@ -105,9 +116,13 @@
         "mark_note": "Solution",
         "margin_note": "Last two marks. Compare the denominator with answer 14's — 16a here, not 8a, because of the extra 1/2.",
         "lines": [
-          "Area = (1/2)|a²(t₁−t₂)(t₁−t₃)(t₂−t₃)| = (a²/2)|(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
-          "Using t = y/(2a) as before: |(t₁−t₂)(t₁−t₃)(t₂−t₃)| = |(y₁−y₂)(y₁−y₃)(y₂−y₃)| / (8a³)",
-          "Area = (a²/2) × |(y₁−y₂)(y₁−y₃)(y₂−y₃)| / (8a³) = |(y₁−y₂)(y₂−y₃)(y₃−y₁)| / (16a)",
+          "Area = (1/2)|a²(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
+          "= (a²/2)|(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
+          "Using t = y/(2a) as before:",
+          "|(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
+          "= |(y₁−y₂)(y₁−y₃)(y₂−y₃)| / (8a³)",
+          "Area = (a²/2) × |(y₁−y₂)(y₁−y₃)(y₂−y₃)| / (8a³)",
+          "= |(y₁−y₂)(y₂−y₃)(y₃−y₁)| / (16a)",
           {
             "text": "∴ Area = (1/16a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
             "style": "boxed"

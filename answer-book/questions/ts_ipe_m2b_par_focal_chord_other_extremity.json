@@ -56,7 +56,8 @@
             "style": "heading"
           },
           "Given parabola y² = 8x ⇒ 4a = 8 ⇒ a = 2",
-          "Write the given point as (at², 2at) = (1/2, 2) ⇒ 2at = 2 ⇒ at = 1 ⇒ t = 1/2"
+          "Write the given point as (at², 2at)",
+          "= (1/2, 2) ⇒ 2at = 2 ⇒ at = 1 ⇒ t = 1/2"
         ],
         "why": "Matching the given point to the parametric form (at²,2at) is the fastest way to find its own parameter t, and here the second coordinate 2at = 2 gives t directly without even needing the first coordinate.",
         "common_mistakes": [
@@ -73,8 +74,10 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for the other extremity using (a/t², −2a/t).",
         "lines": [
-          "For a focal chord, if one end is (at², 2at), the other end is (a/t², −2a/t).",
-          "Other end = (2/(1/2)², −2(2)/(1/2)) = (2/(1/4), −4/(1/2)) = (8, −8)",
+          "For a focal chord, if one end is (at², 2at),",
+          "the other end is (a/t², −2a/t).",
+          "Other end = (2/(1/2)², −2(2)/(1/2))",
+          "= (2/(1/4), −4/(1/2)) = (8, −8)",
           {
             "text": "∴ the other extremity is (8, −8)",
             "style": "boxed"

@@ -17,12 +17,23 @@
   "expected_time_min": 9,
   "question_text": "Find the area enclosed by the curves y = x² and y = x³.",
   "appearances": [
-    { "year": 2019 }
+    {
+      "year": 2019
+    }
   ],
   "mark_split": [
-    { "label": "Solve for the points of intersection", "marks": 1 },
-    { "label": "Identify the upper and lower curves", "marks": 1 },
-    { "label": "Integrate and evaluate", "marks": 2 }
+    {
+      "label": "Solve for the points of intersection",
+      "marks": 1
+    },
+    {
+      "label": "Identify the upper and lower curves",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and evaluate",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,9 +56,13 @@
         "margin_note": "One mark. Factor out x² carefully — do not divide by it, or the root x=0 is lost.",
         "memory_tip": "Factor, never divide, when one side of an equation could be zero — dividing by x² would silently throw away the root x = 0.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "The given curves are y = x² …(1), y = x³ …(2)",
-          "Solving (1) and (2): x² = x³ ⇒ x³ − x² = 0 ⇒ x²(x − 1) = 0 ⇒ x = 0 or x = 1"
+          "Solving (1) and (2): x² = x³ ⇒ x³ − x² = 0",
+          "⇒ x²(x − 1) = 0 ⇒ x = 0 or x = 1"
         ],
         "why": "Setting the two curve equations equal finds where they cross; factoring out x² (rather than dividing) keeps both roots visible — x = 0 and x = 1.",
         "common_mistakes": [
@@ -64,8 +79,10 @@
         "margin_note": "One more mark. Test a point strictly between 0 and 1, never at an endpoint.",
         "memory_tip": "At x = 1/2: x² = 1/4 and x³ = 1/8 — the larger value names the upper curve.",
         "lines": [
-          "For 0 < x < 1, test x = 1/2: x² = 1/4 and x³ = 1/8, so x² > x³ on this interval",
-          "∴ the upper boundary curve is y = x²; the lower boundary curve is y = x³"
+          "For 0 < x < 1, test x = 1/2:",
+          "x² = 1/4 and x³ = 1/8, so x² > x³ on this interval",
+          "∴ the upper boundary curve is y",
+          "= x²; the lower boundary curve is y = x³"
         ],
         "why": "Testing a point strictly between the two intersections shows which curve lies above the other over the whole interval — the area is always found as upper curve minus lower curve.",
         "common_mistakes": [
@@ -84,7 +101,10 @@
         "lines": [
           "Required area A = ∫₀^1 (x² − x³) dx",
           "= [x³/3 − x⁴/4]₀^1 = 1/3 − 1/4 = (4 − 3)/12",
-          { "text": "∴ Area = 1/12 sq. units", "style": "boxed" }
+          {
+            "text": "∴ Area = 1/12 sq. units",
+            "style": "boxed"
+          }
         ],
         "why": "Integrating the upper curve minus the lower curve over the interval and evaluating at the two limits (the lower limit x = 0 gives 0) leaves 1/3 − 1/4, a clean fraction over 12.",
         "common_mistakes": [

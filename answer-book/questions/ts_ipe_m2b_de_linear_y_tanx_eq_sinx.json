@@ -17,12 +17,24 @@
   "expected_time_min": 9,
   "question_text": "Solve dy/dx + y tan x = sin x.",
   "appearances": [
-    { "year": 2016, "board": "ts_ipe" }
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Identify P and find ∫P dx", "marks": 1 },
-    { "label": "Find the integrating factor", "marks": 1 },
-    { "label": "Integrate and finish", "marks": 2 }
+    {
+      "label": "Identify P and find ∫P dx",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,8 +57,12 @@
         "margin_note": "One mark. The equation is already in the standard linear form dy/dx + Py = Q.",
         "memory_tip": "The coefficient of the plain y term, tan x, is P; sin x on its own is Q.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Given D.E is in the form dy/dx + yP(x) = Q(x). This is a linear D.E in y.",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is in the form dy/dx + yP(x) = Q(x).",
+          "This is a linear D.E in y.",
           "Here P = tan x ⇒ ∫P dx = ∫tan x dx = log sec x"
         ],
         "why": "The equation is already written as dy/dx + yP = Q, so identifying P as the coefficient of y and integrating it is the direct first step every linear-equation solution follows.",
@@ -83,7 +99,10 @@
         "lines": [
           "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
           "⇒ y sec x = ∫sec x·sin x dx = ∫tan x dx",
-          { "text": "y sec x = log sec x + c", "style": "boxed" }
+          {
+            "text": "y sec x = log sec x + c",
+            "style": "boxed"
+          }
         ],
         "why": "Writing sec x · sin x as tan x turns the right-hand integral into the same standard tan x integral used in step 1, giving the final relation between y, x and the constant directly.",
         "common_mistakes": [

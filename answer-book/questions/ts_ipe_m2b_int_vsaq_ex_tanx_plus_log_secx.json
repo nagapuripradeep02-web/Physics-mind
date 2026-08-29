@@ -60,7 +60,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Here f(x) = log secx ⇒ f′(x) = (1/secx)·secx tanx = tanx",
+          "Here f(x) = log secx",
+          "⇒ f′(x) = (1/secx)·secx tanx = tanx",
           {
             "text": "\\int e^x[f(x)+f'(x)]\\,dx = e^x f(x)+c",
             "render": "katex",

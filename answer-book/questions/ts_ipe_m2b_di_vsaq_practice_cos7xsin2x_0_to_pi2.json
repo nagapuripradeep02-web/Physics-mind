@@ -57,8 +57,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "∫₀^(π/2) cosᵐx sinⁿx dx = [(m−1)(m−3)···][(n−1)(n−3)···]/[(m+n)(m+n−2)···] · K",
-          "Here m=7 (odd power of cos), n=2 (even power of sin), so K = 1"
+          "∫₀^(π/2) cosᵐx sinⁿx dx",
+          "=",
+          "[(m−1)(m−3)···][(n−1)(n−3)···]/[(m+n)(m+n−2)···]",
+          "· K",
+          "Here m=7 (odd power of cos),",
+          "n=2 (even power of sin), so K = 1"
         ],
         "why": "This is the same mixed sinᵐcosⁿ formula used for the answer directly above, applied here with the odd power 7 on cosine and the even power 2 on sine, so K=1.",
         "common_mistakes": [

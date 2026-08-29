@@ -63,7 +63,8 @@
             "style": "heading"
           },
           "Given parabola y² = 8x ⇒ 4a = 8 ⇒ a = 2",
-          "Focal distance SP = x₁ + a. Given SP = 10 ⇒ x₁ + 2 = 10 ⇒ x₁ = 8"
+          "Focal distance SP = x₁ + a.",
+          "Given SP = 10 ⇒ x₁ + 2 = 10 ⇒ x₁ = 8"
         ],
         "why": "The focal distance of any point on y² = 4ax is always x₁ + a — a fixed rule that turns the word 'focal distance' straight into an equation for x₁.",
         "common_mistakes": [

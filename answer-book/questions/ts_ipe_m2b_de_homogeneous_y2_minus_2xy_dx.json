@@ -18,11 +18,26 @@
   "question_text": "Solve (y² − 2xy)dx + (2xy − x²)dy = 0.",
   "appearances": [],
   "mark_split": [
-    { "label": "Recognise homogeneous form and substitute", "marks": 2 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 2 },
-    { "label": "Return to x and y", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Recognise homogeneous form and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Return to x and y",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,11 +60,17 @@
         "margin_note": "Two marks. Every term is degree 2 in x and y, so the equation is homogeneous.",
         "memory_tip": "y², xy and x² are all degree 2 — homogeneous of degree 2.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is (y² − 2xy)dx + (2xy − x²)dy = 0",
           "⇒ dy/dx = (y² − 2xy)/(x² − 2xy) … (1)",
-          "This is a homogeneous D.E. Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx = (v²x² − 2vx²)/(x² − 2vx²) = (v² − 2v)/(1 − 2v)"
+          "This is a homogeneous D.E. Put y = vx",
+          "⇒ dy/dx = v + x·dv/dx",
+          "(1) ⇒ v + x·dv/dx",
+          "= (v²x² − 2vx²)/(x² − 2vx²)",
+          "= (v² − 2v)/(1 − 2v)"
         ],
         "why": "Moving (2xy − x²)dy across the equals sign and dividing every term by x² after substituting y = vx reduces the whole right side to a function of v alone, confirming the homogeneous form.",
         "common_mistakes": [
@@ -66,8 +87,11 @@
         "margin_note": "One mark. Subtract v as a fraction with denominator (1 − 2v).",
         "memory_tip": "v(1 − 2v) = v − 2v² is the term that combines with v² − 2v to give 3v² − 3v.",
         "lines": [
-          "x·dv/dx = (v² − 2v)/(1 − 2v) − v = [v² − 2v − v(1 − 2v)]/(1 − 2v) = (3v² − 3v)/(1 − 2v)",
-          "⇒ (1 − 2v)/(3v² − 3v) dv = dx/x ⇒ (2v − 1)/(3v² − 3v) dv = −dx/x"
+          "x·dv/dx = (v² − 2v)/(1 − 2v) − v",
+          "= [v² − 2v − v(1 − 2v)]/(1 − 2v)",
+          "= (3v² − 3v)/(1 − 2v)",
+          "⇒ (1 − 2v)/(3v² − 3v) dv = dx/x",
+          "⇒ (2v − 1)/(3v² − 3v) dv = −dx/x"
         ],
         "why": "Writing v as v(1 − 2v)/(1 − 2v) puts both terms over the same denominator, and expanding v² − 2v − v + 2v² leaves 3v² − 3v; flipping the sign on both sides keeps the numerator (2v − 1) matched with the denominator's derivative in the next step.",
         "common_mistakes": [
@@ -103,7 +127,8 @@
         "margin_note": "One mark. Remove the log by exponentiating, then substitute v = y/x.",
         "memory_tip": "v² − v = c/x³ is the general family in v — substitute v = y/x and multiply through by x³ next.",
         "lines": [
-          "⇒ v² − v = c/x³ … (2), relabelling the constant as c",
+          "⇒ v² − v = c/x³ … (2),",
+          "relabelling the constant as c",
           "Put v = y/x: y²/x² − y/x = c/x³"
         ],
         "why": "Exponentiating removes the log, giving the family of solutions in v directly; substituting v = y/x then carries that family back into the original variables x and y.",
@@ -122,7 +147,10 @@
         "memory_tip": "x³·(y²/x² − y/x) = x³·c/x³ = c — multiplying by x³ clears both fractions on the left in one move.",
         "lines": [
           "⇒ x³(y²/x² − y/x) = c ⇒ x(y² − xy) = c",
-          { "text": "xy(y − x) = c", "style": "boxed" }
+          {
+            "text": "xy(y − x) = c",
+            "style": "boxed"
+          }
         ],
         "why": "Multiplying through by x³ clears the fractions on both sides at once, and factoring out xy from y² − xy gives the compact final relation the examiner expects.",
         "common_mistakes": [

@@ -96,7 +96,8 @@
         "margin_note": "Result",
         "lines": [
           "In the first integral put t = tanx ⇒ dt = sec²x dx",
-          "∫ tanⁿ⁻²x sec²x dx = ∫ tⁿ⁻²dt = tⁿ⁻¹/(n−1) = tanⁿ⁻¹x/(n−1)",
+          "∫ tanⁿ⁻²x sec²x dx = ∫ tⁿ⁻²dt = tⁿ⁻¹/(n−1)",
+          "= tanⁿ⁻¹x/(n−1)",
           {
             "text": "\\therefore\\ I_n = \\frac{\\tan^{n-1}x}{n-1} - I_{n-2}\\ \\dots(1)",
             "render": "katex",
@@ -142,7 +143,8 @@
         "margin_note": "Solution",
         "lines": [
           "Put n = 6, 4, 2 successively in (1):",
-          "I₆ = tan⁵x/5 − I₄, I₄ = tan³x/3 − I₂, I₂ = tanx − I₀, and I₀ = ∫dx = x",
+          "I₆ = tan⁵x/5 − I₄, I₄ = tan³x/3 − I₂,",
+          "I₂ = tanx − I₀, and I₀ = ∫dx = x",
           "So I₂ = tanx − x, I₄ = tan³x/3 − tanx + x",
           {
             "text": "∴ ∫ tan⁶x dx = tan⁵x/5 − tan³x/3 + tanx − x + c",

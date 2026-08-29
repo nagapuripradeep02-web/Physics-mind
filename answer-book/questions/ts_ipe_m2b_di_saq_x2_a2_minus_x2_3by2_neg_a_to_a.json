@@ -17,13 +17,27 @@
   "expected_time_min": 9,
   "question_text": "Find ∫₋ₐ^a x²(a² − x²)^(3/2) dx.",
   "appearances": [
-    { "year": 2017 }
+    {
+      "year": 2017
+    }
   ],
   "mark_split": [
-    { "label": "Show the integrand is even", "marks": 1 },
-    { "label": "Reduce to twice the 0-to-a integral", "marks": 1 },
-    { "label": "Substitute x = a sinθ", "marks": 1 },
-    { "label": "Apply Walli's formula", "marks": 1 }
+    {
+      "label": "Show the integrand is even",
+      "marks": 1
+    },
+    {
+      "label": "Reduce to twice the 0-to-a integral",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x = a sinθ",
+      "marks": 1
+    },
+    {
+      "label": "Apply Walli's formula",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,9 +60,13 @@
         "margin_note": "One mark. f(−x) = f(x) must be checked, not assumed.",
         "memory_tip": "A function built only from x² and even powers of x is always even — check f(−x) = f(x) to confirm.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let f(x) = x²(a² − x²)^(3/2)",
-          "f(−x) = (−x)²(a² − (−x)²)^(3/2) = x²(a² − x²)^(3/2) = f(x)",
+          "f(−x) = (−x)²(a² − (−x)²)^(3/2)",
+          "= x²(a² − x²)^(3/2) = f(x)",
           "∴ f(x) is an even function"
         ],
         "why": "Both x² and (a² − x²) depend only on x², so replacing x by −x leaves the expression unchanged — the definition of an even function.",
@@ -66,7 +84,9 @@
         "margin_note": "One more mark. This is a standard rule for even functions on symmetric limits.",
         "memory_tip": "∫₋ₐ^a (even function) dx = 2∫₀^a (same function) dx — always halves the work for an even integrand.",
         "lines": [
-          "Since f(x) is even: ∫₋ₐ^a x²(a² − x²)^(3/2) dx = 2∫₀^a x²(a² − x²)^(3/2) dx"
+          "Since f(x) is even:",
+          "∫₋ₐ^a x²(a² − x²)^(3/2) dx",
+          "= 2∫₀^a x²(a² − x²)^(3/2) dx"
         ],
         "why": "An even function's graph is a mirror image about the y-axis, so the area from −a to 0 exactly equals the area from 0 to a — the whole integral is twice the half-interval integral.",
         "common_mistakes": [
@@ -83,8 +103,11 @@
         "margin_note": "One mark. The same standard substitution as any (a²−x²) power.",
         "memory_tip": "x = a sinθ turns a² − x² into a²cos²θ, a perfect square, whenever a power of (a²−x²) appears.",
         "lines": [
-          "Put x = a sinθ ⇒ dx = a cosθ dθ. x = 0 ⇒ θ = 0; x = a ⇒ θ = π/2",
-          "2∫₀^a x²(a² − x²)^(3/2) dx = 2∫₀^(π/2) a²sin²θ · a³cos³θ · a cosθ dθ = 2a⁶∫₀^(π/2) sin²θcos⁴θ dθ"
+          "Put x = a sinθ ⇒ dx = a cosθ dθ. x = 0",
+          "⇒ θ = 0; x = a ⇒ θ = π/2",
+          "2∫₀^a x²(a² − x²)^(3/2) dx",
+          "= 2∫₀^(π/2) a²sin²θ · a³cos³θ · a cosθ dθ",
+          "= 2a⁶∫₀^(π/2) sin²θcos⁴θ dθ"
         ],
         "why": "x = a sinθ makes a² − x² = a²cos²θ, whose 3/2 power is a³cos³θ; combining the extra a cosθ from dx collects every constant factor into a single a⁶ outside the integral.",
         "common_mistakes": [
@@ -101,9 +124,14 @@
         "margin_note": "The last mark. sin²θcos⁴θ has one odd-looking piece (the overall product is even·even = even), so the π/2 factor is present.",
         "memory_tip": "∫₀^(π/2) sin²θcos⁴θ dθ = (1)(3·1)/(6·4·2) · π/2 — both powers 2 and 4 are even, so the extra π/2 factor is included.",
         "lines": [
-          "∫₀^(π/2) sin²θcos⁴θ dθ = (1)(3)(1)/[(6)(4)(2)] · π/2 = (3/48)(π/2) = (1/16)(π/2)",
+          "∫₀^(π/2) sin²θcos⁴θ dθ",
+          "= (1)(3)(1)/[(6)(4)(2)] · π/2 = (3/48)(π/2)",
+          "= (1/16)(π/2)",
           "2a⁶ · (1/16)(π/2) = 2a⁶ · π/32",
-          { "text": "∴ ∫₋ₐ^a x²(a² − x²)^(3/2) dx = πa⁶/16", "style": "boxed" }
+          {
+            "text": "∴ ∫₋ₐ^a x²(a² − x²)^(3/2) dx = πa⁶/16",
+            "style": "boxed"
+          }
         ],
         "why": "With both powers (2 and 4) even, Walli's formula includes the extra π/2 factor; multiplying by the outer 2a⁶ and simplifying the fraction gives the final closed form.",
         "common_mistakes": [

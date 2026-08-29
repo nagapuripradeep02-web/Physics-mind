@@ -57,7 +57,8 @@
             "style": "heading"
           },
           "I = ∫sinx·eˣ dx = sinx·eˣ − ∫cosx·eˣ dx",
-          "∫cosx·eˣ dx = cosx·eˣ − ∫(−sinx)eˣ dx = cosx·eˣ + ∫sinx·eˣ dx",
+          "∫cosx·eˣ dx = cosx·eˣ − ∫(−sinx)eˣ dx",
+          "= cosx·eˣ + ∫sinx·eˣ dx",
           "So I = sinx·eˣ − [cosx·eˣ + I] = eˣ(sinx−cosx) − I"
         ],
         "why": "Applying by-parts a SECOND time to the leftover ∫cosx eˣdx brings the ORIGINAL integral I back, since differentiating twice returns eˣ sinx again — this is what makes the algebra close.",

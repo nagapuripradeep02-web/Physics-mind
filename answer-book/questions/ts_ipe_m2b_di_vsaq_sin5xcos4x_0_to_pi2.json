@@ -57,8 +57,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "∫₀^(π/2) sinᵐx cosⁿx dx = [(m−1)(m−3)···][(n−1)(n−3)···]/[(m+n)(m+n−2)···] · K",
-          "where K = π/2 if BOTH m and n are even, and K = 1 otherwise   [Walli's formula, mixed powers]",
+          "∫₀^(π/2) sinᵐx cosⁿx dx",
+          "=",
+          "[(m−1)(m−3)···][(n−1)(n−3)···]/[(m+n)(m+n−2)···]",
+          "· K",
+          "where K = π/2 if BOTH m and n are even,",
+          "and K = 1 otherwise   [Walli's formula,",
+          "mixed powers]",
           "Here m=5 (odd), n=4 (even), so K = 1"
         ],
         "why": "The mixed sinᵐcosⁿ version of Walli's formula multiplies the two separate descending products together over one combined descending product in (m+n), with the trailing factor K equal to 1 whenever at least one power is odd.",

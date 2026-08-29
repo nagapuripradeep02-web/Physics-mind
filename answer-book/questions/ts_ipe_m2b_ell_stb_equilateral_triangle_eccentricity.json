@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "S and T are the foci of an ellipse and B is one end of the minor axis. If STB is an equilateral triangle, then find the eccentricity of the ellipse.",
   "appearances": [
-    { "year": 2020, "board": "ap_ipe" }
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Name the three sides of the triangle", "marks": 1 },
-    { "label": "Apply the equilateral condition", "marks": 1 },
-    { "label": "Substitute b² = a²(1 − e²)", "marks": 1 },
-    { "label": "Solve for e", "marks": 1 }
+    {
+      "label": "Name the three sides of the triangle",
+      "marks": 1
+    },
+    {
+      "label": "Apply the equilateral condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute b² = a²(1 − e²)",
+      "marks": 1
+    },
+    {
+      "label": "Solve for e",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,9 +61,13 @@
         "margin_note": "First mark. S, T are the two foci; B is one end of the minor axis.",
         "memory_tip": "Foci are always (±ae, 0); the end of the minor axis is (0, b).",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let the ellipse be x²/a² + y²/b² = 1, (a > b)",
-          "Foci S(ae, 0), T(−ae, 0); B(0, b) is one end of the minor axis",
+          "Foci S(ae, 0), T(−ae, 0); B(0,",
+          "b) is one end of the minor axis",
           "ST = 2ae,  SB = TB = √((ae)² + b²)"
         ],
         "why": "The distance between the foci is 2ae, and SB (or TB) is found by the distance formula between a focus and the top of the minor axis — these are the three sides of triangle STB.",
@@ -67,7 +86,8 @@
         "memory_tip": "For an equilateral triangle, squaring one side-equality avoids dealing with square roots.",
         "lines": [
           "△STB is equilateral ⇒ SB = ST",
-          "⇒ (SB)² = (ST)² ⇒ (ae)² + b² = (2ae)² = 4a²e²"
+          "⇒ (SB)² = (ST)²",
+          "⇒ (ae)² + b² = (2ae)² = 4a²e²"
         ],
         "why": "Since SB = TB already holds by symmetry, the single condition SB = ST is enough to express the equilateral triangle; squaring avoids working with square roots.",
         "common_mistakes": [
@@ -84,7 +104,8 @@
         "margin_note": "Third mark. This substitution turns everything into one variable, e.",
         "memory_tip": "Whenever both a²e² and b² appear together, substituting b² = a²(1 − e²) reduces the equation to e alone.",
         "lines": [
-          "a²e² + b² = 4a²e² ⇒ a²e² + a²(1 − e²) = 4a²e²  [since b² = a²(1 − e²)]",
+          "a²e² + b² = 4a²e² ⇒ a²e² + a²(1 − e²)",
+          "= 4a²e²  [since b² = a²(1 − e²)]",
           "Divide by a²: e² + (1 − e²) = 4e²"
         ],
         "why": "Replacing b² with a²(1 − e²) removes b entirely, and dividing by a² removes a — leaving a pure equation in e, which is all the question asks for.",
@@ -103,7 +124,10 @@
         "memory_tip": "e must be a positive fraction less than 1 for a real ellipse — always take the positive square root.",
         "lines": [
           "e² + 1 − e² = 4e² ⇒ 1 = 4e² ⇒ e² = 1/4",
-          { "text": "e = 1/2", "style": "boxed" }
+          {
+            "text": "e = 1/2",
+            "style": "boxed"
+          }
         ],
         "why": "The e² terms on the left cancel exactly, leaving 1 = 4e², which solves immediately to the eccentricity of the ellipse.",
         "common_mistakes": [
@@ -123,13 +147,57 @@
           "width": 260,
           "height": 220,
           "elements": [
-            { "type": "stroke", "id": "stb_ellipse", "d": "M 45 140 A 85 45 0 1 0 215 140 A 85 45 0 1 0 45 140", "ms": 900 },
-            { "type": "stroke", "id": "stb_side_st", "d": "M 70 140 L 190 140", "ms": 500 },
-            { "type": "stroke", "id": "stb_side_sb", "d": "M 190 140 L 130 95", "ms": 500 },
-            { "type": "stroke", "id": "stb_side_tb", "d": "M 70 140 L 130 95", "ms": 500 },
-            { "type": "label", "id": "stb_lbl_s", "x": 195, "y": 145, "text": "S", "ms": 400, "em": true },
-            { "type": "label", "id": "stb_lbl_t", "x": 58, "y": 145, "text": "T", "ms": 400, "em": true },
-            { "type": "label", "id": "stb_lbl_b", "x": 130, "y": 80, "text": "B", "ms": 400, "em": true }
+            {
+              "type": "stroke",
+              "id": "stb_ellipse",
+              "d": "M 45 140 A 85 45 0 1 0 215 140 A 85 45 0 1 0 45 140",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "stb_side_st",
+              "d": "M 70 140 L 190 140",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "stb_side_sb",
+              "d": "M 190 140 L 130 95",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "stb_side_tb",
+              "d": "M 70 140 L 130 95",
+              "ms": 500
+            },
+            {
+              "type": "label",
+              "id": "stb_lbl_s",
+              "x": 195,
+              "y": 145,
+              "text": "S",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "stb_lbl_t",
+              "x": 58,
+              "y": 145,
+              "text": "T",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "stb_lbl_b",
+              "x": 130,
+              "y": 80,
+              "text": "B",
+              "ms": 400,
+              "em": true
+            }
           ]
         },
         "why": "The picture shows S, T and B joined into a triangle — seeing that all three sides look equal is the visual version of the equilateral condition the algebra proves.",

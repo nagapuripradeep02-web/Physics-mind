@@ -61,7 +61,8 @@
             "style": "heading"
           },
           "I = ∫₀^a dx/(x² + a²)",
-          "∫dx/(x²+a²) = (1/a)Tan⁻¹(x/a) + c   [standard formula]",
+          "∫dx/(x²+a²) = (1/a)Tan⁻¹(x/a) + c",
+          "[standard formula]",
           "∴ I = [(1/a)Tan⁻¹(x/a)]₀^a"
         ],
         "why": "The integral of 1/(x²+a²) is a standard form with antiderivative (1/a)Tan⁻¹(x/a), which is worth memorising directly rather than re-deriving each time.",

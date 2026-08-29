@@ -62,7 +62,8 @@
             "style": "heading"
           },
           "Let f(x) = sin²x cos⁴x",
-          "f(−x) = sin²(−x) cos⁴(−x) = (−sinx)² (cosx)⁴ = sin²x cos⁴x = f(x)",
+          "f(−x) = sin²(−x) cos⁴(−x) = (−sinx)² (cosx)⁴",
+          "= sin²x cos⁴x = f(x)",
           "∴ f(x) is an even function"
         ],
         "why": "Squaring sin(−x)=−sinx removes the sign, and raising cos(−x)=cosx to the fourth power also stays positive, so the whole product is unchanged under x→−x, which is exactly the definition of an even function.",
@@ -80,7 +81,8 @@
         "margin_note": "Second mark. Both m=2 and n=4 are even, so Walli's formula needs the π/2 factor before doubling.",
         "memory_tip": "The integral over [−a,a] equals twice the integral over [0,a] only when f is even — always prove this first.",
         "lines": [
-          "Integral from −π/2 to π/2 of sin²x cos⁴x dx = 2∫₀^(π/2) sin²x cos⁴x dx",
+          "Integral from −π/2 to π/2 of sin²x cos⁴x dx",
+          "= 2∫₀^(π/2) sin²x cos⁴x dx",
           "= 2 · [(1)][(3)(1)]/[(6)(4)(2)] · π/2",
           {
             "text": "∴ I = π/16",

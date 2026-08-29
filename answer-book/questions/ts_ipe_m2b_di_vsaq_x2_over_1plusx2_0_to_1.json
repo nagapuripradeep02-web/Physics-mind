@@ -56,7 +56,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀¹ x²/(1+x²) dx = ∫₀¹ (1+x² − 1)/(1+x²) dx",
+          "I = ∫₀¹ x²/(1+x²) dx",
+          "= ∫₀¹ (1+x² − 1)/(1+x²) dx",
           "= ∫₀¹ [1 − 1/(1+x²)] dx"
         ],
         "why": "Adding and subtracting 1 in the numerator rewrites x² as (1+x²)−1, splitting the improper fraction into a constant 1 minus the standard form 1/(1+x²), which integrates directly.",

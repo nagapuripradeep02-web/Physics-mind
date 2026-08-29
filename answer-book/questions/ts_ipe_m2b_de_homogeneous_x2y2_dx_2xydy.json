@@ -17,16 +17,40 @@
   "expected_time_min": 15,
   "question_text": "Solve (x² + y²)dx = 2xy dy.",
   "appearances": [
-    { "year": 2016, "board": "ap_ipe" },
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2020, "board": "ap_ipe" }
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Recognise homogeneous form and substitute", "marks": 2 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 2 },
-    { "label": "Return to x and y", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Recognise homogeneous form and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Return to x and y",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -49,12 +73,16 @@
         "margin_note": "Two marks. Every term of the right side has the same total power in x and y (degree 2 over degree 2), so the equation is homogeneous.",
         "memory_tip": "Homogeneous means the same total degree on top and bottom — that is the signal to put y = vx.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is (x² + y²)dx = 2xy dy",
           "⇒ dy/dx = (x² + y²)/(2xy) … (1)",
           "(1) is a homogeneous D.E",
           "Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx = (x² + v²x²)/(2x²v) = (1 + v²)/(2v)"
+          "(1) ⇒ v + x·dv/dx = (x² + v²x²)/(2x²v)",
+          "= (1 + v²)/(2v)"
         ],
         "why": "In a homogeneous equation, every occurrence of x and y can be replaced by the single ratio v = y/x, which turns two unknowns into one and makes the equation separable.",
         "common_mistakes": [
@@ -71,7 +99,8 @@
         "margin_note": "One mark. Move the plain v to the other side before separating x from v.",
         "memory_tip": "Isolate x·dv/dx alone on one side, then divide by whatever multiplies it.",
         "lines": [
-          "x·dv/dx = (1 + v²)/(2v) − v = (1 + v² − 2v²)/(2v) = (1 − v²)/(2v)",
+          "x·dv/dx = (1 + v²)/(2v) − v",
+          "= (1 + v² − 2v²)/(2v) = (1 − v²)/(2v)",
           "⇒ 2v/(1 − v²) dv = dx/x"
         ],
         "why": "Once x·dv/dx equals a function of v alone, cross-multiplying puts every v term with dv and every x term with dx, which is the separable form the equation needs before it can be integrated.",
@@ -127,7 +156,10 @@
         "memory_tip": "x(1 − y²/x²) = x − y²/x — multiply by x once more to clear the denominator.",
         "lines": [
           "x(1 − y²/x²) = x − y²/x = c",
-          { "text": "x² − y² = cx", "style": "boxed" }
+          {
+            "text": "x² − y² = cx",
+            "style": "boxed"
+          }
         ],
         "why": "Multiplying x − y²/x = c through by x clears the remaining fraction and gives the final relation in whole terms of x and y, which is the form examiners expect as the solution of the differential equation.",
         "common_mistakes": [

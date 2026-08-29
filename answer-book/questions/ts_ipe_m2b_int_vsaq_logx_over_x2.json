@@ -74,7 +74,8 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "∫logx/x² dx = (logx)(−1/x) − ∫(−1/x)(1/x)dx = −logx/x + ∫dx/x²",
+          "∫logx/x² dx = (logx)(−1/x) − ∫(−1/x)(1/x)dx",
+          "= −logx/x + ∫dx/x²",
           {
             "text": "∴ ∫ [logx/x²] dx = −logx/x − 1/x + c",
             "style": "boxed"

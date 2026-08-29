@@ -17,11 +17,20 @@
   "expected_time_min": 4,
   "question_text": "Find the angle between the asymptotes of the hyperbola x²/a² − y²/b² = 1.",
   "appearances": [
-    { "year": 2018, "board": "ts_ipe" }
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Set up the asymptote angle", "marks": 1 },
-    { "label": "State the result", "marks": 1 }
+    {
+      "label": "Set up the asymptote angle",
+      "marks": 1
+    },
+    {
+      "label": "State the result",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -44,10 +53,17 @@
         "margin_note": "First mark. Each asymptote makes the same angle θ with the x-axis, one above and one below.",
         "memory_tip": "secθ from tanθ converts the asymptote's slope straight into the hyperbola's own eccentricity.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "The asymptotes of x²/a² − y²/b² = 1 are y = ±(b/a)x",
-          "They are equally inclined to the x-axis at angle θ, where tanθ = b/a",
-          "secθ = √(1 + tan²θ) = √(1 + b²/a²) = √(a²+b²)/a = e"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The asymptotes of x²/a² − y²/b² = 1 are y",
+          "= ±(b/a)x",
+          "They are equally inclined to the x-axis at",
+          "angle θ,",
+          "where tanθ = b/a",
+          "secθ = √(1 + tan²θ) = √(1 + b²/a²)",
+          "= √(a²+b²)/a = e"
         ],
         "why": "Each asymptote makes the same angle θ with the x-axis, one above and one below it — writing secθ in terms of tanθ turns the angle straight into the hyperbola's own eccentricity.",
         "common_mistakes": [
@@ -65,7 +81,10 @@
         "memory_tip": "One asymptote sits at +θ above the x-axis, the other at −θ below — so the angle BETWEEN them is 2θ, not θ.",
         "lines": [
           "secθ = e ⇒ θ = Sec⁻¹e",
-          { "text": "Angle between the two asymptotes = 2θ = 2Sec⁻¹(e), or equivalently 2Tan⁻¹(b/a)", "style": "boxed" }
+          {
+            "text": "Angle between the two asymptotes = 2θ = 2Sec⁻¹(e), or equivalently 2Tan⁻¹(b/a)",
+            "style": "boxed"
+          }
         ],
         "why": "The full angle between the two asymptotes is twice θ, since one asymptote sits at +θ above the x-axis and the other at −θ below it.",
         "common_mistakes": [

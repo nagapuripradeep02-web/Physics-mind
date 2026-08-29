@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "Find the value of k if 4x + y + k = 0 is a tangent to the ellipse x² + 3y² = 3.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2016, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Standard form and the line's slope", "marks": 1 },
-    { "label": "Apply the tangency condition", "marks": 2 },
-    { "label": "Solve for k", "marks": 1 }
+    {
+      "label": "Standard form and the line's slope",
+      "marks": 1
+    },
+    {
+      "label": "Apply the tangency condition",
+      "marks": 2
+    },
+    {
+      "label": "Solve for k",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,8 +61,12 @@
         "margin_note": "First mark. Write the given line as y = mx + c to read off m and c.",
         "memory_tip": "Rearrange the line to y = (slope)x + (intercept) before comparing it to anything.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "x² + 3y² = 3 ⇒ x²/3 + y²/1 = 1 ⇒ a² = 3, b² = 1",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x² + 3y² = 3 ⇒ x²/3 + y²/1 = 1",
+          "⇒ a² = 3, b² = 1",
           "Given line: 4x + y + k = 0 ⇒ y = −4x − k",
           "Comparing with y = mx + c: m = −4, c = −k"
         ],
@@ -86,7 +105,10 @@
         "memory_tip": "k² = (a number) always gives TWO values of k, ± the square root.",
         "lines": [
           "k² = 48 + 1 = 49",
-          { "text": "k = ±7", "style": "boxed" }
+          {
+            "text": "k = ±7",
+            "style": "boxed"
+          }
         ],
         "why": "k² = 49 has two square roots, +7 and −7, and both give a genuine tangent line — one on each side of the ellipse — so neither root is rejected.",
         "common_mistakes": [

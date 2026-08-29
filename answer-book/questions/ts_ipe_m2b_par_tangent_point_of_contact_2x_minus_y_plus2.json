@@ -51,8 +51,10 @@
             "style": "heading"
           },
           "Given parabola y² = 16x ⇒ 4a = 16 ⇒ a = 4",
-          "Given line 2x − y + 2 = 0 ⇒ y = 2x + 2, so m = 2, c = 2",
-          "Tangential condition: a/m = 4/2 = 2 = c, so the line is a tangent."
+          "Given line 2x − y + 2 = 0",
+          "⇒ y = 2x + 2, so m = 2, c = 2",
+          "Tangential condition:",
+          "a/m = 4/2 = 2 = c, so the line is a tangent."
         ],
         "why": "Rewriting the line as y = 2x + 2 exposes m and c, and checking a/m equals c is the whole test for whether a given line touches this parabola.",
         "common_mistakes": [
@@ -69,7 +71,8 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for the correct point of contact using the formula (a/m², 2a/m).",
         "lines": [
-          "The point of contact is (a/m², 2a/m) = (4/4, 8/2) = (1, 4)",
+          "The point of contact is (a/m², 2a/m)",
+          "= (4/4, 8/2) = (1, 4)",
           {
             "text": "∴ the point of contact is (1, 4)",
             "style": "boxed"

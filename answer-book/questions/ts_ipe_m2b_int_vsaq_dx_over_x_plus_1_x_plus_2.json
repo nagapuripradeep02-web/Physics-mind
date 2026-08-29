@@ -56,7 +56,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "1/[(x+1)(x+2)] = [(x+2)−(x+1)]/[(x+1)(x+2)] = 1/(x+1) − 1/(x+2)"
+          "1/[(x+1)(x+2)] = [(x+2)−(x+1)]/[(x+1)(x+2)]",
+          "= 1/(x+1) − 1/(x+2)"
         ],
         "why": "Writing the numerator 1 as the difference (x+2)−(x+1) — which really does equal 1 — and splitting the fraction term by term gives the two simple partial fractions directly.",
         "common_mistakes": [

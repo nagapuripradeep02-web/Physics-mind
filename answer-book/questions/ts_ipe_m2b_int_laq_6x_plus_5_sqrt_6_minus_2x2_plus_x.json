@@ -68,8 +68,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let 6x+5 = A·d/dx(6−2x²+x) + B = A(−4x+1) + B",
-          "Coeff of x: −4A=6 ⇒ A=−3/2; constant: A+B=5 ⇒ B=13/2"
+          "Let 6x+5 = A·d/dx(6−2x²+x) + B",
+          "= A(−4x+1) + B",
+          "Coeff of x: −4A=6 ⇒ A=−3/2; constant:",
+          "A+B=5 ⇒ B=13/2"
         ],
         "why": "The same A·Dr′+B split as answer 29, applied to a quadratic that DECREASES for large x (the −2x² term), which is what gives A a negative value here.",
         "common_mistakes": [
@@ -86,9 +88,14 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Putting A=−3/2, B=13/2: I = (−3/2)∫(−4x+1)√(6−2x²+x) dx + (13/2)∫√(6−2x²+x) dx",
-          "∫(−4x+1)√(6−2x²+x) dx = (2/3)(6−2x²+x)^{3/2}",
-          "So the first part is (−3/2)·(2/3)(6−2x²+x)^{3/2} = −(6−2x²+x)^{3/2}"
+          "Putting A=−3/2, B=13/2: I",
+          "= (−3/2)∫(−4x+1)√(6−2x²+x) dx +",
+          "(13/2)∫√(6−2x²+x) dx",
+          "∫(−4x+1)√(6−2x²+x) dx",
+          "= (2/3)(6−2x²+x)^{3/2}",
+          "So the first part is",
+          "(−3/2)·(2/3)(6−2x²+x)^{3/2}",
+          "= −(6−2x²+x)^{3/2}"
         ],
         "why": "The same f′(x)√f(x) power-rule shortcut as answer 29 handles the A-part; the minus sign on A carries through cleanly to give a NEGATIVE leading term this time.",
         "common_mistakes": [
@@ -105,7 +112,8 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "6−2x²+x = 2[(7/4)²−(x−1/4)²], so √(6−2x²+x) = √2·√[(7/4)²−(x−1/4)²]",
+          "6−2x²+x = 2[(7/4)²−(x−1/4)²],",
+          "so √(6−2x²+x) = √2·√[(7/4)²−(x−1/4)²]",
           {
             "text": "\\int\\sqrt{a^2-u^2}\\,du = \\frac{u}{2}\\sqrt{a^2-u^2} + \\frac{a^2}{2}\\operatorname{Sin}^{-1}\\!\\left(\\frac{u}{a}\\right)+c",
             "render": "katex",

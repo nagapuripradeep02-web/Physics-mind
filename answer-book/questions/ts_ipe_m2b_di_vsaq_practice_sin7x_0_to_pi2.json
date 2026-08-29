@@ -52,7 +52,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "When n is odd, ∫₀^(π/2) sinⁿx dx = [(n−1)(n−3)···2]/[n(n−2)···3] · 1   [Walli's formula]"
+          "When n is odd, ∫₀^(π/2) sinⁿx dx",
+          "= [(n−1)(n−3)···2]/[n(n−2)···3] · 1",
+          "[Walli's formula]"
         ],
         "why": "For an odd power of sin, Walli's formula uses the same descending-product pattern as the cosine version, ending at 2 on top and 3 on the bottom with no π/2 factor.",
         "common_mistakes": [
@@ -69,7 +71,8 @@
         "margin_note": "Second mark. 48/105 reduces to 16/35 by dividing both by 3.",
         "memory_tip": "For n=7 there are exactly three descending terms in each product.",
         "lines": [
-          "∴ ∫₀^(π/2) sin⁷x dx = [(6)(4)(2)]/[(7)(5)(3)] · (1) = 48/105",
+          "∴ ∫₀^(π/2) sin⁷x dx",
+          "= [(6)(4)(2)]/[(7)(5)(3)] · (1) = 48/105",
           {
             "text": "∴ I = 16/35",
             "style": "boxed"

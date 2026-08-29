@@ -51,7 +51,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Put log(logx) = t ⇒ (1/logx)·(1/x)dx = dt, i.e. dx/(x logx) = dt",
+          "Put log(logx) = t",
+          "⇒ (1/logx)·(1/x)dx = dt, i.e. dx/(x logx) = dt",
           "I = ∫ dt/t"
         ],
         "why": "log(logx) differentiates, by the chain rule, to exactly 1/(x logx) — so the whole denominator's first two factors collapse into dt, leaving only the [log(logx)] part to deal with.",

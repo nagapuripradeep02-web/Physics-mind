@@ -68,9 +68,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^π √(2 + 2cosθ) dθ = ∫₀^π √(2(1 + cosθ)) dθ",
+          "I = ∫₀^π √(2 + 2cosθ) dθ",
+          "= ∫₀^π √(2(1 + cosθ)) dθ",
           "1 + cosθ = 2cos²(θ/2)   [half-angle identity]",
-          "∴ I = ∫₀^π √(4cos²(θ/2)) dθ = ∫₀^π 2cos(θ/2) dθ   [cos(θ/2) ≥ 0 on 0 ≤ θ ≤ π]"
+          "∴ I = ∫₀^π √(4cos²(θ/2)) dθ",
+          "= ∫₀^π 2cos(θ/2) dθ",
+          "[cos(θ/2) ≥ 0 on 0 ≤ θ ≤ π]"
         ],
         "why": "Factoring out 2 and using 1+cosθ = 2cos²(θ/2) turns the square root into a plain cosine, because cos(θ/2) stays non-negative for θ between 0 and π so the square root of its square is itself.",
         "common_mistakes": [
@@ -87,7 +90,8 @@
         "margin_note": "Second mark. ∫cos(θ/2)dθ = 2sin(θ/2) + c — the 1/2 inside cos always doubles the outer factor.",
         "memory_tip": "sin(π/2) = 1 is the standard value to remember here.",
         "lines": [
-          "I = 2∫₀^π cos(θ/2) dθ = 2·2[sin(θ/2)]₀^π = 4(sin(π/2) − sin0)",
+          "I = 2∫₀^π cos(θ/2) dθ = 2·2[sin(θ/2)]₀^π",
+          "= 4(sin(π/2) − sin0)",
           {
             "text": "∴ I = 4(1 − 0) = 4",
             "style": "boxed"

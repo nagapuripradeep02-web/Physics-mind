@@ -58,7 +58,8 @@
             "style": "heading"
           },
           "Given D.E is d²y/dx² = [1 + (dy/dx)²]^(5/3)",
-          "Cubing both sides: (d²y/dx²)³ = [1 + (dy/dx)²]^5",
+          "Cubing both sides:",
+          "(d²y/dx²)³ = [1 + (dy/dx)²]^5",
           "This is now free from fractional powers."
         ],
         "why": "Cubing both sides multiplies the exponent 5/3 by 3, giving the whole number 5, so the equation becomes a genuine polynomial in the derivatives with no fractional power left anywhere.",
@@ -76,8 +77,11 @@
         "margin_note": "The last mark. Cubing puts (d²y/dx²)³ on the left, so the highest-order derivative now carries exponent 3.",
         "memory_tip": "Whenever cubing lands the highest derivative itself inside a cube, the degree is 3, not 1 — read the exponent on the LEFT side here, not the right.",
         "lines": [
-          "The highest order derivative present is d²y/dx², so the order is 2.",
-          "The exponent on (d²y/dx²)³ in the cleared equation is 3, so the degree is 3.",
+          "The highest order derivative present is d²y/dx²,",
+          "so the order is 2.",
+          "The exponent on (d²y/dx²)³ in the cleared",
+          "equation is 3,",
+          "so the degree is 3.",
           {
             "text": "∴ Order = 2, Degree = 3",
             "style": "boxed"

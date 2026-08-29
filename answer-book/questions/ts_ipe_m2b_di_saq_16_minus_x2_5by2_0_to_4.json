@@ -17,12 +17,24 @@
   "expected_time_min": 9,
   "question_text": "Evaluate ∫₀^4 (16 − x²)^(5/2) dx.",
   "appearances": [
-    { "year": 2019, "board": "ap_ipe" }
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Substitute x = 4sinθ", "marks": 1 },
-    { "label": "Transform the integrand and limits", "marks": 1 },
-    { "label": "Apply Walli's formula and simplify", "marks": 2 }
+    {
+      "label": "Substitute x = 4sinθ",
+      "marks": 1
+    },
+    {
+      "label": "Transform the integrand and limits",
+      "marks": 1
+    },
+    {
+      "label": "Apply Walli's formula and simplify",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,9 +57,13 @@
         "margin_note": "First mark. 4 is the square root of 16 — that is where the substitution's constant comes from.",
         "memory_tip": "For √(a² − x²) or (a² − x²) to a power, always try x = a sinθ — here a = 4, since 16 = 4².",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Put x = 4sinθ ⇒ dx = 4cosθ dθ",
-          "x = 0 ⇒ sinθ = 0 ⇒ θ = 0; x = 4 ⇒ sinθ = 1 ⇒ θ = π/2"
+          "x = 0 ⇒ sinθ = 0 ⇒ θ = 0; x = 4 ⇒ sinθ = 1",
+          "⇒ θ = π/2"
         ],
         "why": "Writing x as 4sinθ makes 16 − x² = 16(1 − sin²θ) = 16cos²θ, a perfect square that removes the awkward fractional power in the next step.",
         "common_mistakes": [
@@ -65,7 +81,9 @@
         "memory_tip": "16^(5/2) = (4²)^(5/2) = 4⁵ — convert the power of 16 into a power of 4 before combining anything else.",
         "lines": [
           "16 − x² = 16 − 16sin²θ = 16cos²θ",
-          "I = ∫₀^(π/2) (16cos²θ)^(5/2)·4cosθ dθ = ∫₀^(π/2) 4⁵cos⁵θ·4cosθ dθ = 4⁶∫₀^(π/2) cos⁶θ dθ"
+          "I = ∫₀^(π/2) (16cos²θ)^(5/2)·4cosθ dθ",
+          "= ∫₀^(π/2) 4⁵cos⁵θ·4cosθ dθ",
+          "= 4⁶∫₀^(π/2) cos⁶θ dθ"
         ],
         "why": "16cos²θ raised to the power 5/2 gives 16^(5/2)cos⁵θ = 4⁵cos⁵θ; multiplying by the extra cosθ from dx (with its own factor of 4) combines into a single 4⁶ cos⁶θ integrand.",
         "common_mistakes": [
@@ -82,9 +100,14 @@
         "margin_note": "The last two marks. cos⁶θ is an even power, so the Walli's formula ends in π/2, not 1.",
         "memory_tip": "∫₀^(π/2) cos⁶θ dθ = (5·3·1)/(6·4·2) · π/2 — an even power always ends with the extra π/2 factor.",
         "lines": [
-          "∫₀^(π/2) cos⁶θ dθ = (5)(3)(1)/[(6)(4)(2)] · π/2 = (15/48)(π/2)",
-          "I = 4⁶ · (15/48)(π/2) = 4096 · (5/16)(π/2) = 1280 · π/2",
-          { "text": "∴ I = 640π", "style": "boxed" }
+          "∫₀^(π/2) cos⁶θ dθ = (5)(3)(1)/[(6)(4)(2)] · π/2",
+          "= (15/48)(π/2)",
+          "I = 4⁶ · (15/48)(π/2) = 4096 · (5/16)(π/2)",
+          "= 1280 · π/2",
+          {
+            "text": "∴ I = 640π",
+            "style": "boxed"
+          }
         ],
         "why": "cos⁶θ has an even power in both its top and bottom pair (m=0, n=6, both even), so Walli's formula ends with the extra π/2 factor; multiplying by 4⁶ = 4096 gives the final numeric answer after simplifying the fraction.",
         "common_mistakes": [

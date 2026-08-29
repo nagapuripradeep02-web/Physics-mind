@@ -76,7 +76,8 @@
         "margin_note": "Second mark. The two pieces contribute 2 each by the symmetry of the V-shape about x=2.",
         "memory_tip": "Since 2 is exactly the midpoint of [0,4], the two triangular areas either side of x=2 are equal.",
         "lines": [
-          "= [2x − x²/2]₀² + [x²/2 − 2x]₂⁴ = (4 − 2) + [(8−8) − (2−4)]",
+          "= [2x − x²/2]₀² + [x²/2 − 2x]₂⁴ = (4 − 2) +",
+          "[(8−8) − (2−4)]",
           {
             "text": "∴ I = 2 + 0 + 2 = 4",
             "style": "boxed"

@@ -17,14 +17,32 @@
   "expected_time_min": 9,
   "question_text": "Prove that the point of intersection of two perpendicular tangents to the hyperbola x²/a² − y²/b² − 1 = 0 lies on the circle x² + y² = a² − b².",
   "appearances": [
-    { "year": 2016, "board": "ts_ipe" },
-    { "year": 2017, "board": "ts_ipe" }
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Set up the tangent through P", "marks": 1 },
-    { "label": "Form the quadratic in m", "marks": 1 },
-    { "label": "Apply the perpendicularity condition", "marks": 1 },
-    { "label": "Conclude the locus", "marks": 1 }
+    {
+      "label": "Set up the tangent through P",
+      "marks": 1
+    },
+    {
+      "label": "Form the quadratic in m",
+      "marks": 1
+    },
+    {
+      "label": "Apply the perpendicularity condition",
+      "marks": 1
+    },
+    {
+      "label": "Conclude the locus",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,10 +65,16 @@
         "margin_note": "First mark. A tangent with slope m to a hyperbola always has the form y = mx ± √(a²m² − b²).",
         "memory_tip": "Start every 'tangents through a point' hyperbola proof the same way: write the tangent-with-slope-m formula, then force it through the given point.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Let the hyperbola be S ≡ x²/a² − y²/b² − 1 = 0",
-          "Let P(x₁, y₁) be a point on the locus. Tangent with slope m: y = mx ± √(a²m² − b²)",
-          "If it passes through P(x₁, y₁): y₁ − mx₁ = ±√(a²m² − b²)"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the hyperbola be S ≡ x²/a² − y²/b² − 1",
+          "= 0",
+          "Let P(x₁, y₁) be a point on the locus.",
+          "Tangent with slope m: y = mx ± √(a²m² − b²)",
+          "If it passes through P(x₁, y₁):",
+          "y₁ − mx₁ = ±√(a²m² − b²)"
         ],
         "why": "Forcing the general hyperbola tangent to pass through the locus point P turns 'a tangent through P' into an algebraic equation relating m to the coordinates of P.",
         "common_mistakes": [
@@ -86,7 +110,8 @@
         "memory_tip": "Product of roots of am² + bm + c = 0 is c/a — apply it here with a = (x₁²−a²), c = (y₁²+b²).",
         "lines": [
           "If the tangents are perpendicular, m₁m₂ = −1",
-          "Product of roots of (1): m₁m₂ = (y₁² + b²) / (x₁² − a²) = −1"
+          "Product of roots of (1):",
+          "m₁m₂ = (y₁² + b²) / (x₁² − a²) = −1"
         ],
         "why": "Two lines are perpendicular exactly when the product of their slopes is −1; since m₁ and m₂ are the roots of the quadratic in (1), their product is read off directly from the ratio of its constant and leading coefficients.",
         "common_mistakes": [
@@ -104,7 +129,10 @@
         "memory_tip": "The director circle of a hyperbola sits INSIDE the vertices — radius √(a²−b²) is always less than a — the opposite of an ellipse's director circle, which is bigger than the ellipse.",
         "lines": [
           "y₁² + b² = −(x₁² − a²) ⇒ x₁² + y₁² = a² − b²",
-          { "text": "Locus of P(x₁, y₁) is x² + y² = a² − b² — the director circle", "style": "boxed" }
+          {
+            "text": "Locus of P(x₁, y₁) is x² + y² = a² − b² — the director circle",
+            "style": "boxed"
+          }
         ],
         "why": "Rearranging the perpendicularity equation shows that every point from which the two tangents are perpendicular satisfies x² + y² = a² − b², which is the equation of a circle concentric with the hyperbola.",
         "common_mistakes": [
@@ -124,14 +152,65 @@
           "width": 320,
           "height": 270,
           "elements": [
-            { "type": "stroke", "id": "hdc_branch", "d": "M 250 60 Q 170 90 170 130 Q 170 170 250 200", "ms": 900 },
-            { "type": "stroke", "id": "hdc_circle", "d": "M 70 130 A 40 40 0 1 0 150 130 A 40 40 0 1 0 70 130", "ms": 700 },
-            { "type": "stroke", "id": "hdc_tangent_1", "d": "M 235 55 L 251 68", "ms": 400 },
-            { "type": "stroke", "id": "hdc_tangent_2", "d": "M 235 55 L 216 190", "ms": 400 },
-            { "type": "label", "id": "hdc_lbl_p", "x": 220, "y": 45, "text": "P", "ms": 400, "em": true },
-            { "type": "label", "id": "hdc_lbl_c", "x": 100, "y": 130, "text": "C", "ms": 400 },
-            { "type": "label", "id": "hdc_lbl_branch", "x": 200, "y": 205, "text": "hyperbola", "ms": 400, "sm": true },
-            { "type": "label", "id": "hdc_lbl_circle", "x": 70, "y": 250, "text": "director circle", "ms": 400, "sm": true }
+            {
+              "type": "stroke",
+              "id": "hdc_branch",
+              "d": "M 250 60 Q 170 90 170 130 Q 170 170 250 200",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "hdc_circle",
+              "d": "M 70 130 A 40 40 0 1 0 150 130 A 40 40 0 1 0 70 130",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "hdc_tangent_1",
+              "d": "M 235 55 L 251 68",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "hdc_tangent_2",
+              "d": "M 235 55 L 216 190",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hdc_lbl_p",
+              "x": 220,
+              "y": 45,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "hdc_lbl_c",
+              "x": 100,
+              "y": 130,
+              "text": "C",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "hdc_lbl_branch",
+              "x": 200,
+              "y": 205,
+              "text": "hyperbola",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "hdc_lbl_circle",
+              "x": 70,
+              "y": 250,
+              "text": "director circle",
+              "ms": 400,
+              "sm": true
+            }
           ]
         },
         "why": "P sits on the director circle, and the two tangent lines from P touch the (right) branch of the hyperbola at right angles to each other — the whole content of the theorem is visible in this one picture.",

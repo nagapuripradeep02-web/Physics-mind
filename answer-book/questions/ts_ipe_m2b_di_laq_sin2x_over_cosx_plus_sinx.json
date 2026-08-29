@@ -18,10 +18,22 @@
   "question_text": "Evaluate ∫₀^(π/2) sin²x/(cosx + sinx) dx.",
   "appearances": [],
   "mark_split": [
-    { "label": "Apply the property with a = π/2", "marks": 2 },
-    { "label": "Add to reach an x-free integral", "marks": 2 },
-    { "label": "Write cosx + sinx as √2 sin(x + π/4)", "marks": 2 },
-    { "label": "Evaluate the log limits", "marks": 1 }
+    {
+      "label": "Apply the property with a = π/2",
+      "marks": 2
+    },
+    {
+      "label": "Add to reach an x-free integral",
+      "marks": 2
+    },
+    {
+      "label": "Write cosx + sinx as √2 sin(x + π/4)",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the log limits",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -44,9 +56,14 @@
         "margin_note": "First two marks. sinx and cosx swap places under x → π/2 − x, so the denominator does not change.",
         "memory_tip": "sin(π/2 − x) = cosx and cos(π/2 − x) = sinx — the two swap, so sinx + cosx stays sinx + cosx.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "I = ∫₀^(π/2) sin²x/(sinx + cosx) dx …(1)",
-          "By x → π/2 − x: I = ∫₀^(π/2) sin²(π/2 − x)/(sin(π/2 − x) + cos(π/2 − x)) dx",
+          "By x → π/2 − x: I",
+          "= ∫₀^(π/2) sin²(π/2 − x)/(sin(π/2 − x) +",
+          "cos(π/2 − x)) dx",
           "⇒ I = ∫₀^(π/2) cos²x/(sinx + cosx) dx …(2)"
         ],
         "why": "Under x → π/2 − x, sinx and cosx exchange roles, so sin²x turns into cos²x while the denominator sinx + cosx is unchanged (it is symmetric in the two).",
@@ -64,8 +81,10 @@
         "margin_note": "Two more marks. sin²x + cos²x = 1 is what makes the numerator collapse.",
         "memory_tip": "sin²x + cos²x = 1 always — the moment you see both squares added, replace them with 1.",
         "lines": [
-          "Adding (1) and (2): 2I = ∫₀^(π/2) (sin²x + cos²x)/(sinx + cosx) dx",
-          "= ∫₀^(π/2) dx/(sinx + cosx)     [∵ sin²x + cos²x = 1]",
+          "Adding (1) and (2): 2I",
+          "= ∫₀^(π/2) (sin²x + cos²x)/(sinx + cosx) dx",
+          "= ∫₀^(π/2) dx/(sinx + cosx)",
+          "[∵ sin²x + cos²x = 1]",
           "⇒ I = (1/2)∫₀^(π/2) dx/(sinx + cosx)"
         ],
         "why": "Adding the two forms turns the numerator into sin²x + cos²x, which is identically 1, leaving a single integral with no x in the numerator at all.",
@@ -83,8 +102,10 @@
         "margin_note": "Two marks for the R sin(x+α) rewrite and the cosecant integral.",
         "memory_tip": "sinx + cosx = √2 sin(x + π/4) — a standard rewrite, worth memorising outright.",
         "lines": [
-          "sinx + cosx = √2 (sinx·1/√2 + cosx·1/√2) = √2 sin(x + π/4)",
-          "I = (1/(2√2))∫₀^(π/2) cosec(x + π/4) dx    [∵ ∫cosecθ dθ = log tan(θ/2)]",
+          "sinx + cosx = √2 (sinx·1/√2 + cosx·1/√2)",
+          "= √2 sin(x + π/4)",
+          "I = (1/(2√2))∫₀^(π/2) cosec(x + π/4) dx",
+          "[∵ ∫cosecθ dθ = log tan(θ/2)]",
           "= (1/(2√2))[log tan((x + π/4)/2)]₀^(π/2)"
         ],
         "why": "Combining sinx and cosx into a single sine wave R sin(x+α) reduces the integral to a standard cosecant form, whose antiderivative is a known log tan formula.",
@@ -102,9 +123,14 @@
         "margin_note": "The last mark. Rationalising the fraction inside the log turns it into a perfect square, which is what makes the final simplification clean.",
         "memory_tip": "tan(3π/8) = √2 + 1 and tan(π/8) = √2 − 1 — a pair worth memorising for this whole chapter.",
         "lines": [
-          "= (1/(2√2))[log tan(3π/8) − log tan(π/8)] = (1/(2√2)) log[(√2 + 1)/(√2 − 1)]",
-          "= (1/(2√2)) log[(√2 + 1)²/((√2 − 1)(√2 + 1))] = (1/(2√2)) log[(√2 + 1)²]",
-          { "text": "∴ I = (1/√2) log(√2 + 1)", "style": "boxed" }
+          "= (1/(2√2))[log tan(3π/8) − log tan(π/8)]",
+          "= (1/(2√2)) log[(√2 + 1)/(√2 − 1)]",
+          "= (1/(2√2)) log[(√2 + 1)²/((√2 − 1)(√2 + 1))]",
+          "= (1/(2√2)) log[(√2 + 1)²]",
+          {
+            "text": "∴ I = (1/√2) log(√2 + 1)",
+            "style": "boxed"
+          }
         ],
         "why": "Rationalising (√2+1)/(√2−1) by multiplying by (√2+1)/(√2+1) turns the denominator into 1, leaving a perfect square inside the log, whose square root cancels the outer 1/2 exactly.",
         "common_mistakes": [

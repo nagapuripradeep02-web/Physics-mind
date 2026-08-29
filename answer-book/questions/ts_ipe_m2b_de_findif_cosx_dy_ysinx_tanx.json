@@ -53,8 +53,10 @@
             "style": "heading"
           },
           "Given D.E is (cosx)dy/dx + y·sinx = tanx",
-          "⇒ dy/dx + y·(sinx/cosx) = tanx/cosx ⇒ dy/dx + y·tanx = tanx·secx",
-          "This is in the form dy/dx + yP(x) = Q(x). Here P = tanx"
+          "⇒ dy/dx + y·(sinx/cosx) = tanx/cosx",
+          "⇒ dy/dx + y·tanx = tanx·secx",
+          "This is in the form dy/dx + yP(x) = Q(x).",
+          "Here P = tanx"
         ],
         "why": "Dividing every term by cosx makes the coefficient of dy/dx equal to 1, which is what the standard linear form requires, and simplifies sinx/cosx to the plain tanx that becomes P.",
         "common_mistakes": [

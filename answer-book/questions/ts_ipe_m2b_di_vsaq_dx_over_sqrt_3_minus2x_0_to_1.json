@@ -58,7 +58,8 @@
             "style": "heading"
           },
           "I = ∫₀¹ dx/√(3 − 2x)",
-          "∫dx/√(3−2x) = (−1/2)·2√(3−2x) = −√(3−2x)   [derivative of 3−2x is −2]",
+          "∫dx/√(3−2x) = (−1/2)·2√(3−2x) = −√(3−2x)",
+          "[derivative of 3−2x is −2]",
           "∴ I = [−√(3 − 2x)]₀¹"
         ],
         "why": "The linear expression inside the root has derivative −2, so the antiderivative picks up a factor of −1/2 in front of the usual 2√(...) form, giving −√(3−2x).",

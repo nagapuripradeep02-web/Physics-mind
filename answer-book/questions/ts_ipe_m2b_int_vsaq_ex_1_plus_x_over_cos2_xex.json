@@ -68,7 +68,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Put xeˣ = t ⇒ [xeˣ + eˣ(1)]dx = dt, i.e. eˣ(1+x)dx = dt",
+          "Put xeˣ = t",
+          "⇒ [xeˣ + eˣ(1)]dx = dt, i.e. eˣ(1+x)dx = dt",
           "I = ∫ dt/cos²t = ∫ sec²t dt"
         ],
         "why": "By the product rule, d/dx(xeˣ) = xeˣ+eˣ = eˣ(x+1), which is exactly the numerator — so the whole numerator dx converts to dt, leaving a plain sec²t to integrate.",

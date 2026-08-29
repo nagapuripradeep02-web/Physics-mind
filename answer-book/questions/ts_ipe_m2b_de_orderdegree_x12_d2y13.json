@@ -57,9 +57,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is x^(1/2)(d²y/dx²)^(1/3) + x·dy/dx + y = 0",
+          "Given D.E is x^(1/2)(d²y/dx²)^(1/3) +",
+          "x·dy/dx + y",
+          "= 0",
           "⇒ x^(1/2)(d²y/dx²)^(1/3) = −(x·dy/dx + y)",
-          "Cubing both sides: x^(3/2)·d²y/dx² = −(x·dy/dx + y)³"
+          "Cubing both sides:",
+          "x^(3/2)·d²y/dx² = −(x·dy/dx + y)³"
         ],
         "why": "Isolating the bracket that carries the fractional power before cubing keeps the algebra clean, and cubing both sides removes the 1/3 power exactly.",
         "common_mistakes": [
@@ -76,8 +79,11 @@
         "margin_note": "The last mark. After cubing, d²y/dx² appears to the power 1 alone — that exponent is the degree.",
         "memory_tip": "Once every fractional power is cleared, degree is simply the exponent sitting on the highest-order derivative.",
         "lines": [
-          "The highest order derivative present is d²y/dx², so the order is 2.",
-          "The exponent of d²y/dx² in the cleared equation is 1, so the degree is 1.",
+          "The highest order derivative present is d²y/dx²,",
+          "so the order is 2.",
+          "The exponent of d²y/dx² in the cleared",
+          "equation is 1,",
+          "so the degree is 1.",
           {
             "text": "∴ Order = 2, Degree = 1",
             "style": "boxed"

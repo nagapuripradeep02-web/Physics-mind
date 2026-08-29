@@ -18,11 +18,26 @@
   "question_text": "Solve (x² − y²)dx − xy dy = 0.",
   "appearances": [],
   "mark_split": [
-    { "label": "Recognise homogeneous form and substitute", "marks": 2 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 2 },
-    { "label": "Return to x and y", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Recognise homogeneous form and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Return to x and y",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,12 +60,16 @@
         "margin_note": "Two marks. Both terms on the right have total degree 2, so the ratio v = y/x is the right substitution.",
         "memory_tip": "Homogeneous of degree 2 over degree 1 (after clearing x) still reduces to a function of v alone — check the RATIO, not each term separately.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is (x² − y²)dx − xy dy = 0",
           "⇒ dy/dx = (x² − y²)/(xy) … (1)",
           "(1) is a homogeneous D.E",
           "Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx = (x² − v²x²)/(x·vx) = (1 − v²)/v"
+          "(1) ⇒ v + x·dv/dx = (x² − v²x²)/(x·vx)",
+          "= (1 − v²)/v"
         ],
         "why": "Rewriting the equation as dy/dx = (a function of x and y that only depends on the ratio y/x) confirms it is homogeneous, and the y = vx substitution turns it into an equation for v alone.",
         "common_mistakes": [
@@ -124,7 +143,10 @@
         "memory_tip": "Since c is arbitrary throughout, cx⁴(x² − 2y²) = x² can be rewritten as x²(x² − 2y²) = c by renaming 1/c as c.",
         "lines": [
           "⇒ cx⁴(x² − 2y²) = x² ⇒ cx²(x² − 2y²) = 1",
-          { "text": "x²(x² − 2y²) = c", "style": "boxed" }
+          {
+            "text": "x²(x² − 2y²) = c",
+            "style": "boxed"
+          }
         ],
         "why": "Cross-multiplying clears the last fraction, and because c was an arbitrary constant from the start, relabelling 1/c as a new c keeps the final relation in its simplest whole form.",
         "common_mistakes": [

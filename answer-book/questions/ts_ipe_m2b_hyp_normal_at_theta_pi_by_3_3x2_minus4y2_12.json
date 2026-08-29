@@ -18,8 +18,14 @@
   "question_text": "Find the equation of the normal at θ = π/3 to the hyperbola 3x² − 4y² = 12.",
   "appearances": [],
   "mark_split": [
-    { "label": "Set up the normal formula", "marks": 1 },
-    { "label": "Substitute and simplify", "marks": 1 }
+    {
+      "label": "Set up the normal formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -42,9 +48,16 @@
         "margin_note": "First mark. The parametric point on a hyperbola is (a secθ, b tanθ).",
         "memory_tip": "Hyperbola normal uses secθ, tanθ and a PLUS sign — not sinθ, cosθ and a minus sign, as an ellipse's normal does.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Given hyperbola 3x² − 4y² = 12 ⇒ x²/4 − y²/3 = 1 ⇒ a² = 4, b² = 3 ⇒ a = 2, b = √3",
-          "Equation of the normal at the point P(θ) = (a secθ, b tanθ) is: ax/secθ + by/tanθ = a² + b²"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given hyperbola 3x² − 4y² = 12",
+          "⇒ x²/4 − y²/3 = 1 ⇒ a² = 4, b² = 3",
+          "⇒ a = 2, b = √3",
+          "Equation of the normal at the point P(θ)",
+          "= (a secθ, b tanθ) is: ax/secθ + by/tanθ",
+          "= a² + b²"
         ],
         "why": "The parametric point on a hyperbola is (a secθ, b tanθ); the normal formula at this point is a ready-made result, so the only work here is reading off a, b and substituting θ.",
         "common_mistakes": [
@@ -63,7 +76,10 @@
         "lines": [
           "θ = π/3: secθ = sec60° = 2, tanθ = tan60° = √3",
           "2x/2 + √3y/√3 = 4 + 3",
-          { "text": "x + y = 7", "style": "boxed" }
+          {
+            "text": "x + y = 7",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting sec60°=2 and tan60°=√3 makes both denominators cancel neatly against a=2 and b=√3, leaving a simple linear equation.",
         "common_mistakes": [

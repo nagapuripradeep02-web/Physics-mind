@@ -18,10 +18,22 @@
   "question_text": "Evaluate ∫₀^π (x sin³x)/(1 + cos²x) dx.",
   "appearances": [],
   "mark_split": [
-    { "label": "Apply the King's property", "marks": 2 },
-    { "label": "Add and expand sin³x", "marks": 2 },
-    { "label": "Substitute cosx = t and integrate", "marks": 2 },
-    { "label": "Evaluate the limits", "marks": 1 }
+    {
+      "label": "Apply the King's property",
+      "marks": 2
+    },
+    {
+      "label": "Add and expand sin³x",
+      "marks": 2
+    },
+    {
+      "label": "Substitute cosx = t and integrate",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the limits",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -44,9 +56,13 @@
         "margin_note": "First two marks. sin³ carries the same sign rule as sin — check it does not flip.",
         "memory_tip": "sin(π − x) = sinx, so sin³(π − x) = sin³x — cubing an unchanged quantity changes nothing.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "I = ∫₀^π (x sin³x)/(1 + cos²x) dx …(1)",
-          "By x → π − x: I = ∫₀^π (π − x)sin³(π − x)/(1 + cos²(π − x)) dx",
+          "By x → π − x: I",
+          "= ∫₀^π (π − x)sin³(π − x)/(1 + cos²(π − x)) dx",
           "⇒ I = ∫₀^π (π − x)sin³x/(1 + cos²x) dx …(2)"
         ],
         "why": "sin(π − x) = sinx, so sin³(π − x) = sin³x, and cos²(π − x) = cos²x as before — only the x in the numerator changes to π − x, exactly the setup the addition step needs.",
@@ -64,7 +80,8 @@
         "margin_note": "Two more marks. Expanding sin³x is what makes the cosx = t substitution possible in the next step.",
         "memory_tip": "sin³x = sin²x·sinx = (1 − cos²x)sinx — always split an odd power of sine this way before substituting cosx = t.",
         "lines": [
-          "Adding (1) and (2): 2I = π∫₀^π sin³x/(1 + cos²x) dx",
+          "Adding (1) and (2):",
+          "2I = π∫₀^π sin³x/(1 + cos²x) dx",
           "⇒ I = (π/2)∫₀^π sin³x/(1 + cos²x) dx",
           "= (π/2)∫₀^π (1 − cos²x)sinx/(1 + cos²x) dx"
         ],
@@ -83,9 +100,12 @@
         "margin_note": "Two marks for the substitution and splitting the resulting fraction.",
         "memory_tip": "(1 − t²)/(1 + t²) always splits as 2/(1 + t²) − 1 — memorise this identity, it appears repeatedly in this chapter.",
         "lines": [
-          "Put cosx = t ⇒ sinx dx = −dt. x = 0 ⇒ t = 1; x = π ⇒ t = −1",
-          "I = (π/2)∫₁^(−1) −(1 − t²)/(1 + t²) dt = (π/2)∫₋₁^1 (1 − t²)/(1 + t²) dt",
-          "= (π/2)∫₋₁^1 [2/(1 + t²) − 1] dt = (π/2)[2Tan⁻¹t − t]₋₁^1"
+          "Put cosx = t ⇒ sinx dx = −dt. x = 0",
+          "⇒ t = 1; x = π ⇒ t = −1",
+          "I = (π/2)∫₁^(−1) −(1 − t²)/(1 + t²) dt",
+          "= (π/2)∫₋₁^1 (1 − t²)/(1 + t²) dt",
+          "= (π/2)∫₋₁^1 [2/(1 + t²) − 1] dt",
+          "= (π/2)[2Tan⁻¹t − t]₋₁^1"
         ],
         "why": "Splitting (1 − t²)/(1 + t²) as 2/(1 + t²) − 1 turns the integrand into two pieces with easy antiderivatives — Tan⁻¹t and t itself.",
         "common_mistakes": [
@@ -102,8 +122,12 @@
         "margin_note": "The last mark. π(π − 2)/2 is the box the examiner looks for.",
         "memory_tip": "2Tan⁻¹(1) = π/2 and 2Tan⁻¹(−1) = −π/2 — the same angle pair as every King's-property question in this chapter.",
         "lines": [
-          "= (π/2){[2Tan⁻¹(1) − 1] − [2Tan⁻¹(−1) − (−1)]} = (π/2)[(π/2 − 1) − (−π/2 + 1)] = (π/2)(π − 2)",
-          { "text": "∴ I = π(π − 2)/2", "style": "boxed" }
+          "= (π/2){[2Tan⁻¹(1) − 1] − [2Tan⁻¹(−1) − (−1)]}",
+          "= (π/2)[(π/2 − 1) − (−π/2 + 1)] = (π/2)(π − 2)",
+          {
+            "text": "∴ I = π(π − 2)/2",
+            "style": "boxed"
+          }
         ],
         "why": "2Tan⁻¹(1) = π/2 and 2Tan⁻¹(−1) = −π/2; substituting both endpoints and simplifying leaves π − 2 inside the bracket, which is then halved by the outer π/2.",
         "common_mistakes": [

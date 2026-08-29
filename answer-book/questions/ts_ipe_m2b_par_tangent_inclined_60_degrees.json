@@ -73,7 +73,8 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for the tangent equation with the surd cleared.",
         "lines": [
-          "Equation of the tangent with slope m is y = mx + a/m ⇒ y = √3x + 4/√3",
+          "Equation of the tangent",
+          "with slope m is y = mx + a/m ⇒ y = √3x + 4/√3",
           "⇒ √3y = 3x + 4 ⇒ 3x − √3y + 4 = 0",
           {
             "text": "∴ 3x − √3y + 4 = 0",

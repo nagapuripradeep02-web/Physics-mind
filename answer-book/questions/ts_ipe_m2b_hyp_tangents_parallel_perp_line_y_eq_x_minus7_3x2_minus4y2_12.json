@@ -17,14 +17,32 @@
   "expected_time_min": 9,
   "question_text": "Find the equations of the tangents to the hyperbola 3x² − 4y² = 12 which (i) are parallel to y = x − 7, (ii) are perpendicular to y = x − 7.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2015, "board": "ts_ipe" },
-    { "year": 2018, "board": "ts_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Parallel tangent", "marks": 2 },
-    { "label": "Perpendicular tangent", "marks": 2 }
+    {
+      "label": "Parallel tangent",
+      "marks": 2
+    },
+    {
+      "label": "Perpendicular tangent",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,7 +64,10 @@
         "margin_note": "No mark of its own — every result below substitutes into this formula.",
         "memory_tip": "As always, read the hyperbola's a², b² off the standard form, then read the given line's own slope directly off its y = mx + c form.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given hyperbola is 3x² − 4y² = 12",
           "Divide by 12: x²/4 − y²/3 = 1 ⇒ a² = 4, b² = 3",
           "Tangent with slope m: y = mx ± √(a²m² − b²)",
@@ -69,7 +90,10 @@
         "lines": [
           "Parallel tangent has the same slope m = 1",
           "y = (1)x ± √(4(1)² − 3) = x ± √1 = x ± 1",
-          { "text": "x − y + 1 = 0 and x − y − 1 = 0", "style": "boxed" }
+          {
+            "text": "x − y + 1 = 0 and x − y − 1 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Slope 1 is not an asymptote slope here (the asymptotes have slope ±√3/2), so the formula gives two genuine parallel tangent lines, one on each side of the hyperbola.",
         "common_mistakes": [
@@ -86,9 +110,14 @@
         "margin_note": "Two marks. Slope −1 is likewise not an asymptote slope.",
         "memory_tip": "The negative reciprocal of 1 is −1 — do not leave it as +1.",
         "lines": [
-          "Slope of the perpendicular is the negative reciprocal: m = −1",
+          "Slope of the perpendicular is the negative",
+          "reciprocal:",
+          "m = −1",
           "y = (−1)x ± √(4(−1)² − 3) = −x ± 1",
-          { "text": "x + y + 1 = 0 and x + y − 1 = 0", "style": "boxed" }
+          {
+            "text": "x + y + 1 = 0 and x + y − 1 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "The perpendicular slope −1 is likewise not an asymptote slope, so both tangent lines from this family are genuine.",
         "common_mistakes": [

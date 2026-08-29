@@ -68,7 +68,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "sec²x·cosec²x = 1/(cos²x sin²x) = (sin²x+cos²x)/(cos²x sin²x)",
+          "sec²x·cosec²x = 1/(cos²x sin²x)",
+          "= (sin²x+cos²x)/(cos²x sin²x)",
           "= 1/cos²x + 1/sin²x = sec²x + cosec²x"
         ],
         "why": "Replacing the numerator 1 with sin²x+cos²x (always true) and splitting the fraction turns one product into a sum of two separately-integrable standard terms.",

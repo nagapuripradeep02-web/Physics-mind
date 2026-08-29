@@ -17,12 +17,24 @@
   "expected_time_min": 9,
   "question_text": "Solve cos x·dy/dx + y sin x = sec²x.",
   "appearances": [
-    { "year": 2019, "board": "ts_ipe" }
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Rewrite in standard form and identify P", "marks": 1 },
-    { "label": "Find the integrating factor", "marks": 1 },
-    { "label": "Integrate and finish", "marks": 2 }
+    {
+      "label": "Rewrite in standard form and identify P",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,11 +57,16 @@
         "margin_note": "One mark. Divide the whole equation by cos x to reach the standard linear form.",
         "memory_tip": "sin x/cos x = tan x and sec²x/cos x = sec³x — divide every term by cos x together.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is cos x·dy/dx + y sin x = sec²x",
           "⇒ dy/dx + y(sin x/cos x) = sec²x/cos x",
           "⇒ dy/dx + y tan x = sec³x",
-          "This is in the form dy/dx + yP(x) = Q(x). Here P = tan x ⇒ ∫P dx = ∫tan x dx = log sec x"
+          "This is in the form dy/dx + yP(x) = Q(x).",
+          "Here P = tan x",
+          "⇒ ∫P dx = ∫tan x dx = log sec x"
         ],
         "why": "Dividing every term by cos x turns the coefficient of dy/dx into 1, which is required before the equation matches the standard linear form and P can be read off directly.",
         "common_mistakes": [
@@ -84,9 +101,14 @@
         "memory_tip": "sec²x = 1 + tan²x — write sec⁴x = sec²x(1 + tan²x) so one piece integrates plainly and the other by a direct substitution.",
         "lines": [
           "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
-          "⇒ y sec x = ∫sec x·sec³x dx = ∫sec⁴x dx = ∫sec²x(1 + tan²x) dx",
-          "= ∫sec²x dx + ∫sec²x tan²x dx = tan x + tan³x/3 + c",
-          { "text": "y sec x = tan x + tan³x/3 + c", "style": "boxed" }
+          "⇒ y sec x = ∫sec x·sec³x dx = ∫sec⁴x dx",
+          "= ∫sec²x(1 + tan²x) dx",
+          "= ∫sec²x dx + ∫sec²x tan²x dx",
+          "= tan x + tan³x/3 + c",
+          {
+            "text": "y sec x = tan x + tan³x/3 + c",
+            "style": "boxed"
+          }
         ],
         "why": "Writing sec⁴x as sec²x(1 + tan²x) splits it into a plain sec²x integral and a sec²x·tan²x term, and since sec²x is the derivative of tan x, the second piece integrates directly using tan x as the new variable.",
         "common_mistakes": [

@@ -70,7 +70,8 @@
             "style": "heading"
           },
           "Given D.E is [d²y/dx² + (dy/dx)³]^(6/5) = 6y",
-          "Raising both sides to the power 5/6: d²y/dx² + (dy/dx)³ = (6y)^(5/6)"
+          "Raising both sides to the power 5/6:",
+          "d²y/dx² + (dy/dx)³ = (6y)^(5/6)"
         ],
         "why": "Raising both sides to the reciprocal power 5/6 clears the fractional exponent outside the bracket, leaving an equation written as a polynomial in the derivatives, which is what the order and degree are read from.",
         "common_mistakes": [
@@ -87,8 +88,11 @@
         "margin_note": "The last mark. Degree is read from the exponent of the HIGHEST order derivative only, never from a lower-order term.",
         "memory_tip": "Degree only ever looks at the highest-order derivative's own exponent — every other term in the equation is irrelevant to it.",
         "lines": [
-          "The highest order derivative present is d²y/dx², so the order is 2.",
-          "The exponent of d²y/dx² in the cleared equation is 1, so the degree is 1.",
+          "The highest order derivative present is d²y/dx²,",
+          "so the order is 2.",
+          "The exponent of d²y/dx² in the cleared",
+          "equation is 1,",
+          "so the degree is 1.",
           {
             "text": "∴ Order = 2, Degree = 1",
             "style": "boxed"

@@ -59,8 +59,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let cosx+3sinx+7 = A(−sinx+cosx) + B(cosx+sinx+1) + C",
-          "Coeff of cosx: A+B=1, coeff of sinx: −A+B=3, constant: B+C=7",
+          "Let cosx+3sinx+7",
+          "= A(−sinx+cosx) + B(cosx+sinx+1) + C",
+          "Coeff of cosx: A+B=1, coeff of sinx:",
+          "−A+B=3, constant: B+C=7",
           "Solving: A=−1, B=2, C=5"
         ],
         "why": "The layout here swaps A and B's roles from answer 25 — A multiplies the denominator's derivative this time — but the method is identical: match sinx, cosx, and the constant term.",
@@ -96,8 +98,12 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Put tan(x/2)=t: cosx+sinx+1 = [(1−t²)+2t+(1+t²)]/(1+t²) = (2+2t)/(1+t²) = 2(1+t)/(1+t²)",
-          "∫dx/(cosx+sinx+1) = ∫[2dt/(1+t²)]÷[2(1+t)/(1+t²)] = ∫dt/(1+t) = log|1+t|+c"
+          "Put tan(x/2)=t: cosx+sinx+1",
+          "= [(1−t²)+2t+(1+t²)]/(1+t²) = (2+2t)/(1+t²)",
+          "= 2(1+t)/(1+t²)",
+          "∫dx/(cosx+sinx+1)",
+          "= ∫[2dt/(1+t²)]÷[2(1+t)/(1+t²)]",
+          "= ∫dt/(1+t) = log|1+t|+c"
         ],
         "why": "This denominator collapses to the same simple (1+t) form seen in answer 22, since cosx+sinx+1 is algebraically the same shape as 1+sinx+cosx — only the order of the terms differs.",
         "common_mistakes": [

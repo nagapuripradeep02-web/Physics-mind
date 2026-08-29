@@ -56,8 +56,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀⁴ x²/(1+x) dx = ∫₀⁴ [(x² − 1) + 1]/(1+x) dx",
-          "= ∫₀⁴ (x−1)(x+1)/(1+x) dx + ∫₀⁴ dx/(1+x) = ∫₀⁴ (x−1) dx + ∫₀⁴ dx/(1+x)"
+          "I = ∫₀⁴ x²/(1+x) dx",
+          "= ∫₀⁴ [(x² − 1) + 1]/(1+x) dx",
+          "= ∫₀⁴ (x−1)(x+1)/(1+x) dx + ∫₀⁴ dx/(1+x)",
+          "= ∫₀⁴ (x−1) dx + ∫₀⁴ dx/(1+x)"
         ],
         "why": "Adding and subtracting 1 in the numerator creates x²−1, which factors as (x−1)(x+1); the (x+1) factor cancels the denominator (1+x), leaving a plain polynomial plus one standard log term.",
         "common_mistakes": [
@@ -74,7 +76,8 @@
         "margin_note": "Second mark. log1 = 0 always — the lower limit of the log term never contributes.",
         "memory_tip": "16/2 − 4 = 8 − 4 = 4 — check this arithmetic before combining with log5.",
         "lines": [
-          "= [x²/2 − x]₀⁴ + [log(1+x)]₀⁴ = (16/2 − 4) + (log5 − log1)",
+          "= [x²/2 − x]₀⁴ + [log(1+x)]₀⁴",
+          "= (16/2 − 4) + (log5 − log1)",
           {
             "text": "∴ I = 4 + log5",
             "style": "boxed"

@@ -99,7 +99,8 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "By the by-parts rule, I_n = sinⁿ⁻¹x(−cosx) − ∫(n−1)sinⁿ⁻²x cosx(−cosx)dx",
+          "By the by-parts rule, I_n",
+          "= sinⁿ⁻¹x(−cosx) − ∫(n−1)sinⁿ⁻²x cosx(−cosx)dx",
           "= −sinⁿ⁻¹x cosx + (n−1)∫sinⁿ⁻²x cos²x dx",
           "= −sinⁿ⁻¹x cosx + (n−1)∫sinⁿ⁻²x(1−sin²x)dx",
           {

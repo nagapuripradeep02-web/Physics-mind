@@ -88,7 +88,8 @@
         "margin_note": "Result",
         "lines": [
           "In the first integral put t = cotx ⇒ dt = −csc²x dx",
-          "∫ cotⁿ⁻²x csc²x dx = −∫ tⁿ⁻²dt = −tⁿ⁻¹/(n−1) = −cotⁿ⁻¹x/(n−1)",
+          "∫ cotⁿ⁻²x csc²x dx = −∫ tⁿ⁻²dt = −tⁿ⁻¹/(n−1)",
+          "= −cotⁿ⁻¹x/(n−1)",
           {
             "text": "\\therefore\\ I_n = -\\frac{\\cot^{n-1}x}{n-1} - I_{n-2}\\ \\dots(1)",
             "render": "katex",

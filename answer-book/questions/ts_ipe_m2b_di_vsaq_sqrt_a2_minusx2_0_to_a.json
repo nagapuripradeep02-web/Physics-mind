@@ -57,7 +57,8 @@
             "style": "heading"
           },
           "I = ∫₀^a √(a² − x²) dx",
-          "Formula: ∫√(a²−x²) dx = (x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a) + c",
+          "Formula: ∫√(a²−x²) dx",
+          "= (x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a) + c",
           "∴ I = [(x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a)]₀^a"
         ],
         "why": "√(a²−x²) has a standard antiderivative built from two pieces — an algebraic term and an inverse-sine term — that is worth memorising rather than deriving by a trigonometric substitution each time.",
@@ -75,7 +76,8 @@
         "margin_note": "Second mark. Sin⁻¹(1) = π/2 — memorise this standard value.",
         "memory_tip": "At x=a the square root itself becomes 0, so only the inverse-sine half of the formula contributes.",
         "lines": [
-          "At x=a: (a/2)(0) + (a²/2)Sin⁻¹(1). At x=0: 0 + (a²/2)Sin⁻¹(0) = 0",
+          "At x=a: (a/2)(0) + (a²/2)Sin⁻¹(1).",
+          "At x=0: 0 + (a²/2)Sin⁻¹(0) = 0",
           {
             "text": "∴ I = (a²/2)(π/2) = πa²/4",
             "style": "boxed"

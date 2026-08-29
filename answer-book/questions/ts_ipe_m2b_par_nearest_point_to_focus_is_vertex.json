@@ -50,8 +50,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The focal distance of any point P(x₁,y₁) on y² = 4ax is SP = x₁ + a",
-          "Every point on this parabola has x₁ ≥ 0, and a is a fixed positive number, so SP = x₁ + a is smallest when x₁ = 0"
+          "The focal distance of any point P(x₁,y₁) on y²",
+          "= 4ax is SP = x₁ + a",
+          "Every point on this parabola has x₁ ≥ 0,",
+          "and a is a fixed positive number,",
+          "so SP = x₁ + a is smallest when x₁ = 0"
         ],
         "why": "The focal distance formula SP = x₁ + a is an increasing function of x₁ alone, since a is fixed, so its smallest value over every point of the curve happens at the smallest possible x₁, which is 0.",
         "common_mistakes": [

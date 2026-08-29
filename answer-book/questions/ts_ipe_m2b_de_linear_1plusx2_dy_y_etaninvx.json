@@ -17,15 +17,36 @@
   "expected_time_min": 9,
   "question_text": "Solve (1 + x²)dy/dx + y = e^(Tan⁻¹x).",
   "appearances": [
-    { "year": 2016, "board": "ap_ipe" },
-    { "year": 2018, "board": "ap_ipe" },
-    { "year": 2015, "board": "ts_ipe" }
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Rewrite in standard form and identify P", "marks": 1 },
-    { "label": "Find the integrating factor", "marks": 1 },
-    { "label": "Set up the integral and substitute", "marks": 1 },
-    { "label": "Integrate and finish", "marks": 1 }
+    {
+      "label": "Rewrite in standard form and identify P",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Set up the integral and substitute",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -48,10 +69,15 @@
         "margin_note": "One mark. Divide by (1 + x²) to reach the standard linear form.",
         "memory_tip": "∫1/(1+x²) dx = Tan⁻¹x — one of the standard integrals worth knowing by heart.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is (1 + x²)dy/dx + y = e^(Tan⁻¹x)",
           "⇒ dy/dx + y·(1/(1 + x²)) = e^(Tan⁻¹x)/(1 + x²)",
-          "This is in the form dy/dx + yP(x) = Q(x). Here P = 1/(1 + x²) ⇒ ∫P dx = ∫1/(1 + x²) dx = Tan⁻¹x"
+          "This is in the form dy/dx + yP(x) = Q(x).",
+          "Here P = 1/(1 + x²)",
+          "⇒ ∫P dx = ∫1/(1 + x²) dx = Tan⁻¹x"
         ],
         "why": "Dividing every term by (1 + x²) makes the coefficient of dy/dx equal to 1, matching the standard linear form, and the resulting P is exactly the standard derivative-of-arctan integral.",
         "common_mistakes": [
@@ -86,8 +112,11 @@
         "memory_tip": "e^A · e^A = e^(2A) — combine matching exponentials before attempting the integral.",
         "lines": [
           "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
-          "⇒ y·e^(Tan⁻¹x) = ∫e^(Tan⁻¹x)·[e^(Tan⁻¹x)/(1 + x²)] dx = ∫e^(2Tan⁻¹x)/(1 + x²) dx",
-          "Put Tan⁻¹x = t ⇒ 1/(1 + x²) dx = dt, so the integral becomes ∫e^(2t) dt"
+          "⇒ y·e^(Tan⁻¹x)",
+          "= ∫e^(Tan⁻¹x)·[e^(Tan⁻¹x)/(1 + x²)] dx",
+          "= ∫e^(2Tan⁻¹x)/(1 + x²) dx",
+          "Put Tan⁻¹x = t ⇒ 1/(1 + x²) dx = dt,",
+          "so the integral becomes ∫e^(2t) dt"
         ],
         "why": "Multiplying the integrating factor by Q combines the two exponential terms into e^(2Tan⁻¹x), and substituting t = Tan⁻¹x removes the arctan from the exponent entirely, using the fact that dt is exactly the leftover 1/(1+x²)dx.",
         "common_mistakes": [
@@ -105,8 +134,12 @@
         "memory_tip": "∫e^(kt)dt = e^(kt)/k for any constant k — here k = 2.",
         "lines": [
           "∫e^(2t) dt = (1/2)e^(2t) + c",
-          "So y·e^t = (1/2)e^(2t) + c, and putting t = Tan⁻¹x back in:",
-          { "text": "y·e^(Tan⁻¹x) = (1/2)e^(2Tan⁻¹x) + c", "style": "boxed" }
+          "So y·e^t = (1/2)e^(2t) + c,",
+          "and putting t = Tan⁻¹x back in:",
+          {
+            "text": "y·e^(Tan⁻¹x) = (1/2)e^(2Tan⁻¹x) + c",
+            "style": "boxed"
+          }
         ],
         "why": "The standard rule for integrating an exponential of a constant multiple of t gives (1/2)e^(2t), and substituting t = Tan⁻¹x back in returns the final relation to the original variable x.",
         "common_mistakes": [

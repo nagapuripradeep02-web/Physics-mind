@@ -17,11 +17,19 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of tangent and normal to the ellipse x² + 8y² − 33 = 0 at (−1, 2).",
   "appearances": [
-    { "year": 2020 }
+    {
+      "year": 2020
+    }
   ],
   "mark_split": [
-    { "label": "Equation of the tangent", "marks": 2 },
-    { "label": "Equation of the normal", "marks": 2 }
+    {
+      "label": "Equation of the tangent",
+      "marks": 2
+    },
+    {
+      "label": "Equation of the normal",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -44,11 +52,18 @@
         "margin_note": "First two marks. Replace x² by x·x₁ and y² by y·y₁ — the S₁ = 0 rule.",
         "memory_tip": "S₁ = 0 means: replace each squared variable by (variable)×(its value at the given point).",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Equation of the ellipse: S = x² + 8y² − 33 = 0",
-          "Equation of the tangent at (−1, 2) is S₁ = 0: x·x₁ + 8y·y₁ − 33 = 0",
+          "Equation of the tangent at (−1, 2) is S₁ = 0:",
+          "x·x₁ + 8y·y₁ − 33 = 0",
           "⇒ (−1)x + 8(2)y − 33 = 0",
-          { "text": "x − 16y + 33 = 0", "style": "boxed" }
+          {
+            "text": "x − 16y + 33 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "For a conic S = 0, the tangent at a point (x₁, y₁) on it is found by the S₁ = 0 substitution rule — replacing x² with x·x₁ and y² with y·y₁ — without needing the ellipse in x²/a² + y²/b² = 1 form first.",
         "common_mistakes": [
@@ -65,11 +80,16 @@
         "margin_note": "Last two marks. The normal is perpendicular to the tangent at the same point.",
         "memory_tip": "Find the tangent's slope first, then flip and negate it for the normal.",
         "lines": [
-          "From x − 16y + 33 = 0: 16y = x + 33 ⇒ slope of tangent = 1/16",
+          "From x − 16y + 33 = 0:",
+          "16y = x + 33 ⇒ slope of tangent = 1/16",
           "⇒ slope of normal = −16",
-          "Equation of the normal at (−1, 2) with slope −16: y − 2 = −16(x + 1)",
+          "Equation of the normal at (−1, 2)",
+          "with slope −16: y − 2 = −16(x + 1)",
           "⇒ y = −16x − 14",
-          { "text": "16x + y + 14 = 0", "style": "boxed" }
+          {
+            "text": "16x + y + 14 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "The normal to a curve at a point is the line through that point perpendicular to the tangent there, so its slope is the negative reciprocal of the tangent's slope.",
         "common_mistakes": [

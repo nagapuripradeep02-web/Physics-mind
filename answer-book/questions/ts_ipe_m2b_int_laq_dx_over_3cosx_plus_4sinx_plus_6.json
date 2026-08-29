@@ -59,7 +59,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²), cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
+          "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²),",
+          "cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
         ],
         "why": "The same universal substitution as answers 21 and 22, now applied to a denominator that also carries a constant term.",
         "common_mistakes": [
@@ -76,8 +77,11 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "3cosx+4sinx+6 = [3(1−t²)+4(2t)+6(1+t²)]/(1+t²) = (3t²+8t+9)/(1+t²)",
-          "I = ∫[2dt/(1+t²)] ÷ [(3t²+8t+9)/(1+t²)] = ∫2dt/(3t²+8t+9)"
+          "3cosx+4sinx+6",
+          "= [3(1−t²)+4(2t)+6(1+t²)]/(1+t²)",
+          "= (3t²+8t+9)/(1+t²)",
+          "I = ∫[2dt/(1+t²)] ÷ [(3t²+8t+9)/(1+t²)]",
+          "= ∫2dt/(3t²+8t+9)"
         ],
         "why": "The (1+t²) factors cancel as before, but this time the numerator's −t² and +6t² combine to leave a genuine quadratic 3t²+8t+9, not a linear expression.",
         "common_mistakes": [

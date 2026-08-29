@@ -63,7 +63,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "5 − 2x² + 4x = −2x² + 4x + 5 = −2[x² − 2x − 5/2]",
+          "5 − 2x² + 4x = −2x² + 4x + 5",
+          "= −2[x² − 2x − 5/2]",
           "= −2[x² − 2x + 1² − 1² − 5/2]",
           "= −2[(x−1)² − 7/2]"
         ],
@@ -82,8 +83,10 @@
         "mark_note": "Method",
         "margin_note": "Setup",
         "lines": [
-          "−2[(x−1)² − 7/2] = 7 − 2(x−1)² = 2[7/2 − (x−1)²]",
-          "7/2 = (√(7/2))², so this matches a² − x² with x written as (x−1) and a = √(7/2)"
+          "−2[(x−1)² − 7/2] = 7 − 2(x−1)²",
+          "= 2[7/2 − (x−1)²]",
+          "7/2 = (√(7/2))², so this matches a² − x²",
+          "with x written as (x−1) and a = √(7/2)"
         ],
         "why": "Distributing the −2 flips the sign inside, turning −(x−1)²+7/2 into 7/2−(x−1)² — now the square is SUBTRACTED from the constant, the a²−x² pattern rather than x²−a².",
         "common_mistakes": [
@@ -121,9 +124,14 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "∫dx/(5−2x²+4x) = (1/2)∫dx/[(√(7/2))²−(x−1)²]",
-          "= (1/2)·(1/(2√(7/2)))log|[√(7/2)+(x−1)]/[√(7/2)−(x−1)]| + c",
-          "2√(7/2) = √14, so this is (1/(2√14))log|[√(7/2)+x−1]/[√(7/2)−x+1]| + c"
+          "∫dx/(5−2x²+4x)",
+          "= (1/2)∫dx/[(√(7/2))²−(x−1)²]",
+          "=",
+          "(1/2)·(1/(2√(7/2)))log|[√(7/2)+(x−1)]/[√(7/2)−(x−1)]|",
+          "+ c",
+          "2√(7/2) = √14,",
+          "so this is",
+          "(1/(2√14))log|[√(7/2)+x−1]/[√(7/2)−x+1]| + c"
         ],
         "why": "2√(7/2) simplifies to √14 (since 4·(7/2)=14), which is why the book's printed coefficient reads 1/(2√14) once the outside 1/2 is folded into the standard formula's own 1/(2a) term.",
         "common_mistakes": [

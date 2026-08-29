@@ -64,8 +64,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given vertex A = (3, −2), focus S = (3, 1). The x-coordinates of A and S are equal, so the axis is parallel to the y-axis.",
-          "Since S lies above A, the parabola opens vertically upward.",
+          "Given vertex A = (3, −2), focus S = (3, 1).",
+          "The x-coordinates of A and S are equal,",
+          "so the axis is parallel to the y-axis.",
+          "Since S lies above A,",
+          "the parabola opens vertically upward.",
           "a = AS = √((3−3)² + (1−(−2))²) = √9 = 3"
         ],
         "why": "Two points with the same x-coordinate lie on a vertical line, so the axis must be parallel to the y-axis; which way the parabola opens follows from which of the two points, vertex or focus, is higher up.",
@@ -83,7 +86,8 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for the correct equation with the sign of 4a matching the upward direction.",
         "lines": [
-          "An upward parabola with vertex (h,k) is (x−h)² = 4a(y−k).",
+          "An upward parabola",
+          "with vertex (h,k) is (x−h)² = 4a(y−k).",
           "(x−3)² = 4(3)(y−(−2))",
           {
             "text": "∴ (x−3)² = 12(y+2)",

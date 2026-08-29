@@ -17,14 +17,31 @@
   "expected_time_min": 15,
   "question_text": "Show that ∫₀^(π/2) x/(sinx + cosx) dx = π/(2√2) log(√2 + 1).",
   "appearances": [
-    { "year": 2017 },
-    { "year": 2020, "board": "ap_ipe" }
+    {
+      "year": 2017
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Apply the property with a = π/2", "marks": 2 },
-    { "label": "Add to reach an x-free integral", "marks": 2 },
-    { "label": "Write cosx + sinx as √2 sin(x + π/4)", "marks": 2 },
-    { "label": "Evaluate the log limits", "marks": 1 }
+    {
+      "label": "Apply the property with a = π/2",
+      "marks": 2
+    },
+    {
+      "label": "Add to reach an x-free integral",
+      "marks": 2
+    },
+    {
+      "label": "Write cosx + sinx as √2 sin(x + π/4)",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the log limits",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,9 +64,14 @@
         "margin_note": "First two marks. Only the x in front changes — the denominator is unchanged, just like the previous question.",
         "memory_tip": "sin(π/2 − x) + cos(π/2 − x) = cosx + sinx = sinx + cosx — the denominator is symmetric, so it never changes under this property.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "I = ∫₀^(π/2) x/(sinx + cosx) dx …(1)",
-          "By x → π/2 − x: I = ∫₀^(π/2) (π/2 − x)/(sin(π/2 − x) + cos(π/2 − x)) dx",
+          "By x → π/2 − x: I",
+          "= ∫₀^(π/2) (π/2 − x)/(sin(π/2 − x) +",
+          "cos(π/2 − x)) dx",
           "⇒ I = ∫₀^(π/2) (π/2 − x)/(cosx + sinx) dx …(2)"
         ],
         "why": "The denominator sinx + cosx is symmetric under the swap sinx ↔ cosx, so it is unchanged by x → π/2 − x; only the numerator's x becomes π/2 − x, which is what makes the addition step work.",
@@ -67,7 +89,8 @@
         "margin_note": "Two more marks. x + (π/2 − x) = π/2 is what cancels the x term.",
         "memory_tip": "x + (π/2 − x) always cancels to a plain π/2 — the same cancellation trick used throughout this chapter.",
         "lines": [
-          "Adding (1) and (2): 2I = ∫₀^(π/2) [x + (π/2 − x)]/(sinx + cosx) dx",
+          "Adding (1) and (2): 2I",
+          "= ∫₀^(π/2) [x + (π/2 − x)]/(sinx + cosx) dx",
           "= (π/2)∫₀^(π/2) dx/(sinx + cosx)",
           "⇒ I = (π/4)∫₀^(π/2) dx/(sinx + cosx)"
         ],
@@ -87,7 +110,8 @@
         "memory_tip": "sinx + cosx = √2 sin(x + π/4) — the same rewrite as the previous question, reused here.",
         "lines": [
           "sinx + cosx = √2 sin(x + π/4)",
-          "I = (π/(4√2))∫₀^(π/2) cosec(x + π/4) dx    [∵ ∫cosecθ dθ = log tan(θ/2)]",
+          "I = (π/(4√2))∫₀^(π/2) cosec(x + π/4) dx",
+          "[∵ ∫cosecθ dθ = log tan(θ/2)]",
           "= (π/(4√2))[log tan((x + π/4)/2)]₀^(π/2)"
         ],
         "why": "The same R sin(x+α) rewrite used in the previous question reduces this integral to the identical cosecant form, only now multiplied by the extra factor of π/2 that came from the numerator.",
@@ -105,9 +129,13 @@
         "margin_note": "The last mark. This is exactly the answer the question asks to show — underline it.",
         "memory_tip": "tan(3π/8) = √2 + 1 and tan(π/8) = √2 − 1 — the same pair used in the previous question.",
         "lines": [
-          "= (π/(4√2))[log tan(3π/8) − log tan(π/8)] = (π/(4√2)) log[(√2 + 1)/(√2 − 1)]",
+          "= (π/(4√2))[log tan(3π/8) − log tan(π/8)]",
+          "= (π/(4√2)) log[(√2 + 1)/(√2 − 1)]",
           "= (π/(4√2)) log[(√2 + 1)²] = (π/(4√2))·2 log(√2 + 1)",
-          { "text": "∴ I = π/(2√2) · log(√2 + 1)", "style": "boxed" }
+          {
+            "text": "∴ I = π/(2√2) · log(√2 + 1)",
+            "style": "boxed"
+          }
         ],
         "why": "Rationalising the fraction inside the log gives a perfect square, and log(a²) = 2 log(a) cancels the outer factor of 2 with the 4 in the denominator, leaving exactly the result the question asks to show.",
         "common_mistakes": [

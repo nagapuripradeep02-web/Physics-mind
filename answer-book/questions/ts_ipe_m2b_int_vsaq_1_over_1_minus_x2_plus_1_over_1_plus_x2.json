@@ -60,7 +60,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "∫[1/(1−x²) + 1/(1+x²)] dx = ∫dx/(1−x²) + ∫dx/(1+x²)"
+          "∫[1/(1−x²) + 1/(1+x²)] dx",
+          "= ∫dx/(1−x²) + ∫dx/(1+x²)"
         ],
         "why": "The integrand is already a sum of two separate standard forms — no algebra is needed beyond recognising each piece on sight.",
         "common_mistakes": [

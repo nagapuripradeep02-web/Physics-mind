@@ -17,15 +17,36 @@
   "expected_time_min": 9,
   "question_text": "Solve (1 + y²)dx = (Tan⁻¹y − x)dy.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2015, "board": "ts_ipe" },
-    { "year": 2018, "board": "ts_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Rewrite as linear in x and identify P", "marks": 1 },
-    { "label": "Find the integrating factor", "marks": 1 },
-    { "label": "Set up the integral and substitute", "marks": 1 },
-    { "label": "Integrate by parts and finish", "marks": 1 }
+    {
+      "label": "Rewrite as linear in x and identify P",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Set up the integral and substitute",
+      "marks": 1
+    },
+    {
+      "label": "Integrate by parts and finish",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -48,11 +69,17 @@
         "margin_note": "One mark. The x term appears without a derivative, so divide by (1+y²) and treat this as linear in x with y as the free variable.",
         "memory_tip": "When x sits alone (not as dx/dy) alongside a dy term, the equation is linear in x, solved with y as the independent variable.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is (1 + y²)dx = (Tan⁻¹y − x)dy",
-          "⇒ dx/dy = (Tan⁻¹y − x)/(1 + y²) ⇒ dx/dy + x/(1 + y²) = Tan⁻¹y/(1 + y²)",
-          "This is in the form dx/dy + xP(y) = Q(y), which is linear D.E in x.",
-          "Here P = 1/(1 + y²) ⇒ ∫P dy = ∫1/(1 + y²) dy = Tan⁻¹y"
+          "⇒ dx/dy = (Tan⁻¹y − x)/(1 + y²)",
+          "⇒ dx/dy + x/(1 + y²) = Tan⁻¹y/(1 + y²)",
+          "This is in the form dx/dy + xP(y) = Q(y),",
+          "which is linear D.E in x.",
+          "Here P = 1/(1 + y²)",
+          "⇒ ∫P dy = ∫1/(1 + y²) dy = Tan⁻¹y"
         ],
         "why": "Because x appears without a derivative next to a dy term, the equation is naturally linear in x rather than in y, so it is rewritten as dx/dy + Px = Q with y playing the role x usually plays.",
         "common_mistakes": [
@@ -87,8 +114,10 @@
         "memory_tip": "t = Tan⁻¹y makes dt = dy/(1+y²) exactly, matching the leftover factor in the integral.",
         "lines": [
           "Hence the solution is x·(I.F.) = ∫(I.F.)Q dy",
-          "⇒ x·e^(Tan⁻¹y) = ∫e^(Tan⁻¹y)·[Tan⁻¹y/(1 + y²)] dy",
-          "Put Tan⁻¹y = t ⇒ 1/(1 + y²) dy = dt, so the integral becomes ∫t·eᵗ dt"
+          "⇒ x·e^(Tan⁻¹y)",
+          "= ∫e^(Tan⁻¹y)·[Tan⁻¹y/(1 + y²)] dy",
+          "Put Tan⁻¹y = t ⇒ 1/(1 + y²) dy = dt,",
+          "so the integral becomes ∫t·eᵗ dt"
         ],
         "why": "Multiplying Q by the integrating factor and substituting t = Tan⁻¹y turns the integral into ∫t eᵗ dt, since dt is exactly the 1/(1+y²)dy factor already present in the integrand.",
         "common_mistakes": [
@@ -106,8 +135,12 @@
         "memory_tip": "Integration by parts on t·eᵗ always gives eᵗ(t − 1) — worth memorising as a standard pair.",
         "lines": [
           "∫t·eᵗ dt = teᵗ − ∫eᵗ dt = teᵗ − eᵗ + c = eᵗ(t − 1) + c",
-          "So x·eᵗ = eᵗ(t − 1) + c, and putting t = Tan⁻¹y back in:",
-          { "text": "x = Tan⁻¹y − 1 + c·e^(−Tan⁻¹y)", "style": "boxed" }
+          "So x·eᵗ = eᵗ(t − 1) + c,",
+          "and putting t = Tan⁻¹y back in:",
+          {
+            "text": "x = Tan⁻¹y − 1 + c·e^(−Tan⁻¹y)",
+            "style": "boxed"
+          }
         ],
         "why": "Integration by parts on t·eᵗ gives the standard result eᵗ(t − 1); dividing the whole equation by eᵗ afterwards isolates x and, substituting t = Tan⁻¹y back in, gives the final answer with a negative exponential term for the arbitrary constant.",
         "common_mistakes": [

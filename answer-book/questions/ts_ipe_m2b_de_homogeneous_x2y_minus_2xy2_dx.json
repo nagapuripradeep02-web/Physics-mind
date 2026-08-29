@@ -17,14 +17,32 @@
   "expected_time_min": 15,
   "question_text": "Solve (x²y − 2xy²)dx = (x³ − 3x²y)dy.",
   "appearances": [
-    { "year": 2018, "board": "ap_ipe" }
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Recognise homogeneous form and substitute", "marks": 2 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 2 },
-    { "label": "Return to x and y", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Recognise homogeneous form and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Return to x and y",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,12 +65,17 @@
         "margin_note": "Two marks. Every term on both sides has total degree 3 in x and y, so the equation is homogeneous.",
         "memory_tip": "Check the degree of EVERY term, not just one — x²y, xy², x³ and x²y are all degree 3.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is (x²y − 2xy²)dx = (x³ − 3x²y)dy",
           "⇒ dy/dx = (x²y − 2xy²)/(x³ − 3x²y) … (1)",
           "(1) is a homogeneous D.E",
           "Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx = (vx³ − 2v²x³)/(x³ − 3vx³) = (v − 2v²)/(1 − 3v)"
+          "(1) ⇒ v + x·dv/dx",
+          "= (vx³ − 2v²x³)/(x³ − 3vx³)",
+          "= (v − 2v²)/(1 − 3v)"
         ],
         "why": "Every term of both the numerator and denominator has total degree 3 in x and y, so dividing every term by x³ after substituting y = vx leaves a function of v alone, confirming the homogeneous form.",
         "common_mistakes": [
@@ -69,7 +92,8 @@
         "margin_note": "One mark. Subtract v as a fraction with denominator (1 − 3v) before combining.",
         "memory_tip": "v(1 − 3v) = v − 3v² is the piece that cancels part of the numerator, leaving v² behind.",
         "lines": [
-          "x·dv/dx = (v − 2v²)/(1 − 3v) − v = [v − 2v² − v(1 − 3v)]/(1 − 3v) = v²/(1 − 3v)",
+          "x·dv/dx = (v − 2v²)/(1 − 3v) − v",
+          "= [v − 2v² − v(1 − 3v)]/(1 − 3v) = v²/(1 − 3v)",
           "⇒ (1 − 3v)/v² dv = dx/x"
         ],
         "why": "Writing v as v(1 − 3v)/(1 − 3v) puts both terms over the same denominator, and expanding v − 2v² − v + 3v² leaves exactly v², which is what makes the equation separable.",
@@ -105,8 +129,10 @@
         "margin_note": "One mark. Combine log x + 3 log v + log c into a single log before substituting v = y/x.",
         "memory_tip": "3 log v = log v³, so the whole right side is log(cxv³).",
         "lines": [
-          "⇒ log x + log c + 3 log v = −1/v ⇒ log(cxv³) = −1/v",
-          "Put v = y/x: log(cx·y³/x³) = −x/y ⇒ log(cy³/x²) = −x/y"
+          "⇒ log x + log c + 3 log v = −1/v",
+          "⇒ log(cxv³) = −1/v",
+          "Put v = y/x:",
+          "log(cx·y³/x³) = −x/y ⇒ log(cy³/x²) = −x/y"
         ],
         "why": "Combining all the log terms into log(cxv³) before substituting keeps the working compact, and replacing v by y/x turns the whole relation back into the original variables.",
         "common_mistakes": [
@@ -124,7 +150,10 @@
         "memory_tip": "log(A) = B means A = e^B — apply that once to remove the log entirely.",
         "lines": [
           "⇒ cy³/x² = e^(−x/y)",
-          { "text": "c = (x²/y³)·e^(−x/y)", "style": "boxed" }
+          {
+            "text": "c = (x²/y³)·e^(−x/y)",
+            "style": "boxed"
+          }
         ],
         "why": "Exponentiating both sides of log(cy³/x²) = −x/y removes the log, and rearranging for c gives the family of solutions in the exact form the book marks — the relation between x, y and the arbitrary constant.",
         "common_mistakes": [

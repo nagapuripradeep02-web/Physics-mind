@@ -17,17 +17,40 @@
   "expected_time_min": 9,
   "question_text": "Find the eccentricity, coordinates of foci, length of latus rectum and equations of directrices of the ellipse 9x² + 16y² = 144.",
   "appearances": [
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2016 },
-    { "year": 2017 },
-    { "year": 2019 },
-    { "year": 2020 }
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    },
+    {
+      "year": 2017
+    },
+    {
+      "year": 2019
+    },
+    {
+      "year": 2020
+    }
   ],
   "mark_split": [
-    { "label": "Eccentricity", "marks": 1 },
-    { "label": "Foci", "marks": 1 },
-    { "label": "Length of latus rectum", "marks": 1 },
-    { "label": "Equations of directrices", "marks": 1 }
+    {
+      "label": "Eccentricity",
+      "marks": 1
+    },
+    {
+      "label": "Foci",
+      "marks": 1
+    },
+    {
+      "label": "Length of latus rectum",
+      "marks": 1
+    },
+    {
+      "label": "Equations of directrices",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -49,10 +72,14 @@
         "margin_note": "No mark of its own — every result below reads a and b off this line.",
         "memory_tip": "Divide by the number on the right so the equation reads = 1.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "9x² + 16y² = 144",
           "Divide by 144: x²/16 + y²/9 = 1",
-          "Here a² = 16, b² = 9, so a > b — the ellipse is horizontal."
+          "Here a² = 16, b² = 9, so a > b —",
+          "the ellipse is horizontal."
         ],
         "why": "Eccentricity, foci, latus rectum and directrices are all read off a² and b² in the standard form x²/a² + y²/b² = 1, and whether a > b shows which axis carries the foci.",
         "common_mistakes": [
@@ -71,7 +98,10 @@
         "lines": [
           "e = √(a² − b²) / a",
           "= √(16 − 9) / 4",
-          { "text": "e = √7 / 4", "style": "boxed" }
+          {
+            "text": "e = √7 / 4",
+            "style": "boxed"
+          }
         ],
         "why": "For a horizontal ellipse (a > b) the eccentricity is the square root of a² − b², divided by a — not by a² — once the root is taken.",
         "common_mistakes": [
@@ -90,7 +120,10 @@
         "lines": [
           "Foci = (±ae, 0)",
           "= (±4 · √7/4, 0)",
-          { "text": "Foci = (±√7, 0)", "style": "boxed" }
+          {
+            "text": "Foci = (±√7, 0)",
+            "style": "boxed"
+          }
         ],
         "why": "The foci of a horizontal ellipse lie on the major axis, at distance ae from the centre on each side.",
         "common_mistakes": [
@@ -109,7 +142,10 @@
         "lines": [
           "Length of latus rectum = 2b² / a",
           "= 2(9) / 4",
-          { "text": "= 9/2", "style": "boxed" }
+          {
+            "text": "= 9/2",
+            "style": "boxed"
+          }
         ],
         "why": "The latus rectum is the chord through a focus, perpendicular to the major axis; its length depends only on b² and a, never on e directly.",
         "common_mistakes": [
@@ -128,7 +164,10 @@
         "lines": [
           "Equations of directrices: x = ±a/e",
           "= ±4 / (√7/4) = ±16/√7",
-          { "text": "√7x − 16 = 0 and √7x + 16 = 0", "style": "boxed" }
+          {
+            "text": "√7x − 16 = 0 and √7x + 16 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Each directrix is the vertical line x = a/e or x = −a/e for a horizontal ellipse — the reciprocal relation of the focus formula x = ±ae.",
         "common_mistakes": [

@@ -17,12 +17,24 @@
   "expected_time_min": 9,
   "question_text": "Find the condition for the line lx + my + n = 0 to be a tangent to the ellipse x²/a² + y²/b² = 1.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Write the tangent at the parametric point", "marks": 1 },
-    { "label": "Compare with the given line", "marks": 2 },
-    { "label": "Apply the identity and conclude", "marks": 1 }
+    {
+      "label": "Write the tangent at the parametric point",
+      "marks": 1
+    },
+    {
+      "label": "Compare with the given line",
+      "marks": 2
+    },
+    {
+      "label": "Apply the identity and conclude",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,9 +57,16 @@
         "margin_note": "First mark. Every point on the ellipse can be written as (a cos θ, b sin θ) for some angle θ.",
         "memory_tip": "The parametric point on x²/a² + y²/b² = 1 is always (a cos θ, b sin θ).",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Let lx + my + n = 0 be the tangent at the point P(θ) = (a cos θ, b sin θ) on the ellipse x²/a² + y²/b² = 1",
-          "Equation of the tangent at P(θ): (x cos θ)/a + (y sin θ)/b = 1"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let lx + my + n",
+          "= 0 be the tangent at the point P(θ)",
+          "= (a cos θ,",
+          "b sin θ) on the ellipse x²/a² + y²/b² = 1",
+          "Equation of the tangent at P(θ):",
+          "(x cos θ)/a + (y sin θ)/b = 1"
         ],
         "why": "Writing the tangent at the general parametric point P(θ) lets the given line lx + my + n = 0 be matched against it directly, since a tangent line at ANY point on the ellipse has this same form.",
         "common_mistakes": [
@@ -64,7 +83,8 @@
         "margin_note": "Middle two marks. Match the tangent's coefficients to l, m, n, up to a common ratio.",
         "memory_tip": "Two lines represent the same line exactly when their coefficients of x, y and the constant are all in the same ratio.",
         "lines": [
-          "Comparing (cos θ)/a · x + (sin θ)/b · y = 1 with lx + my = −n:",
+          "Comparing (cos θ)/a · x + (sin θ)/b · y = 1",
+          "with lx + my = −n:",
           "(cos θ / a) / l = (sin θ / b) / m = −1/n",
           "⇒ cos θ = −al/n,  sin θ = −bm/n"
         ],
@@ -84,7 +104,10 @@
         "memory_tip": "Whenever cos θ and sin θ are both isolated, squaring and adding using cos²θ + sin²θ = 1 is the natural next step.",
         "lines": [
           "cos²θ + sin²θ = 1 ⇒ (al/n)² + (bm/n)² = 1",
-          { "text": "a²l² + b²m² = n²", "style": "boxed" }
+          {
+            "text": "a²l² + b²m² = n²",
+            "style": "boxed"
+          }
         ],
         "why": "Since cos θ and sin θ must satisfy cos²θ + sin²θ = 1 for every angle θ, substituting the expressions found in step 2 gives the condition that l, m, n must satisfy for the line to be a tangent.",
         "common_mistakes": [

@@ -64,7 +64,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let 9cosx−sinx = A·d/dx(4sinx+5cosx) + B(4sinx+5cosx)",
+          "Let 9cosx−sinx",
+          "= A·d/dx(4sinx+5cosx) + B(4sinx+5cosx)",
           "= A(4cosx−5sinx) + B(4sinx+5cosx) …(i)",
           "Coefficient of cosx: 4A+5B = 9",
           "Coefficient of sinx: −5A+4B = −1"
@@ -84,7 +85,8 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "(1)×4: 16A+20B=36 …(3)   (2)×5: −25A+20B=−5 …(4)",
+          "(1)×4: 16A+20B=36 …(3)   (2)×5:",
+          "−25A+20B=−5 …(4)",
           "(3)−(4): 41A=41 ⇒ A=1",
           "From (1): 5B=9−4(1)=5 ⇒ B=1"
         ],
@@ -103,8 +105,11 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Putting A=1, B=1 in (i): 9cosx−sinx = 1·d/dx(4sinx+5cosx) + 1·(4sinx+5cosx)",
-          "I = ∫[d/dx(4sinx+5cosx)]/(4sinx+5cosx) dx + ∫1 dx"
+          "Putting A=1, B=1 in (i): 9cosx−sinx",
+          "= 1·d/dx(4sinx+5cosx) + 1·(4sinx+5cosx)",
+          "I",
+          "= ∫[d/dx(4sinx+5cosx)]/(4sinx+5cosx) dx",
+          "+ ∫1 dx"
         ],
         "why": "With A and B both known numbers, the original integral splits into exactly two recognisable pieces: an f′(x)/f(x) form (a pure log) and a plain constant.",
         "common_mistakes": [

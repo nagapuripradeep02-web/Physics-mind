@@ -53,8 +53,10 @@
             "style": "heading"
           },
           "Given D.E is x·dy/dx − y = 2x²sec²2x",
-          "⇒ dy/dx + y·(−1/x) = 2x·sec²2x [dividing throughout by x]",
-          "This is in the form dy/dx + yP(x) = Q(x). Here P = −1/x"
+          "⇒ dy/dx + y·(−1/x) = 2x·sec²2x",
+          "[dividing throughout by x]",
+          "This is in the form dy/dx + yP(x) = Q(x).",
+          "Here P = −1/x"
         ],
         "why": "Dividing every term by x makes the coefficient of dy/dx equal to 1, which is what the standard linear form requires, and it leaves a negative coefficient P = −1/x on the y term.",
         "common_mistakes": [
@@ -71,7 +73,8 @@
         "margin_note": "The last mark. I.F. = e^(∫P dx); ∫(−1/x)dx = −logx = log(1/x).",
         "memory_tip": "e^(−logx) = e^(log(x⁻¹)) = x⁻¹ = 1/x — a negative P always turns the I.F. into a reciprocal, never x itself.",
         "lines": [
-          "Here P = −1/x ⇒ ∫P dx = ∫(−1/x)dx = −logx = log(1/x)",
+          "Here P = −1/x",
+          "⇒ ∫P dx = ∫(−1/x)dx = −logx = log(1/x)",
           {
             "text": "∴ I.F. = e^(∫P dx) = e^(log(1/x)) = 1/x",
             "style": "boxed"

@@ -17,12 +17,24 @@
   "expected_time_min": 9,
   "question_text": "Solve dy/dx + 2y/x = 2x².",
   "appearances": [
-    { "year": 2020, "board": "ap_ipe" }
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Identify P and Q", "marks": 1 },
-    { "label": "Find the integrating factor", "marks": 1 },
-    { "label": "Integrate and finish", "marks": 2 }
+    {
+      "label": "Identify P and Q",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,9 +57,14 @@
         "margin_note": "One mark. The equation is already in the standard linear form dy/dx + Py = Q.",
         "memory_tip": "2 log x = log x² — a log with a coefficient always collapses to a log of a power.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Given D.E is dy/dx + y(2/x) = 2x². This is a linear D.E in y.",
-          "It is in the form dy/dx + yP(x) = Q(x) where P(x) = 2/x and Q(x) = 2x²",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is dy/dx + y(2/x) = 2x².",
+          "This is a linear D.E in y.",
+          "It is in the form dy/dx + yP(x) = Q(x)",
+          "where P(x) = 2/x and Q(x) = 2x²",
           "∴ ∫P dx = ∫(2/x) dx = 2 log x = log x²"
         ],
         "why": "The equation is already in the exact standard form, so P and Q can be read off directly, and integrating P = 2/x gives 2 log x, which is more useful written as log x² for the next step.",
@@ -85,7 +102,10 @@
           "∴ The solution is y·(I.F.) = ∫(I.F.)Q(x)dx + c",
           "⇒ y(x²) = ∫(x²)(2x²)dx = 2∫x⁴dx = 2x⁵/5 + c",
           "∴ yx² = 2x⁵/5 + c ⇒ 5yx² = 2x⁵ + c",
-          { "text": "5x²y = 2x⁵ + c", "style": "boxed" }
+          {
+            "text": "5x²y = 2x⁵ + c",
+            "style": "boxed"
+          }
         ],
         "why": "Multiplying Q by the integrating factor gives a plain power of x, so the right side integrates by the ordinary power rule; multiplying the whole equation by 5 at the end clears the fraction and matches the book's marked form, with the constant relabelled.",
         "common_mistakes": [

@@ -18,9 +18,18 @@
   "question_text": "Evaluate ∫₀^(π/2) cos⁵x/(sin⁵x + cos⁵x) dx.",
   "appearances": [],
   "mark_split": [
-    { "label": "Apply the property with a = π/2", "marks": 1 },
-    { "label": "Write the second form", "marks": 1 },
-    { "label": "Add and solve", "marks": 2 }
+    {
+      "label": "Apply the property with a = π/2",
+      "marks": 1
+    },
+    {
+      "label": "Write the second form",
+      "marks": 1
+    },
+    {
+      "label": "Add and solve",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -43,7 +52,10 @@
         "margin_note": "One mark. Label the given integral (1).",
         "memory_tip": "This question is the sin/cos mirror of the previous one — the same method applies with the roles reversed.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
           "∴ J = ∫₀^(π/2) cos⁵x/(sin⁵x + cos⁵x) dx …(1)"
         ],
@@ -63,7 +75,9 @@
         "memory_tip": "cos(π/2 − x) = sinx, so cos⁵(π/2 − x) = sin⁵x.",
         "lines": [
           "By x → π/2 − x:",
-          "J = ∫₀^(π/2) cos⁵(π/2−x)/[sin⁵(π/2−x) + cos⁵(π/2−x)] dx",
+          "J",
+          "= ∫₀^(π/2) cos⁵(π/2−x)/[sin⁵(π/2−x) +",
+          "cos⁵(π/2−x)] dx",
           "⇒ J = ∫₀^(π/2) sin⁵x/(cos⁵x + sin⁵x) dx …(2)"
         ],
         "why": "Under x → π/2 − x, cosx becomes sinx, so cos⁵x becomes sin⁵x in the numerator, while the denominator (a sum of both powers) reappears unchanged.",
@@ -81,9 +95,13 @@
         "margin_note": "The last two marks. Same final value as the previous question, by the same reasoning.",
         "memory_tip": "cos⁵x + sin⁵x over sin⁵x + cos⁵x is always 1 — the numerator sum always matches the denominator after this swap.",
         "lines": [
-          "Adding (1) and (2): J + J = ∫₀^(π/2) [cos⁵x + sin⁵x]/[sin⁵x + cos⁵x] dx",
+          "Adding (1) and (2): J + J",
+          "= ∫₀^(π/2) [cos⁵x + sin⁵x]/[sin⁵x + cos⁵x] dx",
           "⇒ 2J = ∫₀^(π/2) 1 dx = [x]₀^(π/2) = π/2",
-          { "text": "∴ J = π/4", "style": "boxed" }
+          {
+            "text": "∴ J = π/4",
+            "style": "boxed"
+          }
         ],
         "why": "The added numerator matches the denominator exactly, so the integrand equals 1 for every x, reducing the integral to the length of the interval — exactly as in the previous question.",
         "common_mistakes": [

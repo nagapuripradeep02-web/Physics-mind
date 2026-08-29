@@ -17,14 +17,31 @@
   "expected_time_min": 9,
   "question_text": "Evaluate ∫₀^(π/2) dx/(4 + 5cosx).",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2016, "board": "ap_ipe" },
-    { "year": 2018 }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    }
   ],
   "mark_split": [
-    { "label": "Substitute tan(x/2) = t", "marks": 2 },
-    { "label": "Simplify to a standard log integral", "marks": 1 },
-    { "label": "Evaluate the limits", "marks": 1 }
+    {
+      "label": "Substitute tan(x/2) = t",
+      "marks": 2
+    },
+    {
+      "label": "Simplify to a standard log integral",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate the limits",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,8 +64,12 @@
         "margin_note": "First two marks. Both the cosx formula and the dx formula must be written in terms of t.",
         "memory_tip": "tan(x/2) = t gives cosx = (1−t²)/(1+t²) and dx = 2dt/(1+t²) — a fixed pair to memorise together.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Put tan(x/2) = t. Then cosx = (1 − t²)/(1 + t²) and dx = 2dt/(1 + t²)",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put tan(x/2) = t. Then cosx",
+          "= (1 − t²)/(1 + t²) and dx = 2dt/(1 + t²)",
           "Also x = 0 ⇒ t = 0; x = π/2 ⇒ t = tan(π/4) = 1"
         ],
         "why": "The half-angle substitution tan(x/2) = t turns any rational combination of sinx and cosx into a rational function of t, which can then be integrated by partial fractions or a standard formula.",
@@ -66,7 +87,9 @@
         "margin_note": "One mark. Clearing the compound fraction leaves a plain a² − t² denominator.",
         "memory_tip": "4(1+t²) + 5(1−t²) always simplifies to 9 − t² for this exact denominator — check the arithmetic collapses this way.",
         "lines": [
-          "I = ∫₀^1 [2dt/(1+t²)]/[4 + 5(1−t²)/(1+t²)] dt = ∫₀^1 2dt/[4(1+t²) + 5(1−t²)]",
+          "I",
+          "= ∫₀^1 [2dt/(1+t²)]/[4 + 5(1−t²)/(1+t²)] dt",
+          "= ∫₀^1 2dt/[4(1+t²) + 5(1−t²)]",
           "= ∫₀^1 2dt/(9 − t²) = 2∫₀^1 dt/(3² − t²)"
         ],
         "why": "Multiplying every term by (1+t²) clears the compound fraction, and 4(1+t²) + 5(1−t²) collapses to 9 − t², a standard a² − x² form with a = 3.",
@@ -84,9 +107,13 @@
         "margin_note": "The last mark. log(4/2) simplifies to log2 directly.",
         "memory_tip": "∫dx/(a²−x²) = 1/(2a) log|(a+x)/(a−x)| + c — with a = 3 here.",
         "lines": [
-          "= 2·(1/(2·3))[log|(3+t)/(3−t)|]₀^1 = (1/3)[log(4/2) − log(3/3)]",
+          "= 2·(1/(2·3))[log|(3+t)/(3−t)|]₀^1",
+          "= (1/3)[log(4/2) − log(3/3)]",
           "= (1/3)[log2 − log1]",
-          { "text": "∴ I = (1/3) log2", "style": "boxed" }
+          {
+            "text": "∴ I = (1/3) log2",
+            "style": "boxed"
+          }
         ],
         "why": "The standard formula for ∫dx/(a²−x²) with a = 3 gives a log ratio; evaluating it at t = 1 and t = 0 leaves log2 minus log1, and log1 = 0 removes the second term entirely.",
         "common_mistakes": [

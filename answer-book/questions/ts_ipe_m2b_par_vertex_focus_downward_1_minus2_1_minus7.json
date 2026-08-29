@@ -54,8 +54,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given vertex A = (1, −2), focus S = (1, −7). The x-coordinates of A and S are equal, so the axis is parallel to the y-axis.",
-          "Since S lies below A, the parabola opens vertically downward.",
+          "Given vertex A = (1, −2), focus S = (1, −7).",
+          "The x-coordinates of A and S are equal,",
+          "so the axis is parallel to the y-axis.",
+          "Since S lies below A,",
+          "the parabola opens vertically downward.",
           "a = AS = √((1−1)² + (−7−(−2))²) = √25 = 5"
         ],
         "why": "Two points with the same x-coordinate lie on a vertical line, so the axis must be parallel to the y-axis; which way the parabola opens follows from which of the two points, vertex or focus, is lower down.",
@@ -73,7 +76,8 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for the correct equation with the minus sign that marks a downward parabola.",
         "lines": [
-          "A downward parabola with vertex (h,k) is (x−h)² = −4a(y−k).",
+          "A downward parabola",
+          "with vertex (h,k) is (x−h)² = −4a(y−k).",
           "(x−1)² = −4(5)(y−(−2))",
           {
             "text": "∴ (x−1)² = −20(y+2)",

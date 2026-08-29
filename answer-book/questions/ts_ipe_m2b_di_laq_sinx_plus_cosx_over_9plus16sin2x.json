@@ -17,15 +17,35 @@
   "expected_time_min": 15,
   "question_text": "Evaluate ∫₀^(π/4) (sinx + cosx)/(9 + 16 sin2x) dx.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2015 }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015
+    }
   ],
   "mark_split": [
-    { "label": "Substitute sinx − cosx = t", "marks": 2 },
-    { "label": "Rewrite 9 + 16sin2x in terms of t", "marks": 2 },
-    { "label": "Integrate using the standard log formula", "marks": 2 },
-    { "label": "Evaluate the limits", "marks": 1 }
+    {
+      "label": "Substitute sinx − cosx = t",
+      "marks": 2
+    },
+    {
+      "label": "Rewrite 9 + 16sin2x in terms of t",
+      "marks": 2
+    },
+    {
+      "label": "Integrate using the standard log formula",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the limits",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -48,10 +68,14 @@
         "margin_note": "First two marks. Check both new limits carefully — the lower limit works out to −1, not 0.",
         "memory_tip": "d(sinx − cosx) = (cosx + sinx) dx — the numerator IS the derivative of the substitution.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let sinx − cosx = t. Then (cosx + sinx) dx = dt",
           "x = 0 ⇒ t = sin0 − cos0 = 0 − 1 = −1",
-          "x = π/4 ⇒ t = sin(π/4) − cos(π/4) = 1/√2 − 1/√2 = 0"
+          "x = π/4",
+          "⇒ t = sin(π/4) − cos(π/4) = 1/√2 − 1/√2 = 0"
         ],
         "why": "Choosing t = sinx − cosx works because its derivative dt = (cosx + sinx)dx is exactly the numerator of the integrand — the substitution absorbs the whole numerator into dt.",
         "common_mistakes": [
@@ -68,7 +92,9 @@
         "margin_note": "Two more marks. Squaring the substitution is the trick that reveals sin2x hiding inside 9 + 16sin2x.",
         "memory_tip": "(sinx − cosx)² = 1 − sin2x always — squaring the substitution variable is how sin2x is reached.",
         "lines": [
-          "(sinx − cosx)² = t² ⇒ sin²x + cos²x − 2sinx cosx = t² ⇒ 1 − sin2x = t²",
+          "(sinx − cosx)² = t²",
+          "⇒ sin²x + cos²x − 2sinx cosx = t²",
+          "⇒ 1 − sin2x = t²",
           "⇒ sin2x = 1 − t²",
           "∴ 9 + 16sin2x = 9 + 16(1 − t²) = 25 − 16t²"
         ],
@@ -87,8 +113,10 @@
         "margin_note": "Two marks for matching the integral to the standard a² − x² log formula, with a = 5 and the variable 4t.",
         "memory_tip": "∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c — here a = 5 and the variable is 4t, so an extra factor of 1/4 appears from d(4t) = 4dt.",
         "lines": [
-          "∴ I = ∫₋₁^0 dt/(25 − 16t²) = ∫₋₁^0 dt/(5² − (4t)²)",
-          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁^0     [∵ ∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c]",
+          "∴ I = ∫₋₁^0 dt/(25 − 16t²)",
+          "= ∫₋₁^0 dt/(5² − (4t)²)",
+          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁^0",
+          "[∵ ∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c]",
           "= (1/40) [log|(5 + 4t)/(5 − 4t)|]₋₁^0"
         ],
         "why": "25 − 16t² matches the standard a² − x² form with a = 5 and x replaced by 4t; the extra 1/4 factor accounts for the fact that d(4t) = 4 dt, not dt.",
@@ -106,9 +134,13 @@
         "margin_note": "The last mark. log9 = log3², so the 2 in the numerator cancels one of the two 2's hiding in 40.",
         "memory_tip": "log1 = 0, so only the t = −1 term survives with a minus sign in front.",
         "lines": [
-          "= (1/40)[log(5/5) − log(1/9)] = (1/40)[0 − log(1/9)] = (1/40) log9",
+          "= (1/40)[log(5/5) − log(1/9)]",
+          "= (1/40)[0 − log(1/9)] = (1/40) log9",
           "= (1/40) log3² = (2 log3)/40",
-          { "text": "∴ I = (log3)/20", "style": "boxed" }
+          {
+            "text": "∴ I = (log3)/20",
+            "style": "boxed"
+          }
         ],
         "why": "At t = 0 the log term is log1 = 0, and at t = −1 it is log(1/9) = −log9; subtracting the second from the first flips the sign, and log3² = 2log3 lets the final fraction simplify to a clean quotient by 20.",
         "common_mistakes": [

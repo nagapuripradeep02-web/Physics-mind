@@ -79,7 +79,8 @@
         "margin_note": "The last mark. The second derivative reproduces the original y exactly, multiplied by −9.",
         "memory_tip": "d²y/dx² = −9(Acos3x + Bsin3x) = −9y is the key recognition — the original expression reappears whole.",
         "lines": [
-          "⇒ d²y/dx² = −9A·cos3x − 9B·sin3x = −9(Acos3x + Bsin3x) = −9y",
+          "⇒ d²y/dx² = −9A·cos3x − 9B·sin3x",
+          "= −9(Acos3x + Bsin3x) = −9y",
           {
             "text": "∴ d²y/dx² + 9y = 0",
             "style": "boxed"

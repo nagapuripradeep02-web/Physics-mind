@@ -58,7 +58,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The equation of a parabola with axis parallel to the x-axis is x = ly² + my + n.",
+          "The equation of a parabola",
+          "with axis parallel to the x-axis is x",
+          "= ly² + my + n.",
           "Through (−1, 2): −1 = 4l + 2m + n   ……(1)",
           "Through (1, −1): 1 = l − m + n   ……(2)",
           "Through (2, 1): 2 = l + m + n   ……(3)"
@@ -115,8 +117,10 @@
         "mark_note": "Solution",
         "margin_note": "Last mark. Check the boxed equation by putting one of the three given points back in — it should give 0.",
         "lines": [
-          "From (3): l + m + n = 2 ⇒ n = 2 − (−7/6) − 1/2 = 2 + 7/6 − 3/6 = 8/3",
-          "Substitute l = −7/6, m = 1/2, n = 8/3 in x = ly² + my + n:",
+          "From (3): l + m + n = 2",
+          "⇒ n = 2 − (−7/6) − 1/2 = 2 + 7/6 − 3/6 = 8/3",
+          "Substitute l = −7/6, m = 1/2,",
+          "n = 8/3 in x = ly² + my + n:",
           "x = −(7/6)y² + (1/2)y + 8/3",
           "Multiply by 6: 6x = −7y² + 3y + 16",
           {

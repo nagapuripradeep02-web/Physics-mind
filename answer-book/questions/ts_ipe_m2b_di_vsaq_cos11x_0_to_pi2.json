@@ -56,7 +56,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "When n is odd, ∫₀^(π/2) cosⁿx dx = [(n−1)(n−3)···2]/[n(n−2)···3] · 1   [Walli's formula]"
+          "When n is odd, ∫₀^(π/2) cosⁿx dx",
+          "= [(n−1)(n−3)···2]/[n(n−2)···3] · 1",
+          "[Walli's formula]"
         ],
         "why": "For an odd power, Walli's formula ends the descending products at 2 on top and 3 on the bottom, with no extra π/2 factor — unlike the even-n case.",
         "common_mistakes": [
@@ -73,7 +75,8 @@
         "margin_note": "Second mark. 3840/10395 simplifies to 256/693 after cancelling the common factor 15.",
         "memory_tip": "For n=11 there are exactly five descending terms in both the numerator and denominator products.",
         "lines": [
-          "∴ ∫₀^(π/2) cos¹¹x dx = [(10)(8)(6)(4)(2)]/[(11)(9)(7)(5)(3)] · (1)",
+          "∴ ∫₀^(π/2) cos¹¹x dx",
+          "= [(10)(8)(6)(4)(2)]/[(11)(9)(7)(5)(3)] · (1)",
           {
             "text": "∴ I = 256/693",
             "style": "boxed"

@@ -59,8 +59,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let 2x+5 = A·d/dx(x²−2x+10) + B = A(2x−2) + B",
-          "Coeff of x: 2A=2 ⇒ A=1; constant: −2A+B=5 ⇒ B=7"
+          "Let 2x+5 = A·d/dx(x²−2x+10) + B",
+          "= A(2x−2) + B",
+          "Coeff of x: 2A=2 ⇒ A=1; constant:",
+          "−2A+B=5 ⇒ B=7"
         ],
         "why": "A linear numerator over a square root ALWAYS splits this way — matching the x-coefficient fixes A first, then the constant term fixes B from A.",
         "common_mistakes": [
@@ -78,8 +80,11 @@
         "margin_note": "Method",
         "lines": [
           "Putting A=1, B=7: 2x+5 = 1·d/dx(x²−2x+10) + 7",
-          "I = ∫[d/dx(x²−2x+10)]/√(x²−2x+10) dx + 7∫dx/√(x²−2x+10)",
-          "= 2√(x²−2x+10) + 7∫dx/√(x²−2x+10)   [∵ ∫f′(x)/√f(x) dx = 2√f(x)]"
+          "I",
+          "= ∫[d/dx(x²−2x+10)]/√(x²−2x+10) dx +",
+          "7∫dx/√(x²−2x+10)",
+          "= 2√(x²−2x+10) + 7∫dx/√(x²−2x+10)",
+          "[∵ ∫f′(x)/√f(x) dx = 2√f(x)]"
         ],
         "why": "The A-part is an f′(x)/√f(x) form, a standard result equal to 2√f(x) — it needs no completing the square at all, unlike the leftover B-part.",
         "common_mistakes": [

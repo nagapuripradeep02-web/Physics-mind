@@ -74,7 +74,8 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "2∫t cost dt = 2[t sint − ∫sint dt] = 2[t sint + cost] + c = 2t sint + 2cost + c",
+          "2∫t cost dt = 2[t sint − ∫sint dt]",
+          "= 2[t sint + cost] + c = 2t sint + 2cost + c",
           {
             "text": "∴ ∫ cos√x dx = 2√x sin√x + 2cos√x + c",
             "style": "boxed"

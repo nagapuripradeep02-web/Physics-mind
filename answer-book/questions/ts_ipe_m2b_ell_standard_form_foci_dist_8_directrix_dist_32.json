@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the ellipse in the standard form such that the distance between the foci is 8 and the distance between the directrices is 32.",
   "appearances": [
-    { "year": 2017, "board": "ap_ipe" }
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Distance between foci", "marks": 1 },
-    { "label": "Distance between directrices", "marks": 1 },
-    { "label": "Solve for a² and b²", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Distance between foci",
+      "marks": 1
+    },
+    {
+      "label": "Distance between directrices",
+      "marks": 1
+    },
+    {
+      "label": "Solve for a² and b²",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,9 +61,14 @@
         "margin_note": "First mark. Distance between the two foci is 2ae.",
         "memory_tip": "Distance BETWEEN the foci is 2ae; distance BETWEEN the directrices is 2(a/e).",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Let the ellipse be x²/a² + y²/b² = 1, with foci S(ae, 0), S′(−ae, 0)",
-          "Distance between foci is 8 ⇒ 2ae = 8 ⇒ ae = 4 …(1)"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the ellipse be x²/a² + y²/b² = 1,",
+          "with foci S(ae, 0), S′(−ae, 0)",
+          "Distance between foci is 8 ⇒ 2ae = 8",
+          "⇒ ae = 4 …(1)"
         ],
         "why": "As with any pair of foci, the distance between them is twice the single distance ae from the centre.",
         "common_mistakes": [
@@ -65,7 +85,8 @@
         "margin_note": "Second mark. The two directrices are at x = ±a/e, so their distance apart is 2(a/e).",
         "memory_tip": "Directrices use a/e (division); foci use ae (multiplication) — do not swap them.",
         "lines": [
-          "Distance between directrices is 32 ⇒ 2(a/e) = 32 ⇒ a/e = 16 …(2)"
+          "Distance between directrices is 32",
+          "⇒ 2(a/e) = 32 ⇒ a/e = 16 …(2)"
         ],
         "why": "The two directrices sit symmetrically at x = a/e and x = −a/e, so their distance apart is 2(a/e), the mirror of the foci condition.",
         "common_mistakes": [
@@ -82,7 +103,8 @@
         "margin_note": "Third mark. Multiplying equations (1) and (2) cancels e and leaves a² directly.",
         "memory_tip": "(ae) × (a/e) = a² — the e's cancel because one condition multiplies by e and the other divides by e.",
         "lines": [
-          "Multiplying (1) and (2): (ae)(a/e) = 4 × 16 = 64 ⇒ a² = 64",
+          "Multiplying (1) and (2):",
+          "(ae)(a/e) = 4 × 16 = 64 ⇒ a² = 64",
           "b² = a²(1 − e²) = a² − (ae)² = 64 − 16 = 48"
         ],
         "why": "Multiplying the foci condition by the directrix condition cancels the eccentricity e entirely, giving a² in one step; b² then follows from a² − (ae)², since ae is already known.",
@@ -101,7 +123,10 @@
         "memory_tip": "The last step is substitution only — no more algebra needed.",
         "lines": [
           "a² = 64, b² = 48",
-          { "text": "Equation of the ellipse: x²/64 + y²/48 = 1", "style": "boxed" }
+          {
+            "text": "Equation of the ellipse: x²/64 + y²/48 = 1",
+            "style": "boxed"
+          }
         ],
         "why": "With both a² and b² known, the standard form x²/a² + y²/b² = 1 is complete.",
         "common_mistakes": [

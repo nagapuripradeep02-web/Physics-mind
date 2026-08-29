@@ -17,13 +17,27 @@
   "expected_time_min": 9,
   "question_text": "Find the equation and length of the common chord of the two circles x² + y² + 3x + 5y + 4 = 0, x² + y² + 5x + 3y + 4 = 0.",
   "appearances": [
-    { "year": 2018 }
+    {
+      "year": 2018
+    }
   ],
   "mark_split": [
-    { "label": "Find the common chord", "marks": 1 },
-    { "label": "Find the centre and radius", "marks": 1 },
-    { "label": "Find the perpendicular distance", "marks": 1 },
-    { "label": "Find the length of the chord", "marks": 1 }
+    {
+      "label": "Find the common chord",
+      "marks": 1
+    },
+    {
+      "label": "Find the centre and radius",
+      "marks": 1
+    },
+    {
+      "label": "Find the perpendicular distance",
+      "marks": 1
+    },
+    {
+      "label": "Find the length of the chord",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,7 +59,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. Subtract the two circles exactly as given — both already share coefficient 1 on x² and y².",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "S ≡ x² + y² + 3x + 5y + 4 = 0",
           "S′ ≡ x² + y² + 5x + 3y + 4 = 0",
           "Equation of the common chord is S − S′ = 0",
@@ -86,7 +103,8 @@
         "mark_note": "Method",
         "margin_note": "Third mark, for the distance from C(−3/2, −5/2) to the chord x − y = 0.",
         "lines": [
-          "Length of the perpendicular from C(−3/2, −5/2)",
+          "Length of the perpendicular from C(−3/2,",
+          "−5/2)",
           "to the line x − y = 0 is",
           "p = |−3/2 − (−5/2)| / √(1 + 1) = 1/√2"
         ],
@@ -106,7 +124,10 @@
         "margin_note": "Fourth mark, for the final chord length.",
         "lines": [
           "Length of the common chord",
-          { "text": "= 2√(r² − p²) = 2√(9/2 − 1/2) = 4 units", "style": "boxed" }
+          {
+            "text": "= 2√(r² − p²) = 2√(9/2 − 1/2) = 4 units",
+            "style": "boxed"
+          }
         ],
         "why": "Pythagoras on the right triangle formed by the radius, the perpendicular distance, and half the chord gives half the chord as √(r² − p²).",
         "common_mistakes": [

@@ -17,16 +17,38 @@
   "expected_time_min": 15,
   "question_text": "Evaluate ∫₀^(π/4) log(1 + tanx) dx.",
   "appearances": [
-    { "year": 2016 },
-    { "year": 2022 },
-    { "year": 2016, "board": "ap_ipe" },
-    { "year": 2018, "board": "ap_ipe" },
-    { "year": 2019, "board": "ap_ipe" }
+    {
+      "year": 2016
+    },
+    {
+      "year": 2022
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Apply the property and simplify tan(π/4 − x)", "marks": 3 },
-    { "label": "Substitute back and isolate I on one side", "marks": 2 },
-    { "label": "Solve for I", "marks": 2 }
+    {
+      "label": "Apply the property and simplify tan(π/4 − x)",
+      "marks": 3
+    },
+    {
+      "label": "Substitute back and isolate I on one side",
+      "marks": 2
+    },
+    {
+      "label": "Solve for I",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -49,11 +71,18 @@
         "margin_note": "First three marks — the heaviest step. Get the tan(A−B) formula exactly right before simplifying further.",
         "memory_tip": "tan(π/4 − x) = (1 − tanx)/(1 + tanx) — memorise this special case of tan(A−B) with A = π/4 (tan π/4 = 1).",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "I = ∫₀^(π/4) log(1 + tanx) dx …(1)",
-          "By x → π/4 − x: I = ∫₀^(π/4) log[1 + tan(π/4 − x)] dx",
-          "tan(π/4 − x) = (1 − tanx)/(1 + tanx)     [tan(A−B) formula]",
-          "1 + tan(π/4 − x) = [(1 + tanx) + (1 − tanx)]/(1 + tanx) = 2/(1 + tanx)"
+          "By x → π/4 − x:",
+          "I = ∫₀^(π/4) log[1 + tan(π/4 − x)] dx",
+          "tan(π/4 − x) = (1 − tanx)/(1 + tanx)",
+          "[tan(A−B) formula]",
+          "1 + tan(π/4 − x)",
+          "= [(1 + tanx) + (1 − tanx)]/(1 + tanx)",
+          "= 2/(1 + tanx)"
         ],
         "why": "The tan(A−B) formula with A = π/4 (where tan π/4 = 1) gives a clean fraction (1−tanx)/(1+tanx); adding 1 to it collapses the numerator to a plain 2, which is the key simplification the rest of the proof depends on.",
         "common_mistakes": [
@@ -70,7 +99,8 @@
         "margin_note": "Two more marks. log(2/(1+tanx)) splits into log2 minus log(1+tanx) — the second piece is exactly I again.",
         "memory_tip": "log(a/b) = log a − log b — always split a log of a fraction this way before integrating term by term.",
         "lines": [
-          "⇒ I = ∫₀^(π/4) log[2/(1 + tanx)] dx = ∫₀^(π/4) [log2 − log(1 + tanx)] dx",
+          "⇒ I = ∫₀^(π/4) log[2/(1 + tanx)] dx",
+          "= ∫₀^(π/4) [log2 − log(1 + tanx)] dx",
           "= log2 ∫₀^(π/4) dx − ∫₀^(π/4) log(1 + tanx) dx",
           "= log2·[x]₀^(π/4) − I = (π/4)log2 − I"
         ],
@@ -91,7 +121,10 @@
         "lines": [
           "⇒ I + I = (π/4)log2",
           "⇒ 2I = (π/4)log2",
-          { "text": "∴ I = (π/8) log2", "style": "boxed" }
+          {
+            "text": "∴ I = (π/8) log2",
+            "style": "boxed"
+          }
         ],
         "why": "Adding I to both sides of I = (π/4)log2 − I gives 2I = (π/4)log2 directly, and dividing by 2 gives the final value.",
         "common_mistakes": [

@@ -56,7 +56,8 @@
             "style": "heading"
           },
           "Given parabola y² = 2x ⇒ 4a = 2 ⇒ a = 1/2",
-          "Focal distance SP = x₁ + a. Given SP = 5/2 ⇒ x₁ + 1/2 = 5/2 ⇒ x₁ = 2"
+          "Focal distance SP = x₁ + a.",
+          "Given SP = 5/2 ⇒ x₁ + 1/2 = 5/2 ⇒ x₁ = 2"
         ],
         "why": "The focal distance of any point on y² = 4ax is always x₁ + a, the same rule as 121.1 applied with a smaller a.",
         "common_mistakes": [

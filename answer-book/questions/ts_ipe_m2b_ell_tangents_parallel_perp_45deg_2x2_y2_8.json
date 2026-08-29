@@ -17,16 +17,38 @@
   "expected_time_min": 9,
   "question_text": "Find the equations of the tangents to the ellipse 2x² + y² = 8 which (i) are parallel to x − 2y − 4 = 0, (ii) are perpendicular to x + y + 2 = 0, (iii) make an angle 45° with the x-axis.",
   "appearances": [
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2017 },
-    { "year": 2019, "board": "ap_ipe" },
-    { "year": 2019 }
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019
+    }
   ],
   "mark_split": [
-    { "label": "Standard form and tangent formula", "marks": 1 },
-    { "label": "Tangent parallel to the given line", "marks": 1 },
-    { "label": "Tangent perpendicular to the given line", "marks": 1 },
-    { "label": "Tangent at 45° to the x-axis", "marks": 1 }
+    {
+      "label": "Standard form and tangent formula",
+      "marks": 1
+    },
+    {
+      "label": "Tangent parallel to the given line",
+      "marks": 1
+    },
+    {
+      "label": "Tangent perpendicular to the given line",
+      "marks": 1
+    },
+    {
+      "label": "Tangent at 45° to the x-axis",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -49,9 +71,14 @@
         "margin_note": "First mark. This formula is used all three times below — write it once here.",
         "memory_tip": "The tangent-with-slope-m formula is y = mx ± √(a²m² + b²), always with a plus-minus.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "2x² + y² = 8 ⇒ x²/4 + y²/8 = 1 ⇒ a² = 4, b² = 8",
-          "Equation of the tangent with slope m: y = mx ± √(a²m² + b²)"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "2x² + y² = 8 ⇒ x²/4 + y²/8 = 1",
+          "⇒ a² = 4, b² = 8",
+          "Equation of the tangent with slope m:",
+          "y = mx ± √(a²m² + b²)"
         ],
         "why": "Every tangent line in this question uses the same formula, so writing the ellipse in standard form and stating the formula once saves repeating it for each of the three parts.",
         "common_mistakes": [
@@ -70,7 +97,10 @@
         "lines": [
           "Slope of x − 2y − 4 = 0 is m = 1/2",
           "y = ½x ± √(4·¼ + 8) = ½x ± √9 = ½x ± 3",
-          { "text": "x − 2y + 6 = 0 and x − 2y − 6 = 0", "style": "boxed" }
+          {
+            "text": "x − 2y + 6 = 0 and x − 2y − 6 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "A line parallel to a given line has exactly the same slope, so the given line's own slope goes straight into the tangent formula.",
         "common_mistakes": [
@@ -87,9 +117,13 @@
         "margin_note": "Third mark. A perpendicular line has slope equal to minus the reciprocal.",
         "memory_tip": "Perpendicular slopes multiply to −1: flip the fraction and change the sign.",
         "lines": [
-          "Slope of x + y + 2 = 0 is −1 ⇒ slope of its perpendicular is m = 1",
+          "Slope of x + y + 2 = 0 is −1",
+          "⇒ slope of its perpendicular is m = 1",
           "y = (1)x ± √(4·1 + 8) = x ± √12 = x ± 2√3",
-          { "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0", "style": "boxed" }
+          {
+            "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Perpendicular lines have slopes that multiply to −1, so the required slope is the negative reciprocal of the given line's slope.",
         "common_mistakes": [
@@ -108,7 +142,10 @@
         "lines": [
           "θ = 45° ⇒ m = tan 45° = 1",
           "y = (1)x ± √(4(1)² + 8) = x ± 2√3",
-          { "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0", "style": "boxed" }
+          {
+            "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "The slope of a line making angle θ with the x-axis is tan θ; here tan 45° = 1 is the same slope found in part (ii), so the same tangent pair results.",
         "common_mistakes": [

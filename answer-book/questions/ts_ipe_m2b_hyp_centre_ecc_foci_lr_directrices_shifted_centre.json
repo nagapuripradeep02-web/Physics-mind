@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "Find the centre, eccentricity, foci, length of the latus rectum and equations of the directrices of the hyperbola 4(y + 3)² − 9(x − 2)² = 1.",
   "appearances": [
-    { "year": 2019, "board": "ap_ipe" }
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Eccentricity", "marks": 1 },
-    { "label": "Foci", "marks": 1 },
-    { "label": "Equations of directrices", "marks": 1 },
-    { "label": "Length of latus rectum", "marks": 1 }
+    {
+      "label": "Eccentricity",
+      "marks": 1
+    },
+    {
+      "label": "Foci",
+      "marks": 1
+    },
+    {
+      "label": "Equations of directrices",
+      "marks": 1
+    },
+    {
+      "label": "Length of latus rectum",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,10 +60,17 @@
         "margin_note": "No mark of its own — every result below reads a, b and the shifted centre off this line.",
         "memory_tip": "Match (y+3)² with (y−k)² to read k = −3, and (x−2)² with (x−h)² to read h = 2.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given hyperbola is 4(y+3)² − 9(x−2)² = 1",
           "Divide by 1: (y+3)²/(1/4) − (x−2)²/(1/9) = 1",
-          "Here a² = 1/9 (the x-term denominator), b² = 1/4 (the y-term denominator). The y-term is positive, so the transverse axis is vertical. Centre C = (2, −3)."
+          "Here a² = 1/9 (the x-term denominator),",
+          "b² = 1/4 (the y-term denominator).",
+          "The y-term is positive,",
+          "so the transverse axis is vertical.",
+          "Centre C = (2, −3)."
         ],
         "why": "This is the same standard form as before, but shifted: replace x by (x − 2) and y by (y + 3) throughout, so the centre moves from the origin to (2, −3) and every other formula below uses these shifted coordinates.",
         "common_mistakes": [
@@ -67,7 +89,10 @@
         "lines": [
           "e = √(a² + b²) / b",
           "= √(1/9 + 1/4) / (1/2) = √(13/36) / (1/2)",
-          { "text": "e = √13 / 3", "style": "boxed" }
+          {
+            "text": "e = √13 / 3",
+            "style": "boxed"
+          }
         ],
         "why": "As in the un-shifted case, when the y-term is positive the eccentricity divides by b, not a — shifting the centre changes nothing about this formula.",
         "common_mistakes": [
@@ -86,7 +111,10 @@
         "lines": [
           "Foci = (h, k ± be)",
           "= (2, −3 ± (1/2)(√13/3))",
-          { "text": "Foci = (2, −3 ± √13/6)", "style": "boxed" }
+          {
+            "text": "Foci = (2, −3 ± √13/6)",
+            "style": "boxed"
+          }
         ],
         "why": "The foci sit on the transverse axis through the shifted centre (h, k) = (2, −3), at distance be above and below it, since the transverse axis is vertical here.",
         "common_mistakes": [
@@ -105,7 +133,10 @@
         "lines": [
           "Equations of the directrices: y = k ± b/e",
           "= −3 ± (1/2)/(√13/3) = −3 ± 3/(2√13)",
-          { "text": "y = −3 + 3/(2√13) and y = −3 − 3/(2√13)", "style": "boxed" }
+          {
+            "text": "y = −3 + 3/(2√13) and y = −3 − 3/(2√13)",
+            "style": "boxed"
+          }
         ],
         "why": "The directrices are horizontal lines through k ± b/e, shifted the same way as the foci.",
         "common_mistakes": [
@@ -124,7 +155,10 @@
         "lines": [
           "Length of the latus rectum = 2a² / b",
           "= 2(1/9) / (1/2)",
-          { "text": "= 4/9", "style": "boxed" }
+          {
+            "text": "= 4/9",
+            "style": "boxed"
+          }
         ],
         "why": "The latus rectum length depends only on a² and b², never on the centre's shift.",
         "common_mistakes": [

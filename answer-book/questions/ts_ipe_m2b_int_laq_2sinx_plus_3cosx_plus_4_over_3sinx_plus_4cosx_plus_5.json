@@ -59,8 +59,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let 2sinx+3cosx+4 = A(3sinx+4cosx+5) + B(3cosx−4sinx) + C",
-          "Coeff of sinx: 3A−4B=2, coeff of cosx: 4A+3B=3, constant: 5A+C=4",
+          "Let 2sinx+3cosx+4",
+          "= A(3sinx+4cosx+5) + B(3cosx−4sinx) + C",
+          "Coeff of sinx: 3A−4B=2, coeff of cosx:",
+          "4A+3B=3, constant: 5A+C=4",
           "Solving: A=18/25, B=1/25, C=2/5"
         ],
         "why": "A constant term in the denominator needs a THIRD free constant C on the right, since Dr and Dr′ alone (both built from sinx and cosx) can never reproduce a bare number on their own.",
@@ -79,7 +81,8 @@
         "margin_note": "Method",
         "lines": [
           "I = A∫1 dx + B∫[Dr′/Dr]dx + C∫dx/Dr",
-          "= (18/25)x + (1/25)log|3sinx+4cosx+5| + (2/5)∫dx/(3sinx+4cosx+5)"
+          "= (18/25)x + (1/25)log|3sinx+4cosx+5| +",
+          "(2/5)∫dx/(3sinx+4cosx+5)"
         ],
         "why": "Three unknowns give three separate pieces: A pairs with the denominator itself (a plain x term), B pairs with the denominator's derivative (a log term), and C is left multiplying a genuine ∫dx/Dr that still needs its own substitution.",
         "common_mistakes": [
@@ -96,8 +99,12 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Put tan(x/2)=t: 3sinx+4cosx+5 = [6t+4(1−t²)+5(1+t²)]/(1+t²) = (t²+6t+9)/(1+t²) = (t+3)²/(1+t²)",
-          "∫dx/(3sinx+4cosx+5) = ∫[2dt/(1+t²)]÷[(t+3)²/(1+t²)] = ∫2dt/(t+3)² = −2/(t+3) + c"
+          "Put tan(x/2)=t: 3sinx+4cosx+5",
+          "= [6t+4(1−t²)+5(1+t²)]/(1+t²)",
+          "= (t²+6t+9)/(1+t²) = (t+3)²/(1+t²)",
+          "∫dx/(3sinx+4cosx+5)",
+          "= ∫[2dt/(1+t²)]÷[(t+3)²/(1+t²)]",
+          "= ∫2dt/(t+3)² = −2/(t+3) + c"
         ],
         "why": "This particular denominator happens to be a PERFECT square in t, (t+3)², which turns the leftover integral into a simple power-rule antiderivative rather than another log or Tan⁻¹.",
         "common_mistakes": [

@@ -17,13 +17,28 @@
   "expected_time_min": 4,
   "question_text": "If e, e₁ are the eccentricities of a hyperbola and its conjugate hyperbola, then prove that 1/e² + 1/e₁² = 1.",
   "appearances": [
-    { "year": 2022, "board": "ap_ipe" },
-    { "year": 2017, "board": "ts_ipe" },
-    { "year": 2018, "board": "ts_ipe" }
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "State both eccentricities", "marks": 1 },
-    { "label": "Combine to the identity", "marks": 1 }
+    {
+      "label": "State both eccentricities",
+      "marks": 1
+    },
+    {
+      "label": "Combine to the identity",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,9 +61,14 @@
         "margin_note": "First mark. The conjugate hyperbola swaps which axis is transverse.",
         "memory_tip": "Conjugate hyperbola: same a, b, but the OTHER term is positive, so e₁ uses b where e used a.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Let S ≡ x²/a² − y²/b² = 1 be the hyperbola and e its eccentricity.",
-          "Its conjugate hyperbola is x²/a² − y²/b² = −1, with eccentricity e₁.",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S ≡ x²/a² − y²/b²",
+          "= 1 be the hyperbola and e its eccentricity.",
+          "Its conjugate hyperbola is x²/a² − y²/b²",
+          "= −1, with eccentricity e₁.",
           "e = √(a² + b²)/a and e₁ = √(a² + b²)/b"
         ],
         "why": "The conjugate hyperbola swaps which term is positive, so its transverse axis is the OTHER axis — its eccentricity formula uses b in the denominator where the original used a.",
@@ -67,7 +87,10 @@
         "memory_tip": "1/e² and 1/e₁² are simply a²/(a²+b²) and b²/(a²+b²) — they must add to 1 since the numerators add to the denominator.",
         "lines": [
           "1/e² + 1/e₁² = a²/(a²+b²) + b²/(a²+b²)",
-          { "text": "= (a²+b²)/(a²+b²) = 1", "style": "boxed" }
+          {
+            "text": "= (a²+b²)/(a²+b²) = 1",
+            "style": "boxed"
+          }
         ],
         "why": "Squaring both eccentricities and inverting turns each formula into a fraction with the same denominator a²+b², so adding them collapses to 1 immediately.",
         "common_mistakes": [

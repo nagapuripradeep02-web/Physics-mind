@@ -17,14 +17,32 @@
   "expected_time_min": 15,
   "question_text": "Solve dy/dx = (x − y + 3)/(2x − 2y + 5).",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Test the coefficients and substitute", "marks": 2 },
-    { "label": "Reduce to a function of the new variable", "marks": 1 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 2 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Test the coefficients and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Reduce to a function of the new variable",
+      "marks": 1
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,10 +65,16 @@
         "margin_note": "Two marks. Comparing coefficients shows a1/a2 = b1/b2 = 1/2, so x − y is the combination common to both.",
         "memory_tip": "x − y + 3 and 2x − 2y + 5 are both built from x − y — that repeated block is the substitution.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Given that dy/dx = (x − y + 3)/(2x − 2y + 5) = [(x − y) + 3]/[2(x − y) + 5] … (1)",
-          "Comparing (x − y + 3)/(2x − 2y + 5) with (a1x + b1y + c1)/(a2x + b2y + c2)",
-          "a1/a2 = 1/2, b1/b2 = −1/−2 = 1/2 ⇒ a1/a2 = b1/b2",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given that dy/dx = (x − y + 3)/(2x − 2y + 5)",
+          "= [(x − y) + 3]/[2(x − y) + 5] … (1)",
+          "Comparing (x − y + 3)/(2x − 2y + 5)",
+          "with (a1x + b1y + c1)/(a2x + b2y + c2)",
+          "a1/a2 = 1/2, b1/b2 = −1/−2 = 1/2",
+          "⇒ a1/a2 = b1/b2",
           "So take the substitution x − y = v"
         ],
         "why": "Both the numerator and denominator reduce to the same combination x − y with different constants added, which is exactly the coincident-ratio case, so treating x − y as a single new variable v collapses the equation to one unknown.",
@@ -68,8 +92,10 @@
         "margin_note": "One mark. Differentiate v = x − y to relate dv/dx to dy/dx, then substitute into (1).",
         "memory_tip": "v = x − y gives dv/dx = 1 − dy/dx, so dy/dx = 1 − dv/dx.",
         "lines": [
-          "x − y = v ⇒ 1 − dy/dx = dv/dx ⇒ dy/dx = 1 − dv/dx",
-          "(1) ⇒ 1 − dv/dx = (v + 3)/(2v + 5) ⇒ dv/dx = 1 − (v + 3)/(2v + 5)"
+          "x − y = v ⇒ 1 − dy/dx = dv/dx",
+          "⇒ dy/dx = 1 − dv/dx",
+          "(1) ⇒ 1 − dv/dx = (v + 3)/(2v + 5)",
+          "⇒ dv/dx = 1 − (v + 3)/(2v + 5)"
         ],
         "why": "Differentiating the substitution v = x − y gives a direct relation between dv/dx and dy/dx, which replaces dy/dx everywhere in (1) and leaves an equation purely in v and x.",
         "common_mistakes": [
@@ -86,7 +112,8 @@
         "margin_note": "One mark. Combine the two fractions on the right over the common denominator (2v + 5).",
         "memory_tip": "(2v + 5) − (v + 3) = v + 2 — the numerator simplifies cleanly once the denominators match.",
         "lines": [
-          "dv/dx = [(2v + 5) − (v + 3)]/(2v + 5) = (v + 2)/(2v + 5)",
+          "dv/dx = [(2v + 5) − (v + 3)]/(2v + 5)",
+          "= (v + 2)/(2v + 5)",
           "⇒ dx = (2v + 5)/(v + 2) dv"
         ],
         "why": "Combining the two right-hand terms into a single fraction gives dv/dx as a clean function of v, and inverting turns the equation into a separated form ready for integration.",
@@ -104,7 +131,8 @@
         "margin_note": "Two marks. Split (2v + 5)/(v + 2) into a whole number plus a simple fraction before integrating.",
         "memory_tip": "2v + 5 = 2(v + 2) + 1 — rewrite the numerator around the denominator's own bracket.",
         "lines": [
-          "(2v + 5)/(v + 2) = [2(v + 2) + 1]/(v + 2) = 2 + 1/(v + 2)",
+          "(2v + 5)/(v + 2) = [2(v + 2) + 1]/(v + 2)",
+          "= 2 + 1/(v + 2)",
           "∫ dx = ∫ [2 + 1/(v + 2)] dv",
           "⇒ x = 2v + log(v + 2) + c"
         ],
@@ -125,7 +153,10 @@
         "lines": [
           "Putting v = x − y: x = 2(x − y) + log(x − y + 2) + c",
           "⇒ x = 2x − 2y + log(x − y + 2) + c",
-          { "text": "x − 2y + log(x − y + 2) = c", "style": "boxed" }
+          {
+            "text": "x − 2y + log(x − y + 2) = c",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting v = x − y returns the equation to the original variables, and collecting the x terms on one side gives the compact final relation the examiner expects.",
         "common_mistakes": [

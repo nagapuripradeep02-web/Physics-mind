@@ -61,7 +61,8 @@
             "style": "heading"
           },
           "I = ∫₂³ 2x dx/(1+x²)",
-          "Since d/dx[log|1+x²|] = 2x/(1+x²), the antiderivative is log|1+x²|",
+          "Since d/dx[log|1+x²|] = 2x/(1+x²),",
+          "the antiderivative is log|1+x²|",
           "∴ I = [log|1 + x²|]₂³"
         ],
         "why": "The numerator 2x is exactly the derivative of the denominator 1+x², so the integral is of the standard form ∫f'(x)/f(x) dx = log|f(x)|.",

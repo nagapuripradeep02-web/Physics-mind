@@ -17,15 +17,36 @@
   "expected_time_min": 9,
   "question_text": "Find the centre, eccentricity, foci, length of the latus rectum and equations of the directrices of the hyperbola 16y² − 9x² = 144.",
   "appearances": [
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2018, "board": "ap_ipe" },
-    { "year": 2022, "board": "ap_ipe" }
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Eccentricity", "marks": 1 },
-    { "label": "Foci", "marks": 1 },
-    { "label": "Equations of directrices", "marks": 1 },
-    { "label": "Length of latus rectum", "marks": 1 }
+    {
+      "label": "Eccentricity",
+      "marks": 1
+    },
+    {
+      "label": "Foci",
+      "marks": 1
+    },
+    {
+      "label": "Equations of directrices",
+      "marks": 1
+    },
+    {
+      "label": "Length of latus rectum",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,10 +68,17 @@
         "margin_note": "No mark of its own — every result below reads a and b off this line, but note which axis is transverse.",
         "memory_tip": "The transverse axis is decided by which term is POSITIVE, not by which denominator is bigger.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given hyperbola is 16y² − 9x² = 144",
           "Divide by 144: y²/9 − x²/16 = 1",
-          "Here a² = 16 (the x² denominator), b² = 9 (the y² denominator). The y² term is positive, so the transverse axis is the y-axis. Centre C = (0, 0)."
+          "Here a² = 16 (the x² denominator),",
+          "b² = 9 (the y² denominator).",
+          "The y² term is positive,",
+          "so the transverse axis is the y-axis.",
+          "Centre C = (0, 0)."
         ],
         "why": "The transverse axis is decided by which squared term is POSITIVE, not by which of a² and b² is larger — here y² is positive even though b² = 9 is smaller than a² = 16, so the foci and vertices lie on the y-axis.",
         "common_mistakes": [
@@ -69,7 +97,10 @@
         "lines": [
           "e = √(a² + b²) / b",
           "= √(16 + 9) / 3",
-          { "text": "e = 5/3", "style": "boxed" }
+          {
+            "text": "e = 5/3",
+            "style": "boxed"
+          }
         ],
         "why": "When the transverse axis is the y-axis, the eccentricity formula uses b (the term on the transverse axis) in the denominator, not a.",
         "common_mistakes": [
@@ -88,7 +119,10 @@
         "lines": [
           "Foci = (0, ±be)",
           "= (0, ±3 · 5/3)",
-          { "text": "Foci = (0, ±5)", "style": "boxed" }
+          {
+            "text": "Foci = (0, ±5)",
+            "style": "boxed"
+          }
         ],
         "why": "The foci lie on the transverse axis — here the y-axis — at distance be from the centre on each side.",
         "common_mistakes": [
@@ -107,7 +141,10 @@
         "lines": [
           "Equations of the directrices: y = ±b/e",
           "= ±3 / (5/3) = ±9/5",
-          { "text": "y = 9/5 and y = −9/5", "style": "boxed" }
+          {
+            "text": "y = 9/5 and y = −9/5",
+            "style": "boxed"
+          }
         ],
         "why": "Each directrix is the horizontal line y = b/e or y = −b/e — the reciprocal relation of the focus formula y = ±be.",
         "common_mistakes": [
@@ -126,7 +163,10 @@
         "lines": [
           "Length of the latus rectum = 2a² / b",
           "= 2(16) / 3",
-          { "text": "= 32/3", "style": "boxed" }
+          {
+            "text": "= 32/3",
+            "style": "boxed"
+          }
         ],
         "why": "The latus rectum formula swaps roles here too — it uses 2a²/b, not 2b²/a, because b is now the transverse-axis length.",
         "common_mistakes": [

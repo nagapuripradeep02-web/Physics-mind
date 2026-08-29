@@ -17,14 +17,31 @@
   "expected_time_min": 15,
   "question_text": "Evaluate ∫₀^π (x sinx)/(1 + sinx) dx.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2016 }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    }
   ],
   "mark_split": [
-    { "label": "Apply the King's property", "marks": 2 },
-    { "label": "Add and split into two integrals", "marks": 2 },
-    { "label": "Evaluate ∫dx/(1 + sinx)", "marks": 2 },
-    { "label": "Combine for the final answer", "marks": 1 }
+    {
+      "label": "Apply the King's property",
+      "marks": 2
+    },
+    {
+      "label": "Add and split into two integrals",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate ∫dx/(1 + sinx)",
+      "marks": 2
+    },
+    {
+      "label": "Combine for the final answer",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,9 +64,13 @@
         "margin_note": "First two marks. sin(π − x) stays sinx, so only the x out front changes.",
         "memory_tip": "sin(π − x) = sinx always — the denominator here never changes under this substitution.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "I = ∫₀^π (x sinx)/(1 + sinx) dx …(1)",
-          "By x → π − x: I = ∫₀^π (π − x)sin(π − x)/(1 + sin(π − x)) dx",
+          "By x → π − x:",
+          "I = ∫₀^π (π − x)sin(π − x)/(1 + sin(π − x)) dx",
           "⇒ I = ∫₀^π (π − x)sinx/(1 + sinx) dx …(2)"
         ],
         "why": "sin(π − x) = sinx, so the denominator 1 + sinx is unchanged by the substitution — only the x in the numerator becomes π − x, setting up the cancellation in the next step.",
@@ -67,9 +88,12 @@
         "margin_note": "Two more marks. The 1/(1+sinx) split is the setup for the next step's trick.",
         "memory_tip": "1/(1+sinx) always splits into 1 minus 1/(1+sinx) — write it as [1 + sinx − 1]/(1 + sinx).",
         "lines": [
-          "Adding (1) and (2): 2I = π∫₀^π sinx/(1 + sinx) dx",
-          "= π∫₀^π [(1 + sinx − 1)/(1 + sinx)] dx = π∫₀^π [1 − 1/(1 + sinx)] dx",
-          "= π∫₀^π 1 dx − π∫₀^π dx/(1 + sinx) = π² − π∫₀^π dx/(1 + sinx) …(3)"
+          "Adding (1) and (2):",
+          "2I = π∫₀^π sinx/(1 + sinx) dx",
+          "= π∫₀^π [(1 + sinx − 1)/(1 + sinx)] dx",
+          "= π∫₀^π [1 − 1/(1 + sinx)] dx",
+          "= π∫₀^π 1 dx − π∫₀^π dx/(1 + sinx)",
+          "= π² − π∫₀^π dx/(1 + sinx) …(3)"
         ],
         "why": "Writing sinx as (1 + sinx) − 1 splits the fraction into a constant 1 and a leftover 1/(1+sinx) term, turning the integral into two easy pieces: a plain x-integral and one that needs a separate trick.",
         "common_mistakes": [
@@ -86,9 +110,13 @@
         "margin_note": "Two marks for this standalone sub-integral.",
         "memory_tip": "Multiply top and bottom by (1 − sinx) whenever 1 + sinx sits alone in a denominator — it turns cos²x up top.",
         "lines": [
-          "∫₀^π dx/(1 + sinx) = ∫₀^π (1 − sinx)/[(1 + sinx)(1 − sinx)] dx = ∫₀^π (1 − sinx)/cos²x dx",
-          "= ∫₀^π (sec²x − secx tanx) dx = [tanx − secx]₀^π",
-          "= (tanπ − secπ) − (tan0 − sec0) = (0 + 1) − (0 − 1) = 2"
+          "∫₀^π dx/(1 + sinx)",
+          "= ∫₀^π (1 − sinx)/[(1 + sinx)(1 − sinx)] dx",
+          "= ∫₀^π (1 − sinx)/cos²x dx",
+          "= ∫₀^π (sec²x − secx tanx) dx",
+          "= [tanx − secx]₀^π",
+          "= (tanπ − secπ) − (tan0 − sec0)",
+          "= (0 + 1) − (0 − 1) = 2"
         ],
         "why": "Multiplying by (1 − sinx)/(1 − sinx) clears the sinx from the denominator using 1 − sin²x = cos²x, leaving a sum of two standard antiderivatives — tanx and secx — that can be evaluated directly.",
         "common_mistakes": [
@@ -106,7 +134,10 @@
         "memory_tip": "π² minus π times 2 gives π² − 2π — halve it for I.",
         "lines": [
           "From (3): 2I = π² − π(2) = π² − 2π",
-          { "text": "∴ I = π²/2 − π", "style": "boxed" }
+          {
+            "text": "∴ I = π²/2 − π",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting the value 2, found in the previous step, back into 2I = π² − π∫dx/(1+sinx) and dividing by 2 gives the final answer directly.",
         "common_mistakes": [

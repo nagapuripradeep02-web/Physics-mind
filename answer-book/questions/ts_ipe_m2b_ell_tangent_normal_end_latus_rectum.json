@@ -17,12 +17,24 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of tangent and normal to the ellipse 9x² + 16y² = 144 at the end of the latus rectum in the first quadrant.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Find e and the point L", "marks": 1 },
-    { "label": "Equation of the tangent at L", "marks": 1 },
-    { "label": "Equation of the normal at L", "marks": 2 }
+    {
+      "label": "Find e and the point L",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the tangent at L",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the normal at L",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,11 +57,19 @@
         "margin_note": "First mark. L is the end of the latus rectum where x = ae, in the first quadrant so both coordinates are positive.",
         "memory_tip": "The positive end of the latus rectum is L = (ae, b²/a) — always positive coordinates in the first quadrant.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "9x² + 16y² = 144 ⇒ x²/16 + y²/9 = 1 ⇒ a² = 16, b² = 9, a = 4, b = 3",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "9x² + 16y² = 144 ⇒ x²/16 + y²/9 = 1",
+          "⇒ a² = 16, b² = 9, a = 4, b = 3",
           "e = √(a² − b²)/a = √(16−9)/4 = √7/4",
-          "Positive end of latus rectum: L = (ae, b²/a) = (4·√7/4, 9/4)",
-          { "text": "L = (√7, 9/4)", "style": "boxed" }
+          "Positive end of latus rectum:",
+          "L = (ae, b²/a) = (4·√7/4, 9/4)",
+          {
+            "text": "L = (√7, 9/4)",
+            "style": "boxed"
+          }
         ],
         "why": "The latus rectum is the vertical chord through a focus; its end in the first quadrant is found by putting x = ae (the focus) into the ellipse and taking the positive y value, which simplifies to (ae, b²/a).",
         "common_mistakes": [
@@ -66,9 +86,13 @@
         "margin_note": "Second mark. Use the S₁ = 0 rule with x₁ = √7, y₁ = 9/4.",
         "memory_tip": "S₁ = 0: replace x² by x·x₁/a² and y² by y·y₁/b².",
         "lines": [
-          "Equation of the tangent at L is S₁ = 0: xx₁/a² + yy₁/b² = 1",
+          "Equation of the tangent at L is S₁ = 0:",
+          "xx₁/a² + yy₁/b² = 1",
           "⇒ x√7/16 + y(9/4)/9 = 1 ⇒ x√7/16 + y/4 = 1",
-          { "text": "√7x + 4y = 16", "style": "boxed" }
+          {
+            "text": "√7x + 4y = 16",
+            "style": "boxed"
+          }
         ],
         "why": "The S₁ = 0 rule gives the tangent at any point on x²/a² + y²/b² = 1 directly, without needing to find the slope first.",
         "common_mistakes": [
@@ -85,10 +109,16 @@
         "margin_note": "Last two marks. The normal formula a²x/x₁ − b²y/y₁ = a² − b² needs its own derivation, not the tangent's slope.",
         "memory_tip": "The normal's formula is a²x/x₁ − b²y/y₁ = a² − b² — different from the tangent's S₁ = 0.",
         "lines": [
-          "Equation of the normal at L: a²x/x₁ − b²y/y₁ = a² − b²",
-          "⇒ 16x/√7 − 9y/(9/4) = 16 − 9 ⇒ 16x/√7 − 4y = 7",
-          "Multiply by √7 to clear the fraction: 16x − 4√7y = 7√7",
-          { "text": "16x − 4√7y = 7√7", "style": "boxed" }
+          "Equation of the normal at L:",
+          "a²x/x₁ − b²y/y₁ = a² − b²",
+          "⇒ 16x/√7 − 9y/(9/4) = 16 − 9",
+          "⇒ 16x/√7 − 4y = 7",
+          "Multiply by √7 to clear the fraction:",
+          "16x − 4√7y = 7√7",
+          {
+            "text": "16x − 4√7y = 7√7",
+            "style": "boxed"
+          }
         ],
         "why": "The normal is not simply perpendicular-slope-through-the-point here because the tangent's slope is irrational; using the standard normal formula directly avoids extra rationalising steps until the very end.",
         "common_mistakes": [
@@ -108,14 +138,65 @@
           "width": 300,
           "height": 240,
           "elements": [
-            { "type": "stroke", "id": "ell_outline", "d": "M 60 130 A 90 68 0 1 0 240 130 A 90 68 0 1 0 60 130", "ms": 900 },
-            { "type": "stroke", "id": "ell_latus_rectum", "d": "M 209 79 L 209 181", "ms": 500 },
-            { "type": "stroke", "id": "ell_tangent_line", "d": "M 160 65 L 260 93", "ms": 500 },
-            { "type": "stroke", "id": "ell_normal_line", "d": "M 189 150 L 229 8", "ms": 500 },
-            { "type": "label", "id": "ell_lbl_l", "x": 215, "y": 72, "text": "L", "ms": 400, "em": true },
-            { "type": "label", "id": "ell_lbl_s", "x": 213, "y": 138, "text": "S", "ms": 400 },
-            { "type": "label", "id": "ell_lbl_tangent", "x": 255, "y": 60, "text": "tangent", "ms": 400, "sm": true },
-            { "type": "label", "id": "ell_lbl_normal", "x": 232, "y": 20, "text": "normal", "ms": 400, "sm": true }
+            {
+              "type": "stroke",
+              "id": "ell_outline",
+              "d": "M 60 130 A 90 68 0 1 0 240 130 A 90 68 0 1 0 60 130",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "ell_latus_rectum",
+              "d": "M 209 79 L 209 181",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "ell_tangent_line",
+              "d": "M 160 65 L 260 93",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "ell_normal_line",
+              "d": "M 189 150 L 229 8",
+              "ms": 500
+            },
+            {
+              "type": "label",
+              "id": "ell_lbl_l",
+              "x": 215,
+              "y": 72,
+              "text": "L",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "ell_lbl_s",
+              "x": 213,
+              "y": 138,
+              "text": "S",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "ell_lbl_tangent",
+              "x": 255,
+              "y": 60,
+              "text": "tangent",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ell_lbl_normal",
+              "x": 232,
+              "y": 20,
+              "text": "normal",
+              "ms": 400,
+              "sm": true
+            }
           ]
         },
         "why": "Seeing the near focus S, the vertical latus rectum through it, and its upper end L makes clear why L's coordinates are (ae, b²/a) rather than some other point on the ellipse.",

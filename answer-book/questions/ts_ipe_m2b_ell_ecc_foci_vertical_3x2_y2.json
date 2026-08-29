@@ -17,12 +17,24 @@
   "expected_time_min": 9,
   "question_text": "Find the eccentricity, coordinates of foci of the ellipse 3x² + y² − 6x − 2y − 5 = 0.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Standard form", "marks": 2 },
-    { "label": "Eccentricity", "marks": 1 },
-    { "label": "Foci", "marks": 1 }
+    {
+      "label": "Standard form",
+      "marks": 2
+    },
+    {
+      "label": "Eccentricity",
+      "marks": 1
+    },
+    {
+      "label": "Foci",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,7 +57,10 @@
         "margin_note": "First two marks. Group the x-terms and y-terms, then complete each square.",
         "memory_tip": "Divide by the number on the right at the very end.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "3x² + y² − 6x − 2y − 5 = 0",
           "⇒ 3(x² − 2x) + (y² − 2y) = 5",
           "⇒ 3(x − 1)² + (y − 1)² = 5 + 3 + 1 = 9",
@@ -66,10 +81,14 @@
         "margin_note": "Third mark. a² = 3, b² = 9, so a < b — the ellipse is vertical.",
         "memory_tip": "Vertical ellipse: use b² − a² over b², under one square root.",
         "lines": [
-          "Here a² = 3 ⇒ a = √3, b² = 9 ⇒ b = 3. Since a < b, the ellipse is vertical.",
+          "Here a² = 3 ⇒ a = √3, b² = 9 ⇒ b = 3.",
+          "Since a < b, the ellipse is vertical.",
           "e = √( (b² − a²) / b² )",
           "= √( (9 − 3) / 9 ) = √(6/9)",
-          { "text": "e = √6 / 3", "style": "boxed" }
+          {
+            "text": "e = √6 / 3",
+            "style": "boxed"
+          }
         ],
         "why": "For a vertical ellipse the eccentricity formula uses b² − a² over b², all under one square root — the fraction is simplified only after the whole thing is under the root.",
         "common_mistakes": [
@@ -88,7 +107,10 @@
         "lines": [
           "Foci = (h, k ± be)",
           "be = 3 · (√6/3) = √6",
-          { "text": "Foci = (1, 1 ± √6)", "style": "boxed" }
+          {
+            "text": "Foci = (1, 1 ± √6)",
+            "style": "boxed"
+          }
         ],
         "why": "The b and the 3 in be cancel neatly here, since b = 3 and e has a 3 in its denominator — always simplify be before writing the final coordinates.",
         "common_mistakes": [

@@ -62,7 +62,8 @@
             "style": "heading"
           },
           "Given D.E is dy/dx = e^(x+y) = e^x·e^y",
-          "⇒ dy/e^y = e^x·dx ⇒ e^(−y)dy = e^x dx ⇒ e^x dx − e^(−y) dy = 0"
+          "⇒ dy/e^y = e^x·dx ⇒ e^(−y)dy = e^x dx",
+          "⇒ e^x dx − e^(−y) dy = 0"
         ],
         "why": "Splitting e^(x+y) into e^x·e^y using the exponent addition law separates the equation at once, since every y term can then be moved to one side and every x term to the other with no x and y ever mixed together.",
         "common_mistakes": [

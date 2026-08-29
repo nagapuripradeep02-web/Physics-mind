@@ -62,8 +62,10 @@
             "style": "heading"
           },
           "Given y = acos(nx + b) … (1)",
-          "Differentiating (1) w.r.t x: y₁ = −a·sin(nx + b)·n … (2)",
-          "Differentiating (2) w.r.t x: y₂ = −a·n²·cos(nx + b)"
+          "Differentiating (1) w.r.t x:",
+          "y₁ = −a·sin(nx + b)·n … (2)",
+          "Differentiating (2) w.r.t x:",
+          "y₂ = −a·n²·cos(nx + b)"
         ],
         "why": "With two arbitrary constants a and b present, one differentiation is not enough to eliminate both, so the equation is differentiated a second time to build an expression that can be compared back against the original y.",
         "common_mistakes": [

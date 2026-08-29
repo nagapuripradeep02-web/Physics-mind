@@ -52,7 +52,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀^(π/4) sec⁴θ dθ = ∫₀^(π/4) sec²θ(1 + tan²θ) dθ   [sec²θ = 1+tan²θ]",
+          "I = ∫₀^(π/4) sec⁴θ dθ",
+          "= ∫₀^(π/4) sec²θ(1 + tan²θ) dθ   [sec²θ",
+          "= 1+tan²θ]",
           "Put tanθ = y ⇒ sec²θ dθ = dy",
           "θ = 0 ⇒ y = 0; θ = π/4 ⇒ y = tan(π/4) = 1"
         ],

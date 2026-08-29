@@ -82,8 +82,10 @@
         "mark_note": "Method",
         "margin_note": "Setup",
         "lines": [
-          "11/36 = (√11/6)², so 3x²+x+1 = 3[(x+1/6)² + (√11/6)²]",
-          "This matches 3[x²+a²] with x written as (x+1/6) and a = √11/6"
+          "11/36 = (√11/6)²,",
+          "so 3x²+x+1 = 3[(x+1/6)² + (√11/6)²]",
+          "This matches 3[x²+a²]",
+          "with x written as (x+1/6) and a = √11/6"
         ],
         "why": "The 3 sitting outside the bracket stays outside for now — only the bracket itself needs to be matched to the standard x²+a² pattern, with a read off as the square root of the leftover constant.",
         "common_mistakes": [
@@ -121,9 +123,11 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "∫dx/(3x²+x+1) = (1/3)∫dx/[(x+1/6)²+(√11/6)²]",
+          "∫dx/(3x²+x+1)",
+          "= (1/3)∫dx/[(x+1/6)²+(√11/6)²]",
           "= (1/3)·(1/(√11/6))Tan⁻¹[(x+1/6)/(√11/6)] + c",
-          "= (1/3)·(6/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c = (2/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c"
+          "= (1/3)·(6/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c",
+          "= (2/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c"
         ],
         "why": "The outside 1/3 multiplies the WHOLE formula, including its own 1/a coefficient — (1/3)(6/√11) collapses to 2/√11, which is exactly the coefficient printed in the book's terse Ans line.",
         "common_mistakes": [

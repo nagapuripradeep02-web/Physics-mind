@@ -61,7 +61,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x²/a² + y²/b² = 1 ⇒ y²/b² = 1 − x²/a² ⇒ y² = b²[(a² − x²)/a²] ⇒ y = (b/a)√(a² − x²)",
+          "x²/a² + y²/b² = 1 ⇒ y²/b² = 1 − x²/a²",
+          "⇒ y² = b²[(a² − x²)/a²]",
+          "⇒ y = (b/a)√(a² − x²)",
           "Put y = 0 ⇒ √(a² − x²) = 0 ⇒ x² = a² ⇒ x = a"
         ],
         "why": "Solving the ellipse equation for y gives the upper half of the curve as a function of x, and setting y=0 finds where the curve meets the x-axis — at x=a, the semi-major-axis length.",
@@ -174,9 +176,12 @@
         "margin_note": "Two marks. (4b/a)(a²/2)(π/2) simplifies step by step: 4/a×a²=4a, then 4a×b/2=2ab, then 2ab×π/2=πab.",
         "memory_tip": "The final simplification always collapses to πab regardless of a and b individually — a clean, symmetric result.",
         "lines": [
-          "Required area = 4 (area of OAB) = 4∫₀^a y dx = 4∫₀^a (b/a)√(a² − x²) dx",
-          "= (4b/a)[(x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a)]₀^a   [standard formula]",
-          "= (4b/a)[0 + (a²/2)Sin⁻¹(1)] = (4b/a)(a²/2)(π/2)",
+          "Required area = 4 (area of OAB)",
+          "= 4∫₀^a y dx = 4∫₀^a (b/a)√(a² − x²) dx",
+          "= (4b/a)[(x/2)√(a²−x²) +",
+          "(a²/2)Sin⁻¹(x/a)]₀^a   [standard formula]",
+          "= (4b/a)[0 + (a²/2)Sin⁻¹(1)]",
+          "= (4b/a)(a²/2)(π/2)",
           {
             "text": "∴ Area of the ellipse = πab sq. units",
             "style": "boxed"
@@ -197,7 +202,8 @@
         "margin_note": "Last mark. Substituting b=a into πab is the whole deduction — no fresh integration is needed.",
         "memory_tip": "A circle is an ellipse with equal axes — setting b=a in any ellipse formula gives the matching circle formula.",
         "lines": [
-          "If b = a, the ellipse x²/a² + y²/b² = 1 becomes x²/a² + y²/a² = 1, i.e. x² + y² = a²",
+          "If b = a, the ellipse x²/a² + y²/b²",
+          "= 1 becomes x²/a² + y²/a² = 1, i.e. x² + y² = a²",
           "[a circle of radius a]",
           "Putting b = a in the area formula πab gives",
           {

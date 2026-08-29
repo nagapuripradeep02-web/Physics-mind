@@ -81,8 +81,10 @@
         "mark_note": "Method",
         "margin_note": "Setup",
         "lines": [
-          "3/4 = (√3/2)², so x² + x + 1 = (x + 1/2)² + (√3/2)²",
-          "This matches x² + a² with x written as (x + 1/2) and a = √3/2"
+          "3/4 = (√3/2)²,",
+          "so x² + x + 1 = (x + 1/2)² + (√3/2)²",
+          "This matches x² + a²",
+          "with x written as (x + 1/2) and a = √3/2"
         ],
         "why": "Writing the constant 3/4 as a square (√3/2)² makes the match to the standard x² + a² pattern explicit, so the formula for ∫dx/(x²+a²) can be applied directly.",
         "common_mistakes": [

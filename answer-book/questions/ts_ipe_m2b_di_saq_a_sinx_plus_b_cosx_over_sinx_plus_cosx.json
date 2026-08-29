@@ -17,12 +17,24 @@
   "expected_time_min": 9,
   "question_text": "Evaluate ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx) dx.",
   "appearances": [
-    { "year": 2017, "board": "ap_ipe" }
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Apply the property with a = π/2", "marks": 1 },
-    { "label": "Write the second form", "marks": 1 },
-    { "label": "Add and solve", "marks": 2 }
+    {
+      "label": "Apply the property with a = π/2",
+      "marks": 1
+    },
+    {
+      "label": "Write the second form",
+      "marks": 1
+    },
+    {
+      "label": "Add and solve",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,9 +57,14 @@
         "margin_note": "One mark. State the property before using it.",
         "memory_tip": "sin(π/2 − x) = cosx and cos(π/2 − x) = sinx — the two swap places.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
-          "∴ I = ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx) dx …(1)"
+          "∴ I",
+          "= ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx)",
+          "dx …(1)"
         ],
         "why": "Stating the property first, with the given integral labelled (1), sets up the second form that will be added to it.",
         "common_mistakes": [
@@ -65,8 +82,12 @@
         "memory_tip": "Under x → π/2 − x, every sinx becomes cosx and every cosx becomes sinx — swap them consistently everywhere.",
         "lines": [
           "By x → π/2 − x:",
-          "I = ∫₀^(π/2) [a sin(π/2−x) + b cos(π/2−x)]/[sin(π/2−x) + cos(π/2−x)] dx",
-          "⇒ I = ∫₀^(π/2) (a cosx + b sinx)/(cosx + sinx) dx …(2)"
+          "I",
+          "= ∫₀^(π/2) [a sin(π/2−x) + b",
+          "cos(π/2−x)]/[sin(π/2−x) + cos(π/2−x)] dx",
+          "⇒ I",
+          "= ∫₀^(π/2) (a cosx + b sinx)/(cosx + sinx)",
+          "dx …(2)"
         ],
         "why": "Every sinx becomes cosx and every cosx becomes sinx under the substitution, so the numerator's a and b swap partners while the denominator (being symmetric in sinx and cosx) is unchanged.",
         "common_mistakes": [
@@ -83,10 +104,17 @@
         "margin_note": "The last two marks. Adding (1) and (2) makes (a+b) a common factor of the whole numerator.",
         "memory_tip": "a(sinx+cosx) + b(cosx+sinx) = (a+b)(sinx+cosx) — the denominator cancels completely.",
         "lines": [
-          "Adding (1) and (2): I + I = ∫₀^(π/2) [a(sinx+cosx) + b(cosx+sinx)]/(cosx+sinx) dx",
-          "⇒ 2I = ∫₀^(π/2) (a+b)(cosx+sinx)/(cosx+sinx) dx = ∫₀^(π/2) (a+b) dx",
+          "Adding (1) and (2): I + I",
+          "= ∫₀^(π/2) [a(sinx+cosx) +",
+          "b(cosx+sinx)]/(cosx+sinx) dx",
+          "⇒ 2I",
+          "= ∫₀^(π/2) (a+b)(cosx+sinx)/(cosx+sinx) dx",
+          "= ∫₀^(π/2) (a+b) dx",
           "⇒ 2I = (a+b)[x]₀^(π/2) = (a+b)(π/2)",
-          { "text": "∴ I = (a + b)π/4", "style": "boxed" }
+          {
+            "text": "∴ I = (a + b)π/4",
+            "style": "boxed"
+          }
         ],
         "why": "Adding the two forms lets (a+b) factor out of the whole numerator, which then cancels exactly with the denominator sinx+cosx, leaving a plain constant to integrate.",
         "common_mistakes": [

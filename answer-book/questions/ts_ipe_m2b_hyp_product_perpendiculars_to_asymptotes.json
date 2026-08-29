@@ -17,12 +17,24 @@
   "expected_time_min": 4,
   "question_text": "Find the product of the lengths of the perpendiculars from any point on the hyperbola x²/16 − y²/9 = 1 to its asymptotes.",
   "appearances": [
-    { "year": 2016, "board": "ts_ipe" },
-    { "year": 2019, "board": "ts_ipe" }
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "State the formula", "marks": 1 },
-    { "label": "Evaluate", "marks": 1 }
+    {
+      "label": "State the formula",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,10 +57,18 @@
         "margin_note": "First mark. The asymptotes, in bx±ay=0 form, feed a ready-made product formula.",
         "memory_tip": "The product of perpendiculars to the asymptotes of any hyperbola is always a²b²/(a²+b²).",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Given hyperbola x²/16 − y²/9 = 1 ⇒ a² = 16, b² = 9",
-          "The asymptotes are x/a − y/b = 0 and x/a + y/b = 0, i.e. bx − ay = 0 and bx + ay = 0",
-          "For a point (x₁,y₁) on the hyperbola, the product of its distances to the two asymptotes is a²b²/(a²+b²)"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given hyperbola x²/16 − y²/9 = 1",
+          "⇒ a² = 16, b² = 9",
+          "The asymptotes are x/a − y/b",
+          "= 0 and x/a + y/b = 0, i.e. bx − ay",
+          "= 0 and bx + ay = 0",
+          "For a point (x₁,y₁) on the hyperbola,",
+          "the product of its distances to the two",
+          "asymptotes is a²b²/(a²+b²)"
         ],
         "why": "The two asymptotes, written with a common denominator, become the pair of lines bx∓ay=0; the standard result for the product of perpendicular distances from any point on the curve to this pair simplifies to a²b²/(a²+b²) using the hyperbola equation itself.",
         "common_mistakes": [
@@ -66,7 +86,10 @@
         "memory_tip": "144/25 is already in lowest terms — leave it as a fraction, do not convert it.",
         "lines": [
           "= (16)(9)/(16+9)",
-          { "text": "= 144/25", "style": "boxed" }
+          {
+            "text": "= 144/25",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting the values of a² and b² read off the standard form gives the numeric product directly.",
         "common_mistakes": [

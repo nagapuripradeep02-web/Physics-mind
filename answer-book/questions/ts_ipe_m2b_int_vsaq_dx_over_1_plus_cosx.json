@@ -56,7 +56,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "1/(1+cosx) = (1−cosx)/[(1+cosx)(1−cosx)] = (1−cosx)/(1−cos²x) = (1−cosx)/sin²x"
+          "1/(1+cosx) = (1−cosx)/[(1+cosx)(1−cosx)]",
+          "= (1−cosx)/(1−cos²x) = (1−cosx)/sin²x"
         ],
         "why": "Multiplying top and bottom by the conjugate (1−cosx) uses 1−cos²x=sin²x to turn the denominator into a single squared sine, which can then be split into two standard pieces.",
         "common_mistakes": [
@@ -73,7 +74,8 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "(1−cosx)/sin²x = 1/sin²x − cosx/sin²x = cosec²x − cosecx·cotx",
+          "(1−cosx)/sin²x = 1/sin²x − cosx/sin²x",
+          "= cosec²x − cosecx·cotx",
           {
             "text": "∴ ∫ dx/(1+cosx) = −cotx + cosecx + c",
             "style": "boxed"

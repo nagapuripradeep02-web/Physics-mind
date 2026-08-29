@@ -68,8 +68,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given I_n = ∫ cosecⁿx dx = ∫ cosecⁿ⁻²x · cosec²x dx",
-          "Take first function u = cosecⁿ⁻²x, second v = cosec²x",
+          "Given I_n = ∫ cosecⁿx dx",
+          "= ∫ cosecⁿ⁻²x · cosec²x dx",
+          "Take first function u = cosecⁿ⁻²x,",
+          "second v = cosec²x",
           "Then ∫v dx = ∫cosec²x dx = −cotx"
         ],
         "why": "Peeling off csc²x (whose antiderivative is the known −cotx) leaves cscⁿ⁻²x to differentiate — the cosecant partner of the secⁿx split, now carrying a minus sign because ∫csc²x dx = −cotx.",
@@ -87,9 +89,12 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "By the by-parts rule, I_n = −cosecⁿ⁻²x cotx − ∫(n−2)cosecⁿ⁻³x(−cscx cotx)(−cotx)dx",
+          "By the by-parts rule, I_n",
+          "= −cosecⁿ⁻²x cotx −",
+          "∫(n−2)cosecⁿ⁻³x(−cscx cotx)(−cotx)dx",
           "= −cosecⁿ⁻²x cotx − (n−2)∫cosecⁿ⁻²x cot²x dx",
-          "= −cosecⁿ⁻²x cotx − (n−2)∫cosecⁿ⁻²x(cosec²x − 1)dx",
+          "= −cosecⁿ⁻²x cotx −",
+          "(n−2)∫cosecⁿ⁻²x(cosec²x − 1)dx",
           {
             "text": "I_n = -\\csc^{n-2}x\\cot x - (n-2)\\left(I_n - I_{n-2}\\right)",
             "render": "katex",
@@ -136,7 +141,8 @@
         "lines": [
           "Put n = 5, 3, 1 successively in (1):",
           "I₅ = −cosec³x cotx/4 + (3/4)I₃",
-          "I₃ = −cosecx cotx/2 + (1/2)I₁, and I₁ = ∫cosecx dx = log|tan(x/2)| + c",
+          "I₃ = −cosecx cotx/2 + (1/2)I₁,",
+          "and I₁ = ∫cosecx dx = log|tan(x/2)| + c",
           "So I₃ = −cosecx cotx/2 + (1/2)log|tan(x/2)| + c",
           {
             "text": "∴ ∫ cosec⁵x dx = −cosec³x cotx/4 − (3/8)cosecx cotx + (3/8)log|tan(x/2)| + c",

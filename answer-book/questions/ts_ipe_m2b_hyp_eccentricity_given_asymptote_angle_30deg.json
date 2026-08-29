@@ -17,12 +17,24 @@
   "expected_time_min": 4,
   "question_text": "If the angle between the asymptotes of a hyperbola is 30°, then find its eccentricity.",
   "appearances": [
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2020, "board": "ts_ipe" }
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Halve the angle", "marks": 1 },
-    { "label": "Evaluate the eccentricity", "marks": 1 }
+    {
+      "label": "Halve the angle",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate the eccentricity",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,8 +57,12 @@
         "margin_note": "First mark. The formula gives the FULL angle 2θ, so halve 30° first.",
         "memory_tip": "This question runs the angle-between-asymptotes formula backwards, from angle to eccentricity.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "The angle between the asymptotes of a hyperbola is 2Sec⁻¹e (previous result).",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The angle between the asymptotes of a",
+          "hyperbola is 2Sec⁻¹e (previous result).",
           "2Sec⁻¹e = 30° ⇒ Sec⁻¹e = 15° ⇒ e = sec15°"
         ],
         "why": "This question reuses the general angle-between-asymptotes formula in reverse — set it equal to the given 30° and solve for e.",
@@ -65,7 +81,10 @@
         "memory_tip": "cos15° = (√6+√2)/4 is a standard value — invert it and rationalise to get sec15° = √6 − √2.",
         "lines": [
           "sec15° = 1/cos15° = 4/(√6+√2)",
-          { "text": "e = sec15° = √6 − √2", "style": "boxed" }
+          {
+            "text": "e = sec15° = √6 − √2",
+            "style": "boxed"
+          }
         ],
         "why": "Rationalising 4/(√6+√2) by multiplying top and bottom by (√6−√2) clears the denominator, since (√6+√2)(√6−√2) = 6−2 = 4.",
         "common_mistakes": [

@@ -53,7 +53,8 @@
             "style": "heading"
           },
           "Let f(θ) = sin²θ cos⁷θ",
-          "f(−θ) = sin²(−θ) cos⁷(−θ) = (−sinθ)² (cosθ)⁷ = sin²θ cos⁷θ = f(θ)",
+          "f(−θ) = sin²(−θ) cos⁷(−θ) = (−sinθ)² (cosθ)⁷",
+          "= sin²θ cos⁷θ = f(θ)",
           "∴ f(θ) is an even function"
         ],
         "why": "Squaring sin(−θ)=−sinθ removes the sign, and raising cos(−θ)=cosθ to the odd power 7 keeps it positive since cos itself is already unchanged under θ→−θ, so the product is unchanged overall.",
@@ -71,7 +72,8 @@
         "margin_note": "Second mark. K=1 here because n=7 is odd, even though m=2 is even — BOTH powers must be even for the π/2 factor.",
         "memory_tip": "One odd power among the two is enough to keep K=1 — only two even powers together bring in π/2.",
         "lines": [
-          "Integral from −π/2 to π/2 of sin²θ cos⁷θ dθ = 2∫₀^(π/2) sin²θ cos⁷θ dθ",
+          "Integral from −π/2 to π/2 of sin²θ cos⁷θ dθ",
+          "= 2∫₀^(π/2) sin²θ cos⁷θ dθ",
           "= 2 · [(1)][(6)(4)(2)]/[(9)(7)(5)(3)] · (1)",
           {
             "text": "∴ I = 32/315",

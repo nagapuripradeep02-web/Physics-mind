@@ -83,7 +83,8 @@
         "margin_note": "Setup",
         "lines": [
           "2 = (√2)², so 4x²−4x−7 = 4[(x−1/2)² − (√2)²]",
-          "This matches x² − a² with x written as (x−1/2) and a = √2"
+          "This matches x² − a²",
+          "with x written as (x−1/2) and a = √2"
         ],
         "why": "Because the leftover constant inside the bracket is NEGATIVE, the bracket has the form (something)² − a² — a difference of squares, not a sum — which calls for the log formula.",
         "common_mistakes": [
@@ -122,7 +123,9 @@
         "margin_note": "Method",
         "lines": [
           "∫dx/(4x²−4x−7) = (1/4)∫dx/[(x−1/2)²−(√2)²]",
-          "= (1/4)·(1/(2√2))log|[(x−1/2)−√2]/[(x−1/2)+√2]| + c",
+          "=",
+          "(1/4)·(1/(2√2))log|[(x−1/2)−√2]/[(x−1/2)+√2]|",
+          "+ c",
           "= (1/(8√2))log|(2x−1−2√2)/(2x−1+2√2)| + c"
         ],
         "why": "The outside 1/4 multiplies the formula's own 1/(2a) coefficient, giving 1/(8√2); clearing the internal halves inside the log turns (x−1/2)−√2 into (2x−1−2√2) after multiplying by 2.",

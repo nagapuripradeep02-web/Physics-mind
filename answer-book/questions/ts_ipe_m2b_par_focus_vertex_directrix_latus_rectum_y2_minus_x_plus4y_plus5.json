@@ -52,7 +52,10 @@
           },
           "Given y² − x + 4y + 5 = 0 ⇒ y² + 4y = x − 5",
           "⇒ y² + 4y + 4 = x − 5 + 4 ⇒ (y + 2)² = x − 1",
-          "This is a horizontal parabola opening in the +x direction. Comparing with (y − k)² = 4a(x − h) gives 4a = 1 ⇒ a = 1/4, h = 1, k = −2"
+          "This is a horizontal parabola opening in the",
+          "+x direction.",
+          "Comparing with (y − k)² = 4a(x − h) gives 4a",
+          "= 1 ⇒ a = 1/4, h = 1, k = −2"
         ],
         "why": "Completing the square on the y-terms is what turns this equation into the standard sideways form (y−k)² = 4a(x−h) — every one of the four quantities asked for reads straight off h, k and a once that form is reached.",
         "common_mistakes": [
@@ -71,7 +74,8 @@
         "lines": [
           "(i) Vertex = (h, k) = (1, −2)",
           "(ii) Focus = (h + a, k) = (1 + 1/4, −2) = (5/4, −2)",
-          "(iii) Equation of the directrix: x = h − a ⇒ x = 1 − 1/4 = 3/4 ⇒ 4x − 3 = 0",
+          "(iii) Equation of the directrix:",
+          "x = h − a ⇒ x = 1 − 1/4 = 3/4 ⇒ 4x − 3 = 0",
           {
             "text": "(iv) Length of the latus rectum = 4a = 1",
             "style": "boxed"

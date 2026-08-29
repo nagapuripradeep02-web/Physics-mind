@@ -17,14 +17,32 @@
   "expected_time_min": 15,
   "question_text": "Evaluate ∫₀^π (x sinx)/(1 + cos²x) dx.",
   "appearances": [
-    { "year": 2016, "board": "ap_ipe" },
-    { "year": 2018, "board": "ap_ipe" }
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Apply the King's property", "marks": 2 },
-    { "label": "Add and reduce to an x-free integral", "marks": 2 },
-    { "label": "Substitute cosx = t and integrate", "marks": 2 },
-    { "label": "Evaluate the limits", "marks": 1 }
+    {
+      "label": "Apply the King's property",
+      "marks": 2
+    },
+    {
+      "label": "Add and reduce to an x-free integral",
+      "marks": 2
+    },
+    {
+      "label": "Substitute cosx = t and integrate",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the limits",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,10 +65,14 @@
         "margin_note": "First two marks. Get this line exactly right before adding — a sign slip here ruins everything after it.",
         "memory_tip": "sin(π − x) = sinx (same sign), cos(π − x) = −cosx (sign flips, but squaring removes it).",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "I = ∫₀^π (x sinx)/(1 + cos²x) dx …(1)",
           "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
-          "⇒ I = ∫₀^π (π − x)sin(π − x)/(1 + cos²(π − x)) dx",
+          "⇒ I",
+          "= ∫₀^π (π − x)sin(π − x)/(1 + cos²(π − x)) dx",
           "⇒ I = ∫₀^π (π − x)sinx/(1 + cos²x) dx …(2)"
         ],
         "why": "The King's property replaces x by π − x inside the same limits. Since sin(π − x) = sinx and cos(π − x) = −cosx (and cos² removes the sign), the denominator is unchanged while the x in the numerator turns into π − x — this is what lets I cancel with itself later.",
@@ -69,7 +91,8 @@
         "memory_tip": "x + (π − x) always cancels to a plain π — that is the signal the property worked.",
         "lines": [
           "Adding (1) and (2):",
-          "I + I = ∫₀^π [x sinx + (π − x)sinx]/(1 + cos²x) dx",
+          "I + I",
+          "= ∫₀^π [x sinx + (π − x)sinx]/(1 + cos²x) dx",
           "⇒ 2I = π∫₀^π sinx/(1 + cos²x) dx",
           "⇒ I = (π/2)∫₀^π sinx/(1 + cos²x) dx"
         ],
@@ -90,7 +113,8 @@
         "lines": [
           "Put cosx = t ⇒ −sinx dx = dt, so sinx dx = −dt",
           "x = 0 ⇒ t = cos0 = 1; x = π ⇒ t = cosπ = −1",
-          "I = (π/2)∫₁^(−1) (−dt)/(1 + t²) = (π/2)∫₋₁^1 dt/(1 + t²)",
+          "I = (π/2)∫₁^(−1) (−dt)/(1 + t²)",
+          "= (π/2)∫₋₁^1 dt/(1 + t²)",
           "= (π/2)[Tan⁻¹t]₋₁^1"
         ],
         "why": "cosx = t turns sinx dx into a plain −dt, and 1 + cos²x becomes 1 + t² — a standard Tan⁻¹ form. Flipping the limits absorbs the negative sign.",
@@ -108,8 +132,12 @@
         "margin_note": "The last mark. Underline π²/4.",
         "memory_tip": "Tan⁻¹(1) and Tan⁻¹(−1) are a pair: π/4 and −π/4 — their difference is always π/2.",
         "lines": [
-          "= (π/2)[Tan⁻¹(1) − Tan⁻¹(−1)] = (π/2)(π/4 + π/4) = (π/2)(π/2)",
-          { "text": "∴ I = π²/4", "style": "boxed" }
+          "= (π/2)[Tan⁻¹(1) − Tan⁻¹(−1)]",
+          "= (π/2)(π/4 + π/4) = (π/2)(π/2)",
+          {
+            "text": "∴ I = π²/4",
+            "style": "boxed"
+          }
         ],
         "why": "Tan⁻¹(1) = π/4 and Tan⁻¹(−1) = −π/4, so subtracting gives π/2 exactly — a clean angle pair that makes the final multiplication easy.",
         "common_mistakes": [

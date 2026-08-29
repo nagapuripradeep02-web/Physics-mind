@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "Solve (x + y + 1)dy/dx = 1.",
   "appearances": [
-    { "year": 2017, "board": "ts_ipe" }
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Rewrite as linear in x and identify P", "marks": 1 },
-    { "label": "Find the integrating factor", "marks": 1 },
-    { "label": "Set up the integral for integration by parts", "marks": 1 },
-    { "label": "Integrate by parts and finish", "marks": 1 }
+    {
+      "label": "Rewrite as linear in x and identify P",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Set up the integral for integration by parts",
+      "marks": 1
+    },
+    {
+      "label": "Integrate by parts and finish",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,10 +61,15 @@
         "margin_note": "One mark. Take the reciprocal of dy/dx to write the equation as linear in x.",
         "memory_tip": "Whenever dy/dx = 1/(linear in x and y), invert it to dx/dy = (that same linear expression) — a fast route to a linear-in-x equation.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is (x + y + 1)dy/dx = 1",
           "⇒ dx/dy = x + y + 1 ⇒ dx/dy − x = y + 1",
-          "This is in the form dx/dy + xP(y) = Q(y), which is linear D.E in x. Here P = −1 ⇒ ∫P dy = ∫−1 dy = −y"
+          "This is in the form dx/dy + xP(y) = Q(y),",
+          "which is linear D.E in x. Here P = −1",
+          "⇒ ∫P dy = ∫−1 dy = −y"
         ],
         "why": "Taking the reciprocal dx/dy = 1/(dy/dx) turns the equation the right way up; x sits alone (without a derivative) next to a dy term, which is the signal for linear-in-x rather than linear-in-y.",
         "common_mistakes": [
@@ -101,9 +121,16 @@
         "margin_note": "The last mark. ∫e^(−y)(y+1)dy = −(y+2)e^(−y) + c by parts; divide through by e^(−y) to isolate x + y + 2.",
         "memory_tip": "∫(linear)·e^(−y) dy by parts always leaves one extra e^(−y) term beyond the direct product — check for it before finishing.",
         "lines": [
-          "∫e^(−y)(y + 1) dy = −(y + 1)e^(−y) − ∫(−e^(−y))dy = −(y + 1)e^(−y) + ∫e^(−y)dy = −(y + 1)e^(−y) − e^(−y) + c = −(y + 2)e^(−y) + c",
-          "So x·e^(−y) = −(y + 2)e^(−y) + c ⇒ x·e^(−y) + (y + 2)e^(−y) = c ⇒ (x + y + 2)e^(−y) = c",
-          { "text": "The solution is x + y + 2 = ce^y", "style": "boxed" }
+          "∫e^(−y)(y + 1) dy = −(y + 1)e^(−y) − ∫(−e^(−y))dy",
+          "= −(y + 1)e^(−y) + ∫e^(−y)dy",
+          "= −(y + 1)e^(−y) − e^(−y) + c = −(y + 2)e^(−y) + c",
+          "So x·e^(−y) = −(y + 2)e^(−y) + c",
+          "⇒ x·e^(−y) + (y + 2)e^(−y) = c",
+          "⇒ (x + y + 2)e^(−y) = c",
+          {
+            "text": "The solution is x + y + 2 = ce^y",
+            "style": "boxed"
+          }
         ],
         "why": "Integrating by parts with u = y+1 and dv = e^(−y)dy gives −(y+2)e^(−y) after combining terms; moving the exponential across to the right side turns it into the standard multiplying factor ce^y.",
         "common_mistakes": [

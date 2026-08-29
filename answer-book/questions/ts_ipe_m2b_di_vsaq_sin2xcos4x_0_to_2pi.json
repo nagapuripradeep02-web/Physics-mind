@@ -60,8 +60,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let f(x) = sin²x cos⁴x. Here f(2π−x) = f(π−x) = f(x)",
-          "∴ ∫₀^(2π) sin²x cos⁴x dx = 2∫₀^π sin²x cos⁴x dx = 2×2∫₀^(π/2) sin²x cos⁴x dx",
+          "Let f(x) = sin²x cos⁴x.",
+          "Here f(2π−x) = f(π−x) = f(x)",
+          "∴ ∫₀^(2π) sin²x cos⁴x dx",
+          "= 2∫₀^π sin²x cos⁴x dx",
+          "= 2×2∫₀^(π/2) sin²x cos⁴x dx",
           "= 4∫₀^(π/2) sin²x cos⁴x dx"
         ],
         "why": "The same reasoning as the previous answer applies: sin²x and cos⁴x are both even powers, so the integrand survives both reflections and the range collapses to 4 times the 0-to-π/2 integral.",

@@ -18,11 +18,26 @@
   "question_text": "Give the solution of x sin²(y/x)dx = ydx − xdy, which passes through the point (1, π/4).",
   "appearances": [],
   "mark_split": [
-    { "label": "Rearrange and substitute", "marks": 2 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 2 },
-    { "label": "Return to x and y", "marks": 1 },
-    { "label": "Apply the given point and finish", "marks": 1 }
+    {
+      "label": "Rearrange and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Return to x and y",
+      "marks": 1
+    },
+    {
+      "label": "Apply the given point and finish",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,7 +60,10 @@
         "margin_note": "Two marks. Collect both dy terms on one side and both dx terms on the other, then divide, before checking homogeneity.",
         "memory_tip": "Move xdy to the left with x sin²(y/x)dx, and ydx to the right on its own, so dy/dx isolates cleanly.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "The given D.E is x sin²(y/x)dx = ydx − xdy",
           "⇒ xdy = ydx − x sin²(y/x)dx",
           "⇒ dy/dx = y/x − sin²(y/x) … (1)",
@@ -124,7 +142,10 @@
         "lines": [
           "If (x, y) = (1, π/4) lies on this curve, then",
           "cot(π/4) = log 1 + c ⇒ 1 = 0 + c ⇒ c = 1",
-          { "text": "∴ From (2), the required solution is cot(y/x) = log x + 1", "style": "boxed" }
+          {
+            "text": "∴ cot(y/x) = log x + 1",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting the given point into the general family (2) fixes the constant c, and putting that value back gives the one curve through (1, π/4) that the question asks for.",
         "common_mistakes": [

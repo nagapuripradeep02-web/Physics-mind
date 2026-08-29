@@ -18,9 +18,18 @@
   "question_text": "Solve dy/dx + y sec x = tan x.",
   "appearances": [],
   "mark_split": [
-    { "label": "Identify P and find ∫P dx", "marks": 1 },
-    { "label": "Find the integrating factor", "marks": 1 },
-    { "label": "Integrate and finish", "marks": 2 }
+    {
+      "label": "Identify P and find ∫P dx",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -43,9 +52,14 @@
         "margin_note": "One mark. The equation is already in the standard linear form; P is the coefficient of y, which is sec x here.",
         "memory_tip": "∫sec x dx = log|sec x + tan x| — a standard integral, worth memorising on its own.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Given D.E is in the form dy/dx + yP(x) = Q(x). This is a linear D.E in y.",
-          "Here P = sec x ⇒ ∫P dx = ∫sec x dx = log|sec x + tan x|"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is in the form dy/dx + yP(x) = Q(x).",
+          "This is a linear D.E in y.",
+          "Here P = sec x",
+          "⇒ ∫P dx = ∫sec x dx = log|sec x + tan x|"
         ],
         "why": "Reading P off the standard linear form here gives sec x, not tan x as in the neighbouring questions, and its integral is a separate standard result that must be recalled correctly.",
         "common_mistakes": [
@@ -62,7 +76,8 @@
         "margin_note": "One mark. I.F. = e^(∫P dx) always.",
         "memory_tip": "e^(log|sec x + tan x|) = sec x + tan x — the log and exponential cancel directly.",
         "lines": [
-          "∴ I.F. = e^(∫P dx) = e^(log|sec x + tan x|) = sec x + tan x"
+          "∴ I.F. = e^(∫P dx) = e^(log|sec x + tan x|)",
+          "= sec x + tan x"
         ],
         "why": "Applying the integrating-factor formula to the ∫P dx found in step 1 gives sec x + tan x, since the exponential undoes the log exactly as in every other linear equation.",
         "common_mistakes": [
@@ -80,9 +95,14 @@
         "memory_tip": "sec x tan x integrates to sec x, and tan²x becomes sec²x − 1 before integrating.",
         "lines": [
           "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
-          "⇒ y(sec x + tan x) = ∫(sec x + tan x)tan x dx = ∫(sec x tan x + tan²x) dx",
-          "= ∫[sec x tan x + (sec²x − 1)] dx = sec x + tan x − x + c",
-          { "text": "y(sec x + tan x) = sec x + tan x − x + c", "style": "boxed" }
+          "⇒ y(sec x + tan x) = ∫(sec x + tan x)tan x dx",
+          "= ∫(sec x tan x + tan²x) dx",
+          "= ∫[sec x tan x + (sec²x − 1)] dx",
+          "= sec x + tan x − x + c",
+          {
+            "text": "y(sec x + tan x) = sec x + tan x − x + c",
+            "style": "boxed"
+          }
         ],
         "why": "Expanding the product (sec x + tan x)tan x gives two standard pieces: sec x tan x, whose antiderivative is sec x, and tan²x, which is rewritten as sec²x − 1 so it integrates to tan x − x.",
         "common_mistakes": [

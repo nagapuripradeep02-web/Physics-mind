@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "Solve x·logx·dy/dx + y = 2logx.",
   "appearances": [
-    { "year": 2020, "board": "ap_ipe" }
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Rewrite in standard form and identify P", "marks": 1 },
-    { "label": "Find the integrating factor", "marks": 1 },
-    { "label": "Set up the integral and substitute", "marks": 1 },
-    { "label": "Integrate and finish", "marks": 1 }
+    {
+      "label": "Rewrite in standard form and identify P",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Set up the integral and substitute",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,10 +61,15 @@
         "margin_note": "One mark. Divide throughout by xlogx to reach the standard linear form.",
         "memory_tip": "logx/logx cancels to 1 whenever the same logx appears top and bottom — always simplify before moving on.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is x·logx·dy/dx + y = 2logx",
-          "⇒ dy/dx + y·(1/(x·logx)) = 2logx/(x·logx) = 2/x [dividing throughout by x·logx]",
-          "This is in the form dy/dx + yP(x) = Q(x). Here P = 1/(x·logx) and Q = 2/x"
+          "⇒ dy/dx + y·(1/(x·logx)) = 2logx/(x·logx)",
+          "= 2/x [dividing throughout by x·logx]",
+          "This is in the form dy/dx + yP(x) = Q(x).",
+          "Here P = 1/(x·logx) and Q = 2/x"
         ],
         "why": "Dividing every term by xlogx makes the coefficient of dy/dx equal to 1, which is what the standard linear form requires, and it also cancels one logx from the right side, leaving the clean Q = 2/x.",
         "common_mistakes": [
@@ -66,7 +86,10 @@
         "margin_note": "One mark. I.F. = e^(∫P dx); recognise ∫1/(xlogx)dx as the f'/f form with f(x) = logx.",
         "memory_tip": "∫f'(x)/f(x) dx = log f(x) is the fastest route whenever the numerator is exactly the derivative of the denominator's inner function.",
         "lines": [
-          "Here P = 1/(x·logx) ⇒ ∫P dx = ∫1/(x·logx) dx = log(logx), since ∫f'(x)/f(x) dx = log f(x) with f(x) = logx, f'(x) = 1/x",
+          "Here P = 1/(x·logx)",
+          "⇒ ∫P dx = ∫1/(x·logx) dx = log(logx),",
+          "since ∫f'(x)/f(x) dx = log f(x)",
+          "with f(x) = logx, f'(x) = 1/x",
           "∴ I.F. = e^(∫P dx) = e^(log(logx)) = logx"
         ],
         "why": "The integrand 1/(xlogx) is exactly f'(x)/f(x) with f(x) = logx, so it integrates directly to log(logx) by the standard log-derivative rule; e raised to a log then cancels back to the plain expression.",
@@ -86,7 +109,8 @@
         "lines": [
           "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
           "⇒ y·logx = ∫logx·(2/x) dx = 2∫(logx/x) dx",
-          "Put logx = t ⇒ (1/x)dx = dt, so the integral becomes 2∫t dt"
+          "Put logx = t ⇒ (1/x)dx = dt,",
+          "so the integral becomes 2∫t dt"
         ],
         "why": "Multiplying Q by the integrating factor logx gives an integral in logx/x, and the substitution t = logx turns it into a plain polynomial integral, since dt is exactly the leftover 1/x dx factor already present.",
         "common_mistakes": [
@@ -105,7 +129,10 @@
         "lines": [
           "2∫t dt = 2(t²/2) + c = t² + c",
           "So y·logx = t² + c, and putting t = logx back in:",
-          { "text": "y·logx = (logx)² + c", "style": "boxed" }
+          {
+            "text": "y·logx = (logx)² + c",
+            "style": "boxed"
+          }
         ],
         "why": "The standard power-rule integral of t gives t², and substituting t = logx back in returns the final relation entirely in terms of x.",
         "common_mistakes": [

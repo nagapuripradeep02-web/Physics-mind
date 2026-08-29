@@ -67,7 +67,8 @@
             "style": "heading"
           },
           "Given parabola y² = 8ax, so y² = 4(2a)x   ……(1)",
-          "The tangent to (1) with slope m is y = mx + 2a/m   ……(2)",
+          "The tangent to (1)",
+          "with slope m is y = mx + 2a/m   ……(2)",
           "Comparing (2) with y = mx + c gives c = 2a/m."
         ],
         "why": "Writing y² = 8ax as y² = 4(2a)x matches it to the standard form y² = 4Ax with A = 2a, so the standard tangent formula y = mx + A/m can be used directly with A replaced by 2a.",
@@ -86,8 +87,11 @@
         "margin_note": "Two marks for setting up the shared condition — this is where the two curves meet in the algebra.",
         "lines": [
           "Given circle x² + y² = 2a²   ……(3)",
-          "A line y = mx + c touches a circle x² + y² = r² when c² = r²(1 + m²).",
-          "Here r² = 2a², so applying this to (2) and (3): (2a/m)² = 2a²(1 + m²)"
+          "A line y = mx + c touches a circle x² + y²",
+          "= r² when c² = r²(1 + m²).",
+          "Here r² = 2a²,",
+          "so applying this to (2) and (3):",
+          "(2a/m)² = 2a²(1 + m²)"
         ],
         "why": "The tangential condition c² = r²(1+m²) is the algebraic test for a line touching a circle centred at the origin — it is applied here with c taken from the parabola's own tangent line, which forces the same line to touch both curves at once.",
         "common_mistakes": [
@@ -104,9 +108,12 @@
         "mark_note": "Method",
         "margin_note": "Two marks for the algebra and the rejection of the impossible root — both are needed for full credit.",
         "lines": [
-          "(2a/m)² = 2a²(1 + m²) ⇒ 4a²/m² = 2a²(1 + m²) ⇒ 2/m² = 1 + m²",
-          "⇒ 2 = m² + m⁴ ⇒ m⁴ + m² − 2 = 0 ⇒ (m² − 1)(m² + 2) = 0",
-          "m² = 1 or m² = −2; m² cannot be negative, so m² = 1 ⇒ m = ±1"
+          "(2a/m)² = 2a²(1 + m²)",
+          "⇒ 4a²/m² = 2a²(1 + m²) ⇒ 2/m² = 1 + m²",
+          "⇒ 2 = m² + m⁴ ⇒ m⁴ + m² − 2 = 0",
+          "⇒ (m² − 1)(m² + 2) = 0",
+          "m² = 1 or m² = −2; m² cannot be negative,",
+          "so m² = 1 ⇒ m = ±1"
         ],
         "why": "The equation is a quadratic in the new variable m², so it factors the same way any quadratic does; the root m² = −2 is thrown out immediately because a real slope always squares to something zero or positive.",
         "common_mistakes": [
@@ -124,7 +131,8 @@
         "margin_note": "Last mark for combining both lines into the single boxed ± form the question asks for.",
         "lines": [
           "For m = 1: c = 2a/1 = 2a, giving y = x + 2a",
-          "For m = −1: c = 2a/(−1) = −2a, giving y = −x − 2a = −(x + 2a)",
+          "For m = −1:",
+          "c = 2a/(−1) = −2a, giving y = −x − 2a = −(x + 2a)",
           {
             "text": "∴ the common tangents are y = ±(x + 2a)",
             "style": "boxed"

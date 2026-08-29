@@ -17,14 +17,32 @@
   "expected_time_min": 9,
   "question_text": "Solve (xy² + x)dx + (yx² + y)dy = 0.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2020, "board": "ts_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Recognise the separable form", "marks": 1 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Recognise the separable form",
+      "marks": 1
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,10 +65,14 @@
         "margin_note": "One mark. Factor x out of the first bracket and y out of the second before rearranging.",
         "memory_tip": "xy² + x = x(y² + 1); yx² + y = y(x² + 1) — both brackets factor the same way.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "The given D.E is (xy² + x)dx + (yx² + y)dy = 0",
           "⇒ x(y² + 1)dx + y(x² + 1)dy = 0",
-          "This equation is in the variables-separable form."
+          "This equation is in the variables-separable",
+          "form."
         ],
         "why": "Factoring x out of the first bracket and y out of the second reveals that each bracket only depends on one variable, which is the sign that x and y can be fully separated to opposite sides.",
         "common_mistakes": [
@@ -105,7 +127,10 @@
         "memory_tip": "log(A) = log(B) means A = B directly — no further algebra is needed once the logs match.",
         "lines": [
           "⇒ log[(x² + 1)(y² + 1)] = log c",
-          { "text": "(x² + 1)(y² + 1) = c", "style": "boxed" }
+          {
+            "text": "(x² + 1)(y² + 1) = c",
+            "style": "boxed"
+          }
         ],
         "why": "Once both sides are written as a single log, equal logs mean the quantities inside are equal, giving the final relation between x, y and the constant directly.",
         "common_mistakes": [

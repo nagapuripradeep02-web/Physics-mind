@@ -60,7 +60,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x¹⁸ = (x⁹)², so put x⁹ = t ⇒ 9x⁸dx = dt, i.e. x⁸dx = dt/9",
+          "x¹⁸ = (x⁹)², so put x⁹ = t",
+          "⇒ 9x⁸dx = dt, i.e. x⁸dx = dt/9",
           "I = ∫ (dt/9)/(1+t²) = (1/9)∫dt/(1+t²)"
         ],
         "why": "Recognising x¹⁸ as (x⁹)² makes the denominator 1+t² for t=x⁹, and the leftover x⁸dx is exactly (1/9)dt since d/dx(x⁹)=9x⁸.",

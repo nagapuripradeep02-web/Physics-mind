@@ -69,7 +69,8 @@
             "style": "heading"
           },
           "Let x+1 = A·d/dx(x²+3x+12) + B = A(2x+3) + B",
-          "Coeff of x: 2A=1 ⇒ A=1/2; constant: 3A+B=1 ⇒ B=−1/2"
+          "Coeff of x: 2A=1 ⇒ A=1/2; constant:",
+          "3A+B=1 ⇒ B=−1/2"
         ],
         "why": "The same A·Dr′+B pattern as answer 27, now over a plain quadratic denominator with no root — the split is identical, only the final integration of each piece differs.",
         "common_mistakes": [
@@ -86,8 +87,11 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Putting A=1/2, B=−1/2: x+1 = (1/2)d/dx(x²+3x+12) − 1/2",
-          "I = (1/2)∫[d/dx(x²+3x+12)]/(x²+3x+12) dx − (1/2)∫dx/(x²+3x+12)",
+          "Putting A=1/2, B=−1/2:",
+          "x+1 = (1/2)d/dx(x²+3x+12) − 1/2",
+          "I",
+          "= (1/2)∫[d/dx(x²+3x+12)]/(x²+3x+12) dx",
+          "− (1/2)∫dx/(x²+3x+12)",
           "= (1/2)log|x²+3x+12| − (1/2)∫dx/(x²+3x+12)"
         ],
         "why": "The A-part is now an f′(x)/f(x) form WITHOUT a square root, so it integrates to a plain log|f(x)| — no factor of 2, unlike the √f(x) case in answer 27.",
@@ -105,8 +109,10 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "x²+3x+12 = x²+3x+(3/2)²−(3/2)²+12 = (x+3/2)²+39/4",
-          "So −(1/2)∫dx/(x²+3x+12) = −(1/2)∫dx/[(x+3/2)²+(√39/2)²]"
+          "x²+3x+12 = x²+3x+(3/2)²−(3/2)²+12",
+          "= (x+3/2)²+39/4",
+          "So −(1/2)∫dx/(x²+3x+12)",
+          "= −(1/2)∫dx/[(x+3/2)²+(√39/2)²]"
         ],
         "why": "39/4 = (√39/2)² is a POSITIVE constant, so this quadratic completes to a sum of squares — the sign to check for whether the leftover integral needs the Tan⁻¹ or log formula.",
         "common_mistakes": [

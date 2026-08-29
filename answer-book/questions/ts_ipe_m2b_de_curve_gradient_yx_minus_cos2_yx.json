@@ -17,16 +17,40 @@
   "expected_time_min": 15,
   "question_text": "Find the equation of a curve whose gradient is dy/dx = y/x − cos²(y/x), which passes through the point (1, π/4).",
   "appearances": [
-    { "year": 2016, "board": "ts_ipe" },
-    { "year": 2016, "board": "ap_ipe" },
-    { "year": 2019, "board": "ap_ipe" }
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Recognise homogeneous form and substitute", "marks": 2 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 2 },
-    { "label": "Return to x and y", "marks": 1 },
-    { "label": "Apply the given point and finish", "marks": 1 }
+    {
+      "label": "Recognise homogeneous form and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Return to x and y",
+      "marks": 1
+    },
+    {
+      "label": "Apply the given point and finish",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -49,11 +73,15 @@
         "margin_note": "Two marks. The right side already depends only on the ratio y/x, so the equation is homogeneous by inspection.",
         "memory_tip": "y/x − cos²(y/x) is written entirely in terms of v = y/x — no separate substitution work needed to see that.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is dy/dx = y/x − cos²(y/x) … (1)",
           "(1) is a homogeneous D.E",
           "Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx = vx/x − cos²(vx/x) = v − cos²v"
+          "(1) ⇒ v + x·dv/dx = vx/x − cos²(vx/x)",
+          "= v − cos²v"
         ],
         "why": "A gradient given purely in terms of y/x is already homogeneous, so substituting y = vx and dy/dx = v + x·dv/dx immediately turns the equation into one for v alone.",
         "common_mistakes": [
@@ -126,7 +154,10 @@
         "lines": [
           "If the curve passes through (x, y) = (1, π/4), then",
           "tan(π/4) + log|1| = c ⇒ 1 + 0 = c ⇒ c = 1",
-          { "text": "From (2), the required solution is tan(y/x) + log|x| = 1", "style": "boxed" }
+          {
+            "text": "tan(y/x) + log|x| = 1",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting the given point into the general family fixes the arbitrary constant, and putting that value of c back into (2) gives the one curve through (1, π/4), which is what the question actually asks for.",
         "common_mistakes": [

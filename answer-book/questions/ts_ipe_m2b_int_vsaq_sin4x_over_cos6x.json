@@ -51,7 +51,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "sin⁴x/cos⁶x = (sin⁴x/cos⁴x)·(1/cos²x) = tan⁴x sec²x",
+          "sin⁴x/cos⁶x = (sin⁴x/cos⁴x)·(1/cos²x)",
+          "= tan⁴x sec²x",
           "Put tanx = t ⇒ sec²x dx = dt"
         ],
         "why": "Splitting the even power cos⁶x into cos⁴x (paired with sin⁴x to make tan⁴x) and a leftover cos²x (which becomes sec²x) leaves exactly a t=tanx substitution, since sec²x is tanx's own derivative.",

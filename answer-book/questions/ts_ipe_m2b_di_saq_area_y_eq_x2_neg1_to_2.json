@@ -56,8 +56,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The curve is y = x². Since x² ≥ 0 for every real x, the curve never lies below the x-axis",
-          "So the required area is A = ∫_{−1}^{2} y dx = ∫_{−1}^{2} x² dx"
+          "The curve is y = x².",
+          "Since x² ≥ 0 for every real x,",
+          "the curve never lies below the x-axis",
+          "So the required area is A",
+          "= ∫_{−1}^{2} y dx = ∫_{−1}^{2} x² dx"
         ],
         "why": "A square is never negative, so y=x² is always at or above the x-axis, and the area under it over any interval is simply the plain definite integral with no sign-splitting.",
         "common_mistakes": [

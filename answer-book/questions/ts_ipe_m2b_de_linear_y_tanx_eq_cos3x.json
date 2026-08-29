@@ -17,15 +17,36 @@
   "expected_time_min": 9,
   "question_text": "Solve dy/dx + y tan x = cos³x.",
   "appearances": [
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2019, "board": "ap_ipe" },
-    { "year": 2018, "board": "ts_ipe" }
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Identify P and find ∫P dx", "marks": 1 },
-    { "label": "Find the integrating factor", "marks": 1 },
-    { "label": "Set up and simplify the integral", "marks": 1 },
-    { "label": "Integrate and finish", "marks": 1 }
+    {
+      "label": "Identify P and find ∫P dx",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Set up and simplify the integral",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -48,10 +69,15 @@
         "margin_note": "One mark. The equation is already in the standard linear form dy/dx + Py = Q.",
         "memory_tip": "dy/dx + y tan x = cos³x is already the linear form — P is just the coefficient of y.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is dy/dx + y tan x = cos³x",
-          "This is in the form dy/dx + yP(x) = Q(x), which is a linear D.E in y.",
-          "Here, P = tan x ⇒ ∫P dx = ∫tan x dx = log(sec x)"
+          "This is in the form dy/dx + yP(x) = Q(x),",
+          "which is a linear D.E in y.",
+          "Here, P = tan x",
+          "⇒ ∫P dx = ∫tan x dx = log(sec x)"
         ],
         "why": "Matching the equation against the standard linear form dy/dx + Py = Q identifies P and Q directly, and P must be integrated first because it feeds into the integrating factor.",
         "common_mistakes": [
@@ -86,7 +112,8 @@
         "memory_tip": "cos³x/cos x cancels one power of cos x, leaving cos²x — always simplify before integrating.",
         "lines": [
           "Hence, the solution is y·(I.F.) = ∫(I.F.)Q dx",
-          "⇒ y sec x = ∫sec x·cos³x dx = ∫(cos³x/cos x) dx = ∫cos²x dx"
+          "⇒ y sec x = ∫sec x·cos³x dx",
+          "= ∫(cos³x/cos x) dx = ∫cos²x dx"
         ],
         "why": "The formula y·(I.F.) = ∫(I.F.)Q dx applies directly once the integrating factor is known, and writing sec x as 1/cos x lets cos³x/cos x cancel to the much simpler cos²x before integrating.",
         "common_mistakes": [
@@ -103,9 +130,14 @@
         "margin_note": "The last mark. Use cos²x = (1 + cos 2x)/2 to integrate, then multiply through by 2cos x to clear sec x.",
         "memory_tip": "The double-angle identity cos²x = (1 + cos 2x)/2 is the standard way to integrate a plain cos²x.",
         "lines": [
-          "∫cos²x dx = (1/2)∫(1 + cos 2x) dx = (1/2)(x + sin2x/2) + c",
-          "⇒ y sec x = x/2 + sin2x/4 + c, and multiplying through by 2 cos x:",
-          { "text": "2y = x cos x + sin x cos²x + c cos x", "style": "boxed" }
+          "∫cos²x dx = (1/2)∫(1 + cos 2x) dx",
+          "= (1/2)(x + sin2x/2) + c",
+          "⇒ y sec x = x/2 + sin2x/4 + c,",
+          "and multiplying through by 2 cos x:",
+          {
+            "text": "2y = x cos x + sin x cos²x + c cos x",
+            "style": "boxed"
+          }
         ],
         "why": "The double-angle identity turns cos²x into a directly integrable sum, and multiplying the whole equation by 2cos x clears the sec x on the left and writes sin2x·cos x as sin x cos²x, giving the final boxed form the book marks.",
         "common_mistakes": [

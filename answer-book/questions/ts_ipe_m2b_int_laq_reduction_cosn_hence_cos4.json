@@ -77,7 +77,8 @@
             "style": "heading"
           },
           "Given I_n = ∫ cosⁿx dx = ∫ cosⁿ⁻¹x · cosx dx",
-          "Take first function u = cosⁿ⁻¹x, second v = cosx",
+          "Take first function u = cosⁿ⁻¹x,",
+          "second v = cosx",
           "Then ∫v dx = ∫cosx dx = sinx"
         ],
         "why": "Exactly the same split as sinⁿx: peel off one cosx to integrate, leave cosⁿ⁻¹x to differentiate.",
@@ -95,7 +96,8 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "By the by-parts rule, I_n = cosⁿ⁻¹x(sinx) − ∫(n−1)cosⁿ⁻²x(−sinx)(sinx)dx",
+          "By the by-parts rule, I_n",
+          "= cosⁿ⁻¹x(sinx) − ∫(n−1)cosⁿ⁻²x(−sinx)(sinx)dx",
           "= cosⁿ⁻¹x sinx + (n−1)∫cosⁿ⁻²x sin²x dx",
           "= cosⁿ⁻¹x sinx + (n−1)∫cosⁿ⁻²x(1−cos²x)dx",
           {

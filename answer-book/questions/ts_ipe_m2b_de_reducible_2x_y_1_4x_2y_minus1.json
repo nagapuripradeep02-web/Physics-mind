@@ -17,14 +17,32 @@
   "expected_time_min": 15,
   "question_text": "Solve the differential equation (2x + y + 1)dx + (4x + 2y − 1)dy = 0.",
   "appearances": [
-    { "year": 2015, "board": "ts_ipe" }
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Test the coefficients and substitute", "marks": 2 },
-    { "label": "Reduce to a function of the new variable", "marks": 1 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 2 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Test the coefficients and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Reduce to a function of the new variable",
+      "marks": 1
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,11 +65,16 @@
         "margin_note": "Two marks. Comparing coefficients shows a1/a2 = b1/b2 = 1/2, so the lines 2x+y+1=0 and 4x+2y−1=0 are parallel.",
         "memory_tip": "Equal ratios of x and y coefficients means: substitute the linear combination itself, here v = 2x + y.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given that (4x + 2y − 1)dy = −(2x + y + 1)dx",
           "⇒ dy/dx = −(2x + y + 1)/(4x + 2y − 1) … (1)",
-          "Comparing (2x + y + 1)/(4x + 2y − 1) with (a1x + b1y + c1)/(a2x + b2y + c2)",
-          "a1/a2 = 2/4 = 1/2, b1/b2 = 1/2 ⇒ a1/a2 = b1/b2",
+          "Comparing (2x + y + 1)/(4x + 2y − 1)",
+          "with (a1x + b1y + c1)/(a2x + b2y + c2)",
+          "a1/a2 = 2/4 = 1/2, b1/b2 = 1/2",
+          "⇒ a1/a2 = b1/b2",
           "So take the substitution 2x + y = v"
         ],
         "why": "When the ratio of x-coefficients equals the ratio of y-coefficients, both linear expressions are proportional to the same combination of x and y, so treating that whole combination as one new variable v turns the equation into one with a single unknown.",
@@ -69,8 +92,10 @@
         "margin_note": "One mark. Differentiate v = 2x + y to relate dv/dx to dy/dx, then substitute into (1).",
         "memory_tip": "v = 2x + y gives dv/dx = 2 + dy/dx, so dy/dx = dv/dx − 2.",
         "lines": [
-          "2x + y = v ⇒ 2 + dy/dx = dv/dx ⇒ dy/dx = dv/dx − 2",
-          "(1) ⇒ dv/dx − 2 = −(v + 1)/(2v − 1) ⇒ dv/dx = 2 − (v + 1)/(2v − 1)"
+          "2x + y = v ⇒ 2 + dy/dx = dv/dx",
+          "⇒ dy/dx = dv/dx − 2",
+          "(1) ⇒ dv/dx − 2 = −(v + 1)/(2v − 1)",
+          "⇒ dv/dx = 2 − (v + 1)/(2v − 1)"
         ],
         "why": "Differentiating the substitution v = 2x + y gives a direct relation between dv/dx and dy/dx, which replaces dy/dx everywhere in (1) and leaves an equation purely in v and x.",
         "common_mistakes": [
@@ -87,7 +112,8 @@
         "margin_note": "One mark. Combine the two fractions on the right over the common denominator (2v − 1).",
         "memory_tip": "2(2v − 1) − (v + 1) = 3v − 3 = 3(v − 1) — the numerator simplifies to a clean multiple of (v − 1).",
         "lines": [
-          "dv/dx = [2(2v − 1) − (v + 1)]/(2v − 1) = (4v − 2 − v − 1)/(2v − 1) = 3(v − 1)/(2v − 1)",
+          "dv/dx = [2(2v − 1) − (v + 1)]/(2v − 1)",
+          "= (4v − 2 − v − 1)/(2v − 1) = 3(v − 1)/(2v − 1)",
           "⇒ dx = (1/3)·(2v − 1)/(v − 1) dv"
         ],
         "why": "Combining the two right-hand terms into a single fraction gives dv/dx as a clean function of v, and inverting turns the equation into a separated form where x is isolated on one side.",
@@ -105,7 +131,8 @@
         "margin_note": "Two marks. Split (2v − 1)/(v − 1) into a whole number plus a simple fraction before integrating.",
         "memory_tip": "2v − 1 = 2(v − 1) + 1 — always rewrite the numerator around the denominator's own bracket.",
         "lines": [
-          "(2v − 1)/(v − 1) = [2(v − 1) + 1]/(v − 1) = 2 + 1/(v − 1)",
+          "(2v − 1)/(v − 1) = [2(v − 1) + 1]/(v − 1)",
+          "= 2 + 1/(v − 1)",
           "∫ dx = (1/3) ∫ [2 + 1/(v − 1)] dv",
           "⇒ x = (2v/3) + (1/3)log(v − 1) + c"
         ],
@@ -125,8 +152,12 @@
         "memory_tip": "3x = 2v + log(v − 1) + c, then v = 2x + y turns 2v into 4x + 2y — watch the x terms combine.",
         "lines": [
           "⇒ 3x = 2v + log(v − 1) + c, and putting v = 2x + y:",
-          "3x = 2(2x + y) + log(2x + y − 1) + c ⇒ 3x = 4x + 2y + log(2x + y − 1) + c",
-          { "text": "x + 2y + log(2x + y − 1) + c = 0", "style": "boxed" }
+          "3x = 2(2x + y) + log(2x + y − 1) + c",
+          "⇒ 3x = 4x + 2y + log(2x + y − 1) + c",
+          {
+            "text": "x + 2y + log(2x + y − 1) + c = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Multiplying through by 3 clears the fraction, substituting v = 2x + y returns the equation to the original variables, and collecting the x terms on one side gives the compact final relation the examiner expects.",
         "common_mistakes": [

@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "Evaluate ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx.",
   "appearances": [
-    { "year": 2019, "board": "ap_ipe" },
-    { "year": 2017, "board": "ap_ipe" }
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Apply the property with a = π/2", "marks": 1 },
-    { "label": "Write the second form", "marks": 1 },
-    { "label": "Add and solve", "marks": 2 }
+    {
+      "label": "Apply the property with a = π/2",
+      "marks": 1
+    },
+    {
+      "label": "Write the second form",
+      "marks": 1
+    },
+    {
+      "label": "Add and solve",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,7 +61,10 @@
         "margin_note": "One mark. Label the given integral (1).",
         "memory_tip": "sin(π/2 − x) = cosx — always check the substituted form actually changes the base.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
           "∴ I = ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx …(1)"
         ],
@@ -66,7 +84,9 @@
         "memory_tip": "sin(π/2 − x) = cosx, so sin⁵(π/2 − x) = cos⁵x — the base swaps, the power 5 stays.",
         "lines": [
           "By x → π/2 − x:",
-          "I = ∫₀^(π/2) sin⁵(π/2−x)/[sin⁵(π/2−x) + cos⁵(π/2−x)] dx",
+          "I",
+          "= ∫₀^(π/2) sin⁵(π/2−x)/[sin⁵(π/2−x) +",
+          "cos⁵(π/2−x)] dx",
           "⇒ I = ∫₀^(π/2) cos⁵x/(cos⁵x + sin⁵x) dx …(2)"
         ],
         "why": "Under x → π/2 − x, sinx becomes cosx, so sin⁵x becomes cos⁵x in the numerator, while the denominator (a sum of both powers) reappears unchanged.",
@@ -84,9 +104,13 @@
         "margin_note": "The last two marks. The numerator sum equals the denominator, so the fraction is 1.",
         "memory_tip": "sin⁵x + cos⁵x over sin⁵x + cos⁵x is always 1 — the whole point of the swap was to make the two numerators add up to the denominator.",
         "lines": [
-          "Adding (1) and (2): I + I = ∫₀^(π/2) [sin⁵x + cos⁵x]/[sin⁵x + cos⁵x] dx",
+          "Adding (1) and (2): I + I",
+          "= ∫₀^(π/2) [sin⁵x + cos⁵x]/[sin⁵x + cos⁵x] dx",
           "⇒ 2I = ∫₀^(π/2) 1 dx = [x]₀^(π/2) = π/2",
-          { "text": "∴ I = π/4", "style": "boxed" }
+          {
+            "text": "∴ I = π/4",
+            "style": "boxed"
+          }
         ],
         "why": "The added numerator matches the denominator exactly, so the integrand is 1 for every x, reducing the integral to the length of the interval.",
         "common_mistakes": [

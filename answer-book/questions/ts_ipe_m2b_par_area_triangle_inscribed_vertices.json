@@ -62,7 +62,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Take the vertices as P(x₁,y₁) = (at₁², 2at₁), Q(x₂,y₂) = (at₂², 2at₂), R(x₃,y₃) = (at₃², 2at₃)."
+          "Take the vertices as P(x₁,y₁) = (at₁², 2at₁),",
+          "Q(x₂,y₂) = (at₂², 2at₂),",
+          "R(x₃,y₃) = (at₃², 2at₃)."
         ],
         "why": "Every point on y² = 4ax can be written as (at², 2at) for some parameter t, so writing all three vertices this way turns the geometry into pure algebra in t₁, t₂, t₃.",
         "common_mistakes": [
@@ -83,9 +85,12 @@
             "text": "\\text{Area of }\\triangle PQR = \\frac{1}{2}\\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix}",
             "render": "katex"
           },
-          "= (1/2)|at₁²−at₂², at₁²−at₃²; 2at₁−2at₂, 2at₁−2at₃| = (a·2a/2)|t₁²−t₂², t₁²−t₃²; t₁−t₂, t₁−t₃|",
+          "= (1/2)|at₁²−at₂²,",
+          "at₁²−at₃²; 2at₁−2at₂, 2at₁−2at₃|",
+          "= (a·2a/2)|t₁²−t₂², t₁²−t₃²; t₁−t₂, t₁−t₃|",
           "= a²|(t₁−t₂)(t₁+t₂), (t₁−t₃)(t₁+t₃); t₁−t₂, t₁−t₃|",
-          "= a²(t₁−t₂)(t₁−t₃)[(t₁+t₂) − (t₁+t₃)] = a²(t₁−t₂)(t₁−t₃)(t₂−t₃)"
+          "= a²(t₁−t₂)(t₁−t₃)[(t₁+t₂) − (t₁+t₃)]",
+          "= a²(t₁−t₂)(t₁−t₃)(t₂−t₃)"
         ],
         "why": "Each column of the determinant shares a factor — the first column shares (t₁−t₂), the second shares (t₁−t₃) — and pulling those factors out front leaves a much smaller expression, (t₁+t₂) − (t₁+t₃), which simplifies to t₂−t₃.",
         "common_mistakes": [
@@ -102,8 +107,11 @@
         "mark_note": "Method",
         "margin_note": "Two marks for the substitution that brings y₁, y₂, y₃ back into the answer.",
         "lines": [
-          "Since 2at₁ = y₁, t₁ = y₁/(2a); similarly t₂ = y₂/(2a), t₃ = y₃/(2a).",
-          "So (t₁−t₂) = (y₁−y₂)/(2a), (t₁−t₃) = (y₁−y₃)/(2a), (t₂−t₃) = (y₂−y₃)/(2a)."
+          "Since 2at₁ = y₁,",
+          "t₁ = y₁/(2a); similarly t₂ = y₂/(2a),",
+          "t₃ = y₃/(2a).",
+          "So (t₁−t₂) = (y₁−y₂)/(2a),",
+          "(t₁−t₃) = (y₁−y₃)/(2a), (t₂−t₃) = (y₂−y₃)/(2a)."
         ],
         "why": "The parameter t was only ever a convenient stand-in for y/(2a), so replacing every t-difference by its matching y-difference turns the result back into the coordinates the question actually asks for.",
         "common_mistakes": [
@@ -120,7 +128,10 @@
         "mark_note": "Solution",
         "margin_note": "Last mark for the boxed area — check the denominator is 8a, not 4a or 16a.",
         "lines": [
-          "Area = a² × |(y₁−y₂)/(2a)| × |(y₁−y₃)/(2a)| × |(y₂−y₃)/(2a)| = |(y₁−y₂)(y₂−y₃)(y₃−y₁)| / (8a)",
+          "Area",
+          "= a² × |(y₁−y₂)/(2a)| × |(y₁−y₃)/(2a)| ×",
+          "|(y₂−y₃)/(2a)|",
+          "= |(y₁−y₂)(y₂−y₃)(y₃−y₁)| / (8a)",
           {
             "text": "∴ Area = (1/8a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
             "style": "boxed"

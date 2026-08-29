@@ -87,7 +87,8 @@
         "margin_note": "Second mark. Both pieces contribute exactly 1/2 each — a useful check on the arithmetic.",
         "memory_tip": "By symmetry about x=1, the two pieces of a V-shaped modulus graph often contribute equal areas.",
         "lines": [
-          "= [x − x²/2]₀¹ + [x²/2 − x]₁² = (1 − 1/2) + [(2 − 2) − (1/2 − 1)]",
+          "= [x − x²/2]₀¹ + [x²/2 − x]₁² = (1 − 1/2) +",
+          "[(2 − 2) − (1/2 − 1)]",
           {
             "text": "∴ I = 1/2 + 0 + 1/2 = 1",
             "style": "boxed"

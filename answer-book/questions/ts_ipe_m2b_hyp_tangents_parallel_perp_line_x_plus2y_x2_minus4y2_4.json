@@ -17,12 +17,24 @@
   "expected_time_min": 9,
   "question_text": "Find the equations of the tangents to the hyperbola x² − 4y² = 4 which (i) are parallel to x + 2y = 0, (ii) are perpendicular to x + 2y = 0.",
   "appearances": [
-    { "year": 2019, "board": "ap_ipe" },
-    { "year": 2015, "board": "ts_ipe" }
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Parallel tangent", "marks": 2 },
-    { "label": "Perpendicular tangent", "marks": 2 }
+    {
+      "label": "Parallel tangent",
+      "marks": 2
+    },
+    {
+      "label": "Perpendicular tangent",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -44,7 +56,10 @@
         "margin_note": "No mark of its own — every result below substitutes into this formula.",
         "memory_tip": "Start every hyperbola tangent-parallel/perpendicular question the same way: standard form, tangent-with-slope-m formula, then the given line's own slope.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given hyperbola is x² − 4y² = 4",
           "Divide by 4: x²/4 − y²/1 = 1 ⇒ a² = 4, b² = 1",
           "Tangent with slope m: y = mx ± √(a²m² − b²)",
@@ -66,8 +81,12 @@
         "memory_tip": "If the root under the tangent formula collapses to zero, check whether the given slope IS an asymptote slope ±b/a.",
         "lines": [
           "Parallel tangent has the same slope m = −1/2",
-          "y = −(1/2)x ± √(4(1/4) − 1) = −(1/2)x ± √(1 − 1) = −(1/2)x",
-          { "text": "x + 2y = 0", "style": "boxed" }
+          "y = −(1/2)x ± √(4(1/4) − 1)",
+          "= −(1/2)x ± √(1 − 1) = −(1/2)x",
+          {
+            "text": "x + 2y = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting m = −1/2 into the tangent formula makes the term under the root vanish (4m² − b² = 0) — that happens exactly because −1/2 is the SLOPE OF AN ASYMPTOTE of this hyperbola (asymptote slopes are ±b/a = ±1/2), and no genuine tangent line is ever parallel to an asymptote.",
         "common_mistakes": [
@@ -84,9 +103,14 @@
         "margin_note": "Two marks. This case is a genuine, ordinary tangent pair.",
         "memory_tip": "The negative reciprocal of −1/2 is 2, not −2.",
         "lines": [
-          "Slope of the perpendicular is the negative reciprocal: m = 2",
+          "Slope of the perpendicular is the negative",
+          "reciprocal:",
+          "m = 2",
           "y = 2x ± √(4(2)² − 1) = 2x ± √15",
-          { "text": "y = 2x + √15 and y = 2x − √15", "style": "boxed" }
+          {
+            "text": "y = 2x + √15 and y = 2x − √15",
+            "style": "boxed"
+          }
         ],
         "why": "Slope 2 is not an asymptote slope (the asymptotes have slope ±1/2), so the tangent formula gives two genuine tangent lines here.",
         "common_mistakes": [

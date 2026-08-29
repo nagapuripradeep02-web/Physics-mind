@@ -52,7 +52,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "When n is even, ∫₀^(π/2) sinⁿx dx = [(n−1)(n−3)···3·1]/[n(n−2)···4·2] · π/2   [Walli's formula]"
+          "When n is even, ∫₀^(π/2) sinⁿx dx",
+          "= [(n−1)(n−3)···3·1]/[n(n−2)···4·2] · π/2",
+          "[Walli's formula]"
         ],
         "why": "Walli's reduction formula gives a closed form for ∫₀^(π/2) sinⁿx dx directly, avoiding a repeated integration-by-parts derivation; an extra factor π/2 appears whenever n is even.",
         "common_mistakes": [
@@ -69,7 +71,8 @@
         "margin_note": "Second mark. 3/8 × π/2 = 3π/16 — a direct multiplication once the ratio is found.",
         "memory_tip": "(n−1)(n−3)··· down to 1 or 2 sits on top; n(n−2)··· down to 1 or 2 sits on the bottom.",
         "lines": [
-          "∴ ∫₀^(π/2) sin⁴x dx = [(3)(1)]/[(4)(2)] · π/2 = 3/8 · π/2",
+          "∴ ∫₀^(π/2) sin⁴x dx = [(3)(1)]/[(4)(2)] · π/2",
+          "= 3/8 · π/2",
           {
             "text": "∴ I = 3π/16",
             "style": "boxed"

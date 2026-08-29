@@ -17,15 +17,34 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the ellipse in the standard form whose distance between foci is 2 and the length of latus rectum is 15/2.",
   "appearances": [
-    { "year": 2018, "board": "ap_ipe" },
-    { "year": 2015 },
-    { "year": 2022 }
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015
+    },
+    {
+      "year": 2022
+    }
   ],
   "mark_split": [
-    { "label": "Distance between foci", "marks": 1 },
-    { "label": "Length of latus rectum", "marks": 1 },
-    { "label": "Solve for a and b", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Distance between foci",
+      "marks": 1
+    },
+    {
+      "label": "Length of latus rectum",
+      "marks": 1
+    },
+    {
+      "label": "Solve for a and b",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -48,9 +67,14 @@
         "margin_note": "First mark. The distance between the two foci is 2ae, not ae.",
         "memory_tip": "Distance BETWEEN the foci is twice the distance FROM the centre to one focus.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Let the ellipse be x²/a² + y²/b² = 1, with foci S(ae, 0), S′(−ae, 0)",
-          "Distance between foci S, S′ is 2 ⇒ 2ae = 2 ⇒ ae = 1 …(1)"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the ellipse be x²/a² + y²/b² = 1,",
+          "with foci S(ae, 0), S′(−ae, 0)",
+          "Distance between foci S, S′ is 2 ⇒ 2ae = 2",
+          "⇒ ae = 1 …(1)"
         ],
         "why": "The two foci sit symmetrically on either side of the centre, so the distance between them is twice the distance ae from the centre to either one.",
         "common_mistakes": [
@@ -67,7 +91,8 @@
         "margin_note": "Second mark. This gives b² in terms of a — keep it as an expression, not a number yet.",
         "memory_tip": "Latus rectum = 2b²/a — rearrange it to isolate b² when a is still unknown.",
         "lines": [
-          "Length of latus rectum is 15/2 ⇒ 2b²/a = 15/2 ⇒ b² = 15a/4 …(2)"
+          "Length of latus rectum is 15/2",
+          "⇒ 2b²/a = 15/2 ⇒ b² = 15a/4 …(2)"
         ],
         "why": "With two unknowns (a and b) and two given conditions, each condition is turned into one equation, to be combined afterwards using b² = a²(1 − e²).",
         "common_mistakes": [
@@ -84,10 +109,13 @@
         "margin_note": "Third mark. b² = a² − (ae)² connects the two conditions, since ae = 1 is already known.",
         "memory_tip": "b² = a²(1 − e²) = a² − (ae)² is the bridge formula linking a, b and the foci distance.",
         "lines": [
-          "b² = a²(1 − e²) = a² − (ae)² = a² − 1 …(3)  [since ae = 1]",
-          "From (2) and (3): 15a/4 = a² − 1 ⇒ 4a² − 15a − 4 = 0",
+          "b² = a²(1 − e²) = a² − (ae)² = a² − 1 …(3)",
+          "[since ae = 1]",
+          "From (2) and (3):",
+          "15a/4 = a² − 1 ⇒ 4a² − 15a − 4 = 0",
           "⇒ (a − 4)(4a + 1) = 0 ⇒ a = 4 or a = −1/4",
-          "a cannot be negative, so a = 4 ⇒ b² = a² − 1 = 16 − 1 = 15"
+          "a cannot be negative, so a = 4",
+          "⇒ b² = a² − 1 = 16 − 1 = 15"
         ],
         "why": "b² = a²(1 − e²) rewrites as a² − (ae)², and since ae = 1 is already known from step 1, this turns the latus-rectum equation into a single quadratic in a alone.",
         "common_mistakes": [
@@ -105,7 +133,10 @@
         "memory_tip": "The last step is just substitution: a² under x², b² under y².",
         "lines": [
           "a² = 16, b² = 15",
-          { "text": "Equation of the ellipse: x²/16 + y²/15 = 1", "style": "boxed" }
+          {
+            "text": "Equation of the ellipse: x²/16 + y²/15 = 1",
+            "style": "boxed"
+          }
         ],
         "why": "Once a² and b² are both known numbers, the standard form x²/a² + y²/b² = 1 is complete.",
         "common_mistakes": [

@@ -76,7 +76,8 @@
         "margin_note": "The last mark. Separate as e^(−t)dt = dx, integrate to −e^(−t) = x + c, then put t = x + y back in.",
         "memory_tip": "∫e^(−t)dt = −e^(−t) — the same negative-exponential integral that appears whenever the equation separates into e^(−t)dt = dx.",
         "lines": [
-          "⇒ dt/e^t = dx ⇒ e^(−t) dt = dx ⇒ ∫e^(−t) dt = ∫dx ⇒ −e^(−t) = x + c",
+          "⇒ dt/e^t = dx ⇒ e^(−t) dt = dx",
+          "⇒ ∫e^(−t) dt = ∫dx ⇒ −e^(−t) = x + c",
           {
             "text": "∴ e^(−(x+y)) + x + c = 0",
             "style": "boxed"

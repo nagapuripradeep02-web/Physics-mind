@@ -17,14 +17,32 @@
   "expected_time_min": 9,
   "question_text": "Find the equation and length of the common chord of the two circles x² + y² + 2x + 2y + 1 = 0, x² + y² + 4x + 3y + 2 = 0.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2017, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Find the common chord", "marks": 1 },
-    { "label": "Find the centre and radius", "marks": 1 },
-    { "label": "Find the perpendicular distance", "marks": 1 },
-    { "label": "Find the length of the chord", "marks": 1 }
+    {
+      "label": "Find the common chord",
+      "marks": 1
+    },
+    {
+      "label": "Find the centre and radius",
+      "marks": 1
+    },
+    {
+      "label": "Find the perpendicular distance",
+      "marks": 1
+    },
+    {
+      "label": "Find the length of the chord",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,7 +64,10 @@
         "mark_note": "Method",
         "margin_note": "First mark. Same subtraction as a radical axis — the common chord is that same line.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "S ≡ x² + y² + 2x + 2y + 1 = 0",
           "S′ ≡ x² + y² + 4x + 3y + 2 = 0",
           "Equation of the common chord is S − S′ = 0",
@@ -89,7 +110,8 @@
         "lines": [
           "Length of the perpendicular from C(−1, −1)",
           "to the line 2x + y + 1 = 0 is",
-          "p = |2(−1) + (−1) + 1| / √(4 + 1) = |−2| / √5 = 2/√5"
+          "p = |2(−1) + (−1) + 1| / √(4 + 1) = |−2| / √5",
+          "= 2/√5"
         ],
         "why": "The perpendicular from the centre bisects the chord — its length p, together with the radius r, gives a right triangle whose other leg is half the chord.",
         "common_mistakes": [
@@ -107,7 +129,10 @@
         "margin_note": "Fourth mark, for the final chord length.",
         "lines": [
           "Length of the common chord",
-          { "text": "= 2√(r² − p²) = 2√(1 − 4/5) = 2/√5 units", "style": "boxed" }
+          {
+            "text": "= 2√(r² − p²) = 2√(1 − 4/5) = 2/√5 units",
+            "style": "boxed"
+          }
         ],
         "why": "Half the chord, the perpendicular distance p, and the radius r form a right triangle — Pythagoras gives half the chord as √(r² − p²), and the full chord is twice that.",
         "common_mistakes": [

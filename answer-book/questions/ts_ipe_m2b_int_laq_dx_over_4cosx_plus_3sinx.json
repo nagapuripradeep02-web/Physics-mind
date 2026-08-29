@@ -59,7 +59,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²), cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
+          "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²),",
+          "cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
         ],
         "why": "Every rational function of sinx and cosx can be turned into a rational function of t through this one substitution, because sinx, cosx and dx all convert cleanly using the half-angle formulas.",
         "common_mistakes": [
@@ -76,8 +77,10 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "4cosx+3sinx = [4(1−t²)+3(2t)]/(1+t²) = (4−4t²+6t)/(1+t²)",
-          "I = ∫[2dt/(1+t²)] ÷ [(4−4t²+6t)/(1+t²)] = ∫2dt/(4−4t²+6t)",
+          "4cosx+3sinx = [4(1−t²)+3(2t)]/(1+t²)",
+          "= (4−4t²+6t)/(1+t²)",
+          "I = ∫[2dt/(1+t²)] ÷ [(4−4t²+6t)/(1+t²)]",
+          "= ∫2dt/(4−4t²+6t)",
           "= −∫dt/(2t²−3t−2)"
         ],
         "why": "The (1+t²) in the numerator and the (1+t²) hiding inside the denominator's fraction cancel completely — this cancellation is guaranteed to happen for every linear-in-sinx-and-cosx denominator.",
@@ -118,7 +121,8 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "= −(1/5)log|(t−2)/(t+1/2)| + c = (1/5)log|(2t+1)/(2t−4)| + c",
+          "= −(1/5)log|(t−2)/(t+1/2)| + c",
+          "= (1/5)log|(2t+1)/(2t−4)| + c",
           {
             "text": "∴ ∫ dx/(4cosx+3sinx) = (1/5)log|(2tan(x/2)+1)/(2(tan(x/2)−2))| + c",
             "style": "boxed"

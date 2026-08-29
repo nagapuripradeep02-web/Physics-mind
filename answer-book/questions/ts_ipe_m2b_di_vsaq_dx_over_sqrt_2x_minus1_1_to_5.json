@@ -57,7 +57,8 @@
             "style": "heading"
           },
           "I = ∫₁⁵ dx/√(2x − 1)",
-          "∫dx/√(2x−1) = (1/2)·2√(2x−1) = √(2x−1)   [derivative of 2x−1 is 2]",
+          "∫dx/√(2x−1) = (1/2)·2√(2x−1) = √(2x−1)",
+          "[derivative of 2x−1 is 2]",
           "∴ I = [√(2x − 1)]₁⁵"
         ],
         "why": "For √(ax+b), the antiderivative is (1/a)·2√(ax+b) because differentiating √(ax+b) gives a/(2√(ax+b)); the extra factor 1/a compensates for the constant 2 sitting inside the square root.",

@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the ellipse referred to its major, minor axes as the coordinate axes X, Y respectively with latus rectum of length 4 and distance between foci 4√2.",
   "appearances": [
-    { "year": 2019, "board": "ap_ipe" }
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Length of latus rectum", "marks": 1 },
-    { "label": "Distance between foci", "marks": 1 },
-    { "label": "Solve for a and b", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Length of latus rectum",
+      "marks": 1
+    },
+    {
+      "label": "Distance between foci",
+      "marks": 1
+    },
+    {
+      "label": "Solve for a and b",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,9 +61,15 @@
         "margin_note": "First mark. Take the ellipse as x²/a² + y²/b² = 1 with a > b, since the major axis is X.",
         "memory_tip": "Latus rectum = 2b²/a — rearrange to get b² in terms of a.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Let the equation of the ellipse be x²/a² + y²/b² = 1, (a > b)",
-          "Length of latus rectum is 4 ⇒ 2b²/a = 4 ⇒ b² = 2a …(1)"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the equation of the ellipse be x²/a² +",
+          "y²/b²",
+          "= 1, (a > b)",
+          "Length of latus rectum is 4 ⇒ 2b²/a = 4",
+          "⇒ b² = 2a …(1)"
         ],
         "why": "The major axis is given as the X-axis, so a > b, and the latus rectum condition is turned into an equation for b² in terms of a, to be combined with the foci condition next.",
         "common_mistakes": [
@@ -65,7 +86,8 @@
         "margin_note": "Second mark. Distance between the two foci is 2ae.",
         "memory_tip": "Square both sides once ae is isolated, so (ae)² appears ready for the next step.",
         "lines": [
-          "Distance between foci S(ae, 0), S′(−ae, 0) is 4√2",
+          "Distance between foci S(ae, 0),",
+          "S′(−ae, 0) is 4√2",
           "⇒ 2ae = 4√2 ⇒ ae = 2√2 ⇒ (ae)² = (2√2)² = 8"
         ],
         "why": "Squaring ae = 2√2 gives (ae)² = 8 directly, which is exactly the form needed in b² = a² − (ae)² in the next step.",
@@ -85,7 +107,8 @@
         "lines": [
           "b² = a²(1 − e²) = a² − (ae)² = a² − 8 …(2)",
           "From (1) and (2): 2a = a² − 8 ⇒ a² − 2a − 8 = 0",
-          "⇒ (a − 4)(a + 2) = 0 ⇒ a = 4 (a cannot be negative)",
+          "⇒ (a − 4)(a + 2) = 0",
+          "⇒ a = 4 (a cannot be negative)",
           "b² = 2a = 2(4) = 8"
         ],
         "why": "b² = a² − (ae)² links the foci condition to the latus-rectum equation from step 1, giving a single quadratic in a whose valid (positive) root is a = 4.",
@@ -105,7 +128,10 @@
         "lines": [
           "a² = 16, b² = 8",
           "x²/16 + y²/8 = 1",
-          { "text": "x² + 2y² = 16", "style": "boxed" }
+          {
+            "text": "x² + 2y² = 16",
+            "style": "boxed"
+          }
         ],
         "why": "Multiplying x²/16 + y²/8 = 1 through by 16 gives the equivalent whole-number form x² + 2y² = 16, which the book gives as the final answer.",
         "common_mistakes": [

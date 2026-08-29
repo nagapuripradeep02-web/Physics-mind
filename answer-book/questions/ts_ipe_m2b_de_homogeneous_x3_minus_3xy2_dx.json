@@ -17,14 +17,32 @@
   "expected_time_min": 15,
   "question_text": "Solve (x³ − 3xy²)dx + (3x²y − y³)dy = 0.",
   "appearances": [
-    { "year": 2018, "board": "ap_ipe" }
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Recognise homogeneous form and substitute", "marks": 1 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Write the partial fractions", "marks": 2 },
-    { "label": "Integrate both sides", "marks": 2 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Recognise homogeneous form and substitute",
+      "marks": 1
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Write the partial fractions",
+      "marks": 2
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,7 +65,10 @@
         "margin_note": "One mark. Every term has total degree 3, so the equation is homogeneous.",
         "memory_tip": "x³, xy², x²y and y³ are all degree 3 — homogeneous of degree 3.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is (x³ − 3xy²)dx + (3x²y − y³)dy = 0",
           "⇒ dy/dx = (x³ − 3xy²)/(y³ − 3x²y) … (1)",
           "(1) is a homogeneous D.E",
@@ -69,7 +90,9 @@
         "margin_note": "One mark. Subtract v as a fraction with denominator (v³ − 3v).",
         "memory_tip": "v(v³ − 3v) = v⁴ − 3v² is the term that cancels the −3v² inside the numerator.",
         "lines": [
-          "x·dv/dx = (1 − 3v²)/(v³ − 3v) − v = [1 − 3v² − v(v³ − 3v)]/(v³ − 3v) = (1 − v⁴)/(v³ − 3v)",
+          "x·dv/dx = (1 − 3v²)/(v³ − 3v) − v",
+          "= [1 − 3v² − v(v³ − 3v)]/(v³ − 3v)",
+          "= (1 − v⁴)/(v³ − 3v)",
           "⇒ (v³ − 3v)/(1 − v⁴) dv = dx/x"
         ],
         "why": "Writing v as v(v³ − 3v)/(v³ − 3v) puts both terms over the same denominator; expanding 1 − 3v² − v⁴ + 3v² leaves 1 − v⁴, giving a clean function of v.",
@@ -88,8 +111,10 @@
         "memory_tip": "1 − v⁴ = (1 − v²)(1 + v²) = (1 − v)(1 + v)(1 + v²) — always factor a difference of squares twice.",
         "lines": [
           "1 − v⁴ = (1 − v)(1 + v)(1 + v²)",
-          "Writing (3v − v³)/[(v+1)(v−1)(v²+1)] = A/(v+1) + B/(v−1) + (Cv+D)/(v²+1)",
-          "and resolving into partial fractions gives A = 1/2, B = 1/2, C = 0, D = −2"
+          "Writing (3v − v³)/[(v+1)(v−1)(v²+1)]",
+          "= A/(v+1) + B/(v−1) + (Cv+D)/(v²+1)",
+          "and resolving into partial fractions gives A",
+          "= 1/2, B = 1/2, C = 0, D = −2"
         ],
         "why": "Splitting the single algebraic fraction into simpler pieces over each linear or quadratic factor is what lets each piece be integrated by a standard rule in the next step — this is the standard partial-fractions method for a rational function.",
         "common_mistakes": [
@@ -106,8 +131,10 @@
         "margin_note": "Two marks. Each of the three partial-fraction pieces integrates by a different standard rule.",
         "memory_tip": "1/(v+1) and 1/(v−1) both give logs; −2/(v²+1) gives an inverse tangent — three different antiderivative shapes.",
         "lines": [
-          "∫ [1/(2(v+1)) + 1/(2(v−1)) − 2v/(v²+1)] dv = ∫ dx/x",
-          "⇒ (1/2)log(v+1) + (1/2)log(v−1) − log(v²+1) = log x + log c",
+          "∫ [1/(2(v+1)) + 1/(2(v−1)) − 2v/(v²+1)] dv",
+          "= ∫ dx/x",
+          "⇒ (1/2)log(v+1) + (1/2)log(v−1) − log(v²+1)",
+          "= log x + log c",
           "⇒ log[√(v+1)·√(v−1) / (v²+1)] = log(cx)"
         ],
         "why": "Each partial-fraction piece is a standard integral — 1/(v±1) gives a log, and 2v/(v²+1) gives a log of the quadratic — and combining the resulting logs with matching coefficients keeps the working compact before comparing with the right side.",
@@ -125,9 +152,13 @@
         "margin_note": "The last mark. Square both sides to clear the square roots, then substitute v = y/x.",
         "memory_tip": "Squaring removes both square roots at once: (√(v+1)√(v−1))² = (v+1)(v−1) = v² − 1.",
         "lines": [
-          "⇒ (v² − 1)/(v² + 1)² = c²x² ⇒ v² − 1 = c²x²(v² + 1)²",
+          "⇒ (v² − 1)/(v² + 1)² = c²x²",
+          "⇒ v² − 1 = c²x²(v² + 1)²",
           "Put v = y/x, multiply through by x⁴:",
-          { "text": "y² − x² = c²(y² + x²)²", "style": "boxed" }
+          {
+            "text": "y² − x² = c²(y² + x²)²",
+            "style": "boxed"
+          }
         ],
         "why": "Squaring both sides of the earlier log-derived relation clears the square roots, and substituting v = y/x with the matching power of x⁴ on both sides turns the whole relation into a symmetric equation purely in x, y and the constant c.",
         "common_mistakes": [

@@ -17,15 +17,35 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the ellipse if focus = (1, −1), e = 2/3 and directrix is x + y + 2 = 0.",
   "appearances": [
-    { "year": 2016, "board": "ap_ipe" },
-    { "year": 2022, "board": "ap_ipe" },
-    { "year": 2019 }
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019
+    }
   ],
   "mark_split": [
-    { "label": "Set up SP = e·PM", "marks": 1 },
-    { "label": "Square and substitute coordinates", "marks": 1 },
-    { "label": "Expand both sides", "marks": 1 },
-    { "label": "Simplify to the final equation", "marks": 1 }
+    {
+      "label": "Set up SP = e·PM",
+      "marks": 1
+    },
+    {
+      "label": "Square and substitute coordinates",
+      "marks": 1
+    },
+    {
+      "label": "Expand both sides",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -48,9 +68,14 @@
         "margin_note": "First mark. S is the given focus, and PM is the perpendicular distance from P to the given directrix.",
         "memory_tip": "SP over PM equals e — that ratio IS the definition of an ellipse.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Given: focus S(1, −1), e = 2/3, directrix x + y + 2 = 0",
-          "Let P(x₁, y₁) be any point on the ellipse ⇒ SP = e·PM",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given: focus S(1, −1), e = 2/3,",
+          "directrix x + y + 2 = 0",
+          "Let P(x₁, y₁) be any point on the ellipse",
+          "⇒ SP = e·PM",
           "√((x₁−1)² + (y₁+1)²) = (2/3) · |x₁+y₁+2| / √2"
         ],
         "why": "The focus-directrix property defines the ellipse directly: the distance from any point P to the focus, divided by its perpendicular distance to the directrix, is always the constant e.",
@@ -85,8 +110,10 @@
         "margin_note": "Third mark. Expand each squared bracket term by term before collecting.",
         "memory_tip": "Expand fully before simplifying — combining terms too early causes sign errors.",
         "lines": [
-          "9(x₁²−2x₁+1+y₁²+2y₁+1) = 2(x₁²+y₁²+4+2x₁y₁+4x₁+4y₁)",
-          "9x₁²+9y₁²−18x₁+18y₁+18 = 2x₁²+2y₁²+4x₁y₁+8x₁+8y₁+8"
+          "9(x₁²−2x₁+1+y₁²+2y₁+1)",
+          "= 2(x₁²+y₁²+4+2x₁y₁+4x₁+4y₁)",
+          "9x₁²+9y₁²−18x₁+18y₁+18",
+          "= 2x₁²+2y₁²+4x₁y₁+8x₁+8y₁+8"
         ],
         "why": "Expanding both squared expressions fully, term by term, is what makes the next simplification step reliable.",
         "common_mistakes": [
@@ -103,8 +130,13 @@
         "margin_note": "Fourth mark. Collect all terms on one side and combine like terms carefully.",
         "memory_tip": "This equation will have an xy term — that is expected, because the focus and directrix are not aligned with the coordinate axes.",
         "lines": [
-          "9x₁²−2x₁² + 9y₁²−2y₁² − 4x₁y₁ − 18x₁−8x₁ + 18y₁−8y₁ + 18−8 = 0",
-          { "text": "7x₁² − 4x₁y₁ + 7y₁² − 26x₁ + 10y₁ + 10 = 0", "style": "boxed" }
+          "9x₁²−2x₁² + 9y₁²−2y₁² − 4x₁y₁ − 18x₁−8x₁ +",
+          "18y₁−8y₁ + 18−8",
+          "= 0",
+          {
+            "text": "7x₁² − 4x₁y₁ + 7y₁² − 26x₁ + 10y₁ + 10 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Collecting the x₁², y₁², x₁y₁ and linear terms separately, on the same side of the equation, gives the final second-degree equation of the ellipse.",
         "common_mistakes": [

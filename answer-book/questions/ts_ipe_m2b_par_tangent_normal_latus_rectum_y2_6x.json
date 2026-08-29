@@ -50,8 +50,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given parabola y² = 6x ⇒ 4a = 6 ⇒ 2a = 3 ⇒ a = 3/2",
-          "The positive end of the latus rectum is (a, 2a) = (3/2, 3)"
+          "Given parabola y² = 6x ⇒ 4a = 6 ⇒ 2a = 3",
+          "⇒ a = 3/2",
+          "The positive end of the latus rectum is (a, 2a)",
+          "= (3/2, 3)"
         ],
         "why": "The latus rectum is the chord through the focus perpendicular to the axis, and its two ends are always (a,2a) and (a,−2a) — the positive end is the one with the positive y-coordinate.",
         "common_mistakes": [
@@ -68,9 +70,13 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for both the tangent and the normal — this question asks for two equations, not one.",
         "lines": [
-          "Tangent at (x₁,y₁) on y² = 4ax is yy₁ = 2a(x + x₁): y(3) = 3(x + 3/2) ⇒ y = x + 3/2 ⇒ 2x − 2y + 3 = 0",
-          "Slope of this tangent is 1, so the slope of the normal is −1",
-          "Normal at (3/2, 3) with slope −1: y − 3 = −1(x − 3/2) ⇒ 2x + 2y − 9 = 0",
+          "Tangent at (x₁,y₁) on y² = 4ax is yy₁",
+          "= 2a(x + x₁): y(3) = 3(x + 3/2) ⇒ y = x + 3/2",
+          "⇒ 2x − 2y + 3 = 0",
+          "Slope of this tangent is 1,",
+          "so the slope of the normal is −1",
+          "Normal at (3/2, 3) with slope −1:",
+          "y − 3 = −1(x − 3/2) ⇒ 2x + 2y − 9 = 0",
           {
             "text": "∴ tangent: 2x − 2y + 3 = 0, normal: 2x + 2y − 9 = 0",
             "style": "boxed"

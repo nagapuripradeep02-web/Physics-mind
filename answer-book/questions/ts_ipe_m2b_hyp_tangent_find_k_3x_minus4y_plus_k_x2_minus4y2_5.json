@@ -17,15 +17,36 @@
   "expected_time_min": 4,
   "question_text": "Find the value of k if 3x − 4y + k = 0 is a tangent to the hyperbola x² − 4y² = 5.",
   "appearances": [
-    { "year": 2015, "board": "ts_ipe" },
-    { "year": 2017, "board": "ts_ipe" },
-    { "year": 2018, "board": "ts_ipe" },
-    { "year": 2019, "board": "ap_ipe" },
-    { "year": 2020, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Set up the tangency condition", "marks": 1 },
-    { "label": "Solve for k", "marks": 1 }
+    {
+      "label": "Set up the tangency condition",
+      "marks": 1
+    },
+    {
+      "label": "Solve for k",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -48,9 +69,15 @@
         "margin_note": "First mark. Comparing coefficients avoids first converting the line to slope form.",
         "memory_tip": "For a line lx + my + n = 0 tangent to a hyperbola, use n² = a²l² − b²m² — subtract, do not add.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Given hyperbola x² − 4y² = 5 ⇒ x²/5 − y²/(5/4) = 1 ⇒ a² = 5, b² = 5/4",
-          "Comparing 3x − 4y + k = 0 with the general line lx + my + n = 0: l = 3, m = −4, n = k",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given hyperbola x² − 4y² = 5",
+          "⇒ x²/5 − y²/(5/4) = 1 ⇒ a² = 5, b² = 5/4",
+          "Comparing 3x − 4y + k = 0",
+          "with the general line lx + my + n = 0: l = 3,",
+          "m = −4, n = k",
           "Tangency condition: n² = a²l² − b²m²"
         ],
         "why": "The line-form tangency test avoids first converting the line to slope form — compare its coefficients l, m, n directly against the hyperbola's a², b².",
@@ -69,7 +96,10 @@
         "memory_tip": "A tangency condition solved for k always gives ± — never report only the positive root.",
         "lines": [
           "k² = 5(3²) − (5/4)(−4)² = 45 − 20 = 25",
-          { "text": "k = ±5", "style": "boxed" }
+          {
+            "text": "k = ±5",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting l=3, m=−4 into the tangency condition gives a single equation in k alone, which has two solutions since squaring a line's intercept always allows both signs.",
         "common_mistakes": [

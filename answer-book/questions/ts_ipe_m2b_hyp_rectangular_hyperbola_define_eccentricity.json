@@ -17,12 +17,24 @@
   "expected_time_min": 4,
   "question_text": "Define rectangular hyperbola and find its eccentricity.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2021, "board": "ap_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2021,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Definition", "marks": 1 },
-    { "label": "Eccentricity", "marks": 1 }
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Eccentricity",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,9 +57,16 @@
         "margin_note": "First mark. The name comes from the asymptotes meeting at a right angle.",
         "memory_tip": "Rectangular hyperbola = transverse axis EQUALS conjugate axis, i.e. a = b.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "A hyperbola x²/a² − y²/b² = 1 is called a rectangular hyperbola when its transverse axis and its conjugate axis are equal in length.",
-          "Transverse axis = 2a, conjugate axis = 2b, so 2a = 2b ⇒ a = b"
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A hyperbola x²/a² − y²/b²",
+          "= 1 is called a rectangular hyperbola when",
+          "its transverse axis and its conjugate axis",
+          "are equal in length.",
+          "Transverse axis = 2a, conjugate axis = 2b,",
+          "so 2a = 2b ⇒ a = b"
         ],
         "why": "The name 'rectangular' comes from the asymptotes: when a = b the asymptotes y = ±(b/a)x become y = ±x, which are perpendicular — the two asymptotes meet at a right angle, like the sides of a rectangle.",
         "common_mistakes": [
@@ -64,8 +83,12 @@
         "margin_note": "Second mark. Substitute a = b into the ordinary eccentricity formula.",
         "memory_tip": "Every rectangular hyperbola has e = √2, no matter its size.",
         "lines": [
-          "e = √(a² + b²)/a, and a = b ⇒ e = √(a² + a²)/a = √(2a²)/a",
-          { "text": "e = √2", "style": "boxed" }
+          "e = √(a² + b²)/a, and a = b",
+          "⇒ e = √(a² + a²)/a = √(2a²)/a",
+          {
+            "text": "e = √2",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting b = a into the ordinary eccentricity formula and cancelling the common factor of a gives a fixed numeric eccentricity — every rectangular hyperbola has the same eccentricity √2, regardless of its size.",
         "common_mistakes": [

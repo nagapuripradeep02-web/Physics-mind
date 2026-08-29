@@ -64,8 +64,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "1/(coshx+sinhx) = (coshx−sinhx)/[(coshx+sinhx)(coshx−sinhx)]",
-          "= (coshx−sinhx)/(cosh²x−sinh²x) = coshx−sinhx   [∵ cosh²x−sinh²x = 1]"
+          "1/(coshx+sinhx)",
+          "= (coshx−sinhx)/[(coshx+sinhx)(coshx−sinhx)]",
+          "= (coshx−sinhx)/(cosh²x−sinh²x)",
+          "= coshx−sinhx   [∵ cosh²x−sinh²x = 1]"
         ],
         "why": "Multiplying top and bottom by the conjugate (coshx−sinhx) uses the identity cosh²x−sinh²x=1 to collapse the whole denominator down to a plain 1, leaving only the numerator.",
         "common_mistakes": [

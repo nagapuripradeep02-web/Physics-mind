@@ -17,17 +17,44 @@
   "expected_time_min": 4,
   "question_text": "If the eccentricity of a hyperbola is 5/4, then find the eccentricity of its conjugate hyperbola.",
   "appearances": [
-    { "year": 2015, "board": "ap_ipe" },
-    { "year": 2016, "board": "ap_ipe" },
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2019, "board": "ap_ipe" },
-    { "year": 2015, "board": "ts_ipe" },
-    { "year": 2019, "board": "ts_ipe" },
-    { "year": 2022, "board": "ts_ipe" }
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Set up using the reciprocal identity", "marks": 1 },
-    { "label": "Solve for the conjugate's eccentricity", "marks": 1 }
+    {
+      "label": "Set up using the reciprocal identity",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the conjugate's eccentricity",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -50,10 +77,16 @@
         "margin_note": "First mark. Reuse the identity from the previous question rather than deriving it again.",
         "memory_tip": "1/e² + 1/e₁² = 1 is the fastest route here — rearrange for 1/e₁² and substitute.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "Let e = 5/4 and let e₁ be the eccentricity of the conjugate hyperbola.",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let e",
+          "= 5/4 and let e₁ be the eccentricity of the",
+          "conjugate hyperbola.",
           "By the reciprocal identity, 1/e² + 1/e₁² = 1",
-          "⇒ 1/e₁² = 1 − 1/e² = 1 − 1/(5/4)² = 1 − 16/25 = 9/25"
+          "⇒ 1/e₁² = 1 − 1/e² = 1 − 1/(5/4)²",
+          "= 1 − 16/25 = 9/25"
         ],
         "why": "The fastest route to e₁ is the reciprocal identity proved in the previous question — rearrange it for 1/e₁² and substitute the given e.",
         "common_mistakes": [
@@ -71,7 +104,10 @@
         "memory_tip": "e₁ = 5/3 is bigger than e = 5/4, since the conjugate here is the 'steeper' branch shape.",
         "lines": [
           "e₁² = 25/9",
-          { "text": "e₁ = 5/3", "style": "boxed" }
+          {
+            "text": "e₁ = 5/3",
+            "style": "boxed"
+          }
         ],
         "why": "Taking the square root of 25/9 gives 5/3 directly, since both numerator and denominator are perfect squares.",
         "common_mistakes": [

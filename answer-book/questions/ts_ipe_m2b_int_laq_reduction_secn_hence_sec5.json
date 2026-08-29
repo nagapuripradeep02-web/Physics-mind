@@ -65,7 +65,8 @@
             "style": "heading"
           },
           "Given I_n = ∫ secⁿx dx = ∫ secⁿ⁻²x · sec²x dx",
-          "Take first function u = secⁿ⁻²x, second v = sec²x",
+          "Take first function u = secⁿ⁻²x,",
+          "second v = sec²x",
           "Then ∫v dx = ∫sec²x dx = tanx"
         ],
         "why": "Peeling off sec²x (whose antiderivative tanx is already known) leaves secⁿ⁻²x to differentiate — the same by-parts pattern as sinⁿx and cosⁿx, now with sec²x as the piece integrated.",
@@ -83,7 +84,9 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "By the by-parts rule, I_n = secⁿ⁻²x tanx − ∫(n−2)secⁿ⁻³x secx tanx · tanx dx",
+          "By the by-parts rule, I_n",
+          "= secⁿ⁻²x tanx − ∫(n−2)secⁿ⁻³x secx tanx",
+          "· tanx dx",
           "= secⁿ⁻²x tanx − (n−2)∫secⁿ⁻²x tan²x dx",
           "= secⁿ⁻²x tanx − (n−2)∫secⁿ⁻²x(sec²x − 1)dx",
           {
@@ -132,7 +135,8 @@
         "lines": [
           "Put n = 5, 3, 1 successively in (1):",
           "I₅ = sec³x tanx/4 + (3/4)I₃",
-          "I₃ = secx tanx/2 + (1/2)I₁, and I₁ = ∫secx dx = log|secx + tanx| + c",
+          "I₃ = secx tanx/2 + (1/2)I₁,",
+          "and I₁ = ∫secx dx = log|secx + tanx| + c",
           "So I₃ = secx tanx/2 + (1/2)log|secx + tanx| + c",
           {
             "text": "∴ ∫ sec⁵x dx = sec³x tanx/4 + (3/8)secx tanx + (3/8)log|secx + tanx| + c",

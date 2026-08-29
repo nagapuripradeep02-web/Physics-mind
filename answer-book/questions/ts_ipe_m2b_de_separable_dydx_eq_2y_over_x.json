@@ -79,7 +79,8 @@
         "margin_note": "The last mark. ∫dy/y = log y and ∫2dx/x = 2 log x; combine the two logs and the constant into one power form.",
         "memory_tip": "log y = log x² + log c combines to log y = log(cx²), so y = cx² — always write the constant as log c to combine logs cleanly.",
         "lines": [
-          "∫dy/y = 2∫dx/x ⇒ log y = 2 log x + log c ⇒ log y = log x² + log c ⇒ log y = log(cx²)",
+          "∫dy/y = 2∫dx/x ⇒ log y = 2 log x + log c",
+          "⇒ log y = log x² + log c ⇒ log y = log(cx²)",
           {
             "text": "∴ y = cx²",
             "style": "boxed"

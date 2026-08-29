@@ -17,13 +17,28 @@
   "expected_time_min": 9,
   "question_text": "Solve dy/dx − x tan(y − x) = 1.",
   "appearances": [
-    { "year": 2015, "board": "ts_ipe" }
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Substitute t = y − x", "marks": 1 },
-    { "label": "Separate the variables", "marks": 1 },
-    { "label": "Integrate both sides", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Substitute t = y − x",
+      "marks": 1
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -46,9 +61,13 @@
         "margin_note": "One mark. Differentiating t = y − x relates dt/dx to dy/dx before substituting into the equation.",
         "memory_tip": "t = y − x gives dt/dx = dy/dx − 1, so dy/dx = dt/dx + 1.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Given D.E is dy/dx − x tan(y − x) = 1",
-          "Put y − x = t ⇒ dy/dx − 1 = dt/dx ⇒ dy/dx = dt/dx + 1"
+          "Put y − x = t ⇒ dy/dx − 1 = dt/dx",
+          "⇒ dy/dx = dt/dx + 1"
         ],
         "why": "The awkward term tan(y − x) only makes sense as a function of the single combination y − x, so naming that combination t and rewriting dy/dx in terms of dt/dx removes the mixed x and y dependence.",
         "common_mistakes": [
@@ -65,8 +84,11 @@
         "margin_note": "One mark. The equation becomes purely in t and x once the substitution is made.",
         "memory_tip": "1 cancels with 1 once dt/dx + 1 − x tan t = 1 is written out — the constant terms vanish first.",
         "lines": [
-          "Hence, the given D.E becomes (dt/dx + 1) − x tan t = 1",
-          "⇒ dt/dx = x tan t ⇒ (1/tan t) dt = x dx ⇒ cot t dt = x dx"
+          "Hence,",
+          "the given D.E becomes (dt/dx + 1) − x tan t",
+          "= 1",
+          "⇒ dt/dx = x tan t ⇒ (1/tan t) dt = x dx",
+          "⇒ cot t dt = x dx"
         ],
         "why": "Substituting the relation from step 1 into the original equation cancels the constant terms and leaves dt/dx = x tan t, which separates cleanly into a t-only side and an x-only side.",
         "common_mistakes": [
@@ -102,7 +124,10 @@
         "memory_tip": "Multiplying by 2 clears the /2 on the right and doubles the log on the left, matching the book's marked form.",
         "lines": [
           "⇒ 2 log(sin t) = x² + c",
-          { "text": "2 log sin(y − x) = x² + c", "style": "boxed" }
+          {
+            "text": "2 log sin(y − x) = x² + c",
+            "style": "boxed"
+          }
         ],
         "why": "Multiplying the whole equation by 2 clears the fraction on the right, and substituting t = y − x back in returns the final relation to the original variables x and y.",
         "common_mistakes": [

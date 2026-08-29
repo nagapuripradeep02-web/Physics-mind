@@ -17,12 +17,23 @@
   "expected_time_min": 9,
   "question_text": "Find the area of the region bounded by the parabolas y² = 4x and x² = 4y.",
   "appearances": [
-    { "year": 2017 }
+    {
+      "year": 2017
+    }
   ],
   "mark_split": [
-    { "label": "Solve for the points of intersection", "marks": 1 },
-    { "label": "Identify the upper and lower curves", "marks": 1 },
-    { "label": "Integrate and evaluate", "marks": 2 }
+    {
+      "label": "Solve for the points of intersection",
+      "marks": 1
+    },
+    {
+      "label": "Identify the upper and lower curves",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and evaluate",
+      "marks": 2
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,9 +56,14 @@
         "margin_note": "One mark. Eliminate y first, then factor out x rather than dividing.",
         "memory_tip": "Both parabolas pass through the origin, so x = 0 is always one root — look for the second root separately.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
-          "The given curves are y² = 4x …(1), x² = 4y …(2)",
-          "From (2): y = x²/4. Substituting in (1): (x²/4)² = 4x ⇒ x⁴ = 64x ⇒ x(x³ − 64) = 0",
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The given curves are y² = 4x …(1),",
+          "x² = 4y …(2)",
+          "From (2): y = x²/4. Substituting in (1):",
+          "(x²/4)² = 4x ⇒ x⁴ = 64x ⇒ x(x³ − 64) = 0",
           "⇒ x = 0 or x = 4"
         ],
         "why": "Substituting y from the second equation into the first eliminates y, leaving a single equation in x whose two roots (0 and 4) are the x-coordinates of the two points where the parabolas cross.",
@@ -69,18 +85,99 @@
           "width": 300,
           "height": 240,
           "elements": [
-            { "type": "stroke", "id": "ax_x", "d": "M 30 200 L 275 200 M 268 194 L 278 200 L 268 206", "ms": 500 },
-            { "type": "stroke", "id": "ax_y", "d": "M 60 220 L 60 25 M 54 33 L 60 23 L 66 33", "ms": 500 },
-            { "type": "label", "id": "lbl_o", "x": 42, "y": 214, "text": "O(0,0)", "ms": 300, "sm": true },
-            { "type": "stroke", "id": "curve_y2_4x", "d": "M 60 200 Q 105 200 128 152 Q 142 122 150 100", "ms": 650 },
-            { "type": "label", "id": "lbl_y2_4x", "x": 158, "y": 92, "text": "y² = 4x", "ms": 300, "sm": true },
-            { "type": "stroke", "id": "curve_x2_4y", "d": "M 60 200 Q 62 145 92 122 Q 122 104 150 100", "ms": 650 },
-            { "type": "label", "id": "lbl_x2_4y", "x": 158, "y": 118, "text": "x² = 4y", "ms": 300, "sm": true },
-            { "type": "label", "id": "lbl_a_pt", "x": 140, "y": 88, "text": "A", "ms": 300, "em": true },
-            { "type": "stroke", "id": "hatch1", "d": "M 90 178 L 98 168", "ms": 300, "pen": "pencil", "wipe": "y" },
-            { "type": "stroke", "id": "hatch2", "d": "M 108 158 L 116 148", "ms": 300, "pen": "pencil", "wipe": "y" },
-            { "type": "stroke", "id": "hatch3", "d": "M 122 138 L 130 128", "ms": 300, "pen": "pencil", "wipe": "y" },
-            { "type": "label", "id": "lbl_area", "x": 100, "y": 150, "text": "A", "ms": 300, "sm": true }
+            {
+              "type": "stroke",
+              "id": "ax_x",
+              "d": "M 30 200 L 275 200 M 268 194 L 278 200 L 268 206",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "ax_y",
+              "d": "M 60 220 L 60 25 M 54 33 L 60 23 L 66 33",
+              "ms": 500
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 42,
+              "y": 214,
+              "text": "O(0,0)",
+              "ms": 300,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "curve_y2_4x",
+              "d": "M 60 200 Q 105 200 128 152 Q 142 122 150 100",
+              "ms": 650
+            },
+            {
+              "type": "label",
+              "id": "lbl_y2_4x",
+              "x": 158,
+              "y": 92,
+              "text": "y² = 4x",
+              "ms": 300,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "curve_x2_4y",
+              "d": "M 60 200 Q 62 145 92 122 Q 122 104 150 100",
+              "ms": 650
+            },
+            {
+              "type": "label",
+              "id": "lbl_x2_4y",
+              "x": 158,
+              "y": 118,
+              "text": "x² = 4y",
+              "ms": 300,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a_pt",
+              "x": 140,
+              "y": 88,
+              "text": "A",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "hatch1",
+              "d": "M 90 178 L 98 168",
+              "ms": 300,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "hatch2",
+              "d": "M 108 158 L 116 148",
+              "ms": 300,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "hatch3",
+              "d": "M 122 138 L 130 128",
+              "ms": 300,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_area",
+              "x": 100,
+              "y": 150,
+              "text": "A",
+              "ms": 300,
+              "sm": true
+            }
           ]
         },
         "why": "y² = 4x is a sideways-opening parabola whose upper branch y = 2√x lies above the region, while x² = 4y is an upward-opening parabola whose branch y = x²/4 lies below it — the picture makes this ordering immediate, which is what the integral setup depends on.",
@@ -98,10 +195,16 @@
         "margin_note": "The last two marks. Write y = 2√x as the upper curve and y = x²/4 as the lower curve before integrating.",
         "memory_tip": "y² = 4x gives y = 2√x (upper); x² = 4y gives y = x²/4 (lower) — always upper minus lower.",
         "lines": [
-          "Upper curve: y² = 4x ⇒ y = 2√x. Lower curve: x² = 4y ⇒ y = x²/4",
-          "Required area A = ∫₀^4 (2√x − x²/4) dx = [2·(2/3)x^(3/2) − x³/12]₀^4",
-          "= (4/3)(4)^(3/2) − 4³/12 = (4/3)(8) − 64/12 = 32/3 − 16/3",
-          { "text": "∴ Area = 16/3 sq. units", "style": "boxed" }
+          "Upper curve: y² = 4x ⇒ y = 2√x.",
+          "Lower curve: x² = 4y ⇒ y = x²/4",
+          "Required area A = ∫₀^4 (2√x − x²/4) dx",
+          "= [2·(2/3)x^(3/2) − x³/12]₀^4",
+          "= (4/3)(4)^(3/2) − 4³/12 = (4/3)(8) − 64/12",
+          "= 32/3 − 16/3",
+          {
+            "text": "∴ Area = 16/3 sq. units",
+            "style": "boxed"
+          }
         ],
         "why": "Integrating the upper curve minus the lower curve from x = 0 to x = 4 (the two intersection points) and substituting the limits (the lower limit contributes 0) gives 32/3 − 16/3, a clean fraction.",
         "common_mistakes": [

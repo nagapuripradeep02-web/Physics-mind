@@ -17,14 +17,30 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the ellipse in the standard form, if it passes through the points (−2, 2) and (3, −1).",
   "appearances": [
-    { "year": 2017 },
-    { "year": 2022 }
+    {
+      "year": 2017
+    },
+    {
+      "year": 2022
+    }
   ],
   "mark_split": [
-    { "label": "Substitute the first point", "marks": 1 },
-    { "label": "Substitute the second point", "marks": 1 },
-    { "label": "Solve the system", "marks": 1 },
-    { "label": "Final equation", "marks": 1 }
+    {
+      "label": "Substitute the first point",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the second point",
+      "marks": 1
+    },
+    {
+      "label": "Solve the system",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -47,9 +63,13 @@
         "margin_note": "First mark. Let u = 1/a² and v = 1/b² to keep the system linear.",
         "memory_tip": "Two unknown constants (a², b²) need exactly two points to pin them down.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let the ellipse be x²/a² + y²/b² = 1 …(A)",
-          "(A) passes through (−2, 2): 4/a² + 4/b² = 1 …(1)"
+          "(A) passes through (−2, 2):",
+          "4/a² + 4/b² = 1 …(1)"
         ],
         "why": "Substituting a known point on the curve into its equation gives one linear equation in the unknowns 1/a² and 1/b², since (−2)² and 2² are already fixed numbers.",
         "common_mistakes": [
@@ -66,7 +86,8 @@
         "margin_note": "Second mark. The same substitution, with the second given point.",
         "memory_tip": "Each point on the curve gives one equation — two points give two equations.",
         "lines": [
-          "(A) passes through (3, −1): 9/a² + 1/b² = 1 …(2)"
+          "(A) passes through (3, −1):",
+          "9/a² + 1/b² = 1 …(2)"
         ],
         "why": "The second point gives a second, independent linear equation in the same two unknowns 1/a² and 1/b², which together can be solved.",
         "common_mistakes": [
@@ -83,9 +104,12 @@
         "margin_note": "Third mark. Eliminate one unknown by subtracting a suitable multiple of one equation from the other.",
         "memory_tip": "Solve for 1/a² and 1/b² first, then take reciprocals only at the very end.",
         "lines": [
-          "From (1) and (2): 4/a²+4/b² = 9/a²+1/b² ⇒ 3/b² = 5/a² ⇒ 1/b² = 5/(3a²)",
-          "Sub into (2): 9/a² + 5/(3a²) = 1 ⇒ (27+5)/(3a²) = 1 ⇒ 1/a² = 3/32",
-          "1/b² = 1 − 9/a² = 1 − 9(3/32) = (32−27)/32 = 5/32"
+          "From (1) and (2): 4/a²+4/b² = 9/a²+1/b²",
+          "⇒ 3/b² = 5/a² ⇒ 1/b² = 5/(3a²)",
+          "Sub into (2): 9/a² + 5/(3a²) = 1",
+          "⇒ (27+5)/(3a²) = 1 ⇒ 1/a² = 3/32",
+          "1/b² = 1 − 9/a² = 1 − 9(3/32)",
+          "= (32−27)/32 = 5/32"
         ],
         "why": "Eliminating one unknown between the two linear equations, then back-substituting, gives 1/a² and 1/b² as plain fractions.",
         "common_mistakes": [
@@ -103,7 +127,10 @@
         "memory_tip": "Multiply through by 32 to turn the fractional equation into whole numbers.",
         "lines": [
           "x²/a² + y²/b² = (3/32)x² + (5/32)y² = 1",
-          { "text": "3x² + 5y² = 32", "style": "boxed" }
+          {
+            "text": "3x² + 5y² = 32",
+            "style": "boxed"
+          }
         ],
         "why": "Once 1/a² = 3/32 and 1/b² = 5/32 are known, substituting them directly into the standard form and multiplying through by 32 gives the whole-number final equation.",
         "common_mistakes": [

@@ -58,7 +58,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The equation of a parabola with axis parallel to the y-axis is y = lx² + mx + n.",
+          "The equation of a parabola",
+          "with axis parallel to the y-axis is y",
+          "= lx² + mx + n.",
           "Through (4, 5): 5 = 16l + 4m + n   ……(1)",
           "Through (−2, 11): 11 = 4l − 2m + n   ……(2)",
           "Through (−4, 21): 21 = 16l − 4m + n   ……(3)"
@@ -117,7 +119,8 @@
         "mark_note": "Solution",
         "margin_note": "Last mark. Check the boxed equation by substituting (4, 5) back in — it should give 0.",
         "lines": [
-          "From (1): 16(1/2) + 4(−2) + n = 5 ⇒ 8 − 8 + n = 5 ⇒ n = 5",
+          "From (1):",
+          "16(1/2) + 4(−2) + n = 5 ⇒ 8 − 8 + n = 5 ⇒ n = 5",
           "Substitute l = 1/2, m = −2, n = 5 in y = lx² + mx + n:",
           "y = (1/2)x² − 2x + 5",
           "Multiply by 2: 2y = x² − 4x + 10",

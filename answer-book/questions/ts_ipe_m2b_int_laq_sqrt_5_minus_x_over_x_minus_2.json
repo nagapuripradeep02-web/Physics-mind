@@ -68,8 +68,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "√[(5−x)/(x−2)] = √[(5−x)²/((x−2)(5−x))] = (5−x)/√[(x−2)(5−x)]",
-          "(x−2)(5−x) = 5x−x²−10+2x = −x²+7x−10 = 7x−10−x²",
+          "√[(5−x)/(x−2)] = √[(5−x)²/((x−2)(5−x))]",
+          "= (5−x)/√[(x−2)(5−x)]",
+          "(x−2)(5−x) = 5x−x²−10+2x = −x²+7x−10",
+          "= 7x−10−x²",
           "So the integrand is (5−x)/√(7x−10−x²)"
         ],
         "why": "Multiplying inside the root by (5−x)/(5−x) turns the awkward ratio of two DIFFERENT expressions into a single (5−x) sitting over the square root of their product — now a familiar linear-over-root shape.",
@@ -88,7 +90,8 @@
         "margin_note": "Setup",
         "lines": [
           "Let 5−x = A·d/dx(7x−10−x²) + B = A(7−2x) + B",
-          "Coeff of x: −2A=−1 ⇒ A=1/2; constant: 7A+B=5 ⇒ B=5−7/2=3/2"
+          "Coeff of x: −2A=−1 ⇒ A=1/2; constant:",
+          "7A+B=5 ⇒ B=5−7/2=3/2"
         ],
         "why": "With the integrand now in the familiar linear-numerator-over-root-of-quadratic shape, the same A·Dr′+B split from answer 27 applies directly.",
         "common_mistakes": [
@@ -105,7 +108,9 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "I = (1/2)∫[d/dx(7x−10−x²)]/√(7x−10−x²) dx + (3/2)∫dx/√(7x−10−x²)",
+          "I",
+          "= (1/2)∫[d/dx(7x−10−x²)]/√(7x−10−x²) dx",
+          "+ (3/2)∫dx/√(7x−10−x²)",
           "= (1/2)·2√(7x−10−x²) + (3/2)∫dx/√(7x−10−x²)",
           "= √(7x−10−x²) + (3/2)∫dx/√(7x−10−x²)"
         ],
@@ -124,7 +129,8 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "7x−10−x² = −(x²−7x+10) = −[(x−7/2)²−49/4+10] = 9/4−(x−7/2)² = (3/2)²−(x−7/2)²",
+          "7x−10−x² = −(x²−7x+10) = −[(x−7/2)²−49/4+10]",
+          "= 9/4−(x−7/2)² = (3/2)²−(x−7/2)²",
           {
             "text": "\\int\\frac{dx}{\\sqrt{a^2-u^2}}=\\operatorname{Sin}^{-1}\\!\\left(\\frac{u}{a}\\right)+c",
             "render": "katex",

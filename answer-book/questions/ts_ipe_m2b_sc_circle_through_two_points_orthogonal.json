@@ -17,13 +17,27 @@
   "expected_time_min": 9,
   "question_text": "Find the equation of the circle which passes through the points (2, 0), (0, 2) and is orthogonal to the circle 2x² + 2y² + 5x − 6y + 4 = 0.",
   "appearances": [
-    { "year": 2019 }
+    {
+      "year": 2019
+    }
   ],
   "mark_split": [
-    { "label": "Set up the circle and use both points", "marks": 1 },
-    { "label": "Relate g and f", "marks": 1 },
-    { "label": "Apply the orthogonal condition", "marks": 1 },
-    { "label": "Solve and write the final circle", "marks": 1 }
+    {
+      "label": "Set up the circle and use both points",
+      "marks": 1
+    },
+    {
+      "label": "Relate g and f",
+      "marks": 1
+    },
+    {
+      "label": "Apply the orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Solve and write the final circle",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -45,11 +59,16 @@
         "mark_note": "Method",
         "margin_note": "First mark, for both point conditions written together.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let the required circle be",
           "S ≡ x² + y² + 2gx + 2fy + c = 0",
-          "S = 0 passes through (2, 0) ⇒ 4 + 4g + c = 0   ...(1)",
-          "S = 0 passes through (0, 2) ⇒ 4 + 4f + c = 0   ...(2)"
+          "S = 0 passes through (2, 0)",
+          "⇒ 4 + 4g + c = 0   ...(1)",
+          "S = 0 passes through (0, 2)",
+          "⇒ 4 + 4f + c = 0   ...(2)"
         ],
         "why": "Each given point, substituted into the general circle's equation, gives one linear equation — two points give two equations, both linking c to one of g or f.",
         "common_mistakes": [
@@ -85,7 +104,9 @@
         "margin_note": "Third mark. Divide the given circle by 2 first, to read off g′, f′, c′ correctly.",
         "lines": [
           "S is orthogonal to 2x² + 2y² + 5x − 6y + 4 = 0",
-          "⇒ orthogonal to x² + y² + 5/4 · 2x − 3/2 · 2y + 2 = 0",
+          "⇒ orthogonal to x² + y² + 5/4 · 2x − 3/2 ·",
+          "2y + 2",
+          "= 0",
           "∴ 2gg′ + 2ff′ = c + c′",
           "2g(5/4) + 2f(−3/2) = c + 2",
           "⇒ 5g − 6f = 2c + 4"
@@ -111,7 +132,10 @@
           "⇒ 4 + 4(−2c − 4) + c = 0 ⇒ −7c − 12 = 0",
           "⇒ c = −12/7",
           "g = f = −2c − 4 = 24/7 − 4 = −4/7",
-          { "text": "⇒ 7x² + 7y² − 8x − 8y − 12 = 0", "style": "boxed" }
+          {
+            "text": "⇒ 7x² + 7y² − 8x − 8y − 12 = 0",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting g = f into the orthogonality equation leaves one equation in g and c; combining it with (1) then solves the whole system, and substituting g, f, c back into S = 0 gives the final circle — this reproduces the book's own printed answer.",
         "common_mistakes": [

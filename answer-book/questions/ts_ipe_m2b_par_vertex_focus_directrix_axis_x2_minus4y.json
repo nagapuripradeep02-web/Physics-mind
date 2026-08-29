@@ -50,8 +50,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given parabola x² = −4y. Comparing with x² = −4ay gives 4a = 4 ⇒ a = 1",
-          "This is a downward parabola (the y-axis is the axis, opening in the −y direction)."
+          "Given parabola x² = −4y.",
+          "Comparing with x² = −4ay gives 4a = 4",
+          "⇒ a = 1",
+          "This is a downward parabola (the y-axis is",
+          "the axis,",
+          "opening in the −y direction)."
         ],
         "why": "Comparing the given equation to the standard downward form x² = −4ay is what fixes a, the one number every other answer in this question depends on.",
         "common_mistakes": [

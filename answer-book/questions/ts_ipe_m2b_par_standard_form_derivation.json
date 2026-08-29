@@ -76,10 +76,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let S be the focus and the line L = 0 be the directrix.",
-          "Let Z be the foot of the perpendicular from S to the directrix.",
+          "Let S be the focus and the line L",
+          "= 0 be the directrix.",
+          "Let Z be the foot of the perpendicular",
+          "from S to the directrix.",
           "Let A be the midpoint of SZ.",
-          "Then SA = AZ, so SA/AZ = 1, so A is a point on the parabola."
+          "Then SA = AZ, so SA/AZ = 1,",
+          "so A is a point on the parabola."
         ],
         "why": "The vertex is defined as the point exactly midway between the focus and the directrix, and this same point is the one point where the focus-directrix ratio SP/PM equals 1 by simple symmetry — so the midpoint of SZ has to lie on the curve, and it becomes the natural place to put the origin.",
         "common_mistakes": [
@@ -225,10 +228,15 @@
         "mark_note": "Method",
         "margin_note": "Two marks. This is the step that turns a general parabola into one fixed by a single number a.",
         "lines": [
-          "Take AS, the principal axis of the parabola, as the X-axis.",
-          "Take the line through A perpendicular to AS as the Y-axis, so A = (0, 0).",
+          "Take AS,",
+          "the principal axis of the parabola,",
+          "as the X-axis.",
+          "Take the line through A perpendicular to",
+          "AS as the Y-axis,",
+          "so A = (0, 0).",
           "Let AS = a. Then S = (a, 0) and Z = (−a, 0).",
-          "So the equation of the directrix is x = −a, that is, x + a = 0."
+          "So the equation of the directrix is x = −a,",
+          "that is, x + a = 0."
         ],
         "why": "Once the axis is fixed as the x-axis with the vertex at the origin, every later distance can be written as a plain coordinate instead of a general length — that is the whole purpose of choosing axes this way.",
         "common_mistakes": [
@@ -246,10 +254,15 @@
         "margin_note": "Two marks. This line is where the defining property of the parabola (SP = PM) actually enters the proof.",
         "lines": [
           "Let P(x₁, y₁) be any point on the parabola.",
-          "Let N be the foot of the perpendicular from P to the Y-axis.",
-          "Let M be the foot of the perpendicular from P to the directrix.",
-          "Then PM = PN + NM = x₁ + a, since PN is the x-coordinate of P and NM = AZ = AS = a.",
-          "By the focus–directrix property, SP/PM = 1, so SP = PM, so SP² = PM²."
+          "Let N be the foot of the perpendicular",
+          "from P to the Y-axis.",
+          "Let M be the foot of the perpendicular",
+          "from P to the directrix.",
+          "Then PM = PN + NM = x₁ + a,",
+          "since PN is the x-coordinate of P and NM",
+          "= AZ = AS = a.",
+          "By the focus–directrix property,",
+          "SP/PM = 1, so SP = PM, so SP² = PM²."
         ],
         "why": "PM is measured in two pieces — from P across to the y-axis (which is just x₁), then from the y-axis across to the directrix (which is the fixed length a) — and adding those two pieces is what turns the geometric distance PM into a plain algebraic expression in x₁.",
         "common_mistakes": [
@@ -268,7 +281,8 @@
         "lines": [
           "SP² = (x₁ − a)² + (y₁ − 0)² and PM² = (x₁ + a)²",
           "⇒ (x₁ − a)² + y₁² = (x₁ + a)²",
-          "⇒ y₁² = (x₁ + a)² − (x₁ − a)² = 4ax₁     [∵ (a+b)² − (a−b)² = 4ab]",
+          "⇒ y₁² = (x₁ + a)² − (x₁ − a)² = 4ax₁",
+          "[∵ (a+b)² − (a−b)² = 4ab]",
           {
             "text": "∴ the locus of P(x₁, y₁) is y² = 4ax",
             "style": "boxed"

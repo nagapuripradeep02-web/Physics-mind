@@ -17,15 +17,36 @@
   "expected_time_min": 9,
   "question_text": "Tangents to the hyperbola x²/a² − y²/b² = 1 make angles θ₁, θ₂ with the transverse axis of the hyperbola. Show that the point of intersection of these tangents lies on the curve 2xy = k(x² − a²) when tanθ₁ + tanθ₂ = k.",
   "appearances": [
-    { "year": 2018, "board": "ap_ipe" },
-    { "year": 2016, "board": "ts_ipe" },
-    { "year": 2019, "board": "ts_ipe" }
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Set up the tangent through P", "marks": 1 },
-    { "label": "Form the quadratic in m", "marks": 1 },
-    { "label": "Apply the angle-sum condition", "marks": 1 },
-    { "label": "Conclude the locus", "marks": 1 }
+    {
+      "label": "Set up the tangent through P",
+      "marks": 1
+    },
+    {
+      "label": "Form the quadratic in m",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle-sum condition",
+      "marks": 1
+    },
+    {
+      "label": "Conclude the locus",
+      "marks": 1
+    }
   ],
   "verification": {
     "status": "unverified",
@@ -48,10 +69,15 @@
         "margin_note": "First mark. Same starting formula as the director-circle proof.",
         "memory_tip": "Start every 'tangents through a point' hyperbola proof the same way: tangent-with-slope-m formula, forced through the point.",
         "lines": [
-          { "text": "Sol:", "style": "heading" },
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
           "Let the hyperbola be x²/a² − y²/b² = 1",
-          "Let P(x₁, y₁) be a point on the locus. Tangent with slope m: y = mx ± √(a²m² − b²)",
-          "If it passes through P(x₁, y₁): y₁ − mx₁ = ±√(a²m² − b²)"
+          "Let P(x₁, y₁) be a point on the locus.",
+          "Tangent with slope m: y = mx ± √(a²m² − b²)",
+          "If it passes through P(x₁, y₁):",
+          "y₁ − mx₁ = ±√(a²m² − b²)"
         ],
         "why": "Forcing the general hyperbola tangent to pass through P turns 'a tangent through P' into an algebraic equation relating m to the coordinates of P.",
         "common_mistakes": [
@@ -86,8 +112,11 @@
         "margin_note": "Third mark. Slope IS the tangent of the angle a line makes with the x-axis, which here is the transverse axis.",
         "memory_tip": "An ANGLE-sum condition needs SUM of roots; a PERPENDICULAR condition (as in the director-circle proof) needs PRODUCT of roots.",
         "lines": [
-          "The tangent slopes are m = tanθ, so m₁ = tanθ₁, m₂ = tanθ₂ are the roots of (1)",
-          "Sum of roots of (1): m₁ + m₂ = 2x₁y₁ / (x₁² − a²)"
+          "The tangent slopes are m = tanθ,",
+          "so m₁ = tanθ₁,",
+          "m₂ = tanθ₂ are the roots of (1)",
+          "Sum of roots of (1):",
+          "m₁ + m₂ = 2x₁y₁ / (x₁² − a²)"
         ],
         "why": "Slope equals the tangent of the angle a line makes with the x-axis, which here IS the transverse axis, so m₁ + m₂ is exactly tanθ₁ + tanθ₂.",
         "common_mistakes": [
@@ -105,7 +134,10 @@
         "memory_tip": "This locus 2xy = k(x²−a²) is a curve through both vertices (x=±a gives y=0) — a useful mental check.",
         "lines": [
           "tanθ₁ + tanθ₂ = 2x₁y₁ / (x₁² − a²) = k",
-          { "text": "2x₁y₁ = k(x₁² − a²) ⇒ locus of P(x₁, y₁) is 2xy = k(x² − a²)", "style": "boxed" }
+          {
+            "text": "2x₁y₁ = k(x₁² − a²) ⇒ locus of P(x₁, y₁) is 2xy = k(x² − a²)",
+            "style": "boxed"
+          }
         ],
         "why": "Substituting the given condition tanθ₁+tanθ₂=k into the sum-of-roots relation and clearing the fraction gives the locus equation directly.",
         "common_mistakes": [
