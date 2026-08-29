@@ -670,7 +670,12 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
     // never trim the sweep or the waits to fit, because a shortened sweep silently
     // stops checking the questions it drops.
-    test.setTimeout(3_000_000);   // the WIDEST sweep: questions x cuts. ~1600 entries with zoology AND Physics-II; ~2048 with Maths-2B and ~2360 once Maths-2A merges (~1.05 s each is ~41 min against the old 40).
+    test.setTimeout(3_600_000);   // the WIDEST sweep: questions x cuts. Counted, not estimated, on
+    // 2026-08-29: master is 1981 entries after Botany-II, and it did NOT raise this sweep. At the
+    // file's own 1.05 s/entry slope that is 2080 s against the old 2_400_000 (+15%), but Maths-2A
+    // takes it to 2238 (2350 s, +2%) and Maths-2B to 2509 (2634 s, MINUS 9% — it would time out).
+    // 3_600_000 is +37% at the combined size. The previous raise was made at ~7% headroom and that
+    // was judged too tight afterwards, which is why this one is not sized to just barely fit.
     // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~1.05 s/question.
     // Raised to 2_400_000 on 2026-08-29. Two papers landed at once — zoology took
     // the bank to ~1340 and Senior Inter Physics adds 256 more — and this sweep had
