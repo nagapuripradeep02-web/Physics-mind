@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_sugarcane_species",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which two species of sugarcane were crossed for better yield?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two species",
+      "marks": 1
+    },
+    {
+      "label": "What each contributed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 129. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two species names. Saying what each contributed is the second mark and it is the point of the cross.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The two species",
+        "marks": 1,
+        "mark_note": "Species",
+        "margin_note": "Both full names. Two lines.",
+        "lines": [
+          "SACCHARUM BARBERI and SACCHARUM",
+          "OFFICINARUM were crossed to get a better yield."
+        ],
+        "why": "Two species of the same genus can be crossed, which is what let breeders combine their separate advantages.",
+        "common_mistakes": [
+          "Naming a different genus. Both are SACCHARUM species.",
+          "Naming one species. The question asks which TWO."
+        ],
+        "memory_tip": "Both are Saccharum: barberi and officinarum."
+      },
+      {
+        "id": "s2_contributed",
+        "kind": "boxed_final",
+        "label": "What each contributed",
+        "marks": 1,
+        "mark_note": "Contributions",
+        "margin_note": "What each parent had and what the cross achieved.",
+        "lines": [
+          {
+            "text": "North Indian hardiness plus tropical sugar",
+            "style": "boxed"
+          },
+          "Saccharum BARBERI grew in north India but had",
+          "poor sugar content.",
+          "Saccharum OFFICINARUM, the tropical canes, had",
+          "thicker stems and HIGHER SUGAR content.",
+          "The cross combined the two: high sugar canes that",
+          "grow in the north."
+        ],
+        "why": "Each parent supplied what the other lacked, which is the whole logic of a deliberate interspecific cross.",
+        "common_mistakes": [
+          "Saying both had high sugar. Only OFFICINARUM did.",
+          "Giving the names with no reason for the cross. The reason is the second mark."
+        ],
+        "memory_tip": "One brought the climate, the other brought the sugar."
+      }
+    ]
+  }
+}

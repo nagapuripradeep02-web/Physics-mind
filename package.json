@@ -93,7 +93,7 @@
     "check:cards": "npx tsx src/scripts/check_cards.ts",
     "scan:register": "node answer-book/tools/register_scan.mjs",
     "pace:figures": "npx tsx src/scripts/pace_figures.ts",
-    "check:figure-pace": "npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_c2,ts_ipe_z1,ts_ipe_m2a",
+    "check:figure-pace": "npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_c2,ts_ipe_z1,ts_ipe_b2,ts_ipe_m2a",
     "figures:gallery": "python answer-book/tools/render_figures.py",
     "measure:wrap": "node answer-book/tools/measure_wrap.mjs",
     "tag:appearances": "npx tsx src/scripts/tag_appearances.ts",
@@ -103,7 +103,8 @@
     "content:push:mpc": "npx tsx --env-file=.env.local src/scripts/push_answer_content.ts --stream=mpc",
     "content:push:mpc2": "npx tsx --env-file=.env.local src/scripts/push_answer_content.ts --stream=mpc_2",
     "backtest:zoology": "npx tsx src/scripts/backtest_zoology.ts",
-    "labels:clashes": "node answer-book/tools/find_label_clashes.mjs"
+    "labels:clashes": "node answer-book/tools/find_label_clashes.mjs",
+    "backtest:botany2": "npx tsx src/scripts/backtest_botany2.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",

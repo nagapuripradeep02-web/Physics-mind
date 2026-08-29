@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_semi_dwarf_rice",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name two semi-dwarf varieties of rice developed in India.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The two varieties",
+      "marks": 1
+    },
+    {
+      "label": "Why semi-dwarf",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 126. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two names, then one line on why a short plant yields more. That reason is the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The two varieties",
+        "marks": 1,
+        "mark_note": "Names",
+        "margin_note": "Both names. Three lines.",
+        "lines": [
+          "Two semi-dwarf rice varieties developed in India:",
+          "1. JAYA",
+          "2. RATNA"
+        ],
+        "why": "Both were bred in India during the green revolution, which is why they are the named pair for this question.",
+        "common_mistakes": [
+          "Naming Sonalika and Kalyan Sona. Those are WHEAT varieties.",
+          "Naming basmati. Basmati is the patent case, not a semi-dwarf variety."
+        ],
+        "memory_tip": "Jaya and Ratna for rice; Sonalika and Kalyan Sona for wheat."
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why semi-dwarf",
+        "marks": 1,
+        "mark_note": "Reason",
+        "margin_note": "Name lodging and explain the link to fertiliser. Six lines.",
+        "lines": [
+          {
+            "text": "A short stem can carry a heavy head of grain",
+            "style": "boxed"
+          },
+          "A semi-dwarf plant has a SHORT, STRONG stem.",
+          "So it can carry a heavy head of grain without",
+          "LODGING — falling over.",
+          "That is what lets heavy fertiliser use turn into",
+          "extra yield instead of a flattened field."
+        ],
+        "why": "A tall plant given heavy fertiliser grows a head too heavy for its stem and falls over, so shortening the stem is what made high fertiliser use possible.",
+        "common_mistakes": [
+          "Saying semi-dwarf means low yielding. It is HIGH yielding, precisely because it does not lodge.",
+          "Giving no reason. The reason is the second mark."
+        ],
+        "memory_tip": "Short stem, heavy head, no falling over."
+      }
+    ]
+  }
+}

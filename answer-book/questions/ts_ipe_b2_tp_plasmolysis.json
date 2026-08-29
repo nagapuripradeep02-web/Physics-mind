@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_plasmolysis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is meant by plasmolysis? How is it practically useful to us?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The solution that causes it",
+      "marks": 1
+    },
+    {
+      "label": "What happens in the cell",
+      "marks": 1
+    },
+    {
+      "label": "Practical uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.21, printed question 8. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The question has two halves and the second one is a single line of examples — write the uses even if the explanation runs short, because they are a whole mark on their own.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transport in Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Plasmolysis defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "One clean definition sentence plus the name of the state. Three lines.",
+        "lines": [
+          "Plasmolysis is the shrinkage of the protoplast",
+          "of a cell caused by loss of water and turgor.",
+          "The cell is then said to be plasmolysed."
+        ],
+        "why": "The definition names the part that moves — the protoplast, not the cell — and that distinction carries the rest of the answer.",
+        "common_mistakes": [
+          "Saying the CELL shrinks. The rigid cell wall holds its shape; the PROTOPLAST inside shrinks.",
+          "Leaving out 'loss of turgor'. Turgor loss is half the definition."
+        ],
+        "memory_tip": "The wall stays, the bag inside pulls away."
+      },
+      {
+        "id": "s2_solution",
+        "kind": "text",
+        "label": "The solution that causes it",
+        "marks": 1,
+        "mark_note": "Cause",
+        "margin_note": "Name the solution type, define it, and say which way water moves.",
+        "lines": [
+          "Plasmolysis happens when a plant cell is placed",
+          "in a HYPERTONIC solution.",
+          "A hypertonic solution is more concentrated than",
+          "the cell sap.",
+          "So water molecules inside the cell move OUT",
+          "into the solution."
+        ],
+        "why": "Water leaves because the outside solution has the lower water potential, which is the same rule stated in the water potential answer applied to one cell.",
+        "common_mistakes": [
+          "Writing hypotonic. A hypotonic solution makes the cell swell, not shrink.",
+          "Saying the solute enters the cell. It is WATER that leaves."
+        ],
+        "memory_tip": "Hyper means more outside, so water goes out."
+      },
+      {
+        "id": "s3_cell",
+        "kind": "text",
+        "label": "What happens in the cell",
+        "marks": 1,
+        "mark_note": "In the cell",
+        "margin_note": "Three or four lines naming membrane, wall and the gap that opens between them.",
+        "lines": [
+          "As water leaves, the cell membrane pulls away",
+          "from the cell wall.",
+          "The protoplast separates from the wall and",
+          "shrinks towards the centre.",
+          "The space between the wall and the membrane",
+          "fills with the outside solution."
+        ],
+        "why": "Naming the two structures that separate is what shows the examiner the mechanism was understood rather than the word memorised.",
+        "common_mistakes": [
+          "Saying the cell wall shrinks. The wall is rigid and does not move.",
+          "Stopping at 'water leaves'. The separation of membrane from wall IS plasmolysis."
+        ],
+        "memory_tip": "Membrane in, wall stays put: the gap between them is the proof."
+      },
+      {
+        "id": "s4_uses",
+        "kind": "boxed_final",
+        "label": "Practical uses",
+        "marks": 1,
+        "mark_note": "Uses",
+        "margin_note": "Two named examples plus one line of reason. This half is a full mark.",
+        "lines": [
+          {
+            "text": "Plasmolysis preserves food by drawing",
+            "style": "boxed"
+          },
+          {
+            "text": "water out of spoilage microbes",
+            "style": "boxed"
+          },
+          "1. Salting of pickles.",
+          "2. Preservation of fish, meat and prawns.",
+          "Salt or sugar makes the surroundings",
+          "hypertonic, so microbes lose water and cannot",
+          "grow."
+        ],
+        "why": "The uses all work the same way: raise the outside concentration and the microbes plasmolyse, so the same mechanism answers the second half of the question.",
+        "common_mistakes": [
+          "Listing uses without saying WHY they work. The reason is the mark.",
+          "Giving only one example. The question asks how it is useful, so give at least two."
+        ],
+        "memory_tip": "Salt and sugar preserve by making the outside stronger than the microbe inside."
+      }
+    ]
+  }
+}

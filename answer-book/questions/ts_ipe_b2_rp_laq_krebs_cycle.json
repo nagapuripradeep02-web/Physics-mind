@@ -1,0 +1,630 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_rp_laq_krebs_cycle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Respiration in Plants (Botany-II)"
+  },
+  "chapter": "Respiration in Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the reactions of Krebs cycle.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What the Krebs cycle is, and where",
+      "marks": 1
+    },
+    {
+      "label": "The link reaction",
+      "marks": 1
+    },
+    {
+      "label": "Steps 1-5",
+      "marks": 2
+    },
+    {
+      "label": "Steps 6-10",
+      "marks": 2
+    },
+    {
+      "label": "The yield per turn",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.12, printed question 2. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Two spelling slips corrected on this card: the guide prints \"Fumerase\" for FUMARASE and \"Fumeric acid\" and \"FAD⁺\" in its p.13 diagram for fumaric acid and FAD. The guide's mnemonic is printed partly in Telugu script; the product is English-only (Rule 30i), so a plain English memory device is given instead."
+  },
+  "insider_note": "Ten steps, but only four of them are the ones examiners check: the three oxidations that make NADH, and the one that makes FADH2. Get the tally right and the answer holds together even if a step name slips.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Respiration in Plants (Botany-II) · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "What the Krebs cycle is, and where",
+        "marks": 1,
+        "mark_note": "Definition, site",
+        "margin_note": "Definition, site, what is oxidised, and the three names of the cycle.",
+        "lines": [
+          "The KREBS CYCLE is a cyclic series of reactions",
+          "that occurs in ALL AEROBIC organisms.",
+          "It takes place in the MATRIX of the",
+          "mitochondrion.",
+          "In it, acetyl coenzyme A is completely oxidised",
+          "to CO2 and H2O.",
+          "ADP is converted into energy-rich ATP.",
+          "It is also called the citric acid cycle or the",
+          "tricarboxylic acid (TCA) cycle."
+        ],
+        "why": "It is a cycle because the compound it ends by making, oxaloacetic acid, is the one it began by using — so the pathway can run again without any new acceptor.",
+        "common_mistakes": [
+          "Saying the Krebs cycle occurs in the cytoplasm. That is glycolysis; Krebs is in the mitochondrial MATRIX.",
+          "Calling it partial oxidation. The Krebs cycle COMPLETELY oxidises acetyl CoA.",
+          "Saying it happens in anaerobic respiration. It needs oxygen."
+        ],
+        "memory_tip": "Mitochondrial matrix, complete oxidation, and it ends where it began."
+      },
+      {
+        "id": "s2_link",
+        "kind": "equation",
+        "label": "The link reaction",
+        "marks": 1,
+        "mark_note": "Link reaction",
+        "margin_note": "Name it, give the equation, and say it is NOT part of the cycle. That last point is the mark.",
+        "lines": [
+          "Pyruvic acid from glycolysis enters the",
+          "mitochondrion first.",
+          {
+            "text": "There it undergoes OXIDATIVE",
+            "style": "normal"
+          },
+          {
+            "text": "DECARBOXYLATION:",
+            "style": "normal"
+          },
+          {
+            "text": "Pyruvic acid (3C) + CoA + NAD⁺",
+            "style": "eq"
+          },
+          {
+            "text": "   --> Acetyl CoA (2C) + CO2 + NADH + H⁺",
+            "style": "eq"
+          },
+          "This is the LINK REACTION, joining glycolysis",
+          "to the Krebs cycle.",
+          "It is not part of the cycle itself."
+        ],
+        "why": "The cycle can only accept a two-carbon acetyl group, so the three-carbon pyruvate must lose one carbon before it can enter — which is what the link reaction does.",
+        "common_mistakes": [
+          "Counting the link reaction as the first step of the cycle. It is a separate step BEFORE it.",
+          "Forgetting the CO2. One carbon is lost here, which is how 3C becomes 2C.",
+          "Saying pyruvate enters the cycle directly. It enters as ACETYL CoA."
+        ],
+        "memory_tip": "Three carbons in, two carbons on: one is lost before the cycle starts."
+      },
+      {
+        "id": "s3_steps1",
+        "kind": "equation",
+        "label": "Steps 1-5",
+        "marks": 2,
+        "mark_note": "Steps 1-5",
+        "margin_note": "Two marks. Number every step, name the reaction TYPE and the enzyme. The reaction types are what make the ten steps memorable.",
+        "lines": [
+          "1. Condensation:",
+          {
+            "text": "Acetyl CoA + oxaloacetic acid + H2O",
+            "style": "eq"
+          },
+          {
+            "text": "   --citrate synthase--> citric acid + CoA",
+            "style": "eq"
+          },
+          "2. Dehydration:",
+          {
+            "text": "Citric acid --aconitase--> cis-aconitic acid",
+            "style": "eq"
+          },
+          {
+            "text": "   + H2O",
+            "style": "eq"
+          },
+          "3. Hydration:",
+          {
+            "text": "cis-aconitic acid --aconitase--> isocitric acid",
+            "style": "eq"
+          },
+          "4. Oxidation I:",
+          {
+            "text": "Isocitric acid + NAD⁺ --dehydrogenase-->",
+            "style": "eq"
+          },
+          {
+            "text": "   oxalosuccinic acid + NADH + H⁺",
+            "style": "eq"
+          },
+          "5. Decarboxylation:",
+          {
+            "text": "Oxalosuccinic acid --decarboxylase-->",
+            "style": "eq"
+          },
+          {
+            "text": "   α-ketoglutaric acid + CO2",
+            "style": "eq"
+          }
+        ],
+        "why": "The first five steps turn a six-carbon acid into a five-carbon one, so the carbon that entered as acetyl has already begun leaving as carbon dioxide.",
+        "common_mistakes": [
+          "Naming the first enzyme 'citric acid'. The enzyme is CITRATE SYNTHASE.",
+          "Missing that aconitase catalyses steps 2 AND 3. The same enzyme does both.",
+          "Forgetting the first NADH. Step 4 is the first of three oxidations."
+        ],
+        "memory_tip": "Condense to six carbons, then lose the first carbon dioxide at step 5."
+      },
+      {
+        "id": "s4_steps2",
+        "kind": "equation",
+        "label": "Steps 6-10",
+        "marks": 2,
+        "mark_note": "Steps 6-10",
+        "margin_note": "Two marks. Step 8 with FAD and step 10 closing the cycle are the two an examiner looks for.",
+        "lines": [
+          "6. Oxidation II:",
+          {
+            "text": "α-ketoglutaric acid + NAD⁺ + CoA",
+            "style": "eq"
+          },
+          {
+            "text": "   --> succinyl CoA + NADH + H⁺ + CO2",
+            "style": "eq"
+          },
+          "7. Cleavage:",
+          {
+            "text": "Succinyl CoA + ADP + Pi --thiokinase-->",
+            "style": "eq"
+          },
+          {
+            "text": "   succinic acid + ATP + CoA",
+            "style": "eq"
+          },
+          "8. Oxidation III:",
+          {
+            "text": "Succinic acid + FAD --dehydrogenase-->",
+            "style": "eq"
+          },
+          {
+            "text": "   fumaric acid + FADH2",
+            "style": "eq"
+          },
+          "9. Hydration:",
+          {
+            "text": "Fumaric acid + H2O --fumarase--> malic acid",
+            "style": "eq"
+          },
+          "10. Oxidation IV:",
+          {
+            "text": "Malic acid + NAD⁺ --dehydrogenase-->",
+            "style": "eq"
+          },
+          {
+            "text": "   oxaloacetic acid + NADH + H⁺",
+            "style": "eq"
+          }
+        ],
+        "why": "Step 10 regenerates oxaloacetic acid, the very compound step 1 used, and that is what closes the cycle and lets it run again.",
+        "common_mistakes": [
+          "Writing 'fumerase'. The enzyme is FUMARASE. The guide misprints it.",
+          "Saying step 8 reduces NAD+. Step 8 is the ONE step that reduces FAD, not NAD+.",
+          "Not saying that step 10 regenerates oxaloacetic acid. That is what makes it a cycle."
+        ],
+        "memory_tip": "Three steps reduce NAD, one reduces FAD, one makes ATP."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "Diagram — the Krebs cycle",
+        "marks": 0,
+        "margin_note": "No diagram mark — the question says 'explain the reactions'. Drawing it is still the quickest way to check the tally in the final step.",
+        "figure": {
+          "id": "b2_rp_krebs_cycle",
+          "width": 660,
+          "height": 448,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "k_p1",
+              "caption": "Step 1 — pyruvate enters as acetyl coenzyme A"
+            },
+            {
+              "type": "stroke",
+              "id": "kr_in1",
+              "d": "M 350 44 L 350 64",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "kr_in1_h",
+              "d": "M 346.5 57.9 L 350 64 L 353.5 57.9",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "kr_in2",
+              "d": "M 350 90 L 350 152",
+              "ms": 890,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "kr_in2_h",
+              "d": "M 346.5 145.9 L 350 152 L 353.5 145.9",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "k_p2",
+              "caption": "Step 2 — the ring, drawn clockwise"
+            },
+            {
+              "type": "stroke",
+              "id": "kr_arc0",
+              "d": "M 350 160 A 90 90 0 0 1 413.6 186.4",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "kr_arc1",
+              "d": "M 413.6 186.4 A 90 90 0 0 1 440 250",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "kr_arc2",
+              "d": "M 440 250 A 90 90 0 0 1 413.6 313.6",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "kr_arc3",
+              "d": "M 413.6 313.6 A 90 90 0 0 1 350 340",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "kr_arc4",
+              "d": "M 350 340 A 90 90 0 0 1 286.4 313.6",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "kr_arc5",
+              "d": "M 286.4 313.6 A 90 90 0 0 1 260 250",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "kr_arc6",
+              "d": "M 260 250 A 90 90 0 0 1 286.4 186.4",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "kr_arc7",
+              "d": "M 286.4 186.4 A 90 90 0 0 1 350 160",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "kr_dir1",
+              "d": "M 434 208 L 440 226",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "kr_dir1_h",
+              "d": "M 434.8 221.4 L 440 226 L 441.4 219.1",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "kr_dir2",
+              "d": "M 306 338 L 288 330",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "kr_dir2_h",
+              "d": "M 295 329.3 L 288 330 L 292.1 335.7",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "k_p3",
+              "caption": "Step 3 — the eight acids of the cycle"
+            },
+            {
+              "type": "stroke",
+              "id": "kl_citric",
+              "d": "M 383 87.4 L 333.3 155.5",
+              "ms": 1200,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "kb_citric",
+              "x": 268,
+              "y": 92,
+              "text": "Citric (6C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "kl_iso",
+              "d": "M 400 144.6 L 417.9 182.1",
+              "ms": 590,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "kb_iso",
+              "x": 406,
+              "y": 150,
+              "text": "Isocitric",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "kl_akg",
+              "d": "M 441 245 L 446 250",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "kb_akg",
+              "x": 447,
+              "y": 250,
+              "text": "α-KG (5C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "kl_succoa",
+              "d": "M 385 345.4 L 417.9 317.9",
+              "ms": 610,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "kb_succoa",
+              "x": 391,
+              "y": 350,
+              "text": "Succinyl CoA",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "kl_succ",
+              "d": "M 280 387 L 350 346",
+              "ms": 1160,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "kb_succ",
+              "x": 286,
+              "y": 392,
+              "text": "Succinic (4C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "kl_fum",
+              "d": "M 290 345.4 L 282.1 317.9",
+              "ms": 410,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "kb_fum",
+              "x": 215,
+              "y": 350,
+              "text": "Fumaric",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "kl_mal",
+              "d": "M 264 245 L 254 250",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "kb_mal",
+              "x": 158,
+              "y": 250,
+              "text": "Malic (4C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "kl_oaa",
+              "d": "M 263 141.6 L 274.4 190.9",
+              "ms": 720,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "kb_oaa",
+              "x": 178,
+              "y": 147,
+              "text": "OAA (4C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "k_p4",
+              "caption": "Step 4 — the tally for one turn, and the names"
+            },
+            {
+              "type": "label",
+              "id": "kb_co2",
+              "x": 320,
+              "y": 190,
+              "text": "2 CO₂",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "kb_nadh",
+              "x": 316,
+              "y": 235,
+              "text": "3 NADH",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "kb_fadh",
+              "x": 311,
+              "y": 280,
+              "text": "1 FADH₂",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "kb_atp",
+              "x": 322,
+              "y": 325,
+              "text": "1 ATP",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "kb_pyr",
+              "x": 390,
+              "y": 36,
+              "text": "Pyruvate (3C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "kb_acoa",
+              "x": 390,
+              "y": 82,
+              "text": "Acetyl CoA (2C)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "kb_title",
+              "x": 266,
+              "y": 436,
+              "text": "CITRIC ACID CYCLE",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Drawn as a ring, the eight acids can be seen returning to the one they started from, and the per-turn tally written inside is the same tally the last written step is marked on.",
+        "common_mistakes": [
+          "Drawing acetyl CoA joining anything other than oxaloacetic acid. Step 1 is acetyl CoA PLUS oxaloacetic acid.",
+          "Drawing three carbon dioxide molecules leaving the cycle. Only TWO leave the cycle; the third came from the link reaction, outside it.",
+          "Drawing the ring anticlockwise. The order citric, isocitric, α-KG, succinyl CoA, succinic, fumaric, malic, oxaloacetic runs CLOCKWISE here."
+        ],
+        "memory_tip": "Eight acids round, back to where it started: two CO2, three NADH, one FADH2, one ATP."
+      },
+      {
+        "id": "s6_yield",
+        "kind": "boxed_final",
+        "label": "The yield per turn",
+        "marks": 2,
+        "mark_note": "Yield",
+        "margin_note": "Two marks. Give the per-turn figures, then double them for one glucose. Naming which step each product came from is what separates a full answer from a memorised list.",
+        "lines": [
+          {
+            "text": "Per turn: 2 CO2, 3 NADH, 1 FADH2, 1 ATP",
+            "style": "boxed"
+          },
+          "Each turn of the cycle gives:",
+          "2 molecules of CO2 (at steps 5 and 6)",
+          "3 molecules of NADH + H+ (steps 4, 6 and 10)",
+          "1 molecule of FADH2 (step 8)",
+          "1 molecule of ATP (step 7)",
+          "One glucose gives TWO acetyl CoA, so the cycle",
+          "turns TWICE per glucose, and every figure above",
+          "is doubled."
+        ],
+        "why": "The reduced coenzymes are the real product: they carry their electrons to the electron transport chain, where most of the ATP is actually made.",
+        "common_mistakes": [
+          "Giving the yield per glucose as if it were per turn. The cycle turns TWICE per glucose.",
+          "Counting the link reaction's NADH as one of the three. The three come from steps 4, 6 and 10.",
+          "Saying the Krebs cycle makes most of the ATP directly. It makes only ONE ATP per turn; the NADH and FADH2 do the rest, later."
+        ],
+        "memory_tip": "Two out as gas, four as reduced coenzymes, one as ATP."
+      }
+    ]
+  }
+}

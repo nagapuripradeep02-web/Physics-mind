@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mn_essential_elements_deficiency",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Mineral Nutrition (Botany-II)"
+  },
+  "chapter": "Mineral Nutrition",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name any two essential elements and the deficiency diseases caused by them.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Two elements",
+      "marks": 1
+    },
+    {
+      "label": "Their deficiency symptoms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.50, printed question 154. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide answers \"Deficiency of N and K in plants cause a disease called Chlorosis\", giving one symptom for both elements. Nitrogen deficiency does cause chlorosis; potassium deficiency causes MOTTLED chlorosis with marginal necrosis of the leaves. The card names both correctly and records the guide's single label."
+  },
+  "insider_note": "Name the element and its own symptom. Giving one symptom for two different elements is the guide's own shortcut and is not worth copying.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mineral Nutrition (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_elements",
+        "kind": "text",
+        "label": "Two essential elements",
+        "marks": 1,
+        "mark_note": "Elements",
+        "margin_note": "Two named elements with symbols. Add the word macronutrient.",
+        "lines": [
+          "Two essential elements are:",
+          "1. Nitrogen (N)",
+          "2. Potassium (K)",
+          "Both are macronutrients, needed in large",
+          "amounts."
+        ],
+        "why": "Both are macronutrients, so their shortage shows quickly and visibly — which is why they are the standard pair for this question.",
+        "common_mistakes": [
+          "Naming a micronutrient and calling it a macronutrient. N and K are MACROnutrients.",
+          "Naming only one element. The question asks for two."
+        ],
+        "memory_tip": "N and K: the two the plant needs most and misses first."
+      },
+      {
+        "id": "s2_symptoms",
+        "kind": "boxed_final",
+        "label": "Their deficiency symptoms",
+        "marks": 1,
+        "mark_note": "Symptoms",
+        "margin_note": "One symptom per element, each defined in a few words.",
+        "lines": [
+          {
+            "text": "Nitrogen: chlorosis. Potassium: mottled",
+            "style": "boxed"
+          },
+          {
+            "text": "chlorosis with dead leaf margins",
+            "style": "boxed"
+          },
+          "Nitrogen deficiency causes CHLOROSIS, the",
+          "yellowing of leaves from loss of chlorophyll.",
+          "Potassium deficiency causes mottled chlorosis",
+          "and NECROSIS of the leaf tips and margins."
+        ],
+        "why": "Each element does a different job, so a shortage of each produces a different symptom rather than one shared one.",
+        "common_mistakes": [
+          "Giving chlorosis as the answer for both. Only nitrogen deficiency gives plain chlorosis.",
+          "Defining chlorosis nowhere. One line saying it is the yellowing of leaves earns the mark."
+        ],
+        "memory_tip": "Yellow all over is nitrogen; dead edges are potassium."
+      }
+    ]
+  }
+}

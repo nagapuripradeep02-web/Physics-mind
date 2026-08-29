@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_imbibition_pea_wheat",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Compare imbibing capacities of pea and wheat seeds.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Which imbibes more",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 55. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "One mark for the comparison and one for the reason. An answer that says pea swells more and stops there scores half.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_which",
+        "kind": "text",
+        "label": "Which imbibes more",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "margin_note": "Name both storage materials, then state which swells more.",
+        "lines": [
+          "Pea seeds are PROTEINACEOUS.",
+          "Wheat seeds are STARCHY.",
+          "Pea seeds imbibe more water and swell more",
+          "than wheat seeds."
+        ],
+        "why": "The comparison follows from what each seed is made of, so naming the two storage materials before the result makes the reason almost automatic.",
+        "common_mistakes": [
+          "Saying wheat imbibes more. PEA imbibes more.",
+          "Not naming what each seed stores. Protein against starch is what the answer rests on."
+        ],
+        "memory_tip": "Pea stores protein and drinks more; wheat stores starch and drinks less."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "margin_note": "State the rule about protein against carbohydrate, not about the seeds.",
+        "lines": [
+          {
+            "text": "Protein imbibes more than carbohydrate",
+            "style": "boxed"
+          },
+          "The imbibing capacity of proteins is greater",
+          "than that of carbohydrates.",
+          "So a protein rich seed takes up more water."
+        ],
+        "why": "The rule is about the materials and not the seeds, which is why it also predicts the answer for any other pair of seeds.",
+        "common_mistakes": [
+          "Giving no reason. The reason is a whole mark on a two-mark question.",
+          "Saying pea seeds are bigger. Size is not the reason; the storage material is."
+        ],
+        "memory_tip": "It is the protein doing the drinking, not the pea."
+      }
+    ]
+  }
+}

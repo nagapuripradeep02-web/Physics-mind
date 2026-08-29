@@ -1,0 +1,392 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_segregation_and_assortment",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define the law of Segregation and the law of Independent Assortment.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Law of segregation",
+      "marks": 1
+    },
+    {
+      "label": "Why it is called purity of gametes",
+      "marks": 1
+    },
+    {
+      "label": "Law of independent assortment",
+      "marks": 1
+    },
+    {
+      "label": "Which cross each comes from",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.32, printed question 38. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Both laws are about GAMETES. Say the word gamete in both definitions and neither can be confused for the other.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_segregation",
+        "kind": "text",
+        "label": "Law of segregation",
+        "marks": 1,
+        "mark_note": "Segregation",
+        "margin_note": "Do not blend, do segregate, one per gamete. All three parts.",
+        "lines": [
+          "The LAW OF SEGREGATION states that the two",
+          "alleles of a gene, when present together in a",
+          "heterozygote, do NOT fuse or blend.",
+          "They remain distinct, and SEGREGATE from each",
+          "other during MEIOSIS.",
+          "Each gamete therefore carries only ONE of the",
+          "two alleles."
+        ],
+        "why": "If alleles blended, the recessive character could never reappear unchanged in F2 — so the law is what the F2 observation forces.",
+        "common_mistakes": [
+          "Saying the alleles blend. The whole law is that they do NOT.",
+          "Leaving out meiosis. Segregation happens during MEIOSIS, when gametes form."
+        ],
+        "memory_tip": "They travel together but they never mix."
+      },
+      {
+        "id": "s2_purity",
+        "kind": "text",
+        "label": "Why it is called purity of gametes",
+        "marks": 1,
+        "mark_note": "Purity",
+        "margin_note": "The alternative name and why it fits. This is a whole mark.",
+        "lines": [
+          "The law is also called the LAW OF PURITY OF",
+          "GAMETES.",
+          "A gamete is PURE because it carries only one",
+          "allele of a pair, never both and never a",
+          "mixture.",
+          "This law has NO exceptions."
+        ],
+        "why": "A gamete is haploid, so it can only carry one of the two alleles — the law follows directly from meiosis rather than being an extra assumption.",
+        "common_mistakes": [
+          "Saying gametes carry both alleles. A gamete carries ONE.",
+          "Leaving out the alternative name. It is what the question is often asked by."
+        ],
+        "memory_tip": "One allele per gamete, so the gamete is pure."
+      },
+      {
+        "id": "s3_assortment",
+        "kind": "text",
+        "label": "Law of independent assortment",
+        "marks": 1,
+        "mark_note": "Assortment",
+        "margin_note": "Definition plus the four gamete types. The gamete list proves the law.",
+        "lines": [
+          "The LAW OF INDEPENDENT ASSORTMENT",
+          "states that when two individuals differ in TWO OR",
+          "MORE pairs of contrasting characters, the",
+          "inheritance of one pair of factors is",
+          "INDEPENDENT of the other pair.",
+          "So a dihybrid YyRr makes FOUR kinds of gamete —",
+          "YR, Yr, yR, yr — in equal numbers."
+        ],
+        "why": "Two gene pairs on different chromosomes line up independently at meiosis, so every combination of them is equally likely in the gametes.",
+        "common_mistakes": [
+          "Saying the two characters are inherited together. They are inherited INDEPENDENTLY.",
+          "Giving two kinds of gamete for a dihybrid. A double heterozygote makes FOUR."
+        ],
+        "memory_tip": "Two coins tossed together: each lands on its own."
+      },
+      {
+        "id": "s4_which",
+        "kind": "boxed_final",
+        "label": "Which cross each comes from",
+        "marks": 1,
+        "mark_note": "Sources",
+        "margin_note": "Both sources, the 9:3:3:1 ratio, and the limitation. The limitation is worth the line.",
+        "lines": [
+          {
+            "text": "Segregation from the monohybrid cross;",
+            "style": "boxed"
+          },
+          {
+            "text": "assortment from the dihybrid cross",
+            "style": "boxed"
+          },
+          "The law of SEGREGATION is based on the results",
+          "of the MONOHYBRID cross.",
+          "The law of INDEPENDENT ASSORTMENT is",
+          "based on the results of the DIHYBRID cross, which gives",
+          "the 9 : 3 : 3 : 1 ratio in F₂.",
+          "Independent assortment holds only for genes on",
+          "DIFFERENT chromosomes."
+        ],
+        "why": "Genes on the same chromosome tend to travel together, so the law has a real limit — which is exactly what linkage is.",
+        "common_mistakes": [
+          "Swapping the two crosses. Segregation comes from the MONOHYBRID cross.",
+          "Saying independent assortment always holds. It fails for LINKED genes on the same chromosome."
+        ],
+        "memory_tip": "One character gives segregation; two give assortment."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "Diagram — gamete formation",
+        "marks": 0,
+        "margin_note": "No diagram mark. This little figure is the fastest revision of both laws on one page.",
+        "figure": {
+          "id": "b2_piv_gamete_formation",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "g_p1",
+              "caption": "Step 1 — a heterozygote for ONE gene"
+            },
+            {
+              "type": "label",
+              "id": "gm_p1",
+              "x": 146,
+              "y": 46,
+              "text": "Tt — heterozygous plant",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gm_a1",
+              "d": "M 236 58 L 200 96",
+              "ms": 750,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "gm_a1_h",
+              "d": "M 201.4 90.2 L 200 96 L 205.8 94.3",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "gm_a2",
+              "d": "M 284 58 L 320 96",
+              "ms": 750,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "gm_a2_h",
+              "d": "M 314.2 94.3 L 320 96 L 318.6 90.2",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "gm_g1_o",
+              "d": "M 183 118 A 17 17 0 1 0 217 118 A 17 17 0 1 0 183 118",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "gm_g1_t",
+              "x": 195,
+              "y": 123,
+              "text": "T",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gm_g2_o",
+              "d": "M 303 118 A 17 17 0 1 0 337 118 A 17 17 0 1 0 303 118",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "gm_g2_t",
+              "x": 315,
+              "y": 123,
+              "text": "t",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gm_c1",
+              "x": 77,
+              "y": 172,
+              "text": "Two kinds of gamete, in equal numbers",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "g_p2",
+              "caption": "Step 2 — a heterozygote for TWO genes"
+            },
+            {
+              "type": "label",
+              "id": "gm_p2",
+              "x": 186,
+              "y": 230,
+              "text": "YyRr — dihybrid",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gm_b0",
+              "d": "M 260 242 L 110 282",
+              "ms": 2220,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "gm_b0_h",
+              "d": "M 114.2 277.8 L 110 282 L 115.8 283.6",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "gm_h0_o",
+              "d": "M 93 304 A 17 17 0 1 0 127 304 A 17 17 0 1 0 93 304",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "gm_h0_t",
+              "x": 100,
+              "y": 309,
+              "text": "YR",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gm_b1",
+              "d": "M 260 242 L 210 282",
+              "ms": 910,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "gm_b1_h",
+              "d": "M 212.2 276.4 L 210 282 L 215.9 281.1",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "gm_h1_o",
+              "d": "M 193 304 A 17 17 0 1 0 227 304 A 17 17 0 1 0 193 304",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "gm_h1_t",
+              "x": 200,
+              "y": 309,
+              "text": "Yr",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gm_b2",
+              "d": "M 260 242 L 310 282",
+              "ms": 910,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "gm_b2_h",
+              "d": "M 304.1 281.1 L 310 282 L 307.8 276.4",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "gm_h2_o",
+              "d": "M 293 304 A 17 17 0 1 0 327 304 A 17 17 0 1 0 293 304",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "gm_h2_t",
+              "x": 300,
+              "y": 309,
+              "text": "yR",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gm_b3",
+              "d": "M 260 242 L 410 282",
+              "ms": 2220,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "gm_b3_h",
+              "d": "M 404.2 283.6 L 410 282 L 405.8 277.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "gm_h3_o",
+              "d": "M 393 304 A 17 17 0 1 0 427 304 A 17 17 0 1 0 393 304",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "gm_h3_t",
+              "x": 400,
+              "y": 309,
+              "text": "yr",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "gm_c2",
+              "x": 72,
+              "y": 358,
+              "text": "Four kinds of gamete, in equal numbers",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Both laws are statements about gametes, so drawing the gametes a heterozygote and a dihybrid actually make is the shortest way to show both at once.",
+        "common_mistakes": [
+          "Drawing a gamete carrying Tt. A gamete carries ONE allele: T or t.",
+          "Drawing two kinds of gamete from YyRr. A dihybrid makes FOUR.",
+          "Drawing the four dihybrid gametes in unequal numbers. They are formed in EQUAL numbers."
+        ],
+        "memory_tip": "Two from one gene pair, four from two gene pairs."
+      }
+    ]
+  }
+}

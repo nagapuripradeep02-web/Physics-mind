@@ -1,0 +1,55 @@
+{
+  "number": 3,
+  "name": "Enzymes (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 15,
+      "stars": 0,
+      "text": "Write briefly about enzyme inhibitors.",
+      "question_id": "ts_ipe_b2_en_enzyme_inhibitors"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 16,
+      "stars": 0,
+      "text": "Explain different types of cofactors.",
+      "question_id": "ts_ipe_b2_en_types_of_cofactors"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 155,
+      "stars": 0,
+      "text": "How are prosthetic groups different from co-factors?",
+      "question_id": "ts_ipe_b2_en_prosthetic_group_vs_cofactor"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 156,
+      "stars": 0,
+      "text": "Distinguish between apoenzyme and cofactor.",
+      "question_id": "ts_ipe_b2_en_apoenzyme_vs_cofactor"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 157,
+      "stars": 0,
+      "text": "Define Michaelis constant.",
+      "question_id": "ts_ipe_b2_en_michaelis_constant"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 158,
+      "stars": 0,
+      "text": "What is meant by 'Feed-back inhibition'?",
+      "question_id": "ts_ipe_b2_en_feedback_inhibition"
+    }
+  ]
+}

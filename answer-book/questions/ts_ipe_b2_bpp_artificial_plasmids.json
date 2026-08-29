@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bpp_artificial_plasmids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Biotechnology: Principles and Processes (Botany-II)"
+  },
+  "chapter": "Biotechnology: Principles and Processes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name any two artificially restructured plasmids.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Two plasmids",
+      "marks": 1
+    },
+    {
+      "label": "What the names mean",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 109. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two names is the mark. The origin of each name is a cheap and memorable second half.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology: Principles and Processes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two",
+        "kind": "text",
+        "label": "Two plasmids",
+        "marks": 1,
+        "mark_note": "Names",
+        "margin_note": "Both names, spelled exactly. Three lines.",
+        "lines": [
+          "Two artificially restructured plasmids are:",
+          "1. pBR322",
+          "2. pUC19"
+        ],
+        "why": "Both were built in the laboratory from natural plasmids, which is what 'artificially restructured' means.",
+        "common_mistakes": [
+          "Naming Ti plasmid. Ti is a NATURAL plasmid of Agrobacterium, not an artificial one.",
+          "Naming one plasmid. The question asks for two."
+        ],
+        "memory_tip": "pBR322 and pUC19: the two standard laboratory plasmids."
+      },
+      {
+        "id": "s2_names",
+        "kind": "boxed_final",
+        "label": "What the names mean",
+        "marks": 1,
+        "mark_note": "Origins",
+        "margin_note": "Both origins, one line each. Six lines.",
+        "lines": [
+          {
+            "text": "Named after the people and the place that",
+            "style": "boxed"
+          },
+          {
+            "text": "built them",
+            "style": "boxed"
+          },
+          "pBR322 is named after BOLIVAR and RODRIGUEZ,",
+          "who constructed it. The p stands for plasmid.",
+          "pUC19 is named after the UNIVERSITY OF",
+          "CALIFORNIA, where it was made."
+        ],
+        "why": "Both names encode who made them, which is why they look arbitrary until the origin is known.",
+        "common_mistakes": [
+          "Saying pBR stands for a property of the plasmid. It stands for the two makers' names.",
+          "Leaving out the second half. The origins are the easiest mark in the question."
+        ],
+        "memory_tip": "p for plasmid, then the initials of whoever built it."
+      }
+    ]
+  }
+}

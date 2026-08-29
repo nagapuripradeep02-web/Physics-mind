@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bpp_recombinant_dna",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Biotechnology: Principles and Processes (Botany-II)"
+  },
+  "chapter": "Biotechnology: Principles and Processes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is recombinant DNA?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "How it is made",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 112. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two halves: what it is, and the enzyme that makes it. Naming ligase is the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology: Principles and Processes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Recombinant DNA defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition naming both sources. Four lines.",
+        "lines": [
+          "RECOMBINANT DNA is a HYBRID DNA molecule",
+          "formed by joining a desired gene from one organism to",
+          "the DNA of a vector.",
+          "It contains DNA from two different sources."
+        ],
+        "why": "The molecule is called recombinant because it combines DNA that was never together in nature.",
+        "common_mistakes": [
+          "Saying recombinant DNA is a mutated DNA. It is a JOINED molecule, not a changed one.",
+          "Leaving out the two sources. That is what makes it recombinant."
+        ],
+        "memory_tip": "Two DNAs from two organisms, joined into one."
+      },
+      {
+        "id": "s2_how",
+        "kind": "boxed_final",
+        "label": "How it is made",
+        "marks": 1,
+        "mark_note": "How",
+        "margin_note": "Both enzymes, and the same-enzyme point. Five lines.",
+        "lines": [
+          {
+            "text": "Restriction enzyme cuts, DNA ligase joins",
+            "style": "boxed"
+          },
+          "Both DNAs are cut with the SAME restriction",
+          "enzyme, so their sticky ends match.",
+          "The enzyme DNA LIGASE then joins them by covalent",
+          "bonding, regenerating a circular molecule.",
+          "The product is the recombinant DNA."
+        ],
+        "why": "The same enzyme on both molecules is what makes the ends complementary, and ligase seals what the sticky ends have already brought together.",
+        "common_mistakes": [
+          "Naming only one enzyme. BOTH the restriction enzyme and ligase are needed.",
+          "Saying different enzymes are used on the two DNAs. The SAME one must be used."
+        ],
+        "memory_tip": "One enzyme to cut both, one to join them."
+      }
+    ]
+  }
+}

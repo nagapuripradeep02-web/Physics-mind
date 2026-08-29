@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_transpiration_photosynthesis_compromise",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Transpiration and Photosynthesis — a compromise. Explain.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The plant's need for water",
+      "marks": 1
+    },
+    {
+      "label": "Why stomata must open",
+      "marks": 1
+    },
+    {
+      "label": "What opening costs",
+      "marks": 1
+    },
+    {
+      "label": "The compromise",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.22, printed question 11. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "This is a chain of four steps, not a list. Write them in order — need water, open stomata, lose water, pull more water — because the last mark is for closing the loop.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transport in Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_need",
+        "kind": "text",
+        "label": "The plant needs water",
+        "marks": 1,
+        "mark_note": "Need for water",
+        "margin_note": "Two or three lines. Establish the demand before anything opens.",
+        "lines": [
+          "Photosynthesis needs a continuous supply of",
+          "water.",
+          "A plant needs water all the time, and never",
+          "stops needing it."
+        ],
+        "why": "The whole compromise starts from a demand that cannot be switched off, so the plant has no option of simply closing up and waiting.",
+        "common_mistakes": [
+          "Saying water is needed only sometimes. The need is continuous.",
+          "Starting the answer at the stomata. The need for water comes first in the chain."
+        ],
+        "memory_tip": "The demand never stops, so the trade never stops either."
+      },
+      {
+        "id": "s2_stomata",
+        "kind": "text",
+        "label": "Why stomata must open",
+        "marks": 1,
+        "mark_note": "Stomata open",
+        "margin_note": "Two lines: what has to come in, and what has to open to let it in.",
+        "lines": [
+          "To photosynthesise, the plant must take in",
+          "carbon dioxide from the air.",
+          "So the plant opens its stomata to exchange",
+          "gases."
+        ],
+        "why": "Carbon dioxide can only enter through an open pore, so the stoma has to be open for photosynthesis to happen at all.",
+        "common_mistakes": [
+          "Saying stomata open to release oxygen. They open mainly to take in carbon dioxide.",
+          "Leaving out gas exchange. That is the reason the pore opens."
+        ],
+        "memory_tip": "No open pore, no carbon dioxide, no sugar."
+      },
+      {
+        "id": "s3_cost",
+        "kind": "text",
+        "label": "What opening costs",
+        "marks": 1,
+        "mark_note": "Water is lost",
+        "margin_note": "Three lines. End on the pull, because the next step uses it.",
+        "lines": [
+          "An open stoma also lets water escape by",
+          "evaporation.",
+          "This is transpiration.",
+          "The loss of water pulls more water up from the",
+          "soil, through the xylem."
+        ],
+        "why": "The same open pore that admits carbon dioxide lets water out, so the cost and the benefit cannot be separated — they share one opening.",
+        "common_mistakes": [
+          "Treating the water loss as an accident. It is unavoidable once the pore is open.",
+          "Not linking the loss to the upward pull. That link is what makes the loss useful."
+        ],
+        "memory_tip": "One door, two directions: carbon dioxide in, water vapour out."
+      },
+      {
+        "id": "s4_compromise",
+        "kind": "boxed_final",
+        "label": "The compromise",
+        "marks": 1,
+        "mark_note": "Compromise",
+        "margin_note": "Close the loop and use the word 'compromise'. Four lines.",
+        "lines": [
+          {
+            "text": "One open pore serves both processes",
+            "style": "boxed"
+          },
+          "The water pulled up by transpiration is the",
+          "same water photosynthesis uses.",
+          "So the plant trades water loss for carbon gain.",
+          "Transpiration and photosynthesis are therefore",
+          "a compromise with each other."
+        ],
+        "why": "The loop closes because the water lost is what drags up the water used, so the cost pays for part of the benefit rather than just cancelling it.",
+        "common_mistakes": [
+          "Ending without the word compromise. The question asks for it by name.",
+          "Saying the two processes are unrelated. They share the same open stoma."
+        ],
+        "memory_tip": "What the plant loses through the pore is what draws up what it needs."
+      }
+    ]
+  }
+}

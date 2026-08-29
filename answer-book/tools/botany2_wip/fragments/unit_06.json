@@ -1,0 +1,87 @@
+{
+  "number": 6,
+  "name": "Plant Growth and Development (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 20,
+      "stars": 0,
+      "text": "Write a note on agricultural and horticultural applications of auxins.",
+      "question_id": "ts_ipe_b2_pgd_auxin_applications"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 21,
+      "stars": 0,
+      "text": "Write the physiological responses of gibberellins in plants.",
+      "question_id": "ts_ipe_b2_pgd_gibberellin_responses"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 22,
+      "stars": 0,
+      "text": "Write any four physiological effects of cytokinins in plants.",
+      "question_id": "ts_ipe_b2_pgd_cytokinin_effects"
+    },
+    {
+      "ref": "saq4",
+      "section": "SAQ",
+      "number": 23,
+      "stars": 0,
+      "text": "What are the physiological processes that are regulated by ethylene in plants?",
+      "question_id": "ts_ipe_b2_pgd_ethylene_processes"
+    },
+    {
+      "ref": "saq5",
+      "section": "SAQ",
+      "number": 24,
+      "stars": 0,
+      "text": "Write short notes on seed dormancy.",
+      "question_id": "ts_ipe_b2_pgd_seed_dormancy"
+    },
+    {
+      "ref": "saq6",
+      "section": "SAQ",
+      "number": 25,
+      "stars": 0,
+      "text": "Which one of the plant growth regulators would you use if you are asked to (a) induce rooting in a twig (b) quickly ripen a fruit (c) delay leaf senescence (d) induce growth in axillary buds (e) bolt a rosette plant (f) induce immediate stomatal closure in leaves (g) overcome apical dominance (h) kill dicotyledonous weeds?",
+      "question_id": "ts_ipe_b2_pgd_which_growth_regulator"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 159,
+      "stars": 0,
+      "text": "What do you understand by vernalisation? Write its significance.",
+      "question_id": "ts_ipe_b2_pgd_vernalisation"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 160,
+      "stars": 0,
+      "text": "What is meant by bolting? Which hormone causes bolting?",
+      "question_id": "ts_ipe_b2_pgd_bolting"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 161,
+      "stars": 0,
+      "text": "Define the terms quiescence and dormancy.",
+      "question_id": "ts_ipe_b2_pgd_quiescence_vs_dormancy"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 162,
+      "stars": 0,
+      "text": "Define plasticity. Give an example.",
+      "question_id": "ts_ipe_b2_pgd_plasticity"
+    }
+  ]
+}

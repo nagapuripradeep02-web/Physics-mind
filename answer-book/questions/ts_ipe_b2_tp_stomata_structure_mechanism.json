@@ -1,0 +1,564 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_stomata_structure_mechanism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the structure and mechanism of opening and closing of stomata.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Structure of the stoma",
+      "marks": 1
+    },
+    {
+      "label": "Opening: potassium moves in",
+      "marks": 1
+    },
+    {
+      "label": "Closing: potassium moves out",
+      "marks": 1
+    },
+    {
+      "label": "Water stress and succulents",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.22, printed question 12. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Name the theory. \"Levitt's potassium ion pump theory\" is worth writing in the first line, and an answer that describes the ion movement without naming the theory reads as guesswork.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transport in Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_structure",
+        "kind": "text",
+        "label": "Structure of the stoma",
+        "marks": 1,
+        "mark_note": "Structure",
+        "margin_note": "Pore, guard cells, the two wall thicknesses, subsidiary cells. The wall difference is the mark.",
+        "lines": [
+          "A stoma is a pore in the leaf epidermis.",
+          "It is bounded by two GUARD CELLS.",
+          "In dicots the guard cells are bean shaped; in",
+          "monocots they are dumb-bell shaped.",
+          "The wall facing the pore (the inner wall) is",
+          "THICK and inelastic.",
+          "The outer wall is THIN and elastic.",
+          "Guard cells contain chloroplasts.",
+          "Around them lie the subsidiary cells."
+        ],
+        "why": "The two walls differ in thickness, and that difference alone decides that a swollen guard cell must bow outward and open the pore rather than swell evenly.",
+        "common_mistakes": [
+          "Saying both walls are the same. The inner wall is THICK, the outer wall is THIN.",
+          "Leaving out the guard cells. The pore is defined by the pair that surrounds it."
+        ],
+        "memory_tip": "Thick inside, thin outside: the thin side stretches, so the pair bends apart."
+      },
+      {
+        "id": "s2_opening",
+        "kind": "text",
+        "label": "Opening: potassium moves in",
+        "marks": 1,
+        "mark_note": "Opening",
+        "margin_note": "Name the theory, then the ion order. Do not let water move before the ions.",
+        "lines": [
+          "Levitt's potassium ion pump theory explains",
+          "the mechanism.",
+          "In light, K+ ions move INTO the guard cells",
+          "from the subsidiary cells.",
+          "H+ ions are pumped OUT, so the pH of the guard",
+          "cells RISES.",
+          "Cl- ions enter passively along with K+.",
+          "The water potential of the guard cells falls.",
+          "Water enters and the guard cells become turgid.",
+          "The thin outer walls stretch, the pair bows",
+          "apart, and the pore OPENS."
+        ],
+        "why": "Ions come in first and water follows them, so the order of the answer has to be ions, then water potential, then water, then shape.",
+        "common_mistakes": [
+          "Saying water enters first. The IONS move first and the water follows them.",
+          "Writing that the pH falls during opening. Protons leave, so the pH RISES."
+        ],
+        "memory_tip": "Potassium in, protons out, water follows, pore opens."
+      },
+      {
+        "id": "s3_closing",
+        "kind": "text",
+        "label": "Closing: potassium moves out",
+        "marks": 1,
+        "mark_note": "Closing",
+        "margin_note": "The reverse of the opening step, in the same order. Six lines.",
+        "lines": [
+          "At night, in the absence of light, K+ and Cl-",
+          "ions move OUT of the guard cells.",
+          "The water potential of the guard cells rises.",
+          "Water moves out and the guard cells lose",
+          "turgor.",
+          "The pair straightens and the pore CLOSES.",
+          "The pH of the guard cells falls."
+        ],
+        "why": "Closing is the same sequence run backwards, so it is checked by whether every arrow in the opening step has been reversed.",
+        "common_mistakes": [
+          "Describing closing as a separate mechanism. It is the reverse of opening.",
+          "Forgetting the pH. It falls on closing, having risen on opening."
+        ],
+        "memory_tip": "Run every arrow backwards and the pore shuts."
+      },
+      {
+        "id": "s4_stress",
+        "kind": "boxed_final",
+        "label": "Water stress and succulents",
+        "marks": 1,
+        "mark_note": "ABA, succulents",
+        "margin_note": "Two special cases: ABA under stress, and the reversed succulent pattern.",
+        "lines": [
+          {
+            "text": "ABA shuts the pore under water stress",
+            "style": "boxed"
+          },
+          "Under water stress, abscisic acid (ABA) drives",
+          "K+ ions OUT of the guard cells, so the stomata",
+          "close.",
+          "In succulent plants the pattern is reversed.",
+          "Organic acids collect at night and make the",
+          "guard cells turgid, so the stomata open at",
+          "NIGHT and close by day."
+        ],
+        "why": "ABA and the succulents are the two cases where the light rule does not hold, so they are what the last mark tests.",
+        "common_mistakes": [
+          "Leaving out ABA. It is the named hormone for water stress and a whole mark.",
+          "Saying succulents open by day. They open at NIGHT, which is how they save water."
+        ],
+        "memory_tip": "Dry day shuts the pore; a succulent opens it at night instead."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "Diagram — stomatal opening and closing",
+        "marks": 0,
+        "margin_note": "The question says explain, not draw, so there is NO diagram mark; all four marks sit on the written steps. Draw it anyway if time allows: the two panels replace a paragraph of words.",
+        "figure": {
+          "id": "b2_tp_stomata_open_close",
+          "width": 560,
+          "height": 320,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — draw the open guard cell pair"
+            },
+            {
+              "type": "stroke",
+              "id": "op_upper_outer",
+              "d": "M 95 150 C 105 99 195 99 205 150",
+              "ms": 2080
+            },
+            {
+              "type": "stroke",
+              "id": "op_upper_inner",
+              "d": "M 205 150 C 196 134 104 134 95 150",
+              "ms": 1650,
+              "w": 4
+            },
+            {
+              "type": "stroke",
+              "id": "op_lower_outer",
+              "d": "M 95 150 C 105 198 195 198 205 150",
+              "ms": 2030
+            },
+            {
+              "type": "stroke",
+              "id": "op_lower_inner",
+              "d": "M 205 150 C 196 163 104 163 95 150",
+              "ms": 1620,
+              "w": 4
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — chloroplasts inside the guard cells"
+            },
+            {
+              "type": "stroke",
+              "id": "op_chl_u0",
+              "d": "M 123.5 125 A 2.5 2.5 0 1 0 128.5 125 A 2.5 2.5 0 1 0 123.5 125",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "op_chl_l0",
+              "d": "M 123.5 173 A 2.5 2.5 0 1 0 128.5 173 A 2.5 2.5 0 1 0 123.5 173",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "op_chl_u1",
+              "d": "M 147.5 125 A 2.5 2.5 0 1 0 152.5 125 A 2.5 2.5 0 1 0 147.5 125",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "op_chl_l1",
+              "d": "M 147.5 173 A 2.5 2.5 0 1 0 152.5 173 A 2.5 2.5 0 1 0 147.5 173",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "op_chl_u2",
+              "d": "M 171.5 125 A 2.5 2.5 0 1 0 176.5 125 A 2.5 2.5 0 1 0 171.5 125",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "op_chl_l2",
+              "d": "M 171.5 173 A 2.5 2.5 0 1 0 176.5 173 A 2.5 2.5 0 1 0 171.5 173",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — potassium in, protons out"
+            },
+            {
+              "type": "stroke",
+              "id": "op_k_in",
+              "d": "M 52 112 L 96 124",
+              "ms": 650,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "op_k_in_h",
+              "d": "M 89.2 125.8 L 96 124 L 91.1 119",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "op_cl_in",
+              "d": "M 52 188 L 96 176",
+              "ms": 650,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "op_cl_in_h",
+              "d": "M 91.1 181 L 96 176 L 89.2 174.2",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "op_h_out",
+              "d": "M 206 126 L 250 112",
+              "ms": 660,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "op_h_out_h",
+              "d": "M 245.3 117.2 L 250 112 L 243.2 110.5",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the same pair, now closed"
+            },
+            {
+              "type": "stroke",
+              "id": "cl_upper_outer",
+              "d": "M 355 150 C 365 110 455 110 465 150",
+              "ms": 1920
+            },
+            {
+              "type": "stroke",
+              "id": "cl_upper_inner",
+              "d": "M 465 150 C 456 147 364 147 355 150",
+              "ms": 1570,
+              "w": 4
+            },
+            {
+              "type": "stroke",
+              "id": "cl_lower_outer",
+              "d": "M 355 150 C 365 190 455 190 465 150",
+              "ms": 1920
+            },
+            {
+              "type": "stroke",
+              "id": "cl_lower_inner",
+              "d": "M 465 150 C 456 153 364 153 355 150",
+              "ms": 1570,
+              "w": 4
+            },
+            {
+              "type": "stroke",
+              "id": "cl_chl_u0",
+              "d": "M 383.5 134 A 2.5 2.5 0 1 0 388.5 134 A 2.5 2.5 0 1 0 383.5 134",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cl_chl_l0",
+              "d": "M 383.5 166 A 2.5 2.5 0 1 0 388.5 166 A 2.5 2.5 0 1 0 383.5 166",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cl_chl_u1",
+              "d": "M 407.5 134 A 2.5 2.5 0 1 0 412.5 134 A 2.5 2.5 0 1 0 407.5 134",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cl_chl_l1",
+              "d": "M 407.5 166 A 2.5 2.5 0 1 0 412.5 166 A 2.5 2.5 0 1 0 407.5 166",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cl_chl_u2",
+              "d": "M 431.5 134 A 2.5 2.5 0 1 0 436.5 134 A 2.5 2.5 0 1 0 431.5 134",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cl_chl_l2",
+              "d": "M 431.5 166 A 2.5 2.5 0 1 0 436.5 166 A 2.5 2.5 0 1 0 431.5 166",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — every arrow reverses"
+            },
+            {
+              "type": "stroke",
+              "id": "cl_k_out",
+              "d": "M 464 132 L 508 116",
+              "ms": 670,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cl_k_out_h",
+              "d": "M 503.5 121.4 L 508 116 L 501.1 114.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cl_cl_out",
+              "d": "M 464 168 L 508 184",
+              "ms": 670,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cl_cl_out_h",
+              "d": "M 501.1 185.2 L 508 184 L 503.5 178.6",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cl_h_in",
+              "d": "M 330 190 L 368 176",
+              "ms": 580,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cl_h_in_h",
+              "d": "M 363.5 181.4 L 368 176 L 361.1 174.8",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "stroke",
+              "id": "ld_outer",
+              "d": "M 140 62 L 150 110",
+              "ms": 700,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "ld_guard",
+              "d": "M 250 62 L 180 124",
+              "ms": 1340,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pore",
+              "d": "M 246 146 L 176 150",
+              "ms": 1000,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "ld_inner",
+              "d": "M 186 238 L 168 164",
+              "ms": 1090,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "ld_chl",
+              "d": "M 108 244 L 128 175",
+              "ms": 1030,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_outer",
+              "x": 24,
+              "y": 56,
+              "text": "Thin outer wall",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_guard",
+              "x": 238,
+              "y": 56,
+              "text": "Guard cell",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_pore",
+              "x": 250,
+              "y": 148,
+              "text": "Pore",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_inner",
+              "x": 150,
+              "y": 244,
+              "text": "Thick inner wall",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_chl",
+              "x": 24,
+              "y": 250,
+              "text": "Chloroplasts",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_k_in",
+              "x": 30,
+              "y": 108,
+              "text": "K⁺",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_cl_in",
+              "x": 26,
+              "y": 196,
+              "text": "Cl⁻",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_h_out",
+              "x": 254,
+              "y": 104,
+              "text": "H⁺",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_k_out",
+              "x": 512,
+              "y": 110,
+              "text": "K⁺",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_cl_out",
+              "x": 512,
+              "y": 192,
+              "text": "Cl⁻",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_h_in",
+              "x": 296,
+              "y": 194,
+              "text": "H⁺",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_open",
+              "x": 88,
+              "y": 296,
+              "text": "Stomatal opening",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_closed",
+              "x": 348,
+              "y": 296,
+              "text": "Stomatal closing",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Drawing the open pair beside the closed pair shows in one picture that the same two cells make both states, and that the arrows simply reverse.",
+        "common_mistakes": [
+          "Drawing the guard cells as identical rectangles. The pore-side wall must look thicker.",
+          "Drawing the same arrow directions on both panels. They are opposites.",
+          "Drawing the open pore as a gap between straight cells. The pair BOWS apart."
+        ],
+        "memory_tip": "Two panels, one pair of cells, every arrow reversed."
+      }
+    ]
+  }
+}

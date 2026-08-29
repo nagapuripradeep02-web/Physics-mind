@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_cry_genes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give different types of cry genes and the pests which are controlled by the proteins encoded by these genes.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cry I Ac and Cry II Ab",
+      "marks": 1
+    },
+    {
+      "label": "Cry I Ab",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 118. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Three gene names, two pests. Get Ac and Ab the right way round — that is the whole question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bollworm",
+        "kind": "text",
+        "label": "Cry I Ac and Cry II Ab",
+        "marks": 1,
+        "mark_note": "Bollworm",
+        "margin_note": "Both genes and the pest. Three lines.",
+        "lines": [
+          "The proteins of CRY I Ac and CRY II Ab control",
+          "the COTTON BOLLWORMS.",
+          "These are the genes carried by Bt cotton."
+        ],
+        "why": "Cotton's main pest is the bollworm, so these are the genes that made Bt cotton worth developing at all.",
+        "common_mistakes": [
+          "Giving Cry I Ab for bollworm. Cry I Ab controls the CORN BORER.",
+          "Naming one gene. TWO control the bollworm."
+        ],
+        "memory_tip": "Two genes for cotton's bollworm."
+      },
+      {
+        "id": "s2_corn",
+        "kind": "boxed_final",
+        "label": "Cry I Ab",
+        "marks": 1,
+        "mark_note": "Corn borer",
+        "margin_note": "The gene, the pest, and the specificity point.",
+        "lines": [
+          {
+            "text": "Ac and Ab for cotton; Ab alone for corn",
+            "style": "boxed"
+          },
+          "The protein of CRY I Ab controls the CORN BORER.",
+          "Each cry gene is insect group SPECIFIC, so a",
+          "different gene is needed for each pest."
+        ],
+        "why": "Each Cry protein binds only to receptors in certain insect guts, which is why one gene cannot serve every crop.",
+        "common_mistakes": [
+          "Saying one cry gene controls all pests. They are group SPECIFIC.",
+          "Confusing corn borer with bollworm."
+        ],
+        "memory_tip": "Different pest, different gene."
+      }
+    ]
+  }
+}

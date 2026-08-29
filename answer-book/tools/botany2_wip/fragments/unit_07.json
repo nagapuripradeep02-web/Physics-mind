@@ -1,0 +1,87 @@
+{
+  "number": 7,
+  "name": "Bacteria (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 72,
+      "stars": 0,
+      "text": "Write briefly on the occurrence of micro organisms.",
+      "question_id": "ts_ipe_b2_ba_occurrence_of_microorganisms"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 73,
+      "stars": 0,
+      "text": "Define Microbiology.",
+      "question_id": "ts_ipe_b2_ba_microbiology_definition"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 74,
+      "stars": 0,
+      "text": "Name the bacteria which is a common inhabitant of the human intestine. How is it used in biotechnology?",
+      "question_id": "ts_ipe_b2_ba_ecoli_in_intestine"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 75,
+      "stars": 0,
+      "text": "What are pleomorphic bacteria? Give an example.",
+      "question_id": "ts_ipe_b2_ba_pleomorphic_bacteria"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 76,
+      "stars": 0,
+      "text": "What is sex pilus? What is its function?",
+      "question_id": "ts_ipe_b2_ba_sex_pilus"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 77,
+      "stars": 0,
+      "text": "What is a genophore?",
+      "question_id": "ts_ipe_b2_ba_genophore"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 78,
+      "stars": 0,
+      "text": "What is a plasmid? What is its significance?",
+      "question_id": "ts_ipe_b2_ba_plasmid"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 79,
+      "stars": 0,
+      "text": "What is conjugation? Who discovered it and in which organism?",
+      "question_id": "ts_ipe_b2_ba_conjugation"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 80,
+      "stars": 0,
+      "text": "What is transformation? Who discovered it and in which organism?",
+      "question_id": "ts_ipe_b2_ba_transformation"
+    },
+    {
+      "ref": "vsaq10",
+      "section": "VSAQ",
+      "number": 81,
+      "stars": 0,
+      "text": "What is transduction? Who discovered it and in which organism?",
+      "question_id": "ts_ipe_b2_ba_transduction"
+    }
+  ]
+}

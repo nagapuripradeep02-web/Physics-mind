@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_nucleopolyhedrovirus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Nucleopolyhedrovirus being used for nowadays?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is used for",
+      "marks": 1
+    },
+    {
+      "label": "Why it is preferred",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.48, printed question 139. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Biological control is the answer, and IPM is the programme. Both terms in four lines.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_use",
+        "kind": "text",
+        "label": "What it is used for",
+        "marks": 1,
+        "mark_note": "Use",
+        "margin_note": "Biological control, and the specificity. Four lines.",
+        "lines": [
+          "NUCLEOPOLYHEDROVIRUSES are used for the",
+          "BIOLOGICAL CONTROL of insect pests.",
+          "They infect and kill the pest insect, and they",
+          "are species specific."
+        ],
+        "why": "A virus that attacks only one insect species can remove a pest without touching anything else in the field.",
+        "common_mistakes": [
+          "Saying it is used to treat plant diseases. It is used to KILL insect pests.",
+          "Saying it kills all insects. It is species SPECIFIC — that is the point."
+        ],
+        "memory_tip": "A virus used as an insecticide."
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why it is preferred",
+        "marks": 1,
+        "mark_note": "IPM",
+        "margin_note": "Expand IPM, list what it does not harm, and say where it matters most.",
+        "lines": [
+          {
+            "text": "Species specific, so it fits an IPM programme",
+            "style": "boxed"
+          },
+          "It is desirable in an INTEGRATED PEST",
+          "MANAGEMENT (IPM) programme.",
+          "Because it has NO ill effect on plants, mammals,",
+          "birds, fish or non-target insects, it can be used",
+          "where beneficial insects must be preserved.",
+          "It is especially useful in ecologically sensitive",
+          "areas."
+        ],
+        "why": "A chemical insecticide kills the pest's predators as well, which often makes the next outbreak worse; a species-specific virus does not.",
+        "common_mistakes": [
+          "Not expanding IPM. Integrated Pest Management is the term.",
+          "Saying it is harmful to other species. Its lack of harm is exactly why it is used."
+        ],
+        "memory_tip": "It leaves the useful insects alone."
+      }
+    ]
+  }
+}

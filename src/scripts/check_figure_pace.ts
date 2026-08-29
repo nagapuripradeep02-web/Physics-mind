@@ -34,23 +34,28 @@ const opt = (name: string, dflt: string): string => {
     return i >= 0 && args[i + 1] ? args[i + 1] : dflt;
 };
 /**
- * `--strict` with nothing after it USED to degrade silently to report-only: `opt`
- * returns '' when the next token is missing, `strict` is then false for every
- * file, every finding lands in the warnings bucket, and the run still exits 0
- * saying "report only". A gate that an argument slip can switch off without
- * saying so is not a gate — a package.json script ending in a bare `--strict`
- * shipped exactly that on 2026-08-29 and was caught by a sibling session, not by
- * this script. Passing the flag now means asking for the gate, so a missing
- * value is a hard error.
+ * `--strict` with nothing after it degrades SILENTLY to report-only: `opt` returns
+ * '' when the next token is missing, ''.split(',').filter(Boolean) is [], and
+ * [].some() is false for every file — so every finding lands in the warnings
+ * bucket and the run still exits 0 saying "report only". A gate an argument slip
+ * can switch off without saying so is not a gate: a package.json script ending in
+ * a bare `--strict` shipped exactly that on 2026-08-29, and it was caught by a
+ * sibling session rather than by this script. Passing the flag means asking for
+ * the gate, so a missing value is now a hard error.
  */
 if (args.includes('--strict') && !opt('--strict', '')) {
-    console.error('✗ --strict needs a prefix (or a comma-separated list): --strict ts_ipe_m2a,ts_ipe_c2');
+    console.error('✗ --strict needs a prefix (or a comma-separated list): --strict ts_ipe_c2,ts_ipe_m2a');
     console.error('  omit --strict entirely for the report-only run.');
     process.exit(2);
 }
-/** Comma-separated so ONE npm script can gate every prefix that has opted in. */
-const STRICT_PREFIXES = opt('--strict', '').split(',').map((x) => x.trim()).filter(Boolean);
-const STRICT = STRICT_PREFIXES.join(',');
+// --strict takes a COMMA-SEPARATED list of prefixes: every subject built under the
+// phased-figure contract is strict, and they accumulate (ts_ipe_z1, then ts_ipe_b2,
+// then ts_ipe_m2a). The pre-contract figures stay outside it and are reported as
+// warnings only. Three sessions built this list independently inside one week; this
+// is the Botany-II implementation, kept because it landed first (Rule 40a).
+const STRICT = opt('--strict', '');
+const STRICT_LIST = STRICT.split(',').map((s) => s.trim()).filter(Boolean);
+const isStrict = (f: string): boolean => STRICT_LIST.some((p) => f.startsWith(p));
 const MIN = parseFloat(opt('--min', '40'));
 const MAX = parseFloat(opt('--max', '160'));
 const PHASE_MIN = parseInt(opt('--phase-min', '16'), 10);
@@ -65,7 +70,7 @@ let figures = 0, strokes = 0, strictFigures = 0;
 const files = readdirSync(QDIR).filter((f) => f.endsWith('.json') && (!ONLY || f.startsWith(ONLY))).sort();
 for (const f of files) {
     const q = JSON.parse(readFileSync(join(QDIR, f), 'utf8'));
-    const strict = STRICT_PREFIXES.some((prefix) => f.startsWith(prefix));
+    const strict = isStrict(f);
     for (const step of q.answer?.steps || []) {
         if (step.kind !== 'diagram' || !step.figure) continue;
         const fig = step.figure;

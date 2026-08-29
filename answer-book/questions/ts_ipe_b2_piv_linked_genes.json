@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_linked_genes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Do you think Mendel's laws of inheritance would have been different if the characters he chose were located on the same chromosome?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.42, printed question 83. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Answer YES, then name the law that would have failed. Naming independent assortment specifically is what earns the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Yes",
+        "margin_note": "Yes plus the named law. Three lines.",
+        "lines": [
+          "YES. Mendel's laws would have been different.",
+          "Specifically, the LAW OF INDEPENDENT",
+          "ASSORTMENT would not have held."
+        ],
+        "why": "Only one of the three laws depends on the genes being on different chromosomes, so the answer has to name which one.",
+        "common_mistakes": [
+          "Answering with a bare 'yes'. The mark is for naming which law fails.",
+          "Saying all three laws would fail. Segregation and dominance still hold for linked genes."
+        ],
+        "memory_tip": "Only independent assortment depends on separate chromosomes."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "margin_note": "Say inherited together, name linkage, and state the consequence.",
+        "lines": [
+          {
+            "text": "Genes on one chromosome are",
+            "style": "boxed"
+          },
+          {
+            "text": "inherited TOGETHER",
+            "style": "boxed"
+          },
+          "Genes located on the SAME chromosome are",
+          "inherited TOGETHER, because they travel together",
+          "into the same gamete.",
+          "They are called LINKED genes, and the phenomenon",
+          "is LINKAGE.",
+          "So they do not assort independently."
+        ],
+        "why": "A chromosome moves as one piece at meiosis, so genes riding on it cannot be separated except by crossing over.",
+        "common_mistakes": [
+          "Leaving out the word 'together'. The guide's own sentence drops it and reads as a fragment; inherited TOGETHER is the point.",
+          "Not naming linkage. It is the term for this."
+        ],
+        "memory_tip": "Same chromosome, same journey."
+      }
+    ]
+  }
+}

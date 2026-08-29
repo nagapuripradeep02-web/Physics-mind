@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_photorespiration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe in brief photorespiration.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "RuBisCO and its two substrates",
+      "marks": 1
+    },
+    {
+      "label": "What happens when oxygen wins",
+      "marks": 1
+    },
+    {
+      "label": "The products",
+      "marks": 1
+    },
+    {
+      "label": "Why it is wasteful",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.25, printed question 19. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The whole answer turns on one enzyme having two jobs. Say RuBisCO binds BOTH carbon dioxide and oxygen in the first two lines and the rest follows.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rubisco",
+        "kind": "text",
+        "label": "RuBisCO and its two substrates",
+        "marks": 1,
+        "mark_note": "The enzyme",
+        "margin_note": "Name the enzyme in full and say it takes both gases. The affinity line matters.",
+        "lines": [
+          "RuBisCO is the most abundant enzyme in the",
+          "world.",
+          "Its active site can bind BOTH carbon dioxide",
+          "and oxygen. That is why it is named",
+          "ribulose bisphosphate carboxylase-oxygenase.",
+          "It has a much greater affinity for CO2 than",
+          "for O2."
+        ],
+        "why": "One active site that accepts two different gases is the whole cause of photorespiration, so the enzyme's double name is the first thing to write.",
+        "common_mistakes": [
+          "Saying RuBisCO binds only carbon dioxide. It binds oxygen too, and that is the point.",
+          "Saying it prefers oxygen. It has a much GREATER affinity for carbon dioxide."
+        ],
+        "memory_tip": "Carboxylase and oxygenase in one name: two jobs, one active site."
+      },
+      {
+        "id": "s2_oxygen",
+        "kind": "equation",
+        "label": "What happens when oxygen wins",
+        "marks": 1,
+        "mark_note": "Oxygen binds",
+        "margin_note": "Give the normal equation first so the departure from it is visible.",
+        "lines": [
+          "Normally CO2 binds and the Calvin cycle runs:",
+          {
+            "text": "RuBP + CO2  --RuBisCO-->  2 x 3-PGA",
+            "style": "eq"
+          },
+          "But if the oxygen concentration is HIGH,",
+          "RuBisCO acts as an OXYGENASE and binds O2",
+          "instead.",
+          "This pathway is called PHOTORESPIRATION."
+        ],
+        "why": "Which gas binds depends on which is more plentiful, so photorespiration is not a separate mechanism but the same enzyme meeting a different gas.",
+        "common_mistakes": [
+          "Saying photorespiration is a separate enzyme's work. It is the SAME enzyme, RuBisCO.",
+          "Leaving out the condition. It happens when the OXYGEN concentration is high."
+        ],
+        "memory_tip": "Same enzyme, different gas, different pathway."
+      },
+      {
+        "id": "s3_products",
+        "kind": "text",
+        "label": "The products",
+        "marks": 1,
+        "mark_note": "Products",
+        "margin_note": "Name both products and say which one is useless.",
+        "lines": [
+          "Instead of two molecules of PGA, the reaction",
+          "gives only ONE:",
+          "one molecule of phosphoglycerate and",
+          "one molecule of PHOSPHOGLYCOLATE.",
+          "Phosphoglycolate is a 2-carbon compound and is",
+          "of no use to the Calvin cycle."
+        ],
+        "why": "Half the usual product is lost to a two-carbon compound the cycle cannot use, which is the measurable cost of photorespiration.",
+        "common_mistakes": [
+          "Saying two PGA are still formed. Only ONE PGA is formed, plus phosphoglycolate.",
+          "Calling phosphoglycolate a 3-carbon compound. It has TWO carbons."
+        ],
+        "memory_tip": "Two products, only one of them useful."
+      },
+      {
+        "id": "s4_wasteful",
+        "kind": "boxed_final",
+        "label": "Why it is wasteful",
+        "marks": 1,
+        "mark_note": "Wasteful",
+        "margin_note": "Three negatives and one release. This is the mark for the word 'wasteful'.",
+        "lines": [
+          {
+            "text": "No sugar, no ATP, no NADPH — and CO2 lost",
+            "style": "boxed"
+          },
+          "In photorespiration there is NO synthesis of",
+          "sugar, NO synthesis of ATP and NO synthesis of",
+          "NADPH.",
+          "Carbon dioxide is RELEASED and ATP is USED UP.",
+          "Photorespiration is therefore a wasteful",
+          "process."
+        ],
+        "why": "A pathway that consumes ATP, releases carbon dioxide and makes nothing is a net loss on every count, which is what the word wasteful is being asked to justify.",
+        "common_mistakes": [
+          "Saying photorespiration makes a little ATP. It makes NONE and consumes ATP.",
+          "Saying carbon dioxide is fixed. It is RELEASED."
+        ],
+        "memory_tip": "It spends ATP and gives back carbon dioxide: a loss on both sides."
+      }
+    ]
+  }
+}

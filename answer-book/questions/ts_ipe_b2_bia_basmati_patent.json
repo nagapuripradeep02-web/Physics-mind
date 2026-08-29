@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_basmati_patent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For which variety of Indian rice has a patent been filed by a USA company?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The variety",
+      "marks": 1
+    },
+    {
+      "label": "Why it matters",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 122. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "One word answers the question. The second mark comes from saying what a biopiracy case is.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_variety",
+        "kind": "text",
+        "label": "The variety",
+        "marks": 1,
+        "mark_note": "Variety",
+        "margin_note": "Name the variety and say what it is. Four lines.",
+        "lines": [
+          "A patent was filed by an American company on",
+          "BASMATI rice.",
+          "Basmati is a long grained, aromatic rice grown",
+          "for centuries in the Indian subcontinent."
+        ],
+        "why": "Basmati was already a traditional crop, so a patent on it claimed ownership of something that had been developed communally over centuries.",
+        "common_mistakes": [
+          "Naming Jaya or Ratna. Those are semi-dwarf HIGH YIELDING varieties, not the patent case.",
+          "Giving the name with no context. One line on what basmati is helps."
+        ],
+        "memory_tip": "Basmati: the aromatic one, and the patented one."
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why it matters",
+        "marks": 1,
+        "mark_note": "Biopiracy",
+        "margin_note": "Name biopiracy and define it. Six lines.",
+        "lines": [
+          {
+            "text": "Patenting a traditional variety is BIOPIRACY",
+            "style": "boxed"
+          },
+          "Patenting a variety that a country has developed",
+          "and used for centuries is called BIOPIRACY.",
+          "It is the use of bio-resources or traditional",
+          "knowledge without proper authorisation or",
+          "payment to the country concerned."
+        ],
+        "why": "A patent gives exclusive rights, so patenting a traditional variety would let one company charge for something a whole region already owned.",
+        "common_mistakes": [
+          "Not naming biopiracy. It is the term the case is famous for.",
+          "Saying a patent was granted permanently. The case was contested."
+        ],
+        "memory_tip": "Taking what was already communally owned."
+      }
+    ]
+  }
+}

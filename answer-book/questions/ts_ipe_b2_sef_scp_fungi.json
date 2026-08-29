@@ -1,0 +1,107 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_scp_fungi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give two examples of fungi used in SCP production.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The two fungi",
+      "marks": 1
+    },
+    {
+      "label": "What SCP is",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 128. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two names and the expansion of SCP. Both halves are short, so there is no excuse for missing either.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fungi",
+        "kind": "text",
+        "label": "The two fungi",
+        "marks": 1,
+        "mark_note": "Fungi",
+        "margin_note": "Both scientific names with their common names.",
+        "lines": [
+          "Two fungi used in single cell protein production:",
+          "1. CANDIDA UTILIS, the torula yeast",
+          "2. SACCHAROMYCES CEREVISIAE, the baker's",
+          "yeast"
+        ],
+        "why": "Both are yeasts that grow fast on cheap substrates, which is what a protein source has to do to be worth producing.",
+        "common_mistakes": [
+          "Naming a bacterium. The question asks for FUNGI.",
+          "Naming Spirulina. Spirulina is a cyanobacterium, not a fungus."
+        ],
+        "memory_tip": "Two yeasts: torula and baker's."
+      },
+      {
+        "id": "s2_scp",
+        "kind": "boxed_final",
+        "label": "What SCP is",
+        "marks": 1,
+        "mark_note": "SCP",
+        "margin_note": "The expansion, the definition, and the purpose. Six lines.",
+        "lines": [
+          {
+            "text": "Protein grown from microbes, as food",
+            "style": "boxed"
+          },
+          "SCP stands for SINGLE CELL PROTEIN.",
+          "It is protein obtained from microbial biomass —",
+          "algae, fungi or bacteria — grown on cheap",
+          "substrates and used as food or animal feed.",
+          "It is an alternative protein source for a growing",
+          "population."
+        ],
+        "why": "Microbes double in hours where a crop takes a season, so growing protein from them is far faster than growing it in a field.",
+        "common_mistakes": [
+          "Expanding SCP wrongly. It is SINGLE CELL PROTEIN.",
+          "Saying SCP comes only from fungi. Algae and bacteria are used too."
+        ],
+        "memory_tip": "Protein from single cells, grown in a tank."
+      }
+    ]
+  }
+}

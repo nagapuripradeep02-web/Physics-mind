@@ -1,0 +1,539 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_vi_t_even_phage_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Viruses (Botany-II)"
+  },
+  "chapter": "Viruses",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the structure of T-even bacteriophages.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What a bacteriophage is",
+      "marks": 1
+    },
+    {
+      "label": "The head",
+      "marks": 1
+    },
+    {
+      "label": "The tail",
+      "marks": 1
+    },
+    {
+      "label": "The base plate and fibres",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.29, printed question 29. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Tadpole shaped. That one word sets the whole picture up, and examiners look for it in the first line.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Viruses (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What a bacteriophage is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, which phages are T-even, and the shape. Five lines.",
+        "lines": [
+          "Viruses that attack BACTERIA are called",
+          "BACTERIOPHAGES, or phages.",
+          "T-even phages are the T2, T4 and T6 phages that",
+          "infect Escherichia coli.",
+          "A bacteriophage is TADPOLE SHAPED: a large head",
+          "and a narrow tail."
+        ],
+        "why": "The head holds the genome and the tail delivers it, so the tadpole shape is a division of labour rather than a coincidence.",
+        "common_mistakes": [
+          "Saying a bacteriophage is a bacterium. It is a VIRUS that attacks bacteria.",
+          "Leaving out the shape. Tadpole shaped is the phrase that carries this mark."
+        ],
+        "memory_tip": "A virus that eats bacteria, shaped like a tadpole."
+      },
+      {
+        "id": "s2_head",
+        "kind": "text",
+        "label": "The head",
+        "marks": 1,
+        "mark_note": "Head",
+        "margin_note": "Shape, what it is made of, what it holds, and the collar.",
+        "lines": [
+          "The HEAD is HEXAGONAL and is capped by a",
+          "hexagonal pyramid.",
+          "It is made of protein capsomeres.",
+          "The head encloses the phage's DNA, which is",
+          "double stranded and tightly coiled.",
+          "The head is joined to the tail by a COLLAR."
+        ],
+        "why": "The head is only a container: everything it does at the moment of infection is done by what is packed inside it.",
+        "common_mistakes": [
+          "Saying the head is round. It is HEXAGONAL, capped by a pyramid.",
+          "Saying the head contains RNA. T-even phage DNA is double stranded DNA."
+        ],
+        "memory_tip": "A six sided box with a pointed cap, full of DNA."
+      },
+      {
+        "id": "s3_tail",
+        "kind": "text",
+        "label": "The tail",
+        "marks": 1,
+        "mark_note": "Tail",
+        "margin_note": "All three parts of the tail, then how it works. The syringe comparison is worth one line.",
+        "lines": [
+          "The TAIL is made of:",
+          "1. a hollow CORE, down the middle;",
+          "2. a contractile SHEATH around the core;",
+          "3. a BASE PLATE at the far end.",
+          "The tail injects the viral DNA into the host",
+          "cell.",
+          "The sheath contracts and drives the core",
+          "through the bacterial cell wall, like the",
+          "plunger of a syringe."
+        ],
+        "why": "A contracting sheath around a rigid core is a syringe, which is exactly the job the tail has to do.",
+        "common_mistakes": [
+          "Saying the whole phage enters the bacterium. Only the DNA is injected; the coat stays outside.",
+          "Leaving out the core. The DNA travels down the HOLLOW CORE, not down the sheath."
+        ],
+        "memory_tip": "The sheath is the plunger, the core is the needle."
+      },
+      {
+        "id": "s4_plate",
+        "kind": "boxed_final",
+        "label": "The base plate and fibres",
+        "marks": 1,
+        "mark_note": "Base plate",
+        "margin_note": "Plate shape, both counts, and what each part does.",
+        "lines": [
+          {
+            "text": "Six fibres find the host; the tail does the",
+            "style": "boxed"
+          },
+          {
+            "text": "injecting",
+            "style": "boxed"
+          },
+          "At the tip of the tail is a HEXAGONAL BASE",
+          "PLATE.",
+          "It bears SIX TAIL PINS and SIX TAIL FIBRES.",
+          "The tail fibres attach the virus to specific",
+          "receptor sites on the bacterial cell wall.",
+          "The pins hold the phage in place while the DNA",
+          "is injected."
+        ],
+        "why": "The fibres decide which bacterium the phage can infect, because they only stick to matching receptor sites — which is why each phage attacks one host.",
+        "common_mistakes": [
+          "Giving the wrong count. There are SIX tail pins and SIX tail fibres.",
+          "Saying the fibres inject the DNA. The FIBRES attach; the tail CORE injects."
+        ],
+        "memory_tip": "Six and six: pins to grip, fibres to find."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "Diagram — T-even bacteriophage",
+        "marks": 0,
+        "margin_note": "No diagram mark — the question says 'explain'. It is still the fastest way to check you have all seven named parts in the written answer.",
+        "figure": {
+          "id": "b2_vi_t_even_phage",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p_p1",
+              "caption": "Step 1 — the six sided head"
+            },
+            {
+              "type": "stroke",
+              "id": "bp_head",
+              "d": "M 250 64 L 305 88 L 305 132 L 250 156 L 195 132 L 195 88 Z",
+              "ms": 4500
+            },
+            {
+              "type": "pause",
+              "id": "p_p2",
+              "caption": "Step 2 — the DNA coiled inside the head"
+            },
+            {
+              "type": "stroke",
+              "id": "bp_dna",
+              "d": "M 216 100 C 236 88 264 88 284 100 C 264 112 236 112 216 124 C 236 136 264 136 284 124",
+              "ms": 3070
+            },
+            {
+              "type": "pause",
+              "id": "p_p3",
+              "caption": "Step 3 — the collar and the tail sheath"
+            },
+            {
+              "type": "stroke",
+              "id": "bp_collar_t",
+              "d": "M 230 158 L 270 158",
+              "ms": 570,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_collar_b",
+              "d": "M 230 170 L 270 170",
+              "ms": 570,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_collar_l",
+              "d": "M 230 158 L 230 170",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_collar_r",
+              "d": "M 270 158 L 270 170",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_sheath_l",
+              "d": "M 234 170 L 234 250",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "bp_sheath_r",
+              "d": "M 266 170 L 266 250",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "bp_stria0",
+              "d": "M 234 184 L 266 184",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "bp_stria1",
+              "d": "M 234 196 L 266 196",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "bp_stria2",
+              "d": "M 234 208 L 266 208",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "bp_stria3",
+              "d": "M 234 220 L 266 220",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "bp_stria4",
+              "d": "M 234 232 L 266 232",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "bp_stria5",
+              "d": "M 234 244 L 266 244",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p_p4",
+              "caption": "Step 4 — the hollow core inside the sheath"
+            },
+            {
+              "type": "stroke",
+              "id": "bp_core",
+              "d": "M 250 172 L 250 262",
+              "ms": 1290,
+              "pen": "pencil",
+              "wipe": "y",
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p_p5",
+              "caption": "Step 5 — the base plate, pins and tail fibres"
+            },
+            {
+              "type": "stroke",
+              "id": "bp_plate",
+              "d": "M 212 252 L 288 252 L 280 266 L 220 266 Z",
+              "ms": 2400,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_pin0",
+              "d": "M 224 266 L 224 280",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "bp_pin1",
+              "d": "M 238 266 L 238 280",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "bp_pin2",
+              "d": "M 250 266 L 250 280",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "bp_pin3",
+              "d": "M 262 266 L 262 280",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "bp_pin4",
+              "d": "M 276 266 L 276 280",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "bp_fib0",
+              "d": "M 220 266 L 190 306 L 174 342",
+              "ms": 1280,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_fib1",
+              "d": "M 232 266 L 210 306 L 192 342",
+              "ms": 1230,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_fib2",
+              "d": "M 242 266 L 232 306 L 220 342",
+              "ms": 1130,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_fib3",
+              "d": "M 258 266 L 268 306 L 280 342",
+              "ms": 1130,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_fib4",
+              "d": "M 268 266 L 290 306 L 308 342",
+              "ms": 1230,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bp_fib5",
+              "d": "M 280 266 L 310 306 L 326 342",
+              "ms": 1280,
+              "w": 1.8
+            },
+            {
+              "type": "pause",
+              "id": "p_p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "stroke",
+              "id": "pl_head",
+              "d": "M 108 98 L 196 100",
+              "ms": 1260,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "pl_collar",
+              "d": "M 122 162 L 228 162",
+              "ms": 1510,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "pl_sheath",
+              "d": "M 128 208 L 232 208",
+              "ms": 1490,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "pl_plate",
+              "d": "M 152 258 L 212 258",
+              "ms": 860,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "pl_dna",
+              "d": "M 326 86 L 272 96",
+              "ms": 780,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "pl_core",
+              "d": "M 326 208 L 254 208",
+              "ms": 1030,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "pl_pins",
+              "d": "M 316 284 L 278 274",
+              "ms": 560,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "pl_fib",
+              "d": "M 316 328 L 300 320",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "pb_head",
+              "x": 60,
+              "y": 100,
+              "text": "Head",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pb_collar",
+              "x": 60,
+              "y": 164,
+              "text": "Collar",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pb_sheath",
+              "x": 60,
+              "y": 210,
+              "text": "Sheath",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pb_plate",
+              "x": 36,
+              "y": 262,
+              "text": "Base plate",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pb_dna",
+              "x": 330,
+              "y": 88,
+              "text": "DNA",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pb_core",
+              "x": 330,
+              "y": 210,
+              "text": "Core",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pb_pins",
+              "x": 320,
+              "y": 286,
+              "text": "Tail pins",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pb_fib",
+              "x": 320,
+              "y": 330,
+              "text": "Tail fibres",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Drawing it shows why the phage never enters the cell: everything below the collar is a delivery device, and only what is inside the head goes in.",
+        "common_mistakes": [
+          "Drawing a round head. The head is HEXAGONAL with a pyramidal cap.",
+          "Drawing four tail fibres. There are SIX fibres and SIX pins.",
+          "Drawing the core outside the sheath. The core runs INSIDE the sheath."
+        ],
+        "memory_tip": "Head, collar, sheath, core, plate, pins, fibres: seven parts, top to bottom."
+      }
+    ]
+  }
+}

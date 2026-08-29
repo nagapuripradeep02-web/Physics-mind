@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_pgd_cytokinin_effects",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Plant Growth and Development (Botany-II)"
+  },
+  "chapter": "Plant Growth and Development",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write any four physiological effects of cytokinins in plants.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What cytokinins are and where they are made",
+      "marks": 1
+    },
+    {
+      "label": "Cell division and new organs",
+      "marks": 1
+    },
+    {
+      "label": "Delaying senescence",
+      "marks": 1
+    },
+    {
+      "label": "Overcoming apical dominance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.26, printed question 22. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The question asks for FOUR. Number them one to four and stop — an examiner marking four effects will not hunt through a paragraph for the fourth.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Growth and Development (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What cytokinins are",
+        "marks": 1,
+        "mark_note": "What they are",
+        "margin_note": "Definition, the three sites, one named example.",
+        "lines": [
+          "Cytokinins are plant growth hormones that",
+          "promote CELL DIVISION.",
+          "They are made where rapid cell division occurs:",
+          "root tips, shoot buds and young fruits.",
+          "Zeatin is a natural cytokinin."
+        ],
+        "why": "They are made exactly where cells are dividing fastest, which is the clearest evidence of what their main job is.",
+        "common_mistakes": [
+          "Saying cytokinins cause cell elongation. That is auxin and gibberellin; cytokinin causes cell DIVISION.",
+          "Saying they are made at the shoot tip only. Root tips, shoot buds and young fruits."
+        ],
+        "memory_tip": "Cytokinin means cell division: kinesis is division."
+      },
+      {
+        "id": "s2_division",
+        "kind": "text",
+        "label": "Cell division and new organs",
+        "marks": 1,
+        "mark_note": "Division",
+        "margin_note": "Three numbered effects. Keep the numbering going into the next steps.",
+        "lines": [
+          "1. They promote cell division in root tips and",
+          "shoot tips.",
+          "2. They help produce new LEAVES and",
+          "CHLOROPLASTS in leaves.",
+          "3. They help lateral shoot growth and",
+          "adventitious shoot formation."
+        ],
+        "why": "New leaves and new chloroplasts both need new cells first, so they follow directly from the cell-division effect.",
+        "common_mistakes": [
+          "Listing only 'cell division'. The question asks for four separate EFFECTS.",
+          "Leaving out chloroplast formation. It is one of the named effects."
+        ],
+        "memory_tip": "More divisions means more leaves, and more chloroplasts inside them."
+      },
+      {
+        "id": "s3_senescence",
+        "kind": "text",
+        "label": "Delaying senescence",
+        "marks": 1,
+        "mark_note": "Senescence",
+        "margin_note": "Name the effect and say why it happens. The named effect is a bonus, not required.",
+        "lines": [
+          "4. They promote nutrient movement into the",
+          "leaf, which DELAYS leaf senescence.",
+          "A leaf treated with cytokinin stays green while",
+          "the leaves around it yellow.",
+          "This is called the Richmond-Lang effect."
+        ],
+        "why": "Cytokinin pulls nutrients toward the treated leaf, so that leaf keeps its chlorophyll while untreated leaves lose theirs.",
+        "common_mistakes": [
+          "Saying cytokinins cause yellowing. They DELAY it.",
+          "Giving no mechanism. The nutrient movement is what makes the delay happen."
+        ],
+        "memory_tip": "The treated leaf stays green because the food goes to it."
+      },
+      {
+        "id": "s4_apical",
+        "kind": "boxed_final",
+        "label": "Overcoming apical dominance",
+        "marks": 1,
+        "mark_note": "Apical dominance",
+        "margin_note": "Name the opposition with auxin. That contrast is what earns this mark.",
+        "lines": [
+          {
+            "text": "Cytokinin releases the buds auxin suppresses",
+            "style": "boxed"
+          },
+          "5. Cytokinins help OVERCOME apical dominance.",
+          "They release the lateral buds that auxin from",
+          "the shoot tip was suppressing.",
+          "So the plant produces side branches and grows",
+          "BUSHY."
+        ],
+        "why": "Auxin and cytokinin work against each other on the same lateral buds, so raising the cytokinin has the same effect as removing the auxin source.",
+        "common_mistakes": [
+          "Saying cytokinin causes apical dominance. Auxin causes it; cytokinin OVERCOMES it.",
+          "Leaving out the bushy growth. That is the visible result."
+        ],
+        "memory_tip": "Auxin holds the side buds down; cytokinin lets them up."
+      }
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_chromosomal_and_gene_mutations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a brief note on chromosomal mutations and gene mutations.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What a mutation is",
+      "marks": 1
+    },
+    {
+      "label": "Chromosomal mutation",
+      "marks": 1
+    },
+    {
+      "label": "Gene mutation",
+      "marks": 1
+    },
+    {
+      "label": "The difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.32, printed question 37. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Scale is the whole answer: a chromosome versus a single base pair. Say that in one line and both halves fall into place.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What a mutation is",
+        "marks": 1,
+        "mark_note": "Mutation",
+        "margin_note": "Definition plus the two kinds named. Four lines.",
+        "lines": [
+          "A MUTATION is a sudden, heritable change in the",
+          "genetic material of an organism.",
+          "Mutations are of two main kinds:",
+          "1. chromosomal mutations  2. gene mutations"
+        ],
+        "why": "Both kinds are changes to the same DNA and differ only in how much of it changes, which is why they belong under one definition.",
+        "common_mistakes": [
+          "Saying mutations are always harmful. Many are neutral and some are useful.",
+          "Saying mutations are not inherited. A mutation in a germ cell IS inherited."
+        ],
+        "memory_tip": "Sudden, heritable, and of two sizes."
+      },
+      {
+        "id": "s2_chromosomal",
+        "kind": "text",
+        "label": "Chromosomal mutation",
+        "marks": 1,
+        "mark_note": "Chromosomal",
+        "margin_note": "Both kinds of change, the term aberration, and one example.",
+        "lines": [
+          "1. CHROMOSOMAL MUTATION is a change in the",
+          "NUMBER or the STRUCTURE of chromosomes.",
+          "Loss or gain of a segment of DNA alters the",
+          "chromosome.",
+          "Such changes are called chromosomal",
+          "ABERRATIONS.",
+          "Example: they are commonly seen in CANCER",
+          "cells."
+        ],
+        "why": "A chromosome carries hundreds of genes, so changing one affects many genes at once — which is why the effects are usually severe.",
+        "common_mistakes": [
+          "Saying a chromosomal mutation changes one base. That is a GENE mutation.",
+          "Giving only structure. NUMBER changes are chromosomal mutations too."
+        ],
+        "memory_tip": "Whole chromosomes: their number or their shape."
+      },
+      {
+        "id": "s3_gene",
+        "kind": "text",
+        "label": "Gene mutation",
+        "marks": 1,
+        "mark_note": "Gene",
+        "margin_note": "Definition, the other name, and the named disease.",
+        "lines": [
+          "2. GENE MUTATION is a change in a SINGLE",
+          "BASE PAIR of DNA.",
+          "It is also called a POINT MUTATION.",
+          "Example: SICKLE CELL ANAEMIA in humans,",
+          "caused by a single base change in the gene for the",
+          "beta chain of haemoglobin."
+        ],
+        "why": "One base changed means one amino acid changed, and sickle cell anaemia shows that a single such change can be enough to cause a disease.",
+        "common_mistakes": [
+          "Saying a gene mutation affects the whole chromosome. It affects ONE base pair.",
+          "Naming no example. Sickle cell anaemia is the standard one."
+        ],
+        "memory_tip": "One base pair, one amino acid, one disease."
+      },
+      {
+        "id": "s4_difference",
+        "kind": "boxed_final",
+        "label": "The difference",
+        "marks": 1,
+        "mark_note": "Difference",
+        "margin_note": "One line naming scale as the difference. Five lines.",
+        "lines": [
+          {
+            "text": "Chromosomal: many genes. Gene: one base pair",
+            "style": "boxed"
+          },
+          "A chromosomal mutation changes many genes at",
+          "once, because a chromosome carries many genes.",
+          "A gene mutation changes one base pair in one",
+          "gene.",
+          "The difference between them is one of SCALE."
+        ],
+        "why": "Naming the difference as one of scale is the shortest correct summary and shows the two were not simply memorised as separate facts.",
+        "common_mistakes": [
+          "Treating the two as unrelated. Both are changes to DNA; only the amount differs.",
+          "Ending without a comparison. The question sets them side by side, so compare them."
+        ],
+        "memory_tip": "Same material, different amount of it."
+      }
+    ]
+  }
+}

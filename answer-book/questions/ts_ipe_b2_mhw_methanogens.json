@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_methanogens",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the group of bacteria found in both the rumen of cattle and the sludge of sewage treatment?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The group",
+      "marks": 1
+    },
+    {
+      "label": "What they do",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.49, printed question 144. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "One word answers it. The second mark is what they produce — and it is the same gas in both places.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group",
+        "kind": "text",
+        "label": "The group",
+        "marks": 1,
+        "mark_note": "Group",
+        "margin_note": "The name and both habitats. Four lines.",
+        "lines": [
+          "The group is the METHANOGENS.",
+          "They are anaerobic bacteria, found in the RUMEN of",
+          "cattle and in the ANAEROBIC SLUDGE of sewage",
+          "treatment plants."
+        ],
+        "why": "Both places are oxygen-free and full of organic matter, which is exactly the habitat these bacteria need.",
+        "common_mistakes": [
+          "Naming Lactobacillus. Methanogens are the answer.",
+          "Saying they need oxygen. They are ANAEROBIC."
+        ],
+        "memory_tip": "No oxygen, plenty of organic matter: methanogens."
+      },
+      {
+        "id": "s2_do",
+        "kind": "boxed_final",
+        "label": "What they do",
+        "marks": 1,
+        "mark_note": "What they make",
+        "margin_note": "What they produce, and what it is used for in each place.",
+        "lines": [
+          {
+            "text": "They make BIOGAS, which is mostly methane",
+            "style": "boxed"
+          },
+          "Methanogens break down cellulose and other organic",
+          "matter and produce METHANE.",
+          "In cattle they help digest cellulose in the rumen.",
+          "In sewage sludge they produce BIOGAS, a mixture of",
+          "methane, carbon dioxide and hydrogen, which is",
+          "used as a fuel."
+        ],
+        "why": "The same bacteria doing the same chemistry are a digestive aid in one place and a fuel source in the other, which is why the question pairs the two habitats.",
+        "common_mistakes": [
+          "Saying biogas is pure methane. It is a MIXTURE, mostly methane.",
+          "Leaving out the rumen role. In cattle they digest cellulose."
+        ],
+        "memory_tip": "One process, two useful outcomes."
+      }
+    ]
+  }
+}

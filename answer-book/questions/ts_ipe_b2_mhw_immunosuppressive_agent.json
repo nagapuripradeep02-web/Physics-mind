@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_immunosuppressive_agent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name an immunosuppressive agent. From where is it obtained?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The agent",
+      "marks": 1
+    },
+    {
+      "label": "Its source and use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.49, printed question 143. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Cyclosporin A from Trichoderma polysporum. Both names are needed, and the use is a free extra.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_agent",
+        "kind": "text",
+        "label": "The agent",
+        "marks": 1,
+        "mark_note": "Agent",
+        "margin_note": "One line. Get the letter A right.",
+        "lines": [
+          "CYCLOSPORIN A is used as an immunosuppressive",
+          "agent."
+        ],
+        "why": "An immunosuppressant is needed because a transplanted organ is foreign tissue that the recipient's immune system would otherwise destroy.",
+        "common_mistakes": [
+          "Naming a statin. Statins lower cholesterol; cyclosporin A suppresses the immune system.",
+          "Spelling it cyclosporine B. It is cyclosporin A."
+        ],
+        "memory_tip": "Cyclosporin A."
+      },
+      {
+        "id": "s2_source",
+        "kind": "boxed_final",
+        "label": "Its source and use",
+        "marks": 1,
+        "mark_note": "Source",
+        "margin_note": "The organism in full, and the medical use. Five lines.",
+        "lines": [
+          {
+            "text": "From the fungus Trichoderma polysporum",
+            "style": "boxed"
+          },
+          "It is produced by the FUNGUS TRICHODERMA",
+          "POLYSPORUM.",
+          "It is used in ORGAN TRANSPLANT patients, to stop",
+          "the body rejecting the transplanted organ."
+        ],
+        "why": "A fungal product turned out to suppress exactly the immune response that rejects transplants, which is what made routine organ transplantation possible.",
+        "common_mistakes": [
+          "Saying it comes from a bacterium. It comes from a FUNGUS.",
+          "Giving the name with no source. The question asks where it is obtained from."
+        ],
+        "memory_tip": "A fungus made the drug that made transplants possible."
+      }
+    ]
+  }
+}
