@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_stop_codons",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define stop codon. Write the codons.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The three codons",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 102. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Definition plus three triplets. Write all three — UAA, UAG, UGA — because the question says 'the codons', plural.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Stop codon defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, the no-amino-acid point, and the alternative names.",
+        "lines": [
+          "A STOP CODON is a codon that TERMINATES",
+          "protein synthesis.",
+          "Stop codons do NOT code for any amino acid.",
+          "They are also called nonsense or termination",
+          "codons."
+        ],
+        "why": "A stop codon has no matching tRNA, so the ribosome finds nothing to add and the chain is released.",
+        "common_mistakes": [
+          "Saying stop codons code for an amino acid. They code for NONE.",
+          "Saying there is one stop codon. There are THREE."
+        ],
+        "memory_tip": "Nothing matches them, so the chain ends."
+      },
+      {
+        "id": "s2_three",
+        "kind": "boxed_final",
+        "label": "The three codons",
+        "marks": 1,
+        "mark_note": "The codons",
+        "margin_note": "All three triplets and the 61-and-3 arithmetic.",
+        "lines": [
+          {
+            "text": "UAA, UAG and UGA",
+            "style": "boxed"
+          },
+          "The three stop codons are:",
+          "UAA, UAG and UGA.",
+          "Of the 64 codons, 61 code for amino acids and",
+          "these 3 do not."
+        ],
+        "why": "Sixty-one coding codons plus three stop codons makes sixty-four, which is the arithmetic check that the list is complete.",
+        "common_mistakes": [
+          "Writing AUG among them. AUG is the START codon.",
+          "Giving two codons. There are three."
+        ],
+        "memory_tip": "Three stops out of sixty-four."
+      }
+    ]
+  }
+}

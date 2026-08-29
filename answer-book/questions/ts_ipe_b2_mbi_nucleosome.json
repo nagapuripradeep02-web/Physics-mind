@@ -1,0 +1,330 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_nucleosome",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write briefly on nucleosomes.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What a nucleosome is",
+      "marks": 1
+    },
+    {
+      "label": "The histone octamer",
+      "marks": 1
+    },
+    {
+      "label": "Why the DNA winds on",
+      "marks": 1
+    },
+    {
+      "label": "Chromatin and beads on a string",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.34, printed question 44. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide says a nucleosome holds \"a DNA segment of about 150 base pairs\". NCERT gives 146 bp wrapped on the histone core, within a repeat of about 200 bp per nucleosome. The card gives 146 bp wrapped and notes the repeat, and records the guide's figure."
+  },
+  "insider_note": "Two numbers carry this answer: EIGHT histones and 146 base pairs. Write both in the first two lines.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What a nucleosome is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition plus the packing problem it solves. Six lines.",
+        "lines": [
+          "A NUCLEOSOME is the repeating, bead-like unit of",
+          "chromatin.",
+          "It consists of a core of histone proteins with",
+          "DNA wound around it.",
+          "Nucleosomes are how a two-metre length of DNA",
+          "is packed into a nucleus a few micrometres",
+          "across."
+        ],
+        "why": "Two metres of DNA has to fit inside a nucleus, and the nucleosome is the first and largest step of that packing.",
+        "common_mistakes": [
+          "Calling a nucleosome a chromosome. It is the repeating UNIT of chromatin, far smaller.",
+          "Saying it is made only of DNA. It is DNA plus HISTONE PROTEIN."
+        ],
+        "memory_tip": "A bead of protein with DNA wound on it."
+      },
+      {
+        "id": "s2_octamer",
+        "kind": "text",
+        "label": "The histone octamer",
+        "marks": 1,
+        "mark_note": "Octamer",
+        "margin_note": "The count, the four histone names, the base pairs, and H1's position.",
+        "lines": [
+          "The core is made of EIGHT histone molecules and",
+          "is called the HISTONE OCTAMER.",
+          "It is two copies each of H2A, H2B, H3 and H4.",
+          "About 146 BASE PAIRS of DNA are wound around",
+          "this octamer, in about 1.75 turns.",
+          "One more histone, H1, sits where the DNA enters",
+          "and leaves the bead."
+        ],
+        "why": "Two copies each of four histones is what makes eight, so the name octamer is the composition stated in one word.",
+        "common_mistakes": [
+          "Saying the octamer includes H1. H1 is OUTSIDE the octamer, at the entry and exit point.",
+          "Giving the wrong count. It is EIGHT histones, two each of four kinds."
+        ],
+        "memory_tip": "Two of each of four kinds makes eight; H1 is the ninth, and it sits outside."
+      },
+      {
+        "id": "s3_charge",
+        "kind": "text",
+        "label": "Why the DNA winds on",
+        "marks": 1,
+        "mark_note": "Charge",
+        "margin_note": "Both charges, the two amino acids, and the attraction. Six lines.",
+        "lines": [
+          "DNA is NEGATIVELY charged, because of its",
+          "phosphate groups.",
+          "Histones are POSITIVELY charged, because they",
+          "are rich in the basic amino acids LYSINE and",
+          "ARGININE.",
+          "So the DNA is held on the octamer by an",
+          "electrical attraction between opposite charges."
+        ],
+        "why": "Opposite charges attract, so the wrapping needs no energy and no enzyme — it happens because of what the two molecules are made of.",
+        "common_mistakes": [
+          "Saying histones are acidic. They are BASIC, and that is what makes them positive.",
+          "Giving no reason for the winding. The charge attraction is this mark."
+        ],
+        "memory_tip": "Negative DNA on positive protein: opposites attract."
+      },
+      {
+        "id": "s4_chromatin",
+        "kind": "boxed_final",
+        "label": "Chromatin and beads on a string",
+        "marks": 1,
+        "mark_note": "Chromatin",
+        "margin_note": "Define chromatin, give the beads-on-a-string phrase, and name the microscope.",
+        "lines": [
+          {
+            "text": "Beads on a string, under the electron",
+            "style": "boxed"
+          },
+          {
+            "text": "microscope",
+            "style": "boxed"
+          },
+          "DNA together with histone proteins is called",
+          "CHROMATIN.",
+          "Nucleosomes are the repeating units of",
+          "chromatin.",
+          "Under the ELECTRON MICROSCOPE, chromatin",
+          "looks like BEADS ON A STRING: the nucleosomes are",
+          "the beads and the linker DNA is the string.",
+          "Further coiling of this gives the chromosome."
+        ],
+        "why": "The beads-on-a-string picture is what a nucleosome actually looks like, which is why the phrase is worth writing exactly.",
+        "common_mistakes": [
+          "Saying the beads are seen under a light microscope. It is the ELECTRON microscope.",
+          "Confusing chromatin with chromosome. Chromatin coils further to give a chromosome."
+        ],
+        "memory_tip": "Beads are nucleosomes; the string is the linker DNA."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "Diagram — nucleosome",
+        "marks": 0,
+        "margin_note": "No diagram mark — the question says 'write briefly'. The bead is worth sketching because it fixes the 1.75 turns and H1's position in one picture.",
+        "figure": {
+          "id": "b2_mbi_nucleosome",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "nu_p1",
+              "caption": "Step 1 — the histone octamer, a ball of eight proteins"
+            },
+            {
+              "type": "stroke",
+              "id": "nu_oct",
+              "d": "M 198 170 A 52 52 0 1 0 302 170 A 52 52 0 1 0 198 170",
+              "ms": 4500
+            },
+            {
+              "type": "pause",
+              "id": "nu_p2",
+              "caption": "Step 2 — the DNA wound almost twice around it"
+            },
+            {
+              "type": "stroke",
+              "id": "nu_wrap1",
+              "d": "M 198 208 A 68 68 0 1 1 302 208",
+              "ms": 4410
+            },
+            {
+              "type": "stroke",
+              "id": "nu_wrap2",
+              "d": "M 186 194 A 78 78 0 0 1 250 92",
+              "ms": 1970
+            },
+            {
+              "type": "pause",
+              "id": "nu_p3",
+              "caption": "Step 3 — the linker DNA running on to the next bead"
+            },
+            {
+              "type": "stroke",
+              "id": "nu_link_l",
+              "d": "M 186 194 C 160 216 132 232 104 244",
+              "ms": 1380,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "nu_link_r",
+              "d": "M 302 208 C 328 224 352 236 380 246",
+              "ms": 1240,
+              "w": 1.8
+            },
+            {
+              "type": "pause",
+              "id": "nu_p4",
+              "caption": "Step 4 — the H1 histone where the DNA enters and leaves"
+            },
+            {
+              "type": "stroke",
+              "id": "nu_h1",
+              "d": "M 230 222 A 20 9 0 1 0 270 222 A 20 9 0 1 0 230 222",
+              "ms": 1350
+            },
+            {
+              "type": "pause",
+              "id": "nu_p5",
+              "caption": "Step 5 — leader lines and labels"
+            },
+            {
+              "type": "stroke",
+              "id": "nl_dna",
+              "d": "M 136 120 L 198 124",
+              "ms": 890,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "nl_oct",
+              "d": "M 326 142 L 292 158",
+              "ms": 540,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "nl_bp",
+              "d": "M 326 198 L 308 197",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "nl_h1",
+              "d": "M 292 252 L 270 226",
+              "ms": 490,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "nl_link",
+              "d": "M 108 256 L 126 240",
+              "ms": 340,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "nb_dna",
+              "x": 96,
+              "y": 116,
+              "text": "DNA",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "nb_oct",
+              "x": 330,
+              "y": 140,
+              "text": "Histone octamer",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "nb_bp",
+              "x": 330,
+              "y": 196,
+              "text": "146 bp of DNA",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "nb_h1",
+              "x": 296,
+              "y": 256,
+              "text": "H1 histone",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "nb_link",
+              "x": 24,
+              "y": 262,
+              "text": "Linker DNA",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Drawing it shows the two facts the words have to carry separately: the DNA goes round more than once, and H1 sits exactly where it enters and leaves.",
+        "common_mistakes": [
+          "Drawing the DNA passing through the octamer. It winds AROUND the outside.",
+          "Drawing one full turn. The DNA makes about 1.75 turns.",
+          "Drawing H1 inside the core. H1 sits OUTSIDE, at the entry and exit point."
+        ],
+        "memory_tip": "Round the outside, nearly twice, with H1 at the door."
+      }
+    ]
+  }
+}

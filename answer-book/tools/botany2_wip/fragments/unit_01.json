@@ -1,0 +1,167 @@
+{
+  "number": 1,
+  "name": "Transport in Plants (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "Define and explain water potential.",
+      "question_id": "ts_ipe_b2_tp_water_potential"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "What is meant by plasmolysis? How is it practically useful to us?",
+      "question_id": "ts_ipe_b2_tp_plasmolysis"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 9,
+      "stars": 0,
+      "text": "How does ascent of sap occur in tall trees?",
+      "question_id": "ts_ipe_b2_tp_ascent_of_sap"
+    },
+    {
+      "ref": "saq4",
+      "section": "SAQ",
+      "number": 10,
+      "stars": 0,
+      "text": "\"Transpiration is a necessary evil\". Explain.",
+      "question_id": "ts_ipe_b2_tp_transpiration_necessary_evil"
+    },
+    {
+      "ref": "saq5",
+      "section": "SAQ",
+      "number": 11,
+      "stars": 0,
+      "text": "Transpiration and Photosynthesis — a compromise. Explain.",
+      "question_id": "ts_ipe_b2_tp_transpiration_photosynthesis_compromise"
+    },
+    {
+      "ref": "saq6",
+      "section": "SAQ",
+      "number": 12,
+      "stars": 0,
+      "text": "Explain the structure and mechanism of opening and closing of stomata.",
+      "question_id": "ts_ipe_b2_tp_stomata_structure_mechanism"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 49,
+      "stars": 0,
+      "text": "What are porins? What role do they play in diffusion?",
+      "question_id": "ts_ipe_b2_tp_porins"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 50,
+      "stars": 0,
+      "text": "Define diffusion. Write any two factors that affect it.",
+      "question_id": "ts_ipe_b2_tp_diffusion_definition_factors"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 51,
+      "stars": 0,
+      "text": "Differentiate osmosis from diffusion.",
+      "question_id": "ts_ipe_b2_tp_osmosis_vs_diffusion"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 52,
+      "stars": 0,
+      "text": "What are apoplast and symplast?",
+      "question_id": "ts_ipe_b2_tp_apoplast_and_symplast"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 53,
+      "stars": 0,
+      "text": "How does guttation differ from transpiration?",
+      "question_id": "ts_ipe_b2_tp_guttation_vs_transpiration"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 54,
+      "stars": 0,
+      "text": "What are the physical factors responsible for the ascent of sap through xylem in plants?",
+      "question_id": "ts_ipe_b2_tp_ascent_physical_factors"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 55,
+      "stars": 0,
+      "text": "Compare imbibing capacities of pea and wheat seeds.",
+      "question_id": "ts_ipe_b2_tp_imbibition_pea_wheat"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 56,
+      "stars": 0,
+      "text": "With reference to transportation of food within a plant, what are source and sink?",
+      "question_id": "ts_ipe_b2_tp_source_and_sink"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 57,
+      "stars": 0,
+      "text": "Does transpiration occur at night? Give an example.",
+      "question_id": "ts_ipe_b2_tp_transpiration_at_night"
+    },
+    {
+      "ref": "vsaq10",
+      "section": "VSAQ",
+      "number": 58,
+      "stars": 0,
+      "text": "Compare the pH of guard cells during the opening and closing of stomata.",
+      "question_id": "ts_ipe_b2_tp_guard_cell_ph"
+    },
+    {
+      "ref": "vsaq11",
+      "section": "VSAQ",
+      "number": 59,
+      "stars": 0,
+      "text": "In the wake of transpirational loss, why are C4 plants more efficient than C3 plants?",
+      "question_id": "ts_ipe_b2_tp_c4_water_efficiency"
+    },
+    {
+      "ref": "vsaq12",
+      "section": "VSAQ",
+      "number": 60,
+      "stars": 0,
+      "text": "What is meant by transport saturation? How does it influence facilitated diffusion?",
+      "question_id": "ts_ipe_b2_tp_transport_saturation"
+    },
+    {
+      "ref": "vsaq13",
+      "section": "VSAQ",
+      "number": 61,
+      "stars": 0,
+      "text": "How does ABA bring about the closure of stomata under water stress conditions?",
+      "question_id": "ts_ipe_b2_tp_aba_stomatal_closure"
+    },
+    {
+      "ref": "vsaq14",
+      "section": "VSAQ",
+      "number": 62,
+      "stars": 0,
+      "text": "Compare transpiration and evaporation.",
+      "question_id": "ts_ipe_b2_tp_transpiration_vs_evaporation"
+    }
+  ]
+}

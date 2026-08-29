@@ -1,0 +1,31 @@
+{
+  "number": 5,
+  "name": "Respiration in Plants (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "laq1",
+      "section": "LAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "Give an account of glycolysis. Where does it occur? What are the end products? Trace the fate of these products in both aerobic and anaerobic respiration.",
+      "question_id": "ts_ipe_b2_rp_laq_glycolysis"
+    },
+    {
+      "ref": "laq2",
+      "section": "LAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Explain the reactions of Krebs cycle.",
+      "question_id": "ts_ipe_b2_rp_laq_krebs_cycle"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 167,
+      "stars": 0,
+      "text": "Define RQ. Write a short note on RQ.",
+      "question_id": "ts_ipe_b2_rp_respiratory_quotient"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_phloem_transports_food",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which tissue transports photosynthates? What experiment proves this?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The tissue",
+      "marks": 1
+    },
+    {
+      "label": "The experiment",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.40, printed question 69. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Name the experiment. 'Ringing' or 'girdling' is one word and it is a whole mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tissue",
+        "kind": "text",
+        "label": "The tissue",
+        "marks": 1,
+        "mark_note": "Tissue",
+        "margin_note": "Name the tissue and what it carries. Add the word translocation.",
+        "lines": [
+          "PHLOEM is the tissue that transports",
+          "photosynthates (the food made in the leaves).",
+          "The transport is called translocation."
+        ],
+        "why": "Phloem carries the products of photosynthesis while xylem carries water, and separating the two tissues by what they carry is the point of the question.",
+        "common_mistakes": [
+          "Naming xylem. Xylem carries water and minerals; PHLOEM carries food.",
+          "Leaving out the word photosynthates or food. The tissue is named by what it carries."
+        ],
+        "memory_tip": "Phloem carries food; xylem carries water."
+      },
+      {
+        "id": "s2_experiment",
+        "kind": "boxed_final",
+        "label": "The experiment",
+        "marks": 1,
+        "mark_note": "Experiment",
+        "margin_note": "Name it, say what is removed, and say where the swelling appears.",
+        "lines": [
+          {
+            "text": "Ringing: remove the phloem and food stops",
+            "style": "boxed"
+          },
+          "The RINGING or GIRDLING experiment proves it.",
+          "A ring of bark, containing the phloem, is removed",
+          "from a stem.",
+          "The part ABOVE the ring swells, because food",
+          "collects there and cannot move down."
+        ],
+        "why": "Removing only the phloem and watching food pile up above the cut is direct evidence that the phloem was the route, because the xylem was left intact.",
+        "common_mistakes": [
+          "Naming no experiment. Ringing or girdling is the named answer.",
+          "Saying the part below swells. The swelling is ABOVE the ring."
+        ],
+        "memory_tip": "Cut the phloem and the food stops above the cut."
+      }
+    ]
+  }
+}

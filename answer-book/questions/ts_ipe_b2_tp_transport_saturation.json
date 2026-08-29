@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_transport_saturation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by transport saturation? How does it influence facilitated diffusion?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Transport saturation",
+      "marks": 1
+    },
+    {
+      "label": "Its effect on facilitated diffusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 60. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the book answers the second half with \"Transport saturation INCREASES the facilitated diffusion.\" That is backwards. Once every carrier protein is occupied the rate cannot rise any further — saturation sets a CEILING, and that ceiling is exactly what distinguishes facilitated diffusion from simple diffusion, whose rate keeps climbing with concentration. The card writes it correctly and records the book's printed position here."
+  },
+  "insider_note": "This is the one question in the chapter where the guide's own answer is wrong. Saturation LIMITS the rate; it does not increase it. Write the ceiling.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Transport saturation",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Carriers, all occupied, maximum rate. The word 'all' is the mark.",
+        "lines": [
+          "Facilitated diffusion uses protein transporters",
+          "in the membrane.",
+          "When ALL the transporters are occupied, the",
+          "rate of transport reaches its maximum and",
+          "cannot rise any further.",
+          "This state is called transport saturation."
+        ],
+        "why": "There is a fixed number of carrier proteins, so once each one is busy the membrane has no spare capacity left however much solute is added outside.",
+        "common_mistakes": [
+          "Saying saturation means transport has stopped. Transport is at its MAXIMUM, not zero.",
+          "Leaving out the transporters. The limit exists because their number is fixed."
+        ],
+        "memory_tip": "Every carrier busy means no room for one more."
+      },
+      {
+        "id": "s2_effect",
+        "kind": "boxed_final",
+        "label": "Its effect on facilitated diffusion",
+        "marks": 1,
+        "mark_note": "Effect",
+        "margin_note": "State the ceiling, then contrast with simple diffusion. The contrast is why the question is asked.",
+        "lines": [
+          {
+            "text": "Saturation LIMITS the rate; it is a ceiling",
+            "style": "boxed"
+          },
+          "Transport saturation sets an upper limit on",
+          "facilitated diffusion.",
+          "Beyond this point, raising the concentration",
+          "outside does NOT raise the rate.",
+          "Simple diffusion shows no such limit, so",
+          "saturation is what tells the two apart."
+        ],
+        "why": "Simple diffusion has no carriers to run out of, so a rate that stops climbing is direct evidence that carriers are involved.",
+        "common_mistakes": [
+          "Writing that saturation increases facilitated diffusion. It LIMITS it. The guide prints the opposite; the ceiling is the correct answer.",
+          "Saying simple diffusion also saturates. It does not — it has no carriers."
+        ],
+        "memory_tip": "A full car park does not fill faster because more cars arrive."
+      }
+    ]
+  }
+}

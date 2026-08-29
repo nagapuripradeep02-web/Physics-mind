@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_porins",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are porins? What role do they play in diffusion?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What porins are",
+      "marks": 1
+    },
+    {
+      "label": "Their role",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.38, printed question 49. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two halves, one mark each. The second half must say 'without using energy' or the answer reads as active transport.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What porins are",
+        "marks": 1,
+        "mark_note": "What they are",
+        "margin_note": "Two lines: what they are made of, and where they sit.",
+        "lines": [
+          "Porins are proteins that form large pores in",
+          "a membrane.",
+          "They are found in the outer membranes of",
+          "plastids, mitochondria and some bacteria."
+        ],
+        "why": "Naming them as pore-forming proteins is what separates them from carrier proteins, which move one molecule at a time.",
+        "common_mistakes": [
+          "Calling porins a kind of lipid. They are PROTEINS.",
+          "Saying they are found in every membrane. They sit in OUTER membranes of plastids, mitochondria and some bacteria."
+        ],
+        "memory_tip": "Porin makes a pore: the name is the structure."
+      },
+      {
+        "id": "s2_role",
+        "kind": "boxed_final",
+        "label": "Their role in diffusion",
+        "marks": 1,
+        "mark_note": "Role",
+        "margin_note": "Say what fits through and say no energy is used. Both halves of the mark.",
+        "lines": [
+          {
+            "text": "A big open pore, so no energy is needed",
+            "style": "boxed"
+          },
+          "The pore is large enough to let even small",
+          "sized proteins pass through.",
+          "Molecules move through it by simple diffusion,",
+          "down the concentration gradient, without using",
+          "energy."
+        ],
+        "why": "The pore is permanently open, so movement through it needs no carrier and no ATP — which is exactly what makes it diffusion and not transport.",
+        "common_mistakes": [
+          "Saying porins pump molecules across. Nothing is pumped; molecules DIFFUSE through.",
+          "Leaving out the size. The point of a porin is that even small proteins fit."
+        ],
+        "memory_tip": "A hole does not push; things fall through it on their own."
+      }
+    ]
+  }
+}

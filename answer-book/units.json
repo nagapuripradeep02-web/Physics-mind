@@ -15389,6 +15389,1440 @@
     },
     {
       "number": 1,
+      "name": "Transport in Plants (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Define and explain water potential.",
+          "question_id": "ts_ipe_b2_tp_water_potential"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What is meant by plasmolysis? How is it practically useful to us?",
+          "question_id": "ts_ipe_b2_tp_plasmolysis"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "How does ascent of sap occur in tall trees?",
+          "question_id": "ts_ipe_b2_tp_ascent_of_sap"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "\"Transpiration is a necessary evil\". Explain.",
+          "question_id": "ts_ipe_b2_tp_transpiration_necessary_evil"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Transpiration and Photosynthesis — a compromise. Explain.",
+          "question_id": "ts_ipe_b2_tp_transpiration_photosynthesis_compromise"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Explain the structure and mechanism of opening and closing of stomata.",
+          "question_id": "ts_ipe_b2_tp_stomata_structure_mechanism"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 49,
+          "stars": 0,
+          "text": "What are porins? What role do they play in diffusion?",
+          "question_id": "ts_ipe_b2_tp_porins"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 50,
+          "stars": 0,
+          "text": "Define diffusion. Write any two factors that affect it.",
+          "question_id": "ts_ipe_b2_tp_diffusion_definition_factors"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 51,
+          "stars": 0,
+          "text": "Differentiate osmosis from diffusion.",
+          "question_id": "ts_ipe_b2_tp_osmosis_vs_diffusion"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 52,
+          "stars": 0,
+          "text": "What are apoplast and symplast?",
+          "question_id": "ts_ipe_b2_tp_apoplast_and_symplast"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 53,
+          "stars": 0,
+          "text": "How does guttation differ from transpiration?",
+          "question_id": "ts_ipe_b2_tp_guttation_vs_transpiration"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 54,
+          "stars": 0,
+          "text": "What are the physical factors responsible for the ascent of sap through xylem in plants?",
+          "question_id": "ts_ipe_b2_tp_ascent_physical_factors"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 55,
+          "stars": 0,
+          "text": "Compare imbibing capacities of pea and wheat seeds.",
+          "question_id": "ts_ipe_b2_tp_imbibition_pea_wheat"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 56,
+          "stars": 0,
+          "text": "With reference to transportation of food within a plant, what are source and sink?",
+          "question_id": "ts_ipe_b2_tp_source_and_sink"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 57,
+          "stars": 0,
+          "text": "Does transpiration occur at night? Give an example.",
+          "question_id": "ts_ipe_b2_tp_transpiration_at_night"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 58,
+          "stars": 0,
+          "text": "Compare the pH of guard cells during the opening and closing of stomata.",
+          "question_id": "ts_ipe_b2_tp_guard_cell_ph"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 59,
+          "stars": 0,
+          "text": "In the wake of transpirational loss, why are C4 plants more efficient than C3 plants?",
+          "question_id": "ts_ipe_b2_tp_c4_water_efficiency"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 60,
+          "stars": 0,
+          "text": "What is meant by transport saturation? How does it influence facilitated diffusion?",
+          "question_id": "ts_ipe_b2_tp_transport_saturation"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 61,
+          "stars": 0,
+          "text": "How does ABA bring about the closure of stomata under water stress conditions?",
+          "question_id": "ts_ipe_b2_tp_aba_stomatal_closure"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 62,
+          "stars": 0,
+          "text": "Compare transpiration and evaporation.",
+          "question_id": "ts_ipe_b2_tp_transpiration_vs_evaporation"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Mineral Nutrition (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Explain the steps involved in the formation of root nodule.",
+          "question_id": "ts_ipe_b2_mn_root_nodule_formation"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write in brief how plants synthesize amino acids.",
+          "question_id": "ts_ipe_b2_mn_amino_acid_synthesis"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 166,
+          "stars": 0,
+          "text": "Explain in brief how plants absorb essential elements.",
+          "question_id": "ts_ipe_b2_mn_absorption_of_essential_elements"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 151,
+          "stars": 0,
+          "text": "Define hydroponics.",
+          "question_id": "ts_ipe_b2_mn_hydroponics"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 152,
+          "stars": 0,
+          "text": "Explain the role of the pink colour pigment in the root nodule of legume plants. What is it called?",
+          "question_id": "ts_ipe_b2_mn_leghaemoglobin"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 153,
+          "stars": 0,
+          "text": "Write the balanced equation of nitrogen fixation.",
+          "question_id": "ts_ipe_b2_mn_nitrogen_fixation_equation"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 154,
+          "stars": 0,
+          "text": "Name any two essential elements and the deficiency diseases caused by them.",
+          "question_id": "ts_ipe_b2_mn_essential_elements_deficiency"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Enzymes (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Write briefly about enzyme inhibitors.",
+          "question_id": "ts_ipe_b2_en_enzyme_inhibitors"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Explain different types of cofactors.",
+          "question_id": "ts_ipe_b2_en_types_of_cofactors"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 155,
+          "stars": 0,
+          "text": "How are prosthetic groups different from co-factors?",
+          "question_id": "ts_ipe_b2_en_prosthetic_group_vs_cofactor"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 156,
+          "stars": 0,
+          "text": "Distinguish between apoenzyme and cofactor.",
+          "question_id": "ts_ipe_b2_en_apoenzyme_vs_cofactor"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 157,
+          "stars": 0,
+          "text": "Define Michaelis constant.",
+          "question_id": "ts_ipe_b2_en_michaelis_constant"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 158,
+          "stars": 0,
+          "text": "What is meant by 'Feed-back inhibition'?",
+          "question_id": "ts_ipe_b2_en_feedback_inhibition"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Photosynthesis in Higher Plants (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of Chloroplast.",
+          "question_id": "ts_ipe_b2_ph_chloroplast_diagram"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Tabulate any eight differences between C3 and C4 plants/cycles.",
+          "question_id": "ts_ipe_b2_ph_c3_vs_c4"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Describe in brief photorespiration.",
+          "question_id": "ts_ipe_b2_ph_photorespiration"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 168,
+          "stars": 0,
+          "text": "Explain the Calvin cycle.",
+          "question_id": "ts_ipe_b2_ph_calvin_cycle"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 63,
+          "stars": 0,
+          "text": "Name the processes which take place in the grana and stroma regions of chloroplasts.",
+          "question_id": "ts_ipe_b2_ph_grana_stroma_processes"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 64,
+          "stars": 0,
+          "text": "Where does the photolysis of H2O occur? What is its significance?",
+          "question_id": "ts_ipe_b2_ph_photolysis_of_water"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 65,
+          "stars": 0,
+          "text": "Distinguish between action spectrum and absorption spectrum.",
+          "question_id": "ts_ipe_b2_ph_action_vs_absorption_spectrum"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 66,
+          "stars": 0,
+          "text": "Define the law of limiting factors proposed by Blackman.",
+          "question_id": "ts_ipe_b2_ph_law_of_limiting_factors"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 67,
+          "stars": 0,
+          "text": "What is the primary acceptor of CO2 in C3 plants? What is the first stable compound formed in a Calvin cycle?",
+          "question_id": "ts_ipe_b2_ph_c3_acceptor_and_first_product"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 68,
+          "stars": 0,
+          "text": "What is the primary acceptor of CO2 in C4 plants? What is the first compound formed as a result of primary carboxylation in the C4 pathway?",
+          "question_id": "ts_ipe_b2_ph_c4_acceptor_and_first_product"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 69,
+          "stars": 0,
+          "text": "Which tissue transports photosynthates? What experiment proves this?",
+          "question_id": "ts_ipe_b2_ph_phloem_transports_food"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 70,
+          "stars": 0,
+          "text": "How many molecules of ATP and NADPH are needed to fix a molecule of CO2 in C3 plants? Where does this process occur?",
+          "question_id": "ts_ipe_b2_ph_atp_nadph_per_co2"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 71,
+          "stars": 0,
+          "text": "What products drive the Calvin cycle? What products regenerate them?",
+          "question_id": "ts_ipe_b2_ph_calvin_drivers"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Respiration in Plants (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Give an account of glycolysis. Where does it occur? What are the end products? Trace the fate of these products in both aerobic and anaerobic respiration.",
+          "question_id": "ts_ipe_b2_rp_laq_glycolysis"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Explain the reactions of Krebs cycle.",
+          "question_id": "ts_ipe_b2_rp_laq_krebs_cycle"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 167,
+          "stars": 0,
+          "text": "Define RQ. Write a short note on RQ.",
+          "question_id": "ts_ipe_b2_rp_respiratory_quotient"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Plant Growth and Development (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Write a note on agricultural and horticultural applications of auxins.",
+          "question_id": "ts_ipe_b2_pgd_auxin_applications"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Write the physiological responses of gibberellins in plants.",
+          "question_id": "ts_ipe_b2_pgd_gibberellin_responses"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Write any four physiological effects of cytokinins in plants.",
+          "question_id": "ts_ipe_b2_pgd_cytokinin_effects"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "What are the physiological processes that are regulated by ethylene in plants?",
+          "question_id": "ts_ipe_b2_pgd_ethylene_processes"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write short notes on seed dormancy.",
+          "question_id": "ts_ipe_b2_pgd_seed_dormancy"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Which one of the plant growth regulators would you use if you are asked to (a) induce rooting in a twig (b) quickly ripen a fruit (c) delay leaf senescence (d) induce growth in axillary buds (e) bolt a rosette plant (f) induce immediate stomatal closure in leaves (g) overcome apical dominance (h) kill dicotyledonous weeds?",
+          "question_id": "ts_ipe_b2_pgd_which_growth_regulator"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 159,
+          "stars": 0,
+          "text": "What do you understand by vernalisation? Write its significance.",
+          "question_id": "ts_ipe_b2_pgd_vernalisation"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 160,
+          "stars": 0,
+          "text": "What is meant by bolting? Which hormone causes bolting?",
+          "question_id": "ts_ipe_b2_pgd_bolting"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 161,
+          "stars": 0,
+          "text": "Define the terms quiescence and dormancy.",
+          "question_id": "ts_ipe_b2_pgd_quiescence_vs_dormancy"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 162,
+          "stars": 0,
+          "text": "Define plasticity. Give an example.",
+          "question_id": "ts_ipe_b2_pgd_plasticity"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Bacteria (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 72,
+          "stars": 0,
+          "text": "Write briefly on the occurrence of micro organisms.",
+          "question_id": "ts_ipe_b2_ba_occurrence_of_microorganisms"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 73,
+          "stars": 0,
+          "text": "Define Microbiology.",
+          "question_id": "ts_ipe_b2_ba_microbiology_definition"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 74,
+          "stars": 0,
+          "text": "Name the bacteria which is a common inhabitant of the human intestine. How is it used in biotechnology?",
+          "question_id": "ts_ipe_b2_ba_ecoli_in_intestine"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 75,
+          "stars": 0,
+          "text": "What are pleomorphic bacteria? Give an example.",
+          "question_id": "ts_ipe_b2_ba_pleomorphic_bacteria"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 76,
+          "stars": 0,
+          "text": "What is sex pilus? What is its function?",
+          "question_id": "ts_ipe_b2_ba_sex_pilus"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 77,
+          "stars": 0,
+          "text": "What is a genophore?",
+          "question_id": "ts_ipe_b2_ba_genophore"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 78,
+          "stars": 0,
+          "text": "What is a plasmid? What is its significance?",
+          "question_id": "ts_ipe_b2_ba_plasmid"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 79,
+          "stars": 0,
+          "text": "What is conjugation? Who discovered it and in which organism?",
+          "question_id": "ts_ipe_b2_ba_conjugation"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 80,
+          "stars": 0,
+          "text": "What is transformation? Who discovered it and in which organism?",
+          "question_id": "ts_ipe_b2_ba_transformation"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 81,
+          "stars": 0,
+          "text": "What is transduction? Who discovered it and in which organism?",
+          "question_id": "ts_ipe_b2_ba_transduction"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Viruses (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "What is ICTV? How are viruses named?",
+          "question_id": "ts_ipe_b2_vi_ictv_and_naming"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "Explain the chemical structure of viruses.",
+          "question_id": "ts_ipe_b2_vi_chemical_structure_of_viruses"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "Explain the structure of TMV.",
+          "question_id": "ts_ipe_b2_vi_tmv_structure"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "Explain the structure of T-even bacteriophages.",
+          "question_id": "ts_ipe_b2_vi_t_even_phage_structure"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "Explain the lytic cycle with reference to certain viruses.",
+          "question_id": "ts_ipe_b2_vi_lytic_cycle"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 163,
+          "stars": 0,
+          "text": "Mention the differences between virulent phages and temperate phages.",
+          "question_id": "ts_ipe_b2_vi_virulent_vs_temperate_phages"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 164,
+          "stars": 0,
+          "text": "What is the shape of TMV? What is its genetic material?",
+          "question_id": "ts_ipe_b2_vi_tmv_shape_and_genome"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 165,
+          "stars": 0,
+          "text": "What is lysozyme and what is its function?",
+          "question_id": "ts_ipe_b2_vi_lysozyme"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "name": "Principles of Inheritance and Variation (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "Mention the advantages of selecting pea plant for experiment by Mendel.",
+          "question_id": "ts_ipe_b2_piv_pea_plant_advantages"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 32,
+          "stars": 0,
+          "text": "Differentiate between the following: (a) Dominant and Recessive (b) Homozygous and Heterozygous.",
+          "question_id": "ts_ipe_b2_piv_dominant_recessive_homozygous"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 33,
+          "stars": 0,
+          "text": "Explain the law of Dominance using a monohybrid cross.",
+          "question_id": "ts_ipe_b2_piv_law_of_dominance"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 34,
+          "stars": 0,
+          "text": "Define and design a test-cross.",
+          "question_id": "ts_ipe_b2_piv_test_cross"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 35,
+          "stars": 0,
+          "text": "Explain co-dominance with an example.",
+          "question_id": "ts_ipe_b2_piv_codominance"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 36,
+          "stars": 0,
+          "text": "Explain incomplete dominance with an example.",
+          "question_id": "ts_ipe_b2_piv_incomplete_dominance"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 37,
+          "stars": 0,
+          "text": "Write a brief note on chromosomal mutations and gene mutations.",
+          "question_id": "ts_ipe_b2_piv_chromosomal_and_gene_mutations"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 38,
+          "stars": 0,
+          "text": "Define the law of Segregation and the law of Independent Assortment.",
+          "question_id": "ts_ipe_b2_piv_segregation_and_assortment"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 82,
+          "stars": 0,
+          "text": "What is the cross between the F1 progeny and the homozygous recessive parent called? How is it useful?",
+          "question_id": "ts_ipe_b2_piv_test_cross_name_and_use"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 83,
+          "stars": 0,
+          "text": "Do you think Mendel's laws of inheritance would have been different if the characters he chose were located on the same chromosome?",
+          "question_id": "ts_ipe_b2_piv_linked_genes"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 84,
+          "stars": 0,
+          "text": "Who proposed the Chromosome theory of Inheritance?",
+          "question_id": "ts_ipe_b2_piv_chromosome_theory"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 85,
+          "stars": 0,
+          "text": "Define true breeding. Mention its significance.",
+          "question_id": "ts_ipe_b2_piv_true_breeding"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 86,
+          "stars": 0,
+          "text": "Explain the terms phenotype and genotype.",
+          "question_id": "ts_ipe_b2_piv_phenotype_and_genotype"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 87,
+          "stars": 0,
+          "text": "What is point mutation? Give an example.",
+          "question_id": "ts_ipe_b2_piv_point_mutation_inheritance"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 88,
+          "stars": 0,
+          "text": "What is the genotype of the wrinkled phenotype of pea seeds?",
+          "question_id": "ts_ipe_b2_piv_wrinkled_genotype"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 89,
+          "stars": 0,
+          "text": "What will be the phenotypic ratio in the offspring obtained from the following crosses: (a) Aa × aa (b) AA × aa (c) Aa × Aa (d) Aa × AA?",
+          "question_id": "ts_ipe_b2_piv_phenotypic_ratios"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "name": "Molecular Basis of Inheritance (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 39,
+          "stars": 0,
+          "text": "Define transformation in Griffith's experiment. Discuss how it helps in the identification of DNA as genetic material.",
+          "question_id": "ts_ipe_b2_mbi_griffith_transformation"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 40,
+          "stars": 0,
+          "text": "How many types of RNA polymerases exist in cells? Write their names and functions.",
+          "question_id": "ts_ipe_b2_mbi_rna_polymerases"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 41,
+          "stars": 0,
+          "text": "Draw the schematic diagrammatic presentation of the lac operon.",
+          "question_id": "ts_ipe_b2_mbi_lac_operon_diagram"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 42,
+          "stars": 0,
+          "text": "What are the differences between DNA and RNA?",
+          "question_id": "ts_ipe_b2_mbi_dna_vs_rna"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 43,
+          "stars": 0,
+          "text": "Write the important features of the genetic code.",
+          "question_id": "ts_ipe_b2_mbi_genetic_code_features"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 44,
+          "stars": 0,
+          "text": "Write briefly on nucleosomes.",
+          "question_id": "ts_ipe_b2_mbi_nucleosome"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 90,
+          "stars": 0,
+          "text": "Distinguish between heterochromatin and euchromatin. Which of the two is transcriptionally active?",
+          "question_id": "ts_ipe_b2_mbi_heterochromatin_vs_euchromatin"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 91,
+          "stars": 0,
+          "text": "Who proved that DNA is genetic material? What is the organism they worked on?",
+          "question_id": "ts_ipe_b2_mbi_who_proved_dna"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 92,
+          "stars": 0,
+          "text": "What is the function of DNA polymerase?",
+          "question_id": "ts_ipe_b2_mbi_dna_polymerase_function"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 93,
+          "stars": 0,
+          "text": "What are the components of a nucleotide?",
+          "question_id": "ts_ipe_b2_mbi_nucleotide_components"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 94,
+          "stars": 0,
+          "text": "Given the coding strand of DNA in a transcription unit as 5'-AATGCAGCTATTAGG-3', write the sequence of (a) its complementary strand (b) the mRNA.",
+          "question_id": "ts_ipe_b2_mbi_complementary_and_mrna"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 95,
+          "stars": 0,
+          "text": "Name any three viruses which have RNA as the genetic material.",
+          "question_id": "ts_ipe_b2_mbi_rna_viruses"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 96,
+          "stars": 0,
+          "text": "What are the components of a transcription unit?",
+          "question_id": "ts_ipe_b2_mbi_transcription_unit"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 97,
+          "stars": 0,
+          "text": "What is the difference between exons and introns?",
+          "question_id": "ts_ipe_b2_mbi_exons_and_introns"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 98,
+          "stars": 0,
+          "text": "What is meant by capping and tailing?",
+          "question_id": "ts_ipe_b2_mbi_capping_and_tailing"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 99,
+          "stars": 0,
+          "text": "What is meant by point mutation? Give an example.",
+          "question_id": "ts_ipe_b2_mbi_point_mutation_molecular"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 100,
+          "stars": 0,
+          "text": "What is meant by charging of tRNA?",
+          "question_id": "ts_ipe_b2_mbi_charging_of_trna"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 101,
+          "stars": 0,
+          "text": "What is the function of the codon AUG?",
+          "question_id": "ts_ipe_b2_mbi_codon_aug"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 102,
+          "stars": 0,
+          "text": "Define stop codon. Write the codons.",
+          "question_id": "ts_ipe_b2_mbi_stop_codons"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 103,
+          "stars": 0,
+          "text": "Write any two differences between DNA and RNA.",
+          "question_id": "ts_ipe_b2_mbi_two_dna_rna_differences"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 104,
+          "stars": 0,
+          "text": "In a typical DNA molecule the proportion of thymine is 30% of the nitrogen bases. Find the percentages of the other bases.",
+          "question_id": "ts_ipe_b2_mbi_base_percentages"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 105,
+          "stars": 0,
+          "text": "The proportion of nucleotides in a nucleic acid is: adenine 18%, guanine 30%, cytosine 42%, uracil 10%. Name the nucleic acid and state the number of strands.",
+          "question_id": "ts_ipe_b2_mbi_identify_nucleic_acid"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 106,
+          "stars": 0,
+          "text": "What is the difference between the template strand and the coding strand in a DNA molecule?",
+          "question_id": "ts_ipe_b2_mbi_template_vs_coding_strand"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "name": "Biotechnology: Principles and Processes (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain briefly the various processes of recombinant DNA technology.",
+          "question_id": "ts_ipe_b2_bpp_laq_rdna_processes"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Give a brief account of the tools of recombinant DNA technology.",
+          "question_id": "ts_ipe_b2_bpp_laq_rdna_tools"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 107,
+          "stars": 0,
+          "text": "Define biotechnology.",
+          "question_id": "ts_ipe_b2_bpp_define_biotechnology"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 108,
+          "stars": 0,
+          "text": "What are molecular scissors? Where are they obtained from?",
+          "question_id": "ts_ipe_b2_bpp_molecular_scissors"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 109,
+          "stars": 0,
+          "text": "Name any two artificially restructured plasmids.",
+          "question_id": "ts_ipe_b2_bpp_artificial_plasmids"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 110,
+          "stars": 0,
+          "text": "What is EcoRI? How does it function?",
+          "question_id": "ts_ipe_b2_bpp_ecori"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 111,
+          "stars": 0,
+          "text": "What are cloning vectors? Give an example.",
+          "question_id": "ts_ipe_b2_bpp_cloning_vectors"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 112,
+          "stars": 0,
+          "text": "What is recombinant DNA?",
+          "question_id": "ts_ipe_b2_bpp_recombinant_dna"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 113,
+          "stars": 0,
+          "text": "What is a palindromic sequence?",
+          "question_id": "ts_ipe_b2_bpp_palindromic_sequence"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 114,
+          "stars": 0,
+          "text": "What is the full form of PCR? How is it useful in biotechnology?",
+          "question_id": "ts_ipe_b2_bpp_pcr"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 115,
+          "stars": 0,
+          "text": "What is down-stream processing?",
+          "question_id": "ts_ipe_b2_bpp_downstream_processing"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 116,
+          "stars": 0,
+          "text": "How does one visualise DNA on an agarose gel?",
+          "question_id": "ts_ipe_b2_bpp_visualise_dna_on_gel"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 117,
+          "stars": 0,
+          "text": "How can you differentiate between exonucleases and endonucleases?",
+          "question_id": "ts_ipe_b2_bpp_exo_vs_endonucleases"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "name": "Biotechnology and its Applications (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 45,
+          "stars": 0,
+          "text": "List out the beneficial aspects of transgenic plants.",
+          "question_id": "ts_ipe_b2_bia_transgenic_plant_benefits"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 46,
+          "stars": 0,
+          "text": "What are some bio-safety issues concerned with genetically modified crops?",
+          "question_id": "ts_ipe_b2_bia_gm_biosafety_issues"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 47,
+          "stars": 0,
+          "text": "Give a brief account of Bt cotton.",
+          "question_id": "ts_ipe_b2_bia_bt_cotton"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 48,
+          "stars": 0,
+          "text": "Give a brief account of pest resistant plants.",
+          "question_id": "ts_ipe_b2_bia_pest_resistant_plants"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 118,
+          "stars": 0,
+          "text": "Give different types of cry genes and the pests which are controlled by the proteins encoded by these genes.",
+          "question_id": "ts_ipe_b2_bia_cry_genes"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 119,
+          "stars": 0,
+          "text": "Can a disease be detected before its symptoms appear? Explain the principle involved.",
+          "question_id": "ts_ipe_b2_bia_early_disease_detection"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 120,
+          "stars": 0,
+          "text": "What is GEAC and what are its objectives?",
+          "question_id": "ts_ipe_b2_bia_geac"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 121,
+          "stars": 0,
+          "text": "Name the nematode that infects the roots of tobacco plants. Name the strategy adopted to prevent this infestation.",
+          "question_id": "ts_ipe_b2_bia_tobacco_nematode"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 122,
+          "stars": 0,
+          "text": "For which variety of Indian rice has a patent been filed by a USA company?",
+          "question_id": "ts_ipe_b2_bia_basmati_patent"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 123,
+          "stars": 0,
+          "text": "Give one example each of a transgenic plant suitable for food processing and one with improved nutritional quality.",
+          "question_id": "ts_ipe_b2_bia_transgenic_examples"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 124,
+          "stars": 0,
+          "text": "What is green revolution? Who is regarded as the Father of the green revolution?",
+          "question_id": "ts_ipe_b2_bia_green_revolution"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "name": "Strategies for Enhancement in Food Production (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "You are a Botanist working in the area of plant breeding. Describe the various steps that you will undertake to release a new variety.",
+          "question_id": "ts_ipe_b2_sef_laq_release_new_variety"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Describe the tissue culture technique. What are the advantages of tissue culture over the conventional method of plant breeding in crop improvement programmes?",
+          "question_id": "ts_ipe_b2_sef_laq_tissue_culture"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 125,
+          "stars": 0,
+          "text": "What is meant by 'hidden hunger'?",
+          "question_id": "ts_ipe_b2_sef_hidden_hunger"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 126,
+          "stars": 0,
+          "text": "Name two semi-dwarf varieties of rice developed in India.",
+          "question_id": "ts_ipe_b2_sef_semi_dwarf_rice"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 127,
+          "stars": 0,
+          "text": "Give two examples of wheat varieties introduced in India which are high yielding and disease resistant.",
+          "question_id": "ts_ipe_b2_sef_wheat_varieties"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 128,
+          "stars": 0,
+          "text": "Give two examples of fungi used in SCP production.",
+          "question_id": "ts_ipe_b2_sef_scp_fungi"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 129,
+          "stars": 0,
+          "text": "Which two species of sugarcane were crossed for better yield?",
+          "question_id": "ts_ipe_b2_sef_sugarcane_species"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 130,
+          "stars": 0,
+          "text": "Define totipotency and explant.",
+          "question_id": "ts_ipe_b2_sef_totipotency_and_explant"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 131,
+          "stars": 0,
+          "text": "Define micropropagation and somaclones.",
+          "question_id": "ts_ipe_b2_sef_micropropagation_somaclones"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 132,
+          "stars": 0,
+          "text": "What is meant by germplasm collection?",
+          "question_id": "ts_ipe_b2_sef_germplasm_collection"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 133,
+          "stars": 0,
+          "text": "What is meant by biofortification?",
+          "question_id": "ts_ipe_b2_sef_biofortification"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 134,
+          "stars": 0,
+          "text": "Which part of the plant is best suited for making virus-free plants and why?",
+          "question_id": "ts_ipe_b2_sef_virus_free_plants"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "name": "Microbes in Human Welfare (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 135,
+          "stars": 0,
+          "text": "Why does Swiss cheese have big holes? Name the bacteria responsible for it.",
+          "question_id": "ts_ipe_b2_mhw_swiss_cheese_holes"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 136,
+          "stars": 0,
+          "text": "What are fermentors?",
+          "question_id": "ts_ipe_b2_mhw_fermentors"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 137,
+          "stars": 0,
+          "text": "Name a microbe used for statin production. How do statins lower blood cholesterol level?",
+          "question_id": "ts_ipe_b2_mhw_statins"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 138,
+          "stars": 0,
+          "text": "Why do we prefer to call secondary waste water treatment biological treatment?",
+          "question_id": "ts_ipe_b2_mhw_biological_treatment"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 139,
+          "stars": 0,
+          "text": "What is Nucleopolyhedrovirus being used for nowadays?",
+          "question_id": "ts_ipe_b2_mhw_nucleopolyhedrovirus"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 140,
+          "stars": 0,
+          "text": "Write the most important characteristic that Aspergillus niger, Clostridium butylicum and Lactobacillus share.",
+          "question_id": "ts_ipe_b2_mhw_acid_producing_microbes"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 141,
+          "stars": 0,
+          "text": "Name any two genetically modified crops.",
+          "question_id": "ts_ipe_b2_mhw_gm_crops"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 142,
+          "stars": 0,
+          "text": "Name any two industrially important enzymes.",
+          "question_id": "ts_ipe_b2_mhw_industrial_enzymes"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 143,
+          "stars": 0,
+          "text": "Name an immunosuppressive agent. From where is it obtained?",
+          "question_id": "ts_ipe_b2_mhw_immunosuppressive_agent"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 144,
+          "stars": 0,
+          "text": "What is the group of bacteria found in both the rumen of cattle and the sludge of sewage treatment?",
+          "question_id": "ts_ipe_b2_mhw_methanogens"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 145,
+          "stars": 0,
+          "text": "Name the scientists who were credited for showing the role of penicillin as an antibiotic.",
+          "question_id": "ts_ipe_b2_mhw_penicillin_scientists"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 146,
+          "stars": 0,
+          "text": "Give any two microbes that are used in biotechnology.",
+          "question_id": "ts_ipe_b2_mhw_microbes_in_biotechnology"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 147,
+          "stars": 0,
+          "text": "In which food do you find lactic acid bacteria? Name the bacterium.",
+          "question_id": "ts_ipe_b2_mhw_lactic_acid_bacteria"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 148,
+          "stars": 0,
+          "text": "Name any two fungi which are used in the production of antibiotics.",
+          "question_id": "ts_ipe_b2_mhw_antibiotic_fungi"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 149,
+          "stars": 0,
+          "text": "How has the discovery of antibiotics helped mankind in the field of medicine?",
+          "question_id": "ts_ipe_b2_mhw_antibiotics_in_medicine"
+        }
+      ]
+    },
+    {
+      "number": 1,
       "name": "Circle (Maths-2B)",
       "subject": "mathematics_2b",
       "questions": [

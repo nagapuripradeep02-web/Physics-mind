@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ba_genophore",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Bacteria (Botany-II)"
+  },
+  "chapter": "Bacteria",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a genophore?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "How it differs from a chromosome",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.41, printed question 77. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The second half is the mark most answers miss: say NAKED, meaning no histone proteins.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Bacteria (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What a genophore is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, alternative names, and the shape. Four lines.",
+        "lines": [
+          "The GENOPHORE is the main genetic material of a",
+          "bacterium.",
+          "It is also called the bacterial chromosome or the",
+          "nucleoid.",
+          "It is a single, circular, double stranded DNA",
+          "molecule."
+        ],
+        "why": "Circular and single is the shape that lets a bacterium copy its whole genome from one starting point, unlike the many linear chromosomes of a eukaryote.",
+        "common_mistakes": [
+          "Saying the genophore is linear. It is CIRCULAR.",
+          "Confusing it with a plasmid. The genophore is the MAIN genetic material; a plasmid is extra."
+        ],
+        "memory_tip": "One circle of DNA, and it is the main one."
+      },
+      {
+        "id": "s2_naked",
+        "kind": "boxed_final",
+        "label": "How it differs from a chromosome",
+        "marks": 1,
+        "mark_note": "Difference",
+        "margin_note": "Both differences named. The word naked is the shortest way to earn this.",
+        "lines": [
+          {
+            "text": "Naked DNA: no histones, no nuclear membrane",
+            "style": "boxed"
+          },
+          "The genophore is NAKED — it carries no histone",
+          "proteins.",
+          "It is not enclosed by a nuclear membrane.",
+          "A eukaryotic chromosome has histones and lies",
+          "inside a nucleus."
+        ],
+        "why": "Bacteria have no nucleus and no histones, so their genetic material has to be described differently from a true chromosome.",
+        "common_mistakes": [
+          "Saying the genophore has histones. It is NAKED DNA.",
+          "Saying it lies in a nucleus. Bacteria have no nuclear membrane."
+        ],
+        "memory_tip": "No histones and no nucleus: that is why it is not called a chromosome."
+      }
+    ]
+  }
+}

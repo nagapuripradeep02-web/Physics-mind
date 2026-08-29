@@ -1,0 +1,489 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_chloroplast_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw a neat labelled diagram of Chloroplast.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Outline with both membranes",
+      "marks": 1
+    },
+    {
+      "label": "Grana and stromal lamellae",
+      "marks": 1
+    },
+    {
+      "label": "Stroma with its contents",
+      "marks": 1
+    },
+    {
+      "label": "All labels correct",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.25, printed question 17. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. This is the ONE question in the paper whose marks sit on the drawing: it says \"draw a neat labelled diagram\", so the figure step carries all four marks and there is no written answer to substitute. The book prints the figure alone with no prose."
+  },
+  "insider_note": "The word 'labelled' is worth a full mark on its own. Six labels — outer membrane, inner membrane, grana, stromal lamella, stroma, ribosomes — turn a sketch into an answer.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diagram",
+        "kind": "diagram",
+        "label": "Neat labelled diagram",
+        "marks": 4,
+        "mark_note": "Neat labelled diagram",
+        "margin_note": "All four marks are here. Draw big: a small chloroplast leaves no room to show the separate discs in a granum, and the discs are what the second mark is for.",
+        "figure": {
+          "id": "b2_ph_chloroplast",
+          "width": 560,
+          "height": 320,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "c_p1",
+              "caption": "Step 1 — the outer and inner membranes"
+            },
+            {
+              "type": "stroke",
+              "id": "cp_outer_top",
+              "d": "M 110 140 A 140 76 0 0 1 390 140",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cp_outer_bot",
+              "d": "M 390 140 A 140 76 0 0 1 110 140",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cp_inner_top",
+              "d": "M 117 140 A 133 69 0 0 1 383 140",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cp_inner_bot",
+              "d": "M 383 140 A 133 69 0 0 1 117 140",
+              "ms": 4500
+            },
+            {
+              "type": "pause",
+              "id": "c_p2",
+              "caption": "Step 2 — the grana, three stacks of discs"
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g0_0",
+              "d": "M 156 108 A 24 4 0 1 0 204 108 A 24 4 0 1 0 156 108",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g0_1",
+              "d": "M 156 118 A 24 4 0 1 0 204 118 A 24 4 0 1 0 156 118",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g0_2",
+              "d": "M 156 128 A 24 4 0 1 0 204 128 A 24 4 0 1 0 156 128",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g0_3",
+              "d": "M 156 138 A 24 4 0 1 0 204 138 A 24 4 0 1 0 156 138",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g0_4",
+              "d": "M 156 148 A 24 4 0 1 0 204 148 A 24 4 0 1 0 156 148",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g1_0",
+              "d": "M 238 150 A 24 4 0 1 0 286 150 A 24 4 0 1 0 238 150",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g1_1",
+              "d": "M 238 160 A 24 4 0 1 0 286 160 A 24 4 0 1 0 238 160",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g1_2",
+              "d": "M 238 170 A 24 4 0 1 0 286 170 A 24 4 0 1 0 238 170",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g1_3",
+              "d": "M 238 180 A 24 4 0 1 0 286 180 A 24 4 0 1 0 238 180",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g1_4",
+              "d": "M 238 190 A 24 4 0 1 0 286 190 A 24 4 0 1 0 238 190",
+              "ms": 1420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g2_0",
+              "d": "M 308 100 A 22 4 0 1 0 352 100 A 22 4 0 1 0 308 100",
+              "ms": 1310,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g2_1",
+              "d": "M 308 110 A 22 4 0 1 0 352 110 A 22 4 0 1 0 308 110",
+              "ms": 1310,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g2_2",
+              "d": "M 308 120 A 22 4 0 1 0 352 120 A 22 4 0 1 0 308 120",
+              "ms": 1310,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g2_3",
+              "d": "M 308 130 A 22 4 0 1 0 352 130 A 22 4 0 1 0 308 130",
+              "ms": 1310,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_g2_4",
+              "d": "M 308 140 A 22 4 0 1 0 352 140 A 22 4 0 1 0 308 140",
+              "ms": 1310,
+              "w": 1.8
+            },
+            {
+              "type": "pause",
+              "id": "c_p3",
+              "caption": "Step 3 — the stromal lamellae joining the stacks"
+            },
+            {
+              "type": "stroke",
+              "id": "cp_lam0_a",
+              "d": "M 202.5 140 L 236.5 165",
+              "ms": 600,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_lam0_b",
+              "d": "M 205.5 136 L 239.5 161",
+              "ms": 600,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_lam1_a",
+              "d": "M 287.9 159.6 L 309.9 133.6",
+              "ms": 490,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cp_lam1_b",
+              "d": "M 284.1 156.4 L 306.1 130.4",
+              "ms": 490,
+              "w": 1.8
+            },
+            {
+              "type": "pause",
+              "id": "c_p4",
+              "caption": "Step 4 — ribosomes, starch grain and lipid droplet"
+            },
+            {
+              "type": "stroke",
+              "id": "cp_rib0",
+              "d": "M 147.5 175 A 2.5 2.5 0 1 0 152.5 175 A 2.5 2.5 0 1 0 147.5 175",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cp_rib1",
+              "d": "M 159.5 192 A 2.5 2.5 0 1 0 164.5 192 A 2.5 2.5 0 1 0 159.5 192",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cp_rib2",
+              "d": "M 212.5 200 A 2.5 2.5 0 1 0 217.5 200 A 2.5 2.5 0 1 0 212.5 200",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cp_rib3",
+              "d": "M 297.5 175 A 2.5 2.5 0 1 0 302.5 175 A 2.5 2.5 0 1 0 297.5 175",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cp_rib4",
+              "d": "M 342.5 165 A 2.5 2.5 0 1 0 347.5 165 A 2.5 2.5 0 1 0 342.5 165",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cp_rib5",
+              "d": "M 207.5 90 A 2.5 2.5 0 1 0 212.5 90 A 2.5 2.5 0 1 0 207.5 90",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cp_rib6",
+              "d": "M 287.5 84 A 2.5 2.5 0 1 0 292.5 84 A 2.5 2.5 0 1 0 287.5 84",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cp_starch",
+              "d": "M 163 190 A 22 13 0 1 0 207 190 A 22 13 0 1 0 163 190",
+              "ms": 1600
+            },
+            {
+              "type": "stroke",
+              "id": "cp_starch_r1",
+              "d": "M 168 187 C 176 180 194 180 202 187",
+              "ms": 520,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cp_starch_r2",
+              "d": "M 170 194 C 178 199 192 199 200 194",
+              "ms": 450,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cp_lipid",
+              "d": "M 302 192 A 8 8 0 1 0 318 192 A 8 8 0 1 0 302 192",
+              "ms": 720
+            },
+            {
+              "type": "pause",
+              "id": "c_p5",
+              "caption": "Step 5 — leader lines and labels"
+            },
+            {
+              "type": "stroke",
+              "id": "cl_outer",
+              "d": "M 100 50 L 180 72",
+              "ms": 1190,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cl_inner",
+              "d": "M 400 84 L 374 113",
+              "ms": 560,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cl_grana",
+              "d": "M 398 138 L 350 122",
+              "ms": 720,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cl_rib",
+              "d": "M 398 198 L 304 176",
+              "ms": 1380,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cl_lam",
+              "d": "M 140 250 L 216 152",
+              "ms": 1770,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cl_starch",
+              "d": "M 140 294 L 180 204",
+              "ms": 1410,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cl_stroma",
+              "d": "M 250 294 L 250 206",
+              "ms": 1260,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cl_lipid",
+              "d": "M 358 294 L 318 200",
+              "ms": 1460,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "clb_outer",
+              "x": 10,
+              "y": 44,
+              "text": "Outer membrane",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "clb_inner",
+              "x": 402,
+              "y": 72,
+              "text": "Inner membrane",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "clb_grana",
+              "x": 402,
+              "y": 140,
+              "text": "Grana",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "clb_rib",
+              "x": 402,
+              "y": 200,
+              "text": "Ribosomes",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "clb_lam",
+              "x": 10,
+              "y": 256,
+              "text": "Stromal lamella",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "clb_starch",
+              "x": 60,
+              "y": 300,
+              "text": "Starch granule",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "clb_stroma",
+              "x": 216,
+              "y": 300,
+              "text": "Stroma",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "clb_lipid",
+              "x": 330,
+              "y": 300,
+              "text": "Lipid droplet",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The question asks for the drawing itself, so every mark is earned by what is on the paper: a double boundary, stacked grana joined by lamellae, and a labelled stroma.",
+        "common_mistakes": [
+          "Drawing a single boundary line. A chloroplast has an OUTER and an INNER membrane, so the outline must be a double line.",
+          "Drawing the grana as solid blocks. Each granum is a STACK of flattened discs and the separate discs must be visible.",
+          "Drawing grana with nothing joining them. The stromal lamellae connect the stacks and are a named label."
+        ],
+        "memory_tip": "Two membranes, three stacks, the sheets between them, then six labels."
+      },
+      {
+        "id": "s2_checklist",
+        "kind": "text",
+        "label": "What the examiner checks",
+        "marks": 0,
+        "margin_note": "No marks here — this is the checklist to run over your own drawing before you move on.",
+        "lines": [
+          "The six labels the diagram must carry:",
+          "1. Outer membrane   2. Inner membrane",
+          "3. Grana            4. Stromal lamella",
+          "5. Stroma           6. Ribosomes",
+          "Starch granule and lipid droplet may be added.",
+          "Light reaction happens in the GRANA.",
+          "Dark reaction happens in the STROMA."
+        ],
+        "why": "Writing the two reaction sites beside the drawing costs one line and answers the follow-up question an examiner most often asks about this figure.",
+        "common_mistakes": [
+          "Labelling the whole inside 'stroma' and stopping. The grana and lamellae are separate labels.",
+          "Swapping the reaction sites. Light reaction is in the GRANA, dark reaction in the STROMA."
+        ],
+        "memory_tip": "Grana for light, stroma for dark."
+      }
+    ]
+  }
+}

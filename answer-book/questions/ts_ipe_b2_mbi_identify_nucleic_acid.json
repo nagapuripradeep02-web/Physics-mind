@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_identify_nucleic_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The proportion of nucleotides in a nucleic acid is: adenine 18%, guanine 30%, cytosine 42%, uracil 10%. Name the nucleic acid and state the number of strands.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Which nucleic acid",
+      "marks": 1
+    },
+    {
+      "label": "How many strands",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 105. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two clues, two answers. Uracil names the molecule; the failed pairing rule names the strand count.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_which",
+        "kind": "text",
+        "label": "Which nucleic acid",
+        "marks": 1,
+        "mark_note": "RNA",
+        "margin_note": "Name the clue, then the answer. Three lines.",
+        "lines": [
+          "URACIL is present, and thymine is absent.",
+          "Uracil occurs only in RNA.",
+          "So the nucleic acid is RNA."
+        ],
+        "why": "Uracil is the one base that appears in RNA and never in DNA, so its presence settles the question by itself.",
+        "common_mistakes": [
+          "Answering DNA. DNA contains thymine, never uracil.",
+          "Not saying why. The reason is what earns the mark."
+        ],
+        "memory_tip": "Uracil means RNA."
+      },
+      {
+        "id": "s2_strands",
+        "kind": "boxed_final",
+        "label": "How many strands",
+        "marks": 1,
+        "mark_note": "One strand",
+        "margin_note": "Show both comparisons before the conclusion. Seven lines.",
+        "lines": [
+          {
+            "text": "Chargaff's rule fails, so it cannot be a",
+            "style": "boxed"
+          },
+          {
+            "text": "double helix",
+            "style": "boxed"
+          },
+          "In a double stranded molecule A = U and G = C.",
+          "Here A = 18% but U = 10%, and G = 30% but",
+          "C = 42%.",
+          "The pairs are NOT equal, so the molecule cannot",
+          "be double stranded.",
+          "It has only ONE strand."
+        ],
+        "why": "Equal base pairs are a necessary consequence of two strands pairing, so unequal percentages rule two strands out completely.",
+        "common_mistakes": [
+          "Answering two strands. The unequal percentages make that impossible.",
+          "Giving the answer with no arithmetic. The comparison IS the reasoning."
+        ],
+        "memory_tip": "Unequal pairs means nothing is pairing."
+      }
+    ]
+  }
+}

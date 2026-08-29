@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_diffusion_definition_factors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define diffusion. Write any two factors that affect it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Two factors",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.38, printed question 50. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The question asks for exactly two factors. Give three if you like, but the definition must be there first — it is the mark students most often skip in a hurry.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Diffusion defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Direction of movement plus the word passive. Four lines.",
+        "lines": [
+          "Diffusion is the movement of molecules from a",
+          "region of higher concentration to a region of",
+          "lower concentration.",
+          "It is a passive process and needs no energy."
+        ],
+        "why": "Diffusion is defined by the direction of movement, so the definition has to name both ends of the gradient rather than just say molecules move.",
+        "common_mistakes": [
+          "Saying molecules move from low to high. That is the opposite of diffusion.",
+          "Calling it an active process. Diffusion is PASSIVE."
+        ],
+        "memory_tip": "Downhill only: high to low, no energy spent."
+      },
+      {
+        "id": "s2_factors",
+        "kind": "boxed_final",
+        "label": "Two factors that affect it",
+        "marks": 1,
+        "mark_note": "Factors",
+        "margin_note": "Two named factors, each with its effect on the rate.",
+        "lines": [
+          {
+            "text": "Temperature and concentration gradient",
+            "style": "boxed"
+          },
+          "1. Temperature: a higher temperature makes",
+          "molecules move faster, so diffusion is faster.",
+          "2. Concentration gradient: a steeper gradient",
+          "makes diffusion faster.",
+          "Pressure also affects the rate."
+        ],
+        "why": "Both named factors change the same thing — how fast molecules cross the gradient — so each one is stated with its effect on the rate.",
+        "common_mistakes": [
+          "Naming a factor without saying what it does to the rate. The effect is the mark.",
+          "Naming only one factor. The question asks for two."
+        ],
+        "memory_tip": "Hotter and steeper both mean faster."
+      }
+    ]
+  }
+}

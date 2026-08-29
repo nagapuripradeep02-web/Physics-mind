@@ -1,0 +1,860 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_laq_tissue_culture",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the tissue culture technique. What are the advantages of tissue culture over the conventional method of plant breeding in crop improvement programmes?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What tissue culture is",
+      "marks": 1
+    },
+    {
+      "label": "Medium and sterilisation",
+      "marks": 1
+    },
+    {
+      "label": "Explant and inoculation",
+      "marks": 1
+    },
+    {
+      "label": "Incubation and callus",
+      "marks": 1
+    },
+    {
+      "label": "Organogenesis and embryogenesis",
+      "marks": 1
+    },
+    {
+      "label": "Acclimatisation",
+      "marks": 1
+    },
+    {
+      "label": "Advantages",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.18, printed question 6. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. The MOST REPEATED question in the book: eleven printed appearances across both boards, and it is set in all five of the book's guess papers."
+  },
+  "insider_note": "Two questions in one, and the second half is worth two marks. Budget the time: six steps for six marks, then at least five advantages for the last two. An answer that describes the technique beautifully and stops has thrown away a quarter of the marks.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What tissue culture is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, totipotency, and all six steps listed. This opening is worth a mark by itself.",
+        "lines": [
+          "TISSUE CULTURE is the technique of growing,",
+          "culturing and maintaining cells, tissues and",
+          "organs IN VITRO — in glass, outside the plant.",
+          "It is based on the property of TOTIPOTENCY: the",
+          "ability of any living plant cell to regenerate",
+          "into a complete plant.",
+          "The six steps of the technique are:",
+          "1. prepare the medium  2. sterilise it",
+          "3. prepare the explant 4. inoculate",
+          "5. incubate for growth 6. acclimatise and",
+          "   transfer to pots."
+        ],
+        "why": "Totipotency is what makes the whole technique possible: without it a fragment of tissue could never become a whole plant.",
+        "common_mistakes": [
+          "Leaving out totipotency. It is the principle the technique rests on.",
+          "Saying tissue culture works only on seeds. ANY living plant part can be used.",
+          "Naming fewer than six steps. Six is what the book gives and six is what the marks follow."
+        ],
+        "memory_tip": "Any living cell can rebuild the whole plant: that is totipotency."
+      },
+      {
+        "id": "s2_medium",
+        "kind": "text",
+        "label": "Medium and sterilisation",
+        "marks": 1,
+        "mark_note": "Medium",
+        "margin_note": "Every component of the medium, then the three autoclave figures.",
+        "lines": [
+          "1. PREPARATION OF THE NUTRIENT",
+          "MEDIUM The medium must supply a CARBON",
+          "SOURCE such as SUCROSE, inorganic salts, vitamins,",
+          "amino acids, and growth regulators such as AUXINS and",
+          "CYTOKININS.",
+          "2. STERILISATION OF THE MEDIUM",
+          "A nutrient rich medium attracts micro organisms,",
+          "so it must be sterilised.",
+          "Sterilisation is done in an AUTOCLAVE for 15",
+          "minutes at 121°C and 15 lb pressure."
+        ],
+        "why": "The medium is a perfect food for bacteria and fungi as well as for the plant tissue, so anything not sterilised will be overgrown before the explant can start.",
+        "common_mistakes": [
+          "Leaving out the autoclave figures. 15 minutes, 121°C and 15 lb are the numbers asked for.",
+          "Saying the medium contains glucose. The carbon source given is SUCROSE.",
+          "Forgetting the growth regulators. Auxins and cytokinins are part of the medium."
+        ],
+        "memory_tip": "Rich food feeds the contaminants too, so sterilise everything."
+      },
+      {
+        "id": "s3_explant",
+        "kind": "text",
+        "label": "Explant and inoculation",
+        "marks": 1,
+        "mark_note": "Explant",
+        "margin_note": "Define explant, give examples, and name the laminar air flow chamber.",
+        "lines": [
+          "3. PREPARATION OF THE EXPLANT",
+          "Any living part of a plant used as the inoculum",
+          "is called an EXPLANT — a piece of root, stem,",
+          "leaf or a shoot tip.",
+          "The explant is surface sterilised.",
+          "4. INOCULATION OF THE EXPLANT",
+          "Transferring the explant onto the sterile medium",
+          "is called INOCULATION.",
+          "It is carried out in a LAMINAR AIR FLOW",
+          "CHAMBER, which supplies filtered, sterile air."
+        ],
+        "why": "Every transfer is a chance for contamination, so the one step where the culture is open to the air is done under a filtered air stream.",
+        "common_mistakes": [
+          "Not defining explant. It is a named term and often asked alone.",
+          "Leaving out the laminar air flow chamber. It is where inoculation must happen.",
+          "Saying the explant is sterilised in the autoclave. It is SURFACE sterilised; an autoclave would kill it."
+        ],
+        "memory_tip": "The explant is the piece you start from, and it goes in under sterile air."
+      },
+      {
+        "id": "s4_callus",
+        "kind": "text",
+        "label": "Incubation and callus",
+        "marks": 1,
+        "mark_note": "Callus",
+        "margin_note": "The time, the divisions, and the definition of callus.",
+        "lines": [
+          "5. INCUBATION FOR GROWTH",
+          "The cultures are incubated for 3 to 4 WEEKS.",
+          "During this time the explant cells absorb",
+          "nutrients, grow, and divide repeatedly by",
+          "MITOSIS.",
+          "They produce an UNDIFFERENTIATED mass of",
+          "cells called the CALLUS."
+        ],
+        "why": "The callus is undifferentiated on purpose: a mass of unspecialised cells can be pushed down any developmental path by changing the hormones.",
+        "common_mistakes": [
+          "Saying the callus is differentiated tissue. It is an UNDIFFERENTIATED mass.",
+          "Leaving out the time. Three to four weeks is the figure given."
+        ],
+        "memory_tip": "A shapeless lump of cells that can still become anything."
+      },
+      {
+        "id": "s5_organogenesis",
+        "kind": "text",
+        "label": "Organogenesis and embryogenesis",
+        "marks": 1,
+        "mark_note": "Two paths",
+        "margin_note": "Both paths named and distinguished, plus artificial seeds.",
+        "lines": [
+          "From the callus there are TWO paths:",
+          "(i) ORGANOGENESIS: adding AUXINS and",
+          "CYTOKININS to the medium induces the callus to",
+          "produce ORGANS — roots and shoots.",
+          "(ii) EMBRYOGENESIS: the explant may develop an",
+          "embryonic callus, from which EMBRYOIDS are",
+          "produced.",
+          "Because these embryoids develop from SOMATIC",
+          "(body) tissue and not from gametes, they are",
+          "called SOMATIC EMBRYOS.",
+          "Somatic embryos can be coated to make ARTIFICIAL",
+          "SEEDS."
+        ],
+        "why": "Which path the callus takes depends only on the balance of hormones in the medium, so one callus can be steered either way.",
+        "common_mistakes": [
+          "Confusing the two paths. ORGANOGENESIS gives organs; EMBRYOGENESIS gives embryoids.",
+          "Saying somatic embryos come from gametes. They come from SOMATIC tissue — that is what the name means.",
+          "Leaving out artificial seeds. They are the practical product of somatic embryos."
+        ],
+        "memory_tip": "Somatic means body: these embryos had no gametes."
+      },
+      {
+        "id": "s6_acclimatise",
+        "kind": "text",
+        "label": "Acclimatisation",
+        "marks": 1,
+        "mark_note": "Acclimatisation",
+        "margin_note": "The gradual transfer and the reason. This is the last step of the technique half.",
+        "lines": [
+          "6. ACCLIMATISATION AND TRANSFER TO",
+          "POTS Plants raised in culture have grown in warm,",
+          "humid, sterile conditions and are not ready for",
+          "the open field.",
+          "They are HARDENED OFF gradually — first in a",
+          "glass house, then in pots, then in the field.",
+          "Without acclimatisation the plantlets die when",
+          "they are transferred."
+        ],
+        "why": "A plantlet grown in a sealed tube has a thin cuticle and few functioning stomata, so it would dry out at once in open air.",
+        "common_mistakes": [
+          "Transferring straight to the field. The plantlets must be hardened off first.",
+          "Leaving out the reason. The plantlets die without it, and that is why the step exists."
+        ],
+        "memory_tip": "A plant raised in a jar cannot survive a field on its first day."
+      },
+      {
+        "id": "s7_diagram",
+        "kind": "diagram",
+        "label": "Diagram — the tissue culture flow chart",
+        "marks": 0,
+        "margin_note": "No diagram mark. Draw it if you have time: it is the fastest way to check all six steps are in your answer and in the right order.",
+        "figure": {
+          "id": "b2_sef_tissue_culture",
+          "width": 560,
+          "height": 576,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "tc_p1",
+              "caption": "Step 1 — medium, explant, inoculation, callus"
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b0_t",
+              "d": "M 103.5 32 L 456.5 32",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b0_b",
+              "d": "M 103.5 68 L 456.5 68",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b0_l",
+              "d": "M 103.5 32 L 103.5 68",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b0_r",
+              "d": "M 456.5 32 L 456.5 68",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_b0_x",
+              "x": 132,
+              "y": 55,
+              "text": "1. Prepare the nutrient medium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b1_t",
+              "d": "M 98.5 92 L 461.5 92",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b1_b",
+              "d": "M 98.5 128 L 461.5 128",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b1_l",
+              "d": "M 98.5 92 L 98.5 128",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b1_r",
+              "d": "M 461.5 92 L 461.5 128",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_b1_x",
+              "x": 127,
+              "y": 115,
+              "text": "2. Sterilise it in an autoclave",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a1",
+              "d": "M 280 68 L 280 90",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a1_h",
+              "d": "M 277 84.8 L 280 90 L 283 84.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b2_t",
+              "d": "M 93.6 152 L 466.4 152",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b2_b",
+              "d": "M 93.6 188 L 466.4 188",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b2_l",
+              "d": "M 93.6 152 L 93.6 188",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b2_r",
+              "d": "M 466.4 152 L 466.4 188",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_b2_x",
+              "x": 122,
+              "y": 175,
+              "text": "3. Take the explant from a plant",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a2",
+              "d": "M 280 128 L 280 150",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a2_h",
+              "d": "M 277 144.8 L 280 150 L 283 144.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b3_t",
+              "d": "M 98.5 212 L 461.5 212",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b3_b",
+              "d": "M 98.5 248 L 461.5 248",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b3_l",
+              "d": "M 98.5 212 L 98.5 248",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b3_r",
+              "d": "M 461.5 212 L 461.5 248",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_b3_x",
+              "x": 127,
+              "y": 235,
+              "text": "4. Inoculate, under sterile air",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a3",
+              "d": "M 280 188 L 280 210",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a3_h",
+              "d": "M 277 204.8 L 280 210 L 283 204.8",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "tc_p2",
+              "caption": "Step 2 — incubate: the callus forms"
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b4_t",
+              "d": "M 78.8 272 L 481.2 272",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b4_b",
+              "d": "M 78.8 308 L 481.2 308",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b4_l",
+              "d": "M 78.8 272 L 78.8 308",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b4_r",
+              "d": "M 481.2 272 L 481.2 308",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_b4_x",
+              "x": 107,
+              "y": 295,
+              "text": "5. Incubate 3-4 weeks: CALLUS forms",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a4",
+              "d": "M 280 248 L 280 270",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a4_h",
+              "d": "M 277 264.8 L 280 270 L 283 264.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b5_t",
+              "d": "M 128.2 332 L 431.8 332",
+              "ms": 4340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b5_b",
+              "d": "M 128.2 368 L 431.8 368",
+              "ms": 4340,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b5_l",
+              "d": "M 128.2 332 L 128.2 368",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_b5_r",
+              "d": "M 431.8 332 L 431.8 368",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_b5_x",
+              "x": 156,
+              "y": 355,
+              "text": "Add auxins and cytokinins",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a5",
+              "d": "M 280 308 L 280 330",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_a5_h",
+              "d": "M 277 324.8 L 280 330 L 283 324.8",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "tc_p3",
+              "caption": "Step 3 — the callus takes one of two paths"
+            },
+            {
+              "type": "stroke",
+              "id": "tc_org_t",
+              "d": "M 55.6 396 L 240.4 396",
+              "ms": 2640,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_org_b",
+              "d": "M 55.6 432 L 240.4 432",
+              "ms": 2640,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_org_l",
+              "d": "M 55.6 396 L 55.6 432",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_org_r",
+              "d": "M 240.4 396 L 240.4 432",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_org_x",
+              "x": 84,
+              "y": 419,
+              "text": "Organogenesis",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_emb_t",
+              "d": "M 309.8 396 L 514.2 396",
+              "ms": 2920,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_emb_b",
+              "d": "M 309.8 432 L 514.2 432",
+              "ms": 2920,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_emb_l",
+              "d": "M 309.8 396 L 309.8 432",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_emb_r",
+              "d": "M 514.2 396 L 514.2 432",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_emb_x",
+              "x": 338,
+              "y": 419,
+              "text": "Somatic embryos",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_al",
+              "d": "M 250 368 L 168 394",
+              "ms": 1230,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_al_h",
+              "d": "M 172 389.6 L 168 394 L 173.9 395.3",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "tc_ar",
+              "d": "M 310 368 L 392 394",
+              "ms": 1230,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_ar_h",
+              "d": "M 386.1 395.3 L 392 394 L 388 389.6",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "tc_note",
+              "x": 132,
+              "y": 460,
+              "text": "roots and shoots, or embryoids",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "tc_p4",
+              "caption": "Step 4 — both paths give plantlets, then a field crop"
+            },
+            {
+              "type": "stroke",
+              "id": "tc_pl_t",
+              "d": "M 207.4 486 L 352.6 486",
+              "ms": 2070,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_pl_b",
+              "d": "M 207.4 522 L 352.6 522",
+              "ms": 2070,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_pl_l",
+              "d": "M 207.4 486 L 207.4 522",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_pl_r",
+              "d": "M 352.6 486 L 352.6 522",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_pl_x",
+              "x": 235,
+              "y": 509,
+              "text": "Plantlets",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_ml",
+              "d": "M 168 466 L 248 488",
+              "ms": 1190,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_ml_h",
+              "d": "M 242.2 489.5 L 248 488 L 243.8 483.7",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "tc_mr",
+              "d": "M 392 466 L 312 488",
+              "ms": 1190,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_mr_h",
+              "d": "M 316.2 483.7 L 312 488 L 317.8 489.5",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "tc_fld_t",
+              "d": "M 93.6 538 L 466.4 538",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_fld_b",
+              "d": "M 93.6 574 L 466.4 574",
+              "ms": 4500,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_fld_l",
+              "d": "M 93.6 538 L 93.6 574",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_fld_r",
+              "d": "M 466.4 538 L 466.4 574",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_fld_x",
+              "x": 122,
+              "y": 561,
+              "text": "6. Harden off, then to the field",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_af",
+              "d": "M 280 522 L 280 536",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_af_h",
+              "d": "M 277 530.8 L 280 536 L 283 530.8",
+              "ms": 300
+            }
+          ]
+        },
+        "why": "The flow chart shows what a list of six steps hides: the two paths out of the callus rejoin, so both organogenesis and embryogenesis end in plantlets.",
+        "common_mistakes": [
+          "Drawing one path out of the callus. There are TWO, and they rejoin at the plantlet stage.",
+          "Putting sterilisation after inoculation. The medium is sterilised BEFORE the explant goes in.",
+          "Ending at 'plantlets'. Acclimatisation and transfer to the field are the last box."
+        ],
+        "memory_tip": "One chain, one fork, one merge, one field."
+      },
+      {
+        "id": "s8_advantages",
+        "kind": "boxed_final",
+        "label": "Advantages",
+        "marks": 2,
+        "mark_note": "Advantages",
+        "margin_note": "Two marks. At least five numbered advantages, each with its reason. Do not let the technique half eat the time this half needs.",
+        "lines": [
+          {
+            "text": "Fast, virus free, identical, and it works",
+            "style": "boxed"
+          },
+          {
+            "text": "where sexual crossing cannot",
+            "style": "boxed"
+          },
+          "ADVANTAGES OF TISSUE CULTURE OVER",
+          "CONVENTIONAL",
+          "BREEDING:",
+          "1. Many more plants can be produced in a SHORT",
+          "TIME and in a small space",
+          "(MICROPROPAGATION).",
+          "2. VIRUS FREE plants can be raised from SHOOT",
+          "TIP cultures, because meristems are free of virus.",
+          "3. SEEDLESS plants can be multiplied, which",
+          "sexual reproduction cannot do at all.",
+          "4. FEMALE plants can be produced selectively.",
+          "5. SOMATIC HYBRIDS can be raised where sexual",
+          "hybridisation is impossible.",
+          "6. Medicinal plants can be cultured to yield",
+          "high value products of industrial and medicinal",
+          "importance.",
+          "7. The plants produced are SOMACLONES —",
+          "genetically identical to the parent."
+        ],
+        "why": "Each advantage comes from the same fact: tissue culture bypasses sexual reproduction entirely, so it is not limited by what can be crossed with what.",
+        "common_mistakes": [
+          "Giving fewer than five advantages. Two marks need a real list.",
+          "Saying tissue culture produces variation. It produces SOMACLONES — genetically IDENTICAL plants.",
+          "Leaving out virus free plants. It is the advantage examiners ask about separately."
+        ],
+        "memory_tip": "No sex means no limits on what can be multiplied."
+      }
+    ]
+  }
+}

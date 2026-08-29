@@ -1,0 +1,430 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_test_cross",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define and design a test-cross.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "What it is used for",
+      "marks": 1
+    },
+    {
+      "label": "The design",
+      "marks": 1
+    },
+    {
+      "label": "The two ratios",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.31, printed question 34. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "'Design' means draw it. A definition without the cross written out will not score the design marks, however well worded.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition plus one line on why the recessive parent. Five lines.",
+        "lines": [
+          "A TEST CROSS is a cross between an individual",
+          "showing the DOMINANT character and the",
+          "HOMOZYGOUS RECESSIVE parent.",
+          "The recessive parent is always used, because it",
+          "contributes only recessive alleles."
+        ],
+        "why": "A homozygous recessive parent can only give recessive gametes, so anything dominant that appears in the progeny must have come from the unknown parent.",
+        "common_mistakes": [
+          "Crossing with a dominant parent. A test cross uses the HOMOZYGOUS RECESSIVE one.",
+          "Leaving out 'homozygous'. A heterozygous partner would not give a clean answer."
+        ],
+        "memory_tip": "Cross it with a plant that can hide nothing."
+      },
+      {
+        "id": "s2_use",
+        "kind": "text",
+        "label": "What it is used for",
+        "marks": 1,
+        "mark_note": "Purpose",
+        "margin_note": "Say what is unknown and why it cannot be seen.",
+        "lines": [
+          "A test cross is used to find out whether an",
+          "individual showing the dominant character is",
+          "HOMOZYGOUS (TT) or HETEROZYGOUS (Tt).",
+          "Both look the same from outside, so the",
+          "genotype cannot be told by appearance."
+        ],
+        "why": "Two different genotypes can produce the same appearance, so the only way to tell them apart is to look at what they produce.",
+        "common_mistakes": [
+          "Saying a test cross finds the phenotype. The phenotype is already visible; the cross finds the GENOTYPE.",
+          "Saying it works on recessive individuals. A recessive individual's genotype is already known — it must be tt."
+        ],
+        "memory_tip": "You can see the phenotype; the cross tells you the genotype."
+      },
+      {
+        "id": "s3_design",
+        "kind": "text",
+        "label": "The design",
+        "marks": 1,
+        "mark_note": "The design",
+        "margin_note": "Both cases with both ratios. This is the 'design' the question asks for.",
+        "lines": [
+          "Unknown violet plant (W_)  ×  white (ww)",
+          "CASE 1 — if the unknown is HOMOZYGOUS (WW):",
+          "  all offspring are Ww, all violet.",
+          "  Ratio 1 : 0",
+          "CASE 2 — if the unknown is HETEROZYGOUS (Ww):",
+          "  offspring are 1 Ww violet : 1 ww white.",
+          "  Ratio 1 : 1"
+        ],
+        "why": "The two cases give visibly different progeny, so a single cross settles the question by inspection.",
+        "common_mistakes": [
+          "Giving only one case. The test works because the TWO cases differ.",
+          "Saying case 1 gives 3:1. A homozygous dominant parent gives ALL dominant offspring."
+        ],
+        "memory_tip": "All dominant means homozygous; half recessive means heterozygous."
+      },
+      {
+        "id": "s4_ratios",
+        "kind": "boxed_final",
+        "label": "The two ratios",
+        "marks": 1,
+        "mark_note": "Ratios",
+        "margin_note": "Both ratios plus the reason they are equal. That last line is worth writing.",
+        "lines": [
+          {
+            "text": "Monohybrid test cross 1 : 1;",
+            "style": "boxed"
+          },
+          {
+            "text": "dihybrid test cross 1 : 1 : 1 : 1",
+            "style": "boxed"
+          },
+          "A MONOHYBRID test cross of a heterozygote gives",
+          "a phenotypic ratio of 1 : 1.",
+          "A DIHYBRID test cross of a double heterozygote",
+          "gives 1 : 1 : 1 : 1.",
+          "In a test cross the phenotypic and genotypic",
+          "ratios are the SAME."
+        ],
+        "why": "Because the recessive parent adds nothing visible, every progeny class shows the gamete it received from the unknown parent — so the ratios cannot differ.",
+        "common_mistakes": [
+          "Giving 3:1 for a monohybrid test cross. That is a SELFING ratio; a test cross gives 1:1.",
+          "Leaving out the dihybrid case. Both ratios are named in the book."
+        ],
+        "memory_tip": "Test cross ratios read the gametes directly, so both ratios match."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "Diagram — test cross",
+        "marks": 0,
+        "margin_note": "No diagram mark, but 'design a test cross' invites the drawing. The one-row square is the clearest thing you can put on the page.",
+        "figure": {
+          "id": "b2_piv_test_cross",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "t_p1",
+              "caption": "Step 1 — the F₁ crossed with the recessive parent"
+            },
+            {
+              "type": "label",
+              "id": "tc_pl",
+              "x": 96,
+              "y": 40,
+              "text": "Violet (Ww)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tc_x",
+              "x": 255,
+              "y": 40,
+              "text": "×",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tc_pr",
+              "x": 320,
+              "y": 40,
+              "text": "white (ww)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_al1",
+              "d": "M 144 50 L 110 74",
+              "ms": 590,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_al1_h",
+              "d": "M 112.5 68.6 L 110 74 L 116 73.5",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "tc_al2",
+              "d": "M 156 50 L 190 74",
+              "ms": 590,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_al2_h",
+              "d": "M 184 73.5 L 190 74 L 187.5 68.6",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "tc_ar",
+              "d": "M 370 50 L 370 74",
+              "ms": 340,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "tc_ar_h",
+              "d": "M 367 68.8 L 370 74 L 373 68.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "tc_g1_o",
+              "d": "M 93 96 A 17 17 0 1 0 127 96 A 17 17 0 1 0 93 96",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_g1_t",
+              "x": 105,
+              "y": 101,
+              "text": "W",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_g2_o",
+              "d": "M 173 96 A 17 17 0 1 0 207 96 A 17 17 0 1 0 173 96",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_g2_t",
+              "x": 185,
+              "y": 101,
+              "text": "w",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tc_g3_o",
+              "d": "M 353 96 A 17 17 0 1 0 387 96 A 17 17 0 1 0 353 96",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "tc_g3_t",
+              "x": 365,
+              "y": 101,
+              "text": "w",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "t_p2",
+              "caption": "Step 2 — the square: the recessive parent gives one gamete only"
+            },
+            {
+              "type": "stroke",
+              "id": "tc_sq_box_t",
+              "d": "M 188 164 L 332 164",
+              "ms": 2060,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_sq_box_b",
+              "d": "M 188 208 L 332 208",
+              "ms": 2060,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_sq_box_l",
+              "d": "M 188 164 L 188 208",
+              "ms": 630,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_sq_box_r",
+              "d": "M 332 164 L 332 208",
+              "ms": 630,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tc_sq_v1",
+              "d": "M 260 164 L 260 208",
+              "ms": 630,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "tc_sq_ch0",
+              "x": 219,
+              "y": 150,
+              "text": "W",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tc_sq_ch1",
+              "x": 291,
+              "y": 150,
+              "text": "w",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tc_sq_rh0",
+              "x": 166,
+              "y": 191,
+              "text": "w",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tc_sq_c0",
+              "x": 214,
+              "y": 191,
+              "text": "Ww",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tc_sq_c1",
+              "x": 286,
+              "y": 191,
+              "text": "ww",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "t_p3",
+              "caption": "Step 3 — the progeny and the ratio"
+            },
+            {
+              "type": "label",
+              "id": "tc_o0",
+              "x": 194,
+              "y": 252,
+              "text": "Violet",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tc_o1",
+              "x": 271,
+              "y": 252,
+              "text": "white",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tc_r1",
+              "x": 146,
+              "y": 300,
+              "text": "Phenotypic ratio  1 : 1",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tc_r2",
+              "x": 151,
+              "y": 340,
+              "text": "Genotypic ratio  1 : 1",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The square has only one row because the recessive parent makes only one kind of gamete, and that single row is the whole reason a test cross works.",
+        "common_mistakes": [
+          "Drawing a full 2 by 2 square. The recessive parent gives ONE gamete, so there is one row.",
+          "Giving the recessive parent two different gametes. ww makes only w.",
+          "Labelling the progeny with genotypes but no phenotypes. Both are read off this square."
+        ],
+        "memory_tip": "One row, because one parent has only one gamete to give."
+      }
+    ]
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_vi_lysozyme",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Viruses (Botany-II)"
+  },
+  "chapter": "Viruses",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is lysozyme and what is its function?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Its function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.51, printed question 165. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The word to get right is VIRAL. The guide itself calls it a host enzyme on one page and a viral enzyme on another; the phage codes it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Viruses (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What lysozyme is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "margin_note": "Say VIRAL and say when it is made. Four lines.",
+        "lines": [
+          "LYSOZYME is an enzyme coded by the VIRUS, not by",
+          "the host.",
+          "It is produced inside the infected bacterial cell",
+          "during the lytic cycle."
+        ],
+        "why": "The phage has to bring its own way out, because a bacterium would not make an enzyme that destroys itself.",
+        "common_mistakes": [
+          "Calling it a host enzyme. It is VIRAL — the phage codes it. The guide contradicts itself on this between p.29 and p.51.",
+          "Saying it is made before infection. It is made INSIDE the host cell during the cycle."
+        ],
+        "memory_tip": "The phage brings its own key to the door."
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "Its function",
+        "marks": 1,
+        "mark_note": "Function",
+        "margin_note": "What it breaks, what follows, and where it sits in the cycle.",
+        "lines": [
+          {
+            "text": "It breaks the cell wall so the new phages",
+            "style": "boxed"
+          },
+          {
+            "text": "can escape",
+            "style": "boxed"
+          },
+          "Lysozyme breaks down the BACTERIAL CELL WALL.",
+          "The cell bursts, or lyses, and the newly made",
+          "phage particles (virions) are released.",
+          "This is the last step of the lytic cycle."
+        ],
+        "why": "Without it the finished virions would stay trapped inside a dead cell, so the enzyme is what turns a successful infection into a spreading one.",
+        "common_mistakes": [
+          "Saying lysozyme breaks the plasma membrane only. It breaks the CELL WALL.",
+          "Saying it acts at the start of the cycle. It acts at the END, in the release step."
+        ],
+        "memory_tip": "Last enzyme made, last step of the cycle."
+      }
+    ]
+  }
+}

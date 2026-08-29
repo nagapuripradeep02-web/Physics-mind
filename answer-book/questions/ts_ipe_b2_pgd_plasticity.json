@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_pgd_plasticity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Plant Growth and Development (Botany-II)"
+  },
+  "chapter": "Plant Growth and Development",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define plasticity. Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.51, printed question 162. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Heterophylly is the example. Name the plants — cotton and coriander — because the example without a plant is only half an example.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Growth and Development (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Plasticity defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition in four lines. Mention both triggers: environment and phase of life.",
+        "lines": [
+          "PLASTICITY is the ability of a plant to follow",
+          "different pathways, in response to the",
+          "environment or to its phase of life, and so to",
+          "form different kinds of structures."
+        ],
+        "why": "The same plant with the same genes builds different structures in different conditions, which is what makes the ability worth naming.",
+        "common_mistakes": [
+          "Saying plasticity is a genetic change. The genes do not change; only the structure does.",
+          "Leaving out 'in response to the environment'. The response is the definition."
+        ],
+        "memory_tip": "Same plant, same genes, different shape."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Name the term and at least two plants. The water example is a useful extra.",
+        "lines": [
+          {
+            "text": "Heterophylly: different leaves on one plant",
+            "style": "boxed"
+          },
+          "Example: HETEROPHYLLY in cotton and coriander.",
+          "The juvenile leaves of these plants are shaped",
+          "differently from the adult leaves on the same",
+          "plant.",
+          "In buttercup, leaves grown under water differ",
+          "from those grown in air."
+        ],
+        "why": "One plant carrying two leaf shapes at once is the clearest possible demonstration that the difference comes from conditions and not from genes.",
+        "common_mistakes": [
+          "Naming heterophylly without a plant. Cotton and coriander are the named ones.",
+          "Calling it a difference between two plants. It is a difference within ONE plant."
+        ],
+        "memory_tip": "Two leaf shapes on one plant is plasticity you can see."
+      }
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_vi_ictv_and_naming",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Viruses (Botany-II)"
+  },
+  "chapter": "Viruses",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is ICTV? How are viruses named?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What ICTV is",
+      "marks": 1
+    },
+    {
+      "label": "The three levels",
+      "marks": 1
+    },
+    {
+      "label": "The naming rules",
+      "marks": 1
+    },
+    {
+      "label": "The worked example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.28, printed question 26. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide prints \"Genes: Lentivirus\" in its worked example, where the hierarchy level is GENUS. Corrected on the card."
+  },
+  "insider_note": "The suffixes are the marks: -viridae for a family, -virus for a genus. Write both in capitals or underline them so the examiner cannot miss them.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Viruses (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What ICTV is",
+        "marks": 1,
+        "mark_note": "ICTV",
+        "margin_note": "The full expansion and what the committee does. Four lines.",
+        "lines": [
+          "ICTV stands for the INTERNATIONAL",
+          "COMMITTEE ON TAXONOMY OF VIRUSES.",
+          "It lays down the rules for the classification",
+          "and the naming of viruses."
+        ],
+        "why": "Viruses are not living cells, so the ordinary rules of biological nomenclature do not fit them and a separate committee sets their own.",
+        "common_mistakes": [
+          "Expanding ICTV wrongly. It is International Committee on TAXONOMY of Viruses.",
+          "Saying ICTV names bacteria too. It names VIRUSES only."
+        ],
+        "memory_tip": "One committee, one job: naming viruses."
+      },
+      {
+        "id": "s2_levels",
+        "kind": "text",
+        "label": "The three levels",
+        "marks": 1,
+        "mark_note": "Hierarchy",
+        "margin_note": "Name all three in order. Three lines.",
+        "lines": [
+          "ICTV uses THREE hierarchical levels:",
+          "1. FAMILY   2. GENUS   3. SPECIES",
+          "This is shorter than the seven levels used for",
+          "plants and animals."
+        ],
+        "why": "Three levels rather than seven is enough because viruses are far less diverse in structure than cellular organisms.",
+        "common_mistakes": [
+          "Giving seven levels. Viral classification uses THREE.",
+          "Naming order or class. ICTV works with family, genus and species."
+        ],
+        "memory_tip": "Family, genus, species: three levels and no more."
+      },
+      {
+        "id": "s3_rules",
+        "kind": "text",
+        "label": "The naming rules",
+        "marks": 1,
+        "mark_note": "Suffixes",
+        "margin_note": "Both suffixes, spelled out. This is the mark most often lost.",
+        "lines": [
+          "The FAMILY name ends in the suffix -VIRIDAE.",
+          "The GENUS name ends in the suffix -VIRUS.",
+          "The SPECIES name is a common English expression",
+          "describing the virus.",
+          "Sometimes a virus is named after the DISEASE it",
+          "causes."
+        ],
+        "why": "Each suffix marks its level unambiguously, so the rank of a name can be read off its ending without knowing anything else about the virus.",
+        "common_mistakes": [
+          "Swapping the suffixes. -viridae is the FAMILY; -virus is the GENUS.",
+          "Saying species names are Latin. They are common ENGLISH expressions."
+        ],
+        "memory_tip": "Viridae for the family, virus for the genus."
+      },
+      {
+        "id": "s4_example",
+        "kind": "boxed_final",
+        "label": "The worked example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Set the three levels out on their own lines. This is a full mark on its own.",
+        "lines": [
+          {
+            "text": "HIV: Retroviridae / Lentivirus / HIV",
+            "style": "boxed"
+          },
+          "The virus that causes AIDS in man is classified",
+          "as:",
+          "Family : RETROVIRIDAE",
+          "Genus  : LENTIVIRUS",
+          "Species: Human Immunodeficiency Virus (HIV)"
+        ],
+        "why": "Working one real name through all three levels shows both suffixes doing their job in the same example.",
+        "common_mistakes": [
+          "Writing 'Genes' for GENUS. The level is genus. The guide misprints this.",
+          "Giving the example with no levels labelled. The labels are what earn the mark."
+        ],
+        "memory_tip": "Retroviridae is the family because it ends in viridae."
+      }
+    ]
+  }
+}

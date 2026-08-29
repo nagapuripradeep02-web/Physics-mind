@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_lactic_acid_bacteria",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In which food do you find lactic acid bacteria? Name the bacterium.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The food",
+      "marks": 1
+    },
+    {
+      "label": "The bacterium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.49, printed question 147. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Milk and Lactobacillus. Adding what the bacteria do to the milk fills the answer out.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_food",
+        "kind": "text",
+        "label": "The food",
+        "marks": 1,
+        "mark_note": "Food",
+        "margin_note": "The food, the product, and the nutritional benefit.",
+        "lines": [
+          "Lactic acid bacteria are found in MILK.",
+          "They convert milk into CURD.",
+          "They also improve its nutritional quality by",
+          "increasing the vitamin B12 content."
+        ],
+        "why": "The bacteria turn lactose into lactic acid, and it is the acid that curdles the milk protein.",
+        "common_mistakes": [
+          "Naming bread. Bread uses YEAST, not lactic acid bacteria.",
+          "Saying they spoil the milk. They convert it into curd, which is the point."
+        ],
+        "memory_tip": "Milk into curd, and more vitamin B12 with it."
+      },
+      {
+        "id": "s2_bacterium",
+        "kind": "boxed_final",
+        "label": "The bacterium",
+        "marks": 1,
+        "mark_note": "Bacterium",
+        "margin_note": "The name, the starter, and the second benefit. Six lines.",
+        "lines": [
+          {
+            "text": "Lactobacillus turns milk into curd",
+            "style": "boxed"
+          },
+          "The bacterium is LACTOBACILLUS, also called LAB —",
+          "lactic acid bacteria.",
+          "A small amount of curd added to warm milk acts as",
+          "the STARTER, which contains millions of them.",
+          "They also check disease causing microbes in the",
+          "stomach."
+        ],
+        "why": "The acid the bacteria produce is what curdles the milk and also what makes the gut a hostile place for harmful microbes.",
+        "common_mistakes": [
+          "Naming Propionibacterium. That is the Swiss cheese bacterium.",
+          "Leaving out the starter. It is how curd is actually made."
+        ],
+        "memory_tip": "A spoonful of curd is a spoonful of Lactobacillus."
+      }
+    ]
+  }
+}

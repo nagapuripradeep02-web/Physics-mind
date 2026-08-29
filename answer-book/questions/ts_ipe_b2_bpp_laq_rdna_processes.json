@@ -1,0 +1,627 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bpp_laq_rdna_processes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Biotechnology: Principles and Processes (Botany-II)"
+  },
+  "chapter": "Biotechnology: Principles and Processes",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain briefly the various processes of recombinant DNA technology.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Isolation of DNA",
+      "marks": 1
+    },
+    {
+      "label": "Fragmentation of DNA",
+      "marks": 1
+    },
+    {
+      "label": "Isolating the desired fragment",
+      "marks": 1
+    },
+    {
+      "label": "Amplification by PCR",
+      "marks": 1
+    },
+    {
+      "label": "Ligation into a vector",
+      "marks": 1
+    },
+    {
+      "label": "Insertion into the host",
+      "marks": 1
+    },
+    {
+      "label": "Obtaining the product",
+      "marks": 1
+    },
+    {
+      "label": "Downstream processing",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.14, printed question 3. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Three slips corrected on this card: the guide writes \"cellulose\" for the enzyme CELLULASE (cellulose is what the enzyme digests), \"powered detergents\" for POWDERED, and \"resoluting enzyme digestion\" for RESTRICTION enzyme digestion."
+  },
+  "insider_note": "Eight steps, eight marks — one mark per step, so the safest structure is eight numbered headings with two or three lines under each. Never merge two steps to save time; you lose a whole mark to save four lines.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Biotechnology: Principles and Processes (Botany-II) · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_isolation",
+        "kind": "text",
+        "label": "Isolation of DNA",
+        "marks": 1,
+        "mark_note": "Isolation",
+        "margin_note": "Name all three wall enzymes, both cleaning enzymes, ethanol and spooling. This step alone can be a full mark if the enzymes are right.",
+        "lines": [
+          "1. ISOLATION OF DNA",
+          "The DNA is enclosed by membranes and surrounded",
+          "by other cell contents, so it must be freed.",
+          "The cell wall is digested by enzymes:",
+          "LYSOZYME for bacteria, CELLULASE for plant",
+          "cells, CHITINASE for fungi.",
+          "RNA is removed by RIBONUCLEASE and protein by",
+          "PROTEASE.",
+          "Adding chilled ETHANOL precipitates the DNA as",
+          "fine threads, which are collected by SPOOLING."
+        ],
+        "why": "Each enzyme is chosen for the wall it has to digest, which is why the three organisms need three different ones.",
+        "common_mistakes": [
+          "Writing 'cellulose' as the enzyme. CELLULOSE is the wall material; CELLULASE is the enzyme. The guide misprints this.",
+          "Naming one wall-digesting enzyme. Lysozyme, cellulase and chitinase are all expected.",
+          "Leaving out spooling. It is the named step that collects the DNA."
+        ],
+        "memory_tip": "One enzyme per wall: lysozyme, cellulase, chitinase."
+      },
+      {
+        "id": "s2_fragmentation",
+        "kind": "text",
+        "label": "Fragmentation of DNA",
+        "marks": 1,
+        "mark_note": "Fragmentation",
+        "margin_note": "Name the enzyme class, name the process, and say why the SAME enzyme is used.",
+        "lines": [
+          "2. FRAGMENTATION OF DNA",
+          "The purified DNA is cut into fragments by",
+          "RESTRICTION ENZYMES.",
+          "This process is called RESTRICTION ENZYME",
+          "DIGESTION.",
+          "The vector and the source DNA are cut with the",
+          "SAME enzyme, so their sticky ends match."
+        ],
+        "why": "Cutting both molecules with the same enzyme produces complementary sticky ends, which is the only reason ligase can later join them.",
+        "common_mistakes": [
+          "Using different enzymes on the two DNAs. They must be cut with the SAME one.",
+          "Writing 'resoluting enzyme digestion'. It is RESTRICTION enzyme digestion."
+        ],
+        "memory_tip": "Same enzyme, matching ends."
+      },
+      {
+        "id": "s3_isolate_fragment",
+        "kind": "text",
+        "label": "Isolating the desired fragment",
+        "marks": 1,
+        "mark_note": "Separation",
+        "margin_note": "The technique, the direction and why, and the recovery step.",
+        "lines": [
+          "3. ISOLATION OF THE DESIRED DNA",
+          "FRAGMENT The fragments are separated by",
+          "AGAROSE GEL ELECTROPHORESIS.",
+          "DNA is NEGATIVELY charged, so it moves towards",
+          "the ANODE, the positive electrode.",
+          "Smaller fragments travel further.",
+          "The band wanted is cut out of the gel and the",
+          "DNA recovered by ELUTION."
+        ],
+        "why": "Fragments separate by size because the gel resists larger molecules more, so a mixture becomes a ladder of bands.",
+        "common_mistakes": [
+          "Saying DNA moves to the cathode. DNA is NEGATIVE, so it moves to the ANODE.",
+          "Leaving out elution. It is the named step that recovers the DNA from the gel."
+        ],
+        "memory_tip": "Negative DNA runs to the positive end."
+      },
+      {
+        "id": "s4_pcr",
+        "kind": "text",
+        "label": "Amplification by PCR",
+        "marks": 1,
+        "mark_note": "PCR",
+        "margin_note": "Expand PCR, name the primers and Taq polymerase, and give the billion-copies figure.",
+        "lines": [
+          "4. AMPLIFICATION BY PCR",
+          "PCR is the POLYMERASE CHAIN REACTION.",
+          "Multiple copies of the gene of interest are made",
+          "in vitro, using two sets of PRIMERS and the",
+          "enzyme DNA POLYMERASE.",
+          "TAQ POLYMERASE is used because it stays active",
+          "at the high temperatures of the cycle.",
+          "About 30 cycles produce roughly a BILLION",
+          "copies."
+        ],
+        "why": "An ordinary DNA polymerase would be destroyed by the heating step, so PCR only became practical when a heat-stable one was found.",
+        "common_mistakes": [
+          "Saying PCR uses ordinary DNA polymerase. It uses TAQ polymerase, which survives heat.",
+          "Leaving out the primers. Two sets of primers define which stretch is copied."
+        ],
+        "memory_tip": "A heat-proof enzyme is what makes the cycling possible."
+      },
+      {
+        "id": "s5_ligation",
+        "kind": "text",
+        "label": "Ligation into a vector",
+        "marks": 1,
+        "mark_note": "Ligation",
+        "margin_note": "Sticky ends, the enzyme, the bond, and the name of the product.",
+        "lines": [
+          "5. LIGATION OF THE FRAGMENT INTO A",
+          "VECTOR The vector DNA and the source DNA, both",
+          "cut with the same endonuclease, have matching",
+          "STICKY ENDS.",
+          "They are mixed with the enzyme DNA LIGASE.",
+          "Ligase joins the two by covalent bonds, giving",
+          "a circular hybrid called RECOMBINANT DNA."
+        ],
+        "why": "Sticky ends hold the two pieces together by base pairing first; ligase then seals the joint permanently.",
+        "common_mistakes": [
+          "Naming the wrong enzyme. Ligase JOINS; restriction enzymes CUT.",
+          "Not naming the product. The product is RECOMBINANT DNA."
+        ],
+        "memory_tip": "Restriction enzymes cut, ligase joins."
+      },
+      {
+        "id": "s6_insertion",
+        "kind": "text",
+        "label": "Insertion into the host",
+        "marks": 1,
+        "mark_note": "Insertion",
+        "margin_note": "The competence step and all three methods. This is the longest step; give it the room.",
+        "lines": [
+          "6. INSERTION OF rDNA INTO THE HOST CELL",
+          "The host is first made COMPETENT by treating it",
+          "with divalent calcium (Ca2+) ions.",
+          "Three methods are used:",
+          "(i) HEAT SHOCK: the cells are incubated with the",
+          "rDNA on ice, then briefly heated, so they take",
+          "it up.",
+          "(ii) MICROINJECTION: the rDNA is injected",
+          "directly into the nucleus of an animal cell.",
+          "(iii) GENE GUN (biolistics): cells are bombarded",
+          "with high velocity gold particles coated with",
+          "DNA."
+        ],
+        "why": "A bacterial cell wall does not normally let DNA through, so every method is a different way of forcing or persuading it across.",
+        "common_mistakes": [
+          "Naming one method. Three are expected: heat shock, microinjection, gene gun.",
+          "Leaving out the calcium treatment. Making the cell COMPETENT comes first."
+        ],
+        "memory_tip": "Make it competent, then shock, inject or shoot."
+      },
+      {
+        "id": "s7_product",
+        "kind": "text",
+        "label": "Obtaining the product",
+        "marks": 1,
+        "mark_note": "The product",
+        "margin_note": "Multiplication, expression, and the bioreactor with its volume.",
+        "lines": [
+          "7. OBTAINING THE FOREIGN GENE PRODUCT",
+          "Inside the host, the alien DNA is multiplied",
+          "every time the host divides.",
+          "The recombinant DNA is EXPRESSED, so the host",
+          "makes the desired protein.",
+          "Large scale production is carried out in",
+          "BIOREACTORS, which may hold 100 to 1000 litres."
+        ],
+        "why": "One transformed cell is useless; the value comes from the host dividing until there are enough of them to make the product in quantity.",
+        "common_mistakes": [
+          "Saying the gene is expressed outside the cell. It is expressed INSIDE the host.",
+          "Leaving out the bioreactor. It is the named vessel for large scale production."
+        ],
+        "memory_tip": "The host does the work; the bioreactor does it at scale."
+      },
+      {
+        "id": "s8_downstream",
+        "kind": "boxed_final",
+        "label": "Downstream processing",
+        "marks": 1,
+        "mark_note": "Downstream",
+        "margin_note": "Name the two operations, then the testing. Finish with the eight-step list if there is room.",
+        "lines": [
+          {
+            "text": "Isolate, cut, separate, amplify, ligate,",
+            "style": "boxed"
+          },
+          {
+            "text": "insert, express, purify",
+            "style": "boxed"
+          },
+          "8. DOWNSTREAM PROCESSING",
+          "After the biosynthetic stage, the product must",
+          "be processed before it can be sold.",
+          "It is SEPARATED from the culture and PURIFIED.",
+          "Suitable preservatives are added, and the",
+          "product passes clinical trials and quality",
+          "control before release."
+        ],
+        "why": "A protein sitting in a tank of bacteria is not yet a medicine, so the last step is what turns a laboratory result into a product.",
+        "common_mistakes": [
+          "Ending at 'the protein is made'. Downstream processing is the eighth mark.",
+          "Saying downstream processing means growing more cells. It means SEPARATION and PURIFICATION of the finished product."
+        ],
+        "memory_tip": "Nothing is a product until it has been purified and tested."
+      },
+      {
+        "id": "s9_diagram",
+        "kind": "diagram",
+        "label": "Diagram — recombinant DNA technology",
+        "marks": 0,
+        "margin_note": "No diagram mark — the question says 'explain'. It is worth sketching in the margin: the picture is what makes the same-enzyme point impossible to forget.",
+        "figure": {
+          "id": "b2_bpp_rdna_steps",
+          "width": 560,
+          "height": 512,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "r_p1",
+              "caption": "Step 1 — the vector and the source DNA"
+            },
+            {
+              "type": "stroke",
+              "id": "rd_plasmid",
+              "d": "M 82 96 A 28 28 0 1 0 138 96 A 28 28 0 1 0 82 96",
+              "ms": 2510
+            },
+            {
+              "type": "stroke",
+              "id": "rd_dna_t",
+              "d": "M 384 88 L 496 88",
+              "ms": 1600,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rd_dna_b",
+              "d": "M 384 104 L 496 104",
+              "ms": 1600,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rd_rung0",
+              "d": "M 396 88 L 396 104",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "rd_rung1",
+              "d": "M 414 88 L 414 104",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "rd_rung2",
+              "d": "M 432 88 L 432 104",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "rd_rung3",
+              "d": "M 450 88 L 450 104",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "rd_rung4",
+              "d": "M 468 88 L 468 104",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "rd_rung5",
+              "d": "M 486 88 L 486 104",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "rd_lp",
+              "x": 31,
+              "y": 44,
+              "text": "Plasmid (vector)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "rd_ld",
+              "x": 386,
+              "y": 44,
+              "text": "Foreign DNA",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "r_p2",
+              "caption": "Step 2 — cut BOTH with the same restriction enzyme"
+            },
+            {
+              "type": "label",
+              "id": "rd_c1",
+              "x": 161,
+              "y": 148,
+              "text": "Cut with the SAME enzyme",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a1",
+              "d": "M 110 126 L 110 172",
+              "ms": 660,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a1_h",
+              "d": "M 107 166.8 L 110 172 L 113 166.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a2",
+              "d": "M 440 112 L 440 172",
+              "ms": 860,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a2_h",
+              "d": "M 437 166.8 L 440 172 L 443 166.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "rd_open",
+              "d": "M 126 186 A 28 28 0 1 0 126 222",
+              "ms": 1950
+            },
+            {
+              "type": "stroke",
+              "id": "rd_fr0_t",
+              "d": "M 374 196 L 410 196",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rd_fr0_b",
+              "d": "M 374 208 L 410 208",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rd_fr1_t",
+              "d": "M 422 196 L 458 196",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rd_fr1_b",
+              "d": "M 422 208 L 458 208",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rd_fr2_t",
+              "d": "M 470 196 L 506 196",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rd_fr2_b",
+              "d": "M 470 208 L 506 208",
+              "ms": 510,
+              "w": 1.8
+            },
+            {
+              "type": "pause",
+              "id": "r_p3",
+              "caption": "Step 3 — DNA ligase joins the gene into the vector"
+            },
+            {
+              "type": "label",
+              "id": "rd_c2",
+              "x": 176,
+              "y": 250,
+              "text": "DNA ligase joins them",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a3",
+              "d": "M 130 236 L 244 288",
+              "ms": 1790,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a3_h",
+              "d": "M 238 288.6 L 244 288 L 240.5 283.1",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a4",
+              "d": "M 432 224 L 316 288",
+              "ms": 1890,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a4_h",
+              "d": "M 319.1 282.9 L 316 288 L 322 288.1",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "rd_rdna",
+              "d": "M 280 274 A 30 30 0 1 1 254 318",
+              "ms": 1820
+            },
+            {
+              "type": "stroke",
+              "id": "rd_insert",
+              "d": "M 254 318 A 30 30 0 0 1 280 274",
+              "ms": 870,
+              "w": 5
+            },
+            {
+              "type": "label",
+              "id": "rd_lr",
+              "x": 206,
+              "y": 366,
+              "text": "Recombinant DNA",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "r_p4",
+              "caption": "Step 4 — transformation, and the host copies the gene"
+            },
+            {
+              "type": "label",
+              "id": "rd_c3",
+              "x": 320,
+              "y": 406,
+              "text": "Transformation",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a5",
+              "d": "M 280 372 L 280 418",
+              "ms": 660,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "rd_a5_h",
+              "d": "M 277 412.8 L 280 418 L 283 412.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "rd_cell",
+              "d": "M 238 432 L 322 432 C 344 432 344 470 322 470 L 238 470 C 216 470 216 432 238 432",
+              "ms": 4010
+            },
+            {
+              "type": "stroke",
+              "id": "rd_copy0",
+              "d": "M 247 451 A 5 5 0 1 0 257 451 A 5 5 0 1 0 247 451",
+              "ms": 450,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "rd_copy1",
+              "d": "M 267 451 A 5 5 0 1 0 277 451 A 5 5 0 1 0 267 451",
+              "ms": 450,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "rd_copy2",
+              "d": "M 287 451 A 5 5 0 1 0 297 451 A 5 5 0 1 0 287 451",
+              "ms": 450,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "rd_copy3",
+              "d": "M 307 451 A 5 5 0 1 0 317 451 A 5 5 0 1 0 307 451",
+              "ms": 450,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "rd_lh",
+              "x": 97,
+              "y": 500,
+              "text": "The host multiplies, copying the gene",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Drawing it makes the one point the eight written steps can hide: the vector and the source DNA are cut with the SAME enzyme, which is why their ends fit together at all.",
+        "common_mistakes": [
+          "Drawing the two DNAs cut with different enzymes. They must be cut with the SAME one.",
+          "Drawing the gene inserted without opening the plasmid. The plasmid is CUT open first.",
+          "Drawing the whole recombinant molecule as new. Most of the circle is still the original vector; only a short stretch is the inserted gene."
+        ],
+        "memory_tip": "Two molecules, one enzyme, one circle, one host."
+      }
+    ]
+  }
+}

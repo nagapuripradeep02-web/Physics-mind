@@ -34,11 +34,12 @@ const opt = (name: string, dflt: string): string => {
     const i = args.indexOf(name);
     return i >= 0 && args[i + 1] ? args[i + 1] : dflt;
 };
-// Comma-separated since 2026-08-29: package.json had declared this script twice
-// (chemistry_2 and zoology), and JSON's last-key-wins meant only ONE of them was
-// ever strict. Every subject whose figures were retimed by pace_figures is listed.
-const STRICT_PREFIXES = opt('--strict', '').split(',').map((s) => s.trim()).filter(Boolean);
-const STRICT = STRICT_PREFIXES.join(',');
+// --strict takes a COMMA-SEPARATED list of prefixes: every subject built under the
+// phased-figure contract is strict, and they accumulate (ts_ipe_z1, then ts_ipe_b2).
+// The 96 pre-contract figures stay outside it and are reported as warnings only.
+const STRICT = opt('--strict', '');
+const STRICT_LIST = STRICT.split(',').map((s) => s.trim()).filter(Boolean);
+const isStrict = (f: string): boolean => STRICT_LIST.some((p) => f.startsWith(p));
 const MIN = parseFloat(opt('--min', '40'));
 const MAX = parseFloat(opt('--max', '160'));
 const PHASE_MIN = parseInt(opt('--phase-min', '16'), 10);
@@ -53,7 +54,7 @@ let figures = 0, strokes = 0, strictFigures = 0;
 const files = readdirSync(QDIR).filter((f) => f.endsWith('.json') && (!ONLY || f.startsWith(ONLY))).sort();
 for (const f of files) {
     const q = JSON.parse(readFileSync(join(QDIR, f), 'utf8'));
-    const strict = STRICT_PREFIXES.some((p) => f.startsWith(p));
+    const strict = isStrict(f);
     for (const step of q.answer?.steps || []) {
         if (step.kind !== 'diagram' || !step.figure) continue;
         const fig = step.figure;

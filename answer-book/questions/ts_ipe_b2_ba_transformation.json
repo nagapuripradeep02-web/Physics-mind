@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ba_transformation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Bacteria (Botany-II)"
+  },
+  "chapter": "Bacteria",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is transformation? Who discovered it and in which organism?",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Who and where",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.41, printed question 80. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The one of the three transfers that needs NO contact and NO virus. Say that and the definition is done.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Bacteria (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What transformation is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition plus the two things it does NOT need.",
+        "lines": [
+          "TRANSFORMATION is the uptake of NAKED DNA",
+          "fragments by a bacterium directly from its",
+          "surroundings.",
+          "No contact with another cell and no virus is",
+          "needed."
+        ],
+        "why": "Free DNA lying in the surroundings can be absorbed by a competent cell, which is why this is the only transfer that needs no second living partner.",
+        "common_mistakes": [
+          "Saying transformation needs a pilus. That is CONJUGATION.",
+          "Saying the DNA comes from a virus. That is TRANSDUCTION."
+        ],
+        "memory_tip": "Loose DNA picked up from outside: nothing else involved."
+      },
+      {
+        "id": "s2_who",
+        "kind": "boxed_final",
+        "label": "Who and where",
+        "marks": 1,
+        "mark_note": "Discovery",
+        "margin_note": "Name, organism, and the link forward to the DNA chapter.",
+        "lines": [
+          {
+            "text": "Griffith, in Streptococcus pneumoniae",
+            "style": "boxed"
+          },
+          "It was discovered by FREDERICK GRIFFITH in",
+          "1928. He worked on STREPTOCOCCUS",
+          "PNEUMONIAE, the bacterium that causes pneumonia.",
+          "His experiment is the one that first pointed to",
+          "DNA as the genetic material."
+        ],
+        "why": "Griffith's transformation experiment is the starting point of the whole molecular biology chapter, which is why the same name appears there too.",
+        "common_mistakes": [
+          "Naming Lederberg. Lederberg discovered CONJUGATION and TRANSDUCTION.",
+          "Naming E. coli. Griffith worked on Streptococcus pneumoniae."
+        ],
+        "memory_tip": "Griffith, pneumonia, 1928."
+      }
+    ]
+  }
+}

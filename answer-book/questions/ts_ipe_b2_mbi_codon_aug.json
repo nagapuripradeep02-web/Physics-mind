@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_codon_aug",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the function of the codon AUG?",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "It starts translation",
+      "marks": 1
+    },
+    {
+      "label": "It codes for methionine",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 101. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "AUG has TWO functions. Both are needed, and 'initiation codon' plus 'methionine' is the whole answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_start",
+        "kind": "text",
+        "label": "It starts translation",
+        "marks": 1,
+        "mark_note": "Initiation",
+        "margin_note": "Say two functions first, then give the first one.",
+        "lines": [
+          "AUG has TWO functions.",
+          "1. It acts as the INITIATION codon, or start",
+          "codon, of an mRNA.",
+          "Translation begins at the first AUG in the",
+          "message."
+        ],
+        "why": "Every protein has to start somewhere, and a codon that marks the start is what sets the reading frame for everything after it.",
+        "common_mistakes": [
+          "Calling AUG a stop codon. The stop codons are UAA, UAG and UGA.",
+          "Giving one function only. AUG has two."
+        ],
+        "memory_tip": "AUG is where reading begins."
+      },
+      {
+        "id": "s2_met",
+        "kind": "boxed_final",
+        "label": "It codes for methionine",
+        "marks": 1,
+        "mark_note": "Methionine",
+        "margin_note": "The second function, its consequence, and the term dual function.",
+        "lines": [
+          {
+            "text": "AUG starts the message AND codes for",
+            "style": "boxed"
+          },
+          {
+            "text": "methionine",
+            "style": "boxed"
+          },
+          "2. It codes for the amino acid METHIONINE.",
+          "So every newly made protein begins with",
+          "methionine, though it is often removed later.",
+          "AUG is called a DUAL FUNCTION codon."
+        ],
+        "why": "Having one codon do both jobs is why every protein begins with the same amino acid, whatever it goes on to become.",
+        "common_mistakes": [
+          "Naming a different amino acid. AUG codes for METHIONINE.",
+          "Saying the methionine always stays. It is often removed after translation."
+        ],
+        "memory_tip": "Start and methionine: two jobs, one codon."
+      }
+    ]
+  }
+}

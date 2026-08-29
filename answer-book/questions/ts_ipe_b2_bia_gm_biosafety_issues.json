@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_gm_biosafety_issues",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are some bio-safety issues concerned with genetically modified crops?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Risk to human and animal health",
+      "marks": 1
+    },
+    {
+      "label": "Risk to food and biodiversity",
+      "marks": 1
+    },
+    {
+      "label": "Risk to evolution",
+      "marks": 1
+    },
+    {
+      "label": "Gene pollution and super weeds",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.35, printed question 46. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Five issues in the book. The one an examiner most wants is GENE POLLUTION leading to super weeds — write it even if the others are brief.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_health",
+        "kind": "text",
+        "label": "Risk to human and animal health",
+        "marks": 1,
+        "mark_note": "Health",
+        "margin_note": "Name both allergens and toxins, and say the effect may be long term.",
+        "lines": [
+          "1. ALLERGIES AND TOXINS:",
+          "There is a fear that a transferred gene may",
+          "produce a protein that acts as an ALLERGEN or a",
+          "TOXIN in humans and animals.",
+          "The effect may appear only as a long term side",
+          "effect, after years of consumption."
+        ],
+        "why": "A gene moved into a food crop makes a protein people have never eaten before, and its effects can only be established over time.",
+        "common_mistakes": [
+          "Saying GM crops are known to be toxic. The issue is a RISK, not a proven harm.",
+          "Leaving out allergies. Allergenicity is the first named concern."
+        ],
+        "memory_tip": "A new protein in an old food is the first worry."
+      },
+      {
+        "id": "s2_food",
+        "kind": "text",
+        "label": "Risk to food and biodiversity",
+        "marks": 1,
+        "mark_note": "Food, biodiversity",
+        "margin_note": "Both issues numbered, with one concrete mechanism.",
+        "lines": [
+          "2. CHANGE TO THE FOOD ITSELF:",
+          "There is a risk of changing the fundamental",
+          "nature of vegetables and other foods.",
+          "3. HARM TO BIODIVERSITY:",
+          "GM crops may harm biodiversity and have an",
+          "adverse impact on the environment, for example",
+          "by killing non-target insects."
+        ],
+        "why": "A toxin meant for one pest is present in every cell of the plant, so insects that were never the target meet it too.",
+        "common_mistakes": [
+          "Saying GM crops affect only the target pest. Non-target insects may be affected too.",
+          "Giving one issue where the question asks for several."
+        ],
+        "memory_tip": "A toxin in every cell meets more than the pest it was meant for."
+      },
+      {
+        "id": "s3_evolution",
+        "kind": "text",
+        "label": "Risk to evolution",
+        "marks": 1,
+        "mark_note": "Evolution",
+        "margin_note": "The general issue plus the resistance mechanism.",
+        "lines": [
+          "4. CHANGES TO EVOLUTIONARY PATTERNS:",
+          "GM crops may bring about changes in natural",
+          "evolutionary patterns.",
+          "Pests exposed continuously to one toxin may",
+          "evolve RESISTANCE to it, so the crop stops",
+          "working."
+        ],
+        "why": "Constant exposure to a single toxin is the strongest possible selection pressure, so resistant pests are the expected outcome rather than a surprise.",
+        "common_mistakes": [
+          "Saying evolution is not affected. Continuous selection pressure is exactly what drives resistance.",
+          "Giving no mechanism. Resistance evolving in the pest is the concrete case."
+        ],
+        "memory_tip": "A toxin used everywhere selects for pests that survive it."
+      },
+      {
+        "id": "s4_pollution",
+        "kind": "boxed_final",
+        "label": "Gene pollution and super weeds",
+        "marks": 1,
+        "mark_note": "Gene pollution",
+        "margin_note": "Name gene pollution, the mechanism, the consequence, and GEAC. This is the strongest mark.",
+        "lines": [
+          {
+            "text": "Transgenes escaping into wild relatives can",
+            "style": "boxed"
+          },
+          {
+            "text": "produce weeds nothing kills",
+            "style": "boxed"
+          },
+          "5. GENE POLLUTION:",
+          "New genes may be transferred into related WILD",
+          "species by natural out-crossing.",
+          "This can produce SUPER WEEDS, which grow faster",
+          "than the crop and are resistant to weedicides.",
+          "This is why the GEAC must approve any GM release."
+        ],
+        "why": "Pollen does not respect field boundaries, so a herbicide-tolerance gene can move into the very weeds the herbicide was meant to kill.",
+        "common_mistakes": [
+          "Leaving out super weeds. It is the named consequence and the most memorable issue.",
+          "Saying gene pollution means chemical pollution. It means GENES escaping into wild relatives."
+        ],
+        "memory_tip": "The escaped gene ends up in the weed."
+      }
+    ]
+  }
+}

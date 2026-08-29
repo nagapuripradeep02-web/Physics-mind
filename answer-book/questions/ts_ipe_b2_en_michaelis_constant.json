@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_en_michaelis_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Enzymes (Botany-II)"
+  },
+  "chapter": "Enzymes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define Michaelis constant.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "What it measures",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.50, printed question 157. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Half of the maximum rate, not half of the maximum substrate. Getting that the wrong way round is the single most common error on this question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Enzymes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Michaelis constant defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Three lines. The two quantities are different: concentration, and rate.",
+        "lines": [
+          "The Michaelis constant (Km) is the SUBSTRATE",
+          "CONCENTRATION at which the reaction rate is",
+          "HALF of its maximum rate."
+        ],
+        "why": "Km is a concentration read off the point where the rate is half its maximum, so both halves of the sentence have to name different quantities.",
+        "common_mistakes": [
+          "Saying Km is half the maximum rate. Km is a CONCENTRATION, read at half the maximum rate.",
+          "Leaving out the word 'half'. It is what fixes the point on the curve."
+        ],
+        "memory_tip": "Km is a concentration, measured at half the top speed."
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What it measures",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "margin_note": "One line on what a low Km means. This half is the mark most answers skip.",
+        "lines": [
+          {
+            "text": "Low Km means the enzyme grips its substrate",
+            "style": "boxed"
+          },
+          {
+            "text": "more strongly",
+            "style": "boxed"
+          },
+          "Km measures how strongly an enzyme holds its",
+          "substrate.",
+          "A LOW Km means only a little substrate is",
+          "needed to reach half the maximum rate."
+        ],
+        "why": "A small Km means the enzyme reaches half speed at a low concentration, which only happens if it binds the substrate readily.",
+        "common_mistakes": [
+          "Saying a high Km means strong binding. It is the opposite: LOW Km means strong binding.",
+          "Giving only the definition. The second mark is for what the number tells you."
+        ],
+        "memory_tip": "Less substrate needed means a tighter hold."
+      }
+    ]
+  }
+}

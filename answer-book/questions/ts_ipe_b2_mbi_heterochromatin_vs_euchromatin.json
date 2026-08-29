@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_heterochromatin_vs_euchromatin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between heterochromatin and euchromatin. Which of the two is transcriptionally active?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Heterochromatin",
+      "marks": 1
+    },
+    {
+      "label": "Euchromatin, and which is active",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.43, printed question 90. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The last clause of the question is a direct instruction: name which one is active. Answer it in its own line.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hetero",
+        "kind": "text",
+        "label": "Heterochromatin",
+        "marks": 1,
+        "mark_note": "Heterochromatin",
+        "margin_note": "Packing, staining, activity. Four lines.",
+        "lines": [
+          "HETEROCHROMATIN is chromatin that is",
+          "DENSELY packed.",
+          "It stains DARK.",
+          "It is transcriptionally INACTIVE."
+        ],
+        "why": "RNA polymerase cannot reach DNA that is tightly packed, so density and inactivity are the same fact seen two ways.",
+        "common_mistakes": [
+          "Saying heterochromatin is loosely packed. It is DENSELY packed.",
+          "Saying it stains light. It stains DARK."
+        ],
+        "memory_tip": "Dense, dark, dormant."
+      },
+      {
+        "id": "s2_eu",
+        "kind": "boxed_final",
+        "label": "Euchromatin, and which is active",
+        "marks": 1,
+        "mark_note": "Euchromatin",
+        "margin_note": "Mirror the first half, then answer the question explicitly in the last line.",
+        "lines": [
+          {
+            "text": "EUCHROMATIN is the one that is",
+            "style": "boxed"
+          },
+          {
+            "text": "transcriptionally active",
+            "style": "boxed"
+          },
+          "EUCHROMATIN is LOOSELY packed.",
+          "It stains LIGHT.",
+          "It is transcriptionally ACTIVE.",
+          "So of the two, EUCHROMATIN is the one that is",
+          "transcriptionally active."
+        ],
+        "why": "Loosely packed DNA is accessible to the transcription machinery, which is why only euchromatin can be read.",
+        "common_mistakes": [
+          "Not answering the final question. The examiner asked WHICH one is active — say it.",
+          "Swapping the two. Euchromatin is loose, light and active."
+        ],
+        "memory_tip": "Loose, light, lively."
+      }
+    ]
+  }
+}

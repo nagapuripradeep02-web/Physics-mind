@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_transpiration_vs_evaporation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Compare transpiration and evaporation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Transpiration",
+      "marks": 1
+    },
+    {
+      "label": "Evaporation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 62. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Best written as a two-column table. Four contrasts fit: the surface, where it happens, what kind of process it is, and the speed.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transpiration",
+        "kind": "text",
+        "label": "Transpiration",
+        "marks": 1,
+        "mark_note": "Transpiration",
+        "margin_note": "Four numbered points. Keep the numbering so the second column can mirror it.",
+        "lines": [
+          "1. Transpiration is the loss of water from the",
+          "LIVING tissues of the aerial parts of a plant.",
+          "2. It happens within the plant.",
+          "3. It is a physiological process.",
+          "4. It is a SLOW process."
+        ],
+        "why": "Transpiration is controlled by living stomata, so it is a physiological process and necessarily slower than plain evaporation from an open surface.",
+        "common_mistakes": [
+          "Saying transpiration happens from any surface. It happens from LIVING tissue only.",
+          "Calling it a physical process. It is PHYSIOLOGICAL, because the plant controls it."
+        ],
+        "memory_tip": "Living, inside, controlled, slow."
+      },
+      {
+        "id": "s2_evaporation",
+        "kind": "boxed_final",
+        "label": "Evaporation",
+        "marks": 1,
+        "mark_note": "Evaporation",
+        "margin_note": "Mirror the four numbered points exactly. Same order, opposite content.",
+        "lines": [
+          {
+            "text": "Living and controlled against free and fast",
+            "style": "boxed"
+          },
+          "1. Evaporation is the loss of water from ANY",
+          "free surface, living or non-living.",
+          "2. It is a surface level process.",
+          "3. It is a physical process.",
+          "4. It is comparatively FAST."
+        ],
+        "why": "Nothing living regulates evaporation, so it is faster and can happen anywhere water meets air — which is every contrast in one cause.",
+        "common_mistakes": [
+          "Saying evaporation happens only from non-living surfaces. It happens from ANY free surface.",
+          "Giving fewer than three contrasts. The comparison needs both columns filled."
+        ],
+        "memory_tip": "No living control means nothing to slow it down."
+      }
+    ]
+  }
+}

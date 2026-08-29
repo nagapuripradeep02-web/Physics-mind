@@ -15302,3 +15302,108 @@ the live `engine_bug_queue` table (file-only discipline held). State recorded in
 **Next session's first task: the founder ruling on item 5** — whether to re-scope 0c-1 against the full survey union table before 0d, or to accept per-concept engine edits and amend the SUCCESS TEST. Everything else is either closed or explicitly deferred. **Blockers:** none for the merged work; item 5 blocks a clean 0d start, and item 2 blocks trusting any sub-0.3% H2 delta on a solid-body focal without a negative control.
 
 **Note for whoever reads this next:** the `feat/rotmech-engine` worktree at `C:\Tutor\physics-mind-rotmech-engine` has since been **removed** (empty directory), and master has moved past the merge (`4b289d4` pre-register 8 Ch.7 concept ids; `2443a74` settle the v = ωr boundary). Desks `physics-mind-rotmech-0c3`, `-a` and `-b` are active — treat the renderer as shared and diff-first (scar row 2 above exists precisely because two sessions raced this file).
+
+---
+
+# Session — 2026-08-28/29 · Botany-II opens, and closes: the whole 167-question book
+
+**Desk:** `feat/ipe-answerbook-botany-2`, worktree `Physics-mind-ipe-answerbook-botany-2`.
+**Based on `origin/feat/ipe-answerbook-zoology`, NOT on master** — the phased "watch it drawn"
+figure engine (`pause` elements, `pace_figures.ts`, `check_figure_pace.ts`, `pathLength.ts`) lives
+only on that branch, and master's figures still run at 200–770 units/second. That is the rushing
+the founder named, and Botany-II was required to be slow.
+
+**Source:** "Sr. Botany — My Baby Bullet-Q" (Sri Publishers), 66 pages, read directly from the
+scan at every stage — never from a previous transcription. PDF page == book page.
+
+## What shipped
+
+**167 cards — the complete book.** 6 LAQ · 46 SAQ · 115 VSAQ across 14 units, matching the 2022
+BIE blue print chapter for chapter. Every VSAQ, SAQ, LAQ and Star Question Plus the source prints.
+
+| Unit | Cards | | Unit | Cards |
+|---|---|---|---|---|
+| 1 Transport in Plants | 20 | | 8 Viruses | 8 |
+| 2 Mineral Nutrition | 7 | | 9 Principles of Inheritance | 16 |
+| 3 Enzymes | 6 | | 10 Molecular Basis of Inheritance | 23 |
+| 4 Photosynthesis | 13 | | 11 Biotechnology Principles | 13 |
+| 5 Respiration in Plants | 3 | | 12 Biotechnology Applications | 11 |
+| 6 Plant Growth and Development | 10 | | 13 Strategies for Enhancement | 12 |
+| 7 Bacteria | 10 | | 14 Microbes in Human Welfare | 15 |
+
+Units 5, 7 and 14 are small BY DESIGN: the blue print gives Respiration one Section-C question and
+nothing else, and gives Bacteria and Microbes VSAQ only. The book prints no SAQ or LAQ for them and
+**none was invented** — the same discipline Botany-I used.
+
+**17 phased figures**, 26–65 seconds each at 70 units/second. Two of them carry marks, because
+only two questions in the paper say "draw": the chloroplast (global 17) and the lac operon
+(global 41), and the book prints no written answer for either.
+
+## Four things worth carrying forward
+
+**1. The book is wrong 21 times, and every case is written correctly on the card with the book's
+printed position recorded in that card's `verification.note`.** The clearest: a co-dominance F₂
+ratio printed "1 : 2 : 3" (four Punnett boxes cannot give six offspring) with the homozygote
+mislabelled; an mRNA answered as the TEMPLATE strand with U; Hershey and Chase said to have worked
+on "bacteria called bacteriophages"; "transport saturation INCREASES facilitated diffusion" when
+saturation is the CEILING that distinguishes it from simple diffusion; EcoRI "recognises GAA
+sites" on one page and GAATTC on another. Full table in `docs/BOTANY_2_START_HERE.md` §4.
+
+**2. The two checks that are structurally impossible, and what replaced them.** One source book,
+a physics-only TSBIE Basic Learning Material, and no Botany-II board paper in the corpus — so the
+two-book union check and the board back-test cannot be run. Recorded in `units.json`, in the
+start-here doc, and in **all 167 cards**. What the book does have is its own cross-reference web:
+five Model Guess Papers citing `P <page>(<global qno>)`, 105 citations, now checked by
+`npm run backtest:botany2`. **105/105 resolve.** A deliberate wording divergence goes in an
+explicit `ALLOWED_DIVERGENCE` map with its reason, so a NEW mismatch still fails.
+
+**3. Eight figure defects were found by RENDERING and LOOKING — none was visible to any gate.**
+Guard cells drawn thinner than the pore between them, so a stoma read as one cell with a hole; an
+infection thread running out through the wrong wall; chain arrows striking through the compound
+names beside them; a Krebs layout built and thrown away twice; leaders anchored so each label got
+its own underline; all three captions of the rDNA chart struck through by its own arrows. `check()`,
+the pace gate and the build passed every one of them. **Render every figure and look at every phase.**
+
+**4. Wrap rate 0.0% — the best in the fleet.** 92 lines wrapped past their ruled row on first
+measure. `answer-book/tools/reflow_lines.mjs` is new and works on ANY prefix: it moves trailing
+words down, never changes a word, never splits a boxed or equation line, refuses to glue a tail
+onto a line opening a new numbered item, and is idempotent. Its own first version silently
+under-reported by measuring before Kalam loaded — it now waits, as `measure_wrap.mjs` does.
+
+## Also landed
+
+- `botany_2` wired as the sixth paper. The silent one again: `notebook.js` `subjectWord` fell
+  through to `'physics'`, so every card would have read *"The physics and the method are checked."*
+  Now matched on the `botany` PREFIX, so a third botany paper cannot fall through either.
+- Both botany papers relabelled **Botany-I / Botany-II**, the Maths-1A/1B disambiguation.
+- `check:figure-pace --strict` now takes a COMMA-SEPARATED prefix list, so subjects built under the
+  phased-figure contract accumulate instead of replacing one another.
+- Three e2e fleet-sweep budgets raised 1.8M → 2.4M ms. Raised, never trimmed.
+- Two `tsc` errors carried over from the zoology desk fixed: `valcheck_ad1.ts` and
+  `validate_bhw.ts` hardcoded a `C:/Tutor` Windows path, so `npx tsc --noEmit` failed on any
+  other machine.
+
+## Verified
+
+`build:answers` PASS (14/14 units, 1303 entries) · `tsc` 0 errors · `vitest` 416 passed ·
+`smoke:answers` **38 passed** · `check:figure-pace` PASS for `ts_ipe_z1,ts_ipe_b2` ·
+`backtest:botany2` 105/105 · `measure_wrap` **0 wrapping lines of 2702** · every figure rendered
+and read at every phase.
+
+## Open
+
+1. **Global 168, the Calvin cycle — FLAGGED FOR FOUNDER REVIEW, not decided.** The LAQ chapter
+   cross-references it and its printed answer runs two pages with a cycle diagram, which is
+   Section-C-grade. But the blue print gives Photosynthesis 6 marks with no Section-C slot and the
+   book prints it outside every LAQ chapter. Authored at 4 marks; **no 8-mark form invented**. If a
+   real paper ever sets it at 8, add a cut.
+2. **No teacher has verified any mark split.** Every card says so.
+3. **The PR base.** This desk sits on `feat/ipe-answerbook-zoology`, so its PR must target that
+   branch, or wait for zoology to merge to master first.
+4. **Botany-II and Zoology-II collide on four shared files** — `units.json`, `answerBook.ts`,
+   `build_answer_book.ts`, `notebook.js`. Merge one PR, then merge master into the other desk
+   before opening its PR. Do not open both at once.
+
+**Next session's first task:** the founder's call on the PR base (item 3), then Checkpoint-C style
+review of a sample of cards against the scan. Nothing is deployed — `PILOT_CONCEPTS` and
+`deploy:answers` are untouched (Rule 17).

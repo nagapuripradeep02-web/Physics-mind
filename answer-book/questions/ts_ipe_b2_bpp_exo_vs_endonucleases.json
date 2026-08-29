@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bpp_exo_vs_endonucleases",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Biotechnology: Principles and Processes (Botany-II)"
+  },
+  "chapter": "Biotechnology: Principles and Processes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How can you differentiate between exonucleases and endonucleases?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Exonucleases",
+      "marks": 1
+    },
+    {
+      "label": "Endonucleases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 117. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Ends against inside. The prefixes say it, and pointing that out is a good way to remember which is which.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology: Principles and Processes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_exo",
+        "kind": "text",
+        "label": "Exonucleases",
+        "marks": 1,
+        "mark_note": "Exonucleases",
+        "margin_note": "Where it cuts, what that means, and the prefix. Four lines.",
+        "lines": [
+          "EXONUCLEASES cut DNA by removing nucleotides",
+          "from the ENDS of the molecule, one at a time.",
+          "They shorten the DNA but do not cut it in two.",
+          "EXO means outside."
+        ],
+        "why": "Working only from the ends means an exonuclease can trim a molecule but never divide it.",
+        "common_mistakes": [
+          "Saying exonucleases cut within the DNA. They work from the ENDS.",
+          "Saying they cut DNA into fragments. They shorten it; they do not fragment it."
+        ],
+        "memory_tip": "EXO works from the ends, from the outside in."
+      },
+      {
+        "id": "s2_endo",
+        "kind": "boxed_final",
+        "label": "Endonucleases",
+        "marks": 1,
+        "mark_note": "Endonucleases",
+        "margin_note": "Mirror the exo lines, then link to restriction enzymes.",
+        "lines": [
+          {
+            "text": "Exo trims the ends; endo cuts inside",
+            "style": "boxed"
+          },
+          "ENDONUCLEASES make cuts at specific positions",
+          "WITHIN the DNA molecule.",
+          "They cut the DNA into fragments.",
+          "ENDO means inside.",
+          "Restriction endonucleases are the endonucleases",
+          "used in genetic engineering."
+        ],
+        "why": "Only a cut made inside the molecule can produce two separate fragments, which is why genetic engineering uses endonucleases and not exonucleases.",
+        "common_mistakes": [
+          "Saying endonucleases work from the ends. They cut WITHIN.",
+          "Not linking to restriction enzymes. Restriction enzymes are endonucleases, and that is why this question is asked."
+        ],
+        "memory_tip": "ENDO cuts inside, and that is the one used to make fragments."
+      }
+    ]
+  }
+}

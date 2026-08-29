@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ba_occurrence_of_microorganisms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Bacteria (Botany-II)"
+  },
+  "chapter": "Bacteria",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write briefly on the occurrence of micro organisms.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Where they occur",
+      "marks": 1
+    },
+    {
+      "label": "What that means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.41, printed question 72. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The word to reach for is omnipresent. Then give the extremes — that is what shows the range.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Bacteria (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_where",
+        "kind": "text",
+        "label": "Where they occur",
+        "marks": 1,
+        "mark_note": "Occurrence",
+        "margin_note": "Habitats plus at least two extremes. Five lines.",
+        "lines": [
+          "Micro organisms such as bacteria and viruses occur",
+          "in ALL climatic conditions.",
+          "They are found in soil, in water, in air, and",
+          "inside the bodies of other organisms.",
+          "They live in hot springs, in deserts, in deep",
+          "oceans and under snow."
+        ],
+        "why": "Naming the extremes rather than the ordinary places is what shows the range is genuinely everywhere and not just everywhere convenient.",
+        "common_mistakes": [
+          "Saying microbes live only in warm, wet places. They live in hot springs AND under snow.",
+          "Listing habitats without any extreme. The extremes are what make the answer."
+        ],
+        "memory_tip": "Hot springs to snow: nowhere is ruled out."
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What that means",
+        "marks": 1,
+        "mark_note": "Omnipresent",
+        "margin_note": "Name the term, then one line on why it matters.",
+        "lines": [
+          {
+            "text": "Micro organisms are omnipresent",
+            "style": "boxed"
+          },
+          "Because they occur everywhere, micro organisms",
+          "are said to be OMNIPRESENT.",
+          "This is why sterilisation is needed before any",
+          "culture work."
+        ],
+        "why": "If microbes are everywhere then any surface or medium is already contaminated, which is why sterilisation comes first in every technique in this book.",
+        "common_mistakes": [
+          "Leaving the word omnipresent out. It is the term the question is asking for.",
+          "Giving no consequence. The link to sterilisation makes the fact useful."
+        ],
+        "memory_tip": "Everywhere means every culture starts contaminated."
+      }
+    ]
+  }
+}

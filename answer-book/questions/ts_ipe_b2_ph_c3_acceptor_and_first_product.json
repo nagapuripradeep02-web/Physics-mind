@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_c3_acceptor_and_first_product",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the primary acceptor of CO2 in C3 plants? What is the first stable compound formed in a Calvin cycle?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The acceptor",
+      "marks": 1
+    },
+    {
+      "label": "The first stable compound",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.40, printed question 67. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two names, two carbon counts. Adding '(5C)' and '(3C)' costs nothing and shows exactly where the name C3 comes from.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_acceptor",
+        "kind": "text",
+        "label": "The acceptor",
+        "marks": 1,
+        "mark_note": "Acceptor",
+        "margin_note": "Full name with the carbon count. Watch the spelling of bisphosphate.",
+        "lines": [
+          "The primary acceptor of CO2 in C3 plants is",
+          "RuBP — ribulose 1,5-BISphosphate.",
+          "It is a 5-carbon compound."
+        ],
+        "why": "A 5-carbon acceptor taking one carbon gives a 6-carbon compound, which is why the product splits into two 3-carbon molecules.",
+        "common_mistakes": [
+          "Naming PEP. PEP is the C4 acceptor, not the C3 one.",
+          "Writing 'biphosphate'. It is BISphosphate — two separate phosphate groups."
+        ],
+        "memory_tip": "RuBP has five carbons and catches the sixth."
+      },
+      {
+        "id": "s2_product",
+        "kind": "boxed_final",
+        "label": "The first stable compound",
+        "marks": 1,
+        "mark_note": "First product",
+        "margin_note": "Name it, give the carbon count, and connect it to the name C3.",
+        "lines": [
+          {
+            "text": "RuBP (5C) catches CO2; PGA (3C) is what forms",
+            "style": "boxed"
+          },
+          "The first stable compound is PGA —",
+          "3-phosphoglyceric acid.",
+          "It is a 3-carbon compound, which is why the",
+          "pathway is called the C3 cycle."
+        ],
+        "why": "The pathway is named after the first stable product, so the carbon count here explains the name of the whole cycle.",
+        "common_mistakes": [
+          "Naming OAA. OAA is the first C4 product.",
+          "Leaving out the carbon count. Three carbons is why it is called C3."
+        ],
+        "memory_tip": "Three carbons in the first product names the whole cycle."
+      }
+    ]
+  }
+}

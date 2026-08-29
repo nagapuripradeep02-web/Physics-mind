@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_green_revolution",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is green revolution? Who is regarded as the Father of the green revolution?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Who it is credited to",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 124. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "A definition and a name. Norman Borlaug is the world answer; if you add M. S. Swaminathan as the Indian one, say which is which.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition with high yielding varieties named, plus what it depended on.",
+        "lines": [
+          "The GREEN REVOLUTION was the creation and",
+          "widespread use of HIGH YIELDING VARIETIES in",
+          "agriculture, which produced a substantial and",
+          "dramatic increase in food production.",
+          "It relied on semi-dwarf, disease resistant",
+          "varieties, fertiliser and irrigation."
+        ],
+        "why": "Semi-dwarf varieties could carry a heavy head of grain without falling over, which is what allowed heavy fertiliser use to translate into yield.",
+        "common_mistakes": [
+          "Saying it was about growing more land area. It was about higher YIELD from the same land.",
+          "Leaving out high yielding varieties. They are the heart of the definition."
+        ],
+        "memory_tip": "Same land, far more grain."
+      },
+      {
+        "id": "s2_who",
+        "kind": "boxed_final",
+        "label": "Who it is credited to",
+        "marks": 1,
+        "mark_note": "Father",
+        "margin_note": "Both names, each labelled with its scale.",
+        "lines": [
+          {
+            "text": "Norman Borlaug, worldwide",
+            "style": "boxed"
+          },
+          "NORMAN BORLAUG is regarded as the Father of the",
+          "green revolution.",
+          "M. S. SWAMINATHAN is regarded as the Father of",
+          "the green revolution IN INDIA."
+        ],
+        "why": "Two names are correct at two different scales, so saying which is which shows the distinction was understood.",
+        "common_mistakes": [
+          "Giving only one name with no scale. Say whether you mean worldwide or in India.",
+          "Naming a different scientist. Borlaug worldwide, Swaminathan in India."
+        ],
+        "memory_tip": "Borlaug for the world, Swaminathan for India."
+      }
+    ]
+  }
+}

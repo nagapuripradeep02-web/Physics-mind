@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_rna_viruses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name any three viruses which have RNA as the genetic material.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Three viruses",
+      "marks": 1
+    },
+    {
+      "label": "What that shows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.43, printed question 95. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Three names, then one line saying why they matter. That extra line turns a list into an answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three",
+        "kind": "text",
+        "label": "Three viruses",
+        "marks": 1,
+        "mark_note": "Names",
+        "margin_note": "Three named, with a fourth in reserve. Five lines.",
+        "lines": [
+          "Three viruses with RNA as their genetic material:",
+          "1. Influenza virus",
+          "2. Polio virus",
+          "3. Human Immunodeficiency Virus (HIV)",
+          "Tobacco Mosaic Virus (TMV) is a fourth."
+        ],
+        "why": "All four are common examples, so any three of them answer the question and the fourth is free insurance.",
+        "common_mistakes": [
+          "Naming a bacteriophage. T-even phages have DNA, not RNA.",
+          "Naming only two. The question asks for THREE."
+        ],
+        "memory_tip": "Flu, polio, HIV — and TMV in plants."
+      },
+      {
+        "id": "s2_shows",
+        "kind": "boxed_final",
+        "label": "What that shows",
+        "marks": 1,
+        "mark_note": "Significance",
+        "margin_note": "One line on the significance, one on retroviruses.",
+        "lines": [
+          {
+            "text": "RNA can be genetic material too",
+            "style": "boxed"
+          },
+          "These viruses show that RNA can act as genetic",
+          "material, not only DNA.",
+          "HIV and other retroviruses copy their RNA back",
+          "into DNA using REVERSE TRANSCRIPTASE."
+        ],
+        "why": "RNA is thought to have been the first genetic material, which is why viruses that still use it are of more than passing interest.",
+        "common_mistakes": [
+          "Saying only DNA can be genetic material. These viruses are the counter-example.",
+          "Leaving out the significance. Naming reverse transcriptase costs one line and adds real content."
+        ],
+        "memory_tip": "These are the exceptions to 'DNA is the genetic material'."
+      }
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_en_enzyme_inhibitors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Enzymes (Botany-II)"
+  },
+  "chapter": "Enzymes",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write briefly about enzyme inhibitors.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What an inhibitor is",
+      "marks": 1
+    },
+    {
+      "label": "Competitive inhibitors",
+      "marks": 1
+    },
+    {
+      "label": "Non-competitive inhibitors",
+      "marks": 1
+    },
+    {
+      "label": "Feedback inhibitors",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.24, printed question 15. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Three types, three examples. Malonic acid against succinate is the example every examiner expects, so write it even if the other two examples are shorter.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Enzymes (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "What an inhibitor is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition plus the three names. Number them so the next three steps can follow.",
+        "lines": [
+          "Enzyme inhibitors are chemicals that STOP or",
+          "slow the activity of an enzyme.",
+          "The process is called inhibition.",
+          "There are three types:",
+          "1. Competitive  2. Non-competitive",
+          "3. Feedback"
+        ],
+        "why": "Listing the three types before explaining them shows the shape of the answer, and each type is then defined by WHERE on the enzyme it acts.",
+        "common_mistakes": [
+          "Saying inhibitors destroy the enzyme. They stop its ACTIVITY; most do not destroy it.",
+          "Naming only two types. The guide gives three, and each is a mark."
+        ],
+        "memory_tip": "Three types, three places: the active site, elsewhere, and the end of the pathway."
+      },
+      {
+        "id": "s2_competitive",
+        "kind": "text",
+        "label": "Competitive inhibitors",
+        "marks": 1,
+        "mark_note": "Competitive",
+        "margin_note": "Resemblance, active site, example. All three parts of the mark.",
+        "lines": [
+          "1. COMPETITIVE INHIBITORS:",
+          "These resemble the substrate in shape.",
+          "They bind to the ACTIVE SITE and so compete",
+          "with the substrate.",
+          "Example: malonic acid resembles the substrate",
+          "succinate and inhibits succinic dehydrogenase."
+        ],
+        "why": "The inhibitor works only because it looks like the substrate, so the resemblance is the definition rather than an extra detail.",
+        "common_mistakes": [
+          "Saying a competitive inhibitor binds away from the active site. It binds AT the active site.",
+          "Leaving out the resemblance to the substrate. That is what makes it competitive."
+        ],
+        "memory_tip": "It looks like the substrate, so it takes the substrate's seat."
+      },
+      {
+        "id": "s3_noncompetitive",
+        "kind": "text",
+        "label": "Non-competitive inhibitors",
+        "marks": 1,
+        "mark_note": "Non-competitive",
+        "margin_note": "No resemblance, a different site, the shape change, an example.",
+        "lines": [
+          "2. NON-COMPETITIVE INHIBITORS:",
+          "These have NO structural similarity to the",
+          "substrate.",
+          "They bind at a site OTHER than the active site.",
+          "This changes the globular shape of the enzyme,",
+          "so it can no longer work.",
+          "Example: metal ions of copper and mercury."
+        ],
+        "why": "Changing the enzyme's shape from somewhere else disables the active site indirectly, which is why adding more substrate cannot overcome this kind of inhibitor.",
+        "common_mistakes": [
+          "Saying it resembles the substrate. It does NOT — that is the competitive kind.",
+          "Leaving out the shape change. Changing the globular structure is how it works."
+        ],
+        "memory_tip": "It does not take the seat; it bends the chair."
+      },
+      {
+        "id": "s4_feedback",
+        "kind": "boxed_final",
+        "label": "Feedback inhibitors",
+        "marks": 1,
+        "mark_note": "Feedback",
+        "margin_note": "Definition, the words 'end product', and one line on why the cell does it.",
+        "lines": [
+          {
+            "text": "The end product switches its own pathway off",
+            "style": "boxed"
+          },
+          "3. FEEDBACK INHIBITION:",
+          "A cellular control mechanism in which the",
+          "enzyme's own END PRODUCT inhibits its activity.",
+          "It is part of the homeostatic control of",
+          "metabolism.",
+          "It stops the cell making more of a product it",
+          "already has enough of."
+        ],
+        "why": "The product itself is the signal, so the cell needs no separate sensor to know when to stop.",
+        "common_mistakes": [
+          "Saying the substrate inhibits the enzyme. It is the END PRODUCT.",
+          "Leaving out the purpose. Feedback inhibition prevents wasteful overproduction."
+        ],
+        "memory_tip": "Enough product means stop making product."
+      }
+    ]
+  }
+}

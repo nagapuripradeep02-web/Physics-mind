@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_biofortification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by biofortification?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 133. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Definition plus at least two named examples. Atlas 66 wheat and golden rice are the safe pair.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Biofortification defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition with all the nutrient types and the purpose.",
+        "lines": [
+          "BIOFORTIFICATION is the breeding of crops with",
+          "HIGHER LEVELS of vitamins and minerals, or higher",
+          "protein or healthier fats, in order to improve",
+          "PUBLIC HEALTH."
+        ],
+        "why": "Improving the nutritional value of the staple crop reaches everyone who already eats it, with no change in diet or behaviour needed.",
+        "common_mistakes": [
+          "Saying biofortification means adding vitamins to food after harvest. It is BRED INTO the crop.",
+          "Leaving out public health. That is the purpose."
+        ],
+        "memory_tip": "Put the nutrient in the crop, not in a pill."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "margin_note": "At least three named examples with the nutrient each supplies.",
+        "lines": [
+          {
+            "text": "Atlas 66 wheat, golden rice, vitamin-enriched",
+            "style": "boxed"
+          },
+          {
+            "text": "carrots and bitter gourd",
+            "style": "boxed"
+          },
+          "Examples:",
+          "ATLAS 66 wheat has a high PROTEIN content.",
+          "GOLDEN RICE contains beta-carotene, which the body",
+          "turns into VITAMIN A.",
+          "Vitamin A enriched CARROTS and vitamin C enriched",
+          "BITTER GOURD."
+        ],
+        "why": "Each example fortifies a crop people already eat every day, which is what makes the approach work at scale.",
+        "common_mistakes": [
+          "Naming one example. The book gives four.",
+          "Saying Atlas 66 is a rice variety. Atlas 66 is WHEAT."
+        ],
+        "memory_tip": "Wheat for protein, rice for vitamin A."
+      }
+    ]
+  }
+}
