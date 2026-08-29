@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_incubation_period",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define incubation period. What is its duration in the life cycle of Plasmodium vivax?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Duration",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.58, VSAQ 137). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The period between the entry of the sporozoites",
+          "into the blood of man and the appearance of the",
+          "first symptoms of malaria is called the",
+          "incubation period."
+        ],
+        "why": "This period is measured from entry to SYMPTOMS, so it ends only when enough red blood cells burst together to give the first chill and fever.",
+        "common_mistakes": [
+          "Defining it as the gap between two entries into the blood. That is the prepatent period.",
+          "Starting the count from the mosquito bite in general. Start it from the entry of the sporozoites."
+        ],
+        "memory_tip": "Incubation ends with the first fever; prepatent ends with the parasite back in the blood.",
+        "margin_note": "One sentence, ending at the word symptoms. That word carries the mark."
+      },
+      {
+        "id": "s2_duration",
+        "kind": "boxed_final",
+        "label": "Duration",
+        "marks": 1,
+        "mark_note": "Duration",
+        "lines": [
+          {
+            "text": "Incubation period = about 10 to 14 days",
+            "style": "boxed"
+          },
+          "The first chill and fever of malaria appear at",
+          "the end of this period."
+        ],
+        "why": "The number is asked directly, and it is always longer than the prepatent period because symptoms need several erythrocytic cycles to build up.",
+        "common_mistakes": [
+          "Writing 8 days. That is the prepatent period.",
+          "Writing 48 hours. That is the length of one erythrocytic cycle."
+        ],
+        "memory_tip": "Three numbers, three meanings: 48 hours one cycle, 8 days prepatent, 10 to 14 days incubation.",
+        "margin_note": "The number in a box and one line on the first fever. Two lines."
+      }
+    ]
+  },
+  "insider_note": "Examiners set prepatent and incubation next to each other, so name the endpoint (symptoms) as well as the number."
+}

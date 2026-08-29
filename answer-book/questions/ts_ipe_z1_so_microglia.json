@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_microglia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are microglia and what is their origin? Add a note on their function.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identity and origin",
+      "marks": 1
+    },
+    {
+      "label": "Function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.52, VSAQ 84). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "text",
+        "label": "What they are, and their origin",
+        "marks": 1,
+        "why": "Microglia are the odd ones out among the supporting cells of the nervous system, because every other one comes from ectoderm, so the origin is the fact worth stating.",
+        "common_mistakes": [
+          "Calling microglia neurons. They are supporting cells and carry no impulse.",
+          "Writing that they are ectodermal. Microglia are mesodermal in origin."
+        ],
+        "memory_tip": "All neuroglia are ectodermal except microglia, which come from mesoderm.",
+        "margin_note": "What they are, then where they come from. Two short lines.",
+        "mark_note": "Identity",
+        "lines": [
+          "Microglia are one kind of neuroglial cell of",
+          "the nervous system.",
+          "They do not conduct nerve impulses.",
+          "They are mesodermal in origin, while the other",
+          "neuroglia are ectodermal."
+        ]
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "Their function",
+        "marks": 1,
+        "why": "A phagocytic cell of mesodermal origin is the defence cell of its tissue, and that is exactly the job microglia do inside the brain and spinal cord.",
+        "common_mistakes": [
+          "Writing that they make myelin. Myelin is made by oligodendrocytes and by Schwann cells."
+        ],
+        "memory_tip": "Mesodermal origin and phagocytic job go together — both are unusual for a nerve tissue cell.",
+        "margin_note": "One word carries this mark — phagocytic. Say what they engulf.",
+        "mark_note": "Function",
+        "lines": [
+          {
+            "text": "Phagocytic: clear microbes and dead cells",
+            "style": "boxed"
+          },
+          "Microglia are phagocytic.",
+          "They engulf microbes and the remains of damaged",
+          "cells, so they act against infection and injury",
+          "in the nervous system."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Three things are asked in one 2-mark question — what, origin, function — so answer in three short lines and skip the general account of neuroglia."
+}

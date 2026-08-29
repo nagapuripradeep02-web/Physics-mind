@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_antennae_chelicerata",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are antennae? What is the arthropod group without antennae?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Antennae",
+      "marks": 1
+    },
+    {
+      "label": "Group without them",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.54, VSAQ 102). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_antennae",
+        "kind": "text",
+        "label": "What antennae are",
+        "marks": 1,
+        "why": "The antenna is a head appendage that took up a sensory job, which is why the number of pairs differs from one arthropod class to another.",
+        "common_mistakes": [
+          "Writing that antennae are only for touch. They also carry receptors for smell.",
+          "Giving crustaceans one pair. Crustaceans have two pairs."
+        ],
+        "memory_tip": "Antennae are jointed sense organs on the head: touch and smell.",
+        "margin_note": "What they are and what they do. Two or three lines.",
+        "mark_note": "Antennae",
+        "lines": [
+          "Antennae are the paired, jointed sense organs",
+          "borne on the head of an arthropod.",
+          "They carry receptors for touch and for smell,",
+          "so they are tactile and chemoreceptive.",
+          "Insects and myriapods have one pair.",
+          "Crustaceans have two pairs, the antennules",
+          "and the antennae."
+        ]
+      },
+      {
+        "id": "s2_group",
+        "kind": "boxed_final",
+        "label": "The group without antennae",
+        "marks": 1,
+        "why": "The name of the subphylum states the answer, because the place an antenna would occupy is already taken by the chelicera.",
+        "common_mistakes": [
+          "Naming Crustacea. Crustaceans have two pairs of antennae, the largest number in the phylum.",
+          "Writing 'spiders'. Name the whole group: subphylum Chelicerata."
+        ],
+        "memory_tip": "Chelicerata is named after its first appendage, the chelicera — so there is no antenna.",
+        "margin_note": "Name the group and give one example. Three lines.",
+        "mark_note": "Group without them",
+        "lines": [
+          {
+            "text": "Subphylum Chelicerata has no antennae",
+            "style": "boxed"
+          },
+          "The subphylum Chelicerata has no antennae.",
+          "In a chelicerate the first pair of head",
+          "appendages is the chelicerae, not antennae.",
+          "Examples: Limulus (king crab), Palamnaeus",
+          "(scorpion), Aranea (spider)."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Answering 'spiders' instead of Chelicerata is the common half-answer here — the examiner wants the name of the group."
+}

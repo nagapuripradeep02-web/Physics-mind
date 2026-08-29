@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_white_vs_grey_matter",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between white matter and grey matter of the central nervous system.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "White matter",
+      "marks": 1
+    },
+    {
+      "label": "Grey matter",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.52, VSAQ 88). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_white",
+        "kind": "text",
+        "label": "White matter",
+        "marks": 1,
+        "why": "The colour of each region names what is inside it, so the answer works from the colour to the contents.",
+        "common_mistakes": [
+          "Writing that white matter holds the cell bodies. It holds myelinated fibres.",
+          "Saying the colour comes from Nissl granules. Those give grey matter its colour."
+        ],
+        "memory_tip": "White means myelin. Grey means cell bodies and Nissl granules.",
+        "margin_note": "Colour, cause, contents. Two lines.",
+        "mark_note": "White matter",
+        "lines": [
+          "White matter looks white because of myelin.",
+          "It is made of myelinated nerve fibres, that is,",
+          "axons carrying a myelin sheath."
+        ]
+      },
+      {
+        "id": "s2_grey",
+        "kind": "boxed_final",
+        "label": "Grey matter",
+        "marks": 1,
+        "why": "Myelin is a fatty white sheath and Nissl granules are grey, so the two colours simply report which part of the neuron lies in that region.",
+        "common_mistakes": [
+          "Putting dendrites in the white matter. Dendrites are part of the grey matter."
+        ],
+        "memory_tip": "Grey matter is where the cells live; white matter is where their wires run.",
+        "margin_note": "One boxed contrast line, then grey matter's own contents.",
+        "mark_note": "Grey matter",
+        "lines": [
+          {
+            "text": "White: myelinated fibres · Grey: cell bodies",
+            "style": "boxed"
+          },
+          "Grey matter looks grey because of the Nissl",
+          "granules in the cell bodies.",
+          "It is made of cell bodies (cytons), dendrites",
+          "and non-myelinated nerve fibres."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two colours, two causes, two contents — write it as a table if there is room, because the examiner is ticking pairs."
+}

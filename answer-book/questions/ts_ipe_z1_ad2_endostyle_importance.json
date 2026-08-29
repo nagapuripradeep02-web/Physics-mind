@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_endostyle_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the importance of endostyle in lancelets and ascidians?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the endostyle is",
+      "marks": 1
+    },
+    {
+      "label": "Its importance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.55, VSAQ 109). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Structure",
+        "margin_note": "One line for what it secretes, one for where it lies.",
+        "lines": [
+          "The endostyle is a mucus secreting longitudinal",
+          "groove.",
+          "It lies in the ventral part of the pharynx of",
+          "lancelets and ascidians."
+        ],
+        "why": "The endostyle is named by where it sits and what it makes, and both facts are needed before its use can be explained.",
+        "common_mistakes": [
+          "Placing the endostyle in the gut. It lies in the pharynx.",
+          "Calling it dorsal. It runs along the ventral wall of the pharynx."
+        ],
+        "memory_tip": "End of the pharynx floor, making mucus: endostyle."
+      },
+      {
+        "id": "s2_importance",
+        "kind": "boxed_final",
+        "label": "Its importance",
+        "marks": 1,
+        "mark_note": "Use",
+        "margin_note": "The two uses are the two marks. Name both, even in a short answer.",
+        "lines": [
+          {
+            "text": "Food collection · forerunner of the thyroid",
+            "style": "boxed"
+          },
+          "1) It helps in food collection. The mucus traps",
+          "the food particles in the water current, and",
+          "the food is carried to the gut.",
+          "2) It is the forerunner of the thyroid gland of",
+          "vertebrates."
+        ],
+        "why": "The endostyle carries both marks because it answers two different questions at once — how the animal feeds now, and where a vertebrate gland came from.",
+        "common_mistakes": [
+          "Giving only the feeding use. The thyroid link is the second mark.",
+          "Writing that it is the thyroid gland. It is the structure the thyroid gland arose from."
+        ],
+        "memory_tip": "Two uses, one present and one past: it collects food today, and it became the thyroid gland."
+      }
+    ]
+  },
+  "insider_note": "The thyroid line is the one most students leave out, and it is worth as much as the feeding line."
+}

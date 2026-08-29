@@ -1,0 +1,592 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_laq_types_of_food_chains",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe different types of food chains that exist in an ecosystem.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Food chain and trophic levels",
+      "marks": 2
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Grazing food chain",
+      "marks": 2
+    },
+    {
+      "label": "Parasitic food chain",
+      "marks": 1
+    },
+    {
+      "label": "Detritus food chain and food web",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.26, LAQ 10). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Ecology and Environment · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_food_chain",
+        "kind": "text",
+        "label": "Food chain and trophic levels",
+        "marks": 2,
+        "mark_note": "Basis",
+        "lines": [
+          "The sun is the main source of energy for an",
+          "ecosystem.",
+          "The biological systems of the environment",
+          "have several food levels called trophic",
+          "levels.",
+          "A trophic level is made of organisms that",
+          "have the same source of energy and the same",
+          "number of transferring steps. There are",
+          "generally 3 to 5 trophic levels.",
+          "A given species may sometimes occupy more",
+          "than one trophic level. Ex: the sparrow.",
+          "Food energy always passes from a lower",
+          "trophic level to a higher one.",
+          "When the food path is linear, the parts",
+          "resemble the links of a chain, and so it is",
+          "called a food chain.",
+          "A food chain generally ends in decomposers.",
+          "Types of food chains:",
+          "1) Grazing  2) Parasitic  3) Detritus"
+        ],
+        "why": "A food chain is defined by its trophic levels, so those come first; the direction of the energy, always from lower to higher, is what fixes which way the arrows point in every chain written below.",
+        "common_mistakes": [
+          "Writing that a food chain starts with the sun. The sun is the energy source; the FIRST trophic level is the producers.",
+          "Drawing the arrow from the eater to the eaten. The arrow always points FROM the eaten TO the eater.",
+          "Leaving out the three types at the end. Naming them sets up the rest of the answer."
+        ],
+        "memory_tip": "The arrow follows the energy: it always points from the one being eaten to the one eating.",
+        "margin_note": "Build up to the definition, then name the three types. Two marks, so keep all the points."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — the three food chains",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "ee_food_chains",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p_gr",
+              "caption": "Step 1 — the grazing food chain, from grass to hawk"
+            },
+            {
+              "type": "stroke",
+              "id": "gr_box1",
+              "d": "M 24 76 L 79.2 76 L 79.2 110 L 24 110 Z",
+              "ms": 2550
+            },
+            {
+              "type": "label",
+              "id": "gr_txt1",
+              "x": 32,
+              "y": 98,
+              "text": "Grass",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gr_arr1",
+              "d": "M 84.2 93 L 101.2 93",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "gr_head1",
+              "d": "M 98.3 97 L 105.2 93 L 98.3 89",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "gr_box2",
+              "d": "M 109.2 76 L 211.4 76 L 211.4 110 L 109.2 110 Z",
+              "ms": 3890
+            },
+            {
+              "type": "label",
+              "id": "gr_txt2",
+              "x": 117.2,
+              "y": 98,
+              "text": "Grasshopper",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gr_arr2",
+              "d": "M 216.4 93 L 233.4 93",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "gr_head2",
+              "d": "M 230.5 97 L 237.4 93 L 230.5 89",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "gr_box3",
+              "d": "M 241.4 76 L 287.7 76 L 287.7 110 L 241.4 110 Z",
+              "ms": 2290
+            },
+            {
+              "type": "label",
+              "id": "gr_txt3",
+              "x": 249.4,
+              "y": 98,
+              "text": "Frog",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gr_arr3",
+              "d": "M 292.7 93 L 309.7 93",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "gr_head3",
+              "d": "M 306.8 97 L 313.7 93 L 306.8 89",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "gr_box4",
+              "d": "M 317.7 76 L 376.7 76 L 376.7 110 L 317.7 110 Z",
+              "ms": 2660
+            },
+            {
+              "type": "label",
+              "id": "gr_txt4",
+              "x": 325.7,
+              "y": 98,
+              "text": "Snake",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "gr_arr4",
+              "d": "M 381.7 93 L 398.7 93",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "gr_head4",
+              "d": "M 395.8 97 L 402.7 93 L 395.8 89",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "gr_box5",
+              "d": "M 406.7 76 L 462.5 76 L 462.5 110 L 406.7 110 Z",
+              "ms": 2570
+            },
+            {
+              "type": "label",
+              "id": "gr_txt5",
+              "x": 414.7,
+              "y": 98,
+              "text": "Hawk",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p_pa",
+              "caption": "Step 2 — the parasitic food chain, large to small"
+            },
+            {
+              "type": "stroke",
+              "id": "pa_box1",
+              "d": "M 24 172 L 70.4 172 L 70.4 206 L 24 206 Z",
+              "ms": 2300
+            },
+            {
+              "type": "label",
+              "id": "pa_txt1",
+              "x": 32,
+              "y": 194,
+              "text": "Tree",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "pa_arr1",
+              "d": "M 75.4 189 L 92.4 189",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "pa_head1",
+              "d": "M 89.5 193 L 96.4 189 L 89.5 185",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "pa_box2",
+              "d": "M 100.4 172 L 154.4 172 L 154.4 206 L 100.4 206 Z",
+              "ms": 2510
+            },
+            {
+              "type": "label",
+              "id": "pa_txt2",
+              "x": 108.4,
+              "y": 194,
+              "text": "Birds",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "pa_arr2",
+              "d": "M 159.4 189 L 176.4 189",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "pa_head2",
+              "d": "M 173.5 193 L 180.4 189 L 173.5 185",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "pa_box3",
+              "d": "M 184.4 172 L 264.7 172 L 264.7 206 L 184.4 206 Z",
+              "ms": 3270
+            },
+            {
+              "type": "label",
+              "id": "pa_txt3",
+              "x": 192.4,
+              "y": 194,
+              "text": "Parasites",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p_de",
+              "caption": "Step 3 — the detritus food chain, from dead matter"
+            },
+            {
+              "type": "stroke",
+              "id": "de_box1",
+              "d": "M 24 268 L 97.6 268 L 97.6 302 L 24 302 Z",
+              "ms": 3070
+            },
+            {
+              "type": "label",
+              "id": "de_txt1",
+              "x": 32,
+              "y": 290,
+              "text": "Detritus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "de_arr1",
+              "d": "M 102.6 285 L 119.6 285",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "de_head1",
+              "d": "M 116.7 289 L 123.6 285 L 116.7 281",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "de_box2",
+              "d": "M 127.6 268 L 221.6 268 L 221.6 302 L 127.6 302 Z",
+              "ms": 3660
+            },
+            {
+              "type": "label",
+              "id": "de_txt2",
+              "x": 135.6,
+              "y": 290,
+              "text": "Earthworm",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "de_arr2",
+              "d": "M 226.6 285 L 243.6 285",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "de_head2",
+              "d": "M 240.7 289 L 247.6 285 L 240.7 281",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "de_box3",
+              "d": "M 251.6 268 L 297.9 268 L 297.9 302 L 251.6 302 Z",
+              "ms": 2290
+            },
+            {
+              "type": "label",
+              "id": "de_txt3",
+              "x": 259.6,
+              "y": 290,
+              "text": "Frog",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "de_arr3",
+              "d": "M 302.9 285 L 319.9 285",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "de_head3",
+              "d": "M 317 289 L 323.9 285 L 317 281",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "de_box4",
+              "d": "M 327.9 268 L 386.9 268 L 386.9 302 L 327.9 302 Z",
+              "ms": 2660
+            },
+            {
+              "type": "label",
+              "id": "de_txt4",
+              "x": 335.9,
+              "y": 290,
+              "text": "Snake",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — name the three chains"
+            },
+            {
+              "type": "label",
+              "id": "name_gr",
+              "x": 10,
+              "y": 50,
+              "text": "1) Grazing food chain",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "name_pa",
+              "x": 10,
+              "y": 146,
+              "text": "2) Parasitic food chain",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "name_de",
+              "x": 10,
+              "y": 242,
+              "text": "3) Detritus food chain",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The three types differ only in what sits at the first trophic level and in which way the energy travels along the chain, and three chains drawn one above the other make that difference visible at a glance.",
+        "common_mistakes": [
+          "Drawing the arrows the wrong way. An arrow points FROM the eaten TO the eater in every chain.",
+          "Drawing the parasitic chain from small to large. Its energy passes from the LARGE organism to the small one.",
+          "Starting the detritus chain with a green plant. It starts with dead matter."
+        ],
+        "memory_tip": "Draw the boxes of one chain first, then the arrows, then the next chain below it. Keep the three chains parallel.",
+        "margin_note": "Three chains, each labelled with its name. The arrow directions carry the marks here."
+      },
+      {
+        "id": "s3_grazing",
+        "kind": "text",
+        "label": "Grazing food chain",
+        "marks": 2,
+        "mark_note": "Type 1",
+        "lines": [
+          "The grazing food chain is also called the",
+          "predator food chain.",
+          "The first trophic level is occupied by green",
+          "plants, the producers.",
+          "The second trophic level is occupied by",
+          "herbivores.",
+          "The third, fourth and fifth trophic levels",
+          "are occupied by primary, secondary and",
+          "tertiary carnivores respectively.",
+          "Ex-1: Rose bush → aphids → spiders → small",
+          "birds → hawks",
+          "Ex-2: Grass → grasshopper → frog → snake →",
+          "hawk",
+          "Ex-3: Grass → goat → man",
+          "Ex-4: Plants → caterpillar → lizard → snake",
+          "Ex-5: Grass → deer → tiger"
+        ],
+        "why": "This is the chain the syllabus treats as the standard one, so the trophic levels are numbered rather than merely listed, and the examples show chains of three, four and five links so the range of 3 to 5 levels is proved.",
+        "common_mistakes": [
+          "Putting the herbivores at the first trophic level. The producers are first.",
+          "Calling every meat eater a carnivore without a rank. They are primary, secondary and tertiary carnivores.",
+          "Writing the chains with the arrows reversed."
+        ],
+        "memory_tip": "Count up from the plant: producer, herbivore, then three ranks of carnivore.",
+        "margin_note": "Number the four trophic levels, then give two or three chains. Two marks, the largest section."
+      },
+      {
+        "id": "s4_parasitic",
+        "kind": "text",
+        "label": "Parasitic food chain",
+        "marks": 1,
+        "mark_note": "Type 2",
+        "lines": [
+          "In the parasitic food chain, the food energy",
+          "passes from large organisms to small",
+          "organisms.",
+          "The first trophic level is occupied by large",
+          "trees. They provide shelter and food to a",
+          "variety of birds, reptiles and mammals.",
+          "These animals form the second trophic level.",
+          "Each of these animals hosts many ecto and",
+          "endo parasites, which form the next level.",
+          "Ex: Tree → birds, lizards, mammals →",
+          "parasites"
+        ],
+        "why": "This chain runs the opposite way in size from the grazing chain — large to small instead of small to large — and that reversal is the single fact the mark is given for.",
+        "common_mistakes": [
+          "Writing that the energy passes from small to large. In this chain it goes from LARGE to small.",
+          "Leaving out the parasites at the end. They are the trophic level the chain is named for."
+        ],
+        "memory_tip": "Grazing goes small to large; parasitic goes large to small. Same arrows, opposite sizes.",
+        "margin_note": "State the direction first, then the three levels, then the example chain."
+      },
+      {
+        "id": "s5_detritus",
+        "kind": "boxed_final",
+        "label": "Detritus food chain and food web",
+        "marks": 1,
+        "mark_note": "Type 3",
+        "lines": [
+          {
+            "text": "Grazing starts alive, detritus starts dead",
+            "style": "boxed"
+          },
+          "The detritus food chain begins with detritus,",
+          "the dead organic matter of leaves, dead",
+          "bodies and the faeces of animals.",
+          "Detritus carries decomposers, which secrete",
+          "enzymes that break it down into simple",
+          "absorbable substances.",
+          "The detritus feeders are earthworms, flies",
+          "and maggots. They form the second trophic",
+          "level.",
+          "Ex: Detritus → earthworms → frogs → snakes",
+          "→ hawks",
+          "Food web: food chains are not isolated. They",
+          "are interconnected and form a web called a",
+          "food web, because omnivores such as man,",
+          "the bear and the crow feed at more than one",
+          "trophic level."
+        ],
+        "why": "The detritus chain is the one that starts with dead matter, and the food web is added at the end because it explains why real chains cross: an omnivore belongs to several chains at once.",
+        "common_mistakes": [
+          "Writing that the detritus chain starts with decomposers. It starts with the DETRITUS itself.",
+          "Leaving out the food web. It is the closing point of this answer.",
+          "Naming a herbivore as an omnivore example. Man, the bear and the crow eat at several levels."
+        ],
+        "memory_tip": "Three starts, three chains: living plant, large tree, dead matter.",
+        "margin_note": "The chain first, then the food web in two lines. Close with the omnivore examples."
+      }
+    ]
+  },
+  "insider_note": "Every arrow in this answer must point FROM the organism eaten TO the organism eating it — a reversed arrow is the commonest way marks are lost in this question."
+}

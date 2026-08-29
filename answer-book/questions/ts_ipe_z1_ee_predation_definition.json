@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_predation_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is predation? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.62, VSAQ 172). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. WORDING: the book defines predation as 'a feeding strategy ... in which predator gets benefited at the cost of the prey'. The word strategy suggests a plan, so this card states the event instead — the predator kills and eats the prey (Rule 41, plain literal language)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Predation is an interaction between two",
+          "different species in which one animal, the",
+          "predator, kills and eats the other, the",
+          "prey.",
+          "The predator is benefited and the prey is",
+          "killed."
+        ],
+        "why": "Predation differs from parasitism in one fact: the prey is killed, not merely harmed. The book calls predation a 'feeding strategy'; this card writes what happens instead, because the mark is for the interaction and not for a plan.",
+        "common_mistakes": [
+          "Writing that the prey is harmed. In predation the prey is KILLED.",
+          "Writing that the predator lives on the prey. That describes a parasite."
+        ],
+        "memory_tip": "Parasite harms and stays; predator kills and leaves.",
+        "margin_note": "One sentence naming the predator and the prey, then one line on who gains."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "The predator kills, the prey is eaten",
+            "style": "boxed"
+          },
+          "Ex: the lion (predator) and the deer (prey).",
+          "Predation keeps the number of prey animals",
+          "under control in an ecosystem."
+        ],
+        "why": "The example is short, so the space left goes to the ecological value of predation, which is the extra point that lifts a one-line answer to two marks.",
+        "common_mistakes": [
+          "Giving Plasmodium in man. That is parasitism, because the host is not killed outright.",
+          "Naming the two animals without saying which is which."
+        ],
+        "memory_tip": "Say the pair with the roles attached: lion is the predator, deer is the prey.",
+        "margin_note": "Name the pair with roles marked, then one line on population control."
+      }
+    ]
+  },
+  "insider_note": "Mark the roles beside the names — lion (predator), deer (prey) — because an unlabelled pair can be read either way."
+}

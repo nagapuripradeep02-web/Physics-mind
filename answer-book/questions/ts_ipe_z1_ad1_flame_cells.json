@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_flame_cells",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the excretory cells of flatworms called? What is the other important function of these specialized cells?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Flame cells",
+      "marks": 1
+    },
+    {
+      "label": "Other function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.53, VSAQ 91). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "text",
+        "label": "The excretory cells",
+        "marks": 1,
+        "why": "The name records what is seen down a microscope, a moving tuft of cilia, so the structure and the name are learnt together.",
+        "common_mistakes": [
+          "Calling them nephridia. Nephridia belong to annelids; flatworms have protonephridia built from flame cells.",
+          "Writing that flame cells are found in roundworms. They belong to the flatworms."
+        ],
+        "memory_tip": "Flat worm, flame cell. The tuft of cilia inside is the flame.",
+        "margin_note": "Give the name, then one line on what the cell looks like.",
+        "mark_note": "Flame cells",
+        "lines": [
+          "The excretory cells of flatworms are called",
+          "flame cells or solenocytes.",
+          "A flame cell is a hollow cell with a tuft of",
+          "cilia inside it.",
+          "The beating cilia look like a flame, and that",
+          "is how the cell got its name.",
+          "Groups of flame cells open into fine tubes",
+          "called protonephridia."
+        ]
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "The other function",
+        "marks": 1,
+        "why": "A flatworm has no other route by which water can leave the body, so the same cilia that drive out the waste also drive out the extra water.",
+        "common_mistakes": [
+          "Writing respiration as the second function. Flatworms exchange gases through the body surface.",
+          "Answering only 'excretion'. The question asks for the OTHER function."
+        ],
+        "memory_tip": "Two jobs, one cell: waste out and water balance.",
+        "margin_note": "Name the second function and say in one line what it means.",
+        "mark_note": "Other function",
+        "lines": [
+          {
+            "text": "Excretion and osmoregulation",
+            "style": "boxed"
+          },
+          "Besides excretion, flame cells carry out",
+          "osmoregulation.",
+          "They drive out the excess water and keep the",
+          "amount of water and salts in the body steady."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The question already gives away the first half, so the mark that decides this answer is the word osmoregulation."
+}

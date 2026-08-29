@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_opioids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write short notes on Opioids.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What opioids are",
+      "marks": 1
+    },
+    {
+      "label": "Morphine",
+      "marks": 2
+    },
+    {
+      "label": "Heroin",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.44, SAQ 47). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What opioids are",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "Opioids are drugs obtained from the poppy plant,",
+          "Papaver somniferum.",
+          "They bind to specific receptors of the central",
+          "nervous system and of the alimentary canal."
+        ],
+        "why": "Both facts are needed before the two named drugs: one plant is the source of the whole group, and the receptors explain why the group acts on the brain and the gut.",
+        "common_mistakes": [
+          "Naming the wrong plant. Opioids come from Papaver somniferum, not from Cannabis sativa.",
+          "Leaving out the receptors. The binding site is part of the definition."
+        ],
+        "memory_tip": "One plant, two receptor sites: poppy, then brain and gut.",
+        "margin_note": "Two lines: the source plant and the receptors. Then take the two drugs one at a time."
+      },
+      {
+        "id": "s2_morphine",
+        "kind": "text",
+        "label": "Morphine",
+        "marks": 2,
+        "mark_note": "Morphine",
+        "lines": [
+          "Morphine is produced from the dried latex of the",
+          "unripe fruits of the poppy plant.",
+          "It is a colourless crystal or a white",
+          "crystalline powder. It is taken orally or by",
+          "injection.",
+          "It is an effective sedative and pain killer, so",
+          "it is used for surgery patients and for people",
+          "who suffer from painful illness."
+        ],
+        "why": "Morphine carries the larger part of this answer because it has a medical use, so its source, its form, how it is taken and what it is used for are all marked.",
+        "common_mistakes": [
+          "Writing that morphine is made from heroin. Heroin is made FROM morphine.",
+          "Leaving out the medical use. The sedative and pain-killing use is part of the mark."
+        ],
+        "memory_tip": "Morphine is the medicine of the group: sedative and pain killer from the dried latex.",
+        "margin_note": "Four facts in three lines: source, form, route, use. Two marks sit here."
+      },
+      {
+        "id": "s3_heroin",
+        "kind": "boxed_final",
+        "label": "Heroin",
+        "marks": 1,
+        "mark_note": "Heroin",
+        "lines": [
+          {
+            "text": "Heroin = diacetyl morphine, or smack",
+            "style": "boxed"
+          },
+          "Heroin is produced from morphine by acetylation.",
+          "Chemically it is diacetyl morphine.",
+          "It is a white bitter powder and is taken by",
+          "snorting or by injection.",
+          "Heroin depresses the body and slows down the",
+          "body functions."
+        ],
+        "why": "Heroin is morphine changed by one chemical step, so writing that step is what shows the two drugs belong to one family rather than being unrelated.",
+        "common_mistakes": [
+          "Writing that heroin comes straight from the poppy plant. It is made from morphine.",
+          "Writing that heroin excites the body. It depresses and slows the body functions."
+        ],
+        "memory_tip": "Add acetyl to morphine and you get heroin, the street name of which is smack.",
+        "margin_note": "The chemical name in the box, then three short lines. One mark."
+      }
+    ]
+  },
+  "insider_note": "'Short notes' still means named headings, so write Morphine and Heroin as separate labelled points."
+}

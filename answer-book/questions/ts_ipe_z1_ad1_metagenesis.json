@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_metagenesis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is metagenesis? Animals belonging to which phylum exhibit metagenesis?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Phylum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.53, VSAQ 90). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What metagenesis is",
+        "marks": 1,
+        "why": "Each phase is named by the kind of reproduction it carries out, so the definition is complete only when both the asexual and the sexual generation are stated.",
+        "common_mistakes": [
+          "Writing only 'alternation of generations'. Say which phase is asexual and which is sexual.",
+          "Calling it metamorphosis. Metamorphosis is a change of form within one animal; metagenesis is an alternation of two generations."
+        ],
+        "memory_tip": "Polyp buds, medusa makes gametes — the two phases follow each other.",
+        "margin_note": "One sentence of definition, then name the two phases. Three lines.",
+        "mark_note": "Definition",
+        "lines": [
+          "Metagenesis is the alternation of an asexual",
+          "phase and a sexual phase in the life cycle of",
+          "an animal.",
+          "The asexual polyp produces medusae by budding.",
+          "The sexual medusa produces the gametes."
+        ]
+      },
+      {
+        "id": "s2_phylum",
+        "kind": "boxed_final",
+        "label": "The phylum",
+        "marks": 1,
+        "why": "Only an animal that has two body forms can alternate them, and the polyp and the medusa are the two body forms of a cnidarian.",
+        "common_mistakes": [
+          "Naming Porifera. Sponges have no medusa, so they show no metagenesis.",
+          "Leaving out the example. One named animal is expected."
+        ],
+        "memory_tip": "Two body forms, so two generations: only Cnidaria has both a polyp and a medusa.",
+        "margin_note": "Name the phylum and give one example. Keep it to three lines.",
+        "mark_note": "Phylum",
+        "lines": [
+          {
+            "text": "Phylum Cnidaria shows metagenesis",
+            "style": "boxed"
+          },
+          "Animals of the phylum Cnidaria show",
+          "metagenesis.",
+          "Example: Obelia. Its fixed polyp colony buds",
+          "off free-swimming medusae, and the medusae",
+          "produce the gametes."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The mark for the phylum is lost more often than the mark for the definition — write the word Cnidaria plainly, and add Obelia beside it."
+}

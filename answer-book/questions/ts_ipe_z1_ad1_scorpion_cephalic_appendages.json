@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_scorpion_cephalic_appendages",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you call the first and second pairs of cephalic appendages of a scorpion?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "First pair",
+      "marks": 1
+    },
+    {
+      "label": "Second pair",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.54, VSAQ 100). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first",
+        "kind": "text",
+        "label": "The first pair",
+        "marks": 1,
+        "why": "The two pairs are named in the order in which they lie from the front of the animal, so counting back from the mouth keeps them in the right order.",
+        "common_mistakes": [
+          "Calling the first pair antennae. Chelicerates have no antennae.",
+          "Writing that the chelicerae are the large pincers. The large pincers are the pedipalps."
+        ],
+        "memory_tip": "Small pincers first (chelicerae), big pincers second (pedipalps).",
+        "margin_note": "Name the pair and add one line on what it does.",
+        "mark_note": "First pair",
+        "lines": [
+          "The prosoma of a scorpion carries six pairs of",
+          "appendages.",
+          "The first pair are the chelicerae.",
+          "They are small and pincer-like, and they tear",
+          "the food before it is taken in."
+        ]
+      },
+      {
+        "id": "s2_second",
+        "kind": "boxed_final",
+        "label": "The second pair",
+        "marks": 1,
+        "why": "The pedipalps are the pair that reaches the prey first, which is why they are the largest appendages on the body.",
+        "common_mistakes": [
+          "Writing walking legs. The walking legs are the third to the sixth pairs.",
+          "Naming only one of the two pairs. Both are asked for."
+        ],
+        "memory_tip": "Six pairs on the prosoma: chelicerae, pedipalps, then four pairs of legs.",
+        "margin_note": "Two names is the whole answer. Two short lines each is enough.",
+        "mark_note": "Second pair",
+        "lines": [
+          {
+            "text": "First: chelicerae · Second: pedipalps",
+            "style": "boxed"
+          },
+          "The second pair are the pedipalps.",
+          "They are large pincers used to catch and hold",
+          "the prey.",
+          "The remaining four pairs are the walking legs."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two names carry the two marks; the sentence on what each pair does is what saves you if one name is misspelt."
+}

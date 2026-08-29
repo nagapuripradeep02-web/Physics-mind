@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_intercalated_discs",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are intercalated discs? What is their significance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Identity",
+      "marks": 1
+    },
+    {
+      "label": "Significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.52, VSAQ 86). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "why": "A disc is a JOIN between two cells, which is why it shows up as a dark line running across the fibre.",
+        "common_mistakes": [
+          "Calling them striations. Striations are the light and dark bands of the fibre; an intercalated disc marks the end of a cell.",
+          "Saying they are found in skeletal muscle. They are found only in cardiac muscle."
+        ],
+        "memory_tip": "Intercalated means placed between: the disc is the wall between two heart muscle cells.",
+        "margin_note": "What they look like and what they actually are. Two lines.",
+        "mark_note": "Identity",
+        "lines": [
+          "Intercalated discs are the dark cross lines",
+          "seen in cardiac muscle.",
+          "They are the junctions where the ends of two",
+          "cardiac muscle cells meet."
+        ]
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Why they matter",
+        "marks": 1,
+        "why": "Without a quick path from cell to cell the chambers could not contract together, so the gap junction is the reason the heart beats as a single unit.",
+        "common_mistakes": [
+          "Writing only that they are dark lines. The gap junctions and the quick spread of the impulse carry this mark."
+        ],
+        "memory_tip": "A gap junction is an open door: the impulse crosses without stopping, so the heart contracts as one.",
+        "margin_note": "Name gap junctions and say what they do. That is the whole second mark.",
+        "mark_note": "Significance",
+        "lines": [
+          {
+            "text": "Gap junctions pass the impulse cell to cell",
+            "style": "boxed"
+          },
+          "The discs carry gap junctions.",
+          "The impulse passes through them from one cell",
+          "to the next without delay, so the whole heart",
+          "muscle contracts together as one unit."
+        ]
+      }
+    ]
+  },
+  "insider_note": "This question is really about the gap junctions — the description of the dark lines is only the first half."
+}

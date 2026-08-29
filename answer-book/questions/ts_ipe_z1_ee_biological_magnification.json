@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_biological_magnification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is biological magnification?",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.61, VSAQ 163). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Biological magnification is the gradual",
+          "increase in the concentration of a pollutant",
+          "at each successive trophic level of a food",
+          "chain.",
+          "It happens because the pollutant is not",
+          "broken down and is not passed out of the",
+          "body."
+        ],
+        "why": "The words successive trophic level are the definition: the pollutant does not simply build up in one animal, it becomes more concentrated at every step UP the chain.",
+        "common_mistakes": [
+          "Writing that the pollutant increases in the water. It increases in the ORGANISMS along the chain.",
+          "Leaving out the reason. The pollutant builds up because the body cannot break it down."
+        ],
+        "memory_tip": "Each level eats many of the level below, so the poison of many bodies ends up in one.",
+        "margin_note": "One sentence for the increase, one for the reason. Use the words trophic level."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "The pollutant rises at every trophic level",
+            "style": "boxed"
+          },
+          "Ex: DDT in an aquatic food chain.",
+          "Its concentration in the water is about",
+          "0.003 ppb.",
+          "In the fish-eating birds at the top of the",
+          "chain it reaches about 5 ppm."
+        ],
+        "why": "The two numbers make the word magnification concrete, and the jump from parts per billion to parts per million is the single fact that shows how large the increase is.",
+        "common_mistakes": [
+          "Giving the numbers without their units. ppb and ppm are what make the jump visible.",
+          "Naming a gas such as carbon dioxide. The standard example is DDT in a water food chain."
+        ],
+        "memory_tip": "0.003 ppb in the water, 5 ppm in the birds: billion becomes million on the way up.",
+        "margin_note": "Name DDT and give both numbers with their units. Four lines are enough."
+      }
+    ]
+  },
+  "insider_note": "The two DDT numbers are what the examiner is looking for, and they must carry their units — ppb in the water and ppm in the birds."
+}

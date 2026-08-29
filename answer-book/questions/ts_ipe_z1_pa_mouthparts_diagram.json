@@ -1,0 +1,615 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_pa_mouthparts_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Periplaneta americana (Zoology)"
+  },
+  "chapter": "Periplaneta americana",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw a neat labelled diagram of the mouthparts of cockroach.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Parts of the mouth",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Named pieces",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.45, SAQ 50). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [AP, TS M-16], [AP-18], [TS M-19] and [AP MAY-17,19]; the last two citations are printed to the right of the diagram on the same question block and are read here as belonging to this question. TEXT BEYOND THE BOOK: the book prints the labelled figure alone with no written answer; the naming lines are authored from the labels the book itself prints. FIGURE SCOPE: the book prints a shaded ventral view; this card draws the same view simplified — labrum, the pair of mandibles, the pair of maxillae with cardo, stipes, galea, lacinia and maxillary palp, the labium with submentum, mentum, prementum, glossa, paraglossa and labial palp, and the hypopharynx in the middle. The book labels 16 pieces; this figure draws 14 — PALPIFER and PALPIGER (the small segments that carry the maxillary and labial palps) are deliberately not drawn, because at exam scale they crowd the palp bases. A teacher who needs all 16 marked can add them at the palp bases."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Periplaneta americana · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts",
+        "kind": "text",
+        "label": "Parts of the mouth",
+        "marks": 1,
+        "mark_note": "Parts",
+        "lines": [
+          "The mouthparts of the cockroach are of the",
+          "biting and chewing type.",
+          "They are the labrum, one pair of mandibles,",
+          "one pair of maxillae, the labium and the",
+          "hypopharynx.",
+          "The space they enclose in front of the mouth",
+          "is the pre-oral cavity."
+        ],
+        "why": "Five names in a fixed order, front to back, tell the examiner what the drawing will show and stop the paired pieces being drawn singly.",
+        "common_mistakes": [
+          "Writing one mandible and one maxilla. Both are PAIRED; the labrum, labium and hypopharynx are single.",
+          "Calling the mouthparts the sucking type. The cockroach bites and chews."
+        ],
+        "memory_tip": "Front to back: upper lip, jaws, second jaws, lower lip, and the tongue in the middle.",
+        "margin_note": "Type of mouthparts, then the five names in order. Three short lines are enough."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — mouthparts",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "pa_mouthparts",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — labrum and the pair of mandibles"
+            },
+            {
+              "type": "stroke",
+              "id": "labrum",
+              "d": "M 232 30 C 236 20 284 20 288 30 C 290 46 280 58 260 60 C 240 58 230 46 232 30 Z",
+              "ms": 2190
+            },
+            {
+              "type": "stroke",
+              "id": "mandible_l",
+              "d": "M 226 70 C 204 68 192 82 194 96 C 196 110 210 118 226 112 L 220 104 L 226 96 L 220 88 L 226 80 Z",
+              "ms": 1990
+            },
+            {
+              "type": "stroke",
+              "id": "mandible_r",
+              "d": "M 294 70 C 316 68 328 82 326 96 C 324 110 310 118 294 112 L 300 104 L 294 96 L 300 88 L 294 80 Z",
+              "ms": 1990
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the hypopharynx in the middle"
+            },
+            {
+              "type": "stroke",
+              "id": "hypopharynx",
+              "d": "M 250 78 C 246 96 248 118 254 132 C 258 137 262 137 266 132 C 272 118 274 96 270 78 C 266 71 254 71 250 78 Z",
+              "ms": 2120
+            },
+            {
+              "type": "stroke",
+              "id": "hypo_line",
+              "d": "M 260 88 L 260 126",
+              "ms": 540,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the pair of maxillae: cardo, stipes, galea, lacinia"
+            },
+            {
+              "type": "stroke",
+              "id": "cardo_l",
+              "d": "M 176 258 L 202 252 L 206 230 L 178 234 Z",
+              "ms": 1450
+            },
+            {
+              "type": "stroke",
+              "id": "stipes_l",
+              "d": "M 178 234 L 206 230 L 210 190 L 176 194 Z",
+              "ms": 2040
+            },
+            {
+              "type": "stroke",
+              "id": "galea_l",
+              "d": "M 162 152 A 14 34 0 1 0 190 152 A 14 34 0 1 0 162 152",
+              "ms": 2250
+            },
+            {
+              "type": "stroke",
+              "id": "lacinia_l",
+              "d": "M 195 154 A 11 32 0 1 0 217 154 A 11 32 0 1 0 195 154",
+              "ms": 2050
+            },
+            {
+              "type": "stroke",
+              "id": "lacinia_teeth_l",
+              "d": "M 200 126 L 197 116 M 210 127 L 213 117",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cardo_r",
+              "d": "M 344 258 L 318 252 L 314 230 L 342 234 Z",
+              "ms": 1450
+            },
+            {
+              "type": "stroke",
+              "id": "stipes_r",
+              "d": "M 342 234 L 314 230 L 310 190 L 344 194 Z",
+              "ms": 2040
+            },
+            {
+              "type": "stroke",
+              "id": "galea_r",
+              "d": "M 358 152 A 14 34 -0 1 1 330 152 A 14 34 -0 1 1 358 152",
+              "ms": 2250
+            },
+            {
+              "type": "stroke",
+              "id": "lacinia_r",
+              "d": "M 325 154 A 11 32 -0 1 1 303 154 A 11 32 -0 1 1 325 154",
+              "ms": 2050
+            },
+            {
+              "type": "stroke",
+              "id": "lacinia_teeth_r",
+              "d": "M 320 126 L 323 116 M 310 127 L 307 117",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the jointed maxillary palps"
+            },
+            {
+              "type": "stroke",
+              "id": "mxpalp_a_l",
+              "d": "M 178.3 195.8 L 176 193.5 L 172.9 190.4 L 169.3 186.7 L 165.6 182.7 L 162 178.6 L 158.9 174.5 L 156.1 170.3 L 153.2 165.7 L 150.5 160.9 L 148 156 L 145.7 150.9 L 143.6 145.9 L 141.8 140.7 L 140.2 135.1 L 138.7 129.5 L 137.5 123.9 L 136.6 118.5 L 136 113.5 L 135.7 108.8 L 135.8 104.3 L 136.1 99.8 L 136.6 95.5 L 137.2 91.2 L 137.9 87.1 L 138.7 83 L 139.7 79 L 140.9 75 L 142 71.3 L 143 68.1 L 143.7 65.7",
+              "ms": 2050
+            },
+            {
+              "type": "stroke",
+              "id": "mxpalp_b_l",
+              "d": "M 169.7 204.2 L 167.5 201.9 L 164.4 198.8 L 160.7 195 L 156.7 190.8 L 152.7 186.2 L 149.1 181.5 L 146 176.7 L 142.9 171.8 L 140 166.6 L 137.2 161.2 L 134.7 155.7 L 132.4 150.1 L 130.4 144.3 L 128.6 138.3 L 127 132.2 L 125.7 126.2 L 124.7 120.2 L 124 114.5 L 123.7 109 L 123.8 103.7 L 124.2 98.7 L 124.7 93.9 L 125.4 89.3 L 126.1 84.9 L 127 80.4 L 128.1 75.8 L 129.4 71.5 L 130.6 67.7 L 131.6 64.5 L 132.3 62.3",
+              "ms": 2230
+            },
+            {
+              "type": "stroke",
+              "id": "mxpalp_joints_l",
+              "d": "M 149.1 181.5 L 158.9 174.5 M 132.4 150.1 L 143.6 145.9 M 124 114.5 L 136 113.5 M 126.1 84.9 L 137.9 87.1",
+              "ms": 690,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "mxpalp_a_r",
+              "d": "M 341.7 195.8 L 344 193.5 L 347.1 190.4 L 350.7 186.7 L 354.4 182.7 L 358 178.6 L 361.1 174.5 L 363.9 170.3 L 366.8 165.7 L 369.5 160.9 L 372 156 L 374.3 150.9 L 376.4 145.9 L 378.2 140.7 L 379.8 135.1 L 381.3 129.5 L 382.5 123.9 L 383.4 118.5 L 384 113.5 L 384.3 108.8 L 384.2 104.3 L 383.9 99.8 L 383.4 95.5 L 382.8 91.2 L 382.1 87.1 L 381.3 83 L 380.3 79 L 379.1 75 L 378 71.3 L 377 68.1 L 376.3 65.7",
+              "ms": 2050
+            },
+            {
+              "type": "stroke",
+              "id": "mxpalp_b_r",
+              "d": "M 350.3 204.2 L 352.5 201.9 L 355.6 198.8 L 359.3 195 L 363.3 190.8 L 367.3 186.2 L 370.9 181.5 L 374 176.7 L 377.1 171.8 L 380 166.6 L 382.8 161.2 L 385.3 155.7 L 387.6 150.1 L 389.6 144.3 L 391.4 138.3 L 393 132.2 L 394.3 126.2 L 395.3 120.2 L 396 114.5 L 396.3 109 L 396.2 103.7 L 395.8 98.7 L 395.3 93.9 L 394.6 89.3 L 393.9 84.9 L 393 80.4 L 391.9 75.8 L 390.6 71.5 L 389.4 67.7 L 388.4 64.5 L 387.7 62.3",
+              "ms": 2230
+            },
+            {
+              "type": "stroke",
+              "id": "mxpalp_joints_r",
+              "d": "M 370.9 181.5 L 361.1 174.5 M 387.6 150.1 L 376.4 145.9 M 396 114.5 L 384 113.5 M 393.9 84.9 L 382.1 87.1",
+              "ms": 690,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the labium and its palps"
+            },
+            {
+              "type": "stroke",
+              "id": "submentum",
+              "d": "M 226 344 L 294 344 L 300 314 L 220 314 Z",
+              "ms": 2990
+            },
+            {
+              "type": "stroke",
+              "id": "mentum",
+              "d": "M 220 314 L 300 314 L 296 284 L 224 284 Z",
+              "ms": 3040
+            },
+            {
+              "type": "stroke",
+              "id": "prementum",
+              "d": "M 224 284 L 296 284 L 292 250 L 228 250 Z",
+              "ms": 2920
+            },
+            {
+              "type": "stroke",
+              "id": "glossa_l",
+              "d": "M 242 234 A 8 16 0 1 0 258 234 A 8 16 0 1 0 242 234",
+              "ms": 1110
+            },
+            {
+              "type": "stroke",
+              "id": "glossa_r",
+              "d": "M 278 234 A 8 16 -0 1 1 262 234 A 8 16 -0 1 1 278 234",
+              "ms": 1110
+            },
+            {
+              "type": "stroke",
+              "id": "paraglossa_l",
+              "d": "M 218 230 A 10 20 0 1 0 238 230 A 10 20 0 1 0 218 230",
+              "ms": 1380
+            },
+            {
+              "type": "stroke",
+              "id": "paraglossa_r",
+              "d": "M 302 230 A 10 20 -0 1 1 282 230 A 10 20 -0 1 1 302 230",
+              "ms": 1380
+            },
+            {
+              "type": "stroke",
+              "id": "lbpalp_a_l",
+              "d": "M 223.1 261.3 L 221.2 262.5 L 218.4 264.2 L 215 266.2 L 211.3 268.5 L 207.6 271.2 L 204.3 273.9 L 201.4 276.7 L 198.7 279.7 L 196.1 282.8 L 193.6 286.2 L 191.2 289.7 L 189.1 293.5 L 187.1 297.9 L 185.4 302.7 L 183.9 307.5 L 182.6 312.1 L 181.5 315.8 L 180.7 318.4",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "lbpalp_b_l",
+              "d": "M 228.9 270.7 L 226.8 272 L 224 273.6 L 220.8 275.6 L 217.4 277.7 L 214.3 279.9 L 211.7 282.1 L 209.3 284.4 L 206.9 287 L 204.7 289.7 L 202.6 292.5 L 200.6 295.5 L 198.9 298.5 L 197.3 302 L 195.8 306.2 L 194.4 310.7 L 193.1 315.1 L 192.1 318.8 L 191.3 321.6",
+              "ms": 940
+            },
+            {
+              "type": "stroke",
+              "id": "lbpalp_joints_l",
+              "d": "M 208 272 L 216 282 M 196 288 L 204 300",
+              "ms": 390,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "lbpalp_a_r",
+              "d": "M 296.9 261.3 L 298.8 262.5 L 301.6 264.2 L 305 266.2 L 308.7 268.5 L 312.4 271.2 L 315.7 273.9 L 318.6 276.7 L 321.3 279.7 L 323.9 282.8 L 326.4 286.2 L 328.8 289.7 L 330.9 293.5 L 332.9 297.9 L 334.6 302.7 L 336.1 307.5 L 337.4 312.1 L 338.5 315.8 L 339.3 318.4",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "lbpalp_b_r",
+              "d": "M 291.1 270.7 L 293.2 272 L 296 273.6 L 299.2 275.6 L 302.6 277.7 L 305.7 279.9 L 308.3 282.1 L 310.7 284.4 L 313.1 287 L 315.3 289.7 L 317.4 292.5 L 319.4 295.5 L 321.1 298.5 L 322.7 302 L 324.2 306.2 L 325.6 310.7 L 326.9 315.1 L 327.9 318.8 L 328.7 321.6",
+              "ms": 940
+            },
+            {
+              "type": "stroke",
+              "id": "lbpalp_joints_r",
+              "d": "M 312 272 L 304 282 M 324 288 L 316 300",
+              "ms": 390,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_mxpalp",
+              "x": 6,
+              "y": 40,
+              "text": "Maxillary palp",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mxpalp",
+              "d": "M 109.7 36 L 137 66",
+              "ms": 580,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_lacinia",
+              "x": 6,
+              "y": 96,
+              "text": "Lacinia",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lacinia",
+              "d": "M 61 92 L 204 124",
+              "ms": 2090,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_galea",
+              "x": 6,
+              "y": 144,
+              "text": "Galea",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_galea",
+              "d": "M 49.2 140 L 164 152",
+              "ms": 1650,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_stipes",
+              "x": 6,
+              "y": 192,
+              "text": "Stipes",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_stipes",
+              "d": "M 55.4 188 L 180 206",
+              "ms": 1800,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cardo",
+              "x": 6,
+              "y": 236,
+              "text": "Cardo",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cardo",
+              "d": "M 51.3 232 L 182 244",
+              "ms": 1870,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_lbpalp",
+              "x": 6,
+              "y": 288,
+              "text": "Labial palp",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lbpalp",
+              "d": "M 89.4 284 L 194 296",
+              "ms": 1500,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_submentum",
+              "x": 6,
+              "y": 332,
+              "text": "Submentum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_submentum",
+              "d": "M 97.1 328 L 234 332",
+              "ms": 1960,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_labrum",
+              "x": 400,
+              "y": 40,
+              "text": "Labrum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_labrum",
+              "d": "M 396 36 L 286 34",
+              "ms": 1570,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_mandible",
+              "x": 400,
+              "y": 88,
+              "text": "Mandible",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mandible",
+              "d": "M 396 84 L 300 88",
+              "ms": 1370,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_hypopharynx",
+              "x": 400,
+              "y": 136,
+              "text": "Hypopharynx",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_hypopharynx",
+              "d": "M 396 132 L 272 116",
+              "ms": 1790,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_paraglossa",
+              "x": 400,
+              "y": 184,
+              "text": "Paraglossa",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_paraglossa",
+              "d": "M 396 180 L 300 222",
+              "ms": 1500,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_glossa",
+              "x": 400,
+              "y": 228,
+              "text": "Glossa",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_glossa",
+              "d": "M 396 224 L 277 232",
+              "ms": 1700,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_prementum",
+              "x": 400,
+              "y": 272,
+              "text": "Prementum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_prementum",
+              "d": "M 396 268 L 294 266",
+              "ms": 1460,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_mentum",
+              "x": 400,
+              "y": 320,
+              "text": "Mentum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mentum",
+              "d": "M 396 316 L 298 300",
+              "ms": 1420,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "The figure is drawn as a symmetrical spread: the single pieces sit on the middle line and the paired pieces sit outside them, so the position of a piece in the drawing already tells the student which name it takes.",
+        "common_mistakes": [
+          "Drawing the labium above and the labrum below. The labrum is the UPPER lip and is drawn at the top.",
+          "Leaving the hypopharynx out. It is the middle piece between the maxillae.",
+          "Giving the maxilla and the labium the same palp name. One is the maxillary palp, the other the labial palp."
+        ],
+        "memory_tip": "Draw the middle line first: labrum at the top, hypopharynx in the middle, labium at the bottom. Then add the mandibles and maxillae as matching pairs on both sides.",
+        "margin_note": "Both marks are in the labels — labrum, mandible, hypopharynx, galea, lacinia, maxillary palp, glossa, paraglossa, labial palp."
+      },
+      {
+        "id": "s3_pieces",
+        "kind": "boxed_final",
+        "label": "Named pieces",
+        "marks": 1,
+        "mark_note": "Names",
+        "lines": [
+          {
+            "text": "Labrum, mandibles, maxillae, labium, hypopharynx",
+            "style": "boxed"
+          },
+          "The labrum is the upper lip and the labium",
+          "is the lower lip.",
+          "Each mandible is a hard toothed jaw that cuts",
+          "and grinds the food.",
+          "Each maxilla has a cardo and a stipes, and",
+          "carries the galea, the lacinia and a",
+          "maxillary palp.",
+          "The labium has a submentum, a mentum and a",
+          "prementum, and carries the glossa, the",
+          "paraglossa and a labial palp.",
+          "The hypopharynx is the median tongue. The",
+          "salivary duct opens at its base."
+        ],
+        "why": "The small pieces are easier to remember as two matching sets: the maxilla and the labium are built the same way, each with a base, two lobes and a palp.",
+        "common_mistakes": [
+          "Mixing up galea and lacinia with glossa and paraglossa. The first pair belongs to the maxilla, the second to the labium.",
+          "Writing that the mandibles carry palps. Only the maxillae and the labium carry palps."
+        ],
+        "memory_tip": "Maxilla and labium match: base, two lobes, one palp each. Galea and lacinia on the maxilla, glossa and paraglossa on the labium.",
+        "margin_note": "One line per piece, in the same order as the drawing. Do not repeat the labels already on the figure at length."
+      }
+    ]
+  },
+  "insider_note": "This is a figure question, so the credit sits almost entirely in the labels — the pieces most often missed are the hypopharynx and the two palps, and an unlabelled neat drawing scores close to nothing."
+}

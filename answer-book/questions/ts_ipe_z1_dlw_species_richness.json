@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_species_richness",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define species richness.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Species-area relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.50, VSAQ 66). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: the line separating species richness from species diversity is standard and is not printed in this book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What species richness is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Species richness is a count and nothing more, so the definition must say number of species and name the area it is counted in.",
+        "common_mistakes": [
+          "Writing that species richness is the same as species diversity. Richness counts species only; diversity also takes in how many individuals each species has.",
+          "Leaving out the area. Richness is always a number per unit area."
+        ],
+        "memory_tip": "Rich means how many: species richness is a head count of species in a given area.",
+        "margin_note": "One sentence. Name the number and the unit area.",
+        "lines": [
+          "Species richness is the number of species",
+          "present per unit area.",
+          "The more species an area holds, the greater",
+          "its species richness."
+        ]
+      },
+      {
+        "id": "s2_relation",
+        "kind": "equation",
+        "label": "The species-area relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "why": "The relation between the number of species and the area plots as a straight line on a log scale, so the equation is that straight line written out, with Z as its slope.",
+        "common_mistakes": [
+          "Writing the letters without saying what they stand for. Each symbol carries part of this mark.",
+          "Reading Z as the area. Z is the slope of the line; A is the area."
+        ],
+        "memory_tip": "S for species, A for area, Z for the slope of the line joining them.",
+        "margin_note": "The equation on its own line, then one short line for each letter.",
+        "lines": [
+          "Species richness rises with the area studied.",
+          {
+            "text": "log S = log C + Z log A",
+            "style": "eq"
+          },
+          "S = species richness",
+          "A = area",
+          "Z = slope of the line (regression coefficient)",
+          "C = Y-intercept"
+        ]
+      }
+    ]
+  },
+  "insider_note": "Write the species-area equation even though the question only says 'define' — the book's answer prints it, and the examiner expects every letter to be explained."
+}

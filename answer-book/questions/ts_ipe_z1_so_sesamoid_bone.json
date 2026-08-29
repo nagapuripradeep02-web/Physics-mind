@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_sesamoid_bone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a Sesamoid bone? Give an example.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.52, VSAQ 83). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "why": "The name records where the bone forms, not what it looks like, so the definition has to name the tendon.",
+        "common_mistakes": [
+          "Calling it a bone of the skull or of the limb. A sesamoid bone lies inside a tendon.",
+          "Writing that it is a cartilage. It is a bone, formed by ossification."
+        ],
+        "memory_tip": "Sesamoid bones are tendon bones: the tendon itself turns to bone where it rubs over a joint.",
+        "margin_note": "One sentence. Say tendon, and say ossification.",
+        "mark_note": "Definition",
+        "lines": [
+          "A sesamoid bone is a small bone that lies",
+          "inside a tendon.",
+          "It is formed by ossification of the tendon",
+          "where the tendon passes over a joint."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "why": "The patella is the example every paper expects, and saying which tendon holds it shows the definition was understood.",
+        "common_mistakes": [
+          "Giving no example. The patella carries the second mark."
+        ],
+        "memory_tip": "Patella is the knee cap, sitting in the tendon in front of the knee.",
+        "margin_note": "Name the patella. One extra line placing it is enough.",
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Patella (knee cap)",
+            "style": "boxed"
+          },
+          "Example: the patella, or knee cap.",
+          "It lies in the tendon of the thigh muscle, in",
+          "front of the knee joint."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Half the marks are the single word patella, so write it first and then go back and finish the definition."
+}

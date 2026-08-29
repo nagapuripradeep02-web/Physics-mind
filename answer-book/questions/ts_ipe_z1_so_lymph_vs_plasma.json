@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_lymph_vs_plasma",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is lymph? How does it differ from plasma?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.63, VSAQ 173). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What lymph is",
+        "marks": 1,
+        "why": "Lymph is blood plasma that has already left the capillaries, so saying where it comes from explains everything that is missing from it.",
+        "common_mistakes": [
+          "Calling lymph a part of blood. It flows in its own vessels, not in the blood vessels.",
+          "Writing that it is red. Lymph is colourless."
+        ],
+        "memory_tip": "Lymph is the fluid that leaked out of the blood and is on its way back.",
+        "margin_note": "Where it is and where it comes from. Two or three lines.",
+        "mark_note": "Definition",
+        "lines": [
+          "Lymph is the colourless interstitial fluid that",
+          "flows through the lymphatic vessels.",
+          "It is formed from the fluid that leaves the",
+          "blood capillaries into the tissue spaces.",
+          "It carries lymphocytes."
+        ]
+      },
+      {
+        "id": "s2_difference",
+        "kind": "boxed_final",
+        "label": "How it differs from plasma",
+        "marks": 1,
+        "why": "Only small molecules cross the capillary wall, so the cells and the large proteins stay behind in the blood, and that is the whole difference.",
+        "common_mistakes": [
+          "Writing that lymph has no cells at all. It carries lymphocytes.",
+          "Saying lymph and plasma are the same. Lymph lacks the red cells, platelets and large proteins."
+        ],
+        "memory_tip": "Whatever is too big to cross the capillary wall stays in the plasma: red cells, platelets, large proteins.",
+        "margin_note": "Three things missing and one thing present. Boxing the list makes it quick to read.",
+        "mark_note": "Difference",
+        "lines": [
+          {
+            "text": "No red cells, no platelets, few big proteins",
+            "style": "boxed"
+          },
+          "Lymph has no red blood cells and no platelets.",
+          "It carries much less protein than plasma,",
+          "because the large plasma proteins cannot pass",
+          "through the capillary wall.",
+          "Lymphocytes are the cells it does carry."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The three missing items are the marked list — red blood cells, platelets and large plasma proteins — and lymphocytes are the one thing that must NOT be missing."
+}

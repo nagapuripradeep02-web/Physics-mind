@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_parasitism_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define parasitism and justify this term.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Justification",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.58, VSAQ 131). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Parasitism is a close association between two",
+          "organisms of different species in which one, the",
+          "parasite, is benefited and the other, the host,",
+          "is harmed."
+        ],
+        "why": "The definition has three parts — two different species, one benefited, one harmed — and a sentence that misses any one of them is not the definition the examiner is marking.",
+        "common_mistakes": [
+          "Writing only that one organism is benefited. The harm to the host is half the definition.",
+          "Calling it an association between two organisms of the SAME species."
+        ],
+        "memory_tip": "Two species, one gains, one is harmed. Miss the harm and it becomes commensalism.",
+        "margin_note": "One full sentence carrying all three parts. Do not start the example before the definition is complete."
+      },
+      {
+        "id": "s2_justify",
+        "kind": "boxed_final",
+        "label": "Justification",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Plasmodium: parasite gains, host is harmed",
+            "style": "boxed"
+          },
+          "Plasmodium vivax lives inside the liver cells",
+          "and the red blood cells of man.",
+          "It takes its food from the host and causes",
+          "malaria.",
+          "The parasite is benefited and the host is",
+          "harmed, so the association is parasitism."
+        ],
+        "why": "A justification is not a second definition: it names one real pair and shows that in that pair one side gains and the other side is damaged.",
+        "common_mistakes": [
+          "Naming the example but not saying who gains and who is harmed. The justification is the second half.",
+          "Writing 'Plasmodium' alone. Name the host as well."
+        ],
+        "memory_tip": "Name the pair, then say who gains and who is harmed in that same pair.",
+        "margin_note": "One named pair and two short lines of justification. Three lines are enough for the second mark."
+      }
+    ]
+  },
+  "insider_note": "The word 'justify' is the mark: a correct definition with no worked example scores only half."
+}

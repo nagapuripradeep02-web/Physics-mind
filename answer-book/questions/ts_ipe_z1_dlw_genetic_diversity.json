@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_genetic_diversity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is genetic diversity and what are the different types of genetic diversity?",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    },
+    {
+      "label": "Types of genetic diversity",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.63, Star Question 177). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book heads its three points as 'types of genetic diversity'; they are the three ways genetic diversity within a species is counted, and the card presents them that way while keeping the question's own word 'types'. This question is printed in the Star Questions Plus pages under the SAQ heading for Diversity of Living World, so it is authored at 4 marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Diversity of Living World (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What genetic diversity is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "The genes of one species are not the same everywhere it lives, and that variation is what lets the species adapt when its conditions change.",
+        "common_mistakes": [
+          "Writing that genetic diversity is the number of species. That is species diversity; genetic diversity is inside one species.",
+          "Writing that all members of a species carry the same genes. They do not, and that variation is the whole point."
+        ],
+        "memory_tip": "Three levels of biodiversity: genes, species, ecosystems. Genetic diversity is the level inside one species.",
+        "margin_note": "One sentence of definition and one on why a wide range raises it.",
+        "lines": [
+          "Genetic diversity is the diversity of genes",
+          "within a single species.",
+          "It is the lowest of the three levels of",
+          "biodiversity — genetic, species and",
+          "ecological.",
+          "A species spread over a wide range of areas",
+          "usually shows high genetic diversity, because",
+          "each population becomes adapted to its own",
+          "conditions."
+        ]
+      },
+      {
+        "id": "s2_examples",
+        "kind": "text",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "why": "Both examples show the same thing measured in different ways — one by counting varieties, the other by measuring how much of a chemical each population makes.",
+        "common_mistakes": [
+          "Naming the examples without saying what varies. The variation, not the plant, is the answer.",
+          "Writing that the rice strains are different species. They are strains of one species."
+        ],
+        "memory_tip": "Rice counts the strains; Rauwolfia measures the reserpine.",
+        "margin_note": "Two examples with the variation named in each. One mark.",
+        "lines": [
+          "Example 1: India has more than 50,000",
+          "genetically different strains of rice.",
+          "Example 2: Rauwolfia vomitoria is a medicinal",
+          "plant that grows in the Himalayas.",
+          "It produces the drug reserpine, which is used",
+          "to treat high blood pressure.",
+          "The strength and the amount of reserpine",
+          "differ from one growing region to another.",
+          "That difference is genetic diversity within",
+          "one species."
+        ]
+      },
+      {
+        "id": "s3_types",
+        "kind": "boxed_final",
+        "label": "Types of genetic diversity",
+        "marks": 2,
+        "mark_note": "Types",
+        "why": "An allele is one form of a gene, so counting how many forms exist and how common each one is measures the variation directly.",
+        "common_mistakes": [
+          "Confusing alleles with genes. An allele is one form of a gene, and one gene may have several alleles.",
+          "Leaving out frequency. Two populations with the same alleles can still differ in how common each allele is."
+        ],
+        "memory_tip": "How wide the range, how many alleles, and how often each allele appears.",
+        "margin_note": "Three numbered points with one line each. Two marks, so do not shorten this.",
+        "lines": [
+          {
+            "text": "Range of area, number of alleles, frequency",
+            "style": "boxed"
+          },
+          "Genetic diversity within a species is counted",
+          "in three ways:",
+          "1) The range of areas over which the species",
+          "is spread. A wider range gives more variation",
+          "in the genes.",
+          "2) The number of different alleles present in",
+          "the genes of the species. An allele is one",
+          "form of a gene.",
+          "3) The frequency with which each of those",
+          "alleles appears in the population.",
+          "Together these decide how much genetic",
+          "variation a species carries."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The two examples — 50,000 rice strains and the reserpine of Rauwolfia — are what the examiner ticks first, so write them with the variation named, not just the two plant names."
+}

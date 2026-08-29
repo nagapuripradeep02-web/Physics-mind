@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_strongest_cartilage",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the strongest cartilage? In which regions of the human body do you find it?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name",
+      "marks": 1
+    },
+    {
+      "label": "Regions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.52, VSAQ 81). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "text",
+        "label": "The strongest cartilage",
+        "marks": 1,
+        "why": "Strength in cartilage comes from collagen, so naming the thick fibre bundles explains the answer instead of only stating it.",
+        "common_mistakes": [
+          "Naming hyaline cartilage. Hyaline is the weakest and the commonest.",
+          "Naming elastic cartilage. Elastic cartilage is springy, not the strongest."
+        ],
+        "memory_tip": "Fibrous means fibres, and fibres mean strength. Hyaline is the weakest, elastic is the springy one.",
+        "margin_note": "Two words are the mark — fibrous cartilage. Add one line on why.",
+        "mark_note": "Name",
+        "lines": [
+          "Fibrous cartilage is the strongest cartilage.",
+          "Its matrix holds thick bundles of collagen",
+          "fibres, and those give it the strength.",
+          "It has no perichondrium."
+        ]
+      },
+      {
+        "id": "s2_regions",
+        "kind": "boxed_final",
+        "label": "Where it is found",
+        "marks": 1,
+        "why": "Both places carry heavy pressure all day, which is why the strongest cartilage is placed there.",
+        "common_mistakes": [
+          "Giving the pinna or the epiglottis. Those are elastic cartilage."
+        ],
+        "memory_tip": "Both places take the body's weight: the discs of the spine and the joint of the hip bones.",
+        "margin_note": "Two places carry this mark. Name both.",
+        "mark_note": "Regions",
+        "lines": [
+          {
+            "text": "Intervertebral discs and pubic symphysis",
+            "style": "boxed"
+          },
+          "It is found in the intervertebral discs",
+          "between the vertebrae.",
+          "It is also found at the pubic symphysis of the",
+          "pelvic girdle."
+        ]
+      }
+    ]
+  },
+  "insider_note": "This is a two-part question worth one mark each, so a paper that names fibrous cartilage but no region gets exactly half."
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_biogenesis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is biogenesis?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Meaning",
+      "marks": 1
+    },
+    {
+      "label": "What it states",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.49, VSAQ 60). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR: the book calls biogenesis 'a theory of evolution'. It is not a theory of evolution — it is the principle that living organisms arise only from pre-existing living organisms, established against abiogenesis (spontaneous generation) by the experiments of Redi and Pasteur. The card states it correctly and the book's wording is recorded in the step's `why`. ADDED BEYOND THE BOOK: the naming of abiogenesis and of Louis Pasteur is standard and is not printed in this book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "What biogenesis means",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "why": "The word carries the meaning: bio means life and genesis means origin, so biogenesis is about where a living thing comes from. NOTE: this book calls biogenesis 'a theory of evolution'; it is not one, and the card states it as the principle that living things come only from living things.",
+        "common_mistakes": [
+          "Calling biogenesis a theory of evolution. It is about the origin of a living organism, not about how species change.",
+          "Mixing it with abiogenesis, which is the opposite idea that living things arise from non-living matter."
+        ],
+        "memory_tip": "Bio means life and genesis means origin: biogenesis = life from life.",
+        "margin_note": "One sentence of meaning plus the short phrase. Two or three lines.",
+        "lines": [
+          "Biogenesis is the principle that a living",
+          "organism arises only from another living",
+          "organism that already exists.",
+          "It is stated in short as 'life begets life',",
+          "that is, life comes from life."
+        ]
+      },
+      {
+        "id": "s2_states",
+        "kind": "boxed_final",
+        "label": "What it states",
+        "marks": 1,
+        "mark_note": "Statement",
+        "why": "The second mark is for the contrast: biogenesis is only clear against abiogenesis, the idea it replaced.",
+        "common_mistakes": [
+          "Writing that non-living matter can produce living beings. That is abiogenesis, the opposite idea."
+        ],
+        "memory_tip": "Biogenesis and abiogenesis are opposites: 'a' means not, so abiogenesis is life NOT from life.",
+        "margin_note": "One line on what it states and one on the opposite idea. Do not write a paragraph.",
+        "lines": [
+          {
+            "text": "Living beings come only from living beings",
+            "style": "boxed"
+          },
+          "Living organisms are produced from other",
+          "living organisms and never from non-living",
+          "matter.",
+          "This replaced abiogenesis, the older idea that",
+          "living things arose from non-living matter.",
+          "The experiments of Louis Pasteur supported",
+          "biogenesis."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The examiner wants the two ideas separated — say clearly that living things come only from living things, and name abiogenesis as the opposite idea."
+}

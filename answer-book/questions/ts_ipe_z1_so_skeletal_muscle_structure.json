@@ -1,0 +1,452 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_skeletal_muscle_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the structure of a skeletal muscle.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identity",
+      "marks": 1
+    },
+    {
+      "label": "The three sheaths",
+      "marks": 1
+    },
+    {
+      "label": "The muscle fibre",
+      "marks": 1
+    },
+    {
+      "label": "Bands and properties",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.32, SAQ 19). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. FIGURE SCOPE: the question does not ask for a diagram and this book prints none, so the muscle-to-fascicle-to-fibre drawing is authored as a 0-mark study figure, not a mark-bearing step."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "text",
+        "label": "What a skeletal muscle is",
+        "marks": 1,
+        "why": "The name says where the muscle is attached, and the tendon is the structure that makes the attachment, so both come first.",
+        "common_mistakes": [
+          "Calling the fibres branched. Skeletal muscle fibres are unbranched; cardiac fibres are branched.",
+          "Writing that the muscle is attached to bone by a ligament. A ligament joins bone to bone."
+        ],
+        "memory_tip": "Skeletal muscle: attached to the skeleton, by a tendon, and built of long unbranched fibres.",
+        "margin_note": "Where it is attached, how it is attached, what it is made of. Three lines.",
+        "mark_note": "Identity",
+        "lines": [
+          "Skeletal muscles are the muscles attached to the",
+          "bones of the skeleton.",
+          "They are attached to bones by tendons.",
+          "A skeletal muscle is built of many long,",
+          "cylindrical, unbranched muscle fibres."
+        ]
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — muscle, fascicle, fibre",
+        "marks": 0,
+        "why": "The three sheaths are almost impossible to keep apart in words alone; drawing them once as one inside another fixes which sheath wraps a fibre, which wraps a bundle and which wraps the whole muscle.",
+        "common_mistakes": [
+          "Drawing the perimysium round a single fibre. It wraps a whole fascicle.",
+          "Leaving the tendon out. The three sheaths join at the end of the muscle to form it."
+        ],
+        "memory_tip": "Draw from the inside out: fibre, then bundle, then whole muscle, with a sheath at each step.",
+        "margin_note": "The question does not ask for a diagram, so it earns no mark here. Drawing it is the quickest way to fix the three sheaths in order.",
+        "figure": {
+          "id": "so_skeletal_muscle",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the bone and the tendon"
+            },
+            {
+              "type": "stroke",
+              "id": "bone",
+              "d": "M 210 94 L 184 94 A 15 15 0 0 0 184 126 L 210 126",
+              "ms": 1460
+            },
+            {
+              "type": "stroke",
+              "id": "bone_cut",
+              "d": "M 210 94 L 210 126",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "tendon_top",
+              "d": "M 210 106 L 244 104",
+              "ms": 490
+            },
+            {
+              "type": "stroke",
+              "id": "tendon_bot",
+              "d": "M 210 118 L 244 120",
+              "ms": 490
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the muscle belly inside the epimysium"
+            },
+            {
+              "type": "stroke",
+              "id": "belly_top",
+              "d": "M 244 104 C 276 62 364 62 396 106",
+              "ms": 2440
+            },
+            {
+              "type": "stroke",
+              "id": "belly_bot",
+              "d": "M 244 120 C 276 158 364 158 396 114",
+              "ms": 2420
+            },
+            {
+              "type": "stroke",
+              "id": "belly_cap",
+              "d": "M 396 106 C 404 109 404 111 396 114",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — three fascicles inside the muscle"
+            },
+            {
+              "type": "stroke",
+              "id": "fascicle_1",
+              "d": "M 276 92 A 44 6 0 1 0 364 92 A 44 6 0 1 0 276 92",
+              "ms": 2580
+            },
+            {
+              "type": "stroke",
+              "id": "fascicle_2",
+              "d": "M 276 111 A 44 6 0 1 0 364 111 A 44 6 0 1 0 276 111",
+              "ms": 2580
+            },
+            {
+              "type": "stroke",
+              "id": "fascicle_3",
+              "d": "M 276 130 A 44 6 0 1 0 364 130 A 44 6 0 1 0 276 130",
+              "ms": 2580
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — one fascicle enlarged, in its perimysium"
+            },
+            {
+              "type": "stroke",
+              "id": "zoom_l",
+              "d": "M 284 144 L 180 244",
+              "ms": 2060,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "zoom_r",
+              "d": "M 356 147 L 372 244",
+              "ms": 1400,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "peri_top",
+              "d": "M 180 244 L 372 244",
+              "ms": 2740
+            },
+            {
+              "type": "stroke",
+              "id": "peri_bot",
+              "d": "M 180 336 L 372 336",
+              "ms": 2740
+            },
+            {
+              "type": "stroke",
+              "id": "peri_capl",
+              "d": "M 180 244 A 16 46 0 0 0 180 336",
+              "ms": 1470
+            },
+            {
+              "type": "stroke",
+              "id": "peri_capr",
+              "d": "M 372 244 A 16 46 0 0 1 372 336",
+              "ms": 1470
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — muscle fibres and the endomysium"
+            },
+            {
+              "type": "stroke",
+              "id": "fibre_1",
+              "d": "M 192 260 A 84 6 0 1 0 360 260 A 84 6 0 1 0 192 260",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "fibre_2",
+              "d": "M 192 282 A 84 6 0 1 0 360 282 A 84 6 0 1 0 192 282",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "fibre_3",
+              "d": "M 192 304 A 84 6 0 1 0 360 304 A 84 6 0 1 0 192 304",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "fibre_4",
+              "d": "M 192 326 A 84 6 0 1 0 360 326 A 84 6 0 1 0 192 326",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "endomysium",
+              "d": "M 184 260 A 92 13 0 1 0 368 260 A 92 13 0 1 0 184 260",
+              "ms": 4500,
+              "w": 1.5
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_bone",
+              "x": 6,
+              "y": 64,
+              "text": "Bone",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bone",
+              "d": "M 45.6 60 L 178 96",
+              "ms": 1960,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_tendon",
+              "x": 6,
+              "y": 120,
+              "text": "Tendon",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_tendon",
+              "d": "M 65.4 116 L 222 108",
+              "ms": 2240,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_epimysium",
+              "x": 6,
+              "y": 170,
+              "text": "Epimysium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_epimysium",
+              "d": "M 95.1 166 L 258 133",
+              "ms": 2370,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_fascicle",
+              "x": 6,
+              "y": 220,
+              "text": "Fascicle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_fascicle",
+              "d": "M 85.2 216 L 278 116",
+              "ms": 3100,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_perimysium",
+              "x": 6,
+              "y": 278,
+              "text": "Perimysium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_perimysium",
+              "d": "M 105 274 L 166 286",
+              "ms": 890,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_muscle_fibre",
+              "x": 6,
+              "y": 336,
+              "text": "Muscle fibre",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_muscle_fibre",
+              "d": "M 124.8 332 L 196 326",
+              "ms": 1020,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_endomysium",
+              "x": 396,
+              "y": 260,
+              "text": "Endomysium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_endomysium",
+              "d": "M 392 256 L 366 260",
+              "ms": 380,
+              "w": 1.4
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_sheaths",
+        "kind": "text",
+        "label": "The three connective tissue sheaths",
+        "marks": 1,
+        "why": "The three sheaths lie one inside another, so learning them in order — fibre, bundle, whole muscle — also gives the order of the parts they wrap.",
+        "common_mistakes": [
+          "Swapping perimysium and epimysium. Peri wraps the bundle; epi wraps the whole muscle.",
+          "Calling a fascicle a fibre. A fascicle is a BUNDLE of fibres."
+        ],
+        "memory_tip": "Endo inside one fibre, peri around a bundle, epi over everything — and then all three become the tendon.",
+        "margin_note": "Three sheaths in order, with what each one wraps. End with the tendon.",
+        "mark_note": "The three sheaths",
+        "lines": [
+          "Each muscle fibre is wrapped in a thin",
+          "connective tissue sheath, the endomysium.",
+          "A bundle of muscle fibres is called a fascicle.",
+          "Each fascicle is wrapped in the perimysium.",
+          "A group of fascicles forms the muscle, and the",
+          "whole muscle is wrapped in the epimysium.",
+          "At the end of the muscle these three sheaths",
+          "come together and form the tendon."
+        ]
+      },
+      {
+        "id": "s4_fibre",
+        "kind": "text",
+        "label": "Structure of the muscle fibre",
+        "marks": 1,
+        "why": "One muscle fibre is formed by many cells joining together, which is why a single fibre carries many nuclei and why they are pushed out to the edge.",
+        "common_mistakes": [
+          "Writing that the nuclei are central. In skeletal muscle they are peripheral; in cardiac muscle the single nucleus is central.",
+          "Calling the cytoplasm sarcomere. The cytoplasm is sarcoplasm; a sarcomere is a unit of the myofibril."
+        ],
+        "memory_tip": "A skeletal fibre has many nuclei, all at the edge; a cardiac cell has one nucleus, in the middle.",
+        "margin_note": "Shape, nuclei, sarcoplasm, myofibrils. One line each.",
+        "mark_note": "The muscle fibre",
+        "lines": [
+          "A skeletal muscle fibre is a long, cylindrical,",
+          "unbranched cell.",
+          "It is multinucleate (a syncytium), and its",
+          "nuclei lie at the edge, just under the membrane.",
+          "Its cytoplasm is called sarcoplasm and holds",
+          "many myofibrils."
+        ]
+      },
+      {
+        "id": "s5_bands",
+        "kind": "boxed_final",
+        "label": "Bands and properties",
+        "marks": 1,
+        "why": "The bands are what the word striated records, and quick contraction with quick fatigue is the property that separates skeletal muscle from cardiac muscle.",
+        "common_mistakes": [
+          "Writing that skeletal muscle does not tire. It fatigues quickly; cardiac muscle is the one that resists fatigue.",
+          "Calling it involuntary. Skeletal muscle is voluntary."
+        ],
+        "memory_tip": "Striped, voluntary, quick to act and quick to tire — four words that name skeletal muscle.",
+        "margin_note": "The bands are the reason for the name. Close with voluntary and quick fatigue.",
+        "mark_note": "Bands and properties",
+        "lines": [
+          {
+            "text": "Dark and light bands: striped muscle",
+            "style": "boxed"
+          },
+          "Each myofibril shows alternate dark and light",
+          "bands, so skeletal muscle is also called",
+          "striped or striated muscle.",
+          "It is under the control of the will, so it is",
+          "voluntary muscle.",
+          "It contracts quickly and it tires quickly."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The three sheaths are the heart of this answer and the examiner checks them by name and by order; the fibre details are the easy marks that most students write first."
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_prevention_tda_abuse",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "'Prevention is better than cure'. Justify with regard to TDA abuse.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What TDA means",
+      "marks": 1
+    },
+    {
+      "label": "Home and school",
+      "marks": 1
+    },
+    {
+      "label": "Peers and education",
+      "marks": 1
+    },
+    {
+      "label": "Professional help",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.43, SAQ 45). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tda",
+        "kind": "text",
+        "label": "What TDA means",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "lines": [
+          "TDA means tobacco, drugs and alcohol.",
+          "Once a person becomes addicted to any of these,",
+          "the cure is long, costly and often incomplete.",
+          "Stopping the habit before it starts is therefore",
+          "easier than curing it, so the saying 'prevention",
+          "is better than cure' holds true for TDA abuse."
+        ],
+        "why": "The saying only becomes an argument once the difficulty of the cure is stated, so the opening step must say why curing an addiction is hard.",
+        "common_mistakes": [
+          "Writing only the full form of TDA. The reason prevention is better is part of this mark.",
+          "Listing the measures here. They belong in the steps that follow."
+        ],
+        "memory_tip": "TDA is tobacco, drugs and alcohol. Cure is slow and uncertain, so prevention wins.",
+        "margin_note": "Full form first, then two lines of justification."
+      },
+      {
+        "id": "s2_home",
+        "kind": "text",
+        "label": "Home and school",
+        "marks": 1,
+        "mark_note": "Measure 1",
+        "lines": [
+          "Avoid undue parental pressure. Every child has",
+          "its own choices and capacity, and parents should",
+          "not force a child to perform beyond it or",
+          "compare the child with others in studies and",
+          "games.",
+          "Parents and teachers have a responsibility to",
+          "advise and counsel a child who is likely to fall",
+          "into TDA abuse."
+        ],
+        "why": "Most first use begins at home or at school, so the first measures name the two adults closest to the child and what each one should change.",
+        "common_mistakes": [
+          "Writing 'parents should take care' with no measure named. Name the pressure and the counselling.",
+          "Writing that the child should be punished. Counselling, not punishment, is the measure."
+        ],
+        "memory_tip": "The two nearest adults: parents ease the pressure, teachers give the counselling.",
+        "margin_note": "Two named measures, one short block each."
+      },
+      {
+        "id": "s3_peers",
+        "kind": "text",
+        "label": "Peers and education",
+        "marks": 1,
+        "mark_note": "Measure 2",
+        "lines": [
+          "Seek help from peers. If classmates see someone",
+          "falling into TDA abuse, they should bring it to",
+          "the notice of the parents or the teachers.",
+          "Education and counselling must be continuous.",
+          "Children should be taught about TDA at every",
+          "level in the form of regular lessons."
+        ],
+        "why": "Friends usually notice the change first, and steady teaching keeps the message going, so these two measures cover the gap the adults at home cannot see.",
+        "common_mistakes": [
+          "Writing that friends should keep the matter secret. They should inform an adult.",
+          "Treating education as a single talk. The measure is continuous teaching."
+        ],
+        "memory_tip": "Friends report early, lessons keep repeating: both work before the habit forms.",
+        "margin_note": "Two more named measures. Keep each to two lines."
+      },
+      {
+        "id": "s4_help",
+        "kind": "boxed_final",
+        "label": "Professional help",
+        "marks": 1,
+        "mark_note": "Measure 3",
+        "lines": [
+          {
+            "text": "Psychologists, psychiatrists, rehabilitation",
+            "style": "boxed"
+          },
+          "Seek professional and medical help. Qualified",
+          "psychologists and psychiatrists, and de-",
+          "addiction and rehabilitation programmes, are",
+          "available.",
+          "With this help a person can come out of the",
+          "habit and return to a normal life."
+        ],
+        "why": "The last measure is the one used when prevention has already failed, and naming the trained people shows the student knows help exists beyond the family.",
+        "common_mistakes": [
+          "Writing 'go to a doctor' with nobody named. Name the psychologist, the psychiatrist and the programmes.",
+          "Ending without saying the person can recover."
+        ],
+        "memory_tip": "When prevention fails, trained help follows: psychologist, psychiatrist, rehabilitation.",
+        "margin_note": "Name the three kinds of help in the box, then one closing line."
+      }
+    ]
+  },
+  "insider_note": "Five named measures are printed in the book and the marks follow the count, so write them as separate named points rather than a paragraph."
+}

@@ -1,5 +1,142 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🦋 SESSION — Answer Book: **ZOOLOGY OPENS — the whole Junior Zoology book, 8 units, 190 cards, 32 phased figures** (2026-08-25, desk `physics-mind-ipe-zoology`, `feat/ipe-answerbook-zoology`, commits `ab34a71d` → `ae91927b`, pushed, no PR yet)
+
+**The book's FIFTH subject, and the first with phased "watch it drawn" figures.** Bank
+946 → 1136 files, 45 → 53 units. Ids `ts_ipe_z1_<abbr>_<slug>`; abbrs
+`dlw so ad1 ad2 lr bhw pa ee`. Doc: `docs/ZOOLOGY_START_HERE.md`. Per-unit counts:
+1 DLW 21 · 2 SO 24 · 3 AD-I 26 · 4 AD-II 25 · 5 LR 15 · 6 BHW 35 · 7 PA 6 · 8 EE 38.
+
+**Verified:** build 1137 cards 8/8 units ready · tsc 0 · pace gate PASS (strict 40–160 u/s over
+32 figures) · **back-test 259/259** · wrap 0.1% (4 of 3721) · 8 figures read stage-by-stage by eye.
+
+### THE HIT LISTS UNDERCOUNT — every unit, without exception
+The book prints "TOP 10+ LAQ / TOP 30 SAQ / TOP 50+ VSAQ" and they read as an inventory. They are
+not. Authoring from them would have shipped roughly HALF the book and silently dropped an 8-mark
+question. index → actual: unit 1 **10 → 21** · unit 2 19 → 24 · unit 6 13 → 35 · unit 8 15 → 38.
+And the LAQ list skips global qno 5 entirely — book p.18 is *Wuchereria bancrofti*, a real printed
+8-mark LAQ (**unit 6 has FIVE LAQs**). Every agent walked from the question CLOSING the previous
+chapter to the one OPENING the next and reported both as evidence. **Transcribing the back-test
+corpus BEFORE authoring is what surfaced the missing LAQ** — do that first on any future subject.
+
+### The back-test is zoology's substitute for two impossible checks
+The two-book union check and a real board-paper back-test are **structurally impossible** (the
+TSBIE BLM in hand is physics-only; no zoology board paper in the corpus). But this book cites every
+answer as `P <page>(<qno>)` across 3 hit lists + the Bullet Model Paper + 5 guess papers: **259
+references, all 259 resolve** (`npm run backtest:zoology`). Three printed numbers disagree with
+where the text matches — all three were independently flagged during transcription, so they are the
+book's own typos. Never let "not checked" read as "checked and clean" — recorded on every card.
+
+### The engine work the founder's directive forced
+Figures may carry `{type:'pause', id, caption}`: the player stops, shows the caption on ONE reserved
+32px rule, waits for a tap; a mid-phase tap completes only the CURRENT phase. Unphased figures are
+byte-identical to before (pinned by a new e2e test — that behaviour had never been tested).
+**Pacing moved to AUTHORING time, deliberately not a runtime field** — `ms` stays the single source
+of truth so print/reduced-motion can never disagree, and the 96 legacy figures are never silently
+retimed. `pace_figures.ts` fills `ms` from measured path length at **70 u/s**; `check_figure_pace.ts`
+gates 40–160 u/s and requires phases above 16 drawn elements, strict for `ts_ipe_z1` only.
+**Measured: the 96 pre-existing figures draw at 200–770 u/s** — the rushing the founder named, now
+a number. NB **no e2e gate has ever watched a figure animate** (both sweeps take the instant path).
+
+### Renderer fact worth keeping
+This renderer draws **OUTLINES ONLY — no fills, no occlusion**, so "in front of" is impossible: a
+later stroke adds lines, it never hides them. Depth is expressed by giving a vessel its own clear
+lane and drawing the structure behind in dashed pencil (the frog heart's dorsal sinus venosus).
+Cost seven iterations to discover.
+
+### Defects no gate can see (found only by rendering and LOOKING)
+`figlib.scallop()` used SVG arc **sweep-flag 0**, bowing every arc inward and spiking each vertex —
+hepatic caecae and salivary acini rendered as starbursts (the founder's first complaint) · the
+flagellum T.S. drew **eighteen evenly spaced tubules instead of nine countable doublets** (counting
+9+2 IS the mark) · the sporozoite was a symmetric lens, not a sickle · leader lines struck through
+their own labels (generators assumed 6.8 u/char; real Kalam at 17px runs **6.7–9.8**, so widths are
+measured now) · a lake plant leaned across its zone divider · setae hidden inside the parapodia ·
+"liver cell" and "amoeboid stage" rendered identically · cardiac nuclei touching intercalated discs.
+
+### Conventions set this run
+**Diagram marks follow the ASKED question**: only "draw a neat labelled diagram of …" carries
+diagram marks; elsewhere the figure is a study drawing — `marks: 0`, **no `mark_note`** (schema
+forbids one at zero), whole split on the written steps, said so in `margin_note`.
+**Measure a candidate line before authoring it** — `answer-book/tools/measure_candidates.mjs`.
+Four lines wrap deliberately (four reptile orders, five mouthparts, four sacred groves, four
+chordate hallmarks): the required TERMS alone exceed 535px, and a wrapped-but-correct final answer
+beats a fitting-but-wrong one. The wrap pass had shortened "gill slits" to "slits"; restored.
+
+### Two process scars from this run
+1. **An interrupted run loses whatever is not a finished card.** The first pilot was killed by API
+   credit exhaustion after building tooling but before writing ONE card. Order unit agents
+   cards-first, and preserve scratchpad tooling into the repo early.
+2. **`git add <directory>` on a desk shared by six agents sweeps their in-flight files**, and
+   `2f2395eb` committed a `units.json` listing 50 cards whose files were not staged — that tree
+   fails the build. Fixed in `deea1a49`. Stage a NAMED list.
+Also: `git worktree add -b X origin/master` sets upstream to **origin/master**, so the auto-push
+hook fails rc=128 — `git push -u origin <branch>` once, immediately.
+
+### Still open
+No PR yet. Not deployed (Rule 17 — founder only). Every card `needs_teacher_verification: true`;
+mark splits are claims and no teacher has seen a figure. Section-C-grade content flagged but NOT
+authored in the five units with no LAQ chapter (listed in each unit's agent report).
+
+## 🦋 SESSION (superseded by the entry above) — zoology engine + tooling, authoring blocked on API credits
+
+### Done and verified
+- **Phased "watch it drawn" figures** (founder directive: a student must watch a diagram being
+  drawn, in named steps, never rushed). Figures may carry `{type:'pause', id, caption}` elements:
+  the player stops there, shows the caption on ONE reserved 32px rule, waits for a tap; a
+  mid-phase tap completes only the CURRENT phase. Figures with no pauses behave byte-for-byte as
+  before (pinned by a new e2e test — that behaviour had never been tested). Instant path
+  (revealAll/print/reduced-motion/rail jump) draws phased figures complete, caption hidden.
+  `renderUpTo` now calls `finishCurrent(true)` so teardown cannot resume timers into wiped DOM.
+- **Pacing is authoring-time, never runtime.** `src/lib/answerBook/pathLength.ts` measures SVG
+  path length (verified against analytic circle/ellipse); `pace_figures.ts` fills every stroke's
+  `ms` at **70 units/second** (300–4500 ms clamp; labels 450 ms); `check_figure_pace.ts` gates
+  40–160 u/s and requires phases on any figure with >= 16 drawn elements — **strict for
+  `ts_ipe_z1`, warning-only for legacy**. First sweep: the 96 existing figures run at **200–770
+  u/s**. That is the rushing the founder named, now measurable.
+- **Subject wiring**: `SUBJECTS`, the zod enum, `subjectWord` (the silent one — zoology would
+  have printed "The physics ... are checked"), both chip label maps. e2e sweep budgets
+  1.2M -> 1.8M ms for the ~1136-file bank. `answer-book/README.md` was two subjects stale — fixed.
+- **Tooling promoted into the repo** (`answer-book/tools/`, previously scratchpad-only and nearly
+  lost): `render_figures.py` (gallery, **one snapshot per phase, cumulative**), `measure_wrap.mjs`
+  (fleet line-wrap measure — the e2e wrap gate still checks only ONE question), `merge_units.py`
+  (parameterised by subject/prefix/suffix, refuses to write unless units.json round-trips
+  byte-identically). npm: `check:figure-pace`, `pace:figures`, `figures:gallery`, `measure:wrap`,
+  `backtest:zoology`.
+- **The back-test** (`backtest_zoology.ts` + `zoology_wip/backtest_refs.json`, 259 refs). The
+  two-book union check and a real board paper are BOTH impossible for zoology — but the book
+  cites every answer as "P <page>(<qno>)" across 3 hit lists, the Bullet Model Paper and 5 guess
+  papers, and each must resolve to an authored card.
+- Verified: build 946/946 · `tsc` 0 · vitest 416/416 · 3 new figure e2e tests pass.
+
+### The finding that would have cost an LAQ
+The **"TOP 10+ LAQ" hit list skips global qno 5.** LAQ answer pages run 10, 12, 14, 16, **18**,
+19, 21, 23, 25–28; Guess Paper 5 names p.18 — *"Describe the life cycle of Wuchereria bancrofti
+with a neat diagram"*. **Unit 6 has FIVE LAQs.** Standing rule now in the brief: walk the chapter
+PAGES; hit lists are a cross-check, never the inventory.
+
+### Resume here
+1. Re-dispatch the unit-7 pilot (brief: `answer-book/tools/zoology_wip/BRIEF.md`; ranges:
+   `DISPATCH_RANGES.md`). The pilot's finished figure geometry is already in
+   `zoology_wip/figs_1.json` + `gen_pa_1.py` (alimentary canal 59 elements / 5 phases; salivary
+   apparatus 40 / 5) with the reusable builder `figlib.py` — **reuse it, do not redraw**.
+   Render: `pilot_figures_preview.png`. Still to draw for unit 7: heart/circulatory, tracheal
+   system, mouthparts, ommatidium. **No question file has been written yet.**
+2. **FOUNDER CHECKPOINT after the pilot** (his call, this session): he reviews the drawing pace
+   and phase granularity before the other 7 units are dispatched. Do not fan out first.
+3. Then waves of one agent per unit (ranges in `DISPATCH_RANGES.md`), orchestrator-only
+   `merge_units.py --subject zoology --prefix ts_ipe_z1 --suffix "(Zoology)" --stars-zero`,
+   then build -> tsc -> vitest -> smoke -> pace gate -> back-test -> **render every figure and LOOK**.
+4. Eyes-only defect already spotted in the pilot render: hepatic caecae and salivary-gland acini
+   read as spiky starbursts; they should be finger-like diverticula / rounded lobes. The gates
+   pass them — the same class as chemistry's wrong-shaped `dz²`.
+
+### Zoology source facts (differ from botany)
+`stars: 0` everywhere (this book ranks CHAPTERS, not questions) · **`appearances[]` IS authored**
+(the book cites years: `[TS M-19]`, `[AP M-15,18]`; bare `[IPE-14]` = no board) · LAQ chapters
+exist only for units 6/7/8 · unit 7 has no VSAQ chapter · Star Questions Plus (book 63–68) is
+part of the asked bank · the Bullet Model Paper and guess papers are NEVER authored (back-test
+corpus only) · ids `ts_ipe_z1_<abbr>_<slug>`, abbrs `dlw so ad1 ad2 lr bhw pa ee`.
+
 ## 📕 SESSION — THE 2026-27 SYLLABUS: the maths paper changed SHAPE, not just total, and the physics book renumbered itself (2026-08-28, `feat/answerbook-mpc-stream-and-brand`)
 
 **Bottom line: a junior lecturer's one-line message ("Jr Inter syllabus changed in all streams, questions deleted from every chapter, Maths is 60 theory + 15 internal") was researched to the official documents where they could be reached, and the book was moved onto everything that is verified. The Maths 1A/1B written paper is now 60 marks in the PHYSICS shape (A 10×2 all · B any 6 of 8 ×4 · C any 2 of 3 ×8 — printed as "MODEL QUESTION PAPER w.e.f. 2026-27" in the Telugu Akademi 1A textbook), so every one of the 99 maths long-answer cards was at the wrong mark value; all 99 re-cut to 8. The physics textbook merged old Units 1+2 and added Unit 14, so the physics bank is renumbered and the old links are remapped. A retire mechanism exists for the per-chapter deletions, which are announced everywhere and published only behind a 403. Record: `docs/SYLLABUS_2026_27.md`.**

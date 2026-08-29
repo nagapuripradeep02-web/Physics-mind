@@ -54,6 +54,9 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     mathematics: { label: 'Maths 1A', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
     mathematics_1b: { label: 'Maths 1B', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
     botany: { label: 'Botany', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
+    // Junior Zoology is the same ABC_60 shape: Section A 10 of 10 x 2, B any 6 of 8 x 4,
+    // C any 2 of 3 x 8 = 60, plus the 15-mark practical (docs/ZOOLOGY_START_HERE.md).
+    zoology: { label: 'Zoology', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
 };
 /** The marks a question of this qtype carries on this subject's paper. */
 export function paperMarksFor(subject: string, qtype: 'VSAQ' | 'SAQ' | 'LAQ'): number | undefined {
@@ -93,12 +96,45 @@ const figureLabelSchema = z.object({
     sm: z.boolean().optional(),
 });
 
-const figureSchema = z.object({
+/**
+ * A phase boundary inside a figure. The player STOPS here, shows `caption`
+ * under the figure ("Step 2 — internal organs"), and waits for the student's
+ * tap before drawing the next phase — the student watches each stage and can
+ * copy it before continuing. A pause at index 0 is a caption-only marker for
+ * phase 1 (no wait: the tap that opened the step is the consent). On the
+ * instant path (revealAll / print / reduced-motion) pauses are skipped and no
+ * caption shows — captions are drawing pedagogy, not answer content.
+ */
+const figurePauseSchema = z.object({
+    type: z.literal('pause'),
     id: z.string().min(1),
-    width: z.number().positive(),
-    height: z.number().positive(),
-    elements: z.array(z.discriminatedUnion('type', [figureStrokeSchema, figureLabelSchema])),
+    /** Phase name shown while the phase that FOLLOWS this pause draws. */
+    caption: z.string().min(1).max(64).optional(),
 });
+
+const figureSchema = z
+    .object({
+        id: z.string().min(1),
+        width: z.number().positive(),
+        height: z.number().positive(),
+        elements: z.array(
+            z.discriminatedUnion('type', [figureStrokeSchema, figureLabelSchema, figurePauseSchema])
+        ),
+    })
+    .superRefine((fig, ctx) => {
+        fig.elements.forEach((el, i) => {
+            if (el.type !== 'pause') return;
+            if (i === fig.elements.length - 1) {
+                ctx.addIssue({ code: 'custom', message: `figure "${fig.id}": pause "${el.id}" is the last element — a pause introduces the phase that follows it` });
+            }
+            if (i > 0 && fig.elements[i - 1].type === 'pause') {
+                ctx.addIssue({ code: 'custom', message: `figure "${fig.id}": pauses "${fig.elements[i - 1].id}" and "${el.id}" are adjacent — a phase may not be empty` });
+            }
+            if (i === 0 && !el.caption) {
+                ctx.addIssue({ code: 'custom', message: `figure "${fig.id}": a pause at index 0 is a caption-only phase-1 marker and requires a caption` });
+            }
+        });
+    });
 
 // ── answer steps ─────────────────────────────────────────────────────────────
 
@@ -273,7 +309,7 @@ export const answerBookQuestionSchema = z
         // One PAPER = one subject value (same list as build_answer_book.ts
         // SUBJECTS): mathematics = Maths-1A (predates 1B), mathematics_1b =
         // Maths-1B. Unit numbers namespace per subject.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany']),
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),

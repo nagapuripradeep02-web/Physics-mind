@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_commensalism_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define commensalism. Give one example.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.60, VSAQ 154). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Commensalism is an interaction between two",
+          "different species in which one species is",
+          "benefited and the other is neither benefited",
+          "nor harmed."
+        ],
+        "why": "The definition is fixed by the SECOND species, not the first: the whole answer turns on the words neither benefited nor harmed, which separate commensalism from mutualism and from parasitism.",
+        "common_mistakes": [
+          "Writing that the other species is harmed. That is parasitism.",
+          "Writing that both are benefited. That is mutualism."
+        ],
+        "memory_tip": "Count the gains: commensalism has one gain and one zero.",
+        "margin_note": "One sentence. The words neither benefited nor harmed must appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "One species gains, the other is unaffected",
+            "style": "boxed"
+          },
+          "Ex: barnacles growing on the back of a whale.",
+          "The barnacles get a place to live and food",
+          "from the moving water.",
+          "The whale is not affected by them."
+        ],
+        "why": "The example must be explained in the same terms as the definition, so the answer states what one partner gains and then states plainly that the other is unaffected.",
+        "common_mistakes": [
+          "Naming the example without saying who gains what. The explanation carries the mark.",
+          "Choosing bees and flowers as the example. Both gain there, so that is mutualism."
+        ],
+        "memory_tip": "Barnacle on the whale: the barnacle gets a free ride, the whale notices nothing.",
+        "margin_note": "Name the example, then one line on the gain and one on the unaffected partner."
+      }
+    ]
+  },
+  "insider_note": "The three interaction terms are marked as a set, so the safest answer says in words what happens to BOTH partners, not just to the one that gains."
+}

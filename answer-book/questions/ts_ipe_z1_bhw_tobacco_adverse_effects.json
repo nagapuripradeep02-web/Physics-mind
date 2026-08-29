@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_tobacco_adverse_effects",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the adverse effects of tobacco?",
+  "appearances": [
+    {
+      "year": 2014
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "How tobacco is used",
+      "marks": 1
+    },
+    {
+      "label": "Effect on blood and heart",
+      "marks": 1
+    },
+    {
+      "label": "Diseases caused",
+      "marks": 1
+    },
+    {
+      "label": "Cancers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.43, SAQ 43). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_use",
+        "kind": "text",
+        "label": "How tobacco is used",
+        "marks": 1,
+        "mark_note": "Forms",
+        "lines": [
+          "Tobacco is used in three ways. It is smoked, it",
+          "is chewed as gutkha, and it is taken as snuff.",
+          "Tobacco contains nicotine, which is an alkaloid."
+        ],
+        "why": "The harm changes with the way tobacco enters the body, so naming the three forms first sets up the different effects described in the rest of the answer.",
+        "common_mistakes": [
+          "Writing only about smoking. Chewing and snuff are two more forms and carry marks.",
+          "Leaving out nicotine. It is the substance behind most of the effects."
+        ],
+        "memory_tip": "Three ways in: smoked, chewed, snuffed. One substance behind them: nicotine.",
+        "margin_note": "Two short lines. Name all three forms and the alkaloid."
+      },
+      {
+        "id": "s2_blood",
+        "kind": "text",
+        "label": "Effect on blood and heart",
+        "marks": 1,
+        "mark_note": "Blood",
+        "lines": [
+          "Smoking increases the carbon monoxide level in",
+          "the blood and reduces the oxygen level, so less",
+          "oxygen reaches the tissues.",
+          "Nicotine stimulates the adrenal gland to release",
+          "adrenaline and noradrenaline. These hormones",
+          "raise the blood pressure and the heart rate."
+        ],
+        "why": "Two different substances do two different things here — carbon monoxide changes what the blood carries, nicotine changes what the heart does — and the examiner expects both routes.",
+        "common_mistakes": [
+          "Writing that nicotine reduces the oxygen. Carbon monoxide does that.",
+          "Naming the hormones without saying what they do. State the rise in blood pressure and heart rate."
+        ],
+        "memory_tip": "Carbon monoxide works on the blood, nicotine works through the adrenal gland on the heart.",
+        "margin_note": "Two lines, one for each substance. Keep them separate."
+      },
+      {
+        "id": "s3_diseases",
+        "kind": "text",
+        "label": "Diseases caused",
+        "marks": 1,
+        "mark_note": "Diseases",
+        "lines": [
+          "Long use of tobacco causes bronchitis and",
+          "emphysema in the lungs.",
+          "It also causes coronary heart disease and",
+          "gastric ulcers."
+        ],
+        "why": "The diseases fall into two sets, the breathing set and the heart and stomach set, and grouping them that way makes all four easy to recall in order.",
+        "common_mistakes": [
+          "Writing 'lung problems' instead of naming bronchitis and emphysema.",
+          "Leaving out the gastric ulcer, which is not a breathing disease and is often forgotten."
+        ],
+        "memory_tip": "Two in the chest, two below it: bronchitis and emphysema, then heart disease and gastric ulcer.",
+        "margin_note": "Four named diseases in two short lines. Names carry the mark, not descriptions."
+      },
+      {
+        "id": "s4_cancer",
+        "kind": "boxed_final",
+        "label": "Cancers",
+        "marks": 1,
+        "mark_note": "Cancers",
+        "lines": [
+          {
+            "text": "Cancer of throat, lungs and urinary bladder",
+            "style": "boxed"
+          },
+          "Tobacco increases the chance of cancer of the",
+          "throat, of the lungs and of the urinary bladder.",
+          "The urinary bladder is affected because the",
+          "harmful substances of tobacco leave the body in",
+          "the urine."
+        ],
+        "why": "Three cancers are asked and the third one surprises students, so the reason it happens — the waste leaves through the urine — is worth one line.",
+        "common_mistakes": [
+          "Naming only lung cancer. Three sites are expected.",
+          "Writing that tobacco causes cancer of the liver. The syllabus names throat, lungs and urinary bladder."
+        ],
+        "memory_tip": "Where the smoke goes and where the waste goes: throat and lungs, then urinary bladder.",
+        "margin_note": "Three named sites in a box, then one line on the bladder. This is the closing mark."
+      }
+    ]
+  },
+  "insider_note": "This is a list question and the marks follow the list, so write named items in short lines and never a single long paragraph."
+}

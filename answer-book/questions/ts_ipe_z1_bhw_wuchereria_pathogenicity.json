@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_wuchereria_pathogenicity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the pathogenicity of Wuchereria bancrofti in man.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The worm and its place",
+      "marks": 1
+    },
+    {
+      "label": "Light infection",
+      "marks": 1
+    },
+    {
+      "label": "Heavy infection",
+      "marks": 1
+    },
+    {
+      "label": "Elephantiasis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.67, Star Q 186). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_worm",
+        "kind": "text",
+        "label": "The worm and its place",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "Wuchereria bancrofti is commonly called the",
+          "filarial worm.",
+          "The adult worms live coiled in the lymph vessels",
+          "of man, so every effect of this parasite falls",
+          "on the lymphatic system."
+        ],
+        "why": "Every symptom in this answer comes from a blocked or inflamed lymph vessel, so naming the habitat first makes the rest of the answer follow on its own.",
+        "common_mistakes": [
+          "Writing that the worm lives in the blood vessels. The adult lives in the lymph vessels.",
+          "Confusing the adult with the microfilaria. The microfilaria is the larva in the blood."
+        ],
+        "memory_tip": "Adults in the lymph vessels, so the damage is lymphatic from start to finish.",
+        "margin_note": "Two lines: the common name and the place it lives."
+      },
+      {
+        "id": "s2_light",
+        "kind": "text",
+        "label": "Light infection",
+        "marks": 1,
+        "mark_note": "Light",
+        "lines": [
+          "A light infection causes filarial fever,",
+          "headache and depression.",
+          "These are the first signs and they can be",
+          "mistaken for an ordinary fever."
+        ],
+        "why": "The disease is graded by the number of worms, so the answer separates a light infection from a heavy one instead of describing one single illness.",
+        "common_mistakes": [
+          "Skipping the light infection and going straight to elephantiasis.",
+          "Writing that a light infection causes swelling. Swelling belongs to a heavy infection."
+        ],
+        "memory_tip": "Few worms, few signs: fever, headache and depression only.",
+        "margin_note": "One short block. Do not spend more than two lines here."
+      },
+      {
+        "id": "s3_heavy",
+        "kind": "text",
+        "label": "Heavy infection",
+        "marks": 1,
+        "mark_note": "Heavy",
+        "lines": [
+          "A heavy infection inflames the lymph vessels and",
+          "the lymph glands. Inflammation of the lymph",
+          "vessels is called lymphangitis and inflammation",
+          "of the lymph glands is called lymphadenitis.",
+          "The dead worms clog the lymph vessels and the",
+          "lymph glands, so the lymph cannot drain and the",
+          "affected part swells."
+        ],
+        "why": "The blockage is what turns the disease from a fever into a swelling, and the two named inflammations are the terms this chapter asks for again as a separate question.",
+        "common_mistakes": [
+          "Swapping the two terms. Lymphangitis is the vessels and lymphadenitis is the glands.",
+          "Writing that the living worms block the vessels. The dead worms clog them."
+        ],
+        "memory_tip": "Vessels and glands both inflame, then dead worms block them and the lymph cannot drain.",
+        "margin_note": "Two lines: the two named inflammations, then the blockage and the swelling."
+      },
+      {
+        "id": "s4_elephantiasis",
+        "kind": "boxed_final",
+        "label": "Elephantiasis",
+        "marks": 1,
+        "mark_note": "End result",
+        "lines": [
+          {
+            "text": "Elephantiasis is the final condition",
+            "style": "boxed"
+          },
+          "Fibrous tissue collects near the swollen parts.",
+          "The sweat glands break down and the skin becomes",
+          "thick and rough.",
+          "This final condition is called elephantiasis.",
+          "The legs, the arms, the scrotum and the breasts",
+          "are the parts usually affected."
+        ],
+        "why": "Elephantiasis is the end of the chain, not a separate disease, so it is written last and is described by the three changes that produce it.",
+        "common_mistakes": [
+          "Writing that elephantiasis appears at once. It is the end of a long, heavy infection.",
+          "Naming the condition without describing the fibrous tissue and the rough skin."
+        ],
+        "memory_tip": "Block, swell, harden: the swelling turns fibrous and the skin turns rough.",
+        "margin_note": "Name the condition in the box, then three short lines. Closing mark."
+      }
+    ]
+  },
+  "insider_note": "The answer is graded light to heavy to final, so keep the three stages separate — merging them loses two of the four marks."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_ecological_diversity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is ecological diversity? Mention the different types of ecological diversities.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Types",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.49, VSAQ 65). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book defines beta diversity as being 'based on endemic species between two adjacent ecosystems'; the standard meaning is the change in species composition between two neighbouring ecosystems, and the card uses that. The book prints no year citation for this question, so `appearances` is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Diversity is counted at three levels — genes, species and ecosystems — and ecological diversity is the highest of the three, so the definition must say ecosystem.",
+        "common_mistakes": [
+          "Writing that ecological diversity is the number of species. That is species diversity; ecological diversity counts ecosystems.",
+          "Giving animals as examples. The examples are ecosystems, such as a desert or a mangrove."
+        ],
+        "memory_tip": "Three levels of diversity: genes, species, ecosystems. Ecological diversity is the ecosystem level.",
+        "margin_note": "One sentence and two or three examples of ecosystems.",
+        "lines": [
+          "Ecological diversity is diversity at the level",
+          "of ecosystems.",
+          "It is the variety of ecosystems present in a",
+          "region.",
+          "Examples: deserts, rain forests, mangroves,",
+          "grasslands and coral reefs."
+        ]
+      },
+      {
+        "id": "s2_types",
+        "kind": "boxed_final",
+        "label": "The three types",
+        "marks": 1,
+        "mark_note": "Types",
+        "why": "The three types are three scales of the same count — inside one ecosystem, between two of them, and across a whole region — so keeping that order keeps them apart.",
+        "common_mistakes": [
+          "Mixing beta and gamma. Beta compares two neighbouring ecosystems; gamma covers the whole region."
+        ],
+        "memory_tip": "Alpha inside one, beta between two, gamma across the whole region.",
+        "margin_note": "Three names with one line each. This is one mark, so keep the lines short.",
+        "lines": [
+          {
+            "text": "Alpha, beta and gamma diversity",
+            "style": "boxed"
+          },
+          "Alpha diversity: the diversity within one",
+          "community or ecosystem.",
+          "Beta diversity: the change in species between",
+          "two neighbouring ecosystems.",
+          "Gamma diversity: the total diversity of all",
+          "the ecosystems of an ecological region."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The three Greek names carry this question — write alpha, beta and gamma with one line each, because a general answer about 'many ecosystems' earns only the first mark."
+}

@@ -963,6 +963,17 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 .figure-wrap svg text.em { font-weight: 700; font-size: 25px; }
 .figure-wrap svg text.sm { font-size: 17px; }
 
+/* phase caption — the "how to draw it" line under a phased figure. It occupies
+   the ONE extra rule buildFigure reserves for it, reads as pencil annotation
+   (drawing pedagogy, not answer ink), and never prints: the printed page is a
+   finished answer script. */
+.figure-caption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 32px; line-height: 32px;
+  font-family: Kalam, cursive; font-size: 19px; color: #7D8CA8;
+}
+@media print { .figure-caption { display: none; } }
+
 /* examiner's red marks — absolutely positioned into the right gutter */
 .red-mark {
   position: absolute; top: 0; right: calc(-1 * var(--pad-right) + 12px);

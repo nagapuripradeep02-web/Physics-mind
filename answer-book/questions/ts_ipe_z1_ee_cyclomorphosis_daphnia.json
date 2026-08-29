@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_cyclomorphosis_daphnia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is cyclomorphosis? Explain its importance in Daphnia.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Importance in Daphnia",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.60, VSAQ 153). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Cyclomorphosis is the cyclic seasonal change",
+          "in the body shape of an organism.",
+          "Ex: Daphnia, the water flea."
+        ],
+        "why": "The word has two halves — cyclo for the cycle and morphosis for the change of shape — and the definition must carry both, because a seasonal change that does not come back is not cyclomorphosis.",
+        "common_mistakes": [
+          "Writing that the animal changes colour. Cyclomorphosis is a change of SHAPE.",
+          "Leaving out the word seasonal. The change follows the seasons and returns each year."
+        ],
+        "memory_tip": "Cyclo = the cycle comes round again, morphosis = the shape changes.",
+        "margin_note": "One sentence with the words cyclic and seasonal, then the example."
+      },
+      {
+        "id": "s2_importance",
+        "kind": "boxed_final",
+        "label": "Importance in Daphnia",
+        "marks": 1,
+        "mark_note": "Importance",
+        "lines": [
+          {
+            "text": "The hood of Daphnia grows and shrinks",
+            "style": "boxed"
+          },
+          "The hood is an adaptation to the changing",
+          "density of the water.",
+          "Winter: the head is round.",
+          "Spring: a hood starts to grow.",
+          "Summer: a large hood is formed.",
+          "Autumn: the hood begins to shrink, and by",
+          "winter the head is round again."
+        ],
+        "why": "The four seasons in order show the cycle closing, which is the point of the word cyclomorphosis; a list without the return to the round head does not show a cycle.",
+        "common_mistakes": [
+          "Describing only the summer hood. The mark is for the full round of seasons.",
+          "Writing that the hood is for swimming faster. It answers the changing DENSITY of the water."
+        ],
+        "memory_tip": "Round, growing, largest, shrinking — winter, spring, summer, autumn, then round again.",
+        "margin_note": "The four seasons in order, one short line each. End back at the round head."
+      }
+    ]
+  },
+  "insider_note": "The season list is what earns the second mark, and it must close the loop — a student who stops at the summer hood has not shown a cycle."
+}

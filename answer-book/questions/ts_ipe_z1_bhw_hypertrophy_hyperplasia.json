@@ -1,0 +1,105 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_hypertrophy_hyperplasia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between hypertrophy and hyperplasia with an example for each.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Hypertrophy with example",
+      "marks": 2
+    },
+    {
+      "label": "Hyperplasia with example",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.44, SAQ 46). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hypertrophy",
+        "kind": "text",
+        "label": "Hypertrophy",
+        "marks": 2,
+        "mark_note": "Hypertrophy",
+        "lines": [
+          "Hypertrophy: some parasites cause an abnormal",
+          "increase in the SIZE of the host cell. The cell",
+          "grows until it finally ruptures.",
+          "The number of cells does not change; each cell",
+          "simply becomes bigger.",
+          "Example: Plasmodium inside a red blood cell",
+          "makes the cell grow to almost double its normal",
+          "size, and the cell finally bursts."
+        ],
+        "why": "Hypertrophy is a change in size only, so the answer states that the cell number stays the same — that single line is what separates it from hyperplasia.",
+        "common_mistakes": [
+          "Writing that the number of cells increases. That is hyperplasia.",
+          "Giving Fasciola as the example. Fasciola is the hyperplasia example."
+        ],
+        "memory_tip": "Trophy means growth of one cell: hypertrophy is a bigger cell, same number.",
+        "margin_note": "Definition, the size-not-number line, then the example. Two marks, so give all three."
+      },
+      {
+        "id": "s2_hyperplasia",
+        "kind": "boxed_final",
+        "label": "Hyperplasia",
+        "marks": 2,
+        "mark_note": "Hyperplasia",
+        "lines": [
+          {
+            "text": "Size increases vs number increases",
+            "style": "boxed"
+          },
+          "Hyperplasia: some parasites cause an increase in",
+          "the size of an organ by increasing the NUMBER of",
+          "its cells. This causes inconvenience or death to",
+          "the host.",
+          "Example: Fasciola hepatica lives in the bile",
+          "ducts of sheep. It increases the number of cells",
+          "of the duct wall, and the thickened wall blocks",
+          "the passage of bile."
+        ],
+        "why": "Hyperplasia is a change in number, and the harm comes from the extra cells thickening a wall and blocking a passage, which is why the bile duct is the example that is set.",
+        "common_mistakes": [
+          "Writing that the cells become larger. In hyperplasia they become more numerous.",
+          "Naming Fasciola without saying what is blocked. The blocked bile duct is the harm."
+        ],
+        "memory_tip": "Plasia means forming: hyperplasia is more cells, hypertrophy is bigger cells.",
+        "margin_note": "Definition, then the example with the blocked duct. Two marks."
+      }
+    ]
+  },
+  "insider_note": "A 'distinguish' question is marked on the contrast, so use the words SIZE and NUMBER plainly in the two halves."
+}

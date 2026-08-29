@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_sacred_groves_india",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "List out any four sacred groves in India.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a sacred grove is",
+      "marks": 1
+    },
+    {
+      "label": "The four groves",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.50, VSAQ 67). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK vs NCERT: the book places Sarguja and Bastar in Chhattisgarh and Chanda in Madhya Pradesh. NCERT groups all three (Sarguja, Chanda and Bastar) under Madhya Pradesh, which was correct before the state was divided in 2000; the card follows the book's current state boundaries. The book prints no year citation for this question, so `appearances` is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "What a sacred grove is",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "why": "A sacred grove is protected by the people who live beside it rather than by law, which is why these small patches still hold species lost from the land around them.",
+        "common_mistakes": [
+          "Writing that sacred groves are government sanctuaries. They are protected by local communities.",
+          "Describing them as large forests. They are small patches."
+        ],
+        "memory_tip": "A grove is a small patch of trees; here the local people leave it uncut.",
+        "margin_note": "One sentence of meaning, then the list. Do not spend more than two lines here.",
+        "lines": [
+          "Sacred groves are small patches of forest that",
+          "local people protect and do not cut.",
+          "Every plant and animal inside them is left",
+          "undisturbed, so they hold many rare species."
+        ]
+      },
+      {
+        "id": "s2_four",
+        "kind": "boxed_final",
+        "label": "The four groves",
+        "marks": 1,
+        "mark_note": "The four",
+        "why": "The question asks for four named places, so each name is written with the state it lies in — a bare list of hills does not show which grove is meant.",
+        "common_mistakes": [
+          "Naming national parks instead. A sacred grove is not a national park.",
+          "Giving fewer than four. All four are needed for the mark."
+        ],
+        "memory_tip": "Four groves, four states: Meghalaya, Rajasthan with Gujarat, Chhattisgarh, Madhya Pradesh.",
+        "margin_note": "Four names with the state beside each. A numbered list is enough.",
+        "lines": [
+          {
+            "text": "Khasi-Jaintia, Aravalli, Sarguja-Bastar, Chanda",
+            "style": "boxed"
+          },
+          "1) Khasi and Jaintia hills — Meghalaya",
+          "2) Aravalli hills — Rajasthan and Gujarat",
+          "3) Sarguja and Bastar — Chhattisgarh",
+          "4) Chanda — Madhya Pradesh"
+        ]
+      }
+    ]
+  },
+  "insider_note": "This is a list question — four names with their states, written as a numbered list, and nothing more."
+}

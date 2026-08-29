@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_entamoeba_anaerobe",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "'Entamoeba histolytica is an obligatory anaerobe'. Justify.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Where it lives",
+      "marks": 1
+    },
+    {
+      "label": "Justification",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.59, VSAQ 144). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_where",
+        "kind": "text",
+        "label": "Where it lives",
+        "marks": 1,
+        "mark_note": "Habitat",
+        "lines": [
+          "Entamoeba histolytica lives in the large",
+          "intestine of man.",
+          "Free oxygen is not available there, and the",
+          "parasite has no mitochondria in its body."
+        ],
+        "why": "Two facts have to sit side by side — no oxygen outside the parasite and no mitochondria inside it — because together they leave the parasite no way to use oxygen at all.",
+        "common_mistakes": [
+          "Writing that it lives in the small intestine. It lives in the large intestine.",
+          "Leaving out the mitochondria. The absence of mitochondria is half the reason."
+        ],
+        "memory_tip": "No oxygen around it and no mitochondria in it: both halves are needed.",
+        "margin_note": "Two lines. Name the habitat and the missing organelle."
+      },
+      {
+        "id": "s2_justify",
+        "kind": "boxed_final",
+        "label": "Justification",
+        "marks": 1,
+        "mark_note": "Justification",
+        "lines": [
+          {
+            "text": "No oxygen, no mitochondria: anaerobic only",
+            "style": "boxed"
+          },
+          "It gets its energy without using oxygen.",
+          "It can live only in the absence of oxygen, so it",
+          "is called an obligatory anaerobe."
+        ],
+        "why": "'Obligatory' means there is no alternative, so the closing sentence must say the parasite can live ONLY without oxygen, not merely that it does live without oxygen.",
+        "common_mistakes": [
+          "Writing that it can live with or without oxygen. That would be a facultative anaerobe.",
+          "Ending without using the words obligatory anaerobe."
+        ],
+        "memory_tip": "Obligatory means no choice: it cannot use oxygen at all.",
+        "margin_note": "Two short lines ending in the term the question quotes."
+      }
+    ]
+  },
+  "insider_note": "The word 'obligatory' is what is being tested — say the parasite can live ONLY without oxygen, not just that it does."
+}

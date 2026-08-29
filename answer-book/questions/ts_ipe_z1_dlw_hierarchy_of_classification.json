@@ -1,0 +1,364 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_hierarchy_of_classification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the hierarchy of classification.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Classification and Linnaeus",
+      "marks": 1
+    },
+    {
+      "label": "The seven categories",
+      "marks": 2
+    },
+    {
+      "label": "Species and domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.64, Star Question 178). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR: the book writes 'Kingdom includes all multicellular, heterotrophs'. That describes the kingdom Animalia, not the category kingdom, which is simply the highest category and includes one or more related phyla; the card states it correctly and the book's wording is recorded in the step's `why`. FIGURE SCOPE: the book prints no diagram for this question and none is asked for, so the ladder carries 0 marks and all four marks sit on the written steps. ADDED BEYOND THE BOOK: the worked example (human) shown in the figure and named in the written answer is the standard NCERT example and is not printed in this book's answer. This question is printed in the Star Questions Plus pages under the SAQ heading for Diversity of Living World, so it is authored at 4 marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Diversity of Living World (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_classification",
+        "kind": "text",
+        "label": "What classification is",
+        "marks": 1,
+        "mark_note": "Classification",
+        "why": "Every group in the hierarchy is contained inside the group above it, so the order is not a list to memorise but a set of boxes inside boxes.",
+        "common_mistakes": [
+          "Writing the categories in the wrong direction. The hierarchy runs from kingdom, the largest, down to species, the smallest.",
+          "Crediting the hierarchy to the wrong worker. Carolus Linnaeus introduced it."
+        ],
+        "memory_tip": "Boxes inside boxes: a kingdom holds phyla, a phylum holds classes, and so on down to the species.",
+        "margin_note": "Definition, the idea of a hierarchy, and the name Linnaeus. Three or four lines.",
+        "lines": [
+          "Classification is the grouping of living",
+          "organisms on the basis of their similarities",
+          "and differences.",
+          "The groups are arranged one inside another in",
+          "a fixed order, from the largest to the",
+          "smallest. This arrangement is called the",
+          "taxonomic hierarchy.",
+          "Hierarchical classification was introduced by",
+          "Carolus Linnaeus."
+        ]
+      },
+      {
+        "id": "s2_ladder",
+        "kind": "diagram",
+        "label": "Diagram — the ladder of categories",
+        "marks": 0,
+        "why": "Drawing the categories as a ladder fixes their order, and the order is the first thing the examiner checks.",
+        "common_mistakes": [
+          "Swapping order and family. The order lies above the family.",
+          "Drawing the ladder with species at the top. Species is the smallest category and sits at the bottom."
+        ],
+        "memory_tip": "Read the ladder from the top: Kingdom, Phylum, Class, Order, Family, Genus, Species.",
+        "margin_note": "No diagram is asked for in this question, so the ladder carries no marks and all four marks sit on the written steps. Draw it only as a check on your order.",
+        "figure": {
+          "id": "dlw_taxonomic_hierarchy",
+          "width": 480,
+          "height": 352,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — draw the seven boxes, widest at the top"
+            },
+            {
+              "type": "stroke",
+              "id": "box_kingdom",
+              "d": "M 60 67 L 280 67 L 280 93 L 60 93 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "box_phylum",
+              "d": "M 70 109 L 270 109 L 270 135 L 70 135 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "box_classc",
+              "d": "M 80 151 L 260 151 L 260 177 L 80 177 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "box_order",
+              "d": "M 90 193 L 250 193 L 250 219 L 90 219 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "box_family",
+              "d": "M 100 235 L 240 235 L 240 261 L 100 261 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "box_genus",
+              "d": "M 110 277 L 230 277 L 230 303 L 110 303 Z",
+              "ms": 4170
+            },
+            {
+              "type": "stroke",
+              "id": "box_species",
+              "d": "M 125 319 L 215 319 L 215 345 L 125 345 Z",
+              "ms": 3310
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — write the seven category names"
+            },
+            {
+              "type": "label",
+              "id": "lbl_kingdom",
+              "x": 135.3,
+              "y": 86,
+              "text": "Kingdom",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_phylum",
+              "x": 140.3,
+              "y": 128,
+              "text": "Phylum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_classc",
+              "x": 145.2,
+              "y": 170,
+              "text": "Class",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_order",
+              "x": 145.2,
+              "y": 212,
+              "text": "Order",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_family",
+              "x": 140.3,
+              "y": 254,
+              "text": "Family",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_genus",
+              "x": 145.2,
+              "y": 296,
+              "text": "Genus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_species",
+              "x": 135.3,
+              "y": 338,
+              "text": "Species",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — add the domain box above the kingdom"
+            },
+            {
+              "type": "stroke",
+              "id": "box_domain",
+              "d": "M 50 25 L 290 25 L 290 51 L 50 51 Z",
+              "ms": 4500
+            },
+            {
+              "type": "label",
+              "id": "lbl_domain",
+              "x": 140.3,
+              "y": 44,
+              "text": "Domain",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — write one example beside each box"
+            },
+            {
+              "type": "label",
+              "id": "ex_head",
+              "x": 305,
+              "y": 24,
+              "text": "Example: human",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ex_kingdom",
+              "x": 305,
+              "y": 86,
+              "text": "Animalia",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ex_phylum",
+              "x": 305,
+              "y": 128,
+              "text": "Chordata",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ex_classc",
+              "x": 305,
+              "y": 170,
+              "text": "Mammalia",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ex_order",
+              "x": 305,
+              "y": 212,
+              "text": "Primata",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ex_family",
+              "x": 305,
+              "y": 254,
+              "text": "Hominidae",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ex_genus",
+              "x": 305,
+              "y": 296,
+              "text": "Homo",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ex_species",
+              "x": 305,
+              "y": 338,
+              "text": "sapiens",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_categories",
+        "kind": "text",
+        "label": "The seven categories",
+        "marks": 2,
+        "mark_note": "Seven categories",
+        "why": "Each category is defined by the one below it, so the whole block can be written from a single pattern: every category includes one or more related members of the next category down. NOTE: this book writes 'Kingdom includes all multicellular, heterotrophs', which describes the kingdom Animalia and not the category kingdom; the card states the category first and then names Animalia.",
+        "common_mistakes": [
+          "Giving fewer than seven categories. All seven are needed, and they carry two marks.",
+          "Using 'division' in place of phylum. Division is the plant equivalent; in animals the category is the phylum."
+        ],
+        "memory_tip": "Kingdom, Phylum, Class, Order, Family, Genus, Species — seven names, largest to smallest.",
+        "margin_note": "Two marks. Write all seven in order first, then the pattern that links them, then one worked example.",
+        "lines": [
+          "The taxonomic hierarchy has seven categories.",
+          "From the highest to the lowest they are:",
+          "Kingdom, Phylum, Class, Order, Family, Genus",
+          "and Species.",
+          "Each category includes one or more related",
+          "members of the category below it: a kingdom",
+          "includes related phyla, a phylum includes",
+          "related classes, a class includes related",
+          "orders, an order includes related families, a",
+          "family includes related genera, and a genus",
+          "includes related species.",
+          "In zoology the kingdom is Animalia.",
+          "Example: the human is placed in Animalia,",
+          "Chordata, Mammalia, Primata, Hominidae, Homo,",
+          "sapiens."
+        ]
+      },
+      {
+        "id": "s4_species_domain",
+        "kind": "boxed_final",
+        "label": "Species and domain",
+        "marks": 1,
+        "mark_note": "Species, domain",
+        "why": "The seven categories are the compulsory ones, and both the domain above them and the sub-categories between them are additions to that fixed frame.",
+        "common_mistakes": [
+          "Placing the domain below the kingdom. The domain lies above it.",
+          "Counting sub-family or sub-class among the seven main categories. They are intermediate categories."
+        ],
+        "memory_tip": "Above the seven sits the domain; between them sit the sub-categories.",
+        "margin_note": "Species, domain and the intermediate categories. One mark.",
+        "lines": [
+          {
+            "text": "Species is the lowest, domain the highest",
+            "style": "boxed"
+          },
+          "Species is the basic unit of classification.",
+          "It includes similar individuals that",
+          "interbreed among themselves.",
+          "Domain is a category placed above the",
+          "kingdom.",
+          "Besides the seven main categories there are",
+          "intermediate categories such as sub-phylum,",
+          "sub-class and sub-family."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The seven categories in the right order are worth two of the four marks, so write them out as a list before explaining anything — and remember the domain sits above the kingdom, not below it."
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_ratite_birds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the features peculiar to ratite birds? Give two examples of ratite birds.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Flightless, keel-less sternum",
+      "marks": 1
+    },
+    {
+      "label": "Feathers and skeleton",
+      "marks": 1
+    },
+    {
+      "label": "Other peculiar features",
+      "marks": 1
+    },
+    {
+      "label": "Distribution and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.65, Star Questions Plus, SAQ 182). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERRORS: the book's numbered list runs 1,2,3,4,5,8,7,6,9,10,11 — the numbers 6, 7 and 8 are printed out of order (a harmless printing slip; the card renumbers them). The book prints 'Dromaeus' and the common name 'Kiwi'; the accepted genus names are Dromaius and Apteryx, and the card uses those."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-II (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_keel",
+        "kind": "text",
+        "label": "Flightless and keel-less",
+        "marks": 1,
+        "mark_note": "Sternum",
+        "margin_note": "Open with the sternum. That one word carries the whole answer.",
+        "lines": [
+          "1) Ratite birds are modern flightless running",
+          "birds.",
+          "2) The wings are reduced.",
+          "3) The sternum is raft like and has NO keel.",
+          "Ratis means a raft, and that is where the name",
+          "comes from.",
+          "Without a keel there is no wide surface for",
+          "large flight muscles, so the bird cannot fly.",
+          "Flying birds are called carinate birds and do",
+          "have a keeled sternum."
+        ],
+        "why": "Every other ratite feature follows from the flat keel-less sternum, so the sternum is written first and the rest of the answer is read off it.",
+        "common_mistakes": [
+          "Writing that ratite birds have a keel. The keel is exactly what they lack; carinate birds have it.",
+          "Calling them primitive birds that never flew. They are MODERN birds whose ancestors could fly."
+        ],
+        "memory_tip": "Ratis means raft: a flat raft of a breast bone, so no muscles, so no flight."
+      },
+      {
+        "id": "s2_feathers",
+        "kind": "text",
+        "label": "Feathers and skeleton",
+        "marks": 1,
+        "mark_note": "Feathers",
+        "margin_note": "Three losses in the skeleton and the coat. One line each.",
+        "lines": [
+          "4) The feathers have no interlocking mechanism,",
+          "so the vane stays loose and cannot press",
+          "against the air.",
+          "5) The pygostyle is rudimentary or absent, so",
+          "the tail feathers cannot be steered.",
+          "6) The clavicles are absent, so there is no",
+          "furcula (wish bone)."
+        ],
+        "why": "A bird that does not fly loses every part that only flight needed, so the missing hooklets, pygostyle and furcula are one idea told three times.",
+        "common_mistakes": [
+          "Writing that ratite feathers are absent. They are present but loose, with no hooklets.",
+          "Saying the wish bone is present. The clavicles are absent, so no furcula is formed."
+        ],
+        "memory_tip": "No flight, so no flight parts: loose feathers, no pygostyle, no wish bone."
+      },
+      {
+        "id": "s3_other",
+        "kind": "text",
+        "label": "Other peculiar features",
+        "marks": 1,
+        "mark_note": "Others",
+        "margin_note": "Four short features. The precocial line is the one most often left out.",
+        "lines": [
+          "7) The syrinx (voice box) is absent.",
+          "8) The preen gland is absent.",
+          "9) The males have a copulatory organ, which is",
+          "unusual among birds.",
+          "10) The young ones are precocial: they hatch",
+          "active, with open eyes and a coat of down, and",
+          "can run soon after hatching."
+        ],
+        "why": "The copulatory organ and the precocial chicks are the two features that are NOT losses, so they are the ones that mark a ratite as its own group rather than a damaged flier.",
+        "common_mistakes": [
+          "Writing that ratite young are helpless at hatching. They are precocial and run early.",
+          "Saying all birds have a copulatory organ. In most birds it is absent; in ratites the male has one."
+        ],
+        "memory_tip": "Two absent (syrinx, preen gland) and two present (copulatory organ, running chicks)."
+      },
+      {
+        "id": "s4_examples",
+        "kind": "boxed_final",
+        "label": "Distribution and examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "margin_note": "Two examples are asked; naming two with their homes is enough for the mark.",
+        "lines": [
+          {
+            "text": "Flightless, raft-like sternum with no keel",
+            "style": "boxed"
+          },
+          "11) They show discontinuous distribution: the",
+          "group is spread over southern lands that are",
+          "now far apart.",
+          "Examples:",
+          "Rhea (American ostrich) in South America,",
+          "Struthio (African ostrich) in Africa,",
+          "Dromaius (emu) and Casuarius (cassowary) in",
+          "Australia,",
+          "Apteryx (kiwi) in New Zealand."
+        ],
+        "why": "The birds are flightless yet spread across separated southern continents, which is why the distribution is called discontinuous and is a marked feature and not a stray fact.",
+        "common_mistakes": [
+          "Naming a penguin as a ratite. A penguin is flightless but has a keeled sternum, so it is carinate.",
+          "Giving the country and not the genus. The scientific name is what carries the mark."
+        ],
+        "memory_tip": "Five ratites on five southern lands: Rhea, Struthio, Dromaius, Casuarius, Apteryx."
+      }
+    ]
+  },
+  "insider_note": "The keel is the whole question — an answer that says flightless without the words raft like sternum without a keel loses the mark that every examiner marks first."
+}

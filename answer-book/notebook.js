@@ -185,7 +185,8 @@
       // checked' reads right for 1A and 1B alike.
       var subjectWord = (question.subject || '').indexOf('mathematics') === 0 ? 'mathematics'
         : question.subject === 'chemistry' ? 'chemistry'
-        : question.subject === 'botany' ? 'botany' : 'physics';
+        : question.subject === 'botany' ? 'botany'
+        : question.subject === 'zoology' ? 'zoology' : 'physics';
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
         'The ' + subjectWord + ' and the method are checked; the exact split is a claim.';
     }
@@ -1200,8 +1201,14 @@
   function buildFigure(fig) {
     var wrap = document.createElement('div');
     wrap.className = 'figure-wrap';
+    // A phased figure (any captioned pause) reserves ONE extra rule for the
+    // phase-caption line — unconditionally, so pagination is identical across
+    // the animated, instant and print paths.
+    var hasCaptions = fig.elements.some(function (el) {
+      return el.type === 'pause' && el.caption;
+    });
     // reserve a whole number of rules so the block below stays on the rules
-    var rules = Math.ceil(fig.height / 32);
+    var rules = Math.ceil(fig.height / 32) + (hasCaptions ? 1 : 0);
     wrap.style.height = (rules * 32) + 'px';
 
     var svg = document.createElementNS(SVG_NS, 'svg');
@@ -1212,6 +1219,7 @@
     svg.appendChild(defs);
 
     fig.elements.forEach(function (el) {
+      if (el.type === 'pause') return;   // a phase boundary draws nothing
       if (el.type === 'stroke') {
         var path = document.createElementNS(SVG_NS, 'path');
         path.setAttribute('d', el.d);
@@ -1258,6 +1266,12 @@
     });
 
     wrap.appendChild(svg);
+    if (hasCaptions) {
+      var cap = document.createElement('div');
+      cap.className = 'figure-caption';
+      wrap.appendChild(cap);
+      wrap._caption = cap;
+    }
     wrap._fig = fig;
     return wrap;
   }
@@ -1265,7 +1279,9 @@
   // hide every element (after layout, so getTotalLength works), ready to play
   function armFigure(wrap) {
     var fig = wrap._fig;
+    if (wrap._caption) wrap._caption.textContent = '';
     fig.elements.forEach(function (el) {
+      if (el.type === 'pause') return;
       var node = el._node;
       if (el.type === 'stroke') {
         if (el._clipRect) {
@@ -1290,14 +1306,26 @@
 
   function playFigure(wrap, onDone) {
     var fig = wrap._fig;
-    var i = 0;
+    var i = 0;                           // next element to start
     var timer = null;
     var cancelled = false;
+    var waiting = false;                 // stopped at a phase boundary; a tap resumes
+
+    function setCaption(text) {
+      if (wrap._caption) wrap._caption.textContent = text || '';
+    }
 
     function playNext() {
       if (cancelled) return;
-      if (i >= fig.elements.length) { onDone(); return; }
-      var el = fig.elements[i++];
+      if (i >= fig.elements.length) { setCaption(''); onDone(); return; }
+      var el = fig.elements[i];
+      if (el.type === 'pause') {
+        setCaption(el.caption);
+        if (i === 0) { i++; playNext(); return; }  // caption-only phase-1 marker
+        waiting = true;                  // stop drawing; the next tap starts the phase
+        return;
+      }
+      i++;
       var node = el._node;
       if (el.type === 'stroke') {
         if (el._clipRect) {
@@ -1328,31 +1356,60 @@
 
     playNext();
 
-    return function finish() {           // tap-to-finish
-      cancelled = true;
+    return function finish(force) {
+      if (force) {                       // teardown (rail jump / cut switch): complete everything
+        cancelled = true;
+        if (timer) clearTimeout(timer);
+        finishFigure(wrap);
+        onDone();
+        return;
+      }
+      if (waiting) {                     // tap at a phase boundary: draw the next phase
+        waiting = false;
+        i++;                             // step past the pause
+        playNext();
+        return;
+      }
+      // Tap mid-phase (impatience): instantly complete the CURRENT phase only and
+      // stop at its boundary. Finishing from 0 is deliberate — the element still
+      // animating is behind i, and re-finishing done elements is a no-op. A figure
+      // with no pauses degenerates to finish-everything, today's exact behavior.
       if (timer) clearTimeout(timer);
-      finishFigure(wrap);
-      onDone();
+      var stop = i;
+      while (stop < fig.elements.length && fig.elements[stop].type !== 'pause') stop++;
+      for (var k = 0; k < stop; k++) finishElement(fig.elements[k]);
+      i = stop;
+      if (i >= fig.elements.length) {
+        cancelled = true;
+        setCaption('');
+        onDone();
+        return;
+      }
+      playNext();                        // lands on the pause: caption + wait
     };
   }
 
-  function finishFigure(wrap) {
-    wrap._fig.elements.forEach(function (el) {
-      var node = el._node;
-      if (el.type === 'stroke') {
-        if (el._clipRect) {
-          el._clipRect.style.transition = 'none';
-          el._clipRect.setAttribute('width', String(el._bb.width + 8));
-          el._clipRect.setAttribute('height', String(el._bb.height + 8));
-        } else {
-          node.style.transition = 'none';
-          node.style.strokeDashoffset = '0';
-        }
+  function finishElement(el) {
+    if (el.type === 'pause') return;
+    var node = el._node;
+    if (el.type === 'stroke') {
+      if (el._clipRect) {
+        el._clipRect.style.transition = 'none';
+        el._clipRect.setAttribute('width', String(el._bb.width + 8));
+        el._clipRect.setAttribute('height', String(el._bb.height + 8));
       } else {
         node.style.transition = 'none';
-        node.style.opacity = '1';
+        node.style.strokeDashoffset = '0';
       }
-    });
+    } else {
+      node.style.transition = 'none';
+      node.style.opacity = '1';
+    }
+  }
+
+  function finishFigure(wrap) {
+    wrap._fig.elements.forEach(finishElement);
+    if (wrap._caption) wrap._caption.textContent = '';
   }
 
   // ═══ typing (board-mvp.html L591-623 harvest, adapted) ═══════════════════
@@ -1581,7 +1638,9 @@
 
   /** One code path for jump/restart — pagination identical to tapping through. */
   function renderUpTo(targetIndex, animateLast) {
-    if (revealing && finishCurrent) finishCurrent();
+    // force=true: a phased figure must complete outright here — a plain tap
+    // semantics call would RESUME drawing into DOM this wipe is about to destroy.
+    if (revealing && finishCurrent) finishCurrent(true);
     revealing = false; finishCurrent = null; completed = false;
     notebook.innerHTML = '';
     pageBodies = [];

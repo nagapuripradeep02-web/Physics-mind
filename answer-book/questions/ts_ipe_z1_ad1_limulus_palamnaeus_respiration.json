@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_limulus_palamnaeus_respiration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the respiratory structures of Limulus and Palamnaeus respectively?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Limulus",
+      "marks": 1
+    },
+    {
+      "label": "Palamnaeus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.54, VSAQ 101). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_limulus",
+        "kind": "text",
+        "label": "Limulus",
+        "marks": 1,
+        "why": "The habitat decides the organ, so both halves of this answer follow from where each animal lives.",
+        "common_mistakes": [
+          "Writing book lungs for Limulus. Limulus is aquatic, so it has book gills.",
+          "Writing gills alone. The organ has a name of its own: book gills."
+        ],
+        "memory_tip": "Water animal, book gills. Land animal, book lungs. Both are stacks of plates.",
+        "margin_note": "Habitat, then organ. Two lines.",
+        "mark_note": "Limulus",
+        "lines": [
+          "Limulus, the king crab, is aquatic.",
+          "Its respiratory organs are book gills.",
+          "They are plates of gill tissue stacked one",
+          "over another on the abdominal appendages,",
+          "and they take up the oxygen dissolved in the",
+          "water."
+        ]
+      },
+      {
+        "id": "s2_palamnaeus",
+        "kind": "boxed_final",
+        "label": "Palamnaeus",
+        "marks": 1,
+        "why": "A gill collapses in air and a lung dries in water, so the same stacked-plate design is placed outside the body in one animal and inside a pocket in the other.",
+        "common_mistakes": [
+          "Writing tracheae for the scorpion. Tracheae are found in some spiders; the scorpion has book lungs.",
+          "Giving one organ for both animals. The question asks for them respectively."
+        ],
+        "memory_tip": "Both are chelicerates and both use stacked plates; only the habitat differs.",
+        "margin_note": "The word respectively means the order matters. Keep Limulus first.",
+        "mark_note": "Palamnaeus",
+        "lines": [
+          {
+            "text": "Limulus: book gills · Palamnaeus: book lungs",
+            "style": "boxed"
+          },
+          "Palamnaeus, the scorpion, is terrestrial.",
+          "Its respiratory organs are book lungs.",
+          "They are plates stacked inside pockets of the",
+          "abdomen, and they take up oxygen from air."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The word 'respectively' is the trap — an answer that names both organs but pairs them the wrong way round scores nothing."
+}

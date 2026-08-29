@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_tautonymy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by tautonymy? Give two examples.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Two examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.49, VSAQ 63). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: the line that tautonymy is allowed in animal naming but not in plant naming is standard and is not printed in this book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What tautonymy is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "The definition is about the two words matching, so the test for tautonymy is to read the scientific name and see the same word twice.",
+        "common_mistakes": [
+          "Confusing it with trinomial naming. Tautonymy has two words that are the same, not three words.",
+          "Giving a plant example. Tautonymy is not allowed under the plant code, so every example is an animal."
+        ],
+        "memory_tip": "Tauto means same: the same word twice, genus then species.",
+        "margin_note": "One sentence, then the two examples. Do not write more.",
+        "lines": [
+          "Tautonymy is the practice of naming an animal",
+          "in which the generic name and the specific",
+          "name are the same word.",
+          "It is allowed in animal naming under the ICZN."
+        ]
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "The two examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "why": "Two examples are asked, so each name is written with the animal it belongs to — the name alone does not show what it is.",
+        "common_mistakes": [
+          "Giving only one example. The question asks for two."
+        ],
+        "memory_tip": "Naja naja and Axis axis: read each name aloud and the word repeats.",
+        "margin_note": "Two names with the animal each one belongs to. Two lines.",
+        "lines": [
+          {
+            "text": "Naja naja and Axis axis",
+            "style": "boxed"
+          },
+          "Naja naja is the Indian cobra.",
+          "Axis axis is the spotted deer."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Tautonymy is valid in zoology but not in botany, so a plant example scores nothing — keep to animals such as Naja naja and Axis axis."
+}

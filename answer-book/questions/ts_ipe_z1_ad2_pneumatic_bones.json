@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_pneumatic_bones",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are pneumatic bones? How do they help birds?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "How they help",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.56, VSAQ 120). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [AP Mar-19] and [AP May-17,19]. The March and May 2019 AP sittings are two separate papers but this card stores year and board only, so the two 2019 AP citations collapse into one entry."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Bones",
+        "margin_note": "Say what is inside the bone and where the air comes from. Two or three lines.",
+        "lines": [
+          "Pneumatic bones are bones that hold air",
+          "cavities inside them.",
+          "The air sacs of the lungs send extensions into",
+          "these cavities.",
+          "They are found in the long bones and in the",
+          "skull bones of birds."
+        ],
+        "why": "The cavities are not empty spaces but extensions of the air sacs, so the same arrangement that lightens the bone also carries air.",
+        "common_mistakes": [
+          "Writing that the bones are hollow and empty. The cavities hold air from the air sacs.",
+          "Calling them weak bones. They are light but strong, because struts cross the cavities."
+        ],
+        "memory_tip": "Pneuma means air: an air bone is a bone with air inside."
+      },
+      {
+        "id": "s2_help",
+        "kind": "boxed_final",
+        "label": "How they help",
+        "marks": 1,
+        "mark_note": "Use",
+        "margin_note": "The second mark is the reason, not the name. Say weight reduction in so many words.",
+        "lines": [
+          {
+            "text": "Air inside the bone lowers the body weight",
+            "style": "boxed"
+          },
+          "Air weighs far less than bone, so the skeleton",
+          "becomes light.",
+          "The body weight of the bird is reduced, and",
+          "flight becomes easier.",
+          "So pneumatic bones are a flight adaptation."
+        ],
+        "why": "Weight is the whole problem of flight, so every flight adaptation is explained by saying what it removes, and here it is the weight of solid bone.",
+        "common_mistakes": [
+          "Writing that pneumatic bones help in breathing. Their marked use is weight reduction.",
+          "Saying they make the bird float. They reduce weight; they do not make the bird lighter than air."
+        ],
+        "memory_tip": "Less bone, more air, less weight, easier flight."
+      }
+    ]
+  },
+  "insider_note": "Write the words reduce the body weight; examiners look for that phrase and not for a general sentence about flight."
+}

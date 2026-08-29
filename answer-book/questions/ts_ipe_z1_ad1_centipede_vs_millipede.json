@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_centipede_vs_millipede",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Compare briefly a centipede and a millipede.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What both are",
+      "marks": 1
+    },
+    {
+      "label": "Centipede",
+      "marks": 1
+    },
+    {
+      "label": "Millipede",
+      "marks": 1
+    },
+    {
+      "label": "Key differences",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.65, SAQ 181). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-I (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shared",
+        "kind": "text",
+        "label": "What both are",
+        "marks": 1,
+        "why": "The two animals share every class-level character, so the shared points are written first and the differences after, which is the shape a comparison question is marked in.",
+        "common_mistakes": [
+          "Writing that a centipede breathes by gills. Both groups respire by tracheae.",
+          "Giving them a head, thorax and abdomen. The body is a head and a trunk only."
+        ],
+        "memory_tip": "Same phylum, same habitat, same breathing, same excretion — only the legs and the food differ.",
+        "margin_note": "Shared points first. Four short lines is enough.",
+        "mark_note": "What both are",
+        "lines": [
+          "Both are mandibulate arthropods and both are",
+          "terrestrial.",
+          "In both the body is divided into a head and",
+          "a trunk.",
+          "Both respire by tracheae.",
+          "In both the excretory organs are the",
+          "Malpighian tubules."
+        ]
+      },
+      {
+        "id": "s2_centipede",
+        "kind": "text",
+        "label": "Centipede",
+        "marks": 1,
+        "why": "One pair of legs on each segment gives a long stride and a fast animal, which suits a group that catches live prey.",
+        "common_mistakes": [
+          "Giving the centipede two pairs of legs per segment. That is the millipede.",
+          "Writing that centipedes eat plants. They are carnivorous."
+        ],
+        "memory_tip": "Chilopoda: one pair per segment, poison claws in front, feeds on other animals.",
+        "margin_note": "Class, legs per segment, poison claws, food, examples. One line each.",
+        "mark_note": "Centipede",
+        "lines": [
+          "Centipedes belong to the class Chilopoda.",
+          "They are called hundred leggers.",
+          "Each trunk segment carries ONE pair of",
+          "clawed appendages.",
+          "The first pair of trunk appendages is",
+          "modified into poison claws.",
+          "Centipedes are carnivorous.",
+          "Examples: Scolopendra, Scutigera."
+        ]
+      },
+      {
+        "id": "s3_millipede",
+        "kind": "text",
+        "label": "Millipede",
+        "marks": 1,
+        "why": "Diplo means double, so the name of the class itself records the two pairs of legs on each segment.",
+        "common_mistakes": [
+          "Giving the millipede poison claws. Poison claws are found only in the centipede.",
+          "Writing that millipedes are carnivorous. They are herbivorous."
+        ],
+        "memory_tip": "Diplopoda: diplo means double, so two pairs per segment, no poison claws, feeds on plants.",
+        "margin_note": "The same five points as the centipede, in the same order, so the two columns line up.",
+        "mark_note": "Millipede",
+        "lines": [
+          "Millipedes belong to the class Diplopoda.",
+          "They are called thousand leggers.",
+          "Each trunk segment carries TWO pairs of",
+          "appendages.",
+          "Poison claws are absent.",
+          "Millipedes are herbivorous.",
+          "Examples: Spirostreptus, Julus."
+        ]
+      },
+      {
+        "id": "s4_differences",
+        "kind": "boxed_final",
+        "label": "The key differences",
+        "marks": 1,
+        "why": "Three differences are enough for four marks, and the number of leg pairs is the one that names the two classes, so it is written first.",
+        "common_mistakes": [
+          "Listing only the number of legs. Give the poison claws and the food as well.",
+          "Writing the differences as loose sentences. A comparison is marked as a table, one row per point."
+        ],
+        "memory_tip": "Chilo is one pair, Diplo is two pairs. Then claws, then food.",
+        "margin_note": "If there is room, draw this as a two-column table — the examiner is ticking rows.",
+        "mark_note": "Key differences",
+        "lines": [
+          {
+            "text": "Chilopoda: 1 pair per segment · Diplopoda: 2",
+            "style": "boxed"
+          },
+          "The three differences that decide the",
+          "answer:",
+          "1) Legs: the centipede has one pair per",
+          "segment, the millipede two pairs.",
+          "2) Poison claws: present in the centipede,",
+          "absent in the millipede.",
+          "3) Food: the centipede is carnivorous, the",
+          "millipede is herbivorous."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Compare questions are marked row by row, so a two-column table with the same headings on both sides scores faster than two paragraphs."
+}

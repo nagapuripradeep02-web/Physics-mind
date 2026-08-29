@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_dynein_arms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are dynein arms? What is their significance?",
+  "appearances": [
+    { "year": 2019, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "What they are", "marks": 1 },
+    { "label": "Significance", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, Star Questions Plus, VSAQ under the LOCOMOTION heading (book p.63, question 174). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [TS M-19]. BOOK GAP: the question asks for the significance, but the book's printed answer gives only position and composition — where the arms sit, that they face the B tubule of the next doublet, that they are arranged clockwise, and that they are made of the protein dynein. It never states what they DO. The significance step here is authored from standard zoology: dynein is an ATPase, the arms drive the sliding of neighbouring doublets, and that sliding is what bends the cilium or flagellum. This is a correction of an incomplete printed answer, not a departure from the syllabus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Locomotion and Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          "Dynein arms are present in the axoneme of",
+          "cilia and flagella.",
+          "The A tubule of each peripheral doublet bears",
+          "a pair of arms along its whole length. These",
+          "are the dynein arms.",
+          "They point towards the B tubule of the next",
+          "doublet and are arranged in a clockwise",
+          "direction. They are made of the protein",
+          "dynein."
+        ],
+        "why": "The arms are named by the protein they are made of and located by the tubule they sit on, so the answer is complete only when both the A tubule and the protein dynein are written.",
+        "common_mistakes": [
+          "Putting the arms on the B tubule. They grow from the A tubule and reach towards the B tubule of the neighbour.",
+          "Writing that each doublet has one arm. Each A tubule bears a PAIR of arms."
+        ],
+        "memory_tip": "A tubule carries the Arms; they reach across to the B tubule of the next doublet.",
+        "margin_note": "Say A tubule, pair of arms, protein dynein. Three facts, one mark."
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Significance",
+        "marks": 1,
+        "mark_note": "Function",
+        "lines": [
+          "Dynein is an ATPase. It breaks down ATP and",
+          "uses the energy released.",
+          "Each arm pulls on the B tubule of the next",
+          "doublet, so neighbouring doublets slide past",
+          "each other.",
+          "Because nexin links hold the doublets",
+          "together, this sliding bends the axoneme.",
+          {
+            "text": "Sliding of doublets = the beat of a cilium",
+            "style": "boxed"
+          }
+        ],
+        "why": "The tubules themselves do not shorten, so the only way a cilium can bend is by one doublet sliding along its neighbour, and the dynein arms are what produce that sliding.",
+        "common_mistakes": [
+          "Writing that the doublets contract. They slide; they do not shorten.",
+          "Stopping at 'made of dynein protein'. The question asks what the arms DO."
+        ],
+        "memory_tip": "Arms pull, doublets slide, nexin holds, so the whole flagellum bends.",
+        "margin_note": "The second mark is the sliding and the bend. Write both words."
+      }
+    ]
+  },
+  "insider_note": "The source book answers only the first half of this question, so most guides stop at 'made of dynein protein' — the second mark is the sliding of the doublets that bends the cilium."
+}

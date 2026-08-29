@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_haemozoin_granules",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are haemozoin granules? What is their significance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.59, VSAQ 145). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "Inside the red blood cell the malarial parasite",
+          "digests the globin part of haemoglobin.",
+          "It converts the soluble haem that is left into",
+          "insoluble crystalline granules called haemozoin,",
+          "also called malarial pigment."
+        ],
+        "why": "Haemozoin is the leftover of a meal: the parasite uses the globin as food and cannot use the haem, so the haem is stacked away as an insoluble crystal.",
+        "common_mistakes": [
+          "Writing that the parasite digests the haem. It digests the globin; the haem is left over.",
+          "Writing that haemozoin is soluble. It is an insoluble crystalline granule."
+        ],
+        "memory_tip": "Globin is the food, haem is the leftover, and the leftover is haemozoin.",
+        "margin_note": "Two lines: what is digested, then what is left as granules."
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Significance",
+        "marks": 1,
+        "mark_note": "Significance",
+        "lines": [
+          {
+            "text": "Haemozoin release causes chill and fever",
+            "style": "boxed"
+          },
+          "When the red blood cell bursts, the haemozoin is",
+          "released into the blood along with the",
+          "merozoites.",
+          "The released haemozoin causes the chill and",
+          "fever of malaria, which return every 48 hours in",
+          "Plasmodium vivax."
+        ],
+        "why": "The significance is the symptom: the fever appears when the cells burst together, which is why the fever of Plasmodium vivax comes back on a fixed 48-hour timetable.",
+        "common_mistakes": [
+          "Writing that haemozoin gives the parasite energy. It is a waste product.",
+          "Leaving out the fever. The link to the fever is the whole significance."
+        ],
+        "memory_tip": "Cells burst, pigment out, fever on: that is the 48-hour malaria rhythm.",
+        "margin_note": "Two lines linking the bursting cell to the fever. Give the 48 hours if you can."
+      }
+    ]
+  },
+  "insider_note": "The second mark is only for the link to the fever, so the answer must not stop at describing the granule."
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_phototaxis_vs_photokinesis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish the terms phototaxis and photokinesis.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Phototaxis",
+      "marks": 1
+    },
+    {
+      "label": "Photokinesis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.61, VSAQ 159). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_phototaxis",
+        "kind": "text",
+        "label": "Phototaxis",
+        "marks": 1,
+        "mark_note": "Phototaxis",
+        "lines": [
+          "Phototaxis is the influence of light on the",
+          "DIRECTIONAL movement of an organism, either",
+          "towards the light or away from it.",
+          "Ex: Euglena moves towards light — positive",
+          "phototaxis.",
+          "Ex: the cockroach moves away from light —",
+          "negative phototaxis."
+        ],
+        "why": "The two examples are chosen to sit on opposite sides of the same term, which shows the examiner that the movement has a direction and that the direction can go either way.",
+        "common_mistakes": [
+          "Writing that phototaxis is movement towards light only. It may be towards OR away.",
+          "Leaving out the words positive and negative, which name the two directions."
+        ],
+        "memory_tip": "Taxis has a direction: towards is positive, away is negative.",
+        "margin_note": "One sentence, then the two examples with their signs. Keep each example to one line."
+      },
+      {
+        "id": "s2_photokinesis",
+        "kind": "boxed_final",
+        "label": "Photokinesis",
+        "marks": 1,
+        "mark_note": "Photokinesis",
+        "lines": [
+          {
+            "text": "Taxis sets the direction, kinesis the speed",
+            "style": "boxed"
+          },
+          "Photokinesis is the influence of the",
+          "INTENSITY of light on the non-directional",
+          "movement of an organism.",
+          "Ex: the larva of Pinnotheres maculatus, the",
+          "mussel crab, moves faster as the light gets",
+          "brighter, but keeps its own direction."
+        ],
+        "why": "The contrast is not light against no light but direction against speed, so the second half must say non-directional and must tie the change to the INTENSITY of the light.",
+        "common_mistakes": [
+          "Writing that the organism moves towards brighter light. In photokinesis the direction does not change.",
+          "Leaving out the word intensity. Photokinesis answers how BRIGHT the light is, not where it is."
+        ],
+        "memory_tip": "Kinesis is like kinetic — it is about speed. Taxis is about which way.",
+        "margin_note": "One sentence with non-directional and intensity in it, then the named example."
+      }
+    ]
+  },
+  "insider_note": "The distinction the examiner marks is direction against speed — a student who writes towards the light in both halves loses one mark."
+}

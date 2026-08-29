@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_spermathecae_pheretima",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are spermathecae on the body of Pheretima?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "What they do",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.54, VSAQ 104). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "why": "The sacs open to the outside, which is how sperm from another worm can reach them during copulation.",
+        "common_mistakes": [
+          "Writing that spermathecae produce sperm. The testes produce sperm; the spermathecae only store it.",
+          "Giving the wrong segments. The four pairs lie in segments 6, 7, 8 and 9."
+        ],
+        "memory_tip": "Four pairs in four segments, 6 to 9. They store, they do not make.",
+        "margin_note": "Number and position first. Three or four lines.",
+        "mark_note": "What they are",
+        "lines": [
+          "Spermathecae are the sperm-storing sacs of",
+          "Pheretima, the earthworm.",
+          "There are four pairs of spermathecae.",
+          "They lie one pair each in the 6th, 7th, 8th",
+          "and 9th segments.",
+          "Each pair opens to the outside on the ventral",
+          "side of its segment."
+        ]
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "What they do",
+        "marks": 1,
+        "why": "The sacs hold sperm from a second worm, and that is how an animal with both sets of organs still gets cross-fertilisation.",
+        "common_mistakes": [
+          "Writing that the sperm is used at once. It is stored and used later, in the cocoon.",
+          "Writing that the worm fertilises its own eggs. The sperm in the spermathecae came from the other worm."
+        ],
+        "memory_tip": "Received, stored, used later in the cocoon — three stages, in that order.",
+        "margin_note": "One line for each stage: exchange, store, use. Do not repeat the positions.",
+        "mark_note": "What they do",
+        "lines": [
+          {
+            "text": "Four pairs, in segments 6 to 9",
+            "style": "boxed"
+          },
+          "The earthworm is a hermaphrodite, but",
+          "self-fertilisation does not occur.",
+          "During copulation two worms exchange sperm.",
+          "Each worm receives the other worm's sperm and",
+          "stores it in the spermathecae.",
+          "The stored sperm is used later to fertilise",
+          "the eggs inside the cocoon."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Segment numbers are marked here — 6, 7, 8, 9 — and an answer that describes the sacs correctly but omits the segments has lost half of it."
+}

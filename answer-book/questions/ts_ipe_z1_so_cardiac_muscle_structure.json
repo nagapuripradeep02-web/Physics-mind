@@ -1,0 +1,462 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_cardiac_muscle_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the structure of a cardiac muscle.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identity",
+      "marks": 1
+    },
+    {
+      "label": "Branches and discs",
+      "marks": 1
+    },
+    {
+      "label": "One working unit",
+      "marks": 1
+    },
+    {
+      "label": "Properties",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.33, SAQ 21). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. FIGURE SCOPE: this book prints a small shaded drawing of cardiac muscle beside the answer, but the question does not ask for a diagram, so the figure here is authored as a 0-mark study drawing, not a mark-bearing step."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "text",
+        "label": "What cardiac muscle is",
+        "marks": 1,
+        "why": "Cardiac muscle is easiest to fix by contrast: it is striated like skeletal muscle but carries one central nucleus like smooth muscle, and it is the only muscle with branched fibres.",
+        "common_mistakes": [
+          "Writing that cardiac cells are multinucleate. They have one nucleus, and it lies in the centre.",
+          "Calling cardiac muscle unstriated. It is striated."
+        ],
+        "memory_tip": "Cardiac muscle borrows from both: striped like skeletal muscle, one central nucleus like smooth muscle.",
+        "margin_note": "Where it is, cell shape, nucleus, striations. Four short lines.",
+        "mark_note": "Identity",
+        "lines": [
+          "Cardiac muscle is the muscle of the heart wall.",
+          "It forms the myocardium.",
+          "Its cells are short and cylindrical.",
+          "Each cell has ONE nucleus, and it lies in the",
+          "centre of the cell.",
+          "The cells are striated: they show dark and light",
+          "bands."
+        ]
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — cardiac muscle fibres",
+        "marks": 0,
+        "why": "The two features that name cardiac muscle — the branch and the intercalated disc — are shapes, so one small drawing settles them faster than a paragraph does.",
+        "common_mistakes": [
+          "Drawing the fibres unbranched. Branching is the feature that identifies cardiac muscle.",
+          "Drawing the intercalated disc along the fibre. It runs ACROSS the fibre, where two cells meet."
+        ],
+        "memory_tip": "Draw a Y-shaped fibre first; the dark cross line where two cells meet is the intercalated disc.",
+        "margin_note": "The question does not ask for a diagram, so it earns no mark here. This book prints one beside the answer, and drawing it makes the branching and the discs obvious.",
+        "figure": {
+          "id": "so_cardiac_muscle",
+          "width": 520,
+          "height": 288,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — three muscle fibres side by side"
+            },
+            {
+              "type": "stroke",
+              "id": "a_top",
+              "d": "M 190 75 L 470 75",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "a_bot1",
+              "d": "M 190 105 L 272 105",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "a_bot2",
+              "d": "M 300 105 L 470 105",
+              "ms": 2430
+            },
+            {
+              "type": "stroke",
+              "id": "b_top1",
+              "d": "M 190 155 L 262 155",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "b_top2",
+              "d": "M 310 155 L 470 155",
+              "ms": 2290
+            },
+            {
+              "type": "stroke",
+              "id": "b_bot1",
+              "d": "M 190 185 L 350 185",
+              "ms": 2290
+            },
+            {
+              "type": "stroke",
+              "id": "b_bot2",
+              "d": "M 378 185 L 470 185",
+              "ms": 1310
+            },
+            {
+              "type": "stroke",
+              "id": "c_top1",
+              "d": "M 190 235 L 340 235",
+              "ms": 2140
+            },
+            {
+              "type": "stroke",
+              "id": "c_top2",
+              "d": "M 388 235 L 470 235",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "c_bot",
+              "d": "M 190 265 L 470 265",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "caps_l",
+              "d": "M 190 75 L 190 105 M 190 155 L 190 185 M 190 235 L 190 265",
+              "ms": 1290
+            },
+            {
+              "type": "stroke",
+              "id": "caps_r",
+              "d": "M 470 75 L 470 105 M 470 155 L 470 185 M 470 235 L 470 265",
+              "ms": 1290
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the branches that join the fibres"
+            },
+            {
+              "type": "stroke",
+              "id": "branch_ab_l",
+              "d": "M 272 105 L 262 155",
+              "ms": 730
+            },
+            {
+              "type": "stroke",
+              "id": "branch_ab_r",
+              "d": "M 300 105 L 310 155",
+              "ms": 730
+            },
+            {
+              "type": "stroke",
+              "id": "branch_bc_l",
+              "d": "M 350 185 L 340 235",
+              "ms": 730
+            },
+            {
+              "type": "stroke",
+              "id": "branch_bc_r",
+              "d": "M 378 185 L 388 235",
+              "ms": 730
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — intercalated discs across the fibres"
+            },
+            {
+              "type": "stroke",
+              "id": "discs_a",
+              "d": "M 240 75 L 240 90 L 248 90 L 248 105 M 386 75 L 386 90 L 394 90 L 394 105",
+              "ms": 1090,
+              "w": 2.8
+            },
+            {
+              "type": "stroke",
+              "id": "discs_b",
+              "d": "M 226 155 L 226 170 L 234 170 L 234 185 M 400 155 L 400 170 L 408 170 L 408 185",
+              "ms": 1090,
+              "w": 2.8
+            },
+            {
+              "type": "stroke",
+              "id": "discs_c",
+              "d": "M 268 235 L 268 250 L 276 250 L 276 265 M 404 235 L 404 250 L 412 250 L 412 265",
+              "ms": 1090,
+              "w": 2.8
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — one central nucleus in every cell"
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_1",
+              "d": "M 205 90 A 9 6 0 1 0 223 90 A 9 6 0 1 0 205 90",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_2",
+              "d": "M 321 90 A 9 6 0 1 0 339 90 A 9 6 0 1 0 321 90",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_3",
+              "d": "M 419 90 A 9 6 0 1 0 437 90 A 9 6 0 1 0 419 90",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_4",
+              "d": "M 197 170 A 9 6 0 1 0 215 170 A 9 6 0 1 0 197 170",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_5",
+              "d": "M 317 170 A 9 6 0 1 0 335 170 A 9 6 0 1 0 317 170",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_6",
+              "d": "M 435 170 A 9 6 0 1 0 453 170 A 9 6 0 1 0 435 170",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_7",
+              "d": "M 219 250 A 9 6 0 1 0 237 250 A 9 6 0 1 0 219 250",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_8",
+              "d": "M 297 250 A 9 6 0 1 0 315 250 A 9 6 0 1 0 297 250",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_9",
+              "d": "M 441 250 A 9 6 0 1 0 459 250 A 9 6 0 1 0 441 250",
+              "ms": 680
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — striations along a fibre"
+            },
+            {
+              "type": "stroke",
+              "id": "striations",
+              "d": "M 250 78 L 250 102 M 258 78 L 258 102 M 266 78 L 266 102 M 274 78 L 274 102 M 282 78 L 282 102 M 290 78 L 290 102 M 298 78 L 298 102 M 306 78 L 306 102 M 314 78 L 314 102 M 346 78 L 346 102 M 354 78 L 354 102 M 362 78 L 362 102 M 370 78 L 370 102 M 378 78 L 378 102",
+              "ms": 4500,
+              "w": 1.1
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_striations",
+              "x": 6,
+              "y": 56,
+              "text": "Striations",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_striations",
+              "d": "M 105 52 L 280 76",
+              "ms": 2520,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_disc",
+              "x": 6,
+              "y": 104,
+              "text": "Intercalated disc",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_disc",
+              "d": "M 174.3 100 L 240 92",
+              "ms": 950,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_branched",
+              "x": 6,
+              "y": 152,
+              "text": "Branched fibre",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_branched",
+              "d": "M 144.6 148 L 272 128",
+              "ms": 1840,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_nucleus",
+              "x": 6,
+              "y": 200,
+              "text": "Central nucleus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nucleus",
+              "d": "M 154.5 196 L 206 172",
+              "ms": 810,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_fibre",
+              "x": 6,
+              "y": 248,
+              "text": "Muscle fibre",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_fibre",
+              "d": "M 124.8 244 L 196 250",
+              "ms": 1020,
+              "w": 1.4
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_branches",
+        "kind": "text",
+        "label": "Branched fibres and intercalated discs",
+        "marks": 1,
+        "why": "The branches connect the fibres into a network and the discs are the joints of that network, which is what lets the impulse travel in every direction through the heart wall.",
+        "common_mistakes": [
+          "Confusing the intercalated discs with the striations. Striations run across the whole fibre; a disc marks the end of a cell.",
+          "Writing that the fibres are separate. They branch and join."
+        ],
+        "memory_tip": "Branched fibres make a net, and the intercalated discs are the knots of the net.",
+        "margin_note": "Branching and the discs are the two identifying features. Say the discs are found nowhere else.",
+        "mark_note": "Branches and discs",
+        "lines": [
+          "The muscle fibres are branched, and the branches",
+          "join the neighbouring fibres.",
+          "Where the ends of two cells meet there is a dark",
+          "cross line called an intercalated disc.",
+          "Intercalated discs are found only in cardiac",
+          "muscle."
+        ]
+      },
+      {
+        "id": "s4_syncytium",
+        "kind": "text",
+        "label": "The heart muscle works as one unit",
+        "marks": 1,
+        "why": "The cells stay separate but behave as one because of the gap junctions, and that is exactly what functional syncytium means: joined in working, not in structure.",
+        "common_mistakes": [
+          "Calling cardiac muscle a true syncytium. The cells stay separate; only their working is joined.",
+          "Writing that the nerves start the beat. The pacemaker starts it."
+        ],
+        "memory_tip": "Functional syncytium means separate cells, one beat.",
+        "margin_note": "Gap junctions, quick spread, one unit, pacemaker. Four short lines.",
+        "mark_note": "One working unit",
+        "lines": [
+          "The intercalated discs carry gap junctions.",
+          "An impulse passes through them from one cell to",
+          "the next without delay.",
+          "So the whole heart muscle contracts as one unit.",
+          "It is called a functional syncytium.",
+          "The beat itself starts in the pacemaker."
+        ]
+      },
+      {
+        "id": "s5_properties",
+        "kind": "boxed_final",
+        "label": "Properties of cardiac muscle",
+        "marks": 1,
+        "why": "The heart may not stop and may not tire, so its muscle is placed outside the control of the will and is given the oxygen supply that prevents fatigue.",
+        "common_mistakes": [
+          "Writing that the nervous system starts the beat. The pacemaker starts it; the nerves and adrenaline only change its rate.",
+          "Calling cardiac muscle voluntary. It is involuntary."
+        ],
+        "memory_tip": "Involuntary, pacemaker driven, adjusted by nerves and adrenaline, and never tiring.",
+        "margin_note": "Three properties close the answer. Do not repeat what is already written above.",
+        "mark_note": "Properties",
+        "lines": [
+          {
+            "text": "Involuntary, never tires, beats through life",
+            "style": "boxed"
+          },
+          "The heart beat is involuntary: it is not under",
+          "the control of the will.",
+          "Its rate is changed by the nervous system and by",
+          "adrenaline.",
+          "Cardiac muscle is highly resistant to fatigue,",
+          "so it works without rest through life."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Three words carry most of this answer — branched, mononucleate and intercalated discs — and the last mark is usually lost by stopping before the properties."
+}

@@ -1,0 +1,171 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_chordate_hallmarks",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Name the four 'hallmarks' of chordates and explain the principal function of each of them.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Notochord",
+      "marks": 1
+    },
+    {
+      "label": "Dorsal tubular nerve cord",
+      "marks": 1
+    },
+    {
+      "label": "Pharyngeal gill slits",
+      "marks": 1
+    },
+    {
+      "label": "Post-anal tail",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.37, SAQ 30). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-II (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_notochord",
+        "kind": "text",
+        "label": "Notochord",
+        "marks": 1,
+        "mark_note": "Notochord",
+        "margin_note": "Name, position, origin, function. Four short lines for each hallmark.",
+        "lines": [
+          "1) Notochord:",
+          "It is a long rod like structure present in all",
+          "chordates at some stage of life.",
+          "It lies above the alimentary canal and below",
+          "the nerve cord.",
+          "It is mesodermal in origin.",
+          "Function: it supports the body and gives it a",
+          "firm but flexible axis."
+        ],
+        "why": "The notochord is defined by its position between the gut and the nerve cord, and that sandwich order is the same in every chordate, so the position is worth as much as the name.",
+        "common_mistakes": [
+          "Writing that the notochord is present in the adult of all chordates. It is present at SOME stage; in vertebrates it is replaced by the vertebral column.",
+          "Placing the notochord above the nerve cord. It lies below the nerve cord and above the gut."
+        ],
+        "memory_tip": "Bottom to top: gut, notochord, nerve cord. Learn the sandwich, not the sentence."
+      },
+      {
+        "id": "s2_nerve_cord",
+        "kind": "text",
+        "label": "Dorsal tubular nerve cord",
+        "marks": 1,
+        "mark_note": "Nerve cord",
+        "margin_note": "The two words dorsal and tubular carry this mark. Write them before anything else.",
+        "lines": [
+          "2) Dorsal tubular nerve cord:",
+          "A single hollow nerve cord filled with fluid",
+          "lies above the notochord.",
+          "It is ectodermal in origin.",
+          "In vertebrates its front end becomes the brain",
+          "and the rest becomes the spinal cord.",
+          "Function: it coordinates the working of the",
+          "body."
+        ],
+        "why": "The words dorsal and hollow are the whole difference from an invertebrate nerve cord, which is ventral and solid, so both words must be written.",
+        "common_mistakes": [
+          "Writing ventral or solid. The chordate nerve cord is DORSAL and HOLLOW; the invertebrate one is ventral and solid.",
+          "Calling it mesodermal. The nerve cord is ectodermal in origin."
+        ],
+        "memory_tip": "Dorsal and hollow for a chordate; ventral and solid for an invertebrate. One pair each."
+      },
+      {
+        "id": "s3_gill_slits",
+        "kind": "text",
+        "label": "Pharyngeal gill slits",
+        "marks": 1,
+        "mark_note": "Gill slits",
+        "margin_note": "Say where they work and where they are reduced. That contrast is the mark.",
+        "lines": [
+          "3) Pharyngeal gill slits:",
+          "The wall of the pharynx is pierced on both",
+          "sides, and these openings are the gill slits.",
+          "They are ecto-endodermal in origin.",
+          "They are well developed in lower chordates and",
+          "in lower aquatic vertebrates.",
+          "They are reduced and non functional in higher",
+          "vertebrates.",
+          "Function: they help in exchange of gases."
+        ],
+        "why": "The gill slits are the one hallmark that fades away as chordates move on to land, so the answer has to say where they work and where they are only left over.",
+        "common_mistakes": [
+          "Writing that gill slits are present and working in all chordates. In higher vertebrates they are reduced and non functional.",
+          "Placing them in the gut. They pierce the wall of the PHARYNX."
+        ],
+        "memory_tip": "Slits in the throat: they breathe in water and are only leftovers on land."
+      },
+      {
+        "id": "s4_post_anal_tail",
+        "kind": "boxed_final",
+        "label": "Post-anal tail",
+        "marks": 1,
+        "mark_note": "Tail",
+        "margin_note": "Four hallmarks, one mark each, so give every one a function line. Never stop at three.",
+        "lines": [
+          {
+            "text": "Notochord, nerve cord, gill slits, post-anal tail",
+            "style": "boxed"
+          },
+          "4) Post-anal tail:",
+          "It is the part of the body that lies behind the",
+          "anus.",
+          "It usually holds vertebrae, muscles and blood",
+          "vessels.",
+          "Function: it helps in locomotion and in",
+          "balancing.",
+          "In some animals it is prehensile and works as a",
+          "fifth limb or as an organ of defence."
+        ],
+        "why": "The tail is named by where it ends rather than by what it does, because many animals have a tail but only a chordate has one that runs past the anus.",
+        "common_mistakes": [
+          "Calling it a pre-anal tail. It lies BEHIND the anus, which is why it is called post-anal.",
+          "Writing that every chordate keeps the tail as an adult. In man it is reduced to the coccyx."
+        ],
+        "memory_tip": "Behind the anus is the test: any tail in front of the anus is not this hallmark."
+      }
+    ]
+  },
+  "insider_note": "One mark per hallmark, and the mark is split between the NAME and the FUNCTION — a list of four names with no functions usually scores about half."
+}

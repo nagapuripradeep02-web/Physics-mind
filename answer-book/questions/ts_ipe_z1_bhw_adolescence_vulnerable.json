@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_adolescence_vulnerable",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Why is adolescence considered a vulnerable phase?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What adolescence is",
+      "marks": 1
+    },
+    {
+      "label": "Changes in this phase",
+      "marks": 2
+    },
+    {
+      "label": "Why it is vulnerable",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.43, SAQ 44). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What adolescence is",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "Adolescence is the period of life between about",
+          "12 and 18 years of age.",
+          "It is the bridge between childhood and",
+          "adulthood, and during it a child becomes mature."
+        ],
+        "why": "The answer needs a fixed span before it can argue anything, and the phrase 'bridge between childhood and adulthood' is the sentence the examiner looks for first.",
+        "common_mistakes": [
+          "Giving the wrong age span. The syllabus gives about 12 to 18 years.",
+          "Starting with the drugs. Define the phase first."
+        ],
+        "memory_tip": "Twelve to eighteen: the bridge from child to adult.",
+        "margin_note": "Two lines. The age span and the word bridge carry this mark."
+      },
+      {
+        "id": "s2_changes",
+        "kind": "text",
+        "label": "Changes in this phase",
+        "marks": 2,
+        "mark_note": "Changes",
+        "lines": [
+          "Many biological changes take place in this",
+          "period. The body grows quickly and the",
+          "reproductive organs become mature.",
+          "Many behavioural changes take place at the same",
+          "time. The adolescent wants an identity of his or",
+          "her own, is curious about new things, and is",
+          "strongly influenced by friends of the same age.",
+          "The mind and the body are therefore changing",
+          "together over a short period."
+        ],
+        "why": "Vulnerability comes from two kinds of change happening at once, so the answer must show the body changes and the behaviour changes side by side rather than one alone.",
+        "common_mistakes": [
+          "Writing only about the body. The behavioural changes carry half of this mark.",
+          "Writing that adolescents are careless. Describe the changes, not a judgement of the person."
+        ],
+        "memory_tip": "Two changes at once: the body matures and the behaviour changes in the same few years.",
+        "margin_note": "Two groups of change, one short block each. This is the biggest part: two marks."
+      },
+      {
+        "id": "s3_why",
+        "kind": "boxed_final",
+        "label": "Why it is vulnerable",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Rapid mental and psychological change",
+            "style": "boxed"
+          },
+          "Because so much mental and psychological",
+          "development happens in this short period, an",
+          "adolescent can be led easily into the use of",
+          "tobacco, drugs and alcohol.",
+          "For this reason adolescence is said to be a",
+          "vulnerable phase in the life of an individual."
+        ],
+        "why": "The question word is 'why', so the last step has to close the argument: fast change plus outside influence is what makes this phase easy to damage.",
+        "common_mistakes": [
+          "Ending without using the word vulnerable.",
+          "Blaming the adolescent. The answer explains the phase, not the person."
+        ],
+        "memory_tip": "Fast change plus strong influence equals a phase that is easy to damage.",
+        "margin_note": "One closing sentence that uses the word vulnerable. Do not add new facts here."
+      }
+    ]
+  },
+  "insider_note": "The examiner marks the closing sentence: the answer must end by saying WHY the phase is vulnerable, not merely describe adolescence."
+}

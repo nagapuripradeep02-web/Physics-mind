@@ -1,0 +1,520 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_pa_ommatidium_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Periplaneta americana (Zoology)"
+  },
+  "chapter": "Periplaneta americana",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw a neat labelled diagram of ommatidium.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What an ommatidium is",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Parts from outside in",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.45, SAQ 52). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [TS May-17,19] and [AP, TS M-15,20]. TEXT BEYOND THE BOOK: the book prints the labelled figure alone with no written answer; the naming lines are authored from the labels the book itself prints. TWO COUNTS ARE NOT PRINTED IN THIS BOOK and are taken from NCERT: about 2000 ommatidia per compound eye, and seven or eight retinular cells per ommatidium — sources differ on the retinular count, so a teacher must settle it. FIGURE SCOPE: the book prints a longitudinal section plus two transverse sections; this card draws the longitudinal section only — lens, corneagen cells, crystalline cone with cone cells, iris pigment sheath, retinular cells with the rhabdom, retinular pigment sheath, basement membrane and nerve fibres."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Periplaneta americana · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What an ommatidium is",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "An ommatidium is one unit of the compound eye",
+          "of the cockroach.",
+          "Each compound eye is made of about 2000 such",
+          "units.",
+          "Each ommatidium is a long cone. It has a",
+          "light gathering part above, a light sensitive",
+          "part below, and pigment sheaths around them."
+        ],
+        "why": "Splitting the unit into an upper light gathering part and a lower light sensitive part gives the drawing its two halves, so every named cell can then be placed in one half or the other.",
+        "common_mistakes": [
+          "Calling the ommatidium the whole compound eye. It is one unit of it.",
+          "Leaving out the pigment sheaths, which are what keep one unit's light separate from the next."
+        ],
+        "memory_tip": "One eye, about 2000 cones. Each cone: lens on top, rod below, pigment all around.",
+        "margin_note": "What it is, how many per eye, and the three regions. Three short lines."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — ommatidium",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "pa_ommatidium",
+          "width": 480,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the lens and the two corneagen cells"
+            },
+            {
+              "type": "stroke",
+              "id": "lens_top",
+              "d": "M 206 62 Q 240 32 274 62",
+              "ms": 1090
+            },
+            {
+              "type": "stroke",
+              "id": "lens_bot",
+              "d": "M 206 62 Q 240 80 274 62",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "corneagen_l",
+              "d": "M 210 74 L 236 72 L 236 93 L 208 93 Z",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "corneagen_r",
+              "d": "M 270 74 L 244 72 L 244 93 L 272 93 Z",
+              "ms": 1350
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the crystalline cone made of cone cells"
+            },
+            {
+              "type": "stroke",
+              "id": "cone_l",
+              "d": "M 210 96 L 228 152",
+              "ms": 840
+            },
+            {
+              "type": "stroke",
+              "id": "cone_r",
+              "d": "M 270 96 L 252 152",
+              "ms": 840
+            },
+            {
+              "type": "stroke",
+              "id": "cone_top",
+              "d": "M 210 96 L 270 96",
+              "ms": 860,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "cone_bot",
+              "d": "M 228 152 L 252 152",
+              "ms": 340,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "cone_mid",
+              "d": "M 240 96 L 240 152",
+              "ms": 800,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the iris pigment sheath on both sides"
+            },
+            {
+              "type": "stroke",
+              "id": "iris_out_l",
+              "d": "M 186 80 L 200 156",
+              "ms": 1100
+            },
+            {
+              "type": "stroke",
+              "id": "iris_in_l",
+              "d": "M 200 80 L 214 156",
+              "ms": 1100
+            },
+            {
+              "type": "stroke",
+              "id": "iris_dots_l",
+              "d": "M 190 96 L 197 95 M 192 112 L 199 111 M 195 128 L 202 127 M 198 144 L 205 143",
+              "ms": 400,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "iris_out_r",
+              "d": "M 294 80 L 280 156",
+              "ms": 1100
+            },
+            {
+              "type": "stroke",
+              "id": "iris_in_r",
+              "d": "M 280 80 L 266 156",
+              "ms": 1100
+            },
+            {
+              "type": "stroke",
+              "id": "iris_dots_r",
+              "d": "M 290 96 L 283 95 M 288 112 L 281 111 M 285 128 L 278 127 M 282 144 L 275 143",
+              "ms": 400,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — retinular cells around the rhabdom"
+            },
+            {
+              "type": "stroke",
+              "id": "retin_wall_l",
+              "d": "M 212 158 L 208 306",
+              "ms": 2120
+            },
+            {
+              "type": "stroke",
+              "id": "retin_wall_r",
+              "d": "M 268 158 L 272 306",
+              "ms": 2120
+            },
+            {
+              "type": "stroke",
+              "id": "rhabdom_l",
+              "d": "M 232 162 L 232 300",
+              "ms": 1970
+            },
+            {
+              "type": "stroke",
+              "id": "rhabdom_r",
+              "d": "M 248 162 L 248 300",
+              "ms": 1970
+            },
+            {
+              "type": "stroke",
+              "id": "rhabdom_bars",
+              "d": "M 232 176 L 248 176 M 232 196 L 248 196 M 232 216 L 248 216 M 232 236 L 248 236 M 232 256 L 248 256 M 232 276 L 248 276 M 232 296 L 248 296",
+              "ms": 1600,
+              "w": 1.2
+            },
+            {
+              "type": "stroke",
+              "id": "retin_nucleus_l",
+              "d": "M 214 204 A 6 6 0 1 0 226 204 A 6 6 0 1 0 214 204",
+              "ms": 540
+            },
+            {
+              "type": "stroke",
+              "id": "retin_nucleus_r",
+              "d": "M 266 204 A 6 6 -0 1 1 254 204 A 6 6 -0 1 1 266 204",
+              "ms": 540
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — pigment sheath, basement membrane, nerve fibres"
+            },
+            {
+              "type": "stroke",
+              "id": "rpig_l",
+              "d": "M 198 158 L 194 306",
+              "ms": 2120
+            },
+            {
+              "type": "stroke",
+              "id": "rpig_r",
+              "d": "M 282 158 L 286 306",
+              "ms": 2120
+            },
+            {
+              "type": "stroke",
+              "id": "rpig_dots_l",
+              "d": "M 200 178 L 208 178 M 199 210 L 207 210 M 198 242 L 206 242 M 197 274 L 205 274",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "rpig_dots_r",
+              "d": "M 280 178 L 272 178 M 281 210 L 273 210 M 282 242 L 274 242 M 283 274 L 275 274",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "basement",
+              "d": "M 188 312 L 292 312",
+              "ms": 1490,
+              "w": 2.4
+            },
+            {
+              "type": "stroke",
+              "id": "nerve",
+              "d": "M 208 314 C 206 330 212 342 208 358 M 226 314 C 224 330 230 342 226 358 M 254 314 C 252 330 258 342 254 358 M 272 314 C 270 330 276 342 272 358",
+              "ms": 2530,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_lens",
+              "x": 6,
+              "y": 56,
+              "text": "Lens (facet)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lens",
+              "d": "M 104 52 L 218 52",
+              "ms": 1630,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_corneagen",
+              "x": 6,
+              "y": 104,
+              "text": "Corneagen cell",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_corneagen",
+              "d": "M 115.2 100 L 216 84",
+              "ms": 1460,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_irispig",
+              "x": 6,
+              "y": 156,
+              "text": "Iris pigment sheath",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_irispig",
+              "d": "M 151.6 152 L 196 120",
+              "ms": 780,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_retinular",
+              "x": 6,
+              "y": 214,
+              "text": "Retinular cell",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_retinular",
+              "d": "M 105.4 210 L 220 216",
+              "ms": 1640,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_rpigsheath",
+              "x": 6,
+              "y": 266,
+              "text": "Retinular pigment sheath",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_rpigsheath",
+              "d": "M 192.6 262 L 200 250",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_basement",
+              "x": 6,
+              "y": 322,
+              "text": "Basement membrane",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_basement",
+              "d": "M 163.6 318 L 200 312",
+              "ms": 530,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_nerve",
+              "x": 6,
+              "y": 366,
+              "text": "Nerve fibres",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nerve",
+              "d": "M 96.6 362 L 210 348",
+              "ms": 1630,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cone",
+              "x": 302,
+              "y": 90,
+              "text": "Crystalline cone",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cone",
+              "d": "M 298 86 L 262 118",
+              "ms": 690,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_conecell",
+              "x": 302,
+              "y": 140,
+              "text": "Cone cell",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_conecell",
+              "d": "M 298 136 L 250 130",
+              "ms": 690,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_rhabdom",
+              "x": 302,
+              "y": 200,
+              "text": "Rhabdom",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_rhabdom",
+              "d": "M 298 196 L 249 200",
+              "ms": 700,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "The figure is a stack, and the order down the stack is the path the light takes, so a drawing with the cone below the rhabdom is wrong even when every label is spelled correctly.",
+        "common_mistakes": [
+          "Drawing the crystalline cone below the retinular cells. Light meets the lens, then the cone, then the rhabdom.",
+          "Drawing the rhabdom outside the retinular cells. It is formed by their inner edges, so it lies in the middle.",
+          "Leaving out the basement membrane at the base, through which the nerve fibres leave."
+        ],
+        "memory_tip": "Draw one long narrow cone, then cut it across into three bands: lens on top, crystalline cone next, retinular cells with the rhabdom below.",
+        "margin_note": "Both marks are in the labels — lens, corneagen cell, crystalline cone, cone cell, iris pigment sheath, retinular cell, rhabdom, basement membrane, nerve fibres."
+      },
+      {
+        "id": "s3_parts",
+        "kind": "boxed_final",
+        "label": "Parts from outside in",
+        "marks": 1,
+        "mark_note": "Parts",
+        "lines": [
+          {
+            "text": "Lens, crystalline cone, rhabdom",
+            "style": "boxed"
+          },
+          "The cornea, or lens, is the outer transparent",
+          "facet. Two corneagen cells below it secrete",
+          "the lens.",
+          "Four cone cells below them form the",
+          "crystalline cone, and an iris pigment sheath",
+          "surrounds it.",
+          "Seven or eight retinular cells lie below the",
+          "cone. Their inner edges form the rod-shaped",
+          "rhabdom, which takes in the light.",
+          "A retinular pigment sheath surrounds these",
+          "cells and keeps the light of one ommatidium",
+          "from reaching the next.",
+          "Nerve fibres leave through the basement",
+          "membrane at the base."
+        ],
+        "why": "Listing the parts in the order the light passes them turns nine labels into one path, and it explains what each part is for instead of leaving them as names.",
+        "common_mistakes": [
+          "Writing that the cone cells make the lens. The corneagen cells secrete the lens; the cone cells make the crystalline cone.",
+          "Writing that the pigment sheaths absorb the image. They stop light crossing between neighbouring ommatidia."
+        ],
+        "memory_tip": "Follow the light down: lens, cone, rhabdom, nerve. Pigment sheaths run alongside the whole way.",
+        "margin_note": "One line per part, top to bottom in the order the light travels. Five sentences for this mark."
+      }
+    ]
+  },
+  "insider_note": "This is a figure question, so the labels carry the credit — the rhabdom drawn inside the ring of retinular cells and the basement membrane at the base are the two labels students most often lose."
+}

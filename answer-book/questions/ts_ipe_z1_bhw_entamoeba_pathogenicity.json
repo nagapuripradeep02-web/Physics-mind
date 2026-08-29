@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_entamoeba_pathogenicity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a short note on the pathogenicity of Entamoeba histolytica.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ulcers in the intestine",
+      "marks": 1
+    },
+    {
+      "label": "Amoebic dysentery",
+      "marks": 1
+    },
+    {
+      "label": "Extra-intestinal amoebiasis",
+      "marks": 1
+    },
+    {
+      "label": "Carriers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.44, SAQ 49). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ulcers",
+        "kind": "text",
+        "label": "Ulcers in the intestine",
+        "marks": 1,
+        "mark_note": "Ulcers",
+        "lines": [
+          "The trophozoites of Entamoeba histolytica live",
+          "in the mucous and submucous layers of the large",
+          "intestine.",
+          "They secrete the enzyme histolysin, which",
+          "digests the tissue of the intestinal wall and",
+          "forms ulcers."
+        ],
+        "why": "Every later symptom starts at the ulcer, so the answer opens with the enzyme that makes it — the damage is chemical, not mechanical.",
+        "common_mistakes": [
+          "Writing that the parasite eats the intestinal wall. It secretes histolysin, which digests the tissue.",
+          "Naming the small intestine. The ulcers form in the large intestine."
+        ],
+        "memory_tip": "Histolysin means tissue-dissolving, and that is what makes the ulcer.",
+        "margin_note": "Two lines: where it lives, then the enzyme and the ulcer."
+      },
+      {
+        "id": "s2_dysentery",
+        "kind": "text",
+        "label": "Amoebic dysentery",
+        "marks": 1,
+        "mark_note": "Dysentery",
+        "lines": [
+          "The ulcers ooze blood cells, cellular debris and",
+          "bacteria into the gut.",
+          "The patient passes stools with blood and mucus,",
+          "and has bowel irregularity and abdominal pain.",
+          "This condition is called intestinal amoebiasis",
+          "or amoebic dysentery."
+        ],
+        "why": "The symptoms follow straight from the ulcer, so writing them in that order shows cause and effect instead of a memorised list.",
+        "common_mistakes": [
+          "Calling the condition diarrhoea. Blood and mucus in the stool make it dysentery.",
+          "Leaving out the name of the condition. Both names carry the mark."
+        ],
+        "memory_tip": "Ulcer leaks, so the stool carries blood and mucus: that is amoebic dysentery.",
+        "margin_note": "What leaks, what the patient passes, then the name. Three short lines."
+      },
+      {
+        "id": "s3_extra",
+        "kind": "text",
+        "label": "Extra-intestinal amoebiasis",
+        "marks": 1,
+        "mark_note": "Spread",
+        "lines": [
+          "Sometimes the trophozoites enter the blood",
+          "stream from the ulcers.",
+          "They reach the liver, the lungs, the heart, the",
+          "kidneys and the brain, and cause abscesses in",
+          "those organs.",
+          "This is called extra-intestinal or secondary",
+          "amoebiasis, and it leads to severe conditions."
+        ],
+        "why": "The parasite becomes dangerous only when it leaves the gut, so the route through the blood and the organs it reaches are marked separately from the dysentery.",
+        "common_mistakes": [
+          "Writing that the parasite crawls to the liver. It travels in the blood stream.",
+          "Naming only the liver. Five organs are listed in the syllabus."
+        ],
+        "memory_tip": "Out of the gut and into the blood: liver, lungs, heart, kidneys, brain.",
+        "margin_note": "The route, the organs, then the name. Three lines."
+      },
+      {
+        "id": "s4_carriers",
+        "kind": "boxed_final",
+        "label": "Carriers",
+        "marks": 1,
+        "mark_note": "Carriers",
+        "lines": [
+          {
+            "text": "Carriers pass cysts without symptoms",
+            "style": "boxed"
+          },
+          "Some infected people show no symptoms at all.",
+          "Their stools still contain the tetranucleate",
+          "cysts, so they spread the infection to others.",
+          "Such people are called carriers or asymptomatic",
+          "cyst passers."
+        ],
+        "why": "A carrier spreads the disease while looking healthy, which is why the last mark is kept for this point rather than for another symptom.",
+        "common_mistakes": [
+          "Writing that carriers are mildly ill. A carrier shows no symptoms.",
+          "Leaving out the cysts. The cyst in the stool is what makes a carrier infectious."
+        ],
+        "memory_tip": "No symptoms, but cysts in the stool: that is a carrier.",
+        "margin_note": "The term in the box, then three short lines. Closing mark."
+      }
+    ]
+  },
+  "insider_note": "Pathogenicity means the damage done, so the answer must move from the ulcer to the dysentery to the spread — a description of the parasite scores nothing here."
+}

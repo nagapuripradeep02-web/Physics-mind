@@ -1,0 +1,447 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_pa_salivary_apparatus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Periplaneta americana (Zoology)"
+  },
+  "chapter": "Periplaneta americana",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw a neat labelled diagram of the salivary apparatus of cockroach.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.45, SAQ 51). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [AP Mar-19,20] and [AP, TS M-17]. TEXT BEYOND THE BOOK: the book prints the figure alone for this question; the naming and duct-route lines are taken from the same book's LAQ 6 answer (book p.20), where the salivary glands are described in full. FIGURE SCOPE: the book prints a feathery shaded gland; this card draws the simplified exam figure — hypopharynx, efferent salivary duct, median salivary duct, common receptacular duct, receptacular duct, the two receptacles, the common salivary ducts and two rounded acinar lobes per side."
+  },
+  "mark_split": [
+    {
+      "label": "Parts of the apparatus",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Path of the saliva",
+      "marks": 1
+    }
+  ],
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Periplaneta americana · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts",
+        "kind": "text",
+        "label": "Parts of the apparatus",
+        "marks": 1,
+        "mark_note": "Parts",
+        "lines": [
+          "A pair of salivary glands lies on either side",
+          "of the crop.",
+          "Each gland has two lobes, and each lobe has",
+          "many lobules called acini.",
+          "Each acinus is made of secretory cells called",
+          "zymogen cells.",
+          "A pair of salivary receptacles stores the",
+          "saliva."
+        ],
+        "why": "The drawing shows glands and receptacles as separate shapes, so naming them first tells the examiner which shape in the figure is which before the ducts are traced.",
+        "common_mistakes": [
+          "Drawing one gland. There is a PAIR of glands and a PAIR of receptacles, one set on each side of the crop.",
+          "Calling the receptacle a gland. The gland makes the saliva; the receptacle only stores it."
+        ],
+        "memory_tip": "Two on each side: a lobed gland that makes saliva and a plain sac that stores it.",
+        "margin_note": "Four short lines: pair of glands, two lobes, acini of zymogen cells, pair of receptacles."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — salivary apparatus",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "pa_salivary_apparatus",
+          "width": 520,
+          "height": 352,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — hypopharynx and the efferent salivary duct"
+            },
+            {
+              "type": "stroke",
+              "id": "hypopharynx",
+              "d": "M 250 24 C 254 16 266 16 270 24 L 273 58 C 274 70 266 76 260 78 C 254 76 246 70 247 58 Z",
+              "ms": 2060
+            },
+            {
+              "type": "stroke",
+              "id": "hypo_line",
+              "d": "M 260 34 L 260 66",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "efferent_l",
+              "d": "M 256 78 L 256 116",
+              "ms": 540
+            },
+            {
+              "type": "stroke",
+              "id": "efferent_r",
+              "d": "M 264 78 L 264 116",
+              "ms": 540
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — median duct, receptacular duct and their branches"
+            },
+            {
+              "type": "stroke",
+              "id": "median_l",
+              "d": "M 256 116 L 256 178",
+              "ms": 890
+            },
+            {
+              "type": "stroke",
+              "id": "median_r",
+              "d": "M 264 116 L 264 178",
+              "ms": 890
+            },
+            {
+              "type": "stroke",
+              "id": "comrecept_a",
+              "d": "M 264 106 C 276 116 286 128 294 140",
+              "ms": 650
+            },
+            {
+              "type": "stroke",
+              "id": "comrecept_b",
+              "d": "M 264 118 C 274 126 282 136 288 148",
+              "ms": 550
+            },
+            {
+              "type": "stroke",
+              "id": "recept_duct_r",
+              "d": "M 291 145 C 306 156 322 170 336 184",
+              "ms": 850,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "recept_duct_l",
+              "d": "M 291 145 C 270 160 236 150 214 160 C 200 166 190 176 184 184",
+              "ms": 1690,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "comsal_l",
+              "d": "M 256 178 C 236 200 200 234 148 260",
+              "ms": 1950,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "comsal_r",
+              "d": "M 264 178 C 284 200 320 234 372 260",
+              "ms": 1950,
+              "w": 2.6
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the two salivary receptacles"
+            },
+            {
+              "type": "stroke",
+              "id": "receptacle_l",
+              "d": "M 134 196 A 32 12 0 1 0 198 196 A 32 12 0 1 0 134 196",
+              "ms": 2080
+            },
+            {
+              "type": "stroke",
+              "id": "receptacle_r",
+              "d": "M 322 196 A 32 12 0 1 0 386 196 A 32 12 0 1 0 322 196",
+              "ms": 2080
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — salivary gland lobes on each side"
+            },
+            {
+              "type": "stroke",
+              "id": "lobeA_l",
+              "d": "M 145.4 264.8 A 6.1 6.1 0 0 1 138 271.3 A 9 9 0 0 1 124.2 275.3 A 10.3 10.3 0 0 1 107.6 275.7 A 9.5 9.5 0 0 1 92.8 272.5 A 6.9 6.9 0 0 1 83.7 266.5 A 4.6 4.6 0 0 1 82.6 259.2 A 6.1 6.1 0 0 1 90 252.7 A 9 9 0 0 1 103.8 248.7 A 10.3 10.3 0 0 1 120.4 248.3 A 9.5 9.5 0 0 1 135.2 251.5 A 6.9 6.9 0 0 1 144.3 257.5 A 4.6 4.6 0 0 1 145.4 264.8",
+              "ms": 2460
+            },
+            {
+              "type": "stroke",
+              "id": "lobeA_rib_l",
+              "d": "M 86 262 L 144 262",
+              "ms": 830,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "lobeB_l",
+              "d": "M 182.3 298.2 A 7.4 7.4 0 0 1 171.6 303.1 A 9.4 9.4 0 0 1 156.7 305 A 9.5 9.5 0 0 1 141.6 303.4 A 7.6 7.6 0 0 1 130.4 298.8 A 4.9 4.9 0 0 1 126 292.3 A 4.7 4.7 0 0 1 129.7 285.8 A 7.4 7.4 0 0 1 140.4 280.9 A 9.4 9.4 0 0 1 155.3 279 A 9.5 9.5 0 0 1 170.4 280.6 A 7.6 7.6 0 0 1 181.6 285.2 A 4.9 4.9 0 0 1 186 291.7 A 4.7 4.7 0 0 1 182.3 298.2",
+              "ms": 2300
+            },
+            {
+              "type": "stroke",
+              "id": "lobeB_rib_l",
+              "d": "M 130 292 L 184 292",
+              "ms": 770,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "lobe_join_l",
+              "d": "M 148 262 C 156 270 162 280 166 290",
+              "ms": 480,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "lobeA_r",
+              "d": "M 374.6 264.8 A 6.1 6.1 -0 0 0 382 271.3 A 9 9 -0 0 0 395.8 275.3 A 10.3 10.3 -0 0 0 412.4 275.7 A 9.5 9.5 -0 0 0 427.2 272.5 A 6.9 6.9 -0 0 0 436.3 266.5 A 4.6 4.6 -0 0 0 437.4 259.2 A 6.1 6.1 -0 0 0 430 252.7 A 9 9 -0 0 0 416.2 248.7 A 10.3 10.3 -0 0 0 399.6 248.3 A 9.5 9.5 -0 0 0 384.8 251.5 A 6.9 6.9 -0 0 0 375.7 257.5 A 4.6 4.6 -0 0 0 374.6 264.8",
+              "ms": 2460
+            },
+            {
+              "type": "stroke",
+              "id": "lobeA_rib_r",
+              "d": "M 434 262 L 376 262",
+              "ms": 830,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "lobeB_r",
+              "d": "M 337.7 298.2 A 7.4 7.4 -0 0 0 348.4 303.1 A 9.4 9.4 -0 0 0 363.3 305 A 9.5 9.5 -0 0 0 378.4 303.4 A 7.6 7.6 -0 0 0 389.6 298.8 A 4.9 4.9 -0 0 0 394 292.3 A 4.7 4.7 -0 0 0 390.3 285.8 A 7.4 7.4 -0 0 0 379.6 280.9 A 9.4 9.4 -0 0 0 364.7 279 A 9.5 9.5 -0 0 0 349.6 280.6 A 7.6 7.6 -0 0 0 338.4 285.2 A 4.9 4.9 -0 0 0 334 291.7 A 4.7 4.7 -0 0 0 337.7 298.2",
+              "ms": 2300
+            },
+            {
+              "type": "stroke",
+              "id": "lobeB_rib_r",
+              "d": "M 390 292 L 336 292",
+              "ms": 770,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "lobe_join_r",
+              "d": "M 372 262 C 364 270 358 280 354 290",
+              "ms": 480,
+              "w": 1.3
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_hypopharynx",
+              "x": 300,
+              "y": 36,
+              "text": "Hypopharynx",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_hypopharynx",
+              "d": "M 296 32 L 274 36",
+              "ms": 320,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_efferent",
+              "x": 300,
+              "y": 96,
+              "text": "Efferent salivary duct",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_efferent",
+              "d": "M 296 92 L 265 96",
+              "ms": 450,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_comrecept",
+              "x": 312,
+              "y": 136,
+              "text": "Common receptacular duct",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_comrecept",
+              "d": "M 308 132 L 290 133",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_median",
+              "x": 8,
+              "y": 110,
+              "text": "Median salivary duct",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_median",
+              "d": "M 161.7 106 L 255 150",
+              "ms": 1470,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_receptduct",
+              "x": 8,
+              "y": 150,
+              "text": "Receptacular duct",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_receptduct",
+              "d": "M 141 146 L 216 159",
+              "ms": 1090,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_receptacle",
+              "x": 8,
+              "y": 190,
+              "text": "Receptacle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_receptacle",
+              "d": "M 88.2 186 L 136 194",
+              "ms": 690,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_comsal",
+              "x": 8,
+              "y": 232,
+              "text": "Common salivary duct",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_comsal",
+              "d": "M 172.7 228 L 204 231",
+              "ms": 450,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_lobe",
+              "x": 176,
+              "y": 336,
+              "text": "Lobe of salivary gland",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lobe",
+              "d": "M 172 330 L 166 304",
+              "ms": 380,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "The figure is a duct map: every named duct is a line joining two named parts, so drawing the ducts in the order the saliva travels makes the labels fall in the right places.",
+        "common_mistakes": [
+          "Joining the receptacle straight to the hypopharynx. Its receptacular duct joins the common receptacular duct first.",
+          "Drawing the figure without the hypopharynx, so the efferent duct ends nowhere."
+        ],
+        "memory_tip": "Draw the hypopharynx at the top and the four glands and receptacles at the bottom, then join them with ducts that meet in the middle.",
+        "margin_note": "The labels carry both marks: hypopharynx, efferent, median and common receptacular duct, receptacular duct, receptacle, common salivary duct, lobe of salivary gland."
+      },
+      {
+        "id": "s3_route",
+        "kind": "boxed_final",
+        "label": "Path of the saliva",
+        "marks": 1,
+        "mark_note": "Duct route",
+        "lines": [
+          {
+            "text": "The ducts join and open at the hypopharynx",
+            "style": "boxed"
+          },
+          "The ductules of each gland open into a common",
+          "salivary duct.",
+          "The two common salivary ducts join to form",
+          "the median salivary duct.",
+          "The two receptacular ducts join to form the",
+          "common receptacular duct.",
+          "These two ducts unite as the efferent",
+          "salivary duct, which opens at the base of the",
+          "hypopharynx."
+        ],
+        "why": "Naming the ducts in the order the saliva flows turns eight labels into one chain, so the student writes them in the right sequence instead of listing them at random.",
+        "common_mistakes": [
+          "Swapping the median and efferent ducts. The median duct comes first; the efferent duct is the last one, at the hypopharynx.",
+          "Writing that the saliva opens into the crop. It opens into the mouth cavity at the base of the hypopharynx."
+        ],
+        "memory_tip": "Two lines in, one line out: median duct plus common receptacular duct make the efferent duct.",
+        "margin_note": "Trace the route in one direction, gland to mouth. Three sentences are enough for this mark."
+      }
+    ]
+  },
+  "insider_note": "This is a figure question, so almost all the credit is in the labels — the eight duct and gland names on the drawing are what the examiner ticks, and a neat unlabelled figure scores close to nothing."
+}

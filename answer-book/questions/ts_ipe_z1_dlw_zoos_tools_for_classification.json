@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_zoos_tools_for_classification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "'Zoos are tools for classification.' Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a zoo is",
+      "marks": 1
+    },
+    {
+      "label": "How it helps classification",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.50, VSAQ 71). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: the closing line on breeding and protecting endangered animals is standard and is not printed in this book's answer. The book prints no year citation for this question, so `appearances` is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zoo",
+        "kind": "text",
+        "label": "What a zoo is",
+        "marks": 1,
+        "mark_note": "What a zoo is",
+        "why": "A zoo keeps the animal alive and in one place, and that is what makes it useful for study — a preserved specimen cannot be watched feeding or behaving.",
+        "common_mistakes": [
+          "Describing a zoo as a museum. A museum holds dead preserved specimens; a zoo holds living animals.",
+          "Writing only about entertainment. The question asks about study and classification."
+        ],
+        "memory_tip": "A zoo holds animals alive; a museum holds them preserved.",
+        "margin_note": "One sentence on what a zoo is. Two lines are enough.",
+        "lines": [
+          "A zoo is a place where wild animals are kept",
+          "alive under human care, in enclosures that",
+          "limit their movement.",
+          "The animals are fed and looked after, so they",
+          "can be watched over a long period."
+        ]
+      },
+      {
+        "id": "s2_tool",
+        "kind": "boxed_final",
+        "label": "How it helps classification",
+        "marks": 1,
+        "mark_note": "Use",
+        "why": "Classification is done on characters, and a zoo is the one place where the characters of a living animal — how it looks, what it eats, how it behaves — can be recorded directly.",
+        "common_mistakes": [
+          "Naming only the external characters. Feeding habits and behaviour are studied as well, and they carry the mark."
+        ],
+        "memory_tip": "Three things a zoo lets you record: what the animal looks like, what it eats, how it behaves.",
+        "margin_note": "Three characters, then the systematic position. Close with the line the question asks for.",
+        "lines": [
+          {
+            "text": "Living characters show systematic position",
+            "style": "boxed"
+          },
+          "In a zoo we can study the external characters,",
+          "the feeding habits and the behaviour of a",
+          "living animal.",
+          "These characters are used to decide the",
+          "systematic position of the animal in the",
+          "animal kingdom.",
+          "So a zoo works as a tool for classification.",
+          "Zoos also help in breeding and protecting",
+          "endangered animals."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The question hands you its own conclusion, so end with it in the examiner's words — the characters studied in a zoo decide the animal's systematic position."
+}

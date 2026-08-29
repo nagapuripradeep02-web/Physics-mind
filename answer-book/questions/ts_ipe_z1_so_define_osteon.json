@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_define_osteon",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define osteon.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.52, VSAQ 82). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: the NERVE in the Haversian canal is standard anatomy; this book's answer lists an artery, a vein and a lymph vessel only."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "why": "An osteon is a UNIT and not a single structure, so the definition has to list the parts that make one up.",
+        "common_mistakes": [
+          "Defining only the Haversian canal. The osteon is the canal plus the rings of bone around it.",
+          "Writing that it is found in spongy bone. It is found in compact bone."
+        ],
+        "memory_tip": "One canal plus its rings makes one osteon, and compact bone is built of these units side by side.",
+        "margin_note": "Name the canal and the rings around it, then give the second name.",
+        "mark_note": "Definition",
+        "lines": [
+          "In compact (dense) bone, one Haversian canal",
+          "together with the concentric lamellae, the",
+          "lacunae and the canaliculi around it is called",
+          "an osteon.",
+          "The osteon is also called the Haversian system."
+        ]
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "What it does",
+        "marks": 1,
+        "why": "Bone matrix is solid, so blood vessels can reach the bone cells only through these canals; that is why the osteon exists at all.",
+        "common_mistakes": [
+          "Leaving out what the canal contains. The vessels inside it are what make the osteon a transport system."
+        ],
+        "memory_tip": "The canal is the road through solid bone: artery, vein, lymph vessel and nerve.",
+        "margin_note": "Say it is the unit of compact bone, then name what the canal carries.",
+        "mark_note": "Function",
+        "lines": [
+          {
+            "text": "Osteon = structural unit of compact bone",
+            "style": "boxed"
+          },
+          "The osteon is the structural unit of compact",
+          "bone.",
+          "Its canal carries an artery, a vein, a lymph",
+          "vessel and a nerve, so the system carries",
+          "materials through the solid bone."
+        ]
+      }
+    ]
+  },
+  "insider_note": "'Define' still wants the parts named — a one-line answer that says only 'unit of bone' loses the definition mark."
+}

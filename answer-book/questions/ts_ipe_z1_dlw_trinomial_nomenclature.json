@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_trinomial_nomenclature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is trinomial nomenclature? Give an example.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.49, VSAQ 62). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: the second example (Corvus splendens splendens) is standard and is not printed in this book's answer, which gives Homo sapiens sapiens only."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What trinomial naming is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Binomial naming has two words and stops at the species, so a third word is added only when a named subspecies has to be shown.",
+        "common_mistakes": [
+          "Writing only two words. Two words is binomial naming; trinomial naming has three.",
+          "Putting the subspecies name first. The order is genus, species, subspecies."
+        ],
+        "memory_tip": "Tri means three: genus, species, subspecies — in that order.",
+        "margin_note": "One sentence naming the three words in order, then the example.",
+        "lines": [
+          "Trinomial nomenclature is naming an organism",
+          "with three words — the generic name, the",
+          "specific name and the subspecific name.",
+          "It is used to name a subspecies, that is, a",
+          "population of one species that differs from",
+          "the rest of that species."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "why": "Writing the three parts of the name against the three ranks proves that the third word is the subspecies and not a repeat.",
+        "common_mistakes": [
+          "Giving a two-word name as the example. The example must have three words.",
+          "Underlining only part of the name. All three words are written in italics, or each is underlined separately."
+        ],
+        "memory_tip": "Homo sapiens sapiens: the last word repeats, and that repeat is the subspecies.",
+        "margin_note": "One example is enough. Say which word is which.",
+        "lines": [
+          {
+            "text": "Homo sapiens sapiens",
+            "style": "boxed"
+          },
+          "Homo is the generic name, sapiens is the",
+          "specific name, and the second sapiens is the",
+          "subspecific name.",
+          "Another example is Corvus splendens splendens,",
+          "the house crow."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The example carries a full mark, so label which word is the genus, which the species and which the subspecies — the name written alone earns less."
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_wish_bone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is wish bone? What are the skeletal components that form it?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "What forms it",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.56, VSAQ 121). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Wish bone",
+        "margin_note": "Shape, other names, use. Three short lines.",
+        "lines": [
+          "The wish bone is the V shaped bone in front of",
+          "the chest of a bird.",
+          "It is also called the furcula or the merry",
+          "thought bone.",
+          "It acts as a spring and keeps the two wings",
+          "apart during flight."
+        ],
+        "why": "The V shape is the reason the bone can spring back, so the shape and the use belong in the same breath.",
+        "common_mistakes": [
+          "Calling the wish bone the sternum. The sternum is the breast bone; the wish bone lies in front of it.",
+          "Giving it to mammals. It is a bird character."
+        ],
+        "memory_tip": "A V that springs open and shut with every wing beat: the wish bone."
+      },
+      {
+        "id": "s2_components",
+        "kind": "boxed_final",
+        "label": "What forms it",
+        "marks": 1,
+        "mark_note": "Bones",
+        "margin_note": "Name the three bones. One boxed line is enough for the mark.",
+        "lines": [
+          {
+            "text": "Two clavicles + the interclavicle = furcula",
+            "style": "boxed"
+          },
+          "It is formed by the fusion of three bones.",
+          "1) The two clavicles",
+          "2) The interclavicle",
+          "So three bones fuse into one V shaped bone."
+        ],
+        "why": "The second half of the question asks for a bone list, so the count and the names are the whole mark and no description is needed.",
+        "common_mistakes": [
+          "Naming only the clavicles. The interclavicle is the third bone and is part of the mark.",
+          "Writing that the ribs form it. The ribs take no part."
+        ],
+        "memory_tip": "Two collar bones plus the bone between them: three bones, one V."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves; the second half is a three bone list, and leaving out the interclavicle is the usual way students lose that mark."
+}

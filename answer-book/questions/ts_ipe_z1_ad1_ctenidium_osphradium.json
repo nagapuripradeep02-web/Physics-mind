@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_ctenidium_osphradium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the other name for the gill of a mollusc? What is the function of osphradium?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ctenidium",
+      "marks": 1
+    },
+    {
+      "label": "Osphradium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.54, VSAQ 103). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ctenidium",
+        "kind": "text",
+        "label": "The gill of a mollusc",
+        "marks": 1,
+        "why": "The gill is named after its shape, and the comb shape is what gives it the large surface the animal needs for the exchange of gases.",
+        "common_mistakes": [
+          "Writing 'gill'. The question asks for the OTHER name, which is ctenidium.",
+          "Placing it outside the shell. The ctenidium lies inside the mantle cavity."
+        ],
+        "memory_tip": "Cteno means comb: the ctenidium is the comb-shaped gill.",
+        "margin_note": "Give the name, where it lies, and its shape. Three lines.",
+        "mark_note": "Ctenidium",
+        "lines": [
+          "The gill of a mollusc is called a ctenidium.",
+          "It lies in the mantle cavity.",
+          "It has a central axis with rows of flat",
+          "filaments on either side of it, so it is",
+          "comb-like in shape."
+        ]
+      },
+      {
+        "id": "s2_osphradium",
+        "kind": "boxed_final",
+        "label": "Function of the osphradium",
+        "marks": 1,
+        "why": "The osphradium sits in the path of the incoming water, which is why it can test that water before the water reaches the gill.",
+        "common_mistakes": [
+          "Calling the osphradium a gill. It is a sense organ beside the gill.",
+          "Writing that it helps in respiration. It is a chemoreceptor; the ctenidium does the respiration."
+        ],
+        "memory_tip": "The osphradium tests the water first; the ctenidium breathes it second.",
+        "margin_note": "Say where it sits and what it tests. Three or four lines.",
+        "mark_note": "Osphradium",
+        "lines": [
+          {
+            "text": "Ctenidium = gill · Osphradium = water tester",
+            "style": "boxed"
+          },
+          "The osphradium is a chemoreceptor lying at",
+          "the base of the ctenidium, in the mantle",
+          "cavity.",
+          "It tests the water that enters the mantle",
+          "cavity.",
+          "It judges the chemical nature of that water",
+          "and the amount of silt in it.",
+          "It is present in gastropods and bivalves."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two separate one-word facts carry these two marks — ctenidium, and 'tests the incoming water'; there is nothing else the examiner is looking for."
+}
