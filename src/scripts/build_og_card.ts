@@ -33,6 +33,10 @@ const LABELS: Record<string, { title: string; subjects: string }> = {
     // written, so the card names the papers that exist. It must describe the
     // artifact, not the ambition (see STREAMS.mpc_2 in build_answer_book.ts).
     mpc_2: { title: 'Senior Inter · MPC', subjects: 'Maths-2A · Physics · Chemistry' },
+    // BOTH years in one artifact (2026-08-29, founder): answers.viditra.co serves
+    // one book and the door routes the student to their year. The card describes
+    // the whole artifact, so it names the group and says both years are inside.
+    'mpc,mpc_2': { title: 'Telangana IPE · MPC', subjects: 'First year and second year' },
 };
 
 function fail(msg: string): never {
@@ -47,8 +51,11 @@ if (!LABELS[STREAM]) fail(`  --stream="${STREAM}" has no card copy in LABELS`);
 // GATED since 2026-08-27 (dist-gated-<stream>), so prefer that and fall back to
 // the ungated dist-<stream> — a card written next to the wrong index.html is a
 // card that never reaches a reader.
-const GATED_OUT = join(BOOK_DIR, `dist-gated-${STREAM}`);
-const PLAIN_OUT = join(BOOK_DIR, `dist-${STREAM}`);
+// A multi-stream build writes to the JOINED directory name, so the card must
+// look there too or it is written beside an index.html that does not exist.
+const STREAM_DIR = STREAM.split(',').map((x) => x.trim()).filter(Boolean).join('+');
+const GATED_OUT = join(BOOK_DIR, `dist-gated-${STREAM_DIR}`);
+const PLAIN_OUT = join(BOOK_DIR, `dist-${STREAM_DIR}`);
 const OUT_DIR = existsSync(join(GATED_OUT, 'index.html')) ? GATED_OUT : PLAIN_OUT;
 const indexPath = join(OUT_DIR, 'index.html');
 if (!existsSync(indexPath)) {

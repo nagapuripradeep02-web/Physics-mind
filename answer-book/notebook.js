@@ -269,7 +269,33 @@
   // the chapter keeps its true shape. Routes: #/ = catalog, #/q/<id>(/<cutKey>)
   // = notebook — hash-based so back/forward work from file://.
 
-  var UNITS = window.PM_UNITS || [];
+  /** Every unit in the artifact. UNITS below is the LENSED view a student sees. */
+  var ALL_UNITS = window.PM_UNITS || [];
+  var UNITS = ALL_UNITS;
+  /** Multi-stream builds only: subjects and year label per stream, else null. */
+  var STREAM_SUBJECTS = window.PM_STREAM_SUBJECTS || null;
+  var STREAM_YEARS = window.PM_STREAM_YEARS || null;
+  /** The year the student is actually in, once the door knows. */
+  var EFFECTIVE_YEAR = window.PM_YEAR || null;
+  /**
+   * Lens the catalog to ONE stream's subjects.
+   *
+   * A single-stream artifact is already exactly one year, so this is a no-op there
+   * and the junior book behaves precisely as it did — that is what keeps a live
+   * product safe while the second year is added beside it. On a multi-stream
+   * artifact an unknown or missing stream falls back to the WHOLE book rather than
+   * to an empty one: a student who lands with a stale remembered choice should see
+   * too much, never nothing.
+   */
+  function applyYearLens(streamId) {
+    if (!STREAM_SUBJECTS) return;
+    var subs = streamId && STREAM_SUBJECTS[streamId];
+    if (!subs) { UNITS = ALL_UNITS; EFFECTIVE_YEAR = window.PM_YEAR || null; return; }
+    var want = {};
+    for (var i = 0; i < subs.length; i++) want[subs[i]] = 1;
+    UNITS = ALL_UNITS.filter(function (u) { return want[u.subject || 'physics'] === 1; });
+    if (STREAM_YEARS && STREAM_YEARS[streamId]) EFFECTIVE_YEAR = STREAM_YEARS[streamId];
+  }
   var qIndexById = {};
   questions.forEach(function (q, i) { qIndexById[q.question_id] = i; });
 
@@ -619,7 +645,7 @@
     // inference. Absent (the full build) leaves the eyebrow subject-neutral.
     var eyebrow = $('catEyebrow');
     if (eyebrow && window.PM_STREAM) {
-      var base = 'Telangana IPE · ' + (window.PM_YEAR || 'First year');
+      var base = 'Telangana IPE · ' + (EFFECTIVE_YEAR || 'First year');
       var eyeText = base + ' · ' + window.PM_STREAM;
       if (Door.enabled()) {
         // The eyebrow already names the board, the year and the group, so it is
@@ -3748,6 +3774,28 @@
       } catch (e) { return null; }
     }
 
+    /**
+     * Re-apply a remembered choice on load. A student who chose second year last
+     * week must not open the book on first year. A choice remembered BEFORE this
+     * build carries no `stream`, so it is resolved from TRACKS by group+year —
+     * which is what stops the first multi-stream deploy from stranding everyone
+     * who already has a choice in localStorage.
+     */
+    function restore() {
+      var t = chosen();
+      if (!t) return;
+      var stream = t.stream || null;
+      if (!stream) {
+        for (var i = 0; i < TRACKS.length && !stream; i++) {
+          if (TRACKS[i].id !== t.group) continue;
+          for (var j = 0; j < TRACKS[i].years.length; j++) {
+            if (TRACKS[i].years[j].id === t.year) { stream = TRACKS[i].years[j].stream || null; break; }
+          }
+        }
+      }
+      applyYearLens(stream);
+    }
+
     function trackById(id) {
       for (var i = 0; TRACKS && i < TRACKS.length; i++) if (TRACKS[i].id === id) return TRACKS[i];
       return null;
@@ -3756,6 +3804,24 @@
     function liveYear(t) {
       for (var i = 0; i < t.years.length; i++) if (t.years[i].live) return t.years[i];
       return null;
+    }
+
+    /** Every live year of a group, summed — a group offering two years offers both. */
+    function liveTotals(t) {
+      var q = 0, u = 0, n = 0;
+      for (var i = 0; i < t.years.length; i++) {
+        if (!t.years[i].live) continue;
+        q += t.years[i].questions; u += t.years[i].units; n++;
+      }
+      return n ? { questions: q, units: u, years: n } : null;
+    }
+
+    /** The papers a cell actually contains, named the way the catalog names them. */
+    function cellSubjects(y, t) {
+      if (!y.subjects || !y.subjects.length) return t.subjects;
+      var out = [];
+      for (var i = 0; i < y.subjects.length; i++) out.push(subjLabel(y.subjects[i]));
+      return out.join(' · ');
     }
 
     function asked() {
@@ -3794,8 +3860,9 @@
         door must not sit in history behind the catalog, where Back would drop a
         student who just chose straight back onto the chooser. It also fires no
         hashchange, so the catalog is shown once — here — and not again by route(). */
-    function choose(group, year) {
-      s(KEY, JSON.stringify({ group: group, year: year, at: new Date().toISOString() }));
+    function choose(group, year, stream) {
+      s(KEY, JSON.stringify({ group: group, year: year, stream: stream || null, at: new Date().toISOString() }));
+      applyYearLens(stream || null);
       if (location.hash && location.hash !== '#/') {
         try { history.replaceState(null, '', location.pathname + location.search + '#/'); }
         catch (e) { /* file:// refuses replaceState; the hash is cosmetic here */ }
@@ -3814,8 +3881,11 @@
         b.setAttribute('data-door-group', t.id);
         b.appendChild(el('door-tile-name', t.label));
         b.appendChild(el('door-tile-sub', t.subjects));
+        var tot = liveTotals(t);
         b.appendChild(el('door-pill' + (live ? ' on' : ''),
-          live ? live.questions + ' answers · ' + live.units + ' chapters' : 'Coming soon'));
+          tot ? tot.questions + ' answers · ' + tot.units + ' chapters'
+                + (tot.years > 1 ? ' · both years' : '')
+              : 'Coming soon'));
         b.addEventListener('click', function () { showYears(t.id); });
         host.appendChild(b);
       });
@@ -3832,10 +3902,10 @@
           b.className = 'door-tile live';
           b.setAttribute('data-door-year', y.id);
           b.appendChild(el('door-tile-name', y.label));
-          b.appendChild(el('door-tile-sub', t.subjects));
+          b.appendChild(el('door-tile-sub', cellSubjects(y, t)));
           b.appendChild(el('door-pill on', y.questions + ' answers · ' + y.units + ' chapters'));
           b.appendChild(el('door-go', 'Open the Answer Book →'));
-          b.addEventListener('click', function () { choose(t.id, y.id); });
+          b.addEventListener('click', function () { choose(t.id, y.id, y.stream); });
           host.appendChild(b);
           return;
         }
@@ -3873,7 +3943,7 @@
       showView('door');
     }
 
-    return { enabled: enabled, chosen: chosen, show: show };
+    return { enabled: enabled, chosen: chosen, show: show, restore: restore };
   })();
 
   var VidiPanel = (function () {
@@ -5683,6 +5753,11 @@
     Auth.loadProfile(function () { Auth.paintChip(); });
     Sync.init();
     Gate.init();
+    // BEFORE route(): a remembered door choice decides WHICH YEAR's catalog the
+    // student sees, and on a multi-stream artifact route() would otherwise paint
+    // the whole book — both years at once — for anyone returning with a choice
+    // already made. No-op on a single-stream build.
+    Door.restore();
     route();
     window.addEventListener('hashchange', route);
   });
