@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_polydispersity_index",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you mean by polydispersity index?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "What its value tells you",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 6 on book p.95. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO AND VAGUENESS: the printed answer spells the term \"polydispesity index\" in its body while the question spells it \"poly dispersity index\"; the correct spelling, polydispersity, is used here. The printed answer also says only \"For some natural polymers, PDI = 1\", which leaves a student unable to say what PDI is for the rest. The exact statements are used here instead: Mw is never smaller than Mn so PDI is never less than 1; PDI = 1 when every chain has the same length, which is the case for natural polymers; PDI > 1 for synthetic polymers. The printed formula PDI = Mw / Mn is correct and is kept. NOTATION: the book prints both averages with a bar over the M. Unicode has no subscript w, so they are written Mw and Mn here, the same call the bank makes for Kp and Kc."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A polymer sample holds chains of many",
+          "different lengths, so its molecular mass",
+          "is quoted as an average.",
+          "The polydispersity index is the ratio of",
+          "the weight average molecular mass to the",
+          "number average molecular mass.",
+          {
+            "text": "PDI = Mw / Mn",
+            "style": "eq"
+          }
+        ],
+        "why": "Two averages of the same sample answer different questions. Mn counts every chain once, so short chains lower it; Mw weights each chain by its own mass, so long chains raise it. Their ratio therefore measures how spread out the chain lengths are.",
+        "common_mistakes": [
+          "Writing PDI = Mn / Mw. The weight average is on top.",
+          "Calling PDI a molecular mass. It is a ratio of two masses, so it has no unit."
+        ],
+        "memory_tip": "W is on top: weight average over number average.",
+        "margin_note": "The ratio with both averages named in full is the whole mark. Many books print Mw and Mn with a bar over the M."
+      },
+      {
+        "id": "s2_values",
+        "kind": "boxed_final",
+        "label": "What its value tells you",
+        "marks": 1,
+        "mark_note": "Values",
+        "lines": [
+          {
+            "text": "PDI = 1 for a single chain length",
+            "style": "boxed"
+          },
+          "Mw is never smaller than Mn, so PDI is",
+          "never less than 1.",
+          "Natural polymers have chains of one",
+          "length, so Mw = Mn and PDI = 1.",
+          "Synthetic polymers have chains of many",
+          "lengths, so Mw > Mn and PDI > 1."
+        ],
+        "why": "If every chain has the same mass, both averages give that mass and the ratio is exactly 1. Any spread of lengths raises Mw above Mn. Natural polymers are built by enzymes to a fixed length, while a synthetic polymerisation stops each chain at a random point.",
+        "common_mistakes": [
+          "Writing that PDI can be less than 1. It cannot; the smallest possible value is 1.",
+          "Writing PDI > 1 for natural polymers. Natural polymers are the ones with PDI = 1."
+        ],
+        "memory_tip": "Natural polymers have one chain length, so PDI = 1; synthetic polymers have many, so PDI > 1.",
+        "margin_note": "One line for natural polymers and one for synthetic finishes this mark."
+      }
+    ]
+  },
+  "insider_note": "The ratio on its own is about half the question. The other half is the pair of values: 1 for natural polymers and greater than 1 for synthetic ones."
+}

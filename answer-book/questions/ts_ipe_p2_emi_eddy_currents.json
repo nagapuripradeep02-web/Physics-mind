@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_eddy_currents",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are eddy currents?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "One use and one drawback",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: eddy currents are induced currents flowing in closed loops in the body of a bulk conductor when the flux through it changes; useful in magnetic braking and the induction furnace, wasteful in transformer cores, which are laminated to reduce them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Closed loops in a bulk conductor",
+        "lines": [
+          "When the magnetic flux through a bulk",
+          "piece of conductor changes, induced",
+          "currents flow in closed loops inside the",
+          "body of the conductor.",
+          "These are called eddy currents."
+        ],
+        "margin_note": "First mark. Two phrases carry it: bulk conductor, and closed loops inside the body.",
+        "why": "The defining picture is a solid conductor, not a wire circuit: with no fixed path to follow, the induced current flows in closed loops inside the metal.",
+        "common_mistakes": [
+          "Leaving out that the currents flow inside the BODY of a solid conductor. In a wire loop the same physics is just an induced current, not an eddy current."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eddy currents are induced currents flowing in closed loops inside a bulk conductor when the flux through it changes.",
+          "accept": [
+            "closed loops in the metal",
+            "bulk conductor",
+            "flux through it changes"
+          ],
+          "reject": [
+            "laminated core"
+          ],
+          "heard_as": [
+            "eddy",
+            "loops",
+            "conductor"
+          ]
+        },
+        "memory_tip": "Bulk metal + changing flux = closed loops of current inside the metal."
+      },
+      {
+        "id": "s2_use_drawback",
+        "kind": "boxed_final",
+        "label": "One use and one drawback",
+        "marks": 1,
+        "mark_note": "A use, and the lamination point",
+        "lines": [
+          "They are useful in magnetic braking and in",
+          "the induction furnace. They are wasteful",
+          "in the cores of transformers, where they",
+          "heat the core; the core is laminated to",
+          "reduce them.",
+          {
+            "text": "Closed-loop induced currents in bulk metal",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. One named use plus the transformer-core lamination point completes the answer.",
+        "why": "Naming one use and one loss shows both faces: the same opposing currents that brake a train also heat a transformer core for nothing.",
+        "common_mistakes": [
+          "Giving only the definition. The second mark needs an application or the lamination point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eddy currents are useful in braking and induction heating, and wasteful in transformer cores, which are laminated.",
+          "accept": [
+            "magnetic braking",
+            "induction furnace",
+            "laminated core"
+          ],
+          "reject": [
+            "closed loops inside the conductor"
+          ],
+          "heard_as": [
+            "braking",
+            "furnace",
+            "laminated"
+          ]
+        },
+        "memory_tip": "Useful: braking, furnace. Wasteful: transformer core, so laminate it."
+      }
+    ]
+  },
+  "insider_note": "The examiner reads for the phrases bulk conductor and closed loops; one use or the lamination line completes the answer."
+}

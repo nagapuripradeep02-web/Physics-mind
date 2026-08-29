@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_moles_of_agcl_from_cocl3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many moles of AgCl are precipitated when 1 mole of CoCl₃ is treated with AgNO₃?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    },
+    {
+      "label": "The answer and the reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.92 as VSAQ 11. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO (book p.92, VSAQ 11): the question is printed as \"1 mole of COCl₃\", with a capital O. CO is carbon monoxide and Co is cobalt; the compound meant is cobalt(III) chloride, CoCl₃, which is how the book's own answer line writes it. The question text on this card is corrected to CoCl₃ and the typo is recorded here. ANSWER CHECKED: three ionisable chloride ions give three moles of AgCl, and the book's equation CoCl₃ + 3AgNO₃ → 3AgCl + Co(NO₃)₃ is balanced. CONTEXT ADDED: the same count of 3 comes from [Co(NH₃)₆]Cl₃, where all three chloride ions lie outside the coordination sphere; the count falls to 2 for [Co(NH₃)₅Cl]Cl₂ and to 1 for [Co(NH₃)₄Cl₂]Cl. That series is what the question is really testing, and it links to Werner's primary and secondary valency in Short Answer 1 of the same chapter."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "text",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Balanced equation",
+        "lines": [
+          "All three chloride ions in CoCl₃ are",
+          "ionisable, so silver nitrate precipitates",
+          "all three.",
+          {
+            "text": "CoCl₃ + 3AgNO₃ → 3AgCl↓ + Co(NO₃)₃",
+            "style": "eq"
+          },
+          "One mole of ionisable chloride gives one",
+          "mole of AgCl."
+        ],
+        "why": "Silver nitrate precipitates only the chloride that is free in solution, so counting moles of AgCl is the same as counting ionisable chloride. In CoCl₃ every chloride is outside the coordination sphere, the ratio is one to one, and three moles are precipitated. The book prints the formula in the question as COCl₃; Co is cobalt and CO is carbon monoxide, so that is a printing slip.",
+        "common_mistakes": [
+          "Balancing with one AgNO₃. Three chloride ions need three silver ions.",
+          "Leaving out the precipitate. AgCl is the white solid, and it is what the question is counting."
+        ],
+        "memory_tip": "One free chloride gives one AgCl. Count the chloride written outside the square bracket.",
+        "margin_note": "The balanced equation is worth as much as the number. Write it before the answer."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer with reason",
+        "lines": [
+          {
+            "text": "3 moles of AgCl",
+            "style": "boxed"
+          },
+          "The same count comes from [Co(NH₃)₆]Cl₃,",
+          "where all three chloride ions lie outside",
+          "the coordination sphere.",
+          "The count changes when chloride moves",
+          "inside:",
+          {
+            "text": "[Co(NH₃)₅Cl]Cl₂ gives 2 moles",
+            "style": "indent"
+          },
+          {
+            "text": "[Co(NH₃)₄Cl₂]Cl gives 1 mole",
+            "style": "indent"
+          }
+        ],
+        "why": "Werner used exactly this test to build his theory. Chloride inside the coordination sphere is held by a secondary valency, is not ionisable and is not precipitated; chloride outside is held by a primary valency, is ionisable and is precipitated. Reading the count straight off the formula is what the question is testing, so the series 3, 2, 1 is worth writing.",
+        "common_mistakes": [
+          "Counting every chloride in the formula. Only the chloride outside the square bracket is precipitated.",
+          "Writing 3 with no unit. The answer is 3 moles of AgCl."
+        ],
+        "memory_tip": "Chloride outside the bracket is precipitated; chloride inside is not.",
+        "margin_note": "The number alone is half. Add one line naming which chloride is precipitated and why."
+      }
+    ]
+  },
+  "insider_note": "The examiner is testing primary and secondary valency, not arithmetic. Use the phrase \"ionisable chloride\" somewhere in the answer."
+}

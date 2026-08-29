@@ -1,0 +1,109 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_electrophilic_substitution_benzoic_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the position of electrophilic substitution in benzoic acid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The effect of the –COOH group",
+      "marks": 1
+    },
+    {
+      "label": "The position and an example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.113 as VSAQ 6. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CONTENT CORRECT: –COOH is a deactivating, meta directing group and nitration gives 3-nitrobenzoic acid. BOOK GAP: the printed answer draws the nitration but never writes it as a balanced equation and never names the product; both are added, with H₂O on the product side. BOOK GAP: the book does not say WHY the group is meta directing; the reason (–I and –R withdrawal leaves the ortho and para positions poorest in electron density, so the meta positions are the least deactivated) is added. BOOK GAP: it also does not state that benzoic acid does not undergo Friedel-Crafts reactions; that is added because it is the companion fact examiners pair with this one. TREND AND EXCEPTION recorded on the card: \"all deactivating groups are meta directing\" is FALSE — the halogens –F, –Cl, –Br, –I deactivate the ring yet direct ortho and para."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_effect_of_cooh",
+        "kind": "text",
+        "label": "The effect of the –COOH group",
+        "marks": 1,
+        "mark_note": "The group's effect",
+        "lines": [
+          "In benzoic acid the –COOH group withdraws",
+          "electron density from the ring by both the",
+          "–I effect and the –R effect.",
+          "The ring becomes poorer in electron density",
+          "than benzene, so –COOH is a ring",
+          "deactivating group and substitution is",
+          "slower than in benzene.",
+          "The withdrawal is largest at the ortho and",
+          "para positions and least at the meta",
+          "positions."
+        ],
+        "why": "Resonance moves electron density out of the ring towards the carbonyl oxygen, and the structures that carry a positive charge in the ring put that charge on the ortho and para carbons. Those two positions are therefore the poorest in electron density and the least available to an electrophile, which leaves the meta positions as the ones that react.",
+        "common_mistakes": [
+          "Calling –COOH an activating group. It withdraws electron density, so it deactivates the ring.",
+          "Giving only the –I effect. Both the –I and the –R effects operate here, and the –R effect is what sets the position.",
+          "Saying no substitution happens. It happens, but more slowly than with benzene."
+        ],
+        "memory_tip": "–COOH withdraws electron density from the ring, and most of it from the ortho and para positions.",
+        "margin_note": "Write both words, deactivating and meta directing. Together they carry this mark."
+      },
+      {
+        "id": "s2_position",
+        "kind": "boxed_final",
+        "label": "The position and an example",
+        "marks": 1,
+        "mark_note": "Position and example",
+        "lines": [
+          {
+            "text": "–COOH is deactivating and meta directing.",
+            "style": "boxed"
+          },
+          "So the electrophile enters at the meta",
+          "(3-) position. Nitration is the example:",
+          {
+            "text": "C₆H₅COOH + HNO₃ →",
+            "style": "eq"
+          },
+          {
+            "text": "3-NO₂–C₆H₄–COOH + H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "[conc. H₂SO₄]",
+            "style": "indent"
+          },
+          "Exception to the rule: the halogens –Cl and",
+          "–Br deactivate the ring yet direct ortho",
+          "and para, not meta."
+        ],
+        "why": "Sulphonation and halogenation of benzoic acid give the meta product for the same reason, so one worked example is enough to show the rule. Benzoic acid gives no Friedel-Crafts reaction at all, because the aluminium chloride catalyst bonds to the –COOH group and deactivates the ring even further.",
+        "common_mistakes": [
+          "Naming the product 2-nitrobenzoic acid or 4-nitrobenzoic acid. The meta product is 3-nitrobenzoic acid.",
+          "Leaving out the water. Nitration replaces a ring hydrogen and one molecule of water is formed.",
+          "Writing that every deactivating group is meta directing. The halogens deactivate yet direct ortho and para."
+        ],
+        "memory_tip": "Deactivating groups direct the electrophile to the meta position; the halogens are the one set that does not.",
+        "margin_note": "Write conc. H₂SO₄ above the arrow on your answer sheet. Name the product 3-nitrobenzoic acid in words as well as in formula."
+      }
+    ]
+  },
+  "insider_note": "One equation with the product named 3-nitrobenzoic acid is worth more than three lines of theory here. The word most often missing is deactivating: students write meta directing alone, and that is where the first mark is lost."
+}

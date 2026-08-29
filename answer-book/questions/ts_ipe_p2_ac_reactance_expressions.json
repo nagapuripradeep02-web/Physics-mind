@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_reactance_expressions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the expression for the reactance of (i) an inductor and (ii) a capacitor.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Inductive reactance",
+      "marks": 1
+    },
+    {
+      "label": "Capacitive reactance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: inductive reactance XL = ωL and capacitive reactance XC = 1/ωC; unit check: ωL is s⁻¹ × H = Ω and 1/(ωC) is 1/(s⁻¹ × F) = Ω. Capital-letter subscripts (X with subscript L) have no Unicode form, so the symbols are written XL and XC with their full names on first use."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_inductor",
+        "kind": "equation",
+        "label": "Inductive reactance",
+        "marks": 1,
+        "mark_note": "XL = ωL",
+        "lines": [
+          "For an inductor of inductance L on an a.c.",
+          "supply of angular frequency ω, the inductive",
+          "reactance XL is",
+          {
+            "text": "XL = ωL = 2πf L",
+            "style": "eq"
+          },
+          "XL rises when the frequency rises."
+        ],
+        "margin_note": "First mark. Name the symbol and give the expression.",
+        "why": "Reactance is the opposition an inductor offers to a.c. — it grows with both L and ω, so XL = ωL is the whole behaviour: more inductance or a faster supply, more opposition.",
+        "common_mistakes": [
+          "Writing XL = L/ω or XL = 1/ωL. The inductive reactance is the product ωL.",
+          "Leaving out the unit. XL is measured in ohm (Ω), like a resistance."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the inductive reactance is XL = ωL, and it increases with frequency.",
+          "accept": [
+            "omega L",
+            "X L equals omega L",
+            "2 pi f L"
+          ],
+          "reject": [
+            "1 by omega C"
+          ],
+          "heard_as": [
+            "omega L",
+            "reactance"
+          ]
+        },
+        "memory_tip": "L multiplies, C divides: XL = ωL and XC = 1/ωC."
+      },
+      {
+        "id": "s2_capacitor",
+        "kind": "boxed_final",
+        "label": "Capacitive reactance",
+        "marks": 1,
+        "mark_note": "XC = 1/ωC",
+        "lines": [
+          "For a capacitor of capacitance C, the",
+          "capacitive reactance XC is",
+          {
+            "text": "XC = 1 / ωC = 1 / 2πf C",
+            "style": "eq"
+          },
+          "XC falls when the frequency rises.",
+          "Both reactances are measured in ohm (Ω).",
+          {
+            "text": "XL = ωL and XC = 1/ωC",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The reciprocal form, and the unit ohm written once for both.",
+        "why": "The capacitor's opposition is the reciprocal — a larger C or a faster supply moves more charge each cycle, so the opposition 1/ωC falls. The two formulas together answer the question.",
+        "common_mistakes": [
+          "Writing XC = ωC. The capacitive reactance is the reciprocal, 1/ωC.",
+          "Swapping the two: XL = 1/ωC and XC = ωL is the classic exchange."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the capacitive reactance is XC = 1/ωC, it decreases with frequency, and both reactances are in ohm.",
+          "accept": [
+            "1 by omega C",
+            "reciprocal of omega C",
+            "measured in ohm"
+          ],
+          "reject": [
+            "omega L"
+          ],
+          "heard_as": [
+            "omega C",
+            "one by omega C"
+          ]
+        },
+        "memory_tip": "At high frequency the inductor blocks (ωL large) and the capacitor passes (1/ωC small)."
+      }
+    ]
+  },
+  "insider_note": "Write both expressions with their names — inductive reactance XL, capacitive reactance XC — and give the unit ohm once."
+}

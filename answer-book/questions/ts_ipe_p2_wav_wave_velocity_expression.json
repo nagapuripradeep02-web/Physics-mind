@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_wave_velocity_expression",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Obtain an expression for the wave velocity in terms of wavelength (λ) and frequency (n).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Wave moves λ in one period T",
+      "marks": 1
+    },
+    {
+      "label": "V = nλ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: in one time period T the wave advances one wavelength λ, so V = λ/T; with n = 1/T this gives V = nλ. The book derives the same result through V = ω/k = 2πn/(2π/λ) = nλ — both routes agree."
+  },
+  "recall_prompt": "Say how far the wave moves in one time period, and the expression for wave velocity that follows.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_period",
+        "kind": "text",
+        "label": "Distance in one period",
+        "marks": 1,
+        "mark_note": "V = λ/T stated with reason",
+        "lines": [
+          "In one time period T, every particle",
+          "completes one full vibration and the wave",
+          "moves forward by one wavelength λ.",
+          {
+            "text": "Wave velocity V = distance/time = λ/T",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The physical sentence — one wavelength per period — is the derivation.",
+        "why": "The whole result rests on one fact: a wave pattern repeats after exactly one wavelength, and one repeat takes exactly one period. Velocity is then just distance over time.",
+        "common_mistakes": [
+          "Quoting V = nλ from memory with no reason — the mark is for λ in time T, not for the final line.",
+          "Mixing up T the time period with T the tension from the string formula — here T is time."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the wave travels one wavelength in one time period, so V = λ/T.",
+          "accept": [
+            "one wavelength in one period",
+            "V is lambda by T",
+            "distance over time gives lambda by T"
+          ],
+          "reject": [
+            "V equals n lambda"
+          ],
+          "heard_as": [
+            "wavelength",
+            "time period",
+            "lambda by T"
+          ]
+        },
+        "memory_tip": "One repeat of the pattern = one wavelength, and it takes one period."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The expression",
+        "marks": 1,
+        "mark_note": "V = nλ",
+        "lines": [
+          "Frequency is the number of vibrations in",
+          "one second:",
+          {
+            "text": "n = 1/T",
+            "style": "eq"
+          },
+          {
+            "text": "V = λ/T = λ × (1/T) = nλ",
+            "style": "eq"
+          },
+          {
+            "text": "∴ V = nλ",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Substitute n = 1/T and box V = nλ.",
+        "why": "Frequency and period are reciprocals — n vibrations fit in one second exactly when each takes 1/n seconds — so λ/T becomes nλ in one substitution.",
+        "common_mistakes": [
+          "Writing V = n/λ or V = λ/n — check with units: (1/s) × m = m/s only for the product nλ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting n = 1/T gives the wave velocity V = nλ.",
+          "accept": [
+            "n is one by T",
+            "V equals n lambda",
+            "frequency times wavelength"
+          ],
+          "reject": [
+            "one wavelength in one period"
+          ],
+          "heard_as": [
+            "n lambda",
+            "frequency",
+            "one by T"
+          ]
+        },
+        "memory_tip": "Velocity = how many waves per second × how long each wave is: n × λ."
+      }
+    ]
+  },
+  "insider_note": "V = nλ alone is half the answer — the one-wavelength-per-period sentence is what the first mark pays for."
+}

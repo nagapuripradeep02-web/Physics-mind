@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_com_basic_blocks",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Communication System"
+  },
+  "chapter": "Communication System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the basic blocks of a communication system?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three blocks named",
+      "marks": 1
+    },
+    {
+      "label": "What each block does",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Whether Communication Systems is still on the current Telangana second-year syllabus is UNCONFIRMED — NCERT removed this chapter in the 2023 rationalisation, but this book prints it. A lecturer's pen tick marks this question as expected. Physics hand-checked: every communication system has three basic blocks — transmitter, communication channel and receiver; the message signal enters at the transmitter, noise is added in the channel, and the receiver recovers the message at the other end."
+  },
+  "recall_prompt": "Name the three basic blocks of a communication system, in order, and say in one line what each one does.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Communication System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three_blocks",
+        "kind": "text",
+        "label": "The three blocks named",
+        "marks": 1,
+        "mark_note": "Transmitter, channel, receiver",
+        "lines": [
+          "Every communication system is made of three",
+          "basic blocks:",
+          {
+            "text": "i) transmitter",
+            "style": "indent"
+          },
+          {
+            "text": "ii) communication channel",
+            "style": "indent"
+          },
+          {
+            "text": "iii) receiver",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "First mark. The three names in order — transmitter, then channel, then receiver.",
+        "why": "The three blocks are the path the message actually takes: it is prepared at one end, carried in the middle, and recovered at the other end, so the list is the system itself.",
+        "common_mistakes": [
+          "Writing only transmitter and receiver. The channel between them is a block of its own, and it is where noise enters.",
+          "Naming devices (microphone, antenna) instead of the three blocks the question asks for."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three basic blocks are the transmitter, the communication channel and the receiver.",
+          "accept": [
+            "transmitter, channel and receiver",
+            "transmitter, communication channel, receiver",
+            "the three blocks are transmitter, channel, receiver"
+          ],
+          "reject": [
+            "modulator, amplifier and antenna"
+          ],
+          "heard_as": [
+            "transmitter",
+            "channel",
+            "receiver"
+          ]
+        },
+        "memory_tip": "Follow the message: it is sent, it travels, it is received — transmitter, channel, receiver."
+      },
+      {
+        "id": "s2_what_each_does",
+        "kind": "boxed_final",
+        "label": "What each block does",
+        "marks": 1,
+        "mark_note": "One line on each block's job",
+        "lines": [
+          "The transmitter converts the message signal",
+          "into a form suitable for transmission.",
+          "The channel carries the signal to the",
+          "receiver; noise is added in the channel.",
+          "The receiver recovers the original message",
+          "from the received signal.",
+          {
+            "text": "Transmitter → channel → receiver",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. One job per block; say that noise enters in the channel.",
+        "why": "Naming the blocks alone does not show understanding; the mark is safe when each block's job is stated, and noise placed in the channel is the detail examiners look for.",
+        "common_mistakes": [
+          "Saying the receiver removes all noise. The receiver recovers the message; noise added in the channel can only be reduced, not fully removed.",
+          "Putting noise at the transmitter. Noise enters mainly in the channel, between the two ends."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the transmitter prepares the message signal for sending, the channel carries it and adds noise, and the receiver recovers the message.",
+          "accept": [
+            "the transmitter prepares the signal for sending",
+            "the channel carries the signal and noise enters there",
+            "the receiver recovers the original message"
+          ],
+          "reject": [
+            "the three blocks are transmitter, channel, receiver"
+          ],
+          "heard_as": [
+            "converts the signal",
+            "carries the signal",
+            "noise",
+            "recovers the message"
+          ]
+        },
+        "memory_tip": "Prepare, carry, recover — one verb for each block, in the same order as the blocks."
+      }
+    ]
+  },
+  "insider_note": "The first mark is the three names in order; the second needs one job per block, with noise placed in the channel."
+}

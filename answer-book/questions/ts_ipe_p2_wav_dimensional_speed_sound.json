@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_dimensional_speed_sound",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Using dimensional analysis obtain an expression for the speed of sound waves in a medium.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Dimensional formulas of B and ρ",
+      "marks": 1
+    },
+    {
+      "label": "Combining to v = K√(B/ρ)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: [B] = ML⁻¹T⁻² (bulk modulus = pressure), [ρ] = ML⁻³, so B/ρ = L²T⁻² = [v²]; hence v = K√(B/ρ). This is the Newton–Laplace form; the exact treatment gives K = 1."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order — the two quantities the speed depends on, their dimensional formulas, and the final expression.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dimensions",
+        "kind": "text",
+        "label": "Dimensional formulas",
+        "marks": 1,
+        "mark_note": "D.F. of B and ρ written",
+        "lines": [
+          "The speed of sound v in a medium depends",
+          "on the bulk modulus B and the density ρ",
+          "of the medium.",
+          {
+            "text": "D.F. of B = ML⁻¹T⁻²",
+            "style": "eq"
+          },
+          {
+            "text": "D.F. of ρ = ML⁻³ ; v = LT⁻¹",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Name the two quantities and write both dimensional formulas.",
+        "why": "Sound is a pressure wave, so the elastic property of the medium (bulk modulus) supplies the restoring force and the density supplies the inertia — these two are the physical inputs.",
+        "common_mistakes": [
+          "Using linear density μ — that belongs to the string formula. A bulk medium takes density ρ (ML⁻³).",
+          "Writing B with the dimensions of force. Bulk modulus is pressure: force per area, ML⁻¹T⁻²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the speed of sound depends on the bulk modulus B (ML⁻¹T⁻²) and the density ρ (ML⁻³).",
+          "accept": [
+            "depends on bulk modulus and density",
+            "B is ML inverse T minus two",
+            "rho is ML minus three"
+          ],
+          "reject": [
+            "v equals K root B by rho"
+          ],
+          "heard_as": [
+            "bulk modulus",
+            "density",
+            "rho",
+            "dimensional formula"
+          ]
+        },
+        "memory_tip": "Same pattern as the string: an elastic property over an inertia property. Here they are B and ρ."
+      },
+      {
+        "id": "s2_combine",
+        "kind": "boxed_final",
+        "label": "Combining the dimensions",
+        "marks": 1,
+        "mark_note": "v = K√(B/ρ)",
+        "lines": [
+          "Divide the two dimensional formulas:",
+          {
+            "text": "B/ρ = ML⁻¹T⁻²/ML⁻³ = L²T⁻² = v²",
+            "style": "eq"
+          },
+          "So v² matches B/ρ. Taking the square root:",
+          {
+            "text": "v = K√(B/ρ) , K = constant",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Show B/ρ = L²T⁻² before writing the root — the division IS the working.",
+        "why": "B/ρ is the only combination of the two inputs with the dimensions of speed squared; the dimensionless K cannot come from dimensions. The exact derivation gives K = 1, the Newton–Laplace formula.",
+        "common_mistakes": [
+          "Writing v = K(B/ρ) without the square root — B/ρ has the dimensions of v², not v.",
+          "Dropping the constant K. A pure number can never come out of dimensional analysis."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That B/ρ has the dimensions of v², so v = K√(B/ρ) with K a dimensionless constant.",
+          "accept": [
+            "B by rho gives L squared T minus two",
+            "v equals K root B over rho",
+            "square root of bulk modulus by density"
+          ],
+          "reject": [
+            "bulk modulus is pressure"
+          ],
+          "heard_as": [
+            "root B by rho",
+            "L squared T minus 2",
+            "constant K"
+          ]
+        },
+        "memory_tip": "Elastic property over inertia property, under a square root — the one shape both speed formulas share."
+      }
+    ]
+  },
+  "insider_note": "The examiner checks the same two things as in the string version — the correct pair of quantities and the square root with a stated constant K."
+}

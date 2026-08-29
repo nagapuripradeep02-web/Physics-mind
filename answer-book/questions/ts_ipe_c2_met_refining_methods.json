@@ -1,0 +1,182 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_refining_methods",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Outline the principles of refining of metals by the following methods: a) Zone refining b) Electrolytic refining c) Poling d) Vapour phase refining",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Zone refining",
+      "marks": 1
+    },
+    {
+      "label": "Electrolytic refining",
+      "marks": 1
+    },
+    {
+      "label": "Poling",
+      "marks": 1
+    },
+    {
+      "label": "Vapour phase refining",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.80-81, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP FILLED: the printed answer for vapour phase refining gives the two conditions but NO example. Mond's process (Ni + 4CO → Ni(CO)₄ at 330-350 K, decomposed at 450-470 K) and van Arkel's method (Zr + 2I₂ → ZrI₄ at 870 K, decomposed on a hot tungsten filament at 2075 K) are added; both balance (Ni 1=1, C 4=4, O 4=4; Zr 1=1, I 4=4). Named metals for zone refining (Si, Ge, Ga) are also added — the book names none. BOOK TYPOS: \"a thin of pure metal acts as cathode\" is missing a word and is written here as \"a thin sheet of the pure metal\"; \"the cabon\" for \"the carbon\"; \"metals having same metal oxides as impurities\" is written here as \"the impurity is an oxide of the same metal\"."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Metallurgy — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zone_refining",
+        "kind": "text",
+        "label": "Zone refining",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "a) Zone refining",
+          "Principle: the impurities are more soluble",
+          {
+            "text": "in the molten metal than in the solid",
+            "style": "indent"
+          },
+          {
+            "text": "metal.",
+            "style": "indent"
+          },
+          "A circular heater is moved slowly along a",
+          "rod of the impure metal. Pure metal",
+          "crystallises out behind the heater and the",
+          "impurities stay in the molten zone.",
+          "The pass is repeated in the same direction",
+          "and the impure end is cut off.",
+          "Used for Si, Ge and Ga."
+        ],
+        "why": "The whole method rests on one fact: an impurity dissolves better in the liquid than in the solid, so it stays with the molten zone as that zone moves along the rod. Repeating the pass in one direction carries the impurities to one end, which is then removed.",
+        "common_mistakes": [
+          "Moving the heater back and forth. Every pass has to go in the same direction, or the impurities are carried back again.",
+          "Saying the whole rod is melted. Only a narrow zone is molten at any one time."
+        ],
+        "memory_tip": "Impurities stay in the melt, so the moving melt carries them to one end.",
+        "margin_note": "The solubility sentence is the principle and is what is marked. The apparatus is supporting detail."
+      },
+      {
+        "id": "s2_electrolytic_refining",
+        "kind": "equation",
+        "label": "Electrolytic refining",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "b) Electrolytic refining",
+          "The impure metal is made the anode and a",
+          "thin sheet of the pure metal the cathode.",
+          "The electrolyte is a solution of a salt of",
+          "the same metal.",
+          {
+            "text": "At anode:  M → Mⁿ⁺ + ne⁻",
+            "style": "eq"
+          },
+          {
+            "text": "At cathode:  Mⁿ⁺ + ne⁻ → M",
+            "style": "eq"
+          },
+          "The metal dissolves from the anode and is",
+          "deposited on the cathode. The insoluble",
+          "impurities collect below as anode mud.",
+          "Used for Cu, Ag, Al and Zn."
+        ],
+        "why": "The two electrode equations are the principle: the metal is taken into solution at one electrode and deposited in pure form at the other. Impurities that are more noble than the metal do not dissolve and fall as anode mud, which is where the silver and gold in copper refining are recovered from.",
+        "common_mistakes": [
+          "Making the pure metal the anode. The impure metal is always the anode, because that is the electrode that dissolves.",
+          "Writing reduction at the anode. Oxidation happens at the anode and reduction at the cathode."
+        ],
+        "memory_tip": "The impure anode dissolves and pure metal is deposited on the cathode.",
+        "margin_note": "Both electrode equations must be written. They carry most of this mark."
+      },
+      {
+        "id": "s3_poling",
+        "kind": "text",
+        "label": "Poling",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "c) Poling",
+          "Used when the impurity is an oxide of the",
+          "same metal.",
+          "The molten impure metal is stirred with",
+          "poles of green wood.",
+          "The wood gives off hydrocarbon gases, and",
+          "these gases and the carbon reduce the",
+          "oxide back to the metal.",
+          "Used for copper and tin."
+        ],
+        "why": "The green wood is the reducing agent. Its moisture and hydrocarbons break down in the hot metal and give reducing gases, so the dissolved oxide is reduced inside the metal itself and none of the metal is lost.",
+        "common_mistakes": [
+          "Using dry wood. The wood must be green, because it is the moisture and the hydrocarbons in it that give the reducing gases.",
+          "Saying poling removes every impurity. It removes only the oxide of the same metal."
+        ],
+        "memory_tip": "Green wood poles give reducing gases, so poling removes an oxide impurity.",
+        "margin_note": "Name the type of impurity and the green wood. Without both, the principle is not stated."
+      },
+      {
+        "id": "s4_vapour_phase",
+        "kind": "boxed_final",
+        "label": "Vapour phase refining",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "d) Vapour phase refining",
+          {
+            "text": "Metal → volatile compound → pure metal",
+            "style": "boxed"
+          },
+          "The metal is changed into a volatile",
+          "compound, the vapour is separated, and the",
+          "compound is then decomposed to give the",
+          "pure metal.",
+          "Conditions: the metal alone must form the",
+          "volatile compound, and the compound must",
+          "decompose easily.",
+          {
+            "text": "Ni + 4CO → Ni(CO)₄   (330 to 350 K)",
+            "style": "eq"
+          },
+          {
+            "text": "Ni(CO)₄ → Ni + 4CO   (450 to 470 K)",
+            "style": "eq"
+          },
+          "This is Mond's process. Van Arkel's method",
+          "purifies Zr and Ti in the same way, using",
+          "iodine."
+        ],
+        "why": "The volatile compound is what moves the metal: it forms at one temperature and decomposes at another, and the impurities are left behind because they do not form the compound at all. The book states the two conditions but gives no example, so Mond's process and van Arkel's method are added here.",
+        "common_mistakes": [
+          "Saying the impurities also become volatile. The method works only because they do not.",
+          "Writing Ni(CO)₄ as NiCO₄. Nickel takes four separate CO groups, so it is Ni(CO)₄."
+        ],
+        "memory_tip": "Form the volatile compound, separate it, then decompose it. Mond for nickel, van Arkel for zirconium.",
+        "margin_note": "The two conditions are the principle. One named example is enough to complete this mark."
+      }
+    ]
+  },
+  "insider_note": "Four methods and four marks, so one mark each. Write the principle sentence for every method before adding detail to any of them; a full account of two methods and nothing on the other two earns only two marks."
+}

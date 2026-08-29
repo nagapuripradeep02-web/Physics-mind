@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_semi_synthetic_polymers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give two examples for semi-synthetic polymers.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a semi-synthetic polymer is",
+      "marks": 1
+    },
+    {
+      "label": "The two examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 12 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer is \"Cellulose nitrate, cellulose acetate [Rayon]\". Both examples are correct and follow NCERT, which itself calls cellulose acetate rayon. Outside the syllabus the word rayon usually means viscose rayon, which is regenerated cellulose rather than an ester, and cellulose acetate is more precisely acetate rayon; that is noted here so a student meeting the wider usage is not confused. GAP: the book does not say what a semi-synthetic polymer is, and never names the parent polymer cellulose or its monomer β-D-glucose; all three are supplied."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "What a semi-synthetic polymer is",
+        "marks": 1,
+        "mark_note": "The meaning",
+        "lines": [
+          "A semi-synthetic polymer is made by",
+          "chemically treating a natural polymer.",
+          "The chain comes from nature; only the",
+          "side groups are changed in the",
+          "laboratory.",
+          "The natural polymer used here is",
+          "cellulose, which is built from",
+          "β-D-glucose units."
+        ],
+        "why": "Cellulose is the starting material because each glucose unit carries free –OH groups that can be esterified without breaking the chain. The backbone is untouched, so the product is neither purely natural nor built from small monomers, and that is what semi-synthetic means.",
+        "common_mistakes": [
+          "Giving nylon-6,6 or PVC. Those are fully synthetic, built from small monomers.",
+          "Giving starch or natural rubber. Those are natural polymers, used as they are."
+        ],
+        "memory_tip": "Semi means half: the chain comes from a natural polymer and the side groups are added in the laboratory.",
+        "margin_note": "The question asks only for examples, but one line saying what semi-synthetic means secures this mark. One sentence is enough."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "The two examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: cellulose acetate and nitrate",
+            "style": "boxed"
+          },
+          "Cellulose acetate: the –OH groups of",
+          "cellulose are esterified with acetic",
+          "anhydride. It is spun into acetate rayon",
+          "and made into film.",
+          "Cellulose nitrate: the –OH groups are",
+          "esterified with nitric acid. It is used",
+          "in lacquers and in explosives."
+        ],
+        "why": "Both are esters of the same parent chain, so both keep the cellulose backbone and differ only in the acid used. That is why the pair is the standard answer: one chain, two treatments.",
+        "common_mistakes": [
+          "Writing cellulose itself as the answer. Cellulose is a natural polymer, not a semi-synthetic one.",
+          "Writing rayon and cellulose acetate as two separate answers. Cellulose acetate is the material spun into acetate rayon."
+        ],
+        "memory_tip": "Same cellulose chain, two different acids: acetic for the acetate, nitric for the nitrate.",
+        "margin_note": "Two names finish the question. Naming the parent, cellulose, in the same line makes the answer complete."
+      }
+    ]
+  },
+  "insider_note": "Two names are the whole question, so write them first and explain afterwards. Both must be cellulose derivatives."
+}

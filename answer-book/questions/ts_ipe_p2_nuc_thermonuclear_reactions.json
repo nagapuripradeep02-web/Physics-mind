@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_thermonuclear_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are nuclear fusion reactions called thermo nuclear reactions?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The nuclei repel each other",
+      "marks": 1
+    },
+    {
+      "label": "High temperature is needed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the Coulomb barrier for two protons at a separation of about 10⁻¹⁵ m is of the order of 1 MeV, and a mean thermal energy of that order corresponds to a temperature of the order of 10⁷ K and above — the value the book quotes for the interior of a star. The name \"thermonuclear\" comes from that temperature requirement."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_repulsion",
+        "kind": "text",
+        "label": "The nuclei repel each other",
+        "marks": 1,
+        "mark_note": "Both nuclei are positive, so they repel",
+        "lines": [
+          "In fusion, two light nuclei must come very",
+          "close together before they can join.",
+          "Both nuclei are positively charged, so they",
+          "repel each other electrically."
+        ],
+        "margin_note": "First mark. Name the electric repulsion between two positive nuclei.",
+        "why": "The nuclear force is attractive but acts only over about 10⁻¹⁵ m, so the nuclei have to be pushed inside that range against the Coulomb repulsion before it can take over.",
+        "common_mistakes": [
+          "Saying the nuclei attract each other at all distances. The nuclear force is short range.",
+          "Leaving out the charge. The repulsion is electric."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two light nuclei must come very close to fuse, but both are positively charged and repel each other.",
+          "accept": [
+            "both nuclei are positive and repel",
+            "electric repulsion between the nuclei",
+            "they must come very close"
+          ],
+          "reject": [
+            "ten to the power seven kelvin"
+          ],
+          "heard_as": [
+            "repulsion",
+            "positively charged",
+            "fusion"
+          ]
+        },
+        "memory_tip": "Two positive charges must be forced together before the nuclear force can act."
+      },
+      {
+        "id": "s2_temperature",
+        "kind": "boxed_final",
+        "label": "High temperature is needed",
+        "marks": 1,
+        "mark_note": "Order of 10⁷ K, hence the name",
+        "lines": [
+          "Only at temperatures of the order of 10⁷ K do",
+          "the nuclei move fast enough to overcome this",
+          "repulsion and fuse.",
+          "Because such a high temperature is needed,",
+          "fusion reactions are called thermonuclear",
+          "reactions.",
+          {
+            "text": "High temperature ⇒ thermonuclear",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The value 10⁷ K and the word thermonuclear.",
+        "why": "Temperature is a measure of the mean kinetic energy of the particles, so raising it is the practical way of giving the nuclei enough energy to cross the electric barrier. Stars supply that temperature in their cores.",
+        "common_mistakes": [
+          "Writing 10⁷ °C without saying so, or writing 10⁷ eV. The value quoted is 10⁷ kelvin.",
+          "Saying high pressure alone is enough. The name comes from the temperature."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That fusion needs temperatures of the order of 10⁷ K to overcome the repulsion, and that is why fusion reactions are called thermonuclear reactions.",
+          "accept": [
+            "ten to the power seven kelvin",
+            "very high temperature is required",
+            "that is why they are called thermonuclear"
+          ],
+          "reject": [
+            "both nuclei are positively charged"
+          ],
+          "heard_as": [
+            "thermonuclear",
+            "ten power seven kelvin",
+            "high temperature"
+          ]
+        },
+        "memory_tip": "Thermo means heat: the heat is what pushes the nuclei together."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the electric repulsion first, then the temperature of the order of 10⁷ K that overcomes it."
+}

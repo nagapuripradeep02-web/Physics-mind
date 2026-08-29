@@ -1,0 +1,87 @@
+{
+  "number": 3,
+  "name": "Wave Optics",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What is polarization of light?",
+      "question_id": "ts_ipe_p2_wop_polarization_of_light"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "What is Malus law?",
+      "question_id": "ts_ipe_p2_wop_malus_law"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "Explain Brewster's law.",
+      "question_id": "ts_ipe_p2_wop_brewsters_law"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "What is Fresnel distance?",
+      "question_id": "ts_ipe_p2_wop_fresnel_distance"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "Explain Doppler effect in light. Distinguish between red shift and blue shift.",
+      "question_id": "ts_ipe_p2_wop_doppler_effect_in_light"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Derive the expression for the intensity at a point where interference of light occurs. Arrive at the conditions for maximum and zero intensity.",
+      "question_id": "ts_ipe_p2_wop_interference_intensity_conditions"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "Does the principle of conservation of energy hold for interference and diffraction phenomena? Explain briefly.",
+      "question_id": "ts_ipe_p2_wop_energy_conservation_interference"
+    },
+    {
+      "ref": "saq4",
+      "section": "SAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "Discuss the intensity of transmitted light when a Polaroid sheet is rotated between two crossed polaroids.",
+      "question_id": "ts_ipe_p2_wop_polaroid_between_crossed_polaroids"
+    },
+    {
+      "ref": "saq5",
+      "section": "SAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "What is total internal reflection. Explain the phenomenon using Huygen's principle.",
+      "question_id": "ts_ipe_p2_wop_total_internal_reflection_huygens"
+    },
+    {
+      "ref": "saq6",
+      "section": "SAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "How do you determine the resolving power of your eye?",
+      "question_id": "ts_ipe_p2_wop_resolving_power_of_eye"
+    }
+  ]
+}

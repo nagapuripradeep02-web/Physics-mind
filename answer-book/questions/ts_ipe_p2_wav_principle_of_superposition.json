@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_principle_of_superposition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the principle of superposition?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: when two or more waves act on the same particle at the same time, the resultant displacement equals the ALGEBRAIC sum of the individual displacements, y = y₁ + y₂ + … + yₙ — the word algebraic (signs included) is what makes both constructive and destructive interference follow from the one statement."
+  },
+  "recall_prompt": "Say the principle of superposition — the statement and the equation.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Algebraic sum of displacements",
+        "lines": [
+          "When two or more waves act on a particle",
+          "of the medium at the same time, the",
+          "resultant displacement of the particle is",
+          "the algebraic sum of the individual",
+          "displacements."
+        ],
+        "margin_note": "First mark. The word algebraic is part of the statement — signs are included in the sum.",
+        "why": "Algebraic means the displacements add WITH their signs. That one word is why two waves can cancel (opposite signs) as well as reinforce (same signs) — both interference cases come from this single sentence.",
+        "common_mistakes": [
+          "Writing sum without algebraic — a plain sum could not describe two waves cancelling.",
+          "Adding amplitudes instead of displacements — the principle adds the instantaneous displacements at one particle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the resultant displacement is the algebraic sum of the displacements the individual waves would each produce.",
+          "accept": [
+            "resultant displacement is the algebraic sum",
+            "displacements add with their signs",
+            "waves acting together add their displacements"
+          ],
+          "reject": [
+            "y equals y one plus y two"
+          ],
+          "heard_as": [
+            "superposition",
+            "algebraic sum",
+            "resultant displacement"
+          ]
+        },
+        "memory_tip": "One particle, many waves: add what each wave alone would do, signs and all."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "y = y₁ + y₂ + … + yₙ",
+        "lines": [
+          "For n waves with displacements y₁, y₂, …",
+          "at the same particle:",
+          {
+            "text": "y = y₁ + y₂ + y₃ + … + yₙ",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write the sum out to yₙ so it reads for ANY number of waves.",
+        "why": "The equation is the statement in symbols: each yᵢ is the displacement wave i alone would give the particle at that instant, and the particle actually shows their sum.",
+        "common_mistakes": [
+          "Stopping at y = y₁ + y₂ — the principle holds for any number of waves, so write the sum to yₙ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is y equals y one plus y two up to y n.",
+          "accept": [
+            "y equals y1 plus y2 and so on",
+            "sum of all the individual displacements",
+            "up to y n"
+          ],
+          "reject": [
+            "the algebraic sum statement"
+          ],
+          "heard_as": [
+            "y one plus y two",
+            "y n"
+          ]
+        },
+        "memory_tip": "Statement in words, then the same statement in symbols — the equation is not extra content."
+      }
+    ]
+  },
+  "insider_note": "The word algebraic carries the first mark; writing the sum out to yₙ (not stopping at two waves) protects the second."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_group16_chalcogens",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are Group 16 elements called chalcogens?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Meaning of the name",
+      "marks": 1
+    },
+    {
+      "label": "The ores, and the exception",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 6 of that sub-box, book p.85. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR: the printed answer says group 16 elements \"ALWAYS occur as metal oxides, metal sulphides, metal selenides or metal Tellurides\". Always is wrong. Oxygen occurs free in air as O₂, about 21 per cent by volume, and sulphur occurs free as native sulphur in volcanic regions. The correct statement is that MANY METAL ORES are oxides and sulphides, not that the group 16 elements are always combined. This card writes it correctly and names the exception on the same card. BOOK GAPS: the printed answer never gives the meaning of the word chalcogen (Greek chalcos, ore, and gen, producing) which is the actual reason for the name, and its element list stops at tellurides, leaving out polonium. PRINTED WORDING: the book writes \"All 16 groups elements\" for \"all group 16 elements\"."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning_of_name",
+        "kind": "text",
+        "label": "Meaning of the name",
+        "marks": 1,
+        "mark_note": "The name",
+        "lines": [
+          "Group 16 elements are O, S, Se, Te and Po.",
+          "The name chalcogen comes from the Greek",
+          "words chalcos, meaning ore, and gen,",
+          "meaning producing.",
+          "Chalcogen therefore means ore producing."
+        ],
+        "why": "The question asks for the reason behind a name, so the meaning of the word is the answer. Chalcos is the Greek word for ore and gen means producing, so the name records the fact that these elements are the ones found combined in metal ores.",
+        "common_mistakes": [
+          "Writing that chalcogen means oxygen family. That name exists, but the word chalcogen itself means ore producing.",
+          "Leaving polonium out of the group. Group 16 is O, S, Se, Te and Po."
+        ],
+        "memory_tip": "Chalcos is ore and gen is producing, so chalcogen is ore producing.",
+        "margin_note": "The phrase ore producing is the marked item. Write the Greek roots beside it if there is room."
+      },
+      {
+        "id": "s2_ores_and_exception",
+        "kind": "boxed_final",
+        "label": "The ores, and the exception",
+        "marks": 1,
+        "mark_note": "Ores",
+        "lines": [
+          {
+            "text": "Most metal ores are oxides or sulphides.",
+            "style": "boxed"
+          },
+          "Many metals are found in nature combined",
+          "with a group 16 element, as oxides,",
+          "sulphides, selenides or tellurides.",
+          "Fe₂O₃ and Al₂O₃ are oxide ores; ZnS and PbS",
+          "are sulphide ores.",
+          "The group 16 elements are not always",
+          "combined: oxygen occurs free in air as O₂,",
+          "and sulphur occurs free in volcanic regions."
+        ],
+        "why": "This mark is for the evidence behind the name, which is the list of ore types. The last two lines are the exception, and they matter: a statement that these elements ALWAYS occur combined is false, because free oxygen is about 21 per cent of the air and native sulphur is mined directly.",
+        "common_mistakes": [
+          "Writing that group 16 elements always occur combined. Oxygen and sulphur both occur free.",
+          "Giving only oxide ores. Selenides and tellurides are part of the same reason for the name."
+        ],
+        "memory_tip": "Iron and aluminium come from oxide ores, zinc and lead from sulphide ores. All four ores are built on group 16.",
+        "margin_note": "One line of ore examples earns this mark. The free oxygen line is not marked but keeps the statement true."
+      }
+    ]
+  },
+  "insider_note": "The mark is for the words ore producing, not for a list of elements. Write the meaning of the name in the first line and then give one oxide ore and one sulphide ore."
+}

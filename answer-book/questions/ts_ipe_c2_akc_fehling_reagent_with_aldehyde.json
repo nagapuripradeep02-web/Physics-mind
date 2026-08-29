@@ -1,0 +1,171 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_fehling_reagent_with_aldehyde",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the equations of any aldehyde with Fehling's reagent.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What Fehling's reagent is",
+      "marks": 1
+    },
+    {
+      "label": "The test and what is seen",
+      "marks": 1
+    },
+    {
+      "label": "The general equation",
+      "marks": 1
+    },
+    {
+      "label": "The equation for acetaldehyde",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.114 as SAQ 3. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, corrected on this card: the printed answer reads \"Fehling solution A is aqueous copper sulphate and sodium, potassium tartarate (Rochelle salt)\" — it puts BOTH components into solution A and then never says what solution B is, although it has just said there are two solutions. Fehling A is aqueous copper(II) sulphate; Fehling B is alkaline sodium potassium tartrate (Rochelle salt) in sodium hydroxide. This card writes the two solutions separately. BOOK TYPO: the printed general equation writes the copper species as \"2Cu⁻²\"; it is the copper(II) ion, 2Cu²⁺. BOOK SPELLING: \"tartarate\" for tartrate. BOOK EQUATION CHECKED AND CORRECT once the charge sign is repaired: R–CHO + 2Cu²⁺ + 5OH⁻ → R–COO⁻ + Cu₂O↓ + 3H₂O balances in atoms and in charge (−1 on each side). BOOK GAP: the printed answer never says what the tartrate is FOR (it keeps the copper(II) in solution in alkali, which would otherwise be precipitated as Cu(OH)₂), and gives no worked example although the question says \"any aldehyde\"; acetaldehyde is worked here. TREND AND EXCEPTION recorded on the card: \"aldehydes give the Fehling test and ketones do not\" has an exception at the aldehyde end — aromatic aldehydes such as benzaldehyde do NOT give it, although they do give the Tollens test."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reagent",
+        "kind": "text",
+        "label": "What Fehling's reagent is",
+        "marks": 1,
+        "mark_note": "The reagent",
+        "lines": [
+          "Fehling's reagent is made from two",
+          "solutions, mixed in equal amounts just",
+          "before use:",
+          "Fehling solution A: aqueous copper(II)",
+          "sulphate CuSO₄.",
+          "Fehling solution B: alkaline sodium",
+          "potassium tartrate (Rochelle salt) in NaOH.",
+          "The tartrate keeps the copper(II) in",
+          "solution in alkali; without it the copper",
+          "would be precipitated as Cu(OH)₂."
+        ],
+        "why": "Copper(II) ions are precipitated as blue Cu(OH)₂ by alkali, and the test needs them in solution, so the two halves are kept apart until the moment of use. The tartrate binds the copper(II) into a soluble deep blue complex, and that complex is the actual oxidising agent.",
+        "common_mistakes": [
+          "Putting both the copper sulphate and the Rochelle salt into solution A. A is the copper sulphate; B is the alkaline tartrate.",
+          "Writing that the reagent is stored ready mixed. The two solutions are mixed only when the test is done.",
+          "Leaving out the alkali. Fehling's solution works only in alkaline conditions."
+        ],
+        "memory_tip": "A is the copper, B is the alkaline tartrate, and they are mixed only at the moment of the test.",
+        "margin_note": "Name both solutions separately. Writing them as one solution is the single most common loss on this step."
+      },
+      {
+        "id": "s2_test",
+        "kind": "text",
+        "label": "The test and what is seen",
+        "marks": 1,
+        "mark_note": "The observation",
+        "lines": [
+          "An aldehyde is warmed with the mixed",
+          "reagent.",
+          "The deep blue colour fades and a reddish",
+          "brown precipitate of cuprous oxide Cu₂O is",
+          "formed.",
+          "The aldehyde is oxidised to the carboxylate",
+          "ion, and copper(II) is reduced to",
+          "copper(I).",
+          "Ketones give no precipitate, so the test",
+          "distinguishes an aldehyde from a ketone."
+        ],
+        "why": "The colour change and the precipitate are two separate observations and both are marked: the blue of the copper(II) complex is lost as it is reduced, and the copper(I) that is formed is insoluble and settles as red-brown Cu₂O. Naming the solid, not only its colour, is what makes the observation an answer.",
+        "common_mistakes": [
+          "Calling the precipitate a silver mirror. That is the Tollens test; Fehling's gives red-brown Cu₂O.",
+          "Writing the precipitate as CuO. It is cuprous oxide Cu₂O, copper in the +1 state.",
+          "Saying a ketone gives a fainter precipitate. A ketone gives none at all."
+        ],
+        "memory_tip": "Blue copper(II) becomes red-brown copper(I) oxide, so the colour change and the solid are both part of the answer.",
+        "margin_note": "Two observations, two clauses: the blue fades, and red-brown Cu₂O appears. Name the oxidation and the reduction alongside them."
+      },
+      {
+        "id": "s3_general_equation",
+        "kind": "equation",
+        "label": "The general equation",
+        "marks": 1,
+        "mark_note": "General equation",
+        "lines": [
+          "For any aliphatic aldehyde R–CHO:",
+          {
+            "text": "R–CHO + 2Cu²⁺ + 5OH⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "R–COO⁻ + Cu₂O↓ + 3H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "[Fehling's reagent, warm]",
+            "style": "indent"
+          },
+          "Charge: (+4) + (−5) = −1 on the left, and",
+          "−1 on the right, so it is balanced."
+        ],
+        "why": "Two copper(II) ions are needed because each takes one electron and the aldehyde loses two. Checking the charge as well as the atoms is what catches the usual slip of writing 3OH⁻ or 4OH⁻: only five hydroxide ions make both sides come to −1.",
+        "common_mistakes": [
+          "Writing the product as the acid R–COOH. In alkaline solution the product is the carboxylate ion R–COO⁻.",
+          "Writing CuO instead of Cu₂O. Two copper(I) atoms share one oxygen.",
+          "Balancing the atoms and not the charge. Both sides must come to −1."
+        ],
+        "memory_tip": "Two coppers, five hydroxides, three waters. Check the charge is −1 on both sides before you stop.",
+        "margin_note": "Write the reagent name above the arrow on your answer sheet. Do the charge check in the margin; it takes one line and it protects this mark."
+      },
+      {
+        "id": "s4_acetaldehyde",
+        "kind": "boxed_final",
+        "label": "The equation for acetaldehyde",
+        "marks": 1,
+        "mark_note": "Worked example",
+        "lines": [
+          "Taking acetaldehyde as the aldehyde:",
+          {
+            "text": "CH₃CHO + 2Cu²⁺ + 5OH⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃COO⁻ + Cu₂O↓ + 3H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "Red-brown Cu₂O: an aldehyde is present.",
+            "style": "boxed"
+          },
+          "Exception: aromatic aldehydes such as",
+          "benzaldehyde do NOT give this test, though",
+          "they do give the Tollens test."
+        ],
+        "why": "The question says any aldehyde, so one worked case has to be written out; acetaldehyde is the simplest that has a full carboxylate product. The exception matters in the laboratory: a negative Fehling test alone does not prove a compound is a ketone, because benzaldehyde also gives none.",
+        "common_mistakes": [
+          "Naming benzaldehyde as the example. Aromatic aldehydes give no Fehling test, so the equation would be wrong.",
+          "Writing the product as acetic acid. In alkali it is the acetate ion CH₃COO⁻.",
+          "Reading a negative test as proof of a ketone. Benzaldehyde is an aldehyde and gives none."
+        ],
+        "memory_tip": "Use a simple aliphatic aldehyde for the worked example; benzaldehyde is the one that gives no precipitate here.",
+        "margin_note": "Finish with the one-line conclusion about what the precipitate shows. The exception line is extra credit, not required."
+      }
+    ]
+  },
+  "insider_note": "The book puts the copper sulphate and the Rochelle salt both into Fehling A and never says what B is; A is the copper sulphate and B is the alkaline tartrate. Choose an aliphatic aldehyde for the worked equation, because benzaldehyde gives no Fehling test at all."
+}

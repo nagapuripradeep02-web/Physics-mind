@@ -1,0 +1,355 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_discovery_of_neutron",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a short note on the discovery of neutron?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Bothe and Becker",
+      "marks": 1
+    },
+    {
+      "label": "The radiation is uncharged",
+      "marks": 1
+    },
+    {
+      "label": "Chadwick's interpretation",
+      "marks": 1
+    },
+    {
+      "label": "The reaction and the name",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked, both equations balanced. ₄Be⁹ + ₂He⁴ → ₆C¹³ + γ: A 9 + 4 = 13, Z 4 + 2 = 6. ₄Be⁹ + ₂He⁴ → ₆C¹² + ₀n¹ + Q: A 13 = 12 + 1, Z 6 = 6 + 0. Chadwick published in 1932; Bothe and Becker reported the penetrating radiation in 1930. The figure carries NO marks because the question does not ask for a labelled diagram."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Nuclei · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The arrangement",
+        "marks": 0,
+        "figure": {
+          "id": "neutron_discovery_setup",
+          "width": 420,
+          "height": 220,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "chamber",
+              "d": "M 20 60 L 110 60 L 110 140 L 20 140 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "source",
+              "d": "M 32 100 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0",
+              "ms": 720
+            },
+            {
+              "type": "stroke",
+              "id": "be_target",
+              "d": "M 130 65 L 130 135",
+              "ms": 1000
+            },
+            {
+              "type": "stroke",
+              "id": "neutron_beam",
+              "d": "M 140 100 L 214 100",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "neutron_ah",
+              "d": "M 206 95 L 214 100 L 206 105",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "paraffin",
+              "d": "M 220 65 L 260 65 L 260 135 L 220 135 Z",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "proton_beam",
+              "d": "M 266 100 L 328 100",
+              "ms": 890,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "proton_ah",
+              "d": "M 320 95 L 328 100 L 320 105",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "detector",
+              "d": "M 336 70 L 406 70 L 406 130 L 336 130 Z",
+              "ms": 3710
+            },
+            {
+              "type": "label",
+              "id": "lbl_alpha",
+              "x": 16,
+              "y": 168,
+              "text": "α source",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_be",
+              "x": 120,
+              "y": 56,
+              "text": "Be",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_neutrons",
+              "x": 146,
+              "y": 90,
+              "text": "neutrons",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_paraffin",
+              "x": 212,
+              "y": 158,
+              "text": "paraffin",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_protons",
+              "x": 272,
+              "y": 90,
+              "text": "protons",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_detector",
+              "x": 340,
+              "y": 152,
+              "text": "detector",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "α-particles from the source strike the beryllium target; the radiation that comes out passes through paraffin and knocks protons into the detector.",
+        "why": "The paraffin is the key part of the picture: it is rich in hydrogen, and protons knocked out of it are what made the invisible radiation measurable.",
+        "common_mistakes": [
+          "Leaving out the paraffin. Without it there are no recoil protons to detect."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the arrangement is drawn: an alpha source, a beryllium target, paraffin, and a detector in a line.",
+          "accept": [
+            "draw the alpha source and beryllium target",
+            "paraffin and detector in line"
+          ],
+          "reject": [
+            "beryllium plus helium gives carbon thirteen"
+          ],
+          "heard_as": [
+            "paraffin",
+            "beryllium",
+            "detector"
+          ]
+        },
+        "memory_tip": "Four things in a row: source, beryllium, paraffin, detector."
+      },
+      {
+        "id": "s2_bothe_becker",
+        "kind": "text",
+        "label": "Bothe and Becker",
+        "marks": 1,
+        "mark_note": "Beryllium struck by α-particles gives penetrating radiation",
+        "lines": [
+          "Bothe and Becker found that when beryllium is",
+          "bombarded with α-particles of about 5 MeV, a",
+          "highly penetrating radiation is emitted.",
+          {
+            "text": "₄Be⁹ + ₂He⁴ → ₆C¹³ + γ (radiation)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Name the two workers, the target and the penetrating radiation.",
+        "why": "The radiation passed through several centimetres of lead, far more than any γ ray of that energy should, and that was the first sign that it was not γ radiation at all.",
+        "common_mistakes": [
+          "Saying the beryllium was bombarded with protons. It was α-particles.",
+          "Crediting Chadwick with this first step. Bothe and Becker made the observation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Bothe and Becker bombarded beryllium with alpha particles and obtained a highly penetrating radiation.",
+          "accept": [
+            "Bothe and Becker bombarded beryllium with alpha particles",
+            "a highly penetrating radiation was emitted",
+            "beryllium plus helium gives carbon thirteen and gamma"
+          ],
+          "reject": [
+            "Chadwick in nineteen thirty two"
+          ],
+          "heard_as": [
+            "Bothe",
+            "Becker",
+            "beryllium"
+          ]
+        },
+        "memory_tip": "Step one is an observation, not a theory: something very penetrating came out of beryllium."
+      },
+      {
+        "id": "s3_uncharged",
+        "kind": "text",
+        "label": "The radiation is uncharged",
+        "marks": 1,
+        "mark_note": "Not deflected by electric or magnetic fields",
+        "lines": [
+          "This radiation was not affected by electric",
+          "and magnetic fields.",
+          "So the particles in it carry no charge."
+        ],
+        "margin_note": "Second mark. No deflection in a field means no charge.",
+        "why": "A charged particle moving through a magnetic field is always deflected, so a beam that goes straight through both an electric and a magnetic field must be neutral.",
+        "common_mistakes": [
+          "Saying the radiation was γ rays. That was the first guess, and Chadwick showed it was wrong.",
+          "Leaving out the fields. The lack of deflection is the evidence."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the radiation was not deflected by electric or magnetic fields, so it is uncharged.",
+          "accept": [
+            "not affected by electric and magnetic fields",
+            "the particles carry no charge",
+            "it is neutral radiation"
+          ],
+          "reject": [
+            "mass nearly equal to the proton"
+          ],
+          "heard_as": [
+            "electric and magnetic fields",
+            "not deflected",
+            "uncharged"
+          ]
+        },
+        "memory_tip": "Straight through a magnetic field means zero charge."
+      },
+      {
+        "id": "s4_chadwick",
+        "kind": "text",
+        "label": "Chadwick's interpretation",
+        "marks": 1,
+        "mark_note": "1932, a new neutral particle of proton mass",
+        "lines": [
+          "In 1932 James Chadwick let this beryllium",
+          "radiation fall on nitrogen and on argon.",
+          "From the recoil of those nuclei he showed the",
+          "radiation is a stream of new particles with no",
+          "charge and mass nearly equal to the proton",
+          "mass."
+        ],
+        "margin_note": "Third mark. The year 1932, the name Chadwick, and the two facts: no charge, proton mass.",
+        "why": "A γ ray could not give a nitrogen nucleus the recoil that was measured; only a particle of about the proton mass could, and that measurement is what turned the guess into a discovery.",
+        "common_mistakes": [
+          "Giving the year as 1930 or 1935. Chadwick published in 1932.",
+          "Saying the new particle has the same mass as the electron."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in 1932 Chadwick interpreted the beryllium radiation as a new uncharged particle with mass nearly equal to that of the proton.",
+          "accept": [
+            "Chadwick in nineteen thirty two",
+            "a new particle with no charge and proton mass",
+            "he used nitrogen and argon"
+          ],
+          "reject": [
+            "Bothe and Becker"
+          ],
+          "heard_as": [
+            "Chadwick",
+            "nineteen thirty two",
+            "proton mass"
+          ]
+        },
+        "memory_tip": "Chadwick 1932: no charge, proton mass, new particle."
+      },
+      {
+        "id": "s5_reaction",
+        "kind": "boxed_final",
+        "label": "The reaction and the name",
+        "marks": 1,
+        "mark_note": "The balanced equation and the name neutron",
+        "lines": [
+          "These neutral particles were named neutrons,",
+          "written ₀n¹, and the reaction is",
+          {
+            "text": "₄Be⁹ + ₂He⁴ → ₆C¹² + ₀n¹ + Q",
+            "style": "eq"
+          },
+          {
+            "text": "The neutron ₀n¹ was discovered in 1932.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The balanced equation with ₀n¹ on the right.",
+        "why": "Check both totals: the mass numbers are 9 + 4 = 13 = 12 + 1 and the atomic numbers are 4 + 2 = 6 = 6 + 0, so the equation balances with exactly one neutron.",
+        "common_mistakes": [
+          "Writing ₆C¹³ on the right of this equation. With a neutron emitted the carbon is ₆C¹².",
+          "Giving the neutron a charge number other than 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the particle was named the neutron, written zero-n-one, and the reaction is beryllium-9 plus helium-4 giving carbon-12 plus a neutron.",
+          "accept": [
+            "named neutron",
+            "beryllium nine plus helium four gives carbon twelve plus a neutron",
+            "zero n one"
+          ],
+          "reject": [
+            "not deflected by fields"
+          ],
+          "heard_as": [
+            "neutron",
+            "carbon twelve",
+            "zero n one"
+          ]
+        },
+        "memory_tip": "Same reactants as step one; a neutron out instead of a γ ray, so carbon-13 becomes carbon-12."
+      }
+    ]
+  },
+  "insider_note": "The four marks follow the story in order: the penetrating radiation, the proof that it is uncharged, Chadwick reading it as a new particle, and the balanced equation."
+}

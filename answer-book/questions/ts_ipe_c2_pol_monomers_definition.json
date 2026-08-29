@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_monomers_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are monomers? Give example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples, and the repeating unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 23 on book p.98. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR: the printed answer is \"The smallest repeating units combines to form the polymer is called monomer\". That confuses two different things. The monomer is the small molecule BEFORE polymerisation; the repeating unit is what is left of it inside the chain. They differ whenever a ring opens or a small molecule is released: the monomer of nylon-6 is caprolactam, a ring, while its repeating unit is –[NH–(CH₂)₅–CO]–. The correct definition is written here and the distinction is made explicit in the second step. The printed examples, \"Ethylene in polyethene, vinyl chloride in PVC\", are correct and are kept."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A monomer is a small molecule that joins",
+          "with many molecules of its own kind, or",
+          "of another kind, to form a polymer.",
+          "A monomer must carry either a double or a",
+          "triple bond, or at least two reactive",
+          "functional groups, so that it can join on",
+          "both sides."
+        ],
+        "why": "A molecule with only one reactive site can join once and then stop, which ends the chain. Two sites, or a multiple bond that becomes two sites when it opens, are what let the joining repeat, and that is what the word monomer requires.",
+        "common_mistakes": [
+          "Writing that a monomer is the repeating unit of the chain. The monomer is the starting molecule; the repeating unit is what is left of it inside the chain.",
+          "Writing that a monomer is a small polymer. It is not a polymer at all."
+        ],
+        "memory_tip": "Mono means one: one small unit before any joining.",
+        "margin_note": "Small molecule and joins to form a polymer are the two items in this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples, and the repeating unit",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: ethene in polythene",
+            "style": "boxed"
+          },
+          "Vinyl chloride, CH₂=CH–Cl, in PVC",
+          "Caprolactam in nylon-6",
+          "The monomer is the starting molecule.",
+          "The part of it left in the chain is the",
+          "repeating unit; for nylon-6 that unit is",
+          "–[NH–(CH₂)₅–CO]–, not caprolactam."
+        ],
+        "why": "In addition polymers the two look alike, since ethene simply becomes –CH₂–CH₂–, so the difference is easy to miss. Nylon-6 shows the difference clearly: the monomer is a ring and the repeating unit is an open chain, so they are not the same thing.",
+        "common_mistakes": [
+          "Giving polythene as the monomer of ethene. It is the other way round: ethene is the monomer of polythene.",
+          "Writing that the monomer and the repeating unit are always the same. They differ whenever a ring opens or a small molecule is released."
+        ],
+        "memory_tip": "Monomer before the joining, repeating unit after it.",
+        "margin_note": "Two examples finish this mark. Name the polymer beside each monomer so the pairing is clear."
+      }
+    ]
+  },
+  "insider_note": "The commonest wrong definition calls the monomer the repeating unit of the chain. Say starting molecule first, then give the example."
+}

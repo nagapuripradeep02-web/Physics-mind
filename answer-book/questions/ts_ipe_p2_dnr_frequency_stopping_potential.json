@@ -1,0 +1,430 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_frequency_stopping_potential",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe an experiment to study the effect of frequency of incident radiation on 'stopping potential'.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The arrangement",
+      "marks": 1
+    },
+    {
+      "label": "Observations",
+      "marks": 2
+    },
+    {
+      "label": "The V₀–ν line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed pp.43-44). The book prints no exam-year citations for this chapter. The 1+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: at constant intensity the stopping potential grows with frequency (V₀₂ > V₀₁ for ν₂ > ν₁); the V₀ against ν graph is a straight line obeying eV₀ = h(ν − ν₀), so its slope is h/e and its intercept on the frequency axis is the threshold frequency ν₀, below which no photoelectrons are emitted — the standard NCERT account and the basis of Millikan's determination of h. This is LAQ-grade material in most other syllabuses; it is kept as the 4-mark SAQ this book prints."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Dual Nature of Radiation and Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_arrangement",
+        "kind": "text",
+        "label": "The arrangement",
+        "marks": 1,
+        "mark_note": "Tube, electrodes, meter",
+        "lines": [
+          "An evacuated glass tube has a photosensitive",
+          "cathode C and a metal anode A. Light of a",
+          "chosen frequency falls on the cathode C.",
+          "A battery and a rheostat set the potential of",
+          "the anode, which can be made positive or",
+          "negative with respect to C, and a",
+          "microammeter reads the photoelectric current."
+        ],
+        "margin_note": "One mark. Four parts to name: the evacuated tube, the two electrodes C and A, the variable potential, the microammeter.",
+        "why": "Each part has a job: the tube keeps the electron path clear, C emits, A collects, the battery and rheostat give the variable retarding potential, and the microammeter shows when the current reaches zero.",
+        "common_mistakes": [
+          "Leaving out evacuated. In air the photoelectrons would collide with gas molecules before reaching the anode.",
+          "Leaving the potential fixed. The experiment needs the anode potential to be varied through negative values."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an evacuated tube holds cathode C and anode A, the anode potential is varied by a battery and rheostat, and a microammeter reads the current.",
+          "accept": [
+            "evacuated tube with cathode and anode",
+            "battery and rheostat vary the potential",
+            "microammeter measures the current"
+          ],
+          "reject": [
+            "stopping potential is more for higher frequency"
+          ],
+          "heard_as": [
+            "evacuated tube",
+            "cathode",
+            "anode",
+            "microammeter",
+            "rheostat"
+          ]
+        },
+        "memory_tip": "Tube, C and A, a knob for the potential, a meter for the current — four parts, one sentence each."
+      },
+      {
+        "id": "s2_circuit",
+        "kind": "diagram",
+        "label": "The circuit",
+        "marks": 0,
+        "figure": {
+          "id": "fig_dnr_photocell_circuit",
+          "width": 300,
+          "height": 220,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "st_tube",
+              "d": "M 70 60 L 200 60 A 20 20 0 0 1 200 100 L 70 100 A 20 20 0 0 1 70 60",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "st_cathode",
+              "d": "M 82 66 L 88 94",
+              "ms": 410
+            },
+            {
+              "type": "stroke",
+              "id": "st_anode",
+              "d": "M 190 70 L 182 70 L 182 90 L 190 90",
+              "ms": 510
+            },
+            {
+              "type": "label",
+              "id": "lb_c",
+              "x": 76,
+              "y": 118,
+              "text": "C",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lb_a",
+              "x": 186,
+              "y": 118,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "st_light",
+              "d": "M 16 16 Q 28 10 34 22 Q 40 34 52 28 Q 62 24 68 40",
+              "ms": 950
+            },
+            {
+              "type": "stroke",
+              "id": "st_lightarrow",
+              "d": "M 68 40 L 64 31 M 68 40 L 59 38",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lb_light",
+              "x": 4,
+              "y": 44,
+              "text": "Light",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "st_wire_left",
+              "d": "M 50 80 L 28 80 L 28 175 L 118 175",
+              "ms": 2960
+            },
+            {
+              "type": "stroke",
+              "id": "st_wire_right",
+              "d": "M 220 80 L 258 80 L 258 118 M 258 150 L 258 175 L 212 175",
+              "ms": 2100
+            },
+            {
+              "type": "stroke",
+              "id": "st_meter",
+              "d": "M 258 118 A 16 16 0 0 1 258 150 A 16 16 0 0 1 258 118",
+              "ms": 1440
+            },
+            {
+              "type": "label",
+              "id": "lb_ua",
+              "x": 246,
+              "y": 140,
+              "text": "μA",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "st_battery",
+              "d": "M 118 175 L 126 175 M 130 163 L 130 187 M 140 169 L 140 181 M 144 175 L 148 175",
+              "ms": 690
+            },
+            {
+              "type": "stroke",
+              "id": "st_rheostat",
+              "d": "M 148 175 L 156 167 L 164 183 L 172 167 L 180 183 L 188 167 L 196 183 L 204 175 L 212 175",
+              "ms": 1720
+            },
+            {
+              "type": "label",
+              "id": "lb_batt",
+              "x": 104,
+              "y": 208,
+              "text": "Battery and rheostat",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Draw the tube with C and A inside, the light arrow onto C, the microammeter in the wire, and the battery with the rheostat below.",
+        "why": "The circuit is what makes 'vary the potential' concrete: the battery and rheostat sit in the loop, and the microammeter is in series so it reads the tube current directly.",
+        "common_mistakes": [
+          "Putting the light on the anode. The light must fall on the photosensitive cathode C.",
+          "Leaving out the microammeter. Without it there is no way to see the current reach zero."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the diagram shows the evacuated tube with C and A, light on C, a microammeter, and a battery with a rheostat.",
+          "accept": [
+            "the photocell circuit",
+            "tube with cathode and anode and meter"
+          ],
+          "reject": [
+            "V naught against frequency graph"
+          ],
+          "heard_as": [
+            "circuit",
+            "tube",
+            "meter"
+          ]
+        },
+        "memory_tip": "Light in at the top left, meter on the right, battery and rheostat along the bottom."
+      },
+      {
+        "id": "s3_observations",
+        "kind": "text",
+        "label": "Observations",
+        "marks": 2,
+        "mark_note": "V₀ rises with frequency",
+        "lines": [
+          "Keep the intensity of the light the same and",
+          "repeat the experiment with radiation of",
+          "different frequencies. For each frequency,",
+          "study how the photoelectric current changes",
+          "with the anode potential and note the",
+          "stopping potential where the current is zero.",
+          "The stopping potential is different for",
+          "different frequencies of the radiation.",
+          "For a higher frequency the stopping potential",
+          "is larger: V₀₂ > V₀₁ when ν₂ > ν₁. So the",
+          "maximum kinetic energy of the photoelectrons",
+          "depends only on the frequency, and not on",
+          "the intensity, of the incident radiation."
+        ],
+        "margin_note": "Two marks. The procedure (same intensity, different frequencies) and the finding: a higher frequency needs a larger stopping potential.",
+        "why": "The stopping potential measures the maximum kinetic energy through eV₀. A higher frequency photon carries more energy, so the fastest electrons need a stronger retarding potential to be stopped.",
+        "common_mistakes": [
+          "Changing the intensity between readings. The intensity must be kept the same so only the frequency varies.",
+          "Saying the saturation current changes with frequency. It depends on the intensity, not the frequency."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with intensity fixed, a higher frequency gives a larger stopping potential — V naught two greater than V naught one for nu two greater than nu one.",
+          "accept": [
+            "same intensity, different frequencies",
+            "higher frequency gives larger stopping potential",
+            "V naught depends on frequency"
+          ],
+          "reject": [
+            "slope of the line is h by e"
+          ],
+          "heard_as": [
+            "stopping potential",
+            "frequency",
+            "V naught two",
+            "nu two"
+          ]
+        },
+        "memory_tip": "Fix the intensity, walk the frequency up, and watch V₀ walk up with it."
+      },
+      {
+        "id": "s4_graph",
+        "kind": "diagram",
+        "label": "Stopping potential against frequency",
+        "marks": 0,
+        "figure": {
+          "id": "fig_dnr_v0_vs_frequency",
+          "width": 340,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "st_yaxis",
+              "d": "M 60 210 L 60 40",
+              "ms": 2430
+            },
+            {
+              "type": "stroke",
+              "id": "st_xaxis",
+              "d": "M 60 210 L 320 210",
+              "ms": 3710
+            },
+            {
+              "type": "stroke",
+              "id": "st_line",
+              "d": "M 140 210 L 296 74",
+              "ms": 2960
+            },
+            {
+              "type": "label",
+              "id": "lb_y",
+              "x": 66,
+              "y": 34,
+              "text": "Stopping potential V₀",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_x",
+              "x": 244,
+              "y": 238,
+              "text": "Frequency ν",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_o",
+              "x": 46,
+              "y": 228,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lb_nu0",
+              "x": 132,
+              "y": 232,
+              "text": "ν₀",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_a",
+              "x": 122,
+              "y": 200,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lb_b",
+              "x": 302,
+              "y": 70,
+              "text": "B",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "A straight line AB starting on the frequency axis at ν₀ — not at the origin.",
+        "why": "The line meets the axis at ν₀, not at O: radiation below the threshold frequency gives no photoelectrons, so there is no stopping potential to plot there.",
+        "common_mistakes": [
+          "Starting the line at the origin. It starts at ν₀ on the frequency axis.",
+          "Curving the line. eV₀ = h(ν − ν₀) is linear in ν, so the graph is straight."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the graph is a straight line AB meeting the frequency axis at the threshold frequency ν₀.",
+          "accept": [
+            "straight line from nu naught",
+            "V naught against frequency line"
+          ],
+          "reject": [
+            "three curves with one stopping potential"
+          ],
+          "heard_as": [
+            "straight line",
+            "nu naught",
+            "threshold frequency"
+          ]
+        },
+        "memory_tip": "The line starts on the frequency axis at ν₀ and climbs to the right."
+      },
+      {
+        "id": "s5_conclusion",
+        "kind": "boxed_final",
+        "label": "Slope h/e and threshold frequency",
+        "marks": 1,
+        "mark_note": "Slope h/e, intercept ν₀",
+        "lines": [
+          "The graph of V₀ against the frequency ν is a",
+          "straight line AB, obeying",
+          {
+            "text": "eV₀ = h(ν − ν₀)",
+            "style": "eq"
+          },
+          "The slope of the line is h/e, and the line",
+          "meets the frequency axis at the threshold",
+          "frequency ν₀. For radiation below ν₀ no",
+          "photoelectrons are emitted at any intensity.",
+          {
+            "text": "Slope = h/e, intercept on the ν-axis = ν₀",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "One mark. Read two numbers off the line: the slope h/e and the intercept ν₀.",
+        "why": "Einstein's equation eV₀ = hν − W₀ is the equation of this line, with W₀ = hν₀. Millikan measured the slope, multiplied by e, and obtained Planck's constant h — which is how the line verified the equation.",
+        "common_mistakes": [
+          "Calling the slope h. The slope is h/e; multiplying by the electron charge gives h.",
+          "Reading the intercept as the work function. The intercept on the frequency axis is ν₀; the work function is W₀ = hν₀."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line's slope is h by e and its intercept on the frequency axis is the threshold frequency, below which no electrons are emitted.",
+          "accept": [
+            "slope is h by e",
+            "intercept is the threshold frequency",
+            "below nu naught no emission"
+          ],
+          "reject": [
+            "higher frequency gives larger stopping potential"
+          ],
+          "heard_as": [
+            "slope",
+            "h by e",
+            "threshold frequency",
+            "intercept"
+          ]
+        },
+        "memory_tip": "One line, two readings: slope h/e, intercept ν₀."
+      }
+    ]
+  },
+  "insider_note": "Millikan used exactly this straight line — its slope times e gave Planck's constant. Name both the slope h/e and the intercept ν₀; one without the other reads as half the conclusion."
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_glass_vs_quartz",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What makes a glass different from quartz?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Glass is amorphous",
+      "marks": 1
+    },
+    {
+      "label": "Quartz is crystalline",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book's answer names only the arrangement of particles. The point that both solids are built from the same SiO4 tetrahedra is added from NCERT, because without it a student cannot say why two solids of the same composition differ at all."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_glass",
+        "kind": "text",
+        "label": "Glass is amorphous",
+        "marks": 1,
+        "mark_note": "Glass",
+        "lines": [
+          "The difference is in the arrangement of the",
+          "constituent particles.",
+          "Glass is an amorphous solid. Its particles",
+          "are arranged irregularly, with short range",
+          "order only."
+        ],
+        "why": "Glass and quartz are both silicon dioxide built from the same SiO4 tetrahedra, so the composition cannot be the answer. The only thing that differs is how those tetrahedra are arranged, and in glass the arrangement is irregular.",
+        "common_mistakes": [
+          "Saying the two have different chemical formulae. Both are silicon dioxide; only the arrangement differs.",
+          "Writing that glass has no order at all. It has short range order and lacks long range order."
+        ],
+        "memory_tip": "Same building block, different stacking. Glass is the disordered stack.",
+        "margin_note": "Open with the arrangement of particles. That sentence is what the examiner reads first."
+      },
+      {
+        "id": "s2_quartz",
+        "kind": "boxed_final",
+        "label": "Quartz is crystalline",
+        "marks": 1,
+        "mark_note": "Quartz",
+        "lines": [
+          {
+            "text": "Glass: amorphous. Quartz: crystalline.",
+            "style": "boxed"
+          },
+          "Quartz is a crystalline solid. Its particles",
+          "are arranged in a regular repeating pattern",
+          "with long range order.",
+          "Both are made of the same SiO4 units."
+        ],
+        "why": "The second mark is the other half of the comparison. Quartz has the same SiO4 tetrahedra joined in an ordered three dimensional network, so it has long range order, a sharp melting point and anisotropic properties.",
+        "common_mistakes": [
+          "Describing only one of the two solids. A comparison question needs both sides written.",
+          "Writing that quartz is amorphous because it looks glassy. Quartz is crystalline; fused quartz, made by melting it and cooling it quickly, is the amorphous form."
+        ],
+        "memory_tip": "Quartz keeps its order over long distances, glass loses it after a few units.",
+        "margin_note": "The boxed one line contrast is the safest form of this answer. Add the long range order phrase after it."
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for the words amorphous and crystalline in the same answer. Naming the arrangement of particles as the reason is what turns a one word answer into a two mark answer."
+}

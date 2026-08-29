@@ -1,0 +1,164 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_ethanol_dehydration_443k_vs_413k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Ethanol with H₂SO₄ at 443 K forms ethene while at 413 K forms ethoxy ethane. Explain it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ethene at 443 K, with the equation",
+      "marks": 1
+    },
+    {
+      "label": "Ethoxyethane at 413 K, with the equation",
+      "marks": 1
+    },
+    {
+      "label": "Why the temperature changes the product",
+      "marks": 1
+    },
+    {
+      "label": "The conditions that determine the product",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.109 as Short Answer 3. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK DOES NOT ANSWER THE QUESTION ASKED: the question says \"Explain it\", and the printed answer only restates it — \"1 mole underoges dehydration to form ethene but at 413K 2 moles undergo dehydration to form ether\". Saying that one molecule reacts at one temperature and two at the other is a description of the two equations, not a reason. The mechanism is added here: at both temperatures the ethanol is first protonated, and what differs is what happens to the protonated molecule — at 413 K a second ethanol molecule bonds to it and the ether is formed, while at 443 K a proton is removed from the neighbouring carbon and the double bond is formed. BOOK TYPOS: \"underoges\" for undergoes, and \"443k\" and \"413K\" with inconsistent case. The book's \"443k (or) 170⁰C\" is arithmetically right (443 − 273 = 170). BALANCE CHECKED: C₂H₅OH → CH₂=CH₂ + H₂O balances (C 2=2, H 6=6, O 1=1); 2C₂H₅OH → C₂H₅–O–C₂H₅ + H₂O balances (C 4=4, H 12=12, O 2=2). TREND AND EXCEPTION: the card states the dehydration order 3° > 2° > 1° and names the exception on the same card — the order REVERSES for the reaction with sodium and for esterification, where it is 1° > 2° > 3°, because those follow the acidity of the O–H and the crowding around it rather than the stability of a carbocation. It also records that this two-temperature rule is a PRIMARY alcohol rule: a tertiary alcohol with acid gives the alkene at any temperature and no ether."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ethene_at_443",
+        "kind": "equation",
+        "label": "Ethene at 443 K, with the equation",
+        "marks": 1,
+        "mark_note": "Ethene",
+        "lines": [
+          "At 443 K with excess concentrated H₂SO₄,",
+          "ONE molecule of ethanol loses one molecule",
+          "of water.",
+          "The –OH and a hydrogen from the next",
+          "carbon leave together, so a double bond is",
+          "formed inside the same molecule.",
+          {
+            "text": "C₂H₅OH → CH₂=CH₂ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[conc. H₂SO₄, 443 K]",
+            "style": "indent"
+          },
+          "This is intramolecular dehydration."
+        ],
+        "why": "Both temperatures remove water, so naming the product alone is not the answer; what has to be said is WHERE the water comes from. Here both the –OH and the hydrogen come from the same molecule, which is why one molecule gives one molecule of alkene.",
+        "common_mistakes": [
+          "Writing 2C₂H₅OH for the ethene equation. One molecule is enough; two would leave a spare carbon skeleton.",
+          "Forgetting the water on the right. Dehydration means water is a product, so it must be shown."
+        ],
+        "memory_tip": "Higher temperature, one molecule, water taken from inside it, double bond left behind.",
+        "margin_note": "Write the temperature above the arrow. The two equations differ only in the conditions, so the conditions carry the marks."
+      },
+      {
+        "id": "s2_ether_at_413",
+        "kind": "equation",
+        "label": "Ethoxyethane at 413 K, with the equation",
+        "marks": 1,
+        "mark_note": "Ether",
+        "lines": [
+          "At 413 K with excess ethanol, TWO molecules",
+          "of ethanol join and lose one molecule of",
+          "water between them.",
+          {
+            "text": "2C₂H₅OH → C₂H₅–O–C₂H₅ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[conc. H₂SO₄, 413 K]",
+            "style": "indent"
+          },
+          "This is intermolecular dehydration and the",
+          "product is ethoxyethane, or diethyl ether."
+        ],
+        "why": "Here the –OH comes from one molecule and the hydrogen from the other, so the water is taken from BETWEEN two molecules and their two ethyl groups are left joined through an oxygen. That is why two molecules are needed on the left.",
+        "common_mistakes": [
+          "Writing one C₂H₅OH on the left. An ether has two ethyl groups, so two molecules are needed.",
+          "Writing two waters on the right. Only one water is removed, from between the two molecules."
+        ],
+        "memory_tip": "Lower temperature, two molecules, water taken from between them, and the two ethyl groups joined through an oxygen.",
+        "margin_note": "Give both names, ethoxyethane and diethyl ether. Either is accepted, and giving both shows the compound is not in doubt."
+      },
+      {
+        "id": "s3_the_reason",
+        "kind": "text",
+        "label": "Why the temperature changes the product",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "At both temperatures the acid first",
+          "protonates the –OH group, giving",
+          "C₂H₅–OH₂⁺, and water is a good leaving",
+          "group.",
+          "At 413 K a second ethanol molecule bonds to",
+          "that carbon as a nucleophile and displaces",
+          "the water, giving the ether.",
+          "At 443 K there is enough energy for a",
+          "proton to be removed from the neighbouring",
+          "carbon instead, and the double bond is",
+          "formed."
+        ],
+        "why": "The two products come from the same protonated intermediate, so the explanation is about which of two competing paths is taken. Substitution by a second alcohol molecule needs less energy and is the path taken at the lower temperature; elimination needs more energy and becomes the main path at the higher one.",
+        "common_mistakes": [
+          "Saying the reactants are different. The reactants are the same; only the temperature differs.",
+          "Restating the two equations as the explanation. Naming the two competing paths, substitution and elimination, is the explanation."
+        ],
+        "memory_tip": "One protonated intermediate, two paths. Lower heat gives substitution, higher heat gives elimination.",
+        "margin_note": "This is the mark the question is really asking for. Do not spend it repeating the equations."
+      },
+      {
+        "id": "s4_conditions",
+        "kind": "boxed_final",
+        "label": "The conditions that determine the product",
+        "marks": 1,
+        "mark_note": "Conditions",
+        "lines": [
+          "The proportions matter as well as the heat.",
+          "Excess acid at 443 K gives the alkene;",
+          "excess alcohol at 413 K gives the ether.",
+          {
+            "text": "443 K → ethene ; 413 K → ether",
+            "style": "boxed"
+          },
+          "Dehydration to the alkene gets easier in",
+          "the order 3° > 2° > 1° alcohol."
+        ],
+        "why": "The order 3° > 2° > 1° holds for dehydration because the reaction goes through a carbocation and a tertiary carbocation is the most stable. The order REVERSES for the reaction with sodium and for esterification, where it is 1° > 2° > 3°, because those depend on the acidity of the O–H and on how crowded that oxygen is. This two-temperature rule is also a primary alcohol rule: a tertiary alcohol with acid gives the alkene at any temperature and no ether at all.",
+        "common_mistakes": [
+          "Applying the 3° > 2° > 1° order to every reaction of alcohols. It is the dehydration order; with sodium and in esterification the order is the other way round.",
+          "Expecting a tertiary alcohol to give an ether at 413 K. It gives the alkene, because steric hindrance at the crowded carbon blocks the substitution path."
+        ],
+        "memory_tip": "For losing water the tertiary alcohol is first; for reacting with sodium the primary alcohol is first. Two opposite orders.",
+        "margin_note": "Naming the excess reagent for each temperature lifts the answer above a bare pair of equations."
+      }
+    ]
+  },
+  "insider_note": "The book only restates the question, so an answer copied from it does not explain anything. The mark is for naming the shared protonated intermediate and the two paths it can take — substitution by a second alcohol at 413 K, elimination at 443 K."
+}

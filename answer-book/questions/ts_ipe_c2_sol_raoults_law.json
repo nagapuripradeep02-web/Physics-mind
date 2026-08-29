@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_raoults_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Raoult's law.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation and symbols",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SCOPE (book p.65, VSAQ 1): the printed answer gives ONLY the non-volatile-solute form of the law. The general statement for volatile components, p₁ = p₁⁰ x₁, is written here first because it is the form NCERT states and because the printed form is a special case of it. Both are on the card, so either is available to an examiner."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Raoult's law states that, at a given",
+          "temperature, the partial vapour pressure of",
+          "each volatile component of a solution is",
+          "directly proportional to its mole fraction",
+          "in the solution.",
+          {
+            "text": "p₁ = p₁⁰ x₁",
+            "style": "eq"
+          },
+          "p₁⁰ = vapour pressure of the pure liquid 1"
+        ],
+        "why": "The law fixes how much of each liquid goes into the vapour. Only the fraction of the surface made up of one component can send that component into the vapour, so its vapour pressure is its pure value multiplied by its mole fraction. Every result later in this chapter — lowering of vapour pressure, elevation of boiling point, depression of freezing point — is built on this one line.",
+        "common_mistakes": [
+          "Writing that the vapour pressure is proportional to the mass of the component. It is proportional to the mole fraction, not to the mass.",
+          "Leaving out the words \"at a given temperature\". Vapour pressure changes with temperature, so the condition is part of the statement."
+        ],
+        "memory_tip": "Each liquid gives its own pure vapour pressure, scaled down by its mole fraction.",
+        "margin_note": "The words \"directly proportional\" plus \"mole fraction\" are what earn this mark. A statement with no mole fraction in it earns nothing."
+      },
+      {
+        "id": "s2_nonvolatile_form",
+        "kind": "boxed_final",
+        "label": "Non-volatile solute form",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "When the solute is non-volatile, only the",
+          "solvent goes into the vapour. The law then",
+          "takes the form used in this chapter:",
+          {
+            "text": "(p⁰ − pₛ) / p⁰ = x₂",
+            "style": "boxed"
+          },
+          "p⁰ = vapour pressure of the pure solvent",
+          "pₛ = vapour pressure of the solution",
+          "x₂ = mole fraction of the solute"
+        ],
+        "why": "A non-volatile solute has no vapour pressure of its own, so the vapour pressure of the solution is only the solvent's share, pₛ = p⁰x₁. Since x₁ + x₂ = 1, subtracting gives (p⁰ − pₛ)/p⁰ = x₂. The left side is called the relative lowering of vapour pressure, and it is the quantity used to find molar masses.",
+        "common_mistakes": [
+          "Writing x₁, the mole fraction of the solvent, on the right side. The relative lowering equals the mole fraction of the SOLUTE.",
+          "Dropping the p⁰ in the denominator. Without it the quantity is the lowering, not the RELATIVE lowering."
+        ],
+        "memory_tip": "Relative lowering on the left, mole fraction of the solute on the right.",
+        "margin_note": "Box the equation and define all three symbols under it. The symbol list carries half of this mark."
+      }
+    ]
+  },
+  "insider_note": "Most answers stop at the sentence and never write the equation. The board's model answer to this question is a sentence and a formula, so write both even though the question only says \"state\"."
+}

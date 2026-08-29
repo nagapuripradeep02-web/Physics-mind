@@ -1,0 +1,168 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_acidity_of_phenol_phenoxide_resonance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the acidic nature of phenols and compare with that of alcohol.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two ionisation equations",
+      "marks": 1
+    },
+    {
+      "label": "Why the phenoxide ion is stabilised",
+      "marks": 1
+    },
+    {
+      "label": "Why the alkoxide ion is not stabilised",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion with numbers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.111 as Short Answer 9. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. THE BOOK PRINTS THIS QUESTION TWICE. Short Answer 7 on book p.110 reads \"...compare with that of alcohols\" and Short Answer 9 on book p.111, this one, reads \"...compare with that of alcohol\"; the two printed answers differ in wording but not in content, and neither cross-refers to the other. Both are authored, as ts_ipe_c2_ape_acidic_nature_of_phenols_vs_alcohols (SAQ 7) and this card (SAQ 9), because a ref must exist for each printed number. This card is written from the SAQ 9 printed answer, which leads with the two ionisation equilibria side by side and the four resonance structures of the phenoxide ion; the SAQ 7 card is written from the SAQ 7 printed answer, which leads with the resonance argument and the comparison of the ion with the molecule. The duplication is the book's, not the bank's. BOOK ANSWER IS CORRECT AS FAR AS IT GOES: \"Phenoxide ion is stabilized by resonance more the stability of phenoxide ion, more will be the acidic nature of phenol. But alkoxide ion is not stabilized by resonance. Hence alcohol is less acidic.\" The sentence is garbled but the chemistry is right. BOOK GAP: no numbers of any kind, no reaction that demonstrates the acidity, and no mention of the electron releasing alkyl group, which is the second reason an alkoxide ion is less stable. All three are added. TREND AND EXCEPTION: the card gives the order carboxylic acid > phenol > water > alcohol (pKa about 4.8, 10.0, 15.7, 15.9) and names the exception on the same card — among the alcohols themselves the acid strength order is 1° > 2° > 3°, which is the REVERSE of the dehydration order 3° > 2° > 1° met in Short Answer 3."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_equilibria",
+        "kind": "equation",
+        "label": "The two ionisation equations",
+        "marks": 1,
+        "mark_note": "Equations",
+        "lines": [
+          "Both phenol and an alcohol give up the",
+          "hydrogen of the O–H group in water.",
+          {
+            "text": "C₆H₅OH ⇌ C₆H₅O⁻ + H⁺",
+            "style": "eq"
+          },
+          {
+            "text": "(phenol → phenoxide ion)",
+            "style": "indent"
+          },
+          {
+            "text": "C₂H₅OH ⇌ C₂H₅O⁻ + H⁺",
+            "style": "eq"
+          },
+          {
+            "text": "(alcohol → alkoxide ion)",
+            "style": "indent"
+          },
+          "The difference is in how stable the two",
+          "ions are."
+        ],
+        "why": "Writing the two equilibria one under the other sets the comparison up properly: the acid strength of each depends on how easily its own equilibrium moves to the right, and that in turn depends only on the stability of the ion formed.",
+        "common_mistakes": [
+          "Using a single arrow. Both are weak acids, so the equilibrium arrow ⇌ is the correct one.",
+          "Naming the ions the wrong way round. Phenol gives the phenoxide ion, an alcohol gives an alkoxide ion."
+        ],
+        "memory_tip": "Same O–H, same proton, two different ions. The whole answer is about which ion is more stable.",
+        "margin_note": "Write both equations before either explanation. The examiner then reads the reasons beside a visible comparison."
+      },
+      {
+        "id": "s2_phenoxide_stabilised",
+        "kind": "text",
+        "label": "Why the phenoxide ion is stabilised",
+        "marks": 1,
+        "mark_note": "Phenoxide",
+        "lines": [
+          "In the phenoxide ion a lone pair on the",
+          "oxygen moves into the ring, so the negative",
+          "charge is shared over four atoms.",
+          {
+            "text": "charge on O ↔ C-2 ↔ C-4 ↔ C-6",
+            "style": "eq"
+          },
+          "Spreading a charge lowers the energy, so",
+          "the phenoxide ion is stabilised.",
+          "The more stable the ion, the further the",
+          "equilibrium moves to the right and the",
+          "stronger the acid."
+        ],
+        "why": "A charge spread over four atoms is at lower energy than the same charge held on one, so the phenoxide ion is easier to form than an ion with no such delocalisation. The negative charge reaches only carbons 2, 4 and 6, which is also why substituents at those positions change the acid strength most.",
+        "common_mistakes": [
+          "Putting the negative charge at carbon 3 or 5. Only positions 2, 4 and 6 carry it.",
+          "Saying the phenoxide ion is aromatic because of this. The ring stays aromatic throughout; the charge is what moves."
+        ],
+        "memory_tip": "Four atoms share the charge: the oxygen and carbons 2, 4 and 6.",
+        "margin_note": "Say spread over four atoms, with the positions. Resonance as a bare word is worth little here."
+      },
+      {
+        "id": "s3_alkoxide_not_stabilised",
+        "kind": "text",
+        "label": "Why the alkoxide ion is not stabilised",
+        "marks": 1,
+        "mark_note": "Alkoxide",
+        "lines": [
+          "An alkoxide ion has no ring, so there is",
+          "nowhere for the charge to move.",
+          "The whole negative charge stays on one",
+          "oxygen atom.",
+          "The alkyl group also releases electron",
+          "density towards that oxygen, which adds to",
+          "the charge already there.",
+          "Both effects make the alkoxide ion less",
+          "stable than the phenoxide ion, so an",
+          "alcohol is a weaker acid than phenol."
+        ],
+        "why": "Two separate reasons act in the same direction here, and the book gives only the first. There is no resonance to spread the charge, and the alkyl group is electron releasing, so the charge is not only concentrated but increased.",
+        "common_mistakes": [
+          "Saying an alcohol is neutral. It is a very weak acid and does react with sodium metal to give hydrogen.",
+          "Giving only the missing resonance. The electron releasing alkyl group is a second reason and is often the marked one."
+        ],
+        "memory_tip": "No ring to share the charge, and an alkyl group adding to it. Two reasons, and both make the alkoxide ion less stable.",
+        "margin_note": "Name the inductive effect of the alkyl group. It is the half of this answer the book leaves out."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion with numbers",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "Phenol has pKa about 10 and ethanol about",
+          "16, so phenol is the stronger acid.",
+          {
+            "text": "acid > phenol > water > alcohol",
+            "style": "boxed"
+          },
+          "Phenol reacts with NaOH to give sodium",
+          "phenoxide; an alcohol does not.",
+          "Among the alcohols themselves the acid",
+          "strength order is 1° > 2° > 3°."
+        ],
+        "why": "A comparison question needs one line that states the result, and the NaOH test is the observation behind it: phenol dissolves in aqueous NaOH as its salt, an alcohol does not. The order among the alcohols is worth adding because it is the REVERSE of the dehydration order 3° > 2° > 1°, and confusing the two is a common loss.",
+        "common_mistakes": [
+          "Writing the acid strength order of alcohols as 3° > 2° > 1°. That is the dehydration order; for acid strength it is the other way round.",
+          "Saying an alcohol also dissolves in NaOH. It does not, and that is the observation that separates the two."
+        ],
+        "memory_tip": "Phenol dissolves in NaOH, an alcohol does not. For acid strength among alcohols, primary comes first.",
+        "margin_note": "The order line answers the compare part. One sentence with the NaOH test makes it an observation, not a claim."
+      }
+    ]
+  },
+  "insider_note": "The book prints this question twice, as Short Answer 7 and again as Short Answer 9, with the same content. The mark that most answers miss is the second reason the alkoxide ion is less stable: besides having no resonance, its alkyl group releases electron density towards the charged oxygen."
+}

@@ -1,0 +1,353 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_dielectrics_in_electric_field",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain behaviour of dielectrics in an electric field.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Polar and non-polar dielectrics",
+      "marks": 1
+    },
+    {
+      "label": "Polarisation in the field",
+      "marks": 1
+    },
+    {
+      "label": "The induced field",
+      "marks": 1
+    },
+    {
+      "label": "The reduced field",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). Hand-checked: the book's nine points are correct — polar molecules are already dipoles, non-polar ones are polarised by the applied field, the bound charges cancel inside and survive only on the two faces, E = E₀ − Eᵢ, and E = E₀/K. One precision the book leaves out and this card states: E = E₀/K holds when the slab FILLS the space between the plates and the free charge on the plates is unchanged; for a partly filled gap the reduction is smaller. The book's figure labels the applied field 'filed' — a misspelling, not copied. Printed question text carries no error."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Potential and Capacitance · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_kinds",
+        "kind": "text",
+        "label": "Polar and non-polar dielectrics",
+        "marks": 1,
+        "mark_note": "The two kinds",
+        "lines": [
+          "A dielectric is an insulator: it has no free",
+          "charge that can move through it.",
+          "In a polar dielectric the centres of positive",
+          "and negative charge do not coincide even with",
+          "no field applied, so each molecule is already a",
+          "small dipole, but the dipoles point at random.",
+          "In a non-polar dielectric the two centres",
+          "coincide, so a molecule has no dipole moment",
+          "until a field is applied."
+        ],
+        "margin_note": "First mark. Name both kinds and say what separates them: the centres of charge.",
+        "why": "The two kinds reach the same end state by different routes — polar molecules only have to turn, non-polar ones have to be stretched — and the examiner reads for both.",
+        "common_mistakes": [
+          "Calling a dielectric a conductor with weak conduction — it has no free charge at all.",
+          "Describing only the non-polar case and leaving the polar one out."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a dielectric is an insulator, and that polar molecules are already dipoles while non-polar molecules are not until a field is applied.",
+          "accept": [
+            "polar and non polar dielectrics",
+            "centres of positive and negative charge coincide or not",
+            "insulator with no free charge"
+          ],
+          "reject": [
+            "resultant field is E nought minus E i"
+          ],
+          "heard_as": [
+            "polar",
+            "non polar"
+          ]
+        },
+        "memory_tip": "Polar molecules start as dipoles; non-polar ones are made into dipoles."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "dielectric_slab_between_plates",
+          "width": 420,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "plate_positive",
+              "d": "M 90 40 L 90 220",
+              "ms": 2570
+            },
+            {
+              "type": "stroke",
+              "id": "plate_negative",
+              "d": "M 330 40 L 330 220",
+              "ms": 2570
+            },
+            {
+              "type": "stroke",
+              "id": "slab_outline",
+              "d": "M 150 60 L 280 60 L 280 200 L 150 200 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "applied_field_shaft",
+              "d": "M 120 26 L 250 26",
+              "ms": 1860
+            },
+            {
+              "type": "stroke",
+              "id": "applied_field_head",
+              "d": "M 250 26 L 240 21 M 250 26 L 240 31",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "induced_field_shaft",
+              "d": "M 262 130 L 172 130",
+              "ms": 1290
+            },
+            {
+              "type": "stroke",
+              "id": "induced_field_head",
+              "d": "M 172 130 L 182 125 M 172 130 L 182 135",
+              "ms": 320
+            },
+            {
+              "type": "label",
+              "id": "lbl_plate_positive",
+              "x": 72,
+              "y": 134,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_plate_negative",
+              "x": 338,
+              "y": 134,
+              "text": "−",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_applied_field",
+              "x": 258,
+              "y": 32,
+              "text": "E₀",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_induced_field",
+              "x": 202,
+              "y": 120,
+              "text": "Eᵢ",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_face_negative",
+              "x": 156,
+              "y": 100,
+              "text": "−",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_face_positive",
+              "x": 266,
+              "y": 100,
+              "text": "+",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_slab",
+              "x": 162,
+              "y": 188,
+              "text": "dielectric K",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Slab between the plates, applied field E₀ to the right, induced field Eᵢ to the left.",
+        "why": "The two opposed arrows are the whole answer in one picture: the induced field points back against the applied field, so the two subtract.",
+        "common_mistakes": [
+          "Drawing the induced field in the same direction as the applied field."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the slab is drawn between the two charged plates with the applied field one way and the induced field the other way.",
+          "accept": [
+            "slab between the plates",
+            "two arrows in opposite directions",
+            "induced charges on the two faces"
+          ],
+          "reject": [
+            "capacitance rises to K times"
+          ],
+          "heard_as": [
+            "slab",
+            "arrows"
+          ]
+        },
+        "memory_tip": "Two arrows pointing opposite ways — that picture already gives E = E₀ − Eᵢ."
+      },
+      {
+        "id": "s3_polarisation",
+        "kind": "text",
+        "label": "Polarisation in the field",
+        "marks": 1,
+        "mark_note": "Polarisation",
+        "lines": [
+          "Place the slab in an external field E₀.",
+          "In each molecule the centre of positive charge",
+          "shifts a little along the field and the centre of",
+          "negative charge shifts the opposite way, so",
+          "every molecule becomes a dipole. Polar",
+          "molecules simply turn until they line up with",
+          "the field. The slab is now polarised."
+        ],
+        "margin_note": "Second mark. Both routes: non-polar molecules stretch, polar molecules turn.",
+        "why": "Polarisation is a small displacement, not a flow — the charges stay bound to their molecules, which is exactly why a dielectric is not a conductor.",
+        "common_mistakes": [
+          "Saying charge flows through the slab — the bound charges only shift.",
+          "Leaving out the alignment of the already existing polar dipoles."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in the applied field every molecule becomes an aligned dipole, so the slab is polarised.",
+          "accept": [
+            "molecules become dipoles",
+            "positive shifts along the field, negative the other way",
+            "the slab gets polarised"
+          ],
+          "reject": [
+            "resultant field is E nought minus E i"
+          ],
+          "heard_as": [
+            "polarised",
+            "dipole"
+          ]
+        },
+        "memory_tip": "The field pulls the two charge centres apart — a small stretch, never a flow."
+      },
+      {
+        "id": "s4_induced_field",
+        "kind": "text",
+        "label": "The induced field",
+        "marks": 1,
+        "mark_note": "Induced field Eᵢ",
+        "lines": [
+          "Inside the slab each dipole's positive end sits",
+          "against the next dipole's negative end, so the",
+          "charges cancel in pairs. Only the two faces are",
+          "left charged: the face towards the positive",
+          "plate becomes negative and the far face",
+          "becomes positive.",
+          "These bound surface charges set up their own",
+          "field Eᵢ, pointing opposite to E₀."
+        ],
+        "margin_note": "Third mark. Cancellation inside, charge only on the faces, Eᵢ against E₀.",
+        "why": "Only the uncancelled face charges make a field, and their sign is fixed by which plate they face — that is what forces Eᵢ to oppose E₀ rather than add to it.",
+        "common_mistakes": [
+          "Putting positive induced charge on the face next to the positive plate.",
+          "Treating the induced charges as free charge that can be drawn off."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bound charges cancel inside and survive only on the two faces, setting up a field Eᵢ opposite to E₀.",
+          "accept": [
+            "charges cancel inside the slab",
+            "induced charges on the two faces",
+            "induced field opposes the applied field"
+          ],
+          "reject": [
+            "molecules become dipoles"
+          ],
+          "heard_as": [
+            "induced field",
+            "surface charges"
+          ]
+        },
+        "memory_tip": "Head to tail inside cancels; only the two end faces are left charged."
+      },
+      {
+        "id": "s5_reduced_field",
+        "kind": "boxed_final",
+        "label": "The reduced field",
+        "marks": 1,
+        "mark_note": "E = E₀/K",
+        "lines": [
+          "The resultant field inside the dielectric is",
+          {
+            "text": "E = E₀ − Eᵢ",
+            "style": "eq"
+          },
+          "which is smaller than E₀. When the slab fills",
+          "the space between the plates, the reduction is",
+          "written through the dielectric constant K:",
+          {
+            "text": "E = E₀/K, and C rises from C₀ to KC₀",
+            "style": "boxed"
+          },
+          "A smaller field means a smaller potential",
+          "difference for the same charge, so the",
+          "capacitance goes up K times."
+        ],
+        "margin_note": "Last mark. Subtract the fields, then name K and say the capacitance rises K times.",
+        "why": "K is defined by this ratio, so the last line is not a new fact — it is the definition of the dielectric constant read backwards.",
+        "common_mistakes": [
+          "Adding the two fields instead of subtracting.",
+          "Saying the capacitance falls — a smaller V with the same Q raises C."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E = E₀ − Eᵢ = E₀/K inside the slab, so the capacitance rises to K times.",
+          "accept": [
+            "resultant field is E nought minus E i",
+            "field becomes E nought by K",
+            "capacitance rises to K times"
+          ],
+          "reject": [
+            "induced charges on the two faces"
+          ],
+          "heard_as": [
+            "E nought by K",
+            "K times"
+          ]
+        },
+        "memory_tip": "Field down by K, so capacitance up by K — the two always move opposite ways."
+      }
+    ]
+  },
+  "insider_note": "Four separate marks sit in four separate ideas, so a single paragraph on polarisation caps the answer at about half — write the two kinds, the polarisation, the face charges and E = E₀/K as four short blocks."
+}

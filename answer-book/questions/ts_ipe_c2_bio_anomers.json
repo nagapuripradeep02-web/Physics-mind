@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_anomers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are anomers?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 18. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO: the printed answer says \"Cyclic hemiacetyl forms\". The correct word is hemiacetal, the group formed when an alcohol adds to an aldehyde; \"hemiacetyl\" is not a chemical term."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Anomers are the two cyclic hemiacetal forms",
+          "of a sugar that differ only in the",
+          "configuration at one carbon atom.",
+          "That carbon is C₁ in an aldose and C₂ in a",
+          "ketose. It is called the anomeric carbon."
+        ],
+        "why": "When the ring closes, the carbonyl carbon becomes a new stereocentre, so two forms are possible and they differ at that one carbon only. Naming which carbon it is, C₁ for an aldose and C₂ for a ketose, is what the answer key asks for.",
+        "common_mistakes": [
+          "Saying anomers differ at any carbon atom. They differ only at the anomeric carbon.",
+          "Defining anomers for the open chain form. Anomers exist only in the cyclic form, because the ring creates the new centre."
+        ],
+        "memory_tip": "Anomers differ at one carbon only, the one the ring closed on.",
+        "margin_note": "Name the carbon, C₁ or C₂. A definition without it is usually half this mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Ex: α-D-glucose and β-D-glucose",
+            "style": "boxed"
+          },
+          "In α-D-glucose the –OH at C₁ lies on the",
+          "same side as the –OH that closed the ring.",
+          "In β-D-glucose it lies on the opposite",
+          "side.",
+          "In water the two interconvert, which is",
+          "called mutarotation."
+        ],
+        "why": "Glucose is the standard example because both anomers can be crystallised separately and both are stable enough to measure. Mutarotation is the direct consequence: in solution the ring opens and closes, so a pure anomer changes into the equilibrium mixture and its optical rotation drifts to a fixed value.",
+        "common_mistakes": [
+          "Calling α and β glucose enantiomers. Enantiomers are mirror images; anomers differ at one carbon only.",
+          "Writing that the two forms cannot interconvert. In water they do, through the open chain form."
+        ],
+        "memory_tip": "α and β glucose are the standard pair, and mutarotation is the change between them.",
+        "margin_note": "One named pair earns this mark. Adding the word mutarotation costs nothing and shows the reason."
+      }
+    ]
+  },
+  "insider_note": "One carbon is the whole answer: the anomeric carbon, C₁ in an aldose. Give α and β glucose as the example and add mutarotation if there is a line to spare."
+}

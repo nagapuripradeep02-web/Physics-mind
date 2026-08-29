@@ -1,0 +1,315 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_total_internal_reflection_huygens",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "What is total internal reflection? Explain the phenomenon using Huygens principle.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Huygens construction to the critical angle",
+      "marks": 2
+    },
+    {
+      "label": "Beyond the critical angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: secondary wavelets travel faster in the rarer medium (v₂ > v₁), so the refracted wavefront turns away from the normal and r > i; Snell's law μ₁ sin i = μ₂ sin r with r = 90° gives sin C = μ₂/μ₁, which is less than 1 because μ₂ < μ₁; for i > C, sin r would have to exceed 1, so no refracted wavefront can form and the entire wavefront returns to the denser medium. The book prints the question as What is total internal reflection. Explain the phenomenon using Huygen's principle — the missing question mark and the spelling Huygen's are normalised here (the man is Huygens); the physics of the printed answer is correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The Huygens part earns more than the definition — show WHY r reaches 90° first and what fails in Snell's law when i passes the critical angle.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Wave Optics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Denser to rarer, i greater than C",
+        "lines": [
+          "When light travelling in a denser medium",
+          "reaches the surface of a rarer medium at an",
+          "angle of incidence greater than the critical",
+          "angle C, no light is refracted — the entire",
+          "light is reflected back into the denser",
+          "medium. This is total internal reflection."
+        ],
+        "margin_note": "First mark. All three conditions: denser to rarer, i greater than C, ALL the light reflected.",
+        "why": "The definition has three necessary parts — the direction (denser to rarer), the condition (i > C), and the completeness (the ENTIRE light returns). Total refers to that completeness: an ordinary reflection returns only part of the light.",
+        "common_mistakes": [
+          "Writing rarer to denser. Total internal reflection needs the light to be inside the DENSER medium heading toward the rarer one.",
+          "Leaving out i greater than the critical angle — below C, refraction still happens."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That light in a denser medium hitting the rarer-medium surface beyond the critical angle is completely reflected back.",
+          "accept": [
+            "denser to rarer",
+            "angle of incidence greater than the critical angle",
+            "entire light reflected back"
+          ],
+          "reject": [
+            "secondary wavelets travel faster"
+          ],
+          "heard_as": [
+            "total internal reflection",
+            "critical angle"
+          ]
+        },
+        "memory_tip": "Three words of the name, three conditions: internal (denser side), total (all of it), reflection (back it goes)."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The wavefront picture",
+        "marks": 0,
+        "figure": {
+          "id": "huygens_refraction_rarer",
+          "width": 340,
+          "height": 230,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "interface",
+              "d": "M 20 130 L 320 130",
+              "ms": 2400
+            },
+            {
+              "type": "label",
+              "id": "lbl_denser",
+              "x": 30,
+              "y": 55,
+              "text": "denser, v₁",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_rarer",
+              "x": 30,
+              "y": 195,
+              "text": "rarer, v₂",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "normal",
+              "d": "M 170 35 L 170 215",
+              "ms": 1800,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "inc_ray",
+              "d": "M 100 30 L 170 130",
+              "ms": 1300
+            },
+            {
+              "type": "stroke",
+              "id": "inc_head",
+              "d": "M 138 74 L 140 87 L 128 81",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "inc_wf",
+              "d": "M 170 130 L 219 96",
+              "ms": 750
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 158,
+              "y": 150,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 224,
+              "y": 90,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_i",
+              "x": 157,
+              "y": 102,
+              "text": "i",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "refr_ray",
+              "d": "M 170 130 L 300 205",
+              "ms": 1500
+            },
+            {
+              "type": "stroke",
+              "id": "refr_head",
+              "d": "M 291 195 L 300 205 L 287 206",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "refr_wf",
+              "d": "M 226 194 L 254 146",
+              "ms": 700
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 200,
+              "y": 158,
+              "text": "r",
+              "ms": 200
+            }
+          ]
+        },
+        "margin_note": "No separate figure mark asked, but draw it: incident wavefront AB in the denser medium, refracted wavefront in the rarer medium bent away from the normal, r larger than i.",
+        "why": "The Huygens argument is geometric, so it needs the geometry on paper: the wavefront AB touching the surface at A, and the refracted wavefront tilted farther from the normal because the wavelets below the surface run faster.",
+        "common_mistakes": [
+          "Drawing r smaller than i. Going into the RARER medium the ray bends AWAY from the normal, so r is larger."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure shows an incident wavefront AB meeting the surface at A, with the refracted wavefront in the rarer medium turned farther from the normal.",
+          "accept": [
+            "draw the wavefront picture",
+            "refracted wavefront bends away",
+            "mark i and r"
+          ],
+          "reject": [
+            "sin C equals mu two by mu one"
+          ],
+          "heard_as": [
+            "wavefront",
+            "diagram",
+            "figure"
+          ]
+        },
+        "memory_tip": "Faster below the line means the wavefront swings farther from the normal — draw r visibly bigger than i."
+      },
+      {
+        "id": "s3_construction",
+        "kind": "text",
+        "label": "Huygens construction to the critical angle",
+        "marks": 2,
+        "mark_note": "v₂ > v₁, r > i, sin C = μ₂/μ₁",
+        "lines": [
+          "AB is an incident plane wavefront in the",
+          "denser medium, meeting the surface at A.",
+          "By Huygens principle every point of the",
+          "surface emits secondary wavelets. In the",
+          "rarer medium the wavelets travel faster",
+          "(v₂ > v₁), so the refracted wavefront turns",
+          "away from the normal: r > i.",
+          "By Snell's law, μ₁ sin i = μ₂ sin r.",
+          "As i increases, r reaches 90° first. The",
+          "angle of incidence for which r = 90° is the",
+          "critical angle C. Putting r = 90°:",
+          {
+            "text": "sin C = μ₂/μ₁",
+            "style": "eq"
+          },
+          "At i = C the refracted wavefront travels",
+          "along the surface itself."
+        ],
+        "margin_note": "Two marks. The chain is: faster wavelets → wavefront turns away → r > i → r hits 90° at i = C → sin C = μ₂/μ₁.",
+        "why": "This is the Huygens explanation the question asks for: the refracted wavefront is built from secondary wavelets, and because they run faster in the rarer medium the wavefront tilts farther from the normal. Since r stays ahead of i, r reaches 90° while i is still at the smaller angle C — that is where the refracted light grazes the surface.",
+        "common_mistakes": [
+          "Writing sin C = μ₁/μ₂. With μ₁ the denser and μ₂ the rarer index, sin C = μ₂/μ₁, which is less than 1 as it must be.",
+          "Saying the wavelets travel faster in the denser medium. Light is slower in the denser medium; v₂ in the rarer medium is larger.",
+          "Defining C from i = 90° instead of r = 90°. The critical angle is the INCIDENCE angle at which the REFRACTION angle becomes 90°."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That faster secondary wavelets in the rarer medium turn the refracted wavefront away from the normal, so r reaches 90° at i = C, giving sin C = μ₂/μ₁.",
+          "accept": [
+            "wavelets faster in the rarer medium",
+            "r reaches ninety degrees first",
+            "sin C is mu two by mu one"
+          ],
+          "reject": [
+            "sin r would be greater than one"
+          ],
+          "heard_as": [
+            "Huygens",
+            "secondary wavelets",
+            "critical angle C"
+          ]
+        },
+        "memory_tip": "Faster medium, farther from the normal. r leads i, so r reaches 90° first — at i = C."
+      },
+      {
+        "id": "s4_beyond",
+        "kind": "boxed_final",
+        "label": "Beyond the critical angle",
+        "marks": 1,
+        "mark_note": "sin r > 1 impossible, all light returns",
+        "lines": [
+          "For i > C, Snell's law would need sin r > 1,",
+          "which is impossible. No refracted wavefront",
+          "can form in the rarer medium, so the whole",
+          "wavefront returns into the denser medium.",
+          "This is total internal reflection.",
+          {
+            "text": "i > C → all light reflects back: TIR",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "One mark. The impossibility argument: sin r cannot exceed 1, so refraction simply cannot happen — reflection is all that is left.",
+        "why": "This is the step that makes the reflection TOTAL: it is not that refraction becomes weak, but that Snell's law has no solution at all for i > C. With no refracted wavefront possible, the entire energy of the wavefront goes into the reflected one.",
+        "common_mistakes": [
+          "Saying most of the light is reflected. Beyond C there is no refracted light at all — the reflection is complete.",
+          "Saying Snell's law breaks down. The law still holds; it simply has no solution because sin r cannot exceed 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That beyond C Snell's law would need sin r greater than 1, which cannot happen, so the entire wavefront is reflected back.",
+          "accept": [
+            "sin r greater than one is impossible",
+            "no refracted wavefront forms",
+            "everything reflects back"
+          ],
+          "reject": [
+            "r reaches ninety degrees first"
+          ],
+          "heard_as": [
+            "impossible",
+            "totally reflected"
+          ]
+        },
+        "memory_tip": "A sine cannot pass 1. When Snell's law asks for more, refraction stops and everything reflects."
+      }
+    ]
+  }
+}

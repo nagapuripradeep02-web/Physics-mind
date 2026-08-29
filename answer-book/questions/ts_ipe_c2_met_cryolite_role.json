@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_cryolite_role",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the role of cryolite in the metallurgy of aluminium?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The problem with pure alumina",
+      "marks": 1
+    },
+    {
+      "label": "What cryolite does",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.79, VSAQ 1): the printed answer gives the two effects but no numbers. The melting point of pure alumina (over 2300 K) and the working temperature of the cell (about 1200 K, taken from the book's own flow chart in SAQ 7 on book p.82) are added here so the two effects have a size. NOTE: cryolite Na₃AlF₆ is also listed as an ore of aluminium in VSAQ 8 of this same unit, so this card never says that cryolite is not an ore; it says only that the aluminium in the cell comes from the alumina."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_problem",
+        "kind": "text",
+        "label": "The problem with pure alumina",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Pure alumina melts only above 2300 K, and",
+          "molten pure alumina is a poor conductor",
+          "of electricity.",
+          "So alumina alone cannot be electrolysed.",
+          "Cryolite Na₃AlF₆ (or fluorspar CaF₂) is",
+          "added to the alumina before electrolysis."
+        ],
+        "why": "Two properties block the electrolysis, the melting point and the conductivity, so the answer has to name both before it names the additive. Cryolite is added for those two reasons and for nothing else.",
+        "common_mistakes": [
+          "Saying cryolite is reduced to aluminium. The aluminium comes from the alumina; cryolite only lowers the melting point and carries the current.",
+          "Writing only that it lowers the melting point. The conductivity is the second half of the answer and usually the second mark."
+        ],
+        "memory_tip": "Cryolite does two things: melting point down, conductivity up.",
+        "margin_note": "Both effects must be written. One effect alone is usually one mark of the two."
+      },
+      {
+        "id": "s2_effects",
+        "kind": "boxed_final",
+        "label": "What cryolite does",
+        "marks": 1,
+        "mark_note": "Effects",
+        "lines": [
+          {
+            "text": "Cryolite lowers the m.p. of the mixture",
+            "style": "boxed"
+          },
+          "and makes the melt conduct electricity.",
+          "With cryolite added, the alumina melts",
+          "and is electrolysed at about 1200 K",
+          "instead of above 2300 K.",
+          "Fluorspar CaF₂ is added for the same two",
+          "reasons."
+        ],
+        "why": "Lowering the melting point is what makes the electrolysis possible at a workable temperature, and the molten fluoride supplies the mobile ions that carry the current. Pure molten alumina would need over 2300 K and would still conduct badly, so almost all the energy put into the cell would leave as heat.",
+        "common_mistakes": [
+          "Writing that cryolite reduces the alumina. Nothing is reduced by cryolite; the current does the reduction at the cathode.",
+          "Giving 1200 K as the melting point of alumina. It is the working temperature of the alumina and cryolite mixture, not of alumina alone."
+        ],
+        "memory_tip": "Cryolite makes a melt that is cool enough to hold and good enough to conduct.",
+        "margin_note": "Box the two effects on one line. That single line carries this mark."
+      }
+    ]
+  },
+  "insider_note": "Most answers stop at \"it lowers the melting point\". The second mark is the conductivity of the melt, so write both effects as a numbered pair."
+}

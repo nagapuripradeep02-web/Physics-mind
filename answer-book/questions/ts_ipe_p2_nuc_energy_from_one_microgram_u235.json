@@ -1,0 +1,216 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_energy_from_one_microgram_u235",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If one microgram of ₉₂U²³⁵ is completely destroyed in an atom bomb, how much energy will be released?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Given data",
+      "marks": 2
+    },
+    {
+      "label": "The formula",
+      "marks": 2
+    },
+    {
+      "label": "Substitution",
+      "marks": 2
+    },
+    {
+      "label": "The answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+2+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. AN 8-MARK SPLIT FOR A SHORT NUMERICAL IS INVENTED and needs the teacher pass more than any other card in this chapter: this question is three lines of arithmetic, and 2+2+2+2 is a placeholder shape, not a mark scheme. The book prints it under LONG ANSWER numbering with no Problems banner, so it is authored as an LAQ at the paper's 8 marks (SR_PHYSICS_START_HERE §4). The book prints \"how much nergy\"; corrected to \"energy\", and the space before the question mark is dropped. Hand-checked: 1 μg = 10⁻⁶ g = 10⁻⁹ kg; E = mc² = 10⁻⁹ × (3 × 10⁸)² = 10⁻⁹ × 9 × 10¹⁶ = 9 × 10⁷ J, which is the book's answer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Nuclei · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "equation",
+        "label": "Given data",
+        "marks": 2,
+        "mark_note": "Convert 1 μg to kilogram",
+        "lines": [
+          "Mass destroyed, m = 1 μg",
+          {
+            "text": "m = 10⁻⁶ g = 10⁻⁶ × 10⁻³ kg = 10⁻⁹ kg",
+            "style": "eq"
+          },
+          "Speed of light, c = 3 × 10⁸ m s⁻¹"
+        ],
+        "margin_note": "Do the unit conversion first and in two visible steps: microgram to gram, gram to kilogram.",
+        "why": "Every quantity in E = mc² must be in SI units, and two prefixes have to be removed here, so the conversion is written in two steps rather than one.",
+        "common_mistakes": [
+          "Writing m = 10⁻⁶ kg. A microgram is 10⁻⁶ GRAM, which is 10⁻⁹ kg.",
+          "Using c = 3 × 10⁸ km s⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one microgram is 10⁻⁶ gram, that is 10⁻⁹ kilogram, and that c is 3 × 10⁸ metre per second.",
+          "accept": [
+            "one microgram is ten power minus nine kilogram",
+            "ten power minus six gram",
+            "c is three into ten power eight"
+          ],
+          "reject": [
+            "E equals m c squared"
+          ],
+          "heard_as": [
+            "microgram",
+            "ten power minus nine",
+            "kilogram"
+          ]
+        },
+        "memory_tip": "Microgram to kilogram is nine steps down, not six."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 2,
+        "mark_note": "E = mc²",
+        "lines": [
+          "When mass is completely destroyed, the whole",
+          "of it appears as energy. By the mass-energy",
+          "relation,",
+          {
+            "text": "E = m c²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "State the formula on its own line before any numbers go in.",
+        "why": "The word \"completely destroyed\" is what allows the whole mass to be used; in a real fission only the small mass defect is converted, not the whole nucleus.",
+        "common_mistakes": [
+          "Writing E = mc without the square.",
+          "Using the mass defect instead of the full mass. Here the whole mass is destroyed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the energy released is given by E = mc².",
+          "accept": [
+            "E equals m c squared",
+            "mass energy relation",
+            "whole mass appears as energy"
+          ],
+          "reject": [
+            "ten power minus nine kilogram"
+          ],
+          "heard_as": [
+            "E equals m c squared",
+            "mass energy",
+            "formula"
+          ]
+        },
+        "memory_tip": "Whole mass destroyed means the whole m goes into E = mc²."
+      },
+      {
+        "id": "s3_substitution",
+        "kind": "equation",
+        "label": "Substitution",
+        "marks": 2,
+        "mark_note": "Put in m and c with units",
+        "lines": [
+          "Substituting the values,",
+          {
+            "text": "E = 10⁻⁹ × (3 × 10⁸)²",
+            "style": "eq"
+          },
+          {
+            "text": "E = 10⁻⁹ × 9 × 10¹⁶",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Square the speed of light before multiplying: (3 × 10⁸)² = 9 × 10¹⁶.",
+        "why": "Squaring c is the step where the exponent is most often mishandled: the 3 becomes 9 and the exponent 8 doubles to 16.",
+        "common_mistakes": [
+          "Writing (3 × 10⁸)² as 9 × 10⁸. The exponent doubles as well.",
+          "Squaring only the 10⁸ and leaving the 3 alone."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives E = 10⁻⁹ × (3 × 10⁸)², that is 10⁻⁹ × 9 × 10¹⁶.",
+          "accept": [
+            "ten power minus nine into three into ten power eight whole squared",
+            "nine into ten power sixteen",
+            "square the speed of light"
+          ],
+          "reject": [
+            "nine into ten power seven joule"
+          ],
+          "heard_as": [
+            "nine into ten power sixteen",
+            "squared",
+            "substitute"
+          ]
+        },
+        "memory_tip": "Square both parts: 3 becomes 9, and 10⁸ becomes 10¹⁶."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 2,
+        "mark_note": "E = 9 × 10⁷ J",
+        "lines": [
+          "Multiplying the powers of ten,",
+          {
+            "text": "E = 9 × 10⁽¹⁶⁻⁹⁾ = 9 × 10⁷ J",
+            "style": "eq"
+          },
+          {
+            "text": "E = 9 × 10⁷ joule",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Final mark. Write the unit joule; a bare number is not a complete answer.",
+        "why": "9 × 10⁷ J from one microgram is about the heat from two kilograms of coal, which is what makes the mass-energy relation worth writing down.",
+        "common_mistakes": [
+          "Adding the exponents instead of subtracting: 16 + (−9) is 7, not 25.",
+          "Leaving out the unit J."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the energy released is 9 × 10⁷ joule.",
+          "accept": [
+            "nine into ten power seven joule",
+            "nine crore joule",
+            "answer is nine into ten to the seven J"
+          ],
+          "reject": [
+            "nine into ten power sixteen"
+          ],
+          "heard_as": [
+            "nine into ten power seven",
+            "joule",
+            "answer"
+          ]
+        },
+        "memory_tip": "10⁻⁹ times 10¹⁶ is 10⁷ — subtract nine from sixteen."
+      }
+    ]
+  },
+  "insider_note": "The whole question is E = mc² with one unit conversion. The mark most often lost is the microgram to kilogram step: 1 μg is 10⁻⁹ kg, not 10⁻⁶ kg."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_hal_structures_from_iupac_names",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Halo Alkanes and Halo Arenes (Chemistry-II)"
+  },
+  "chapter": "Halo Alkanes and Halo Arenes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the structures of the following compounds: (1) 2-chloro-3-methylpentane (2) 1-bromo-4-sec-butyl-2-methylbenzene",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "2-chloro-3-methylpentane",
+      "marks": 1
+    },
+    {
+      "label": "1-bromo-4-sec-butyl-2-methylbenzene",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 15 (Halo Alkanes and Halo Arenes) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.107-108, from the shaded sub-box \"HALO ALKANES & HALO ARENES\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container chapter whose four unnumbered sub-boxes each restart numbering at 1); the book prints this question on book p.107 as VSAQ 1. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.107, VSAQ 1): the printed names are \"2 - chloro - 3 - methyl pentane\" and \"1 - bromo - 4sec.butyl - 2 - methyl benzene\", with spaces inside the names, no hyphen before sec, and a full stop after sec. They are written here as 2-chloro-3-methylpentane and 1-bromo-4-sec-butyl-2-methylbenzene. The current IUPAC form of the second name is 1-bromo-4-(butan-2-yl)-2-methylbenzene; the book's sec-butyl form is kept because that is the form the question asks in, and both are accepted at this level. NOTATION: the question says \"write\", not \"draw\", so both structures are given as linear condensed formulae and no figure is authored; the margin notes tell the student what to put on the answer sheet. The book's printed answers are correct: the chlorine is on C2 and the methyl on C3 of a five-carbon chain, and the ring carries Br, CH₃ and sec-butyl at positions 1, 2 and 4."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Halo Alkanes and Halo Arenes — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chloro_methyl_pentane",
+        "kind": "text",
+        "label": "2-chloro-3-methylpentane",
+        "marks": 1,
+        "mark_note": "First structure",
+        "lines": [
+          "1) 2-chloro-3-methylpentane",
+          "Parent chain: pentane, five carbon atoms,",
+          "numbered C1 to C5.",
+          "–Cl goes on C2 and –CH₃ goes on C3.",
+          {
+            "text": "CH₃–CH(Cl)–CH(CH₃)–CH₂–CH₃",
+            "style": "boxed"
+          },
+          "Molecular formula: C₆H₁₃Cl"
+        ],
+        "why": "The name is read from its end: pentane fixes a chain of five carbon atoms, and the two locants place the two groups on it. Numbering starts from the end that gives the lower set of locants, which is why the chlorine is on C2 and not on C4; the locant set 2,3 is lower than 3,4. The methyl group on C3 is a branch and is not counted in the parent chain.",
+        "common_mistakes": [
+          "Counting the methyl branch into the main chain and drawing a six-carbon chain. Pentane means five carbon atoms in the parent chain.",
+          "Putting the chlorine on C3 and the methyl on C2. The locant written just before each group name is the carbon it goes on."
+        ],
+        "memory_tip": "Draw the five-carbon chain first, number it, then attach –Cl to C2 and –CH₃ to C3.",
+        "margin_note": "Either the condensed formula or a drawn chain with the bonds shown earns this mark. Number the carbon atoms on the answer sheet."
+      },
+      {
+        "id": "s2_bromo_secbutyl_methyl_benzene",
+        "kind": "text",
+        "label": "1-bromo-4-sec-butyl-2-methylbenzene",
+        "marks": 1,
+        "mark_note": "Second structure",
+        "lines": [
+          "2) 1-bromo-4-sec-butyl-2-methylbenzene",
+          "Parent: a benzene ring of six carbon atoms.",
+          "C1 carries –Br",
+          "C2 carries –CH₃",
+          "C4 carries –CH(CH₃)–CH₂–CH₃",
+          {
+            "text": "C₆H₃(Br)(CH₃)(C₄H₉)",
+            "style": "boxed"
+          },
+          "Molecular formula: C₁₁H₁₅Br"
+        ],
+        "why": "sec-Butyl is the butan-2-yl group: it is joined to the ring through its SECOND carbon, so it is written –CH(CH₃)–CH₂–CH₃ and not –CH₂–CH₂–CH₂–CH₃. The three locants fix the pattern on the ring: bromine on C1 and methyl on C2 are on neighbouring carbon atoms, and the sec-butyl group on C4 is opposite the bromine. Three ring carbon atoms, C3, C5 and C6, still carry a hydrogen atom each, which is why the ring part is written C₆H₃.",
+        "common_mistakes": [
+          "Drawing n-butyl in place of sec-butyl. sec-Butyl joins the ring through its second carbon, so a methyl group is attached to the carbon that is joined to the ring.",
+          "Placing the sec-butyl group on C3. The locant 4 puts it opposite the bromine, not next to the methyl."
+        ],
+        "memory_tip": "sec means joined through the second carbon of the group; n means joined through the first.",
+        "margin_note": "Draw the hexagon, mark C1 at the top and go round in one direction to place the groups at 1, 2 and 4."
+      }
+    ]
+  },
+  "insider_note": "One mark for each structure. The sec-butyl group is where this mark is usually lost: it is joined to the ring through its middle carbon, –CH(CH₃)–CH₂–CH₃, not through an end carbon."
+}

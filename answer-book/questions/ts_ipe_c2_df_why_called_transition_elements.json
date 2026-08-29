@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_why_called_transition_elements",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are d-block elements called transition elements?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason for the name",
+      "marks": 1
+    },
+    {
+      "label": "The definition and its exceptions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 10. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ANSWER EXTENDED (book p.91, VSAQ 10): the printed answer gives the positional reason only — \"they exhibit transitional behaviour between highly reactive electropositive s-block elements and electro negative p-block elements\" — and stops. It is correct but incomplete, because the positional name and the strict definition do not select the same set of elements. The card adds the definition (a partly filled d subshell in the atom or in one of its common ions) and names the exception it creates: Zn, Cd and Hg lie in the d block but fail the definition, while Cu passes on its ion (Cu²⁺ is 3d⁹) even though the atom is 3d¹⁰ 4s¹."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "text",
+        "label": "Reason for the name",
+        "marks": 1,
+        "mark_note": "Position in the table",
+        "lines": [
+          "The d-block elements stand between the",
+          "s block and the p block in the periodic",
+          "table.",
+          "Their properties change gradually, from",
+          "the highly electropositive and reactive",
+          "s-block metals to the electronegative",
+          "p-block elements.",
+          "That gradual change in behaviour gives",
+          "them the name transition elements."
+        ],
+        "why": "The name is historical and describes position: these elements lie between the two blocks, and their properties change gradually rather than changing sharply from one block to the next. Their (n−1)d orbitals are being filled while the outer ns orbital stays the same, which is why the change from one element to the next along a series is small.",
+        "common_mistakes": [
+          "Saying they are called transition elements because they change oxidation state. Variable oxidation state is a property, not the reason for the name.",
+          "Placing the d block after the p block. It stands between the s block and the p block."
+        ],
+        "memory_tip": "Transition names the position: between the s block and the p block.",
+        "margin_note": "Both block names, s and p, must appear. \"In between\" on its own is half."
+      },
+      {
+        "id": "s2_definition",
+        "kind": "boxed_final",
+        "label": "Definition and exceptions",
+        "marks": 1,
+        "mark_note": "Strict definition",
+        "lines": [
+          {
+            "text": "Partly filled d subshell, atom or ion",
+            "style": "boxed"
+          },
+          "is the strict definition of a transition",
+          "element.",
+          "Sc to Cu all meet it.",
+          "Zn, Cd and Hg do not: the atom and the",
+          "common M²⁺ ion are both d¹⁰, so they are",
+          "d-block metals but not transition metals.",
+          "Copper meets it on the ion: Cu is",
+          "3d¹⁰ 4s¹, but Cu²⁺ is 3d⁹."
+        ],
+        "why": "The positional name and the strict definition do not select the same set of elements, and the difference is the standard exam trap. Group 12 — Zn, Cd and Hg — lies inside the d block by position but has a full d¹⁰ subshell in the atom and in the common M²⁺ ion, so it fails the definition. Copper is the opposite case: the atom is 3d¹⁰ 4s¹ and has no partly filled d subshell, but Cu²⁺ is 3d⁹, so copper does meet it.",
+        "common_mistakes": [
+          "Treating d-block and transition as the same word. Zn, Cd and Hg are in the d block but are not transition metals.",
+          "Ruling copper out because Cu is 3d¹⁰ 4s¹. The definition also tests the ions, and Cu²⁺ is 3d⁹."
+        ],
+        "memory_tip": "Group 12 is inside the block but outside the definition: Zn, Cd, Hg.",
+        "margin_note": "Name the three exceptions. A definition with no exception is usually marked as incomplete here."
+      }
+    ]
+  },
+  "insider_note": "One question is asking for two different things — the reason for the NAME (position between the blocks) and the DEFINITION (a partly filled d subshell). Write both; most answers give only the first."
+}

@@ -1,0 +1,246 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_eddy_currents_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Describe the ways in which eddy currents are used to advantage.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Magnetic braking",
+      "marks": 1
+    },
+    {
+      "label": "Electromagnetic damping",
+      "marks": 1
+    },
+    {
+      "label": "Induction furnace",
+      "marks": 1
+    },
+    {
+      "label": "Electric power meter",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: eddy currents are induced currents flowing in closed loops inside a bulk conductor when the flux through it changes, and by Lenz's law they oppose that change — which is why they brake, damp, heat and turn a disc. The four uses are the four the book prints: magnetic braking in electric trains, electromagnetic damping of a galvanometer coil, the induction furnace, and the electric power meter. The book prints the heading 'Magnetic breaking trains'; the word is braking, and the card writes it correctly. The wasteful side of the same effect (heating of a transformer core, reduced by laminating it) is NOT asked here and is left to the VSAQ."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electromagnetic Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_they_are",
+        "kind": "text",
+        "label": "What eddy currents are",
+        "marks": 0,
+        "lines": [
+          "When the magnetic flux through a bulk piece",
+          "of conductor changes, induced currents flow",
+          "in closed loops inside it. These are eddy",
+          "currents. By Lenz's law they oppose the",
+          "change that produced them, and they heat the",
+          "conductor. Four uses follow from this."
+        ],
+        "margin_note": "No mark here, but one opening sentence tells the examiner you know WHY each use works.",
+        "why": "Both effects used below come from the same two facts: the induced currents oppose the change, and they heat the metal. Stating them once makes the four uses read as one idea, not four memorised lines.",
+        "common_mistakes": [
+          "Listing the four uses with no reason. Each use needs the word oppose or the word heat."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eddy currents are induced closed-loop currents in a bulk conductor, and that they oppose the change and heat the metal.",
+          "accept": [
+            "closed loops in the metal",
+            "they oppose the change",
+            "they heat the conductor"
+          ],
+          "reject": [
+            "magnetic braking in trains"
+          ],
+          "heard_as": [
+            "eddy",
+            "loops",
+            "oppose"
+          ]
+        },
+        "memory_tip": "Two effects, four uses: they oppose motion (brake, damp) and they heat metal (furnace, meter)."
+      },
+      {
+        "id": "s2_magnetic_braking",
+        "kind": "text",
+        "label": "Magnetic braking",
+        "marks": 1,
+        "mark_note": "Braking in electric trains",
+        "lines": [
+          "1) Magnetic braking. In electric trains,",
+          "strong electromagnets are placed above the",
+          "rails. When they are switched on, the flux",
+          "through the rails changes and eddy currents",
+          "are induced in them. These currents oppose",
+          "the motion of the train, so it slows down",
+          "smoothly with no rubbing parts."
+        ],
+        "margin_note": "First mark. Name the use, then say the currents oppose the motion.",
+        "why": "This is Lenz's law used on purpose: the induced current always opposes the relative motion, so a moving conductor near a strong magnet feels a retarding force with no contact at all.",
+        "common_mistakes": [
+          "Saying the magnets attract the rails. The braking force comes from the induced currents opposing the motion, not from attraction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That electromagnets over the rails of an electric train induce eddy currents that oppose the motion and brake the train.",
+          "accept": [
+            "magnetic braking in trains",
+            "eddy currents in the rails",
+            "oppose the motion of the train"
+          ],
+          "reject": [
+            "induction furnace"
+          ],
+          "heard_as": [
+            "braking",
+            "train",
+            "rails"
+          ]
+        },
+        "memory_tip": "A brake with no pads: the current itself opposes the motion."
+      },
+      {
+        "id": "s3_damping",
+        "kind": "text",
+        "label": "Electromagnetic damping",
+        "marks": 1,
+        "mark_note": "Galvanometer coil brought to rest",
+        "lines": [
+          "2) Electromagnetic damping. The coil of a",
+          "moving coil galvanometer is wound on a metal",
+          "frame. When the coil swings, eddy currents",
+          "induced in the frame oppose the swing. The",
+          "pointer settles at its reading quickly",
+          "instead of swinging to and fro."
+        ],
+        "margin_note": "Second mark. The metal frame is the point — that is where the eddy currents flow.",
+        "why": "Without the frame the pointer would swing for a long time before settling, and the instrument would be slow to read. The damping is built in by winding the coil on metal.",
+        "common_mistakes": [
+          "Saying the eddy currents flow in the coil wire. They flow in the metal frame the coil is wound on."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eddy currents in the metal frame of a galvanometer coil oppose its swing and bring the pointer to rest quickly.",
+          "accept": [
+            "electromagnetic damping",
+            "metal frame of the galvanometer",
+            "brings the coil to rest"
+          ],
+          "reject": [
+            "melts the metal"
+          ],
+          "heard_as": [
+            "damping",
+            "galvanometer",
+            "frame"
+          ]
+        },
+        "memory_tip": "Coil on a metal frame: the frame damps the swing."
+      },
+      {
+        "id": "s4_induction_furnace",
+        "kind": "text",
+        "label": "Induction furnace",
+        "marks": 1,
+        "mark_note": "High frequency field melts the metal",
+        "lines": [
+          "3) Induction furnace. The metal to be melted",
+          "is placed in a high frequency changing",
+          "magnetic field. Very large eddy currents are",
+          "induced in it, and the heat they produce",
+          "raises it to a high temperature. This melts",
+          "metals and is used to prepare alloys."
+        ],
+        "margin_note": "Third mark. Here the heating is the useful part, not the loss.",
+        "why": "A high frequency means a fast rate of change of flux, so the induced emf and the eddy currents are large. The heat is I²R heating inside the metal itself, so the metal heats evenly and no flame touches it.",
+        "common_mistakes": [
+          "Leaving out the high frequency. A slowly changing field gives currents far too small to melt metal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a high frequency changing field induces large eddy currents in a metal, and the heat produced melts it for making alloys.",
+          "accept": [
+            "induction furnace",
+            "high frequency field",
+            "heat melts the metal"
+          ],
+          "reject": [
+            "brings the coil to rest"
+          ],
+          "heard_as": [
+            "furnace",
+            "melt",
+            "alloys"
+          ]
+        },
+        "memory_tip": "Fast change, big current, big heat — the furnace uses the loss as the product."
+      },
+      {
+        "id": "s5_power_meter",
+        "kind": "boxed_final",
+        "label": "Electric power meter",
+        "marks": 1,
+        "mark_note": "Metal disc turned by eddy currents",
+        "lines": [
+          "4) Electric power meter. The shiny metal disc",
+          "in the meter sits in the changing magnetic",
+          "field of the supply. Eddy currents induced in",
+          "the disc make it turn, and the number of",
+          "rotations gives the electrical energy used.",
+          {
+            "text": "Braking · damping · furnace · power meter",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Close with the four names in a line — the examiner reads the list first.",
+        "why": "The disc turns at a rate set by the current and the voltage drawn, so counting its rotations counts the energy. It is the one use where the eddy currents produce motion rather than stopping it.",
+        "common_mistakes": [
+          "Writing only three uses. The question says ways, so give all four the book lists."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eddy currents turn the metal disc of an electric power meter, and its rotations measure the energy used.",
+          "accept": [
+            "electric power meter",
+            "metal disc rotates",
+            "measures the energy used"
+          ],
+          "reject": [
+            "eddy currents in the rails"
+          ],
+          "heard_as": [
+            "meter",
+            "disc",
+            "rotates"
+          ]
+        },
+        "memory_tip": "Trains, galvanometer, furnace, meter — brake, damp, melt, measure."
+      }
+    ]
+  },
+  "insider_note": "Four named uses, one line each, is the whole answer; a use with no reason attached rarely gets its mark."
+}

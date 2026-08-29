@@ -1,0 +1,289 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_string_three_lowest_frequencies",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "A string has a length of 0.4m and a mass of 0.16g. If the tension in the string is 70N, what are three lowest frequencies it produces when plucked?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Data listed",
+      "marks": 1
+    },
+    {
+      "label": "Fundamental frequency formula",
+      "marks": 2
+    },
+    {
+      "label": "Substitution",
+      "marks": 2
+    },
+    {
+      "label": "The fundamental",
+      "marks": 1
+    },
+    {
+      "label": "The three lowest frequencies",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+2+1+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. It needs that teacher pass more than most cards on this paper: an 8-mark split for a SHORT numerical is not a thing any printed scheme shows, because the book files this numerical under Long Answer numbering with no Problems banner, so the 8 marks come from the section it sits in and the five-way split across them is entirely this bank's invention. A teacher may well mark it as a 4-mark question. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Arithmetic hand-checked: m = 0.16 g = 0.16 × 10⁻³ kg; μ = m/l = 4 × 10⁻⁴ kg m⁻¹; n₁ = (1/2l)√(T/μ) = (1/2)√(T/lm); √(lm) = √(6.4 × 10⁻⁵) = 8 × 10⁻³, so n₁ = √70 / (2 × 8 × 10⁻³) = 62.5 × √70 = 62.5 × 8.3666 = 522.9 ≈ 523 Hz; n₂ = 1046 Hz; n₃ = 1569 Hz. THE BOOK PRINTS √70 = 8.27, which is wrong — √70 = 8.3666… (8.27² = 68.4, 8.37² = 70.06). The book's printed final answers 523, 1046 and 1569 Hz are still correct, because 62.5 × 8.27 = 517, not 523; the printed intermediate value does not produce the printed result. This card writes 8.37 and records the book's slip in the step's why line, per the standing rule that the card is written correctly and the book's position is recorded beside it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order — the data, the fundamental frequency formula, the substitution, the fundamental, and the next two harmonics.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Waves · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_data",
+        "kind": "text",
+        "label": "Data listed",
+        "marks": 1,
+        "mark_note": "l = 0.4 m, m = 0.16 × 10⁻³ kg, T = 70 N",
+        "lines": [
+          "A string fixed at both ends and plucked.",
+          {
+            "text": "l = 0.4 m",
+            "style": "eq"
+          },
+          {
+            "text": "m = 0.16 g = 0.16 × 10⁻³ kg",
+            "style": "eq"
+          },
+          {
+            "text": "T = 70 N",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Convert the mass from grams to kilograms on the data line.",
+        "why": "The gram to kilogram conversion is the one unit change in this question, and doing it here means the substitution line has only numbers to handle.",
+        "common_mistakes": [
+          "Substituting 0.16 as the mass in kilograms, which is 1000 times too large.",
+          "Reading 0.16 g as the mass per metre. It is the mass of the whole string."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That l = 0.4 m, m = 0.16 g = 0.16 × 10⁻³ kg and T = 70 N.",
+          "accept": [
+            "length zero point four metre",
+            "mass 0 point 16 gram, that is 0 point 16 into 10 power minus 3 kilogram",
+            "tension 70 newton"
+          ],
+          "reject": [
+            "root of 70 is 8 point 37"
+          ],
+          "heard_as": [
+            "point one six gram",
+            "seventy newton"
+          ]
+        },
+        "memory_tip": "Grams to kilograms first — one line, done once, before any formula."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "equation",
+        "label": "Fundamental frequency formula",
+        "marks": 2,
+        "mark_note": "n₁ = (1/2l)√(T/μ) = (1/2)√(T/lm)",
+        "lines": [
+          "A string fixed at both ends has a node",
+          "at each end, so its frequencies are:",
+          {
+            "text": "n = (p/2l)√(T/μ) , p = 1, 2, 3, …",
+            "style": "eq"
+          },
+          "The lowest frequency is the fundamental,",
+          "with p = 1. Since μ = m/l:",
+          {
+            "text": "n₁ = (1/2l)√(Tl/m) = (1/2)√(T/lm)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: the general formula with p, then the fundamental form after μ = m/l is put in.",
+        "why": "Replacing μ by m/l lets the length and the mass go in as given, with no separate division; the l outside the root cancels one l inside it, which is where the 1/2 comes from.",
+        "common_mistakes": [
+          "Using n = (p/4l)√(T/μ), which is the closed-pipe pattern, not a string.",
+          "Leaving μ in the formula and then substituting the total mass 0.16 × 10⁻³ kg for it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n = (p/2l)√(T/μ), and for the fundamental p = 1, which with μ = m/l becomes n₁ = (1/2)√(T/lm).",
+          "accept": [
+            "n is p by 2 l root T by mu",
+            "fundamental is p equal to one",
+            "half root of T by l m"
+          ],
+          "reject": [
+            "523 hertz"
+          ],
+          "heard_as": [
+            "p by two l",
+            "root T by mu",
+            "fundamental"
+          ]
+        },
+        "memory_tip": "One l outside and one l inside the root cancel, leaving a plain half in front."
+      },
+      {
+        "id": "s3_substitution",
+        "kind": "equation",
+        "label": "Substitution",
+        "marks": 2,
+        "mark_note": "n₁ = √70 / (2 × 8 × 10⁻³)",
+        "lines": [
+          "Putting the values in:",
+          {
+            "text": "lm = 0.4 × 0.16 × 10⁻³ = 6.4 × 10⁻⁵",
+            "style": "eq"
+          },
+          {
+            "text": "√(lm) = √(6.4 × 10⁻⁵) = 8 × 10⁻³",
+            "style": "eq"
+          },
+          {
+            "text": "n₁ = √70 / (2 × 8 × 10⁻³)",
+            "style": "eq"
+          },
+          {
+            "text": "n₁ = 62.5 × √70",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: the product lm and its square root, then the frequency left as 62.5 × √70.",
+        "why": "6.4 × 10⁻⁵ is 64 × 10⁻⁶, a perfect square, so its root is exactly 8 × 10⁻³ — writing it that way removes the only awkward power of ten before the arithmetic starts.",
+        "common_mistakes": [
+          "Taking √(6.4 × 10⁻⁵) as 2.5 × 10⁻³ by rooting 6.4 and the power separately.",
+          "Multiplying by 2 instead of dividing. The 2l sits in the denominator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That l m = 6.4 × 10⁻⁵, its root is 8 × 10⁻³, and n₁ = √70 / (2 × 8 × 10⁻³) = 62.5 √70.",
+          "accept": [
+            "l into m is 6 point 4 into 10 power minus 5",
+            "root is 8 into 10 power minus 3",
+            "62 point 5 into root 70"
+          ],
+          "reject": [
+            "1046 hertz"
+          ],
+          "heard_as": [
+            "six point four into ten power minus five",
+            "eight into ten power minus three",
+            "sixty two point five"
+          ]
+        },
+        "memory_tip": "Write 6.4 × 10⁻⁵ as 64 × 10⁻⁶ — then the root is plainly 8 × 10⁻³."
+      },
+      {
+        "id": "s4_fundamental",
+        "kind": "equation",
+        "label": "The fundamental",
+        "marks": 1,
+        "mark_note": "n₁ ≈ 523 Hz",
+        "lines": [
+          {
+            "text": "√70 ≈ 8.37",
+            "style": "eq"
+          },
+          {
+            "text": "n₁ ≈ 62.5 × 8.37 = 523.1",
+            "style": "eq"
+          },
+          {
+            "text": "n₁ ≈ 523 Hz",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "One mark for the value. Use √70 ≈ 8.37; 8.37 × 8.37 is 70.06, so the root is right.",
+        "why": "The book prints √70 = 8.27 at this line. That value is wrong: 8.27 × 8.27 = 68.4, while 8.37 × 8.37 = 70.06, so √70 = 8.37 to two places. The book's printed final answer of 523 Hz is still correct, because 62.5 × 8.37 = 523.1 while 62.5 × 8.27 would give 517 — the printed intermediate value does not produce the printed result. Write 8.37; a student who copies 8.27 and works honestly from it reaches 517 Hz and loses the value mark.",
+        "common_mistakes": [
+          "Copying √70 as 8.27 and reporting 517 Hz. Square the root back to check it gives 70.",
+          "Rounding 62.5 to 62 and losing the last digit of the answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That √70 is about 8.37, so n₁ = 62.5 × 8.37 ≈ 523 Hz.",
+          "accept": [
+            "root 70 is 8 point 37",
+            "62 point 5 into 8 point 37",
+            "523 hertz"
+          ],
+          "reject": [
+            "1569 hertz"
+          ],
+          "heard_as": [
+            "eight point three seven",
+            "five two three"
+          ]
+        },
+        "memory_tip": "8² = 64 and 8.4² = 70.6, so √70 sits just under 8.4 — never as low as 8.27."
+      },
+      {
+        "id": "s5_three_lowest",
+        "kind": "boxed_final",
+        "label": "The three lowest frequencies",
+        "marks": 2,
+        "mark_note": "523 Hz, 1046 Hz, 1569 Hz",
+        "lines": [
+          "A string fixed at both ends produces all",
+          "the harmonics, in the ratio 1 : 2 : 3.",
+          "So the next two frequencies are:",
+          {
+            "text": "n₂ = 2n₁ = 2 × 523 = 1046 Hz",
+            "style": "eq"
+          },
+          {
+            "text": "n₃ = 3n₁ = 3 × 523 = 1569 Hz",
+            "style": "eq"
+          },
+          {
+            "text": "523 Hz, 1046 Hz, 1569 Hz",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Two marks: state the 1 : 2 : 3 ratio, then give all three values with the unit hertz.",
+        "why": "The question asks for three frequencies, so all three must appear in the answer; the ratio line is what shows the student knew why they are simple multiples, rather than having guessed them.",
+        "common_mistakes": [
+          "Giving the odd harmonics 523, 1569 and 2615 Hz. That 1 : 3 : 5 pattern belongs to a closed pipe.",
+          "Giving only the fundamental. The question asks for three frequencies."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a string gives all harmonics in the ratio 1 : 2 : 3, so the three lowest are 523, 1046 and 1569 Hz.",
+          "accept": [
+            "one is to two is to three",
+            "523, 1046 and 1569 hertz",
+            "double and triple the fundamental"
+          ],
+          "reject": [
+            "root 70 is 8 point 37"
+          ],
+          "heard_as": [
+            "one two three ratio",
+            "ten forty six",
+            "fifteen sixty nine"
+          ]
+        },
+        "memory_tip": "A string gives every harmonic (1 : 2 : 3); only a closed pipe skips the even ones (1 : 3 : 5)."
+      }
+    ]
+  },
+  "insider_note": "Two errors are easy to make in this one numerical. The book's own working prints √70 as 8.27, which is wrong and would give 517 Hz — use 8.37. And the three lowest frequencies of a STRING are in the ratio 1 : 2 : 3, not the 1 : 3 : 5 of a closed pipe."
+}

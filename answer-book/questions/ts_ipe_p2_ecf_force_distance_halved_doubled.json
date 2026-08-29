@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_force_distance_halved_doubled",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to the force between two charges if the distance between them is (a) halved (b) doubled?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "F ∝ 1/d²",
+      "marks": 1
+    },
+    {
+      "label": "The two cases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: F ∝ 1/d², so d → d/2 gives 4F and d → 2d gives F/4 — matches the book (printed p.19)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Charges and Fields · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "equation",
+        "label": "The inverse square relation",
+        "marks": 1,
+        "mark_note": "F ∝ 1/d²",
+        "lines": [
+          "By Coulomb's law, the force between two",
+          "charges varies as the inverse square of",
+          "the distance d between them.",
+          {
+            "text": "F ∝ 1 / d²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Both cases follow from this one proportionality — write it before the cases.",
+        "why": "Both parts of the question are the same relation read twice. Writing F ∝ 1/d² first turns each case into one line of substitution.",
+        "common_mistakes": [
+          "Using F ∝ 1/d instead of 1/d². The square is the whole point of the law.",
+          "Recomputing Coulomb's constant — the charges are unchanged, so only the distance factor matters."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the force varies as the inverse square of the distance, F ∝ 1/d².",
+          "accept": [
+            "inverse square of the distance",
+            "F proportional to one by d squared"
+          ],
+          "reject": [
+            "four times the force"
+          ],
+          "heard_as": [
+            "inverse square",
+            "d squared",
+            "Coulomb's law"
+          ]
+        },
+        "memory_tip": "Distance changes k times → force changes 1/k² times. Everything follows from this."
+      },
+      {
+        "id": "s2_cases",
+        "kind": "boxed_final",
+        "label": "The two cases",
+        "marks": 1,
+        "mark_note": "4F and F/4",
+        "lines": [
+          "a) When the distance is halved,",
+          {
+            "text": "F′ ∝ 1/(d/2)² = 4/d² → F′ = 4F",
+            "style": "eq"
+          },
+          {
+            "text": "The force becomes four times.",
+            "style": "indent"
+          },
+          "b) When the distance is doubled,",
+          {
+            "text": "F′ ∝ 1/(2d)² = 1/4d² → F′ = F/4",
+            "style": "eq"
+          },
+          {
+            "text": "The force becomes one fourth.",
+            "style": "indent"
+          },
+          {
+            "text": "Halved → 4F · Doubled → F/4",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Show the substitution for each case, then state the factor in words.",
+        "why": "Halving d makes d² four times smaller, so the force is four times larger; doubling d makes d² four times larger, so the force is four times smaller. The two cases are mirror images.",
+        "common_mistakes": [
+          "Answering doubled and halved for the force — the change is by a factor of FOUR, not two.",
+          "Swapping the cases: closer means stronger, so halved gives 4F, not F/4."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That halving the distance makes the force four times, and doubling it makes the force one fourth.",
+          "accept": [
+            "halved gives four times the force",
+            "doubled gives one fourth",
+            "quadruples when halved"
+          ],
+          "reject": [
+            "inverse square of the distance"
+          ],
+          "heard_as": [
+            "four times",
+            "one fourth",
+            "halved",
+            "doubled"
+          ]
+        },
+        "memory_tip": "Closer is stronger: half the distance, four times the force — and the exact mirror when doubled."
+      }
+    ]
+  },
+  "insider_note": "The factor is four in both cases — an answer of twice or half shows the square was skipped and loses the second mark."
+}

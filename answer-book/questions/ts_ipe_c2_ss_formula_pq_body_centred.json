@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_formula_pq_body_centred",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A cubic solid is made of two elements P and Q. Atoms of Q are at the corners of the cube and P at the body centre. What is the formula of the compound? What are the co-ordination numbers of P and Q?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The arrangement",
+      "marks": 1
+    },
+    {
+      "label": "Counting the atoms",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The co-ordination numbers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.64, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed question asks for the co-ordination numbers of P and Q, and the printed answer never gives them (book p.64, SAQ 4). It stops at the formula PQ. The missing part is answered here: both are 8. P at the body centre is surrounded by the 8 corner atoms of its own cube, and each corner atom Q is shared by the 8 cubes that meet at that corner, so it has 8 body-centre atoms P around it. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the whole split sits on the four written steps. The book does print a cube diagram, and it is reproduced because the count cannot be checked without seeing which sites are which."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solid State — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_arrangement",
+        "kind": "text",
+        "label": "The arrangement",
+        "marks": 1,
+        "mark_note": "Arrangement",
+        "lines": [
+          "Q atoms occupy the 8 corners of the cube.",
+          "One P atom sits at the centre of the body.",
+          "There are no atoms on the faces.",
+          "So the given cube is a body centred cubic",
+          "arrangement."
+        ],
+        "why": "Naming the arrangement first fixes which sharing fractions apply. A corner site is shared between eight cubes and a body-centre site belongs to one cube alone, and those two facts are the whole calculation.",
+        "common_mistakes": [
+          "Calling it face centred. Nothing is stated to be on the faces, so it is body centred.",
+          "Reading the body centre as shared with the neighbouring cubes. It lies wholly inside one cube."
+        ],
+        "memory_tip": "Corners are shared eight ways, the body centre is shared with no other cell.",
+        "margin_note": "Name the arrangement in one line before any arithmetic. It is what the next two steps rest on."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "The cube",
+        "marks": 0,
+        "figure": {
+          "id": "bcc_pq_cube",
+          "width": 400,
+          "height": 275,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "pq_front_square",
+              "d": "M 60 90 L 180 90 L 180 210 L 60 210 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "pq_back_square",
+              "d": "M 110 55 L 230 55 L 230 175 L 110 175 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "pq_connectors",
+              "d": "M 60 90 L 110 55 M 180 90 L 230 55 M 180 210 L 230 175 M 60 210 L 110 175",
+              "ms": 3490
+            },
+            {
+              "type": "stroke",
+              "id": "pq_corner_atoms",
+              "d": "M 56 90 A 4 4 0 1 0 64 90 A 4 4 0 1 0 56 90 M 176 90 A 4 4 0 1 0 184 90 A 4 4 0 1 0 176 90 M 176 210 A 4 4 0 1 0 184 210 A 4 4 0 1 0 176 210 M 56 210 A 4 4 0 1 0 64 210 A 4 4 0 1 0 56 210 M 106 55 A 4 4 0 1 0 114 55 A 4 4 0 1 0 106 55 M 226 55 A 4 4 0 1 0 234 55 A 4 4 0 1 0 226 55 M 226 175 A 4 4 0 1 0 234 175 A 4 4 0 1 0 226 175 M 106 175 A 4 4 0 1 0 114 175 A 4 4 0 1 0 106 175",
+              "ms": 2870
+            },
+            {
+              "type": "stroke",
+              "id": "pq_body_centre_atom",
+              "d": "M 140 132 A 5 5 0 1 0 150 132 A 5 5 0 1 0 140 132",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pq_lbl_p",
+              "x": 156,
+              "y": 130,
+              "text": "P",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "pq_lbl_legend",
+              "x": 56,
+              "y": 250,
+              "text": "Q at the 8 corners, P at the body centre",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The sketch shows which site each element occupies, and the count in the next step is read straight off it: eight corner dots for Q and the single dot inside for P.",
+        "common_mistakes": [
+          "Drawing P at a face centre. The question puts P at the centre of the body, inside the cube.",
+          "Drawing only four corners. A cube has eight corners and all eight carry a Q atom."
+        ],
+        "memory_tip": "Two squares offset from one another, joined at the corners, with one dot in the middle.",
+        "margin_note": "The question does not ask for a diagram, so this earns no marks. All four marks sit on the written steps; the sketch only makes the count easy to check."
+      },
+      {
+        "id": "s3_counting",
+        "kind": "equation",
+        "label": "Counting the atoms",
+        "marks": 1,
+        "mark_note": "Counting",
+        "lines": [
+          "Each corner atom is shared by 8 cubes, so it",
+          "contributes ⅛ to this cube.",
+          {
+            "text": "Number of Q atoms = 8 × ⅛ = 1",
+            "style": "eq"
+          },
+          "The body centre atom belongs to this cube",
+          "alone.",
+          {
+            "text": "Number of P atoms = 1 × 1 = 1",
+            "style": "eq"
+          }
+        ],
+        "why": "A unit cell repeats through the crystal, so an atom on a shared site must be counted only by its share. Eight corners at one eighth each add up to one whole Q atom, while the atom inside the cube counts once.",
+        "common_mistakes": [
+          "Writing 8 Q atoms. Only ⅛ of each corner atom lies inside this cube.",
+          "Dividing the body centre atom by 2. It is not shared with any neighbouring cube."
+        ],
+        "memory_tip": "Eight corners, one eighth each, gives exactly one atom.",
+        "margin_note": "Show the fraction ⅛ in the working. The mark is for the sharing, not just for the answer 1."
+      },
+      {
+        "id": "s4_formula",
+        "kind": "boxed_final",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "The cell contains 1 atom of P and 1 atom of Q.",
+          {
+            "text": "P : Q = 1 : 1",
+            "style": "eq"
+          },
+          {
+            "text": "Formula of the compound = PQ",
+            "style": "boxed"
+          }
+        ],
+        "why": "The formula of a solid is the simplest whole number ratio of the atoms in one unit cell, because the same cell repeats through the whole crystal. Here the ratio is 1 : 1, so the formula is PQ.",
+        "common_mistakes": [
+          "Writing P₈Q or PQ₈ from the raw site counts. The sharing has to be applied before the ratio is taken.",
+          "Writing the formula as P₁Q₁. A subscript of 1 is not written, so the formula is PQ."
+        ],
+        "memory_tip": "One P and one Q in the cell, so the formula is PQ.",
+        "margin_note": "Box the formula. Write the 1 : 1 ratio on the line above it so the step is complete."
+      },
+      {
+        "id": "s5_coordination",
+        "kind": "text",
+        "label": "The co-ordination numbers",
+        "marks": 1,
+        "mark_note": "Co-ordination numbers",
+        "lines": [
+          "P lies at the body centre and its nearest",
+          "neighbours are the 8 corner atoms Q.",
+          "So the co-ordination number of P = 8.",
+          "Each corner atom Q is shared by 8 cubes,",
+          "and each of those cubes has one P at its",
+          "body centre.",
+          "So the co-ordination number of Q = 8."
+        ],
+        "why": "In a body centred arrangement the two sites see each other the same way round. The body centre touches the eight corners of its own cube, and a corner belongs to eight cubes, so it is touched by eight body centres. This is the part the printed answer leaves out.",
+        "common_mistakes": [
+          "Answering for P only. The question asks for both P and Q.",
+          "Writing 6 or 12 from memory. Those are the values for simple cubic and for close packing, not for a body centred arrangement."
+        ],
+        "memory_tip": "Body centred means eight both ways: 8 corners around the centre, 8 centres around a corner.",
+        "margin_note": "The printed model answer stops at the formula. Both co-ordination numbers are asked for, so write both."
+      }
+    ]
+  },
+  "insider_note": "The printed model answer for this question stops at the formula PQ and never gives the co-ordination numbers, which the question asks for. Write both of them as 8, with the reason, or a quarter of the answer is missing."
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_aqueous_cu2_blue_zn2_colourless",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Aqueous Cu²⁺ ions are blue in colour whereas aqueous Zn²⁺ ions are colourless. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Cu²⁺ is 3d⁹ and has an unpaired d electron",
+      "marks": 1
+    },
+    {
+      "label": "Zn²⁺ is 3d¹⁰ and has none",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 5. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NOTATION: the printed question writes Cu+2 and Zn+2; Cu²⁺ and Zn²⁺ are used here. BOOK GAP FILLED: the printed answer stops at the electron count and does not say WHY an unpaired d electron produces colour, so the card adds the two missing links — the water ligands split the d orbitals, and the d-d transition removes one colour from white light, leaving its complement. TREND AND EXCEPTION NAMED HERE: most first-series ions in water are coloured and paramagnetic, and the exceptions are the two ends — Sc³⁺ and Ti⁴⁺ at 3d⁰, and Cu⁺ and Zn²⁺ at 3d¹⁰ — all four colourless and diamagnetic. MAGNETIC MOMENTS COMPUTED: Cu²⁺ has n = 1, so μ = √3 = 1.73 BM; Zn²⁺ has n = 0, so μ = 0 BM."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_copper",
+        "kind": "text",
+        "label": "Cu²⁺ is blue",
+        "marks": 1,
+        "mark_note": "Cu²⁺ is 3d⁹",
+        "lines": [
+          "Cu is [Ar] 3d¹⁰ 4s¹.",
+          "Cu²⁺ loses the 4s electron and one 3d",
+          "electron, so Cu²⁺ is [Ar] 3d⁹ 4s⁰.",
+          "It has one unpaired d electron, so n = 1",
+          "and μ = √3 = 1.73 BM.",
+          "Water molecules around the ion split the",
+          "d orbitals into t2g and eg sets.",
+          "The unpaired electron is promoted across",
+          "the gap, absorbing orange-red light, so",
+          "the solution transmits blue."
+        ],
+        "why": "A d-d transition needs a partly filled d subshell, because the electron must have somewhere to move to. Cu²⁺ at 3d⁹ has exactly one vacancy, and the gap produced by the six water ligands corresponds to orange-red light, so what passes through is the complementary blue. The unpaired electron also makes the ion paramagnetic, with a spin-only moment of 1.73 BM.",
+        "common_mistakes": [
+          "Writing Cu²⁺ as 3d⁷ 4s². Copper metal is [Ar] 3d¹⁰ 4s¹, so Cu²⁺ is 3d⁹ 4s⁰.",
+          "Saying the blue is the colour of water. Pure water is colourless; the colour comes from the d-d transition in the hydrated ion."
+        ],
+        "memory_tip": "One vacancy in the d set is enough for colour. 3d⁹ has one; 3d¹⁰ has none.",
+        "margin_note": "Give the configuration, then the words unpaired d electron, then d-d transition. All three together earn this mark."
+      },
+      {
+        "id": "s2_zinc",
+        "kind": "boxed_final",
+        "label": "Zn²⁺ is colourless",
+        "marks": 1,
+        "mark_note": "Zn²⁺ is 3d¹⁰",
+        "lines": [
+          "Zn²⁺ is [Ar] 3d¹⁰ 4s⁰.",
+          "The d subshell is completely filled, so",
+          "n = 0 and μ = 0 BM.",
+          {
+            "text": "d¹⁰ is full, so no d-d transition",
+            "style": "boxed"
+          },
+          "is possible. No visible light is absorbed",
+          "and the solution is colourless.",
+          "Sc³⁺ (3d⁰) is colourless for the opposite",
+          "reason: its d subshell is empty."
+        ],
+        "why": "The two colourless ions of the first series sit at its two ends. Sc³⁺ is 3d⁰ and has no electron to promote; Zn²⁺ is 3d¹⁰ and has no vacancy to promote into. Every ion between them has a partly filled d subshell and is both coloured and paramagnetic. Both Sc³⁺ and Zn²⁺ are also diamagnetic, which is the same fact stated for magnetism instead of colour.",
+        "common_mistakes": [
+          "Saying Zn²⁺ has no d electrons. It has ten; the point is that no empty d orbital is left in the same set.",
+          "Saying all d-block ions are coloured. Sc³⁺, Ti⁴⁺, Cu⁺ and Zn²⁺ are all colourless."
+        ],
+        "memory_tip": "Empty d⁰ or full d¹⁰ means colourless. Anything in between is coloured.",
+        "margin_note": "Name Sc³⁺ beside Zn²⁺. It shows the rule works from both ends of the series."
+      }
+    ]
+  },
+  "insider_note": "Marks here are given for a d-electron count on both ions, not only on the coloured one. Adding Sc³⁺ as the empty-d case takes one line and is usually read as full understanding."
+}

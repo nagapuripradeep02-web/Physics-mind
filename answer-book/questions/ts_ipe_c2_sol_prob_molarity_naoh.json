@@ -1,0 +1,75 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_prob_molarity_naoh",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": { "number": 2, "name": "Solutions (Chemistry-II)" },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the molarity of a solution containing 5 g of NaOH in 450 mL of solution.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Moles of NaOH", "marks": 1 },
+    { "label": "The molarity", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From the boxed 'Problems : In text Questions' section of the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.68 (problem 2). A PROBLEM belongs to no printed paper section and the book prints no mark scheme for it, so both the Section-A placement and the 1+1 split are authored CLAIMS. Placed at 2 marks as a single-formula calculation, matching the Very Short Answer numericals this book already asks in the same unit. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. THIS PROBLEM SETTLES A CONTRADICTION IN THE BOOK: it divides the moles by the volume of SOLUTION, which is the correct route, while the book's own VSAQ 12 three pages earlier divides by the volume of the WATER and prints the resulting molality as a molarity. The card ts_ipe_c2_sol_molarity_10_percent_glucose records that error and points here. BOOK WORKING: the printed answer mixes two forms in consecutive lines, writing 'Volume of the solution in litres = 450ml/1000ml L⁻¹' and then 'M = n × 1000/V(ml)'; the card uses one form throughout."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "text",
+        "label": "Moles of NaOH",
+        "marks": 1,
+        "mark_note": "Moles",
+        "lines": [
+          "M(NaOH) = 23 + 16 + 1 = 40 g mol⁻¹",
+          { "text": "n = mass / molar mass", "style": "eq" },
+          { "text": "n = 5 / 40 = 0.125 mol", "style": "eq" }
+        ],
+        "why": "Molarity is moles per litre, so the mass has to become a mole count before anything else happens. Sodium hydroxide is one sodium, one oxygen and one hydrogen, which is where 40 g mol⁻¹ comes from.",
+        "common_mistakes": [
+          "Using 23 for the molar mass. That is sodium alone; the formula unit also carries an oxygen and a hydrogen.",
+          "Putting the mass straight into the molarity formula. Molarity counts moles, never grams."
+        ],
+        "memory_tip": "Na 23, O 16, H 1 add to 40. Write the molar mass on its own line before dividing.",
+        "margin_note": "Show the molar mass as a sum. One line, and it earns the first mark."
+      },
+      {
+        "id": "s2_molarity",
+        "kind": "boxed_final",
+        "label": "The molarity",
+        "marks": 1,
+        "mark_note": "Volume in litres and the value",
+        "lines": [
+          "450 mL = 450 / 1000 = 0.450 L of SOLUTION",
+          { "text": "M = n / V(L)", "style": "eq" },
+          { "text": "M = 0.125 / 0.450", "style": "eq" },
+          { "text": "M = 0.278 mol L⁻¹", "style": "boxed" }
+        ],
+        "why": "The volume in the molarity formula is the volume of the SOLUTION, which is what the question gives, so no density is needed here. Converting 450 mL to 0.450 L first keeps the units of the answer right without carrying a factor of 1000 through the arithmetic.",
+        "common_mistakes": [
+          "Dividing by 450 instead of 0.450. That gives a number a thousand times too small; molarity is per LITRE.",
+          "Using the volume of the water. Molarity always uses the volume of the solution, and this question gives it directly.",
+          "Leaving the answer without a unit. Write mol L⁻¹."
+        ],
+        "memory_tip": "Molarity is moles per litre, so turn millilitres into litres before dividing, never after.",
+        "margin_note": "Convert to litres on its own line. Box the value with mol L⁻¹."
+      }
+    ]
+  },
+  "insider_note": "The volume given here IS the volume of solution, so this one needs no density — that is what makes it easier than the 10% w/w glucose question in the same chapter. Convert 450 mL to 0.450 L on its own line before dividing."
+}

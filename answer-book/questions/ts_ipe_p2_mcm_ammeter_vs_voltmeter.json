@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_ammeter_vs_voltmeter",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between ammeter and voltmeter.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ammeter points",
+      "marks": 1
+    },
+    {
+      "label": "Voltmeter points",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: ammeter — measures current, in series, made from a galvanometer with a low resistance in parallel, ideal resistance zero; voltmeter — measures potential difference, in parallel, galvanometer with a high resistance in series, ideal resistance infinite. Matches the book's four points on each side."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Give matching pairs of points — measures, connection, how it is made, ideal resistance — one set for each meter.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Moving Charges and Magnetism · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ammeter",
+        "kind": "text",
+        "label": "Ammeter",
+        "marks": 1,
+        "mark_note": "Any two correct ammeter points",
+        "lines": [
+          "Ammeter:",
+          "1) It measures current.",
+          "2) It is connected in series in the",
+          "   circuit.",
+          "3) It is a galvanometer with a low",
+          "   resistance connected in parallel.",
+          "4) An ideal ammeter has zero resistance."
+        ],
+        "margin_note": "First mark. Series connection and low (ideally zero) resistance are the points examiners look for.",
+        "why": "The whole circuit current must pass through an ammeter, so it sits in series and must add almost no resistance — otherwise it would change the current it is measuring.",
+        "common_mistakes": [
+          "Saying an ammeter is connected in parallel. In parallel it would short the circuit.",
+          "Saying an ideal ammeter has high resistance. It has zero resistance."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an ammeter measures current, is connected in series, and ideally has zero resistance.",
+          "accept": [
+            "ammeter measures current",
+            "connected in series",
+            "ideal ammeter has zero resistance"
+          ],
+          "reject": [
+            "infinite resistance"
+          ],
+          "heard_as": [
+            "ammeter",
+            "series"
+          ]
+        },
+        "memory_tip": "A for ammeter, A for along the circuit: in series, near-zero resistance."
+      },
+      {
+        "id": "s2_voltmeter",
+        "kind": "boxed_final",
+        "label": "Voltmeter",
+        "marks": 1,
+        "mark_note": "Any two correct voltmeter points",
+        "lines": [
+          "Voltmeter:",
+          "1) It measures potential difference.",
+          "2) It is connected in parallel across",
+          "   the two points.",
+          "3) It is a galvanometer with a high",
+          "   resistance connected in series.",
+          "4) An ideal voltmeter has infinite",
+          "   resistance.",
+          {
+            "text": "Ammeter: series · Voltmeter: parallel",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Parallel connection and high (ideally infinite) resistance are the matching points.",
+        "why": "A voltmeter compares two points without disturbing them, so it sits across them in parallel and must draw almost no current — which needs a very high resistance.",
+        "common_mistakes": [
+          "Saying a voltmeter is connected in series. In series it would stop almost all the current.",
+          "Swapping the resistances: the LOW resistance belongs to the ammeter, the HIGH one to the voltmeter."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a voltmeter measures potential difference, is connected in parallel, and ideally has infinite resistance.",
+          "accept": [
+            "voltmeter measures potential difference",
+            "connected in parallel",
+            "ideal voltmeter has infinite resistance"
+          ],
+          "reject": [
+            "zero resistance"
+          ],
+          "heard_as": [
+            "voltmeter",
+            "parallel"
+          ]
+        },
+        "memory_tip": "V for voltmeter, V for across two points: in parallel, near-infinite resistance."
+      }
+    ]
+  }
+}

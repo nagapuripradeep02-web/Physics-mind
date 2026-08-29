@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_increasing_order_hcn_and_acid_strength",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Arrange the following compounds in increasing order of the property indicated. i) Acetaldehyde, acetone, methyl t-butyl ketone (reactivity towards HCN) ii) Acetic acid, monochloro acetic acid, fluoro acetic acid, dichloro acetic acid (acid strength).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reactivity towards HCN",
+      "marks": 1
+    },
+    {
+      "label": "Acid strength",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.113 as VSAQ 5. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR IN THE QUESTION, corrected here: part (ii) is printed as \"acetic acid, mono chloro acetic acid, Acetic acid and Dichloro acetic acid\" — acetic acid is listed TWICE and fluoro acetic acid is missing, yet the book's own printed answer orders four compounds including FCH₂COOH. The duplicate is therefore a misprint for fluoro acetic acid, and the question text on this card lists the four compounds the book actually answers. BOOK SPELLING: \"Mehyl t-butyl ketone\" for methyl t-butyl ketone. BOOK ANSWERS CHECKED AND CORRECT: methyl t-butyl ketone < acetone < acetaldehyde, and CH₃COOH < ClCH₂COOH < FCH₂COOH < Cl₂CHCOOH (pKa 4.76, 2.86, 2.59, 1.29 — fluorine is more electronegative than chlorine, and two chlorines outweigh one fluorine). BOOK GAP: no reason is printed for either order; both are added, with the pKa values. TRENDS AND EXCEPTIONS recorded on the card: for (i) the trend \"fewer and smaller alkyl groups means more reactive\" is completed by naming formaldehyde HCHO as the most reactive carbonyl compound of all, and benzaldehyde as the exception that is an aldehyde yet much less reactive than acetaldehyde; for (ii) the –I trend is qualified by the fact that the effect falls away sharply with distance."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hcn_reactivity",
+        "kind": "equation",
+        "label": "Reactivity towards HCN",
+        "marks": 1,
+        "mark_note": "First order",
+        "lines": [
+          "i) Increasing reactivity towards HCN:",
+          {
+            "text": "methyl t-butyl ketone < acetone",
+            "style": "eq"
+          },
+          {
+            "text": "< acetaldehyde",
+            "style": "indent"
+          },
+          "HCN adds to the carbonyl carbon. Alkyl",
+          "groups lower the positive charge on that",
+          "carbon and leave less space around it, so",
+          "more and larger alkyl groups mean slower",
+          "addition.",
+          "HCHO has no alkyl group and is the most",
+          "reactive carbonyl compound of all."
+        ],
+        "why": "The cyanide ion bonds to the carbonyl carbon, so anything that lowers the positive charge on that carbon or blocks the approach to it slows the reaction. A methyl group does both a little; a t-butyl group does both a great deal. Acetaldehyde has only one alkyl group and a hydrogen, so it is the fastest of the three.",
+        "common_mistakes": [
+          "Writing the order the wrong way round. The question asks for INCREASING reactivity, so the hindered ketone comes first.",
+          "Giving only the steric reason. Both effects count: the alkyl groups also lower the positive charge on the carbonyl carbon.",
+          "Assuming every aldehyde beats every ketone. Benzaldehyde is an aldehyde yet is much less reactive than acetaldehyde, because the ring supplies electron density to the carbonyl carbon."
+        ],
+        "memory_tip": "Count the alkyl groups and their size: a bulky group is slowest, two methyl groups next, one methyl group faster, and no alkyl group fastest of all.",
+        "margin_note": "One line of order plus one line of reason. Name both effects, steric and electronic, in the same sentence."
+      },
+      {
+        "id": "s2_acid_strength",
+        "kind": "boxed_final",
+        "label": "Acid strength",
+        "marks": 1,
+        "mark_note": "Second order",
+        "lines": [
+          "ii) Increasing acid strength:",
+          {
+            "text": "CH₃COOH < ClCH₂COOH < FCH₂COOH",
+            "style": "eq"
+          },
+          {
+            "text": "< Cl₂CHCOOH",
+            "style": "indent"
+          },
+          {
+            "text": "pKa  4.76    2.86    2.59   1.29",
+            "style": "indent"
+          },
+          {
+            "text": "More –I withdrawal, stronger acid.",
+            "style": "boxed"
+          },
+          "F is more electronegative than Cl, and two",
+          "Cl atoms withdraw more than one F.",
+          "The –I effect falls away with distance, so",
+          "3-chloropropanoic acid (pKa 3.98) is much",
+          "weaker than 2-chloropropanoic acid (2.83)."
+        ],
+        "why": "Every halogen atom on the carbon next to –COOH pulls electron density away from the carboxylate ion and spreads its negative charge, so the ion is more stable and the acid donates its proton more readily. Electronegativity sets how strongly one atom pulls, and the number of atoms sets how many pulls there are; fluorine is the more electronegative of the two halogens, and dichloroacetic acid has the greater number of halogen atoms.",
+        "common_mistakes": [
+          "Placing acetic acid anywhere but first. It has no electron withdrawing group at all, so it is the weakest.",
+          "Putting FCH₂COOH above Cl₂CHCOOH. One fluorine is stronger than one chlorine, but two chlorines outweigh one fluorine.",
+          "Applying the –I effect to a halogen far from –COOH. The effect is almost gone three carbons away."
+        ],
+        "memory_tip": "Compare electronegativity first, then count the atoms. One F withdraws more than one Cl, but two Cl withdraw more than one F.",
+        "margin_note": "Write the formulae with < signs and add the words electron withdrawing or –I effect. The reason is what separates a full mark from half."
+      }
+    ]
+  },
+  "insider_note": "The printed question lists acetic acid twice in part (ii); the book's own answer orders four compounds including fluoro acetic acid, so answer the four. Write each order with the word increasing in front of it, because the same list marked in the wrong direction earns nothing."
+}

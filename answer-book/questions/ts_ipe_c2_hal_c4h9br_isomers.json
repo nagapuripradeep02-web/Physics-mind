@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_hal_c4h9br_isomers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Halo Alkanes and Halo Arenes (Chemistry-II)"
+  },
+  "chapter": "Halo Alkanes and Halo Arenes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the isomers of the compound having molecular formula C₄H₉Br.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The four structural isomers",
+      "marks": 1
+    },
+    {
+      "label": "The optical pair of 2-bromobutane",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 15 (Halo Alkanes and Halo Arenes) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.107-108, from the shaded sub-box \"HALO ALKANES & HALO ARENES\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container chapter whose four unnumbered sub-boxes each restart numbering at 1); the book prints this question on book p.107 as VSAQ 2. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK COUNT (book p.107, VSAQ 2): the printed answer lists FIVE isomers, i) to v). Entries ii) and iii) are drawn IDENTICALLY, both as CH₃–CH₂–CH(Br)–CH₃, and are labelled \"2-bromo butane(dextro)\" and \"2-bromo butane (laevo)\". Flat condensed notation cannot show the difference between two enantiomers, so as printed the two entries are the same drawing twice. The chemistry is: C₄H₉Br has FOUR structural isomers, and 2-bromobutane exists in addition as a d, l pair, giving five stereochemically distinct species. This card writes the four structures first and then names the optical pair as a separate step, so neither reading of the question is lost and the book's count of five is explained rather than contradicted. BOOK SPELLING: the printed names are \"2-bromo butane\", \"1-bromo-2methyl propane\" and \"2-bromo, 2-methyl propane\" (a stray comma); the standard spellings are used here. NOTATION: the question says \"write\", not \"draw\", so the structures are linear condensed formulae and no figure is authored."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Halo Alkanes and Halo Arenes — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_four_structural_isomers",
+        "kind": "text",
+        "label": "The four structural isomers",
+        "marks": 1,
+        "mark_note": "Four structures",
+        "lines": [
+          "C₄H₉Br has four structural isomers.",
+          {
+            "text": "1. CH₃–CH₂–CH₂–CH₂–Br",
+            "style": "indent"
+          },
+          {
+            "text": "    1-bromobutane (primary)",
+            "style": "indent"
+          },
+          {
+            "text": "2. CH₃–CH₂–CH(Br)–CH₃",
+            "style": "indent"
+          },
+          {
+            "text": "    2-bromobutane (secondary)",
+            "style": "indent"
+          },
+          {
+            "text": "3. (CH₃)₂CH–CH₂–Br",
+            "style": "indent"
+          },
+          {
+            "text": "    1-bromo-2-methylpropane (primary)",
+            "style": "indent"
+          },
+          {
+            "text": "4. (CH₃)₃C–Br",
+            "style": "indent"
+          },
+          {
+            "text": "    2-bromo-2-methylpropane (tertiary)",
+            "style": "indent"
+          }
+        ],
+        "why": "Four carbon atoms give two skeletons, the straight chain butane and the branched 2-methylpropane, and on each skeleton the bromine atom can go in two different places. Two skeletons times two positions gives four structural isomers, and there are no others. Naming each one primary, secondary or tertiary takes one word and is needed for every reactivity question in the chapter.",
+        "common_mistakes": [
+          "Writing 3-bromobutane as a fifth isomer. Numbering from the other end makes it 2-bromobutane, the same compound.",
+          "Missing the branched skeleton. 2-Methylpropane is the second four-carbon skeleton and carries two of the four isomers."
+        ],
+        "memory_tip": "Two skeletons, straight and branched; two bromine positions on each; four in all.",
+        "margin_note": "Number the four structures and write the name under each one. The examiner counts four."
+      },
+      {
+        "id": "s2_optical_pair",
+        "kind": "text",
+        "label": "The optical pair of 2-bromobutane",
+        "marks": 1,
+        "mark_note": "Optical isomers",
+        "lines": [
+          "2-Bromobutane has a chiral carbon. C2 carries",
+          "H, Br, CH₃ and C₂H₅, four different groups.",
+          "So it exists as two optical isomers, the",
+          "dextrorotatory (d) and laevorotatory (l) forms.",
+          {
+            "text": "4 structural isomers, 5 with d and l",
+            "style": "boxed"
+          },
+          "The other three isomers have no chiral carbon."
+        ],
+        "why": "A carbon atom joined to four different groups is chiral, and a molecule with one chiral carbon exists as a pair of non-superimposable mirror images. Only C2 of 2-bromobutane passes that test, so only that isomer has an optical pair. This is why the book prints five: it counts the d and l forms of 2-bromobutane as two entries. As STRUCTURAL isomers there are four.",
+        "common_mistakes": [
+          "Counting the d and l forms as structural isomers. They have the same structure and differ only in the arrangement in space.",
+          "Looking for a chiral carbon in 2-bromo-2-methylpropane. That carbon carries three identical methyl groups, so it is not chiral."
+        ],
+        "memory_tip": "Four different groups on one carbon is the whole test for a chiral carbon.",
+        "margin_note": "Name the chiral carbon and list the four groups on it. That one line earns this mark."
+      }
+    ]
+  },
+  "insider_note": "The book prints five isomers by listing the d and l forms of 2-bromobutane separately. Write the four structural isomers for the first mark, then add the optical pair as a separate line for the second — that answers both readings of the question."
+}

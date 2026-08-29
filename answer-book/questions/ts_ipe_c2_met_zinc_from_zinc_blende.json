@@ -1,0 +1,185 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_zinc_from_zinc_blende",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the extraction of zinc from zinc blende.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Concentration",
+      "marks": 1
+    },
+    {
+      "label": "Roasting",
+      "marks": 1
+    },
+    {
+      "label": "Reduction",
+      "marks": 1
+    },
+    {
+      "label": "Refining",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.81, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EQUATIONS CHECKED: both printed equations balance as printed — 2ZnS + 3O₂ → 2ZnO + 2SO₂ (Zn 2=2, S 2=2, O 6=6) and ZnO + C → Zn + CO (Zn 1=1, O 1=1, C 1=1). BOOK NUMBERING ERROR (book p.81, SAQ 4): the printed answer has FIVE stages but numbers them i, ii, iii, iv, iv — \"iv)\" appears twice, so reduction and electrolytic refining are both printed as stage four. The stages are numbered 1 to 5 on this card. BOOK TYPOS: the question is printed \"Explain the extration of zinc from zinc blende\" (extration for extraction) and the acid is printed \"dill H₂SO₄\" for dilute H₂SO₄; both are written correctly here. BOOK NOTATION: the book writes the ion as Zn⁺²; the number is written before the sign here, Zn²⁺. BOOK GAP: the book does not say that zinc distils over as a vapour, which is why the retort is used at all; zinc boils at 1180 K, well below the 1673 K of the reduction, and that is added."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Metallurgy — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_concentration",
+        "kind": "text",
+        "label": "Concentration",
+        "marks": 1,
+        "mark_note": "Concentration",
+        "lines": [
+          "Zinc blende is ZnS.",
+          "1) Crushing: the ore is crushed to a fine",
+          {
+            "text": "powder in ball mills.",
+            "style": "indent"
+          },
+          "2) Concentration: the powdered ore is",
+          {
+            "text": "concentrated by froth flotation, the",
+            "style": "indent"
+          },
+          {
+            "text": "method used for sulphide ores.",
+            "style": "indent"
+          }
+        ],
+        "why": "Froth flotation is chosen because zinc blende is a sulphide, which links this step to the flotation question earlier in the unit. Crushing has to come first, because flotation acts on the surface of the particles and needs them fine.",
+        "common_mistakes": [
+          "Concentrating zinc blende by leaching. Leaching is used for bauxite; a sulphide ore is concentrated by froth flotation.",
+          "Leaving out the crushing. Flotation needs a fine powder to work at all."
+        ],
+        "memory_tip": "A sulphide ore means froth flotation, and crushing comes first.",
+        "margin_note": "Naming the method and saying why it suits a sulphide ore earns this mark."
+      },
+      {
+        "id": "s2_roasting",
+        "kind": "equation",
+        "label": "Roasting",
+        "marks": 1,
+        "mark_note": "Roasting",
+        "lines": [
+          "3) Roasting: the concentrated ore is",
+          {
+            "text": "heated in a regular supply of air at",
+            "style": "indent"
+          },
+          {
+            "text": "about 1200 K to give zinc oxide.",
+            "style": "indent"
+          },
+          {
+            "text": "2ZnS + 3O₂ → 2ZnO + 2SO₂   (1200 K)",
+            "style": "eq"
+          },
+          "The SO₂ given off is used to make",
+          "sulphuric acid."
+        ],
+        "why": "Zinc sulphide cannot be reduced by carbon directly, so it is first turned into the oxide. Roasting does that and sends the sulphur off as SO₂ in the same step.",
+        "common_mistakes": [
+          "Trying to reduce ZnS with carbon straight away. The sulphide has to be roasted to ZnO first.",
+          "Writing ZnS + O₂ → ZnO + SO₂. The equation needs 2ZnS and 3O₂ to balance."
+        ],
+        "memory_tip": "Sulphide to oxide first: 2ZnS + 3O₂ gives 2ZnO + 2SO₂.",
+        "margin_note": "The balanced roasting equation is the mark. The temperature is worth adding beside it."
+      },
+      {
+        "id": "s3_reduction",
+        "kind": "equation",
+        "label": "Reduction",
+        "marks": 1,
+        "mark_note": "Reduction",
+        "lines": [
+          "4) Reduction: the zinc oxide is mixed with",
+          {
+            "text": "coke and heated to about 1673 K in a",
+            "style": "indent"
+          },
+          {
+            "text": "fire clay retort.",
+            "style": "indent"
+          },
+          {
+            "text": "ZnO + C → Zn + CO   (1673 K)",
+            "style": "eq"
+          },
+          "Zinc boils at 1180 K, so it distils over",
+          "as a vapour and is condensed. The metal",
+          "so obtained is called spelter."
+        ],
+        "why": "Carbon is the reducing agent because above 983 K it lies below CO on the Ellingham diagram, which is the point of the short question earlier in this unit. The furnace runs well above the boiling point of zinc, so the metal leaves as a vapour and is condensed away from the charge.",
+        "common_mistakes": [
+          "Using CO as the reducing agent. At 1673 K carbon is the better reducing agent for ZnO.",
+          "Writing ZnO + C → Zn + CO₂. One carbon atom takes the one oxygen atom of ZnO, so the product is CO."
+        ],
+        "memory_tip": "Coke at 1673 K, and the zinc comes off as a vapour.",
+        "margin_note": "The reduction equation with its temperature carries this mark."
+      },
+      {
+        "id": "s4_refining",
+        "kind": "boxed_final",
+        "label": "Refining",
+        "marks": 1,
+        "mark_note": "Refining",
+        "lines": [
+          "5) Refining: the zinc is purified by",
+          {
+            "text": "electrolytic refining.",
+            "style": "indent"
+          },
+          {
+            "text": "Anode: impure zinc",
+            "style": "boxed"
+          },
+          {
+            "text": "Cathode: sheet of pure zinc",
+            "style": "boxed"
+          },
+          "Electrolyte: ZnSO₄ solution acidified",
+          "with dilute H₂SO₄.",
+          {
+            "text": "At anode:  Zn → Zn²⁺ + 2e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "At cathode:  Zn²⁺ + 2e⁻ → Zn",
+            "style": "eq"
+          }
+        ],
+        "why": "The impure metal is made the anode so that it dissolves, and the pure zinc is deposited on the cathode. The book prints the numbering \"iv)\" twice, so its last two stages both read as stage four; the stages are numbered 1 to 5 here. The book also writes the ion as Zn⁺²; the number is written before the sign, Zn²⁺.",
+        "common_mistakes": [
+          "Making the pure zinc the anode. The impure metal must be the anode.",
+          "Writing the ion as Zn⁺². The number comes first and the sign after it: Zn²⁺."
+        ],
+        "memory_tip": "Impure zinc dissolves at the anode and pure zinc is deposited at the cathode.",
+        "margin_note": "Both electrode equations and the electrolyte finish this answer."
+      }
+    ]
+  },
+  "insider_note": "Five stages but four marks: crushing and concentration share one. The two equations, roasting and reduction, are what the examiner looks for first."
+}

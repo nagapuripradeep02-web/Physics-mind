@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_hardy_schulze_rule",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Hardy – Schulze rule.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rule",
+      "marks": 1
+    },
+    {
+      "label": "The examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.77, VSAQ 16): the printed rule reads \"greater the valency of flocculating ion, greater will be its coagulating power\" and never says which ion the flocculating ion IS. It is the ion whose charge is OPPOSITE to the charge on the colloidal particles, and without that clause the rule cannot be applied to a given sol at all. The clause is written on this card. BOOK NOTATION: the printed example is \"Al⁺³ > Ba⁺² > Na⁺\", with the charge written before the number; the standard form is Al³⁺ > Ba²⁺ > Na⁺ and that is written here. A second series for a positively charged sol is added, because the book's only example applies to a negative sol and the rule is symmetrical."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "text",
+        "label": "The rule",
+        "marks": 1,
+        "mark_note": "The rule",
+        "lines": [
+          "The flocculating ion is the ion whose",
+          "charge is opposite to the charge on the",
+          "colloidal particles.",
+          "Hardy-Schulze rule: the greater the",
+          "valency of the flocculating ion, the",
+          "greater is its coagulating power."
+        ],
+        "why": "Coagulation happens when the charge on the particles is neutralised, so only ions of the opposite sign do the work. A higher charge on that ion neutralises the particle charge with fewer ions, so less of the electrolyte is needed and the coagulating power is higher.",
+        "common_mistakes": [
+          "Leaving out the word opposite. The rule cannot be applied without knowing which of the two ions is the flocculating one.",
+          "Writing that the ion of higher valency is needed in larger amount. Higher valency means a smaller amount is needed."
+        ],
+        "memory_tip": "Opposite charge does the coagulating, and a higher charge does it with less.",
+        "margin_note": "Two clauses carry this mark: the ion is of opposite charge, and higher valency means greater power."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "The examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Al³⁺ > Ba²⁺ > Na⁺",
+            "style": "boxed"
+          },
+          "For a negatively charged sol such as",
+          "arsenious sulphide, the cations coagulate",
+          "it in the order Al³⁺ > Ba²⁺ > Na⁺.",
+          "For a positively charged sol such as ferric",
+          "hydroxide, the anions coagulate it in the",
+          "order [Fe(CN)₆]³⁻ > SO₄²⁻ > Cl⁻."
+        ],
+        "why": "One series shows the rule at work only for a sol of one sign, so naming the sol beside the series is part of the example. Giving both signs shows that the rule is about the ion opposite to the sol, not about cations in particular.",
+        "common_mistakes": [
+          "Writing the series in the wrong order. The ion of highest charge comes first, so Al³⁺ leads the cation series.",
+          "Giving a cation series for a positively charged sol. A positive sol is coagulated by anions."
+        ],
+        "memory_tip": "Highest charge first. Al³⁺ before Ba²⁺ before Na⁺, and the same idea for anions.",
+        "margin_note": "One series is enough for this mark, but name the sol it belongs to."
+      }
+    ]
+  },
+  "insider_note": "The mark for the rule turns on the word opposite. Write \"the ion of charge opposite to that of the sol\" before the valency clause, then give the Al³⁺ > Ba²⁺ > Na⁺ series."
+}

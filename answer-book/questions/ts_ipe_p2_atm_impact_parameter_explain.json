@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_impact_parameter_explain",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the impact parameter?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition of b",
+      "marks": 1
+    },
+    {
+      "label": "The formula for b",
+      "marks": 1
+    },
+    {
+      "label": "Large b and small b",
+      "marks": 1
+    },
+    {
+      "label": "The head-on case b = 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The book prints the question as \"Explain the impact  parameter ?\" with a double space and a space before the question mark; both are tidied here and the wording is unchanged. The book writes the nuclear charge as lowercase ze²; the standard symbol Ze² (Z = atomic number of the nucleus) is used here. Physics hand-checked: b = Ze² cot(θ/2) / [4πε₀(½mv²)] — cot(θ/2) falls as θ rises, so b and θ move in opposite directions, and cot(90°) = 0 gives b = 0 at θ = 180°."
+  },
+  "recall_prompt": "Define the impact parameter, give its formula, and say what happens for a large b, a small b and b = 0.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atoms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Perpendicular distance",
+        "lines": [
+          "Impact parameter:",
+          "The impact parameter of an α-particle is the",
+          "perpendicular distance of the velocity vector",
+          "of the α-particle from the centre of the",
+          "nucleus, measured when the α-particle is still",
+          "far away from the atom. It is denoted by b."
+        ],
+        "margin_note": "First mark. Three parts: perpendicular distance, of the velocity vector, from the centre of the nucleus.",
+        "why": "The distance has to be measured far away, before the Coulomb force bends the path. Once the path is curved there is no single straight line to measure from.",
+        "common_mistakes": [
+          "Saying b is the distance of closest approach. That is a different quantity, r₀.",
+          "Leaving out \"far away from the nucleus\". Near the nucleus the path is already bent."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b is the perpendicular distance of the α-particle's velocity vector from the centre of the nucleus, measured far away.",
+          "accept": [
+            "perpendicular distance of the velocity vector",
+            "from the centre of the nucleus",
+            "when the particle is far away"
+          ],
+          "reject": [
+            "b equals Z e squared cot theta by two"
+          ],
+          "heard_as": [
+            "impact parameter",
+            "perpendicular distance",
+            "velocity vector"
+          ]
+        },
+        "memory_tip": "Extend the incoming straight path; b is how far it misses the nucleus by."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "text",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "b ∝ cot(θ/2)",
+        "lines": [
+          "Rutherford found the relation between b and the",
+          "scattering angle θ:",
+          {
+            "text": "b = Ze² cot(θ/2) / 4πε₀(½mv²)",
+            "style": "eq"
+          },
+          "Here Z is the atomic number of the nucleus, θ",
+          "is the scattering angle, and ½mv² is the",
+          "kinetic energy of the α-particle."
+        ],
+        "margin_note": "Second mark. Write the formula and then name every symbol in it.",
+        "why": "The formula holds the whole answer: the cot(θ/2) factor gives the shape of the relation, and the ½mv² in the denominator says a faster α-particle is deflected less for the same b.",
+        "common_mistakes": [
+          "Writing tan(θ/2). The formula carries cot(θ/2).",
+          "Dropping the kinetic energy term. b depends on the α-particle's energy as well."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b = Ze² cot(θ/2) divided by 4πε₀ times the kinetic energy ½mv².",
+          "accept": [
+            "Z e squared cot theta by two",
+            "over four pi epsilon nought",
+            "half m v squared in the denominator"
+          ],
+          "reject": [
+            "perpendicular distance from the centre"
+          ],
+          "heard_as": [
+            "cot theta by 2",
+            "epsilon nought",
+            "Z e squared"
+          ]
+        },
+        "memory_tip": "cot on top, kinetic energy underneath."
+      },
+      {
+        "id": "s3_large_small",
+        "kind": "text",
+        "label": "Large b and small b",
+        "marks": 1,
+        "mark_note": "Inverse relation",
+        "lines": [
+          "1. If b is large, the α-particle passes far from",
+          "the nucleus, the repulsion is weak, θ is small",
+          "and the deflection is small.",
+          "2. If b is small, the α-particle passes close to",
+          "the nucleus, the repulsion is strong, θ is",
+          "large and the deflection is large."
+        ],
+        "margin_note": "Third mark. Both cases, each with its reason: the strength of the Coulomb repulsion.",
+        "why": "The Coulomb force falls off as 1/r², so a pass at twice the distance gives a quarter of the force and a much smaller turn. This is why almost all α-particles in Rutherford's experiment went nearly straight through.",
+        "common_mistakes": [
+          "Saying b and θ increase together. They move in opposite directions.",
+          "Giving the two cases without the reason. The reason is the strength of the repulsion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a large b gives a small θ and a small b gives a large θ.",
+          "accept": [
+            "large b, small scattering angle",
+            "small b, large scattering angle",
+            "closer pass means bigger deflection"
+          ],
+          "reject": [
+            "b equals zero gives one eighty degrees"
+          ],
+          "heard_as": [
+            "large b",
+            "small angle",
+            "large deflection"
+          ]
+        },
+        "memory_tip": "Far pass, small turn; close pass, big turn."
+      },
+      {
+        "id": "s4_head_on",
+        "kind": "boxed_final",
+        "label": "The head-on case",
+        "marks": 1,
+        "mark_note": "b = 0 gives θ = 180°",
+        "lines": [
+          "3. If b = 0 the α-particle is aimed straight at",
+          "the centre of the nucleus. It slows down, stops",
+          "and comes straight back along its own path.",
+          {
+            "text": "b = 0  →  θ = 180°",
+            "style": "eq"
+          },
+          {
+            "text": "b large → θ small · b = 0 → θ = 180°",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The extreme case, and the word retraces.",
+        "why": "This is the case that told Rutherford the nucleus exists: only about one α-particle in 8000 came back, so the positive charge must be packed into a very small volume.",
+        "common_mistakes": [
+          "Writing θ = 90° for a head-on hit. Straight back is 180°.",
+          "Saying the α-particle passes through the nucleus. It stops and retraces its path."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b = 0 is a head-on approach and gives θ = 180°, the particle retracing its path.",
+          "accept": [
+            "b equals zero",
+            "theta is one eighty degrees",
+            "it retraces its path"
+          ],
+          "reject": [
+            "large b gives small angle"
+          ],
+          "heard_as": [
+            "b is zero",
+            "180 degrees",
+            "retraces"
+          ]
+        },
+        "memory_tip": "Aim dead centre and the only way out is straight back — 180°."
+      }
+    ]
+  },
+  "insider_note": "Four separate things are marked here: the definition, the formula, the two cases, and b = 0 — a paragraph that mixes them loses marks."
+}

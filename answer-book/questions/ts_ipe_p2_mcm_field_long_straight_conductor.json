@@ -1,0 +1,344 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_field_long_straight_conductor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find intensity of magnetic induction B due to a long current carrying conductor.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The circle and the symmetry",
+      "marks": 1
+    },
+    {
+      "label": "The line integral",
+      "marks": 1
+    },
+    {
+      "label": "Ampere's law applied",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: on a circle of radius r round a long straight wire, B is constant in magnitude and along dl, so ∮B·dl = B(2πr) = μ₀i and B = μ₀i/2πr, falling off as 1/r — matches the book. The book's 'inversly' spelling is corrected here."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The symmetry sentence carries a mark on its own: say that B has the same magnitude everywhere on the circle and is along the tangent, before you take B out of the integral.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Moving Charges and Magnetism · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The wire and a circle round it",
+        "marks": 0,
+        "figure": {
+          "id": "long_wire_field",
+          "width": 380,
+          "height": 280,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "wire",
+              "d": "M 180 20 L 180 250",
+              "ms": 3290
+            },
+            {
+              "type": "stroke",
+              "id": "i_arrowhead",
+              "d": "M 174 55 L 180 44 L 186 55",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "field_circle",
+              "d": "M 80 150 A 100 32 0 1 1 280 150 A 100 32 0 1 1 80 150",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "r_line",
+              "d": "M 180 150 L 276 150",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "r_arrowhead",
+              "d": "M 266 145 L 276 150 L 266 155",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "b_line",
+              "d": "M 280 150 L 280 96",
+              "ms": 770
+            },
+            {
+              "type": "stroke",
+              "id": "b_arrowhead",
+              "d": "M 274 106 L 280 96 L 286 106",
+              "ms": 330
+            },
+            {
+              "type": "label",
+              "id": "lbl_i",
+              "x": 158,
+              "y": 44,
+              "text": "i",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 220,
+              "y": 140,
+              "text": "r",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 288,
+              "y": 168,
+              "text": "P",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 292,
+              "y": 92,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_circle",
+              "x": 54,
+              "y": 212,
+              "text": "circular field line",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "A long straight wire carrying current i, a circle of radius r through the point P with the wire at its centre, and B along the tangent at P.",
+        "why": "The circle is chosen, not given: it is the one path on which B has the same size everywhere, which is what lets B come out of the integral.",
+        "common_mistakes": [
+          "Drawing B along the radius. B is along the tangent to the circle.",
+          "Measuring r along the wire. It is the perpendicular distance from the wire to P."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a long straight wire is drawn with a circle of radius r round it through P, and B tangential at P.",
+          "accept": [
+            "draw the wire and a circle of radius r",
+            "P on the circle",
+            "B along the tangent"
+          ],
+          "reject": [
+            "B equals mu nought i by two pi r"
+          ],
+          "heard_as": [
+            "circle",
+            "figure"
+          ]
+        },
+        "memory_tip": "Wire through the middle, circle round it, B running along the circle."
+      },
+      {
+        "id": "s2_setup",
+        "kind": "text",
+        "label": "The circle and the symmetry",
+        "marks": 1,
+        "mark_note": "Same B all round, along the tangent",
+        "lines": [
+          "Let a long straight conductor carry a current",
+          "i, and let P be a point at a perpendicular",
+          "distance r from it.",
+          "Draw a circle of radius r through P with the",
+          "conductor as its centre.",
+          "The field at any point of this circle is",
+          "along the tangent drawn at that point, which",
+          "is the direction of dl.",
+          "By symmetry every point of the circle is the",
+          "same distance from the wire, so the magnitude",
+          "of B is the same at all points of the circle."
+        ],
+        "margin_note": "First mark. Two facts: B is along the tangent, and B has the same magnitude all the way round.",
+        "why": "Every point of the circle looks the same to the wire, so the field can only differ in direction, not in size — that is what symmetry gives here.",
+        "common_mistakes": [
+          "Saying B points away from the wire. The field lines are closed circles round the wire.",
+          "Taking r along the wire instead of at right angles to it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a circle of radius r is drawn round the wire, B is tangential and B has the same magnitude at all its points.",
+          "accept": [
+            "circle of radius r with the wire at its centre",
+            "field is along the tangent",
+            "same magnitude at all points by symmetry"
+          ],
+          "reject": [
+            "B into two pi r equals mu nought i"
+          ],
+          "heard_as": [
+            "symmetry",
+            "tangent"
+          ]
+        },
+        "memory_tip": "Every point of the circle is the same distance out, so every point has the same B."
+      },
+      {
+        "id": "s3_integral",
+        "kind": "equation",
+        "label": "The line integral",
+        "marks": 1,
+        "mark_note": "∮B·dl = B(2πr)",
+        "lines": [
+          "B and dl point the same way at every point,",
+          "so the angle between them is 0°.",
+          {
+            "text": "∮ B · dl = ∮ B dl cos 0° = B ∮ dl",
+            "style": "eq"
+          },
+          "The total length of the circle is 2πr, so",
+          {
+            "text": "∮ B · dl = B (2πr)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. cos 0° = 1, B comes out of the integral, and ∮dl is the circumference.",
+        "why": "Two separate facts are used here: the same direction removes the cosine, and the same magnitude lets B be taken outside the integral.",
+        "common_mistakes": [
+          "Writing cos 90°, which would make the whole integral zero.",
+          "Writing ∮dl = πr² — that is the area, not the length of the path."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ∮B·dl becomes B times 2πr because cos 0° = 1 and B is constant.",
+          "accept": [
+            "B dl cos zero degrees",
+            "B comes out of the integral",
+            "B into two pi r"
+          ],
+          "reject": [
+            "equals mu nought i"
+          ],
+          "heard_as": [
+            "two pi r",
+            "cos zero"
+          ]
+        },
+        "memory_tip": "Same direction kills the cosine, same size frees the B."
+      },
+      {
+        "id": "s4_ampere",
+        "kind": "equation",
+        "label": "Ampere's law applied",
+        "marks": 1,
+        "mark_note": "B(2πr) = μ₀i",
+        "lines": [
+          "By Ampere's law the same line integral equals",
+          "μ₀ times the current enclosed by the path.",
+          "Here the circle encloses the current i, so",
+          {
+            "text": "B (2πr) = μ₀ i",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Set the two expressions for the same integral equal to each other.",
+        "why": "One integral has now been written in two ways — once from the geometry and once from Ampere's law — and equating them is what produces the answer.",
+        "common_mistakes": [
+          "Putting μ₀ on the left with B. It multiplies the current.",
+          "Using the total current in the circuit instead of the current through the circle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Ampere's law gives the same integral as μ₀i, so B(2πr) = μ₀i.",
+          "accept": [
+            "by ampere's law equals mu nought i",
+            "B into two pi r equals mu nought i",
+            "current enclosed is i"
+          ],
+          "reject": [
+            "B equals mu nought i by two pi r"
+          ],
+          "heard_as": [
+            "ampere's law",
+            "mu nought i"
+          ]
+        },
+        "memory_tip": "The same integral, two ways: geometry on one side, Ampere on the other."
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "B = μ₀i/2πr",
+        "lines": [
+          {
+            "text": "B = μ₀ i / 2πr",
+            "style": "boxed"
+          },
+          "So B is directly proportional to the current",
+          "and inversely proportional to the",
+          "perpendicular distance from the wire.",
+          {
+            "text": "B ∝ 1 / r",
+            "style": "eq"
+          },
+          "The direction is given by the right hand",
+          "rule: hold the wire in the right hand with",
+          "the thumb along the current, and the curled",
+          "fingers give the direction of B."
+        ],
+        "margin_note": "Last mark. The boxed result, the 1/r dependence and one line on direction.",
+        "why": "The field of a single wire falls off as 1/r, not as 1/r², because the source is a whole line of current rather than a single point.",
+        "common_mistakes": [
+          "Writing 1/r² for a straight wire. The inverse square belongs to a current element, not to the whole wire.",
+          "Leaving out the direction rule when the question asks for the induction B."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That B = μ₀i/2πr, falling off as 1/r, with the direction from the right hand rule.",
+          "accept": [
+            "B equals mu nought i by two pi r",
+            "B is inversely proportional to r",
+            "right hand rule gives the direction"
+          ],
+          "reject": [
+            "B into two pi r equals mu nought i"
+          ],
+          "heard_as": [
+            "mu nought i by two pi r",
+            "right hand rule"
+          ]
+        },
+        "memory_tip": "Divide by the circumference: μ₀i shared out over 2πr."
+      }
+    ]
+  }
+}

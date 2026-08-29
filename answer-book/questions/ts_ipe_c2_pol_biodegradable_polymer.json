@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_biodegradable_polymer",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a biodegradable polymer? Give two examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Two examples with their monomers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 7 on book p.95. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING AND EXAMPLES: the printed answer is \"A polymer which is decomposed by the action of a microorganisms are called bio-degradable polymer\", with examples PHBV and Polylactic acid. The grammar is broken and is rewritten; the chemistry is correct and is kept. NCERT gives the pair PHBV and nylon-2-nylon-6, so this card names all three and a student is not caught out by either wording. GAP: the book names polylactic acid but never its monomer, which is lactic acid, 2-hydroxypropanoic acid; it is supplied here. Nylon-2-nylon-6 appears in the same chapter at VSAQ 14, but the book never says there that it is biodegradable."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A biodegradable polymer is one that is",
+          "broken down in the environment by",
+          "micro-organisms, or by hydrolysis of the",
+          "links in its own chain, into simple",
+          "products such as CO₂ and H₂O.",
+          "Most of them are polyesters or",
+          "polyamides built from monomers that",
+          "living cells already make."
+        ],
+        "why": "The ester and amide links in these polymers are the same links enzymes break in fats and proteins, so soil organisms can break them too. A chain of plain C–C bonds, as in polythene, has no such link, which is why ordinary plastics last.",
+        "common_mistakes": [
+          "Writing that a biodegradable polymer dissolves in water. It is broken down by micro-organisms or by hydrolysis of its links.",
+          "Giving polythene or PVC as an example. Their chains have only C–C bonds, so nothing can hydrolyse them."
+        ],
+        "memory_tip": "Ester and amide links can be broken by living things; plain C–C chains cannot.",
+        "margin_note": "The words decomposed by micro-organisms are the mark. Naming the products is a bonus."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Two examples with their monomers",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: PHBV and nylon-2–nylon-6",
+            "style": "boxed"
+          },
+          "PHBV: from 3-hydroxybutanoic acid and",
+          "3-hydroxypentanoic acid.",
+          "Nylon-2–nylon-6: from glycine and",
+          "6-aminohexanoic acid.",
+          "Polylactic acid, made from lactic acid,",
+          "is a third accepted example."
+        ],
+        "why": "Each of the three is built from an acid that a cell already makes, so the enzymes that already break that acid also break the polymer. Naming the monomers is what shows the example was understood rather than remembered.",
+        "common_mistakes": [
+          "Writing the name PHBV without naming its monomers. The two hydroxy acids are why it breaks down.",
+          "Giving only one example. The question asks for two."
+        ],
+        "memory_tip": "Both standard examples are built from acids the body already uses.",
+        "margin_note": "Two names finish this mark. The monomers are one extra line and are worth writing."
+      }
+    ]
+  },
+  "insider_note": "The book prints PHBV and polylactic acid, while NCERT prints PHBV and nylon-2–nylon-6. All three are correct, so write PHBV and then either of the other two."
+}

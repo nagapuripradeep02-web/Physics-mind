@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_inert_pair_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is inert pair effect?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Cause and result down the group",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question on book p.83 as VSAQ 4. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.83, VSAQ 4): the printed answer is \"The reluctance of ns electrons to take part in chemical bond formation\". Two changes are made here. First, \"reluctance\" is replaced by a literal statement, because electrons have no wishes (Rule 41); the card says the ns² pair does not take part in bond formation. Second, the book writes \"ns\" where it means the FILLED ns² pair, and gives neither the cause (poor shielding by the intervening d and f electrons) nor the result (the +3 state becomes more stable than the +5 state down the group). Both are added. TREND AND EXCEPTION: the card names nitrogen as the element that breaks the pattern from the other end — it has no d orbitals in its valence shell, so it shows +5 only in oxides and oxoacids and forms no pentahalide (NCl₅ does not exist, while PCl₅ does)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "In the heavier elements of a p-block group,",
+          "the filled ns² pair of the valence shell stays",
+          "paired and does not take part in bonding.",
+          "Only the np electrons are used.",
+          "This is called the inert pair effect."
+        ],
+        "why": "The name has to be unpacked into two facts: which electrons (the ns² pair of the valence shell) and which elements (the heavier members of a p-block group). A definition that says only \"ns electrons\" does not say that the pair is a filled s pair, and that is the whole point.",
+        "common_mistakes": [
+          "Writing \"ns electrons\" instead of the ns² pair. It is a filled pair, and it stays paired.",
+          "Applying the effect to the light elements of a group. It appears in the heavier members, such as Sb and Bi."
+        ],
+        "memory_tip": "Inert pair means the filled s pair, and it is the heavy elements that keep it unshared.",
+        "margin_note": "Write ns² and the words \"does not take part in bond formation\". Both are needed for this mark."
+      },
+      {
+        "id": "s2_cause_and_result",
+        "kind": "boxed_final",
+        "label": "Cause and result down the group",
+        "marks": 1,
+        "mark_note": "Cause and result",
+        "lines": [
+          "Cause: the d and f electrons in between",
+          "shield the nucleus poorly, so the ns² pair is",
+          "bound more strongly in the heavier atoms.",
+          {
+            "text": "Down group 15 the +5 state gets less stable",
+            "style": "boxed"
+          },
+          "and the +3 state gets more stable.",
+          "So N and P show +5 readily, while Bi(III) is",
+          "stable and Bi(V) is a strong oxidising agent."
+        ],
+        "why": "Poor shielding by the d and f electrons raises the effective nuclear charge on the 6s pair, so more energy is needed to unpair and use it, and the lower oxidation state becomes the stable one. The trend has a clear exception at the TOP of the group: nitrogen has no d orbitals in its valence shell, so it cannot expand its octet and shows +5 only in oxides and oxoacids — NCl₅ does not exist, while PCl₅ does.",
+        "common_mistakes": [
+          "Writing that the +5 state becomes more stable down the group. It becomes LESS stable; the +3 state becomes more stable.",
+          "Giving nitrogen as an example of the inert pair effect. Nitrogen is at the top of the group and does not show it."
+        ],
+        "memory_tip": "Down the group the pair stays unshared, so the oxidation state drops from +5 to +3.",
+        "margin_note": "One example, Bi(III) being more stable than Bi(V), is enough to finish this mark."
+      }
+    ]
+  },
+  "insider_note": "A one-line definition is worth about one mark. The second mark comes from naming a result — the +3 state becoming more stable than +5 down group 15 — so add Bi(III) and Bi(V) to the definition."
+}

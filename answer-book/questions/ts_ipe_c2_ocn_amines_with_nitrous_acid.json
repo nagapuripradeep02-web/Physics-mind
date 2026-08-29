@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_amines_with_nitrous_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the reaction of i) aromatic and ii) aliphatic 1° amines with nitrous acid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Aromatic 1° amine — diazotisation",
+      "marks": 2
+    },
+    {
+      "label": "Aliphatic 1° amine — alcohol and nitrogen",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.117 as SAQ 6. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EQUATION CHECKED: C₆H₅NH₂ + NaNO₂ + 2HCl → C₆H₅N₂⁺Cl⁻ + NaCl + 2H₂O balances C 6/6, H 9/9, N 2/2, Na 1/1, Cl 2/2, O 2/2; the book prints this equation and it is correct. The overall aliphatic reaction CH₃NH₂ + HNO₂ → CH₃OH + N₂ + H₂O balances C 1/1, H 6/6, N 2/2, O 2/2. BOOK WORDING: the printed answer calls the aliphatic product an \"aliphatic di-azonium salt\"; it is an alkanediazonium salt, and \"di-azonium\" reads as though two diazonium groups were present. The card writes alkanediazonium. BOOK GAP, filled here: the printed answer gives 273-283 K for the aromatic case but never says WHY the aromatic salt survives that temperature while the aliphatic one does not — the –N₂⁺ group on a benzene ring is stabilised by delocalisation into the ring, and there is no such stabilisation on an alkyl chain."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_aromatic",
+        "kind": "equation",
+        "label": "Aromatic 1° amine",
+        "marks": 2,
+        "mark_note": "Part (i)",
+        "lines": [
+          "Nitrous acid is made in the flask from NaNO₂",
+          "and HCl, because HNO₂ itself is unstable.",
+          "Aniline is treated with it at 273-283 K.",
+          {
+            "text": "C₆H₅NH₂ + NaNO₂ + 2HCl →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅N₂⁺Cl⁻ + NaCl + 2H₂O",
+            "style": "indent"
+          },
+          "The product is benzenediazonium chloride.",
+          "This reaction is called diazotisation.",
+          "The salt is stable at 273-283 K because the",
+          "–N₂⁺ group is delocalised into the ring.",
+          "Above 283 K it decomposes to phenol."
+        ],
+        "why": "Nitrous acid supplies the nitrosonium ion, which converts the –NH₂ group into –N₂⁺. Keeping the flask in ice at 273-283 K is not a detail: the diazonium salt is stable only in that narrow band, and warming it puts phenol in the flask instead.",
+        "common_mistakes": [
+          "Writing HNO₃ instead of HNO₂. Nitric acid is a different reagent; nitrous acid is made from NaNO₂ and HCl.",
+          "Leaving out the temperature. 273-283 K is part of the marked answer for the aromatic case."
+        ],
+        "memory_tip": "Ice-cold sodium nitrite and hydrochloric acid on aniline gives the diazonium salt at 273-283 K.",
+        "margin_note": "Write 273-283 K over the arrow and the words benzenediazonium chloride under the product."
+      },
+      {
+        "id": "s2_aliphatic",
+        "kind": "boxed_final",
+        "label": "Aliphatic 1° amine",
+        "marks": 2,
+        "mark_note": "Part (ii)",
+        "lines": [
+          "The same reagent converts an aliphatic",
+          "1° amine into an alkanediazonium salt.",
+          {
+            "text": "CH₃NH₂ + NaNO₂ + HCl →",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃N₂⁺Cl⁻ + NaCl + H₂O",
+            "style": "indent"
+          },
+          "This salt is unstable even at 273 K and",
+          "breaks up at once:",
+          {
+            "text": "CH₃N₂⁺Cl⁻ + H₂O → CH₃OH + N₂ + HCl",
+            "style": "eq"
+          },
+          "Overall:",
+          {
+            "text": "CH₃NH₂ + HNO₂ → CH₃OH + N₂ + H₂O",
+            "style": "boxed"
+          },
+          "Nitrogen gas is given off steadily, which",
+          "is used as a test for an aliphatic 1° amine."
+        ],
+        "why": "An alkyl group offers no way of spreading the positive charge of the –N₂⁺ group, so the alkanediazonium ion loses nitrogen as soon as it forms. The aromatic salt survives because the ring spreads that charge by delocalisation. Both amines make the same kind of salt; only its lifetime differs.",
+        "common_mistakes": [
+          "Writing a stable aliphatic diazonium salt as the final product. It decomposes at once; the products are the alcohol and nitrogen gas.",
+          "Giving the same conditions and the same outcome for both cases. The difference in stability is the point of the question."
+        ],
+        "memory_tip": "The ring stabilises the diazonium group in the cold; a plain alkyl chain does not, so nitrogen gas comes off straight away.",
+        "margin_note": "Write both stages, then the overall equation. Naming the steady nitrogen gas as a test is worth one line."
+      }
+    ]
+  },
+  "insider_note": "Both amines make a diazonium salt; the answer is about how long each one lasts. The aromatic salt survives at 273-283 K because the ring spreads the charge, while the aliphatic one decomposes at once to the alcohol and nitrogen gas. Losing the temperature range loses a mark on its own."
+}

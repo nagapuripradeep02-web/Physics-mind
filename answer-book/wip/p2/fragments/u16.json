@@ -1,0 +1,71 @@
+{
+  "number": 16,
+  "name": "Communication System",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What are the basic blocks of a communication system?",
+      "question_id": "ts_ipe_p2_com_basic_blocks"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "What is \"World Wide web\" (www)?",
+      "question_id": "ts_ipe_p2_com_world_wide_web"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "Mention the frequency range of speech signals.",
+      "question_id": "ts_ipe_p2_com_speech_frequency_range"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "What is sky wave propagation?",
+      "question_id": "ts_ipe_p2_com_sky_wave_propagation"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "Mention various parts of the ionosphere?",
+      "question_id": "ts_ipe_p2_com_ionosphere_layers"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "Define modulation. Why is it necessary?",
+      "question_id": "ts_ipe_p2_com_modulation_necessity"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "Mention basic methods of modulation.",
+      "question_id": "ts_ipe_p2_com_modulation_methods"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "Which type of communication is employed in mobile phones?",
+      "question_id": "ts_ipe_p2_com_mobile_phone_communication"
+    }
+  ]
+}

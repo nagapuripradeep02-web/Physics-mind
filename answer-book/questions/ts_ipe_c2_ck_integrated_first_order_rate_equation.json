@@ -1,0 +1,213 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_integrated_first_order_rate_equation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Derive an integrated rate equation for first order reaction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set-up and rate law",
+      "marks": 2
+    },
+    {
+      "label": "Separating the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integration",
+      "marks": 2
+    },
+    {
+      "label": "The integration constant",
+      "marks": 1
+    },
+    {
+      "label": "The integrated equation",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 2+1+2+1+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed derivation reaches the CORRECT final result k = (2.303/t) log [a/(a − x)], but THREE of its intermediate lines are wrong as printed (book p.75, LAQ 3) and all three are written correctly here. (1) The integration line is printed \"−In₁₀(a − x) = kt + c\": the function is the natural logarithm ln, not a capital I, and it carries no base-10 subscript. The base only enters at the last step, when ln is converted to log by the factor 2.303. (2) The line printed \"kt = ln(a)/(a − x)\" has no brackets and reads as ln a divided by (a − x). It should be kt = ln [a/(a − x)]. (3) The line printed \"kt = ln(a/(a − x)) × 1/t\" has the wrong left hand side: multiplying by 1/t gives k, not kt. The printed line is dimensionally impossible, since its two sides differ by a factor of t. The derivation on this card fixes all three and reaches the same final equation."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Chemical Kinetics — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Set-up and rate law",
+        "marks": 2,
+        "mark_note": "Set-up",
+        "lines": [
+          "Consider a first order reaction",
+          {
+            "text": "A → products",
+            "style": "eq"
+          },
+          "Let",
+          {
+            "text": "a = initial concentration of A",
+            "style": "indent"
+          },
+          {
+            "text": "x = amount reacted in time t",
+            "style": "indent"
+          },
+          {
+            "text": "(a − x) = concentration of A at time t",
+            "style": "indent"
+          },
+          "For a first order reaction the rate is",
+          "proportional to the first power of the",
+          "concentration left:",
+          {
+            "text": "dx/dt ∝ (a − x)  ⇒  dx/dt = k(a − x)",
+            "style": "eq"
+          }
+        ],
+        "why": "The whole derivation is carried on the single variable x, the amount reacted, so the concentration left is (a − x) and dx/dt is the rate. Writing the rate law in terms of (a − x) rather than [A] is what makes the integration a standard one.",
+        "common_mistakes": [
+          "Writing dx/dt = kx. The rate depends on what is LEFT, which is (a − x), not on what has already reacted.",
+          "Leaving a and x undefined. Every line after this contains them, so the marks for the later steps depend on this one."
+        ],
+        "memory_tip": "Rate depends on what is left: dx/dt = k(a − x).",
+        "margin_note": "Two marks here: the three symbol meanings, then the rate law. Both are needed before any integration."
+      },
+      {
+        "id": "s2_separate",
+        "kind": "equation",
+        "label": "Separating the variables",
+        "marks": 1,
+        "mark_note": "Separation",
+        "lines": [
+          "Collect x on one side and t on the other:",
+          {
+            "text": "dx/(a − x) = k dt",
+            "style": "eq"
+          },
+          "Integrating both sides:",
+          {
+            "text": "∫ dx/(a − x) = k ∫ dt",
+            "style": "eq"
+          }
+        ],
+        "why": "The equation cannot be integrated until every x is on one side and every t on the other, because each side is integrated with respect to its own variable. k is a constant, so it comes outside its integral.",
+        "common_mistakes": [
+          "Integrating without separating first. The two variables must be on opposite sides before the integral signs are written.",
+          "Leaving k inside the integral over t. k is constant, so it comes outside."
+        ],
+        "memory_tip": "x with dx on the left, t with dt on the right, then integrate both.",
+        "margin_note": "One mark for the separated form with both integral signs written."
+      },
+      {
+        "id": "s3_integration",
+        "kind": "equation",
+        "label": "Integration",
+        "marks": 2,
+        "mark_note": "Integration",
+        "lines": [
+          "The left side is a standard integral:",
+          {
+            "text": "−ln (a − x) = kt + C   … (1)",
+            "style": "eq"
+          },
+          "where C is the constant of integration.",
+          "The minus sign appears because",
+          "differentiating (a − x) with respect to x",
+          "gives −1."
+        ],
+        "why": "The integral of dx/(a − x) is −ln(a − x), not ln(a − x), because of the chain rule: the inside of the bracket falls as x rises. That minus sign is carried through every later line, so losing it here changes the sign of the final answer.",
+        "common_mistakes": [
+          "Writing ln(a − x) = kt + C without the minus sign. The derivative of (a − x) with respect to x is −1.",
+          "Writing log to base 10 at this stage. The integral gives the natural logarithm; the change to base 10 happens only at the last step."
+        ],
+        "memory_tip": "The bracket shrinks as x grows, so the integral picks up a minus sign.",
+        "margin_note": "Two marks: the integrated form and the minus sign. Number this line (1); the next step refers back to it."
+      },
+      {
+        "id": "s4_constant",
+        "kind": "equation",
+        "label": "The integration constant",
+        "marks": 1,
+        "mark_note": "Constant",
+        "lines": [
+          "At the start of the reaction t = 0 and",
+          "x = 0. Putting these in equation (1):",
+          {
+            "text": "−ln (a − 0) = k(0) + C",
+            "style": "eq"
+          },
+          {
+            "text": "C = −ln a   … (2)",
+            "style": "eq"
+          }
+        ],
+        "why": "The constant of integration is fixed by one known state of the system, and the only state known before the experiment is the start. Evaluating it there turns the general solution into the equation for this particular reaction.",
+        "common_mistakes": [
+          "Taking C = 0. It is −ln a, and dropping it removes the a from the final answer.",
+          "Using t = 0 but forgetting x = 0. Both conditions describe the same instant and both are needed."
+        ],
+        "memory_tip": "At t = 0 nothing has reacted, so x = 0 and C = −ln a.",
+        "margin_note": "State the initial condition in words before substituting. That is what this mark is for."
+      },
+      {
+        "id": "s5_result",
+        "kind": "boxed_final",
+        "label": "The integrated equation",
+        "marks": 2,
+        "mark_note": "Result",
+        "lines": [
+          "Substituting (2) in (1):",
+          {
+            "text": "−ln (a − x) = kt − ln a",
+            "style": "eq"
+          },
+          {
+            "text": "ln a − ln (a − x) = kt",
+            "style": "eq"
+          },
+          {
+            "text": "ln [a/(a − x)] = kt",
+            "style": "eq"
+          },
+          {
+            "text": "k = (1/t) ln [a/(a − x)]",
+            "style": "eq"
+          },
+          "Changing to logarithms to base 10, using",
+          "ln y = 2.303 log y:",
+          {
+            "text": "k = (2.303/t) log [a/(a − x)]",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two logarithms combine into the logarithm of a ratio, and that ratio is the fraction of reactant still unreacted turned upside down. The 2.303 is only a change of base and has no chemical meaning; it is there because tables and calculators give log, not ln.",
+        "common_mistakes": [
+          "Writing k t = (2.303/t) log [a/(a − x)]. Dividing by t gives k on the left, not kt.",
+          "Writing ln a / (a − x) without brackets. It is the logarithm of the whole ratio."
+        ],
+        "memory_tip": "Two logs make one log of a ratio, then 2.303 changes ln to log.",
+        "margin_note": "Two marks: the ratio form and the boxed base-10 result. Keep the brackets round the ratio."
+      }
+    ]
+  },
+  "insider_note": "The brackets round a/(a − x) are worth a mark on their own. Written as ln a/(a − x) the expression means something else, and a strict examiner reads it that way."
+}

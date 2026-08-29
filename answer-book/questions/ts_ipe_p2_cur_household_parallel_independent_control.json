@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_household_parallel_independent_control",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are household appliances connected in parallel?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Each appliance is switched on its own",
+      "marks": 1
+    },
+    {
+      "label": "Each appliance gets the full supply voltage",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. DUPLICATE QUESTION: the book prints this question TWICE — as VSAQ 6 (p27, 'Why are house hold appliances connected in parallel ?') and again as VSAQ 20 (p28, 'Why are household appliances connected in parallel?'). The wording is the same apart from the printed 'house hold'; only the printed ANSWERS differ, VSAQ 6 giving the same-voltage and one-fuses reason and VSAQ 20 giving the independent-switching reason. Both are authored, because both carry a printed number a paper could quote: this card is VSAQ 20 and ts_ipe_p2_cur_household_parallel is VSAQ 6. Both answers are correct physics and either earns full marks; this card leads with the switching reason the book gives at 20. Transcription: 'house hold' corrected to 'household' on the VSAQ 6 card. Hand-checked: parallel branches sit across the same two supply lines, so each carries the full supply voltage and each can be opened alone."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_switching",
+        "kind": "text",
+        "label": "Each appliance is switched on its own",
+        "marks": 1,
+        "mark_note": "Independent switching",
+        "lines": [
+          "In a parallel connection every appliance has",
+          "its own branch between the same two supply",
+          "lines.",
+          "So any one appliance can be switched on or",
+          "off without affecting the others, and one",
+          "failed appliance leaves the rest working."
+        ],
+        "margin_note": "First mark. This is the reason the book gives here: independent switching.",
+        "why": "Opening one branch removes only that branch's current path. The other branches still run from one supply line to the other, so their currents are unchanged.",
+        "common_mistakes": [
+          "Saying the current is the same in every appliance. That is the series case."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each appliance can be switched on or off without affecting the others.",
+          "accept": [
+            "each device can be switched on or off separately",
+            "one appliance off does not stop the others",
+            "each has its own branch"
+          ],
+          "reject": [
+            "same voltage across each"
+          ],
+          "heard_as": [
+            "switched on or off",
+            "without affecting"
+          ]
+        },
+        "memory_tip": "One branch per appliance, one switch per branch."
+      },
+      {
+        "id": "s2_voltage",
+        "kind": "boxed_final",
+        "label": "Each appliance gets the full supply voltage",
+        "marks": 1,
+        "mark_note": "Same voltage across each",
+        "lines": [
+          "Every branch is joined across the same two",
+          "lines, so each appliance receives the full",
+          "supply voltage and works at its rated value:",
+          {
+            "text": "V₁ = V₂ = V₃ = V (supply)",
+            "style": "boxed"
+          },
+          "In series the voltage would be shared, and",
+          "one appliance switched off would break the",
+          "circuit for all of them."
+        ],
+        "margin_note": "Second mark. Say the voltage is the same across each branch and equal to the supply.",
+        "why": "An appliance is designed for one working voltage. Parallel branches all sit across the same pair of lines, so each receives that voltage no matter how many other appliances are running.",
+        "common_mistakes": [
+          "Saying each appliance gets an equal share of the voltage. Each gets the FULL supply voltage."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every appliance gets the full supply voltage because all branches sit across the same two lines.",
+          "accept": [
+            "same voltage across each appliance",
+            "full supply voltage on every branch",
+            "each works at its rated voltage"
+          ],
+          "reject": [
+            "switched on or off separately"
+          ],
+          "heard_as": [
+            "same voltage",
+            "supply voltage"
+          ]
+        },
+        "memory_tip": "Same two lines, same voltage on every branch."
+      }
+    ]
+  },
+  "insider_note": "The book asks this twice, at VSAQ 6 and VSAQ 20, and prints a different reason each time. Write both reasons and either printed answer is covered."
+}

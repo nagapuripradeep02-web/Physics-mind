@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_field_lines_never_intersect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The electric lines of force do not intersect. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A crossing gives two directions",
+      "marks": 1
+    },
+    {
+      "label": "Two directions are impossible",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the tangent to a line of force gives the direction of E; two intersecting lines would give two tangents, hence two directions of E at one point, which is impossible. Matches the book's answer (printed p.19)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Charges and Fields · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_directions",
+        "kind": "text",
+        "label": "A crossing gives two directions",
+        "marks": 1,
+        "mark_note": "Two tangents at the crossing point",
+        "lines": [
+          "Suppose two electric lines of force",
+          "intersect at a point. The tangent to a line",
+          "of force at a point gives the direction of",
+          "the electric field there. At the crossing",
+          "point there would be two tangents, so two",
+          "directions of the electric field at one",
+          "point."
+        ],
+        "margin_note": "First mark. Name the tangent rule — it is the link between the picture and the field direction.",
+        "why": "The argument is by contradiction: assume a crossing, apply the tangent rule to both lines, and the same point ends up with two field directions.",
+        "common_mistakes": [
+          "Answering that the lines repel each other. Lines of force are a drawing, not objects that push.",
+          "Skipping the tangent rule and jumping to the conclusion. The two directions come FROM the two tangents."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the tangent gives the field direction, so a crossing point would have two field directions.",
+          "accept": [
+            "the tangent gives the direction of the field",
+            "two tangents at the crossing",
+            "two directions at one point"
+          ],
+          "reject": [
+            "the field has only one direction"
+          ],
+          "heard_as": [
+            "tangent",
+            "intersect",
+            "lines of force"
+          ]
+        },
+        "memory_tip": "Assume they cross, draw both tangents — the contradiction appears by itself."
+      },
+      {
+        "id": "s2_impossible",
+        "kind": "boxed_final",
+        "label": "Two directions are impossible",
+        "marks": 1,
+        "mark_note": "One point, one field direction",
+        "lines": [
+          "The electric field at a point can have only",
+          "one direction. Two directions at the same",
+          "point is impossible. Hence two electric",
+          "lines of force never intersect.",
+          {
+            "text": "One point has one field direction",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Close the contradiction: one point, one direction, so no crossing.",
+        "why": "E at a point is a single vector — the force on a unit positive charge there. A vector cannot point two ways at once, so the assumed crossing must be wrong.",
+        "common_mistakes": [
+          "Writing not possible without saying WHAT is not possible — it is two field directions at one point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the field at a point has only one direction, so lines of force never intersect.",
+          "accept": [
+            "the field cannot have two directions",
+            "one point one direction",
+            "hence they never intersect"
+          ],
+          "reject": [
+            "two tangents at the crossing"
+          ],
+          "heard_as": [
+            "impossible",
+            "one direction",
+            "never intersect"
+          ]
+        },
+        "memory_tip": "E is one vector at each point — one arrow, never two."
+      }
+    ]
+  },
+  "insider_note": "Both marks live in the tangent argument — tangent gives direction, a crossing gives two, one point allows one."
+}

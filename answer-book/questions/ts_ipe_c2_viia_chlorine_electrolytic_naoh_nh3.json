@@ -1,0 +1,219 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_chlorine_electrolytic_naoh_nh3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "How is chlorine prepared by electrolytic method? Explain its reactions with a) NaOH b) NH₃ under different conditions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Principle and the Nelson cell",
+      "marks": 2
+    },
+    {
+      "label": "Electrode reactions",
+      "marks": 2
+    },
+    {
+      "label": "With cold dilute NaOH",
+      "marks": 1
+    },
+    {
+      "label": "With hot concentrated NaOH",
+      "marks": 1
+    },
+    {
+      "label": "With excess chlorine",
+      "marks": 1
+    },
+    {
+      "label": "With excess ammonia",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.88-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 2+2+1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK MECHANISM CORRECTED (book p.89, point 9): the printed answer says \"Steam reacts with Na+ ions to form NaOH\". Steam is not a reactant. Water is REDUCED at the cathode to give H2 and OH-, and the OH- then meets the Na+ ions that have crossed the asbestos; the steam is passed in to keep the caustic soda solution warm and dilute so that it does not crystallise in the asbestos diaphragm. The correct account is written on this card and the printed one is named in that step's why. The printed cathode half-reaction, 2H2O + 2e- -> 2OH- + H2, is itself correct and agrees with this account, so the printed answer contradicts its own equation. BOOK NOTATION: the same compound is printed NaOCl in the prose and NaClO in the equation; NaOCl is used throughout here. All five printed equations were atom-counted and balance as printed. FIGURE SCOPE: the book prints no cell diagram and the question does not say draw, so no figure is authored; the construction is written as numbered points, which is how the book presents it and how it is marked."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "VIIA Group Elements — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle_cell",
+        "kind": "text",
+        "label": "Principle and the Nelson cell",
+        "marks": 2,
+        "mark_note": "Principle and cell",
+        "lines": [
+          "Principle: a brine solution, that is sodium",
+          "chloride dissolved in water, is electrolysed.",
+          "The Nelson cell is used.",
+          "A U-shaped perforated steel vessel holds the",
+          "brine and acts as the cathode.",
+          "It is lined inside with asbestos and is hung",
+          "in a rectangular iron tank.",
+          "A carbon rod dipped in the brine acts as the",
+          "anode.",
+          "Steam is passed into the outer tank."
+        ],
+        "why": "Every part of the design has one purpose: keeping the chlorine made at the anode away from the sodium hydroxide made at the cathode. If the two met, the chlorine would react with the alkali and give hypochlorite instead. The asbestos lining is the diaphragm that lets the sodium ions through while keeping the two products apart, and the steam keeps the caustic soda solution warm and dilute so that it does not crystallise inside the asbestos.",
+        "common_mistakes": [
+          "Naming the carbon rod as the cathode. The carbon rod is the anode; the steel vessel is the cathode.",
+          "Leaving out the asbestos lining. Without it the chlorine and the alkali would mix and the cell would make hypochlorite."
+        ],
+        "memory_tip": "Steel vessel is the cathode, carbon rod is the anode, asbestos keeps the two products apart.",
+        "margin_note": "Two marks sit here: one for the principle and one for the construction. Write the construction as short numbered points."
+      },
+      {
+        "id": "s2_electrode_reactions",
+        "kind": "equation",
+        "label": "Electrode reactions",
+        "marks": 2,
+        "mark_note": "Electrode reactions",
+        "lines": [
+          {
+            "text": "NaCl → Na⁺ + Cl⁻",
+            "style": "eq"
+          },
+          {
+            "text": "At the anode: 2Cl⁻ → Cl₂ + 2e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "At the cathode: 2H₂O + 2e⁻ → 2OH⁻ + H₂",
+            "style": "eq"
+          },
+          {
+            "text": "Na⁺ + OH⁻ → NaOH",
+            "style": "eq"
+          },
+          "Chlorine is set free at the anode. Hydrogen",
+          "and sodium hydroxide are formed at the",
+          "cathode.",
+          "The sodium ions pass through the asbestos",
+          "and join the hydroxide ions there."
+        ],
+        "why": "Water, not the sodium ion, is reduced at the cathode, because water is far easier to reduce than Na⁺ in an aqueous solution. The hydroxide ions formed there meet the sodium ions that have crossed the asbestos, and the liquid drawn off is sodium hydroxide. The printed answer says the steam reacts with the sodium ions to form NaOH; the steam does not react, and the printed cathode equation itself shows that it is the water being reduced.",
+        "common_mistakes": [
+          "Writing Na⁺ + e⁻ → Na at the cathode. In water it is the water that is reduced, giving H₂ and OH⁻.",
+          "Writing Cl⁻ → Cl₂ + e⁻. Two chloride ions and two electrons are needed for the charge to balance."
+        ],
+        "memory_tip": "Chlorine at the anode, hydrogen at the cathode, sodium hydroxide left in the liquid.",
+        "margin_note": "Both half-reactions must appear, each with the electrons shown. One of the two marks here is for the electrons alone."
+      },
+      {
+        "id": "s3_naoh_cold",
+        "kind": "equation",
+        "label": "With cold dilute NaOH",
+        "marks": 1,
+        "mark_note": "Cold dilute",
+        "lines": [
+          "With cold dilute NaOH chlorine gives sodium",
+          "chloride and sodium hypochlorite.",
+          {
+            "text": "2NaOH + Cl₂ → NaCl + NaOCl + H₂O",
+            "style": "eq"
+          },
+          "Chlorine goes from 0 to −1 and to +1, so it",
+          "disproportionates."
+        ],
+        "why": "One chlorine atom is reduced to −1 in NaCl while the other is oxidised to +1 in NaOCl, so the element is oxidised and reduced in the same reaction; that is what disproportionation means. The equation balances with 2 Na, 2 Cl, 2 O and 2 H on each side.",
+        "common_mistakes": [
+          "Writing NaClO₃ here. The chlorate is the hot concentrated product; cold dilute alkali gives the hypochlorite.",
+          "Leaving out the water. The two hydrogen atoms of the alkali have to appear on the right."
+        ],
+        "memory_tip": "Cold and dilute gives the small number: hypochlorite, chlorine at +1.",
+        "margin_note": "Write the conditions, cold and dilute, beside the equation. Without them the two NaOH answers cannot be told apart."
+      },
+      {
+        "id": "s4_naoh_hot",
+        "kind": "equation",
+        "label": "With hot concentrated NaOH",
+        "marks": 1,
+        "mark_note": "Hot concentrated",
+        "lines": [
+          "With hot concentrated NaOH chlorine gives",
+          "sodium chloride and sodium chlorate.",
+          {
+            "text": "6NaOH + 3Cl₂ → 5NaCl + NaClO₃ + 3H₂O",
+            "style": "eq"
+          },
+          "Here chlorine goes from 0 to −1 and to +5."
+        ],
+        "why": "The same disproportionation is pushed further by the heat and the concentrated alkali, so the oxidised chlorine reaches +5 in the chlorate instead of +1 in the hypochlorite. Five of the six chlorine atoms are reduced and one is oxidised, which is where the coefficients 5 and 1 come from. The equation balances with 6 Na, 6 Cl, 6 O and 6 H on each side.",
+        "common_mistakes": [
+          "Writing 3NaCl instead of 5NaCl. One chlorine atom in six is oxidised, so five are reduced.",
+          "Giving the same product as the cold dilute reaction. Heat and concentration change the product, not just the rate."
+        ],
+        "memory_tip": "Hot and concentrated gives the big number: chlorate, chlorine at +5.",
+        "margin_note": "The coefficients are the hard part. Fix NaClO₃ as one, then the other five chlorine atoms are the NaCl."
+      },
+      {
+        "id": "s5_nh3_excess_cl2",
+        "kind": "equation",
+        "label": "With excess chlorine",
+        "marks": 1,
+        "mark_note": "Excess Cl₂",
+        "lines": [
+          "With excess chlorine, ammonia gives",
+          "nitrogen trichloride and hydrogen chloride.",
+          {
+            "text": "NH₃ + 3Cl₂ → NCl₃ + 3HCl",
+            "style": "eq"
+          },
+          "NCl₃ is an explosive yellow oil."
+        ],
+        "why": "With chlorine in excess, all three hydrogen atoms of the ammonia are replaced by chlorine atoms, so the product is NCl₃. The equation balances with 1 N, 3 H and 6 Cl on each side.",
+        "common_mistakes": [
+          "Writing NCl₃ as the product for both conditions. It forms only when chlorine is in excess.",
+          "Writing NH₃ + Cl₂ → NCl₃ + HCl unbalanced. Three Cl₂ are needed for one NH₃."
+        ],
+        "memory_tip": "Excess chlorine replaces all three hydrogen atoms, one at a time, giving NCl₃.",
+        "margin_note": "Write the word excess before chlorine. The condition is half of what is being marked."
+      },
+      {
+        "id": "s6_nh3_excess_nh3",
+        "kind": "boxed_final",
+        "label": "With excess ammonia",
+        "marks": 1,
+        "mark_note": "Excess NH₃",
+        "lines": [
+          "With excess ammonia, chlorine gives",
+          "nitrogen and ammonium chloride.",
+          {
+            "text": "8NH₃ + 3Cl₂ → N₂ + 6NH₄Cl",
+            "style": "eq"
+          },
+          {
+            "text": "The excess gas determines the product.",
+            "style": "boxed"
+          }
+        ],
+        "why": "With ammonia in excess the chlorine is used up oxidising two ammonia molecules to nitrogen, and the six HCl formed are neutralised at once by the six ammonia molecules left over, giving ammonium chloride. The equation balances with 8 N, 24 H and 6 Cl on each side.",
+        "common_mistakes": [
+          "Giving NCl₃ when ammonia is in excess. With excess ammonia the products are N₂ and NH₄Cl.",
+          "Writing NH₃Cl in place of NH₄Cl. The ammonium ion is NH₄⁺."
+        ],
+        "memory_tip": "Excess ammonia keeps the nitrogen safe: N₂ and NH₄Cl, no NCl₃.",
+        "margin_note": "Close with the boxed line. Both ammonia answers turn on which gas is in excess, and the examiner looks for that sentence."
+      }
+    ]
+  },
+  "insider_note": "Four of the eight marks are the four condition pairs: cold dilute against hot concentrated, excess chlorine against excess ammonia. Write the condition beside every equation, because the equations alone cannot be told apart."
+}

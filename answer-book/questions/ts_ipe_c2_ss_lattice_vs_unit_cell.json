@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_lattice_vs_unit_cell",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you distinguish between crystal lattice and unit cell?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Crystal lattice",
+      "marks": 1
+    },
+    {
+      "label": "Unit cell",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO: the printed answer reads \"The regular and repeating a pattern of constituent particles\" (book p.62, VSAQ 4) with a stray \"a\". The definition is written without it here. The six parameters that fix a unit cell (a, b, c and the angles) are added from NCERT as the standard second half of the unit cell definition."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lattice",
+        "kind": "text",
+        "label": "Crystal lattice",
+        "marks": 1,
+        "mark_note": "Lattice",
+        "lines": [
+          "Crystal lattice: the regular repeating",
+          "three dimensional arrangement of the",
+          "constituent particles of a crystal.",
+          "Each point in it shows the position of one",
+          "particle, and every point has identical",
+          "surroundings."
+        ],
+        "why": "The lattice is the WHOLE ordered arrangement. It describes the crystal as a set of points, each standing for one particle, and the ordered repeat over the whole crystal is what makes the solid crystalline.",
+        "common_mistakes": [
+          "Describing the lattice as a single small box. That is the unit cell; the lattice is the complete arrangement.",
+          "Leaving out the words three dimensional. A crystal lattice repeats along all three directions."
+        ],
+        "memory_tip": "Lattice = the complete repeating arrangement. Unit cell = the smallest part that repeats.",
+        "margin_note": "Both halves are definitions, so write them as two labelled sentences. Labelled writing is what earns both marks quickly."
+      },
+      {
+        "id": "s2_unit_cell",
+        "kind": "boxed_final",
+        "label": "Unit cell",
+        "marks": 1,
+        "mark_note": "Unit cell",
+        "lines": [
+          {
+            "text": "Lattice = whole; unit cell = smallest part.",
+            "style": "boxed"
+          },
+          "Unit cell: the smallest portion of a crystal",
+          "lattice which, repeated in three dimensions,",
+          "generates the entire lattice.",
+          "It is fixed by the edge lengths a, b, c and",
+          "the angles α, β, γ."
+        ],
+        "why": "The unit cell is the repeating part, so it carries all the information about the lattice in the smallest possible volume. Naming the six parameters shows what \"repeated in three dimensions\" means in practice.",
+        "common_mistakes": [
+          "Leaving out the word smallest. Many portions of a lattice will regenerate it; only the smallest one is the unit cell.",
+          "Writing that a unit cell contains one particle. The number of particles in a unit cell depends on the type, for example 1 in simple cubic, 2 in bcc and 4 in fcc."
+        ],
+        "memory_tip": "Unit cell has three edge lengths and three angles, six parameters in all.",
+        "margin_note": "The word smallest and the phrase repeated in three dimensions are the two scoring words here."
+      }
+    ]
+  },
+  "insider_note": "Answer this as two labelled definitions, one line each, with the words smallest and repeated in three dimensions in the unit cell half. A single joined sentence usually earns only one mark."
+}

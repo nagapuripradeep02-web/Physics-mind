@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_types_of_molecular_mass",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the different types of molecular mass of polymers.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two averages",
+      "marks": 1
+    },
+    {
+      "label": "What each one measures",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 16 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK: the printed answer lists \"Number average molecular mass (Mn)\" and \"Weight average molecular mass (Mw)\", each with a bar over the M. Both are correct and are kept. GAP: the book does not say what either average means, or why two are needed, and never connects them to the polydispersity index it defines ten questions earlier; both are added here. NOTATION: Unicode has no subscript w, so the two are written Mw and Mn rather than with a bar and a subscript, the same call the bank makes for Kp and Kc."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_types",
+        "kind": "text",
+        "label": "The two averages",
+        "marks": 1,
+        "mark_note": "The two names",
+        "lines": [
+          "A polymer sample holds chains of many",
+          "different lengths, so a single molecular",
+          "mass cannot be quoted. Two averages are",
+          "used:",
+          "1. Number average molecular mass, Mn",
+          "2. Weight average molecular mass, Mw"
+        ],
+        "why": "A polymerisation stops each chain at a random point, so no two chains need be the same length. Any single figure would therefore be a choice of average, and these two are the useful choices.",
+        "common_mistakes": [
+          "Naming only one of the two. The question says types, so both are needed.",
+          "Writing atomic mass or formula mass. Those apply to a single molecule of fixed size."
+        ],
+        "memory_tip": "Number counts chains; weight counts mass.",
+        "margin_note": "The two names are the whole mark. Write both symbols beside them."
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What each one measures",
+        "marks": 1,
+        "mark_note": "What they measure",
+        "lines": [
+          {
+            "text": "PDI = Mw / Mn",
+            "style": "boxed"
+          },
+          "Mn counts every chain equally, so short",
+          "chains lower it.",
+          "Mw weights each chain by its own mass, so",
+          "long chains raise it.",
+          "Mw is therefore never smaller than Mn,",
+          "and their ratio is the polydispersity",
+          "index."
+        ],
+        "why": "The two averages differ only in what each chain is weighted by, one chain counted once against one chain counted by its mass. Since the heavier chains count for more in Mw, Mw is at least Mn, and the two are equal only when every chain has the same mass.",
+        "common_mistakes": [
+          "Writing that Mn is larger than Mw. It is the other way round, and the two are equal only when all chains have the same length.",
+          "Writing PDI = Mn / Mw. The weight average is on top."
+        ],
+        "memory_tip": "W for weight sits on top of the PDI ratio.",
+        "margin_note": "The ratio line is worth adding although the question does not ask for it; it shows the two averages were understood."
+      }
+    ]
+  },
+  "insider_note": "Two names are the answer, but the examiner expects the symbols Mn and Mw beside them. The PDI line links this question to the polydispersity one."
+}

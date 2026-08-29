@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_hcp_vs_ccp",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you distinguish between hexagonal close packing and cubic close packing structures?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The layer patterns",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book gives only the ABAB and ABCABC patterns with the examples. The equal packing efficiency of 74% and the co-ordination number of 12 are added from NCERT, so that a student does not read the two patterns as differing in how tightly they pack."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_patterns",
+        "kind": "text",
+        "label": "The layer patterns",
+        "marks": 1,
+        "mark_note": "Patterns",
+        "lines": [
+          "The two differ in the way the layers of",
+          "spheres repeat.",
+          "hcp: the layers repeat as ABABAB…",
+          "ccp: the layers repeat as ABCABC…",
+          "In hcp the third layer sits over the first.",
+          "In ccp the third layer takes a new position."
+        ],
+        "why": "Both structures place identical close packed layers one on top of another. The only choice is where the third layer goes: back over the first layer gives ABAB, into the remaining set of voids gives ABCABC. That single choice is the whole distinction.",
+        "common_mistakes": [
+          "Writing ABAB for ccp and ABCABC for hcp. The three letter pattern belongs to cubic close packing.",
+          "Saying one of them packs more tightly than the other. Both have packing efficiency 74% and co-ordination number 12."
+        ],
+        "memory_tip": "Hexagonal has two letters in its pattern, cubic has three: hcp is ABAB, ccp is ABCABC.",
+        "margin_note": "Write both patterns on the same line. The examiner is checking that the two letter sequences are not swapped."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "hcp → Mg, Zn.  ccp → Cu, Ag.",
+            "style": "boxed"
+          },
+          "ccp is also called face centred cubic (fcc).",
+          "Both have packing efficiency 74% and",
+          "co-ordination number 12."
+        ],
+        "why": "The second marking point is a named metal for each type. Adding that ccp and fcc are the same arrangement prevents the usual confusion in later questions, where the same structure appears under the other name.",
+        "common_mistakes": [
+          "Giving no example. In a two mark question the example is a separate marking point.",
+          "Treating ccp and fcc as two different structures. They are the same arrangement under two names."
+        ],
+        "memory_tip": "Copper and silver, the two coin metals, are the ccp pair. Magnesium and zinc are the hcp pair.",
+        "margin_note": "Two examples on one line finish the answer. Add ccp = fcc if there is room."
+      }
+    ]
+  },
+  "insider_note": "This mark is lost most often by swapping the two patterns. Write hcp = ABAB and ccp = ABCABC first, then the metals."
+}

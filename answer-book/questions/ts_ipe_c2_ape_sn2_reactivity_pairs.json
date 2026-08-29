@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_sn2_reactivity_pairs",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Which compound in each of the following pairs will react faster in SN2 reaction with OH⁻? i) CH₃Br or CH₃I, ii) (CH₃)₃CCl or CH₃Cl.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Pair i: the faster compound",
+      "marks": 1
+    },
+    {
+      "label": "Pair i: the reason",
+      "marks": 1
+    },
+    {
+      "label": "Pair ii: the faster compound",
+      "marks": 1
+    },
+    {
+      "label": "Pair ii: the reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.111 as Short Answer 10. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. THE BOOK HAS MISFILED THIS QUESTION. Both pairs are haloalkanes and neither is an alcohol, a phenol or an ether; the question belongs to the HALO ALKANES AND HALO ARENES sub-box that ends on book p.108, where the SN1 and SN2 mechanisms are set out. It is authored here because it is printed here, under this sub-box's Short Answer numbering, and a ref must exist for printed number 10. BOOK TYPOS: the printed answer reads \"CH₃–1 will react faster\" and \"bond dissociation enthalpy of C–1 bond\"; both are the digit 1 standing for the letter I, iodine. BOOK CHEMISTRY IS CORRECT on both pairs. BOOK GAP: the printed answer gives no bond enthalpy numbers, does not mention the leaving group, and gives neither equation. The values added (C–I about 240 kJ/mol, C–Br about 285, C–Cl about 330) are the standard ones and are not in the book. BALANCE CHECKED: CH₃I + OH⁻ → CH₃OH + I⁻ (C 1=1, H 4=4, O 1=1, I 1=1, charge −1 = −1); CH₃Cl + OH⁻ → CH₃OH + Cl⁻ (charge −1 = −1). TREND AND EXCEPTION: the card states the SN2 order 1° > 2° > 3° and names the exception on the same card — the order REVERSES for SN1, where the rate follows carbocation stability 3° > 2° > 1°, so with a weak nucleophile in a polar solvent (CH₃)₃CCl is far the faster of the pair. The question names SN2, so the SN2 order is the one to use."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pair_one_answer",
+        "kind": "equation",
+        "label": "Pair i: the faster compound",
+        "marks": 1,
+        "mark_note": "Answer i",
+        "lines": [
+          "i) CH₃I reacts faster than CH₃Br.",
+          {
+            "text": "CH₃I + OH⁻ → CH₃OH + I⁻",
+            "style": "eq"
+          },
+          "Both compounds have the same methyl",
+          "carbon, so the difference lies entirely in",
+          "the halogen."
+        ],
+        "why": "Both carbons are equally accessible, so crowding cannot be the reason here and the comparison must be about the halogen alone. Saying that first makes sure the second mark is spent on the halogen and not on the carbon.",
+        "common_mistakes": [
+          "Choosing CH₃Br because bromine is smaller. Size helps here rather than hindering: the larger iodide is the better leaving group.",
+          "Comparing the crowding at the two carbons. Both are methyl carbons, so the crowding is identical."
+        ],
+        "memory_tip": "Same carbon in both, so look only at the halogen. Iodine goes first.",
+        "margin_note": "Answer in the first line, then reason. A pair question is marked on the choice and the reason separately."
+      },
+      {
+        "id": "s2_pair_one_reason",
+        "kind": "text",
+        "label": "Pair i: the reason",
+        "marks": 1,
+        "mark_note": "Reason i",
+        "lines": [
+          "The C–I bond is the weakest of the",
+          "carbon–halogen bonds:",
+          {
+            "text": "C–I ≈ 240, C–Br ≈ 285, C–Cl ≈ 330 kJ/mol",
+            "style": "eq"
+          },
+          "The iodide ion is also the largest of the",
+          "halide ions, so its charge is spread over",
+          "the biggest volume and it is the most",
+          "stable leaving group.",
+          "A weaker bond and a better leaving group",
+          "together make CH₃I the faster."
+        ],
+        "why": "SN2 breaks the carbon–halogen bond in the same step as it makes the new one, so the strength of that bond appears directly in the rate. The stability of the departing ion counts for the same reason: the more stable the halide ion, the lower the energy of the transition state that leads to it.",
+        "common_mistakes": [
+          "Giving electronegativity as the reason. Iodine is the least electronegative halogen, so that argument gives the opposite answer.",
+          "Naming only the bond enthalpy. The leaving group ability is the second half of the reason and is often marked."
+        ],
+        "memory_tip": "Weakest bond, biggest ion, best leaving group. All three point at iodine.",
+        "margin_note": "Quoting one bond enthalpy figure is enough. The comparison is what is marked, not the exact number."
+      },
+      {
+        "id": "s3_pair_two_answer",
+        "kind": "equation",
+        "label": "Pair ii: the faster compound",
+        "marks": 1,
+        "mark_note": "Answer ii",
+        "lines": [
+          "ii) CH₃Cl reacts faster than (CH₃)₃CCl.",
+          {
+            "text": "CH₃Cl + OH⁻ → CH₃OH + Cl⁻",
+            "style": "eq"
+          },
+          "Both compounds carry chlorine, so this",
+          "time the difference lies entirely in the",
+          "carbon."
+        ],
+        "why": "The halogen is the same in both, so the bond strength and the leaving group are identical and the comparison must be about the carbon that carries the chlorine. That is the mirror image of pair i, and saying so shows the two parts are being answered for different reasons.",
+        "common_mistakes": [
+          "Choosing (CH₃)₃CCl because a tertiary halide is usually called the most reactive. That is true for SN1, not for SN2.",
+          "Comparing the C–Cl bond strengths. Both are C–Cl bonds, so they are effectively the same."
+        ],
+        "memory_tip": "Same halogen in both, so look only at the carbon. The plain methyl carbon goes first.",
+        "margin_note": "Say which factor is being compared in each pair. The examiner is looking for two different reasons, not one repeated."
+      },
+      {
+        "id": "s4_pair_two_reason",
+        "kind": "boxed_final",
+        "label": "Pair ii: the reason",
+        "marks": 1,
+        "mark_note": "Reason ii",
+        "lines": [
+          "In SN2 the OH⁻ bonds to the carbon from the",
+          "side opposite the chlorine, in one step.",
+          "In (CH₃)₃CCl three methyl groups are on",
+          "that side and block the approach.",
+          "In CH₃Cl the carbon carries only three",
+          "small hydrogens, so the approach is not blocked.",
+          {
+            "text": "SN2 rate: 1° > 2° > 3°",
+            "style": "boxed"
+          },
+          "For SN1 the order is the reverse,",
+          "3° > 2° > 1°."
+        ],
+        "why": "SN2 has one step, so everything happens at a crowded transition state and steric hindrance determines the rate. SN1 has two steps and its rate depends on the stability of the carbocation formed first, which is why the order reverses. The question names SN2, so the SN2 order is the one that applies.",
+        "common_mistakes": [
+          "Quoting the order 3° > 2° > 1° here. That is SN1; the question says SN2.",
+          "Explaining the answer by the inductive effect of the methyl groups. The reason is steric, the three groups blocking the approach."
+        ],
+        "memory_tip": "SN2 is one crowded step, so the least crowded carbon reacts fastest. SN1 is two steps, so the most stable carbocation is formed.",
+        "margin_note": "Write both orders and mark which is SN2. The contrast is what stops the two being confused in the exam."
+      }
+    ]
+  },
+  "insider_note": "The two pairs test two different factors: pair i is about the halogen and pair ii is about the carbon. Give the same reason twice and one mark is lost. Note also that the SN2 order 1° > 2° > 3° is the reverse of the SN1 order."
+}

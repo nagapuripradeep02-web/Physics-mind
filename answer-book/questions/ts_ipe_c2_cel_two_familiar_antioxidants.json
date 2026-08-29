@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_two_familiar_antioxidants",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name two most familiar antioxidants used as food additives.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two names in full",
+      "marks": 1
+    },
+    {
+      "label": "What they are and what they do",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.106 as VSAQ 16. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.106, VSAQ 16): the printed answer is only the two names, \"Butylated hydroxy toluene (B H T); Butylated hydroxy anisole (B H A)\". Correct, but nothing is said about what they are or where they are used. Both are phenolic compounds, and adding BHA to butter raises its storage life from months to years; that is added here. OVERLAP INSIDE THE UNIT: VSAQ 12 of this same unit asks what is meant by an antioxidant and is authored as ts_ipe_c2_cel_antioxidant_meaning. The two cards are deliberately split: that one carries the definition and the mechanism, this one carries the two names in full with what they are and where they are used. Neither restates the other's marked lines."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_names",
+        "kind": "text",
+        "label": "The two names in full",
+        "marks": 1,
+        "mark_note": "The two names",
+        "lines": [
+          "The two most familiar antioxidants used",
+          "as food additives are:",
+          {
+            "text": "1) Butylated hydroxy toluene (BHT)",
+            "style": "indent"
+          },
+          {
+            "text": "2) Butylated hydroxy anisole (BHA)",
+            "style": "indent"
+          }
+        ],
+        "why": "The question asks for names, so the full names carry the mark and the short forms are written beside them in brackets. BHT is the toluene compound and BHA is the anisole compound, and the last letter of each short form is the letter that keeps them apart.",
+        "common_mistakes": [
+          "Writing only BHA and BHT. The question asks for names, and the full names are what earn the mark.",
+          "Swapping the two: BHT is butylated hydroxy toluene and BHA is butylated hydroxy anisole."
+        ],
+        "memory_tip": "The last letter matches the parent: T for toluene, A for anisole.",
+        "margin_note": "Write both full names with the short form in brackets. Number them so the examiner can count two."
+      },
+      {
+        "id": "s2_what_they_do",
+        "kind": "boxed_final",
+        "label": "What they are and what they do",
+        "marks": 1,
+        "mark_note": "Nature and use",
+        "lines": [
+          "Both are phenolic compounds.",
+          {
+            "text": "They are added to butter, oils and fats",
+            "style": "boxed"
+          },
+          "to stop them turning rancid.",
+          "They react with oxygen before the fat",
+          "does, so the fat is oxidised later.",
+          "Adding BHA to butter raises its storage",
+          "life from months to years."
+        ],
+        "why": "Both compounds are phenols, and a phenol is oxidised readily, which is why they react with the oxygen before the fat does. The butter figure is the one the examiner asks for as a follow-up, because it shows how large the effect is for a very small amount added.",
+        "common_mistakes": [
+          "Writing sodium benzoate here. That is a preservative, and it acts against micro-organisms, not oxygen.",
+          "Writing that BHA removes the oxygen from the packet. It reacts with oxygen before the fat does; it does not empty the packet."
+        ],
+        "memory_tip": "Both are phenols, and a phenol is oxidised readily, so it is oxidised before the fat is.",
+        "margin_note": "One use with a reason finishes this mark. The butter storage figure is worth the extra line."
+      }
+    ]
+  },
+  "insider_note": "The names alone are the first mark, so write them in full and not as BHA and BHT. The second mark comes from one use with a reason: they are oxidised before the fat is."
+}

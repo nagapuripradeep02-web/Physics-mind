@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_reagents_for_oxidation_of_primary_alcohol",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the reagents used in the following reactions: i) oxidation of primary alcohol to carboxylic acid, ii) oxidation of primary alcohol to aldehyde.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reagent for the carboxylic acid",
+      "marks": 1
+    },
+    {
+      "label": "Reagent for the aldehyde",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.109 as Very Short Answer 2. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ANSWER, EXPANDED: the printed answer is two words per part — \"i) Acid KMnO₄\" and \"ii) PCC or CrO₃ in anhydrous medium\". Three things are added. First, the equations, which the book gives for neither part. Second, the reason the aldehyde reagent must be anhydrous: in water the aldehyde is oxidised straight on to the acid, so the mild reagent only works in a dry medium and the aldehyde is distilled off as it forms. Third, the note that alkaline KMnO₄ gives the carboxylate SALT and needs dilute acid afterwards to give the free acid. BOOK SLOPPINESS: \"CrO₃ in anhydrous medium\" is written as though CrO₃ alone were a mild reagent; CrO₃ stops at the aldehyde only when the medium is anhydrous, and in aqueous acid the same reagent gives the carboxylic acid. TREND AND EXCEPTION: the card states the oxidation order (1° gives an aldehyde then an acid, 2° gives a ketone, 3° is not oxidised under these conditions) and names the exception on the same card — a tertiary alcohol DOES react with hot acidic oxidising mixtures, but it dehydrates first and the double bond is then broken, giving a mixture of smaller ketones and acids."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alcohols, Phenols and Ethers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_to_carboxylic_acid",
+        "kind": "equation",
+        "label": "Reagent for the carboxylic acid",
+        "marks": 1,
+        "mark_note": "Strong oxidant",
+        "lines": [
+          "i) Acidified KMnO₄.",
+          "Acidified K₂Cr₂O₇ does the same work.",
+          {
+            "text": "R–CH₂OH + 2[O] → R–COOH + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "C₂H₅OH + 2[O] → CH₃COOH + H₂O",
+            "style": "eq"
+          },
+          "With alkaline KMnO₄ the product is the",
+          "carboxylate salt, so dilute acid is added",
+          "at the end to give the free acid."
+        ],
+        "why": "A carboxylic acid is two oxidation steps above a primary alcohol: the alcohol first gives the aldehyde, and the aldehyde is oxidised again. A strong oxidising agent in an aqueous acidic medium never stops at the aldehyde, so it goes all the way to the acid.",
+        "common_mistakes": [
+          "Naming PCC here. PCC is the mild reagent and stops at the aldehyde.",
+          "Writing one [O] instead of two. Two oxygen atoms are needed, one for each step."
+        ],
+        "memory_tip": "Strong oxidant in water carries the oxidation through both steps: alcohol to aldehyde to acid.",
+        "margin_note": "The word acidified is part of the answer. KMnO₄ alone does not say which product you will get."
+      },
+      {
+        "id": "s2_to_aldehyde",
+        "kind": "boxed_final",
+        "label": "Reagent for the aldehyde",
+        "marks": 1,
+        "mark_note": "Mild oxidant",
+        "lines": [
+          "ii) PCC, that is pyridinium chlorochromate,",
+          "in dichloromethane.",
+          "CrO₃ in an anhydrous medium also works.",
+          {
+            "text": "R–CH₂OH + [O] → R–CHO + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "PCC stops at the aldehyde",
+            "style": "boxed"
+          },
+          "The medium must be dry, because in water",
+          "the aldehyde is oxidised on to the acid."
+        ],
+        "why": "The aldehyde is the intermediate, so getting it out means stopping the reaction halfway. PCC is a mild reagent used in a dry solvent, and the aldehyde is distilled off as it forms. The oxidation order is: 1° gives an aldehyde and then an acid, 2° gives a ketone, 3° is not oxidised under these conditions. The exception is a hot acidic oxidising mixture, which does react with a tertiary alcohol — it removes water first and then breaks the double bond, giving a mixture of smaller ketones and acids.",
+        "common_mistakes": [
+          "Leaving out the word anhydrous. In water the same chromium reagent gives the carboxylic acid, not the aldehyde.",
+          "Saying a tertiary alcohol can never be oxidised. Under hot acidic conditions it dehydrates and the double bond is then broken."
+        ],
+        "memory_tip": "PCC is the mild one and it is used dry, so the reaction stops one step early at the aldehyde.",
+        "margin_note": "Expand PCC to pyridinium chlorochromate once. The full name is worth writing where the question says name the reagent."
+      }
+    ]
+  },
+  "insider_note": "One mark per part, so both reagents must be named. The commonest loss is naming K₂Cr₂O₇ or KMnO₄ for both parts: the second part is asking for the MILD reagent, and only PCC or anhydrous CrO₃ earns it."
+}

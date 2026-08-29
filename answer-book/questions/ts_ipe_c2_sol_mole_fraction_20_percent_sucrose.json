@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_mole_fraction_20_percent_sucrose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A solution of sucrose in water is labeled as 20% (w/w). What would be the mole fraction of each component in the solution?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Moles of each component",
+      "marks": 1
+    },
+    {
+      "label": "The two mole fractions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. ARITHMETIC RECHECKED: 20/342 = 0.05848, 80/18 = 4.4444, total 4.5029, 0.05848/4.5029 = 0.01299, so 0.013 and 0.987 as printed are both correct. BOOK SLOPPINESS (book p.66, VSAQ 13): the book prints n(water) = 80/18 = 4.45 and then uses 4.503 for the total, which needs 4.4444, not 4.45 (4.45 + 0.05848 = 4.508). The rounded value and the total do not come from the same number. This card carries 4.444 throughout. The book also labels sucrose as component 1 and water as component 2, the opposite of the usual convention where the solvent is 1; this card names the components in words instead, so no convention has to be guessed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "equation",
+        "label": "Moles of each component",
+        "marks": 1,
+        "mark_note": "Moles",
+        "lines": [
+          "20% w/w means 20 g of sucrose in every",
+          "100 g of SOLUTION.",
+          "Mass of water = 100 − 20 = 80 g",
+          "Sucrose is C₁₂H₂₂O₁₁.",
+          "Molar mass = 342 g mol⁻¹",
+          {
+            "text": "n(sucrose) = 20 / 342 = 0.0585 mol",
+            "style": "eq"
+          },
+          {
+            "text": "n(water) = 80 / 18 = 4.444 mol",
+            "style": "eq"
+          }
+        ],
+        "why": "Taking 100 g of solution as the basis turns the label straight into the two masses. Each mass is then divided by its own molar mass, because a mole fraction compares numbers of moles: 20 g of sucrose is a small number of large molecules, while 80 g of water is a large number of small ones.",
+        "common_mistakes": [
+          "Taking 20 g of sucrose in 100 g of water. The label is per 100 g of solution, so the water is 80 g.",
+          "Using 180 for the molar mass of sucrose. 180 g mol⁻¹ is glucose; sucrose C₁₂H₂₂O₁₁ is 342 g mol⁻¹."
+        ],
+        "memory_tip": "20% w/w: 20 g of sucrose, 80 g of water, 100 g of solution.",
+        "margin_note": "Both mole values are needed for this mark. Show the molar masses 342 and 18 on the page."
+      },
+      {
+        "id": "s2_mole_fractions",
+        "kind": "boxed_final",
+        "label": "The two mole fractions",
+        "marks": 1,
+        "mark_note": "Mole fractions",
+        "lines": [
+          "Total moles = 0.0585 + 4.444 = 4.503 mol",
+          {
+            "text": "x(sucrose) = 0.0585 / 4.503 = 0.013",
+            "style": "eq"
+          },
+          {
+            "text": "x(water) = 1 − 0.013 = 0.987",
+            "style": "eq"
+          },
+          {
+            "text": "x(sucrose) = 0.013, x(water) = 0.987",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each mole fraction is that component's moles divided by the total, and the two must add to 1, so the second one is quickest as 1 minus the first. The sucrose value is small because 20 g of a 342 g mol⁻¹ solid is only 0.0585 mol against 4.444 mol of water: mass per cent and mole fraction are very different numbers for a heavy solute.",
+        "common_mistakes": [
+          "Reporting the mole fraction of sucrose as 0.20. That is the mass fraction; the mole fraction is 0.013.",
+          "Dividing by the moles of water instead of by the total moles. The denominator is the sum of both."
+        ],
+        "memory_tip": "Find the small one by division, then get the other as 1 minus it.",
+        "margin_note": "The question says \"each component\", so both values must be written. One value alone is half this mark."
+      }
+    ]
+  },
+  "insider_note": "The question asks for EACH component, so an answer that stops at 0.013 is only half done. Write x(water) = 0.987 on the next line; it costs one subtraction."
+}

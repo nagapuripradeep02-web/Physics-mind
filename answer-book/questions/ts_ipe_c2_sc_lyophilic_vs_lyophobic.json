@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_lyophilic_vs_lyophobic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How are colloids classified on the basis of interaction between dispersed phase and dispersion medium?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The basis of the classification",
+      "marks": 1
+    },
+    {
+      "label": "Lyophilic sols",
+      "marks": 1
+    },
+    {
+      "label": "Lyophobic sols",
+      "marks": 1
+    },
+    {
+      "label": "The differences",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.78, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed question ends \"dispersion medium ?\" with a space before the mark; the space is typesetting and is not reproduced. The printed answer is correct: lyophilic sols have great affinity for the medium, are reversible and are generally stable; lyophobic sols have no affinity, are irreversible and are less stable. BOOK GAP (book p.78, SAQ 5): the book never says HOW each type is prepared, which is the practical difference between them, and never says that a lyophobic sol needs a stabilising agent. Both are added from NCERT. The names hydrophilic and hydrophobic, used when the medium is water, are also added, because the micelle questions in the same unit use those words for the same idea."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Surface Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_basis",
+        "kind": "text",
+        "label": "The basis of the classification",
+        "marks": 1,
+        "mark_note": "The basis",
+        "lines": [
+          "Colloids are classified by the affinity",
+          "between the dispersed phase and the",
+          "dispersion medium.",
+          "On this basis there are two types:",
+          "1) Lyophilic sols, in which the dispersed",
+          "phase has affinity for the medium.",
+          "2) Lyophobic sols, in which it has no",
+          "affinity for the medium.",
+          "When the medium is water the two are",
+          "called hydrophilic and hydrophobic."
+        ],
+        "why": "Lyo means the medium and the second half of each word says whether there is affinity for it or not. Every other difference between the two types, how the sol is prepared, whether it can be re-formed, and how stable it is, follows from that one property, so the classification has to be stated in terms of affinity.",
+        "common_mistakes": [
+          "Classifying by the state of the two phases. That gives sols, gels and emulsions, which is a different classification.",
+          "Writing hydrophilic when the medium is not water. Hydrophilic is the special name used only for a water medium."
+        ],
+        "memory_tip": "Lyo means the medium. Philic means affinity for it, phobic means none.",
+        "margin_note": "Name the basis in the first line, then the two types. Both names carry this mark."
+      },
+      {
+        "id": "s2_lyophilic",
+        "kind": "text",
+        "label": "Lyophilic sols",
+        "marks": 1,
+        "mark_note": "Lyophilic",
+        "lines": [
+          "Lyophilic sols: the particles of the",
+          "dispersed phase have great affinity for",
+          "the dispersion medium.",
+          "They are prepared by simply mixing the",
+          "substance with the medium.",
+          "They are reversible: the sol forms again",
+          "when the medium is added back to the dried",
+          "residue.",
+          "They are stable and need no stabilising",
+          "agent.",
+          "Ex: gum, starch, protein, gelatin."
+        ],
+        "why": "Affinity for the medium is what makes these sols easy to make and hard to coagulate. The dispersed particles are surrounded by a layer of the medium, and that layer keeps them apart without any added stabiliser, which is why a lyophilic sol also survives drying and re-mixing.",
+        "common_mistakes": [
+          "Writing that a special method is needed to prepare them. Simple mixing is enough for a lyophilic sol.",
+          "Calling them irreversible. It is the lyophobic sols that cannot be re-formed by adding the medium back."
+        ],
+        "memory_tip": "Affinity for the medium, so easy to make, easy to re-make, and stable.",
+        "margin_note": "Four short lines are enough: affinity, preparation, reversible, stable. Then the examples."
+      },
+      {
+        "id": "s3_lyophobic",
+        "kind": "text",
+        "label": "Lyophobic sols",
+        "marks": 1,
+        "mark_note": "Lyophobic",
+        "lines": [
+          "Lyophobic sols: the particles of the",
+          "dispersed phase have no affinity for the",
+          "dispersion medium.",
+          "They cannot be prepared by simple mixing;",
+          "special methods such as Bredig's arc",
+          "method or peptisation are needed.",
+          "They are irreversible: once coagulated,",
+          "adding the medium back does not give the",
+          "sol again.",
+          "They are less stable and need a",
+          "stabilising agent.",
+          "Ex: gold sol, other metal sols, sols of",
+          "metal sulphides and oxides."
+        ],
+        "why": "With no affinity for the medium, nothing keeps these particles dispersed except the charge they carry, so a small amount of electrolyte coagulates them and the change cannot be reversed. This is also why they have to be made by special methods rather than by mixing.",
+        "common_mistakes": [
+          "Writing that a lyophobic sol re-forms on adding the medium. It does not; that is the meaning of irreversible.",
+          "Giving starch or gelatin as an example. Those are lyophilic; gold sol and metal sulphide sols are lyophobic."
+        ],
+        "memory_tip": "No affinity, so special preparation, no re-forming, and a stabiliser is needed.",
+        "margin_note": "Keep the same four headings as the previous step. The parallel order is what shows the contrast."
+      },
+      {
+        "id": "s4_differences",
+        "kind": "boxed_final",
+        "label": "The differences",
+        "marks": 1,
+        "mark_note": "Differences",
+        "lines": [
+          {
+            "text": "Affinity present, or affinity absent.",
+            "style": "boxed"
+          },
+          "1) Affinity for the medium: present in",
+          "lyophilic, absent in lyophobic.",
+          "2) Preparation: simple mixing against",
+          "special methods.",
+          "3) Reversal: reversible against",
+          "irreversible.",
+          "4) Stability: stable without a stabiliser",
+          "against less stable and needing one."
+        ],
+        "why": "The question asks how colloids are classified, and a classification is only shown by putting the two classes side by side. Each numbered pair takes one property and gives both answers to it, which is the form an examiner can mark line by line.",
+        "common_mistakes": [
+          "Describing one type only. A classification needs both classes written against each other.",
+          "Repeating affinity in three different words. Preparation, reversal and stability are separate properties and each is a separate point."
+        ],
+        "memory_tip": "Affinity, preparation, reversal, stability. Four properties, two answers each.",
+        "margin_note": "Four paired lines finish the answer. This is the mark most often lost by stopping after the two descriptions."
+      }
+    ]
+  },
+  "insider_note": "The two descriptions carry only half of the four marks. The basis of the classification and the paired differences carry the other half, so finish with the differences, written one property to a line."
+}

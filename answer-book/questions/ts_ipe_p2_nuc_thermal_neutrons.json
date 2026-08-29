@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_thermal_neutrons",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are thermal neutrons? What is their importance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Importance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the mean thermal energy at about 300 K is kT ≈ 0.025 eV, the standard value quoted for a thermal neutron. The capture cross-section of ²³⁵U for thermal neutrons is far larger than for fast neutrons, which is why a moderator is used. The book writes only \"slow moving neutrons\"; the energy figure is added here because it is the number the mark scheme uses."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Slow neutrons of about 0.025 eV",
+        "lines": [
+          "Thermal neutrons: slow-moving neutrons whose",
+          "kinetic energy is about 0.025 eV, the same as",
+          "the thermal energy of their surroundings at",
+          "ordinary temperature."
+        ],
+        "margin_note": "First mark. \"Slow\" plus the value 0.025 eV.",
+        "why": "A neutron is called thermal once repeated collisions in the moderator have brought its energy down to the thermal energy of the material it moves through — it is then in step with the temperature of the surroundings.",
+        "common_mistakes": [
+          "Writing 0.025 MeV. Thermal energy is 0.025 eV, a million times smaller.",
+          "Calling them hot neutrons. \"Thermal\" here means slowed to room-temperature energy."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That thermal neutrons are slow neutrons with kinetic energy about 0.025 eV, in thermal equilibrium with their surroundings.",
+          "accept": [
+            "slow moving neutrons",
+            "zero point zero two five electron volt",
+            "in thermal equilibrium with the surroundings"
+          ],
+          "reject": [
+            "they cause fission in uranium two thirty five"
+          ],
+          "heard_as": [
+            "thermal neutron",
+            "slow neutron",
+            "electron volt"
+          ]
+        },
+        "memory_tip": "Thermal = slowed to the temperature of the material around it."
+      },
+      {
+        "id": "s2_importance",
+        "kind": "boxed_final",
+        "label": "Importance",
+        "marks": 1,
+        "mark_note": "They cause fission in ²³⁵U",
+        "lines": [
+          "Importance: ²³⁵U captures a thermal neutron",
+          "far more readily than a fast one.",
+          "Thermal neutrons therefore cause nuclear",
+          "fission and sustain the chain reaction in a",
+          "reactor.",
+          {
+            "text": "Slow neutrons ⇒ fission in ²³⁵U",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name fission and the chain reaction.",
+        "why": "The capture cross-section of ²³⁵U rises steeply as the neutron slows, so a moderator is placed in the reactor for exactly this purpose.",
+        "common_mistakes": [
+          "Saying fast neutrons are better for fission. It is the other way round for ²³⁵U.",
+          "Naming no isotope. The mark scheme expects ²³⁵U."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That thermal neutrons are captured readily by uranium-235 and cause fission, sustaining the chain reaction in a reactor.",
+          "accept": [
+            "they produce nuclear fission",
+            "captured by uranium two thirty five",
+            "sustain the chain reaction"
+          ],
+          "reject": [
+            "slow moving neutrons"
+          ],
+          "heard_as": [
+            "fission",
+            "uranium two thirty five",
+            "chain reaction"
+          ]
+        },
+        "memory_tip": "Slow the neutron down and ²³⁵U catches it — that is the whole job of the moderator."
+      }
+    ]
+  },
+  "insider_note": "Give the energy figure 0.025 eV as well as the word \"slow\"; the second mark is the link to fission in ²³⁵U."
+}

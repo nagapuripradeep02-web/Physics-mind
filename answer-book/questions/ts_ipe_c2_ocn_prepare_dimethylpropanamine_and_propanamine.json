@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_prepare_dimethylpropanamine_and_propanamine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How do you prepare the following? i) N,N-dimethylpropanamine from ammonia  ii) Propanamine from chloroethane",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "N,N-dimethylpropanamine from ammonia",
+      "marks": 2
+    },
+    {
+      "label": "Propanamine from chloroethane",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.116 as SAQ 3. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, corrected on this card: two of the printed equations do not balance. The book writes \"NH₃ + C₃H₇Cl → C₃H₇–NH₂\" with the chlorine simply gone; with excess ammonia the balanced form is C₃H₇Cl + 2NH₃ → C₃H₇NH₂ + NH₄Cl. It also writes \"CH₃–CH₂Cl —NaCN, ethanolic→ CH₃CH₂CN\" with the sodium and the chlorine gone; the balanced form is C₂H₅Cl + NaCN → C₂H₅CN + NaCl. Both are written balanced here. BOOK GAPS, filled here: (1) the book does not say that EXCESS ammonia is used in the first step, which is what keeps further alkylation down; (2) it does not say that route (ii) works because the cyanide route ADDS one carbon — chloroethane has two carbons and propanamine has three, so simple ammonolysis of chloroethane could never give it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_from_ammonia",
+        "kind": "equation",
+        "label": "From ammonia",
+        "marks": 2,
+        "mark_note": "Part (i)",
+        "lines": [
+          "Ammonia is alkylated three times over: once",
+          "by 1-chloropropane and twice by",
+          "chloromethane.",
+          {
+            "text": "C₃H₇Cl + 2NH₃ → C₃H₇NH₂ + NH₄Cl",
+            "style": "eq"
+          },
+          {
+            "text": "[excess NH₃]",
+            "style": "indent"
+          },
+          {
+            "text": "C₃H₇NH₂ + CH₃Cl → C₃H₇NHCH₃ + HCl",
+            "style": "eq"
+          },
+          {
+            "text": "C₃H₇NHCH₃ + CH₃Cl →",
+            "style": "eq"
+          },
+          {
+            "text": "C₃H₇N(CH₃)₂ + HCl",
+            "style": "indent"
+          },
+          "The product is N,N-dimethylpropanamine.",
+          "Excess ammonia is used in the first step so",
+          "that most of the halide meets ammonia and",
+          "not the amine already made."
+        ],
+        "why": "Ammonolysis replaces one hydrogen of ammonia at a time, so each alkyl group needs its own halide and its own step. The order matters: the propyl group is put on first from 1-chloropropane, then the two methyl groups from chloromethane. Ammonia is a nucleophile and the halide supplies the alkyl group.",
+        "common_mistakes": [
+          "Writing the first step with the chlorine simply left out. With excess ammonia it leaves as ammonium chloride, so the equation balances.",
+          "Adding all three alkyl groups in one arrow. Each substitution is a separate step with its own halide."
+        ],
+        "memory_tip": "Propyl on first, then methyl, then methyl again. Three groups on nitrogen need three separate arrows.",
+        "margin_note": "Three balanced equations carry these two marks. Naming the final product in words finishes the answer."
+      },
+      {
+        "id": "s2_from_chloroethane",
+        "kind": "boxed_final",
+        "label": "From chloroethane",
+        "marks": 2,
+        "mark_note": "Part (ii)",
+        "lines": [
+          "Chloroethane has two carbons and",
+          "propanamine has three, so one carbon must",
+          "be added. The cyanide route does that.",
+          {
+            "text": "C₂H₅Cl + NaCN → C₂H₅CN + NaCl",
+            "style": "eq"
+          },
+          {
+            "text": "[alcoholic NaCN]",
+            "style": "indent"
+          },
+          {
+            "text": "C₂H₅CN + 4[H] → C₂H₅CH₂NH₂",
+            "style": "eq"
+          },
+          {
+            "text": "[LiAlH₄ or Na/C₂H₅OH]",
+            "style": "indent"
+          },
+          {
+            "text": "Product: CH₃CH₂CH₂NH₂, propan-1-amine",
+            "style": "boxed"
+          }
+        ],
+        "why": "The cyanide ion adds its own carbon atom to the chain, so the chain grows from two carbons to three. Reducing the nitrile then converts –C≡N into –CH₂–NH₂ without changing the chain length again. Ammonolysis of chloroethane could not be used, because it would give ethanamine with only two carbons.",
+        "common_mistakes": [
+          "Treating chloroethane with ammonia. That gives ethanamine, which has two carbons, not three.",
+          "Leaving the sodium chloride out of the first equation. The equation must balance in sodium and chlorine as well as carbon."
+        ],
+        "memory_tip": "Cyanide adds a carbon, reduction adds four hydrogens. Two carbons in, three carbons out.",
+        "margin_note": "Count the carbons in the question first: if the product is longer than the starting material, the cyanide route is the one wanted."
+      }
+    ]
+  },
+  "insider_note": "Part (ii) is a counting question before it is a chemistry question — chloroethane has two carbons and propanamine has three, so a route that adds a carbon is needed and only the cyanide route does that. Both printed equations in the book are unbalanced; write yours with NH₄Cl and NaCl on the right."
+}

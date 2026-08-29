@@ -1,0 +1,183 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_doppler_effect_in_light",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain Doppler effect in light. Distinguish between red shift and blue shift.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the Doppler effect in light is",
+      "marks": 2
+    },
+    {
+      "label": "Blue shift",
+      "marks": 1
+    },
+    {
+      "label": "Red shift",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: for relative speed v much smaller than c, Δλ/λ = v/c; on approach the observed wavelength decreases (blue shift, λ′ < λ) and on recession it increases (red shift, λ′ > λ); frequency shifts the opposite way to wavelength in each case. The book writes the formulas with the source speed Vₛ and does not state the v ≪ c condition — the condition is added here because the first-order formula is only valid under it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Keep the pairing straight — approach means blue shift, moving apart means red shift; one swapped pair loses both distinguishing marks.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Wave Optics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What the Doppler effect in light is",
+        "marks": 2,
+        "mark_note": "Apparent change in frequency and wavelength",
+        "lines": [
+          "When a light source and an observer move",
+          "relative to each other, the frequency and",
+          "the wavelength of the light, as measured by",
+          "the observer, differ from the emitted values.",
+          "This apparent change in the frequency or",
+          "wavelength of light is called the Doppler",
+          "effect in light.",
+          "For a relative speed v much smaller than c,",
+          "the size of the wavelength shift is",
+          {
+            "text": "Δλ = (v/c) λ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. Say APPARENT change, say it is measured by the observer, and give the shift formula with its condition v ≪ c.",
+        "why": "The source emits the same light throughout — what changes is what the observer measures, which is why the word apparent matters. The formula Δλ = (v/c)λ is the first-order result and holds only when the relative speed is much smaller than c.",
+        "common_mistakes": [
+          "Saying the source starts emitting a different wavelength. The emission is unchanged; the observed values shift.",
+          "Writing Δλ = (v/c)λ without the condition v ≪ c. At speeds near c the full relativistic formula is needed.",
+          "Saying the speed of light changes. The speed stays c; frequency and wavelength shift together so that their product stays c."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That relative motion between source and observer makes the observed frequency and wavelength differ from the emitted values, with shift Δλ = (v/c)λ for v much smaller than c.",
+          "accept": [
+            "apparent change in frequency and wavelength",
+            "source and observer move relative to each other",
+            "delta lambda is v by c times lambda"
+          ],
+          "reject": [
+            "spectral lines move toward the blue end"
+          ],
+          "heard_as": [
+            "Doppler effect",
+            "v by c",
+            "relative motion"
+          ]
+        },
+        "memory_tip": "One formula, two signs: Δλ = (v/c)λ, minus on approach, plus on recession."
+      },
+      {
+        "id": "s2_blue_shift",
+        "kind": "text",
+        "label": "Blue shift",
+        "marks": 1,
+        "mark_note": "Approach: wavelength decreases",
+        "lines": [
+          "Blue shift: when the source and the observer",
+          "approach each other, the observed frequency",
+          "increases and the wavelength decreases.",
+          "The spectral lines move toward the blue end",
+          "of the spectrum.",
+          {
+            "text": "Δλ = −(v/c) λ, so λ′ < λ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "One mark. Approach → frequency up, wavelength down, lines toward blue. Give all three.",
+        "why": "On approach, successive wave crests are emitted from closer and closer positions, so they arrive more often: frequency rises and wavelength falls. Blue is the short-wavelength end, so the lines move toward blue.",
+        "common_mistakes": [
+          "Writing that the frequency and the wavelength both increase. They move in opposite directions; their product must stay c.",
+          "Pairing approach with red shift. Approach compresses the waves — that is the blue shift."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That when source and observer approach, frequency increases, wavelength decreases, and the spectral lines move toward the blue end.",
+          "accept": [
+            "approach gives blue shift",
+            "wavelength decreases on approach",
+            "lines move to the blue end"
+          ],
+          "reject": [
+            "wavelength increases"
+          ],
+          "heard_as": [
+            "blue shift",
+            "approaching"
+          ]
+        },
+        "memory_tip": "Coming closer compresses the waves — shorter wavelength is the blue side."
+      },
+      {
+        "id": "s3_red_shift",
+        "kind": "boxed_final",
+        "label": "Red shift",
+        "marks": 1,
+        "mark_note": "Recession: wavelength increases",
+        "lines": [
+          "Red shift: when the source and the observer",
+          "move away from each other, the observed",
+          "frequency decreases and the wavelength",
+          "increases. The spectral lines move toward",
+          "the red end of the spectrum.",
+          {
+            "text": "Δλ = +(v/c) λ, so λ′ > λ",
+            "style": "eq"
+          },
+          {
+            "text": "Approach: blue shift · recede: red shift",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "One mark. Recession → frequency down, wavelength up, lines toward red — the mirror of the blue-shift line.",
+        "why": "On recession, successive crests are emitted from farther and farther positions, so they arrive less often: frequency falls and wavelength rises. Red is the long-wavelength end. Light from distant galaxies shows this red shift, which is the evidence that they move away from us.",
+        "common_mistakes": [
+          "Writing the same sign for both shifts. Recession gives +Δλ, approach gives −Δλ.",
+          "Saying red shift means the light turns red. The whole spectrum shifts toward longer wavelengths; each line moves toward the red end."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That when source and observer move apart, frequency decreases, wavelength increases, and the spectral lines move toward the red end.",
+          "accept": [
+            "recession gives red shift",
+            "wavelength increases when they move apart",
+            "lines move to the red end"
+          ],
+          "reject": [
+            "wavelength decreases"
+          ],
+          "heard_as": [
+            "red shift",
+            "receding",
+            "moving away"
+          ]
+        },
+        "memory_tip": "Moving apart stretches the waves — longer wavelength is the red side."
+      }
+    ]
+  }
+}

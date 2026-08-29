@@ -1,0 +1,110 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_hal_saytzeff_rule_2_bromobutane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Halo Alkanes and Halo Arenes (Chemistry-II)"
+  },
+  "chapter": "Halo Alkanes and Halo Arenes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the mechanism of dehydrohalogenation of 2-bromobutane using Saytzeff rule.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Saytzeff rule and the E2 mechanism",
+      "marks": 1
+    },
+    {
+      "label": "The two products and the major one",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 15 (Halo Alkanes and Halo Arenes) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.107-108, from the shaded sub-box \"HALO ALKANES & HALO ARENES\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container chapter whose four unnumbered sub-boxes each restart numbering at 1); the book prints this question on book p.107 as VSAQ 4. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.107, VSAQ 4): the question asks for the MECHANISM, and the printed answer gives only the rule and the two products. No mechanism appears anywhere in it. The mechanism is E2, a single bimolecular step in which alcoholic KOH removes a beta hydrogen while the C–Br bond breaks; it is added on this card, and the book's rule and products are kept. BOOK TYPOS (same page): the printed question reads \"dehydrohalogination ... upon saytzeffrule\" and the printed answer reads \"that alkene with grater number of alkyl groups\". The intended words are dehydrohalogenation, Saytzeff rule and greater. BOOK WORDING: the printed answer calls the major product \"the preferred product\"; it is written major product here, because a reaction has no preferences (Rule 41). EXCEPTION ADDED: the book states Saytzeff's rule flat with no exception. With a bulky base such as potassium tert-butoxide the LESS substituted alkene, but-1-ene, becomes the major product; that is Hofmann's rule, and it is named on the card. BALANCE CHECK: C₄H₉Br + KOH → C₄H₈ + KBr + H₂O for both products (C 4, H 10, Br 1, K 1, O 1 each side). Both equations are balanced. The printed yields, 80 per cent but-2-ene and 20 per cent but-1-ene, are kept as approximate figures."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Halo Alkanes and Halo Arenes — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule_and_mechanism",
+        "kind": "text",
+        "label": "Saytzeff rule and the E2 mechanism",
+        "marks": 1,
+        "mark_note": "Rule and mechanism",
+        "lines": [
+          "Saytzeff rule: when an alkyl halide loses HX,",
+          "the major alkene is the one carrying more",
+          "alkyl groups on the two doubly bonded",
+          "carbon atoms.",
+          "Mechanism: E2, a single step.",
+          "Alcoholic KOH removes a β hydrogen while the",
+          "C–Br bond breaks at the same time.",
+          "The H and the Br leave from opposite sides."
+        ],
+        "why": "Dehydrohalogenation with alcoholic KOH is a bimolecular elimination, E2: the base removes a hydrogen atom from a carbon next to the one carrying the halogen, and the halide leaves in the same step, so no carbocation is formed. 2-Bromobutane has β hydrogen atoms on both C1 and C3, so two different alkenes are possible, and Saytzeff's rule states which of them is the major product.",
+        "common_mistakes": [
+          "Using aqueous KOH. Aqueous KOH gives the alcohol by substitution; alcoholic KOH gives the alkene.",
+          "Writing a carbocation intermediate. E2 is a single step, so no carbocation is formed."
+        ],
+        "memory_tip": "Alcoholic KOH for elimination, aqueous KOH for substitution; Saytzeff names the more substituted alkene as the major one.",
+        "margin_note": "Name the rule in one line and write E2, single step, in the next. Then put both equations below."
+      },
+      {
+        "id": "s2_products",
+        "kind": "text",
+        "label": "The two products and the major one",
+        "marks": 1,
+        "mark_note": "Both equations",
+        "lines": [
+          "2-Bromobutane has β hydrogen atoms on C1",
+          "and on C3, so two alkenes are formed.",
+          {
+            "text": "CH₃–CH₂–CH(Br)–CH₃ + KOH (alcoholic)",
+            "style": "eq"
+          },
+          {
+            "text": "  → CH₃–CH=CH–CH₃ + KBr + H₂O",
+            "style": "eq"
+          },
+          "      but-2-ene, about 80 per cent",
+          {
+            "text": "  → CH₃–CH₂–CH=CH₂ + KBr + H₂O",
+            "style": "eq"
+          },
+          "      but-1-ene, about 20 per cent",
+          {
+            "text": "But-2-ene is the major product",
+            "style": "boxed"
+          },
+          "It carries more alkyl groups on the doubly",
+          "bonded carbon atoms, so it is more stable.",
+          "Exception: with a bulky base such as",
+          "potassium tert-butoxide, but-1-ene becomes",
+          "the major product (Hofmann rule)."
+        ],
+        "why": "Removing a hydrogen atom from C3 gives but-2-ene, which carries a methyl group on each of the two doubly bonded carbon atoms; removing one from C1 gives but-1-ene, which carries only one. The more substituted alkene is the more stable, so it is the major product, and the measured yields are about 80 and 20 per cent. The rule reverses with a bulky base: potassium tert-butoxide cannot reach the hydrogen atoms on the inner carbon and removes one from the end carbon instead, which gives but-1-ene as the major product. That is Hofmann's rule.",
+        "common_mistakes": [
+          "Writing only the major product. Both alkenes are formed, and the question is about which one is major.",
+          "Calling but-1-ene the major product with alcoholic KOH. But-2-ene carries more alkyl groups on the double bond and is the major one.",
+          "Leaving KBr and H₂O out. Without them the equation is not balanced."
+        ],
+        "memory_tip": "Count the alkyl groups on the two doubly bonded carbon atoms: but-2-ene has two, but-1-ene has one.",
+        "margin_note": "Write both equations and mark which is major. The percentages are extra, not required."
+      }
+    ]
+  },
+  "insider_note": "The question says mechanism and the book answers with the rule alone. Write one line naming E2 and its single step, then both equations with but-2-ene marked as the major product — that covers both readings and both marks."
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_self_inductance_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The number of turns in a coil is 100. When a current of 5 A flows through the coil, the magnetic flux is 10⁻⁶ Wb. Find the self inductance of the coil.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and data",
+      "marks": 1
+    },
+    {
+      "label": "Substitution and result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Arithmetic hand-checked: L = NΦ/i = (100 × 10⁻⁶)/5 = 2 × 10⁻⁵ H = 20 μH — agrees with the book's printed 20 μH. The question's flux 10⁻⁶ Wb is read as the flux per turn, which is what L = NΦ/i uses."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula_data",
+        "kind": "text",
+        "label": "Formula and data",
+        "marks": 1,
+        "mark_note": "L = NΦ/i with the data listed",
+        "lines": [
+          {
+            "text": "N = 100, i = 5 A, Φ = 10⁻⁶ Wb",
+            "style": "eq"
+          },
+          "Self inductance is the flux linkage per",
+          "unit current:",
+          {
+            "text": "L = NΦ / i",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Data line first, then the one-line formula.",
+        "why": "The definition NΦ = L i is the whole method: the flux linkage NΦ divided by the current gives L directly.",
+        "common_mistakes": [
+          "Using L = Φ/i and dropping the N. The coil has 100 turns, and the flux LINKAGE is NΦ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That L equals N Φ over i, with N = 100, i = 5 A and Φ = 10⁻⁶ Wb.",
+          "accept": [
+            "L equals N phi by i",
+            "flux linkage over current",
+            "N phi upon i"
+          ],
+          "reject": [
+            "20 microhenry"
+          ],
+          "heard_as": [
+            "N phi",
+            "upon i"
+          ]
+        },
+        "memory_tip": "Write the three data values first, then the one-line formula L = NΦ/i."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "Substitution and result",
+        "marks": 1,
+        "mark_note": "L = 2 × 10⁻⁵ H = 20 μH",
+        "lines": [
+          {
+            "text": "L = (100 × 10⁻⁶) / 5",
+            "style": "eq"
+          },
+          {
+            "text": "L = 2 × 10⁻⁵ H",
+            "style": "eq"
+          },
+          {
+            "text": "L = 20 μH",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. One substitution; give the answer in microhenry.",
+        "why": "One substitution finishes it; writing the answer in microhenry shows the size of the number honestly.",
+        "common_mistakes": [
+          "Writing 20 H instead of 20 μH. The factor 10⁻⁶ from the flux survives into the answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives 2 × 10⁻⁵ H, which is 20 microhenry.",
+          "accept": [
+            "20 microhenry",
+            "2 into 10 power minus 5",
+            "10 power minus 4 by 5"
+          ],
+          "reject": [
+            "4 henry"
+          ],
+          "heard_as": [
+            "microhenry",
+            "ten power minus five"
+          ]
+        },
+        "memory_tip": "100 × 10⁻⁶ is 10⁻⁴; divide by 5 to get 2 × 10⁻⁵ H, which reads as 20 μH."
+      }
+    ]
+  },
+  "insider_note": "The mark sits in the flux linkage NΦ — dropping the 100 turns loses the answer by a factor of 100."
+}

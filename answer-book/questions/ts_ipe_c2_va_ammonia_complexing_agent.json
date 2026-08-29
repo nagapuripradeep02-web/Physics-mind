@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_ammonia_complexing_agent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Ammonia is a good complexing agent. Explain with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why ammonia is a ligand",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 7. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK (book p.83, VSAQ 7): the printed equation CuSO₄ + 4NH₃ → [Cu(NH₃)₄]SO₄ was atom-counted and is balanced (Cu 1, S 1, O 4, N 4, H 12 on both sides). BOOK GAP: the printed answer says only \"NH₃ contains lone pair of electrons\". It never names the words ligand or coordinate bond, never says the product is deep blue, and does not name the complex. All are added. The same lone-pair argument that makes NH₃ a good ligand also makes PH₃ a poor one, and that link is recorded in the second step's why."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lone_pair",
+        "kind": "text",
+        "label": "Why ammonia is a ligand",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "The nitrogen atom of NH₃ carries one lone",
+          "pair of electrons.",
+          "It donates this pair to a metal ion and forms",
+          "a coordinate bond.",
+          "So NH₃ acts as a monodentate ligand and",
+          "forms complexes with many metal ions."
+        ],
+        "why": "A complexing agent is simply a ligand, and a ligand is a species with a lone pair to donate. Naming the lone pair, the coordinate bond and the word ligand is what turns the book's single clause into a full reason.",
+        "common_mistakes": [
+          "Writing that NH₃ is basic, so it forms complexes. Basicity and ligand behaviour both come from the lone pair, but the marked word here is ligand.",
+          "Calling NH₃ bidentate. It has one donor atom, nitrogen, so it is monodentate."
+        ],
+        "memory_tip": "One lone pair on N, one coordinate bond, one donor atom, so monodentate.",
+        "margin_note": "The words \"lone pair\" and \"coordinate bond\" are the marked pair in this step."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Copper sulphate solution with excess",
+          "ammonia gives a deep blue solution:",
+          {
+            "text": "CuSO₄ + 4NH₃ → [Cu(NH₃)₄]SO₄",
+            "style": "boxed"
+          },
+          "The product is tetraamminecopper(II)",
+          "sulphate.",
+          {
+            "text": "AgCl + 2NH₃ → [Ag(NH₃)₂]Cl",
+            "style": "eq"
+          }
+        ],
+        "why": "The copper example is the one the book prints and the one an examiner recognises, and the colour change from light blue to deep blue is the visible proof that a complex has formed. The silver example is added because it also shows a solid, AgCl, dissolving. PH₃ gives no such complexes: its lone pair sits on a much larger atom and is not donated easily, which is the same reason PH₃ is a weaker base.",
+        "common_mistakes": [
+          "Writing [Cu(NH₃)₄]²⁺ with the sulphate still attached inside the square bracket. Only the four NH₃ ligands go inside; SO₄²⁻ stays outside.",
+          "Giving 2 or 6 ammonia molecules for copper. The coordination number of Cu²⁺ with ammonia here is 4."
+        ],
+        "memory_tip": "Four ammonia molecules around Cu²⁺, deep blue. Two around Ag⁺, colourless.",
+        "margin_note": "One balanced equation is enough for this mark. Naming the complex or its colour is a useful extra."
+      }
+    ]
+  },
+  "insider_note": "Both marks are usually given for one sentence plus one equation. Write \"NH₃ has a lone pair and donates it to the metal ion\" and then CuSO₄ + 4NH₃ → [Cu(NH₃)₄]SO₄, and add the words deep blue."
+}

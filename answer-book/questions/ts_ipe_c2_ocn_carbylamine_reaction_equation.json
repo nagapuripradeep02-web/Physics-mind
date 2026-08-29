@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_carbylamine_reaction_equation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the equation for the carbylamine reaction of any one aliphatic amine.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    },
+    {
+      "label": "Conditions and what the test shows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.115 as VSAQ 6. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EQUATION CHECKED: CH₃NH₂ + CHCl₃ + 3KOH → CH₃NC + 3KCl + 3H₂O balances on every element — C 2/2, H 9/9, N 1/1, Cl 3/3, K 3/3, O 3/3. The book prints the same equation and it is correct. BOOK GAP (book p.115, VSAQ 6): the printed answer says only that primary amines give isocyanides and that the reaction is used to detect them. It never says that 2° and 3° amines give NO isocyanide, which is what makes this a test at all; that is added here. The book also writes \"alcoholic KOH\" in the words and bare \"3KOH\" in the equation — the reagent is alcoholic KOH and the card says so."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "Methanamine is used as the aliphatic amine.",
+          {
+            "text": "CH₃–NH₂ + CHCl₃ + 3KOH →",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃–NC + 3KCl + 3H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "[alcoholic KOH, heat]",
+            "style": "indent"
+          },
+          "The product CH₃–NC is methyl isocyanide,",
+          "also called methyl carbylamine."
+        ],
+        "why": "Chloroform and alkali give dichlorocarbene, and the amine nitrogen bonds to its carbon. Both hydrogen atoms of the –NH₂ group and all three chlorine atoms of chloroform are removed, which is why three formula units of KOH are needed and three of KCl and water are produced.",
+        "common_mistakes": [
+          "Writing KOH without a coefficient. Three KOH are needed to remove three chlorine atoms, so the equation does not balance with one.",
+          "Writing the product as CH₃–CN. That is methyl cyanide; the carbylamine product is the isocyanide CH₃–NC, joined through nitrogen."
+        ],
+        "memory_tip": "One amine, one chloroform, three KOH, and three each of KCl and water come out.",
+        "margin_note": "Balance the equation before writing it down. An unbalanced carbylamine equation loses this mark even if the products are right."
+      },
+      {
+        "id": "s2_test",
+        "kind": "boxed_final",
+        "label": "Conditions and the test",
+        "marks": 1,
+        "mark_note": "Conditions and scope",
+        "lines": [
+          "The amine is warmed with chloroform and",
+          "alcoholic KOH.",
+          "The isocyanide formed has a strong",
+          "unpleasant smell, which is how it is noticed.",
+          {
+            "text": "Only 1° amines give an isocyanide",
+            "style": "boxed"
+          },
+          "2° and 3° amines give no isocyanide at all,",
+          "so the reaction is a test for a 1° amine.",
+          "Both aliphatic and aromatic 1° amines",
+          "respond, for example aniline gives",
+          "phenyl isocyanide."
+        ],
+        "why": "The reaction needs two hydrogen atoms on the nitrogen, and only a primary amine has them. A secondary amine has one and a tertiary amine has none, so neither can form the isocyanide. That is exactly why the reaction works as a test.",
+        "common_mistakes": [
+          "Saying all amines give the carbylamine reaction. Only primary amines do; 2° and 3° amines give no isocyanide.",
+          "Leaving out the conditions. Chloroform and alcoholic KOH with heat must be named for this mark."
+        ],
+        "memory_tip": "Two hydrogens on nitrogen are needed, so only a 1° amine responds. That is why the reaction is a test.",
+        "margin_note": "The sentence \"2° and 3° amines do not respond\" is what turns a reaction into a test. Write it."
+      }
+    ]
+  },
+  "insider_note": "Two marks split cleanly: one for a balanced equation, one for the conditions plus the scope. The line most often left out is that 2° and 3° amines give nothing — without it the answer describes a reaction but not a test."
+}

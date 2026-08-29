@@ -1,0 +1,105 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_rate_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is rate law? Illustrate with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.73, VSAQ 2): the printed answer defines the rate law and then gives only ELEMENTARY reactions, writing \"r ∝ [A] ⇒ r = K[A] (according to law of mass action)\". The law of mass action gives the rate law only for an elementary step; for every other reaction the powers are found by EXPERIMENT and need not equal the coefficients in the balanced equation. That sentence is the one the general definition needs and the book never writes it, so it is written here, with a second example (2N₂O₅ → 4NO₂ + O₂, rate = k[N₂O₅]) where the power and the coefficient differ. BOOK NOTATION: the book writes capital K for the rate constant throughout the unit. Capital K is the equilibrium constant; the rate constant is small k (NCERT), and small k is used on every card of this unit."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The rate law is the equation that gives the",
+          "rate of a reaction in terms of the molar",
+          "concentrations of the reactants, each",
+          "raised to a power found by experiment.",
+          {
+            "text": "rate = k[A]ᵐ[B]ⁿ",
+            "style": "eq"
+          },
+          "k is the rate constant, also called the",
+          "specific rate of the reaction.",
+          "m and n need not equal the coefficients in",
+          "the balanced equation."
+        ],
+        "why": "The rate law is a measured result, not something read off the equation. Only for an elementary step do the powers match the coefficients, because only then does the balanced equation describe what actually collides. Saying \"found by experiment\" is what separates the rate law from the balanced equation.",
+        "common_mistakes": [
+          "Reading the powers off the balanced equation. They are found by experiment and often differ from the coefficients.",
+          "Writing capital K for the rate constant. Capital K is the equilibrium constant; the rate constant is small k."
+        ],
+        "memory_tip": "Rate law = concentrations raised to measured powers, times k. Measured, not read off the equation.",
+        "margin_note": "Write the general form rate = k[A]ᵐ[B]ⁿ. An examiner looks for the powers and for k."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "equation",
+        "label": "The examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Elementary reaction A → products:",
+          {
+            "text": "rate ∝ [A]  ⇒  rate = k[A]",
+            "style": "eq"
+          },
+          "This is a first order reaction.",
+          "A reaction where the power differs from",
+          "the coefficient:",
+          {
+            "text": "2N₂O₅(g) → 4NO₂(g) + O₂(g)",
+            "style": "eq"
+          },
+          {
+            "text": "rate = k[N₂O₅]",
+            "style": "eq"
+          },
+          "The coefficient is 2 but the order is 1."
+        ],
+        "why": "The second example is the one that shows what the definition means. If the powers came from the equation the rate would be k[N₂O₅]², and it is not; the measured rate law is first order. One example of each kind makes the definition usable.",
+        "common_mistakes": [
+          "Writing rate = k[N₂O₅]² for the decomposition of N₂O₅. The measured rate law is first order in N₂O₅.",
+          "Giving an example without its rate law. The example is only an illustration once the rate equation is written under it."
+        ],
+        "memory_tip": "N₂O₅ has a 2 in front of it and an order of 1. That pair is the whole point of the rate law.",
+        "margin_note": "One worked example with its rate equation earns this mark. Two is safer and costs one extra line."
+      }
+    ]
+  },
+  "insider_note": "The line examiners look for is that the powers are found by experiment. An answer that derives the rate law from the balanced equation is the standard way to lose the first mark."
+}

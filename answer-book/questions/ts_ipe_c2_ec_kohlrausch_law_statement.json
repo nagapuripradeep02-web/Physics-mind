@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_kohlrausch_law_statement",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Kohlrausch's law of independent migration of ions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation and an example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.69, VSAQ 6): the printed equation is Λ°m = λ°₊ + λ°₋ with no stoichiometric numbers, and the only example given is NaCl, where both numbers happen to be 1. That form is WRONG for any electrolyte that is not 1:1 — for BaCl₂ the chloride term must be doubled. The full form Λ°m = ν₊λ°₊ + ν₋λ°₋ is written on this card together with a non-1:1 example, because the SAQ and LAQ versions of this law in the same unit both need it. LONG ANSWER PAIR: LAQ 4 of the same unit asks for the same law with its explanation and applications (card ts_ipe_c2_ec_kohlrausch_law_explained); this VSAQ is kept to the statement and the equation."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Kohlrausch's law of independent migration of",
+          "ions: at infinite dilution the limiting molar",
+          "conductivity of an electrolyte is the sum of",
+          "the limiting molar conductivities of its",
+          "cations and its anions.",
+          "Each ion carries current on its own and adds",
+          "a fixed amount, whatever the other ion is."
+        ],
+        "why": "At infinite dilution the ions are so far apart that they no longer affect one another, so each one carries current at a rate that depends only on itself. That is why the same ionic value can be reused across different salts, which is the whole use of the law.",
+        "common_mistakes": [
+          "Leaving out the words at infinite dilution. The ions act independently only when they are far apart.",
+          "Stating it for conductivity κ. The law is about limiting MOLAR conductivity Λ°m."
+        ],
+        "memory_tip": "Far apart means independent. Each ion brings its own fixed amount and they are added.",
+        "margin_note": "The words infinite dilution and limiting molar conductivity both have to appear for a clean mark."
+      },
+      {
+        "id": "s2_equation_example",
+        "kind": "boxed_final",
+        "label": "The equation and an example",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "Λ°m = ν₊ λ°₊ + ν₋ λ°₋",
+            "style": "boxed"
+          },
+          "λ°₊ and λ°₋ are the limiting molar",
+          "conductivities of the cation and the anion,",
+          "and ν₊ and ν₋ are the numbers of each ion in",
+          "one formula unit.",
+          {
+            "text": "Λ°m(NaCl) = λ°(Na⁺) + λ°(Cl⁻)",
+            "style": "eq"
+          },
+          {
+            "text": "Λ°m(BaCl₂) = λ°(Ba²⁺) + 2λ°(Cl⁻)",
+            "style": "eq"
+          }
+        ],
+        "why": "One formula unit of BaCl₂ releases two chloride ions, and each of them carries current, so the chloride term is counted twice. The stoichiometric numbers are what make the law work for salts that are not 1:1.",
+        "common_mistakes": [
+          "Dropping ν₊ and ν₋. The form Λ°m = λ°₊ + λ°₋ is correct only for a 1:1 salt such as NaCl.",
+          "Multiplying the ionic value by the charge instead of the number of ions. BaCl₂ gives one Ba²⁺ and two Cl⁻, so the 2 goes on the chloride."
+        ],
+        "memory_tip": "Count ions, not charges. Two chlorides in BaCl₂ means the chloride term is doubled.",
+        "margin_note": "Give a non 1:1 example such as BaCl₂. It shows the stoichiometric numbers are understood, not copied."
+      }
+    ]
+  },
+  "insider_note": "The book prints the law without the stoichiometric numbers, so students apply Λ°m = λ°₊ + λ°₋ to BaCl₂ and lose the mark. Count the ions in one formula unit first."
+}

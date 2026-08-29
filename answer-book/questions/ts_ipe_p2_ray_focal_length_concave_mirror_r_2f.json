@@ -1,0 +1,401 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_focal_length_concave_mirror_r_2f",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define focal length of a concave mirror. Prove that the radius of curvature of a concave mirror is double its focal length.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of focal length",
+      "marks": 1
+    },
+    {
+      "label": "The two triangles",
+      "marks": 1
+    },
+    {
+      "label": "Small-angle step",
+      "marks": 1
+    },
+    {
+      "label": "R = 2f",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.11 — Section B, 4 marks. The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The figure carries ZERO marks because the printed question does not say 'draw a neat labelled diagram' — a teacher may well award a diagram mark here, and that is one of the things to confirm. Hand-checked physically: with M the point of incidence, C the centre of curvature, D the foot of the perpendicular from M, tan θ = MD/CD and tan 2θ = MD/FD; for a paraxial ray θ is small, D lies close to P, and CD → R, FD → f give 2/R = 1/f, that is R = 2f. The exterior-angle result angle MFD = 2θ follows from angle MCF = θ and angle CMF = θ (CM is the normal, so the angles of incidence and reflection are both θ)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ray Optics and Optical Instruments · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Focal length",
+        "marks": 1,
+        "mark_note": "Pole to focus",
+        "lines": [
+          {
+            "text": "Focal length of a concave mirror:",
+            "style": "heading"
+          },
+          "Rays parallel to the principal axis, after",
+          "reflection from a concave mirror, meet at a",
+          "fixed point F on the axis called the",
+          "principal focus.",
+          "The distance between the pole P of the",
+          "mirror and the focus F is the focal length f.",
+          {
+            "text": "f = distance PF",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Measure f from the POLE, not from the edge of the mirror.",
+        "why": "The focus is defined by one special beam, the beam parallel to the axis. Everything measured on a mirror is measured from the pole, so the focal length is the pole-to-focus distance.",
+        "common_mistakes": [
+          "Measuring f from the centre of curvature. It is measured from the pole.",
+          "Defining F by any converging beam. Only the beam parallel to the axis defines the principal focus."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the focal length is the distance between the pole and the principal focus, where rays parallel to the axis meet after reflection.",
+          "accept": [
+            "distance between the pole and the focus",
+            "parallel rays meet at F and PF is the focal length",
+            "pole to principal focus distance",
+            "pole nunchi focus varaku distance"
+          ],
+          "reject": [
+            "the radius of curvature is twice the focal length"
+          ],
+          "heard_as": [
+            "focal length",
+            "pole",
+            "principal focus",
+            "parallel rays"
+          ]
+        },
+        "memory_tip": "P to F is f. Every mirror distance starts at the pole."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Ray diagram",
+        "marks": 0,
+        "figure": {
+          "id": "concave_r_2f",
+          "width": 340,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis",
+              "d": "M 30 110 L 320 110",
+              "ms": 4140,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "mirror",
+              "d": "M 224 40 Q 275 110 224 180",
+              "ms": 2160
+            },
+            {
+              "type": "stroke",
+              "id": "incident",
+              "d": "M 40 48 L 229 48",
+              "ms": 2700
+            },
+            {
+              "type": "stroke",
+              "id": "incident_head",
+              "d": "M 142 43 L 150 48 L 142 53",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "normal_cm",
+              "d": "M 60 110 L 229 48",
+              "ms": 2570,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "reflected",
+              "d": "M 229 48 L 154 110",
+              "ms": 1390
+            },
+            {
+              "type": "stroke",
+              "id": "reflected_head",
+              "d": "M 196 69 L 190 80 L 203 76",
+              "ms": 370
+            },
+            {
+              "type": "stroke",
+              "id": "md_perp",
+              "d": "M 229 48 L 229 110",
+              "ms": 890,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 54,
+              "y": 126,
+              "text": "C",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 148,
+              "y": 128,
+              "text": "F",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 214,
+              "y": 130,
+              "text": "D",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 252,
+              "y": 128,
+              "text": "P",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 235,
+              "y": 42,
+              "text": "M",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 76,
+              "y": 104,
+              "text": "θ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_two_theta",
+              "x": 172,
+              "y": 102,
+              "text": "2θ",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "A ray parallel to the axis meets the mirror at M. CM is the normal, MD is the perpendicular from M on the axis.",
+        "why": "The figure fixes the two triangles the proof uses: MCD gives the angle at the centre of curvature, MFD gives the angle at the focus. Nothing else in the proof needs a picture.",
+        "common_mistakes": [
+          "Drawing the normal at M perpendicular to the mirror surface by eye. The normal is the line MC, joining M to the centre of curvature."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a parallel ray strikes the mirror at M, CM is the normal, and MD is the perpendicular from M on the axis.",
+          "accept": [
+            "draw the mirror with C F and P on the axis",
+            "parallel ray hits at M and CM is the normal",
+            "drop the perpendicular MD on the axis"
+          ],
+          "reject": [
+            "tan theta is MD by CD"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "normal",
+            "perpendicular"
+          ]
+        },
+        "memory_tip": "Three points on the axis, one point on the mirror: C, F, P and M. Everything else is drawn from them."
+      },
+      {
+        "id": "s3_triangles",
+        "kind": "equation",
+        "label": "The two triangles",
+        "marks": 1,
+        "mark_note": "tan θ and tan 2θ",
+        "lines": [
+          "Let a ray parallel to the principal axis meet",
+          "the mirror at M. CM is the normal, so the",
+          "angle of incidence and the angle of",
+          "reflection are both θ.",
+          "Then angle MCD = θ and angle MFD = 2θ.",
+          {
+            "text": "From ΔMCD:   tan θ = MD/CD",
+            "style": "eq"
+          },
+          {
+            "text": "From ΔMFD:   tan 2θ = MD/FD",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Both triangles share the same side MD — that is what lets them be combined.",
+        "why": "MFD is the exterior angle of triangle MCF, and the two interior opposite angles are both θ, so it equals 2θ. The shared side MD is the bridge: it appears in both tangents and cancels later.",
+        "common_mistakes": [
+          "Writing angle MFD = θ. It is the exterior angle and equals 2θ.",
+          "Using the wrong sides in the tangent. MD is opposite the angle in both triangles."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That angle MCD = θ and angle MFD = 2θ, giving tan θ = MD/CD and tan 2θ = MD/FD.",
+          "accept": [
+            "tan theta is MD by CD and tan two theta is MD by FD",
+            "from triangle MCD and triangle MFD",
+            "angle at C is theta and angle at F is two theta",
+            "tan theta MD by CD, tan two theta MD by FD"
+          ],
+          "reject": [
+            "R equals two f"
+          ],
+          "heard_as": [
+            "tan theta",
+            "tan two theta",
+            "MD by CD",
+            "MD by FD"
+          ]
+        },
+        "memory_tip": "Same opposite side MD in both triangles. Only the base changes: CD then FD."
+      },
+      {
+        "id": "s4_small_angle",
+        "kind": "equation",
+        "label": "Small-angle step",
+        "marks": 1,
+        "mark_note": "θ small, D close to P",
+        "lines": [
+          "For a narrow beam close to the axis θ is",
+          "small, so",
+          {
+            "text": "tan θ ≈ θ   and   tan 2θ ≈ 2θ",
+            "style": "eq"
+          },
+          "The point D then lies very close to the pole",
+          "P, so CD ≈ CP = R and FD ≈ FP = f.",
+          {
+            "text": "θ = MD/R   and   2θ = MD/f",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Two approximations, both stated: small angle, and D close to P.",
+        "why": "Without the paraxial assumption D is not at P and the result is not exact. Stating both approximations is what makes the proof honest, and each one is a separate thing the examiner looks for.",
+        "common_mistakes": [
+          "Replacing CD by R without saying that D is close to P.",
+          "Writing tan 2θ ≈ θ instead of 2θ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a paraxial ray tan θ ≈ θ and tan 2θ ≈ 2θ, and D lies close to P so CD ≈ R and FD ≈ f.",
+          "accept": [
+            "for small angles tan theta is theta and tan two theta is two theta",
+            "D is close to P so CD is R and FD is f",
+            "paraxial rays so the tangents become the angles",
+            "chinna angle kabatti tan theta equals theta"
+          ],
+          "reject": [
+            "tan theta is MD by CD"
+          ],
+          "heard_as": [
+            "small angle",
+            "paraxial",
+            "tan theta is theta",
+            "CD is R"
+          ]
+        },
+        "memory_tip": "Two swaps: the tangent becomes the angle, and D becomes P."
+      },
+      {
+        "id": "s5_result",
+        "kind": "boxed_final",
+        "label": "R = 2f",
+        "marks": 1,
+        "mark_note": "R = 2f",
+        "lines": [
+          "Putting the two results together,",
+          {
+            "text": "2 × (MD/R) = MD/f",
+            "style": "eq"
+          },
+          {
+            "text": "2/R = 1/f",
+            "style": "eq"
+          },
+          {
+            "text": "R = 2f",
+            "style": "boxed"
+          },
+          "The radius of curvature of a concave mirror",
+          "is twice its focal length."
+        ],
+        "margin_note": "Fourth mark. Cancel MD and finish with the sentence in words.",
+        "why": "MD is the same length in both expressions, so it cancels and leaves a relation between R and f alone. That cancellation is the whole point of choosing the two triangles that share MD.",
+        "common_mistakes": [
+          "Writing f = 2R. The focal length is the SMALLER of the two.",
+          "Leaving the answer as 2/R = 1/f without inverting to R = 2f."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That MD cancels to give 2/R = 1/f, so R = 2f.",
+          "accept": [
+            "MD cancels so two by R is one by f and R is two f",
+            "R equals two f",
+            "radius of curvature is twice the focal length",
+            "R equals two f, focal length ki rendintlu"
+          ],
+          "reject": [
+            "for small angles tan theta is theta"
+          ],
+          "heard_as": [
+            "R equals two f",
+            "two by R",
+            "twice the focal length",
+            "radius of curvature"
+          ]
+        },
+        "memory_tip": "The focus sits halfway between the pole and the centre of curvature. R = 2f is that sentence in symbols."
+      }
+    ]
+  },
+  "insider_note": "Four moves: define f, set up the two triangles, make both angles small, cancel MD. The figure is what makes the two triangles obvious."
+}

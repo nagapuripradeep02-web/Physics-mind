@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_pseudo_first_order",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are pseudo first order reactions ? Give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed answer and its ethyl acetate example are CORRECT, and the equation was balanced: CH₃COOC₂H₅ + H₂O → CH₃COOH + C₂H₅OH gives C 4=4, H 8+2=10=10, O 2+1=3=3. BOOK GAP (book p.74, VSAQ 9): the printed definition is \"The reaction whose order is one but molecularity is two\", which states the symptom rather than the cause. The cause, that one reactant is present in such large excess that its concentration hardly changes, is written on this card, because it is what makes the reaction FIRST order rather than what makes it pseudo."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A pseudo first order reaction is a reaction",
+          "of molecularity two that behaves as a first",
+          "order reaction, because one of the two",
+          "reactants is taken in large excess.",
+          "Its concentration hardly changes during",
+          "the reaction, so the measured rate",
+          "depends on the other reactant only."
+        ],
+        "why": "The concentration of the excess reactant is nearly constant, so it can be absorbed into the rate constant. The true rate law k'[A][B] becomes k[A] with k = k'[B], and the reaction is measured as first order even though two molecules react.",
+        "common_mistakes": [
+          "Calling it simply a first order reaction and leaving out the word pseudo. Its true rate law contains both reactants; it reads as first order only because one of them is in large excess.",
+          "Writing that the molecularity changes. Molecularity is fixed by the elementary step and stays two."
+        ],
+        "memory_tip": "Pseudo means apparent. Order two hiding as order one, because one reactant is in excess.",
+        "margin_note": "Name the reason, large excess, not just the symptom. That is what separates a full mark from half."
+      },
+      {
+        "id": "s2_example",
+        "kind": "equation",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: acid hydrolysis of ethyl acetate.",
+          {
+            "text": "CH₃COOC₂H₅ + H₂O → CH₃COOH + C₂H₅OH",
+            "style": "eq"
+          },
+          {
+            "text": "(H⁺ catalyst)",
+            "style": "indent"
+          },
+          {
+            "text": "rate = k[CH₃COOC₂H₅]",
+            "style": "eq"
+          },
+          "Water is the solvent and is present in",
+          "large excess, so [H₂O] is almost constant.",
+          "Molecularity is two, order is one."
+        ],
+        "why": "Water is both a reactant and the solvent here, so its concentration is about 55 mol L⁻¹ against a small amount of ester. Using up a little of it changes [H₂O] by a fraction too small to measure, which is exactly the condition the definition asks for.",
+        "common_mistakes": [
+          "Writing rate = k[CH₃COOC₂H₅][H₂O]. That is the true rate law, but the measured pseudo first order law leaves [H₂O] out.",
+          "Leaving out the acid. The reaction is the ACID hydrolysis; H⁺ is the catalyst."
+        ],
+        "memory_tip": "Ester plus water, with water as the solvent. The one in excess does not appear in the rate law.",
+        "margin_note": "Finish with the sentence molecularity two, order one. It ties the example back to the definition."
+      }
+    ]
+  },
+  "insider_note": "The sentence that earns the second mark is why [H₂O] does not appear in the rate law, not the equation itself. Write large excess, so its concentration is almost constant."
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_power_of_convex_lens",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define 'power' of a convex lens. What is its unit?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition P = 1/f",
+      "marks": 1
+    },
+    {
+      "label": "Unit: dioptre",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: P = 1/f gives dioptre only with f in metre (1 D = 1 m⁻¹); a convex lens has f > 0 so P > 0; the book prints the unit as 'diopter (D)' — the standard board spelling dioptre is used here."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition P = 1/f",
+        "marks": 1,
+        "mark_note": "Reciprocal of focal length",
+        "lines": [
+          {
+            "text": "Power of a lens:",
+            "style": "heading"
+          },
+          "The power of a lens is the reciprocal of its",
+          "focal length:",
+          {
+            "text": "P = 1/f   (f in metre)",
+            "style": "eq"
+          },
+          "It measures how strongly the lens converges",
+          "the rays falling on it."
+        ],
+        "margin_note": "First mark. Write P = 1/f and say f is in metre — the unit condition is part of the definition.",
+        "why": "P = 1/f is defined so that a stronger lens — one with a smaller focal length, which bends rays more — gets a bigger number. The reciprocal is what makes short f mean high power.",
+        "common_mistakes": [
+          "Using f in centimetre. P = 1/f gives dioptre only when f is in metre.",
+          "Writing P = f instead of P = 1/f."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the power of a lens is the reciprocal of its focal length, P = 1/f with f in metre.",
+          "accept": [
+            "power is one by focal length",
+            "P equals one by f with f in metres",
+            "reciprocal of the focal length",
+            "power ante focal length reciprocal"
+          ],
+          "reject": [
+            "the unit is dioptre"
+          ],
+          "heard_as": [
+            "one by f",
+            "reciprocal",
+            "focal length",
+            "power"
+          ]
+        },
+        "memory_tip": "Short focal length, strong lens: P and f are reciprocals."
+      },
+      {
+        "id": "s2_unit",
+        "kind": "boxed_final",
+        "label": "Unit: dioptre",
+        "marks": 1,
+        "mark_note": "1 D = 1 m⁻¹",
+        "lines": [
+          "The SI unit of power of a lens is the",
+          "dioptre (D).",
+          {
+            "text": "1 D = 1 m⁻¹",
+            "style": "eq"
+          },
+          "It is the power of a lens of focal length",
+          "1 metre. For a convex lens f is positive,",
+          "so P is positive.",
+          {
+            "text": "P = 1/f (f in metre) · unit: dioptre (D)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the dioptre and define it: the power of a lens of focal length one metre.",
+        "why": "Naming the unit earns only half the point of this mark — defining it (1 D is the power when f = 1 m) is what shows the unit was understood and not memorised.",
+        "common_mistakes": [
+          "Writing watt for the unit. The dioptre, not the watt, is the unit of lens power.",
+          "Leaving the sign unstated. A convex lens has positive f, so its power is positive."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the unit is the dioptre, the power of a lens whose focal length is one metre.",
+          "accept": [
+            "the unit is dioptre",
+            "one dioptre is one metre inverse",
+            "dioptre means focal length of one metre",
+            "unit dioptre D"
+          ],
+          "reject": [
+            "power is one by focal length"
+          ],
+          "heard_as": [
+            "dioptre",
+            "diopter",
+            "D",
+            "metre inverse"
+          ]
+        },
+        "memory_tip": "Dioptre = the one-metre lens: f = 1 m gives P = 1 D."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for two things: the reciprocal relation with f in metre, and the dioptre named AND defined."
+}

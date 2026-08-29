@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_ores_of_four_metals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write any two ores with formulae of the following metals: a) Al b) Zn c) Fe d) Cu",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ores of Al and Zn",
+      "marks": 1
+    },
+    {
+      "label": "Ores of Fe and Cu",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR CORRECTED (book p.80, VSAQ 8): the book prints the zinc oxide ore as \"Zincate - ZnO\". The ore is ZINCITE, ZnO; a zincate is the [Zn(OH)₄]²⁻ ion formed when zinc or zinc oxide dissolves in alkali, and it is not a mineral. The card writes zincite and records the book's printed name in the step's why. BOOK SPELLING: the book prints \"Heamatite\"; it is written haematite here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_al_zn",
+        "kind": "text",
+        "label": "Ores of Al and Zn",
+        "marks": 1,
+        "mark_note": "Al and Zn",
+        "lines": [
+          "a) Aluminium",
+          {
+            "text": "Bauxite  Al₂O₃·2H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "Cryolite  Na₃AlF₆",
+            "style": "indent"
+          },
+          "b) Zinc",
+          {
+            "text": "Zincite  ZnO",
+            "style": "indent"
+          },
+          {
+            "text": "Zinc blende  ZnS",
+            "style": "indent"
+          }
+        ],
+        "why": "The question asks for ores with formulae, so a name on its own is not the answer. The book prints the zinc oxide ore as \"Zincate\"; the ore is zincite, ZnO, and a zincate is the [Zn(OH)₄]²⁻ ion in alkaline solution. The corrected name is written here.",
+        "common_mistakes": [
+          "Writing zincate for ZnO. The ore is zincite; a zincate is an ion in solution.",
+          "Writing bauxite as Al₂O₃ only. The water of hydration is part of the formula: Al₂O₃·2H₂O."
+        ],
+        "memory_tip": "Zinc has two ores that both begin with zinc: zincite ZnO and zinc blende ZnS.",
+        "margin_note": "The formulae carry the mark here, not the names. Write each name with its formula beside it."
+      },
+      {
+        "id": "s2_fe_cu",
+        "kind": "boxed_final",
+        "label": "Ores of Fe and Cu",
+        "marks": 1,
+        "mark_note": "Fe and Cu",
+        "lines": [
+          "c) Iron",
+          {
+            "text": "Haematite  Fe₂O₃",
+            "style": "indent"
+          },
+          {
+            "text": "Magnetite  Fe₃O₄",
+            "style": "indent"
+          },
+          "d) Copper",
+          {
+            "text": "Cuprite  Cu₂O",
+            "style": "indent"
+          },
+          {
+            "text": "Copper glance  Cu₂S",
+            "style": "indent"
+          },
+          {
+            "text": "Copper pyrites CuFeS₂ is also a Cu ore",
+            "style": "boxed"
+          }
+        ],
+        "why": "Magnetite is Fe₃O₄ and haematite is Fe₂O₃, so the two iron ores differ only in the subscripts and that is where the mark is lost. Copper pyrites CuFeS₂ is the ore used in the extraction question later in this unit, so it is worth naming here as a third choice.",
+        "common_mistakes": [
+          "Writing magnetite as Fe₂O₃. That is haematite; magnetite is Fe₃O₄.",
+          "Writing copper glance as CuS. Copper is in the +1 state, so it is Cu₂S."
+        ],
+        "memory_tip": "Haematite has two irons, magnetite has three. Cuprite is the oxide, copper glance the sulphide.",
+        "margin_note": "Two ores per metal is what the question asks for. A third ore earns nothing extra."
+      }
+    ]
+  },
+  "insider_note": "Eight formulae carry this question. The two most often written wrongly are magnetite Fe₃O₄ and zincite ZnO, which the book itself prints as \"zincate\"."
+}

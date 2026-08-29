@@ -1,0 +1,76 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_prob_molality_ethanoic_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": { "number": 2, "name": "Solutions (Chemistry-II)" },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the molality of 2.5 g of ethanoic acid (CH₃COOH) in 75 g of benzene.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Moles of ethanoic acid", "marks": 1 },
+    { "label": "The molality", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From the boxed 'Problems : In text Questions' section of the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.68 (problem 3). A PROBLEM belongs to no printed paper section and the book prints no mark scheme for it, so both the Section-A placement and the 1+1 split are authored CLAIMS. Placed at 2 marks as a single-formula calculation, matching the Very Short Answer numericals this book already asks in the same unit. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. Arithmetic re-derived independently and it agrees with the book: 2.5/60 = 0.04167 mol and 0.04167/0.075 = 0.5556 mol kg⁻¹. BOOK TYPO: the printed working spells the solvent 'banzene' once."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "text",
+        "label": "Moles of ethanoic acid",
+        "marks": 1,
+        "mark_note": "Molar mass and moles",
+        "lines": [
+          "CH₃COOH is C₂H₄O₂.",
+          "M = (12 × 2) + (1 × 4) + (16 × 2)",
+          { "text": "M = 24 + 4 + 32 = 60 g mol⁻¹", "style": "eq" },
+          { "text": "n = 2.5 / 60 = 0.0417 mol", "style": "eq" }
+        ],
+        "why": "Molality counts the moles of solute, so the 2.5 g must be divided by the molar mass first. Writing ethanoic acid as C₂H₄O₂ makes the count of each element plain, which is the safest way to reach 60 g mol⁻¹ without missing the second oxygen.",
+        "common_mistakes": [
+          "Counting only one oxygen. The carboxyl group carries two, so the molar mass is 60, not 44.",
+          "Using the mass of benzene here. The solute is the ethanoic acid; the benzene belongs in the next step."
+        ],
+        "memory_tip": "Write CH₃COOH as C₂H₄O₂ before counting: 24 + 4 + 32 = 60.",
+        "margin_note": "Show the molar mass as a sum of the three element totals."
+      },
+      {
+        "id": "s2_molality",
+        "kind": "boxed_final",
+        "label": "The molality",
+        "marks": 1,
+        "mark_note": "Mass of solvent in kg and the value",
+        "lines": [
+          "75 g of benzene = 75 / 1000 = 0.075 kg",
+          { "text": "molality = moles of solute / kg of SOLVENT", "style": "eq" },
+          { "text": "= 0.0417 / 0.075", "style": "eq" },
+          { "text": "molality = 0.556 mol kg⁻¹", "style": "boxed" }
+        ],
+        "why": "Molality divides by the mass of SOLVENT, not by the mass or volume of solution, which is the single fact that separates it from molarity. Because it uses a mass and not a volume, molality does not change with temperature, and that is why it is the concentration used in the boiling-point and freezing-point equations.",
+        "common_mistakes": [
+          "Dividing by the total mass, 77.5 g. Molality uses the solvent alone.",
+          "Dividing by 75 instead of 0.075. Molality is per KILOGRAM of solvent.",
+          "Writing the unit as mol L⁻¹. That is molarity; molality is mol kg⁻¹."
+        ],
+        "memory_tip": "MolaLity uses the Litre-free mass of solvent in kg. MolaRity uses the volume of solution.",
+        "margin_note": "Convert grams to kilograms on its own line, and write the unit mol kg⁻¹."
+      }
+    ]
+  },
+  "insider_note": "The mark is lost on the denominator far more often than on the molar mass: molality divides by the SOLVENT in kilograms, so it is 0.075 kg, not 75 g and not the 77.5 g of solution."
+}

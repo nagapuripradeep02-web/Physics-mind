@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_aniline_no_friedel_crafts",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why does aniline not undergo Friedel-Crafts reaction?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Aniline bonds to AlCl₃",
+      "marks": 1
+    },
+    {
+      "label": "The ring is strongly deactivated",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.115 as VSAQ 3. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NOTATION, corrected on this card (book p.115, VSAQ 3): the printed product is written as two separate ions, [C₆H₅NH₂]⁺[AlCl₃]⁻. That is not what forms. Nitrogen donates its lone pair INTO an empty orbital of aluminium, so the product is one species held together by a coordinate bond, C₆H₅–N⁺H₂–AlCl₃⁻. The card writes it that way. BOOK TYPOS on the same answer: \"com plex\", \"bocomes\", \"act as\" for \"acts as\", and \"friedel craft's\" in lower case."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_adduct",
+        "kind": "equation",
+        "label": "Aniline bonds to AlCl₃",
+        "marks": 1,
+        "mark_note": "Acid-base adduct",
+        "lines": [
+          "A Friedel-Crafts reaction needs anhydrous",
+          "AlCl₃, which is a Lewis acid.",
+          "Aniline is a Lewis base: the nitrogen lone",
+          "pair is donated to the aluminium atom.",
+          {
+            "text": "C₆H₅–NH₂ + AlCl₃ → C₆H₅–N⁺H₂–AlCl₃⁻",
+            "style": "eq"
+          },
+          "So the catalyst is used up by the amine",
+          "before any alkylation can begin."
+        ],
+        "why": "AlCl₃ has an empty orbital on aluminium and aniline has a lone pair on nitrogen, so the two combine at once. The catalyst a Friedel-Crafts reaction depends on is therefore bound to the amine instead of making the electrophile.",
+        "common_mistakes": [
+          "Saying aniline is too unreactive. The –NH₂ group activates the ring strongly; the problem is the catalyst, not the ring's reactivity.",
+          "Writing the product as two separate ions. Nitrogen and aluminium are joined by a coordinate bond in one species."
+        ],
+        "memory_tip": "Lewis base meets Lewis acid: the nitrogen lone pair goes to aluminium before the ring can react at all.",
+        "margin_note": "Write this equation. Naming AlCl₃ as a Lewis acid and aniline as a Lewis base is what carries this mark."
+      },
+      {
+        "id": "s2_deactivated",
+        "kind": "boxed_final",
+        "label": "The ring is deactivated",
+        "marks": 1,
+        "mark_note": "Deactivation",
+        "lines": [
+          "In this adduct the nitrogen carries a full",
+          "positive charge, so it withdraws electron",
+          "density from the ring instead of releasing it.",
+          {
+            "text": "–N⁺H₂–AlCl₃⁻ is strongly deactivating",
+            "style": "boxed"
+          },
+          "The ring is now poor in electrons and the",
+          "electrophile does not bond to it.",
+          "So aniline gives neither Friedel-Crafts",
+          "alkylation nor acylation."
+        ],
+        "why": "In free aniline the nitrogen lone pair is delocalised into the ring, which makes the ring rich in electrons. Once that lone pair is given to aluminium it is no longer available to the ring, and the positive nitrogen withdraws electron density from the ring, so the ring becomes strongly deactivated towards an electrophile.",
+        "common_mistakes": [
+          "Writing that –NH₂ is a deactivating group. Free –NH₂ is strongly ACTIVATING; only the AlCl₃ adduct is deactivating.",
+          "Answering only that aniline reacts with AlCl₃. The second mark needs the consequence: the positive nitrogen deactivates the ring."
+        ],
+        "memory_tip": "Once nitrogen carries a positive charge it withdraws electron density, and a deactivated ring gives no Friedel-Crafts product.",
+        "margin_note": "Two facts are marked: the adduct forms, and the positively charged nitrogen deactivates the ring. Write both."
+      }
+    ]
+  },
+  "insider_note": "The answer that loses a mark is \"because –NH₂ deactivates the ring\". Free –NH₂ activates the ring; it is only after nitrogen has given its lone pair to AlCl₃, and so carries a positive charge, that the ring becomes deactivated."
+}

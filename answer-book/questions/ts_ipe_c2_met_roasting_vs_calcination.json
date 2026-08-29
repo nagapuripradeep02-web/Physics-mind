@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_roasting_vs_calcination",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Giving examples to differentiate roasting and calcination.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Roasting",
+      "marks": 1
+    },
+    {
+      "label": "Roasting examples",
+      "marks": 1
+    },
+    {
+      "label": "Calcination",
+      "marks": 1
+    },
+    {
+      "label": "Calcination examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EQUATIONS CHECKED: all four printed equations balance as printed — 2ZnS + 3O₂ → 2ZnO + 2SO₂ (Zn 2, S 2, O 6=6); ZnS + 2O₂ → ZnSO₄ (Zn 1, S 1, O 4=4); CaCO₃ → CaO + CO₂; 2NaHCO₃ → Na₂CO₃ + H₂O + CO₂ (Na 2, H 2, C 2, O 6=6). BOOK WEAK EXAMPLE, REPLACED: the book's second calcination example is sodium bicarbonate, 2NaHCO₃ → Na₂CO₃ + H₂O + CO₂. That decomposition is correct and balanced, but NaHCO₃ is not an ore, so calcining it is not a metallurgical operation. ZnCO₃ and the hydrated bauxite are written here instead and the book's example is recorded in the step's why. BOOK PRECISION: the printed definitions do not say \"below the melting point of the metal\", which is part of the standard definition of both processes and is added; and the printed roasting note that volatile impurities leave \"in the form of oxides\" is kept, with S, As and Sb named."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Metallurgy — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_roasting",
+        "kind": "text",
+        "label": "Roasting",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Roasting is the process of heating the",
+          "concentrated ore strongly in a regular",
+          "supply of air, below the melting point of",
+          "the metal.",
+          "It is used for sulphide ores.",
+          "The sulphide is changed into the oxide,",
+          "and volatile impurities of S, As and Sb",
+          "leave as their oxides."
+        ],
+        "why": "Air is the single word that separates roasting from calcination, so it belongs in the first line. Roasting is used on sulphides because the oxide is what a reducing agent can then reduce, and the sulphur leaves as SO₂ in the same step.",
+        "common_mistakes": [
+          "Saying roasting is done above the melting point of the metal. It is done below it, so the ore stays solid.",
+          "Applying roasting to carbonate ores. Carbonates are calcined; sulphides are roasted."
+        ],
+        "memory_tip": "Roasting has air in it, and sulphide ores are roasted.",
+        "margin_note": "The phrase \"in the presence of air\" has to appear. Without it the definition matches calcination instead."
+      },
+      {
+        "id": "s2_roasting_examples",
+        "kind": "equation",
+        "label": "Roasting examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "2ZnS + 3O₂ → 2ZnO + 2SO₂",
+            "style": "eq"
+          },
+          {
+            "text": "2PbS + 3O₂ → 2PbO + 2SO₂",
+            "style": "eq"
+          },
+          {
+            "text": "2Cu₂S + 3O₂ → 2Cu₂O + 2SO₂",
+            "style": "eq"
+          },
+          "In each one the sulphide becomes the",
+          "oxide and the sulphur leaves as SO₂."
+        ],
+        "why": "One example is enough for the mark, but all three follow the same pattern, so the pattern is easier to learn than three separate equations. The book prints a second zinc equation, ZnS + 2O₂ → ZnSO₄, which is the low temperature sulphating route; it is balanced and correct, but it is not the reaction used before reduction, so an oxide example is the safer one to write.",
+        "common_mistakes": [
+          "Writing ZnS + O₂ → ZnO + SO₂ without balancing. Two ZnS and three O₂ are needed.",
+          "Showing SO₃ as the gas. The gas released in roasting is SO₂."
+        ],
+        "memory_tip": "Sulphide plus oxygen gives oxide plus SO₂. Two sulphides need three oxygens.",
+        "margin_note": "One balanced equation earns this mark. Write the zinc one, since it is the one the book uses."
+      },
+      {
+        "id": "s3_calcination",
+        "kind": "text",
+        "label": "Calcination",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Calcination is the process of heating the",
+          "ore strongly in the absence of air, or in",
+          "a limited supply of air, below the melting",
+          "point of the metal.",
+          "It is used for carbonate ores and for",
+          "hydrated oxide ores.",
+          "Water and CO₂ are driven off and the",
+          "oxide is left behind."
+        ],
+        "why": "Calcination is the same heating with the air taken away, and the ores that suit it are the ones that simply decompose: carbonates lose CO₂ and hydrated oxides lose water. No oxidation should take place, which is why air is kept out.",
+        "common_mistakes": [
+          "Saying calcination removes sulphur. Sulphur is removed by roasting; calcination drives off water and CO₂.",
+          "Writing \"in the presence of air\". That is the definition of roasting and it is the commonest slip in this question."
+        ],
+        "memory_tip": "Calcination is heating without air, and carbonates are calcined.",
+        "margin_note": "The words \"absence of air\" are the mark. Underline them."
+      },
+      {
+        "id": "s4_calcination_examples",
+        "kind": "boxed_final",
+        "label": "Calcination examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "CaCO₃ → CaO + CO₂   (on heating)",
+            "style": "eq"
+          },
+          {
+            "text": "ZnCO₃ → ZnO + CO₂   (on heating)",
+            "style": "eq"
+          },
+          {
+            "text": "Al₂O₃·2H₂O → Al₂O₃ + 2H₂O   (on heating)",
+            "style": "eq"
+          },
+          {
+            "text": "Roasting: in air. Calcination: no air.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The three examples cover both ore types that are calcined, a carbonate and a hydrated oxide. The book's second calcination example is 2NaHCO₃ → Na₂CO₃ + H₂O + CO₂, which is balanced but sodium bicarbonate is not an ore, so ore examples are written here instead. The boxed line is the difference the word \"differentiate\" in the question is asking for.",
+        "common_mistakes": [
+          "Writing CaCO₃ → CaO + CO₂ under roasting. Carbonate decomposition is calcination.",
+          "Answering with definitions only. The question says \"giving examples\", so an equation for each process is required."
+        ],
+        "memory_tip": "A carbonate loses CO₂ and a hydrate loses water, both without air.",
+        "margin_note": "Finish with the one-line difference. It is what the word \"differentiate\" in the question is asking for."
+      }
+    ]
+  },
+  "insider_note": "The examiner reads for one phrase in each definition: \"presence of air\" for roasting and \"absence of air\" for calcination. Everything else in this answer supports those two phrases."
+}

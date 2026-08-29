@@ -1,0 +1,373 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_bohr_postulates_radius_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State the basic postulates of Bohr's theory of atomic spectra. Hence obtain an expression for the radius of orbit and the energy of orbital electron in a hydrogen atom?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The four postulates",
+      "marks": 1
+    },
+    {
+      "label": "Force balance and the quantum condition",
+      "marks": 1
+    },
+    {
+      "label": "The radius rₙ",
+      "marks": 1
+    },
+    {
+      "label": "The energy Eₙ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. SOURCE DEFECT CORRECTED: the book's Bohr-orbit figure (printed p46) labels the hydrogen nucleus \"+2e\". A hydrogen nucleus is a single proton, so its charge is +e; +2e is the charge of a helium nucleus. The figure here is drawn with +e. The book also writes the nuclear charge as lowercase ze² in the working; the standard Ze² is used here. Physics hand-checked: mvₙ²/rₙ = Ze²/4πε₀rₙ² with mvₙrₙ = nh/2π gives rₙ = (ε₀h²/πme²)(n²/Z), which for Z = 1, n = 1 is 0.53 Å; Kₙ = Ze²/8πε₀rₙ, Uₙ = −Ze²/4πε₀rₙ, so Eₙ = −Ze²/8πε₀rₙ = −13.6 Z²/n² eV, and the hydrogen ground state is −13.6 eV. The minus sign is kept everywhere: it says the electron is bound. NOTE FOR THE FOUNDER: this question — postulates plus the radius plus the energy — is the strongest 8-mark Section-C candidate in the whole Physics-II paper, but no second book sources a Section-C form for it, so it is authored at the 4 marks the book prints and NOT promoted to LAQ."
+  },
+  "recall_prompt": "State Bohr's postulates, then say how the radius and the energy of the nth orbit are obtained.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atoms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_postulates",
+        "kind": "text",
+        "label": "Bohr's postulates",
+        "marks": 1,
+        "mark_note": "Four postulates",
+        "lines": [
+          "Postulates of Bohr's theory:",
+          "1. The electron revolves round the nucleus in",
+          "certain circular orbits.",
+          "2. The angular momentum in these orbits is an",
+          "integral multiple of h/2π:  mvr = nh/2π,",
+          "where h is Planck's constant and n = 1, 2, 3 …",
+          "3. In such an orbit the electron does not",
+          "radiate and its energy stays constant. These",
+          "are called stationary orbits.",
+          "4. Radiation is emitted or absorbed only when",
+          "the electron moves from one stationary orbit",
+          "to another:  ΔE = E₂ − E₁ = hν."
+        ],
+        "margin_note": "First mark. All four, numbered. The quantum condition and ΔE = hν are the two that carry the derivation.",
+        "why": "Postulate 3 is the one that makes the atom stable: it simply states that a stationary orbit does not radiate, which is what classical theory could not allow. Postulates 2 and 4 are the two that produce the radius and the spectrum.",
+        "common_mistakes": [
+          "Writing mvr = nh without the 2π.",
+          "Leaving out the stationary-orbit postulate — it is the one that answers Rutherford's failure."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That electrons move in circular stationary orbits with mvr = nh/2π, do not radiate there, and emit hν = E₂ − E₁ on a transition.",
+          "accept": [
+            "circular orbits",
+            "angular momentum is n h by two pi",
+            "stationary orbits do not radiate",
+            "delta E equals h nu"
+          ],
+          "reject": [
+            "r n equals epsilon nought h squared"
+          ],
+          "heard_as": [
+            "postulates",
+            "n h by 2 pi",
+            "stationary orbit"
+          ]
+        },
+        "memory_tip": "Circular orbit, quantised angular momentum, no radiation, photon only on a transition."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The nth orbit",
+        "marks": 0,
+        "figure": {
+          "id": "bohr_orbit_hydrogen",
+          "width": 440,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "orbit_circle",
+              "d": "M 115 130 A 85 85 0 1 0 285 130 A 85 85 0 1 0 115 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus_circle",
+              "d": "M 182 130 A 18 18 0 1 0 218 130 A 18 18 0 1 0 182 130",
+              "ms": 1620
+            },
+            {
+              "type": "stroke",
+              "id": "electron_circle",
+              "d": "M 253 68 A 7 7 0 1 0 267 68 A 7 7 0 1 0 253 68",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "radius_line",
+              "d": "M 200 130 L 250 78",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "radius_head",
+              "d": "M 241 82 L 250 78 L 247 87",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "v_shaft",
+              "d": "M 270 76 L 304 108",
+              "ms": 670
+            },
+            {
+              "type": "stroke",
+              "id": "v_head",
+              "d": "M 300 99 L 304 108 L 295 105",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_charge",
+              "x": 192,
+              "y": 136,
+              "text": "+e",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_nucleus",
+              "x": 172,
+              "y": 174,
+              "text": "nucleus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_electron",
+              "x": 272,
+              "y": 56,
+              "text": "e⁻",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 216,
+              "y": 100,
+              "text": "rₙ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_v",
+              "x": 310,
+              "y": 114,
+              "text": "v",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Nucleus of charge +e at the centre, the nth circular orbit of radius rₙ, the electron on it, and v drawn along the tangent.",
+        "why": "The book's own figure labels the hydrogen nucleus +2e. A hydrogen nucleus is one proton, so the charge is +e; +2e belongs to helium. The velocity is drawn along the tangent because the speed is constant and only the direction changes — which is the acceleration the centripetal force supplies.",
+        "common_mistakes": [
+          "Labelling the hydrogen nucleus +2e, as the book does. It is +e.",
+          "Drawing v along the radius. The velocity is along the tangent."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a circular orbit is drawn with the nucleus of charge +e at the centre, the electron on the orbit, the radius rₙ and the velocity v along the tangent.",
+          "accept": [
+            "draw the circular orbit with the nucleus at the centre",
+            "mark r n and v",
+            "nucleus is plus e"
+          ],
+          "reject": [
+            "nucleus is plus two e"
+          ],
+          "heard_as": [
+            "Bohr orbit",
+            "nucleus",
+            "tangent"
+          ]
+        },
+        "memory_tip": "Hydrogen has one proton, so the centre is +e, never +2e."
+      },
+      {
+        "id": "s3_force_balance",
+        "kind": "text",
+        "label": "The two equations",
+        "marks": 1,
+        "mark_note": "Coulomb = centripetal, plus mvr = nh/2π",
+        "lines": [
+          "The electrostatic attraction between the nucleus",
+          "and the electron supplies the centripetal force:",
+          {
+            "text": "mvₙ²/rₙ = (1/4πε₀) · (Ze)e/rₙ²",
+            "style": "eq"
+          },
+          {
+            "text": "∴ mvₙ² = Ze²/4πε₀rₙ    … (1)",
+            "style": "eq"
+          },
+          "From the second postulate,",
+          {
+            "text": "mvₙrₙ = nh/2π    … (2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Number the two equations — the next step divides one by the other.",
+        "why": "Two unknowns, vₙ and rₙ, need two equations. Equation (1) is classical mechanics, equation (2) is the quantum condition; the radius comes out only when both are used together.",
+        "common_mistakes": [
+          "Writing the Coulomb force with rₙ instead of rₙ². The force goes as 1/r².",
+          "Using only one of the two equations. Neither alone fixes rₙ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Coulomb attraction equals the centripetal force, and that mvₙrₙ = nh/2π.",
+          "accept": [
+            "m v squared by r equals Z e squared by four pi epsilon nought r squared",
+            "coulomb force provides centripetal force",
+            "m v r equals n h by two pi"
+          ],
+          "reject": [
+            "r n is proportional to n squared"
+          ],
+          "heard_as": [
+            "centripetal force",
+            "coulomb attraction",
+            "m v r"
+          ]
+        },
+        "memory_tip": "One equation from mechanics, one from Bohr — two unknowns, two equations."
+      },
+      {
+        "id": "s4_radius",
+        "kind": "text",
+        "label": "The radius of the orbit",
+        "marks": 1,
+        "mark_note": "rₙ ∝ n²/Z",
+        "lines": [
+          "Squaring (2) and dividing by (1):",
+          {
+            "text": "rₙ = (ε₀h²/πme²) · (n²/Z)    … (3)",
+            "style": "eq"
+          },
+          "So rₙ ∝ n²/Z — the orbits are not equally",
+          "spaced; each one is farther out than the last.",
+          "For hydrogen Z = 1, and n = 1 gives",
+          {
+            "text": "r₁ = 0.53 Å = 0.53 × 10⁻¹⁰ m",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The expression, the n²/Z dependence, and the hydrogen value 0.53 Å.",
+        "why": "Squaring (2) puts m²vₙ²rₙ² on the left; dividing by (1), which carries mvₙ², cancels the velocity completely and leaves rₙ in terms of constants and n alone. That is why the orbit radii are fixed numbers, not a continuous range.",
+        "common_mistakes": [
+          "Writing rₙ ∝ n. The radius goes as n².",
+          "Quoting r₁ as 0.53 m or 0.53 nm. It is 0.53 Å, that is 0.53 × 10⁻¹⁰ m."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rₙ = (ε₀h²/πme²)(n²/Z), so rₙ ∝ n²/Z, and r₁ = 0.53 Å for hydrogen.",
+          "accept": [
+            "epsilon nought h squared by pi m e squared into n squared by Z",
+            "r is proportional to n squared",
+            "point five three angstrom"
+          ],
+          "reject": [
+            "minus thirteen point six by n squared"
+          ],
+          "heard_as": [
+            "r n",
+            "n squared by Z",
+            "0.53 angstrom"
+          ]
+        },
+        "memory_tip": "Radius climbs as n²: 0.53 Å, then 4 times, then 9 times."
+      },
+      {
+        "id": "s5_energy",
+        "kind": "boxed_final",
+        "label": "The energy of the electron",
+        "marks": 1,
+        "mark_note": "Eₙ = −13.6 Z²/n² eV",
+        "lines": [
+          "Kinetic energy in the nth orbit, from (1):",
+          {
+            "text": "Kₙ = ½mvₙ² = Ze²/8πε₀rₙ",
+            "style": "eq"
+          },
+          "Potential energy of the electron and nucleus:",
+          {
+            "text": "Uₙ = (1/4πε₀) · (Ze)(−e)/rₙ = −Ze²/4πε₀rₙ",
+            "style": "eq"
+          },
+          {
+            "text": "Eₙ = Kₙ + Uₙ = −Ze²/8πε₀rₙ",
+            "style": "eq"
+          },
+          "Putting rₙ from (3),",
+          {
+            "text": "Eₙ = −13.6 Z²/n² eV",
+            "style": "eq"
+          },
+          "For hydrogen Z = 1, so the ground state (n = 1)",
+          "has E₁ = −13.6 eV. The energy is negative",
+          "because the electron is bound to the nucleus.",
+          {
+            "text": "rₙ ∝ n²/Z  ·  Eₙ = −13.6 Z²/n² eV",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. K, U, their sum, and the minus sign in the final answer.",
+        "why": "The potential energy is twice the kinetic energy in size and opposite in sign, so the total is negative and equal to −Kₙ. A negative total energy is exactly what \"bound\" means: work must be done to remove the electron, and 13.6 eV is that work for hydrogen.",
+        "common_mistakes": [
+          "Dropping the minus sign. A bound electron has negative total energy.",
+          "Adding K and U as if both were positive. U is negative and larger in size than K."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Kₙ = Ze²/8πε₀rₙ, Uₙ = −Ze²/4πε₀rₙ, so Eₙ = −Ze²/8πε₀rₙ = −13.6 Z²/n² eV.",
+          "accept": [
+            "kinetic energy is Z e squared by eight pi epsilon nought r",
+            "potential energy is minus Z e squared by four pi epsilon nought r",
+            "minus thirteen point six Z squared by n squared electron volt"
+          ],
+          "reject": [
+            "r n equals epsilon nought h squared by pi m e squared"
+          ],
+          "heard_as": [
+            "minus 13.6",
+            "E n",
+            "electron volt"
+          ]
+        },
+        "memory_tip": "U is minus twice K, so the total is minus K — always negative."
+      }
+    ]
+  },
+  "insider_note": "This is the fullest question in the chapter: postulates, radius and energy in one answer — keep the minus sign on Eₙ and label the hydrogen nucleus +e, not +2e as the book's figure does."
+}

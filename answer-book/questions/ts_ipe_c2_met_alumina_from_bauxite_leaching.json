@@ -1,0 +1,167 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_alumina_from_bauxite_leaching",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How is alumina separated from silica in the bauxite ore associated with silica? Give equations.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Leaching with NaOH",
+      "marks": 1
+    },
+    {
+      "label": "The leaching equation",
+      "marks": 1
+    },
+    {
+      "label": "Precipitation with CO₂",
+      "marks": 1
+    },
+    {
+      "label": "Heating to pure alumina",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.82, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK EQUATION UNBALANCED, CORRECTED (book p.82, SAQ 6): the printed precipitation step is 2Na[Al(OH)₄](aq) + CO₂(aq) → Al₂O₃·xH₂O(s) + 2NaHCO₃(aq). That has ONE carbon on the left and TWO on the right, so it does not balance; the same unbalanced form is printed in NCERT. Balancing it gives 2Na[Al(OH)₄] + 2CO₂ → Al₂O₃·3H₂O + 2NaHCO₃ (Na 2=2, Al 2=2, C 2=2, O 12=12, H 8=8), which also fixes the hydrate at x = 3. That is confirmed by the book itself: its own flow chart in SAQ 7 writes the product of this very step as Al(OH)₃, and 2Al(OH)₃ is Al₂O₃·3H₂O. The balanced form is written on the card and the book's printed form is recorded in the step's why and in its common mistakes. OTHER EQUATIONS CHECKED: Al₂O₃ + 2NaOH + 3H₂O → 2Na[Al(OH)₄] balances as printed (Al 2=2, Na 2=2, O 8=8, H 8=8); the ignition step Al₂O₃·xH₂O → Al₂O₃ + xH₂O balances for any x. ADDED: the book gives no equation for the silica, although the question is specifically about the silica; SiO₂ + 2NaOH → Na₂SiO₃ + H₂O is added and balances (Si 1=1, Na 2=2, O 4=4, H 2=2). BOOK INCONSISTENCY: the ignition temperature is printed as 1470 K here and 1473 K in the flow chart of SAQ 7 on the same page."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Metallurgy — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_leaching",
+        "kind": "text",
+        "label": "Leaching with NaOH",
+        "marks": 1,
+        "mark_note": "Leaching",
+        "lines": [
+          "The method is leaching, also called",
+          "Bayer's process.",
+          "Powdered bauxite is digested with hot",
+          "concentrated NaOH at 473 to 523 K under",
+          "35 to 36 bar pressure.",
+          "Al₂O₃ dissolves as sodium aluminate and",
+          "SiO₂ dissolves as sodium silicate.",
+          "Fe₂O₃ and TiO₂ do not dissolve and are",
+          "filtered off."
+        ],
+        "why": "Both alumina and silica dissolve in hot alkali, so this first step does not separate them from each other; it separates both of them from the iron and titanium oxides. The actual separation of alumina from silica comes at the CO₂ step.",
+        "common_mistakes": [
+          "Saying the silica is removed in this step. Both alumina and silica dissolve here; the silica stays in solution until the end.",
+          "Using dilute NaOH. The leaching needs concentrated NaOH, a high temperature and pressure."
+        ],
+        "memory_tip": "Hot strong alkali dissolves both oxides. Iron and titanium stay behind as solids.",
+        "margin_note": "Give the temperature and the pressure. They are part of what is marked in a leaching answer."
+      },
+      {
+        "id": "s2_leaching_equation",
+        "kind": "equation",
+        "label": "The leaching equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "Al₂O₃(s) + 2NaOH(aq) + 3H₂O(l) →",
+            "style": "eq"
+          },
+          {
+            "text": "2Na[Al(OH)₄](aq)",
+            "style": "indent"
+          },
+          "Sodium aluminate is soluble, so the",
+          "alumina leaves the solid ore and goes",
+          "into the solution.",
+          {
+            "text": "SiO₂ + 2NaOH → Na₂SiO₃ + H₂O",
+            "style": "eq"
+          },
+          "Sodium silicate is soluble as well."
+        ],
+        "why": "The aluminate ion has four hydroxide groups, so three water molecules are needed on the left along with the two NaOH before the hydrogen and the oxygen balance. The silicate equation is added because the question is specifically about the silica and the book prints no equation for it.",
+        "common_mistakes": [
+          "Writing NaAlO₂ with no water. Sodium meta-aluminate is the older form; the hydrated form Na[Al(OH)₄] is the one used now.",
+          "Leaving out the 3H₂O. Without it the hydrogen and the oxygen do not balance."
+        ],
+        "memory_tip": "One alumina, two alkalis, three waters, two aluminates.",
+        "margin_note": "Write the state symbols. A leaching equation without (aq) does not show what has dissolved."
+      },
+      {
+        "id": "s3_precipitation",
+        "kind": "equation",
+        "label": "Precipitation with CO₂",
+        "marks": 1,
+        "mark_note": "Precipitation",
+        "lines": [
+          "CO₂ gas is passed through the filtrate and",
+          "a little freshly prepared hydrated alumina",
+          "is added as a seed.",
+          "Hydrated aluminium oxide is precipitated,",
+          "while the sodium silicate stays in",
+          "solution.",
+          {
+            "text": "2Na[Al(OH)₄] + 2CO₂ →",
+            "style": "eq"
+          },
+          {
+            "text": "Al₂O₃·3H₂O↓ + 2NaHCO₃",
+            "style": "indent"
+          }
+        ],
+        "why": "This is the step that finally separates alumina from silica: carbon dioxide is a weak acid and it brings down the aluminium hydroxide but leaves the silicate in solution. The book, following NCERT, prints this equation with one CO₂ and two NaHCO₃, which leaves one carbon on the left and two on the right. It is written here with 2CO₂, which balances every atom and fixes the hydrate at Al₂O₃·3H₂O — the same substance the book itself writes as Al(OH)₃ in its own flow chart for the next question.",
+        "common_mistakes": [
+          "Bubbling in HCl instead of CO₂. A strong acid would redissolve the aluminium hydroxide.",
+          "Writing one CO₂ with two NaHCO₃. Two carbons are needed on the right, so two CO₂ go in on the left."
+        ],
+        "memory_tip": "The weak acid CO₂ brings the alumina down and leaves the silicate in the solution.",
+        "margin_note": "The point of the whole question is in this step: silicate stays in solution, alumina comes out. Say it in words as well as in the equation."
+      },
+      {
+        "id": "s4_ignition",
+        "kind": "boxed_final",
+        "label": "Heating to pure alumina",
+        "marks": 1,
+        "mark_note": "Ignition",
+        "lines": [
+          "The precipitate is filtered, washed and",
+          "dried, then heated at about 1470 K.",
+          {
+            "text": "Al₂O₃·3H₂O → Al₂O₃ + 3H₂O   (1470 K)",
+            "style": "eq"
+          },
+          {
+            "text": "Pure alumina Al₂O₃ is obtained",
+            "style": "boxed"
+          },
+          "This alumina is the feed for the",
+          "electrolysis that gives aluminium."
+        ],
+        "why": "Heating drives off the water of hydration and leaves anhydrous alumina, which is what the electrolytic cell needs. The book prints 1470 K here and 1473 K in the flow chart of the next question; the two are the same temperature written to different precision.",
+        "common_mistakes": [
+          "Stopping at the hydrated oxide. The question asks for alumina, so the water has to be driven off.",
+          "Showing the water as a liquid. At 1470 K it leaves as steam."
+        ],
+        "memory_tip": "Heat drives the water off, so hydrated alumina becomes pure alumina.",
+        "margin_note": "Box the final product. A separation answer that never names the pure product reads as unfinished."
+      }
+    ]
+  },
+  "insider_note": "The one line that answers the question as asked is that the sodium silicate stays in solution while the alumina is precipitated by CO₂. Write it in words; the equations alone do not say it."
+}

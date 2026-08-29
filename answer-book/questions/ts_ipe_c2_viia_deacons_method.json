@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_deacons_method",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How is chlorine manufactured by Deacon's method?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, AND THE BOOK CONTRADICTS ITSELF (book p.86, VSAQ 7): the printed equation is 4HCl + O₂ → 2Cl₂ + 3H₂O. It does not balance — 3H₂O needs 6 H and 3 O, but the left side supplies only 4 H and 2 O. The SAME BOOK prints the correct 4HCl + O₂ → 2Cl₂ + 2H₂O two pages later, in Long Answer 1 on book p.88. The balanced form, 2H₂O, is written on this card and the printed error is named in the step's why. BOOK TYPO: \"Deacons\" is printed without the apostrophe; it is written Deacon's here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "In Deacon's method chlorine is made by",
+          "oxidising hydrogen chloride gas with the",
+          "oxygen of air.",
+          "The two gases are passed over a cupric",
+          "chloride catalyst at 723 K."
+        ],
+        "why": "Hydrogen chloride is a cheap by-product of other processes, so oxidising it back to chlorine is worth doing on a large scale. Air supplies the oxygen, and CuCl₂ at 723 K is the catalyst that makes the reaction fast enough to use. This is an industrial method, not a laboratory one.",
+        "common_mistakes": [
+          "Leaving out the catalyst and the temperature. Without CuCl₂ at 723 K the reaction is too slow to be useful.",
+          "Writing that chlorine is set free from HCl by an acid. It is an oxidation by the oxygen of air."
+        ],
+        "memory_tip": "Deacon's method oxidises the waste HCl back to chlorine, using air and a copper catalyst.",
+        "margin_note": "Name the oxidising agent (oxygen of air), the catalyst (CuCl₂) and the temperature (723 K). All three are marked together."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "4HCl + O₂ → 2Cl₂ + 2H₂O",
+            "style": "boxed"
+          },
+          "(catalyst CuCl₂, temperature 723 K)",
+          "Atom count: 4 H, 4 Cl and 2 O on each side."
+        ],
+        "why": "The book prints this equation on book p.86 with 3H₂O on the right, which does not balance: 3H₂O would need 6 H and 3 O, while the left side supplies only 4 H and 2 O. The same book prints the correct 2H₂O in the Long Answer on book p.88, so the printed pages disagree with each other. Count the hydrogen atoms and the balanced form settles it.",
+        "common_mistakes": [
+          "Copying 3H₂O from the printed answer. Only 4 H and 2 O are available, so the product is 2H₂O.",
+          "Writing HCl + O₂ → Cl₂ + H₂O without coefficients. Four HCl are needed for one O₂."
+        ],
+        "memory_tip": "Four HCl give two Cl₂ and two H₂O. Checking that hydrogen is 4 on each side catches the printed error at once.",
+        "margin_note": "Box the equation and write the conditions under it. An unbalanced equation loses this mark even when the words above are right."
+      }
+    ]
+  },
+  "insider_note": "Count the hydrogen atoms before you leave this equation. A widely used guide prints 3H₂O here, which does not balance; the answer is 2H₂O."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_amorphous_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the term amorphous.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book prints the question as \"Define the term amorphous ?\"; the stray space and question mark on an imperative are normalised here. The book gives only the definition and three examples; the two extra properties in step 2 (isotropic, no sharp melting point) are added from NCERT because they are the usual second marking point."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An amorphous solid is one in which the",
+          "constituent particles are arranged in an",
+          "irregular way.",
+          "It has short range order only, and no long",
+          "range order.",
+          "The word comes from Greek and means",
+          "\"no form\"."
+        ],
+        "why": "The whole idea of an amorphous solid is the ABSENCE of long range order. The particles are ordered over a few atomic distances (short range order) and then the pattern is lost, so the definition has to say both parts: irregular arrangement, short range order only.",
+        "common_mistakes": [
+          "Writing that the particles are arranged in no order at all. There is short range order; it is the long range order that is missing.",
+          "Calling an amorphous solid a liquid. It is a solid with a definite shape and volume."
+        ],
+        "memory_tip": "a- means without, morph means form. Amorphous = without a regular form.",
+        "margin_note": "Say \"irregular arrangement\" and \"short range order\". Both phrases are needed for the definition mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples and properties",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Examples: glass, rubber, plastic.",
+            "style": "boxed"
+          },
+          "They are isotropic: physical properties are",
+          "the same in every direction.",
+          "They soften over a range of temperature",
+          "instead of melting at one sharp point."
+        ],
+        "why": "An example is a separate marking point in a two-mark question, and the two properties follow directly from the irregular arrangement: with no ordered direction the properties cannot depend on direction, and with bonds of many different strengths the solid softens gradually rather than melting at one temperature.",
+        "common_mistakes": [
+          "Giving quartz or common salt as the example. Both are crystalline solids, so they are the opposite case.",
+          "Writing that amorphous solids have a sharp melting point. That belongs to crystalline solids."
+        ],
+        "memory_tip": "Glass is the standard example. Window glass softens slowly when heated, it does not melt at one temperature.",
+        "margin_note": "One named example is enough for the mark. The isotropic and softening points are the extra content that lifts a bare answer."
+      }
+    ]
+  },
+  "insider_note": "Two marks means two separate points, so never stop at the definition. Write the irregular arrangement with short range order, then a named example such as glass."
+}

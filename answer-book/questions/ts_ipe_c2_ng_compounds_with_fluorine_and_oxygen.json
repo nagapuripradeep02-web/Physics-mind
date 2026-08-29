@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_compounds_with_fluorine_and_oxygen",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why do noble gases form compounds with fluorine and oxygen only?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Fluorine and oxygen are the most electronegative",
+      "marks": 1
+    },
+    {
+      "label": "Why nothing weaker will do",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.90 as VSAQ 9. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK AMBIGUITY (book p.90, VSAQ 9): the printed answer is \"Noble gases form compounds with fluorine and oxygen only because they are highly electronegative and with favourable electron gain enthalpy\". The word \"they\" reads as the noble gases, which is the opposite of what is meant; it is fluorine and oxygen that are highly electronegative. The card names the subject in every sentence. BOOK GAP: the printed answer gives no reason from the side of the noble gas. The high ionisation enthalpy, and the fact that xenon has the lowest of the stable noble gases, are added, because that is what makes the question a two-mark one. BEYOND THE BOOK, recorded in the second step's why and not on the answer page: a small number of xenon compounds with Xe-N and Xe-C bonds are known in research chemistry, so the word \"only\" is a syllabus statement rather than an absolute one."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Noble Gases — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_f_and_o",
+        "kind": "text",
+        "label": "Fluorine and oxygen are the most electronegative",
+        "marks": 1,
+        "mark_note": "Property of F and O",
+        "lines": [
+          "Fluorine and oxygen are the two most",
+          "electronegative elements.",
+          "Both are small atoms, and both take up",
+          "electrons readily.",
+          "They are therefore the strongest oxidising",
+          "agents available."
+        ],
+        "why": "Electronegativity measures how strongly an atom draws the shared electrons of a bond, and fluorine is the highest of all elements at 4.0, with oxygen next at 3.5. A small atom also lets the bonding pair sit close to the nucleus, which makes the bond that does form a strong one.",
+        "common_mistakes": [
+          "Writing that the noble gases are highly electronegative. It is fluorine and oxygen that are; a noble gas has no electronegativity value in the usual scale.",
+          "Naming chlorine as an equally good choice. Chlorine is electronegative but larger and weaker, and simple xenon chlorides are not made this way."
+        ],
+        "memory_tip": "F is 4.0 and O is 3.5, the top two of the whole table. The next highest, nitrogen and chlorine, are only 3.0.",
+        "margin_note": "Say clearly that it is fluorine and oxygen that are electronegative. Leaving the subject out is what loses this mark."
+      },
+      {
+        "id": "s2_noble_gas_side",
+        "kind": "boxed_final",
+        "label": "Why nothing weaker will do",
+        "marks": 1,
+        "mark_note": "Property of the noble gas",
+        "lines": [
+          "A noble gas has a very high ionisation",
+          "enthalpy, so its electrons are held tightly.",
+          {
+            "text": "Only F and O attract electrons strongly",
+            "style": "boxed"
+          },
+          "enough to take a share of them and bond.",
+          "Xenon has the lowest ionisation enthalpy of",
+          "the stable noble gases, so its compounds are",
+          "the ones that are made:",
+          "XeF₂, XeF₄, XeF₆, XeO₃ and XeOF₄."
+        ],
+        "why": "The answer needs both sides. The noble gas holds its electrons very tightly, and only the two strongest oxidising elements attract them strongly enough to take a share of them. Down the group the ionisation enthalpy falls, so xenon reacts where helium, neon and argon do not. The word \"only\" is a syllabus statement: a small number of xenon compounds with Xe–N and Xe–C bonds are known in research chemistry.",
+        "common_mistakes": [
+          "Writing that all noble gases form these compounds. Helium, neon and argon hold their electrons too tightly; xenon and krypton are the ones used.",
+          "Giving only the property of fluorine and oxygen. The high ionisation enthalpy of the noble gas is the other half of the answer."
+        ],
+        "memory_tip": "Tightly held electrons on one side, the two most electronegative elements on the other. Both sides are needed.",
+        "margin_note": "One example formula, such as XeF₂ or XeO₃, is enough. The list of five is spare."
+      }
+    ]
+  },
+  "insider_note": "Answer from both sides. One mark is for fluorine and oxygen being the most electronegative, the other for the noble gas holding its own electrons tightly; a script that gives only the first side reads as half done."
+}

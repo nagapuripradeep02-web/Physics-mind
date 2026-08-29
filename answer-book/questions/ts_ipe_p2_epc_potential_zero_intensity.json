@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_potential_zero_intensity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Can there be electric potential at a point with zero electric intensity? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Yes, with the reason",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). Hand-checked: E = −dV/dr, so a region of constant non-zero V has E = 0; inside a charged hollow spherical conductor V equals the surface value everywhere and E = 0 — the book's example is correct. The book prints 'Can there electric potential' (a dropped 'be'); the question text here restores it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Potential and Capacitance · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_yes_reason",
+        "kind": "text",
+        "label": "Yes, with the reason",
+        "marks": 1,
+        "mark_note": "Yes + reason",
+        "lines": [
+          "Yes. Electric intensity is the rate of change",
+          "of potential with distance, E = −dV/dr.",
+          "If V has the same value at every nearby point,",
+          "E is zero even though V is not zero."
+        ],
+        "margin_note": "First mark. Say yes AND give the reason E = −dV/dr.",
+        "why": "E measures how fast V changes from point to point, not how large V is. A region of constant V has zero slope, so E = 0 there while V keeps its value.",
+        "common_mistakes": [
+          "Answering only \"yes\" with no reason.",
+          "Thinking zero E forces zero V. Zero E only forces CONSTANT V."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That yes, E is the rate of change of V, so constant non-zero V gives zero E.",
+          "accept": [
+            "E is minus dV by dr",
+            "constant potential gives zero field",
+            "V need not be zero when E is zero"
+          ],
+          "reject": [
+            "inside a hollow charged conductor"
+          ],
+          "heard_as": [
+            "rate of change",
+            "dV by dr"
+          ]
+        },
+        "memory_tip": "E is the slope of V. A flat V, at any height, has zero slope."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: inside a charged hollow spherical",
+          "conductor. The potential everywhere inside",
+          "equals the potential of the surface, and the",
+          "field inside is zero.",
+          {
+            "text": "Hollow charged conductor: V ≠ 0, E = 0",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the hollow charged conductor and state both facts: V not zero, E zero.",
+        "why": "Inside a charged hollow conductor the charges sit on the surface and their fields cancel at every interior point, so E = 0; V stays at the surface value because no field means no change in V.",
+        "common_mistakes": [
+          "Writing \"inside a conductor\" without saying charged and hollow.",
+          "Claiming V is also zero inside. V equals the surface potential."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That inside a charged hollow spherical conductor V is not zero but E is zero.",
+          "accept": [
+            "inside a charged hollow sphere",
+            "hollow spherical conductor",
+            "V equals the surface potential inside"
+          ],
+          "reject": [
+            "equatorial line of a dipole"
+          ],
+          "heard_as": [
+            "hollow",
+            "spherical conductor"
+          ]
+        },
+        "memory_tip": "Hollow sphere: the field stops at the surface, the potential walks in unchanged."
+      }
+    ]
+  },
+  "insider_note": "The reason line E = −dV/dr carries the first mark; a bare yes with the example usually earns only one of the two."
+}

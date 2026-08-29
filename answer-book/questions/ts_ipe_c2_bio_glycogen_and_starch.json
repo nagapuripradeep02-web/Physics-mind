@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_glycogen_and_starch",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is glycogen? How is it different from starch?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What glycogen is",
+      "marks": 1
+    },
+    {
+      "label": "The difference from starch",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 6. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_glycogen",
+        "kind": "text",
+        "label": "What glycogen is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Glycogen is the carbohydrate stored in the",
+          "animal body, in the liver and in muscle.",
+          "It is also called animal starch.",
+          "It is a branched polymer of α-D-glucose."
+        ],
+        "why": "Glycogen does in an animal what starch does in a plant: it holds many glucose units in one insoluble molecule and release them on demand. Its heavy branching gives many chain ends, so glucose can be released quickly.",
+        "common_mistakes": [
+          "Writing that glycogen is found in plants. It is the animal store; starch is the plant store.",
+          "Calling glycogen a polymer of β-D-glucose. Both starch and glycogen are built from α-D-glucose."
+        ],
+        "memory_tip": "Animal starch, stored in liver and muscle, heavily branched.",
+        "margin_note": "The words \"animal starch\" and \"branched polymer of α-D-glucose\" carry this mark."
+      },
+      {
+        "id": "s2_difference",
+        "kind": "boxed_final",
+        "label": "The difference from starch",
+        "marks": 1,
+        "mark_note": "Difference",
+        "lines": [
+          {
+            "text": "Starch has two parts; glycogen has one",
+            "style": "boxed"
+          },
+          "Starch is a mixture of two polymers:",
+          {
+            "text": "a) amylose, a linear polymer of α-D-glucose",
+            "style": "indent"
+          },
+          {
+            "text": "b) amylopectin, a branched polymer",
+            "style": "indent"
+          },
+          "Glycogen resembles amylopectin alone, but",
+          "is branched still more heavily."
+        ],
+        "why": "Both are α-D-glucose polymers, so the difference is not in the monomer or the linkage but in the make-up of the whole material: starch is two polymers together, one straight and one branched, while glycogen is a single, more heavily branched polymer.",
+        "common_mistakes": [
+          "Writing that starch is a single polymer. It has two components, amylose and amylopectin.",
+          "Saying glycogen and starch differ in their linkage. Both use α-glycosidic linkages; only the branching differs."
+        ],
+        "memory_tip": "Starch is amylose plus amylopectin; glycogen is amylopectin taken further.",
+        "margin_note": "Name both parts of starch. The comparison to amylopectin is what completes the difference."
+      }
+    ]
+  },
+  "insider_note": "Two things are being asked, so answer both: what glycogen is, then one clear difference. The difference the examiner is looking for is that starch has two components and glycogen has one."
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_magnetic_declination",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define magnetic declination.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The two meridians",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: declination at a place is the angle between the magnetic meridian (the vertical plane through the rest axis of a freely suspended magnet) and the geographic meridian (the vertical plane through the geographic north–south direction) — the standard NCERT definition, matching the book's."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Angle between the two meridians",
+        "lines": [
+          "At a place, the angle between the magnetic",
+          "meridian and the geographic meridian is",
+          "called the angle of declination at that",
+          "place."
+        ],
+        "margin_note": "First mark. The definition needs both meridians named and the words at a place.",
+        "why": "Declination compares two directions of north — the one a magnet points to and the true geographic one — and each direction is fixed by its meridian plane, so the definition is the angle between those two planes.",
+        "common_mistakes": [
+          "Mixing declination up with dip. Declination is between two vertical planes; dip is the angle the field makes with the horizontal.",
+          "Leaving out at a place. Declination changes from place to place."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That declination is the angle between the magnetic meridian and the geographic meridian at a place.",
+          "accept": [
+            "angle between magnetic meridian and geographic meridian",
+            "between the two meridians at a place"
+          ],
+          "reject": [
+            "angle with the horizontal"
+          ],
+          "heard_as": [
+            "declination",
+            "meridian",
+            "geographic"
+          ]
+        },
+        "memory_tip": "Declination = the two meridians disagree; dip = the field leans below the horizontal."
+      },
+      {
+        "id": "s2_meridians",
+        "kind": "text",
+        "label": "The two meridians",
+        "marks": 1,
+        "mark_note": "Both planes defined",
+        "lines": [
+          "The magnetic meridian is the vertical plane",
+          "through the rest axis of a freely",
+          "suspended magnet at that place.",
+          "The geographic meridian is the vertical",
+          "plane through the geographic north–south",
+          "direction at that place."
+        ],
+        "margin_note": "Second mark. Define each plane in one sentence — vertical plane through the magnet's rest axis, and vertical plane through true north–south.",
+        "why": "The definition in the first step uses the word meridian twice, so the answer is complete only when each meridian is itself defined — one from the magnet, one from the earth's geography.",
+        "common_mistakes": [
+          "Calling the meridians lines. Each meridian is a vertical plane, not a line.",
+          "Swapping the two — the magnetic meridian comes from the suspended magnet, the geographic one from true north–south."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the magnetic meridian is the vertical plane through a freely suspended magnet's rest axis, and the geographic meridian is the vertical plane through the true north–south direction.",
+          "accept": [
+            "vertical plane through the suspended magnet",
+            "vertical plane through geographic north south",
+            "magnetic meridian from the magnet, geographic from true north"
+          ],
+          "reject": [
+            "angle between the meridians"
+          ],
+          "heard_as": [
+            "vertical plane",
+            "suspended magnet",
+            "north south"
+          ]
+        },
+        "memory_tip": "Both meridians are vertical planes: one holds the magnet's axis, the other holds true north–south."
+      }
+    ]
+  },
+  "insider_note": "The safe answer defines three things, not one — declination, and then each of the two meridians it mentions."
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_ambidentate_ligand",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is an ambidentate ligand? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples with both donor atoms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 9. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ANSWER KEPT AND EXTENDED (book p.91, VSAQ 9): the printed definition, \"A unidentate ligand which can ligate through two different atoms\", is correct, and the printed examples NO₂⁻ and SCN⁻ are correct. The card names the two donor atoms in each, which the book does not, and links the property to linkage isomerism, which the same chapter asks about in Short Answer 6. The formulas of the linkage pair are taken from the book's own isomerism answer on book p.93, where they are printed as the chlorides [Co(NO₂)(NH₃)₅]Cl₂ and [Co(ONO)(NH₃)₅]Cl₂; the complex ions are written here with their 2+ charge, which is the same statement."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An ambidentate ligand is a unidentate",
+          "ligand that has two different donor",
+          "atoms and can bind through either one.",
+          "It uses only one of them at a time, so it",
+          "occupies one coordination position.",
+          "Which atom is used depends on the metal",
+          "and on the conditions."
+        ],
+        "why": "The two halves of the definition look opposed, and both must be written. Ambidentate means two possible donor atoms; unidentate means only one of them is used in any one complex. That is exactly what separates an ambidentate ligand from a bidentate one, which uses both donor atoms at the same time and occupies two positions.",
+        "common_mistakes": [
+          "Confusing ambidentate with bidentate. A bidentate ligand uses both donor atoms at once; an ambidentate ligand uses one or the other.",
+          "Saying the ligand occupies two coordination positions. It occupies one."
+        ],
+        "memory_tip": "Ambidentate = two possible donor atoms, one of them used at a time.",
+        "margin_note": "The words unidentate and \"two different donor atoms\" must both appear. One without the other is half."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Examples: NO₂⁻ and SCN⁻",
+            "style": "boxed"
+          },
+          "NO₂⁻ binds through N as nitrito-N, and",
+          "through O as nitrito-O.",
+          "SCN⁻ binds through S as thiocyanato-S,",
+          "and through N as thiocyanato-N.",
+          "This choice is what produces linkage",
+          "isomerism, as in [Co(NO₂)(NH₃)₅]²⁺ and",
+          "[Co(ONO)(NH₃)₅]²⁺."
+        ],
+        "why": "Naming both donor atoms is what shows the ligand really is ambidentate; the name on its own does not. The nitrite ion is written NO₂ when nitrogen donates and ONO when oxygen donates, and the two forms are different compounds with different colours. That is the whole basis of linkage isomerism, which is asked as part of the isomerism question in this chapter.",
+        "common_mistakes": [
+          "Naming the ligand but not its two donor atoms. NO₂⁻ binds through N or through O, and that is the point.",
+          "Writing NO₃⁻ instead of NO₂⁻. Nitrate is not the ambidentate ligand here; nitrite is."
+        ],
+        "memory_tip": "NO₂⁻ through N or O; SCN⁻ through S or N. Two atoms, one used.",
+        "margin_note": "One example with both donor atoms named is enough. Two examples with no donor atoms named is not."
+      }
+    ]
+  },
+  "insider_note": "Naming the donor atoms is the difference between half marks and full marks here. Write \"through N or through O\" next to NO₂⁻."
+}

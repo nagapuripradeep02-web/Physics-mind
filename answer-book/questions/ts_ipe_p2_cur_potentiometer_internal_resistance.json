@@ -1,0 +1,509 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_potentiometer_internal_resistance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "State the working principle of potentiometer explain with the help of circuit diagram. How the potentiometer is used, to determine the internal resistance of the primary cell.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 2
+    },
+    {
+      "label": "The first balance point",
+      "marks": 2
+    },
+    {
+      "label": "The second balance point",
+      "marks": 2
+    },
+    {
+      "label": "The internal resistance",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+2+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription (book p30, LAQ 3): the wording is kept as printed, including the comma in 'used, to determine'; the book's 'manganine', 'inseries', 'opend' and 'choosen' spellings are corrected on the card. NOTE ON ρ: as in LAQ 2 the book uses ρ for the RESISTANCE PER UNIT LENGTH of the wire (ρ = R/L), not for resistivity, and the card says so in words. NOTE ON 'primary cell': the question calls the cell under test the primary cell, meaning a non-rechargeable cell; in the circuit it sits in the SECONDARY circuit of the potentiometer. Hand-checked: ε = Iρl₁ and V = Iρl₂ give ε/V = l₁/l₂; with V = IR and ε = I(R + r) this is (R + r)/R = l₁/l₂, so r/R = (l₁ − l₂)/l₂ and r = R(l₁ − l₂)/l₂."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Current Electricity · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 2,
+        "mark_note": "V ∝ l for a steady current",
+        "lines": [
+          "Principle: when a steady current passes",
+          "through a wire of uniform cross section, the",
+          "potential difference between any two points",
+          "on the wire is directly proportional to the",
+          "length of wire between those points.",
+          {
+            "text": "V ∝ l",
+            "style": "eq"
+          },
+          "The constant of proportionality is the",
+          "potential gradient of the wire.",
+          "A uniform manganin wire AB about 10 m long is",
+          "fixed on a wooden plank beside a metre scale,",
+          "with copper strips of negligible resistance",
+          "at its ends. A cell of emf E and internal",
+          "resistance r, a key K and a rheostat form the",
+          "primary circuit across AB, and",
+          {
+            "text": "V = I ρ l,   ρ = R/L",
+            "style": "eq"
+          },
+          "where ρ is the resistance per unit length."
+        ],
+        "margin_note": "First two marks. The principle in full, then the wire and its primary circuit.",
+        "why": "A uniform wire has the same resistance in every centimetre, so a steady current drops the same voltage in every centimetre. The drop over a length l is then simply proportional to l.",
+        "common_mistakes": [
+          "Leaving out uniform cross section or steady current from the statement.",
+          "Reading ρ as resistivity. Here it is resistance per unit length."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with a steady current in a uniform wire the potential difference between two points is proportional to the length between them.",
+          "accept": [
+            "potential difference is proportional to length",
+            "steady current uniform cross section",
+            "V equals I rho l"
+          ],
+          "reject": [
+            "r equals R into l one minus l two by l two"
+          ],
+          "heard_as": [
+            "uniform cross section",
+            "proportional to length",
+            "potential gradient"
+          ]
+        },
+        "memory_tip": "Same wire, same current: every centimetre drops the same voltage."
+      },
+      {
+        "id": "s2_primary_figure",
+        "kind": "diagram",
+        "label": "The primary circuit",
+        "marks": 0,
+        "figure": {
+          "id": "potentiometer_primary_internal_r",
+          "width": 360,
+          "height": 150,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "wire_ab",
+              "d": "M 40 110 L 320 110",
+              "ms": 4000,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "prim_left",
+              "d": "M 40 110 L 40 40 L 140 40",
+              "ms": 2430
+            },
+            {
+              "type": "stroke",
+              "id": "batt_long",
+              "d": "M 146 26 L 146 54",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "batt_short",
+              "d": "M 158 33 L 158 47",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "prim_right",
+              "d": "M 158 40 L 190 40 L 198 28 L 210 52 L 222 28 L 234 52 L 242 40 L 320 40 L 320 110",
+              "ms": 4130
+            },
+            {
+              "type": "stroke",
+              "id": "i_ah",
+              "d": "M 282 34 L 272 40 L 282 46",
+              "ms": 330
+            },
+            {
+              "type": "label",
+              "id": "lbl_e",
+              "x": 138,
+              "y": 74,
+              "text": "E",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_rh",
+              "x": 204,
+              "y": 20,
+              "text": "Rₕ",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i",
+              "x": 276,
+              "y": 26,
+              "text": "I",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 32,
+              "y": 132,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 324,
+              "y": 132,
+              "text": "B",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The thick line is the potentiometer wire AB. The cell E, the key K and the rheostat Rₕ hold a steady current I in it.",
+        "why": "The primary circuit fixes the potential gradient. It must stay untouched between the two readings, or the two lengths cannot be compared.",
+        "common_mistakes": [
+          "Adjusting the rheostat between the two readings."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the primary circuit is the wire AB with a cell, key and rheostat across its ends.",
+          "accept": [
+            "draw the wire A B with cell and rheostat",
+            "primary circuit across the ends of the wire"
+          ],
+          "reject": [
+            "resistance box and galvanometer"
+          ],
+          "heard_as": [
+            "primary circuit",
+            "rheostat",
+            "wire A B"
+          ]
+        },
+        "memory_tip": "Set the gradient once and leave the rheostat alone."
+      },
+      {
+        "id": "s3_secondary_figure",
+        "kind": "diagram",
+        "label": "The secondary circuit",
+        "marks": 0,
+        "figure": {
+          "id": "potentiometer_secondary_internal_r",
+          "width": 360,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "wire_ab",
+              "d": "M 40 60 L 320 60",
+              "ms": 4000,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "rail",
+              "d": "M 40 60 L 40 205 L 88 205",
+              "ms": 2760
+            },
+            {
+              "type": "stroke",
+              "id": "cell_left",
+              "d": "M 40 140 L 88 140",
+              "ms": 690
+            },
+            {
+              "type": "stroke",
+              "id": "cell_box",
+              "d": "M 88 126 L 128 126 L 128 154 L 88 154 Z",
+              "ms": 1940
+            },
+            {
+              "type": "stroke",
+              "id": "cell_right",
+              "d": "M 128 140 L 200 140",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "galv",
+              "d": "M 200 140 A 15 15 0 1 0 230 140 A 15 15 0 1 0 200 140",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "jockey",
+              "d": "M 230 140 L 264 140 L 264 60",
+              "ms": 1630
+            },
+            {
+              "type": "stroke",
+              "id": "r_box",
+              "d": "M 88 191 L 128 191 L 128 219 L 88 219 Z",
+              "ms": 1940
+            },
+            {
+              "type": "stroke",
+              "id": "shunt",
+              "d": "M 128 205 L 180 205 L 180 140",
+              "ms": 1670
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 28,
+              "y": 52,
+              "text": "A",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 326,
+              "y": 52,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_cell",
+              "x": 92,
+              "y": 118,
+              "text": "ε, r",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 100,
+              "y": 183,
+              "text": "R",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_k1",
+              "x": 142,
+              "y": 196,
+              "text": "K₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_g",
+              "x": 208,
+              "y": 147,
+              "text": "G",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The cell under test, with emf ε and internal resistance r, runs through the galvanometer G to the jockey on AB. The resistance box R and the key K₁ are joined across the cell.",
+        "why": "The resistance box sits across the cell, not in series with the galvanometer, so closing K₁ draws a current from the cell and makes its terminal voltage drop below its emf. That drop is what the second reading measures.",
+        "common_mistakes": [
+          "Putting the resistance box in series with the galvanometer instead of across the cell.",
+          "Leaving out the key K₁, so the two readings cannot be separated."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the cell under test goes through a galvanometer to the jockey, with a resistance box and key across the cell.",
+          "accept": [
+            "cell galvanometer and jockey",
+            "resistance box with a key across the cell",
+            "secondary circuit from A through the cell"
+          ],
+          "reject": [
+            "two cells with two keys"
+          ],
+          "heard_as": [
+            "resistance box",
+            "jockey",
+            "galvanometer"
+          ]
+        },
+        "memory_tip": "The box goes ACROSS the cell, so closing its key loads the cell."
+      },
+      {
+        "id": "s4_open_key",
+        "kind": "equation",
+        "label": "The first balance point",
+        "marks": 2,
+        "mark_note": "ε = Iρl₁ with K₁ open",
+        "lines": [
+          "Close the key K and leave K₁ open. No current",
+          "is drawn from the cell, so the wire balances",
+          "the full emf.",
+          "Slide the jockey along AB until the",
+          "galvanometer reads zero. Let the balancing",
+          "length from A be l₁. Then",
+          {
+            "text": "ε = I ρ l₁    ... (1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. State clearly that K₁ is OPEN, so the balanced value is the emf.",
+        "why": "With K₁ open the only path from the cell is through the galvanometer, and at balance that carries no current either. No current through the cell means no drop across its internal resistance, so the balanced value is the emf itself.",
+        "common_mistakes": [
+          "Calling this first reading the terminal voltage. With K₁ open it is the emf.",
+          "Closing K₁ for the first reading."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with K one open the balance length l one gives the emf, epsilon equals I rho l one.",
+          "accept": [
+            "K one open balance at l one",
+            "epsilon equals I rho l one",
+            "no current drawn so it is the emf"
+          ],
+          "reject": [
+            "V equals I rho l two"
+          ],
+          "heard_as": [
+            "key open",
+            "l one",
+            "emf"
+          ]
+        },
+        "memory_tip": "Key open, no load, full emf."
+      },
+      {
+        "id": "s5_closed_key",
+        "kind": "equation",
+        "label": "The second balance point",
+        "marks": 2,
+        "mark_note": "V = Iρl₂ with K₁ closed",
+        "lines": [
+          "Now close K₁ with a resistance R chosen in the",
+          "box. The cell now drives a current through R,",
+          "so the wire balances only the terminal",
+          "potential difference V.",
+          "Let the new balancing length be l₂. Then",
+          {
+            "text": "V = I ρ l₂    ... (2)",
+            "style": "eq"
+          },
+          "Dividing (1) by (2),",
+          {
+            "text": "ε / V = l₁ / l₂    ... (3)",
+            "style": "eq"
+          },
+          "But V = IR across the box and ε = I(R + r)",
+          "round the cell circuit, so",
+          {
+            "text": "ε / V = I(R + r) / IR = (R + r)/R    ... (4)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. K₁ closed gives V, not ε; then equations (3) and (4) for the same ratio.",
+        "why": "The same ratio ε/V is written twice: once from the two lengths and once from the circuit. Setting the two expressions equal is what brings r into the working.",
+        "common_mistakes": [
+          "Writing ε = IR. The emf drives the current through R and through r together.",
+          "Changing the primary current between the two readings, which makes the lengths incomparable."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That closing K one balances the terminal voltage at l two, and that epsilon by V equals both l one by l two and R plus r by R.",
+          "accept": [
+            "V equals I rho l two",
+            "epsilon by V equals l one by l two",
+            "epsilon by V equals R plus r by R"
+          ],
+          "reject": [
+            "epsilon equals I rho l one"
+          ],
+          "heard_as": [
+            "key closed",
+            "l two",
+            "terminal voltage"
+          ]
+        },
+        "memory_tip": "Key closed, cell loaded, terminal voltage — always less than the emf."
+      },
+      {
+        "id": "s6_result",
+        "kind": "boxed_final",
+        "label": "The internal resistance",
+        "marks": 2,
+        "mark_note": "r = R(l₁ − l₂)/l₂",
+        "lines": [
+          "From (3) and (4),",
+          {
+            "text": "(R + r)/R = l₁/l₂",
+            "style": "eq"
+          },
+          {
+            "text": "r/R + 1 = l₁/l₂",
+            "style": "eq"
+          },
+          {
+            "text": "r/R = l₁/l₂ − 1 = (l₁ − l₂)/l₂",
+            "style": "eq"
+          },
+          {
+            "text": "r = R (l₁ − l₂) / l₂",
+            "style": "boxed"
+          },
+          "R is read from the box and l₁, l₂ from the",
+          "metre scale, so the internal resistance of",
+          "the cell is found."
+        ],
+        "margin_note": "Last two marks. Split (R + r)/R into r/R + 1 before rearranging, and box the result.",
+        "why": "l₁ is always longer than l₂ because loading the cell lowers its terminal voltage, so the bracket (l₁ − l₂) is positive and r comes out positive as it must.",
+        "common_mistakes": [
+          "Writing r = R(l₁ − l₂)/l₁. The divisor is l₂, the loaded length.",
+          "Forgetting the factor R, and giving r as a pure number."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rearranging gives r equal to R times l one minus l two, divided by l two.",
+          "accept": [
+            "r equals R into l one minus l two by l two",
+            "r by R equals l one minus l two by l two",
+            "internal resistance from the two lengths and R"
+          ],
+          "reject": [
+            "epsilon by V equals R plus r by R"
+          ],
+          "heard_as": [
+            "l one minus l two",
+            "by l two",
+            "internal resistance"
+          ]
+        },
+        "memory_tip": "Difference of the lengths on top, the loaded length below, all times R."
+      }
+    ]
+  },
+  "insider_note": "Almost every lost mark here is the same one: calling the first reading a terminal voltage. With the key open no current leaves the cell, so the first balance measures the emf."
+}

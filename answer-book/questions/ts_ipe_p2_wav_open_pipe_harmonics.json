@@ -1,0 +1,399 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_open_pipe_harmonics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the formation of stationary waves in an air column enclosed in open pipe. Derive the equations for the frequencies of the harmonics produced.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Open pipe, harmonics and overtones",
+      "marks": 1
+    },
+    {
+      "label": "Fundamental frequency",
+      "marks": 2
+    },
+    {
+      "label": "Second harmonic",
+      "marks": 2
+    },
+    {
+      "label": "Third harmonic",
+      "marks": 2
+    },
+    {
+      "label": "The ratio 1 : 2 : 3",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+2+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it — the figure carries 0 marks because the question does not ask for a diagram. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: an open pipe has a displacement antinode at each open end, so l = λ₁/2 gives n₁ = v/2l; the next modes give λ₂ = l (n₂ = 2n₁) and λ₃ = 2l/3 (n₃ = 3n₁); the ratio is 1 : 2 : 3 with ALL harmonics present. The book's spellings 'Harmonies' and 'Foundamental' are corrected."
+  },
+  "recall_prompt": "Say the derivation in order — the open-pipe boundary condition, then the fundamental, second and third harmonics, and the ratio.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Waves · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_open_pipe",
+        "kind": "text",
+        "label": "Open pipe, harmonics and overtones",
+        "marks": 1,
+        "mark_note": "Definitions and boundary condition",
+        "lines": [
+          "An organ pipe is a cylindrical tube",
+          "holding an air column. If both ends are",
+          "open, it is an open organ pipe.",
+          "Harmonics: frequencies that are whole-",
+          "number multiples of the fundamental",
+          "frequency. Overtones: the frequencies",
+          "above the fundamental.",
+          "Sound waves reflect at the ends of the",
+          "pipe and superpose, forming stationary",
+          "waves with an antinode at each open end",
+          "and at least one node between them."
+        ],
+        "margin_note": "First mark. The boundary condition — an antinode at each OPEN end — drives every mode that follows.",
+        "why": "At an open end the air is free to move, so the displacement there is maximum — an antinode. Every allowed mode of the pipe is just a wave pattern that puts an antinode at both ends.",
+        "common_mistakes": [
+          "Placing a node at an open end — free air moves; open ends take antinodes.",
+          "Treating harmonic and overtone as the same word — the second harmonic is the FIRST overtone."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an open pipe forms stationary waves with a displacement antinode at each open end.",
+          "accept": [
+            "antinode at each open end",
+            "harmonics are whole number multiples",
+            "overtones are the frequencies above the fundamental"
+          ],
+          "reject": [
+            "l equals lambda by two"
+          ],
+          "heard_as": [
+            "open pipe",
+            "antinode",
+            "harmonics",
+            "overtones"
+          ]
+        },
+        "memory_tip": "Open end = air free to move = antinode. Both ends open, so both ends antinodes."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The fundamental mode",
+        "marks": 0,
+        "figure": {
+          "id": "open_pipe_fundamental",
+          "width": 340,
+          "height": 160,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "pipe_top",
+              "d": "M 40 50 L 300 50",
+              "ms": 3710
+            },
+            {
+              "type": "stroke",
+              "id": "pipe_bot",
+              "d": "M 40 110 L 300 110",
+              "ms": 3710
+            },
+            {
+              "type": "stroke",
+              "id": "curve_up",
+              "d": "M 40 55 Q 105 58 170 80 Q 235 58 300 55",
+              "ms": 3790
+            },
+            {
+              "type": "stroke",
+              "id": "curve_dn",
+              "d": "M 40 105 Q 105 102 170 80 Q 235 102 300 105",
+              "ms": 3790
+            },
+            {
+              "type": "label",
+              "id": "lbl_an_l",
+              "x": 30,
+              "y": 42,
+              "text": "an",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 162,
+              "y": 70,
+              "text": "n",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_an_r",
+              "x": 286,
+              "y": 42,
+              "text": "an",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "len_line",
+              "d": "M 40 135 L 300 135",
+              "ms": 3710
+            },
+            {
+              "type": "stroke",
+              "id": "len_head_l",
+              "d": "M 49 130 L 40 135 L 49 140",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "len_head_r",
+              "d": "M 291 130 L 300 135 L 291 140",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_len",
+              "x": 140,
+              "y": 128,
+              "text": "l = λ₁/2",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The fundamental: an antinode at each open end, one node in the middle — half a wavelength in the pipe.",
+        "why": "The sketch shows the simplest pattern that satisfies the open-pipe boundary condition; the higher harmonics only add more node–antinode pairs to this picture.",
+        "common_mistakes": [
+          "Closing one end of the pipe in the sketch — an open pipe has no end wall on either side."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the fundamental mode has an antinode at each end and a node in the middle, with l = λ₁/2.",
+          "accept": [
+            "draw the pipe with antinodes at both ends",
+            "one node in the middle",
+            "half a wavelength fits the pipe"
+          ],
+          "reject": [
+            "n two equals two n one"
+          ],
+          "heard_as": [
+            "figure",
+            "fundamental",
+            "diagram"
+          ]
+        },
+        "memory_tip": "Antinode–node–antinode is half a wave — that is the whole fundamental picture."
+      },
+      {
+        "id": "s3_fundamental",
+        "kind": "equation",
+        "label": "Fundamental frequency",
+        "marks": 2,
+        "mark_note": "n₁ = v/2l",
+        "lines": [
+          "The fundamental (first harmonic) has an",
+          "antinode at each end and one node",
+          "between them, so half a wavelength fits",
+          "the pipe:",
+          {
+            "text": "l = λ₁/2 → λ₁ = 2l",
+            "style": "eq"
+          },
+          "With v the speed of sound in air:",
+          {
+            "text": "n₁ = v/λ₁ = v/2l … (1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: the fit l = λ₁/2, then n₁ = v/2l.",
+        "why": "The mode with the fewest nodes has the longest wavelength and so the lowest frequency — that is what makes it the fundamental. Every other mode is counted from this one.",
+        "common_mistakes": [
+          "Writing l = λ₁/4 — the quarter-wave fit belongs to the CLOSED pipe; an open pipe fits half a wave.",
+          "Using the string speed √(T/μ) — the wave here is sound in air, speed v."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That half a wavelength fits the open pipe, so λ₁ = 2l and n₁ = v/2l.",
+          "accept": [
+            "l is lambda by two",
+            "lambda one is 2l",
+            "n one is v by 2l"
+          ],
+          "reject": [
+            "lambda one is 4l"
+          ],
+          "heard_as": [
+            "fundamental",
+            "v by 2l",
+            "half wavelength"
+          ]
+        },
+        "memory_tip": "Open pipe fundamental: half a wave in the pipe, so 2l under the v."
+      },
+      {
+        "id": "s4_second",
+        "kind": "equation",
+        "label": "Second harmonic",
+        "marks": 2,
+        "mark_note": "n₂ = 2n₁",
+        "lines": [
+          "The second harmonic (first overtone) has",
+          "two nodes and three antinodes. One full",
+          "wavelength now fits the pipe:",
+          {
+            "text": "l = 2(λ₂/2) → λ₂ = l",
+            "style": "eq"
+          },
+          {
+            "text": "n₂ = v/λ₂ = v/l = 2(v/2l)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ n₂ = 2n₁ … (2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: λ₂ = l from the node count, then n₂ = 2n₁.",
+        "why": "Adding one node squeezes one more half-wavelength into the same length, so the wavelength drops and the frequency rises to exactly twice the fundamental — the counting is the derivation.",
+        "common_mistakes": [
+          "Calling this the second overtone — it is the second HARMONIC but the FIRST overtone.",
+          "Writing λ₂ = 2l/3 — that is the third harmonic; the second fits exactly one wavelength."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second harmonic fits one full wavelength, λ₂ = l, giving n₂ = 2n₁.",
+          "accept": [
+            "two nodes and three antinodes",
+            "lambda two equals l",
+            "n two is twice n one"
+          ],
+          "reject": [
+            "three nodes and four antinodes"
+          ],
+          "heard_as": [
+            "second harmonic",
+            "first overtone",
+            "2 n one"
+          ]
+        },
+        "memory_tip": "One more node, one more half-wave: the pipe now holds a full wavelength."
+      },
+      {
+        "id": "s5_third",
+        "kind": "equation",
+        "label": "Third harmonic",
+        "marks": 2,
+        "mark_note": "n₃ = 3n₁",
+        "lines": [
+          "The third harmonic (second overtone) has",
+          "three nodes and four antinodes. Three",
+          "half-wavelengths fit the pipe:",
+          {
+            "text": "l = 3λ₃/2 → λ₃ = 2l/3",
+            "style": "eq"
+          },
+          {
+            "text": "n₃ = v/λ₃ = 3v/2l = 3(v/2l)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ n₃ = 3n₁ … (3)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: λ₃ = 2l/3 from the fit, then n₃ = 3n₁.",
+        "why": "Each new mode adds one half-wavelength to the fit, so the frequencies climb in equal steps — this third step is what reveals the whole-number pattern the ratio states next.",
+        "common_mistakes": [
+          "Writing l = 3λ₃/4 — the three-quarter fit belongs to the closed pipe; here three HALVES fit.",
+          "Slipping on the algebra: v ÷ (2l/3) is 3v/2l, not 2v/3l."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That three half-wavelengths fit, λ₃ = 2l/3, giving n₃ = 3n₁.",
+          "accept": [
+            "three nodes and four antinodes",
+            "lambda three is 2l by 3",
+            "n three is three times n one"
+          ],
+          "reject": [
+            "lambda two equals l"
+          ],
+          "heard_as": [
+            "third harmonic",
+            "2l by 3",
+            "3 n one"
+          ]
+        },
+        "memory_tip": "Count the halves: 1, 2, 3 half-waves — the frequencies follow the same count."
+      },
+      {
+        "id": "s6_ratio",
+        "kind": "boxed_final",
+        "label": "The ratio",
+        "marks": 1,
+        "mark_note": "1 : 2 : 3, all harmonics",
+        "lines": [
+          "From equations (1), (2) and (3), the",
+          "fundamental and the next harmonics are",
+          "in the ratio:",
+          {
+            "text": "n₁ : n₂ : n₃ = 1 : 2 : 3 …",
+            "style": "boxed"
+          },
+          "An open pipe produces all the harmonics",
+          "— even and odd."
+        ],
+        "margin_note": "Final mark. The ratio AND the sentence — all harmonics are present.",
+        "why": "The unbroken whole-number ratio is the open pipe's signature; the closed pipe's ratio 1 : 3 : 5 skips the even numbers, and examiners set the two pipes against each other on exactly this line.",
+        "common_mistakes": [
+          "Writing 1 : 3 : 5 — that is the CLOSED pipe. The open pipe gives every whole number.",
+          "Stopping at the ratio without saying all harmonics are present — that sentence is the physical conclusion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the harmonic frequencies are in the ratio 1 : 2 : 3 and all harmonics are present.",
+          "accept": [
+            "one is to two is to three",
+            "all harmonics present",
+            "even and odd harmonics both occur"
+          ],
+          "reject": [
+            "one is to three is to five"
+          ],
+          "heard_as": [
+            "ratio",
+            "1 2 3",
+            "all harmonics"
+          ]
+        },
+        "memory_tip": "Open pipe, open list: 1, 2, 3, … with nothing skipped."
+      }
+    ]
+  },
+  "insider_note": "The pattern is one antinode-to-antinode fit per mode: 1, 2, 3 half-wavelengths. Keep the closed pipe's quarter-wave fits out of this answer — mixing the two costs the middle marks."
+}

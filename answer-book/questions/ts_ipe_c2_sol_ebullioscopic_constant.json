@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_ebullioscopic_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is ebullioscopic constant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The equation and the unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.65, VSAQ 7): the printed answer is one line and never says that the solute must be NON-VOLATILE, never gives ΔTb = Kb m, never gives the unit K kg mol⁻¹, and never says that Kb is a property of the SOLVENT alone. All four are written here. The value Kb = 0.52 K kg mol⁻¹ for water is added from the standard data table; it is not printed in this book. NOTATION: Kb is written with a plain small b because Unicode has no subscript b."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The ebullioscopic constant, Kb, is the",
+          "elevation of boiling point produced when",
+          "one mole of a non-volatile solute is",
+          "dissolved in 1000 g (one kilogram) of the",
+          "solvent.",
+          "It is also called the molal elevation",
+          "constant."
+        ],
+        "why": "A one molal solution is one mole of solute in one kilogram of solvent, so the definition is simply the value of ΔTb at m = 1. Fixing the amount this way turns Kb into a fixed number for each solvent, which is what makes the constant usable in a calculation.",
+        "common_mistakes": [
+          "Writing 1000 g of SOLUTION. The definition uses 1000 g of solvent, which is a one molal solution.",
+          "Leaving out \"non-volatile\". A volatile solute adds its own vapour pressure, and then the boiling point does not simply rise."
+        ],
+        "memory_tip": "Ebullioscopic goes with ebullition, which means boiling. So Kb is the boiling point constant.",
+        "margin_note": "\"One mole in 1000 g of solvent\" is the marked phrase. The words molal elevation constant are the accepted second name."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation and the unit",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "ΔTb = Kb m",
+            "style": "boxed"
+          },
+          "ΔTb = elevation of boiling point",
+          "m = molality of the solution",
+          "Unit of Kb: K kg mol⁻¹",
+          "Kb is a property of the solvent alone. It",
+          "does not depend on the solute.",
+          "For water, Kb = 0.52 K kg mol⁻¹."
+        ],
+        "why": "Elevation of boiling point is a colligative property, so ΔTb depends only on the number of solute particles, measured as molality. Kb carries everything that belongs to the solvent — its boiling point and its enthalpy of vaporisation — which is why the same Kb is used whatever solute is dissolved in it.",
+        "common_mistakes": [
+          "Writing ΔTb = Kb M with molarity. The equation uses molality m, because a boiling experiment changes the temperature and so changes any volume.",
+          "Giving the unit as K alone. Kb is ΔTb divided by molality, so the unit is K kg mol⁻¹."
+        ],
+        "memory_tip": "Kb is fixed by the solvent, so the same 0.52 is used for every solute in water.",
+        "margin_note": "The unit K kg mol⁻¹ and the \"property of the solvent\" line are what lift this from a copied sentence to a full answer."
+      }
+    ]
+  },
+  "insider_note": "Kb and Kf are asked as a pair. Both are properties of the SOLVENT alone, and stating that once in each answer is the line that most scripts leave out."
+}

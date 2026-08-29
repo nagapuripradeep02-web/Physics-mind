@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_p_type_semiconductor_carriers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a p-type semiconductor? What are majority and minority charge carriers in it?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "p-type semiconductor defined",
+      "marks": 1
+    },
+    {
+      "label": "Majority and minority carriers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Named acceptor examples (B, Al, In) are added here — the book gives none."
+  },
+  "recall_prompt": "Say what is added to make a p-type semiconductor, and name its majority and minority carriers.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "p-type semiconductor",
+        "marks": 1,
+        "mark_note": "Trivalent impurity added",
+        "lines": [
+          "p-type semiconductor: when a trivalent",
+          "impurity is added to a pure semiconductor,",
+          "the result is a p-type semiconductor.",
+          "Trivalent impurities are boron, aluminium",
+          "and indium. They are called acceptor",
+          "impurities."
+        ],
+        "margin_note": "First mark. The word trivalent carries it; the named examples are a bonus.",
+        "why": "A trivalent atom has only three valence electrons, so one of the four bonds with the neighbouring silicon atoms is left short of an electron. That empty place behaves as a positive carrier, which is what a hole is.",
+        "common_mistakes": [
+          "Saying pentavalent. Pentavalent doping gives n-type.",
+          "Saying the crystal becomes positively charged. It stays neutral — each acceptor atom keeps its negative ion behind."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding a trivalent (acceptor) impurity to a pure semiconductor gives a p-type semiconductor.",
+          "accept": [
+            "trivalent impurity is added",
+            "acceptor impurity like boron",
+            "three valence electrons added to silicon"
+          ],
+          "reject": [
+            "majority carriers are holes"
+          ],
+          "heard_as": [
+            "trivalent",
+            "acceptor",
+            "p type"
+          ]
+        },
+        "memory_tip": "p for positive, and trivalent leaves the empty bond — the hole."
+      },
+      {
+        "id": "s2_carriers",
+        "kind": "boxed_final",
+        "label": "Majority and minority",
+        "marks": 1,
+        "mark_note": "Holes majority, electrons minority",
+        "lines": [
+          "Majority charge carriers: holes.",
+          "Minority charge carriers: electrons.",
+          {
+            "text": "p-type → majority holes, minority electrons",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Both carriers must be named; naming one is half the answer.",
+        "why": "Doping adds holes only. The few free electrons present come from thermal breaking of covalent bonds, which happens in any semiconductor, so they are far fewer than the holes and are the minority.",
+        "common_mistakes": [
+          "Saying there are no electrons at all in p-type. There are a few, produced by heat.",
+          "Swapping the two. In p-type the holes are the majority."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That holes are the majority carriers and electrons the minority carriers in p-type.",
+          "accept": [
+            "majority holes minority electrons",
+            "holes are majority carriers",
+            "electrons are the minority"
+          ],
+          "reject": [
+            "majority electrons minority holes"
+          ],
+          "heard_as": [
+            "majority",
+            "minority",
+            "holes",
+            "electrons"
+          ]
+        },
+        "memory_tip": "p-type = positive carriers in the majority."
+      }
+    ]
+  },
+  "insider_note": "This question and the n-type one are mirror images. Learn one pair of lines and swap every word."
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_cannizzaro_and_acetylation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the following. i) Cannizzaro reaction ii) Acetylation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the Cannizzaro reaction is",
+      "marks": 1
+    },
+    {
+      "label": "Cannizzaro equations",
+      "marks": 1
+    },
+    {
+      "label": "What acetylation is",
+      "marks": 1
+    },
+    {
+      "label": "Acetylation equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.114 as SAQ 5. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK DUPLICATION: the book asks for these same two topics TWICE — here as SAQ 5, and again as parts (a) and (b) of the unit's only Long Answer Question on book p.114. Both are authored, at 4 and 8 marks, and they agree; the LAQ card ts_ipe_c2_akc_acetylation_cannizzaro_cross_aldol_decarboxylation carries the same equations inside a four-part answer. BOOK SPELLING: the book writes \"cannizaro\" with one z throughout; the reaction is named after Stanislao Cannizzaro and is spelt Cannizzaro. BOOK EQUATION CHECKED AND CORRECT: 2HCHO + NaOH → HCOONa + CH₃OH balances at C2 H5 O3 Na on both sides. BOOK ERROR, corrected on this card: the printed definition of acetylation is \"the replacement of active hydrogen of alcohols, phenol, amines (or) benzene with acetyl group\". Benzene has NO active hydrogen — its hydrogens are ring hydrogens and are not acidic at all. What happens with benzene is a Friedel-Crafts acylation needing anhydrous AlCl₃, which is a different reaction listed under the same heading; the card separates the two cases and says so. BOOK GAP: the printed answer does not say what acetylation is FOR (it protects a reactive –OH or –NH₂ group and lowers the activating power of –NH₂), and does not name the products of the Cannizzaro reaction as one molecule reduced and one oxidised in words; both are added."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cannizzaro_definition",
+        "kind": "text",
+        "label": "What the Cannizzaro reaction is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "i) An aldehyde that has NO α-hydrogen,",
+          "warmed with concentrated alkali, undergoes",
+          "self oxidation and reduction. This is",
+          "called the Cannizzaro reaction.",
+          "Two molecules take part:",
+          "one is reduced to the alcohol,",
+          "the other is oxidised to the salt of the",
+          "acid.",
+          "A single substance giving both an oxidised",
+          "and a reduced product is called",
+          "disproportionation."
+        ],
+        "why": "With no α-hydrogen there is no enolate to form, so the only route open is transfer of a hydride from one molecule of the aldehyde to the carbonyl carbon of another. That transfer is what makes one molecule the reducing agent and the other the compound reduced.",
+        "common_mistakes": [
+          "Writing that the aldehyde must HAVE an α-hydrogen. It must have none; an aldehyde with an α-hydrogen gives aldol condensation instead.",
+          "Using dilute alkali. Concentrated alkali is needed.",
+          "Naming only one product. Both an alcohol and a salt of the acid are formed."
+        ],
+        "memory_tip": "No α-hydrogen, so one molecule is oxidised to the acid and the other is reduced to the alcohol.",
+        "margin_note": "Write the words no α-hydrogen and disproportionation. Those two carry this mark on their own."
+      },
+      {
+        "id": "s2_cannizzaro_equations",
+        "kind": "equation",
+        "label": "Cannizzaro equations",
+        "marks": 1,
+        "mark_note": "Equations",
+        "lines": [
+          "With formaldehyde:",
+          {
+            "text": "2HCHO + NaOH → CH₃OH + HCOONa",
+            "style": "eq"
+          },
+          {
+            "text": "[conc. NaOH, Δ]",
+            "style": "indent"
+          },
+          "methanol and sodium formate.",
+          "With benzaldehyde:",
+          {
+            "text": "2C₆H₅CHO + NaOH →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅CH₂OH + C₆H₅COONa",
+            "style": "indent"
+          },
+          "benzyl alcohol and sodium benzoate."
+        ],
+        "why": "Formaldehyde and benzaldehyde are the two standard cases because neither has a carbon next to the carbonyl group carrying a hydrogen: formaldehyde has no second carbon at all, and benzaldehyde has a ring carbon there. Naming the two products in words as well as in formulae is what shows which one was reduced.",
+        "common_mistakes": [
+          "Writing the acid rather than its sodium salt. The reaction is run in alkali, so it is HCOONa and C₆H₅COONa.",
+          "Using one molecule of the aldehyde. Two are needed; the coefficient 2 is part of the equation.",
+          "Choosing acetaldehyde as the example. It has three α-hydrogens and gives aldol condensation instead."
+        ],
+        "memory_tip": "Two molecules in, an alcohol and a salt out. Formaldehyde gives methanol and sodium formate.",
+        "margin_note": "Write conc. NaOH and Δ above the arrow on your answer sheet. Name both products in words under the equation."
+      },
+      {
+        "id": "s3_acetylation_definition",
+        "kind": "text",
+        "label": "What acetylation is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "ii) Acetylation is the replacement of an",
+          "active hydrogen of an alcohol, a phenol or",
+          "an amine by the acetyl group CH₃CO–.",
+          "The reagent is acetyl chloride CH₃COCl or",
+          "acetic anhydride (CH₃CO)₂O.",
+          "It is used to protect a reactive –OH or",
+          "–NH₂ group during another reaction.",
+          "With benzene there is no active hydrogen;",
+          "putting CH₃CO– on the ring is instead a",
+          "Friedel-Crafts acylation, needing AlCl₃."
+        ],
+        "why": "An active hydrogen is one bonded to oxygen or nitrogen, which is acidic enough to be replaced. Benzene has only C–H bonds, which are not acidic, so the ring reaction is a different one that needs a Lewis acid catalyst to make the electrophile. Keeping the two apart is what makes the definition correct.",
+        "common_mistakes": [
+          "Listing benzene as a compound with an active hydrogen. Its ring hydrogens are not acidic; that reaction is Friedel-Crafts acylation.",
+          "Naming the group as CH₃CO₂– or CH₃COO–. The acetyl group is CH₃CO–.",
+          "Giving acetic acid as the reagent. Acetyl chloride or acetic anhydride is used."
+        ],
+        "memory_tip": "Acetyl is CH₃CO–, and it replaces a hydrogen bonded to oxygen or to nitrogen.",
+        "margin_note": "Name the group CH₃CO– and both reagents. The protecting-group sentence is one extra line and is often what lifts the mark."
+      },
+      {
+        "id": "s4_acetylation_equations",
+        "kind": "boxed_final",
+        "label": "Acetylation equations",
+        "marks": 1,
+        "mark_note": "Equations",
+        "lines": [
+          "With ethanol:",
+          {
+            "text": "C₂H₅OH + CH₃COCl → CH₃COOC₂H₅ + HCl",
+            "style": "eq"
+          },
+          "ethyl acetate.",
+          "With aniline:",
+          {
+            "text": "C₆H₅NH₂ + CH₃COCl →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅NHCOCH₃ + HCl",
+            "style": "indent"
+          },
+          "acetanilide.",
+          "With benzene (Friedel-Crafts acylation):",
+          {
+            "text": "C₆H₆ + CH₃COCl → C₆H₅COCH₃ + HCl",
+            "style": "eq"
+          },
+          {
+            "text": "[anhydrous AlCl₃]",
+            "style": "indent"
+          },
+          {
+            "text": "An active H is replaced by CH₃CO–.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The first two cases replace a hydrogen on oxygen and on nitrogen, and both give HCl and need no catalyst. The third needs anhydrous aluminium chloride, and writing that condition is what separates the ring case from the other two on the page.",
+        "common_mistakes": [
+          "Leaving out anhydrous AlCl₃ on the benzene equation. Without it there is no reaction.",
+          "Writing the aniline product as C₆H₅COCH₃. That is acetophenone; the aniline product is acetanilide C₆H₅NHCOCH₃.",
+          "Forgetting the HCl. One molecule is released in each of the three reactions."
+        ],
+        "memory_tip": "Oxygen, nitrogen, ring. The first two need no catalyst; the ring needs anhydrous AlCl₃.",
+        "margin_note": "Two equations are enough for this mark; the third is worth adding if time allows. Write AlCl₃ above the third arrow on your answer sheet."
+      }
+    ]
+  },
+  "insider_note": "The book lists benzene among compounds with an active hydrogen. It has none: acetylating benzene is a Friedel-Crafts acylation and needs anhydrous AlCl₃, so keep it separate from the alcohol and amine cases. On the Cannizzaro half, the words no α-hydrogen are what the examiner is reading for."
+}

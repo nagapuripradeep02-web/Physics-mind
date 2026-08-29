@@ -1,0 +1,111 @@
+{
+  "number": 9,
+  "name": "Electromagnetic Induction",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What did the experiments of Faraday and Henry show?",
+      "question_id": "ts_ipe_p2_emi_faraday_henry_experiments"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Define Magnetic flux?",
+      "question_id": "ts_ipe_p2_emi_magnetic_flux_definition"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "State Faraday's law of electromagnetic induction.",
+      "question_id": "ts_ipe_p2_emi_faradays_law"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "State Lenz's law.",
+      "question_id": "ts_ipe_p2_emi_lenzs_law"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "What do you understand by 'self inductance'?",
+      "question_id": "ts_ipe_p2_emi_self_inductance"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "What are Eddy currents?",
+      "question_id": "ts_ipe_p2_emi_eddy_currents"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "Define 'Inductance'.",
+      "question_id": "ts_ipe_p2_emi_inductance_definition"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "No of turns in a coil are 100. When a current of 5 A is flowing through the coil the magnetic flux is 10⁻⁶ Wb. Find self inductance of coil?",
+      "question_id": "ts_ipe_p2_emi_self_inductance_numerical"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 9,
+      "stars": 0,
+      "text": "Current in a circuit falls from 5.0 A to 0.0 A in 0.1 s. If an average emf of 200 V induced, give an estimate of the self-inductance of the circuit.",
+      "question_id": "ts_ipe_p2_emi_self_inductance_from_emf"
+    },
+    {
+      "ref": "vsaq10",
+      "section": "VSAQ",
+      "number": 10,
+      "stars": 0,
+      "text": "A pair of adjacent coil has a mutual inductance of 1.5 H. If the current in one coil changes from 0 to 20 A in 0.5 s, what is the change of flux linkage with the other coil?",
+      "question_id": "ts_ipe_p2_emi_flux_linkage_numerical"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "Obtain an expression for the Mutual inductance (M) of two long co-axially solenoids.",
+      "question_id": "ts_ipe_p2_emi_mutual_inductance_solenoids"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Describe the ways in which eddy currents are used to advantage.",
+      "question_id": "ts_ipe_p2_emi_eddy_currents_uses"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "Obtain an expression for the emf induced across a conductor which is moved in a uniform magnetic field which is perpendicular to the plane of motion.",
+      "question_id": "ts_ipe_p2_emi_motional_emf"
+    }
+  ]
+}

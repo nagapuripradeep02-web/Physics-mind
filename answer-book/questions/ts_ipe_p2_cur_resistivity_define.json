@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_resistivity_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define resistivity (or) specific resistance.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Formula and unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: from R = ρl/A, resistivity is the resistance of a conductor of unit length and unit cross-sectional area; ρ = RA/l; unit ohm metre; dimensional formula [M L³ T⁻³ A⁻²] as the book prints; ρ depends only on the material and its temperature."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Unit length, unit area",
+        "lines": [
+          "Resistivity is the resistance of a conductor",
+          "of unit length and unit area of cross",
+          "section.",
+          "It depends only on the material of the",
+          "conductor and its temperature, not on the",
+          "length or thickness of the piece."
+        ],
+        "margin_note": "First mark. Both conditions — unit length AND unit cross-sectional area — must appear.",
+        "why": "Resistance R = ρl/A mixes the material with the shape of the piece. Setting l = 1 and A = 1 removes the shape, leaving a number that belongs to the material alone.",
+        "common_mistakes": [
+          "Writing only resistance of unit length and dropping unit area.",
+          "Saying resistivity changes when the wire is cut or stretched. It is a material property; only R changes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That resistivity is the resistance of a conductor of unit length and unit cross-sectional area, a property of the material.",
+          "accept": [
+            "resistance of unit length and unit area",
+            "resistance of a unit cube of the material",
+            "depends only on the material"
+          ],
+          "reject": [
+            "rho equals R A by l"
+          ],
+          "heard_as": [
+            "resistivity",
+            "specific resistance",
+            "unit length",
+            "unit area"
+          ]
+        },
+        "memory_tip": "Two units in one sentence: unit length and unit area."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Formula and unit",
+        "marks": 1,
+        "mark_note": "ρ = RA/l, ohm metre",
+        "lines": [
+          {
+            "text": "R = ρl/A",
+            "style": "eq"
+          },
+          {
+            "text": "ρ = RA/l, unit: ohm metre (Ω m)",
+            "style": "boxed"
+          },
+          {
+            "text": "Dimensional formula: [M L³ T⁻³ A⁻²]",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Formula with the unit Ω m; the dimensional formula is a safe extra line.",
+        "why": "Rearranging R = ρl/A isolates the material constant. The unit follows from the rearrangement: ohm times square metre divided by metre gives ohm metre.",
+        "common_mistakes": [
+          "Writing the unit as ohm per metre. It is ohm metre.",
+          "Writing ρ = Rl/A. The area goes on top: ρ = RA/l."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rho equals R A by l, with unit ohm metre.",
+          "accept": [
+            "rho equals R A by l",
+            "unit is ohm metre",
+            "from R equals rho l by A"
+          ],
+          "reject": [
+            "resistance of unit length and unit area"
+          ],
+          "heard_as": [
+            "rho",
+            "ohm metre",
+            "R A by l"
+          ]
+        },
+        "memory_tip": "Flip R = ρl/A: the area climbs up, the length goes down — ρ = RA/l."
+      }
+    ]
+  },
+  "insider_note": "The unit ohm metre (not ohm per metre) is the detail examiners check on this definition."
+}

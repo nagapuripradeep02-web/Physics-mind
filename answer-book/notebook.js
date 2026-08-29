@@ -182,11 +182,16 @@
       // mathematics from one build, and 'the physics' on a maths page is a false
       // statement about what was checked.
       // The SUBJECT word, not the paper: 'the mathematics and the method are
-      // checked' reads right for 1A and 1B alike.
+      // checked' reads right for 1A and 1B alike, and for physics_2 (Paper-II)
+      // the word is still 'physics' — spelled out rather than left to the
+      // fallthrough, because the fallthrough is what silently told every botany
+      // student 'the physics ... is checked' until 2026-08-25.
       var subjectWord = (question.subject || '').indexOf('mathematics') === 0 ? 'mathematics'
         : question.subject === 'chemistry' ? 'chemistry'
+        : question.subject === 'chemistry_2' ? 'chemistry'
         : (question.subject || '').indexOf('botany') === 0 ? 'botany'
-        : question.subject === 'zoology' ? 'zoology' : 'physics';
+        : question.subject === 'zoology' ? 'zoology'
+        : question.subject === 'physics_2' ? 'physics' : 'physics';
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
         'The ' + subjectWord + ' and the method are checked; the exact split is a claim.';
     }
@@ -408,6 +413,8 @@
   var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
                      mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
                      botany: 'Botany', zoology: 'Zoology',
+                     physics_2: 'Physics II',
+                     chemistry_2: 'Chemistry II',
                      botany_2: 'Botany-II' };
   function subjLabel(s) {
     return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
@@ -529,7 +536,7 @@
       display concern, and the notebook header still shows the full name. */
   function chapterLabel(u) {
     return String(u.name || '').replace(
-      /\s*\((?:Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B)\)\s*$/, ''
+      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B)\)\s*$/, ''
     );
   }
 
@@ -597,7 +604,7 @@
     // inference. Absent (the full build) leaves the eyebrow subject-neutral.
     var eyebrow = $('catEyebrow');
     if (eyebrow && window.PM_STREAM) {
-      var base = 'Telangana IPE · First year';
+      var base = 'Telangana IPE · ' + (window.PM_YEAR || 'First year');
       var eyeText = base + ' · ' + window.PM_STREAM;
       if (Door.enabled()) {
         // The eyebrow already names the board, the year and the group, so it is

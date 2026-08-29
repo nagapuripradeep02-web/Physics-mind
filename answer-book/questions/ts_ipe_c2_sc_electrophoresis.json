@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_electrophoresis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Electrophoresis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Direction of motion and use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.77, VSAQ 15): the printed answer says the particles move \"under the influence of applied emf\". An electromotive force belongs to a source; what acts on the colloidal particles is the electric field set up between the two electrodes, and the card writes electric field. BOOK GAP: the printed answer does not say WHICH electrode the particles move to, which is the point of the experiment, because the direction shows the sign of the charge on the sol. The names cataphoresis and anaphoresis, and the use of electrophoresis to find the sign of the charge, are added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The movement of colloidal particles towards",
+          "one of the electrodes under an applied",
+          "electric field is called electrophoresis.",
+          "The particles move because each of them",
+          "carries a charge of the same sign."
+        ],
+        "why": "The particles of a lyophobic sol all carry the same sign of charge, so an electric field pushes all of them the same way. Electrophoresis is that motion, and naming the charge in the definition explains why the motion happens at all.",
+        "common_mistakes": [
+          "Writing that the dispersion medium moves. That is electro osmosis, a different experiment.",
+          "Writing that the particles move at random. Under the field they all move the same way, towards one electrode."
+        ],
+        "memory_tip": "Electro for the field, phoresis for the carrying. Charged particles carried to one electrode.",
+        "margin_note": "The words movement of colloidal particles under an applied electric field carry this mark."
+      },
+      {
+        "id": "s2_direction_use",
+        "kind": "boxed_final",
+        "label": "Direction of motion and use",
+        "marks": 1,
+        "mark_note": "Direction and use",
+        "lines": [
+          {
+            "text": "The direction shows the sign of the charge.",
+            "style": "boxed"
+          },
+          "A positively charged sol moves to the",
+          "cathode, and this is called cataphoresis.",
+          "A negatively charged sol moves to the",
+          "anode, and this is called anaphoresis.",
+          "The experiment is therefore used to find",
+          "the sign of the charge on a given sol."
+        ],
+        "why": "Each particle moves to the electrode of the opposite sign, so watching which electrode the sol collects at tells the sign of its charge directly. That is why electrophoresis is a test and not only a description of motion.",
+        "common_mistakes": [
+          "Swapping the two names. Cataphoresis is motion to the cathode by a positive sol; anaphoresis is motion to the anode by a negative sol.",
+          "Writing that the sol moves to the electrode of the same sign. Opposite charges attract, so it moves to the opposite electrode."
+        ],
+        "memory_tip": "Cata goes to the cathode, ana goes to the anode. The name carries the direction.",
+        "margin_note": "Give one direction with its name. That plus the use is the whole of this mark."
+      }
+    ]
+  },
+  "insider_note": "The second mark is usually for saying which electrode the sol moves to and what that tells you. Write cathode for a positive sol and anode for a negative one."
+}

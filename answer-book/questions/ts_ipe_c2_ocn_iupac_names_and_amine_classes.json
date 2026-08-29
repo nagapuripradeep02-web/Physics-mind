@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_iupac_names_and_amine_classes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the IUPAC names of the following compounds and classify them into 1°, 2°, 3° amines. i) (CH₃)₃CNH₂  ii) CH₃–CH₂–CH₂–NH₂  iii) CH₃–CH₂–N(CH₃)–CH₂–CH₃",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three IUPAC names",
+      "marks": 1
+    },
+    {
+      "label": "Classification as 1°, 2° or 3°",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.115 as VSAQ 1. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SELF-CONTRADICTION (book p.115, VSAQ 1): the printed QUESTION gives part (i) as (CH₃)₃CNH₂, which is 2-methylpropan-2-amine (tert-butylamine). The printed ANSWER draws a different molecule — CH₃–CH(CH₃)–NH₂ — and names it \"2-propanamine\". Those are two different compounds. This card answers the structure as PRINTED IN THE QUESTION and names it 2-methylpropan-2-amine; the book's own answer would be right only for (CH₃)₂CHNH₂. Both are 1° amines, so the classification mark is unaffected either way. BOOK STYLE: the book writes the names with a stray comma (\"N-ethyl, N-methyl ethanamine\") and uses the superscript-zero form 1⁰/2⁰/3⁰; the degree sign 1°/2°/3° is used here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The three IUPAC names",
+        "marks": 1,
+        "mark_note": "Names",
+        "lines": [
+          "i) (CH₃)₃C–NH₂ → 2-methylpropan-2-amine",
+          "ii) CH₃–CH₂–CH₂–NH₂ → propan-1-amine",
+          "iii) CH₃–CH₂–N(CH₃)–CH₂–CH₃",
+          {
+            "text": "→ N-ethyl-N-methylethanamine",
+            "style": "indent"
+          }
+        ],
+        "why": "The parent name comes from the longest carbon chain that carries the nitrogen, with the final e of the alkane replaced by amine. Any group joined to the nitrogen itself is written with the locant N-. In (iii) the longest chain through nitrogen is two carbons, so the parent is ethanamine and the remaining ethyl and methyl groups on nitrogen become N-ethyl and N-methyl.",
+        "common_mistakes": [
+          "Naming (i) as propan-2-amine. The structure in the question has three methyl groups on one carbon, so the parent is propane with a methyl branch: 2-methylpropan-2-amine.",
+          "Numbering the chain from the far end. The carbon carrying the –NH₂ group must get the lowest number."
+        ],
+        "memory_tip": "Find the longest chain through the nitrogen first, then put every group joined to the nitrogen behind an N-.",
+        "margin_note": "Write the structure and its name on the same line. Three names are wanted, so all three must appear."
+      },
+      {
+        "id": "s2_classes",
+        "kind": "boxed_final",
+        "label": "1°, 2° or 3°",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Count the carbon atoms joined directly to",
+          "the nitrogen atom: one = 1°, two = 2°,",
+          "three = 3°.",
+          {
+            "text": "i) 1°     ii) 1°     iii) 3°",
+            "style": "boxed"
+          },
+          "(i) is 1° even though the carbon that",
+          "carries –NH₂ is a tertiary carbon."
+        ],
+        "why": "The class of an amine is determined by the nitrogen, not by the carbon. In (CH₃)₃C–NH₂ the carbon is a tertiary carbon, but only ONE carbon is joined to the nitrogen, so the amine is primary. This is the opposite of the rule used for alcohols and alkyl halides, where the carbon is what is counted.",
+        "common_mistakes": [
+          "Calling (CH₃)₃C–NH₂ a 3° amine because its carbon is tertiary. Count the carbons on the nitrogen, not the carbons on the carbon.",
+          "Counting the hydrogen atoms on nitrogen. Three carbons on nitrogen and no hydrogen is 3°; the count that is marked is the carbon count."
+        ],
+        "memory_tip": "Look at the nitrogen and count its carbon neighbours: one, two or three gives 1°, 2° or 3°.",
+        "margin_note": "Write 1°, 2° or 3° beside each name. The classification is the second mark and is often left out."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two jobs: three names and three classes. The mark most often lost is on (i) — the carbon is tertiary but only one carbon is joined to the nitrogen, so it is a PRIMARY amine. Note also that the book's printed answer to (i) belongs to a different structure from the one its own question prints."
+}

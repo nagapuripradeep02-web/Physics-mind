@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_rutherford_two_drawbacks",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give two drawbacks of Rutherford's atomic model?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "It cannot explain the stability of the atom",
+      "marks": 1
+    },
+    {
+      "label": "It cannot explain the line spectrum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The book prints the question as \"Give two draw backs of Rutherford's atomic model?\"; \"draw backs\" is set as two words and is written as \"drawbacks\" here — the wording is unchanged. Physics hand-checked: an electron in a circular orbit is accelerating, so classical electromagnetism requires it to radiate continuously, lose energy and spiral into the nucleus in about 10⁻⁸ s; the radiation given out while the orbit shrinks would change frequency smoothly, giving a continuous spectrum, while real atoms give sharp line spectra."
+  },
+  "recall_prompt": "Say the two drawbacks: what happens to the orbiting electron, and what kind of spectrum the model predicts.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atoms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_stability",
+        "kind": "text",
+        "label": "It cannot explain stability",
+        "marks": 1,
+        "mark_note": "Electron spirals in",
+        "lines": [
+          "An electron moving in a circular orbit is",
+          "accelerating, so by classical theory it must",
+          "radiate energy all the time. It would lose",
+          "energy, spiral in and fall into the nucleus.",
+          "The model gives an unstable atom."
+        ],
+        "margin_note": "First mark. Accelerating charge radiates, so the orbit shrinks — the atom is not stable.",
+        "why": "A charge moving in a circle is accelerating even at constant speed, and classical electromagnetism says an accelerating charge radiates. The orbit would collapse in about 10⁻⁸ s, but atoms last.",
+        "common_mistakes": [
+          "Saying the electron radiates because it is moving. Uniform motion does not radiate; acceleration does.",
+          "Stating the drawback without the reason. The mark is for the accelerating electron."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the orbiting electron accelerates, radiates and spirals into the nucleus, so the atom is unstable.",
+          "accept": [
+            "accelerating charge radiates",
+            "electron spirals into the nucleus",
+            "cannot explain stability of the atom"
+          ],
+          "reject": [
+            "cannot explain line spectra"
+          ],
+          "heard_as": [
+            "stability",
+            "spiral",
+            "radiates energy"
+          ]
+        },
+        "memory_tip": "Circle means acceleration; acceleration means radiation; radiation means collapse."
+      },
+      {
+        "id": "s2_spectrum",
+        "kind": "boxed_final",
+        "label": "It cannot explain line spectra",
+        "marks": 1,
+        "mark_note": "Predicts a continuous spectrum",
+        "lines": [
+          "As the orbit shrinks the frequency of the",
+          "emitted radiation would change smoothly, so",
+          "the model predicts a continuous spectrum.",
+          "Atoms in fact give sharp line spectra.",
+          {
+            "text": "No stable atom · no line spectrum",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Continuous spectrum predicted, line spectrum observed.",
+        "why": "The spectrum drawback follows from the first: a continuously shrinking orbit gives a continuously changing frequency, which is a continuous band, not the separate sharp lines that are measured.",
+        "common_mistakes": [
+          "Saying the model predicts no spectrum at all. It predicts a continuous one.",
+          "Naming only one drawback. The question asks for two."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the model predicts a continuous spectrum while atoms give line spectra.",
+          "accept": [
+            "it predicts a continuous spectrum",
+            "cannot explain the line spectrum",
+            "sharp lines are observed"
+          ],
+          "reject": [
+            "the electron spirals in"
+          ],
+          "heard_as": [
+            "line spectra",
+            "continuous spectrum",
+            "sharp lines"
+          ]
+        },
+        "memory_tip": "Shrinking orbit gives every frequency; the real atom gives only a few."
+      }
+    ]
+  },
+  "insider_note": "Two separate drawbacks are asked for, so write two — stability and the line spectrum — each with its one-line reason."
+}

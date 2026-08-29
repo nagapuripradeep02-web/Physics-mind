@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_autocatalysis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is auto catalysis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.76, VSAQ 2): the printed definition says \"If one of the intermediate products formed in the reaction it self functions as a catalyst\". The catalysing species in autocatalysis is one of the PRODUCTS of the reaction, not an intermediate, and the card says product. In the book's own example, 2AsH₃ → 2As + 3H₂, the catalyst is the solid arsenic that is a product. The printed sentence also ends \"the catalysed is called auto catalysis\", which is garbled; the phenomenon is what is named. BOOK GAP: the book does not say that the rate is slow at the start and increases as the product builds up, which is the observable feature of autocatalysis; that line is added here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When one of the products of a reaction",
+          "itself acts as a catalyst for that same",
+          "reaction, the phenomenon is called",
+          "auto catalysis.",
+          "The rate is slow at the start, because no",
+          "product is present yet, and it increases as",
+          "the product builds up."
+        ],
+        "why": "In ordinary catalysis the catalyst is added from outside. In autocatalysis the reaction makes its own catalyst, so the amount of catalyst grows as the reaction goes on. That is why the rate rises with time instead of falling as the reactants are used up.",
+        "common_mistakes": [
+          "Writing that a reactant acts as the catalyst. It is a product of the reaction that acts as the catalyst.",
+          "Writing that the rate is highest at the start. In auto catalysis the rate is lowest at the start and rises as product forms."
+        ],
+        "memory_tip": "Auto means by itself: the reaction makes its own catalyst as it goes.",
+        "margin_note": "The words \"one of the products\" carry this mark. Writing only \"acts as a catalyst\" is incomplete."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "2AsH₃ → 2As + 3H₂ ↑",
+            "style": "boxed"
+          },
+          "Arsine decomposes to arsenic and hydrogen.",
+          "The solid arsenic formed is a product, and",
+          "it catalyses the same decomposition.",
+          "Another example is the oxidation of oxalic",
+          "acid by acidified KMnO₄, where the Mn²⁺",
+          "formed catalyses the reaction."
+        ],
+        "why": "The example has to show the catalyst appearing on the product side of the equation. In the decomposition of arsine, arsenic is written as a product and is also the catalyst, so one equation carries the whole idea.",
+        "common_mistakes": [
+          "Writing an example where a catalyst is added from outside, such as MnO₂ in the decomposition of KClO₃. That is ordinary catalysis.",
+          "Leaving out the arrow that shows hydrogen escaping as a gas. The book prints it and it costs nothing to write."
+        ],
+        "memory_tip": "Look for the catalyst on the right side of the equation. In 2AsH₃ → 2As + 3H₂ it is the arsenic.",
+        "margin_note": "One equation with the catalysing product named is enough for this mark."
+      }
+    ]
+  },
+  "insider_note": "The definition mark turns on the single word product. Many answers say \"a substance formed in the reaction\", which is vague enough to read as an intermediate and is marked down."
+}

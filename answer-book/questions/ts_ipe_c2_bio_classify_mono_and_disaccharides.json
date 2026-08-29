@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_classify_mono_and_disaccharides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Classify the following into monosaccharides and disaccharides: ribose, 2-deoxyribose, maltose, galactose, fructose, and lactose.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Monosaccharides",
+      "marks": 1
+    },
+    {
+      "label": "Disaccharides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 4. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mono",
+        "kind": "text",
+        "label": "Monosaccharides",
+        "marks": 1,
+        "mark_note": "Four monosaccharides",
+        "lines": [
+          "Monosaccharides: ribose, 2-deoxyribose,",
+          "galactose and fructose.",
+          "Each of these is a single sugar unit and",
+          "cannot be hydrolysed further.",
+          "Ribose and 2-deoxyribose have five carbon",
+          "atoms; galactose and fructose have six."
+        ],
+        "why": "Four of the six are single units, so the sorting rule is simply whether hydrolysis gives anything smaller. Adding the carbon count separates the two pentoses from the two hexoses, which is the next question an examiner is likely to put on the same list.",
+        "common_mistakes": [
+          "Putting galactose with the disaccharides because lactose contains it. Galactose is itself a single unit.",
+          "Splitting the list by aldose and ketose. The question asks for the number of units, not the carbonyl group."
+        ],
+        "memory_tip": "Four singles, two pairs. Only maltose and lactose split in two.",
+        "margin_note": "Write the list, not a paragraph. All four monosaccharides are needed for this mark."
+      },
+      {
+        "id": "s2_di",
+        "kind": "boxed_final",
+        "label": "Disaccharides",
+        "marks": 1,
+        "mark_note": "Two disaccharides",
+        "lines": [
+          {
+            "text": "Disaccharides: maltose and lactose",
+            "style": "boxed"
+          },
+          "Maltose gives two glucose units on",
+          "hydrolysis.",
+          "Lactose gives one galactose unit and one",
+          "glucose unit.",
+          "Both are reducing sugars."
+        ],
+        "why": "Naming what each disaccharide breaks into proves the classification rather than asserting it, and it sets up the hydrolysis question that follows in the same chapter. Both are reducing sugars, which separates them from sucrose, the standard non-reducing disaccharide.",
+        "common_mistakes": [
+          "Writing that lactose gives two glucose units. That is maltose; lactose gives galactose and glucose.",
+          "Calling maltose or lactose non-reducing. Both are reducing; sucrose is the non-reducing one."
+        ],
+        "memory_tip": "Maltose is glucose twice; lactose is galactose plus glucose.",
+        "margin_note": "Both names are needed. Writing what each one splits into costs one line and protects the mark."
+      }
+    ]
+  },
+  "insider_note": "This is a sorting question, so answer it as two short lists. A paragraph wastes time and makes the examiner search for the six names."
+}

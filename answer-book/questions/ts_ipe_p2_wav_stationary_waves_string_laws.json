@@ -1,0 +1,449 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_stationary_waves_string_laws",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the formation of stationary waves in stretched strings and hence deduce the laws of transverse waves in stretched strings.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Stationary wave and its formation",
+      "marks": 1
+    },
+    {
+      "label": "Superposition and resultant wave",
+      "marks": 2
+    },
+    {
+      "label": "Nodes and antinodes",
+      "marks": 1
+    },
+    {
+      "label": "Frequency of vibration",
+      "marks": 2
+    },
+    {
+      "label": "The three laws",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+1+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it — the figure carries 0 marks because the question does not ask for a diagram. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: y₁ + y₂ = A sin(kx − ωt) + A sin(kx + ωt) = 2A sin kx cos ωt (sum-to-product identity); nodes where sin kx = 0, antinodes where sin kx = ±1; p loops in length l give λ = 2l/p; with v = √(T/μ) the frequency is n = (p/2l)√(T/μ), and the three laws read off from the fundamental n = (1/2l)√(T/μ)."
+  },
+  "recall_prompt": "Say the derivation in order — the two waves, the resultant, nodes and antinodes, the frequency formula, and the three laws.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Waves · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Stationary wave and its formation",
+        "marks": 1,
+        "mark_note": "Definition with formation",
+        "lines": [
+          "Stationary wave: when two progressive",
+          "waves of the same amplitude and",
+          "frequency, travelling along the same",
+          "line in opposite directions, superpose,",
+          "a stationary wave is formed.",
+          "A string fixed between two rigid",
+          "supports is plucked. The transverse",
+          "waves travel to the supports, reflect",
+          "there, and superpose with the incident",
+          "waves on the string."
+        ],
+        "margin_note": "First mark. Same amplitude, same frequency, opposite directions — all three conditions in one sentence.",
+        "why": "The three conditions are what make the pattern stand still: equal and opposite wave motions cancel the travelling part and leave a vibration fixed in place. The rigid supports supply the oppositely moving wave by reflection.",
+        "common_mistakes": [
+          "Leaving out same amplitude — unequal amplitudes leave a partly travelling wave.",
+          "Saying the stationary wave travels along the string — the pattern stays in place; only the particles vibrate."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two identical waves travelling in opposite directions superpose, the reflected wave supplying the opposite direction.",
+          "accept": [
+            "same amplitude and frequency, opposite directions",
+            "reflection at the rigid supports",
+            "incident and reflected waves superpose"
+          ],
+          "reject": [
+            "Y equals 2A sin kx cos omega t"
+          ],
+          "heard_as": [
+            "stationary wave",
+            "opposite directions",
+            "reflection"
+          ]
+        },
+        "memory_tip": "Three sames — amplitude, frequency, line — and one opposite: direction."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "String vibrating in loops",
+        "marks": 0,
+        "figure": {
+          "id": "string_loops",
+          "width": 340,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "sup_left",
+              "d": "M 40 60 L 40 140",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "sup_right",
+              "d": "M 300 60 L 300 140",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "axis",
+              "d": "M 40 100 L 300 100",
+              "ms": 3710,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "env_top",
+              "d": "M 40 100 Q 83 52 127 100 Q 170 148 213 100 Q 257 52 300 100",
+              "ms": 4370
+            },
+            {
+              "type": "stroke",
+              "id": "env_bot",
+              "d": "M 40 100 Q 83 148 127 100 Q 170 52 213 100 Q 257 148 300 100",
+              "ms": 4370
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 22,
+              "y": 105,
+              "text": "P",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 306,
+              "y": 105,
+              "text": "Q",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 118,
+              "y": 88,
+              "text": "N",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_an",
+              "x": 160,
+              "y": 44,
+              "text": "AN",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "len_line",
+              "d": "M 40 168 L 300 168",
+              "ms": 3710
+            },
+            {
+              "type": "stroke",
+              "id": "len_head_l",
+              "d": "M 49 163 L 40 168 L 49 173",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "len_head_r",
+              "d": "M 291 163 L 300 168 L 291 173",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_len",
+              "x": 164,
+              "y": 160,
+              "text": "l",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The string between supports P and Q, vibrating in loops — a node at each support, an antinode mid-loop.",
+        "why": "The figure fixes the counting the derivation uses: the fixed ends are nodes, each loop is half a wavelength, and p loops fill the length l.",
+        "common_mistakes": [
+          "Drawing an antinode at a fixed support — a fixed end cannot move, so it is always a node."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the string vibrates in loops between the supports, with nodes at the fixed ends.",
+          "accept": [
+            "draw the string with loops between P and Q",
+            "nodes at the supports",
+            "mark a node and an antinode"
+          ],
+          "reject": [
+            "p loops give lambda equals 2l by p"
+          ],
+          "heard_as": [
+            "figure",
+            "loops",
+            "diagram"
+          ]
+        },
+        "memory_tip": "Fixed ends are always nodes — start the sketch there and the loops draw themselves."
+      },
+      {
+        "id": "s3_superposition",
+        "kind": "equation",
+        "label": "Superposition and resultant wave",
+        "marks": 2,
+        "mark_note": "Y = 2A sin kx cos ωt derived",
+        "lines": [
+          "Let the incident and reflected waves be:",
+          {
+            "text": "y₁ = A sin(kx − ωt) , y₂ = A sin(kx + ωt)",
+            "style": "eq"
+          },
+          "By the principle of superposition:",
+          {
+            "text": "Y = y₁ + y₂",
+            "style": "eq"
+          },
+          {
+            "text": "Y = A sin(kx − ωt) + A sin(kx + ωt)",
+            "style": "eq"
+          },
+          {
+            "text": "Using sin(C−D) + sin(C+D) = 2 sin C cos D:",
+            "style": "eq"
+          },
+          {
+            "text": "Y = 2A sin kx · cos ωt",
+            "style": "eq"
+          },
+          "This is the stationary wave. A particle",
+          "at position x vibrates with amplitude",
+          "2A sin kx."
+        ],
+        "margin_note": "Two marks: writing the two waves, and reaching Y = 2A sin kx cos ωt through the identity.",
+        "why": "The identity separates position from time: sin kx fixes how MUCH each point vibrates and cos ωt says WHEN — and a product of the two, with no (kx − ωt) argument left, is exactly what a wave that does not travel looks like.",
+        "common_mistakes": [
+          "Writing both waves with the same sign of ωt — the reflected wave travels the opposite way, so the signs must differ.",
+          "Losing the factor 2 in the sum-to-product identity.",
+          "Reading 2A sin kx as a displacement — it is the AMPLITUDE at position x; the displacement still oscillates as cos ωt."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding A sin(kx − ωt) and A sin(kx + ωt) gives Y = 2A sin kx cos ωt.",
+          "accept": [
+            "add the incident and reflected waves",
+            "sum to product identity",
+            "2A sin kx cos omega t"
+          ],
+          "reject": [
+            "nodes where sin kx is zero"
+          ],
+          "heard_as": [
+            "superposition",
+            "2A sin kx",
+            "cos omega t"
+          ]
+        },
+        "memory_tip": "Opposite signs of ωt go in; position and time come out separated — sin kx times cos ωt."
+      },
+      {
+        "id": "s4_nodes_antinodes",
+        "kind": "text",
+        "label": "Nodes and antinodes",
+        "marks": 1,
+        "mark_note": "Positions of both named",
+        "lines": [
+          "The amplitude 2A sin kx is zero where",
+          "sin kx = 0:",
+          {
+            "text": "x = 0, λ/2, λ, 3λ/2, … → nodes",
+            "style": "eq"
+          },
+          "and maximum where sin kx = ±1:",
+          {
+            "text": "x = λ/4, 3λ/4, 5λ/4, … → antinodes",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "One mark. Both position lists, read directly from 2A sin kx.",
+        "why": "The node and antinode positions are not new facts — they fall out of the amplitude factor sin kx, which is why deriving Y first makes this step one line of reading.",
+        "common_mistakes": [
+          "Spacing nodes λ apart — consecutive zeros of sin kx sit λ/2 apart.",
+          "Swapping the two lists — x = 0 is a node (the fixed end), not an antinode."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That nodes sit at x = 0, λ/2, λ … and antinodes at λ/4, 3λ/4 …, from the amplitude 2A sin kx.",
+          "accept": [
+            "nodes where sin kx is zero",
+            "antinodes where sin kx is plus or minus one",
+            "x equals lambda by four for the first antinode"
+          ],
+          "reject": [
+            "p loops fill the string"
+          ],
+          "heard_as": [
+            "nodes",
+            "antinodes",
+            "sin kx"
+          ]
+        },
+        "memory_tip": "Read the amplitude factor: zeros of sin kx are nodes, peaks are antinodes."
+      },
+      {
+        "id": "s5_frequency",
+        "kind": "equation",
+        "label": "Frequency of vibration",
+        "marks": 2,
+        "mark_note": "n = (p/2l)√(T/μ)",
+        "lines": [
+          "A string of length l fixed at both ends",
+          "vibrates in p loops. Each loop is half a",
+          "wavelength long:",
+          {
+            "text": "p(λ/2) = l → λ = 2l/p",
+            "style": "eq"
+          },
+          "The speed of a transverse wave on the",
+          "string, with tension T and linear",
+          "density μ:",
+          {
+            "text": "v = √(T/μ)",
+            "style": "eq"
+          },
+          "So the frequency of vibration:",
+          {
+            "text": "n = v/λ = (p/2l)√(T/μ)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: λ = 2l/p from the loop count, then n = v/λ with v = √(T/μ).",
+        "why": "Both ends are nodes, so a whole number of half-wavelength loops must fit the length exactly — that boundary condition is what turns the continuous formula v = nλ into a formula with the loop count p in it.",
+        "common_mistakes": [
+          "Writing λ = l/p — each loop is λ/2, not λ, so λ = 2l/p.",
+          "Using mass instead of linear density in v = √(T/μ) — μ is mass PER UNIT LENGTH."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p half-wavelength loops fit the length l, and n = v/λ gives (p/2l)√(T/μ).",
+          "accept": [
+            "p loops of lambda by two fill the string",
+            "lambda is 2l by p",
+            "n equals p by 2l root T by mu"
+          ],
+          "reject": [
+            "n is inversely proportional to the length"
+          ],
+          "heard_as": [
+            "loops",
+            "2l by p",
+            "root T by mu"
+          ]
+        },
+        "memory_tip": "Loops are half-waves: p halves fill l, so λ = 2l/p — the rest is v = nλ."
+      },
+      {
+        "id": "s6_laws",
+        "kind": "boxed_final",
+        "label": "The three laws",
+        "marks": 2,
+        "mark_note": "All three laws stated",
+        "lines": [
+          "With p = 1, the fundamental frequency is",
+          {
+            "text": "n = (1/2l)√(T/μ)",
+            "style": "eq"
+          },
+          "From this equation the laws of",
+          "transverse waves follow:",
+          "I law: the fundamental frequency is",
+          "inversely proportional to the length.",
+          {
+            "text": "n ∝ 1/l (T, μ constant) ; nl = constant",
+            "style": "eq"
+          },
+          "II law: it is directly proportional to",
+          "the square root of the tension.",
+          {
+            "text": "n ∝ √T (l, μ constant)",
+            "style": "eq"
+          },
+          "III law: it is inversely proportional to",
+          "the square root of the linear density.",
+          {
+            "text": "n ∝ 1/√μ (l, T constant)",
+            "style": "eq"
+          },
+          {
+            "text": "n = (p/2l)√(T/μ)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Two marks. Each law needs its statement AND its constant pair in brackets.",
+        "why": "Each law is the fundamental formula read with two of the three quantities held constant — stating which two are constant is what makes each proportionality a law rather than a fragment.",
+        "common_mistakes": [
+          "Dropping the square roots in laws II and III — n varies as √T and 1/√μ, never as T or 1/μ.",
+          "Leaving out the constant quantities — n ∝ 1/l is only true with T and μ fixed.",
+          "Stating the laws for an overtone — the laws are written for the fundamental, p = 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n ∝ 1/l, n ∝ √T and n ∝ 1/√μ, each with the other two quantities constant.",
+          "accept": [
+            "inversely proportional to the length",
+            "directly proportional to root tension",
+            "inversely proportional to root linear density"
+          ],
+          "reject": [
+            "p loops fill the length"
+          ],
+          "heard_as": [
+            "first law",
+            "root T",
+            "root mu",
+            "inversely proportional"
+          ]
+        },
+        "memory_tip": "One formula, three readings: l plain and inverted, T and μ under square roots."
+      }
+    ]
+  },
+  "insider_note": "The laws at the end are read off n = (1/2l)√(T/μ) — derive the formula carefully and the last two marks are a reading exercise, not new work."
+}

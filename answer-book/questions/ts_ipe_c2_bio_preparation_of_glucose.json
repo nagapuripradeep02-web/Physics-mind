@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_preparation_of_glucose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write two methods of preparation of glucose.",
+  "appearances": [
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "From sucrose",
+      "marks": 1
+    },
+    {
+      "label": "From starch",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.101 as VSAQ 22. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. YEAR CITATION: this is the ONE question in the whole of unit 13 that carries a printed year. The book prints it on book p.101 as \"22. Write two methods of preparation of Glucose? (May 2014)\", so appearances is [{\"year\":2014}] on this card and [] on the other 36 cards of the unit. The printed question mark after a command sentence is dropped in question_text; the wording is otherwise as printed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_from_sucrose",
+        "kind": "text",
+        "label": "From sucrose",
+        "marks": 1,
+        "mark_note": "Laboratory method",
+        "lines": [
+          "1. From sucrose (cane sugar).",
+          "Sucrose is boiled with dilute acid in",
+          "alcoholic solution.",
+          {
+            "text": "C₁₂H₂₂O₁₁ + H₂O →(H⁺) C₆H₁₂O₆ + C₆H₁₂O₆",
+            "style": "eq"
+          },
+          {
+            "text": "sucrose            glucose   fructose",
+            "style": "eq"
+          },
+          "Glucose is less soluble in alcohol and",
+          "crystallises out first."
+        ],
+        "why": "Hydrolysis of sucrose gives glucose and fructose together, so the method is only useful if the two can be separated. Alcohol does that: glucose is the less soluble of the two and comes out of solution while fructose stays dissolved.",
+        "common_mistakes": [
+          "Writing that sucrose gives glucose only. It gives glucose and fructose in equal amounts.",
+          "Leaving out the acid. Sucrose does not hydrolyse in plain boiling water at any useful rate."
+        ],
+        "memory_tip": "Sucrose plus acid gives both hexoses; glucose is the less soluble and comes out first.",
+        "margin_note": "The equation is the fastest way to earn this mark. Name the acid and both products."
+      },
+      {
+        "id": "s2_from_starch",
+        "kind": "boxed_final",
+        "label": "From starch",
+        "marks": 1,
+        "mark_note": "Industrial method",
+        "lines": [
+          {
+            "text": "Large scale: starch with dilute H₂SO₄",
+            "style": "boxed"
+          },
+          "2. From starch, the commercial method.",
+          {
+            "text": "(C₆H₁₀O₅)ₙ + nH₂O →(H⁺) nC₆H₁₂O₆",
+            "style": "eq"
+          },
+          "Conditions: dilute H₂SO₄, 393 K, and a",
+          "pressure of 2 to 3 atm.",
+          "Starch is cheap, so this is the route used",
+          "for glucose on a large scale."
+        ],
+        "why": "Starch is a polymer of glucose alone, so its hydrolysis gives one product and needs no separation, which is exactly what a large scale process requires. The raised temperature and pressure bring the hydrolysis of a long polymer to completion in a workable time.",
+        "common_mistakes": [
+          "Writing concentrated H₂SO₄. The acid is dilute; concentrated sulphuric acid would char the starch.",
+          "Leaving out the conditions. 393 K and 2 to 3 atm are printed in the answer key and are expected."
+        ],
+        "memory_tip": "Starch is glucose only, so the industrial route uses starch, not sucrose.",
+        "margin_note": "Write the equation with the conditions over the arrow. The three numbers are what mark this step."
+      }
+    ]
+  },
+  "insider_note": "Two methods, and the second one carries the numbers: dilute H₂SO₄, 393 K, 2 to 3 atm. Write both equations; they are quicker than sentences and they mark themselves."
+}

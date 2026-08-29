@@ -1,0 +1,220 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_half_life_and_decay_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define half life period and decay constant for a radioactive substance. Deduce the relation between them.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Half life period",
+      "marks": 1
+    },
+    {
+      "label": "Decay constant",
+      "marks": 1
+    },
+    {
+      "label": "Substitute in the decay law",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: N = N₀e⁻λt with N = N₀/2 at t = T gives e^λT = 2, so λT = logₑ2 = 0.6931 and T = 0.693/λ. Cross-check with the mean life τ = 1/λ: T = 0.693τ, the standard result. The book's working is followed line for line."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Nuclei · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_half_life",
+        "kind": "text",
+        "label": "Half life period",
+        "marks": 1,
+        "mark_note": "Time for half the nuclei to disintegrate",
+        "lines": [
+          "Half life period (T): the time taken for the",
+          "number of radioactive nuclei in a sample to",
+          "fall to half its original number is called the",
+          "half life period."
+        ],
+        "margin_note": "First mark. \"Half of the ORIGINAL number\" — not half of what is left at any moment.",
+        "why": "The definition is written in terms of a fraction, not a fixed number of nuclei, which is why the half life is the same whatever the size of the sample.",
+        "common_mistakes": [
+          "Saying the time for the whole sample to decay. That time is never reached.",
+          "Saying half life depends on the amount taken. It does not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the half life period is the time in which the number of radioactive nuclei falls to half of its original number.",
+          "accept": [
+            "time to reduce to half of the original number",
+            "half of the nuclei disintegrate in that time",
+            "half life period T"
+          ],
+          "reject": [
+            "ratio of the rate of decay to the number present"
+          ],
+          "heard_as": [
+            "half life",
+            "half the nuclei",
+            "original number"
+          ]
+        },
+        "memory_tip": "Half life is set by the nucleus alone; the size of the sample does not enter."
+      },
+      {
+        "id": "s2_decay_constant",
+        "kind": "equation",
+        "label": "Decay constant",
+        "marks": 1,
+        "mark_note": "λ = −(dN/dt)/N, unit s⁻¹",
+        "lines": [
+          "Decay constant (λ): the ratio of the rate of",
+          "radioactive decay to the number of nuclei",
+          "present at that instant.",
+          {
+            "text": "λ = −(dN/dt) / N",
+            "style": "eq"
+          },
+          "It is a constant for a given substance, with",
+          "the unit s⁻¹."
+        ],
+        "margin_note": "Second mark. The defining ratio and the unit s⁻¹.",
+        "why": "λ is the fraction of the nuclei present that decay in one second, so it is a property of the nucleus and does not change as the sample runs down.",
+        "common_mistakes": [
+          "Writing λ = dN/dt without dividing by N. That is the activity, not λ.",
+          "Giving the unit as seconds."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the decay constant is the ratio of the rate of decay to the number of nuclei present, with unit per second.",
+          "accept": [
+            "rate of decay divided by the number present",
+            "minus dN by dt over N",
+            "unit is per second"
+          ],
+          "reject": [
+            "time to fall to half"
+          ],
+          "heard_as": [
+            "decay constant",
+            "lambda",
+            "dN by dt"
+          ]
+        },
+        "memory_tip": "λ is a fraction per second; T is a time. They must be reciprocally related."
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Substitute in the decay law",
+        "marks": 1,
+        "mark_note": "Put N = N₀/2 at t = T",
+        "lines": [
+          "The radioactive decay law gives",
+          {
+            "text": "N = N₀ e^(−λt)",
+            "style": "eq"
+          },
+          "By the definition of half life, at t = T the",
+          "number left is N = N₀/2. So",
+          {
+            "text": "N₀/2 = N₀ e^(−λT)  ⇒  e^(λT) = 2",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The substitution N = N₀/2 at t = T is the whole step.",
+        "why": "N₀ cancels on both sides, which is the algebraic reason the half life does not depend on how much material was taken.",
+        "common_mistakes": [
+          "Substituting N = N₀/2 at t = 0. The halving happens at t = T.",
+          "Forgetting to cancel N₀."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting N = N₀/2 at t = T into N = N₀e^(−λt) gives e^(λT) = 2.",
+          "accept": [
+            "put N equals N nought by two at t equals T",
+            "N nought cancels",
+            "e to the power lambda T equals two"
+          ],
+          "reject": [
+            "T equals zero point six nine three by lambda"
+          ],
+          "heard_as": [
+            "N nought by two",
+            "e power lambda T",
+            "equals two"
+          ]
+        },
+        "memory_tip": "Half of the sample left is the ONLY extra fact the derivation needs."
+      },
+      {
+        "id": "s4_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "T = 0.693/λ",
+        "lines": [
+          "Taking logarithms of both sides,",
+          {
+            "text": "λT = logₑ2 = 2.303 log₁₀2",
+            "style": "eq"
+          },
+          {
+            "text": "T = 0.693 / λ",
+            "style": "boxed"
+          },
+          "So the half life period and the decay constant",
+          "are inversely proportional."
+        ],
+        "margin_note": "Fourth mark. The boxed relation T = 0.693/λ.",
+        "why": "logₑ2 = 0.693 is the only number in the result, so a large λ (fast decay) always goes with a short half life.",
+        "common_mistakes": [
+          "Writing T = 0.693λ. The λ is in the denominator.",
+          "Using log₁₀2 = 0.301 without the factor 2.303."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That taking logarithms gives lambda T equal to log of 2, so T equals 0.693 divided by lambda.",
+          "accept": [
+            "T equals zero point six nine three by lambda",
+            "lambda T equals log two",
+            "inversely proportional"
+          ],
+          "reject": [
+            "N equals N nought e to the minus lambda t"
+          ],
+          "heard_as": [
+            "zero point six nine three",
+            "by lambda",
+            "log two"
+          ]
+        },
+        "memory_tip": "One number to remember: 0.693, always over λ."
+      }
+    ]
+  },
+  "insider_note": "Both definitions must be written before the derivation; a derivation with no definitions loses half the marks even when the algebra is right."
+}

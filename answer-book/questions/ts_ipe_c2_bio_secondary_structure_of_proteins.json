@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_secondary_structure_of_proteins",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the common types of secondary structure of proteins?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "α-helix",
+      "marks": 1
+    },
+    {
+      "label": "β-pleated sheet",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 9. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_helix",
+        "kind": "text",
+        "label": "α-helix",
+        "marks": 1,
+        "mark_note": "First type",
+        "lines": [
+          "Secondary structure is the regular shape",
+          "into which the polypeptide chain folds.",
+          "1. α-helix structure.",
+          "The chain coils into a right-handed helix,",
+          "held by hydrogen bonds within the chain."
+        ],
+        "why": "Secondary structure is about the local, repeating shape of the chain, not about the order of the amino acids and not about the folding of the whole molecule. Saying the helix is right-handed is the detail the answer key prints and is a common one-word loss.",
+        "common_mistakes": [
+          "Writing that the α-helix is left-handed. The helix of a natural protein is right-handed.",
+          "Describing the sequence of amino acids. That is the primary structure, not the secondary."
+        ],
+        "memory_tip": "Secondary structure is the shape of the chain: coiled helix or flat sheet.",
+        "margin_note": "Name the type and give its one distinguishing feature. Two named types are the whole answer."
+      },
+      {
+        "id": "s2_sheet",
+        "kind": "boxed_final",
+        "label": "β-pleated sheet",
+        "marks": 1,
+        "mark_note": "Second type",
+        "lines": [
+          {
+            "text": "2. β-pleated sheet, also called β-sheet",
+            "style": "boxed"
+          },
+          "The polypeptide chains are fully stretched",
+          "out and laid side by side.",
+          "Hydrogen bonds between neighbouring chains",
+          "hold the sheet in its folded, pleated shape."
+        ],
+        "why": "The two types are opposites in one respect that makes them easy to hold apart: the helix is coiled and its hydrogen bonds run within one chain, while the sheet is stretched and its hydrogen bonds run between chains laid alongside each other.",
+        "common_mistakes": [
+          "Writing that the chains in a β-sheet are coiled. They are fully stretched out.",
+          "Naming tertiary or quaternary structure as a third type. Only two secondary structures are asked for."
+        ],
+        "memory_tip": "Helix is coiled and bonded within; sheet is stretched and bonded across.",
+        "margin_note": "Both names must appear: α-helix and β-pleated sheet. One line of description each is enough."
+      }
+    ]
+  },
+  "insider_note": "Two names and one line each. The examiner reads for the words α-helix and β-pleated sheet, so write them first and describe afterwards."
+}

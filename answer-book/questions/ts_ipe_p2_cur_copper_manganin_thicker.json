@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_copper_manganin_thicker",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Two wires of equal length, made of copper and manganin, have the same resistance. Which wire is thicker?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A ∝ ρ from R = ρl/A",
+      "marks": 1
+    },
+    {
+      "label": "Manganin is thicker",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: A = ρl/R, so with l and R equal, A ∝ ρ; resistivity of manganin (≈ 44 × 10⁻⁸ Ω m) is much larger than copper's (≈ 1.7 × 10⁻⁸ Ω m), so the manganin wire needs the larger cross-section — manganin is thicker, as the book concludes."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "A ∝ ρ from R = ρl/A",
+        "marks": 1,
+        "mark_note": "A ∝ ρ",
+        "lines": [
+          {
+            "text": "R = ρl/A",
+            "style": "eq"
+          },
+          "The lengths are equal and the resistances",
+          "are equal, so",
+          {
+            "text": "A = ρl/R, so A ∝ ρ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Fix l and R, and the area is forced to follow the resistivity.",
+        "why": "With l and R held equal, the only free quantities left in R = ρl/A are ρ and A, and they must rise together for R to stay the same.",
+        "common_mistakes": [
+          "Concluding A ∝ 1/ρ. Solve for A: it sits with ρ on the same side, so more resistivity needs MORE area.",
+          "Comparing the resistances instead of the areas — the resistances are given equal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That from R equals rho l by A, with equal l and R, the area is proportional to the resistivity.",
+          "accept": [
+            "A is proportional to rho",
+            "area follows resistivity when l and R are same",
+            "from R equals rho l by A"
+          ],
+          "reject": [
+            "manganin is thicker"
+          ],
+          "heard_as": [
+            "rho",
+            "area",
+            "proportional"
+          ]
+        },
+        "memory_tip": "Same R, same l: whatever has more ρ must take more A."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Manganin is thicker",
+        "marks": 1,
+        "mark_note": "Larger ρ, larger area",
+        "lines": [
+          "The resistivity of manganin is much larger",
+          "than the resistivity of copper.",
+          "So the manganin wire needs the larger",
+          "cross-sectional area.",
+          {
+            "text": "The manganin wire is thicker",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the fact (manganin's ρ is larger) and then the conclusion.",
+        "why": "Manganin is an alloy, and alloys have larger resistivity than their pure metals. To offer the same resistance over the same length despite that, manganin must be spread over a larger area.",
+        "common_mistakes": [
+          "Answering copper because it conducts better — better conduction means copper can be THINNER, not thicker."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That manganin has the larger resistivity, so the manganin wire is the thicker one.",
+          "accept": [
+            "manganin is thicker",
+            "manganin has more resistivity than copper",
+            "alloy has larger resistivity"
+          ],
+          "reject": [
+            "A is proportional to rho"
+          ],
+          "heard_as": [
+            "manganin",
+            "thicker",
+            "resistivity"
+          ]
+        },
+        "memory_tip": "The worse conductor must be fatter to keep up — manganin is thicker."
+      }
+    ]
+  },
+  "insider_note": "The trap is answering copper by instinct. Writing A ∝ ρ first makes the right answer fall out on its own."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_chelate_ligand",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a chelate ligand? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example and the ring",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 8. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK DEFINITION INCOMPLETE (book p.91, VSAQ 8): the printed answer is \"Ligand coordinating through two (or) more donar groups is called chelating ligand.\" That defines a POLYDENTATE ligand, not a chelating one. A polydentate ligand that bridges two different metal atoms is not chelating; the chelate requires the donor atoms to bind the SAME metal ion, so that a ring containing the metal is closed. Both conditions are written on the card. The book's example, ethylenediamine, is correct and is kept, with its formula and the five-membered ring added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "d and f Block Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A chelate ligand is a ligand that binds",
+          "the same metal ion through two or more",
+          "donor atoms at the same time.",
+          "Doing so closes a ring that contains the",
+          "metal atom.",
+          "A ligand with two donor atoms is",
+          "bidentate; with three it is tridentate."
+        ],
+        "why": "Two conditions have to be met and the book's wording gives only one. Donating through two or more atoms makes a ligand polydentate; using those atoms on the SAME metal ion is what makes it a chelate. A bidentate ligand that binds two different metal atoms is not chelating, because no ring closes around one metal.",
+        "common_mistakes": [
+          "Writing only \"two or more donor atoms\". That defines a polydentate ligand; a chelate must bind one metal and close a ring.",
+          "Calling NH₃ or H₂O a chelate ligand. Each has one donor atom, so both are unidentate."
+        ],
+        "memory_tip": "A chelate needs two things: two or more donor atoms, and one metal, so a ring closes.",
+        "margin_note": "The words \"same metal ion\" and \"ring\" are what separate this from a plain polydentate ligand."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Example: ethylenediamine, en",
+            "style": "boxed"
+          },
+          "Its formula is H₂N–CH₂–CH₂–NH₂.",
+          "Both nitrogen atoms donate a lone pair",
+          "to the same metal ion, so en is",
+          "bidentate.",
+          "With the metal it closes a five-membered",
+          "ring, as in [Co(en)₃]³⁺.",
+          "Oxalate, C₂O₄²⁻, and EDTA⁴⁻ are two",
+          "further chelating ligands."
+        ],
+        "why": "Ethylenediamine is the standard example because its two nitrogen atoms are separated by exactly two carbon atoms, which puts them the right distance apart to reach one metal ion and close a five-membered ring. Five- and six-membered chelate rings are the stable ones; much smaller or much larger rings are strained and rare.",
+        "common_mistakes": [
+          "Writing the formula with one nitrogen. Ethylenediamine has two NH₂ groups, one at each end.",
+          "Counting en as one position when working out the coordination number. Each en occupies two, so [Co(en)₃]³⁺ has coordination number 6."
+        ],
+        "memory_tip": "en is two NH₂ groups joined by two carbon atoms, and it always occupies two positions.",
+        "margin_note": "Name the example and write the word bidentate. Drawing the five-membered ring is not needed for the mark."
+      }
+    ]
+  },
+  "insider_note": "Most answers stop at \"two or more donor atoms\". Add \"to the same metal ion, forming a ring\" to the definition, then name ethylenediamine — the two halves are marked separately."
+}

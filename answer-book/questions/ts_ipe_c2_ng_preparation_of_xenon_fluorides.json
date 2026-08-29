@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_preparation_of_xenon_fluorides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How are XeF₂, XeF₄ and XeF₆ prepared?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The common method",
+      "marks": 1
+    },
+    {
+      "label": "Preparation of XeF₂",
+      "marks": 1
+    },
+    {
+      "label": "Preparation of XeF₄",
+      "marks": 1
+    },
+    {
+      "label": "Preparation of XeF₆",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.90 as SAQ 3. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. TWO BOOK ERRORS CORRECTED (book p.90, SAQ 3). FIRST, the book prints the XeF2 preparation as \"heating Xe and F2 in 1:3 ratio\". That ratio has fluorine in excess, which would give the higher fluorides, not XeF2. NCERT prints \"Xe in excess\" for this reaction, and the card says xenon in excess. SECOND, the book prints the XeF6 temperature as 600K. NCERT prints 573 K, and the card uses 573 K. The other printed conditions are correct and are kept: 673 K and 1 bar for XeF2, 873 K and 7 bar with a 1:5 ratio for XeF4, and 60-70 bar with a 1:20 ratio for XeF6. All three printed equations balance and are kept. BOOK SLOPPINESS: the XeF4 answer reads \"XeF4 is prepared by heating and in 1:5 ratio\", leaving out what is being heated; the card names xenon and fluorine. The nickel vessel is the book's detail and is kept, since fluorine at these temperatures is handled in nickel or a nickel alloy."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Noble Gases — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "text",
+        "label": "The common method",
+        "marks": 1,
+        "mark_note": "Direct combination",
+        "lines": [
+          "All three fluorides are made by the direct",
+          "combination of xenon and fluorine.",
+          "The two gases are heated together in a",
+          "sealed nickel vessel.",
+          "Which fluoride is formed depends on three",
+          "things: the Xe : F₂ ratio, the temperature",
+          "and the pressure.",
+          "More fluorine and higher pressure give the",
+          "higher fluoride."
+        ],
+        "why": "There is only one reaction here, run under three sets of conditions, so the answer is far shorter to write once this is stated. Nickel is used because fluorine reacts with glass and with most metals; on nickel it forms a thin layer of NiF₂ that seals the surface and stops the reaction going further.",
+        "common_mistakes": [
+          "Writing three different methods. All three fluorides come from the same direct reaction of xenon with fluorine.",
+          "Leaving out the conditions. The conditions are the answer here, because the equation alone does not say which fluoride forms."
+        ],
+        "memory_tip": "One reaction, three settings. More fluorine and more pressure give XeF₄, and then XeF₆.",
+        "margin_note": "Write this opening line first. It earns a mark on its own and it saves repeating the method three times."
+      },
+      {
+        "id": "s2_xef2",
+        "kind": "equation",
+        "label": "Preparation of XeF₂",
+        "marks": 1,
+        "mark_note": "XeF₂ equation and conditions",
+        "lines": [
+          "XeF₂ is made with xenon in excess.",
+          {
+            "text": "Xe + F₂ → XeF₂",
+            "style": "eq"
+          },
+          "Conditions: 673 K and 1 bar pressure."
+        ],
+        "why": "Xenon is kept in excess so that each xenon atom meets only enough fluorine for two bonds; with fluorine in excess the reaction continues to XeF₄ and XeF₆. This is why the book's printed 1 : 3 ratio cannot give XeF₂ — that ratio has fluorine in excess.",
+        "common_mistakes": [
+          "Using excess fluorine for XeF₂. Fluorine in excess gives the higher fluorides; xenon is the one kept in excess here.",
+          "Writing Xe + 2F₂ for XeF₂. Only one F₂ molecule is needed for the two fluorine atoms."
+        ],
+        "memory_tip": "The lowest fluoride needs the least fluorine, so xenon is in excess and the pressure is only 1 bar.",
+        "margin_note": "Write the ratio or the words \"Xe in excess\" beside the equation. The equation alone does not identify this preparation."
+      },
+      {
+        "id": "s3_xef4",
+        "kind": "equation",
+        "label": "Preparation of XeF₄",
+        "marks": 1,
+        "mark_note": "XeF₄ equation and conditions",
+        "lines": [
+          "XeF₄ is made with Xe : F₂ = 1 : 5.",
+          {
+            "text": "Xe + 2F₂ → XeF₄",
+            "style": "eq"
+          },
+          "Conditions: 873 K and 7 bar pressure."
+        ],
+        "why": "Both the fluorine ratio and the pressure are raised from the XeF₂ conditions, and the temperature is raised as well, so more fluorine reaches each xenon atom. The equation itself follows from the formula: four fluorine atoms need two F₂ molecules.",
+        "common_mistakes": [
+          "Writing Xe + 4F₂ for XeF₄. Four fluorine ATOMS come from two fluorine MOLECULES.",
+          "Swapping the XeF₄ and XeF₆ conditions. XeF₄ needs 7 bar; XeF₆ needs 60 to 70 bar."
+        ],
+        "memory_tip": "1 : 5 and 7 bar sits in the middle of the three, between 1 bar and 60 bar.",
+        "margin_note": "Balance the equation before you write the conditions. An unbalanced equation usually costs this mark on its own."
+      },
+      {
+        "id": "s4_xef6",
+        "kind": "boxed_final",
+        "label": "Preparation of XeF₆",
+        "marks": 1,
+        "mark_note": "XeF₆ equation and conditions",
+        "lines": [
+          "XeF₆ is made with Xe : F₂ = 1 : 20.",
+          {
+            "text": "Xe + 3F₂ → XeF₆",
+            "style": "boxed"
+          },
+          "Conditions: 573 K and 60–70 bar pressure.",
+          "This is the largest excess of fluorine and",
+          "the highest pressure of the three."
+        ],
+        "why": "The highest fluoride needs the largest excess of fluorine and by far the highest pressure, which pushes the gases together. The temperature is lower than for XeF₄, so it is the pressure and the ratio, not the temperature, that give XeF₆. The book prints 600 K here; NCERT prints 573 K, which is the figure used.",
+        "common_mistakes": [
+          "Writing 873 K for XeF₆. The XeF₆ temperature, 573 K, is the LOWEST of the three, not the highest.",
+          "Writing Xe + 6F₂ for XeF₆. Six fluorine atoms come from three fluorine molecules."
+        ],
+        "memory_tip": "Ratios 1 : 5 and 1 : 20, pressures 1, 7 and 60 to 70 bar. The pressure rises steeply; the temperature does not.",
+        "margin_note": "A small table of three rows (ratio, temperature, pressure) is the fastest way to write this and the easiest for an examiner to mark."
+      }
+    ]
+  },
+  "insider_note": "One mark is for saying that all three come from the same direct reaction of xenon with fluorine; the other three are for the equations with their conditions, and the conditions are where they are lost. Remember that the XeF₆ temperature, 573 K, is the lowest of the three."
+}

@@ -1,0 +1,488 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_semiconductor_as_half_wave_rectifier",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe how a semiconductor is used as a half wave rectifier.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rectifier and the circuit described",
+      "marks": 1
+    },
+    {
+      "label": "Positive half cycle",
+      "marks": 1
+    },
+    {
+      "label": "Negative half cycle",
+      "marks": 1
+    },
+    {
+      "label": "Efficiency",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two figures carry 0 marks because the question does not ask for a diagram. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the printed question reads 'halfwave', written here as two words; the book's answer prints 'p-n junciton diode', 'out put D.C singal' and 'the postive half cycles', all corrected here. Physics hand-checked: one diode, positive half cycles conducted and negative half cycles blocked, maximum efficiency 4/π² = 40.6%, and one output pulse per input cycle, so the ripple frequency equals the supply frequency. FIGURE NOTE: the circuit and the waveforms are drawn as two separate figures so that neither exceeds 15 drawn elements. Both were rendered and inspected before this card was filed."
+  },
+  "recall_prompt": "Describe the half wave rectifier — the circuit, then what happens in each half cycle, then the efficiency.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Semiconductor Electronics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rectifier",
+        "kind": "text",
+        "label": "Rectifier and circuit",
+        "marks": 1,
+        "mark_note": "Definition and construction",
+        "lines": [
+          {
+            "text": "Rectifier:",
+            "style": "heading"
+          },
+          "A rectifier is a device that converts",
+          "alternating voltage or current into direct",
+          "voltage or current.",
+          {
+            "text": "Half wave rectifier:",
+            "style": "heading"
+          },
+          "It is built with a single p-n junction",
+          "diode. The a.c. signal to be rectified is",
+          "applied across the primary of a",
+          "transformer, and the d.c. output is taken",
+          "across the load resistance connected",
+          "across the secondary through the diode."
+        ],
+        "margin_note": "First mark. One diode, input at the primary, output across the load.",
+        "why": "The transformer is not part of the rectifying action — it only sets the size of the a.c. voltage offered to the diode and separates the load from the supply. The rectifying is done by the single diode.",
+        "common_mistakes": [
+          "Saying two diodes are used. A half wave rectifier uses one.",
+          "Taking the output across the diode. The output is taken across the load resistance."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a rectifier converts a.c. to d.c., and that the half wave rectifier uses one diode with the load across the secondary.",
+          "accept": [
+            "converts alternating current into direct current",
+            "single p n junction diode is used",
+            "output taken across the load resistance"
+          ],
+          "reject": [
+            "the diode is forward biased in the positive half cycle"
+          ],
+          "heard_as": [
+            "rectifier",
+            "one diode",
+            "transformer"
+          ]
+        },
+        "memory_tip": "One diode, one half cycle — the name says how many."
+      },
+      {
+        "id": "s2_circuit",
+        "kind": "diagram",
+        "label": "Circuit",
+        "marks": 0,
+        "figure": {
+          "id": "hw_circuit",
+          "width": 400,
+          "height": 210,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "hwc_primary",
+              "d": "M 34 90 L 34 60 L 96 60 L 96 66 Q 110 76 96 86 Q 110 96 96 106 Q 110 116 96 126 Q 110 136 96 146 L 96 152 L 34 152 L 34 122",
+              "ms": 4250
+            },
+            {
+              "type": "stroke",
+              "id": "hwc_source",
+              "d": "M 18 106 A 16 16 0 0 1 50 106 A 16 16 0 0 1 18 106",
+              "ms": 1440
+            },
+            {
+              "type": "stroke",
+              "id": "hwc_core",
+              "d": "M 116 52 L 116 160",
+              "ms": 1540
+            },
+            {
+              "type": "stroke",
+              "id": "hwc_secondary",
+              "d": "M 136 60 L 136 66 Q 122 76 136 86 Q 122 96 136 106 Q 122 116 136 126 Q 122 136 136 146 L 136 152",
+              "ms": 1620
+            },
+            {
+              "type": "stroke",
+              "id": "hwc_diode",
+              "d": "M 136 60 L 210 60 M 216 46 L 216 74 L 246 60 Z M 246 46 L 246 74 M 246 60 L 330 60",
+              "ms": 4000
+            },
+            {
+              "type": "stroke",
+              "id": "hwc_load",
+              "d": "M 330 60 L 330 80 L 320 88 L 340 98 L 320 108 L 340 118 L 330 126 L 330 152",
+              "ms": 1980
+            },
+            {
+              "type": "stroke",
+              "id": "hwc_bottom",
+              "d": "M 136 152 L 330 152",
+              "ms": 2770
+            },
+            {
+              "type": "label",
+              "id": "hwc_lbl_ac",
+              "x": 27,
+              "y": 114,
+              "text": "~",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "hwc_lbl_d",
+              "x": 222,
+              "y": 38,
+              "text": "D",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hwc_lbl_load",
+              "x": 348,
+              "y": 110,
+              "text": "Load",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hwc_lbl_p",
+              "x": 84,
+              "y": 42,
+              "text": "P",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hwc_lbl_s",
+              "x": 142,
+              "y": 42,
+              "text": "S",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "P is the primary, S the secondary, D the single diode. The load is in series with the diode across the secondary.",
+        "why": "The diode, the load and the secondary form one series loop. Because they are in series, whether current flows at all is decided by the diode alone, which is why the output follows the diode and not the supply.",
+        "common_mistakes": [
+          "Drawing the diode in parallel with the load. It goes in series with it.",
+          "Reversing the diode. The triangle must point towards the load."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the circuit is a transformer with one diode in series with the load across the secondary.",
+          "accept": [
+            "transformer, one diode and a load in series",
+            "draw the secondary with a diode and load resistance",
+            "single diode circuit"
+          ],
+          "reject": [
+            "only the positive half cycle appears at the output"
+          ],
+          "heard_as": [
+            "circuit",
+            "diode",
+            "load"
+          ]
+        },
+        "memory_tip": "Secondary, diode, load — one loop, in that order."
+      },
+      {
+        "id": "s3_waveforms",
+        "kind": "diagram",
+        "label": "Waveforms",
+        "marks": 0,
+        "figure": {
+          "id": "hw_waveforms",
+          "width": 360,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "hww_in_axis",
+              "d": "M 40 70 L 330 70 M 322 65 L 330 70 L 322 75",
+              "ms": 4410
+            },
+            {
+              "type": "stroke",
+              "id": "hww_in_yaxis",
+              "d": "M 46 26 L 46 114",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "hww_in_wave",
+              "d": "M 46 70 Q 76 18 106 70 Q 136 122 166 70 Q 196 18 226 70 Q 256 122 286 70",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "hww_out_axis",
+              "d": "M 40 190 L 330 190 M 322 185 L 330 190 L 322 195",
+              "ms": 4410
+            },
+            {
+              "type": "stroke",
+              "id": "hww_out_yaxis",
+              "d": "M 46 146 L 46 226",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "hww_out_wave",
+              "d": "M 46 190 Q 76 138 106 190 L 166 190 Q 196 138 226 190 L 286 190",
+              "ms": 4080
+            },
+            {
+              "type": "label",
+              "id": "hww_lbl_in",
+              "x": 246,
+              "y": 40,
+              "text": "input",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hww_lbl_out",
+              "x": 240,
+              "y": 160,
+              "text": "output",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hww_lbl_v1",
+              "x": 24,
+              "y": 36,
+              "text": "V",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hww_lbl_v2",
+              "x": 24,
+              "y": 156,
+              "text": "V",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hww_lbl_t1",
+              "x": 336,
+              "y": 88,
+              "text": "t",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hww_lbl_t2",
+              "x": 336,
+              "y": 208,
+              "text": "t",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hww_lbl_o1",
+              "x": 24,
+              "y": 90,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "hww_lbl_o2",
+              "x": 24,
+              "y": 210,
+              "text": "O",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The input is a full sine wave. The output keeps the positive humps and is flat at zero during the negative halves.",
+        "why": "Drawing the two graphs one above the other, on the same time axis, is what shows the rectification: every positive hump is copied and every negative hump is missing.",
+        "common_mistakes": [
+          "Drawing the negative humps flipped upwards. That is the full wave output, not the half wave output.",
+          "Drawing the output as a straight line. It is a pulsating d.c., not a steady voltage."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the output graph keeps the positive humps and is flat at zero during the negative half cycles.",
+          "accept": [
+            "positive humps only with gaps between",
+            "flat during the negative half cycles",
+            "draw the input sine and the output pulses"
+          ],
+          "reject": [
+            "maximum efficiency is forty point six per cent"
+          ],
+          "heard_as": [
+            "waveform",
+            "graph",
+            "output"
+          ]
+        },
+        "memory_tip": "Half wave output: hump, gap, hump, gap."
+      },
+      {
+        "id": "s4_positive_half",
+        "kind": "text",
+        "label": "Positive half cycle",
+        "marks": 1,
+        "mark_note": "Diode conducts",
+        "lines": [
+          "For all the positive half cycles of the",
+          "input a.c. signal, the diode D is forward",
+          "biased, so it conducts. Current passes",
+          "through the load resistance and an",
+          "output voltage appears across it."
+        ],
+        "margin_note": "Second mark. Forward biased → conducts → current through the load.",
+        "why": "In the positive half cycle the secondary makes the diode's p side positive with respect to its n side. That is forward bias, the depletion region narrows and the diode passes current.",
+        "common_mistakes": [
+          "Saying the diode blocks in the positive half cycle. It conducts.",
+          "Leaving out the load. The mark is for current through the LOAD, not just through the diode."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in the positive half cycle the diode is forward biased and current passes through the load resistance.",
+          "accept": [
+            "diode is forward biased and conducts",
+            "current flows through the load resistance",
+            "output appears across the load"
+          ],
+          "reject": [
+            "diode is reverse biased"
+          ],
+          "heard_as": [
+            "positive half cycle",
+            "forward bias",
+            "conducts"
+          ]
+        },
+        "memory_tip": "Positive half, forward bias, current flows."
+      },
+      {
+        "id": "s5_negative_half",
+        "kind": "text",
+        "label": "Negative half cycle",
+        "marks": 1,
+        "mark_note": "Diode blocks",
+        "lines": [
+          "For all the negative half cycles of the",
+          "input a.c. signal, the diode D is reverse",
+          "biased, so it does not conduct. No current",
+          "passes through the load resistance and",
+          "the output is zero.",
+          "So only the positive half cycles appear",
+          "at the output as rectified d.c."
+        ],
+        "margin_note": "Third mark. Reverse biased → does not conduct → output zero.",
+        "why": "In the negative half cycle the polarity across the diode reverses, the depletion region widens and only a very small reverse current flows, which is treated as zero. The gap in the output graph is exactly this half cycle.",
+        "common_mistakes": [
+          "Saying the negative half is inverted at the output. In a half wave rectifier it is simply missing.",
+          "Saying the output is a steady d.c. It is a pulsating d.c."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in the negative half cycle the diode is reverse biased, no current flows through the load and the output is zero.",
+          "accept": [
+            "diode is reverse biased and does not conduct",
+            "no current through the load",
+            "only the positive half cycle is rectified"
+          ],
+          "reject": [
+            "diode is forward biased"
+          ],
+          "heard_as": [
+            "negative half cycle",
+            "reverse bias",
+            "no current"
+          ]
+        },
+        "memory_tip": "Negative half, reverse bias, nothing gets through."
+      },
+      {
+        "id": "s6_efficiency",
+        "kind": "boxed_final",
+        "label": "Efficiency",
+        "marks": 1,
+        "mark_note": "Expression and maximum",
+        "lines": [
+          "The ratio of the output d.c. power to the",
+          "input a.c. power is the efficiency of the",
+          "rectifier.",
+          {
+            "text": "\\eta = \\dfrac{\\text{output d.c. power}}{\\text{input a.c. power}} = \\dfrac{0.406\\,R_L}{r_f + R_L}",
+            "style": "eq",
+            "render": "katex"
+          },
+          {
+            "text": "R_L = \\text{load resistance},\\; r_f = \\text{forward resistance}",
+            "style": "eq",
+            "render": "katex"
+          },
+          {
+            "text": "Maximum efficiency = 40.6%",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The ratio, the expression, and the maximum value.",
+        "why": "The efficiency is limited by the missing half of every cycle. Even with a perfect diode, only the positive humps carry power to the load, and working the average out gives 4/π², which is 40.6%.",
+        "common_mistakes": [
+          "Writing 50% because half the cycle is used. The correct maximum is 40.6%.",
+          "Writing 81.2%, which belongs to the full wave rectifier."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That efficiency is output d.c. power over input a.c. power, equal to 0.406 times the load resistance over the sum of the two resistances, with a maximum of 40.6%.",
+          "accept": [
+            "output d c power by input a c power",
+            "zero point four zero six R L by r f plus R L",
+            "maximum efficiency forty point six per cent"
+          ],
+          "reject": [
+            "eighty one point two per cent"
+          ],
+          "heard_as": [
+            "efficiency",
+            "forty point six",
+            "eta"
+          ]
+        },
+        "memory_tip": "Half the cycle is thrown away, so the ceiling is 40.6%, not 50%."
+      }
+    ]
+  },
+  "insider_note": "Two half cycles, two marks. Give each one its own sentence, and name the bias before saying what the current does."
+}

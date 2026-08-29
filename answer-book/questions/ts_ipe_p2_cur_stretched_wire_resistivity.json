@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_stretched_wire_resistivity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If a wire is stretched to double its original length without loss of mass, how will the resistivity of the wire be influenced?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The resistivity is unchanged",
+      "marks": 1
+    },
+    {
+      "label": "What does change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription: the book (p28, VSAQ 22) puts a space before the question mark; it is dropped. The second mark is invented and rewards the contrast with resistance, which the book does not print — the book answers only 'it remains same, because it depends on nature of the material'. Hand-checked: resistivity is a material property and does not change; with the mass fixed the volume Al is fixed, so doubling l halves A and R = ρl/A becomes 4R."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_resistivity",
+        "kind": "text",
+        "label": "The resistivity is unchanged",
+        "marks": 1,
+        "mark_note": "ρ stays the same",
+        "lines": [
+          "The resistivity does not change.",
+          "Resistivity ρ is a property of the material",
+          "itself. Stretching changes the shape of the",
+          "wire, not the material it is made of.",
+          {
+            "text": "ρ (after stretching) = ρ (before)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Answer the question asked: the resistivity stays the same.",
+        "why": "Resistivity is fixed by the material and its temperature — how many free electrons it has and how often they collide. Pulling a wire longer does not change either of those, so ρ is unchanged.",
+        "common_mistakes": [
+          "Saying the resistivity becomes 4 times. That is the resistance, not the resistivity.",
+          "Saying it halves because the wire is thinner."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the resistivity stays the same because it is a property of the material, not of the shape.",
+          "accept": [
+            "resistivity remains the same",
+            "it depends only on the material",
+            "stretching changes shape not material"
+          ],
+          "reject": [
+            "resistance becomes four times"
+          ],
+          "heard_as": [
+            "remains same",
+            "material",
+            "resistivity"
+          ]
+        },
+        "memory_tip": "Resistivity belongs to the material; resistance belongs to the piece of wire."
+      },
+      {
+        "id": "s2_resistance",
+        "kind": "boxed_final",
+        "label": "What does change",
+        "marks": 1,
+        "mark_note": "R becomes 4 times",
+        "lines": [
+          "The resistance does change. The mass is the",
+          "same, so the volume Al is the same: doubling",
+          "the length halves the area.",
+          {
+            "text": "R = ρl/A → ρ(2l)/(A/2) = 4(ρl/A)",
+            "style": "eq"
+          },
+          {
+            "text": "ρ unchanged, R becomes 4R",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Separate the two clearly: ρ fixed, R four times.",
+        "why": "Constant mass and constant density mean constant volume, so length times area is fixed. Length up by 2 and area down by 2 both push the resistance up, and 2 × 2 gives the factor 4.",
+        "common_mistakes": [
+          "Doubling the resistance only. The area halves as well, so the factor is 4, not 2.",
+          "Forgetting that constant mass fixes the volume."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That constant volume halves the area when the length doubles, so the resistance becomes four times.",
+          "accept": [
+            "resistance becomes four times",
+            "length doubles area halves",
+            "volume stays the same"
+          ],
+          "reject": [
+            "resistivity remains the same"
+          ],
+          "heard_as": [
+            "four times",
+            "area halves"
+          ]
+        },
+        "memory_tip": "Twice as long and half as thick: 2 × 2 = 4."
+      }
+    ]
+  },
+  "insider_note": "The question asks about resistivity, and the common slip is to answer with the resistance. Write the resistivity answer first, then the resistance as a separate line."
+}

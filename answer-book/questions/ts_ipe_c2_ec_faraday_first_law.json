@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_faraday_first_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Faraday's first law of electrolysis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The mathematical form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR AND SELF-CONTRADICTION (book p.69, VSAQ 7, repeated at book p.71, LAQ 5): the printed statement says the mass is \"directly proportional to quantity of CURRENT passing through its solution\". It is proportional to the quantity of ELECTRICITY, that is the charge Q = It. The book's own formula on the next printed line, W = eIt, contains the time, so the printed words contradict the printed formula. The correct statement is written on this card and the book's wording is not followed. The book also prints the heading as \"Farady's 1st law\"."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Faraday's first law of electrolysis: the mass",
+          "of a substance deposited or set free at an",
+          "electrode during electrolysis is directly",
+          "proportional to the quantity of electricity,",
+          "that is the charge, passed through the",
+          "electrolyte."
+        ],
+        "why": "Each ion needs a fixed number of electrons to be discharged, so the number of ions discharged is set by the number of electrons that arrive. Charge counts electrons, which is why the mass follows the charge and not the current on its own.",
+        "common_mistakes": [
+          "Saying the mass is proportional to the current. Current alone leaves out the time; it is the charge Q = It that matters.",
+          "Saying proportional to the concentration of the solution. The concentration does not appear in the law."
+        ],
+        "memory_tip": "Electrons discharge ions, and charge counts electrons. So mass follows charge, not current.",
+        "margin_note": "The phrase quantity of electricity, or the word charge, has to appear. Writing quantity of current loses this mark."
+      },
+      {
+        "id": "s2_mathematical_form",
+        "kind": "boxed_final",
+        "label": "The mathematical form",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "m ∝ Q      and      Q = I t",
+            "style": "eq"
+          },
+          {
+            "text": "m = Z I t",
+            "style": "boxed"
+          },
+          "Z is the electrochemical equivalent, the mass",
+          "set free by one coulomb of charge, in g C⁻¹.",
+          {
+            "text": "Z = E / 96500",
+            "style": "eq"
+          },
+          "E is the equivalent mass, I the current in",
+          "ampere and t the time in seconds."
+        ],
+        "why": "Removing the proportionality sign needs a constant, and that constant is the mass set free by one coulomb. Writing it as E/96500 connects the law back to the chemistry, because 96500 C is the charge on one mole of electrons.",
+        "common_mistakes": [
+          "Writing m = ZQ but leaving Z unnamed. The name electrochemical equivalent is part of the answer.",
+          "Using time in minutes. t must be in seconds for the ampere and the coulomb to agree."
+        ],
+        "memory_tip": "One coulomb sets free Z grams, so Q coulombs set free ZQ grams, and Q is It.",
+        "margin_note": "Convert the time to seconds before using this formula. That single slip costs more marks than the law itself."
+      }
+    ]
+  },
+  "insider_note": "The book's own wording says quantity of current, which contradicts its own formula m = ZIt. Write quantity of electricity, or charge, and the mark is safe."
+}

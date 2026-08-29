@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_torque_on_bar_magnet",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A bar magnet of length 0.1 m and with a magnetic moment of 5 Am² is placed in a uniform magnetic field of intensity 0.4 T, with its axis making an angle of 60° with the field. What is the torque on the magnet?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: τ = MB sin θ = 5 × 0.4 × sin 60° = 2 × (√3/2) = √3 ≈ 1.732 N·m, matching the book's worked value; the printed length 0.1 m is extra data the solution never uses, since M is given directly."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula_substitution",
+        "kind": "equation",
+        "label": "Formula and substitution",
+        "marks": 1,
+        "mark_note": "τ = MB sin θ with values in",
+        "lines": [
+          "Given: M = 5 A·m², B = 0.4 T, θ = 60°.",
+          {
+            "text": "τ = MB sin θ",
+            "style": "eq"
+          },
+          {
+            "text": "τ = 5 × 0.4 × sin 60° = 2 × (√3/2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The length 0.1 m is extra information — M is given directly, so the length is never used.",
+        "why": "A uniform field exerts no net force on the magnet, only a turning effect, and that torque is τ = MB sin θ. The data gives M, B and θ, so the answer is one substitution.",
+        "common_mistakes": [
+          "Using cos 60° instead of sin 60°. The torque carries sin θ and is largest at 90°, zero along the field.",
+          "Trying to work the 0.1 m length into the formula. M = 5 A·m² is given directly."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the torque on a bar magnet in a uniform field is τ = MB sin θ, with M = 5, B = 0.4 and θ = 60° substituted.",
+          "accept": [
+            "torque is M B sin theta",
+            "five times point four times sin sixty",
+            "the length is not needed"
+          ],
+          "reject": [
+            "root three newton metre"
+          ],
+          "heard_as": [
+            "M B sin theta",
+            "sin sixty"
+          ]
+        },
+        "memory_tip": "Torque needs sin θ: zero when the magnet lies along the field, largest when it is across the field."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "√3 ≈ 1.732 N·m",
+        "lines": [
+          {
+            "text": "τ = √3 N·m ≈ 1.732 N·m",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. State the value with its unit, newton metre.",
+        "why": "2 × (√3/2) = √3, and the torque unit is newton metre. Writing √3 first and then its decimal value shows the exact and the numerical answer together.",
+        "common_mistakes": [
+          "Dropping the unit. The value 1.732 earns the mark only with N·m.",
+          "Writing 1.5 N·m by using sin 60° = 3/4. sin 60° is √3/2 ≈ 0.866."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the torque comes to root three, about 1.732 newton metre.",
+          "accept": [
+            "root three newton metre",
+            "about one point seven three newton metre"
+          ],
+          "reject": [
+            "M B sin theta"
+          ],
+          "heard_as": [
+            "root three",
+            "newton metre"
+          ]
+        },
+        "memory_tip": "5 × 0.4 = 2 clears the way: 2 × √3/2 leaves just √3."
+      }
+    ]
+  },
+  "insider_note": "The 0.1 m length is planted data — the students who lose time here are the ones trying to use it."
+}

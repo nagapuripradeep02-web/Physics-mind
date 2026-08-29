@@ -355,7 +355,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), and at Botany-II (~1303). Never trim the sweep.
+    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), and at Botany-II (~1981 entries). Never trim the sweep.
     // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -389,7 +389,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), and at Botany-II (~1303). Never trim the sweep.
+    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), and at Botany-II (~1981 entries). Never trim the sweep.
     // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -670,8 +670,25 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
     // never trim the sweep or the waits to fit, because a shortened sweep silently
     // stops checking the questions it drops.
-    test.setTimeout(2_400_000);   // the WIDEST sweep: questions x cuts. ~1510 entries after Botany-II opened.
-    // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~0.9 s/question.
+    test.setTimeout(2_400_000);   // the WIDEST sweep: questions x cuts. ~1600 entries with zoology AND Physics-II.
+    // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~1.05 s/question.
+    // Raised to 2_400_000 on 2026-08-29. Two papers landed at once — zoology took
+    // the bank to ~1340 and Senior Inter Physics adds 256 more — and this sweep had
+    // already TIMED OUT at 20 min on Physics-II alone (1247 x 1.05 s = ~21.8 min, so
+    // that ceiling held ~7% headroom). At ~1600 entries the projection is ~28 min,
+    // which the 30-min figure this merge superseded would have cut very fine.
+    // The timeout is NOT an assertion; it reports "failed" while naming nothing,
+    // which is this sweep's recorded failure mode — so the product was verified
+    // independently BEFORE the budget was touched: sum(steps.marks) and
+    // sum(mark_split.marks) are held to marks_total by both
+    // answer-book/tools/check_p2_cards.ts and build_answer_book.ts, both green.
+    // 40 min also covers Chemistry-II and Maths-2A/2B without another mid-paper raise.
+    // Chemistry-II landed 2026-08-29 and the projection held: the bank is now 1814
+    // entries, which at the ~1.05 s/entry slope above is ~32 min against this 40-min
+    // ceiling. Left as it is — the comment above already budgeted for this paper, so
+    // raising it again here would be churn, not headroom.
+    // Botany-II landed 2026-08-29, taking the bank to ~1981 entries: ~35 min at the
+    // same slope, still inside this 40-min ceiling. Not raised.
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 

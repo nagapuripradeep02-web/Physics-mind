@@ -1,0 +1,174 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_substituent_effect_on_acidity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the role of electron withdrawing and electron releasing groups on the acidity of carboxylic acids.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What determines acid strength",
+      "marks": 1
+    },
+    {
+      "label": "Electron withdrawing groups",
+      "marks": 1
+    },
+    {
+      "label": "Electron releasing groups",
+      "marks": 1
+    },
+    {
+      "label": "The order with pKa values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book pp.113-114 as SAQ 2. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CONTENT CORRECT: an electron withdrawing group stabilises the carboxylate anion and increases acidity; an electron releasing group destabilises it and decreases acidity. BOOK PRESENTATION: the printed answer carries two small drawn cartoons, one labelled EWG and one labelled EDG, each an arrow pointing at a carboxylate anion. They carry no information the sentence does not, and the chapter policy is linear text, so they are not reproduced as figures. BOOK SPELLING: the book writes \"electron with drawing\" as two words throughout; it is one word, withdrawing. BOOK GAP: the printed answer gives no examples, no order and no pKa values — the whole comparison the question is set to test. Examples and pKa values are added from NCERT (CH₃CH₂COOH 4.87, CH₃COOH 4.76, ClCH₂COOH 2.86, Cl₂CHCOOH 1.29, Cl₃CCOOH 0.65). TRENDS AND EXCEPTIONS recorded on the card: the –I effect falls away sharply with distance from the –COOH group (2-chlorobutanoic acid pKa 2.86 against 4-chlorobutanoic acid 4.52), and a –OCH₃ group is electron withdrawing by –I but electron releasing by +R, so 4-methoxybenzoic acid is WEAKER than benzoic acid while 3-methoxybenzoic acid is slightly stronger."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_basis",
+        "kind": "text",
+        "label": "What determines acid strength",
+        "marks": 1,
+        "mark_note": "The basis",
+        "lines": [
+          "A carboxylic acid donates a proton and",
+          "leaves the carboxylate ion behind:",
+          {
+            "text": "R–COOH ⇌ R–COO⁻ + H⁺",
+            "style": "eq"
+          },
+          "The strength of the acid is set by how",
+          "stable that carboxylate ion is.",
+          "The more widely the negative charge is",
+          "spread, the more stable the ion and the",
+          "stronger the acid.",
+          "A group R attached to –COOH changes the",
+          "acidity by changing that spread."
+        ],
+        "why": "Both halves of the question are answered by one idea, so it has to be stated first. An acid is strong when the ion left behind holds the negative charge well, and the only thing a substituent can do is pull that charge outward or push more charge onto it.",
+        "common_mistakes": [
+          "Explaining acidity by the O–H bond alone. It is the stability of the ion left behind that is compared.",
+          "Writing that the acid is stabilised. It is the ANION, not the acid, whose stability sets the strength.",
+          "Leaving out the ionisation equation. One line of it makes the rest of the answer readable."
+        ],
+        "memory_tip": "Look at the ion, not the acid. A well spread charge means a stable ion and a strong acid.",
+        "margin_note": "Open with the ionisation equation and one sentence on anion stability. Both parts of the question are then just applications of it."
+      },
+      {
+        "id": "s2_ewg",
+        "kind": "text",
+        "label": "Electron withdrawing groups",
+        "marks": 1,
+        "mark_note": "Withdrawing groups",
+        "lines": [
+          "An electron withdrawing group pulls",
+          "electron density away from the –COO⁻ group",
+          "through the –I effect, and through the –R",
+          "effect where a ring allows it.",
+          "The negative charge is spread over more",
+          "atoms, so the carboxylate ion is more",
+          "stable and the acid is STRONGER.",
+          "Examples: –Cl, –F, –Br, –NO₂, –CN, and the",
+          "phenyl group –C₆H₅.",
+          "Ex: ClCH₂COOH is stronger than CH₃COOH."
+        ],
+        "why": "The negative charge on the carboxylate ion is what has to be spread out, and a group that pulls electron density away takes part of that charge onto itself. Two chlorine atoms pull twice as much as one, which is why each extra withdrawing group makes the acid measurably stronger.",
+        "common_mistakes": [
+          "Saying the group stabilises the acid molecule. It stabilises the carboxylate ANION.",
+          "Listing –CH₃ as electron withdrawing. An alkyl group releases electron density.",
+          "Assuming a –OCH₃ group always strengthens the acid. It withdraws by –I but releases by +R, so at the para position of benzoic acid it makes the acid weaker."
+        ],
+        "memory_tip": "Withdrawing pulls electron density away, so the charge on the ion is spread and the ion is more stable.",
+        "margin_note": "Name the –I effect by name and give one example with formulae. The word stronger must appear in the sentence."
+      },
+      {
+        "id": "s3_edg",
+        "kind": "text",
+        "label": "Electron releasing groups",
+        "marks": 1,
+        "mark_note": "Releasing groups",
+        "lines": [
+          "An electron releasing group pushes electron",
+          "density towards the –COO⁻ group through",
+          "the +I effect.",
+          "The negative charge is concentrated on the",
+          "two oxygen atoms, so the carboxylate ion is",
+          "less stable and the acid is WEAKER.",
+          "Examples: –CH₃, –C₂H₅ and other alkyl",
+          "groups.",
+          "Ex: CH₃CH₂COOH is weaker than CH₃COOH,",
+          "which is weaker than HCOOH."
+        ],
+        "why": "Formic acid HCOOH has only a hydrogen where every other acid has an alkyl group, so nothing pushes electron density onto its carboxylate ion and it is the strongest of the simple aliphatic acids. Each alkyl group added after that pushes a little more charge onto the ion and weakens the acid a little further.",
+        "common_mistakes": [
+          "Writing that acetic acid is stronger than formic acid. Formic acid has no alkyl group and is the stronger of the two.",
+          "Saying an electron releasing group makes the acid neutral. It only makes it weaker.",
+          "Mixing the two signs. Releasing is +I and withdrawing is –I."
+        ],
+        "memory_tip": "Releasing pushes electron density towards the ion, so the charge is concentrated and the ion is less stable.",
+        "margin_note": "Keep the same four-part shape as the previous step: effect, sign, result, example. The parallel is what shows the contrast."
+      },
+      {
+        "id": "s4_order",
+        "kind": "boxed_final",
+        "label": "The order with pKa values",
+        "marks": 1,
+        "mark_note": "The order",
+        "lines": [
+          {
+            "text": "More withdrawal, stronger acid.",
+            "style": "boxed"
+          },
+          "Decreasing acid strength:",
+          {
+            "text": "Cl₃CCOOH > Cl₂CHCOOH > ClCH₂COOH",
+            "style": "eq"
+          },
+          {
+            "text": "> CH₃COOH > CH₃CH₂COOH",
+            "style": "indent"
+          },
+          {
+            "text": "pKa  0.65   1.29   2.86  4.76  4.87",
+            "style": "indent"
+          },
+          "The –I effect weakens sharply with",
+          "distance: 2-chlorobutanoic acid has pKa",
+          "2.86, but 4-chlorobutanoic acid has 4.52,",
+          "almost the same as butanoic acid itself."
+        ],
+        "why": "The pKa numbers turn the argument into something that can be checked: each chlorine atom added lowers the pKa by more than one unit, and moving one chlorine atom two carbon atoms further away undoes nearly all of that. A trend stated without its distance limit is the commonest way this answer goes wrong.",
+        "common_mistakes": [
+          "Writing the order the wrong way round. A SMALLER pKa means a STRONGER acid.",
+          "Ignoring how far the group is from –COOH. The effect is almost gone three carbon atoms away.",
+          "Giving the order without a single example. One line of formulae with pKa values is what earns this mark."
+        ],
+        "memory_tip": "Count the chlorine atoms: three, two, one, none. The pKa falls by about one unit for each one added.",
+        "margin_note": "Finish with the ordered line of formulae. The distance limit is one extra line and it is the point most students never make."
+      }
+    ]
+  },
+  "insider_note": "The book prints the two effects and no examples at all, which is half of this question. Add one ordered line of formulae with pKa values; an answer with the two effects and no example loses the order mark outright and part of each of the other three."
+}

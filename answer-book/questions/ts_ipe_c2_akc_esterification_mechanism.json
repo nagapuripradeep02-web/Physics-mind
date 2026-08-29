@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_esterification_mechanism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the mechanism of esterification.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reaction and its conditions",
+      "marks": 1
+    },
+    {
+      "label": "The five steps of the mechanism",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.113 as VSAQ 8. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK PRESENTATION: the printed mechanism is a row of drawn structures with no numbered stages and no words, and it runs across two pages (book pp.113 and 113 right column). It is transcribed here as five numbered stages in linear notation, which is the chapter policy for this subject; nothing is added to or removed from the route the book draws. BOOK GAP: the printed overall equation \"R–COOH + R'OH → R–COOR' + H₂O\" uses a single arrow. The reaction is reversible and is driven by removing water or by using an excess of one reactant, so ⇌ is used here and the driving condition is stated. BOOK GAP: the name Fischer esterification is not printed and is added. TREND AND EXCEPTION recorded on the card: the trend \"an alcohol and a carboxylic acid give an ester with a mineral acid catalyst\" has an exception — a tertiary alcohol reacts very slowly by this route because of steric hindrance at its carbon, and tends to give an alkene instead."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reaction",
+        "kind": "equation",
+        "label": "The reaction and its conditions",
+        "marks": 1,
+        "mark_note": "The reaction",
+        "lines": [
+          "A carboxylic acid and an alcohol, warmed",
+          "with a little concentrated mineral acid,",
+          "give an ester and water:",
+          {
+            "text": "R–COOH + R'OH ⇌ R–COOR' + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[conc. H₂SO₄, Δ]",
+            "style": "indent"
+          },
+          "This is called Fischer esterification.",
+          "It is reversible, so water is removed to",
+          "carry it forward."
+        ],
+        "why": "The H⁺ is a catalyst: it is used in stage 1 and returned in stage 5, so only a small amount is needed and it does not appear in the overall equation. Because the reaction is an equilibrium, the yield is raised by removing the water or by using an excess of the alcohol, not by adding more catalyst.",
+        "common_mistakes": [
+          "Writing a single arrow. The reaction is reversible, so ⇌ is the correct sign.",
+          "Putting H₂SO₄ in the equation as a reactant. It is a catalyst and belongs above the arrow.",
+          "Naming the product an ether. R–COOR' is an ester; an ether has no carbonyl group."
+        ],
+        "memory_tip": "Acid plus alcohol gives ester plus water, and the H⁺ is used at the start and released again at the end.",
+        "margin_note": "Write conc. H₂SO₄ above the arrow on your answer sheet. The word reversible and the removal of water are worth a line each."
+      },
+      {
+        "id": "s2_mechanism",
+        "kind": "boxed_final",
+        "label": "The five steps of the mechanism",
+        "marks": 1,
+        "mark_note": "The mechanism",
+        "lines": [
+          "1) H⁺ bonds to the carbonyl oxygen, which",
+          "raises the positive charge on the carbonyl",
+          "carbon:",
+          {
+            "text": "R–C(=O)–OH + H⁺ ⇌ [R–C(OH)₂]⁺",
+            "style": "eq"
+          },
+          "2) The oxygen of the alcohol bonds to that",
+          "carbon, giving a tetrahedral intermediate:",
+          {
+            "text": "[R–C(OH)₂]⁺ + R'OH ⇌ R–C(OH)₂–O⁺HR'",
+            "style": "eq"
+          },
+          "3) A proton moves across to one of the two",
+          "–OH groups.",
+          "4) That group leaves as water:",
+          {
+            "text": "⇌ [R–C(OH)=OR']⁺ + H₂O",
+            "style": "eq"
+          },
+          "5) Loss of H⁺ gives the ester:",
+          {
+            "text": "⇌ R–COOR' + H⁺",
+            "style": "eq"
+          },
+          {
+            "text": "The H⁺ is returned, so it is a catalyst.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Every stage is either a proton moving or a group joining or leaving the carbonyl carbon. The reason the acid catalyst is needed at all is stage 1: an un-protonated –COOH is not positive enough at the carbon for a weak nucleophile like an alcohol to bond to it.",
+        "common_mistakes": [
+          "Writing that the –OH of the ALCOHOL leaves as water. Isotope labelling shows the water comes from the acid's –OH and the alcohol's hydrogen.",
+          "Stopping at the tetrahedral intermediate. The last two stages, loss of water and loss of H⁺, carry the mark.",
+          "Leaving the H⁺ used up at the end. It is returned in stage 5, which is what makes it a catalyst."
+        ],
+        "memory_tip": "Protonate, add the alcohol, shift a proton, lose water, lose H⁺. Five stages, and the H⁺ is released again.",
+        "margin_note": "Numbering the five stages is what earns this mark. A tertiary alcohol is the exception: it reacts very slowly by this route."
+      }
+    ]
+  },
+  "insider_note": "Isotope work shows the water is made from the acid's –OH and the alcohol's hydrogen, so never write the alcohol's –OH leaving. Number the five stages: an unnumbered row of structures is hard to mark and usually scores less."
+}

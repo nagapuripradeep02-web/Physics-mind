@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_lenzs_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Lenz's law.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "Energy conservation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: the induced current's direction OPPOSES the change in flux that produced it (the minus sign of Faraday's law), and this opposition is what conservation of energy demands — a current that helped the change would grow flux and current with no work done."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Induced current opposes the change",
+        "lines": [
+          "The direction of the induced current is",
+          "such that it opposes the change in the",
+          "magnetic flux that produced it.",
+          "This direction rule is the minus sign in",
+          {
+            "text": "ε = −dΦ/dt",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The word opposes, applied to the CHANGE in flux, is the whole statement.",
+        "why": "The law fixes only the DIRECTION of the induced current; Faraday's law gives its size. The word opposes is the whole content of the law.",
+        "common_mistakes": [
+          "Saying the induced current opposes the flux. It opposes the CHANGE in flux — a rising flux is opposed, a falling flux is supported.",
+          "Quoting Lenz's law for the size of the emf. The size comes from Faraday's law."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the direction of the induced current opposes the change in flux that produced it.",
+          "accept": [
+            "opposes the change",
+            "direction of the induced current",
+            "opposes the cause"
+          ],
+          "reject": [
+            "conservation of energy"
+          ],
+          "heard_as": [
+            "Lenz",
+            "opposes",
+            "change in flux"
+          ]
+        },
+        "memory_tip": "One word carries the mark: opposes. The induced current opposes the change, not the flux."
+      },
+      {
+        "id": "s2_energy",
+        "kind": "boxed_final",
+        "label": "Energy conservation",
+        "marks": 1,
+        "mark_note": "Work done appears as electrical energy",
+        "lines": [
+          "Lenz's law is a statement of the",
+          "conservation of energy: work must be done",
+          "against the opposition, and this work",
+          "appears as the electrical energy of the",
+          "induced current.",
+          {
+            "text": "Lenz's law follows energy conservation",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Say where the induced current's energy comes from: the work done against the opposition.",
+        "why": "If the induced current helped the change instead of opposing it, flux and current would grow with no work done — energy from nothing. Opposition is what conservation of energy demands.",
+        "common_mistakes": [
+          "Treating the energy point as extra. For a 2-mark answer, the statement plus the energy line is the complete answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Lenz's law is a consequence of the conservation of energy.",
+          "accept": [
+            "conservation of energy",
+            "work done against the opposition",
+            "energy is conserved"
+          ],
+          "reject": [
+            "opposes the change"
+          ],
+          "heard_as": [
+            "energy",
+            "conservation"
+          ]
+        },
+        "memory_tip": "Opposition means work must be done, and that work becomes the electrical energy. No energy for free — that is the whole argument."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two sentences: the direction rule with the word opposes, then the energy-conservation line."
+}

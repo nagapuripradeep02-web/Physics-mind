@@ -1,0 +1,220 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_friedel_crafts_and_nitration_of_anisole",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write the equations of the below given reactions: a) Friedel-Crafts alkylation of anisole, b) Friedel-Crafts acylation of anisole, c) Nitration of anisole.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Anisole is activated and directs to 2 and 4",
+      "marks": 1
+    },
+    {
+      "label": "Friedel-Crafts alkylation",
+      "marks": 2
+    },
+    {
+      "label": "Friedel-Crafts acylation",
+      "marks": 2
+    },
+    {
+      "label": "Nitration",
+      "marks": 2
+    },
+    {
+      "label": "Why the para product is the major one",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book pp.111-112 as Long Answer 2 — the last question of the sub-box, which ends where the shaded box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" begins in the right column of book p.112. The 1+2+2+2+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO: the acylation scheme labels the ortho product \"2-Methoxy acetophenone (mirror)\" — it should read (minor), and the book's own text below the scheme confirms the para compound is the major one. BOOK CHEMISTRY IS CORRECT on all three parts, including the major and minor assignments. BOOK GAPS, all added here: HCl and H₂O are missing from every product side, so none of the three printed schemes balances; no reason is given for anisole being reactive at all; and no reason is given for the para product dominating. BALANCE CHECKED: C₆H₅OCH₃ + CH₃Cl → CH₃O–C₆H₄–CH₃ + HCl (C 8=8, H 11=11, O 1=1, Cl 1=1); C₆H₅OCH₃ + CH₃COCl → CH₃O–C₆H₄–COCH₃ + HCl (C 9=9, H 11=11, O 2=2, Cl 1=1); C₆H₅OCH₃ + HNO₃ → CH₃O–C₆H₄–NO₂ + H₂O (C 7=7, H 9=9, N 1=1, O 4=4). TREND AND EXCEPTION: the card states that an alkoxy group activates the ring and directs to positions 2 and 4, and names the exception on the same card — Friedel-Crafts reactions need an activated ring and fail on a strongly deactivated one such as nitrobenzene, and they fail on aniline as well, because AlCl₃ bonds to the nitrogen lone pair and deactivates the ring."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Alcohols, Phenols and Ethers — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_anisole_activated",
+        "kind": "text",
+        "label": "Anisole is activated and directs to 2 and 4",
+        "marks": 1,
+        "mark_note": "Directing effect",
+        "lines": [
+          "Anisole is methoxybenzene, C₆H₅–O–CH₃.",
+          "A lone pair on the oxygen moves into the",
+          "ring, so carbons 2, 4 and 6 carry extra",
+          "electron density.",
+          "Anisole is therefore more reactive than",
+          "benzene towards an electrophile, and the",
+          "new group enters at position 2 or 4.",
+          "All three reactions below are electrophilic",
+          "substitutions on this ring."
+        ],
+        "why": "One structural fact explains all three parts: the methoxy group releases electron density into the ring by resonance. That is why anisole reacts faster than benzene and why every product in this answer is an ortho or a para compound and never a meta one.",
+        "common_mistakes": [
+          "Saying the methoxy group withdraws electron density because oxygen is electronegative. Its resonance effect is the larger one and it releases into the ring.",
+          "Giving a meta product anywhere in this answer. An alkoxy group is an ortho and para director."
+        ],
+        "memory_tip": "Oxygen lone pair into the ring, so positions 2, 4 and 6 are the reactive ones. No meta product anywhere.",
+        "margin_note": "One short paragraph here saves repeating the reason in all three parts. Write it before part a."
+      },
+      {
+        "id": "s2_alkylation",
+        "kind": "equation",
+        "label": "Friedel-Crafts alkylation",
+        "marks": 2,
+        "mark_note": "Alkylation",
+        "lines": [
+          "a) Friedel-Crafts alkylation.",
+          "Anisole is treated with CH₃Cl and anhydrous",
+          "AlCl₃ in CS₂.",
+          {
+            "text": "C₆H₅–OCH₃ + CH₃Cl →",
+            "style": "eq"
+          },
+          {
+            "text": "2-methoxytoluene (minor) +",
+            "style": "indent"
+          },
+          {
+            "text": "4-methoxytoluene (major) + HCl",
+            "style": "indent"
+          },
+          {
+            "text": "[anhydrous AlCl₃, CS₂]",
+            "style": "indent"
+          },
+          "Both products have the formula",
+          "CH₃O–C₆H₄–CH₃."
+        ],
+        "why": "AlCl₃ takes the chloride from CH₃Cl and gives the methyl cation, which is the electrophile. The ring is already activated by the methoxy group, so the methyl group enters at position 2 or 4, and the HCl released comes from the ring hydrogen that is displaced.",
+        "common_mistakes": [
+          "Leaving out HCl. Every substitution on the ring displaces a hydrogen, which leaves as HCl.",
+          "Writing hydrated AlCl₃ or omitting the word anhydrous. Moisture destroys the catalyst."
+        ],
+        "memory_tip": "Alkyl chloride plus AlCl₃ gives a carbocation, and it bonds to the ring at position 2 or 4.",
+        "margin_note": "Write anhydrous AlCl₃ above the arrow and label major and minor. Both are marked in a Friedel-Crafts equation."
+      },
+      {
+        "id": "s3_acylation",
+        "kind": "equation",
+        "label": "Friedel-Crafts acylation",
+        "marks": 2,
+        "mark_note": "Acylation",
+        "lines": [
+          "b) Friedel-Crafts acylation.",
+          "Anisole is treated with CH₃COCl and",
+          "anhydrous AlCl₃.",
+          {
+            "text": "C₆H₅–OCH₃ + CH₃COCl →",
+            "style": "eq"
+          },
+          {
+            "text": "2-methoxyacetophenone (minor) +",
+            "style": "indent"
+          },
+          {
+            "text": "4-methoxyacetophenone (major) + HCl",
+            "style": "indent"
+          },
+          {
+            "text": "[anhydrous AlCl₃]",
+            "style": "indent"
+          },
+          "Both products have the formula",
+          "CH₃O–C₆H₄–COCH₃."
+        ],
+        "why": "Here AlCl₃ takes the chloride from the acid chloride and gives the acylium ion CH₃CO⁺, which is the electrophile. The acyl group is bulkier than a methyl group, so the para product dominates even more strongly than in the alkylation.",
+        "common_mistakes": [
+          "Writing acetic acid or acetic anhydride and forgetting the catalyst. The reagent is the acid chloride with anhydrous AlCl₃.",
+          "Naming the products methoxytoluenes. An acyl group gives a ketone, so the products are methoxyacetophenones."
+        ],
+        "memory_tip": "Acid chloride gives the acylium ion, so the product is a ketone: 4-methoxyacetophenone.",
+        "margin_note": "The book prints the ortho product as (mirror). It means (minor). Write minor, and para as major."
+      },
+      {
+        "id": "s4_nitration",
+        "kind": "equation",
+        "label": "Nitration",
+        "marks": 2,
+        "mark_note": "Nitration",
+        "lines": [
+          "c) Nitration.",
+          "Anisole is treated with a mixture of",
+          "concentrated HNO₃ and concentrated H₂SO₄.",
+          {
+            "text": "C₆H₅–OCH₃ + HNO₃ →",
+            "style": "eq"
+          },
+          {
+            "text": "2-nitroanisole (minor) +",
+            "style": "indent"
+          },
+          {
+            "text": "4-nitroanisole (major) + H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "[conc. H₂SO₄, conc. HNO₃]",
+            "style": "indent"
+          },
+          "Both products have the formula",
+          "CH₃O–C₆H₄–NO₂."
+        ],
+        "why": "The sulphuric acid protonates the nitric acid so that water leaves and the nitronium ion NO₂⁺ is formed; that ion is the electrophile. Water and not HCl is the by-product here, because no chlorine is involved in this reaction.",
+        "common_mistakes": [
+          "Writing HCl as the by-product. Nitration releases water, since the reagent is nitric acid.",
+          "Leaving out the sulphuric acid. Without it the nitronium ion is not formed in useful amounts."
+        ],
+        "memory_tip": "Two concentrated acids give the nitronium ion NO₂⁺, and water is the by-product.",
+        "margin_note": "Name the nitronium ion. It is what makes this an electrophilic substitution like the other two parts."
+      },
+      {
+        "id": "s5_para_major",
+        "kind": "boxed_final",
+        "label": "Why the para product is the major one",
+        "marks": 1,
+        "mark_note": "Major product",
+        "lines": [
+          "In all three reactions the para product is",
+          "the major one.",
+          "The –OCH₃ group takes up space beside its",
+          "own two neighbouring carbons, so the",
+          "incoming group finds position 4 easier to",
+          "reach than position 2.",
+          {
+            "text": "para is major in a, b and c",
+            "style": "boxed"
+          },
+          "The bulkier the incoming group, the more",
+          "the para product dominates."
+        ],
+        "why": "The directing effect explains why only the ortho and para positions react; the crowding explains which of those two is the major product. Both are needed for a complete answer. There is a limit to be aware of: Friedel-Crafts reactions need an activated ring, so they fail on a strongly deactivated ring such as nitrobenzene, and they fail on aniline as well, because the AlCl₃ bonds to the nitrogen lone pair and deactivates the ring.",
+        "common_mistakes": [
+          "Explaining the major product by resonance. Resonance says ortho and para; crowding says which of the two is major.",
+          "Assuming Friedel-Crafts works on any benzene ring. It fails on nitrobenzene and on aniline."
+        ],
+        "memory_tip": "Resonance allows only ortho and para; crowding makes para the major one. The bigger the incoming group, the more para is favoured.",
+        "margin_note": "One closing paragraph covers all three parts. Do not repeat this reason under each equation."
+      }
+    ]
+  },
+  "insider_note": "The book leaves HCl and H₂O out of all three equations, so a copied answer does not balance. Write the by-product in each: HCl for the alkylation and the acylation, water for the nitration, and label the para product as major in all three."
+}

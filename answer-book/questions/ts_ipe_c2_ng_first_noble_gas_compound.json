@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_first_noble_gas_compound",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the name and formula of the first noble gas compound prepared by Bartlett.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The name and how it was made",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.89 as VSAQ 6. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SPELLING CORRECTED (book p.89, VSAQ 6): the book prints the chemist's name as \"Bertlett\" in both the question and the answer. The correct spelling is Neil BARTLETT, and it is spelled that way in the question text and on the card. BOOK NOTATION: the book prints the formula as \"Xe[PtF6]\" with no charges and the name as \"xenon hexafluoro Platinate\" with a capital P and a space. The charges are written here, Xe+[PtF6]-, because the compound is ionic and that is the whole point of Bartlett's argument; the name is written as one word, xenon hexafluoroplatinate(V). BEYOND THE BOOK, recorded in the step's why and not on the answer page: later work showed the red solid is not pure Xe+[PtF6]- but a mixture containing [XeF]+[PtF6]- and [XeF]+[Pt2F11]-. The board marks the NCERT formula Xe+[PtF6]-, so that is what the answer page carries."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Noble Gases — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "Neil Bartlett prepared the first noble gas",
+          "compound in 1962.",
+          {
+            "text": "Xe⁺[PtF₆]⁻",
+            "style": "eq"
+          },
+          "He made it by mixing xenon gas with",
+          "platinum hexafluoride, PtF₆.",
+          {
+            "text": "Xe + PtF₆ → Xe⁺[PtF₆]⁻",
+            "style": "eq"
+          }
+        ],
+        "why": "The compound is ionic: PtF₆ takes one electron from xenon, leaving Xe⁺ and [PtF₆]⁻. Writing the charges shows that a noble gas has been oxidised, which is the fact that ended the idea that noble gases form no compounds. Later work showed the red solid is not pure Xe⁺[PtF₆]⁻ but a mixture that also contains [XeF]⁺[PtF₆]⁻ and [XeF]⁺[Pt₂F₁₁]⁻; the board marks the simple formula.",
+        "common_mistakes": [
+          "Writing XeF₂ as the first noble gas compound. XeF₂ came soon afterwards; the first was Xe⁺[PtF₆]⁻.",
+          "Leaving out the charges. The compound is ionic, and the charges are what show the xenon was oxidised."
+        ],
+        "memory_tip": "Xenon plus PtF₆ gives a red solid, Xe⁺[PtF₆]⁻, the year 1962.",
+        "margin_note": "The formula alone earns this mark. Write it once, clearly, with the square brackets around PtF₆."
+      },
+      {
+        "id": "s2_name",
+        "kind": "boxed_final",
+        "label": "The name and how it was made",
+        "marks": 1,
+        "mark_note": "Name",
+        "lines": [
+          {
+            "text": "Name: xenon hexafluoroplatinate(V)",
+            "style": "boxed"
+          },
+          "Bartlett had already made O₂⁺[PtF₆]⁻ from",
+          "oxygen and PtF₆.",
+          "The first ionisation enthalpy of xenon is",
+          "1170 kJ mol⁻¹ and that of O₂ is",
+          "1175 kJ mol⁻¹, which are close.",
+          "So he expected xenon to react in the same",
+          "way, and it did."
+        ],
+        "why": "The reasoning is worth more than the name. PtF₆ had already taken an electron from O₂, and xenon needs almost the same energy to lose one, so the same reaction should work. This is why the discovery was a prediction and not an accident.",
+        "common_mistakes": [
+          "Writing the name as xenon platinum fluoride. The anion [PtF₆]⁻ is named hexafluoroplatinate.",
+          "Saying noble gases were known to be reactive before 1962. Until Bartlett's work they were believed to form no compounds at all."
+        ],
+        "memory_tip": "O₂ and Xe need almost the same energy to lose one electron, 1175 and 1170 kJ mol⁻¹, so what worked on O₂ worked on Xe.",
+        "margin_note": "The name is the mark here. The two ionisation enthalpy figures are extra and are worth adding only if there is time."
+      }
+    ]
+  },
+  "insider_note": "The formula and the name are the two marks; the 1962 date and the ionisation enthalpy figures earn nothing on their own. Write Xe⁺[PtF₆]⁻ with its charges, then the name on the next line."
+}

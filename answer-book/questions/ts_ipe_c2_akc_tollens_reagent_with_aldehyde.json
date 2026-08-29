@@ -1,0 +1,182 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_tollens_reagent_with_aldehyde",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is Tollen's reagent? Explain its reaction with aldehydes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What Tollens' reagent is",
+      "marks": 1
+    },
+    {
+      "label": "How it is prepared",
+      "marks": 1
+    },
+    {
+      "label": "The reaction and the silver mirror",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.114 as SAQ 4. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK EQUATION CHECKED AND CORRECT: R–CHO + 2[Ag(NH₃)₂]⁺ + 3OH⁻ → R–COO⁻ + 2Ag↓ + 2H₂O + 4NH₃ balances in atoms (C1 H16 O4 Ag2 N4 beyond R) and in charge (−1 on each side). The product order is written here as 2Ag + 4NH₃ + 2H₂O rather than the book's 2Ag + 2H₂O + 4NH₃; that is presentation only. BOOK SPELLING: the book writes \"Tollen's\" and \"Ammonical\" and \"oxidsied\"; the reagent is named after Bernhard Tollens, so it is Tollens' reagent, and the words are ammoniacal and oxidised. The question_text keeps the book's \"Tollen's\" because that is how the paper would print it. BOOK GAP: the printed answer says only \"Ammonical silver nitrate solution is called Tollen's reagent\" and never shows how it is made. The three preparation equations (AgNO₃ + NaOH → AgOH↓ + NaNO₃; 2AgOH → Ag₂O↓ + H₂O; Ag₂O + 4NH₃ + H₂O → 2[Ag(NH₃)₂]OH) are added from NCERT and each balances. BOOK GAP: the printed answer does not say that the reagent is alkaline, which is why the product is the carboxylate ION and not the acid; that is added. TREND AND EXCEPTION recorded on the card: \"aldehydes give the test and ketones do not\" is not exact — formic acid HCOOH gives a silver mirror although it is an acid, because it carries a –CHO group, and α-hydroxy ketones give it too."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What Tollens' reagent is",
+        "marks": 1,
+        "mark_note": "The reagent",
+        "lines": [
+          "Tollens' reagent is an ammoniacal solution",
+          "of silver nitrate.",
+          "The species that reacts is the",
+          "diamminesilver(I) ion:",
+          {
+            "text": "[Ag(NH₃)₂]OH  or  [Ag(NH₃)₂]⁺ + OH⁻",
+            "style": "eq"
+          },
+          "It is a mild oxidising agent and the",
+          "solution is alkaline.",
+          "It is prepared fresh each time it is used."
+        ],
+        "why": "Silver ions in alkaline solution would be precipitated as Ag₂O and would not be free to oxidise anything, so ammonia is added to hold the silver as a soluble complex ion. The solution being alkaline is what makes the product the carboxylate ion rather than the free acid.",
+        "common_mistakes": [
+          "Writing the reagent as silver nitrate alone. Without ammonia it is not Tollens' reagent.",
+          "Giving the active species as Ag⁺. It is the complex ion [Ag(NH₃)₂]⁺.",
+          "Calling it a strong oxidising agent. It is mild, which is exactly why it leaves ketones untouched."
+        ],
+        "memory_tip": "Silver held by two ammonia molecules in alkali. Mild enough for an aldehyde and no more.",
+        "margin_note": "Write the formula of the complex ion as well as the words ammoniacal silver nitrate. The formula is what carries this mark."
+      },
+      {
+        "id": "s2_preparation",
+        "kind": "equation",
+        "label": "How it is prepared",
+        "marks": 1,
+        "mark_note": "Preparation",
+        "lines": [
+          "Sodium hydroxide is added to silver",
+          "nitrate, and the precipitate is then",
+          "dissolved in ammonia:",
+          {
+            "text": "AgNO₃ + NaOH → AgOH↓ + NaNO₃",
+            "style": "eq"
+          },
+          {
+            "text": "2AgOH → Ag₂O↓ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "Ag₂O + 4NH₃ + H₂O → 2[Ag(NH₃)₂]OH",
+            "style": "eq"
+          },
+          "Ammonia is added until the brown Ag₂O just",
+          "dissolves and the solution is clear."
+        ],
+        "why": "The brown solid that forms first is silver oxide, and ammonia is added only until it has just dissolved. Adding more than that makes the solution too alkaline and the test becomes unreliable, so the end point of the preparation is a visible one: the brown solid disappears.",
+        "common_mistakes": [
+          "Writing AgOH as the final product. It loses water at once to give Ag₂O, which is the brown solid seen.",
+          "Adding excess ammonia. Only enough to dissolve the brown Ag₂O is used.",
+          "Forgetting the water on the left of the third equation. Without it the two hydroxide groups of the product have no source."
+        ],
+        "memory_tip": "Alkali first gives brown silver oxide, then ammonia dissolves it. Stop the moment the brown colour goes.",
+        "margin_note": "Three short equations. If time is short, the third one alone shows the complex being formed and earns most of this mark."
+      },
+      {
+        "id": "s3_reaction",
+        "kind": "text",
+        "label": "The reaction and the silver mirror",
+        "marks": 1,
+        "mark_note": "The observation",
+        "lines": [
+          "An aldehyde is warmed with Tollens' reagent",
+          "in a clean test tube.",
+          "Silver is deposited on the inner wall as a",
+          "bright silver mirror.",
+          "The aldehyde is oxidised to the carboxylate",
+          "ion, and Ag⁺ is reduced to silver metal.",
+          "Ordinary ketones are not oxidised by this",
+          "mild reagent, so they give no mirror.",
+          "This is called the silver mirror test."
+        ],
+        "why": "The tube has to be clean and the heating gentle, because silver deposited quickly forms a black powder instead of a mirror. The test works at all because the reagent is mild enough to oxidise the C–H bond of an aldehyde and nothing else in a ketone.",
+        "common_mistakes": [
+          "Writing that a red-brown precipitate forms. That is the Fehling test; Tollens' gives a silver mirror.",
+          "Boiling the mixture hard. Gentle warming gives the mirror; strong heating gives a black powder.",
+          "Saying the silver stays in solution. It is deposited as the metal."
+        ],
+        "memory_tip": "Silver ion becomes silver metal, and it plates the glass, so the observation is a mirror.",
+        "margin_note": "Name the test and name the two changes, oxidation of the aldehyde and reduction of silver. All three phrases are marked."
+      },
+      {
+        "id": "s4_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          {
+            "text": "R–CHO + 2[Ag(NH₃)₂]⁺ + 3OH⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "R–COO⁻ + 2Ag↓ + 4NH₃ + 2H₂O",
+            "style": "indent"
+          },
+          "For acetaldehyde:",
+          {
+            "text": "CH₃CHO + 2[Ag(NH₃)₂]⁺ + 3OH⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃COO⁻ + 2Ag↓ + 4NH₃ + 2H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "Silver mirror: an aldehyde is present.",
+            "style": "boxed"
+          },
+          "Exception: formic acid HCOOH also gives a",
+          "silver mirror, because it carries a –CHO",
+          "group even though it is an acid.",
+          "α-Hydroxy ketones give it as well."
+        ],
+        "why": "Two silver ions are reduced because the aldehyde loses two electrons, and three hydroxide ions balance the charge at −1 on each side. The formic acid exception is worth a line because it means a positive test shows a –CHO group, not an aldehyde in particular.",
+        "common_mistakes": [
+          "Writing R–COOH as the product. The solution is alkaline, so the product is R–COO⁻.",
+          "Forgetting the 4NH₃. The ammonia held on the silver is released when the complex breaks up.",
+          "Using 2OH⁻ instead of 3OH⁻. Check the charge: it must come to −1 on each side."
+        ],
+        "memory_tip": "Two silvers out, four ammonias released, and three hydroxides to balance the charge at −1.",
+        "margin_note": "Write the reagent above the arrow on your answer sheet. Adding the acetaldehyde case under the general one costs two lines and shows the general form is understood."
+      }
+    ]
+  },
+  "insider_note": "The product in alkali is the carboxylate ion, not the free acid, and writing R–COOH is the most common loss on the equation. Formic acid gives a silver mirror too, so a positive test shows a –CHO group rather than an aldehyde in particular."
+}

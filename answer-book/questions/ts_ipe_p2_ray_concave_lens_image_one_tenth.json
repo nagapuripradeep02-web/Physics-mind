@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_concave_lens_image_one_tenth",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The focal length of a concave lens is 30 cm. Where should an object be placed so that its image is 1/10 of its size?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Magnification gives v in terms of u",
+      "marks": 1
+    },
+    {
+      "label": "Lens formula and the object distance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. TRANSCRIPTION: the book prints a space before the question mark; it is removed here. Hand-checked numerically: f = −30 cm and m = v/u = 1/10 give 1/f = 1/v − 1/u = 10/u − 1/u = 9/u, so u = 9 × (−30) = −270 cm and v = −27 cm. A concave lens always gives an erect, virtual, diminished image, so m is positive and the image is 27 cm from the lens on the same side as the object. The printed answer u = −270 cm is correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Magnification",
+        "marks": 1,
+        "mark_note": "v = u/10",
+        "lines": [
+          {
+            "text": "Given:",
+            "style": "heading"
+          },
+          "f = −30 cm ,   m = 1/10 ,   u = ?",
+          "The image of a concave lens is erect and",
+          "diminished, so m is positive:",
+          {
+            "text": "m = v/u = 1/10 ,   so   v = u/10",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Turn the words one tenth of its size into the equation v = u/10.",
+        "why": "The magnification links the two unknowns, so one of them can be removed before the lens formula is used. Without this step the lens formula has two unknowns and cannot be solved.",
+        "common_mistakes": [
+          "Taking f = +30 cm. A concave lens has a negative focal length.",
+          "Taking m = −1/10. A concave lens gives an erect image, so m is positive."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m = v/u = 1/10 gives v = u/10, with f = −30 cm.",
+          "accept": [
+            "m equals v by u equals one by ten so v is u by ten",
+            "v is one tenth of u",
+            "magnification one tenth gives v equals u by ten",
+            "m equals v by u kabatti v equals u by ten"
+          ],
+          "reject": [
+            "u is minus two hundred seventy centimetres"
+          ],
+          "heard_as": [
+            "v by u",
+            "one by ten",
+            "magnification",
+            "minus thirty"
+          ]
+        },
+        "memory_tip": "Concave lens: image always erect, virtual and smaller — so m is positive and less than 1."
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Lens formula and u",
+        "marks": 1,
+        "mark_note": "u = −270 cm",
+        "lines": [
+          {
+            "text": "1/f = 1/v − 1/u   (lens formula)",
+            "style": "eq"
+          },
+          {
+            "text": "−1/30 = 10/u − 1/u = 9/u",
+            "style": "eq"
+          },
+          {
+            "text": "u = 9 × (−30) = −270 cm",
+            "style": "eq"
+          },
+          "The object is 270 cm from the lens, on the",
+          "side the light comes from.",
+          {
+            "text": "u = −270 cm",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Use the LENS formula 1/f = 1/v − 1/u, not the mirror formula.",
+        "why": "Replacing v by u/10 makes 1/v equal to 10/u, and the two terms then collapse into the single fraction 9/u. The whole numerical answer is that one subtraction.",
+        "common_mistakes": [
+          "Using the mirror formula 1/f = 1/v + 1/u. A lens uses a minus sign.",
+          "Writing 1/v = u/10 instead of 10/u. Invert v = u/10 carefully."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the lens formula with v = u/10 gives −1/30 = 9/u and so u = −270 cm.",
+          "accept": [
+            "minus one by thirty equals nine by u so u is minus two seventy",
+            "u is minus two hundred and seventy centimetres",
+            "object is two hundred seventy centimetres from the lens",
+            "u minus two seventy centimetres vastundi"
+          ],
+          "reject": [
+            "m equals v by u equals one by ten"
+          ],
+          "heard_as": [
+            "minus two seventy",
+            "nine by u",
+            "lens formula",
+            "two hundred seventy"
+          ]
+        },
+        "memory_tip": "Lens formula has a minus, mirror formula has a plus. Write the sign before the numbers."
+      }
+    ]
+  },
+  "insider_note": "The whole question is one substitution: v = u/10 turns 1/v − 1/u into 9/u."
+}

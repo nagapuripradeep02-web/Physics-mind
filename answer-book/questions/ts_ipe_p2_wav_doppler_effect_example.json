@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_doppler_effect_example",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is 'Doppler effect'? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "An example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: the Doppler effect is the APPARENT change in the frequency heard by an observer, caused by relative motion between source and observer — the source's own frequency never changes. Approaching train: heard frequency rises; receding: falls."
+  },
+  "recall_prompt": "Say the definition of the Doppler effect, and give the train example.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Apparent change due to relative motion",
+        "lines": [
+          "The apparent change in the frequency of",
+          "sound heard by an observer, due to",
+          "relative motion between the source and",
+          "the observer, is called the Doppler",
+          "effect."
+        ],
+        "margin_note": "First mark. Two phrases carry it: apparent change, and relative motion.",
+        "why": "The word apparent matters because the source's own frequency never changes — only what the observer HEARS changes, and only when source and observer move relative to each other.",
+        "common_mistakes": [
+          "Dropping the word apparent — the emitted frequency is constant; the heard one changes.",
+          "Writing motion of the source only — relative motion of EITHER the source or the observer produces the effect."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Doppler effect is the apparent change in heard frequency caused by relative motion between source and observer.",
+          "accept": [
+            "apparent change in frequency",
+            "due to relative motion between source and observer",
+            "the heard frequency changes, not the emitted one"
+          ],
+          "reject": [
+            "the train whistle sounds higher"
+          ],
+          "heard_as": [
+            "Doppler",
+            "apparent",
+            "relative motion"
+          ]
+        },
+        "memory_tip": "Two key words: apparent (the source never changes) and relative (either one may move)."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "An example",
+        "marks": 1,
+        "mark_note": "The approaching train",
+        "lines": [
+          "Example: when a whistling train",
+          "approaches a person standing on the",
+          "platform, the frequency of the whistle",
+          "appears to increase. As the train moves",
+          "away, it appears to decrease.",
+          {
+            "text": "Approaching: higher · Receding: lower",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Give both halves of the example — approaching AND moving away.",
+        "why": "Approaching motion crowds the sound waves together, so more of them reach the ear each second; receding motion spreads them out. The two halves of the example show both directions of the same effect.",
+        "common_mistakes": [
+          "Saying the whistle gets louder — the Doppler effect changes the PITCH (frequency), not the loudness."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an approaching train's whistle appears higher in frequency and a receding train's whistle lower.",
+          "accept": [
+            "approaching train sounds higher",
+            "moving away it sounds lower",
+            "the pitch of the whistle changes"
+          ],
+          "reject": [
+            "apparent change due to relative motion"
+          ],
+          "heard_as": [
+            "train",
+            "whistle",
+            "higher",
+            "lower"
+          ]
+        },
+        "memory_tip": "Coming closer packs the waves — higher pitch. Going away spreads them — lower pitch."
+      }
+    ]
+  },
+  "insider_note": "Frequency, not loudness — writing that the whistle gets louder is the standard way the example mark is lost."
+}

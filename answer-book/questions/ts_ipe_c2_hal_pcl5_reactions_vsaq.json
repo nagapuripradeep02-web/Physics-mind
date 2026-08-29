@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_hal_pcl5_reactions_vsaq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Halo Alkanes and Halo Arenes (Chemistry-II)"
+  },
+  "chapter": "Halo Alkanes and Halo Arenes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How does PCl₅ react with the following? (a) Water (b) C₂H₅OH (c) CH₃COOH (d) Ag",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Water and ethanol",
+      "marks": 1
+    },
+    {
+      "label": "Acetic acid and silver",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 15 (Halo Alkanes and Halo Arenes) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.107-108, from the shaded sub-box \"HALO ALKANES & HALO ARENES\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container chapter whose four unnumbered sub-boxes each restart numbering at 1); the book prints this question on book p.107 as VSAQ 6. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. DUPLICATE IN THE BOOK — FLAGGED FOR THE ORCHESTRATOR: the book prints this SAME question twice, in two different sub-boxes and at two different lengths. It is the single Short Answer Question of the \"VA GROUP ELEMENTS\" sub-box on book p.84 (authored as ts_ipe_c2_va_pcl5_reactions, SAQ, 4 marks) and it is VSAQ 6 of the \"HALO ALKANES & HALO ARENES\" sub-box on book p.107 (this card, VSAQ, 2 marks). Both printings are in the book, so both are authored; they are deliberately given different ids, different mark splits and different framing — the VA card treats PCl₅ as a group 15 chloride, this one treats it as the reagent that puts a halogen on to an alcohol or an acid. A teacher reviewing the bank should be told the two exist. BOOK SELF-INCONSISTENCY: the p.84 printing gives only the cold water equation, while the p.107 printing gives BOTH the cold water and the excess hot water equations. The p.107 printing is the more complete of the two. BALANCE CHECK, all four printed equations atom-counted: PCl₅ + H₂O → POCl₃ + 2HCl (P 1, Cl 5, H 2, O 1 each side); PCl₅ + 4H₂O → H₃PO₄ + 5HCl (P 1, Cl 5, H 8, O 4 each side); C₂H₅OH + PCl₅ → C₂H₅Cl + POCl₃ + HCl (C 2, H 6, O 1, P 1, Cl 5 each side); CH₃COOH + PCl₅ → CH₃COCl + POCl₃ + HCl (C 2, H 4, O 2, P 1, Cl 5 each side); PCl₅ + 2Ag → 2AgCl + PCl₃ (P 1, Cl 5, Ag 2 each side). All five are balanced and are reproduced unchanged."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Halo Alkanes and Halo Arenes — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_water_and_ethanol",
+        "kind": "text",
+        "label": "Water and ethanol",
+        "marks": 1,
+        "mark_note": "Parts (a) and (b)",
+        "lines": [
+          "a) With water, two products are possible.",
+          {
+            "text": "PCl₅ (cold) + H₂O → POCl₃ + 2HCl",
+            "style": "eq"
+          },
+          {
+            "text": "PCl₅ (hot) + 4H₂O → H₃PO₄ + 5HCl",
+            "style": "eq"
+          },
+          "b) With ethanol the –OH group is replaced",
+          "by –Cl, giving ethyl chloride.",
+          {
+            "text": "C₂H₅OH + PCl₅ → C₂H₅Cl + POCl₃ + HCl",
+            "style": "eq"
+          }
+        ],
+        "why": "PCl₅ is hydrolysed in two stages. A small amount of cold water replaces one pair of chlorine atoms and stops at phosphorus oxychloride; with excess hot water the hydrolysis is complete and phosphoric acid is formed. With an alcohol the same chlorine transfer replaces the –OH group by –Cl, and that is one of the three standard laboratory routes to a haloalkane from an alcohol, the other two being SOCl₂ and PCl₃.",
+        "common_mistakes": [
+          "Writing H₃PO₄ for the cold water reaction. A small amount of cold water gives POCl₃; excess hot water gives H₃PO₄.",
+          "Leaving POCl₃ out of the ethanol equation. Both POCl₃ and HCl are formed along with C₂H₅Cl."
+        ],
+        "memory_tip": "A little cold water gives POCl₃; excess hot water gives H₃PO₄.",
+        "margin_note": "Write both water equations. Only one of them is usually written, and the second one carries the rest of this mark."
+      },
+      {
+        "id": "s2_acetic_acid_and_silver",
+        "kind": "text",
+        "label": "Acetic acid and silver",
+        "marks": 1,
+        "mark_note": "Parts (c) and (d)",
+        "lines": [
+          "c) With acetic acid the –OH of the acid is",
+          "replaced by –Cl, giving acetyl chloride.",
+          {
+            "text": "CH₃COOH + PCl₅ → CH₃COCl + POCl₃ + HCl",
+            "style": "eq"
+          },
+          "d) With silver, PCl₅ is reduced to PCl₃.",
+          {
+            "text": "PCl₅ + 2Ag → 2AgCl + PCl₃",
+            "style": "eq"
+          },
+          "Two of the five chlorine atoms go to silver."
+        ],
+        "why": "PCl₅ replaces the –OH of a carboxylic acid in the same way as it replaces the –OH of an alcohol, and the product is the acid chloride. With silver the reaction is of a different kind: it is a redox change, in which silver is oxidised to AgCl and phosphorus is reduced from the +5 state to the +3 state as PCl₃. That is the one part of this question in which no –OH group takes part.",
+        "common_mistakes": [
+          "Writing CH₃COCl alone. All three products, CH₃COCl, POCl₃ and HCl, are needed to balance the equation.",
+          "Writing AgCl₂ or Ag₂Cl. Silver chloride is AgCl, and two of them are formed."
+        ],
+        "memory_tip": "Any –OH group is replaced by –Cl; only silver is different, taking two chlorine atoms and leaving PCl₃.",
+        "margin_note": "Balance each equation before moving on. Check the number of HCl molecules on each side."
+      }
+    ]
+  },
+  "insider_note": "Four parts for two marks, so two parts per mark. Part (a) is really two reactions, cold water and excess hot water, and a single water equation leaves half of it unanswered."
+}

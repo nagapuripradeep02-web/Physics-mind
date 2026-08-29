@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_molarity_10_percent_glucose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A solution of glucose in water is labeled as 10% w/w. What would be the molarity of the solution?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Moles of glucose",
+      "marks": 1
+    },
+    {
+      "label": "Volume and molarity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.65, VSAQ 12) — the biggest one found in this unit. The printed answer takes the volume of the solution as 90 mL, which is the volume of the WATER, and prints \"= 10/180 × 1000/90 = 0.617 M\". 0.617 is the MOLALITY of this solution, 0.0556 mol in 0.090 kg of water = 0.617 mol kg⁻¹, and it is printed with the unit M. Molarity is moles per litre of SOLUTION, and the 100 g of solution has to be turned into a volume with a density. No density of the solution is given in the question; taking it as 1.00 g mL⁻¹ for this dilute aqueous solution gives V = 100 mL and molarity = 0.556 ≈ 0.56 M, which is what this card boxes. (The book quotes d = 0.998 g mL⁻¹, the density of water, which would give 0.55 M by the same route.) The NCERT version of this problem supplies a solution density of 1.2 g mL⁻¹ and answers 0.67 M, and asks for the molality separately — which is where the 0.617 in this book comes from. A Telangana IPE teacher must settle which value the board marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "equation",
+        "label": "Moles of glucose",
+        "marks": 1,
+        "mark_note": "Moles",
+        "lines": [
+          "10% w/w means 10 g of glucose in every",
+          "100 g of SOLUTION.",
+          "Mass of water = 100 − 10 = 90 g",
+          "Glucose is C₆H₁₂O₆.",
+          "Molar mass = 180 g mol⁻¹",
+          {
+            "text": "n = 10 / 180 = 0.0556 mol",
+            "style": "eq"
+          }
+        ],
+        "why": "The w/w label is per 100 g of solution, so 100 g is the natural basis: it gives the mass of glucose at once and the mass of water by subtraction. Dividing by the molar mass of glucose turns that mass into the moles that the molarity formula needs.",
+        "common_mistakes": [
+          "Taking 10 g of glucose in 100 g of water. The label is per 100 g of solution, so the water is 90 g.",
+          "Using 342 for the molar mass. 342 g mol⁻¹ is sucrose; glucose C₆H₁₂O₆ is 180 g mol⁻¹."
+        ],
+        "memory_tip": "10% w/w: 10 g of solute, 90 g of water, 100 g of solution.",
+        "margin_note": "Write the basis line \"take 100 g of solution\". The molar mass 180 must be shown, not assumed."
+      },
+      {
+        "id": "s2_molarity",
+        "kind": "boxed_final",
+        "label": "Volume and molarity",
+        "marks": 1,
+        "mark_note": "Molarity",
+        "lines": [
+          "Molarity needs the volume of the SOLUTION,",
+          "so the 100 g has to be divided by a",
+          "density.",
+          "No density is given, so take the density of",
+          "this dilute solution as 1.00 g mL⁻¹.",
+          {
+            "text": "V = 100 / 1.00 = 100 mL = 0.1 L",
+            "style": "eq"
+          },
+          {
+            "text": "M = 0.0556 / 0.1 = 0.556 mol L⁻¹",
+            "style": "eq"
+          },
+          {
+            "text": "Molarity ≈ 0.56 M",
+            "style": "boxed"
+          }
+        ],
+        "why": "Molarity is moles per litre of solution, so a mass of solution can only become a molarity through a density. The book divides instead by 90 mL, the volume of the water alone, and prints 0.617 M — but 0.0556 mol in 0.090 kg of water is the MOLALITY, 0.617 mol kg⁻¹, not the molarity. If the question supplies a density of the solution, use that value in place of 1.00 g mL⁻¹ and the answer changes with it.",
+        "common_mistakes": [
+          "Dividing the moles by the mass of the water in kilogram. That gives the molality, 0.617 mol kg⁻¹, not the molarity.",
+          "Taking the volume of the solution as 90 mL. 90 g is the water; the solution is 100 g."
+        ],
+        "memory_tip": "Molarity always needs a volume, and a volume always needs a density. Write the density you used.",
+        "margin_note": "State the assumed density on its own line. Without a stated density the volume line cannot be marked."
+      }
+    ]
+  },
+  "insider_note": "This book prints 0.617 M for this question, but 0.617 is the MOLALITY of the same solution in mol kg⁻¹. Molarity is per litre of solution, so write the density you assumed and show the volume line; that is the line the mark actually sits on."
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_coordination_number",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by the term co-ordination number? Give the co-ordination number of atoms in a cubic close packed structure and in a body centred cubic structure.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The two values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-63, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed answer writes \"in a 3d - crystal lattice\", where 3d means three dimensional and not the 3d subshell; it is written out in full here. The values 12 for ccp and 8 for bcc are the book's own and are correct. SPELLING: the book prints \"centered\"; \"centred\" is used here to match the rest of the bank."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The co-ordination number of a particle is the",
+          "number of nearest neighbouring particles",
+          "that touch it in a three dimensional crystal",
+          "lattice.",
+          "Only the nearest neighbours are counted."
+        ],
+        "why": "The number counts touching neighbours only, which is why it measures how closely the particles are packed. Counting particles that are further away would give a number that has nothing to do with the packing.",
+        "common_mistakes": [
+          "Counting all the particles in the unit cell. Only the nearest neighbours that touch the chosen particle are counted.",
+          "Confusing this with the co-ordination number of a complex ion. Here it is a packing count, not a count of ligands."
+        ],
+        "memory_tip": "Nearest and touching. Anything further away is not counted.",
+        "margin_note": "The words \"nearest neighbouring particles\" are the definition mark. Write them before the two numbers."
+      },
+      {
+        "id": "s2_values",
+        "kind": "boxed_final",
+        "label": "The two values",
+        "marks": 1,
+        "mark_note": "Values",
+        "lines": [
+          {
+            "text": "ccp: 12.    bcc: 8.",
+            "style": "boxed"
+          },
+          "In ccp each atom touches 6 in its own layer,",
+          "3 above and 3 below, giving 12.",
+          "In bcc the atom at the body centre touches",
+          "the 8 atoms at the corners."
+        ],
+        "why": "The two counts come straight from the geometry. A close packed layer gives six neighbours in the plane and three in each neighbouring layer, so twelve in all. In a body centred cell the only atoms touching the central atom are the eight corner atoms.",
+        "common_mistakes": [
+          "Swapping the two values. Cubic close packing gives 12 and body centred cubic gives 8.",
+          "Writing 6 for ccp. Six is only the count within one layer; the layers above and below add three each."
+        ],
+        "memory_tip": "Close packing is the tightest, so it gets the biggest number, 12. Body centred is looser, so 8.",
+        "margin_note": "Both numbers must appear. The one line breakdown 6 + 3 + 3 shows the examiner the 12 is not guessed."
+      }
+    ]
+  },
+  "insider_note": "This question has two parts, so a definition alone can only earn one mark. Write 12 for ccp and 8 for bcc on the same line and label each."
+}

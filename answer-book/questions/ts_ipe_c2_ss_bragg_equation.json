@@ -1,0 +1,307 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_bragg_equation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive Bragg's equation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The set-up",
+      "marks": 1
+    },
+    {
+      "label": "Path difference condition",
+      "marks": 1
+    },
+    {
+      "label": "Geometry of the two triangles",
+      "marks": 1
+    },
+    {
+      "label": "Bragg's equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.63, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed derivation was checked line by line and its geometry is sound: with AC perpendicular to the incident ray and AD perpendicular to the reflected ray, angle CAB equals the glancing angle θ, so CB = BD = d sin θ. FIGURE SCOPE: the question says \"derive\", not \"draw\", so the diagram step carries NO marks and the whole split sits on the four written steps. The figure is still authored because the derivation names the points A, B, C and D and cannot be followed without them. The book's figure draws three planes; two are enough to name every point in the derivation, so two are drawn here."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solid State — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "The set-up",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "In a crystal the lattice points lie on parallel",
+          "planes a distance d apart.",
+          "A beam of X-rays of wavelength λ falls on",
+          "the crystal at a glancing angle θ.",
+          "The first ray is reflected from the point A on",
+          "the first plane, and the second ray from the",
+          "point B on the second plane, where AB = d."
+        ],
+        "why": "The derivation compares two rays of the same beam that are reflected from two neighbouring planes. Fixing the wavelength, the glancing angle and the spacing d at the start is what lets every later length be written in terms of d and θ.",
+        "common_mistakes": [
+          "Measuring θ from the normal to the plane. In Bragg's equation θ is the glancing angle, measured from the plane itself.",
+          "Calling d the distance between two atoms. It is the perpendicular distance between two neighbouring planes."
+        ],
+        "memory_tip": "Two rays, two planes, one spacing d. Everything else in the derivation comes from those three.",
+        "margin_note": "State d, λ and θ in the first two lines. An examiner cannot give the later marks if the symbols are never defined."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "The diagram",
+        "marks": 0,
+        "figure": {
+          "id": "bragg_ray_diagram",
+          "width": 500,
+          "height": 245,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "br_planes",
+              "d": "M 90 130 L 400 130 M 90 200 L 400 200",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "br_ray1",
+              "d": "M 130 67 L 220 130 L 310 67",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "br_ray2",
+              "d": "M 89 108 L 220 200 L 360 102",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "br_perpendiculars",
+              "d": "M 220 130 L 187 177 M 220 130 L 253 177",
+              "ms": 1640,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "br_spacing",
+              "d": "M 220 130 L 220 200",
+              "ms": 1000,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_ray1",
+              "x": 118,
+              "y": 55,
+              "text": "1st ray",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_ray2",
+              "x": 14,
+              "y": 104,
+              "text": "2nd ray",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_a",
+              "x": 226,
+              "y": 124,
+              "text": "A",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_d_spacing",
+              "x": 226,
+              "y": 172,
+              "text": "d",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_b",
+              "x": 226,
+              "y": 222,
+              "text": "B",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_c",
+              "x": 172,
+              "y": 192,
+              "text": "C",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_dpoint",
+              "x": 258,
+              "y": 192,
+              "text": "D",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_theta",
+              "x": 196,
+              "y": 122,
+              "text": "θ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_plane1",
+              "x": 408,
+              "y": 134,
+              "text": "plane 1",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "br_lbl_plane2",
+              "x": 408,
+              "y": 204,
+              "text": "plane 2",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Every length in the derivation is read off this picture: CB and BD are the two parts of the extra path, and the two dashed perpendiculars from A are what make ΔABC and ΔABD right angled triangles.",
+        "common_mistakes": [
+          "Marking C and D on the planes. They are the feet of the perpendiculars dropped from A onto the second ray.",
+          "Drawing the two rays as though they meet at one point. They are parallel until they reach the two different planes."
+        ],
+        "memory_tip": "Drop two perpendiculars from A onto the second ray. Their feet are C on the way in and D on the way out.",
+        "margin_note": "The question says derive, not draw, so this earns no marks. All four marks sit on the written steps, but the labelled sketch is what makes the derivation readable."
+      },
+      {
+        "id": "s3_condition",
+        "kind": "equation",
+        "label": "Path difference condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "lines": [
+          "The second ray travels a longer path than",
+          "the first, by the extra distance CB + BD.",
+          "The two reflected rays reinforce each other",
+          "only when they are in the same phase, that",
+          "is when this extra distance is a whole",
+          "number of wavelengths.",
+          {
+            "text": "CB + BD = nλ        …(1)",
+            "style": "eq"
+          },
+          "n = 1, 2, 3 … is the order of diffraction."
+        ],
+        "why": "Constructive interference is the whole physical content of the derivation. Two waves add up only if the extra distance one of them covers is a whole number of wavelengths; any other extra distance leaves them out of step and the reflected beam is weak.",
+        "common_mistakes": [
+          "Writing the extra path as CB alone. The second ray goes down to the lower plane and back up, so both CB and BD count.",
+          "Leaving out n. Reflection is strong at several angles, one for each whole number of wavelengths."
+        ],
+        "memory_tip": "In step, so the extra path must be a whole number of wavelengths. That is where nλ comes from.",
+        "margin_note": "Equation (1) is the marked line here. Write the words \"constructive interference\" or \"in the same phase\" beside it."
+      },
+      {
+        "id": "s4_geometry",
+        "kind": "equation",
+        "label": "Geometry of the two triangles",
+        "marks": 1,
+        "mark_note": "Geometry",
+        "lines": [
+          "AC is drawn perpendicular to the incident",
+          "second ray and AD perpendicular to the",
+          "reflected second ray, with AB = d.",
+          {
+            "text": "In ΔABC:  sin θ = CB / AB = CB / d",
+            "style": "eq"
+          },
+          {
+            "text": "so CB = d sin θ",
+            "style": "indent"
+          },
+          {
+            "text": "In ΔABD:  sin θ = BD / AB = BD / d",
+            "style": "eq"
+          },
+          {
+            "text": "so BD = d sin θ",
+            "style": "indent"
+          }
+        ],
+        "why": "Both triangles have a right angle at C and at D, and the angle at A in each of them equals the glancing angle θ. That turns the two unknown path pieces into the same expression, d sin θ, which is what makes the final result so simple.",
+        "common_mistakes": [
+          "Using cos θ instead of sin θ. The angle at A equals θ and the side opposite it is CB, so the ratio is a sine.",
+          "Writing AB as the distance along the ray. AB is the perpendicular distance between the planes, so AB = d."
+        ],
+        "memory_tip": "Both triangles give the same answer, d sin θ. Two equal pieces are why the 2 appears in the final equation.",
+        "margin_note": "Both triangles must be shown. Writing only one of them is where half of this mark is usually lost."
+      },
+      {
+        "id": "s5_result",
+        "kind": "boxed_final",
+        "label": "Bragg's equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Substituting these in equation (1):",
+          {
+            "text": "d sin θ + d sin θ = nλ",
+            "style": "eq"
+          },
+          {
+            "text": "nλ = 2d sin θ",
+            "style": "boxed"
+          },
+          "This is Bragg's equation."
+        ],
+        "why": "Adding the two equal path pieces gives 2d sin θ, and setting that equal to nλ is the condition for a strong reflected beam. Measuring θ for a known λ therefore gives d, which is how X-ray diffraction measures the spacing inside a crystal.",
+        "common_mistakes": [
+          "Writing nλ = d sin θ and losing the 2. The extra path has two equal parts, one on the way in and one on the way out.",
+          "Stopping at the algebra. The last line naming the result as Bragg's equation is part of what is being marked."
+        ],
+        "memory_tip": "Two equal pieces of d sin θ, so nλ = 2d sin θ.",
+        "margin_note": "Box the final equation and name it. A derivation with no named result reads as unfinished."
+      }
+    ]
+  },
+  "insider_note": "The mark most often lost is the 2 in 2d sin θ, which comes from writing only one of the two triangles. Show ΔABC and ΔABD separately, then add them."
+}

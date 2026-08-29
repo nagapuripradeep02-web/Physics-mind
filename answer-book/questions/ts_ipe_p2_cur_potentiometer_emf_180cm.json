@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_potentiometer_emf_180cm",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A potentiometer wire is 5 m long and a potential difference of 6 V is maintained between its ends. Find the emf of a cell which balances against a length of 180 cm of the potentiometer wire.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The potential gradient",
+      "marks": 1
+    },
+    {
+      "label": "The emf",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: potential gradient = 6 V / 5 m = 1.2 V m⁻¹; 180 cm = 1.8 m; ε = 1.2 × 1.8 = 2.16 V — matches the book's E₂ = 2.16 volt."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gradient",
+        "kind": "equation",
+        "label": "The potential gradient",
+        "marks": 1,
+        "mark_note": "1.2 V m⁻¹",
+        "lines": [
+          "Given: L = 5 m, V = 6 V, l = 180 cm = 1.8 m.",
+          "The potential falls uniformly along the wire:",
+          {
+            "text": "Potential gradient = 6 V/5 m = 1.2 V m⁻¹",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Volts across the whole wire divided by the whole length.",
+        "why": "The wire is uniform, so every metre of it drops the same voltage. That drop per metre is the one number that converts any balancing length into an emf.",
+        "common_mistakes": [
+          "Forgetting to convert 180 cm to 1.8 m before using the gradient in V per metre."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the potential gradient is 6 volt over 5 metre, which is 1.2 volt per metre.",
+          "accept": [
+            "6 by 5 is 1.2 volt per metre",
+            "potential gradient 1.2",
+            "voltage drop per metre of wire"
+          ],
+          "reject": [
+            "2.16 volt"
+          ],
+          "heard_as": [
+            "gradient",
+            "volt per metre"
+          ]
+        },
+        "memory_tip": "One number unlocks every potentiometer problem: volts per metre of wire."
+      },
+      {
+        "id": "s2_emf",
+        "kind": "boxed_final",
+        "label": "The emf",
+        "marks": 1,
+        "mark_note": "2.16 V",
+        "lines": [
+          "At balance, the emf equals the potential",
+          "drop across the balancing length:",
+          {
+            "text": "ε = 1.2 V m⁻¹ × 1.8 m = 2.16 V",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Gradient times the balancing length, in metres.",
+        "why": "At the balance point no current flows through the cell, so the cell's full emf equals the wire's potential drop over exactly the balancing length.",
+        "common_mistakes": [
+          "Multiplying by 180 instead of 1.8 — the gradient is per metre, so the length must be in metres.",
+          "Using the full 6 V instead of the drop across only 1.8 m."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the emf is 1.2 volt per metre times 1.8 metre, giving 2.16 volt.",
+          "accept": [
+            "1.2 into 1.8",
+            "2.16 volt",
+            "gradient times balancing length"
+          ],
+          "reject": [
+            "6 by 5 is 1.2 volt per metre"
+          ],
+          "heard_as": [
+            "2.16",
+            "volt"
+          ]
+        },
+        "memory_tip": "emf = gradient × balancing length: 1.2 × 1.8 = 2.16."
+      }
+    ]
+  },
+  "insider_note": "The centimetre-to-metre conversion is the whole trap — 1.2 × 180 gives a nonsense 216 V."
+}

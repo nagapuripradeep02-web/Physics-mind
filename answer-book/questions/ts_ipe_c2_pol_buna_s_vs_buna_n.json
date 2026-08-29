@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_buna_s_vs_buna_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the difference between Buna-S and Buna-N?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Buna-S",
+      "marks": 1
+    },
+    {
+      "label": "Buna-N",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 17 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK: the printed answer is \"Buna-N is a copolymer of vinyl cyanide and 1, 3-Butadiene\" and \"Buna-S is a copolymer of styrene and 1, 3-Butadiene\". Both are correct and are kept. GAP: the book gives no formulae, no uses and no reading of the name; the formulae, the origin of the name (Bu from butadiene, Na from natrium, the sodium catalyst, and the final letter for the second monomer) and one use each are added, because the two rubbers are otherwise told apart by memory alone."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_buna_s",
+        "kind": "text",
+        "label": "Buna-S",
+        "marks": 1,
+        "mark_note": "Buna-S",
+        "lines": [
+          "Buna-S is a copolymer of 1,3-butadiene",
+          "and styrene.",
+          {
+            "text": "CH₂=CH–CH=CH₂ and C₆H₅–CH=CH₂",
+            "style": "eq"
+          },
+          "It is also called SBR, styrene butadiene",
+          "rubber.",
+          "It is tough and hard wearing, so it is",
+          "used for car tyres and floor tiles."
+        ],
+        "why": "Both Buna rubbers are built on the same 1,3-butadiene chain, so only the second monomer separates them. Naming that second monomer is therefore the entire difference, and the letter after Buna records it.",
+        "common_mistakes": [
+          "Writing that Buna-S is a homopolymer. It has two monomers, so it is a copolymer.",
+          "Writing styrene as C₆H₅–CH₂–CH₃. Styrene must keep its double bond, C₆H₅–CH=CH₂."
+        ],
+        "memory_tip": "The S in Buna-S stands for styrene.",
+        "margin_note": "Both monomers of Buna-S are the mark. The name SBR is a bonus."
+      },
+      {
+        "id": "s2_buna_n",
+        "kind": "boxed_final",
+        "label": "Buna-N",
+        "marks": 1,
+        "mark_note": "Buna-N",
+        "lines": [
+          "Buna-N is a copolymer of 1,3-butadiene",
+          "and vinyl cyanide, also called",
+          "acrylonitrile.",
+          {
+            "text": "CH₂=CH–CH=CH₂ and CH₂=CH–CN",
+            "style": "eq"
+          },
+          {
+            "text": "S = styrene, N = nitrile",
+            "style": "boxed"
+          },
+          "Buna-N resists petrol and oil, so it is",
+          "used for fuel hoses, oil seals and",
+          "gaskets."
+        ],
+        "why": "The –CN group is strongly polar, so oil and petrol, which are not polar, do not swell the rubber. That single difference in the second monomer is why the two rubbers are used in different places.",
+        "common_mistakes": [
+          "Swapping the two, putting styrene in Buna-N and vinyl cyanide in Buna-S. The letter after Buna names the second monomer.",
+          "Leaving out 1,3-butadiene. It is in both, and an answer naming only styrene and vinyl cyanide is incomplete."
+        ],
+        "memory_tip": "Bu from butadiene and Na from natrium, the sodium catalyst; the last letter names the second monomer.",
+        "margin_note": "Set the answer out as two lines, one rubber each, so the difference is easy to see."
+      }
+    ]
+  },
+  "insider_note": "Both rubbers share 1,3-butadiene, so write that first and then the one monomer that differs. The letter after Buna is the second monomer every time."
+}
