@@ -1,0 +1,109 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_layer_and_broiler",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the terms layer and broiler.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Layer",
+      "marks": 1
+    },
+    {
+      "label": "Broiler",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 126. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "Layer",
+        "marks": 1,
+        "mark_note": "Layer",
+        "why": "A bird kept for eggs is fed and housed to lay for as long as possible.",
+        "common_mistakes": [
+          "Saying layers are raised for meat.",
+          "Leaving out the word exclusively."
+        ],
+        "memory_tip": "Layers lay eggs.",
+        "margin_note": "One line each.",
+        "lines": [
+          "Layers are birds which are exclusively",
+          "raised for the production of eggs."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Broiler",
+        "marks": 1,
+        "mark_note": "Broiler",
+        "why": "A bird kept for meat is grown fast and sold young, so it never reaches laying age.",
+        "common_mistakes": [
+          "Giving broilers the egg job.",
+          "Leaving out the 8 to 10 week figure."
+        ],
+        "memory_tip": "Broilers are raised for meat and sold at 8 to 10 weeks.",
+        "margin_note": "Give the age. It is an easy extra point.",
+        "lines": [
+          "Broilers are birds which are raised only for",
+          "their meat.",
+          {
+            "text": "They are raised up to 8 or 10 weeks, then sold",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The most repeated two-mark question in this chapter. One word each decides the mark: eggs for layers, meat for broilers."
+}

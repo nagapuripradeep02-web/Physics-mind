@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_insulin_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain in brief structure of Insulin.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What insulin is",
+      "marks": 1
+    },
+    {
+      "label": "The two chains",
+      "marks": 1
+    },
+    {
+      "label": "The disulphide linkages",
+      "marks": 1
+    },
+    {
+      "label": "Proinsulin and the C peptide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.42, SAQ 43. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applied Biology · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What insulin is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "Insulin is a protein, which is why it has to be injected rather than swallowed: the gut would digest it.",
+        "common_mistakes": [
+          "Calling insulin a steroid hormone. It is a protein hormone.",
+          "Naming the wrong cells. Beta cells make it."
+        ],
+        "memory_tip": "Beta cells of the pancreas make insulin.",
+        "margin_note": "Name the hormone type and the cells.",
+        "lines": [
+          "Insulin is a protein hormone secreted by",
+          "the β cells of the pancreas."
+        ]
+      },
+      {
+        "id": "s2_chains",
+        "kind": "equation",
+        "label": "The two chains",
+        "marks": 1,
+        "mark_note": "The chains",
+        "why": "The two chains are made as one piece and only later cut apart, which is why their lengths add up to less than the original.",
+        "common_mistakes": [
+          "Giving one chain. There are two.",
+          "Swapping the chain lengths. A is 21, B is 30."
+        ],
+        "memory_tip": "A is 21, B is 30, total 51.",
+        "margin_note": "Write the numbers on their own line.",
+        "lines": [
+          "Human insulin is made of 51 amino acids in",
+          "two polypeptide chains.",
+          {
+            "text": "A chain = 21 amino acids",
+            "style": "eq"
+          },
+          {
+            "text": "B chain = 30 amino acids",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s3_disulphide",
+        "kind": "text",
+        "label": "The disulphide linkages",
+        "marks": 1,
+        "mark_note": "Linkages",
+        "why": "Without the sulphur bridges the two chains would simply drift apart and the hormone would not work.",
+        "common_mistakes": [
+          "Naming hydrogen bonds. The chains are held by disulphide linkages.",
+          "Leaving the linkages out."
+        ],
+        "memory_tip": "Sulphur bridges hold the two chains together.",
+        "margin_note": "One line, but it is a whole mark.",
+        "lines": [
+          "The two chains are held together by",
+          "disulphide linkages."
+        ]
+      },
+      {
+        "id": "s4_proinsulin",
+        "kind": "boxed_final",
+        "label": "Proinsulin and C peptide",
+        "marks": 1,
+        "mark_note": "Proinsulin",
+        "why": "The extra stretch holds the chains in the right shape while the bridges form, and is cut out once they have.",
+        "common_mistakes": [
+          "Saying insulin is made in its final form. It is made as proinsulin.",
+          "Leaving out the C peptide."
+        ],
+        "memory_tip": "Proinsulin loses the C peptide to become insulin.",
+        "margin_note": "End with the C peptide. It is the marked name.",
+        "lines": [
+          "Insulin is first synthesized as a",
+          "prohormone called proinsulin.",
+          "Proinsulin contains an extra stretch",
+          {
+            "text": "called the C peptide, which is removed",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The three numbers — 51, 21 and 30 — are three separate ticks. Write them on their own line."
+}

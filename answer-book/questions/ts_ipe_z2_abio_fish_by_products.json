@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_fish_by_products",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention any four fish by-products.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Oils",
+      "marks": 1
+    },
+    {
+      "label": "Other products",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 132. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "Oils and fatty acids",
+        "marks": 1,
+        "mark_note": "Oils",
+        "why": "The liver of some fish is unusually rich in oil, which is why it is collected separately.",
+        "common_mistakes": [
+          "Naming the fish without the product.",
+          "Giving fewer than four by-products."
+        ],
+        "memory_tip": "Liver oils and omega-3 fatty acids.",
+        "margin_note": "Number them. Each is a tick.",
+        "lines": [
+          "1. Shark liver oil and cod liver oil.",
+          "2. Omega 3 fatty acids from sardines and",
+          "salmon."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Fertiliser and isinglass",
+        "marks": 1,
+        "mark_note": "Other products",
+        "why": "Even waste fish and the air bladder have a use, which is what makes them by-products rather than waste.",
+        "common_mistakes": [
+          "Leaving out what isinglass is made from.",
+          "Naming only food products."
+        ],
+        "memory_tip": "Fish guano is fertiliser; isinglass clears wine.",
+        "margin_note": "Say what each is used for.",
+        "lines": [
+          "3. Fish guano — fertiliser from waste fish.",
+          {
+            "text": "4. Isinglass — from the air bladder",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four are asked, so give four, and say what each is used for — the use is what earns the mark."
+}

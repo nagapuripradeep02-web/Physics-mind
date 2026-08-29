@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_insulin_amino_acids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many amino acids and polypeptide chains are present in insulin?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Total amino acids",
+      "marks": 1
+    },
+    {
+      "label": "The split",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 144. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "The total",
+        "marks": 1,
+        "mark_note": "Total amino acids",
+        "why": "The two chains together make up the whole hormone, so their lengths add to the total.",
+        "common_mistakes": [
+          "Giving 51 for one chain.",
+          "Leaving out the number of chains."
+        ],
+        "memory_tip": "51 amino acids in two chains.",
+        "margin_note": "Total first, then the split.",
+        "lines": [
+          "51 amino acids are present in insulin.",
+          "They are arranged in two polypeptide chains."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "The two chains",
+        "marks": 1,
+        "mark_note": "The split",
+        "why": "Chain A is the shorter of the two, and the difference in length is worth remembering.",
+        "common_mistakes": [
+          "Swapping the two chain lengths.",
+          "Giving only the total."
+        ],
+        "memory_tip": "A is 21, B is 30, and 21 + 30 = 51.",
+        "margin_note": "One line for each chain.",
+        "lines": [
+          "21 amino acids form polypeptide chain A.",
+          {
+            "text": "30 amino acids form polypeptide chain B",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Three numbers, and all three are marked: 51 in total, 21 in chain A, 30 in chain B."
+}

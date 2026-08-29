@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_electrocardiography",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is electrocardiography and what are the normal components of ECG?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Components",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 140. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "The heart's contraction is driven by an electrical signal, so recording that signal records the beat.",
+        "common_mistakes": [
+          "Saying ECG records the sound of the heart.",
+          "Leaving out that it is a recording procedure."
+        ],
+        "memory_tip": "Electro-cardio-graphy: writing the heart's electricity.",
+        "margin_note": "Definition, then the four components.",
+        "lines": [
+          "Electrocardiography, ECG, is a procedure for",
+          "recording electrical changes in the heart."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Its four components",
+        "marks": 1,
+        "mark_note": "Components",
+        "why": "Each component measures something different: a wave is one event, an interval the time between two.",
+        "common_mistakes": [
+          "Naming only the waves.",
+          "Leaving out the segments or the complex."
+        ],
+        "memory_tip": "Waves, intervals, segments, complexes.",
+        "margin_note": "Name all four with an example each.",
+        "lines": [
+          "The normal components are:",
+          "1. Waves — P, Q, R, S and T waves",
+          "2. Intervals — P-R, Q-T and R-R intervals",
+          "3. Segments — the S-T segment",
+          {
+            "text": "4. Complexes — the QRS complex",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four components are asked for, not three. Waves, intervals, segments and complexes — name an example inside each."
+}

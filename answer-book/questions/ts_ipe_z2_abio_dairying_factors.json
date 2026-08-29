@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_dairying_factors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What factors constitute dairying?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Breeding and feeding",
+      "marks": 1
+    },
+    {
+      "label": "Production and marketing",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 123. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "The animal side",
+        "marks": 1,
+        "mark_note": "Breeding and feeding",
+        "why": "Milk yield depends first on which animals are kept and how they are looked after.",
+        "common_mistakes": [
+          "Naming only the milk products.",
+          "Leaving out management of the animals."
+        ],
+        "memory_tip": "First the animals, then the milk.",
+        "margin_note": "Two numbered factors cover the two marks.",
+        "lines": [
+          "The factors of dairying are:",
+          "1. Breeding, feeding and management of milk",
+          "animals."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "The milk side",
+        "marks": 1,
+        "mark_note": "Production and marketing",
+        "why": "Dairying is an industry, so the milk has to be processed and sold as well as produced.",
+        "common_mistakes": [
+          "Stopping at production. Processing and marketing are part of it.",
+          "Leaving out the economic basis."
+        ],
+        "memory_tip": "Produce it, process it, sell it.",
+        "margin_note": "One line completes the answer.",
+        "lines": [
+          {
+            "text": "2. Production, processing and marketing of milk",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two halves: the animals, and the milk. Answering only 'breeding and feeding' is half an answer."
+}

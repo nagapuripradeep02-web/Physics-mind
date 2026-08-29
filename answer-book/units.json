@@ -10702,6 +10702,261 @@
           "question_id": "ts_ipe_z2_oev_genetic_load"
         }
       ]
+    },
+    {
+      "subject": "zoology_2",
+      "number": 8,
+      "name": "Applied Biology (Zoology-II)",
+      "questions": [
+        {
+          "ref": "saq41",
+          "section": "SAQ",
+          "number": 41,
+          "stars": 2,
+          "text": "Discuss in brief about 'Avian Flu'.",
+          "question_id": "ts_ipe_z2_abio_avian_flu"
+        },
+        {
+          "ref": "saq42",
+          "section": "SAQ",
+          "number": 42,
+          "stars": 2,
+          "text": "Honey bees are economically important - justify.",
+          "question_id": "ts_ipe_z2_abio_honey_bees_economic"
+        },
+        {
+          "ref": "saq43",
+          "section": "SAQ",
+          "number": 43,
+          "stars": 1,
+          "text": "Explain in brief structure of Insulin.",
+          "question_id": "ts_ipe_z2_abio_insulin_structure"
+        },
+        {
+          "ref": "saq44",
+          "section": "SAQ",
+          "number": 44,
+          "stars": 0,
+          "text": "List out any four salient features of cancer cells.",
+          "question_id": "ts_ipe_z2_abio_cancer_cell_features"
+        },
+        {
+          "ref": "saq45",
+          "section": "SAQ",
+          "number": 45,
+          "stars": 3,
+          "text": "Explain the different types of cancers.",
+          "question_id": "ts_ipe_z2_abio_types_of_cancers"
+        },
+        {
+          "ref": "saq46",
+          "section": "SAQ",
+          "number": 46,
+          "stars": 2,
+          "text": "Write about the procedure involved in MRI.",
+          "question_id": "ts_ipe_z2_abio_mri_procedure"
+        },
+        {
+          "ref": "saq47",
+          "section": "SAQ",
+          "number": 47,
+          "stars": 2,
+          "text": "Write briefly about different waves and intervals in an ECG.",
+          "question_id": "ts_ipe_z2_abio_ecg_waves_intervals"
+        },
+        {
+          "ref": "saq48",
+          "section": "SAQ",
+          "number": 48,
+          "stars": 1,
+          "text": "Discuss briefly the process of indirect ELISA.",
+          "question_id": "ts_ipe_z2_abio_indirect_elisa"
+        },
+        {
+          "ref": "vsaq123",
+          "section": "VSAQ",
+          "number": 123,
+          "stars": 0,
+          "text": "What factors constitute dairying?",
+          "question_id": "ts_ipe_z2_abio_dairying_factors"
+        },
+        {
+          "ref": "vsaq124",
+          "section": "VSAQ",
+          "number": 124,
+          "stars": 0,
+          "text": "Mention any two advantages of inbreeding.",
+          "question_id": "ts_ipe_z2_abio_inbreeding_advantages"
+        },
+        {
+          "ref": "vsaq125",
+          "section": "VSAQ",
+          "number": 125,
+          "stars": 0,
+          "text": "Distinguish between out-cross and cross-breed.",
+          "question_id": "ts_ipe_z2_abio_outcross_vs_crossbreed"
+        },
+        {
+          "ref": "vsaq126",
+          "section": "VSAQ",
+          "number": 126,
+          "stars": 3,
+          "text": "Define the terms layer and broiler.",
+          "question_id": "ts_ipe_z2_abio_layer_and_broiler"
+        },
+        {
+          "ref": "vsaq127",
+          "section": "VSAQ",
+          "number": 127,
+          "stars": 3,
+          "text": "What is apiculture?",
+          "question_id": "ts_ipe_z2_abio_apiculture"
+        },
+        {
+          "ref": "vsaq128",
+          "section": "VSAQ",
+          "number": 128,
+          "stars": 0,
+          "text": "Define the term Fishery.",
+          "question_id": "ts_ipe_z2_abio_fishery"
+        },
+        {
+          "ref": "vsaq129",
+          "section": "VSAQ",
+          "number": 129,
+          "stars": 1,
+          "text": "Differentiate aquaculture and pisciculture.",
+          "question_id": "ts_ipe_z2_abio_aquaculture_vs_pisciculture"
+        },
+        {
+          "ref": "vsaq130",
+          "section": "VSAQ",
+          "number": 130,
+          "stars": 2,
+          "text": "Explain the term hypophysation.",
+          "question_id": "ts_ipe_z2_abio_hypophysation"
+        },
+        {
+          "ref": "vsaq131",
+          "section": "VSAQ",
+          "number": 131,
+          "stars": 2,
+          "text": "List out any two Indian carps and two exotic carps.",
+          "question_id": "ts_ipe_z2_abio_indian_and_exotic_carps"
+        },
+        {
+          "ref": "vsaq132",
+          "section": "VSAQ",
+          "number": 132,
+          "stars": 2,
+          "text": "Mention any four fish by-products.",
+          "question_id": "ts_ipe_z2_abio_fish_by_products"
+        },
+        {
+          "ref": "vsaq133",
+          "section": "VSAQ",
+          "number": 133,
+          "stars": 1,
+          "text": "Define the term 'vaccine'.",
+          "question_id": "ts_ipe_z2_abio_vaccine"
+        },
+        {
+          "ref": "vsaq134",
+          "section": "VSAQ",
+          "number": 134,
+          "stars": 0,
+          "text": "What does ADA stand for? Deficiency of ADA causes which disease?",
+          "question_id": "ts_ipe_z2_abio_ada_scid"
+        },
+        {
+          "ref": "vsaq135",
+          "section": "VSAQ",
+          "number": 135,
+          "stars": 0,
+          "text": "Define the term transgenic animal.",
+          "question_id": "ts_ipe_z2_abio_transgenic_animal"
+        },
+        {
+          "ref": "vsaq136",
+          "section": "VSAQ",
+          "number": 136,
+          "stars": 2,
+          "text": "What is popularly called 'Guardian Angel of Cell's Genome'?",
+          "question_id": "ts_ipe_z2_abio_guardian_angel_p53"
+        },
+        {
+          "ref": "vsaq137",
+          "section": "VSAQ",
+          "number": 137,
+          "stars": 1,
+          "text": "List out any four features of cancer cells.",
+          "question_id": "ts_ipe_z2_abio_cancer_cell_four_features"
+        },
+        {
+          "ref": "vsaq138",
+          "section": "VSAQ",
+          "number": 138,
+          "stars": 1,
+          "text": "What is tomogram?",
+          "question_id": "ts_ipe_z2_abio_tomogram"
+        },
+        {
+          "ref": "vsaq139",
+          "section": "VSAQ",
+          "number": 139,
+          "stars": 2,
+          "text": "MRI scan is harmless - justify.",
+          "question_id": "ts_ipe_z2_abio_mri_harmless"
+        },
+        {
+          "ref": "vsaq140",
+          "section": "VSAQ",
+          "number": 140,
+          "stars": 1,
+          "text": "What is electrocardiography and what are the normal components of ECG?",
+          "question_id": "ts_ipe_z2_abio_electrocardiography"
+        },
+        {
+          "ref": "vsaq141",
+          "section": "VSAQ",
+          "number": 141,
+          "stars": 0,
+          "text": "What does prolonged P-R interval indicate?",
+          "question_id": "ts_ipe_z2_abio_prolonged_pr_interval"
+        },
+        {
+          "ref": "vsaq142",
+          "section": "VSAQ",
+          "number": 142,
+          "stars": 0,
+          "text": "Differentiate between primary and secondary antibodies.",
+          "question_id": "ts_ipe_z2_abio_primary_vs_secondary_antibodies"
+        },
+        {
+          "ref": "vsaq143",
+          "section": "VSAQ",
+          "number": 143,
+          "stars": 1,
+          "text": "Which substances in a sample are detected by direct and indirect ELISA respectively?",
+          "question_id": "ts_ipe_z2_abio_direct_vs_indirect_elisa"
+        },
+        {
+          "ref": "vsaq144",
+          "section": "VSAQ",
+          "number": 144,
+          "stars": 1,
+          "text": "How many amino acids and polypeptide chains are present in insulin?",
+          "question_id": "ts_ipe_z2_abio_insulin_amino_acids"
+        },
+        {
+          "ref": "vsaq145",
+          "section": "VSAQ",
+          "number": 145,
+          "stars": 0,
+          "text": "Mention any two features of PCR.",
+          "question_id": "ts_ipe_z2_abio_pcr_features"
+        }
+      ]
     }
   ]
 }

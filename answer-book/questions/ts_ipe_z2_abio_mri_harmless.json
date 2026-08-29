@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_mri_harmless",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "MRI scan is harmless - justify.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it uses",
+      "marks": 1
+    },
+    {
+      "label": "Why it is safe",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 139. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "What MRI uses",
+        "marks": 1,
+        "mark_note": "What it uses",
+        "why": "Magnetism and radio waves do not break chemical bonds, so they do not damage cells the way X-rays can.",
+        "common_mistakes": [
+          "Saying MRI uses a small amount of X-rays. It uses none.",
+          "Leaving out the full form."
+        ],
+        "memory_tip": "Magnets and radio waves, no radiation.",
+        "margin_note": "Say what it uses before saying why it is safe.",
+        "lines": [
+          "MRI means Magnetic Resonance Imaging.",
+          "It uses magnetism, radio waves and a computer",
+          "to produce body images."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Why it is safe",
+        "marks": 1,
+        "mark_note": "Why it is safe",
+        "why": "Ionising radiation is what makes X-rays risky, and MRI does not produce any.",
+        "common_mistakes": [
+          "Ending without the conclusion. The question says justify.",
+          "Giving a reason unrelated to radiation."
+        ],
+        "memory_tip": "No ionising radiation means no radiation risk.",
+        "margin_note": "One line states the verdict.",
+        "lines": [
+          "MRI does not use ionising radiation as used",
+          "in X-rays.",
+          {
+            "text": "So MRI scanning is a very safe procedure",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "A justify question needs a reason, not a description. The reason is that MRI uses no ionising radiation."
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_types_of_cancers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the different types of cancers.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Carcinoma and sarcoma",
+      "marks": 1
+    },
+    {
+      "label": "Leukemia",
+      "marks": 1
+    },
+    {
+      "label": "Lymphoma",
+      "marks": 1
+    },
+    {
+      "label": "Familial and sporadic cancer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.43, SAQ 45. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applied Biology · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_carcinoma_sarcoma",
+        "kind": "text",
+        "label": "Carcinoma and sarcoma",
+        "marks": 1,
+        "mark_note": "Carcinoma, sarcoma",
+        "why": "Epithelium covers every surface of the body and divides constantly, which is why cancers of it are the commonest kind.",
+        "common_mistakes": [
+          "Swapping the two. Carcinoma is epithelial, sarcoma is connective tissue.",
+          "Leaving out that carcinoma is the most common."
+        ],
+        "memory_tip": "Carcinoma covers surfaces; sarcoma sits in connective tissue.",
+        "margin_note": "Say the classification is by origin.",
+        "lines": [
+          "Based on their origin, cancers are",
+          "classified as follows:",
+          "1. Carcinoma: cancer of epithelial tissue",
+          "or cells. It is the most common type of",
+          "cancer.",
+          "2. Sarcoma: cancer of connective tissue."
+        ]
+      },
+      {
+        "id": "s2_leukemia",
+        "kind": "text",
+        "label": "Leukemia",
+        "marks": 1,
+        "mark_note": "Leukemia",
+        "why": "The cancer cells stay in the blood instead of forming a lump, which is why it is called a liquid tumour.",
+        "common_mistakes": [
+          "Calling leukemia a solid tumour. It is a liquid tumour.",
+          "Naming the wrong cells. It is the white blood cells."
+        ],
+        "memory_tip": "Leukemia is blood cancer: a liquid tumour.",
+        "margin_note": "Name the tissue and the cells.",
+        "lines": [
+          "3. Leukemia: a liquid tumour. It is the",
+          "cancer of bone marrow, resulting in",
+          "unrestricted production of white blood",
+          "cells. It is blood cancer."
+        ]
+      },
+      {
+        "id": "s3_lymphoma",
+        "kind": "text",
+        "label": "Lymphoma",
+        "marks": 1,
+        "mark_note": "Lymphoma",
+        "why": "The lymphatic system runs through the whole body, so a cancer of it can appear in many places at once.",
+        "common_mistakes": [
+          "Confusing lymphoma with leukemia.",
+          "Leaving out the system it affects."
+        ],
+        "memory_tip": "Lymphoma is cancer of the lymphatic system.",
+        "margin_note": "One line for this type.",
+        "lines": [
+          "4. Lymphoma: cancer of the lymphatic",
+          "system."
+        ]
+      },
+      {
+        "id": "s4_familial_sporadic",
+        "kind": "boxed_final",
+        "label": "Familial and sporadic",
+        "marks": 1,
+        "mark_note": "By family history",
+        "why": "These two are not named by tissue but by whether the risk was inherited, so they cut across the other four.",
+        "common_mistakes": [
+          "Treating familial and sporadic as tissue types.",
+          "Naming only one of the two."
+        ],
+        "memory_tip": "Familial runs in the family; sporadic appears out of nowhere.",
+        "margin_note": "Close with the two that depend on family history.",
+        "lines": [
+          "5. Familial cancer: cancers that are",
+          "inherited from parents or grandparents.",
+          {
+            "text": "6. Sporadic cancer: with no family history",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Cancers are named by the tissue they start in. Give the tissue beside every name and the answer almost writes itself."
+}

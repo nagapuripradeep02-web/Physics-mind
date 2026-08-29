@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_inbreeding_advantages",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention any two advantages of inbreeding.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Homozygosity",
+      "marks": 1
+    },
+    {
+      "label": "Superior genes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 124. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "A pure line",
+        "marks": 1,
+        "mark_note": "Homozygosity",
+        "why": "Breeding close relatives brings the same alleles together, so the herd becomes uniform.",
+        "common_mistakes": [
+          "Confusing inbreeding with out-crossing.",
+          "Leaving out homozygosity."
+        ],
+        "memory_tip": "Inbreeding raises homozygosity and gives a pure line.",
+        "margin_note": "One advantage per line.",
+        "lines": [
+          "1. Inbreeding increases homozygosity and",
+          "helps to produce a pure line of animals."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Selecting genes",
+        "marks": 1,
+        "mark_note": "Superior genes",
+        "why": "Because the herd becomes uniform, a breeder can see which animals carry the wanted genes and drop the rest.",
+        "common_mistakes": [
+          "Giving a disadvantage instead.",
+          "Naming only one advantage."
+        ],
+        "memory_tip": "Keep the good genes, remove the bad ones.",
+        "margin_note": "The second advantage closes the answer.",
+        "lines": [
+          {
+            "text": "2. It gathers superior genes and removes bad ones",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two advantages are asked, so give exactly two and name homozygosity in the first."
+}

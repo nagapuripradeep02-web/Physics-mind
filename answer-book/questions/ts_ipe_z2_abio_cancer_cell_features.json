@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_cancer_cell_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "List out any four salient features of cancer cells.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Lack of contact inhibition",
+      "marks": 1
+    },
+    {
+      "label": "Lack of cadherins",
+      "marks": 1
+    },
+    {
+      "label": "Immortalisation",
+      "marks": 1
+    },
+    {
+      "label": "Angiogenesis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.43, SAQ 44. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applied Biology · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_contact",
+        "kind": "text",
+        "label": "Lack of contact inhibition",
+        "marks": 1,
+        "mark_note": "Contact inhibition",
+        "why": "A normal cell stops dividing when it touches its neighbours, and that is the brake a cancer cell has lost.",
+        "common_mistakes": [
+          "Defining contact inhibition without saying cancer cells lack it.",
+          "Calling cancer division purposeful."
+        ],
+        "memory_tip": "Normal cells stop when they touch; cancer cells do not.",
+        "margin_note": "Open with what cancer is, then the four features.",
+        "lines": [
+          "Cancer is a syndrome characterised by",
+          "uncontrolled, purposeless cell division due",
+          "to failure of cell cycle regulation.",
+          "1. Lack of contact inhibition: normal cells",
+          "stop dividing and moving when in close",
+          "contact. Cancer cells lack this property",
+          "and continue to grow and divide."
+        ]
+      },
+      {
+        "id": "s2_cadherins",
+        "kind": "text",
+        "label": "Lack of cadherins",
+        "marks": 1,
+        "mark_note": "Cadherins",
+        "why": "Cadherins are the proteins that glue cells to their neighbours, so without them a cell can break away and travel.",
+        "common_mistakes": [
+          "Leaving out metastasis, which is what the loss causes.",
+          "Calling cadherins enzymes."
+        ],
+        "memory_tip": "No cadherins means no glue, so the cell detaches.",
+        "margin_note": "Name metastasis. It is the marked word.",
+        "lines": [
+          "2. Lack of cadherins: cadherins are absent",
+          "in cancer cells, so they can detach and",
+          "cause metastasis."
+        ]
+      },
+      {
+        "id": "s3_immortalisation",
+        "kind": "text",
+        "label": "Immortalisation",
+        "marks": 1,
+        "mark_note": "Immortalisation",
+        "why": "A normal cell with DNA damage it cannot repair kills itself, and a cancer cell has lost that safety step.",
+        "common_mistakes": [
+          "Saying cancer cells repair their DNA better. They skip apoptosis instead.",
+          "Leaving out apoptosis."
+        ],
+        "memory_tip": "No apoptosis means the damaged cell never dies.",
+        "margin_note": "Contrast the normal cell with the cancer cell.",
+        "lines": [
+          "3. Immortalisation: if DNA is damaged,",
+          "normal cells repair it in time. If they",
+          "cannot, they undergo programmed cell death",
+          "called apoptosis.",
+          "Cancer cells do not undergo apoptosis."
+        ]
+      },
+      {
+        "id": "s4_angiogenesis",
+        "kind": "boxed_final",
+        "label": "Angiogenesis",
+        "marks": 1,
+        "mark_note": "Angiogenesis",
+        "why": "A tumour growing fast needs more oxygen than nearby vessels can supply, so it makes the body grow new ones toward it.",
+        "common_mistakes": [
+          "Saying the tumour makes its own blood.",
+          "Leaving out the word angiogenesis."
+        ],
+        "memory_tip": "Angio is vessel, genesis is making: the tumour grows its own supply.",
+        "margin_note": "One numbered point closes the list.",
+        "lines": [
+          "4. Angiogenesis: in a fast growing tumour,",
+          "in order to get more O₂ and nutrients, the",
+          "tumour attracts more blood vessels from the",
+          "surrounding matrix.",
+          {
+            "text": "This is called angiogenesis",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Each feature is best written as: what a normal cell does, then what the cancer cell fails to do. The contrast is what earns the mark."
+}

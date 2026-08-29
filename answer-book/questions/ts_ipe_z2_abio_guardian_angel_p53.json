@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_guardian_angel_p53",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is popularly called 'Guardian Angel of Cell's Genome'?",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The gene",
+      "marks": 1
+    },
+    {
+      "label": "Its action",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 136. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "The gene",
+        "marks": 1,
+        "mark_note": "The gene",
+        "why": "The gene watches the DNA for damage before the cell is allowed to divide.",
+        "common_mistakes": [
+          "Naming a different gene.",
+          "Leaving out that it suppresses tumours."
+        ],
+        "memory_tip": "p53 guards the genome, so it is a tumour suppressing gene.",
+        "margin_note": "Name it, then explain the name.",
+        "lines": [
+          "The p53 gene is called the guardian angel of",
+          "the cell's genome, because it guards the",
+          "integrity of the DNA.",
+          "It is a tumour suppressing gene."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "What it does",
+        "marks": 1,
+        "mark_note": "Its action",
+        "why": "By halting the cycle at the G₁ check point it gives the cell time to repair itself before dividing.",
+        "common_mistakes": [
+          "Saying it repairs the DNA itself. It stops the cycle so repair can happen.",
+          "Naming the wrong check point."
+        ],
+        "memory_tip": "It stops the cell cycle at the G₁ check point.",
+        "margin_note": "Name the check point. It is the marked detail.",
+        "lines": [
+          {
+            "text": "It stops the cycle at G₁ to allow repair",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Name the gene p53 AND say why it earns the name. The reason is the second mark."
+}

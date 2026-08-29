@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_vaccine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the term 'vaccine'.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Contents",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 133. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "A vaccine teaches the immune system to recognise a germ before the real infection arrives.",
+        "common_mistakes": [
+          "Calling a vaccine a medicine that cures a disease. It prevents one.",
+          "Leaving out that immunity is to a PARTICULAR disease."
+        ],
+        "memory_tip": "A vaccine trains the immune system in advance.",
+        "margin_note": "Definition, then contents, then an example.",
+        "lines": [
+          "A vaccine is a biological preparation that",
+          "improves immunity to a particular disease."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "What it contains",
+        "marks": 1,
+        "mark_note": "Contents",
+        "why": "The organism is weakened or killed so that it cannot cause the disease but can still be recognised.",
+        "common_mistakes": [
+          "Saying a vaccine contains antibodies. It contains antigens.",
+          "Giving no example."
+        ],
+        "memory_tip": "Weakened or killed germs, or just their proteins.",
+        "margin_note": "One example is enough.",
+        "lines": [
+          "Typically it contains weakened or killed",
+          "disease causing organisms. Sometimes proteins",
+          "of the micro organisms are used.",
+          {
+            "text": "Example: Sabin's oral polio vaccine",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The definition needs BOTH what a vaccine does and what it contains. Give an example to close."
+}

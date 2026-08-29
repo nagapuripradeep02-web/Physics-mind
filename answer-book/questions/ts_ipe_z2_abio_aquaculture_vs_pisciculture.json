@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_aquaculture_vs_pisciculture",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate aquaculture and pisciculture.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Aquaculture",
+      "marks": 1
+    },
+    {
+      "label": "Pisciculture",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 129. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "Aquaculture",
+        "marks": 1,
+        "mark_note": "Aquaculture",
+        "why": "Aquaculture covers every farmed water animal, so prawns and oysters come under it as well as fish.",
+        "common_mistakes": [
+          "Treating the two as unrelated.",
+          "Giving no examples for aquaculture."
+        ],
+        "memory_tip": "Aqua is water: all water animals.",
+        "margin_note": "Two rows, wider term first.",
+        "lines": [
+          "Aquaculture is the culturing of fish and",
+          "other aquatic organisms such as prawn,",
+          "lobster and oyster, under regulated",
+          "conditions for better production."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Pisciculture",
+        "marks": 1,
+        "mark_note": "Pisciculture",
+        "why": "Pisces means fish, so pisciculture is the fish-only part of aquaculture.",
+        "common_mistakes": [
+          "Making pisciculture the wider term. It is the narrower one.",
+          "Leaving out regulated conditions."
+        ],
+        "memory_tip": "Pisces is fish: fin fish only.",
+        "margin_note": "One line completes the contrast.",
+        "lines": [
+          {
+            "text": "Pisciculture is culturing and breeding fin fish",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Pisciculture is a part of aquaculture, not a separate thing. Say that aquaculture is the wider term."
+}

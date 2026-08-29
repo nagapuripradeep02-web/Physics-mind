@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_avian_flu",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Discuss in brief about 'Avian Flu'.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is and its cause",
+      "marks": 1
+    },
+    {
+      "label": "How it spreads",
+      "marks": 1
+    },
+    {
+      "label": "Symptoms",
+      "marks": 1
+    },
+    {
+      "label": "Prevention",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.42, SAQ 41. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applied Biology · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Cause",
+        "why": "A virus that can move from birds to people can spread far beyond the farms it starts in, which is why it is watched so closely.",
+        "common_mistakes": [
+          "Calling it a bacterial disease. It is viral.",
+          "Leaving out H5N1."
+        ],
+        "memory_tip": "Avian flu, bird flu, H5N1 — one disease, three names.",
+        "margin_note": "Four headings: what, how, symptoms, prevention.",
+        "lines": [
+          "Avian flu is an important and dangerous",
+          "viral disease affecting poultry birds and",
+          "also man.",
+          "Bird flu is caused by the avian flu virus",
+          "H5N1. It can start a worldwide epidemic,",
+          "that is, a pandemic."
+        ]
+      },
+      {
+        "id": "s2_spread",
+        "kind": "text",
+        "label": "How it spreads",
+        "marks": 1,
+        "mark_note": "Mode of infection",
+        "why": "The virus survives on surfaces the birds have touched, so no direct contact with a bird is needed to catch it.",
+        "common_mistakes": [
+          "Saying it spreads only by eating birds.",
+          "Leaving out the 10-day shedding period."
+        ],
+        "memory_tip": "Saliva and faeces for about ten days.",
+        "margin_note": "Say what carries the virus and for how long.",
+        "lines": [
+          "It spreads simply by touching contaminated",
+          "surfaces.",
+          "Infected birds release the virus through",
+          "saliva and faeces for about 10 days."
+        ]
+      },
+      {
+        "id": "s3_symptoms",
+        "kind": "text",
+        "label": "Symptoms",
+        "marks": 1,
+        "mark_note": "Symptoms",
+        "why": "The symptoms look like ordinary flu at first, which is why the disease is often not recognised early.",
+        "common_mistakes": [
+          "Giving symptoms of a different disease.",
+          "Listing fewer than three symptoms."
+        ],
+        "memory_tip": "It starts as ordinary flu and then the breathing suffers.",
+        "margin_note": "List them. Each one is a tick.",
+        "lines": [
+          "Humans infected by H5N1 show typical flu",
+          "like symptoms: dry cough with phlegm,",
+          "diarrhoea, breathing difficulty, fever,",
+          "headache, sore throat and body pains."
+        ]
+      },
+      {
+        "id": "s4_prevention",
+        "kind": "boxed_final",
+        "label": "Prevention",
+        "marks": 1,
+        "mark_note": "Prevention",
+        "why": "Since the virus lives in the birds, stopping an outbreak means removing the infected flock as well as protecting people.",
+        "common_mistakes": [
+          "Naming a vaccine as the main prevention.",
+          "Leaving out culling."
+        ],
+        "memory_tip": "Cook it well, cover up, cull the flock.",
+        "margin_note": "Three numbered measures close the answer.",
+        "lines": [
+          "1. Consumption of undercooked chicken is",
+          "to be avoided.",
+          "2. Poultry workers should use protective",
+          "clothes and wear masks.",
+          {
+            "text": "3. Complete culling of infected birds",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Name the virus H5N1 in the first line. A description of the illness without the causative organism is usually cut to half."
+}

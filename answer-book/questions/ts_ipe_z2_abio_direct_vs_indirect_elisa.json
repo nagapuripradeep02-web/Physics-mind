@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_direct_vs_indirect_elisa",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which substances in a sample are detected by direct and indirect ELISA respectively?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Direct",
+      "marks": 1
+    },
+    {
+      "label": "Indirect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 143. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "Direct ELISA",
+        "marks": 1,
+        "mark_note": "Direct",
+        "why": "In the direct test the antibody is supplied and the antigen is what is being looked for.",
+        "common_mistakes": [
+          "Swapping the two tests.",
+          "Saying direct ELISA detects antibodies."
+        ],
+        "memory_tip": "Direct finds the antigen.",
+        "margin_note": "Two short lines.",
+        "lines": [
+          "The direct ELISA test is used to detect",
+          "antigens."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Indirect ELISA",
+        "marks": 1,
+        "mark_note": "Indirect",
+        "why": "In the indirect test the antigen is supplied and the patient's antibody is what is being looked for.",
+        "common_mistakes": [
+          "Saying indirect ELISA detects antigens.",
+          "Giving only one of the two."
+        ],
+        "memory_tip": "Indirect finds the antibody.",
+        "margin_note": "One line completes it.",
+        "lines": [
+          {
+            "text": "The indirect ELISA test detects antibodies",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "One word decides each mark: direct finds antigens, indirect finds antibodies. Do not swap them."
+}
