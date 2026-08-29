@@ -163,15 +163,16 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         : qid.startsWith('ts_ipe_m1b_') ? 'mathematics_1b'
             : qid.startsWith('ts_ipe_c1_') ? 'chemistry'
                 : qid.startsWith('ts_ipe_p2_') ? 'physics_2'
-                    : qid.startsWith('ts_ipe_c2_') ? 'chemistry_2' : 'physics';
+                    : qid.startsWith('ts_ipe_c2_') ? 'chemistry_2'
+                        : qid.startsWith('ts_ipe_m2a_') ? 'mathematics_2a' : 'physics';
     const SUBJECT_WORD: Record<string, string> = {
         physics: 'physics', chemistry: 'chemistry', chemistry_2: 'chemistry',
-        mathematics: 'mathematics', mathematics_1b: 'mathematics',
+        mathematics: 'mathematics', mathematics_1b: 'mathematics', mathematics_2a: 'mathematics',
         physics_2: 'physics',
     };
     const SUBJECT_LABEL: Record<string, string> = {
         physics: 'Physics', chemistry: 'Chemistry', chemistry_2: 'Chemistry-II',
-        mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+        mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B', mathematics_2a: 'Maths-2A',
         physics_2: 'Physics II',
     };
     const SUBJECT_TERMS: Record<string, string> = {
@@ -181,6 +182,7 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         mathematics: 'function, domain, range, matrix, determinant, inverse, vector, identity, period, triangle',
         mathematics_1b: 'locus, straight line, slope, plane, direction cosines, direction ratios, pair of lines, transformation',
         physics_2: 'wavelength, frequency, refraction, lens, interference, charge, potential, capacitance, current, resistance, magnetic field, induction, photon, nucleus, semiconductor, diode, transistor',
+        mathematics_2a: 'complex number, modulus, argument, conjugate, cis, cube roots of unity, quadratic expression, discriminant, roots, permutation, combination, binomial coefficient, general term, partial fraction, mean deviation, variance, probability, conditional probability, random variable, binomial distribution, Poisson distribution',
     };
     const subjectWord = SUBJECT_WORD[subjectKey];
     const subjectTerms = SUBJECT_TERMS[subjectKey];

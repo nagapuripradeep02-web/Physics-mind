@@ -118,7 +118,7 @@ the 96 legacy figures are never silently retimed.
 
 ```
 npx tsx src/scripts/pace_figures.ts --prefix ts_ipe_z1 --write   # fills ms from path length
-npm run check:figure-pace                                        # 40-160 u/s, strict for ts_ipe_z1
+npm run check:figure-pace -- ts_ipe_z1                           # 40-160 u/s, strict for ts_ipe_z1
 ```
 Authors write the path and the phases and leave `"ms": 0`; the pacer fills timing at **70 figure
 units per second** (clamped 300–4500 ms; labels 450 ms). The gate also **requires phases on any
@@ -194,7 +194,7 @@ what survives an interruption.
 
 ```
 npm run build:answers → npx tsc --noEmit → npx vitest run → npm run smoke:answers
-npm run check:figure-pace
+npm run check:figure-pace -- ts_ipe_z1
 npm run backtest:zoology -- --refs answer-book/tools/zoology_wip/backtest_refs.json
 node answer-book/tools/measure_wrap.mjs ts_ipe_z1     # one line = one ruled row
 python answer-book/tools/render_figures.py ...        # then LOOK at every figure

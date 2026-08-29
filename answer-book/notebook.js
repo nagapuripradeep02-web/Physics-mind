@@ -414,9 +414,24 @@
                      mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
                      botany: 'Botany', zoology: 'Zoology',
                      physics_2: 'Physics II',
-                     chemistry_2: 'Chemistry II' };
+                     chemistry_2: 'Chemistry II',
+                     mathematics_2a: 'Maths-2A' };
   function subjLabel(s) {
     return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
+  }
+  /** The subjects THIS build carries, as a sentence ("Physics II, Chemistry II and
+      Maths-2A"), derived from the units on the page — never a typed list, which is
+      how the paywall once promised Maths-1A to a second-year student. */
+  function subjectsSentence() {
+    var seen = [], out = [];
+    for (var i = 0; i < UNITS.length; i++) {
+      var s = UNITS[i].subject || 'physics';
+      if (seen.indexOf(s) >= 0) continue;
+      seen.push(s); out.push(subjLabel(s));
+    }
+    if (!out.length) return 'every subject';
+    if (out.length === 1) return out[0];
+    return out.slice(0, -1).join(', ') + ' and ' + out[out.length - 1];
   }
 
   /** Unit numbers namespace PER SUBJECT (physics Unit 3 and maths Unit 3 are
@@ -535,7 +550,7 @@
       display concern, and the notebook header still shows the full name. */
   function chapterLabel(u) {
     return String(u.name || '').replace(
-      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B)\)\s*$/, ''
+      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B|Maths-2A)\)\s*$/, ''
     );
   }
 
@@ -3538,7 +3553,7 @@
                ' — your pass works on every device you sign in on'
                + (linkedDevices > 1 ? ' (' + linkedDevices + ' so far)' : ''))
             : 'Sign in with Google and your pass follows you to any phone or laptop',
-          'Every chapter in Physics, Chemistry, Maths-1A and Maths-1B',
+          'Every chapter in ' + subjectsSentence(),
           'The answer an examiner wants, written out step by step',
           'Diagrams that draw themselves, line by line',
           'Vidi explains any step you are stuck on',
@@ -4387,14 +4402,31 @@
     // A deterministic plan dimension, never the model's: all three ticked =
     // null scope = everything, so the default student never notices the step.
     // The mark values are read off PM_PATTERNS (the same table the schema holds
-    // every card to), never typed here: on the 2026-27 papers every subject's
-    // long answer is 8 marks, but a hardcoded number is exactly how the maths
-    // section once printed "8 marks" over 7-mark cards.
+    // every card to), never typed here — a hardcoded number is exactly how the
+    // maths section once printed "8 marks" over 7-mark cards. Read for EVERY
+    // subject this build carries, not just physics: the 2026-27 second-year book
+    // holds Physics-II/Chemistry-II at 8-mark long answers beside Maths-2A at 7
+    // (its paper is unchanged until 2027-28), so the label prints a range.
     function scopeMarks(qtype, fallback) {
-      var p = PATTERNS.physics || PATTERNS[Object.keys(PATTERNS)[0]];
-      if (!p || !p.sections) return fallback;
-      for (var i = 0; i < p.sections.length; i++) if (p.sections[i].key === qtype) return p.sections[i].marks;
-      return fallback;
+      var seen = [], vals = [];
+      for (var i = 0; i < UNITS.length; i++) {
+        var s = UNITS[i].subject || 'physics';
+        if (seen.indexOf(s) >= 0) continue;
+        seen.push(s);
+        var p = PATTERNS[s];
+        if (!p || !p.sections) continue;
+        for (var j = 0; j < p.sections.length; j++) {
+          if (p.sections[j].key === qtype && vals.indexOf(p.sections[j].marks) < 0) vals.push(p.sections[j].marks);
+        }
+      }
+      if (!vals.length) {
+        var p0 = PATTERNS.physics || PATTERNS[Object.keys(PATTERNS)[0]];
+        if (!p0 || !p0.sections) return fallback;
+        for (var k = 0; k < p0.sections.length; k++) if (p0.sections[k].key === qtype) return p0.sections[k].marks;
+        return fallback;
+      }
+      vals.sort(function (a, b) { return a - b; });
+      return vals.length === 1 ? vals[0] : vals[0] + '\u2013' + vals[vals.length - 1];
     }
     var SCOPE_OPTS = [
       ['LAQ', 'Long answers (' + scopeMarks('LAQ', 8) + ' marks)'],

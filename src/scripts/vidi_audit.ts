@@ -27,7 +27,7 @@ import {
     inventedMarks, summedMarks, idiomsIn, romanisedTeluguIn, markdownIn,
     stepIdsIn, answeredOutOfBank, bareMarkOnlyClaims,
     leakedInternalVocabulary, overWordBudget, WORD_BUDGET, looksTruncated,
-    IDEAL_GAS_PROBE, DE_MOIVRE_PROBE, NERNST_PROBE, HENDERSON_PROBE, type OutOfBankProbe,
+    IDEAL_GAS_PROBE, NERNST_PROBE, HENDERSON_PROBE, INTEGRATION_BY_PARTS_PROBE, type OutOfBankProbe,
 } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
@@ -52,6 +52,7 @@ function subjectOf(id: string): string {
     if (id.startsWith('ts_ipe_m1b_')) return 'mathematics_1b';
     if (id.startsWith('ts_ipe_c1_')) return 'chemistry';
     if (id.startsWith('ts_ipe_c2_')) return 'chemistry_2';
+    if (id.startsWith('ts_ipe_m2a_')) return 'mathematics_2a';
     return 'physics';
 }
 
@@ -94,18 +95,29 @@ const SUBJECTS: Record<string, SubjectCfg> = {
         probe: HENDERSON_PROBE,
         bareMarkAmbiguous: false,
     },
+    // NOT De Moivre for any maths paper since 2026-08-29 — that is Maths-2A's
+    // unit 2, now IN the bank, so the ask would test a refusal that must never
+    // happen (the NERNST trap). See INTEGRATION_BY_PARTS_PROBE for the grep that
+    // chose the replacement.
     mathematics: {
         label: 'Maths-1A',
         whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
-        outOfBankAsk: 'can you give me the answer for de moivre theorem? it is in my exam tomorrow',
-        probe: DE_MOIVRE_PROBE,
+        outOfBankAsk: 'can you give me the answer for integration by parts? it is in my exam tomorrow',
+        probe: INTEGRATION_BY_PARTS_PROBE,
         bareMarkAmbiguous: true,
     },
     mathematics_1b: {
         label: 'Maths-1B',
         whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
-        outOfBankAsk: 'can you give me the answer for de moivre theorem? it is in my exam tomorrow',
-        probe: DE_MOIVRE_PROBE,
+        outOfBankAsk: 'can you give me the answer for integration by parts? it is in my exam tomorrow',
+        probe: INTEGRATION_BY_PARTS_PROBE,
+        bareMarkAmbiguous: true,
+    },
+    mathematics_2a: {
+        label: 'Maths-2A',
+        whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
+        outOfBankAsk: 'can you give me the answer for integration by parts? it is in my exam tomorrow',
+        probe: INTEGRATION_BY_PARTS_PROBE,
         bareMarkAmbiguous: true,
     },
 };
