@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_cryoscopic_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is cryoscopic constant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The equation and the unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.65, VSAQ 8): the printed answer is one line and never says that the solute must be NON-VOLATILE, never gives ΔTf = Kf m, never gives the unit K kg mol⁻¹, and never says that Kf is a property of the SOLVENT alone. All four are written here. The value Kf = 1.86 K kg mol⁻¹ for water is added from the standard data table; it is not printed in this book. NOTATION: Kf is written with a plain small f because Unicode has no subscript f."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The cryoscopic constant, Kf, is the",
+          "depression of freezing point produced when",
+          "one mole of a non-volatile solute is",
+          "dissolved in 1000 g (one kilogram) of the",
+          "solvent.",
+          "It is also called the molal depression",
+          "constant."
+        ],
+        "why": "One mole of solute in one kilogram of solvent is a one molal solution, so the definition is the value of ΔTf at m = 1. Fixing the amount this way makes Kf a single number for each solvent, which is what lets a measured ΔTf be turned into a molar mass.",
+        "common_mistakes": [
+          "Writing 1000 g of SOLUTION. The definition uses 1000 g of solvent.",
+          "Saying the freezing point rises. A solute lowers the freezing point, so ΔTf is a depression."
+        ],
+        "memory_tip": "Cryo means cold, so Kf is the freezing point constant.",
+        "margin_note": "\"One mole in 1000 g of solvent\" is the marked phrase. Molal depression constant is the accepted second name."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation and the unit",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "ΔTf = Kf m",
+            "style": "boxed"
+          },
+          "ΔTf = depression of freezing point",
+          "m = molality of the solution",
+          "Unit of Kf: K kg mol⁻¹",
+          "Kf is a property of the solvent alone. It",
+          "does not depend on the solute.",
+          "For water, Kf = 1.86 K kg mol⁻¹."
+        ],
+        "why": "Depression of freezing point is a colligative property, so ΔTf depends only on the number of solute particles, measured as molality. Kf holds everything that belongs to the solvent — its freezing point and its enthalpy of fusion — so the same value is used for every solute dissolved in that solvent.",
+        "common_mistakes": [
+          "Writing ΔTf = Kf M with molarity. The equation uses molality m.",
+          "Using Kf for an electrolyte without the van't Hoff factor. A solute that dissociates gives ΔTf = i Kf m."
+        ],
+        "memory_tip": "For water Kf = 1.86 and Kb = 0.52, so freezing is the larger effect.",
+        "margin_note": "The unit K kg mol⁻¹ and the \"property of the solvent\" line complete this mark."
+      }
+    ]
+  },
+  "insider_note": "Kf for water, 1.86 K kg mol⁻¹, is larger than Kb, 0.52 K kg mol⁻¹. That is why molar masses are measured by freezing point in practice: the same solution gives a bigger temperature change to read."
+}

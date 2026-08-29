@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bpp_pcr",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Biotechnology: Principles and Processes (Botany-II)"
+  },
+  "chapter": "Biotechnology: Principles and Processes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the full form of PCR? How is it useful in biotechnology?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The full form",
+      "marks": 1
+    },
+    {
+      "label": "Its uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 114. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Three uses are printed in the book. Give all three — the list is the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology: Principles and Processes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_full",
+        "kind": "text",
+        "label": "The full form",
+        "marks": 1,
+        "mark_note": "Full form",
+        "margin_note": "The expansion plus one line on what it does.",
+        "lines": [
+          "PCR stands for POLYMERASE CHAIN REACTION.",
+          "It makes many copies of a chosen DNA fragment,",
+          "in vitro, using primers and Taq polymerase."
+        ],
+        "why": "Chain reaction is literal: each cycle doubles what the last one made, which is how thirty cycles reach a billion copies.",
+        "common_mistakes": [
+          "Expanding it as 'protein chain reaction'. It is POLYMERASE chain reaction.",
+          "Saying it happens in a cell. PCR is done IN VITRO, in a tube."
+        ],
+        "memory_tip": "Each cycle doubles what the last one made."
+      },
+      {
+        "id": "s2_uses",
+        "kind": "boxed_final",
+        "label": "Its uses",
+        "marks": 1,
+        "mark_note": "Uses",
+        "margin_note": "All three named uses, then the diagnostic one. Seven lines.",
+        "lines": [
+          {
+            "text": "Cloning, gene amplification, DNA",
+            "style": "boxed"
+          },
+          {
+            "text": "fingerprinting",
+            "style": "boxed"
+          },
+          "PCR is used in:",
+          "1. DNA cloning",
+          "2. gene amplification",
+          "3. DNA fingerprinting",
+          "It is also used to detect a disease before its",
+          "symptoms appear."
+        ],
+        "why": "All four uses need many copies of one small piece of DNA, which is exactly what PCR supplies.",
+        "common_mistakes": [
+          "Giving one use. Three are printed in the book.",
+          "Confusing PCR with ELISA. PCR amplifies DNA; ELISA detects antigen-antibody binding."
+        ],
+        "memory_tip": "Anything that needs more DNA than you have."
+      }
+    ]
+  }
+}

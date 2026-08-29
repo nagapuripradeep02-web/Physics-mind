@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_phbv",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is PHBV? How is it useful to man?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What PHBV is, with its monomers",
+      "marks": 1
+    },
+    {
+      "label": "The repeating units and the uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 3 on book p.95. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK STRUCTURE CORRECTED: the printed answer draws the repeating unit with its first unit as –O–CH₂–CH₂–CO– while also giving that chain a CH₃ branch, which would put five bonds on one carbon. The correct units are –O–CH(CH₃)–CH₂–CO– and –O–CH(C₂H₅)–CH₂–CO–, and both are written here. The printed name \"poly-beta-Hydroxy butyrate-co-beta-Hydroxy Valerate\" and the two printed monomers (3-Hydroxy Butanoic acid and 3-Hydroxy pentanoic acid) are correct and are kept; the book gives no formulae for them and they are supplied. The printed uses are \"capsules in medicine field\" and \"Orthopaedic devices\"; the medicine use is stated here as controlled release, which is what such capsules are for."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What PHBV is, with its monomers",
+        "marks": 1,
+        "mark_note": "Name and monomers",
+        "lines": [
+          "PHBV is poly(3-hydroxybutyrate-co-3-",
+          "hydroxyvalerate).",
+          "It is a copolymer of two monomers:",
+          {
+            "text": "3-hydroxybutanoic acid,",
+            "style": "indent"
+          },
+          {
+            "text": "CH₃–CH(OH)–CH₂–COOH",
+            "style": "indent"
+          },
+          {
+            "text": "3-hydroxypentanoic acid,",
+            "style": "indent"
+          },
+          {
+            "text": "CH₃–CH₂–CH(OH)–CH₂–COOH",
+            "style": "indent"
+          },
+          "The –OH of one joins the –COOH of the",
+          "next by an ester link, releasing water,",
+          "so PHBV is a condensation copolymer."
+        ],
+        "why": "The name is the answer: poly says it is a polymer, hydroxybutyrate and hydroxyvalerate name the two acid units, and co says the two units are in the same chain. Butyrate is the four carbon acid and valerate the five carbon acid, so the two monomers differ only by one –CH₂– group.",
+        "common_mistakes": [
+          "Writing PHBV as a homopolymer. It has two different monomer units, so it is a copolymer.",
+          "Giving butanoic acid and pentanoic acid as the monomers. The –OH on carbon 3 is needed, or there is no ester link."
+        ],
+        "memory_tip": "Butyrate has four carbons and valerate has five, so the two monomers differ by one –CH₂– group.",
+        "margin_note": "Naming the two hydroxy acids is what earns this mark. The expanded name of PHBV on its own is usually half of it."
+      },
+      {
+        "id": "s2_uses",
+        "kind": "boxed_final",
+        "label": "The repeating units and the uses",
+        "marks": 1,
+        "mark_note": "Uses",
+        "lines": [
+          "Repeating units:",
+          {
+            "text": "–[O–CH(CH₃)–CH₂–CO]–",
+            "style": "eq"
+          },
+          {
+            "text": "–[O–CH(C₂H₅)–CH₂–CO]–",
+            "style": "eq"
+          },
+          {
+            "text": "PHBV is a biodegradable polyester.",
+            "style": "boxed"
+          },
+          "Uses: 1. capsules and other forms for",
+          "the controlled release of medicine.",
+          "2. orthopaedic devices such as pins and",
+          "plates that break down inside the body.",
+          "Micro-organisms hydrolyse the ester",
+          "links, so it leaves no plastic waste."
+        ],
+        "why": "PHBV is built from hydroxy acids that living cells already make, so the enzymes in soil and in the body hydrolyse its ester links. That one property is the reason for both uses: a capsule that releases medicine slowly and then breaks down, and a bone pin that needs no second operation to remove it.",
+        "common_mistakes": [
+          "Writing that PHBV is burnt or dissolved in water. It is broken down by micro-organisms.",
+          "Giving only one use. The question asks how it is useful to man, and two uses are expected for the full mark."
+        ],
+        "memory_tip": "Both uses are inside the body, and both work because the polymer breaks down there.",
+        "margin_note": "Two uses, briefly stated, finish this mark. Naming the polymer as biodegradable first makes both uses follow."
+      }
+    ]
+  },
+  "insider_note": "PHBV is asked because it is the biodegradable polymer on the syllabus. Name the two hydroxy acids and say biodegradable; the two uses follow from that one word."
+}

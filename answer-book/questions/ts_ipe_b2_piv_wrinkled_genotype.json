@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_wrinkled_genotype",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the genotype of the wrinkled phenotype of pea seeds?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The genotype",
+      "marks": 1
+    },
+    {
+      "label": "Why it must be that",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.42, printed question 88. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The answer is two letters, so the second mark has to come from the REASON. Say that a recessive character needs both alleles recessive.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_geno",
+        "kind": "text",
+        "label": "The genotype",
+        "marks": 1,
+        "mark_note": "Genotype",
+        "margin_note": "Two letters plus which allele is dominant. Three lines.",
+        "lines": [
+          "The genotype of the wrinkled phenotype is rr —",
+          "homozygous recessive.",
+          "Round (R) is dominant over wrinkled (r)."
+        ],
+        "why": "Wrinkled is the recessive character in Mendel's seed-shape pair, so it can only show in the homozygous recessive genotype.",
+        "common_mistakes": [
+          "Writing Rr. Rr would be ROUND, because R is dominant.",
+          "Writing RR. RR is round as well."
+        ],
+        "memory_tip": "Wrinkled is recessive, so it must be rr."
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why it must be that",
+        "marks": 1,
+        "mark_note": "Reason",
+        "margin_note": "The rule, the three genotypes, and the useful consequence.",
+        "lines": [
+          {
+            "text": "A recessive character shows only when BOTH",
+            "style": "boxed"
+          },
+          {
+            "text": "alleles are recessive",
+            "style": "boxed"
+          },
+          "A recessive character is expressed only when NO",
+          "dominant allele is present.",
+          "RR and Rr are both round; only rr is wrinkled.",
+          "So a wrinkled seed can have only ONE possible",
+          "genotype, and its genotype is known by sight."
+        ],
+        "why": "A recessive phenotype is the one case where appearance alone settles the genotype, which is exactly why a test cross uses a recessive parent.",
+        "common_mistakes": [
+          "Saying a wrinkled seed could be Rr. It could not; Rr is round.",
+          "Giving no reason. The genotype alone is only half the answer."
+        ],
+        "memory_tip": "Recessive on the outside means recessive twice on the inside."
+      }
+    ]
+  }
+}

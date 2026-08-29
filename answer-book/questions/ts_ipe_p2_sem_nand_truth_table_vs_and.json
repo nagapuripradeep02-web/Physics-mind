@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_nand_truth_table_vs_and",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the truth table of NAND gate. How does it differ from AND gate?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Truth table of the NAND gate",
+      "marks": 1
+    },
+    {
+      "label": "Difference from the AND gate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the space before the question mark in the printed question is dropped. Truth table hand-checked against the book (p.55) row by row — 00→1, 10→1, 01→1, 11→0 — and against the definition NAND = AND followed by NOT. The rows are written one per line rather than as a ruled grid, because the notebook is set in a proportional handwriting font in which spaced columns do not stay aligned. The output symbol needs an overbar, which Unicode does not encode honestly, so that line is authored as KaTeX."
+  },
+  "recall_prompt": "Give the four rows of the NAND truth table, then say how its output differs from the AND gate's.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_truth_table",
+        "kind": "text",
+        "label": "NAND truth table",
+        "marks": 1,
+        "mark_note": "All four rows correct",
+        "lines": [
+          {
+            "text": "Truth table of NAND gate:",
+            "style": "heading"
+          },
+          {
+            "text": "Y = \\overline{A \\cdot B}",
+            "style": "eq",
+            "render": "katex"
+          },
+          "A = 0, B = 0 → Y = 1",
+          "A = 1, B = 0 → Y = 1",
+          "A = 0, B = 1 → Y = 1",
+          "A = 1, B = 1 → Y = 0"
+        ],
+        "margin_note": "First mark. All four rows, and only the last row has output 0.",
+        "why": "A NAND gate is an AND gate followed by a NOT gate, so its output column is the AND column turned upside down. The AND column is 0, 0, 0, 1 and the NAND column is 1, 1, 1, 0.",
+        "common_mistakes": [
+          "Writing the AND column by mistake — 0, 0, 0, 1 instead of 1, 1, 1, 0.",
+          "Leaving out the bar over A · B. Without the bar the expression is the AND gate."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the NAND output is 1 for the first three input pairs and 0 only when both inputs are 1.",
+          "accept": [
+            "one one one zero",
+            "output is zero only when both inputs are one",
+            "high except for the last row"
+          ],
+          "reject": [
+            "zero zero zero one"
+          ],
+          "heard_as": [
+            "truth table",
+            "one one one zero",
+            "output"
+          ]
+        },
+        "memory_tip": "Three ones then a zero — the AND column written backwards."
+      },
+      {
+        "id": "s2_difference",
+        "kind": "boxed_final",
+        "label": "Difference from AND",
+        "marks": 1,
+        "mark_note": "NAND output is the inverse of AND",
+        "lines": [
+          "The output of an AND gate is 1 only when",
+          "both inputs are 1.",
+          "The output of a NAND gate is 0 only when",
+          "both inputs are 1; it is 1 for every other",
+          "pair of inputs.",
+          {
+            "text": "NAND output = inverse of the AND output",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. State both gates, then say one output is the inverse of the other.",
+        "why": "Naming the difference row by row is slow and easy to get wrong. Saying that NAND is an AND gate followed by a NOT gate gives the same information in one line and is the reason the two columns are opposite.",
+        "common_mistakes": [
+          "Saying only that the outputs are different. The examiner looks for the word inverse, or for AND followed by NOT.",
+          "Saying the inputs differ. The inputs are the same; only the output column is inverted."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the NAND output is the inverse of the AND output, so NAND is 0 only when both inputs are 1.",
+          "accept": [
+            "NAND is AND followed by NOT",
+            "the output is inverted",
+            "AND is high only for one one, NAND is low only for one one"
+          ],
+          "reject": [
+            "output is one one one zero"
+          ],
+          "heard_as": [
+            "inverse",
+            "AND plus NOT",
+            "opposite"
+          ]
+        },
+        "memory_tip": "NAND = AND + NOT. The N in front means the output is turned over."
+      }
+    ]
+  },
+  "insider_note": "The table alone is one mark. The second mark needs the word inverse — or the sentence NAND is an AND gate followed by a NOT gate."
+}

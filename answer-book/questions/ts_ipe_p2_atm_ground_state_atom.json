@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_ground_state_atom",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you understand by the phrase \"ground state atom\"?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The hydrogen example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The book prints the question as: What do you understand by the \"Phrase ground state atom\"? — the quote marks sit around the wrong words; the wording here is tidied, the question is unchanged. Physics hand-checked: the ground state is the lowest allowed energy state; for hydrogen it is n = 1 with E₁ = −13.6 eV and r₁ = 0.53 Å."
+  },
+  "recall_prompt": "Say what a ground state atom is, and give the hydrogen values for it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atoms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Lowest energy state",
+        "lines": [
+          "An atom is in its ground state when its",
+          "electrons are in their lowest allowed",
+          "energy levels.",
+          "The atom then has its lowest possible energy."
+        ],
+        "margin_note": "First mark. The key words are lowest allowed energy.",
+        "why": "Bohr allows only certain energy levels. The ground state is simply the lowest of them — every other allowed state is an excited state.",
+        "common_mistakes": [
+          "Saying the electron has zero energy. The ground state energy is negative, not zero.",
+          "Saying the electron is at rest. It still revolves; only its energy is the lowest allowed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ground state is the lowest allowed energy state of the atom.",
+          "accept": [
+            "lowest energy state",
+            "electrons in the lowest levels",
+            "lowest allowed orbit"
+          ],
+          "reject": [
+            "n equals one for hydrogen"
+          ],
+          "heard_as": [
+            "ground state",
+            "lowest energy"
+          ]
+        },
+        "memory_tip": "Ground = the floor. The atom cannot go below its lowest allowed level."
+      },
+      {
+        "id": "s2_hydrogen",
+        "kind": "boxed_final",
+        "label": "The hydrogen example",
+        "marks": 1,
+        "mark_note": "n = 1, E₁ = −13.6 eV",
+        "lines": [
+          "For hydrogen the ground state is n = 1, with",
+          {
+            "text": "E₁ = −13.6 eV and r₁ = 0.53 Å",
+            "style": "eq"
+          },
+          {
+            "text": "Ground state: the lowest energy state",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Give the hydrogen numbers: n = 1, −13.6 eV.",
+        "why": "The example makes the definition concrete: for hydrogen the lowest allowed level is n = 1, and its energy is −13.6 eV — negative because the electron is bound.",
+        "common_mistakes": [
+          "Writing +13.6 eV. The bound electron's energy is negative.",
+          "Writing n = 0. The principal quantum number starts at n = 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for hydrogen the ground state is n = 1 with energy −13.6 eV.",
+          "accept": [
+            "n equals one",
+            "minus thirteen point six electron volt",
+            "radius nought point five three angstrom"
+          ],
+          "reject": [
+            "lowest allowed energy state"
+          ],
+          "heard_as": [
+            "minus 13.6",
+            "n is one",
+            "electron volt"
+          ]
+        },
+        "memory_tip": "Hydrogen's floor: n = 1, E = −13.6 eV, r = 0.53 Å — one, minus 13.6, half an angstrom."
+      }
+    ]
+  },
+  "insider_note": "Do not stop at the one-line definition — the second mark wants the hydrogen numbers, n = 1 and −13.6 eV, with the minus sign in place."
+}

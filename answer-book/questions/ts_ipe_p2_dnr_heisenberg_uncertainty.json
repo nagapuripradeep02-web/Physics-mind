@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_heisenberg_uncertainty",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Heisenberg's Uncertainty Principle.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The uncertainty relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.43); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: the book's marked form is Δp·Δx ≈ ℏ, written here as Δx·Δp ≈ ℏ with ℏ = h/2π; the standard sharp statement Δx·Δp ≥ ℏ/2 is recorded in the step's why, not on the page. A lecturer's pen tick AND a pen star mark this question in the source scan — the only starred question in the chapter."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Dual Nature of Radiation and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Position and momentum together",
+        "lines": [
+          "It is impossible to measure both the position",
+          "and the momentum of a particle at the same",
+          "time to any desired degree of accuracy."
+        ],
+        "margin_note": "First mark. Three parts: both quantities, at the same time, not to any desired accuracy.",
+        "why": "The principle is about the pair, not about one quantity. Either one alone can be measured as accurately as we like; measuring both together is what the principle limits.",
+        "common_mistakes": [
+          "Saying position cannot be measured accurately. It can; the limit is on measuring position AND momentum together.",
+          "Blaming the instruments. The limit stays even with perfect instruments — it comes from the wave nature of matter."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That position and momentum of a particle cannot both be measured at the same time to any desired accuracy.",
+          "accept": [
+            "cannot measure position and momentum together",
+            "both at the same time",
+            "not to any desired accuracy"
+          ],
+          "reject": [
+            "delta x delta p is about h bar"
+          ],
+          "heard_as": [
+            "position",
+            "momentum",
+            "simultaneously",
+            "accuracy"
+          ]
+        },
+        "memory_tip": "The principle limits the PAIR: position and momentum, together, at one instant."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The uncertainty relation",
+        "marks": 1,
+        "mark_note": "Δx·Δp ≈ ℏ",
+        "lines": [
+          "If Δx is the uncertainty in the position of",
+          "the particle and Δp is the uncertainty in its",
+          "momentum, then",
+          {
+            "text": "Δx · Δp ≈ ℏ, where ℏ = h/2π",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Define Δx and Δp, then the relation. Making Δx smaller forces Δp larger.",
+        "why": "The book's marked form is the approximate relation Δx·Δp ≈ ℏ. The standard sharp statement is Δx·Δp ≥ ℏ/2 — both say the same thing: the two uncertainties cannot both be made small together.",
+        "common_mistakes": [
+          "Writing plain h for ℏ. The relation uses ℏ = h/2π.",
+          "Leaving Δx and Δp undefined. The symbols must be named as the uncertainties in position and momentum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product of the uncertainty in position and the uncertainty in momentum is of the order of h bar.",
+          "accept": [
+            "delta x times delta p is about h bar",
+            "product of the uncertainties is h by two pi",
+            "delta x delta p greater than or equal to h bar by two"
+          ],
+          "reject": [
+            "cannot measure position and momentum together"
+          ],
+          "heard_as": [
+            "delta x",
+            "delta p",
+            "h bar",
+            "h by two pi"
+          ]
+        },
+        "memory_tip": "Two deltas multiply to ℏ — squeeze one down and the other must grow."
+      }
+    ]
+  },
+  "insider_note": "The lecturer starred this one in the source book. Write the word statement first, then the relation with Δx and Δp defined — the relation alone is half the answer."
+}

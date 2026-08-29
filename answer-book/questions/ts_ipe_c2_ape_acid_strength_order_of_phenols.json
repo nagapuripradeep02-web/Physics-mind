@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_acid_strength_order_of_phenols",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Arrange the following compounds in increasing order of their acid strength: propan-1-ol, 2,4,6-trinitrophenol, 3-nitrophenol, 3,5-dinitrophenol, 4-methylphenol, phenol.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The order",
+      "marks": 2
+    },
+    {
+      "label": "Why the nitro groups raise the acid strength",
+      "marks": 1
+    },
+    {
+      "label": "Why the alcohol and 4-methylphenol are weakest",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.110 as Short Answer 6. The 2+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ORDER IS CORRECT: the printed order propan-1-ol < 4-methylphenol < phenol < 3-nitrophenol < 3,5-dinitrophenol < 2,4,6-trinitrophenol matches the measured pKa values (about 16, 10.2, 10.0, 8.4, 6.7, 0.4). BOOK GAP: the printed answer is the order alone, with no reason of any kind, although the question is one of the two on this topic where the reason carries most of the marks. The reason is added here. BOOK SPELLING: the printed question reads \"Arragne\" for Arrange, \"Propan-1-ol\" run together with the next name, and \"3-5-dinitrophenol\" with a hyphen where a comma belongs. TREND AND EXCEPTIONS, both named on this card: (1) counting the nitro groups is not the whole rule — POSITION matters more, because a nitro group at 2 or 4 can take the negative charge onto its own oxygen atoms by resonance while one at 3 can only withdraw inductively, so 4-nitrophenol (pKa 7.2) is a much stronger acid than 3-nitrophenol (pKa 8.4) although both carry one nitro group; (2) the usual statement that carboxylic acids are stronger than phenols FAILS at the top of this list, because 2,4,6-trinitrophenol (picric acid, pKa 0.4) is a far stronger acid than acetic acid (pKa 4.8)."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_order",
+        "kind": "boxed_final",
+        "label": "The order",
+        "marks": 2,
+        "mark_note": "The order",
+        "lines": [
+          "In increasing order of acid strength:",
+          {
+            "text": "propan-1-ol < 4-methylphenol < phenol",
+            "style": "boxed"
+          },
+          {
+            "text": "< 3-nitrophenol < 3,5-dinitrophenol",
+            "style": "boxed"
+          },
+          {
+            "text": "< 2,4,6-trinitrophenol",
+            "style": "boxed"
+          },
+          "The alcohol is the weakest acid and",
+          "2,4,6-trinitrophenol is the strongest."
+        ],
+        "why": "Acid strength is set by how stable the ion left behind is. The alkoxide from an alcohol has nowhere to spread its charge, a phenoxide spreads it over the ring, and each nitro group added spreads it further still, so the order runs from the alcohol at one end to the trinitrophenol at the other.",
+        "common_mistakes": [
+          "Writing the order the other way round. The question says increasing, so the weakest acid comes first.",
+          "Placing 4-methylphenol above phenol. The methyl group releases electron density, so 4-methylphenol is the weaker acid of the two."
+        ],
+        "memory_tip": "Alcohol, then the methyl phenol, then plain phenol, then one nitro, two nitro, three nitro.",
+        "margin_note": "Write the whole chain in one line with < signs. Marks are lost when the order is split across separate sentences."
+      },
+      {
+        "id": "s2_nitro_groups",
+        "kind": "text",
+        "label": "Why the nitro groups raise the acid strength",
+        "marks": 1,
+        "mark_note": "Nitro effect",
+        "lines": [
+          "A –NO₂ group withdraws electron density,",
+          "both through the bonds and through the",
+          "ring by resonance.",
+          "It therefore spreads the negative charge of",
+          "the phenoxide ion over more atoms.",
+          "The more stable the phenoxide ion, the",
+          "stronger the acid.",
+          "Three nitro groups stabilise it more than",
+          "two, and two more than one."
+        ],
+        "why": "The whole comparison is between the ions, not between the molecules. Every group that takes a share of the negative charge of the phenoxide ion makes that ion easier to form. Position matters more than count: a nitro group at 2 or 4 can take the charge onto its own oxygen atoms by resonance, but one at 3 can only withdraw through the bonds, which is why 4-nitrophenol (pKa 7.2) is a much stronger acid than 3-nitrophenol (pKa 8.4) although both carry one nitro group.",
+        "common_mistakes": [
+          "Saying the nitro group makes the O–H bond weaker. The effect is on the stability of the ion formed, not on the bond alone.",
+          "Counting nitro groups without looking at their positions. A group at 2 or 4 helps far more than one at 3."
+        ],
+        "memory_tip": "Electron withdrawing groups share the charge of the phenoxide ion, so the acid is stronger. Positions 2 and 4 have the largest effect.",
+        "margin_note": "Use the words electron withdrawing and stability of the phenoxide ion. Both are marked."
+      },
+      {
+        "id": "s3_weak_end",
+        "kind": "text",
+        "label": "Why the alcohol and 4-methylphenol are weakest",
+        "marks": 1,
+        "mark_note": "Weak end",
+        "lines": [
+          "Propan-1-ol is an alcohol. Its alkoxide ion",
+          "has no ring, so the negative charge stays",
+          "on one oxygen and is not spread at all.",
+          "That makes it the weakest acid of the six.",
+          "In 4-methylphenol the –CH₃ group releases",
+          "electron density into the ring, which works",
+          "against the negative charge of the",
+          "phenoxide ion.",
+          "So 4-methylphenol is a weaker acid than",
+          "phenol itself."
+        ],
+        "why": "The two ends of the list are explained by the same idea used in opposite directions: a group that helps carry the negative charge strengthens the acid, and a group that adds to it weakens the acid. Note that the top of this list breaks a rule usually stated as absolute — 2,4,6-trinitrophenol, picric acid, has pKa about 0.4 and is a far stronger acid than acetic acid at 4.8, so \"carboxylic acids are stronger than phenols\" is not true here.",
+        "common_mistakes": [
+          "Saying an alcohol is not acidic at all. It is a very weak acid, weaker than water, and it does release its proton to sodium metal.",
+          "Saying every phenol is a weaker acid than every carboxylic acid. Picric acid is stronger than acetic acid."
+        ],
+        "memory_tip": "Electron releasing groups such as –CH₃ make the acid weaker; electron withdrawing groups such as –NO₂ make it stronger.",
+        "margin_note": "One sentence on each end of the list finishes this mark. Do not repeat the nitro reason here."
+      }
+    ]
+  },
+  "insider_note": "The book gives the order and no reason at all, but an order alone is about half the question. Add one sentence on the electron withdrawing nitro groups stabilising the phenoxide ion and one on the electron releasing methyl group weakening it."
+}

@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_pgd_ethylene_processes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Plant Growth and Development (Botany-II)"
+  },
+  "chapter": "Plant Growth and Development",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the physiological processes that are regulated by ethylene in plants?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What ethylene is",
+      "marks": 1
+    },
+    {
+      "label": "Ripening and senescence",
+      "marks": 1
+    },
+    {
+      "label": "Seedling and dormancy effects",
+      "marks": 1
+    },
+    {
+      "label": "Growth in water plants and roots",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.27, printed question 23. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Ethylene is the only gaseous hormone, and that is worth the first line. Fruit ripening is the effect an examiner will not accept an answer without.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Growth and Development (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What ethylene is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "margin_note": "Gas, source, and why the gas matters. Five lines.",
+        "lines": [
+          "Ethylene is a simple GASEOUS plant growth",
+          "regulator.",
+          "It is produced in large amounts by ripening",
+          "fruits and by ageing tissues.",
+          "Because it is a gas, it spreads from one fruit",
+          "to the fruits around it."
+        ],
+        "why": "Being a gas is what lets one ripe fruit ripen a whole basket, which no liquid hormone could do.",
+        "common_mistakes": [
+          "Calling ethylene a liquid hormone. It is a GAS, and that is its defining feature.",
+          "Saying it is made only in seeds. Ripening fruits and ageing tissues make the most."
+        ],
+        "memory_tip": "The only gas among the hormones, so it travels through the air."
+      },
+      {
+        "id": "s2_ripening",
+        "kind": "text",
+        "label": "Ripening and senescence",
+        "marks": 1,
+        "mark_note": "Ripening",
+        "margin_note": "Three numbered effects. Ripening and the respiratory climactic are the two to name.",
+        "lines": [
+          "1. Ethylene is highly effective in FRUIT",
+          "RIPENING.",
+          "2. It raises the rate of respiration during",
+          "ripening. This rise is called the RESPIRATORY",
+          "CLIMACTIC.",
+          "3. It promotes SENESCENCE and ABSCISSION of",
+          "leaves and flowers."
+        ],
+        "why": "Ripening is an active process that needs energy, so the burst of respiration is what pays for it — which is why the two always appear together.",
+        "common_mistakes": [
+          "Saying ethylene delays ripening. It PROMOTES ripening.",
+          "Leaving out abscission. Ethylene causes leaves and flowers to fall."
+        ],
+        "memory_tip": "Ethylene ends things: ripens, ages, and drops."
+      },
+      {
+        "id": "s3_seedling",
+        "kind": "text",
+        "label": "Seedling and dormancy effects",
+        "marks": 1,
+        "mark_note": "Seedlings",
+        "margin_note": "Three numbered effects. The hook is the one most often forgotten.",
+        "lines": [
+          "4. In dicot seedlings it causes horizontal",
+          "growth, swelling of the axis, and APICAL HOOK",
+          "formation.",
+          "5. It BREAKS seed and bud dormancy.",
+          "6. It starts germination in peanut seeds and",
+          "sprouting in potato tubers."
+        ],
+        "why": "The apical hook protects the shoot tip as the seedling pushes up through soil, so ethylene is what shapes a seedling to survive emergence.",
+        "common_mistakes": [
+          "Saying ethylene causes dormancy. It BREAKS dormancy.",
+          "Leaving out the apical hook. It is the named seedling response."
+        ],
+        "memory_tip": "Hook, swell, and break dormancy: all of it happens underground."
+      },
+      {
+        "id": "s4_growth",
+        "kind": "boxed_final",
+        "label": "Growth in water plants and roots",
+        "marks": 1,
+        "mark_note": "Growth",
+        "margin_note": "Two more numbered effects. Eight in total is a full answer.",
+        "lines": [
+          {
+            "text": "Ethylene ripens, ages, drops and elongates",
+            "style": "boxed"
+          },
+          "7. In water plants it promotes rapid PETIOLE",
+          "and INTERNODE elongation, so leaves stay above",
+          "rising water.",
+          "8. It promotes root growth and ROOT HAIR",
+          "formation, which increases absorption."
+        ],
+        "why": "A deep-water rice plant that cannot grow taller than the flood will drown, so ethylene-driven elongation is a survival response, not just a growth effect.",
+        "common_mistakes": [
+          "Saying ethylene stops root growth. It PROMOTES root and root hair growth.",
+          "Leaving out the water plants. The elongation response is a named application."
+        ],
+        "memory_tip": "Rising water, rising stem: the leaves stay in the air."
+      }
+    ]
+  }
+}

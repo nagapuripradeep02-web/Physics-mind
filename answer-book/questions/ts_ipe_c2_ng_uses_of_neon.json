@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_uses_of_neon",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "List out the uses of neon.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Discharge tubes and display lighting",
+      "marks": 1
+    },
+    {
+      "label": "A second named use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.89 as VSAQ 3. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SHAPE: the printed answer gives exactly two uses, discharge tubes and fluorescent bulbs for advertisement display, and neon bulbs in botanical gardens and green houses. Both are kept. A third use, warning lights at airfields, is added because the question says \"list out the uses\" in the plural and two lines are thin for two marks. The orange-red colour of a neon discharge is added as the reason the first use exists; the book does not print it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Noble Gases — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_display",
+        "kind": "text",
+        "label": "Discharge tubes and display lighting",
+        "marks": 1,
+        "mark_note": "First use",
+        "lines": [
+          "1. Neon is used in discharge tubes and in",
+          {
+            "text": "fluorescent bulbs for advertisement",
+            "style": "indent"
+          },
+          {
+            "text": "display.",
+            "style": "indent"
+          },
+          "A neon discharge gives an orange-red glow,",
+          "which is why neon signs are used."
+        ],
+        "why": "Neon has a very high ionisation enthalpy, so a large voltage is needed to make it conduct; once it does, the excited atoms drop back and give out the orange-red light that a neon sign is named for. The gas is not used up, because it takes part in no chemical change.",
+        "common_mistakes": [
+          "Writing that neon burns in the tube. Nothing burns; the gas glows because a current passes through it and does not react.",
+          "Giving a use of helium or argon instead. The electric bulb filling is argon, not neon."
+        ],
+        "memory_tip": "Neon is the sign-board gas: an orange-red glow in a glass tube.",
+        "margin_note": "Number your uses. An examiner marking a \"list\" question counts the numbered points."
+      },
+      {
+        "id": "s2_other_uses",
+        "kind": "boxed_final",
+        "label": "A second named use",
+        "marks": 1,
+        "mark_note": "Second use",
+        "lines": [
+          {
+            "text": "2. Neon bulbs are used in botanical gardens",
+            "style": "boxed"
+          },
+          {
+            "text": "and in green houses.",
+            "style": "indent"
+          },
+          "3. Neon lamps are used in warning lights at",
+          {
+            "text": "airfields, because their light passes",
+            "style": "indent"
+          },
+          {
+            "text": "through fog and mist.",
+            "style": "indent"
+          }
+        ],
+        "why": "The greenhouse use is a lighting use as well: neon lamps give plants extra light without heating the air the way a filament lamp does. The airfield use rests on the colour, not on the chemistry, because long-wavelength red light is scattered least by fog droplets.",
+        "common_mistakes": [
+          "Stopping at one use. The question asks for a list, so at least two numbered uses are needed.",
+          "Writing that neon is used as a cryogenic liquid. That is liquid helium, which boils at a far lower temperature."
+        ],
+        "memory_tip": "Three places to picture: a shop sign, a green house, and a runway light in fog.",
+        "margin_note": "Any two of these three uses complete the answer. The third is spare and costs one line."
+      }
+    ]
+  },
+  "insider_note": "Two numbered uses are enough for full marks, so do not spend time on the physics of the discharge. Number them and stop."
+}

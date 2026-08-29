@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_penicillin_scientists",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the scientists who were credited for showing the role of penicillin as an antibiotic.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Who discovered it",
+      "marks": 1
+    },
+    {
+      "label": "Who established its role",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.49, printed question 145. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Three names and they must be split correctly: Fleming DISCOVERED it, Chain and Florey ESTABLISHED its role. The question asks about the second pair.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_discovered",
+        "kind": "text",
+        "label": "Who discovered it",
+        "marks": 1,
+        "mark_note": "Discovery",
+        "margin_note": "Name, year, and what he actually observed.",
+        "lines": [
+          "ALEXANDER FLEMING discovered PENICILLIN",
+          "in 1928. He noticed that a mould growing accidentally on",
+          "an unwashed culture plate had stopped the growth of",
+          "Staphylococcus bacteria around it."
+        ],
+        "why": "Fleming saw the effect but could not purify enough of the substance to test it as a medicine, which is why the story does not end with him.",
+        "common_mistakes": [
+          "Crediting Fleming with establishing its role as an antibiotic. He DISCOVERED it; others proved its use.",
+          "Saying he made it deliberately. The mould arrived by accident."
+        ],
+        "memory_tip": "Fleming saw it; he did not prove it."
+      },
+      {
+        "id": "s2_established",
+        "kind": "boxed_final",
+        "label": "Who established its role",
+        "marks": 1,
+        "mark_note": "Role",
+        "margin_note": "Both names, the shared Nobel, and the wartime use.",
+        "lines": [
+          {
+            "text": "Ernest Chain and Howard Florey established",
+            "style": "boxed"
+          },
+          {
+            "text": "penicillin as an antibiotic",
+            "style": "boxed"
+          },
+          "ERNEST CHAIN and HOWARD FLOREY",
+          "established the role of penicillin as an ANTIBIOTIC.",
+          "All THREE shared the Nobel Prize in 1945.",
+          "Penicillin was used extensively to treat wounded",
+          "soldiers in the Second World War."
+        ],
+        "why": "Turning an observation into a medicine needed purification and clinical testing, which is the work Chain and Florey did.",
+        "common_mistakes": [
+          "Naming only Fleming. The question asks who showed its ROLE — that is Chain and Florey.",
+          "Naming Waksman. Waksman worked on streptomycin."
+        ],
+        "memory_tip": "Fleming found it; Chain and Florey made it a medicine."
+      }
+    ]
+  }
+}

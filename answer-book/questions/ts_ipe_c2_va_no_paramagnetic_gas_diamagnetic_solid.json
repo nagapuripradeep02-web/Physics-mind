@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_no_paramagnetic_gas_diamagnetic_solid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "NO is paramagnetic in gaseous state, but diamagnetic in liquid and solid states. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The gas has an odd electron",
+      "marks": 1
+    },
+    {
+      "label": "The liquid and solid are dimers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 9. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAPS (book p.83, VSAQ 9): the printed answer does not answer the whole question. The question asks about the LIQUID and the SOLID; the printed answer says only \"in solid state it exist as dimer\" and never mentions the liquid. This card answers both states, as the question asks. The book also never gives the formula of the dimer (N₂O₂), never says WHY NO has an unpaired electron (it has an odd total of 11 valence electrons), and never says where that electron sits (a π* antibonding orbital). All are added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gas_odd_electron",
+        "kind": "text",
+        "label": "The gas has an odd electron",
+        "marks": 1,
+        "mark_note": "Gaseous state",
+        "lines": [
+          "NO has 5 + 6 = 11 valence electrons, an odd",
+          "number, so one electron stays unpaired.",
+          "It occupies a π* antibonding orbital.",
+          "In the gas the molecules stay separate, so",
+          "each one keeps this unpaired electron and",
+          "the gas is paramagnetic."
+        ],
+        "why": "Paramagnetism means at least one unpaired electron. An odd total number of valence electrons makes pairing impossible, so nitric oxide is paramagnetic for a reason that can be counted rather than remembered.",
+        "common_mistakes": [
+          "Writing that NO has 10 valence electrons. Nitrogen contributes 5 and oxygen 6, giving 11.",
+          "Placing the odd electron in a bonding orbital. It is in a π* antibonding orbital, which is why the bond order is 2.5."
+        ],
+        "memory_tip": "Count 5 + 6 = 11. An odd number cannot pair up, so the gas is paramagnetic.",
+        "margin_note": "The counted 11 electrons is the strongest line in this step. Write the number, not just \"odd electron\"."
+      },
+      {
+        "id": "s2_dimer",
+        "kind": "boxed_final",
+        "label": "The liquid and solid are dimers",
+        "marks": 1,
+        "mark_note": "Liquid and solid",
+        "lines": [
+          "In the liquid and in the solid the molecules",
+          "are close together and join in pairs.",
+          {
+            "text": "2NO ⇌ N₂O₂   (the dimer)",
+            "style": "boxed"
+          },
+          "The two odd electrons pair with each other,",
+          "so no unpaired electron is left and both",
+          "states are diamagnetic."
+        ],
+        "why": "Dimerisation is what removes the unpaired electron: two molecules each carrying one odd electron form an N–N bond and that one bond uses up both odd electrons. This works in the liquid and the solid because the molecules are close enough there, and not in the gas because they are far apart.",
+        "common_mistakes": [
+          "Answering for the solid only. The question asks about the liquid as well, and the dimer forms in both.",
+          "Writing the dimer as NO₂. The dimer of nitric oxide is N₂O₂; NO₂ is a different compound."
+        ],
+        "memory_tip": "Two odd electrons make one bond, so the dimer has none left over.",
+        "margin_note": "Write the formula N₂O₂ and the word diamagnetic. Those two together finish the second mark."
+      }
+    ]
+  },
+  "insider_note": "The book answers for the solid only. The question names the liquid too, so say the dimer N₂O₂ forms in BOTH the liquid and the solid — that one word is easy to add and easy to lose."
+}

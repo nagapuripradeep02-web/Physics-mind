@@ -1,0 +1,433 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_doppler_observer_moving",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is Doppler shift? Obtain an expression for the apparent frequency of sound heard when the observer is in motion with respect to a source at rest?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Doppler shift defined",
+      "marks": 1
+    },
+    {
+      "label": "Set-up and the first crest",
+      "marks": 1
+    },
+    {
+      "label": "The second crest",
+      "marks": 2
+    },
+    {
+      "label": "Apparent time period",
+      "marks": 2
+    },
+    {
+      "label": "Apparent frequency",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+2+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it — the figure carries 0 marks because the question does not ask for a diagram. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: with the observer approaching a stationary source the sound reaches the observer at the relative speed V + V₀, so t₁ = L/(V + V₀); t₂ = T + (L − V₀T)/(V + V₀); T′ = t₂ − t₁ = T·V/(V + V₀); n′ = 1/T′ = n(V + V₀)/V > n, and n′ = n(V − V₀)/V < n when the observer recedes. This is the moving-OBSERVER case — the wavelength in the air is unchanged and only the rate of crest arrival changes, which is why V₀ appears in the NUMERATOR here and Vₛ in the denominator on the moving-source card. The book prints the question as \"with respect a source at rest\", dropping the word \"to\"; the wording is preserved as printed."
+  },
+  "recall_prompt": "Say the derivation in order — what Doppler shift means, the arrival times of the two crests, the apparent period, and the apparent frequency.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Waves · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Doppler shift defined",
+        "marks": 1,
+        "mark_note": "Difference between apparent and actual frequency",
+        "lines": [
+          "Doppler shift is the difference between",
+          "the apparent frequency heard by the",
+          "observer and the actual frequency",
+          "produced by the source."
+        ],
+        "margin_note": "First mark. Define the shift as a difference of two frequencies, then begin the derivation.",
+        "why": "The rest of the answer builds the apparent frequency n′; the definition fixes what the question is finally asking for, which is the gap between n′ and n.",
+        "common_mistakes": [
+          "Calling the shift the apparent frequency itself. The shift is the difference n′ − n.",
+          "Leaving out the definition. The question asks for it before the derivation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Doppler shift is the difference between the apparent frequency heard and the actual frequency produced.",
+          "accept": [
+            "difference between apparent and actual frequency",
+            "heard frequency minus produced frequency",
+            "the change in frequency due to relative motion"
+          ],
+          "reject": [
+            "the first crest takes L by V plus V nought"
+          ],
+          "heard_as": [
+            "Doppler shift",
+            "apparent",
+            "actual frequency"
+          ]
+        },
+        "memory_tip": "Shift means a difference — apparent frequency minus actual frequency."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The geometry",
+        "marks": 0,
+        "figure": {
+          "id": "doppler_observer_moving",
+          "width": 340,
+          "height": 170,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "s_line",
+              "d": "M 60 40 L 60 140",
+              "ms": 1430
+            },
+            {
+              "type": "stroke",
+              "id": "op_line",
+              "d": "M 240 40 L 240 140",
+              "ms": 1430
+            },
+            {
+              "type": "stroke",
+              "id": "o_line",
+              "d": "M 310 40 L 310 140",
+              "ms": 1430
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 50,
+              "y": 34,
+              "text": "S",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_op",
+              "x": 228,
+              "y": 34,
+              "text": "O′",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 302,
+              "y": 34,
+              "text": "O",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "rem_line",
+              "d": "M 60 70 L 240 70",
+              "ms": 2570
+            },
+            {
+              "type": "stroke",
+              "id": "rem_head",
+              "d": "M 231 65 L 240 70 L 231 75",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_rem",
+              "x": 118,
+              "y": 62,
+              "text": "L − V₀T",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "l_line",
+              "d": "M 60 100 L 310 100",
+              "ms": 3570
+            },
+            {
+              "type": "stroke",
+              "id": "l_head",
+              "d": "M 301 95 L 310 100 L 301 105",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_l",
+              "x": 180,
+              "y": 92,
+              "text": "L",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "vot_line",
+              "d": "M 310 130 L 240 130",
+              "ms": 1000
+            },
+            {
+              "type": "stroke",
+              "id": "vot_head",
+              "d": "M 249 125 L 240 130 L 249 135",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_vot",
+              "x": 258,
+              "y": 122,
+              "text": "V₀T",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "S stays fixed; the observer starts at O and reaches O′ one time period later, a distance V₀T nearer to S.",
+        "why": "The picture holds the one difference from the moving-source case: the separation shrinks because the OBSERVER moved, while the crests already in the air keep their original spacing.",
+        "common_mistakes": [
+          "Moving the source in this figure. Here S is at rest and only O moves."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That S stays fixed while the observer moves from O to O′, a distance V₀T, so the second crest covers L − V₀T.",
+          "accept": [
+            "mark S, O and O dash",
+            "the observer moves V nought T toward the source",
+            "the second crest has less distance left"
+          ],
+          "reject": [
+            "T dash is T into V over V plus V nought"
+          ],
+          "heard_as": [
+            "figure",
+            "geometry",
+            "diagram"
+          ]
+        },
+        "memory_tip": "Three ticks on a line — S, O′, O — with L, L − V₀T and V₀T between them."
+      },
+      {
+        "id": "s3_setup",
+        "kind": "text",
+        "label": "Set-up and the first crest",
+        "marks": 1,
+        "mark_note": "t₁ = L/(V + V₀)",
+        "lines": [
+          "A source S at rest and an observer O are",
+          "a distance L apart. The source emits",
+          "sound of frequency n and time period T;",
+          "V is the speed of sound in air.",
+          "The observer moves toward S with",
+          "velocity V₀, so the sound reaches the",
+          "observer at the relative speed V + V₀.",
+          "The first crest covers the distance L:",
+          {
+            "text": "t₁ = L/(V + V₀) … (1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "One mark. Name every symbol, then write the relative speed V + V₀ before the first arrival time.",
+        "why": "The relative speed is the whole difference from the moving-source case: the sound still travels at V through the air, but the observer runs into the crests, so they arrive at the rate set by V + V₀.",
+        "common_mistakes": [
+          "Writing t₁ = L/V. The observer is approaching, so the closing speed is V + V₀.",
+          "Leaving symbols undefined. n, T, V, V₀ and L must each be introduced."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the separation is L, the observer approaches at V₀, and the first crest arrives after t₁ = L/(V + V₀).",
+          "accept": [
+            "distance L apart",
+            "relative speed V plus V nought",
+            "t one is L by V plus V nought"
+          ],
+          "reject": [
+            "the second crest travels L minus V nought T"
+          ],
+          "heard_as": [
+            "first crest",
+            "relative velocity",
+            "set up"
+          ]
+        },
+        "memory_tip": "The observer runs into the sound, so the speeds add: V + V₀ under the L."
+      },
+      {
+        "id": "s4_second_crest",
+        "kind": "equation",
+        "label": "The second crest",
+        "marks": 2,
+        "mark_note": "t₂ = T + (L − V₀T)/(V + V₀)",
+        "lines": [
+          "The source releases the second crest one",
+          "time period T later. In that time the",
+          "observer has moved a distance V₀T",
+          "toward S and stands at O′, so the",
+          "second crest covers only L − V₀T:",
+          {
+            "text": "t₂ = T + (L − V₀T)/(V + V₀) … (2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: the shortened distance L − V₀T, and the T added for the later start.",
+        "why": "Both pieces of t₂ carry a mark: the crest is emitted T later, but it meets an observer who has already closed part of the gap.",
+        "common_mistakes": [
+          "Forgetting the leading T. The second crest is emitted at time T, and only then travels.",
+          "Writing L + V₀T. The observer approaches, so the remaining distance shrinks."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second crest leaves T later and covers L − V₀T at V + V₀, so t₂ = T + (L − V₀T)/(V + V₀).",
+          "accept": [
+            "emitted a period later",
+            "covers only L minus V nought T",
+            "t two is T plus L minus V nought T over V plus V nought"
+          ],
+          "reject": [
+            "t one is L by V plus V nought"
+          ],
+          "heard_as": [
+            "second crest",
+            "L minus V nought T",
+            "time period"
+          ]
+        },
+        "memory_tip": "Later start (+T), shorter road (L − V₀T) — write both, in that order."
+      },
+      {
+        "id": "s5_apparent_period",
+        "kind": "equation",
+        "label": "Apparent time period",
+        "marks": 2,
+        "mark_note": "T′ = T[V/(V + V₀)]",
+        "lines": [
+          "The observer receives the two crests a",
+          "time T′ apart — the apparent time",
+          "period:",
+          {
+            "text": "T′ = t₂ − t₁",
+            "style": "eq"
+          },
+          {
+            "text": "T′ = T + (L − V₀T)/(V + V₀) − L/(V + V₀)",
+            "style": "eq"
+          },
+          {
+            "text": "T′ = T − V₀T/(V + V₀)",
+            "style": "eq"
+          },
+          {
+            "text": "T′ = T[(V + V₀ − V₀)/(V + V₀)]",
+            "style": "eq"
+          },
+          {
+            "text": "T′ = T[V/(V + V₀)]",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: subtract the arrival times, watch L cancel, and take T outside the bracket.",
+        "why": "L cancels because the result cannot depend on how far apart the two started, only on how fast the gap closes — any surviving L is the signal that a term was dropped.",
+        "common_mistakes": [
+          "Keeping L in the final expression. The two L/(V + V₀) terms cancel exactly.",
+          "Sign slip in the bracket. Approach must shorten the period, so T′ < T."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtracting the arrival times cancels L and gives T′ = T·V/(V + V₀).",
+          "accept": [
+            "subtract t one from t two",
+            "L cancels out",
+            "T dash is T into V over V plus V nought"
+          ],
+          "reject": [
+            "frequency is the reciprocal"
+          ],
+          "heard_as": [
+            "apparent period",
+            "T dash",
+            "cancels"
+          ]
+        },
+        "memory_tip": "If L survives the subtraction, redo it — a rate result cannot hold a distance."
+      },
+      {
+        "id": "s6_apparent_frequency",
+        "kind": "boxed_final",
+        "label": "Apparent frequency",
+        "marks": 2,
+        "mark_note": "n′ = n[(V + V₀)/V]",
+        "lines": [
+          "The apparent frequency is the reciprocal",
+          "of the apparent time period:",
+          {
+            "text": "n′ = 1/T′ = (1/T)[(V + V₀)/V]",
+            "style": "eq"
+          },
+          {
+            "text": "n′ = n[(V + V₀)/V]",
+            "style": "boxed"
+          },
+          "n′ > n: the heard frequency is higher",
+          "when the observer moves toward the",
+          "source. If the observer moves away from",
+          "the source, V₀ reverses sign:",
+          {
+            "text": "n′ = n[(V − V₀)/V] , n′ < n",
+            "style": "eq"
+          },
+          "The Doppler shift is n′ − n = ± nV₀/V."
+        ],
+        "margin_note": "Two marks: invert T′ to get n′, then state both cases and close with the shift the question named.",
+        "why": "Here V₀ sits in the numerator, while the moving-source formula carries Vₛ in the denominator — the two cases are not the same algebra, and quoting the shift n′ − n answers the word the question opened with.",
+        "common_mistakes": [
+          "Writing n′ = n·V/(V + V₀). That is the period, not the frequency; invert it.",
+          "Using the moving-source form nV/(V − Vₛ) here. The observer case puts the sum on top."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n′ = 1/T′ = n(V + V₀)/V, higher than n for approach, with (V − V₀) for recession.",
+          "accept": [
+            "reciprocal of the apparent period",
+            "n into V plus V nought by V",
+            "minus V nought when moving away"
+          ],
+          "reject": [
+            "subtract the arrival times"
+          ],
+          "heard_as": [
+            "apparent frequency",
+            "n prime",
+            "reciprocal"
+          ]
+        },
+        "memory_tip": "Observer moving: the V₀ goes on TOP. Source moving: the Vₛ goes on the BOTTOM."
+      }
+    ]
+  },
+  "insider_note": "The two Doppler long answers differ in one place only — a moving observer puts V₀ in the numerator, a moving source puts Vₛ in the denominator. Writing the source formula for this question loses the last four marks."
+}

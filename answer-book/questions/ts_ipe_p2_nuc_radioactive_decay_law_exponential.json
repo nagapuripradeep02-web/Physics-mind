@@ -1,0 +1,467 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_radioactive_decay_law_exponential",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is radioactivity? State the law of radioactive decay. Show that radioactive decay is exponential in nature.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Radioactivity defined",
+      "marks": 1
+    },
+    {
+      "label": "Law of radioactive decay",
+      "marks": 1
+    },
+    {
+      "label": "Set up dN/dt = −λN",
+      "marks": 1
+    },
+    {
+      "label": "Separate and integrate",
+      "marks": 2
+    },
+    {
+      "label": "Find the constant of integration",
+      "marks": 1
+    },
+    {
+      "label": "The exponential law",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+2+1+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The 1+1+1+2+1+2 split over the three parts of the question (definition, statement, derivation) is INVENTED. Hand-checked: dN/dt = −λN separates to dN/N = −λ dt; integrating gives logₑN = −λt + C; at t = 0, N = N₀ so C = logₑN₀; hence logₑ(N/N₀) = −λt and N = N₀e^(−λt). Checked at t = T: N = N₀e^(−0.693) = 0.500 N₀, as the half life requires. The graph step carries NO marks because the question does not ask for a labelled diagram."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Nuclei · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_radioactivity",
+        "kind": "text",
+        "label": "Radioactivity defined",
+        "marks": 1,
+        "mark_note": "Spontaneous decay of unstable nuclei emitting α, β, γ",
+        "lines": [
+          "Radioactivity: the spontaneous decay of an",
+          "unstable nucleus, with the emission of",
+          "α-particles, β-particles or γ radiation, is",
+          "called natural radioactivity."
+        ],
+        "margin_note": "First mark. The word spontaneous and the three emissions.",
+        "why": "Spontaneous is the key word: the decay is not started by heating, by pressure or by any chemical change, so nothing outside the nucleus sets its rate.",
+        "common_mistakes": [
+          "Saying radioactivity is caused by chemical reaction. It is a nuclear process.",
+          "Naming only α and β. The γ radiation belongs in the list."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That radioactivity is the spontaneous decay of unstable nuclei with the emission of alpha, beta or gamma radiation.",
+          "accept": [
+            "spontaneous decay of unstable nuclei",
+            "emission of alpha beta and gamma",
+            "natural radioactivity"
+          ],
+          "reject": [
+            "rate of decay is proportional to the number present"
+          ],
+          "heard_as": [
+            "radioactivity",
+            "spontaneous",
+            "alpha beta gamma"
+          ]
+        },
+        "memory_tip": "Spontaneous: nothing outside the nucleus starts it or stops it."
+      },
+      {
+        "id": "s2_law",
+        "kind": "text",
+        "label": "Law of radioactive decay",
+        "marks": 1,
+        "mark_note": "Rate of decay ∝ number of nuclei present",
+        "lines": [
+          "Law of radioactive decay (Rutherford and",
+          "Soddy): the number of nuclei that decay per",
+          "unit time at any instant is directly",
+          "proportional to the number of nuclei N present",
+          "at that instant.",
+          "It does not depend on temperature, pressure",
+          "or chemical combination."
+        ],
+        "margin_note": "Second mark. Proportional to N, and independent of the external conditions.",
+        "why": "Each nucleus has the same fixed chance of decaying in the next second, and the nuclei do not affect one another, so the total number decaying per second is simply that chance multiplied by how many are there.",
+        "common_mistakes": [
+          "Saying the rate is constant. The rate falls as N falls; it is the FRACTION that is constant.",
+          "Leaving out the independence from temperature and pressure."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rate of decay at any instant is directly proportional to the number of nuclei present at that instant, and is independent of temperature and pressure.",
+          "accept": [
+            "rate of decay is proportional to the number present",
+            "Rutherford and Soddy law",
+            "independent of temperature and pressure"
+          ],
+          "reject": [
+            "spontaneous decay of unstable nuclei"
+          ],
+          "heard_as": [
+            "proportional to N",
+            "Rutherford and Soddy",
+            "rate of decay"
+          ]
+        },
+        "memory_tip": "Same chance per nucleus, so the total rate follows the head count."
+      },
+      {
+        "id": "s3_setup",
+        "kind": "equation",
+        "label": "Set up dN/dt = −λN",
+        "marks": 1,
+        "mark_note": "Introduce λ and the minus sign",
+        "lines": [
+          "Let N be the number of radioactive nuclei at",
+          "time t, and N₀ the number at t = 0. Let dN",
+          "nuclei disintegrate in the small time dt.",
+          "By the law of radioactive decay,",
+          {
+            "text": "dN/dt ∝ N   ⇒   dN/dt = −λN     … (1)",
+            "style": "eq"
+          },
+          "λ is the decay constant. The minus sign shows",
+          "that N decreases as t increases."
+        ],
+        "margin_note": "Third mark. The proportionality turned into an equation, with λ and the minus sign explained.",
+        "why": "The minus sign is not decoration: without it the same algebra produces a growing exponential, which would describe a sample that gains nuclei.",
+        "common_mistakes": [
+          "Omitting the minus sign. The answer then comes out as growth, not decay.",
+          "Writing dN/dt = −λ without the N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the law is written as dN/dt = −λN, where λ is the decay constant and the minus sign shows N decreasing.",
+          "accept": [
+            "dN by dt equals minus lambda N",
+            "lambda is the decay constant",
+            "minus sign because N decreases"
+          ],
+          "reject": [
+            "log N equals minus lambda t plus C"
+          ],
+          "heard_as": [
+            "dN by dt",
+            "minus lambda N",
+            "decay constant"
+          ]
+        },
+        "memory_tip": "Proportional becomes equal the moment λ is written in — with a minus for a falling number."
+      },
+      {
+        "id": "s4_integrate",
+        "kind": "equation",
+        "label": "Separate and integrate",
+        "marks": 2,
+        "mark_note": "dN/N = −λ dt, then integrate both sides",
+        "lines": [
+          "From equation (1), separate the variables:",
+          {
+            "text": "dN / N = −λ dt     … (2)",
+            "style": "eq"
+          },
+          "Integrating both sides,",
+          {
+            "text": "∫ dN/N = −λ ∫ dt",
+            "style": "eq"
+          },
+          {
+            "text": "logₑN = −λt + C     … (3)",
+            "style": "eq"
+          },
+          "where C is the constant of integration."
+        ],
+        "margin_note": "Two marks: one for separating the variables, one for the integrated form (3).",
+        "why": "Separating the variables is what makes the integral doable: every N is moved to one side and every t to the other, so each side integrates on its own.",
+        "common_mistakes": [
+          "Integrating dN/dt = −λN directly without separating. The N on the right blocks it.",
+          "Losing the constant of integration C. The next step needs it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That separating the variables gives dN/N = −λ dt, and integrating both sides gives logₑN = −λt + C.",
+          "accept": [
+            "dN by N equals minus lambda dt",
+            "integrate both sides",
+            "log N equals minus lambda t plus C"
+          ],
+          "reject": [
+            "at t equals zero N equals N nought"
+          ],
+          "heard_as": [
+            "separate the variables",
+            "log N",
+            "constant of integration"
+          ]
+        },
+        "memory_tip": "All the N on the left, all the t on the right, then integrate."
+      },
+      {
+        "id": "s5_constant",
+        "kind": "equation",
+        "label": "Find the constant of integration",
+        "marks": 1,
+        "mark_note": "At t = 0, N = N₀, so C = logₑN₀",
+        "lines": [
+          "At t = 0 the number of nuclei is N₀.",
+          "Substituting in equation (3),",
+          {
+            "text": "logₑN₀ = 0 + C   ⇒   C = logₑN₀",
+            "style": "eq"
+          },
+          "Putting this back in equation (3),",
+          {
+            "text": "logₑN − logₑN₀ = −λt",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fourth mark. The initial condition t = 0, N = N₀ fixes C.",
+        "why": "C carries the whole memory of how much material was there at the start; the rest of the equation is the same for every sample of the substance.",
+        "common_mistakes": [
+          "Taking C = 0. That is only true if N₀ = 1.",
+          "Using t = T instead of t = 0. The constant is fixed at the start."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting t = 0 and N = N₀ into the integrated equation gives C = logₑN₀.",
+          "accept": [
+            "at t equals zero N is N nought",
+            "C equals log N nought",
+            "substitute the initial condition"
+          ],
+          "reject": [
+            "N equals N nought e to the minus lambda t"
+          ],
+          "heard_as": [
+            "t equals zero",
+            "log N nought",
+            "constant C"
+          ]
+        },
+        "memory_tip": "The constant of integration is just the starting count, written as a log."
+      },
+      {
+        "id": "s6_result",
+        "kind": "boxed_final",
+        "label": "The exponential law",
+        "marks": 2,
+        "mark_note": "N = N₀e^(−λt), so the decay is exponential",
+        "lines": [
+          "Combining the logarithms,",
+          {
+            "text": "logₑ(N / N₀) = −λt   ⇒   N / N₀ = e^(−λt)",
+            "style": "eq"
+          },
+          {
+            "text": "N = N₀ e^(−λt)     … (4)",
+            "style": "boxed"
+          },
+          "The number of nuclei falls exponentially with",
+          "time, so radioactive decay is exponential in",
+          "nature."
+        ],
+        "margin_note": "Two marks: one for the boxed law, one for the sentence that answers \"show that it is exponential\".",
+        "why": "Equation (4) never reaches zero, so a radioactive sample is never completely used up — it only halves again and again.",
+        "common_mistakes": [
+          "Writing N = N₀e^(λt) without the minus. That describes growth.",
+          "Stopping at the equation. The question asks for the words \"decay is exponential\" as well."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the result is N = N₀ e to the power minus lambda t, so the number of nuclei falls exponentially with time.",
+          "accept": [
+            "N equals N nought e to the power minus lambda t",
+            "decay is exponential",
+            "N by N nought equals e to the minus lambda t"
+          ],
+          "reject": [
+            "C equals log N nought"
+          ],
+          "heard_as": [
+            "N nought e",
+            "minus lambda t",
+            "exponential"
+          ]
+        },
+        "memory_tip": "Every log-integration of a proportional rate ends in an exponential."
+      },
+      {
+        "id": "s7_graph",
+        "kind": "diagram",
+        "label": "The decay curve",
+        "marks": 0,
+        "figure": {
+          "id": "exponential_decay_curve",
+          "width": 360,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "y_axis",
+              "d": "M 60 26 L 60 210",
+              "ms": 2630
+            },
+            {
+              "type": "stroke",
+              "id": "x_axis",
+              "d": "M 60 210 L 328 210",
+              "ms": 3830
+            },
+            {
+              "type": "stroke",
+              "id": "x_ah",
+              "d": "M 320 205 L 328 210 L 320 215",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "curve",
+              "d": "M 60 50 C 90 95 110 118 130 130 C 160 148 175 160 200 170 C 230 182 260 190 300 197",
+              "ms": 4170
+            },
+            {
+              "type": "stroke",
+              "id": "half_line",
+              "d": "M 60 130 L 130 130",
+              "ms": 1000,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "t_line",
+              "d": "M 130 130 L 130 210",
+              "ms": 1140,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "quarter_line",
+              "d": "M 60 170 L 200 170",
+              "ms": 2000,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "two_t_line",
+              "d": "M 200 170 L 200 210",
+              "ms": 570,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_n_axis",
+              "x": 34,
+              "y": 22,
+              "text": "N",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_t_axis",
+              "x": 334,
+              "y": 216,
+              "text": "t",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_n0",
+              "x": 30,
+              "y": 66,
+              "text": "N₀",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_n0_half",
+              "x": 14,
+              "y": 134,
+              "text": "N₀/2",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n0_quarter",
+              "x": 14,
+              "y": 174,
+              "text": "N₀/4",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_t",
+              "x": 126,
+              "y": 230,
+              "text": "T",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_2t",
+              "x": 192,
+              "y": 230,
+              "text": "2T",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "N against t. The dashed lines show N falling to N₀/2 after one half life T and to N₀/4 after 2T.",
+        "why": "The curve is the picture of equation (4): equal steps along the time axis always halve the height, which is what an exponential means.",
+        "common_mistakes": [
+          "Drawing a straight line down to the axis. The curve never touches the t axis."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the graph of N against t is drawn as a falling curve with N₀ on the axis and the half lives T and 2T marked.",
+          "accept": [
+            "draw N against time as a falling curve",
+            "mark N nought and the half lives"
+          ],
+          "reject": [
+            "N equals N nought e to the minus lambda t"
+          ],
+          "heard_as": [
+            "graph",
+            "curve",
+            "half life"
+          ]
+        },
+        "memory_tip": "Every step of T along the axis halves the height."
+      }
+    ]
+  },
+  "insider_note": "Three separate demands in one question: define, state, derive. Write all three headings; a perfect derivation alone leaves two marks on the table."
+}

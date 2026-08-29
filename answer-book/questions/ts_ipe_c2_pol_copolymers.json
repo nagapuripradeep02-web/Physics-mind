@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_copolymers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are copolymers? Give example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples with their monomers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 21 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK: the printed answer is \"Polymers which are formed from more than one kind of monomer units are called copolymers\", with examples \"Nylon-6, 6, terylene\". Both are correct and are kept. The monomers are supplied. ADDED: the point that a copolymer may be either an addition or a condensation polymer, because both printed examples are condensation polymers and a student who sees only those may conclude that all copolymers are."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A copolymer is a polymer made from more",
+          "than one kind of monomer.",
+          "Units of both monomers appear in the same",
+          "chain, either in a regular alternating",
+          "order or at random.",
+          "A copolymer may be an addition polymer or",
+          "a condensation polymer; only the number",
+          "of monomer types matters."
+        ],
+        "why": "The definition turns on monomer types alone, so a two monomer addition polymer such as Buna-S and a two monomer condensation polymer such as nylon-6,6 are both copolymers. Adding a second monomer is how a chemist changes one property without rebuilding the whole chain.",
+        "common_mistakes": [
+          "Writing that a copolymer must have two different functional groups. It must have two different MONOMERS.",
+          "Writing that a copolymer is a mixture of two polymers. The two units sit in the same chain."
+        ],
+        "memory_tip": "Co means together: two monomers together in one chain.",
+        "margin_note": "The words more than one kind of monomer are the mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples with their monomers",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: nylon-6,6, terylene, Buna-S",
+            "style": "boxed"
+          },
+          "Nylon-6,6: hexamethylene diamine +",
+          "adipic acid",
+          "Terylene: ethylene glycol +",
+          "terephthalic acid",
+          "Buna-S: 1,3-butadiene + styrene",
+          "The first two are condensation",
+          "copolymers; Buna-S is an addition one."
+        ],
+        "why": "The three examples cover both routes to a copolymer, so one of them fits whatever the examiner asks next. Writing the two monomers beside each name is what shows the definition was applied and not recited.",
+        "common_mistakes": [
+          "Giving polythene or PVC. Each has one monomer, so each is a homopolymer.",
+          "Naming terylene with only one monomer. It needs both ethylene glycol and terephthalic acid."
+        ],
+        "memory_tip": "Every polymer in this chapter with two monomer names after it is a copolymer.",
+        "margin_note": "Two examples with their monomers finish this mark."
+      }
+    ]
+  },
+  "insider_note": "Copolymer and homopolymer are asked as a pair in this chapter. Define both by counting monomer types, never by counting functional groups."
+}

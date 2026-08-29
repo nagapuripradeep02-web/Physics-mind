@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_functions_of_carbohydrates_in_plants",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write two main functions of carbohydrates in plants.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Storage",
+      "marks": 1
+    },
+    {
+      "label": "Structure",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 3. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK DRIFT: the question asks for functions in PLANTS, but the printed answer adds \"Glycogen in animals\" and \"Cell wall of bacteria\" to the two plant points. Both extras are correct chemistry and both are outside the question, so this card keeps the two plant roles and moves the animal and bacterial cases to the wider carbohydrate card (SAQ 14)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_storage",
+        "kind": "text",
+        "label": "Storage",
+        "marks": 1,
+        "mark_note": "Storage function",
+        "lines": [
+          "1. Storage of food.",
+          "Plants store their food as starch.",
+          "Starch is a polymer of α-D-glucose and is",
+          "held in seeds, tubers and roots."
+        ],
+        "why": "Starch is the storage form because it is insoluble, so it can be packed into a seed or a tuber without changing the water balance of the cell, and it hydrolyses back to glucose when the plant needs energy.",
+        "common_mistakes": [
+          "Giving glycogen as the plant store. Glycogen is the animal store; starch is the plant store.",
+          "Writing \"storage\" with no named substance. The mark needs the word starch."
+        ],
+        "memory_tip": "Starch in the plant, glycogen in the animal.",
+        "margin_note": "Name the substance, not just the role. Starch earns this mark; \"storage\" alone does not."
+      },
+      {
+        "id": "s2_structure",
+        "kind": "boxed_final",
+        "label": "Structure",
+        "marks": 1,
+        "mark_note": "Structural function",
+        "lines": [
+          {
+            "text": "Cellulose forms the plant cell wall",
+            "style": "boxed"
+          },
+          "2. Structural support.",
+          "Cellulose is a polymer of β-D-glucose.",
+          "Its long straight chains give the plant",
+          "cell its rigid wall."
+        ],
+        "why": "Cellulose and starch are made of the same glucose unit; only the linkage differs. The β-linkage of cellulose gives straight chains that lie flat against one another and hold together, and that is how a rigid wall is made, while the α-linkage of starch gives a coiled chain suited to storage.",
+        "common_mistakes": [
+          "Naming chitin for the plant wall. Chitin is the wall material of fungi and the covering of insects.",
+          "Writing that cellulose is a polymer of α-D-glucose. It is β-D-glucose."
+        ],
+        "memory_tip": "Straight β chains make a wall; coiled α chains make a store.",
+        "margin_note": "Two roles, two named substances. Starch and cellulose together are the whole answer."
+      }
+    ]
+  },
+  "insider_note": "The question says plants, so answer for plants. Starch for storage and cellulose for the cell wall is the full two marks; adding glycogen and bacteria earns nothing here."
+}

@@ -1,0 +1,168 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_aluminium_from_bauxite",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain briefly the extraction of aluminium from bauxite.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Purification of bauxite",
+      "marks": 1
+    },
+    {
+      "label": "The electrolytic cell",
+      "marks": 1
+    },
+    {
+      "label": "Electrode reactions",
+      "marks": 1
+    },
+    {
+      "label": "Overall reaction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.82, where the whole printed answer is a vertical flow chart from bauxite to pure aluminium metal. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. FIGURE DECISION: the book's answer is a flow chart, and it is reproduced here as ordinary lines with Unicode down arrows rather than as a drawn figure, because a vertical chain of names with a condition on each arrow reads correctly as text and a drawn version would add nothing. BOOK GAPS FILLED: the printed flow chart gives no electrode reactions and no overall equation, so the standard ones are added — cathode Al³⁺ + 3e⁻ → Al (charge 0=0), anode C + O²⁻ → CO + 2e⁻ and C + 2O²⁻ → CO₂ + 4e⁻ (both balance in atoms and in charge), and overall 2Al₂O₃ + 3C → 4Al + 3CO₂ (Al 4=4, O 6=6, C 3=3). BOOK INCONSISTENCIES ACROSS THE TWO BAUXITE QUESTIONS ON THE SAME PAGE: the CO₂ step gives Al(OH)₃ in this flow chart but Al₂O₃·xH₂O in SAQ 6 (they are the same substance, since 2Al(OH)₃ is Al₂O₃·3H₂O); and the ignition temperature is 1473 K here but 1470 K in SAQ 6. BOOK LOOSE POINT: the printed chart says the alumina is mixed with \"molten cryolite (or) CaF₂\"; in practice cryolite is the solvent and fluorspar CaF₂ is added with it, and the card says so."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Metallurgy — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_purification",
+        "kind": "text",
+        "label": "Purification of bauxite",
+        "marks": 1,
+        "mark_note": "Purification",
+        "lines": [
+          "Bauxite  Al₂O₃·2H₂O",
+          {
+            "text": "↓  hot conc. NaOH at 523 K",
+            "style": "indent"
+          },
+          {
+            "text": "Al₂O₃ dissolves, impurities left",
+            "style": "indent"
+          },
+          "Na[Al(OH)₄]  sodium aluminate",
+          {
+            "text": "↓  CO₂ bubbled through",
+            "style": "indent"
+          },
+          "Al(OH)₃  precipitate",
+          {
+            "text": "↓  heated at 1473 K",
+            "style": "indent"
+          },
+          "Pure alumina  Al₂O₃"
+        ],
+        "why": "The purification is Bayer's process in short form: dissolve the alumina in alkali, precipitate it with carbon dioxide, then drive off the water. Writing each condition on its own arrow keeps the sequence and the temperatures visible together.",
+        "common_mistakes": [
+          "Electrolysing bauxite directly. The iron and the silica in bauxite have to be removed first, or they would be reduced along with the aluminium.",
+          "Leaving the conditions off the arrows. The reagent and the temperature are what turn a list of names into an answer."
+        ],
+        "memory_tip": "Alkali in, carbon dioxide in, heat on. Three arrows from bauxite to alumina.",
+        "margin_note": "A flow chart is accepted here, but each arrow must carry its reagent and its temperature."
+      },
+      {
+        "id": "s2_cell",
+        "kind": "text",
+        "label": "The electrolytic cell",
+        "marks": 1,
+        "mark_note": "The cell",
+        "lines": [
+          "Pure alumina is dissolved in molten",
+          "cryolite Na₃AlF₆ with a little fluorspar",
+          "CaF₂ and electrolysed at about 1200 K.",
+          "This is the Hall-Heroult process.",
+          "Cathode: the steel tank lined with carbon.",
+          "Anode: carbon rods dipping into the melt."
+        ],
+        "why": "Alumina alone melts above 2300 K and conducts badly, so cryolite is added to bring the working temperature down to about 1200 K and to carry the current. Carbon is used for both electrodes because it is not corroded by the melt and is cheap, and the anode is deliberately allowed to be consumed.",
+        "common_mistakes": [
+          "Electrolysing an aqueous solution of an aluminium salt. Water would be reduced instead of aluminium, so the electrolyte has to be molten.",
+          "Using an unreactive metal anode. The anode is carbon and it is used up during the process."
+        ],
+        "memory_tip": "Alumina in molten cryolite, carbon lining as cathode, carbon rods as anode.",
+        "margin_note": "Name the electrolyte, the cathode and the anode. Three names, and this mark is complete."
+      },
+      {
+        "id": "s3_electrode_reactions",
+        "kind": "equation",
+        "label": "Electrode reactions",
+        "marks": 1,
+        "mark_note": "Electrode reactions",
+        "lines": [
+          {
+            "text": "At cathode:  Al³⁺ + 3e⁻ → Al(l)",
+            "style": "eq"
+          },
+          "At anode:",
+          {
+            "text": "C + O²⁻ → CO + 2e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "C + 2O²⁻ → CO₂ + 4e⁻",
+            "style": "eq"
+          },
+          "Molten aluminium is denser than the melt,",
+          "so it collects at the bottom of the cell",
+          "and is tapped off."
+        ],
+        "why": "The aluminium ion is reduced at the cathode and the oxide ion is oxidised at the anode, but the oxygen does not leave as O₂ because the carbon anode reacts with it. That is why the anodes burn away and have to be replaced.",
+        "common_mistakes": [
+          "Writing 2O²⁻ → O₂ + 4e⁻ at the anode. The oxygen reacts with the carbon of the anode and leaves as CO and CO₂.",
+          "Writing Al³⁺ + e⁻ → Al. Three electrons are needed for one aluminium ion."
+        ],
+        "memory_tip": "Aluminium comes out at the cathode, carbon oxides come out at the anode.",
+        "margin_note": "The cathode reaction alone is half of this mark. Add at least one anode reaction beside it."
+      },
+      {
+        "id": "s4_overall",
+        "kind": "boxed_final",
+        "label": "Overall reaction",
+        "marks": 1,
+        "mark_note": "Overall reaction",
+        "lines": [
+          {
+            "text": "2Al₂O₃ + 3C → 4Al + 3CO₂",
+            "style": "boxed"
+          },
+          "The carbon anodes are used up in this",
+          "reaction and have to be replaced from",
+          "time to time.",
+          "The aluminium obtained is about 99 % pure",
+          "and is refined electrolytically where a",
+          "higher purity is needed."
+        ],
+        "why": "Adding the cathode and the anode reactions gives the overall change: the alumina is reduced and the carbon of the anode is oxidised to carbon dioxide. Written this way the equation shows why the carbon is consumed, which the separate half reactions do not make obvious.",
+        "common_mistakes": [
+          "Writing 2Al₂O₃ → 4Al + 3O₂ and stopping there. With a carbon anode the oxygen reacts with the carbon, so CO and CO₂ leave the cell, not O₂.",
+          "Treating the anode as only a conductor. The carbon rods take part in the reaction and are consumed."
+        ],
+        "memory_tip": "Two aluminas and three carbons give four aluminiums and three carbon dioxides.",
+        "margin_note": "Box the overall equation. It ties the two electrode reactions together and finishes the answer."
+      }
+    ]
+  },
+  "insider_note": "The purification is worth one mark and the electrolysis three. A student who writes a long Bayer process and stops loses three of the four marks, so keep the flow chart short and leave room for the cell, the electrode reactions and the overall equation."
+}

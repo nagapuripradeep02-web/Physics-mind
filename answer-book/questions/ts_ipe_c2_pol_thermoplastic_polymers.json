@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_thermoplastic_polymers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are thermoplastic polymers? Give example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples with their monomers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 19 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer is \"Polymers which are soft on heating and become rigid on cooling are called thermoplastic polymers\", with examples PVC and Polythene. That is correct and is kept. GAP: the book does not say WHY, namely that the chains are linear and not cross linked, and does not say the change is repeatable; both are added, because they are the only things that separate this answer from the thermosetting one printed directly below it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Thermoplastic polymers are linear or",
+          "slightly branched polymers that become",
+          "soft on heating and hard again on",
+          "cooling.",
+          "There are no cross links between the",
+          "chains, so heating only weakens the",
+          "forces between them and breaks no bonds.",
+          "The change can be repeated, so the",
+          "polymer can be remoulded."
+        ],
+        "why": "Without cross links the chains are separate molecules held only by intermolecular forces. Heat supplies enough energy for them to slide, and cooling lets the forces act again, so the softening can be repeated as often as needed.",
+        "common_mistakes": [
+          "Leaving out the words linear or no cross links. That absence of cross links is why the softening can be repeated.",
+          "Writing that heating breaks the polymer chains. It only weakens the forces between chains."
+        ],
+        "memory_tip": "No cross links means the softening can be repeated.",
+        "margin_note": "Soft on heating, hard on cooling, and repeatable are the three items in this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples with their monomers",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: polythene, PVC, polystyrene",
+            "style": "boxed"
+          },
+          "Polythene from ethene, CH₂=CH₂",
+          "PVC from vinyl chloride, CH₂=CH–Cl",
+          "Polystyrene from styrene, C₆H₅–CH=CH₂",
+          "All three are addition polymers with",
+          "straight chains and no cross links."
+        ],
+        "why": "Every common addition polymer of a simple alkene is thermoplastic, because addition builds a chain and nothing joins one chain to another. That is the quickest way to recognise a thermoplastic in a list.",
+        "common_mistakes": [
+          "Giving Bakelite as a thermoplastic. Bakelite is cross linked, so it is thermosetting.",
+          "Naming a polymer without its monomer. Naming the monomer is worth one extra line in this chapter."
+        ],
+        "memory_tip": "Addition polymers of simple alkenes are thermoplastic.",
+        "margin_note": "Two examples are enough. PVC and polythene are the pair the book prints."
+      }
+    ]
+  },
+  "insider_note": "The pair of questions on thermoplastic and thermosetting is really one question about cross links. Say no cross links here and heavily cross linked there."
+}

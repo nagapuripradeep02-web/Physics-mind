@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_invert_sugar",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you understand by invert sugars?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Why it is called invert",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 19. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed answer gives only \"Invert sugar is a mixture of glucose and fructose. It is formed by hydrolysis of sucrose\" and never says why the word invert is used. The optical-rotation reason is added here, with the standard values +66.5° for sucrose and about −20° for the product mixture."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Invert sugar is the equimolar mixture of",
+          "glucose and fructose formed when sucrose is",
+          "hydrolysed.",
+          {
+            "text": "C₁₂H₂₂O₁₁ + H₂O → C₆H₁₂O₆ + C₆H₁₂O₆",
+            "style": "eq"
+          },
+          "The hydrolysis is done with dilute acid or",
+          "with the enzyme invertase."
+        ],
+        "why": "Sucrose has one glucose unit and one fructose unit, so hydrolysing it gives one of each, in equal amounts. Honey is mostly invert sugar, which is why honey is sweeter than table sugar of the same mass: fructose is the sweetest of the common sugars.",
+        "common_mistakes": [
+          "Writing that invert sugar is a single compound. It is a mixture of two sugars in equal amounts.",
+          "Naming maltose or lactose as the starting material. Invert sugar comes from sucrose only."
+        ],
+        "memory_tip": "Sucrose plus water gives invert sugar: glucose and fructose together.",
+        "margin_note": "Name both products and the parent sugar. That is the definition mark."
+      },
+      {
+        "id": "s2_why_name",
+        "kind": "boxed_final",
+        "label": "Why it is called invert",
+        "marks": 1,
+        "mark_note": "Reason for the name",
+        "lines": [
+          {
+            "text": "Rotation changes sign: +66.5° to −20°",
+            "style": "boxed"
+          },
+          "Sucrose is dextrorotatory; it turns the",
+          "plane of polarised light to the right,",
+          "+66.5°.",
+          "The product mixture turns it to the left,",
+          "about −20°, because fructose is strongly",
+          "laevorotatory.",
+          "The sign of rotation is inverted, and that",
+          "gives the name."
+        ],
+        "why": "Glucose rotates light to the right by about +52°, and fructose to the left by about −92°, so the mixture of the two is left-handed overall. The sign of the rotation therefore flips during the hydrolysis, and \"invert\" records that flip; the name has nothing to do with the structure.",
+        "common_mistakes": [
+          "Saying the sugar is inverted, or the structure is inverted. It is the sign of the optical rotation that inverts.",
+          "Giving fructose as dextrorotatory. Fructose is laevorotatory, and it is the stronger of the two."
+        ],
+        "memory_tip": "The plus sign turns into a minus sign, so the mixture is called invert.",
+        "margin_note": "The reason for the name is the whole second mark. One line about the sign of rotation is enough."
+      }
+    ]
+  },
+  "insider_note": "Most students write the first line and stop. The mark most students miss is the reason for the name: the rotation changes from + to −."
+}

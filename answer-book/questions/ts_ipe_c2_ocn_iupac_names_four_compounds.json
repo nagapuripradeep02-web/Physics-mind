@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_iupac_names_four_compounds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the IUPAC names for the following compounds. i) CH₃–CH₂–NH–CH₂–CH₂–CH₃  ii) PhCH₂CN  iii) a benzene ring carrying –NH₂ and –Br at the 1 and 3 positions  iv) a benzene ring carrying –CH₂–NC and –Br at the 1 and 4 positions",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name of (i)",
+      "marks": 1
+    },
+    {
+      "label": "Name of (ii)",
+      "marks": 1
+    },
+    {
+      "label": "Name of (iii)",
+      "marks": 1
+    },
+    {
+      "label": "Name of (iv)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.116 as SAQ 1. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. QUESTION FORM: parts (iii) and (iv) are printed as drawn benzene rings, not as text. They are stated in words here, because a ring with two named substituents reads correctly as text and needs no figure. BOOK STYLE, tidied here: the printed names carry stray commas and inconsistent case — \"N-ethyl,1-propanamine\", \"2-phenyl, ethanenitrile\", \"3-bromo aniline or 3-bromo benzene amine\", \"4-Bromo, phenyl methan carbyl amine\". The chemistry behind all four is right; the card writes each name in the standard IUPAC form and gives the common name beside it where one is in use."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_secondary_amine",
+        "kind": "text",
+        "label": "Name of (i)",
+        "marks": 1,
+        "mark_note": "Name (i)",
+        "lines": [
+          "i) CH₃–CH₂–NH–CH₂–CH₂–CH₃",
+          "The longer chain on nitrogen has three",
+          "carbons, so the parent is propan-1-amine.",
+          "The two-carbon group on nitrogen is N-ethyl.",
+          {
+            "text": "N-ethylpropan-1-amine (a 2° amine)",
+            "style": "boxed"
+          }
+        ],
+        "why": "In a secondary amine one alkyl group becomes the parent chain and the other becomes an N-substituent. The larger group is taken as the parent, so propane is the parent here and the ethyl group takes the N- locant.",
+        "common_mistakes": [
+          "Taking ethane as the parent and calling it N-propylethanamine. The LARGER chain on nitrogen is the parent.",
+          "Writing propanamine without the position number. The amine group is on carbon 1, so it is propan-1-amine."
+        ],
+        "memory_tip": "Larger chain becomes the parent, smaller chain goes behind the N-.",
+        "margin_note": "Adding \"2° amine\" is not asked for here but costs one word and shows the structure was read."
+      },
+      {
+        "id": "s2_nitrile",
+        "kind": "text",
+        "label": "Name of (ii)",
+        "marks": 1,
+        "mark_note": "Name (ii)",
+        "lines": [
+          "ii) PhCH₂CN, that is C₆H₅–CH₂–C≡N",
+          "The nitrile carbon counts as C-1, so the",
+          "chain is two carbons: ethanenitrile.",
+          "The phenyl group is on carbon 2.",
+          {
+            "text": "2-phenylethanenitrile",
+            "style": "boxed"
+          },
+          "(common name: phenylacetonitrile)"
+        ],
+        "why": "In a nitrile the carbon of the –C≡N group is part of the parent chain and is numbered 1. Counting it makes the parent chain two carbons long, so the name is ethanenitrile.",
+        "common_mistakes": [
+          "Naming it phenylmethanenitrile. The nitrile carbon itself is counted, so the chain has two carbons.",
+          "Naming it benzyl cyanide only. That is the common name; the IUPAC name is wanted."
+        ],
+        "memory_tip": "Count the nitrile carbon as carbon 1 and the name grows by one carbon.",
+        "margin_note": "Write the expanded structure C₆H₅–CH₂–CN first. The condensed Ph form does not show the chain length."
+      },
+      {
+        "id": "s3_bromoaniline",
+        "kind": "text",
+        "label": "Name of (iii)",
+        "marks": 1,
+        "mark_note": "Name (iii)",
+        "lines": [
+          "iii) benzene ring with –NH₂ and –Br at the",
+          "1 and 3 positions.",
+          "The –NH₂ group is the principal group, so it",
+          "takes position 1 and the ring is aniline.",
+          "Bromine is then at position 3, the meta",
+          "position.",
+          {
+            "text": "3-bromoaniline (3-bromobenzenamine)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Aniline is a retained IUPAC name, and the carbon carrying the –NH₂ group is numbered 1 in it. The bromine is two carbons away round the ring, so its locant is 3, which is the meta position.",
+        "common_mistakes": [
+          "Numbering from the bromine and calling it 3-aminobromobenzene. The amine is the principal group and takes position 1.",
+          "Writing m-bromoaniline only. The o/m/p letters are the common system; the number is what the IUPAC name uses."
+        ],
+        "memory_tip": "The –NH₂ carbon is always number 1 in aniline, so meta is 3 and para is 4.",
+        "margin_note": "Either 3-bromoaniline or 3-bromobenzenamine is accepted. Write one of them, not a mixture."
+      },
+      {
+        "id": "s4_isocyanide",
+        "kind": "text",
+        "label": "Name of (iv)",
+        "marks": 1,
+        "mark_note": "Name (iv)",
+        "lines": [
+          "iv) benzene ring with –CH₂–NC and –Br at",
+          "the 1 and 4 positions.",
+          "The –NC group is an isocyanide, joined to",
+          "the ring through a –CH₂– group.",
+          {
+            "text": "4-bromobenzyl isocyanide",
+            "style": "boxed"
+          },
+          "also written 4-bromophenylmethyl",
+          "carbylamine, or systematically",
+          "1-bromo-4-(isocyanomethyl)benzene."
+        ],
+        "why": "An –NC group is named as an isocyanide or a carbylamine, and it is joined through the carbon of the –CH₂– group, not directly to the ring. The bromine is directly opposite, at position 4, which is the para position.",
+        "common_mistakes": [
+          "Naming it a nitrile or a cyanide. The group is –NC, joined through nitrogen, so it is an isocyanide.",
+          "Attaching the –NC group straight to the ring. The –CH₂– group is between, which is why the name uses benzyl or phenylmethyl."
+        ],
+        "memory_tip": "–CN is a cyanide, –NC is an isocyanide or carbylamine. Read which atom is joined to the carbon chain.",
+        "margin_note": "Any one of the three accepted forms earns the mark. Do not write two names joined by \"or\" and leave the choice open."
+      }
+    ]
+  },
+  "insider_note": "Four names, one mark each, so a wrong name costs exactly one mark and no more. The two that are usually lost are (ii), where the nitrile carbon must be counted into the chain, and (iv), where –NC is an isocyanide and not a cyanide."
+}

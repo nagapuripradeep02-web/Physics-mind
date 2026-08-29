@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_pol_polyamide_homopolymer_or_copolymer",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Polymers (Chemistry-II)"
+  },
+  "chapter": "Polymers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Is –[NH₂–CHR–CO]ₙ– a homopolymer or a copolymer?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer with its reason",
+      "marks": 1
+    },
+    {
+      "label": "The correct repeating unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 12 (Polymers), printed as VSAQ 11 on book p.97. The 1+1 mark split is a CLAIM, not the board scheme, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 9 (POLYMERS), book pp.95-98 (PDF pp.34-37), which is unit 12 in this bank. The chapter is VSAQ-only: it prints 24 Very Short Answer Questions and has no Short Answer and no Long Answer section at all, and no PROBLEMS. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK STRUCTURE CORRECTED: the printed question draws the repeating unit as [NH₂–CHR–CO]ₙ. That is wrong. Inside a chain the amide nitrogen carries one hydrogen, not two, so the unit is –[NH–CHR–CO]ₙ–, which is how NCERT prints it. The question text on this card reproduces the book as printed, and the correct unit is written and explained in the second step. The printed answer (\"It is a homopolymer. It is a polyamide. It is a polymer of amino acid\", with H₂N–CH(R)–COOH) is correct and is kept; the reason, that one amino acid supplies both the amine and the acid end, is added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Polymers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "The answer with its reason",
+        "marks": 1,
+        "mark_note": "Answer and reason",
+        "lines": [
+          "It is a homopolymer.",
+          "It comes from one kind of monomer, an",
+          "α-amino acid:",
+          {
+            "text": "H₂N–CH(R)–COOH",
+            "style": "eq"
+          },
+          "The –NH₂ of one molecule joins the –COOH",
+          "of the next, releasing water, so it is",
+          "also a polyamide and a condensation",
+          "polymer."
+        ],
+        "why": "What separates a homopolymer from a copolymer is the number of monomer types, not the number of different groups inside the repeat unit. One amino acid supplies both the amine end and the acid end, so one monomer is enough and the polymer is a homopolymer.",
+        "common_mistakes": [
+          "Calling it a copolymer because the repeat unit has two groups, –NH– and –CO–. Both come from the same monomer.",
+          "Writing that it is an addition polymer. Water is released at each link, so it is condensation."
+        ],
+        "memory_tip": "Count monomer types, not functional groups. One amino acid means one monomer.",
+        "margin_note": "The word homopolymer plus the monomer H₂N–CH(R)–COOH is the whole mark."
+      },
+      {
+        "id": "s2_repeat_unit",
+        "kind": "boxed_final",
+        "label": "The correct repeating unit",
+        "marks": 1,
+        "mark_note": "Repeating unit",
+        "lines": [
+          {
+            "text": "Repeat unit: –[NH–CHR–CO]ₙ–",
+            "style": "boxed"
+          },
+          "Inside the chain the nitrogen carries one",
+          "hydrogen, not two, because the other",
+          "hydrogen leaves in the water molecule.",
+          "Only the far end of the chain still has a",
+          "free –NH₂ group.",
+          "Nylon-6 has a repeat unit of the same",
+          "kind, –[NH–(CH₂)₅–CO]–."
+        ],
+        "why": "Writing NH₂ inside the bracket would give the nitrogen four bonds and a positive charge, since it already has one bond to the chain carbon and one to the neighbouring CO. The amide nitrogen keeps exactly one hydrogen, which is why the group is a secondary amide.",
+        "common_mistakes": [
+          "Writing NH₂ inside the repeating unit. Only one hydrogen is left on the nitrogen once the amide link forms.",
+          "Writing that no small molecule leaves. One water molecule leaves for every amide link formed."
+        ],
+        "memory_tip": "An amide link inside a chain is –CO–NH–, with one hydrogen on the nitrogen.",
+        "margin_note": "Redrawing the unit correctly is the safest way to earn this mark, because it shows why one monomer is enough."
+      }
+    ]
+  },
+  "insider_note": "The one word answer is homopolymer. The mark students lose is the reason: it comes from a single amino acid, H₂N–CH(R)–COOH."
+}

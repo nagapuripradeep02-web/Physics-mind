@@ -1,5 +1,108 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — Senior Chemistry: the book's SIXTH subject and its FIRST second-year paper (2026-08-28, `feat/ipe-answerbook-sr-chemistry`)
+
+**Bottom line: 335 cards over 18 units are authored, catalogued and registered, taking the bank 991 → 1326 questions. The three things worth carrying forward are not the cards. My own derived unit table was wrong by two and a unit agent caught it. Rule 41 turned out to be enforced by nothing — the build's check is sixteen chat phrases written to grade Vidi's replies. And the source book's worst errors BALANCE, so no arithmetic or schema gate could ever have seen them.**
+
+- **`year_cycle: "second_year"` existed in the schema and was read by nothing.** All 991 prior cards are `first_year`. One PAPER = one subject value, so this is `chemistry_2`, not more units under `chemistry` — unit numbers namespace per subject and unit 1 would have collided. Ids `ts_ipe_c2_<abbr>_<slug>`; source is the chemistry half of "FAST TRACK IPE for Sr. Students", 59 pages, **PDF p.1 = book p.62**.
+- **12 printed chapters became 18 units, and that was forced.** Printed chapters 7 and 12 are containers whose unnumbered shaded sub-boxes each restart numbering at 1, and `ref` must be unique within a unit — a merged chapter 7 would carry four `vsaq1` refs and fail the build. The same constraint forced two cards for the one question the book prints twice at two mark weights (PCl₅ reactions, 4 marks in unit 7 and 2 in unit 15): `merge_units.py` rejects a `question_id` claimed by two units.
+- **THE UNIT TABLE WAS WRONG BY TWO AND AN AGENT CAUGHT IT.** My index read unit 16 as VSAQ 1–3 and the subject as 333 cards; that unit's agent counted 1–5, named both missed questions, and was confirmed against book p.109 — the index had stopped at a **column break**, and in this book a chapter can hand over mid-column. 17 of 18 units matched. This is the zoology lesson in a new disguise: the orchestrator's table is a hint, and every agent must count its own unit and report.
+- **Rule 41 is enforced by nothing, and the pilot proved it.** The build calls `idiomsIn()` — sixteen chat phrases ("piece of cake", "nail it") written to grade Vidi's replies, never an authoring check. Unit 1 passed every gate carrying "the ion moves house inside the crystal" and "Lattice = the whole wall. Unit cell = one brick". Added `answer-book/tools/register_scan.mjs`, **advisory by design**: chemistry's own vocabulary (a base donates, an electron jumps, is trapped) looks exactly like personification, and a hard gate would train authors to write worse chemistry. It stayed a partial net across all 18 units — 0–9 candidates reported per unit against hand sweeps finding 1, 3, 13, 14, 15, 16, 20, 24, 26, 29, 32, 38 and 56.
+- **`build:answers` cannot be used DURING authoring, for two independent reasons.** It hard-fails on "authored question X is not listed in any unit" and a unit's cards do not reach `units.json` until the fragments merge at the end; and with nine agents on one desk, one agent's build aborts on another's half-written file. Added `src/scripts/check_cards.ts` — the zod schema, the §1c completeness pass, Rule 41 and KaTeX over a NAMED set, silent about the manifest. Registering the two build-blocking sites early (SUBJECTS, the zod enum) was a deliberate deviation from the plan so 335 cards were never authored blind.
+- **The source is wrong in ~130 places and the worst cases balance or parse.** `Fe + 2HNO₃ → FeO + H₂O + 2NO₂` balances; conc. HNO₃ cannot leave iron at +2. The transition-element test "unpaired d electron in the penultimate shell" gets zinc right by accident and **copper wrong** — the definition the whole d-block chapter rests on. FeO offered as an interstitial compound. `(ns² ns⁶)` for a closed shell. A polyamide repeat unit `[NH₂–CHR–CO]ₙ` giving nitrogen four bonds. Deacon's process unbalanced on p.86 and correct on p.88. The smelting paragraph printed verbatim under the Roasting heading. Every case is written correctly with the printed claim recorded in the step's `why` and `verification.note` — never silently followed, never silently fixed. One number (German silver, ranges summing to 90–125%) is reproduced WRONG on purpose because it is what the book marks, with the impossibility named on the card.
+- **A judgement split, kept deliberately.** Unit 2 VSAQ 12 OVERRIDES the book — its "0.617 M" is the molality printed with the unit M, verified independently — while unit 2 SAQ 4 does NOT override (8 g from the dilute approximation where exact Raoult gives 10 g), because NCERT prints 8 g too and a student should not hand an examiner a number nobody expects. Both recorded; a teacher settles both.
+- **Four more figure defects that every gate passed.** Leader lines struck through the `+`/`−` signs they pointed at; XeF₆ drawn as a REGULAR octahedron on a card whose own `common_mistakes` said the bonds are not evenly spaced; a glucose ring bond running to the anomeric `–OH` instead of C1; and carbon 6 (`CH₂OH`) missing outright. Also found: **`figures:gallery`'s bounds check estimates an `sm` label at `8.5 × len × 0.8`, under-measuring real Kalam by ~10%** — it reported "no out-of-bounds labels" on a caption clipped at the canvas edge.
+- **The obvious Vidi probe was a trap.** Chemistry-I is baited with the **Nernst** equation — a SECOND-year topic sitting on two Chemistry-II cards, so reusing it would test a refusal that must never happen, the exact mistake chemistry inherited from physics. Added `HENDERSON_PROBE`, chosen the way that note prescribes: grepped all 1,326 questions first (henderson/hasselbalch/clapeyron zero; markovnikov/diels-alder also zero but carry no equation for the substance regex to fire on). `NERNST_PROBE`'s own claim of "zero nernst hits across the bank" is now stale, and says so.
+- **Rule 40 paid off before a card was written.** Three desks had independently produced the same figure-pacing tools; a fourth copy would have been written here. Ported byte-identical from the zoology branch, **verified by blob hash** so a later zoology merge sees identical content at identical paths, and landed as the first commit. Its first run put a number on the founder's "figures rush" complaint: 1,285 warnings across the 98 legacy figures, strokes at 200–518 u/s against a 160 ceiling.
+- **`chemistry_2` joins NO stream, deliberately.** `mpc` is first year and adding a second-year paper would put Chemistry-II in the junior book. The door already carries a second-year cell at `stream: null`; lighting it needs the `mpc_2` stream and `window.PM_YEAR` that de-hardcode "Telangana IPE · First year" — the **senior-physics desk's** work, pushed on `feat/ipe-answerbook-sr-physics` but not yet on master. Then it is a one-line change. Chemistry-II is meanwhile complete in the FULL build and correctly absent from the deployed first-year stream.
+- **Verification:** `tsc` 0 · `build:answers` passes at 1326 questions · `vitest` 443/443 · `check:cards` clean on all 335 · `check:figure-pace` PASS strict over 21 figures, all retimed to a uniform 70 u/s · `measure:wrap` **0.0% over 3,307 lines** (best in the bank; Chemistry-I shipped 4.1%) · **zero KaTeX added**, the chemistry invariant holds · `merge_units.py` validated both directions and the diff was 2,806 insertions with ZERO deletions · the two Vidi copies byte-identical · every touched file still CRLF with zero bare LF. The three fleet sweeps raised 1_200_000 → 1_800_000 (~1,485 entries × ~0.9 s).
+- **Not done, deliberately:** no PR, not deployed (`deploy:answers` is founder-only, Rule 17) · no enumeration sweep, so the bank is asked-only for this subject · **both structural checks are IMPOSSIBLE** for Chemistry-II (no second book, no second-year chemistry paper in the corpus) and that sentence is on all 335 cards verbatim — a later session must never read "not checked" as "checked and clean" · nearly every NUMBER on these cards is standard NCERT Class 12 and **NCERT is not in this corpus**, which makes those the highest-value cells for a verifying teacher.
+## 📗 SESSION — THE SECOND YEAR OPENS: Senior Inter Physics complete, 16 chapters / 256 cards, then truth-checked (2026-08-28 → 29, `feat/ipe-answerbook-sr-physics`, PR #167)
+
+**Bottom line: the IPE Answer Book has a SECOND YEAR, and its first paper is finished and reviewed. 256 cards, 785 steps, 83 figures, 16 units — every one passing schema, paper shape, mark sums, header, the house Rule-41 list and the pace gate, at 4141 lines and 0% wrapping. The year's rails had been committed and idle since the book was built, so opening it was a registry pass plus data. An API session limit killed 13 of 16 chapter agents mid-run and the work was rebuilt from that state without losing a card. A three-agent truth-check then re-derived every formula and every numerical in all 256 cards and found 3 WRONG and 6 MISLEADING — all fixed.**
+
+### What was built
+
+- **`physics_2`, not "physics units 15-30" — load-bearing, not tidy.** `notebook.js` `LEGACY_PHYSICS_KEYS` remaps exact `physics-N` unit keys for the 2026-27 first-year renumbering, so a second-year chapter filed under `physics` would have been **silently remapped onto a first-year unit**. Registered at the zod enum, `SUBJECTS`, `SUBJ_LABEL`, `subjectWord`, the Vidi id-to-subject ladder in both byte-identical copies, `build_og_card.ts` `LABELS` (that one hard-fails on an unknown stream), and `push_answer_content.ts` `STREAM_SUBJECTS`.
+- **`mpc_2` is the stream; the door needed one line.** The build already refused unless exactly ONE year cell resolves live, so pointing `TRACKS.mpc.second_year.stream` at `mpc_2` lit it and the artifact cannot advertise a book it does not contain. Read back from `dist-mpc_2`: MPC/Second year live, 16 units, 256 questions, every other cell dark.
+- **The year was a hardcoded string in THREE student-facing places** — the catalog eyebrow, the shell's static fallback, and the og description — and the JS one overwrites the HTML one, so fixing either alone still showed "First year". Now `STREAMS[stream].year` → `window.PM_YEAR`. **The moment a constant appears in more than one student-facing string it is data, and the copy that disagrees is the one nobody looks at.**
+- **Four tools ported from the unmerged zoology branch** where they were stranded: `pace_figures.ts`, `check_figure_pace.ts`, `pathLength.ts`, `measure_candidates.mjs`. Without them ~83 new figures would have shipped at the 200–770 u/s the founder rejected.
+- **New tooling:** `answer-book/tools/merge_p2_units.mjs` (the only writer of physics_2 units into units.json; proves a byte-identical round trip before writing, so it cannot reformat another subject) and `answer-book/tools/check_p2_cards.ts` (an independent audit that re-derives every claim from the files rather than trusting an agent's report).
+
+### The source book — 16 chapters, and wrong in at least seventeen places
+
+**It is a 16-chapter book, not 15**: a VSAQ-only *Communication System* closes it, which NCERT dropped in 2023 but which is the **only fully pen-ticked page in the scan**. Nine of sixteen chapters have **no LAQ section**; none was invented. Every error below is written correctly on the card with the book's position in that step's `why`:
+
+K > 1 for "controlled" · "fusion" for fission · fission "at room temp." · beryllium as a control rod (it is a moderator) · thermal neutrons at 0.025 **MeV** (eV) · "1u = 931.5 MeV" equating a mass to an energy · pnp/npn transistor symbols **swapped** · a figure drawing **F in the plane of the page** when F = i(l × B) is perpendicular to it · an axial-line derivation **carrying q twice** and dropping a factor of 2 · ε = dΦ/dt **missing the minus that IS Lenz's law** · a NOR gate captioned and labelled as NAND · Lyman "ultraviolet which is the visible region" · a hydrogen nucleus labelled +2e · ionosphere D/E in the "stratosphere" · phase modulation labelled (FM) · √70 printed as 8.27 · a 100 W bulb stated at 200 V and solved at 220 V.
+
+### The truth-check — 3 WRONG, 6 MISLEADING, in cards that had passed every gate
+
+Three agents re-derived every formula and redid every numerical across all 256 cards, in three slices. **The gates check structure; nothing checks whether the physics is TRUE** — the same pass over first-year physics once found 15 real errors in 198 cards that had passed every gate. It paid again.
+
+**WRONG:**
+- `mcm_torque_on_loop_and_galvanometer` — "the radial field gives the maximum **flux** through the coil". A radial field puts B in the PLANE of the coil, so the flux is NBA cos 90° = **zero**. What it maximises is the **torque**, which is why the scale is uniform — and the card's own next step already said so, so **the two steps contradicted each other**.
+- `ray_compound_microscope_magnification` — `m = −v/u` is the **mirror** form. For a thin lens `m = v/u`, and the inversion comes from u being negative. Using both `−v/u` AND `u = −f₀` double-counted the sign, so the card's own eq (2) did not produce its own boxed eq (3). The boxed results were right; **the step carrying the mark was wrong**. It also disagreed with `ray_concave_lens_image_one_tenth` in the same chapter.
+- `nuc_stellar_energy_...` — the CNO cycle credited to **Bothe**, not Bethe. Bothe is the beryllium-radiation physicist in this same chapter's neutron card, so Ch.14 was crediting one man with two unrelated discoveries.
+
+**MISLEADING:**
+- `ecf_coulombs_law` — the step titled "Force in a medium" derived F = 1/4πε·… and then **BOXED the free-space ε₀ form**. The only boxed line in 256 cards that contradicted its own step.
+- `emw_xray_average_wavelength` — claimed 10⁻¹⁰ m is "the middle of the range on the powers of ten". The geometric mid-point of 10⁻⁸ and 10⁻¹³ is 3 × 10⁻¹¹. **A student following the stated method marks their own boxed answer wrong.**
+- `emw_infrared_detecting_animal` — the book's false generalisation ("cold-blooded animals detect infrared") sat on the **answer line** with the true pit-organ physics only in the `why` — the house rule exactly inverted.
+- `ray_critical_angle_total_internal_reflection` — the two-panel figure drew *i = C* and *i > C* at the **same angle** (54.5° both). The one thing the figure exists to contrast. Now 54.5° vs 60.9°.
+- `ray_compound_microscope` objective figure — the undeviated ray missed the optical centre and the two construction rays crossed **90 units short of the drawn image**. Re-aimed to pass (150, 70.1) and reach the image tip.
+- `ray_formation_of_rainbow` — the reflection inside the drop is **partial, not total**: about 40° against a critical angle of 48.8°, by the card's own numbers. That is why a rainbow is faint. The book's wording stays on the line (it is what is marked); the discrepancy is now recorded.
+
+**Also fixed:** two LAQ insider notes telling the student the **wrong number about their own marks** ("four marks each way" where the splits are 5/3 and 3/5) · three circuit figures drawing current out of the **negative terminal** (verified from plate lengths before touching them) · two coaxial solenoids declared to share a cross-sectional area · θ undefined on the VSAQ where students first meet τ = NiAB sin θ · a memory tip reading "over" for a multiplication · a **circular proof** (Ampère's law proved by substituting the long-wire field the neighbouring card derives FROM Ampère's law) · a "drawn to scale" claim the figure never met · the book's non-existent 6463 Å recorded (Hα is 6563) · two reactor labels outside the core they name · the only KaTeX line in 256 cards, where Unicode fits one row.
+
+**All twelve known book corrections verified as landed and not overshot**, including the transistor arrows checked from raw path coordinates. **Ch.8, 10, 12, 15 and 16 came back with no findings at all.**
+
+### THREE DEFECTS IN MY OWN TOOLING — every one found by the agents using it
+
+The pattern is the lesson: **a tool's author is the worst person to test it.**
+
+1. **`check_p2_cards.ts` printed "✓ every card passes" over an EMPTY SET.** It read `answer-book/questions/` alone, so a chapter still parked in `wip/` matched nothing and reported success. Two agents hit it the same afternoon and both silently worked around it by mirroring cards into a scratch cwd rather than reporting it. Now scans both directories and REFUSES an empty match (control: a bogus prefix exits 1).
+2. **It kept a private Rule-41 word list that skipped `why`**, so it disagreed with the build — which imports the house `idiomsIn` from `vidiChecks.ts`, shared with the shakedown that grades Vidi. It passed an idiom the build then rejected. Now imports the same list and scans the same fields. One standard, imported, never copied. **This matters because an agent working on a PARKED chapter cannot run the build, so this tool is its only Rule-41 gate.**
+3. **`merge_p2_units.mjs`'s round-trip guard compared the manifest MINUS physics_2 to the file** — true only before the FIRST merge, so it could never have merged a fourth chapter. **A proof that expires after one use is not a proof.** It failed SAFE (refused rather than wrote), which is exactly why nobody noticed.
+
+Plus: its summary line **overstated**, reporting nine already-merged chapters as "not yet merged" — the same class as the desk-audit alarm that once counted safe commits as stranded. And it gained `--only`, because all-or-nothing merging blocked a finished chapter behind an unfinished one.
+
+### Physical constraints every future paper will meet
+
+- **`ms: 0` is the DOCUMENTED authoring placeholder** that `pace_figures.ts` fills. Nine cards read as 36 schema failures until the pacing step ran. `--prefix` reads `answer-book/questions/` only, so on parked cards use `--file <path> --write`.
+- **A stroke longer than about 720 units cannot pass the pace gate** — `paceMs` clamps at 4500 ms, so 750 units draws at 167 u/s against a 160 ceiling. Split it. **Four separate agents hit this independently.**
+- **Boxed lines have a 535 px budget against 568 for plain**, which a character-count proxy cannot catch. Twenty boxed lines shipped over budget before `measure_wrap` ran on the merged tree.
+- **`{"type":"pause"}` does not exist in this branch's schema** (the union is `stroke | label`, and `notebook.js` has no pause handling), so figures cap at 15 drawn elements and a bigger diagram splits across two `kind:"diagram"` steps. `check_figure_pace.ts` now **PROBES the schema** and resumes enforcing phases by itself when the phased-figure mechanism lands as a platform change (Rule 40 — schema AND player).
+- **The gates cannot see a bad picture.** Rendering and looking caught cramped microscope figures with six labels on ray lines, a p-n junction racing at 176 u/s, and a diode triangle that cannot be filled. Every such finding came from looking, never from a gate.
+
+### e2e
+
+Full suite **57 passed / 2 failed** at 59 min, and the two failures were different kinds of thing:
+- **A real defect** — `atm_bohr_hydrogen_spectrum` labels "n = ∞" and "n = 3" collided at 29 figure-units against a 40-unit clearance rule. The levels converge upward because Eₙ = −13.6/n², which is right, but it crowded the labels. Widened to 50/55 while keeping the convergence ORDERING; the "drawn to scale" claim in that step was corrected too, since it was never true and the fix made it less so.
+- **A budget, not a bug** — the widest sweep (questions × cuts) TIMED OUT at 20 min. Its own comment gives the arithmetic: ~1.05 s/question, so 1247 questions needs ~21.8 min; the old ceiling held ~7% headroom. **The product was verified before the test was touched**: the mark sums that sweep checks are already held by both `check_p2_cards.ts` and the build, both green. Raised 1_200_000 → 2_400_000, ~1.8× the projected need, which also covers Chemistry-II and Maths-2A/2B (~1900 questions → ~33 min). **Never trimmed the sweep.**
+
+**A run was invalidated TWICE by rebuilding `dist/` underneath it** — the suite reads `answer-book/dist/index.html`, so any `build:answers` mid-run changes the artifact under the test. Both were killed and their logs discarded rather than reported. A `nohup … &` from the Bash tool is also NOT detached enough to survive; `Start-Process` from PowerShell is.
+
+### MATHS 1A / 1B — the 2026-27 change, and what it means for 2A / 2B
+
+Read from `docs/SYLLABUS_2026_27.md` on the sibling desk (researched 2026-08-20, re-verified 2026-08-28 against the Telugu Akademi **Maths 1A 2026-27 textbook**, page "MODEL QUESTION PAPER w.e.f. 2026-27", Scribd doc 1034809761 pp.5-7, plus NTV/TV9/Eenadu/Newsmeter May-2026 reform coverage):
+
+- **Maths 1A and 1B moved from 75 written to 60 written + 15 Activity-Based Learning per paper** — and, the part that actually bites, **the SHAPE became the Physics shape**: A 10×2 = 20 · B any 6 of 8 ×4 = 24 · C any 2 of 3 ×**8** = 16. It was A 10×2 · B any 5 of 7 ×4 · C any 5 of 7 ×**7**.
+- **LAQ marks are now 8, not 7.** Long answers fell from 35 of 75 (47%) to 16 of 60 (27%); short answers rose 20/75 → 24/60; very short 20/75 → 20/60. **99 maths LAQ cards (65 in 1A, 34 in 1B) were sitting at 7 marks and were re-cut to 8 on 2026-08-28**, judgement per card, with a provenance sentence appended to each `verification.note`.
+- **A chapter's WEIGHT changed even where its content did not.** Mathematical Induction was an all-LAQ chapter (10 cards, all Section C) and now sits behind a 2-of-3 choice worth 16 marks. **The Fastrack star ranks for maths were compiled under the old weighting** — they still say what was ASKED, not what now weighs most.
+- **Maths 1A is 12 chapters**, with **Sets & Relations (1)** and **Sequences & Series (3)** NEW.
+- **The lesson, recorded because it nearly shipped wrong:** *"60 + 15 for maths" was the visible fact; the invisible one was the section shape — a 7-mark LAQ bank quietly wrong on every card.* **Check the model paper, not the total.**
+
+**The inference this session adds, and it is a TRAP for Maths 2A/2B — flagged, NOT verified:** the reform is **first year only**; second year switches in **2027-28**. Physics-II therefore keeps the same `ABC_60` shape its first-year sibling uses, which is why `physics_2` needed no new section table. **Maths 2A/2B is the opposite case**: a second-year maths student sitting March 2027 should still be on the **OLD 75-mark paper** (A 10×2 · B any 5 of 7 ×4 · C any 5 of 7 ×**7**), *not* the new 60-mark shape its first-year sibling just moved to. So when Maths 2A/2B opens it needs its own `PAPER_PATTERNS` row with a **7-mark LAQ and a 75 total** — and anyone reusing `ABC_60` by analogy with `physics_2` would put every long answer at the wrong mark, which is exactly the defect the 1A/1B re-cut just repaired in the other direction. **This is an inference from "the reform is first year only", not a read of a second-year model paper. Verify against a Maths 2A model paper before authoring a single card.**
+
+### Not done, deliberately
+
+- **Every mark split is invented** and every card says so; a Telangana IPE teacher has to confirm them — the numericals filed under LAQ numbering most of all, where 8 marks for four lines of arithmetic is a placeholder shape, not a mark scheme.
+- **A visual pass over the figures is still owed.** All three reviewers verified figure geometry by computing coordinates and each said plainly they had not rendered anything. Ch.15's 19 figures are the densest place to spend it.
+- **No reviewer opened the source PDF**, so every "the book prints X" claim rests on the cards' own notes; a mis-transcription would look correct.
+- **The Wheatstone bridge figure has no cell drawn.** It sits at 14 of the 15-element cap, so it needs a split across two diagram steps — flagged rather than half-done.
+- **Ch.13 SAQ 4** (Bohr's postulates + radius + energy) is the paper's strongest 8-mark candidate and stays at 4; **Ch.15 SAQ 8** duplicates the full-wave half of LAQ 1 and may want `cuts[]`. Both recorded on the cards.
+- **Ch.16 Communication System may no longer be examinable** (NCERT dropped it in 2023); authored as instructed and flagged on every card.
+- No `deploy:answers`, no `content:push`, no `ab_content` edit — Rule 17.
 ## 🦋 SESSION — Answer Book: **ZOOLOGY OPENS — the whole Junior Zoology book, 8 units, 190 cards, 32 phased figures** (2026-08-25, desk `physics-mind-ipe-zoology`, `feat/ipe-answerbook-zoology`, commits `ab34a71d` → `ae91927b`, pushed, no PR yet)
 
 **The book's FIFTH subject, and the first with phased "watch it drawn" figures.** Bank
@@ -15123,3 +15226,105 @@ All 145 cards carry `memory_tip`, `margin_note` and `insider_note` at **100%**, 
 **Verified at every unit commit:** `tsc --noEmit` 0 errors · `npm run build:answers` PASS · `npm run check:figure-pace` PASS for `ts_ipe_z` · `npx vitest run src/lib/answerBook` 42/42. Built page: 8.1 MB, all 145 z2 ids embedded, both Zoology chips present.
 
 **Next session's first task: the PR — but NOT before the botany-2 desk's.** Both desks edit `answer-book/units.json`, `src/schemas/answerBook.ts`, `src/scripts/build_answer_book.ts` and `answer-book/notebook.js`, and will conflict. **Merge ONE PR to master, then in the other desk `git merge origin/master`, resolve those four files additively (keep BOTH new subject values in the enum, the array and the maps), re-run `build:answers`, and only then open its PR.** Do not open both at once. **Blockers:** none for the content; the merge order is the only coordination needed.
+# Session — 2026-08-28/29 · Botany-II opens, and closes: the whole 167-question book
+
+**Desk:** `feat/ipe-answerbook-botany-2`, worktree `Physics-mind-ipe-answerbook-botany-2`.
+**Based on `origin/feat/ipe-answerbook-zoology`, NOT on master** — the phased "watch it drawn"
+figure engine (`pause` elements, `pace_figures.ts`, `check_figure_pace.ts`, `pathLength.ts`) lives
+only on that branch, and master's figures still run at 200–770 units/second. That is the rushing
+the founder named, and Botany-II was required to be slow.
+
+**Source:** "Sr. Botany — My Baby Bullet-Q" (Sri Publishers), 66 pages, read directly from the
+scan at every stage — never from a previous transcription. PDF page == book page.
+
+## What shipped
+
+**167 cards — the complete book.** 6 LAQ · 46 SAQ · 115 VSAQ across 14 units, matching the 2022
+BIE blue print chapter for chapter. Every VSAQ, SAQ, LAQ and Star Question Plus the source prints.
+
+| Unit | Cards | | Unit | Cards |
+|---|---|---|---|---|
+| 1 Transport in Plants | 20 | | 8 Viruses | 8 |
+| 2 Mineral Nutrition | 7 | | 9 Principles of Inheritance | 16 |
+| 3 Enzymes | 6 | | 10 Molecular Basis of Inheritance | 23 |
+| 4 Photosynthesis | 13 | | 11 Biotechnology Principles | 13 |
+| 5 Respiration in Plants | 3 | | 12 Biotechnology Applications | 11 |
+| 6 Plant Growth and Development | 10 | | 13 Strategies for Enhancement | 12 |
+| 7 Bacteria | 10 | | 14 Microbes in Human Welfare | 15 |
+
+Units 5, 7 and 14 are small BY DESIGN: the blue print gives Respiration one Section-C question and
+nothing else, and gives Bacteria and Microbes VSAQ only. The book prints no SAQ or LAQ for them and
+**none was invented** — the same discipline Botany-I used.
+
+**17 phased figures**, 26–65 seconds each at 70 units/second. Two of them carry marks, because
+only two questions in the paper say "draw": the chloroplast (global 17) and the lac operon
+(global 41), and the book prints no written answer for either.
+
+## Four things worth carrying forward
+
+**1. The book is wrong 21 times, and every case is written correctly on the card with the book's
+printed position recorded in that card's `verification.note`.** The clearest: a co-dominance F₂
+ratio printed "1 : 2 : 3" (four Punnett boxes cannot give six offspring) with the homozygote
+mislabelled; an mRNA answered as the TEMPLATE strand with U; Hershey and Chase said to have worked
+on "bacteria called bacteriophages"; "transport saturation INCREASES facilitated diffusion" when
+saturation is the CEILING that distinguishes it from simple diffusion; EcoRI "recognises GAA
+sites" on one page and GAATTC on another. Full table in `docs/BOTANY_2_START_HERE.md` §4.
+
+**2. The two checks that are structurally impossible, and what replaced them.** One source book,
+a physics-only TSBIE Basic Learning Material, and no Botany-II board paper in the corpus — so the
+two-book union check and the board back-test cannot be run. Recorded in `units.json`, in the
+start-here doc, and in **all 167 cards**. What the book does have is its own cross-reference web:
+five Model Guess Papers citing `P <page>(<global qno>)`, 105 citations, now checked by
+`npm run backtest:botany2`. **105/105 resolve.** A deliberate wording divergence goes in an
+explicit `ALLOWED_DIVERGENCE` map with its reason, so a NEW mismatch still fails.
+
+**3. Eight figure defects were found by RENDERING and LOOKING — none was visible to any gate.**
+Guard cells drawn thinner than the pore between them, so a stoma read as one cell with a hole; an
+infection thread running out through the wrong wall; chain arrows striking through the compound
+names beside them; a Krebs layout built and thrown away twice; leaders anchored so each label got
+its own underline; all three captions of the rDNA chart struck through by its own arrows. `check()`,
+the pace gate and the build passed every one of them. **Render every figure and look at every phase.**
+
+**4. Wrap rate 0.0% — the best in the fleet.** 92 lines wrapped past their ruled row on first
+measure. `answer-book/tools/reflow_lines.mjs` is new and works on ANY prefix: it moves trailing
+words down, never changes a word, never splits a boxed or equation line, refuses to glue a tail
+onto a line opening a new numbered item, and is idempotent. Its own first version silently
+under-reported by measuring before Kalam loaded — it now waits, as `measure_wrap.mjs` does.
+
+## Also landed
+
+- `botany_2` wired as the sixth paper. The silent one again: `notebook.js` `subjectWord` fell
+  through to `'physics'`, so every card would have read *"The physics and the method are checked."*
+  Now matched on the `botany` PREFIX, so a third botany paper cannot fall through either.
+- Both botany papers relabelled **Botany-I / Botany-II**, the Maths-1A/1B disambiguation.
+- `check:figure-pace --strict` now takes a COMMA-SEPARATED prefix list, so subjects built under the
+  phased-figure contract accumulate instead of replacing one another.
+- Three e2e fleet-sweep budgets raised 1.8M → 2.4M ms. Raised, never trimmed.
+- Two `tsc` errors carried over from the zoology desk fixed: `valcheck_ad1.ts` and
+  `validate_bhw.ts` hardcoded a `C:/Tutor` Windows path, so `npx tsc --noEmit` failed on any
+  other machine.
+
+## Verified
+
+`build:answers` PASS (14/14 units, 1303 entries) · `tsc` 0 errors · `vitest` 416 passed ·
+`smoke:answers` **38 passed** · `check:figure-pace` PASS for `ts_ipe_z1,ts_ipe_b2` ·
+`backtest:botany2` 105/105 · `measure_wrap` **0 wrapping lines of 2702** · every figure rendered
+and read at every phase.
+
+## Open
+
+1. **Global 168, the Calvin cycle — FLAGGED FOR FOUNDER REVIEW, not decided.** The LAQ chapter
+   cross-references it and its printed answer runs two pages with a cycle diagram, which is
+   Section-C-grade. But the blue print gives Photosynthesis 6 marks with no Section-C slot and the
+   book prints it outside every LAQ chapter. Authored at 4 marks; **no 8-mark form invented**. If a
+   real paper ever sets it at 8, add a cut.
+2. **No teacher has verified any mark split.** Every card says so.
+3. **The PR base.** This desk sits on `feat/ipe-answerbook-zoology`, so its PR must target that
+   branch, or wait for zoology to merge to master first.
+4. **Botany-II and Zoology-II collide on four shared files** — `units.json`, `answerBook.ts`,
+   `build_answer_book.ts`, `notebook.js`. Merge one PR, then merge master into the other desk
+   before opening its PR. Do not open both at once.
+
+**Next session's first task:** the founder's call on the PR base (item 3), then Checkpoint-C style
+review of a sample of cards against the scan. Nothing is deployed — `PILOT_CONCEPTS` and
+`deploy:answers` are untouched (Rule 17).

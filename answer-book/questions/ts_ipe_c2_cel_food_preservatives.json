@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_food_preservatives",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are food preservatives? Give examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 11. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.105, VSAQ 11 and VSAQ 12): the book defines a preservative on one page and an antioxidant on the facing column, and never says how the two differ, although the two questions are printed one after the other. A preservative acts against micro-organisms; an antioxidant acts against oxygen. That sentence is written on this card and on ts_ipe_c2_cel_antioxidant_meaning, and the two cards are written to agree. BOOK WORDING: the printed answer gives \"Sodium benzoate, Table salt\"; sodium chloride is the chemical name of table salt and is written beside it here, and sugar, vegetable oils and sodium metabisulphite are added because the examiner accepts any of them."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Food preservatives are chemicals added to",
+          "food to protect it from bacteria, yeasts",
+          "and moulds.",
+          "They stop the food spoiling, so it can be",
+          "stored for a longer time."
+        ],
+        "why": "The mark is for naming what a preservative acts against. Naming bacteria, yeasts and moulds is what separates a preservative from an antioxidant, which acts against oxygen instead. Both classes are added to food, so the class alone does not identify either one.",
+        "common_mistakes": [
+          "Writing that a preservative stops the action of oxygen. That is an antioxidant.",
+          "Writing only that it keeps food fresh. Name the micro-organisms it acts against."
+        ],
+        "memory_tip": "A preservative acts against microbes; an antioxidant acts against oxygen.",
+        "margin_note": "Name at least two of bacteria, yeasts and moulds. That naming is the mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: sodium benzoate and table salt",
+            "style": "boxed"
+          },
+          "Table salt is sodium chloride, NaCl.",
+          "Sugar, vegetable oils and sodium",
+          "metabisulphite are also preservatives.",
+          "Sodium benzoate is used in soft drinks",
+          "and fruit juices, and the body removes it."
+        ],
+        "why": "Salt and sugar are the oldest preservatives and act by taking water away from the micro-organisms, so they cannot grow. Sodium benzoate is the common laboratory made one, and it is used in acidic food such as fruit juice because it acts best in acid.",
+        "common_mistakes": [
+          "Writing BHA or BHT here. Those are antioxidants, not preservatives.",
+          "Writing table salt without its chemical name. Write sodium chloride, NaCl, beside it."
+        ],
+        "memory_tip": "Salt and sugar are the oldest preservatives; sodium benzoate is the laboratory made one.",
+        "margin_note": "Two examples finish this mark. Give one traditional example and one laboratory made one."
+      }
+    ]
+  },
+  "insider_note": "This question and the antioxidant question are printed side by side and the examples get swapped. Sodium benzoate and salt are preservatives; BHA and BHT are antioxidants."
+}

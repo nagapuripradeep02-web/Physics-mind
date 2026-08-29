@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_silica_role_copper",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the role of silica in the metallurgy of copper.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The role",
+      "marks": 1
+    },
+    {
+      "label": "The equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EQUATIONS CHECKED: both printed equations balance as printed. 2FeS + 3O₂ → 2FeO + 2SO₂ (Fe 2=2, S 2=2, O 6=6) and FeO + SiO₂ → FeSiO₃ (Fe 1=1, Si 1=1, O 3=3). BOOK LOOSE WORDING: the book labels FeO as \"Gangue\" under the first equation. FeO is the oxide of the iron impurity, not the earthy gangue that came with the ore; the card calls it the iron impurity and keeps the word gangue for what the flux removes."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_role",
+        "kind": "text",
+        "label": "The role",
+        "marks": 1,
+        "mark_note": "Role",
+        "lines": [
+          "Silica SiO₂ acts as an acidic flux in the",
+          "metallurgy of copper.",
+          "Copper pyrites contains FeS as its main",
+          "impurity. On roasting, the FeS is changed",
+          "to FeO, which is a basic oxide.",
+          "Silica combines with this FeO and removes",
+          "the iron as a slag."
+        ],
+        "why": "Silica is added for one purpose only, to take the iron out. The iron arrives as FeS in the ore, roasting turns it into the basic oxide FeO, and an acidic oxide is then needed to react with it. Without silica the iron would stay with the copper.",
+        "common_mistakes": [
+          "Saying silica removes the sulphur. The sulphur leaves as SO₂ during roasting; silica removes the iron.",
+          "Calling silica a basic flux. SiO₂ is an acidic oxide, and it is added because the impurity oxide here is basic."
+        ],
+        "memory_tip": "Roasting turns the FeS into FeO, and acidic silica removes the FeO as slag.",
+        "margin_note": "The words \"acidic flux\" and \"iron\" must both appear. Either alone reads as an incomplete answer."
+      },
+      {
+        "id": "s2_equations",
+        "kind": "boxed_final",
+        "label": "The equations",
+        "marks": 1,
+        "mark_note": "Equations",
+        "lines": [
+          {
+            "text": "2FeS + 3O₂ → 2FeO + 2SO₂",
+            "style": "eq"
+          },
+          {
+            "text": "FeO + SiO₂ → FeSiO₃",
+            "style": "boxed"
+          },
+          "FeSiO₃ is ferrous silicate, the slag.",
+          "It is lighter than the molten metal below",
+          "and floats on it, so it is drawn off."
+        ],
+        "why": "The first equation makes the basic oxide and the second removes it. The slag FeSiO₃ melts easily and is less dense than the matte, so it collects as a separate layer that is run off. The book writes the same two equations.",
+        "common_mistakes": [
+          "Writing FeS + SiO₂ → FeSiO₃ + S. Silica reacts with the oxide FeO, not with the sulphide.",
+          "Leaving out the roasting equation. The FeO in the slag equation has to come from somewhere, and that is the first equation."
+        ],
+        "memory_tip": "Roast the sulphide to the oxide, then slag the oxide with silica.",
+        "margin_note": "Box the slag equation. Both equations together earn this mark."
+      }
+    ]
+  },
+  "insider_note": "The answer is two equations and one phrase, \"acidic flux\". Students who write only the slag equation lose the roasting half."
+}

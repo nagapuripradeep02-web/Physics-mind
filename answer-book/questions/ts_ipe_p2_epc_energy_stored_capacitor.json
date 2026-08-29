@@ -1,0 +1,211 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_energy_stored_capacitor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for the energy stored in a capacitor.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The set-up",
+      "marks": 1
+    },
+    {
+      "label": "The average potential difference",
+      "marks": 1
+    },
+    {
+      "label": "The work done",
+      "marks": 1
+    },
+    {
+      "label": "The three forms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). Hand-checked: the book's average-potential route is correct because V rises linearly with q (V = q/C), so the mean of 0 and V is V/2 and W = (V/2)Q = QV/2; with Q = CV this is CV²/2 = Q²/2C, matching the integral route the LAQ uses. Printed question text carries no error."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Potential and Capacitance · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "The set-up",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "Take an uncharged capacitor of capacitance C.",
+          "Its charge and its potential difference are both",
+          "zero to begin with. It is now connected across a",
+          "battery and charged.",
+          "Let the final potential difference between the",
+          "plates be V and the final charge be Q = CV."
+        ],
+        "margin_note": "First mark. Start from zero charge and name the final Q and V.",
+        "why": "The energy is the work done during the charging, so the answer has to start at zero charge — starting from the fully charged state leaves nothing to integrate.",
+        "common_mistakes": [
+          "Starting with the capacitor already charged, so no work is left to count.",
+          "Writing U = QV instead of QV/2 by forgetting that V grows from zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an uncharged capacitor C is charged by a battery to a final charge Q and a final potential difference V.",
+          "accept": [
+            "start from an uncharged capacitor",
+            "charge it with a battery to Q and V",
+            "initial charge is zero"
+          ],
+          "reject": [
+            "average potential difference is V by 2"
+          ],
+          "heard_as": [
+            "uncharged",
+            "capacitance C"
+          ]
+        },
+        "memory_tip": "The energy equals the work done while charging, so start the count from zero charge."
+      },
+      {
+        "id": "s2_average_pd",
+        "kind": "equation",
+        "label": "The average potential difference",
+        "marks": 1,
+        "mark_note": "Average V = V/2",
+        "lines": [
+          "While the capacitor charges, the potential",
+          "difference rises steadily from 0 to V, because",
+          "at any stage it equals q/C and q grows steadily.",
+          "So the average potential difference is",
+          {
+            "text": "average potential difference = (0 + V)/2 = V/2",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. The rise is steady, so the mean of 0 and V is V/2.",
+        "why": "V is proportional to q, so the graph of V against q is a straight line through the origin and its average height over the charging is exactly half the final height.",
+        "common_mistakes": [
+          "Taking the average as V, which doubles the answer.",
+          "Not saying why the average is V/2 — the steady rise is the reason."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the potential difference rises steadily from 0 to V, so the average value is V/2.",
+          "accept": [
+            "average potential difference is V by 2",
+            "mean of zero and V",
+            "V rises steadily so take half"
+          ],
+          "reject": [
+            "work is average V times Q"
+          ],
+          "heard_as": [
+            "average voltage",
+            "V by two"
+          ]
+        },
+        "memory_tip": "A straight rise from 0 to V has an average of V/2 — half the final value."
+      },
+      {
+        "id": "s3_work_done",
+        "kind": "equation",
+        "label": "The work done",
+        "marks": 1,
+        "mark_note": "W = QV/2",
+        "lines": [
+          "The work done in moving the total charge Q at",
+          "this average potential difference is",
+          {
+            "text": "W = (average V) × Q = QV/2",
+            "style": "eq"
+          },
+          "This work is stored in the capacitor as",
+          "electric potential energy U, so U = QV/2."
+        ],
+        "margin_note": "Third mark. Multiply the average V by the total Q and call the result U.",
+        "why": "Work equals charge times the potential difference it is moved through; using the average value is what makes the single multiplication correct for a rising V.",
+        "common_mistakes": [
+          "Multiplying by the final V instead of the average V.",
+          "Stopping at W without saying it is stored as potential energy U."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work is the average potential difference times the total charge, QV/2, and it is stored as U.",
+          "accept": [
+            "work is average V times Q",
+            "W is Q V by 2",
+            "this work is stored as potential energy"
+          ],
+          "reject": [
+            "U is Q squared by 2 C"
+          ],
+          "heard_as": [
+            "work done",
+            "Q V by two"
+          ]
+        },
+        "memory_tip": "Work = total charge × the average potential difference."
+      },
+      {
+        "id": "s4_three_forms",
+        "kind": "boxed_final",
+        "label": "The three forms",
+        "marks": 1,
+        "mark_note": "Three forms",
+        "lines": [
+          "Substituting Q = CV, the same energy can be",
+          "written in three ways:",
+          {
+            "text": "U = QV/2 = CV²/2 = Q²/2C",
+            "style": "boxed"
+          },
+          "Use CV²/2 when V is given and Q²/2C when the",
+          "charge is given."
+        ],
+        "margin_note": "Last mark. All three forms, then say which one to pick.",
+        "why": "Q = CV lets any one of Q, C and V be eliminated, so one stored quantity is enough to find the energy in any problem.",
+        "common_mistakes": [
+          "Writing CV² or Q²/C and dropping the factor of two.",
+          "Giving only one form when the question asks for the expression."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That U = QV/2 = CV²/2 = Q²/2C, the three equivalent forms.",
+          "accept": [
+            "U is Q V by 2",
+            "U is half C V squared",
+            "U is Q squared by 2 C"
+          ],
+          "reject": [
+            "average potential difference is V by 2"
+          ],
+          "heard_as": [
+            "half C V squared",
+            "Q squared by two C"
+          ]
+        },
+        "memory_tip": "Q = CV replaces any one of the three letters, so one formula gives three forms."
+      }
+    ]
+  },
+  "insider_note": "The mark that goes missing is the factor of two: an answer that writes U = QV or CV² has skipped the average-potential line, and the examiner reads that line before the final box."
+}

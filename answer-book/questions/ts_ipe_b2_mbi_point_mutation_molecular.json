@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_point_mutation_molecular",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by point mutation? Give an example.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 99. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. This question is printed TWICE in the book, once in the Inheritance VSAQ chapter as global 87 and again here as global 99. Both are authored, in their own units, because both are printed as asked."
+  },
+  "insider_note": "The same question appears in the genetics chapter too. One answer serves both: one base pair, sickle cell anaemia.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Point mutation defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, the other name, and the three kinds. Five lines.",
+        "lines": [
+          "A POINT MUTATION is a mutation that occurs in a",
+          "SINGLE BASE PAIR of DNA.",
+          "It is also called a gene mutation.",
+          "It may be a substitution, an insertion or a",
+          "deletion of one base."
+        ],
+        "why": "Because only one base changes, the change can be traced through to one amino acid and one protein.",
+        "common_mistakes": [
+          "Saying it affects the whole gene. It affects ONE base pair.",
+          "Confusing it with a chromosomal mutation, which changes chromosome number or structure."
+        ],
+        "memory_tip": "A single point on the DNA."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Name it, give the codon change, the amino acid change, and the result.",
+        "lines": [
+          {
+            "text": "Sickle cell anaemia: GAG becomes GTG",
+            "style": "boxed"
+          },
+          "Example: SICKLE CELL ANAEMIA.",
+          "In the gene for the beta chain of haemoglobin,",
+          "one base changes: GAG becomes GTG.",
+          "So GLUTAMIC ACID is replaced by VALINE at",
+          "position 6 of the chain.",
+          "The red blood cell then becomes sickle shaped."
+        ],
+        "why": "One base, one codon, one amino acid, one cell shape: this is the clearest chain from a DNA change to a visible symptom in the whole syllabus.",
+        "common_mistakes": [
+          "Naming a chromosomal disorder such as Down's syndrome. That is not a point mutation.",
+          "Giving no detail. The amino acid substitution is what makes it a worked example."
+        ],
+        "memory_tip": "One letter changes and the cell changes shape."
+      }
+    ]
+  }
+}

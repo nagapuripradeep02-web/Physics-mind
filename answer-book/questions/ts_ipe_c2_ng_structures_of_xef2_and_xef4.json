@@ -1,0 +1,242 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_structures_of_xef2_and_xef4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the structures of a) XeF₂ b) XeF₄.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Structure of XeF₂",
+      "marks": 2
+    },
+    {
+      "label": "Structure of XeF₄",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.90 as SAQ 1. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: the printed hybridisations (sp3d for XeF2, sp3d2 for XeF4), the printed lone-pair counts (3 and 2) and the printed shapes (linear and square planar) are all correct and are kept. BOOK NOTATION: the book prints \"SP3d\" for XeF2 and \"sp3d2\" for XeF4 on the same page, so the capitalisation is inconsistent; both are written lowercase here. BOOK GAP: the printed answer never names the ARRANGEMENT of the electron pairs, only the shape. The trigonal bipyramidal arrangement behind the linear XeF2 and the octahedral arrangement behind the square planar XeF4 are added, together with the positions the lone pairs take (equatorial in XeF2, opposite axial in XeF4), because naming the arrangement as the shape is the commonest error in this unit. FIGURE SCOPE: the question says \"explain\", not \"draw\", so the diagram step carries NO marks and the whole split sits on the two written steps. Both shapes are drawn in one figure because linear-from-a-trigonal-bipyramid and square-planar-from-an-octahedron cannot be compared in words alone; the figure holds 15 drawn elements, under the 16-element limit."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Noble Gases — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_xef2",
+        "kind": "text",
+        "label": "Structure of XeF₂",
+        "marks": 2,
+        "mark_note": "sp³d, linear",
+        "lines": [
+          "XeF₂: xenon has two bond pairs and three",
+          "lone pairs, five electron pairs in all.",
+          "So xenon is sp³d hybridised (first excited",
+          "state).",
+          "The five pairs take up a trigonal",
+          "bipyramidal arrangement.",
+          "The three lone pairs occupy the three",
+          "equatorial positions, where the",
+          "repulsion is least.",
+          "The two fluorine atoms are left at the two",
+          "axial positions.",
+          {
+            "text": "Shape of XeF₂ is linear, F–Xe–F = 180°",
+            "style": "boxed"
+          }
+        ],
+        "why": "Two counts give the whole answer: five electron pairs give sp³d and a trigonal bipyramid, and three of those five being lone pairs leaves the two fluorine atoms opposite each other. The lone pairs take the equatorial positions because an equatorial position has only two neighbours at 90°, while an axial position has three, and it is the 90° repulsions that matter most.",
+        "common_mistakes": [
+          "Calling XeF₂ trigonal bipyramidal. The five electron pairs are arranged in a trigonal bipyramid, but three are lone pairs, so the SHAPE is linear.",
+          "Putting the lone pairs at the axial positions. They take the three equatorial positions, where the repulsion is least.",
+          "Writing sp³ instead of sp³d. Five electron pairs need five orbitals, so one d orbital is used."
+        ],
+        "memory_tip": "Five pairs, three of them lone: the three lone pairs take the three equatorial positions, and the two F atoms are left at the top and the bottom.",
+        "margin_note": "Four things earn these two marks: the pair count, sp³d, the trigonal bipyramidal arrangement, and the linear shape. Write all four as separate statements."
+      },
+      {
+        "id": "s2_xef4",
+        "kind": "boxed_final",
+        "label": "Structure of XeF₄",
+        "marks": 2,
+        "mark_note": "sp³d², square planar",
+        "lines": [
+          "XeF₄: xenon has four bond pairs and two",
+          "lone pairs, six electron pairs in all.",
+          "So xenon is sp³d² hybridised (second",
+          "excited state).",
+          "The six pairs take up an octahedral",
+          "arrangement.",
+          "The two lone pairs go to opposite positions,",
+          "one above and one below the plane.",
+          "The four fluorine atoms are left in one",
+          "plane around xenon.",
+          {
+            "text": "Shape of XeF₄ is square planar",
+            "style": "boxed"
+          },
+          "The four F–Xe–F angles in that plane are 90°."
+        ],
+        "why": "Six electron pairs give sp³d² and an octahedron. The two lone pairs take positions opposite each other rather than next to each other, because that puts them 180° apart instead of 90°, and lone pair to lone pair repulsion is the strongest. Take away the atoms at those two opposite positions of an octahedron and a flat square of four fluorine atoms is left.",
+        "common_mistakes": [
+          "Calling XeF₄ octahedral or tetrahedral. The six electron pairs are arranged octahedrally, but two are lone pairs, so the SHAPE is square planar.",
+          "Placing the two lone pairs next to each other. They sit opposite one another, one above and one below the square plane.",
+          "Writing sp³d for XeF₄. Six electron pairs need six orbitals, so two d orbitals are used."
+        ],
+        "memory_tip": "Take an octahedron and take away the top and bottom atoms: what is left is a flat square.",
+        "margin_note": "Say octahedral for the arrangement and square planar for the shape in two separate sentences. Writing only one of them is what costs a mark here."
+      },
+      {
+        "id": "s3_shapes_drawn",
+        "kind": "diagram",
+        "label": "Both shapes drawn",
+        "marks": 0,
+        "figure": {
+          "id": "xef2_xef4_shapes",
+          "width": 540,
+          "height": 320,
+          "elements": [
+            {
+              "type": "label",
+              "id": "f2_f_top",
+              "x": 143,
+              "y": 66,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "f2_xe",
+              "x": 136,
+              "y": 160,
+              "text": "Xe",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "f2_f_bot",
+              "x": 143,
+              "y": 254,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "f2_bonds",
+              "d": "M 150 74 L 150 136 M 150 168 L 150 230",
+              "ms": 1770
+            },
+            {
+              "type": "stroke",
+              "id": "f2_lone_pairs",
+              "d": "M 91 149 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 91 167 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 197 130 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 209 138 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 197 190 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 209 182 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
+              "ms": 1620
+            },
+            {
+              "type": "stroke",
+              "id": "f2_lp_lines",
+              "d": "M 132 152 L 104 155 M 168 149 L 194 138 M 168 159 L 194 180",
+              "ms": 1280,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "f2_caption",
+              "x": 76,
+              "y": 296,
+              "text": "XeF₂ — linear shape",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "f4_f_tl",
+              "x": 310,
+              "y": 112,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "f4_f_tr",
+              "x": 482,
+              "y": 112,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "f4_xe",
+              "x": 386,
+              "y": 170,
+              "text": "Xe",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "f4_f_bl",
+              "x": 310,
+              "y": 228,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "f4_f_br",
+              "x": 482,
+              "y": 228,
+              "text": "F",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "f4_bonds",
+              "d": "M 384 152 L 330 118 M 416 152 L 470 118 M 384 168 L 330 210 M 416 168 L 470 210",
+              "ms": 3780
+            },
+            {
+              "type": "stroke",
+              "id": "f4_lone_pairs",
+              "d": "M 391 84 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 407 84 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 391 246 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0 M 407 246 a 3 3 0 1 0 6 0 a 3 3 0 1 0 -6 0",
+              "ms": 1080
+            },
+            {
+              "type": "label",
+              "id": "f4_caption",
+              "x": 330,
+              "y": 296,
+              "text": "XeF₄ — square planar",
+              "ms": 400,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two pictures show what the two written steps mean. In XeF₂ the three pairs of dots sit around the middle of the molecule and the two fluorine atoms are left straight through it; in XeF₄ the pairs of dots sit above and below and the four fluorine atoms are left in one flat square. The dots are what turn each arrangement into its shape.",
+        "common_mistakes": [
+          "Drawing XeF₄ as a tetrahedron. The four fluorine atoms lie in one plane with 90° angles, not at the corners of a tetrahedron.",
+          "Leaving the lone pairs out of the drawing. Without the dots both pictures show the wrong molecule."
+        ],
+        "memory_tip": "Draw the dots first, then the bonds. The dots are what fix where the fluorine atoms can go.",
+        "margin_note": "The question says explain, not draw, so this earns no marks. All four marks sit on the two written steps; sketch these only if there is time."
+      }
+    ]
+  },
+  "insider_note": "Two marks for each molecule, and the drawing earns none of them, because the question says explain and not draw. Each pair of marks is earned by four written statements: the pair count, the hybridisation, the arrangement, and the shape."
+}

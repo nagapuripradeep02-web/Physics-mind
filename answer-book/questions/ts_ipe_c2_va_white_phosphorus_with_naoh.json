@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_white_phosphorus_with_naoh",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens when white phosphorus is heated with conc. NaOH solution in an inert atmosphere of CO₂?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    },
+    {
+      "label": "Products and the CO₂ atmosphere",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 12. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK (book p.83, VSAQ 12): the printed equation P₄ + 3NaOH + 3H₂O → 3NaH₂PO₂ + PH₃ was atom-counted and IS balanced (P 4, Na 3, O 6, H 9 on both sides) and matches NCERT. BOOK GAP: the printed answer repeats the question's own condition, \"in inert atmosphere of CO₂\", without saying why the CO₂ is needed — to keep air out, because the phosphine produced contains traces of P₂H₄ which ignites in air. It also never names the products in words, and never says that the reaction is a disproportionation. All three are added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "text",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "White phosphorus dissolves in hot",
+          "concentrated sodium hydroxide solution.",
+          {
+            "text": "P₄ + 3NaOH + 3H₂O → 3NaH₂PO₂ + PH₃",
+            "style": "eq"
+          },
+          "The reaction is carried out in an inert",
+          "atmosphere of CO₂."
+        ],
+        "why": "The equation is the answer to a \"what happens\" question, and it must balance: four phosphorus atoms on the left become three in the hypophosphite and one in the phosphine. The condition line matters too, because the same reagents in air would give a different result.",
+        "common_mistakes": [
+          "Writing PH₃ as the only product. Sodium hypophosphite, NaH₂PO₂, is formed at the same time.",
+          "Leaving out the 3H₂O. Without the water the hydrogen atoms do not balance."
+        ],
+        "memory_tip": "One P₄ needs 3NaOH and 3H₂O, and gives 3 salt plus 1 gas.",
+        "margin_note": "One balanced equation earns this mark. Check the hydrogen count before moving on: 9 on each side."
+      },
+      {
+        "id": "s2_products_and_atmosphere",
+        "kind": "boxed_final",
+        "label": "Products and the CO₂ atmosphere",
+        "marks": 1,
+        "mark_note": "Products and reason",
+        "lines": [
+          "The products are phosphine gas, PH₃, and",
+          "sodium hypophosphite, NaH₂PO₂.",
+          {
+            "text": "P goes from 0 to −3 and to +1 at once.",
+            "style": "boxed"
+          },
+          "So this is a disproportionation reaction.",
+          "The CO₂ keeps air out, because the PH₃",
+          "contains traces of P₂H₄ that ignite in air."
+        ],
+        "why": "Naming the two products in words and giving the two oxidation numbers shows what kind of reaction it is: the same element is both oxidised and reduced, which is disproportionation. The CO₂ has one job, to keep oxygen away from a gas that would otherwise ignite as it leaves the flask.",
+        "common_mistakes": [
+          "Calling NaH₂PO₂ sodium phosphite. It is sodium hypophosphite; sodium phosphite would be Na₂HPO₃.",
+          "Saying the CO₂ takes part in the reaction. It appears in no equation; it only keeps air away."
+        ],
+        "memory_tip": "One element, two directions: down to −3 in PH₃ and up to +1 in NaH₂PO₂.",
+        "margin_note": "The word disproportionation is worth writing. It is the one term that shows the reaction was understood."
+      }
+    ]
+  },
+  "insider_note": "The book copies the CO₂ condition from the question without explaining it. Write the reason — the phosphine contains P₂H₄, which ignites in air — because that is the line an examiner reads as understanding rather than copying."
+}

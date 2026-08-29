@@ -1,0 +1,184 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_interstitial_compounds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are interstitial compounds? How are they formed? Give two examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Which atoms, and why transition metals",
+      "marks": 1
+    },
+    {
+      "label": "How they are formed",
+      "marks": 1
+    },
+    {
+      "label": "Two examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.93 as Short Answer 5. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK EXAMPLE REJECTED (book p.93, Short Answer 5): the printed examples are \"TiC, FeO, TiN\". TiC and TiN are correct and are kept. FeO is NOT an interstitial compound — it is an ionic oxide with a rock-salt lattice of its own, in which oxide ions occupy lattice positions rather than the spaces of a metal lattice; its well-known non-stoichiometry (Fe₀.₉₅O) comes from cation vacancies, not from interstitial occupation. The card uses TiC and TiN and states on the page why FeO has been left out, so a student who has the book in front of them is not left with an unexplained difference. ADDED HERE: Mn₄N, Fe₃H, TiH₁.₇ and VH₀.₅₆, which are the standard NCERT examples, and the fact that many of these compounds are non-stoichiometric. MARK PLACEMENT: the question prints three demands and the paper gives four marks, so the split puts the extra mark on the middle of the answer — which small atoms and why a transition metal lattice takes them. The properties step is authored at 0 marks because the question does not ask for properties."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "d and f Block Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An interstitial compound is formed when",
+          "small atoms occupy the interstitial",
+          "sites of a metal lattice.",
+          "An interstitial site is one of the empty",
+          "spaces between the metal atoms.",
+          "The metal lattice itself is kept, and no",
+          "metal atom is replaced."
+        ],
+        "why": "The word interstitial names the site, so the definition has to say where the small atom goes: into a space in the lattice, not into a lattice position. That single point is the whole difference between an interstitial compound and an alloy, in which one metal atom occupies another metal atom's position.",
+        "common_mistakes": [
+          "Saying the small atom replaces a metal atom. It occupies a space between metal atoms, and the metal lattice is unchanged.",
+          "Repeating the word interstitial instead of explaining it. Say \"the empty spaces between the metal atoms\"."
+        ],
+        "memory_tip": "Interstitial means in the space between. The metal lattice stays as it is.",
+        "margin_note": "The word interstitial must be explained, not repeated. That explanation is this mark."
+      },
+      {
+        "id": "s2_which_atoms",
+        "kind": "text",
+        "label": "Which atoms and why",
+        "marks": 1,
+        "mark_note": "Small atoms, metal lattice",
+        "lines": [
+          "The small atoms are H, B, C and N.",
+          "They are the only ones with atomic radii",
+          "small enough to fit the spaces.",
+          "Transition metals form these compounds",
+          "readily because their lattices are close",
+          "packed and leave regular spaces of the",
+          "right size."
+        ],
+        "why": "Two conditions have to be satisfied at the same time. The lattice must have spaces, which a close-packed metal lattice does, and the small atom must be able to enter one without pushing the metal atoms apart. Only hydrogen, boron, carbon and nitrogen satisfy the second condition, which is why the list of interstitial compounds is short and always uses the same four elements.",
+        "common_mistakes": [
+          "Listing large atoms such as sulphur or chlorine. Only H, B, C and N are small enough for the spaces.",
+          "Saying every metal forms them. It is the transition metals, whose close-packed lattices leave spaces of the right size."
+        ],
+        "memory_tip": "Only four small atoms are used: H, B, C, N.",
+        "margin_note": "Name all four small atoms. A list with only carbon is usually worth part of this mark."
+      },
+      {
+        "id": "s3_formation",
+        "kind": "text",
+        "label": "How they are formed",
+        "marks": 1,
+        "mark_note": "Formation",
+        "lines": [
+          "How they are formed:",
+          "The transition metal is heated with the",
+          "small element.",
+          "The small atoms enter the spaces between",
+          "the metal atoms and stay there.",
+          "No fixed ratio is required, so many of",
+          "these compounds do not obey the law of",
+          "constant composition."
+        ],
+        "why": "There is no bond-breaking step in the metal lattice, so the composition is set by how many spaces are filled rather than by a valency. That is why formulas such as TiH₁.₇ and VH₀.₅₆ exist: they are non-stoichiometric, and quoting one is the quickest way to show that the formation has been understood rather than memorised.",
+        "common_mistakes": [
+          "Writing a whole-number balanced equation for every interstitial compound. Many of them have non-whole-number formulas.",
+          "Saying they form by ionic bonding. The small atom occupies a space; no ions are produced."
+        ],
+        "memory_tip": "Heat the metal with a small element, and the small atoms fill the spaces.",
+        "margin_note": "The words \"small atomic radius\" and \"empty spaces\" are what earn this mark."
+      },
+      {
+        "id": "s4_properties",
+        "kind": "text",
+        "label": "Properties that follow",
+        "marks": 0,
+        "lines": [
+          "Properties:",
+          {
+            "text": "1. They are very hard.",
+            "style": "indent"
+          },
+          {
+            "text": "2. Their melting points are high, often",
+            "style": "indent"
+          },
+          {
+            "text": "   above that of the pure metal.",
+            "style": "indent"
+          },
+          {
+            "text": "3. They keep metallic conductivity.",
+            "style": "indent"
+          },
+          {
+            "text": "4. They are chemically inert.",
+            "style": "indent"
+          }
+        ],
+        "why": "Filling the spaces stops the layers of metal atoms sliding over one another, so the solid stops being malleable and becomes very hard, and the extra metal-to-small-atom bonding raises the melting point. The metal lattice, and with it the free electrons, is unchanged, so the solid still conducts. These four properties are the reason the compounds matter industrially.",
+        "common_mistakes": [
+          "Saying they lose metallic conduction. The metal lattice is unchanged, so they still conduct.",
+          "Saying they are softer than the metal. They are harder; TiC is used as a cutting-tool material."
+        ],
+        "memory_tip": "Harder, higher melting, still conducting, still inert.",
+        "margin_note": "The question does not ask for properties, so this step earns no marks. Write it only if there is time left."
+      },
+      {
+        "id": "s5_examples",
+        "kind": "boxed_final",
+        "label": "Two examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Examples: TiC and TiN",
+            "style": "boxed"
+          },
+          "Also Mn₄N, Fe₃H, TiH₁.₇ and VH₀.₅₆.",
+          "The book adds FeO to this list. FeO is",
+          "an ionic oxide with a lattice of its own,",
+          "in which the oxide ions occupy lattice",
+          "positions rather than spaces, so it is",
+          "not an interstitial compound."
+        ],
+        "why": "TiC and TiN are the safe pair: each is titanium with a small non-metal atom in the spaces of the metal lattice, and both are used industrially for exactly the hardness described above. FeO does not belong on the list — it is an ionic oxide, and its non-stoichiometry comes from missing iron ions, not from atoms occupying spaces — so it is replaced here.",
+        "common_mistakes": [
+          "Giving an oxide such as FeO as an interstitial compound. The small atoms in these compounds are H, B, C and N.",
+          "Giving only one example. The question asks for two."
+        ],
+        "memory_tip": "Titanium with carbon and titanium with nitrogen: TiC and TiN.",
+        "margin_note": "Two examples finish this mark. Choose TiC and TiN; both are a small non-metal in a metal lattice."
+      }
+    ]
+  },
+  "insider_note": "Three demands are printed but four marks are given, so the extra mark sits on the middle of the answer — which small atoms, and why a transition metal lattice takes them. Answer under the four marked headings, not as one paragraph, and add the properties only if there is time."
+}

@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_semiconductor_types",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the two main types of semiconductors and contrast their conduction mechanism.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Semiconductors and doping",
+      "marks": 1
+    },
+    {
+      "label": "n-type",
+      "marks": 1
+    },
+    {
+      "label": "p-type",
+      "marks": 1
+    },
+    {
+      "label": "The contrast",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.63, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK STRUCTURE: the printed answer answers \"two main types\" as intrinsic and extrinsic first, and only then reaches n-type and p-type. The question asks for a contrast of CONDUCTION MECHANISM, and only the n-type and p-type pair differ in mechanism, so this card treats those as the two main types and keeps intrinsic and extrinsic as a one line lead-in. BOOK ERROR: the printed answer lists nitrogen among the n-type dopants, \"VA group elements (N, P, As)\". Nitrogen is in group 15 but is not used to dope silicon or germanium; NCERT names phosphorus and arsenic. This card writes P, As and Sb. Indium is listed with the group 13 dopants here because the book's own next question dopes germanium with indium."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solid State — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_doping",
+        "kind": "text",
+        "label": "Semiconductors and doping",
+        "marks": 1,
+        "mark_note": "Doping",
+        "lines": [
+          "A semiconductor is a solid whose electrical",
+          "conductance lies between that of a conductor",
+          "and that of an insulator.",
+          "Pure silicon and germanium are intrinsic",
+          "semiconductors, and their conductivity is too",
+          "low to be of practical use.",
+          "Adding a small measured amount of a",
+          "suitable impurity raises the conductivity.",
+          "This process is called doping, and the",
+          "product is an extrinsic semiconductor."
+        ],
+        "why": "Doping is the step that creates both of the types the question asks about, so it has to come first. A pure crystal has every valence electron locked in a bond; the impurity is what supplies either a spare electron or a missing one.",
+        "common_mistakes": [
+          "Writing that doping adds a large amount of impurity. Only a very small measured amount is added.",
+          "Calling pure silicon an extrinsic semiconductor. Pure silicon is intrinsic; doping it makes it extrinsic."
+        ],
+        "memory_tip": "Intrinsic means pure, extrinsic means doped. Doping is the only difference between them.",
+        "margin_note": "Define semiconductor and doping in the first three lines. Both terms are used in every later step."
+      },
+      {
+        "id": "s2_ntype",
+        "kind": "text",
+        "label": "n-type",
+        "marks": 1,
+        "mark_note": "n-type",
+        "lines": [
+          "n-type: silicon or germanium is doped with a",
+          "group 15 element such as P, As or Sb.",
+          "The dopant atom has 5 valence electrons.",
+          "Four of them form bonds with the four",
+          "neighbouring silicon atoms and the fifth is",
+          "left over.",
+          "This extra electron is free to move, so the",
+          "current is carried by negative electrons."
+        ],
+        "why": "Silicon forms four bonds, so a dopant with five valence electrons has one electron more than the bonding needs. That electron is not held in any bond, so a small applied voltage moves it and the crystal conducts.",
+        "common_mistakes": [
+          "Writing that the crystal now has a negative charge. The dopant atom is itself neutral, so the crystal stays neutral; only the way it conducts changes.",
+          "Doping with a group 13 element and calling it n-type. Group 15 gives n-type, group 13 gives p-type."
+        ],
+        "memory_tip": "n is for negative. Five valence electrons, one spare, and the spare is negative.",
+        "margin_note": "The number 5 and the phrase \"extra electron\" are the two scoring items. Name at least one dopant element."
+      },
+      {
+        "id": "s3_ptype",
+        "kind": "text",
+        "label": "p-type",
+        "marks": 1,
+        "mark_note": "p-type",
+        "lines": [
+          "p-type: silicon or germanium is doped with a",
+          "group 13 element such as B, Al, Ga or In.",
+          "The dopant atom has only 3 valence",
+          "electrons, so one of the four bonds is short",
+          "of an electron.",
+          "That empty place in the bond is called a hole",
+          "and has the effect of a positive charge.",
+          "An electron from a neighbouring bond moves",
+          "into the hole, and the hole moves the other",
+          "way, so the current is carried by holes."
+        ],
+        "why": "A dopant with three valence electrons cannot complete the fourth bond, and the empty place left behind is the hole. Electrons hop into it one after another, which is the same as the hole travelling in the opposite direction, and a moving hole carries current just as a moving electron does.",
+        "common_mistakes": [
+          "Writing that a hole is a proton or a positive ion. A hole is an empty place in a bond, nothing more.",
+          "Saying the crystal is positively charged. The crystal stays neutral; the hole only has the effect of a positive charge."
+        ],
+        "memory_tip": "p is for positive. Three valence electrons, one bond short, and the gap acts positive.",
+        "margin_note": "The number 3 and the word \"hole\" are the two scoring items. Say that the hole moves opposite to the electrons."
+      },
+      {
+        "id": "s4_contrast",
+        "kind": "boxed_final",
+        "label": "The contrast",
+        "marks": 1,
+        "mark_note": "Contrast",
+        "lines": [
+          {
+            "text": "n-type conducts by electrons,",
+            "style": "boxed"
+          },
+          {
+            "text": "p-type conducts by holes.",
+            "style": "boxed"
+          },
+          "n-type: group 15 dopant, one extra electron,",
+          "negative carrier.",
+          "p-type: group 13 dopant, one missing",
+          "electron, positive carrier.",
+          "In both, the crystal as a whole stays neutral."
+        ],
+        "why": "The question asks for a contrast, so the two mechanisms have to be set side by side in one place. The dopant group determines everything else: group 15 leaves a spare electron and group 13 leaves a hole, and the carrier follows from that.",
+        "common_mistakes": [
+          "Describing the two types but never comparing them. The word contrast means the comparison itself is being marked.",
+          "Swapping the groups. Group 15 gives n-type and group 13 gives p-type."
+        ],
+        "memory_tip": "Group 15 is one above four bonds, so a spare electron. Group 13 is one below, so a hole.",
+        "margin_note": "Two boxed lines side by side are enough for this mark. Add the dopant group to each line."
+      }
+    ]
+  },
+  "insider_note": "The word contrast is the instruction that carries the last mark, so finish with the two mechanisms written side by side. Do not name nitrogen as a dopant; write phosphorus or arsenic."
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_units_moment_induction_field",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the units of magnetic moment, magnetic induction and magnetic field?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Moment and induction",
+      "marks": 1
+    },
+    {
+      "label": "Magnetic field H",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: magnetic moment M is in ampere metre² (A·m²); magnetic induction B is in tesla (1 T = 1 Wb/m²; 1 gauss = 10⁻⁴ T); magnetic field intensity H is in ampere per metre (A/m) — the three units the book lists, checked against M = NiA, F = qvB and B = μ₀(H + M) in free space."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moment_induction",
+        "kind": "text",
+        "label": "Moment and induction",
+        "marks": 1,
+        "mark_note": "A·m² and tesla",
+        "lines": [
+          "1) Magnetic moment M : ampere metre²,",
+          {
+            "text": "written A·m².",
+            "style": "indent"
+          },
+          "2) Magnetic induction B : tesla (T),",
+          {
+            "text": "or gauss ; 1 gauss = 10⁻⁴ T.",
+            "style": "indent"
+          },
+          {
+            "text": "1 T = 1 Wb/m²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Name both units with their symbols — A·m² for the moment, tesla for the induction.",
+        "why": "The unit of M follows from M = NiA — ampere times metre squared. The unit of B follows from F = qvB, and one tesla is one weber of flux through one square metre.",
+        "common_mistakes": [
+          "Writing A·m for the moment. The area brings metre squared, so the unit is A·m².",
+          "Giving tesla for H. Tesla is the unit of the induction B, not of the field intensity H."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That magnetic moment is measured in ampere metre squared and magnetic induction in tesla or gauss.",
+          "accept": [
+            "ampere metre squared for the moment",
+            "tesla for magnetic induction",
+            "gauss is also a unit of induction"
+          ],
+          "reject": [
+            "ampere per metre"
+          ],
+          "heard_as": [
+            "ampere metre squared",
+            "tesla",
+            "gauss"
+          ]
+        },
+        "memory_tip": "M = NiA: ampere from the current, metre squared from the area — A·m²."
+      },
+      {
+        "id": "s2_field_intensity",
+        "kind": "boxed_final",
+        "label": "Magnetic field H",
+        "marks": 1,
+        "mark_note": "H in A/m",
+        "lines": [
+          "3) Magnetic field intensity H : ampere",
+          {
+            "text": "per metre (A/m).",
+            "style": "indent"
+          },
+          {
+            "text": "M: A·m² · B: tesla (T) · H: A/m",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The magnetic field here means the field intensity H, and its unit is A/m.",
+        "why": "H comes from the current per unit length that produces the field (as inside a solenoid, H = nI), so its unit is ampere per metre — different from tesla, which measures B.",
+        "common_mistakes": [
+          "Leaving this part out because B was already answered. The question asks three units, and H is the third.",
+          "Writing m/A instead of A/m."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That magnetic field intensity H is measured in ampere per metre.",
+          "accept": [
+            "ampere per metre",
+            "A per m for the field intensity",
+            "H is in ampere per metre"
+          ],
+          "reject": [
+            "tesla"
+          ],
+          "heard_as": [
+            "ampere per metre",
+            "field intensity"
+          ]
+        },
+        "memory_tip": "Inside a solenoid H = nI — turns per metre times ampere, so ampere per metre."
+      }
+    ]
+  },
+  "insider_note": "Three quantities are asked, so write three labelled unit lines — most students stop after tesla and lose the A/m mark."
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_microwaves_in_radar_why",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Microwaves are used in Radars, why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Very short wavelength",
+      "marks": 1
+    },
+    {
+      "label": "Little diffraction, so a narrow beam",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the book (p.42) gives the microwave range 10⁻³ m to 0.3 m and the reason — such short wavelengths bend (diffract) very little around obstacles, so the waves can be sent as a beam in one particular direction better than radio waves (λ > 0.1 m). Diffraction is strong only when the wavelength is comparable to the obstacle, which is the physics behind the printed reason."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_wavelength",
+        "kind": "text",
+        "label": "Very short wavelength",
+        "marks": 1,
+        "mark_note": "Wavelength 10⁻³ m to 0.3 m",
+        "lines": [
+          "Microwaves are electromagnetic waves of",
+          "very short wavelength, 10⁻³ m to 0.3 m."
+        ],
+        "margin_note": "First mark. Quote the range; the short wavelength is the whole reason.",
+        "why": "Diffraction around an obstacle is strong only when the wavelength is comparable to the obstacle. A wavelength below 0.3 m is much smaller than aircraft or ships, so the beam keeps its direction.",
+        "common_mistakes": [
+          "Calling microwaves high-energy waves. The working reason is short wavelength, not energy.",
+          "Quoting the range without units. Write 10⁻³ m to 0.3 m."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That microwaves have very short wavelengths, about 10⁻³ m to 0.3 m.",
+          "accept": [
+            "very short wavelength",
+            "millimetre to point three metre",
+            "ten power minus three metre"
+          ],
+          "reject": [
+            "long wavelength"
+          ],
+          "heard_as": [
+            "short wavelength",
+            "microwave"
+          ]
+        },
+        "memory_tip": "The range spans a millimetre to about a third of a metre."
+      },
+      {
+        "id": "s2_beam",
+        "kind": "text",
+        "label": "Little diffraction, narrow beam",
+        "marks": 1,
+        "mark_note": "Little diffraction — beam in one direction",
+        "lines": [
+          "Because the wavelength is short, they",
+          "diffract very little around obstacles in",
+          "their path. So a radar can send them as a",
+          "narrow beam in one chosen direction,",
+          "better than radio waves, where λ > 0.1 m."
+        ],
+        "margin_note": "Second mark. Link the short wavelength to the narrow beam in one direction.",
+        "why": "The book says microwaves do not bend (diffract) around the corners of obstacles. Less bending means the energy stays in one direction, which is what a radar needs to locate a target.",
+        "common_mistakes": [
+          "Saying microwaves travel faster than radio waves. All electromagnetic waves share the same speed in air; the difference is diffraction, not speed.",
+          "Writing reflect where diffract is meant. The beam stays narrow because it bends little around obstacles; reflection from the target is a separate part of how radar works."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the short wavelength means little diffraction, so the waves travel as a narrow beam in one direction.",
+          "accept": [
+            "do not bend around obstacles",
+            "less diffraction",
+            "beam in one direction"
+          ],
+          "reject": [
+            "travel faster"
+          ],
+          "heard_as": [
+            "diffract",
+            "beam",
+            "direction"
+          ]
+        },
+        "memory_tip": "Three links in one chain: short wavelength, small bending, straight narrow beam."
+      }
+    ]
+  },
+  "insider_note": "The mark-carrying word is diffract — the examiner wants short wavelength tied to little diffraction and a one-direction beam."
+}

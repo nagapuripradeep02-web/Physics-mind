@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_df_iupac_names_of_complexes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "d and f Block Elements (Chemistry-II)"
+  },
+  "chapter": "d and f Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the IUPAC names of the following coordination compounds: a) [Co(NH₃)₄(H₂O)Cl]Cl₂  b) Ni(CO)₄  c) K₃[Fe(CN)₆]  d) [Cr(NH₃)₃(H₂O)₃]Cl₃",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name (a)",
+      "marks": 1
+    },
+    {
+      "label": "Name (b)",
+      "marks": 1
+    },
+    {
+      "label": "Name (c)",
+      "marks": 1
+    },
+    {
+      "label": "Name (d)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.94. DUPLICATE PRINTED NUMBER: this question is printed as Short Answer \"6\", and so is the isomerism question on book p.93 — the number 6 appears TWICE in the same Short Answer list, and the list then continues to 7. Confirmed by reading both pages: book p.93 carries \"6. Explain different types of isomerism exhibited by coordination compounds, giving suitable examples\" and book p.94 carries \"6. Write the IUPAC names of the following co-ordination compounds\" followed by \"7. Why do the transition metal ions exhibit characteristic colours in aqueous solution\". The chapter therefore holds EIGHT real Short Answer questions behind a highest printed number of seven. This card is the second of the two, and it carries the manifest ref saq6b so that refs stay unique inside the unit. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SPELLINGS CORRECTED, each recorded on its step: the printed names are \"Tetramine aquo chlorido cobalt (III) Chloride\", \"Tetra carbonyl Nickel (o)\", \"Potassium hexacyano Ferrate (III)\" and \"Triamine triaquo chromium (III) chloride\". Four corrections are made. Ammine, with two m, is the NH₃ ligand; amine with one m is the organic group, so tetramine and triamine become tetraammine and triammine. Aqua, not aquo, is the current ligand name. Nickel(0) takes the digit zero, not the letter o. The complex cation is written as ONE word, not as separate words."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "d and f Block Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rules",
+        "kind": "text",
+        "label": "Rules for naming",
+        "marks": 0,
+        "lines": [
+          "Rules for naming:",
+          {
+            "text": "1. Cation first, then anion.",
+            "style": "indent"
+          },
+          {
+            "text": "2. Inside the complex, ligands come",
+            "style": "indent"
+          },
+          {
+            "text": "   first in alphabetical order, then",
+            "style": "indent"
+          },
+          {
+            "text": "   the metal.",
+            "style": "indent"
+          },
+          {
+            "text": "3. Anionic ligands end in -o: chlorido,",
+            "style": "indent"
+          },
+          {
+            "text": "   cyanido. Neutral ones are ammine,",
+            "style": "indent"
+          },
+          {
+            "text": "   aqua and carbonyl.",
+            "style": "indent"
+          },
+          {
+            "text": "4. If the complex is an anion, the metal",
+            "style": "indent"
+          },
+          {
+            "text": "   name ends in -ate.",
+            "style": "indent"
+          },
+          {
+            "text": "5. The oxidation number of the metal is",
+            "style": "indent"
+          },
+          {
+            "text": "   written as a Roman numeral.",
+            "style": "indent"
+          }
+        ],
+        "why": "Alphabetical order is applied to the ligand NAME and not to its counting prefix — ammine comes before aqua, and aqua before chlorido, whatever the di-, tri- or tetra- written in front of them. That one rule fixes the word order in all four answers, so it is worth writing down before starting.",
+        "common_mistakes": [
+          "Alphabetising on the prefix. Tetraammine is sorted under a for ammine, not under t for tetra.",
+          "Writing amine for NH₃. Ammine with two m is the NH₃ ligand; amine with one m is the organic group."
+        ],
+        "memory_tip": "Alphabetise the ligand name and ignore the counting prefix.",
+        "margin_note": "This step earns no marks. The four names carry all four marks, one each."
+      },
+      {
+        "id": "s2_name_a",
+        "kind": "text",
+        "label": "Name (a)",
+        "marks": 1,
+        "mark_note": "Name (a)",
+        "lines": [
+          {
+            "text": "a) [Co(NH₃)₄(H₂O)Cl]Cl₂",
+            "style": "eq"
+          },
+          "Two Cl⁻ outside mean the complex ion is",
+          "2+. Inside, four NH₃ and one H₂O are",
+          "neutral and one Cl⁻ is 1−, so cobalt",
+          "is +3.",
+          {
+            "text": "Tetraammineaquachloridocobalt(III)",
+            "style": "indent"
+          },
+          {
+            "text": "chloride",
+            "style": "indent"
+          }
+        ],
+        "why": "The oxidation number is worked out from the outside in: two chloride ions outside mean the complex ion is 2+; inside, four ammine and one aqua are neutral and one chlorido is 1−, so cobalt must be +3. The ligand order is alphabetical — ammine, aqua, chlorido — which is not the order in which they are written in the formula. The book prints this name as \"Tetramine aquo chlorido cobalt (III) Chloride\"; ammine takes two m and the current ligand name is aqua.",
+        "common_mistakes": [
+          "Writing chlorido before aqua. Alphabetical order puts aqua first.",
+          "Giving cobalt as +2. Only the chlorido ligand inside carries a charge, so +3 is needed to leave a 2+ ion."
+        ],
+        "memory_tip": "a for ammine, a for aqua, c for chlorido — that is the order.",
+        "margin_note": "The Roman numeral and the closing word chloride are both part of this mark."
+      },
+      {
+        "id": "s3_name_b",
+        "kind": "text",
+        "label": "Name (b)",
+        "marks": 1,
+        "mark_note": "Name (b)",
+        "lines": [
+          {
+            "text": "b) Ni(CO)₄",
+            "style": "eq"
+          },
+          "CO is a neutral ligand and the molecule",
+          "is neutral, so nickel is 0.",
+          {
+            "text": "Tetracarbonylnickel(0)",
+            "style": "indent"
+          },
+          "The Roman numeral here is the digit",
+          "zero, not the letter O."
+        ],
+        "why": "Metal carbonyls are the standard case in which the oxidation number is zero: carbon monoxide is neutral and there is no counter ion, so nothing is left for the metal to carry. The printed formula has no square brackets because the compound is neutral overall; writing it as [Ni(CO)₄] is equally correct. The book prints the numeral as a letter o, which is a printing slip.",
+        "common_mistakes": [
+          "Writing nickel(II). All four ligands are neutral and the molecule is neutral, so nickel is 0.",
+          "Naming CO as carbon monoxide inside the name. As a ligand it is called carbonyl."
+        ],
+        "memory_tip": "Neutral ligands plus a neutral molecule means the metal is zero.",
+        "margin_note": "Write (0) with a digit. This is the shortest name on the paper and the easiest full mark."
+      },
+      {
+        "id": "s4_name_c",
+        "kind": "text",
+        "label": "Name (c)",
+        "marks": 1,
+        "mark_note": "Name (c)",
+        "lines": [
+          {
+            "text": "c) K₃[Fe(CN)₆]",
+            "style": "eq"
+          },
+          "Three K⁺ outside mean the complex ion is",
+          "3−. Six CN⁻ give 6−, so iron is +3.",
+          "The complex is an anion, so the metal",
+          "name becomes ferrate.",
+          {
+            "text": "Potassium hexacyanidoferrate(III)",
+            "style": "indent"
+          }
+        ],
+        "why": "The Latin stem is used when the complex is an anion, so iron becomes ferrate, copper becomes cuprate, lead becomes plumbate and silver becomes argentate. Outside an anion the ordinary English name is kept, which is why the cobalt complex in part (a) stays cobalt and does not become cobaltate. The book prints hexacyano; cyanido is the current form and both name the same ligand.",
+        "common_mistakes": [
+          "Writing ironate. The anionic form of the name uses the Latin stem: ferrate.",
+          "Giving iron as +2. Three potassium ions mean a 3− complex ion, and six CN⁻ give 6−, so iron is +3."
+        ],
+        "memory_tip": "Anionic complex: use the Latin stem and add -ate. Iron becomes ferrate.",
+        "margin_note": "Potassium first, then the complex anion as one word. Both parts are needed."
+      },
+      {
+        "id": "s5_name_d",
+        "kind": "boxed_final",
+        "label": "Name (d)",
+        "marks": 1,
+        "mark_note": "Name (d)",
+        "lines": [
+          {
+            "text": "d) [Cr(NH₃)₃(H₂O)₃]Cl₃",
+            "style": "eq"
+          },
+          "All six ligands are neutral and three",
+          "Cl⁻ sit outside, so chromium is +3.",
+          {
+            "text": "Triamminetriaquachromium(III)",
+            "style": "boxed"
+          },
+          "chloride.",
+          "Ammine comes before aqua in alphabetical",
+          "order, so triammine is written first."
+        ],
+        "why": "This is the same pattern as part (a) with one ligand fewer: the ligands inside are all neutral, so the metal's oxidation number equals the number of chloride ions outside. Alphabetical order again puts ammine before aqua. The book prints \"Triamine triaquo\"; both halves are corrected here to triammine and triaqua.",
+        "common_mistakes": [
+          "Writing triaquatriamminechromium(III) chloride. Ammine is alphabetically before aqua.",
+          "Splitting the complex name into separate words. The whole cation is written as one word."
+        ],
+        "memory_tip": "Neutral ligands only: the metal's oxidation number equals the charge outside.",
+        "margin_note": "One word for the whole complex, then a space, then chloride."
+      }
+    ]
+  },
+  "insider_note": "Four names, one mark each, so a wrong Roman numeral costs a full mark. Work the oxidation number out from the counter ions before writing any name."
+}

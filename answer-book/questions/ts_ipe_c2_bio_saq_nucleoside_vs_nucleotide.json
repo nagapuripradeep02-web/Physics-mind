@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_nucleoside_vs_nucleotide",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the difference between a nucleoside and a nucleotide?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Nucleoside",
+      "marks": 1
+    },
+    {
+      "label": "Nucleotide",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    },
+    {
+      "label": "Which one builds the chain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.102 as SAQ 6. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. CROSS-SUBJECT: Junior Botany already carries ts_ipe_b1_bm_nucleoside_vs_nucleotide, the SAME question worded identically, at 2 marks in its own paper. This chemistry card is the 4-mark version and is built on the same facts, using the same N-glycosidic linkage at carbon 1′ and the same phosphate at carbon 5′, so the two banks agree. The extra two marks here are spent on the examples and on the role of the phosphate in the chain, which the two-mark botany card has no room for. BOOK FIGURE NOT COPIED: the book prints two ring drawings on book p.102 whose phosphate group is rendered \"–O–P–O–HO–H₂C\", a mangled sequence; the linkage is correctly (HO)₂P(=O)–O–CH₂–, so this card writes the composition in words rather than reproducing the drawing."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nucleoside",
+        "kind": "text",
+        "label": "Nucleoside",
+        "marks": 1,
+        "mark_note": "Nucleoside",
+        "lines": [
+          "A nucleoside has two parts: a pentose sugar",
+          "and a nitrogenous base.",
+          {
+            "text": "Nucleoside = sugar + base",
+            "style": "eq"
+          },
+          "The base is joined to carbon 1′ of the sugar",
+          "by an N-glycosidic linkage."
+        ],
+        "why": "A nucleoside is what is left when the phosphate group is removed from a nucleotide, so the two-part composition is the whole definition. Naming the linkage as N-glycosidic says which atom does the joining: nitrogen of the base to carbon 1′ of the sugar.",
+        "common_mistakes": [
+          "Including the phosphate group in the nucleoside. A nucleoside has sugar and base only.",
+          "Writing that the base joins carbon 5′. The base joins carbon 1′; the phosphate goes to carbon 5′."
+        ],
+        "memory_tip": "Nucleoside is the short word and the short molecule: sugar plus base.",
+        "margin_note": "The two-word equation, sugar plus base, earns this mark on its own."
+      },
+      {
+        "id": "s2_nucleotide",
+        "kind": "text",
+        "label": "Nucleotide",
+        "marks": 1,
+        "mark_note": "Nucleotide",
+        "lines": [
+          "A nucleotide has three parts: the same",
+          "sugar and base, with a phosphate group",
+          "added.",
+          {
+            "text": "Nucleotide = sugar + base + phosphate",
+            "style": "eq"
+          },
+          "The phosphate is joined to carbon 5′ of the",
+          "sugar by an ester linkage."
+        ],
+        "why": "The phosphate is the only difference between the two, so it must be named together with where it attaches. It is a phosphoric ester of the sugar, which is why the acid character of the nucleic acids comes from the phosphate and not from the base.",
+        "common_mistakes": [
+          "Writing that a nucleotide has two bases. It has one base, one sugar and one phosphate group.",
+          "Calling the sugar-phosphate link a glycosidic linkage. That is an ester linkage; the glycosidic one joins the base."
+        ],
+        "memory_tip": "Nucleotide is the longer word and the longer molecule: the phosphate is the extra.",
+        "margin_note": "Say where the phosphate attaches, carbon 5′. That detail separates a full mark from a bare formula."
+      },
+      {
+        "id": "s3_examples",
+        "kind": "text",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Ex of a nucleoside: adenosine, which is",
+          "adenine joined to ribose.",
+          "Ex of a nucleotide: adenosine",
+          "monophosphate, AMP, which is adenosine with",
+          "one phosphate group.",
+          "Other nucleosides: guanosine, cytidine,",
+          "thymidine."
+        ],
+        "why": "Adenosine and AMP are the best pair of examples because they are the same molecule with and without the phosphate, so the example itself demonstrates the difference. The naming pattern is also visible: the nucleoside name plus \"monophosphate\" gives the nucleotide name.",
+        "common_mistakes": [
+          "Giving adenine as an example of a nucleoside. Adenine is the base alone; adenosine is the nucleoside.",
+          "Giving DNA as an example of a nucleotide. DNA is the polymer; a nucleotide is one unit of it."
+        ],
+        "memory_tip": "Adenosine is the nucleoside; add a phosphate and it is AMP.",
+        "margin_note": "One example of each is enough. Choosing adenosine and AMP shows the difference twice over."
+      },
+      {
+        "id": "s4_chain",
+        "kind": "boxed_final",
+        "label": "Which one builds the chain",
+        "marks": 1,
+        "mark_note": "Role in the chain",
+        "lines": [
+          {
+            "text": "Nucleotide = nucleoside + phosphate",
+            "style": "boxed"
+          },
+          "Nucleotides are the repeating units of DNA",
+          "and RNA; nucleosides are not.",
+          "In the chain, the phosphate of one",
+          "nucleotide joins carbon 5′ of its own sugar",
+          "to carbon 3′ of the next sugar."
+        ],
+        "why": "The phosphate is not just an extra group: it is what makes the polymer possible, because one phosphate can hold two sugars at once and so link unit to unit. That is why the nucleic acid chain is built of nucleotides and never of nucleosides.",
+        "common_mistakes": [
+          "Writing that DNA is a polymer of nucleosides. It is a polymer of nucleotides.",
+          "Writing that the chain links two bases together. The bases point inwards; the chain runs through sugar and phosphate."
+        ],
+        "memory_tip": "Only the nucleotide has the phosphate, and only the phosphate can link two units.",
+        "margin_note": "One sentence saying the nucleotide is the repeating unit finishes the comparison."
+      }
+    ]
+  },
+  "insider_note": "The whole difference is one phosphate group. Write the two equations first, then say where the phosphate attaches and why it matters."
+}

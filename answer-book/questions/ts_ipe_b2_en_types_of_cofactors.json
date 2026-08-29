@@ -1,0 +1,166 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_en_types_of_cofactors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Enzymes (Botany-II)"
+  },
+  "chapter": "Enzymes",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain different types of cofactors.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What a cofactor is",
+      "marks": 1
+    },
+    {
+      "label": "Prosthetic groups",
+      "marks": 1
+    },
+    {
+      "label": "Co-enzymes",
+      "marks": 1
+    },
+    {
+      "label": "Metal ions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.24, printed question 16. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Tightly bound against loosely bound is the difference between the first two types. Say 'tightly' and 'loosely' in those words — it is the fastest way to show you know the contrast.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Enzymes (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "What a cofactor is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Three named parts and the three types. This mark is vocabulary.",
+        "lines": [
+          "An enzyme with its non-protein part is called a",
+          "HOLOENZYME.",
+          "The protein part is the APOENZYME.",
+          "The NON-PROTEIN part is the CO-FACTOR.",
+          "Cofactors are of three types:",
+          "1. Prosthetic groups  2. Co-enzymes",
+          "3. Metal ions"
+        ],
+        "why": "A cofactor is defined by what it is not — not protein — so the apoenzyme and holoenzyme have to be named first for the definition to mean anything.",
+        "common_mistakes": [
+          "Calling the cofactor the protein part. It is the NON-protein part.",
+          "Mixing up apoenzyme and holoenzyme. Apo is the protein alone; holo is the whole working enzyme."
+        ],
+        "memory_tip": "Apo is the protein, holo is the whole, cofactor is the rest."
+      },
+      {
+        "id": "s2_prosthetic",
+        "kind": "text",
+        "label": "Prosthetic groups",
+        "marks": 1,
+        "mark_note": "Prosthetic",
+        "margin_note": "Tightly bound, one example, the equation. The word 'tightly' is the mark.",
+        "lines": [
+          "1. PROSTHETIC GROUPS:",
+          "Organic compounds TIGHTLY bound to the",
+          "apoenzyme.",
+          "Example: the haem part of peroxidase.",
+          "Peroxidase breaks hydrogen peroxide into water",
+          "and oxygen.",
+          {
+            "text": "2H2O2  --peroxidase-->  2H2O + O2",
+            "style": "eq"
+          }
+        ],
+        "why": "Being tightly bound means the group stays with the enzyme through the reaction, which is the one thing that separates it from a coenzyme.",
+        "common_mistakes": [
+          "Saying prosthetic groups are loosely bound. They are TIGHTLY bound.",
+          "Naming no example. Haem in peroxidase is the standard one."
+        ],
+        "memory_tip": "Prosthetic is permanent: it does not leave the enzyme."
+      },
+      {
+        "id": "s3_coenzyme",
+        "kind": "text",
+        "label": "Co-enzymes",
+        "marks": 1,
+        "mark_note": "Co-enzymes",
+        "margin_note": "Loosely attached, the vitamin origin, one example with the vitamin named.",
+        "lines": [
+          "2. CO-ENZYMES:",
+          "Organic compounds LOOSELY attached to the",
+          "apoenzyme.",
+          "They are derived from water soluble vitamins.",
+          "Example: NAD and NADP both contain the vitamin",
+          "NIACIN."
+        ],
+        "why": "A loosely attached coenzyme can leave, carry something away and come back, which is exactly what NAD does when it carries hydrogen between reactions.",
+        "common_mistakes": [
+          "Saying coenzymes are tightly bound. They are LOOSELY attached.",
+          "Leaving out the vitamin link. Coenzymes come from water soluble vitamins."
+        ],
+        "memory_tip": "Coenzymes come and go, and they come from vitamins."
+      },
+      {
+        "id": "s4_metal",
+        "kind": "boxed_final",
+        "label": "Metal ions",
+        "marks": 1,
+        "mark_note": "Metal ions",
+        "margin_note": "Say where the ion binds and give the named example.",
+        "lines": [
+          {
+            "text": "Tightly bound, loosely bound, or a metal ion",
+            "style": "boxed"
+          },
+          "3. METAL IONS:",
+          "Many enzymes need metal ions to work.",
+          "The ion forms coordination bonds with side",
+          "chains at the ACTIVE SITE.",
+          "Example: zinc is the cofactor for the",
+          "proteolytic enzyme carboxypeptidase."
+        ],
+        "why": "A metal ion is inorganic, so it is neither a prosthetic group nor a coenzyme and needs a third category of its own.",
+        "common_mistakes": [
+          "Calling metal ions organic. They are INORGANIC, which is why they are a separate type.",
+          "Naming no example. Zinc with carboxypeptidase is the standard one."
+        ],
+        "memory_tip": "Two organic types and one metal: that is the whole list."
+      }
+    ]
+  }
+}

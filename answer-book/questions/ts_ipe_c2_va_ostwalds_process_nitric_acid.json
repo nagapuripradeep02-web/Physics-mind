@@ -1,0 +1,258 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_ostwalds_process_nitric_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "How is nitric acid manufactured by Ostwald's process? How does it reacts with the following. a) Cu b) Zn c) S₈ d) P₄",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Step I — oxidation of ammonia",
+      "marks": 1
+    },
+    {
+      "label": "Step II — oxidation of NO",
+      "marks": 1
+    },
+    {
+      "label": "Step III — absorption in water",
+      "marks": 1
+    },
+    {
+      "label": "Concentration of the acid",
+      "marks": 1
+    },
+    {
+      "label": "With copper",
+      "marks": 1
+    },
+    {
+      "label": "With zinc",
+      "marks": 1
+    },
+    {
+      "label": "With sulphur",
+      "marks": 1
+    },
+    {
+      "label": "With phosphorus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.84 as Long Answer Question 2. The 1x8 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented (its printed wording, \"How does it reacts with the following.\", has a grammar error and a full stop where a question mark belongs; it is kept exactly as printed). Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK (book p.84, LAQ 2): all seven printed equations were atom-counted and ALL SEVEN BALANCE. 4NH₃ + 5O₂ → 4NO + 6H₂O (N 4, H 12, O 10 each side); 2NO + O₂ → 2NO₂ (N 2, O 4); 4NO₂ + 2H₂O + O₂ → 4HNO₃ (N 4, H 4, O 12); Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O (Cu 1, N 4, H 4, O 12); Zn + 4HNO₃ → Zn(NO₃)₂ + 2NO₂ + 2H₂O (Zn 1, N 4, H 4, O 12); S₈ + 48HNO₃ → 8H₂SO₄ + 48NO₂ + 16H₂O (S 8, N 48, H 48, O 144); P₄ + 20HNO₃ → 4H₃PO₄ + 20NO₂ + 4H₂O (P 4, N 20, H 20, O 60). The last two match NCERT exactly. BOOK GAP THAT MATTERS: the book does not write \"conc.\" beside the metal equations, and the concentration changes the products — with DILUTE HNO₃ copper gives NO, not NO₂ (3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O), and zinc gives N₂O (4Zn + 10HNO₃ → 4Zn(NO₃)₂ + N₂O + 5H₂O). Both added equations were atom-counted and balance. The word conc. is written on every metal equation here and the dilute cases are recorded in the why lines. NCERT VARIANTS recorded, not followed: NCERT gives Step I at about 500 K and 9 bar over a Pt/Rh gauze, where the book gives 800 °C and 6-7 atm; and NCERT writes Step III as 3NO₂ + H₂O → 2HNO₃ + NO with the NO recycled, where the book writes the air-fed form 4NO₂ + 2H₂O + O₂ → 4HNO₃. Both forms of Step III balance and both are marked; the book's is kept and NCERT's is recorded. The book's \"68.5%\" for the distilled acid is written here as about 68%, which is the azeotrope composition NCERT quotes."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "VA Group Elements — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_step_one",
+        "kind": "text",
+        "label": "Step I — oxidation of ammonia",
+        "marks": 1,
+        "mark_note": "Step I",
+        "lines": [
+          "Ammonia is oxidised by air over a platinum",
+          "or platinum-rhodium gauze catalyst to give",
+          "nitric oxide.",
+          {
+            "text": "4NH₃ + 5O₂ → 4NO + 6H₂O",
+            "style": "eq"
+          },
+          "Conditions: about 800 °C and 6 – 7 atm.",
+          "The reaction is exothermic."
+        ],
+        "why": "Ostwald's process turns ammonia into nitric acid in three oxidation steps, and this first one raises nitrogen from −3 in NH₃ to +2 in NO. NCERT gives the conditions instead as about 500 K and 9 bar over a Pt/Rh gauze; the book's 800 °C and 6-7 atm is the older description and is written here, but either is accepted.",
+        "common_mistakes": [
+          "Writing NO₂ as the product of Step I. Step I gives NO; NO₂ comes in Step II.",
+          "Leaving the equation unbalanced. Four NH₃ need five O₂ and give four NO with six H₂O."
+        ],
+        "memory_tip": "Three steps, three oxidation states of nitrogen: −3 to +2 to +4 to +5.",
+        "margin_note": "The equation with its catalyst and temperature is the mark. Write the catalyst above the arrow or beside it."
+      },
+      {
+        "id": "s2_step_two",
+        "kind": "text",
+        "label": "Step II — oxidation of NO",
+        "marks": 1,
+        "mark_note": "Step II",
+        "lines": [
+          "The nitric oxide is cooled and oxidised by",
+          "more air to nitrogen dioxide.",
+          {
+            "text": "2NO + O₂ → 2NO₂    (below 100 °C)",
+            "style": "eq"
+          },
+          "NO₂ is a reddish brown gas.",
+          "No catalyst is needed for this step."
+        ],
+        "why": "This step raises nitrogen from +2 to +4 and needs no catalyst, only cooling: the reaction is exothermic, so a lower temperature increases the yield. The colour change from colourless NO to brown NO₂ is what is seen in the plant and in the laboratory.",
+        "common_mistakes": [
+          "Writing that a catalyst is needed here. Only Step I uses the platinum catalyst.",
+          "Heating the gas for this step. It is cooled below 100 °C; heating would reduce the yield."
+        ],
+        "memory_tip": "Colourless NO plus air gives brown NO₂. Cool it, do not heat it.",
+        "margin_note": "One balanced equation with the temperature earns this mark."
+      },
+      {
+        "id": "s3_step_three",
+        "kind": "text",
+        "label": "Step III — absorption in water",
+        "marks": 1,
+        "mark_note": "Step III",
+        "lines": [
+          "The NO₂ is passed into water with excess air",
+          "in an absorption tower.",
+          {
+            "text": "4NO₂ + 2H₂O + O₂ → 4HNO₃",
+            "style": "eq"
+          },
+          "Dilute nitric acid is obtained.",
+          "The excess air is what keeps all the nitrogen",
+          "in the +5 state."
+        ],
+        "why": "This step raises nitrogen from +4 to +5. NCERT writes the same step without the added air as 3NO₂ + H₂O → 2HNO₃ + NO, where one third of the nitrogen falls back to NO and is recycled. Both equations balance and both are marked; the form written here is the one the book prints and is what an absorption tower with excess air actually does.",
+        "common_mistakes": [
+          "Writing HNO₂ as the product. The acid made is nitric acid, HNO₃.",
+          "Leaving out the O₂. Without the extra oxygen some of the nitrogen would come out as NO."
+        ],
+        "memory_tip": "Water plus air plus brown gas gives nitric acid. The air is what stops NO forming.",
+        "margin_note": "Either form of this equation is accepted, but it must balance. Count the oxygens before moving on."
+      },
+      {
+        "id": "s4_concentration",
+        "kind": "text",
+        "label": "Concentration of the acid",
+        "marks": 1,
+        "mark_note": "Concentration",
+        "lines": [
+          "The dilute acid from the tower is",
+          "concentrated in two stages.",
+          "1. Distillation gives about 68% HNO₃, which",
+          "is the highest a distillation can reach.",
+          "2. Dehydration with concentrated H₂SO₄",
+          "gives about 98% HNO₃.",
+          "This is called fuming nitric acid."
+        ],
+        "why": "Distillation stops at about 68% because at that composition the liquid and its vapour have the same composition, so no further separation is possible by boiling. Concentrated sulphuric acid removes the water chemically and takes the acid to 98%. The book prints 68.5%; about 68% is the value NCERT quotes for the same azeotrope.",
+        "common_mistakes": [
+          "Writing that distillation alone gives 98% acid. Distillation stops at about 68%.",
+          "Using CaO or P₄O₁₀ as the drying agent. Concentrated H₂SO₄ is the one used here."
+        ],
+        "memory_tip": "68% by boiling, 98% by concentrated sulphuric acid. Two stages, two numbers.",
+        "margin_note": "Both numbers and both methods are needed. One of the two alone is usually half of this mark."
+      },
+      {
+        "id": "s5_copper",
+        "kind": "text",
+        "label": "With copper",
+        "marks": 1,
+        "mark_note": "Part (a)",
+        "lines": [
+          "a) Concentrated nitric acid oxidises copper",
+          "to copper(II) nitrate and is itself reduced to",
+          "brown NO₂ gas.",
+          {
+            "text": "Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O",
+            "style": "eq"
+          }
+        ],
+        "why": "Nitric acid is an oxidising acid, so it does not give hydrogen gas with a metal the way HCl does. The concentration changes the product: with DILUTE nitric acid copper gives NO instead, 3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O, so the word concentrated has to be written beside the equation.",
+        "common_mistakes": [
+          "Writing H₂ as a product. Nitric acid is an oxidising acid and gives no hydrogen with copper.",
+          "Using NO with concentrated acid. Concentrated acid gives NO₂; dilute acid gives NO."
+        ],
+        "memory_tip": "Concentrated gives NO₂ (brown), dilute gives NO (colourless). Write which acid was used.",
+        "margin_note": "The word conc. beside the equation is part of this mark. Without it the products cannot be checked."
+      },
+      {
+        "id": "s6_zinc",
+        "kind": "text",
+        "label": "With zinc",
+        "marks": 1,
+        "mark_note": "Part (b)",
+        "lines": [
+          "b) Concentrated nitric acid oxidises zinc to",
+          "zinc nitrate, giving NO₂ again.",
+          {
+            "text": "Zn + 4HNO₃ → Zn(NO₃)₂ + 2NO₂ + 2H₂O",
+            "style": "eq"
+          }
+        ],
+        "why": "Zinc follows the same pattern as copper with the concentrated acid, and the two equations have the same coefficients because both metals form a +2 nitrate. With DILUTE nitric acid zinc gives nitrous oxide instead, 4Zn + 10HNO₃ → 4Zn(NO₃)₂ + N₂O + 5H₂O, which is a different product from copper's, so the two dilute cases must not be copied from each other.",
+        "common_mistakes": [
+          "Writing Zn(NO₃) with one nitrate. Zinc is +2, so the salt is Zn(NO₃)₂.",
+          "Giving the dilute-acid product for zinc as NO. Dilute nitric acid with zinc gives N₂O."
+        ],
+        "memory_tip": "Copper and zinc give the same equation with concentrated acid, and different ones with dilute.",
+        "margin_note": "This equation is the same shape as the copper one. Change only the metal symbol."
+      },
+      {
+        "id": "s7_sulphur",
+        "kind": "text",
+        "label": "With sulphur",
+        "marks": 1,
+        "mark_note": "Part (c)",
+        "lines": [
+          "c) Concentrated nitric acid oxidises sulphur",
+          "to sulphuric acid.",
+          {
+            "text": "S₈ + 48HNO₃ → 8H₂SO₄ + 48NO₂ + 16H₂O",
+            "style": "eq"
+          },
+          "Each S goes from 0 to +6, so 48 electrons",
+          "are given up in all."
+        ],
+        "why": "The large coefficients follow from the electron count and are not arbitrary: each of the eight sulphur atoms loses six electrons to reach +6, giving 48 electrons in all, and each HNO₃ molecule takes one electron to become NO₂, so exactly 48 of them are needed. Checking that count is faster than balancing the equation atom by atom.",
+        "common_mistakes": [
+          "Writing SO₂ or H₂SO₃ as the product. Concentrated nitric acid oxidises sulphur all the way to H₂SO₄.",
+          "Guessing the coefficients. Count the electrons: 8 S × 6 = 48, so 48 HNO₃ and 48 NO₂."
+        ],
+        "memory_tip": "8 sulphurs × 6 electrons = 48, and that 48 is the coefficient of both HNO₃ and NO₂.",
+        "margin_note": "The coefficients are what this mark checks. Write the electron count in the margin if the numbers are hard to recall."
+      },
+      {
+        "id": "s8_phosphorus",
+        "kind": "boxed_final",
+        "label": "With phosphorus",
+        "marks": 1,
+        "mark_note": "Part (d)",
+        "lines": [
+          "d) Concentrated nitric acid oxidises white",
+          "phosphorus to phosphoric acid.",
+          {
+            "text": "P₄ + 20HNO₃ → 4H₃PO₄ + 20NO₂ + 4H₂O",
+            "style": "boxed"
+          },
+          "Each P goes from 0 to +5, so 20 electrons",
+          "are given up in all."
+        ],
+        "why": "The same electron count fixes these coefficients: four phosphorus atoms each lose five electrons to reach +5, giving 20 electrons, so 20 HNO₃ are reduced to 20 NO₂. All four parts of this question are the same reaction type — concentrated nitric acid acting as an oxidising agent and being reduced to NO₂ each time.",
+        "common_mistakes": [
+          "Writing H₃PO₃ as the product. Concentrated nitric acid oxidises phosphorus to H₃PO₄, where P is +5.",
+          "Writing P instead of P₄. White phosphorus is P₄, and the coefficients depend on it."
+        ],
+        "memory_tip": "4 phosphorus × 5 electrons = 20, and that 20 is the coefficient of both HNO₃ and NO₂.",
+        "margin_note": "The boxed equation completes the answer. Adding the electron count line shows where the numbers came from."
+      }
+    ]
+  },
+  "insider_note": "All four reactions are one idea — concentrated nitric acid is an oxidising agent and is reduced to NO₂ every time — and the coefficients follow from counting electrons, 48 for S₈ and 20 for P₄. Write \"conc.\" beside each equation, because with dilute acid copper gives NO and zinc gives N₂O instead."
+}

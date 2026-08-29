@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_zwitter_ion_vsaq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Zwitter ion? Give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 20. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO, corrected here. The printed example on book p.100 reads \"H₂N – CH – COOH ⇌ H₅N⁺ – CH – COO⁻\". The nitrogen of the zwitterion carries THREE hydrogen atoms, so it is H₃N⁺; H₅N⁺ does not exist. The same book writes H₃N⁺ correctly in the scheme printed with VSAQ 12 on the same page and again in SAQ 9 on book p.102. BOOK DUPLICATION: this question is printed twice in the same chapter, as VSAQ 20 (2 marks) and again as SAQ 9 on book p.102 (4 marks). Both are authored, with the short-answer card carrying the acid and base reactions and the isoelectric point that the two-mark card has no room for. CROSS-SUBJECT: Junior Botany carries ts_ipe_b1_bm_zwitterionic_form_amino_acid on the same content; this card uses the same –NH₃⁺ and –COO⁻ notation and the same net-zero statement, so the two do not conflict."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "In aqueous solution the –COOH group of an",
+          "amino acid gives its proton to the –NH₂",
+          "group of the same molecule.",
+          "The result is a dipolar ion carrying one",
+          "positive and one negative charge, with no",
+          "net charge. It is called a zwitterion."
+        ],
+        "why": "The proton moves within one molecule, from the acidic end to the basic end, so nothing is added and nothing is removed. That is why the ion has two charges and still a net charge of zero, which is what makes the word dipolar the right one.",
+        "common_mistakes": [
+          "Writing that the zwitterion has a net charge. It carries two opposite charges and a net charge of zero.",
+          "Saying the proton comes from the water. It comes from the –COOH group of the same amino acid."
+        ],
+        "memory_tip": "One proton moves across the molecule: plus at one end, minus at the other.",
+        "margin_note": "Write \"dipolar ion\" and \"net charge zero\". Those two phrases carry this mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "H₂N–CHR–COOH ⇌ H₃N⁺–CHR–COO⁻",
+            "style": "boxed"
+          },
+          "Ex: glycine, H₂N–CH₂–COOH.",
+          "In water it exists almost entirely as",
+          {
+            "text": "H₃N⁺–CH₂–COO⁻",
+            "style": "eq"
+          },
+          "This is why amino acids are crystalline",
+          "solids with high melting points."
+        ],
+        "why": "Glycine is the simplest amino acid, with R = H, so its zwitterion is the shortest one to write. The zwitterion also explains a physical fact worth a mark elsewhere: amino acids behave like salts, melting high and dissolving in water but not in ether.",
+        "common_mistakes": [
+          "Writing H₅N⁺. The nitrogen carries three hydrogen atoms in the zwitterion, so it is H₃N⁺.",
+          "Giving a compound that has only one of the two groups. The example must have both –NH₂ and –COOH."
+        ],
+        "memory_tip": "Glycine is the simplest one: R is just a hydrogen atom.",
+        "margin_note": "One named amino acid with its zwitterion written out is the whole second mark."
+      }
+    ]
+  },
+  "insider_note": "Two lines and one example. Write the nitrogen as H₃N⁺, not H₅N⁺, and say the net charge is zero."
+}

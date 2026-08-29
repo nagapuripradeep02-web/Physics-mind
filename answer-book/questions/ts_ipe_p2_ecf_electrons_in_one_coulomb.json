@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_electrons_in_one_coulomb",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many electrons constitute 1 C of charge?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up Q = ne",
+      "marks": 1
+    },
+    {
+      "label": "n = 6.25 × 10¹⁸",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: n = 1 / (1.6 × 10⁻¹⁹) = 0.625 × 10¹⁹ = 6.25 × 10¹⁸ — arithmetic re-done by hand, matches the book (printed p.19). The book's question prints 'consititute 1c'; written correctly as 'constitute 1 C'."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Charges and Fields · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up Q = ne",
+        "marks": 1,
+        "mark_note": "Q = ne with Q = 1 C",
+        "lines": [
+          "Charge is quantized: Q = ne, where e is",
+          "the charge of one electron.",
+          {
+            "text": "1 = n × 1.6 × 10⁻¹⁹",
+            "style": "eq"
+          },
+          {
+            "text": "n = 1 / (1.6 × 10⁻¹⁹)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Start from Q = ne with Q = 1 C and e = 1.6 × 10⁻¹⁹ C.",
+        "why": "The count of electrons follows from quantisation alone: if each electron carries e, then 1 C holds 1/e electrons. Setting up n = Q/e is the whole method.",
+        "common_mistakes": [
+          "Multiplying instead of dividing — n = Q/e, not Q × e.",
+          "Using e = 1.6 × 10⁻¹⁹ without the unit coulomb, then mixing units in the answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the number of electrons is n = Q/e with Q = 1 C and e = 1.6 × 10⁻¹⁹ C.",
+          "accept": [
+            "n equals Q by e",
+            "divide one coulomb by the electron charge",
+            "one by 1.6 into 10 power minus 19"
+          ],
+          "reject": [
+            "6.25 into 10 power 18"
+          ],
+          "heard_as": [
+            "Q equals ne",
+            "1.6 into 10 power minus 19",
+            "coulomb"
+          ]
+        },
+        "memory_tip": "One coulomb divided by one electron's charge — the division IS the answer."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The number of electrons",
+        "marks": 1,
+        "mark_note": "n = 6.25 × 10¹⁸",
+        "lines": [
+          {
+            "text": "n = 0.625 × 10¹⁹",
+            "style": "eq"
+          },
+          {
+            "text": "n = 6.25 × 10¹⁸ electrons",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The value 6.25 × 10¹⁸ in standard form.",
+        "why": "1/1.6 = 0.625, and moving the decimal one place turns 0.625 × 10¹⁹ into the standard form 6.25 × 10¹⁸.",
+        "common_mistakes": [
+          "Writing 6.25 × 10¹⁹ — the power drops by one when 0.625 becomes 6.25.",
+          "Leaving the answer as 0.625 × 10¹⁹, which is not standard form."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is 6.25 × 10¹⁸ electrons.",
+          "accept": [
+            "6.25 into 10 power 18",
+            "6.25 into ten to the eighteen electrons"
+          ],
+          "reject": [
+            "6.25 into 10 power 19"
+          ],
+          "heard_as": [
+            "six point two five",
+            "ten power eighteen"
+          ]
+        },
+        "memory_tip": "1/1.6 = 0.625, then shift the decimal: 6.25 × 10¹⁸."
+      }
+    ]
+  },
+  "insider_note": "The lost mark here is nearly always the power of ten — 0.625 × 10¹⁹ must become 6.25 × 10¹⁸, not 6.25 × 10¹⁹."
+}

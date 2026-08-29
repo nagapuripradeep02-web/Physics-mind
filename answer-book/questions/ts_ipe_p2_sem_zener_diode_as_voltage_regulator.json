@@ -1,0 +1,441 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_zener_diode_as_voltage_regulator",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is a zener diode? Explain how it is used as a voltage Regulator.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Zener diode defined",
+      "marks": 1
+    },
+    {
+      "label": "Circuit equations",
+      "marks": 1
+    },
+    {
+      "label": "Load resistance changes",
+      "marks": 1
+    },
+    {
+      "label": "Input voltage changes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two figures carry 0 marks because the question does not ask for a diagram. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked against the book (p.56): Kirchhoff's current law at the junction gives the supply current as the sum of the zener current and the load current; Kirchhoff's voltage law round the input loop gives the input voltage as the drop across the series resistance plus the zener voltage, which is also the output voltage. With the input voltage held fixed the supply current is fixed, so a change in load current is met by an equal and opposite change in zener current. With the load fixed, a change in supply current is taken entirely by the zener. The book writes the series resistance as R in the voltage-law line and as the series resistance elsewhere; the same symbol is used throughout here. Symbols with capital-letter subscripts are authored as KaTeX, which Unicode cannot encode honestly. Both figures were rendered and inspected before this card was filed."
+  },
+  "recall_prompt": "Define a zener diode, then explain regulation for a changing load and for a changing input voltage.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Semiconductor Electronics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zener_diode",
+        "kind": "text",
+        "label": "Zener diode",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Zener diode:",
+            "style": "heading"
+          },
+          "A zener diode is a heavily doped p-n",
+          "junction diode which has a sharp",
+          "breakdown voltage when it is operated in",
+          "reverse bias.",
+          "A voltage regulator is a device that gives",
+          "a constant output voltage even when the",
+          "input voltage or the load current changes."
+        ],
+        "margin_note": "First mark. Heavily doped, sharp breakdown, reverse bias — and the regulator definition.",
+        "why": "Heavy doping is what makes the breakdown sharp and repeatable at a fixed voltage. That fixed voltage is the whole basis of the regulator, so the definition and the application are one idea, not two.",
+        "common_mistakes": [
+          "Leaving out reverse bias. In forward bias a zener diode is an ordinary diode.",
+          "Saying it is lightly doped. Light doping gives avalanche breakdown, not zener breakdown."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a zener diode is a heavily doped p-n junction diode with a sharp breakdown voltage in reverse bias.",
+          "accept": [
+            "heavily doped p n junction diode",
+            "sharp breakdown in reverse bias",
+            "properly doped diode with a fixed breakdown voltage"
+          ],
+          "reject": [
+            "supply current equals zener current plus load current"
+          ],
+          "heard_as": [
+            "zener diode",
+            "heavily doped",
+            "breakdown voltage"
+          ]
+        },
+        "memory_tip": "Heavily doped → thin layer → sharp breakdown → fixed voltage."
+      },
+      {
+        "id": "s2_symbol",
+        "kind": "diagram",
+        "label": "Zener symbol",
+        "marks": 0,
+        "figure": {
+          "id": "zener_symbol",
+          "width": 300,
+          "height": 170,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "zs_anode",
+              "d": "M 40 85 L 100 85 M 100 60 L 100 110 L 148 85 Z",
+              "ms": 3120
+            },
+            {
+              "type": "stroke",
+              "id": "zs_bar",
+              "d": "M 138 55 L 148 55 L 148 115 L 158 115",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "zs_cathode",
+              "d": "M 148 85 L 210 85",
+              "ms": 890
+            },
+            {
+              "type": "label",
+              "id": "zs_lbl_p",
+              "x": 66,
+              "y": 76,
+              "text": "p",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "zs_lbl_n",
+              "x": 176,
+              "y": 76,
+              "text": "n",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "zs_lbl_title",
+              "x": 70,
+              "y": 150,
+              "text": "Zener diode",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "An ordinary diode symbol with the bar bent at both ends. The bent bar is what marks it as a zener.",
+        "why": "The bent ends are the only difference from the ordinary diode symbol, so drawing a plain straight bar draws the wrong device.",
+        "common_mistakes": [
+          "Drawing a plain straight bar. That is an ordinary diode.",
+          "Bending both ends the same way. The two bends go opposite ways."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the zener symbol is the diode symbol with the bar bent at both ends.",
+          "accept": [
+            "diode symbol with a bent bar",
+            "triangle with a z shaped bar",
+            "arrow and bar with turned ends"
+          ],
+          "reject": [
+            "series resistance and a load resistance"
+          ],
+          "heard_as": [
+            "symbol",
+            "bent bar",
+            "zener"
+          ]
+        },
+        "memory_tip": "The bar is bent into a Z — Z for zener."
+      },
+      {
+        "id": "s3_circuit",
+        "kind": "diagram",
+        "label": "Regulator circuit",
+        "marks": 0,
+        "figure": {
+          "id": "zener_regulator",
+          "width": 460,
+          "height": 210,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "zr_supply",
+              "d": "M 80 60 L 80 100 M 66 100 L 94 100 M 72 112 L 88 112 M 80 112 L 80 180",
+              "ms": 2170
+            },
+            {
+              "type": "stroke",
+              "id": "zr_top",
+              "d": "M 80 60 L 150 60 L 158 48 L 174 72 L 190 48 L 206 72 L 214 60 L 380 60",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "zr_bottom",
+              "d": "M 80 180 L 380 180",
+              "ms": 4290
+            },
+            {
+              "type": "stroke",
+              "id": "zr_zener",
+              "d": "M 260 60 L 260 100 M 244 92 L 244 100 L 276 100 L 276 108 M 244 128 L 276 128 L 260 100 Z M 260 128 L 260 180",
+              "ms": 3380
+            },
+            {
+              "type": "stroke",
+              "id": "zr_load",
+              "d": "M 380 60 L 380 90 L 370 98 L 390 110 L 370 122 L 390 134 L 380 142 L 380 180",
+              "ms": 2340
+            },
+            {
+              "type": "label",
+              "id": "zr_lbl_rs",
+              "x": 168,
+              "y": 36,
+              "text": "Rₛ",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "zr_lbl_vin",
+              "x": 14,
+              "y": 118,
+              "text": "Vᵢₙ",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "zr_lbl_zener",
+              "x": 286,
+              "y": 116,
+              "text": "Zener",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "zr_lbl_load",
+              "x": 400,
+              "y": 120,
+              "text": "Load",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "zr_lbl_vo",
+              "x": 400,
+              "y": 168,
+              "text": "Vₒ",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The zener sits across the load, in reverse bias. The series resistance limits the current and takes the extra voltage.",
+        "why": "Two features of the circuit do all the work: the zener is in parallel with the load, so it fixes the load voltage; and the series resistance is in the supply line, so any extra input voltage is dropped across it and never reaches the load.",
+        "common_mistakes": [
+          "Leaving out the series resistance. Without it the breakdown current is not limited and the diode is damaged.",
+          "Connecting the zener in forward bias. The bar must face the positive side of the supply.",
+          "Putting the zener in series with the load instead of across it."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the circuit has a series resistance from the supply, with the zener in reverse across the load.",
+          "accept": [
+            "series resistance then zener across the load",
+            "zener in parallel with the load resistance",
+            "draw the supply, the series resistor and the zener"
+          ],
+          "reject": [
+            "the input voltage equals the drop plus the zener voltage"
+          ],
+          "heard_as": [
+            "circuit",
+            "series resistance",
+            "parallel with the load"
+          ]
+        },
+        "memory_tip": "Series resistor takes the extra volts; the zener holds the rest steady."
+      },
+      {
+        "id": "s4_circuit_equations",
+        "kind": "equation",
+        "label": "Circuit equations",
+        "marks": 1,
+        "mark_note": "Current law and voltage law",
+        "lines": [
+          "By Kirchhoff's current law at the junction:",
+          {
+            "text": "I = I_Z + I_L \\qquad \\dots (1)",
+            "style": "eq",
+            "render": "katex"
+          },
+          "By Kirchhoff's voltage law in the input",
+          "loop:",
+          {
+            "text": "V_{in} = I R_s + V_Z, \\quad V_Z = V_o \\qquad \\dots (2)",
+            "style": "eq",
+            "render": "katex"
+          },
+          "The output is taken across the zener, so",
+          "the output voltage is the zener voltage."
+        ],
+        "margin_note": "Second mark. Both laws written, and the statement that the output voltage IS the zener voltage.",
+        "why": "Equation (2) is the whole reason the circuit regulates: the output is taken directly across the zener, so as long as the diode stays in breakdown the output voltage cannot be anything except the zener voltage.",
+        "common_mistakes": [
+          "Writing the supply current as the load current alone. Part of it passes through the zener.",
+          "Forgetting the drop across the series resistance in the voltage law."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the supply current is the sum of the zener and load currents, and the input voltage is the drop across the series resistance plus the zener voltage, which is the output.",
+          "accept": [
+            "I equals I zener plus I load",
+            "input voltage equals I R plus zener voltage",
+            "output voltage equals zener voltage"
+          ],
+          "reject": [
+            "as the load resistance rises the load current falls"
+          ],
+          "heard_as": [
+            "kirchhoff",
+            "current law",
+            "voltage law"
+          ]
+        },
+        "memory_tip": "One current splits two ways; one voltage divides between the resistor and the diode."
+      },
+      {
+        "id": "s5_load_changes",
+        "kind": "text",
+        "label": "Load changes",
+        "marks": 1,
+        "mark_note": "Case i",
+        "lines": [
+          {
+            "text": "Case (i): input voltage constant, load",
+            "style": "heading"
+          },
+          {
+            "text": "resistance changes.",
+            "style": "heading"
+          },
+          "From (1), with the supply current fixed:",
+          {
+            "text": "0 = dI_Z + dI_L \\;\\Rightarrow\\; dI_Z = -\\,dI_L",
+            "style": "eq",
+            "render": "katex"
+          },
+          "If the load resistance increases, the load",
+          "current decreases. The zener current then",
+          "increases by the same amount, so the",
+          "total current and the output voltage",
+          "stay constant."
+        ],
+        "margin_note": "Third mark. The minus sign is the point: one current rises exactly as much as the other falls.",
+        "why": "With the input voltage and the series resistance fixed, the total current is fixed. The zener therefore takes whatever current the load does not, which keeps the drop across the series resistance the same and holds the output steady.",
+        "common_mistakes": [
+          "Saying the zener current also falls. It rises by exactly the amount the load current falls.",
+          "Saying the output voltage falls with a bigger load resistance. It stays constant — that is the regulation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That when the load current changes the zener current changes by an equal and opposite amount, holding the output constant.",
+          "accept": [
+            "zener current change is minus the load current change",
+            "the zener takes up the difference",
+            "load current falls so zener current rises"
+          ],
+          "reject": [
+            "all of the extra current goes through the zener"
+          ],
+          "heard_as": [
+            "case one",
+            "load resistance",
+            "zener current"
+          ]
+        },
+        "memory_tip": "The zener takes whatever the load leaves — the sum never changes."
+      },
+      {
+        "id": "s6_input_changes",
+        "kind": "boxed_final",
+        "label": "Input voltage changes",
+        "marks": 1,
+        "mark_note": "Case ii",
+        "lines": [
+          {
+            "text": "Case (ii): load resistance constant, input",
+            "style": "heading"
+          },
+          {
+            "text": "voltage changes.",
+            "style": "heading"
+          },
+          "The load current is fixed, so from (1):",
+          {
+            "text": "dI = dI_Z",
+            "style": "eq",
+            "render": "katex"
+          },
+          "If the input voltage increases, the supply",
+          "current increases, and all of that",
+          "increase passes through the zener. The",
+          "extra voltage is dropped across the",
+          "series resistance, so the output voltage",
+          "stays constant.",
+          {
+            "text": "Output voltage = zener voltage, always",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. All the extra current goes to the zener; the extra voltage goes to the series resistance.",
+        "why": "In breakdown the zener's voltage barely changes however much current it passes, so it can absorb the whole current increase without letting the output voltage move. The series resistance is what converts that extra current into the extra voltage drop.",
+        "common_mistakes": [
+          "Saying the output voltage rises with the input voltage. It does not — that is the regulation.",
+          "Saying the extra current goes through the load. The load current is fixed here."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That when the input voltage rises the whole current increase goes through the zener and the extra voltage is dropped across the series resistance, so the output stays constant.",
+          "accept": [
+            "the change in supply current equals the change in zener current",
+            "extra voltage appears across the series resistance",
+            "output voltage stays the same"
+          ],
+          "reject": [
+            "zener current change is minus the load current change"
+          ],
+          "heard_as": [
+            "case two",
+            "input voltage",
+            "series resistance"
+          ]
+        },
+        "memory_tip": "Case i: the zener trades current with the load. Case ii: the resistor eats the extra volts."
+      }
+    ]
+  },
+  "insider_note": "The two cases are the marked part. Write both, and in each one name what stays constant and what absorbs the change."
+}

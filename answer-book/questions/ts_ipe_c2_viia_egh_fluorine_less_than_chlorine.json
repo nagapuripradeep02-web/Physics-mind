@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_egh_fluorine_less_than_chlorine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Electron gain enthalpy of fluorine is less than that of chlorine – explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The values and the order",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING CORRECTED (book p.86, VSAQ 1): the printed answer says fluorine \"has a least tendency to accept an electron\". That is wrong as written — fluorine is the strongest oxidising agent of the halogens, so its tendency to take an electron is not the least; only the ENERGY RELEASED when it takes one is smaller than chlorine's. This card writes the energy statement instead, and adds the caution in common_mistakes. BOOK GAP: the printed answer gives no numbers and never states the group order, so a student cannot see that fluorine is the exception. The values (F −333 kJ/mol, Cl −349 kJ/mol) and the order Cl > F > Br > I are written here. The word \"lower\" in the printed answer is ambiguous for a negative quantity and is replaced by \"less negative\"."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "The fluorine atom is very small, so its 2p",
+          "subshell is compact and its electrons are",
+          "close together.",
+          "The electron being added is repelled strongly",
+          "by the electrons already there, so less energy",
+          "is released.",
+          "In chlorine the electron enters the larger 3p",
+          "subshell, where this repulsion is smaller."
+        ],
+        "why": "Electron gain enthalpy is the energy released when an atom takes one electron. Two effects set it: the pull of the nucleus and the repulsion from the electrons already present. Fluorine has the stronger nuclear pull, but its 2p subshell is so small that the repulsion is larger than what that pull gains, so the net energy released is smaller than in chlorine.",
+        "common_mistakes": [
+          "Writing that fluorine has little tendency to accept an electron. Fluorine is still the strongest oxidising agent of the halogens; only the energy released is smaller.",
+          "Giving low electronegativity as the reason. Fluorine is the most electronegative element of all."
+        ],
+        "memory_tip": "Small atom, electrons close together, less energy released. The size of fluorine is the whole reason.",
+        "margin_note": "The marked words are the small size of fluorine and the repulsion from the electrons already in the 2p subshell."
+      },
+      {
+        "id": "s2_order_values",
+        "kind": "boxed_final",
+        "label": "The values and the order",
+        "marks": 1,
+        "mark_note": "Values and order",
+        "lines": [
+          "Electron gain enthalpy of fluorine is",
+          "−333 kJ/mol and of chlorine is −349 kJ/mol,",
+          "so chlorine's value is more negative.",
+          {
+            "text": "Order: Cl > F > Br > I",
+            "style": "boxed"
+          },
+          "Fluorine is the exception in this order.",
+          "From chlorine onwards the value becomes",
+          "less negative down the group."
+        ],
+        "why": "The group trend is that the value becomes less negative from chlorine down to iodine, and fluorine breaks it. The single line Cl > F > Br > I states the trend and its exception together, which is what the question is testing. Fluorine is still the strongest oxidising agent, because the F–F bond is weak and the hydration enthalpy of F⁻ is very high.",
+        "common_mistakes": [
+          "Reading \"less\" as more negative. Fluorine's −333 kJ/mol is less negative than chlorine's −349 kJ/mol.",
+          "Writing the order as F > Cl > Br > I. Chlorine, not fluorine, has the most negative electron gain enthalpy of all the elements."
+        ],
+        "memory_tip": "Chlorine has the most negative value of all the elements, so the order starts with Cl, not F.",
+        "margin_note": "One line carrying the order Cl > F > Br > I earns this mark, because it states the trend and the exception together."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for two things: the small size of fluorine with the repulsion it causes, and the order Cl > F > Br > I that shows fluorine is out of place."
+}

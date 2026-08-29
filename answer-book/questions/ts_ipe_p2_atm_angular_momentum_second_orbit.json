@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_angular_momentum_second_orbit",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the angular momentum of electron in the second orbit of Bohr's model of hydrogen atom?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Bohr's condition L = nh/2π",
+      "marks": 1
+    },
+    {
+      "label": "Put n = 2 and get h/π",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: Bohr's second postulate gives L = mvr = nh/2π; with n = 2, L = 2h/2π = h/π = 6.626 × 10⁻³⁴ / 3.1416 = 2.11 × 10⁻³⁴ J s. The book prints \"plank's constant\" for Planck's constant throughout the chapter; the spelling is corrected here."
+  },
+  "recall_prompt": "Say Bohr's angular momentum condition, then put n = 2 and say the value.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atoms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "text",
+        "label": "Bohr's condition",
+        "marks": 1,
+        "mark_note": "L = nh/2π",
+        "lines": [
+          "By Bohr's second postulate the angular",
+          "momentum of the electron is an integral",
+          "multiple of h/2π.",
+          {
+            "text": "L = mvr = nh/2π,  n = 1, 2, 3, …",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Write the condition with n in it before substituting.",
+        "why": "The angular momentum is quantised: only the values nh/2π are allowed. Writing the general condition first shows where the number comes from.",
+        "common_mistakes": [
+          "Writing L = nh without the 2π.",
+          "Starting from n = 0. The principal quantum number starts at n = 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That angular momentum is quantised as L = nh/2π.",
+          "accept": [
+            "L equals n h by two pi",
+            "m v r equals n h over 2 pi",
+            "integral multiple of h by 2 pi"
+          ],
+          "reject": [
+            "h by pi"
+          ],
+          "heard_as": [
+            "n h by 2 pi",
+            "m v r",
+            "Bohr's postulate"
+          ]
+        },
+        "memory_tip": "Every orbit carries a whole number of h/2π packets of angular momentum."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "Put n = 2",
+        "marks": 1,
+        "mark_note": "L = h/π",
+        "lines": [
+          "For the second orbit n = 2, so",
+          {
+            "text": "L = 2h/2π = h/π",
+            "style": "eq"
+          },
+          {
+            "text": "L = 6.626 × 10⁻³⁴ / 3.14 = 2.11 × 10⁻³⁴ J s",
+            "style": "eq"
+          },
+          {
+            "text": "L = h/π = 2.11 × 10⁻³⁴ J s",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Cancel the 2 and give h/π, with the numerical value.",
+        "why": "Putting n = 2 into nh/2π cancels the 2, so the answer is simply h/π — the shortest correct form the examiner is looking for.",
+        "common_mistakes": [
+          "Leaving the answer as 2h/2π without cancelling.",
+          "Writing the unit as J. Angular momentum is in J s (kg m² s⁻¹)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with n = 2 the angular momentum is h/π, about 2.11 × 10⁻³⁴ J s.",
+          "accept": [
+            "h by pi",
+            "two h by two pi cancels to h by pi",
+            "two point one one into ten power minus thirty four"
+          ],
+          "reject": [
+            "n h by two pi"
+          ],
+          "heard_as": [
+            "h over pi",
+            "2.11 into 10 to the minus 34",
+            "joule second"
+          ]
+        },
+        "memory_tip": "n = 2 cancels the 2 in 2π, so only h/π is left."
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for h/π, not 2h/2π — cancel the 2 and add the unit J s."
+}

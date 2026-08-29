@@ -1,0 +1,314 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_galvanic_cell_daniel_cell",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What are galvanic cells? Explain the working of galvanic cell with a neat sketch taking Daniel cell as example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a galvanic cell is",
+      "marks": 1
+    },
+    {
+      "label": "Construction of the Daniel cell",
+      "marks": 2
+    },
+    {
+      "label": "Neat sketch",
+      "marks": 2
+    },
+    {
+      "label": "Electrode reactions",
+      "marks": 2
+    },
+    {
+      "label": "Working and cell representation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+2+2+2+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, corrected on this card (book pp.70-71, LAQ 1): the printed construction ends \"The two electrodes are connected by external battery.\" That is wrong and it inverts the whole answer. A galvanic cell PRODUCES current, so its electrodes are joined by an outside WIRE, through a voltmeter or a load. An outside battery is what an ELECTROLYTIC cell needs; adding one to a Daniel cell would stop it being a galvanic cell at all. The book's own figure on the same page draws a meter in the wire, not a battery, so the sentence also contradicts the book's own diagram. This card writes wire and voltmeter. BOOK GAPS: the printed answer never says what the salt bridge is FOR, never gives the emf of the Daniel cell, and writes the cell notation as Zn/Zn²⁺//Cu²⁺/Cu with slashes; the standard single and double vertical bars are used here. RECOMPUTED: E°cell = E°(Cu²⁺/Cu) − E°(Zn²⁺/Zn) = 0.34 − (−0.76) = 1.10 V; the standard potentials are the NCERT values and are not in the book. FIGURE SCOPE: the question says \"with a neat sketch\", so the diagram DOES carry marks here."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Electro Chemistry — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What a galvanic cell is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A galvanic cell, also called a voltaic cell, is",
+          "a device that converts the chemical energy of",
+          "a spontaneous redox reaction into electrical",
+          "energy.",
+          "The oxidation and the reduction are carried",
+          "out in two separate half cells, so the",
+          "electrons have to travel through an outside",
+          "wire to get from one to the other.",
+          "That flow of electrons is the current the cell",
+          "supplies."
+        ],
+        "why": "If zinc is simply dipped into copper sulphate the same reaction happens, but the electrons pass straight from zinc to copper ions at the surface and all the energy comes out as heat. Separating the two half reactions is the whole idea: it forces the electrons through a wire, where they can do useful work.",
+        "common_mistakes": [
+          "Saying a galvanic cell converts electrical energy into chemical energy. That is an electrolytic cell; a galvanic cell does the reverse.",
+          "Leaving out the word spontaneous. A galvanic cell works only because its redox reaction happens on its own."
+        ],
+        "memory_tip": "Separate the two half reactions and the electrons must travel through the outside wire to get from one to the other.",
+        "margin_note": "The words spontaneous redox reaction and chemical to electrical both belong in this sentence."
+      },
+      {
+        "id": "s2_construction",
+        "kind": "text",
+        "label": "Construction of the Daniel cell",
+        "marks": 2,
+        "mark_note": "Construction",
+        "lines": [
+          "The Daniel cell is the standard example.",
+          "Anode half cell: a zinc rod dipped in a",
+          "solution of ZnSO₄.",
+          "Cathode half cell: a copper rod dipped in a",
+          "solution of CuSO₄.",
+          "The two solutions are joined by a salt bridge,",
+          "a U shaped tube packed with KCl set in agar",
+          "jelly, with its two ends dipping into the two",
+          "solutions.",
+          "The two rods are joined outside the cell by a",
+          "wire through a voltmeter.",
+          "The zinc rod is the negative electrode and the",
+          "copper rod is the positive electrode."
+        ],
+        "why": "The two solutions must touch electrically but not mix, and the salt bridge is what does both. If the solutions were poured together the copper ions would reach the zinc rod directly and the electrons would never enter the wire.",
+        "common_mistakes": [
+          "Writing that the electrodes are joined by an outside battery. A galvanic cell supplies its own current; the electrodes are joined by a wire.",
+          "Putting the zinc rod in copper sulphate. Each metal stands in a solution of its own salt."
+        ],
+        "memory_tip": "Zinc with zinc sulphate on the left, copper with copper sulphate on the right, salt bridge between, wire over the top.",
+        "margin_note": "Four parts carry these two marks: the two half cells, the salt bridge and the outside wire. Name all four."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Neat sketch",
+        "marks": 2,
+        "mark_note": "Labelled sketch",
+        "figure": {
+          "id": "daniel_cell_sketch",
+          "width": 620,
+          "height": 330,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "dc_beaker_left",
+              "d": "M 60 150 L 60 285 L 230 285 L 230 150",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dc_beaker_right",
+              "d": "M 330 150 L 330 285 L 500 285 L 500 150",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dc_solution_levels",
+              "d": "M 60 185 L 230 185 M 330 185 L 500 185",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dc_zn_rod",
+              "d": "M 120 105 L 120 255 L 138 255 L 138 105 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dc_cu_rod",
+              "d": "M 400 105 L 400 255 L 418 255 L 418 105 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dc_salt_bridge",
+              "d": "M 175 200 L 175 120 L 385 120 L 385 200",
+              "ms": 4500,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "dc_wire",
+              "d": "M 129 105 L 129 60 L 245 60 M 315 60 L 409 60 L 409 105",
+              "ms": 4290
+            },
+            {
+              "type": "stroke",
+              "id": "dc_voltmeter",
+              "d": "M 248 60 A 32 32 0 1 1 312 60 A 32 32 0 1 1 248 60",
+              "ms": 2870
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_v",
+              "x": 272,
+              "y": 70,
+              "text": "V",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_electron_flow",
+              "x": 140,
+              "y": 48,
+              "text": "e⁻ →",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_zn_anode",
+              "x": 10,
+              "y": 88,
+              "text": "Zinc anode (−)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_cu_cathode",
+              "x": 432,
+              "y": 96,
+              "text": "Copper cathode (+)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_salt_bridge",
+              "x": 245,
+              "y": 150,
+              "text": "salt bridge",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_znso4",
+              "x": 62,
+              "y": 310,
+              "text": "ZnSO₄ solution",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_cuso4",
+              "x": 332,
+              "y": 310,
+              "text": "CuSO₄ solution",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The sketch has to show the two beakers, the two rods in their own solutions, the salt bridge joining the solutions and the wire joining the rods. Anything missing from that list is a part of the cell that cannot work, so each of them is a marked feature.",
+        "common_mistakes": [
+          "Drawing a battery in the outside wire. The cell supplies the current, so only a voltmeter or a load belongs there.",
+          "Drawing the salt bridge dipping above the liquid level. Both ends must be under the surface of the two solutions."
+        ],
+        "memory_tip": "Two beakers, two rods, one bridge over the top, one wire over that. Draw them in that order.",
+        "margin_note": "The question says neat sketch, so this diagram is marked. Label the anode, the cathode, both solutions and the salt bridge."
+      },
+      {
+        "id": "s4_electrode_reactions",
+        "kind": "equation",
+        "label": "Electrode reactions",
+        "marks": 2,
+        "mark_note": "Reactions",
+        "lines": [
+          {
+            "text": "At anode (oxidation), the zinc rod:",
+            "style": "eq"
+          },
+          {
+            "text": "Zn(s) → Zn²⁺(aq) + 2e⁻",
+            "style": "indent"
+          },
+          {
+            "text": "At cathode (reduction), the copper rod:",
+            "style": "eq"
+          },
+          {
+            "text": "Cu²⁺(aq) + 2e⁻ → Cu(s)",
+            "style": "indent"
+          },
+          "Adding the two half reactions:",
+          {
+            "text": "Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Zinc has the more negative standard potential of the two, so zinc is oxidised and copper ions are reduced. That single comparison determines which rod is the anode, and every other feature of the cell follows from it.",
+        "common_mistakes": [
+          "Putting the oxidation at the copper rod. Zinc has the more negative potential, so zinc is oxidised.",
+          "Leaving the electrons in the overall equation. Both halves carry 2e⁻, so they cancel exactly."
+        ],
+        "memory_tip": "The more negative standard potential is the one oxidised. Zinc is −0.76 and copper is +0.34, so zinc goes first.",
+        "margin_note": "Label each equation Anode or Cathode and write oxidation or reduction beside it. The labels are marked too."
+      },
+      {
+        "id": "s5_working",
+        "kind": "text",
+        "label": "Working and cell representation",
+        "marks": 1,
+        "mark_note": "Working",
+        "lines": [
+          "Working: electrons leave the zinc rod, pass",
+          "through the wire to the copper rod, and",
+          "reduce Cu²⁺ ions there.",
+          "The zinc rod loses mass and the copper rod",
+          "gains mass.",
+          "Through the salt bridge, anions move to the",
+          "zinc half cell and cations to the copper half",
+          "cell, which keeps both solutions electrically",
+          "neutral and lets the cell keep working.",
+          {
+            "text": "Zn | Zn²⁺(1 M) || Cu²⁺(1 M) | Cu",
+            "style": "eq"
+          },
+          {
+            "text": "E°cell = 0.34 − (−0.76) = 1.10 V",
+            "style": "eq"
+          }
+        ],
+        "why": "Without the salt bridge the zinc solution would build up positive charge and the copper solution negative charge within moments, and that build up would stop the electrons moving. The salt bridge is therefore what lets the cell run for more than an instant.",
+        "common_mistakes": [
+          "Saying current flows from the anode to the cathode in the wire. The ELECTRONS go that way; conventional current goes the other way.",
+          "Writing E°cell = E°anode − E°cathode. It is the cathode value minus the anode value."
+        ],
+        "memory_tip": "Cathode minus anode gives the cell emf. For the Daniel cell that is 0.34 minus −0.76, which is 1.10 V.",
+        "margin_note": "The salt bridge sentence and the 1.10 V line are what lift this from a diagram answer to a working answer."
+      }
+    ]
+  },
+  "insider_note": "The book prints that the two electrodes are joined by an outside battery. They are not: a galvanic cell supplies its own current, so the wire carries a voltmeter or a load. Writing battery in the answer or drawing one in the sketch loses the working marks."
+}

@@ -57,7 +57,7 @@ function fail(msg: string): never {
 // `label`/`blurb` are the STUDENT-FACING words for the stream and are the single
 // source for both the link-preview card and the on-page header, so the two can
 // never disagree about what the reader is holding.
-const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string; short: string }> = {
+const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string; short: string; year: string }> = {
     // Maths-1A is `mathematics` for historical reasons (see SUBJECTS below).
     mpc: {
         subjects: ['physics', 'chemistry', 'mathematics', 'mathematics_1b'],
@@ -66,6 +66,23 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
         // `short` joins the catalog eyebrow, which already carries the board and
         // the year — so it must NOT repeat either ("Telangana IPE · First year · MPC").
         short: 'MPC',
+        year: 'First year',
+    },
+    // Senior Inter (2026-08-28). The FIRST second-year stream, and the reason
+    // `year` above stopped being three hardcoded "First year" strings: the
+    // eyebrow, the shell's static fallback and the og description each printed
+    // it, so a second-year student would have read "First year" on all three.
+    // Subjects grow as the other Paper-IIs are authored (mathematics_2a,
+    // mathematics_2b) — the stream is the seam for that. chemistry_2 joined
+    // 2026-08-29, and the blurb moved with it in the same commit: a stream that
+    // serves a paper its blurb does not name advertises a book it does contain,
+    // which is the same defect as the reverse and just as invisible.
+    mpc_2: {
+        subjects: ['physics_2', 'chemistry_2'],
+        label: 'Senior Inter MPC',
+        blurb: 'Physics and Chemistry',
+        short: 'MPC',
+        year: 'Second year',
     },
 };
 // The DOOR (founder, 2026-08-27): the group-and-year chooser a student meets
@@ -87,8 +104,12 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
 //
 // The notes are checked against what is on disk, not against the marketing
 // site: Botany is on master (13 chapters) and Zoology is real but on an
-// unmerged branch (8 chapters), so "written, being checked" is true of both;
-// there is not one second-year card anywhere in the repo.
+// unmerged branch (8 chapters), so "written, being checked" is true of both.
+// MPC second year went live 2026-08-28 with Physics-II (16 chapters) and gained
+// Chemistry-II (18 units) on 2026-08-29; Maths 2A/2B are not written, which is
+// why `mpc_2.blurb` says "Physics and Chemistry" and not "Maths, Physics and
+// Chemistry" — the blurb is what the reader is promised, and it must describe
+// the artifact, not the ambition.
 const TRACKS: {
     id: string;
     label: string;
@@ -101,7 +122,7 @@ const TRACKS: {
         subjects: 'Maths 1A · Maths 1B · Physics · Chemistry',
         years: [
             { id: 'first_year', label: 'First year', stream: 'mpc', note: '' },
-            { id: 'second_year', label: 'Second year', stream: null, note: 'Not started yet.' },
+            { id: 'second_year', label: 'Second year', stream: 'mpc_2', note: '' },
         ],
     },
     {
@@ -266,7 +287,7 @@ const listedIds = new Set<string>();
 // below). `mathematics` is Maths-1A for historical reasons — it predates 1B, the
 // same way an absent subject means physics. Physics-II will need the same
 // treatment when it opens.
-const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'zoology_2'];
+const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'zoology_2'];
 // STREAMS (top of file) names subjects too. If the two lists drift — a stream
 // naming a subject that no longer exists, or a renamed subject — the lens would
 // silently drop a whole paper from a student's book rather than erroring. Cheap
@@ -695,6 +716,10 @@ const dataJs =
     // null on the full build — the catalog eyebrow then stays subject-neutral.
     `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM].short : null)};
 ` +
+    // The YEAR the built artifact is for. Hardcoded in three places until
+    // 2026-08-28; null on the full build, where the eyebrow stays neutral.
+    `window.PM_YEAR = ${JSON.stringify(STREAM ? STREAMS[STREAM].year : null)};
+` +
     // null on the full build too, and that is what switches the DOOR off. An
     // unstreamed build is the whole five-subject bank — it belongs to no group,
     // so a chooser over it would be a lie. It also keeps the 59-gate offline
@@ -719,7 +744,7 @@ const esc = (s: string) =>
 const metaTitle = streamDef ? `IPE Answer Book — ${streamDef.label}` : 'IPE Answer Book — Telangana';
 const metaDesc = streamDef
     ? `Every Telangana IPE question answered step by step, with the marks for each step. ` +
-      `${streamDef.blurb} — first year. Four chapters free.`
+      `${streamDef.blurb} — ${streamDef.year.toLowerCase()}. Four chapters free.`
     : 'Every Telangana IPE question answered step by step, with the marks for each step. Four chapters free.';
 
 const headMeta = [

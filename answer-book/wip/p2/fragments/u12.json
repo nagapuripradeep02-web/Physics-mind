@@ -1,0 +1,87 @@
+{
+  "number": 12,
+  "name": "Dual Nature of Radiation and Matter",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What are \"cathode rays\"?",
+      "question_id": "ts_ipe_p2_dnr_cathode_rays"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "What is \"work function\"?",
+      "question_id": "ts_ipe_p2_dnr_work_function"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "What is \"photoelectric effect\"?",
+      "question_id": "ts_ipe_p2_dnr_photoelectric_effect"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "Give examples of \"photosensitive substances\". Why are they called so?",
+      "question_id": "ts_ipe_p2_dnr_photosensitive_substances"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "Write down Einstein's photoelectric equation.",
+      "question_id": "ts_ipe_p2_dnr_einstein_photoelectric_equation"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "Write down deBroglie's relation and explain the terms therein.",
+      "question_id": "ts_ipe_p2_dnr_de_broglie_relation"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "State Heisenberg's Uncertainty Principle.",
+      "question_id": "ts_ipe_p2_dnr_heisenberg_uncertainty"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "What important fact did Millikan's experiment establish?",
+      "question_id": "ts_ipe_p2_dnr_millikan_experiment"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What is the effect of (i) intensity of light (ii) potential on photoelectric current?",
+      "question_id": "ts_ipe_p2_dnr_intensity_potential_photocurrent"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Describe an experiment to study the effect of frequency of incident radiation on 'stopping potential'.",
+      "question_id": "ts_ipe_p2_dnr_frequency_stopping_potential"
+    }
+  ]
+}

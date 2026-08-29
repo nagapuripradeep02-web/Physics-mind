@@ -1,0 +1,212 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_greenhouse_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is Greenhouse effect and its contribution towards the surface temperature of earth?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the greenhouse effect is",
+      "marks": 1
+    },
+    {
+      "label": "Surface absorbs sunlight, emits infrared",
+      "marks": 1
+    },
+    {
+      "label": "Gases absorb and re-emit the infrared",
+      "marks": 1
+    },
+    {
+      "label": "The effect on surface temperature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the surface absorbs incoming short-wavelength solar radiation and re-emits long-wavelength infrared; greenhouse gases (CO₂, CH₄, N₂O, water vapour) absorb that infrared and re-emit part of it downward, raising the average surface temperature. The book (p.42) says the infrared is 'reflected back' by the clouds and gases — the correct mechanism is absorption and re-emission, and the card writes it that way, recording the book's wording in the s3 why."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electromagnetic Waves · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What the greenhouse effect is",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "Greenhouse gases in the atmosphere absorb",
+          "the infrared radiation that the Earth's",
+          "surface emits and send part of it back",
+          "toward the surface. The heating of the",
+          "surface and the atmosphere produced this",
+          "way is called the greenhouse effect."
+        ],
+        "margin_note": "First mark. Name the effect and the radiation it works on — infrared.",
+        "why": "The definition must contain the mechanism in miniature: gases, infrared from the surface, and part of it returned. A definition without the word infrared reads as any kind of heating.",
+        "common_mistakes": [
+          "Defining it with a glasshouse picture only. The exam answer is about the atmosphere: gases returning the infrared the surface emits.",
+          "Saying the gases stop sunlight from leaving. Sunlight comes in; what the gases absorb is the infrared the surface emits."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That greenhouse gases absorb the infrared the surface emits and send part of it back, heating the surface and atmosphere.",
+          "accept": [
+            "gases absorb infrared from the earth",
+            "send it back to the surface",
+            "heating of the surface and atmosphere"
+          ],
+          "reject": [
+            "ozone layer"
+          ],
+          "heard_as": [
+            "greenhouse",
+            "infrared",
+            "absorb"
+          ]
+        },
+        "memory_tip": "Three verbs in order: absorb, re-emit, warm."
+      },
+      {
+        "id": "s2_solar",
+        "kind": "text",
+        "label": "Sunlight in, infrared out",
+        "marks": 1,
+        "mark_note": "Short in, long out",
+        "lines": [
+          "Solar radiation reaches the Earth mostly",
+          "as short-wavelength visible radiation.",
+          "The surface absorbs it, warms, and then",
+          "emits the energy as long-wavelength",
+          "infrared radiation."
+        ],
+        "margin_note": "Second mark. The wavelength change — short in, long out — is the point of this step.",
+        "why": "The wavelength change is what lets the atmosphere treat the two flows differently: it is nearly transparent to the incoming short waves and absorbing for the outgoing infrared.",
+        "common_mistakes": [
+          "Writing that the surface reflects the sunlight. Reflected light would leave unchanged; the surface absorbs the energy and emits it again as infrared.",
+          "Leaving out the wavelengths. Short in and long out is what this mark is for."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the surface absorbs short-wavelength solar radiation and emits long-wavelength infrared.",
+          "accept": [
+            "absorbs sunlight and emits infrared",
+            "short wavelength in long wavelength out",
+            "earth emits infrared radiation"
+          ],
+          "reject": [
+            "reflects the sunlight"
+          ],
+          "heard_as": [
+            "absorbs",
+            "infrared",
+            "wavelength"
+          ]
+        },
+        "memory_tip": "Short waves come down; long waves go up."
+      },
+      {
+        "id": "s3_gases",
+        "kind": "text",
+        "label": "The gases absorb and re-emit",
+        "marks": 1,
+        "mark_note": "CO₂, CH₄, N₂O absorb and re-emit",
+        "lines": [
+          "Greenhouse gases such as CO₂, CH₄, N₂O",
+          "and water vapour absorb this outgoing",
+          "infrared radiation and re-emit it in all",
+          "directions, so part of it returns to the",
+          "surface instead of escaping into space."
+        ],
+        "margin_note": "Third mark. Name at least two gases and use the pair absorb and re-emit.",
+        "why": "The book writes that the infrared is reflected back by the clouds and gases. The correct mechanism is absorption and re-emission: the gas molecules absorb the infrared and radiate it again, part of it downward. Write absorb and re-emit — the book's word reflected describes the outcome, not the mechanism.",
+        "common_mistakes": [
+          "Writing that the ozone layer causes the greenhouse effect. Ozone absorbs ultraviolet; the greenhouse gases are CO₂, CH₄, N₂O and water vapour.",
+          "Saying the gases block the incoming sunlight. The gases act on the outgoing infrared, not on the incoming visible light."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That greenhouse gases such as CO₂, CH₄ and N₂O absorb the infrared and re-emit part of it back to the surface.",
+          "accept": [
+            "carbon dioxide and methane",
+            "absorb and re-emit",
+            "part of it comes back to the surface"
+          ],
+          "reject": [
+            "ozone"
+          ],
+          "heard_as": [
+            "carbon dioxide",
+            "CO2",
+            "re-emit"
+          ]
+        },
+        "memory_tip": "Name the gas trio CO₂, CH₄, N₂O, then the verb pair absorb and re-emit."
+      },
+      {
+        "id": "s4_temperature",
+        "kind": "boxed_final",
+        "label": "The surface temperature rises",
+        "marks": 1,
+        "mark_note": "Average surface temperature rises",
+        "lines": [
+          "The returned radiation keeps the surface",
+          "warmer than it would be without these",
+          "gases, so the average surface temperature",
+          "of the Earth rises. A continued rise from",
+          "added greenhouse gases is called global",
+          "warming, which melts ice caps and raises",
+          "the sea level.",
+          {
+            "text": "Greenhouse gases warm the surface",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Answer the asked contribution: the average surface temperature rises.",
+        "why": "This step answers the second half of the question. Without greenhouse gases the surface would settle well below its present average temperature; the returned infrared is what keeps the balance warmer.",
+        "common_mistakes": [
+          "Ending at the mechanism and never stating the contribution. The question also asks what happens to the surface temperature: it rises.",
+          "Writing only a list of disasters. First state the physics — the average surface temperature rises — then name global warming."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the effect raises the average surface temperature of the Earth, and a continued rise is called global warming.",
+          "accept": [
+            "surface temperature increases",
+            "earth becomes warmer",
+            "global warming"
+          ],
+          "reject": [
+            "temperature falls"
+          ],
+          "heard_as": [
+            "temperature",
+            "warmer",
+            "global warming"
+          ]
+        },
+        "memory_tip": "End with the asked sentence: the average surface temperature of the Earth rises."
+      }
+    ]
+  },
+  "insider_note": "Four sentences carry the four marks: the definition, sunlight in and infrared out, the gases absorbing and re-emitting, and the temperature rise. The book says reflected back; write absorb and re-emit."
+}

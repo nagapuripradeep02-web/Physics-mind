@@ -1,0 +1,216 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_electrolysis_and_faraday_first_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is electrolysis? Give Faraday's first law of electrolysis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What electrolysis is",
+      "marks": 2
+    },
+    {
+      "label": "The electrolytic cell",
+      "marks": 1
+    },
+    {
+      "label": "Example: molten NaCl",
+      "marks": 1
+    },
+    {
+      "label": "Faraday's first law",
+      "marks": 2
+    },
+    {
+      "label": "The Faraday constant",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 2+1+1+2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERRORS (book p.71, LAQ 5), both corrected on this card. (a) The printed definition says electrolysis decomposes a compound \"into its IONS\". It does not. In a melt or a solution the ions are already there; electrolysis DISCHARGES them at the electrodes to give the elements or other products. This card says decomposed into its products, with the ions already present. (b) The printed first law says the mass is proportional to \"the quantity of CURRENT passed through it\". It is proportional to the quantity of ELECTRICITY, the charge Q = It. The book's own formula on the next printed line contains the time, so the printed words contradict the printed formula; the same error appears at book p.69, VSAQ 7. BOOK GAP: the printed answer gives no example of an electrolysis and never says what the Faraday constant IS, only that the number 96,500 appears. The molten NaCl example and the derivation of F from the Avogadro number and the electronic charge are added here. RECOMPUTED: 6.022×10²³ × 1.602×10⁻¹⁹ = 9.647×10⁴ C mol⁻¹, which is the 96500 C mol⁻¹ used throughout. SHORT ANSWER PAIR: VSAQ 7 asks for the first law alone (card ts_ipe_c2_ec_faraday_first_law)."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Electro Chemistry — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What electrolysis is",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          "Electrolysis is the decomposition of an",
+          "electrolyte into its products by passing a",
+          "direct current through it, either in the",
+          "molten state or in aqueous solution.",
+          "The ions are already present in the melt or",
+          "the solution; the current discharges them at",
+          "the two electrodes.",
+          "The chemical change brought about is not",
+          "spontaneous, so it happens only while the",
+          "outside source keeps supplying energy.",
+          "In this way electrical energy is converted",
+          "into chemical energy, which is the reverse of",
+          "what a galvanic cell does."
+        ],
+        "why": "The definition is easiest to hold on to as the mirror of the galvanic cell: one converts chemical energy to electrical from a spontaneous reaction, the other forces a non-spontaneous reaction using electrical energy. That contrast also explains why an outside source is needed here and not there.",
+        "common_mistakes": [
+          "Saying electrolysis splits the compound into its ions. The ions already exist in the melt or the solution; electrolysis discharges them.",
+          "Saying alternating current can be used. It must be direct current, or the electrodes would swap roles every half cycle."
+        ],
+        "memory_tip": "Electrolysis is a galvanic cell run backwards: electricity in, chemistry out.",
+        "margin_note": "The words direct current, non-spontaneous and electrical to chemical carry these two marks between them."
+      },
+      {
+        "id": "s2_electrolytic_cell",
+        "kind": "text",
+        "label": "The electrolytic cell",
+        "marks": 1,
+        "mark_note": "The cell",
+        "lines": [
+          "The vessel used is called an electrolytic",
+          "cell. It holds the electrolyte and two",
+          "electrodes joined to a battery.",
+          "The electrode joined to the negative terminal",
+          "is the cathode. Cations move to it and are",
+          "reduced there.",
+          "The electrode joined to the positive terminal",
+          "is the anode. Anions move to it and are",
+          "oxidised there."
+        ],
+        "why": "The rule that the cathode is the reduction electrode and the anode the oxidation electrode holds in both kinds of cell. What changes is the sign: the cathode is negative in an electrolytic cell and positive in a galvanic cell, because in one case the battery makes it negative and in the other the reaction does.",
+        "common_mistakes": [
+          "Saying the cathode is positive. In an electrolytic cell the cathode is joined to the negative terminal.",
+          "Saying reduction happens at the anode. Reduction is always at the cathode, in both kinds of cell."
+        ],
+        "memory_tip": "Reduction at the cathode always. Only the sign of the electrode changes between the two kinds of cell.",
+        "margin_note": "Name both electrodes with their sign and their reaction. Four short facts, one mark."
+      },
+      {
+        "id": "s3_example",
+        "kind": "equation",
+        "label": "Example: molten NaCl",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: electrolysis of molten sodium",
+          "chloride.",
+          {
+            "text": "Cathode: Na⁺ + e⁻ → Na",
+            "style": "eq"
+          },
+          {
+            "text": "Anode: 2Cl⁻ → Cl₂ + 2e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "Overall: 2NaCl → 2Na + Cl₂",
+            "style": "eq"
+          },
+          "Sodium metal collects at the cathode and",
+          "chlorine gas is given off at the anode."
+        ],
+        "why": "A melt is used rather than a solution because in water the sodium ion is not discharged at all; water is reduced instead. Choosing the molten salt is what makes the sodium appear, and this is how sodium is manufactured.",
+        "common_mistakes": [
+          "Writing Cl⁻ → Cl + e⁻ at the anode. Chlorine is given off as the molecule Cl₂, so two chloride ions are needed.",
+          "Using aqueous NaCl for this example. In solution the cathode gives hydrogen, not sodium."
+        ],
+        "memory_tip": "Molten salt gives the metal; the same salt in water gives hydrogen instead.",
+        "margin_note": "Both electrode reactions plus the overall equation carry this mark. Label which electrode each belongs to."
+      },
+      {
+        "id": "s4_first_law",
+        "kind": "equation",
+        "label": "Faraday's first law",
+        "marks": 2,
+        "mark_note": "First law",
+        "lines": [
+          "Faraday's first law of electrolysis: the mass",
+          "of a substance deposited or set free at an",
+          "electrode during electrolysis is directly",
+          "proportional to the quantity of electricity,",
+          "that is the charge, passed through the",
+          "electrolyte.",
+          {
+            "text": "m ∝ Q      and      Q = I t",
+            "style": "eq"
+          },
+          {
+            "text": "m = Z I t",
+            "style": "boxed"
+          },
+          "Z is the electrochemical equivalent of the",
+          "substance, the mass set free by one coulomb",
+          "of charge, in g C⁻¹.",
+          "I is the current in ampere and t is the time",
+          "in seconds."
+        ],
+        "why": "Each ion needs a fixed number of electrons to be discharged, so the number of ions discharged is set by the number of electrons that arrive. Charge counts electrons, which is why the mass follows the charge rather than the current on its own.",
+        "common_mistakes": [
+          "Saying the mass is proportional to the current. Current alone leaves out the time; it is the charge Q = It.",
+          "Saying the mass depends on the concentration of the electrolyte. The concentration does not appear in the law."
+        ],
+        "memory_tip": "Electrons discharge ions, and charge counts electrons. So mass follows charge, not current.",
+        "margin_note": "The phrase quantity of electricity, or the word charge, must appear. Quantity of current loses the statement mark."
+      },
+      {
+        "id": "s5_faraday_constant",
+        "kind": "boxed_final",
+        "label": "The Faraday constant",
+        "marks": 2,
+        "mark_note": "Faraday constant",
+        "lines": [
+          "The charge carried by one mole of electrons",
+          "is called the Faraday constant, F.",
+          {
+            "text": "F = 6.022×10²³ × 1.602×10⁻¹⁹ C",
+            "style": "eq"
+          },
+          {
+            "text": "F = 96500 C mol⁻¹",
+            "style": "boxed"
+          },
+          "One faraday of charge sets free one",
+          "equivalent of any substance, so",
+          {
+            "text": "Z = E / 96500",
+            "style": "eq"
+          },
+          {
+            "text": "m = (E / 96500) × I t",
+            "style": "eq"
+          },
+          "where E is the equivalent mass, that is the",
+          "atomic mass divided by the number of",
+          "electrons in the electrode reaction."
+        ],
+        "why": "The Faraday constant is what joins the electrical side of the law to the chemical side. Once one mole of electrons is known to carry 96500 C, the electrochemical equivalent stops being a measured constant and becomes something that can be worked out from the electrode reaction.",
+        "common_mistakes": [
+          "Writing F = 96500 with no units. F is a charge per mole, 96500 C mol⁻¹.",
+          "Using the atomic mass as E. E is the atomic mass divided by the number of electrons, so for Cu²⁺ it is 63.5/2."
+        ],
+        "memory_tip": "One mole of electrons is 96500 C, and it sets free one equivalent of anything.",
+        "margin_note": "Deriving F from the Avogadro number shows it is not just a number to memorise. Two lines, and these marks are then safe."
+      }
+    ]
+  },
+  "insider_note": "The book says electrolysis splits a compound into its ions and that the mass is proportional to the quantity of current. Both are wrong: the ions are already there, and it is the quantity of electricity. Write both correctly and the two statement marks are safe."
+}

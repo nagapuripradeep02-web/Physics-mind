@@ -1,0 +1,244 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_chlorine_lab_preparation_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "How is chlorine prepared in the laboratory? How does it react with the following? a) Iron b) acidified FeSO₄ c) Iodine d) H₂S e) Na₂S₂O₃",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Laboratory preparation with MnO₂",
+      "marks": 2
+    },
+    {
+      "label": "Preparation with KMnO₄",
+      "marks": 1
+    },
+    {
+      "label": "Reaction with iron",
+      "marks": 1
+    },
+    {
+      "label": "With acidified FeSO₄",
+      "marks": 1
+    },
+    {
+      "label": "With iodine",
+      "marks": 1
+    },
+    {
+      "label": "With H₂S",
+      "marks": 1
+    },
+    {
+      "label": "With Na₂S₂O₃",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.88, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 2+1+1+1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SCOPE ERROR (book p.88, Long Answer 1): the question asks for the LABORATORY preparation, but the printed answer lists three methods and the third is Deacon's process, which is an INDUSTRIAL method, not a laboratory one. Only the two laboratory methods (MnO₂ and KMnO₄ with concentrated HCl) are written on this card, and the point is recorded in the margin note of the KMnO₄ step so a student does not offer Deacon's process here. The book's Deacon's equation on THIS page is the correct 4HCl + O₂ -> 2Cl₂ + 2H₂O, while the same book prints an unbalanced 3H₂O version of it on book p.86; see the card ts_ipe_c2_viia_deacons_method. All seven printed equations on this page were atom-counted and every one of them balances as printed. BOOK GAPS: the printed answer never says how the gas is collected, and never says that chlorine acts as the oxidising agent in all five reactions, which is the one idea the five parts share; both are written here."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "VIIA Group Elements — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_prep_mno2",
+        "kind": "text",
+        "label": "Laboratory preparation with MnO₂",
+        "marks": 2,
+        "mark_note": "Preparation",
+        "lines": [
+          "In the laboratory chlorine is made by heating",
+          "manganese dioxide with concentrated",
+          "hydrochloric acid.",
+          {
+            "text": "MnO₂ + 4HCl → MnCl₂ + 2H₂O + Cl₂↑",
+            "style": "eq"
+          },
+          "Manganese dioxide is the oxidising agent. It",
+          "oxidises the chloride of the acid to chlorine",
+          "and is itself reduced from +4 to +2.",
+          "The gas is collected by upward displacement",
+          "of air, because it is heavier than air."
+        ],
+        "why": "This is the standard laboratory method because it needs only heat and two cheap reagents. Manganese falls from +4 to +2 while chlorine rises from −1 to 0, so four HCl molecules are needed: two supply the chloride of MnCl₂ and two are oxidised to Cl₂. The equation balances with 1 Mn, 4 H, 4 Cl and 2 O on each side.",
+        "common_mistakes": [
+          "Writing MnCl₄ or MnCl₃ as the product. Manganese is reduced to +2, so the salt is MnCl₂.",
+          "Using dilute hydrochloric acid. The acid must be concentrated and the mixture must be heated."
+        ],
+        "memory_tip": "Manganese comes down from +4 to +2, so it takes two electrons and two chloride ions become one Cl₂.",
+        "margin_note": "Two marks sit here: one for the balanced equation and one for naming MnO₂ as the oxidising agent with the conditions."
+      },
+      {
+        "id": "s2_prep_kmno4",
+        "kind": "equation",
+        "label": "Preparation with KMnO₄",
+        "marks": 1,
+        "mark_note": "Second method",
+        "lines": [
+          "Chlorine is also made from potassium",
+          "permanganate and concentrated HCl, and",
+          "this needs no heating.",
+          {
+            "text": "2KMnO₄ + 16HCl →",
+            "style": "eq"
+          },
+          {
+            "text": "2KCl + 2MnCl₂ + 8H₂O + 5Cl₂",
+            "style": "indent"
+          }
+        ],
+        "why": "Potassium permanganate is a stronger oxidising agent than manganese dioxide, so this reaction goes in the cold. The equation balances with 2 K, 2 Mn, 8 O, 16 H and 16 Cl on each side; ten of the sixteen chlorine atoms leave as five Cl₂ molecules and the other six stay behind as chloride in KCl and MnCl₂.",
+        "common_mistakes": [
+          "Writing 2Cl₂ in place of 5Cl₂. Ten of the sixteen chlorine atoms leave as gas.",
+          "Leaving out the KCl. The potassium has to appear somewhere on the right side."
+        ],
+        "memory_tip": "Sixteen HCl in, six chlorine atoms stay as salt, ten leave as five Cl₂.",
+        "margin_note": "The printed guide also lists Deacon's process here. That is an industrial method, so do not offer it as a laboratory preparation."
+      },
+      {
+        "id": "s3_iron",
+        "kind": "equation",
+        "label": "Reaction with iron",
+        "marks": 1,
+        "mark_note": "Iron",
+        "lines": [
+          "Heated iron burns in chlorine and gives",
+          "ferric chloride.",
+          {
+            "text": "2Fe + 3Cl₂ → 2FeCl₃",
+            "style": "eq"
+          },
+          "Chlorine takes iron to the +3 state."
+        ],
+        "why": "Chlorine is a strong enough oxidising agent to take iron all the way to +3, so the product is FeCl₃ and not FeCl₂. Dilute hydrochloric acid, which is not an oxidising agent, gives FeCl₂ instead, and the two are set as a pair in exams.",
+        "common_mistakes": [
+          "Writing FeCl₂. Chlorine oxidises iron to +3, so the product is ferric chloride.",
+          "Writing Fe + Cl₂ → FeCl₃ unbalanced. Two Fe need three Cl₂."
+        ],
+        "memory_tip": "Chlorine gives the higher state: FeCl₃ with chlorine, FeCl₂ with dilute acid.",
+        "margin_note": "One balanced equation with the product named ferric chloride is the whole mark."
+      },
+      {
+        "id": "s4_acidified_feso4",
+        "kind": "equation",
+        "label": "With acidified FeSO₄",
+        "marks": 1,
+        "mark_note": "Ferrous sulphate",
+        "lines": [
+          "Chlorine oxidises ferrous sulphate to ferric",
+          "sulphate in the presence of H₂SO₄.",
+          {
+            "text": "2FeSO₄ + Cl₂ + H₂SO₄ →",
+            "style": "eq"
+          },
+          {
+            "text": "Fe₂(SO₄)₃ + 2HCl",
+            "style": "indent"
+          },
+          "Fe²⁺ is oxidised to Fe³⁺."
+        ],
+        "why": "Chlorine takes one electron from each Fe²⁺ ion and becomes chloride. The sulphuric acid supplies the third sulphate group needed to build Fe₂(SO₄)₃, which is why the acid appears in the equation and not only in the conditions. The equation balances with 2 Fe, 3 S, 12 O, 2 H and 2 Cl on each side.",
+        "common_mistakes": [
+          "Writing FeSO₄ → Fe₂(SO₄)₃ without the sulphuric acid. Three sulphate groups are needed and only two come from the FeSO₄.",
+          "Writing the product as FeCl₃. The chlorine leaves as HCl here, not as a chloride of iron."
+        ],
+        "memory_tip": "Two ferrous become one ferric salt, and the acid supplies the missing third sulphate.",
+        "margin_note": "The mark is for the balanced equation with Fe₂(SO₄)₃ correctly written."
+      },
+      {
+        "id": "s5_iodine",
+        "kind": "equation",
+        "label": "With iodine",
+        "marks": 1,
+        "mark_note": "Iodine",
+        "lines": [
+          "Chlorine oxidises iodine to iodic acid.",
+          {
+            "text": "I₂ + 6H₂O + 5Cl₂ → 2HIO₃ + 10HCl",
+            "style": "eq"
+          },
+          "Iodine goes from 0 to +5."
+        ],
+        "why": "Chlorine stands above iodine in the group and the oxidising order F₂ > Cl₂ > Br₂ > I₂ runs steadily down with no exception, so chlorine oxidises iodine and never the other way round. With water present the oxidation does not stop at the element but goes on to iodic acid. The equation balances with 2 I, 12 H, 6 O and 10 Cl on each side.",
+        "common_mistakes": [
+          "Writing ICl or ICl₃ as the product. With water present the product is iodic acid, HIO₃.",
+          "Forgetting the water. The six oxygen atoms of the two HIO₃ molecules come from it."
+        ],
+        "memory_tip": "Water present means the iodine is pushed all the way to HIO₃, iodine at +5.",
+        "margin_note": "This equation is the longest of the five. Write the water on the left before balancing anything else."
+      },
+      {
+        "id": "s6_h2s",
+        "kind": "equation",
+        "label": "With H₂S",
+        "marks": 1,
+        "mark_note": "Hydrogen sulphide",
+        "lines": [
+          "Chlorine oxidises hydrogen sulphide and",
+          "sulphur is set free.",
+          {
+            "text": "H₂S + Cl₂ → 2HCl + S",
+            "style": "eq"
+          },
+          "A pale yellow deposit of sulphur appears."
+        ],
+        "why": "Sulphur is at −2 in H₂S and 0 as the free element, so it loses two electrons and chlorine gains them. This is the same pattern as the other four parts: chlorine is the oxidising agent every time.",
+        "common_mistakes": [
+          "Writing SO₂ as the product. The sulphur is set free as the element, not oxidised to its oxide.",
+          "Writing HCl without the coefficient 2. Two hydrogen atoms come from the H₂S."
+        ],
+        "memory_tip": "The two hydrogen atoms leave with the chlorine and the sulphur is left behind.",
+        "margin_note": "The shortest equation of the five. Write it first if time is short."
+      },
+      {
+        "id": "s7_na2s2o3",
+        "kind": "boxed_final",
+        "label": "With Na₂S₂O₃",
+        "marks": 1,
+        "mark_note": "Thiosulphate",
+        "lines": [
+          "Chlorine oxidises sodium thiosulphate to",
+          "sodium sulphate, and sulphur is set free.",
+          {
+            "text": "Na₂S₂O₃ + Cl₂ + H₂O →",
+            "style": "eq"
+          },
+          {
+            "text": "Na₂SO₄ + S + 2HCl",
+            "style": "indent"
+          },
+          {
+            "text": "In all five reactions Cl₂ is the oxidant.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Sodium thiosulphate holds its two sulphur atoms in different states, +6 and −2. The one at −2 is oxidised to free sulphur while the other stays as sulphate, so two electrons pass to the chlorine. The equation balances with 2 Na, 2 S, 4 O, 2 H and 2 Cl on each side. With a large excess of chlorine the oxidation goes further and gives sulphate and hydrochloric acid only.",
+        "common_mistakes": [
+          "Writing Na₂S₄O₆ as the product. That is what iodine gives; chlorine is the stronger oxidising agent and goes to sulphate.",
+          "Leaving out the water. It supplies the fourth oxygen atom of the sulphate and the hydrogen of the HCl."
+        ],
+        "memory_tip": "Iodine stops at the tetrathionate; chlorine goes all the way to sulphate.",
+        "margin_note": "Close the answer with the boxed line. One sentence naming chlorine as the oxidising agent in all five parts reads as a finished answer."
+      }
+    ]
+  },
+  "insider_note": "All five parts are the same idea: chlorine acts as the oxidising agent. Write the five equations first and balance them, then add that one sentence at the end."
+}

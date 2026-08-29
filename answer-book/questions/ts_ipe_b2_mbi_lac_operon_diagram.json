@@ -1,0 +1,757 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_lac_operon_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw the schematic diagrammatic presentation of the lac operon.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The gene map in order",
+      "marks": 1
+    },
+    {
+      "label": "The repressed state",
+      "marks": 1
+    },
+    {
+      "label": "The induced state",
+      "marks": 1
+    },
+    {
+      "label": "All labels correct",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.33, printed question 41. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the guide's p.33 figure labels BOTH panels \"In absence of inducer\". The second panel is the INDUCED state — its own content proves it, since lac mRNA is being transcribed, the three enzymes are being made and the repressor is drawn inactivated. The card labels it \"In the presence of inducer\". The guide also prints the gene map as \"p i p o z y a\"; the card uses the standard NCERT order i-p-o-z-y-a.\nThis is the second of only TWO questions in the paper whose marks sit on the drawing (the other is the chloroplast, global 17): the book prints no written answer here."
+  },
+  "insider_note": "Both panels or nothing. A single panel of the repressed operon answers half the question, because the whole point of an operon is that it switches.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diagram",
+        "kind": "diagram",
+        "label": "Schematic of the lac operon",
+        "marks": 4,
+        "mark_note": "Both panels, labelled",
+        "margin_note": "All four marks are here. Draw both panels the same width and directly under each other, so an examiner can see at a glance that only the repressor has moved.",
+        "figure": {
+          "id": "b2_mbi_lac_operon",
+          "width": 620,
+          "height": 512,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "lo_p1",
+              "caption": "Step 1 — the six genes of the operon, in order"
+            },
+            {
+              "type": "label",
+              "id": "lo_ta",
+              "x": 40,
+              "y": 30,
+              "text": "In the ABSENCE of inducer",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "la_b0_t",
+              "d": "M 40 52 L 96 52",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b0_b",
+              "d": "M 40 78 L 96 78",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b0_l",
+              "d": "M 40 52 L 40 78",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "la_g0",
+              "x": 63,
+              "y": 70,
+              "text": "i",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "la_b1_t",
+              "d": "M 96 52 L 152 52",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b1_b",
+              "d": "M 96 78 L 152 78",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b1_l",
+              "d": "M 96 52 L 96 78",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "la_g1",
+              "x": 119,
+              "y": 70,
+              "text": "p",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "la_b2_t",
+              "d": "M 152 52 L 208 52",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b2_b",
+              "d": "M 152 78 L 208 78",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b2_l",
+              "d": "M 152 52 L 152 78",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "la_g2",
+              "x": 175,
+              "y": 70,
+              "text": "o",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "la_b3_t",
+              "d": "M 208 52 L 264 52",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b3_b",
+              "d": "M 208 78 L 264 78",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b3_l",
+              "d": "M 208 52 L 208 78",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "la_g3",
+              "x": 231,
+              "y": 70,
+              "text": "z",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "la_b4_t",
+              "d": "M 264 52 L 320 52",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b4_b",
+              "d": "M 264 78 L 320 78",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b4_l",
+              "d": "M 264 52 L 264 78",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "la_g4",
+              "x": 287,
+              "y": 70,
+              "text": "y",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "la_b5_t",
+              "d": "M 320 52 L 376 52",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b5_b",
+              "d": "M 320 78 L 376 78",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "la_b5_l",
+              "d": "M 320 52 L 320 78",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "la_g5",
+              "x": 343,
+              "y": 70,
+              "text": "a",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "la_b_end",
+              "d": "M 376 52 L 376 78",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "pause",
+              "id": "lo_p2",
+              "caption": "Step 2 — what each letter stands for"
+            },
+            {
+              "type": "label",
+              "id": "lo_lg0",
+              "x": 410,
+              "y": 44,
+              "text": "i = regulator gene",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lo_lg1",
+              "x": 410,
+              "y": 84,
+              "text": "p = promoter",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lo_lg2",
+              "x": 410,
+              "y": 124,
+              "text": "o = operator",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lo_lg3",
+              "x": 410,
+              "y": 164,
+              "text": "z, y, a = structural",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "lo_p3",
+              "caption": "Step 3 — the regulator gene makes the repressor"
+            },
+            {
+              "type": "stroke",
+              "id": "lo_a1",
+              "d": "M 68 80 L 68 120",
+              "ms": 570,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "lo_a1_h",
+              "d": "M 65 114.8 L 68 120 L 71 114.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "lo_rep_a",
+              "d": "M 42 138 A 26 13 0 1 0 94 138 A 26 13 0 1 0 42 138",
+              "ms": 1800
+            },
+            {
+              "type": "label",
+              "id": "lo_lrep_a",
+              "x": 10,
+              "y": 172,
+              "text": "Repressor",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "lo_p4",
+              "caption": "Step 4 — the repressor binds the operator and blocks it"
+            },
+            {
+              "type": "stroke",
+              "id": "lo_bind",
+              "d": "M 94 138 L 180 138 L 180 92",
+              "ms": 1890,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "lo_bind_h",
+              "d": "M 183.5 98.1 L 180 92 L 176.5 98.1",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lo_ca",
+              "x": 186,
+              "y": 206,
+              "text": "Repressor blocks the operator",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "lo_p5",
+              "caption": "Step 5 — the same operon, with the inducer present"
+            },
+            {
+              "type": "label",
+              "id": "lo_tb",
+              "x": 40,
+              "y": 252,
+              "text": "In the PRESENCE of inducer",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b0_t",
+              "d": "M 40 284 L 96 284",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b0_b",
+              "d": "M 40 310 L 96 310",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b0_l",
+              "d": "M 40 284 L 40 310",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "lb_g0",
+              "x": 63,
+              "y": 302,
+              "text": "i",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b1_t",
+              "d": "M 96 284 L 152 284",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b1_b",
+              "d": "M 96 310 L 152 310",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b1_l",
+              "d": "M 96 284 L 96 310",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "lb_g1",
+              "x": 119,
+              "y": 302,
+              "text": "p",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b2_t",
+              "d": "M 152 284 L 208 284",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b2_b",
+              "d": "M 152 310 L 208 310",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b2_l",
+              "d": "M 152 284 L 152 310",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "lb_g2",
+              "x": 175,
+              "y": 302,
+              "text": "o",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b3_t",
+              "d": "M 208 284 L 264 284",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b3_b",
+              "d": "M 208 310 L 264 310",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b3_l",
+              "d": "M 208 284 L 208 310",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "lb_g3",
+              "x": 231,
+              "y": 302,
+              "text": "z",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b4_t",
+              "d": "M 264 284 L 320 284",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b4_b",
+              "d": "M 264 310 L 320 310",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b4_l",
+              "d": "M 264 284 L 264 310",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "lb_g4",
+              "x": 287,
+              "y": 302,
+              "text": "y",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b5_t",
+              "d": "M 320 284 L 376 284",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b5_b",
+              "d": "M 320 310 L 376 310",
+              "ms": 800,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b5_l",
+              "d": "M 320 284 L 320 310",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "lb_g5",
+              "x": 343,
+              "y": 302,
+              "text": "a",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lb_b_end",
+              "d": "M 376 284 L 376 310",
+              "ms": 370,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lo_b1",
+              "d": "M 68 312 L 68 340",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "lo_b1_h",
+              "d": "M 65 334.8 L 68 340 L 71 334.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "lo_rep_b",
+              "d": "M 42 356 A 26 13 0 1 0 94 356 A 26 13 0 1 0 42 356",
+              "ms": 1800
+            },
+            {
+              "type": "stroke",
+              "id": "lo_ind",
+              "d": "M 95 350 A 9 9 0 1 0 113 350 A 9 9 0 1 0 95 350",
+              "ms": 810
+            },
+            {
+              "type": "label",
+              "id": "lo_lind",
+              "x": 140,
+              "y": 350,
+              "text": "Inducer",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lo_linact",
+              "x": 10,
+              "y": 394,
+              "text": "Inactive repressor",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "lo_p6",
+              "caption": "Step 6 — transcription runs, and three enzymes are made"
+            },
+            {
+              "type": "stroke",
+              "id": "lo_lacmrna",
+              "d": "M 208 340 C 232 330 256 350 280 340 C 304 330 328 350 352 340 C 364 335 372 338 380 340",
+              "ms": 2500,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "lo_llac",
+              "x": 240,
+              "y": 366,
+              "text": "lac mRNA",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lo_e0",
+              "d": "M 384 342 L 412 354",
+              "ms": 440,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "lo_e0_h",
+              "d": "M 406 354.7 L 412 354 L 408.4 349.2",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lo_le0",
+              "x": 420,
+              "y": 360,
+              "text": "β-galactosidase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lo_e1",
+              "d": "M 384 342 L 412 394",
+              "ms": 840,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "lo_e1_h",
+              "d": "M 406.9 390.8 L 412 394 L 412.2 388",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lo_le1",
+              "x": 420,
+              "y": 400,
+              "text": "permease",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lo_e2",
+              "d": "M 384 342 L 412 434",
+              "ms": 1370,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "lo_e2_h",
+              "d": "M 407.6 429.9 L 412 434 L 413.4 428.2",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lo_le2",
+              "x": 420,
+              "y": 440,
+              "text": "transacetylase",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lo_cb",
+              "x": 142,
+              "y": 498,
+              "text": "Transcription runs: three enzymes made",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "An operon is a SWITCH, so the drawing has to show both positions of the switch; one panel shows a gene map, two panels show how it is regulated.",
+        "common_mistakes": [
+          "Drawing one panel only. The question is about regulation, so both the repressed and the induced state are needed.",
+          "Putting the genes in the wrong order. It is i, p, o, z, y, a — regulator, promoter, operator, then the three structural genes.",
+          "Labelling both panels 'absence of inducer'. The guide does exactly this; the second panel is the PRESENCE of inducer."
+        ],
+        "memory_tip": "Two panels: repressor on the operator, then repressor knocked off it."
+      },
+      {
+        "id": "s2_checklist",
+        "kind": "text",
+        "label": "What the examiner checks",
+        "marks": 0,
+        "margin_note": "No marks here — this is the checklist to run over your own drawing before moving on.",
+        "lines": [
+          "The labels the drawing must carry:",
+          "i = regulator gene   p = promoter",
+          "o = operator         z, y, a = structural genes",
+          "z codes β-galactosidase, y codes permease,",
+          "a codes transacetylase.",
+          "Panel 1: repressor bound to the operator, so",
+          "RNA polymerase cannot transcribe.",
+          "Panel 2: inducer (lactose) binds the repressor,",
+          "the repressor is inactivated, lac mRNA is made."
+        ],
+        "why": "Writing which enzyme each structural gene codes for costs three lines and answers the follow-up question examiners most often attach to this figure.",
+        "common_mistakes": [
+          "Labelling the boxes but not saying what the letters mean. The key is part of the labelling mark.",
+          "Saying the inducer binds the operator. The inducer binds the REPRESSOR."
+        ],
+        "memory_tip": "The inducer works on the repressor, never on the DNA."
+      }
+    ]
+  }
+}

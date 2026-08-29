@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_cl2_slaked_lime_nai",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens when Cl₂ reacts with a) slaked lime b) NaI?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "With slaked lime",
+      "marks": 1
+    },
+    {
+      "label": "With sodium iodide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO (book p.86, VSAQ 5): the question is printed \"Slakedlime\" as one word; it is written \"slaked lime\" here. BOOK GAP: the printed answer does not say that the slaked lime must be DRY. With a solution of Ca(OH)₂ the products are calcium chloride and calcium hypochlorite, not bleaching powder, so the word dry is written on this card. Both printed equations were atom-counted and balance as printed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slaked_lime",
+        "kind": "equation",
+        "label": "With slaked lime",
+        "marks": 1,
+        "mark_note": "Bleaching powder",
+        "lines": [
+          "Chlorine passed over dry slaked lime gives",
+          "bleaching powder.",
+          {
+            "text": "Ca(OH)₂ + Cl₂ → CaOCl₂ + H₂O",
+            "style": "eq"
+          },
+          "CaOCl₂ is bleaching powder. It is also",
+          "called calcium oxychloride."
+        ],
+        "why": "The lime must be dry. With a solution of Ca(OH)₂ the chlorine disproportionates in the water and gives calcium chloride and calcium hypochlorite instead of bleaching powder, so the word dry is part of the answer. The equation balances with 1 Ca, 2 O, 2 H and 2 Cl on each side.",
+        "common_mistakes": [
+          "Writing CaCl₂ as the product. Bleaching powder is CaOCl₂ and keeps one oxygen atom.",
+          "Leaving out the water on the right. The two hydrogen atoms of Ca(OH)₂ have to appear somewhere."
+        ],
+        "memory_tip": "Dry lime plus chlorine gives bleaching powder; wet lime does not.",
+        "margin_note": "The balanced equation with CaOCl₂ named as bleaching powder is the whole of this mark."
+      },
+      {
+        "id": "s2_nai",
+        "kind": "equation",
+        "label": "With sodium iodide",
+        "marks": 1,
+        "mark_note": "Iodine set free",
+        "lines": [
+          "Chlorine passed into a solution of sodium",
+          "iodide sets iodine free.",
+          {
+            "text": "2NaI + Cl₂ → 2NaCl + I₂",
+            "style": "eq"
+          },
+          "Chlorine is a stronger oxidising agent than",
+          "iodine, so it displaces iodine from the salt.",
+          "The solution turns brown."
+        ],
+        "why": "This is a displacement, and it works because of the oxidising order F₂ > Cl₂ > Br₂ > I₂, which runs steadily down the group with no exception. Chlorine takes the electron from I⁻, so Cl⁻ and free I₂ are formed. Any halogen displaces every halogen below it in the group from its salt.",
+        "common_mistakes": [
+          "Writing NaCl₂ or NaI₂. Sodium is always +1, so the salts are NaCl and NaI.",
+          "Writing that iodine displaces chlorine. The halogen higher in the group displaces the one below it."
+        ],
+        "memory_tip": "Higher in the group displaces lower. Chlorine is above iodine, so iodine comes out.",
+        "margin_note": "The balanced equation earns the mark; the words \"stronger oxidising agent\" are what an examiner looks for beside it."
+      }
+    ]
+  },
+  "insider_note": "Both parts are one balanced equation each. The word dry in part (a) and the words stronger oxidising agent in part (b) are what separate a full answer from a half one."
+}

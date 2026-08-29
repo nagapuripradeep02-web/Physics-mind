@@ -1,0 +1,270 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_ozone_preparation_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "How is ozone prepared from oxygen? Explain how it reacts with the following: a) PbS b) KI c) Hg d) Ag e) C₂H₄ f) C₂H₂",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Preparation of ozone",
+      "marks": 2
+    },
+    {
+      "label": "a) With PbS",
+      "marks": 1
+    },
+    {
+      "label": "b) With KI",
+      "marks": 1
+    },
+    {
+      "label": "c) With Hg",
+      "marks": 1
+    },
+    {
+      "label": "d) With Ag",
+      "marks": 1
+    },
+    {
+      "label": "e) With C₂H₄",
+      "marks": 1
+    },
+    {
+      "label": "f) With C₂H₂",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+1+1+1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is Long Answer Question 1, the only one in that sub-box, printed across book pp.85-86. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. EVERY printed equation was checked atom by atom and all six balance: PbS + 4O₃ → PbSO₄ + 4O₂ (Pb 1, S 1, O 12); 2KI + H₂O + O₃ → 2KOH + I₂ + O₂ (K 2, I 2, H 2, O 4); 2Hg + O₃ → Hg₂O + O₂ (Hg 2, O 3); 2Ag + O₃ → Ag₂O + O₂ (Ag 2, O 3); C₂H₄O₃ + H₂O → 2HCHO + H₂O₂ (C 2, H 6, O 4); C₂H₂O₃ + H₂O → OHC–CHO + H₂O₂ (C 2, H 4, O 4). BOOK ERROR (reversed roles): the printed answer says \"Ethylene oxidizes ozone to ethylene ozonide\" and \"Acetylene oxidizes ozone to acetylene ozonide\". The roles are the wrong way round, and the reaction is not an oxidation in the first place: OZONE ADDS to the double or triple bond to give the ozonide. This card writes it correctly. BOOK TYPO: part (a) is printed \"Pbs\" for PbS in both the question and the answer. BOOK GAPS: (1) the enthalpy is printed as \"ΔH = 284.5kJ/mole\" with no plus sign on an equation that makes two moles of ozone; per mole of ozone it is +142 kJ mol⁻¹ (NCERT Class 12 p-block), so the value written here is +284 kJ for 3O₂ → 2O₃; (2) the book never says WHY the discharge must be silent, which is the whole reason the preparation works, and never says that the product is ozonised oxygen with only about 10 per cent conversion; (3) the hydrolysis step is printed with \"Zn/H₂O\" over the arrow and the products 2HCHO + H₂O₂, but never says what the zinc dust does. It reduces the hydrogen peroxide that forms, so the aldehyde is not oxidised on to the acid. That is written here. (4) the book gives no colour or observation for the silver reaction. INTRA-UNIT REPEAT: part (c) is the same reaction as VSAQ 2 of this sub-box, card ts_ipe_c2_via_tailing_of_mercury; the equation is deliberately identical on both. CROSS-BANK: the only other cards in the bank that mention ozone are ts_ipe_c1_cb_resonance and ts_ipe_c1_cb_formal_charge, which use O₃ as a resonance and formal-charge example. No content overlap with this card. QUESTION WORDING: printed as \"How is ozone prepared from oxygen? Explain how does it reacts with the following a) Pbs b) KI c) Hg d) Ag e) C₂H₄ f) C₂H₂\". Written here as \"how it reacts\", with a colon added and the formula corrected to PbS. Nothing else in the wording was changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "VIA Group Elements — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_preparation",
+        "kind": "text",
+        "label": "Preparation of ozone",
+        "marks": 2,
+        "mark_note": "Preparation",
+        "lines": [
+          "Ozone is made by passing a slow stream of",
+          "pure, cold and dry oxygen through a silent",
+          "electric discharge.",
+          "The apparatus used is called an ozoniser.",
+          {
+            "text": "3O₂ ⇌ 2O₃      ΔH = +284 kJ",
+            "style": "eq"
+          },
+          "The reaction is endothermic, so ozone is",
+          "less stable than oxygen and any heat",
+          "decomposes it back to oxygen.",
+          "A silent discharge is used because it does",
+          "not raise the temperature. An ordinary spark",
+          "would decompose the ozone as fast as it",
+          "is formed.",
+          "Only about 10% of the oxygen is changed, so",
+          "the product is called ozonised oxygen."
+        ],
+        "why": "The two marks here are for the method and for the reason behind it, and the reason is the enthalpy. Because the formation is endothermic, +142 kJ for every mole of ozone, heating shifts the reaction back towards oxygen. A silent discharge supplies the electrical energy without the heat of a spark, so the ozone is not decomposed before it is collected. The 10 per cent figure is why the product is never pure ozone.",
+        "common_mistakes": [
+          "Writing that an ordinary electric spark or an arc is used. It must be a silent discharge, and the reason is worth a mark.",
+          "Writing ΔH as negative. The formation of ozone from oxygen absorbs energy, so ΔH is positive.",
+          "Saying the product is pure ozone. Only about 10 per cent is converted, giving ozonised oxygen."
+        ],
+        "memory_tip": "Endothermic means heat reverses it, so the discharge must be silent and the oxygen cold and dry.",
+        "margin_note": "Two marks: one for the method and equation, one for the silent-discharge reason. Write both; the reason is the half students skip."
+      },
+      {
+        "id": "s2_lead_sulphide",
+        "kind": "equation",
+        "label": "a) With PbS",
+        "marks": 1,
+        "mark_note": "PbS",
+        "lines": [
+          "a) With lead sulphide:",
+          "Ozone oxidises black lead sulphide to white",
+          "lead sulphate.",
+          {
+            "text": "PbS + 4O₃ → PbSO₄ + 4O₂",
+            "style": "eq"
+          },
+          "The change from black to white is used as a",
+          "test for ozone."
+        ],
+        "why": "The sulphur is raised from −2 in the sulphide all the way to +6 in the sulphate, which needs eight electrons and therefore four molecules of ozone. That large jump is why the coefficient is 4 and not 1, and it is also why the colour change is so clear.",
+        "common_mistakes": [
+          "Writing PbS + O₃ → PbSO₄ + O₂. Four ozone molecules are needed; the equation does not balance with one.",
+          "Writing PbSO₃ as the product. Sulphur ends at +6, so the product is the sulphate PbSO₄."
+        ],
+        "memory_tip": "Sulphur rises from −2 to +6, eight electrons, so four ozone molecules.",
+        "margin_note": "The equation is the mark. Add black to white, which is the observation an examiner looks for."
+      },
+      {
+        "id": "s3_potassium_iodide",
+        "kind": "equation",
+        "label": "b) With KI",
+        "marks": 1,
+        "mark_note": "KI",
+        "lines": [
+          "b) With potassium iodide:",
+          "Ozone oxidises moist potassium iodide and",
+          "iodine is set free.",
+          {
+            "text": "2KI + H₂O + O₃ → 2KOH + I₂ + O₂",
+            "style": "eq"
+          },
+          "The iodine turns starch paper blue, so this",
+          "is also used as a test for ozone."
+        ],
+        "why": "Iodide is oxidised to iodine while ozone is reduced, and the water is needed because potassium hydroxide is one of the products. Leaving the water out is the usual reason this equation fails to balance, since there would be no source of hydrogen for the KOH.",
+        "common_mistakes": [
+          "Leaving out the water. Without it there is no hydrogen for the KOH and the equation will not balance.",
+          "Writing KIO₃ as the product. With moist KI the product is free iodine."
+        ],
+        "memory_tip": "Moist KI, so water is in the equation and KOH is out of it. The free iodine is the blue starch test.",
+        "margin_note": "The equation earns this mark. The starch paper line is the observation and costs one line."
+      },
+      {
+        "id": "s4_mercury",
+        "kind": "equation",
+        "label": "c) With Hg",
+        "marks": 1,
+        "mark_note": "Hg",
+        "lines": [
+          "c) With mercury:",
+          "Ozone oxidises mercury to mercurous oxide.",
+          {
+            "text": "2Hg + O₃ → Hg₂O + O₂",
+            "style": "eq"
+          },
+          "The Hg₂O lowers the surface tension of the",
+          "mercury, so the mercury loses its meniscus",
+          "and sticks to the glass. This is called",
+          "tailing of mercury.",
+          "It is removed by shaking with water."
+        ],
+        "why": "Only the surface of the mercury is oxidised, and the oxide formed lowers the surface tension of the metal, so the mercury spreads over the glass instead of standing away from it. Naming the effect as tailing and giving the cure are both part of what this reaction is asked for.",
+        "common_mistakes": [
+          "Writing HgO as the product. It is mercurous oxide, Hg₂O, and HgO would not balance the equation.",
+          "Giving only the equation. The words tailing of mercury and shaking with water are what the examiner is reading for."
+        ],
+        "memory_tip": "Surface oxidised, surface tension falls, meniscus goes flat. Water washes the oxide off.",
+        "margin_note": "One equation and the word tailing earn this mark. The removal line completes it."
+      },
+      {
+        "id": "s5_silver",
+        "kind": "equation",
+        "label": "d) With Ag",
+        "marks": 1,
+        "mark_note": "Ag",
+        "lines": [
+          "d) With silver:",
+          "Ozone oxidises bright silver to black silver",
+          "oxide, so the metal is tarnished.",
+          {
+            "text": "2Ag + O₃ → Ag₂O + O₂",
+            "style": "eq"
+          },
+          "Oxygen alone does not do this at room",
+          "temperature. Ozone is the stronger",
+          "oxidising agent of the two."
+        ],
+        "why": "Silver is a noble metal and does not react with ordinary oxygen at room temperature, so the fact that ozone does oxidise it is the clearest evidence that ozone is the stronger oxidising agent. The same comparison applies to the other three oxidations in this question.",
+        "common_mistakes": [
+          "Writing AgO or Ag₂O₂ as the product. Silver is in the +1 state here, so the oxide is Ag₂O.",
+          "Writing Ag + O₃. Two silver atoms are needed for one oxide ion, so the equation starts 2Ag."
+        ],
+        "memory_tip": "Silver does not react with oxygen but turns black with ozone. Same shape of equation as the mercury one: 2M + O₃ → M₂O + O₂.",
+        "margin_note": "One equation is the mark. The line comparing ozone with oxygen is the sentence that shows why the reaction matters."
+      },
+      {
+        "id": "s6_ethene",
+        "kind": "equation",
+        "label": "e) With C₂H₄",
+        "marks": 1,
+        "mark_note": "C₂H₄",
+        "lines": [
+          "e) With ethene (ethylene):",
+          "Ozone adds across the double bond and gives",
+          "ethene ozonide, C₂H₄O₃, a five membered ring",
+          "of two carbon atoms and three oxygen atoms.",
+          {
+            "text": "CH₂=CH₂ + O₃ → C₂H₄O₃",
+            "style": "eq"
+          },
+          "The ozonide is then hydrolysed in the",
+          "presence of zinc dust and gives methanal",
+          "(formaldehyde):",
+          {
+            "text": "C₂H₄O₃ + H₂O → 2HCHO + H₂O₂",
+            "style": "eq"
+          },
+          "The zinc dust reduces the H₂O₂ formed, so",
+          "the methanal is not oxidised further to",
+          "methanoic acid."
+        ],
+        "why": "This is ozonolysis, and it happens in two stages: ozone first ADDS to the double bond, and only then does water break the ring. Both carbon atoms of ethene carry two hydrogen atoms, so the cleavage gives two identical molecules of methanal. The zinc dust is needed, not optional: without it the hydrogen peroxide formed in the hydrolysis would oxidise the aldehyde on to the acid.",
+        "common_mistakes": [
+          "Writing that ethene oxidises ozone. Ozone is the reagent that adds to the alkene; the alkene does not oxidise the ozone.",
+          "Giving CH₃CHO or HCOOH as the product. Ethene is symmetrical, so both fragments are HCHO.",
+          "Leaving the zinc dust out. It is what stops the aldehyde being oxidised further."
+        ],
+        "memory_tip": "Break the double bond and put an oxygen atom on each carbon. Two CH₂ halves give two HCHO.",
+        "margin_note": "Two equations, one for the ozonide and one for the hydrolysis, earn this mark together. Name the product methanal."
+      },
+      {
+        "id": "s7_ethyne",
+        "kind": "boxed_final",
+        "label": "f) With C₂H₂",
+        "marks": 1,
+        "mark_note": "C₂H₂",
+        "lines": [
+          "f) With ethyne (acetylene):",
+          "Ozone adds across the triple bond and gives",
+          "ethyne ozonide, C₂H₂O₃.",
+          {
+            "text": "HC≡CH + O₃ → C₂H₂O₃",
+            "style": "eq"
+          },
+          "Hydrolysis with zinc dust gives glyoxal, the",
+          "dialdehyde of a two carbon chain:",
+          {
+            "text": "C₂H₂O₃ + H₂O → OHC–CHO + H₂O₂",
+            "style": "boxed"
+          },
+          "Ozone therefore acts as a strong oxidising",
+          "agent with metals and metal salts, and as an",
+          "addition reagent with unsaturated",
+          "hydrocarbons."
+        ],
+        "why": "Ethyne has one hydrogen on each carbon instead of two, so the same cleavage that gave two separate molecules of methanal from ethene leaves the two carbon atoms joined here, as one molecule of glyoxal. Comparing the two products is the quickest way to check the answer to part (e) as well.",
+        "common_mistakes": [
+          "Writing two molecules of HCHO for ethyne as well. The two carbon atoms stay joined, so the product is one molecule of glyoxal.",
+          "Writing that acetylene oxidises ozone. Ozone adds to the triple bond.",
+          "Writing CH₃COOH or CO₂. Ozonolysis with zinc dust stops at the aldehyde stage."
+        ],
+        "memory_tip": "Ethene gives two aldehydes, ethyne gives one aldehyde with two CHO ends. One hydrogen each, so they stay joined.",
+        "margin_note": "Box the glyoxal equation. The closing sentence about the two kinds of behaviour is what makes an eight-mark answer read as finished."
+      }
+    ]
+  },
+  "insider_note": "Six reactions and one preparation in fifteen minutes, so write every equation first and add the observations afterwards. The two marks most often lost are the silent-discharge reason in the preparation and the direction of the ozonolysis, which many students write as the alkene oxidising the ozone."
+}

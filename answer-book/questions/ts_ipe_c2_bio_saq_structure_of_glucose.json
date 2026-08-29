@@ -1,0 +1,439 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_structure_of_glucose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a brief note on the structure of glucose.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and the two forms",
+      "marks": 1
+    },
+    {
+      "label": "Evidence for the open chain structure",
+      "marks": 1
+    },
+    {
+      "label": "Evidence for the cyclic structure",
+      "marks": 1
+    },
+    {
+      "label": "The equilibrium between them",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.103-104 as SAQ 12. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, corrected here. The printed scheme on book p.104 sets the three rotations under the three species as \"α-Glucose +111° / open chain form +52.5° / β-glucose +19.2°\". +52.5° is the rotation of the EQUILIBRIUM MIXTURE, not of the open chain form; the card states it that way. The three percentages beneath it, 36% / 0.02% / 64%, are correct as printed. BOOK LABEL: the printed heading calls the pair \"Open chain and cyclic structures of α–D–(+)–glucose\". The open chain form has no α or β label at all, since those describe the configuration at carbon 1 which only exists once the ring has closed; the caption on the open chain figure here therefore reads \"open chain form of D-glucose\". BOOK WORDING: the printed cyclic-evidence list says glucose \"doesn't react with schiff's base\"; the reagent is Schiff's REAGENT. A Schiff base is a different compound, an imine. FIGURE CHOICE, JUDGED: the book draws the cyclic form as a Fischer projection with an oxygen bracket from carbon 1 to carbon 5, and that representation is reproduced here rather than a Haworth ring, because the notebook renderer draws outlines only with no fills and no occlusion, so a Haworth perspective ring cannot be drawn honestly. The two structures are split across two diagram steps to keep each under the 16-element limit. FIGURE SCOPE: the question says \"write a brief note\", not \"draw\", so both diagram steps carry NO marks and the whole split sits on the four written steps. The scan of book p.104 has a torn bottom-left corner that hides its printed page number; the number is read from the run 99-100-101-102-103 on the preceding pages, and every line of content on the page is legible."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "text",
+        "label": "Formula and the two forms",
+        "marks": 1,
+        "mark_note": "Formula and forms",
+        "lines": [
+          "The molecular formula of glucose is",
+          "C₆H₁₂O₆.",
+          "Glucose has two kinds of structure: an open",
+          "chain form and a cyclic or ring form.",
+          "In water the two exist together in",
+          "equilibrium."
+        ],
+        "why": "Neither structure alone explains all of the behaviour of glucose, which is why both are needed and why the answer must open by saying so. Some reactions are only explained by the open chain and some only by the ring, and the equilibrium is what allows both to be true at once.",
+        "common_mistakes": [
+          "Writing only the open chain structure. The question asks about the structure of glucose, and the ring form is half of it.",
+          "Writing that glucose changes from one form to the other permanently. The two are in equilibrium in solution."
+        ],
+        "memory_tip": "Two structures, one substance, held in equilibrium.",
+        "margin_note": "Open with the formula and the two forms. It frames everything that follows."
+      },
+      {
+        "id": "s2_open_chain",
+        "kind": "text",
+        "label": "Evidence for the open chain structure",
+        "marks": 1,
+        "mark_note": "Open chain evidence",
+        "lines": [
+          "Evidence for the open chain structure",
+          {
+            "text": "1. Ac₂O gives a penta-acetate → five –OH",
+            "style": "indent"
+          },
+          {
+            "text": "2. NH₂OH gives an oxime → a >C=O group",
+            "style": "indent"
+          },
+          {
+            "text": "3. Br₂ water gives gluconic acid → –CHO",
+            "style": "indent"
+          },
+          {
+            "text": "4. Conc. HNO₃ gives saccharic acid, so a",
+            "style": "indent"
+          },
+          {
+            "text": "    primary –CH₂OH group is present",
+            "style": "indent"
+          },
+          {
+            "text": "5. HI with red P gives n-hexane, so six",
+            "style": "indent"
+          },
+          {
+            "text": "    carbon atoms lie in a straight chain",
+            "style": "indent"
+          }
+        ],
+        "why": "Each reagent tests for one group and the five results together fix the open chain formula: a straight six-carbon chain with an aldehyde at one end, a primary alcohol at the other and five hydroxyl groups in all. This is the standard five-row table and the examiner counts the rows.",
+        "common_mistakes": [
+          "Giving the reagent without the conclusion. Each line must say what the product proves.",
+          "Writing that nitric acid proves the presence of –CHO. Bromine water proves the –CHO; nitric acid proves the –CH₂OH."
+        ],
+        "memory_tip": "Five reagents, five features: five –OH, a C=O, a –CHO, a –CH₂OH, six carbons in a row.",
+        "margin_note": "Five numbered lines. This is the longest step and the one an examiner marks fastest."
+      },
+      {
+        "id": "s3_figure_open",
+        "kind": "diagram",
+        "label": "The open chain structure drawn",
+        "marks": 0,
+        "figure": {
+          "id": "bio_glucose_open_chain",
+          "width": 300,
+          "height": 330,
+          "elements": [
+            {
+              "type": "label",
+              "id": "gl_cho",
+              "x": 72,
+              "y": 50,
+              "text": "CHO",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "gl_backbone",
+              "d": "M 95 58 L 95 216",
+              "ms": 2260
+            },
+            {
+              "type": "stroke",
+              "id": "gl_bars",
+              "d": "M 62 85 L 128 85 M 62 127 L 128 127 M 62 169 L 128 169 M 62 211 L 128 211",
+              "ms": 3770
+            },
+            {
+              "type": "label",
+              "id": "gl_l1",
+              "x": 42,
+              "y": 92,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "gl_l2",
+              "x": 24,
+              "y": 134,
+              "text": "HO",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "gl_l3",
+              "x": 42,
+              "y": 176,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "gl_l4",
+              "x": 42,
+              "y": 218,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "gl_r1",
+              "x": 136,
+              "y": 92,
+              "text": "OH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "gl_r2",
+              "x": 136,
+              "y": 134,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "gl_r3",
+              "x": 136,
+              "y": 176,
+              "text": "OH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "gl_r4",
+              "x": 136,
+              "y": 218,
+              "text": "OH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "gl_ch2oh",
+              "x": 62,
+              "y": 262,
+              "text": "CH₂OH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "gl_caption",
+              "x": 34,
+              "y": 308,
+              "text": "open chain form of D-glucose",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The five results of the previous step say which groups are present but not where they sit, and the Fischer projection puts them in place: the –CHO at the top, the –CH₂OH at the bottom and the four hydroxyl groups on their correct sides. Only the arrangement at carbon 3 differs from the rest, and the drawing is what shows it.",
+        "common_mistakes": [
+          "Putting the –CHO at the bottom. In a Fischer projection of D-glucose carbon 1, the –CHO, is at the top.",
+          "Drawing every –OH on the same side. Only the one at carbon 3 is on the left in D-glucose."
+        ],
+        "memory_tip": "Read it downwards: OH right, OH left, OH right, OH right.",
+        "margin_note": "The question says \"write a brief note\", not draw, so this earns no marks. Sketch it only after the written steps are done."
+      },
+      {
+        "id": "s4_cyclic",
+        "kind": "text",
+        "label": "Evidence for the cyclic structure",
+        "marks": 1,
+        "mark_note": "Cyclic evidence",
+        "lines": [
+          "Evidence for the cyclic structure",
+          {
+            "text": "1. It does not react with Schiff's",
+            "style": "indent"
+          },
+          {
+            "text": "    reagent, with NH₃ or with NaHSO₃",
+            "style": "indent"
+          },
+          {
+            "text": "2. It forms two isomeric glucosides",
+            "style": "indent"
+          },
+          {
+            "text": "3. It shows mutarotation",
+            "style": "indent"
+          },
+          "So the –CHO group is not free. Carbon 1 is",
+          "joined into a six-membered ring through the",
+          "oxygen atom on carbon 5."
+        ],
+        "why": "These are all things a free aldehyde should do and glucose does not, so the aldehyde group cannot be free. The ring closes when the hydroxyl group on carbon 5 adds across the carbonyl group at carbon 1, which makes carbon 1 a new stereocentre and gives the two anomers.",
+        "common_mistakes": [
+          "Stopping at the three facts. The mark is completed by the conclusion that carbon 1 is inside a ring.",
+          "Writing that the ring closes at carbon 6. In glucopyranose the ring runs from carbon 1 to the oxygen on carbon 5."
+        ],
+        "memory_tip": "Three tests it fails, one conclusion: the –CHO is inside a ring.",
+        "margin_note": "Finish with the ring conclusion. Three facts on their own are usually half this mark."
+      },
+      {
+        "id": "s5_figure_cyclic",
+        "kind": "diagram",
+        "label": "The cyclic structure drawn",
+        "marks": 0,
+        "figure": {
+          "id": "bio_glucose_cyclic",
+          "width": 330,
+          "height": 336,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cy_backbone",
+              "d": "M 95 56 L 95 246",
+              "ms": 2710
+            },
+            {
+              "type": "stroke",
+              "id": "cy_bars",
+              "d": "M 62 62 L 128 62 M 62 104 L 128 104 M 62 146 L 128 146 M 62 188 L 128 188 M 62 230 L 128 230",
+              "ms": 4500
+            },
+            {
+              "type": "label",
+              "id": "cy_l1",
+              "x": 42,
+              "y": 69,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_l2",
+              "x": 42,
+              "y": 111,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_l3",
+              "x": 24,
+              "y": 153,
+              "text": "HO",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_l4",
+              "x": 42,
+              "y": 195,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_l5",
+              "x": 42,
+              "y": 237,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_r1",
+              "x": 136,
+              "y": 69,
+              "text": "OH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_r2",
+              "x": 136,
+              "y": 111,
+              "text": "OH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_r3",
+              "x": 136,
+              "y": 153,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_r4",
+              "x": 136,
+              "y": 195,
+              "text": "OH",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "cy_bracket",
+              "d": "M 95 56 L 95 30 L 226 30 L 226 138 M 226 168 L 226 230 L 128 230",
+              "ms": 4500
+            },
+            {
+              "type": "label",
+              "id": "cy_o",
+              "x": 219,
+              "y": 160,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_ch2oh",
+              "x": 62,
+              "y": 268,
+              "text": "CH₂OH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "cy_caption",
+              "x": 28,
+              "y": 312,
+              "text": "cyclic form: α-D-glucose",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The ring drawing shows the one thing the open chain cannot: the oxygen bridge from carbon 1 to carbon 5, and the hydroxyl group at carbon 1 that the ring has created. Its position, right or left, is what makes the form α or β, so this is where the two anomers become visible.",
+        "common_mistakes": [
+          "Drawing the bridge from carbon 1 to carbon 6. The six-membered ring runs from carbon 1 to the oxygen on carbon 5.",
+          "Leaving the –CHO group at the top of the ring form. In the cyclic form carbon 1 carries an H and an –OH, not a –CHO."
+        ],
+        "memory_tip": "The ring adds one oxygen bridge and one new –OH at carbon 1.",
+        "margin_note": "Not a marked step. Draw it only if the written parts are complete, and label the ring oxygen."
+      },
+      {
+        "id": "s6_equilibrium",
+        "kind": "boxed_final",
+        "label": "The equilibrium between them",
+        "marks": 1,
+        "mark_note": "Equilibrium",
+        "lines": [
+          {
+            "text": "α-D-glucose ⇌ open chain ⇌ β-D-glucose",
+            "style": "boxed"
+          },
+          "In water the ring opens and closes, so all",
+          "three forms are present together.",
+          "At equilibrium there is about 36% of the α",
+          "form, about 64% of the β form and about",
+          "0.02% of the open chain form.",
+          "The equilibrium mixture rotates polarised",
+          "light by +52.5°; the pure α form gives +111°",
+          "and the pure β form +19.2°."
+        ],
+        "why": "The open chain form is present in only a trace, yet the ring can open through it, so the two ring forms interconvert and a pure anomer turns into the equilibrium mixture. That is mutarotation, and it is why the rotation of a fresh solution of either anomer drifts to the single value +52.5°.",
+        "common_mistakes": [
+          "Giving +52.5° as the rotation of the open chain form. It is the rotation of the whole equilibrium mixture.",
+          "Writing that the open chain form is the main species in water. It is about 0.02%; the two ring forms are almost all of it."
+        ],
+        "memory_tip": "Almost all ring, a trace of chain, and the open chain is the route between the two ring forms.",
+        "margin_note": "The three percentages and the three rotations are the marked content. Write them as a short table if there is room."
+      }
+    ]
+  },
+  "insider_note": "Four parts: formula, open chain evidence, ring evidence, equilibrium. The five-row evidence table is the fastest way to earn the middle marks, and the +52.5° belongs to the mixture, not to the open chain."
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_mass_of_solute_in_octane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Calculate the mass of a non-volatile solute (molar mass 40 g mol⁻¹) which should be dissolved in 114 g octane to reduce its vapour pressure to 80%.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The data",
+      "marks": 1
+    },
+    {
+      "label": "The relation used",
+      "marks": 1
+    },
+    {
+      "label": "Substitution",
+      "marks": 1
+    },
+    {
+      "label": "The mass of the solute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. ARITHMETIC RECHECKED: with the dilute-solution relation, 0.2 = w₂/40 gives w₂ = 8 g, so the printed 8 g follows correctly from the formula the book uses. APPROXIMATION RECORDED (book p.67, SAQ 4): that relation is the DILUTE form of Raoult's law, in which n₂ is dropped from the denominator of n₂/(n₁+n₂). Here the relative lowering is 0.2, so the solute is a fifth of all the moles present and the solution is NOT dilute. Solving the exact relation with n₁ = 114/114 = 1 mol gives n₂/(1+n₂) = 0.2, so n₂ = 0.25 mol and the mass is 10 g. The book prints 8 g, the NCERT problem this is taken from also prints 8 g, and 8 g is therefore the MARKED answer and is what this card boxes. The exact value of 10 g is recorded here and in the why line of the relation step so that neither value is hidden. A Telangana IPE teacher should confirm that the board marks the approximate answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solutions — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_data",
+        "kind": "text",
+        "label": "The data",
+        "marks": 1,
+        "mark_note": "Data",
+        "lines": [
+          "Let the vapour pressure of pure octane be",
+          "p⁰ = 100 mm.",
+          "The vapour pressure is reduced to 80%, so",
+          "pₛ = 80 mm.",
+          "Solute: M₂ = 40 g mol⁻¹, w₂ = ?",
+          "Solvent, octane C₈H₁₈: w₁ = 114 g and",
+          "M₁ = 114 g mol⁻¹"
+        ],
+        "why": "Only the RATIO of the two vapour pressures is used, so any convenient value can stand for p⁰ and 100 makes the arithmetic easy. Octane is worth writing out as C₈H₁₈ because its molar mass, 12×8 + 1×18 = 114 g mol⁻¹, is the same number as the mass given, and that coincidence is what makes the final step one line.",
+        "common_mistakes": [
+          "Reading \"reduced to 80%\" as reduced BY 80%. The solution keeps 80% of the pure value, so pₛ = 80 when p⁰ = 100.",
+          "Looking up a real vapour pressure for octane. None is needed; only the ratio pₛ/p⁰ enters the working."
+        ],
+        "memory_tip": "Take p⁰ = 100 and the percentage becomes the value of pₛ directly.",
+        "margin_note": "Write the assumed p⁰ = 100 mm on its own line. Without it the substitution step has no numbers to use."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "equation",
+        "label": "The relation used",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "For a dilute solution of a non-volatile",
+          "solute, Raoult's law gives the relative",
+          "lowering of vapour pressure as",
+          {
+            "text": "(p⁰ − pₛ) / p⁰ = n₂ / n₁",
+            "style": "eq"
+          },
+          "and writing each number of moles as mass",
+          "divided by molar mass,",
+          {
+            "text": "(p⁰ − pₛ) / p⁰ = (w₂ × M₁) / (M₂ × w₁)",
+            "style": "eq"
+          }
+        ],
+        "why": "This is the DILUTE form: the exact relation is (p⁰ − pₛ)/p⁰ = n₂/(n₁ + n₂), and n₂ is dropped from the denominator only when it is much smaller than n₁. Here the relative lowering is 0.2, so n₂ is a fifth of the total and the approximation is not really valid here: solving the exact relation with n₁ = 1 mol gives n₂ = 0.25 mol, that is 10 g. The book and the NCERT problem it comes from both use the approximate form and print 8 g, so 8 g is the marked answer.",
+        "common_mistakes": [
+          "Putting M₂, the molar mass of the solute, on top. The solute contributes its MASS w₂ on top and its molar mass M₂ below.",
+          "Using this relation for a volatile solute. It holds only when the solute adds nothing to the vapour."
+        ],
+        "memory_tip": "Solute mass and solvent molar mass on top; solute molar mass and solvent mass below.",
+        "margin_note": "Write the words \"for a dilute solution\" before the relation. That phrase is what makes the dropped n₂ legitimate."
+      },
+      {
+        "id": "s3_substitution",
+        "kind": "equation",
+        "label": "Substitution",
+        "marks": 1,
+        "mark_note": "Substitution",
+        "lines": [
+          "Substituting the data:",
+          {
+            "text": "(100 − 80) / 100 = (w₂ × 114) / (40 × 114)",
+            "style": "eq"
+          },
+          {
+            "text": "20 / 100 = w₂ / 40",
+            "style": "eq"
+          },
+          {
+            "text": "0.2 = w₂ / 40",
+            "style": "indent"
+          }
+        ],
+        "why": "The 114 for the mass of octane and the 114 for its molar mass cancel, which is why the question chose that mass. What is left is the relative lowering on one side and the moles of solute on the other, so the unknown mass is one multiplication away.",
+        "common_mistakes": [
+          "Cancelling 114 with 40. The cancellation is between the 114 in the numerator and the 114 in the denominator.",
+          "Writing the left side as 80/100. The left side is the LOWERING over the pure value, (100 − 80)/100."
+        ],
+        "memory_tip": "Mass of octane and molar mass of octane are both 114, so they cancel.",
+        "margin_note": "Show the cancellation line. Jumping straight from the formula to 0.2 = w₂/40 usually loses part of this mark."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The mass of the solute",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "w₂ = 0.2 × 40",
+            "style": "eq"
+          },
+          {
+            "text": "w₂ = 8 g",
+            "style": "boxed"
+          },
+          "So 8 g of the solute must be dissolved in",
+          "114 g of octane."
+        ],
+        "why": "0.2 is the mole fraction of the solute, and multiplying by the molar mass 40 g mol⁻¹ turns 0.2 mol into a mass. The answer is small because the solvent here is only one mole, so a fifth of a mole of solute is already enough to pull the vapour pressure down by a fifth.",
+        "common_mistakes": [
+          "Dividing instead of multiplying. From 0.2 = w₂/40 the mass is 0.2 × 40, not 40/0.2.",
+          "Writing the answer with no unit. The answer is a mass, so it is 8 g."
+        ],
+        "memory_tip": "0.2 mol of a 40 g mol⁻¹ solute is 8 g.",
+        "margin_note": "Box the mass and write the closing sentence naming the solvent. A number alone reads as unfinished."
+      }
+    ]
+  },
+  "insider_note": "Everything turns on reading \"reduce its vapour pressure to 80%\" as pₛ = 0.8p⁰, and on noticing that the 114 g of octane and its 114 g mol⁻¹ molar mass cancel. After that the answer is one multiplication."
+}

@@ -1,0 +1,308 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_stellar_energy_carbon_nitrogen_proton_proton",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the source of stellar energy. Explain the carbon-nitrogen cycle, proton-proton cycle occurring in stars.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Source of stellar energy",
+      "marks": 2
+    },
+    {
+      "label": "The carbon-nitrogen cycle",
+      "marks": 2
+    },
+    {
+      "label": "Net result of the C-N cycle",
+      "marks": 1
+    },
+    {
+      "label": "The proton-proton cycle",
+      "marks": 2
+    },
+    {
+      "label": "Net result of the p-p cycle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+2+1+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Printed citation: \"(Mar-2015 AP & TS)\". The sitting was MARCH 2015 and the question was set by BOTH boards, so two appearance entries are recorded, one with board ts_ipe and one with board ap_ipe; the schema has no month field, so March is recorded here. The 2+2+1+2+1 split is INVENTED. The book prints \"occuring\"; corrected to \"occurring\". Hand-checked, every reaction balanced. C-N cycle: (1) A 1+12 = 13, Z 1+6 = 7. (2) A 13 = 13, Z 7 = 6+1. (3) A 1+13 = 14, Z 1+6 = 7. (4) A 1+14 = 15, Z 1+7 = 8. (5) A 15 = 15, Z 8 = 7+1. (6) A 1+15 = 16 = 12+4, Z 1+7 = 8 = 6+2. Net: four ₁H¹ consumed, one ₂He⁴ formed, two positrons, two neutrinos, three γ. p-p cycle: (i) A 1+1 = 2, Z 1+1 = 1+1(e⁺). (iii) A 2+1 = 3, Z 1+1 = 2. (iv) A 3+3 = 6 = 4+1+1, Z 2+2 = 4 = 2+1+1. Net after 2(i)+2(ii)+2(iii)+(iv): 4₁H¹ + 2e⁻ → ₂He⁴ + 2ν + 6γ + 26.7 MeV. Energy check: 2(0.42) + 2(1.02) + 2(5.49) + 12.86 = 26.7 MeV."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Nuclei · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_source",
+        "kind": "equation",
+        "label": "Source of stellar energy",
+        "marks": 2,
+        "mark_note": "Fusion of four hydrogen nuclei into helium, 26.7 MeV",
+        "lines": [
+          "A star's energy comes from nuclear fusion.",
+          "Four hydrogen nuclei fuse to form one helium",
+          "nucleus, and about 26.7 MeV is released.",
+          {
+            "text": "4 ₁H¹ → ₂He⁴ + 2 ₊₁e⁰ + 26.7 MeV",
+            "style": "eq"
+          },
+          "The mass of the helium nucleus is smaller than",
+          "the total mass of the four protons. This mass",
+          "difference Δm appears as energy, E = Δm c²."
+        ],
+        "margin_note": "Two marks: one for the fusion reaction, one for the mass defect explanation.",
+        "why": "The binding energy per nucleon of helium is far larger than that of hydrogen, so joining four protons into one helium nucleus moves the matter to a more tightly bound state and the difference is released.",
+        "common_mistakes": [
+          "Saying stellar energy comes from fission. Stars run on fusion.",
+          "Leaving out the mass defect. The question asks for the SOURCE, not just the reaction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That stellar energy comes from the fusion of four hydrogen nuclei into one helium nucleus, releasing about 26.7 MeV, because the helium mass is less than the mass of four protons.",
+          "accept": [
+            "four hydrogen nuclei fuse into helium",
+            "twenty six point seven MeV is released",
+            "the mass difference appears as energy"
+          ],
+          "reject": [
+            "carbon acts as a catalyst"
+          ],
+          "heard_as": [
+            "fusion",
+            "helium",
+            "twenty six point seven"
+          ]
+        },
+        "memory_tip": "Four protons in, one helium out, 26.7 MeV of the missing mass released."
+      },
+      {
+        "id": "s2_cn_cycle",
+        "kind": "equation",
+        "label": "The carbon-nitrogen cycle",
+        "marks": 2,
+        "mark_note": "The six reactions, with carbon returned at the end",
+        "lines": [
+          "Carbon-nitrogen cycle (suggested by Bethe):",
+          "hydrogen is converted into helium with carbon",
+          "and nitrogen acting as catalysts.",
+          {
+            "text": "₁H¹ + ₆C¹² → ₇N¹³ + γ",
+            "style": "eq"
+          },
+          {
+            "text": "₇N¹³ → ₆C¹³ + ₊₁e⁰ + ν",
+            "style": "eq"
+          },
+          {
+            "text": "₁H¹ + ₆C¹³ → ₇N¹⁴ + γ",
+            "style": "eq"
+          },
+          {
+            "text": "₁H¹ + ₇N¹⁴ → ₈O¹⁵ + γ",
+            "style": "eq"
+          },
+          {
+            "text": "₈O¹⁵ → ₇N¹⁵ + ₊₁e⁰ + ν",
+            "style": "eq"
+          },
+          {
+            "text": "₁H¹ + ₇N¹⁵ → ₆C¹² + ₂He⁴",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks for the six reactions written in order.",
+        "why": "The ₆C¹² that starts the chain is returned unchanged by the last reaction, which is exactly what makes carbon a catalyst here rather than a fuel.",
+        "common_mistakes": [
+          "Writing an electron ₋₁e⁰ instead of a positron ₊₁e⁰ in the two decay steps.",
+          "Losing the last reaction, so the carbon is never returned."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the carbon-nitrogen cycle is a chain of six reactions in which hydrogen becomes helium with carbon and nitrogen as catalysts, beginning and ending with carbon-12.",
+          "accept": [
+            "hydrogen plus carbon twelve gives nitrogen thirteen",
+            "carbon and nitrogen act as catalysts",
+            "the last reaction returns carbon twelve and forms helium"
+          ],
+          "reject": [
+            "four hydrogen nuclei give helium and twenty six point seven MeV"
+          ],
+          "heard_as": [
+            "carbon nitrogen cycle",
+            "nitrogen thirteen",
+            "catalyst"
+          ]
+        },
+        "memory_tip": "Carbon-12 opens the cycle and carbon-12 closes it — that is why it is a catalyst."
+      },
+      {
+        "id": "s3_cn_net",
+        "kind": "equation",
+        "label": "Net result of the C-N cycle",
+        "marks": 1,
+        "mark_note": "Four protons to helium, 26.7 MeV",
+        "lines": [
+          "Adding the six reactions, the carbon and the",
+          "nitrogen cancel out and the net result is",
+          {
+            "text": "4 ₁H¹ → ₂He⁴ + 2 ₊₁e⁰ + 3γ + 2ν",
+            "style": "eq"
+          },
+          "The energy released in this cycle is 26.7 MeV."
+        ],
+        "margin_note": "One mark. The net equation with the energy value.",
+        "why": "The net result is the same as the direct fusion of four protons, so the cycle changes the ROUTE and the speed, not the energy released.",
+        "common_mistakes": [
+          "Leaving carbon or nitrogen in the net equation. They cancel.",
+          "Writing 3ν and 2γ. There are three γ rays and two neutrinos."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the net result of the carbon-nitrogen cycle is four hydrogen nuclei giving one helium nucleus, two positrons, three gamma rays and two neutrinos, with 26.7 MeV released.",
+          "accept": [
+            "four hydrogen gives helium two positrons and neutrinos",
+            "twenty six point seven MeV",
+            "carbon and nitrogen cancel out"
+          ],
+          "reject": [
+            "hydrogen plus carbon twelve gives nitrogen thirteen"
+          ],
+          "heard_as": [
+            "net result",
+            "four hydrogen",
+            "twenty six point seven"
+          ]
+        },
+        "memory_tip": "Add the six lines and everything but hydrogen and helium cancels."
+      },
+      {
+        "id": "s4_pp_cycle",
+        "kind": "equation",
+        "label": "The proton-proton cycle",
+        "marks": 2,
+        "mark_note": "The four reactions with their energies",
+        "lines": [
+          "Proton-proton cycle: four protons turn",
+          "into helium in four steps.",
+          {
+            "text": "₁H¹ + ₁H¹ → ₁H² + e⁺ + ν + 0.42 MeV   (i)",
+            "style": "eq"
+          },
+          {
+            "text": "e⁺ + e⁻ → γ + γ + 1.02 MeV   (ii)",
+            "style": "eq"
+          },
+          {
+            "text": "₁H² + ₁H¹ → ₂He³ + γ + 5.49 MeV   (iii)",
+            "style": "eq"
+          },
+          {
+            "text": "₂He³ + ₂He³ → ₂He⁴ + 2 ₁H¹ + 12.86 MeV   (iv)",
+            "style": "eq"
+          },
+          "Reactions (i), (ii) and (iii) must each happen",
+          "twice before reaction (iv) can take place."
+        ],
+        "margin_note": "Two marks for the four reactions with their energy values.",
+        "why": "Reaction (iv) needs two ₂He³ nuclei, and each of them costs one run of (i), (ii) and (iii) — that is why the first three steps are counted twice in the total.",
+        "common_mistakes": [
+          "Writing ₂He⁴ in reaction (iii). The product there is ₂He³.",
+          "Forgetting that the first three reactions occur twice."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in the proton-proton cycle two protons make deuterium and a positron, the positron annihilates, deuterium and a proton make helium-3, and two helium-3 nuclei make helium-4 with two protons returned.",
+          "accept": [
+            "two protons give deuterium a positron and a neutrino",
+            "deuterium plus hydrogen gives helium three",
+            "two helium three give helium four and two protons"
+          ],
+          "reject": [
+            "carbon and nitrogen act as catalysts"
+          ],
+          "heard_as": [
+            "proton proton cycle",
+            "deuterium",
+            "helium three"
+          ]
+        },
+        "memory_tip": "Build helium-3 twice, then join the two to make helium-4."
+      },
+      {
+        "id": "s5_pp_net",
+        "kind": "boxed_final",
+        "label": "Net result of the p-p cycle",
+        "marks": 1,
+        "mark_note": "Same 26.7 MeV as the C-N cycle",
+        "lines": [
+          "Taking 2(i) + 2(ii) + 2(iii) + (iv), the net",
+          "effect is",
+          {
+            "text": "4 ₁H¹ + 2e⁻ → ₂He⁴ + 2ν + 6γ + 26.7 MeV",
+            "style": "eq"
+          },
+          "So four hydrogen nuclei form one helium nucleus",
+          "with 26.7 MeV released, the same as in the",
+          "carbon-nitrogen cycle.",
+          {
+            "text": "Both cycles: 4 ₁H¹ → ₂He⁴ + 26.7 MeV",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "One mark. The net equation and the statement that both cycles give 26.7 MeV.",
+        "why": "Both cycles start with four protons and end with one helium nucleus, so the mass defect and therefore the energy must be the same; only the temperature at which each cycle dominates is different.",
+        "common_mistakes": [
+          "Giving a different energy for the two cycles. Both release 26.7 MeV.",
+          "Writing 2γ instead of 6γ in the net equation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding two of each of the first three reactions to the fourth gives four hydrogen nuclei and two electrons forming helium-4 with 26.7 MeV released, the same energy as the carbon-nitrogen cycle.",
+          "accept": [
+            "four hydrogen plus two electrons give helium four",
+            "twenty six point seven MeV again",
+            "same energy as the carbon nitrogen cycle"
+          ],
+          "reject": [
+            "two helium three give helium four"
+          ],
+          "heard_as": [
+            "net effect",
+            "twenty six point seven",
+            "helium four"
+          ]
+        },
+        "memory_tip": "Two routes, one destination: 4 protons to helium, 26.7 MeV either way."
+      }
+    ]
+  },
+  "insider_note": "Eight marks and three parts. Write the reaction chains as numbered lines and finish each chain with its net result; the net result lines are where the marks are easiest to lose."
+}

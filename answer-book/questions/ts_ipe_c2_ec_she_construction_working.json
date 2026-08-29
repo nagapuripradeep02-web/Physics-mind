@@ -1,0 +1,316 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_she_construction_working",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give the construction and working of standard hydrogen electrode with neat diagram.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the standard hydrogen electrode is",
+      "marks": 1
+    },
+    {
+      "label": "Construction",
+      "marks": 2
+    },
+    {
+      "label": "Neat diagram",
+      "marks": 2
+    },
+    {
+      "label": "Representation and electrode reaction",
+      "marks": 2
+    },
+    {
+      "label": "Working",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+2+2+2+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAPS (book p.71, LAQ 3): the printed answer for a full 8-mark question is six lines long. It never gives the electrode reaction, never says the platinum black adsorbs the hydrogen and takes no part in the reaction, never gives the temperature, and never explains how the electrode is actually USED, which is the whole word working in the question. All of that is written here. BOOK INCONSISTENCY: the printed answer says \"1 atm pressure\" in the text while the VSAQ on the same electrode (book p.69) says \"1 atm or 1 bar\". The current standard state is 1 bar, which is what NCERT uses and what is written here; 1 atm is the older value and the two differ by about 1%. BOOK LABEL: the book's own figure labels the solution \"H₃O⁺ (aq.) (1M)\" while its text says 1 M HCl. Both describe the same condition, which is an H⁺ concentration of 1 M; that is how it is written here. FIGURE SCOPE: the question says \"with neat diagram\", so the diagram DOES carry marks here. SHORT ANSWER PAIR: VSAQ 2 of the same unit asks what the electrode is (card ts_ipe_c2_ec_standard_hydrogen_electrode)."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Electro Chemistry — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What the standard hydrogen electrode is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The standard hydrogen electrode (SHE) is the",
+          "primary reference electrode of",
+          "electrochemistry.",
+          "Its standard electrode potential is fixed at",
+          "zero by agreement, and every other standard",
+          "electrode potential is measured against it.",
+          "It is also called the normal hydrogen",
+          "electrode."
+        ],
+        "why": "A voltmeter always reads the difference between two electrodes, so no single electrode potential can ever be measured on its own. One electrode has to be fixed at zero by agreement, and the hydrogen electrode under stated conditions is the one that was chosen.",
+        "common_mistakes": [
+          "Saying its potential is zero because hydrogen is unreactive. It is zero because it was agreed to be the reference point.",
+          "Calling it a calomel electrode. The calomel electrode is a secondary reference; the SHE is the primary one."
+        ],
+        "memory_tip": "Nothing can be measured on its own, so one electrode is called zero, and this is that one.",
+        "margin_note": "The word reference and the value zero both belong in this opening sentence."
+      },
+      {
+        "id": "s2_construction",
+        "kind": "text",
+        "label": "Construction",
+        "marks": 2,
+        "mark_note": "Construction",
+        "lines": [
+          "A small platinum foil coated with platinum",
+          "black is welded to a platinum wire, and the",
+          "wire is sealed into a glass tube.",
+          "The foil is dipped in an acid solution in",
+          "which the concentration of H⁺ ions is 1 M,",
+          "usually 1 M HCl.",
+          "Pure hydrogen gas at 1 bar is passed down",
+          "the glass tube at 298 K and bubbles over the",
+          "platinum foil.",
+          "The platinum black is porous, so it adsorbs a",
+          "large amount of the hydrogen gas and holds",
+          "it in contact with the solution.",
+          "Platinum itself takes no part in the",
+          "reaction; it only carries the electrons.",
+          "A side tube filled with the solution connects",
+          "the electrode to the other half cell through",
+          "a salt bridge."
+        ],
+        "why": "Hydrogen is a gas and cannot be dipped into a solution the way a metal rod can, so a surface has to be provided for it. The platinum black adsorbs the gas and holds it against the acid, which is what turns hydrogen gas into a working electrode.",
+        "common_mistakes": [
+          "Saying platinum takes part in the reaction. It is inert; it only holds the hydrogen and carries the electrons.",
+          "Writing 1 M HCl as the requirement. The requirement is 1 M H⁺; HCl is only the usual way of supplying it."
+        ],
+        "memory_tip": "Three conditions, one for each part: 1 M for the ion, 1 bar for the gas, 298 K for the temperature.",
+        "margin_note": "All three standard conditions plus the role of the platinum black carry these two marks. Missing a condition costs half."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Neat diagram",
+        "marks": 2,
+        "mark_note": "Labelled diagram",
+        "figure": {
+          "id": "standard_hydrogen_electrode",
+          "width": 520,
+          "height": 340,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "she_beaker",
+              "d": "M 90 130 L 90 300 L 400 300 L 400 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "she_solution_level",
+              "d": "M 90 165 L 400 165",
+              "ms": 4430
+            },
+            {
+              "type": "stroke",
+              "id": "she_glass_tube",
+              "d": "M 200 40 L 200 250 M 250 40 L 250 250 M 200 40 L 250 40",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "she_h2_inlet",
+              "d": "M 150 60 L 196 60 M 186 54 L 196 60 L 186 66",
+              "ms": 990
+            },
+            {
+              "type": "stroke",
+              "id": "she_pt_wire",
+              "d": "M 225 40 L 225 210",
+              "ms": 2430
+            },
+            {
+              "type": "stroke",
+              "id": "she_pt_foil",
+              "d": "M 208 210 L 242 210 L 242 226 L 208 226 Z",
+              "ms": 1430
+            },
+            {
+              "type": "stroke",
+              "id": "she_bubbles",
+              "d": "M 262 212 A 7 7 0 1 1 276 212 A 7 7 0 1 1 262 212 M 272 192 A 6 6 0 1 1 284 192 A 6 6 0 1 1 272 192 M 258 174 A 5 5 0 1 1 268 174 A 5 5 0 1 1 258 174",
+              "ms": 1620
+            },
+            {
+              "type": "stroke",
+              "id": "she_salt_bridge_stub",
+              "d": "M 400 200 L 480 200 L 480 160",
+              "ms": 1710,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "she_leader_foil",
+              "d": "M 224 264 L 224 230 M 219 238 L 224 230 L 229 238",
+              "ms": 760
+            },
+            {
+              "type": "label",
+              "id": "she_lbl_h2",
+              "x": 16,
+              "y": 56,
+              "text": "H₂ gas at 1 bar",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "she_lbl_ptwire",
+              "x": 290,
+              "y": 62,
+              "text": "Pt wire in glass tube",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "she_lbl_bubbles",
+              "x": 296,
+              "y": 178,
+              "text": "H₂ bubbles",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "she_lbl_saltbridge",
+              "x": 404,
+              "y": 226,
+              "text": "salt bridge",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "she_lbl_foil",
+              "x": 150,
+              "y": 268,
+              "text": "Pt foil coated with Pt black",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "she_lbl_solution",
+              "x": 60,
+              "y": 324,
+              "text": "1 M H⁺(aq) solution",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The diagram has to show four things: the hydrogen coming in, the platinised platinum foil, the acid solution and the connection to the other half cell. Each of those is one of the conditions written in the construction, so the diagram is a picture of the definition.",
+        "common_mistakes": [
+          "Drawing the platinum foil above the solution level. It must be under the surface, in contact with the acid.",
+          "Leaving the labels off. An unlabelled diagram takes very little of the diagram marks."
+        ],
+        "memory_tip": "Gas in at the top, foil at the bottom, acid all around, bridge out to the side.",
+        "margin_note": "The question says neat diagram, so this is marked. Label the gas, its pressure, the foil, the solution and its concentration."
+      },
+      {
+        "id": "s4_representation",
+        "kind": "equation",
+        "label": "Representation and electrode reaction",
+        "marks": 2,
+        "mark_note": "Notation and reaction",
+        "lines": [
+          "The electrode is written as",
+          {
+            "text": "Pt(s) | H₂(g, 1 bar) | H⁺(aq, 1 M)",
+            "style": "eq"
+          },
+          "The electrode reaction is reversible:",
+          {
+            "text": "2H⁺(aq) + 2e⁻ ⇌ H₂(g)",
+            "style": "eq"
+          },
+          {
+            "text": "E°(H⁺/H₂) = 0.00 V",
+            "style": "boxed"
+          },
+          "When the SHE acts as the anode it is written",
+          "in the reverse direction:",
+          {
+            "text": "H₂(g) → 2H⁺(aq) + 2e⁻",
+            "style": "eq"
+          },
+          "and when it acts as the cathode:",
+          {
+            "text": "2H⁺(aq) + 2e⁻ → H₂(g)",
+            "style": "eq"
+          }
+        ],
+        "why": "The reaction can be driven either way, which is why the same electrode can serve as anode or as cathode depending on what it is joined to. Writing both directions shows that, and it is what makes the electrode useful with every other electrode in the table.",
+        "common_mistakes": [
+          "Writing the electrode reaction with a single arrow only. The electrode is reversible, so ⇌ is used.",
+          "Writing the notation with the gas and the ion the wrong way round. The inert metal comes first, then the gas, then the ion."
+        ],
+        "memory_tip": "Read the notation outwards from the metal: platinum, then the gas it holds, then the ion in the solution.",
+        "margin_note": "The zero volt line is one of these two marks on its own. Write it separately and box it."
+      },
+      {
+        "id": "s5_working",
+        "kind": "text",
+        "label": "Working",
+        "marks": 1,
+        "mark_note": "Working",
+        "lines": [
+          "Working: the SHE is joined through a salt",
+          "bridge to the electrode whose potential is",
+          "wanted, and the emf of the cell so formed is",
+          "read on a voltmeter.",
+          "Since the SHE contributes zero, that reading",
+          "is the standard electrode potential of the",
+          "other electrode.",
+          "It acts as the anode when the other electrode",
+          "has a positive standard potential, and as the",
+          "cathode when that potential is negative.",
+          "Example: with a standard copper electrode",
+          "the cell emf reads 0.34 V, so",
+          {
+            "text": "E°(Cu²⁺/Cu) = +0.34 V",
+            "style": "eq"
+          }
+        ],
+        "why": "The whole table of standard electrode potentials was built this way, one electrode at a time against the same reference. That is why the sign of a standard potential means something: it says which way the electrons went when that electrode was joined to hydrogen.",
+        "common_mistakes": [
+          "Saying the SHE is always the anode. It is the anode or the cathode depending on the other electrode.",
+          "Reading the cell emf as the SHE's potential. The SHE contributes zero, so the reading belongs to the other electrode."
+        ],
+        "memory_tip": "Join it to the unknown electrode and read the meter. Zero plus something equals that something.",
+        "margin_note": "One named example, such as copper reading 0.34 V, makes the working concrete and takes two lines."
+      }
+    ]
+  },
+  "insider_note": "This is an 8-mark question and the book answers it in six lines. The marks are in the parts the book leaves out: the electrode reaction, the role of the platinum black, and how the electrode is actually used to measure another potential."
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_manganin_standard_resistors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is manganin used for making standard resistors?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Very small α",
+      "marks": 1
+    },
+    {
+      "label": "Why that makes it standard",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: manganin (a Cu-Mn-Ni alloy) has a very small temperature coefficient of resistance and a fairly high resistivity, so its resistance stays nearly constant as it warms in use — the property a standard resistor needs. The book cites only the small α; the high resistivity line is kept as an unmarked extra."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "text",
+        "label": "Very small α",
+        "marks": 1,
+        "mark_note": "Very small temperature coefficient",
+        "lines": [
+          "For manganin, the temperature coefficient of",
+          "resistance (α) is very small.",
+          "So the change in its resistance with",
+          "temperature is almost negligible."
+        ],
+        "margin_note": "First mark. Name the property: very small temperature coefficient of resistance.",
+        "why": "Every resistor warms up when current flows through it. A material whose resistance barely responds to that warming is the only kind that can hold a fixed value.",
+        "common_mistakes": [
+          "Saying manganin has zero resistance. It has a definite resistance; what is small is the CHANGE with temperature.",
+          "Writing low resistivity. Manganin's resistivity is fairly high; its temperature coefficient is what is small."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That manganin's temperature coefficient of resistance is very small, so its resistance hardly changes with temperature.",
+          "accept": [
+            "temperature coefficient is very small",
+            "resistance almost does not change with temperature",
+            "alpha is very less for manganin"
+          ],
+          "reject": [
+            "the value marked on it stays true"
+          ],
+          "heard_as": [
+            "manganin",
+            "temperature coefficient",
+            "alpha"
+          ]
+        },
+        "memory_tip": "Manganin: small α. That one property is the whole answer."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "Why that makes it standard",
+        "marks": 1,
+        "mark_note": "Value stays constant in use",
+        "lines": [
+          "A standard resistor must keep the same",
+          "resistance even when current heats it during",
+          "use. Manganin's resistance stays constant,",
+          "so the value marked on it stays true.",
+          {
+            "text": "Manganin: very small α",
+            "style": "boxed"
+          },
+          "It also has a fairly high resistivity, so a",
+          "short wire gives the required resistance."
+        ],
+        "margin_note": "Second mark. Connect the property to the job: the marked value must stay true while the resistor warms.",
+        "why": "The mark is for the connection, not the fact — a standard is only a standard if its value does not drift while it is being used.",
+        "common_mistakes": [
+          "Stopping at alpha is small without saying why a standard resistor needs that."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a standard resistor must keep its marked value while it warms in use, and manganin's constant resistance gives exactly that.",
+          "accept": [
+            "the marked value stays true while it heats",
+            "resistance stays constant during use",
+            "so it is used to prepare standard resistors"
+          ],
+          "reject": [
+            "temperature coefficient is very small"
+          ],
+          "heard_as": [
+            "standard resistor",
+            "stays constant"
+          ]
+        },
+        "memory_tip": "Property then purpose: small α, so the marked value never drifts."
+      }
+    ]
+  },
+  "insider_note": "One property (very small α) plus one connection (the marked value stays true while it warms) — two marks, two sentences."
+}

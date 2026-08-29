@@ -1,0 +1,176 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_rp_respiratory_quotient",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Respiration in Plants (Botany-II)"
+  },
+  "chapter": "Respiration in Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define RQ. Write a short note on RQ.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition and formula",
+      "marks": 1
+    },
+    {
+      "label": "What the value tells you",
+      "marks": 1
+    },
+    {
+      "label": "The worked example",
+      "marks": 1
+    },
+    {
+      "label": "Why it never exceeds one for fats",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.52, printed question 167. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: under the correct formula (CO2 evolved over O2 consumed) the guide's own legend reads \"A - stands for volume of CO2 ABSORBED during respiration. B - stands for volume of O2 LIBERATED during respiration.\" Both are reversed, and they contradict the formula printed two lines above them. Respiration takes O2 IN and gives CO2 OUT."
+  },
+  "insider_note": "RQ is a ratio with a direction. Carbon dioxide is on top because it comes OUT; oxygen is underneath because it goes IN. Getting that the wrong way round inverts every value.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Respiration in Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "Definition and formula",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition then formula. The direction of each gas is the mark.",
+        "lines": [
+          {
+            "text": "The RESPIRATORY QUOTIENT (RQ) is the ratio",
+            "style": "normal"
+          },
+          {
+            "text": "of the volume of CO2 GIVEN OUT to the volume",
+            "style": "normal"
+          },
+          {
+            "text": "of O2 TAKEN IN, in a given time at standard",
+            "style": "normal"
+          },
+          {
+            "text": "temperature and pressure.",
+            "style": "normal"
+          },
+          {
+            "text": "RQ = volume of CO2 evolved",
+            "style": "eq"
+          },
+          {
+            "text": "     ──────────────────",
+            "style": "eq"
+          },
+          {
+            "text": "     volume of O2 consumed",
+            "style": "eq"
+          }
+        ],
+        "why": "Different foods need different amounts of oxygen for the carbon dioxide they release, so the ratio identifies which food is being respired.",
+        "common_mistakes": [
+          "Putting oxygen on top. CO2 given out is the NUMERATOR; O2 taken in is the denominator.",
+          "Writing 'CO2 absorbed' and 'O2 liberated'. Respiration takes oxygen IN and gives carbon dioxide OUT. The guide's own legend reverses both."
+        ],
+        "memory_tip": "Out over in: carbon dioxide out on top, oxygen in underneath."
+      },
+      {
+        "id": "s2_values",
+        "kind": "text",
+        "label": "What the value tells you",
+        "marks": 1,
+        "mark_note": "The three cases",
+        "margin_note": "Three cases, one line each. This mark is a list and should not be rushed.",
+        "lines": [
+          "The value of RQ identifies the respiratory",
+          "substrate:",
+          "If RQ = 1, CARBOHYDRATES are being used.",
+          "If RQ is LESS than 1, FATS are being used.",
+          "If RQ is MORE than 1, ORGANIC ACIDS are being",
+          "used."
+        ],
+        "why": "A carbohydrate already carries as much oxygen as it needs, so it uses exactly as much oxygen as the carbon dioxide it gives out, and its RQ is exactly one.",
+        "common_mistakes": [
+          "Saying fats give an RQ above 1. Fats give LESS than 1 because they need extra oxygen.",
+          "Leaving out organic acids. All three cases are asked for."
+        ],
+        "memory_tip": "Carbohydrate exactly one, fat below one, organic acid above one."
+      },
+      {
+        "id": "s3_example",
+        "kind": "equation",
+        "label": "The worked example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Equation, then the division, then the value. Three lines and the mark is safe.",
+        "lines": [
+          "Example: TRIOLEIN, a fat.",
+          {
+            "text": "C57H104O6 + 80 O2 --> 57 CO2 + 52 H2O",
+            "style": "eq"
+          },
+          {
+            "text": "RQ = 57 / 80 = 0.7",
+            "style": "eq"
+          },
+          "The value is less than 1, as expected for a",
+          "fat."
+        ],
+        "why": "The equation itself shows why: 80 oxygen molecules are needed to produce only 57 carbon dioxide molecules, so the ratio must fall below one.",
+        "common_mistakes": [
+          "Writing the ratio as 80/57. CO2 goes on TOP, so it is 57/80.",
+          "Giving the answer without the equation. The coefficients are where the ratio comes from."
+        ],
+        "memory_tip": "Fifty-seven out, eighty in: the fraction has to be less than one."
+      },
+      {
+        "id": "s4_why",
+        "kind": "boxed_final",
+        "label": "Why it never exceeds one for fats",
+        "marks": 1,
+        "mark_note": "Reason",
+        "margin_note": "One reason in four lines. The oxygen content of the molecule is the whole explanation.",
+        "lines": [
+          {
+            "text": "A fat is poor in oxygen, so it needs more",
+            "style": "boxed"
+          },
+          "A fat molecule contains very little oxygen of",
+          "its own.",
+          "So more atmospheric oxygen must be taken in to",
+          "oxidise it.",
+          "The denominator is large, so RQ for fats is",
+          "ALWAYS less than one."
+        ],
+        "why": "The reason is in the molecule: the less oxygen a food already contains, the more must be supplied, and the smaller the ratio becomes.",
+        "common_mistakes": [
+          "Giving no reason. The last mark is for WHY, not for the value.",
+          "Saying fats release less carbon dioxide. They release plenty; they just need much more oxygen to do it."
+        ],
+        "memory_tip": "Less oxygen in the food means more oxygen from the air, so a smaller ratio."
+      }
+    ]
+  }
+}

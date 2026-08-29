@@ -1,0 +1,390 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_mutual_inductance_solenoids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Obtain an expression for the mutual inductance (M) of two long coaxially placed solenoids.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Setup and the field of S₁",
+      "marks": 1
+    },
+    {
+      "label": "Flux linkage of S₂",
+      "marks": 1
+    },
+    {
+      "label": "M from the first case",
+      "marks": 1
+    },
+    {
+      "label": "Reverse case and the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: B₁ = μ₀N₁i₁/l inside S₁; flux linkage of S₂ = N₂B₁A; M₂₁ = N₂Φ₂/i₁ = μ₀N₁N₂A/l; the reverse case gives M₁₂ = the same expression, so M = μ₀N₁N₂A/l = μ₀n₁n₂Al with n = N/l — symbols stated on the card. NOTE: this derivation is a Long Answer in most other syllabuses; this book prints it as a 4-mark SAQ and the card keeps the book's section. The figure cannot rely on occlusion (outline-only renderer), so the outer solenoid is drawn as two long rails with the inner pair of rails clearly between them on one dashed axis."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electromagnetic Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "Figure: two coaxial solenoids",
+        "marks": 0,
+        "margin_note": "Draw the outer solenoid as two long rails and the inner one clearly between them, both on one dashed axis. Mark the common length l.",
+        "why": "The whole derivation lives on this geometry: same length, same axis, one solenoid wound over the other, so the inner field passes through every turn of the outer coil.",
+        "common_mistakes": [
+          "Drawing two separate coils side by side. The solenoids share one axis, one inside the other."
+        ],
+        "figure": {
+          "id": "coaxial_solenoids",
+          "width": 470,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "outer_top",
+              "d": "M 70 80 L 400 80",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "outer_bottom",
+              "d": "M 70 200 L 400 200",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "end_left",
+              "d": "M 70 80 L 70 200",
+              "ms": 1710
+            },
+            {
+              "type": "stroke",
+              "id": "end_right",
+              "d": "M 400 80 L 400 200",
+              "ms": 1710
+            },
+            {
+              "type": "stroke",
+              "id": "inner_top",
+              "d": "M 100 115 L 370 115",
+              "ms": 3860
+            },
+            {
+              "type": "stroke",
+              "id": "inner_bottom",
+              "d": "M 100 165 L 370 165",
+              "ms": 3860
+            },
+            {
+              "type": "stroke",
+              "id": "axis",
+              "d": "M 55 140 L 415 140",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "len_line",
+              "d": "M 70 45 L 400 45",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "len_head_left",
+              "d": "M 80 38 L 70 45 L 80 52",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "len_head_right",
+              "d": "M 390 38 L 400 45 L 390 52",
+              "ms": 350
+            },
+            {
+              "type": "label",
+              "id": "lbl_l",
+              "x": 228,
+              "y": 36,
+              "text": "l",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_s2",
+              "x": 78,
+              "y": 72,
+              "text": "S₂",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_s1",
+              "x": 376,
+              "y": 134,
+              "text": "S₁",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i1",
+              "x": 108,
+              "y": 186,
+              "text": "i₁",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 412,
+              "y": 146,
+              "text": "A",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure of two coaxial solenoids on one axis is drawn, inner S₁ and outer S₂, with the common length l marked.",
+          "accept": [
+            "draw the two solenoids",
+            "coaxial figure",
+            "inner and outer solenoid"
+          ],
+          "reject": [
+            "mu nought N1 N2 A by l"
+          ],
+          "heard_as": [
+            "solenoid",
+            "coaxial",
+            "figure"
+          ]
+        },
+        "memory_tip": "One axis, two solenoids: draw the long outer rails first, then the shorter pair of rails inside."
+      },
+      {
+        "id": "s2_setup",
+        "kind": "text",
+        "label": "Setup and the field of S₁",
+        "marks": 1,
+        "mark_note": "Symbols declared; B₁ = μ₀N₁i₁/l",
+        "lines": [
+          "Consider two long coaxial solenoids S₁",
+          "(inner) and S₂ (outer), each of length l",
+          "and area of cross-section A. Let N₁ and N₂",
+          "be their numbers of turns.",
+          "Let a current i₁ flow through the inner",
+          "solenoid S₁. The field inside it is",
+          {
+            "text": "B₁ = μ₀N₁i₁ / l",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Declare every symbol once — l, A, N₁, N₂, i₁ — before any formula uses it.",
+        "why": "Every later line reuses these symbols, so declaring them once — length, area, turns, current — is what makes the derivation readable and markable. A is the cross-sectional area of the INNER solenoid. Two coaxial solenoids cannot share an area, and it is the inner one that matters both ways: the inner solenoid's field exists only over its own area, and the outer solenoid's uniform field crosses the inner coil over that same area.",
+        "common_mistakes": [
+          "Writing B = μ₀ni with n undefined. Say which count you use: here N₁ is the TOTAL number of turns, so B₁ = μ₀N₁i₁/l."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two coaxial solenoids of equal length and area are set up, and the field of the inner one is μ₀N₁i₁/l.",
+          "accept": [
+            "two coaxial solenoids",
+            "B1 equals mu nought N1 i1 by l",
+            "field of the inner solenoid"
+          ],
+          "reject": [
+            "flux linkage of S2"
+          ],
+          "heard_as": [
+            "mu nought",
+            "solenoid"
+          ]
+        },
+        "memory_tip": "Same l, same A, turns N₁ and N₂ — set the stage in one sentence before any formula."
+      },
+      {
+        "id": "s3_flux_linkage",
+        "kind": "equation",
+        "label": "Flux linkage of S₂",
+        "marks": 1,
+        "mark_note": "Flux linkage N₂B₁A",
+        "lines": [
+          {
+            "text": "The field B₁ passes through every turn",
+            "style": "normal"
+          },
+          {
+            "text": "of the outer solenoid S₂, so the total",
+            "style": "normal"
+          },
+          {
+            "text": "flux linkage of S₂ is",
+            "style": "normal"
+          },
+          {
+            "text": "N₂Φ₂ = N₂B₁A",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. The linkage counts ALL N₂ turns, not the flux through one turn.",
+        "why": "Mutual inductance is defined through the flux LINKAGE of the second coil, so counting all N₂ turns is the step that matters.",
+        "common_mistakes": [
+          "Using the flux through one turn only. The linkage multiplies by all N₂ turns."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the flux linkage of the outer solenoid is N₂ times B₁ times A.",
+          "accept": [
+            "N2 B1 A",
+            "flux linkage of S2",
+            "every turn of S2"
+          ],
+          "reject": [
+            "mu nought N1 N2 A by l"
+          ],
+          "heard_as": [
+            "flux linkage",
+            "N2"
+          ]
+        },
+        "memory_tip": "Field of coil 1, area A, times every turn of coil 2 — three factors make the linkage."
+      },
+      {
+        "id": "s4_m_first_case",
+        "kind": "equation",
+        "label": "M from the first case",
+        "marks": 1,
+        "mark_note": "M₂₁ = μ₀N₁N₂A/l",
+        "lines": [
+          {
+            "text": "The mutual inductance of S₂ with respect",
+            "style": "normal"
+          },
+          {
+            "text": "to S₁ is the flux linkage per unit",
+            "style": "normal"
+          },
+          {
+            "text": "current:",
+            "style": "normal"
+          },
+          {
+            "text": "M₂₁ = N₂Φ₂ / i₁ = N₂B₁A / i₁",
+            "style": "eq"
+          },
+          {
+            "text": "Substituting B₁ = μ₀N₁i₁/l:",
+            "style": "normal"
+          },
+          {
+            "text": "M₂₁ = μ₀N₁N₂A / l",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The current i₁ cancels — inductance is a property of the geometry.",
+        "why": "The definition M = flux linkage over current turns the geometry into a single constant; i₁ cancels, so M depends only on the coils, not on the current.",
+        "common_mistakes": [
+          "Leaving i₁ in the final expression. The current cancels — inductance depends only on geometry and medium."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That M is the flux linkage over the current, and equals μ₀N₁N₂A over l.",
+          "accept": [
+            "N2 phi 2 by i1",
+            "mu nought N1 N2 A by l",
+            "the current cancels"
+          ],
+          "reject": [
+            "B l v"
+          ],
+          "heard_as": [
+            "mutual inductance",
+            "mu nought"
+          ]
+        },
+        "memory_tip": "Linkage over current — then watch i₁ cancel. What is left is pure geometry."
+      },
+      {
+        "id": "s5_reverse_result",
+        "kind": "boxed_final",
+        "label": "Reverse case and the result",
+        "marks": 1,
+        "mark_note": "M₁₂ = M₂₁ = μ₀N₁N₂A/l",
+        "lines": [
+          "Similarly, a current i₂ in S₂ gives the",
+          "field",
+          {
+            "text": "B₂ = μ₀N₂i₂ / l",
+            "style": "eq"
+          },
+          "and the flux linkage of S₁ gives",
+          {
+            "text": "M₁₂ = N₁B₂A / i₂ = μ₀N₁N₂A / l",
+            "style": "eq"
+          },
+          "Both cases give the same value, so",
+          {
+            "text": "M = μ₀N₁N₂A / l = μ₀n₁n₂Al",
+            "style": "boxed"
+          },
+          "where n₁ = N₁/l and n₂ = N₂/l are the",
+          "turns per unit length."
+        ],
+        "margin_note": "Fourth mark. Show both directions agree, then box M in either form — total turns or turns per unit length.",
+        "why": "Running the argument both ways shows M₁₂ = M₂₁ — one mutual inductance for the pair, whichever coil carries the current. That symmetry is the point of the word mutual.",
+        "common_mistakes": [
+          "Stopping after M₂₁. The question asks for the mutual inductance of the pair, so show that both directions agree.",
+          "Mixing the two forms. With total turns it is μ₀N₁N₂A/l; with turns per unit length it is μ₀n₁n₂Al."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reverse case gives the same value, so M equals μ₀N₁N₂A over l either way.",
+          "accept": [
+            "M12 equals M21",
+            "same value both ways",
+            "mu nought N1 N2 A by l"
+          ],
+          "reject": [
+            "conservation of energy"
+          ],
+          "heard_as": [
+            "M12",
+            "M21",
+            "same"
+          ]
+        },
+        "memory_tip": "Two runs, one answer: mu nought, both turn counts, area, over length."
+      }
+    ]
+  },
+  "insider_note": "This derivation is a long answer in most other syllabuses; here it is a 4-mark short answer, so write it tight — symbols, linkage, M, symmetry."
+}

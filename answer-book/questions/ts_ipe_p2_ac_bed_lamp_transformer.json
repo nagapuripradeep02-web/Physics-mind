@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_bed_lamp_transformer",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What type of transformer is used in a 6 V bed lamp?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the type",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: a bed lamp runs at 6 V while the mains supply is far above 6 V, so the voltage must be reduced; reducing an a.c. voltage is exactly what a step-down transformer (Nₛ < Nₚ, so Vₛ < Vₚ) does. The mains value is deliberately not stated as one number — it differs by region."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_type",
+        "kind": "text",
+        "label": "Name the type",
+        "marks": 1,
+        "mark_note": "Step-down named",
+        "lines": [
+          "A 6 V bed lamp uses a step-down transformer."
+        ],
+        "margin_note": "First mark. Name the type in the first line.",
+        "why": "The lamp needs only 6 V while the mains supply is at a much higher voltage, so the transformer must lower the voltage — that is a step-down transformer.",
+        "common_mistakes": [
+          "Writing step-up. The mains voltage must come down to 6 V, not go up."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a 6 V bed lamp uses a step-down transformer.",
+          "accept": [
+            "step-down transformer",
+            "step down"
+          ],
+          "reject": [
+            "fewer turns on the secondary"
+          ],
+          "heard_as": [
+            "step down",
+            "bed lamp"
+          ]
+        },
+        "memory_tip": "6 V is far below the mains voltage, so the transformer steps the voltage down."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason: Nₛ < Nₚ",
+        "lines": [
+          "The mains supply is at a much higher voltage",
+          "than 6 V, so the voltage must be reduced.",
+          "A step-down transformer has fewer turns on",
+          "the secondary than on the primary, so Vₛ < Vₚ.",
+          {
+            "text": "Step-down transformer",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Say why the voltage must come down and which coil has fewer turns.",
+        "why": "Naming the type earns the first mark; saying how a step-down transformer lowers the voltage — fewer secondary turns, so Vₛ < Vₚ — is what shows the physics rather than a memorised word.",
+        "common_mistakes": [
+          "Saying a step-down transformer has fewer turns on the primary. The secondary has the fewer turns."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mains voltage must be reduced to 6 V, and a step-down transformer has fewer secondary turns so Vₛ < Vₚ.",
+          "accept": [
+            "mains voltage is much higher",
+            "fewer turns on the secondary",
+            "V s less than V p"
+          ],
+          "reject": [
+            "mutual induction"
+          ],
+          "heard_as": [
+            "mains",
+            "secondary turns"
+          ]
+        },
+        "memory_tip": "Step-down: voltage down, secondary turns down — both fall together."
+      }
+    ]
+  },
+  "insider_note": "A one-word answer loses the second mark — say why the voltage must come down and which coil has fewer turns."
+}

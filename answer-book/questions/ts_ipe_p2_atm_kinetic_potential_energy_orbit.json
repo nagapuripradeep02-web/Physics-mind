@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_kinetic_potential_energy_orbit",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for potential and kinetic energy of an electron in any orbit of a hydrogen atom according to Bohr's atomic model. How does P.E change with increasing n?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Coulomb attraction supplies the centripetal force",
+      "marks": 1
+    },
+    {
+      "label": "Kinetic energy K = e²/8πε₀r",
+      "marks": 1
+    },
+    {
+      "label": "Potential energy U = −e²/4πε₀r",
+      "marks": 1
+    },
+    {
+      "label": "How P.E changes with n",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. APPEARANCES: the book prints the citation \"(Mar, June-2015 TS)\" against this question — TWO Telangana sittings, MARCH 2015 and JUNE 2015. The appearance schema carries only year, q_no and board, with NO month field, so a single entry {year: 2015, board: ts_ipe} is recorded and the two sittings are stated here instead: March 2015 (TS) and June 2015 (TS). This is the only exam citation in Chapter 13. The book prints the question as \"How does, P.E change with increasing n.\" — the stray comma after \"does\" is removed and the sentence is closed with a question mark; the wording is unchanged. Physics hand-checked: mv²/r = e²/4πε₀r² gives mv² = e²/4πε₀r, so K = ½mv² = e²/8πε₀r; U = (1/4πε₀)(e)(−e)/r = −e²/4πε₀r = −2K. With rₙ ∝ n², U = −e²/4πε₀rₙ becomes smaller in size as n grows, so U rises towards zero — the potential energy INCREASES with n, which is what the book states."
+  },
+  "recall_prompt": "Derive K and U for the electron in the nth orbit, then say what happens to the potential energy as n increases.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atoms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_force_balance",
+        "kind": "text",
+        "label": "The force balance",
+        "marks": 1,
+        "mark_note": "Coulomb = centripetal",
+        "lines": [
+          "In a hydrogen atom the electrostatic attraction",
+          "between the nucleus and the electron supplies",
+          "the centripetal force:",
+          {
+            "text": "Fc = Fe  ⇒  mv²/r = (1/4πε₀) · e²/r²",
+            "style": "eq"
+          },
+          {
+            "text": "∴ mv² = e²/4πε₀r    … (1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Start every energy derivation from this one line.",
+        "why": "Both energies follow from this single equation: the kinetic energy is half of mv², and the potential energy uses the same e² and r. Nothing else about the orbit is needed.",
+        "common_mistakes": [
+          "Writing the Coulomb force as e²/r instead of e²/r².",
+          "Starting from the energy formula instead of deriving it. The derivation is what is marked."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Coulomb attraction supplies the centripetal force, giving mv² = e²/4πε₀r.",
+          "accept": [
+            "coulomb force provides the centripetal force",
+            "m v squared by r equals e squared by four pi epsilon nought r squared",
+            "m v squared equals e squared by four pi epsilon nought r"
+          ],
+          "reject": [
+            "kinetic energy is e squared by eight pi epsilon nought r"
+          ],
+          "heard_as": [
+            "centripetal force",
+            "coulomb attraction",
+            "m v squared"
+          ]
+        },
+        "memory_tip": "One starting line: attraction equals centripetal force."
+      },
+      {
+        "id": "s2_kinetic",
+        "kind": "text",
+        "label": "Kinetic energy",
+        "marks": 1,
+        "mark_note": "K = e²/8πε₀r",
+        "lines": [
+          "The kinetic energy of the electron is",
+          {
+            "text": "K = ½mv²",
+            "style": "eq"
+          },
+          "Putting mv² from (1),",
+          {
+            "text": "K = ½ · e²/4πε₀r = e²/8πε₀r",
+            "style": "eq"
+          },
+          "K is positive and falls as r increases."
+        ],
+        "margin_note": "Second mark. Halving 4πε₀ gives 8πε₀ — that is the whole step.",
+        "why": "The factor ½ from ½mv² is what turns the 4π into 8π. The kinetic energy stays positive, because it depends on speed alone.",
+        "common_mistakes": [
+          "Writing K = e²/4πε₀r and forgetting the ½.",
+          "Giving K a minus sign. Kinetic energy is never negative."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That K = ½mv² = e²/8πε₀r.",
+          "accept": [
+            "half m v squared",
+            "e squared by eight pi epsilon nought r",
+            "kinetic energy is positive"
+          ],
+          "reject": [
+            "minus e squared by four pi epsilon nought r"
+          ],
+          "heard_as": [
+            "eight pi epsilon nought",
+            "half m v squared",
+            "kinetic energy"
+          ]
+        },
+        "memory_tip": "The ½ in ½mv² doubles the 4π to 8π."
+      },
+      {
+        "id": "s3_potential",
+        "kind": "text",
+        "label": "Potential energy",
+        "marks": 1,
+        "mark_note": "U = −e²/4πε₀r",
+        "lines": [
+          "The nucleus carries +e and the electron −e, at",
+          "a separation r. Their potential energy is",
+          {
+            "text": "U = (1/4πε₀) · (e)(−e)/r = −e²/4πε₀r",
+            "style": "eq"
+          },
+          "U is negative, and U = −2K in size and sign."
+        ],
+        "margin_note": "Third mark. Keep the minus sign — the product of a positive and a negative charge is negative.",
+        "why": "The two charges are opposite, so the product e × (−e) is negative and so is U. Comparing with the previous step, U is exactly twice K in size and opposite in sign — which is why the total energy Eₙ = K + U is negative.",
+        "common_mistakes": [
+          "Writing U = +e²/4πε₀r. The charges are opposite, so U is negative.",
+          "Using 8πε₀ for U. Only the kinetic energy carries the 8π."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That U = (1/4πε₀)(e)(−e)/r = −e²/4πε₀r, a negative quantity.",
+          "accept": [
+            "minus e squared by four pi epsilon nought r",
+            "product of plus e and minus e",
+            "potential energy is negative"
+          ],
+          "reject": [
+            "e squared by eight pi epsilon nought r"
+          ],
+          "heard_as": [
+            "four pi epsilon nought",
+            "minus e squared",
+            "potential energy"
+          ]
+        },
+        "memory_tip": "Opposite charges, negative energy: U = −2K."
+      },
+      {
+        "id": "s4_pe_with_n",
+        "kind": "boxed_final",
+        "label": "P.E as n increases",
+        "marks": 1,
+        "mark_note": "U rises towards zero",
+        "lines": [
+          "From Bohr's model the radius of the nth orbit is",
+          {
+            "text": "rₙ ∝ n²,  so  Uₙ = −e²/4πε₀rₙ ∝ −1/n²",
+            "style": "eq"
+          },
+          "As n increases, rₙ increases, so the size of Uₙ",
+          "becomes smaller. Uₙ stays negative but rises",
+          "towards zero.",
+          "So the potential energy increases with n.",
+          {
+            "text": "K = e²/8πε₀r · U = −e²/4πε₀r",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Say both things: U stays negative, and it increases (moves towards zero).",
+        "why": "A larger orbit means the electron is less tightly bound, so less work is needed to remove it. \"Increases\" here means becoming less negative — from −13.6 eV at n = 1 the total energy climbs towards 0 at n = ∞, and U does the same.",
+        "common_mistakes": [
+          "Saying U decreases because the number becomes smaller in size. −3.4 is greater than −13.6.",
+          "Saying U becomes positive. It approaches zero but never crosses it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rₙ increases as n², so Uₙ becomes less negative — the potential energy increases with n.",
+          "accept": [
+            "radius increases as n squared",
+            "potential energy becomes less negative",
+            "potential energy increases with n"
+          ],
+          "reject": [
+            "potential energy is minus e squared by four pi epsilon nought r"
+          ],
+          "heard_as": [
+            "increases with n",
+            "less negative",
+            "towards zero"
+          ]
+        },
+        "memory_tip": "Bigger orbit, weaker binding: −13.6 eV climbs towards 0."
+      }
+    ]
+  },
+  "insider_note": "The last part is where marks go: P.E increases with n means it becomes LESS negative, not smaller — say both words."
+}

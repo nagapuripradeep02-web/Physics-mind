@@ -1,0 +1,171 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_relative_lowering_molar_mass",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is relative lowering of vapour pressure? How is it useful to determine the molar mass of a solute?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Relative lowering of vapour pressure",
+      "marks": 1
+    },
+    {
+      "label": "Raoult's law form",
+      "marks": 1
+    },
+    {
+      "label": "The dilute solution step",
+      "marks": 1
+    },
+    {
+      "label": "The molar mass formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed derivation (book p.66, SAQ 1) was checked line by line and its algebra is sound: from (p⁰ − pₛ)/p⁰ = n₂/n₁ with n₂ = w₂/M₂ and n₁ = w₁/M₁, rearranging gives M₂ = w₂M₁p⁰ / (w₁(p⁰ − pₛ)), which is what the book prints. BOOK GAP: the book writes \"For dilute solutions n₂ << n₁, hence n₂ can be neglected in the denominator\" without saying that this is an APPROXIMATION and that the exact form keeps n₂ there. That is stated on this card, because the same approximation is what makes SAQ 4 of this unit answer 8 g rather than 10 g. BOOK TYPO: the printed line ii) has \"vapour PRESSURE\" in capitals mid-sentence, a scanner artifact; it is written normally here. The book also mixes ω and w for the masses in the same derivation; w is used throughout here."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Solutions — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Relative lowering of vapour pressure",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When a non-volatile solute is dissolved in",
+          "a solvent, the vapour pressure of the",
+          "solution pₛ is lower than the vapour",
+          "pressure of the pure solvent p⁰.",
+          "The lowering of vapour pressure is",
+          "(p⁰ − pₛ).",
+          "The ratio of this lowering to the vapour",
+          "pressure of the pure solvent is called the",
+          "relative lowering of vapour pressure.",
+          {
+            "text": "relative lowering = (p⁰ − pₛ) / p⁰",
+            "style": "eq"
+          }
+        ],
+        "why": "The lowering on its own depends on which solvent is used, because a solvent with a high vapour pressure gives a large lowering for the same solute. Dividing by p⁰ removes that dependence and leaves a pure number, which is why the RELATIVE lowering, and not the lowering, is the quantity Raoult's law states.",
+        "common_mistakes": [
+          "Defining it as (p⁰ − pₛ) alone. Without dividing by p⁰ it is the lowering, not the relative lowering.",
+          "Writing pₛ − p⁰. The solution has the lower vapour pressure, so the pure solvent value comes first."
+        ],
+        "memory_tip": "Lowering divided by the pure solvent value. The word relative means divided by p⁰.",
+        "margin_note": "Define the two symbols p⁰ and pₛ as you write them. This mark is for the definition plus its ratio."
+      },
+      {
+        "id": "s2_raoult",
+        "kind": "equation",
+        "label": "Raoult's law form",
+        "marks": 1,
+        "mark_note": "Raoult's law",
+        "lines": [
+          "By Raoult's law, for a dilute solution of a",
+          "non-volatile solute, the relative lowering",
+          "is equal to the mole fraction of the",
+          "solute:",
+          {
+            "text": "(p⁰ − pₛ) / p⁰ = x₂",
+            "style": "eq"
+          },
+          {
+            "text": "x₂ = n₂ / (n₁ + n₂)",
+            "style": "eq"
+          },
+          "n₁ = moles of solvent",
+          "n₂ = moles of solute"
+        ],
+        "why": "A non-volatile solute adds nothing to the vapour, so the vapour pressure of the solution is only the solvent's share, pₛ = p⁰x₁. Subtracting from p⁰ and using x₁ + x₂ = 1 leaves the relative lowering equal to x₂. This one line is what connects a measurable pressure to a count of solute particles.",
+        "common_mistakes": [
+          "Equating the relative lowering to x₁, the mole fraction of the solvent. It equals the mole fraction of the SOLUTE.",
+          "Leaving out the words \"non-volatile\". A volatile solute has its own vapour pressure and the relation does not hold."
+        ],
+        "memory_tip": "Relative lowering equals the mole fraction of the solute. Everything after this is algebra.",
+        "margin_note": "This is the marked line of the whole derivation. Write it on its own line and name the law beside it."
+      },
+      {
+        "id": "s3_dilute",
+        "kind": "equation",
+        "label": "The dilute solution step",
+        "marks": 1,
+        "mark_note": "Approximation",
+        "lines": [
+          "For a dilute solution n₂ is much smaller",
+          "than n₁, so n₂ may be left out of the",
+          "denominator:",
+          {
+            "text": "(p⁰ − pₛ) / p⁰ = n₂ / n₁",
+            "style": "eq"
+          },
+          "Writing each number of moles as mass",
+          "divided by molar mass,",
+          {
+            "text": "n₂ = w₂ / M₂ and n₁ = w₁ / M₁",
+            "style": "eq"
+          },
+          {
+            "text": "(p⁰ − pₛ) / p⁰ = (w₂ × M₁) / (M₂ × w₁)",
+            "style": "eq"
+          }
+        ],
+        "why": "The exact relation has n₁ + n₂ in the denominator, and an unknown M₂ then appears on both sides. Dropping n₂ is an approximation, valid only while the solution is dilute, and it is what makes M₂ come out in one step. Say that it is an approximation: the same step is why SAQ 4 of this unit answers 8 g instead of the exact 10 g.",
+        "common_mistakes": [
+          "Dropping n₂ from the NUMERATOR as well. Only the n₂ in the denominator is neglected; the solute is the whole point of the numerator.",
+          "Turning the moles upside down. n = mass / molar mass, so w₂/M₂ goes on top and w₁/M₁ below."
+        ],
+        "memory_tip": "Dilute means n₂ is small next to n₁, so only the denominator loses it.",
+        "margin_note": "Write the words \"for a dilute solution\" before this step. Without them the line is not correct and the mark is at risk."
+      },
+      {
+        "id": "s4_molar_mass",
+        "kind": "boxed_final",
+        "label": "The molar mass formula",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Rearranging for the molar mass of the",
+          "solute M₂:",
+          {
+            "text": "M₂ = (w₂ × M₁ × p⁰) / (w₁ × (p⁰ − pₛ))",
+            "style": "boxed"
+          },
+          "w₂ = mass of solute, w₁ = mass of solvent",
+          "M₁ = molar mass of the solvent",
+          "So by weighing w₁ and w₂ and measuring p⁰",
+          "and pₛ, the molar mass of the solute is",
+          "found."
+        ],
+        "why": "Every quantity on the right is measurable: two masses on a balance and two vapour pressures on a manometer. That is the whole use of the relative lowering — it is a colligative property, so it counts solute particles, and a count of particles together with a known mass gives the mass of one mole.",
+        "common_mistakes": [
+          "Putting M₁ in the denominator. The molar mass of the SOLVENT multiplies on top; the mass of the solvent w₁ is below.",
+          "Answering only the first half of the question. The question asks two things, so the formula for M₂ must be reached, not just defined."
+        ],
+        "memory_tip": "Solute mass and solvent molar mass on top, solvent mass and the lowering below.",
+        "margin_note": "Box the formula and list every symbol under it. The symbol list is what shows the formula was derived and not recalled."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves and the second one carries most of the marks. A script that defines relative lowering beautifully and never reaches M₂ = w₂M₁p⁰ / (w₁(p⁰ − pₛ)) is a half answer."
+}

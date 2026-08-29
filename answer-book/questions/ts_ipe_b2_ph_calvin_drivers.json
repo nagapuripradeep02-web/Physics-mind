@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_calvin_drivers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What products drive the Calvin cycle? What products regenerate them?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What drives it",
+      "marks": 1
+    },
+    {
+      "label": "What regenerates them",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.40, printed question 71. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "This question is really asking how the two halves of photosynthesis connect. Say 'light reaction' in the second half.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_drive",
+        "kind": "text",
+        "label": "What drives the cycle",
+        "marks": 1,
+        "mark_note": "Drivers",
+        "margin_note": "Both names, and one line each on what the two supply.",
+        "lines": [
+          "ATP and NADPH + H+ drive the Calvin cycle.",
+          "ATP supplies the energy.",
+          "NADPH supplies the reducing power (the",
+          "hydrogen)."
+        ],
+        "why": "Carbon dioxide has to be both energised and reduced to become sugar, which is why two different products are needed rather than one.",
+        "common_mistakes": [
+          "Naming only ATP. NADPH is needed too, and for a different job.",
+          "Saying light drives the Calvin cycle directly. It does not; ATP and NADPH do."
+        ],
+        "memory_tip": "ATP is the energy, NADPH is the hydrogen."
+      },
+      {
+        "id": "s2_regen",
+        "kind": "boxed_final",
+        "label": "What regenerates them",
+        "marks": 1,
+        "mark_note": "Regeneration",
+        "margin_note": "Name the light reaction and state the dependency. Four lines.",
+        "lines": [
+          {
+            "text": "Spent in the dark reaction, remade in the light",
+            "style": "boxed"
+          },
+          "They are regenerated during the LIGHT REACTION.",
+          "So the light reaction supplies the dark reaction,",
+          "and the two run together."
+        ],
+        "why": "The cycle would stop after one turn if nothing replaced the ATP and NADPH, so the light reaction is what keeps it running.",
+        "common_mistakes": [
+          "Saying they are regenerated in the Calvin cycle itself. They are made in the LIGHT reaction.",
+          "Leaving out the link between the two reactions. That link is the point of the question."
+        ],
+        "memory_tip": "The light reaction pays for the dark one."
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_isotonic_solutions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are isotonic solutions?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Example and the two other cases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.65, VSAQ 4): the printed answer gives the definition and the blood/0.9% NaCl example, but never gives the two matching terms hypertonic and hypotonic, which are asked in the same breath in most papers. They are written here. The book prints the example as 0.9% (w/v) NaCl, which is the standard saline concentration and is correct."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Two solutions that have the same osmotic",
+          "pressure at the same temperature are called",
+          "isotonic solutions.",
+          "When they are separated by a semi-permeable",
+          "membrane there is no net flow of solvent in",
+          "either direction."
+        ],
+        "why": "Osmosis is driven by a difference in osmotic pressure. If two solutions have the same osmotic pressure there is no difference to drive the flow, so the volumes on the two sides stay as they are. That is the whole content of the word isotonic.",
+        "common_mistakes": [
+          "Saying isotonic means the same concentration by mass. It means the same osmotic pressure, which depends on the number of particles.",
+          "Leaving out \"at the same temperature\". Osmotic pressure changes with temperature, so the comparison is only valid at one temperature."
+        ],
+        "memory_tip": "Same osmotic pressure on both sides, so no net flow across the membrane.",
+        "margin_note": "The marked words are \"same osmotic pressure\". Adding \"at the same temperature\" completes the line."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example and the two other cases",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Blood is isotonic with 0.9% (w/v) NaCl.",
+            "style": "boxed"
+          },
+          "This is why 0.9% saline is used for",
+          "injection into the blood.",
+          "A solution of HIGHER osmotic pressure than",
+          "the cell contents is hypertonic.",
+          "A solution of LOWER osmotic pressure is",
+          "hypotonic."
+        ],
+        "why": "The example is the reason the term is taught: a fluid injected into blood must not move water into or out of the red blood cells. In a hypertonic solution water leaves the cells and they shrink; in a hypotonic solution water enters and the cells swell and may burst. Only the isotonic solution leaves them unchanged.",
+        "common_mistakes": [
+          "Writing 0.9% NaCl with no (w/v). The figure is a mass of NaCl per volume of solution, so the unit label is part of the answer.",
+          "Swapping hypertonic and hypotonic. Hyper is the higher osmotic pressure, hypo is the lower one."
+        ],
+        "memory_tip": "Hyper is higher, hypo is lower, iso is equal.",
+        "margin_note": "One example is enough for this mark. The hypertonic and hypotonic pair is the usual follow-up part, so write it here."
+      }
+    ]
+  },
+  "insider_note": "Blood with 0.9% (w/v) NaCl is the example every examiner expects. Write the figure and the (w/v), not just the word saline."
+}

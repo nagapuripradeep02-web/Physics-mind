@@ -1,0 +1,406 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_interference_intensity_conditions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Derive the expression for the intensity at a point where interference of light occurs. Arrive at the conditions for maximum and zero intensity.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Resultant displacement",
+      "marks": 1
+    },
+    {
+      "label": "Resultant amplitude",
+      "marks": 1
+    },
+    {
+      "label": "Intensity expression",
+      "marks": 1
+    },
+    {
+      "label": "Maximum and zero intensity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked line by line: y₁ + y₂ with the R cos α / R sin α substitution gives y = R sin(ωt + α); squaring and adding gives R² = 2a²(1 + cos φ) = 4a² cos²(φ/2); I = 4I₀ cos²(φ/2); maxima at φ = 2nπ (δ = nλ) with I = 4I₀; minima at φ = (2n+1)π (δ = (2n+1)λ/2) with I = 0. The book's printed equation (2) has a typo — it ends in a cos ωt cos φ where the line above it correctly derives a cos ωt sin φ; the derivation here uses the correct sin φ term. NOTE FOR THE FOUNDER: this SAQ is LAQ-grade content (a full derivation plus both conditions) but the book prints it under Short Answer Questions and this chapter has no LAQ section, so it stays a 4-mark SAQ."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "This 4-mark question is a full derivation — know every algebra line, not just I = 4I₀ cos²(φ/2), because the middle lines are where the marks sit.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Wave Optics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The two-source arrangement",
+        "marks": 0,
+        "figure": {
+          "id": "two_source_interference",
+          "width": 340,
+          "height": 270,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "barrier_top",
+              "d": "M 70 30 L 70 105",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "barrier_mid",
+              "d": "M 70 125 L 70 155",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "barrier_bot",
+              "d": "M 70 175 L 70 250",
+              "ms": 900
+            },
+            {
+              "type": "label",
+              "id": "lbl_s1",
+              "x": 36,
+              "y": 121,
+              "text": "S₁",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_s2",
+              "x": 36,
+              "y": 173,
+              "text": "S₂",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 80,
+              "y": 148,
+              "text": "d",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "screen",
+              "d": "M 300 30 L 300 250",
+              "ms": 1800
+            },
+            {
+              "type": "stroke",
+              "id": "ray1",
+              "d": "M 70 115 L 300 60",
+              "ms": 2000
+            },
+            {
+              "type": "stroke",
+              "id": "ray2",
+              "d": "M 70 165 L 300 60",
+              "ms": 2200
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 306,
+              "y": 64,
+              "text": "P",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "axis",
+              "d": "M 70 140 L 300 140",
+              "ms": 2000,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 64,
+              "y": 136,
+              "text": "Q",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 306,
+              "y": 146,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 306,
+              "y": 105,
+              "text": "x",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_dd",
+              "x": 172,
+              "y": 162,
+              "text": "D",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "No separate mark for the figure here, but it fixes every symbol: slits S₁ S₂ a distance d apart, screen at distance D, P at height x above the centre O.",
+        "why": "Every symbol in the derivation is defined by this picture — d, D, x, P and the two paths whose difference is δ. Drawing it first means no symbol arrives unexplained.",
+        "common_mistakes": [
+          "Marking d from a slit to the screen. d is the separation of the two slits; D is the slit-to-screen distance."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That two slits S₁ and S₂, a distance d apart, send waves to a point P on a screen at distance D, at height x above the centre O.",
+          "accept": [
+            "draw the two slits and the screen",
+            "mark d, D and x",
+            "P on the screen"
+          ],
+          "reject": [
+            "the resultant displacement"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "slits"
+          ]
+        },
+        "memory_tip": "Three lengths in the picture: d between the slits, D to the screen, x up the screen."
+      },
+      {
+        "id": "s2_resultant",
+        "kind": "equation",
+        "label": "Resultant displacement",
+        "marks": 1,
+        "mark_note": "y = R sin (ωt + α)",
+        "lines": [
+          "S₁ and S₂ are two coherent sources: same",
+          "wavelength λ, same amplitude a, in phase.",
+          "At a point P on the screen the two waves",
+          "arrive with a phase difference φ.",
+          "The path difference δ gives φ = (2π/λ) δ.",
+          {
+            "text": "y₁ = a sin ωt ;  y₂ = a sin (ωt + φ)",
+            "style": "eq"
+          },
+          "The resultant displacement is y = y₁ + y₂",
+          {
+            "text": "y = a sin ωt (1 + cos φ) + a cos ωt sin φ",
+            "style": "eq"
+          },
+          "Put a(1 + cos φ) = R cos α and",
+          {
+            "text": "a sin φ = R sin α",
+            "style": "eq"
+          },
+          {
+            "text": "∴ y = R sin (ωt + α)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Expand sin(ωt + φ), group the sin ωt and cos ωt terms, then substitute R cos α and R sin α.",
+        "why": "The whole derivation is one idea: two sine waves of the same frequency add to a single sine wave of the same frequency with a new amplitude R. The R cos α / R sin α substitution is what turns the two-term sum into that single sine wave.",
+        "common_mistakes": [
+          "Writing the second term as a cos ωt cos φ. Expanding a sin(ωt + φ) gives a cos ωt sin φ — the printed book has this typo in its equation (2).",
+          "Giving the two waves different amplitudes. This derivation takes equal amplitudes a; that is what later makes the minima exactly zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two displacements a sin ωt and a sin(ωt + φ) add, and the substitution R cos α, R sin α turns the sum into y = R sin(ωt + α).",
+          "accept": [
+            "add the two displacements",
+            "R cos alpha and R sin alpha substitution",
+            "y is R sine omega t plus alpha"
+          ],
+          "reject": [
+            "squaring and adding"
+          ],
+          "heard_as": [
+            "resultant displacement",
+            "phase difference",
+            "omega t"
+          ]
+        },
+        "memory_tip": "Two sine waves, one frequency — the sum is again a sine wave; only the amplitude is new."
+      },
+      {
+        "id": "s3_amplitude",
+        "kind": "equation",
+        "label": "Resultant amplitude",
+        "marks": 1,
+        "mark_note": "R = 2a cos (φ/2)",
+        "lines": [
+          "Squaring and adding the two substitutions:",
+          {
+            "text": "R² = a²(1 + cos φ)² + a² sin²φ",
+            "style": "eq"
+          },
+          {
+            "text": "R² = a²(1 + 2 cos φ + cos²φ + sin²φ)",
+            "style": "eq"
+          },
+          {
+            "text": "R² = 2a²(1 + cos φ) = 4a² cos²(φ/2)",
+            "style": "eq"
+          },
+          "using 1 + cos φ = 2 cos²(φ/2).",
+          {
+            "text": "∴ R = 2a cos (φ/2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Square both substitutions, add, use sin²α + cos²α = 1, then the half-angle identity.",
+        "why": "Squaring and adding removes α, which was only a helper angle: cos²α + sin²α = 1 on the left leaves R² alone. The half-angle identity 1 + cos φ = 2 cos²(φ/2) is what produces the clean cos²(φ/2) the conditions are read from.",
+        "common_mistakes": [
+          "Stopping at R² = 2a²(1 + cos φ) without the half-angle step — the conditions for maxima and minima need the cos²(φ/2) form.",
+          "Losing the cross term 2 cos φ when expanding (1 + cos φ)²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring and adding the substitutions gives R² = 2a²(1 + cos φ), which the half-angle identity turns into R = 2a cos(φ/2).",
+          "accept": [
+            "square and add to remove alpha",
+            "one plus cos phi is two cos squared phi by two",
+            "R is 2a cos phi by 2"
+          ],
+          "reject": [
+            "intensity is proportional to amplitude squared"
+          ],
+          "heard_as": [
+            "half angle",
+            "cos squared phi by two",
+            "R squared"
+          ]
+        },
+        "memory_tip": "Square and add kills α; the half-angle identity gives cos(φ/2)."
+      },
+      {
+        "id": "s4_intensity",
+        "kind": "equation",
+        "label": "Intensity expression",
+        "marks": 1,
+        "mark_note": "I = 4I₀ cos²(φ/2)",
+        "lines": [
+          "Intensity is proportional to the square of",
+          "the amplitude: I ∝ R².",
+          "If I₀ is the intensity due to one source",
+          "alone (I₀ ∝ a²), then",
+          {
+            "text": "I = 4I₀ cos²(φ/2)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third mark. State I ∝ R², name I₀ as the single-source intensity, and box the result.",
+        "why": "Intensity, not displacement, is what the eye and the screen record, and intensity goes as the amplitude squared. Writing I₀ for the one-source intensity turns 4a² cos²(φ/2) into the standard form 4I₀ cos²(φ/2).",
+        "common_mistakes": [
+          "Writing I = 2I₀ cos²(φ/2). The peak of the pattern is four times one source, not two — the factor comes from R = 2a.",
+          "Treating I₀ as the total incident intensity. I₀ is the intensity each source would give alone."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That intensity is proportional to amplitude squared, so with I₀ the one-source intensity, I = 4I₀ cos²(φ/2).",
+          "accept": [
+            "intensity proportional to R squared",
+            "four I nought cos squared phi by two",
+            "I nought is one source alone"
+          ],
+          "reject": [
+            "maximum at phi equal to 2 n pi"
+          ],
+          "heard_as": [
+            "four I nought",
+            "intensity"
+          ]
+        },
+        "memory_tip": "Amplitude doubles at best (2a), so intensity at best is 4 times one source."
+      },
+      {
+        "id": "s5_conditions",
+        "kind": "boxed_final",
+        "label": "Maximum and zero intensity",
+        "marks": 1,
+        "mark_note": "Both conditions, phase and path",
+        "lines": [
+          "Maximum intensity: cos²(φ/2) = 1",
+          {
+            "text": "φ = 0, 2π, 4π, … = 2nπ",
+            "style": "eq"
+          },
+          "path difference δ = 0, λ, 2λ, … = nλ",
+          {
+            "text": "Iₘₐₓ = 4I₀  (bright band)",
+            "style": "eq"
+          },
+          "Zero intensity: cos²(φ/2) = 0",
+          {
+            "text": "φ = π, 3π, 5π, … = (2n + 1)π",
+            "style": "eq"
+          },
+          "path difference δ = λ/2, 3λ/2, … = (2n+1)λ/2",
+          {
+            "text": "Iₘᵢₙ = 0  (dark band)",
+            "style": "eq"
+          },
+          {
+            "text": "Bright: δ = nλ · Dark: δ = (2n + 1)λ/2",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Each condition in BOTH languages — phase difference and path difference — with the intensity value it gives.",
+        "why": "The conditions are read straight off cos²(φ/2): it is 1 when φ/2 is a multiple of π and 0 when φ/2 is an odd multiple of π/2. Translating each φ into a path difference through δ = (φ/2π)λ gives the nλ and (2n+1)λ/2 forms the examiner expects.",
+        "common_mistakes": [
+          "Swapping the two conditions — whole-wavelength path difference is BRIGHT, odd half-wavelength is DARK.",
+          "Giving only the phase form. State the path-difference form as well: δ = nλ for maxima, (2n+1)λ/2 for minima.",
+          "Writing the minimum intensity as small but not zero. With equal amplitudes the dark bands are exactly zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That maxima occur at φ = 2nπ, path difference nλ, with I = 4I₀; minima at φ = (2n+1)π, path difference (2n+1)λ/2, with I = 0.",
+          "accept": [
+            "maxima at path difference n lambda",
+            "minima at odd multiples of half wavelength",
+            "four I nought maximum and zero minimum"
+          ],
+          "reject": [
+            "R is 2a cos phi by 2"
+          ],
+          "heard_as": [
+            "n lambda",
+            "2n plus 1",
+            "bright and dark"
+          ]
+        },
+        "memory_tip": "Whole wavelengths agree — bright. Half wavelengths oppose — dark."
+      }
+    ]
+  }
+}

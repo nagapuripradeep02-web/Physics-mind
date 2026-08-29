@@ -1,0 +1,77 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_prob_copper_deposited_2a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": { "number": 3, "name": "Electro Chemistry (Chemistry-II)" },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the amount of copper deposited at the electrode by passing 2 A of electricity for 10 minutes through a CuSO₄ solution.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Equivalent mass and the relation", "marks": 1 },
+    { "label": "The mass deposited", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From the boxed 'PROBLEM' section of the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.72. A PROBLEM belongs to no printed paper section and the book prints no mark scheme for it, so both the Section-A placement and the 1+1 split are authored CLAIMS. Placed at 2 marks as a single-formula calculation; the same calculation at 1.5 A for 600 s is already authored at 4 marks as ts_ipe_c2_ec_cuso4_electrolysis_mass_of_copper, because the book asks it there as a Short Answer. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. THE BOOK IS WRONG HERE. It prints 'E(cu) = 63.5/2 = 31' and reaches 0.39 g. The equivalent mass of copper is 63.5/2 = 31.75, not 31, and with the correct value the answer is 31.75 × 2 × 600 / 96500 = 0.395 g. The card boxes 0.395 g and names the printed 31 and 0.39 g in the step's why so a student marked against the book is not stranded. The same error is recorded on ts_ipe_c2_ec_cuso4_electrolysis_mass_of_copper, whose insider note already tells the student not to copy the printed 31."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "text",
+        "label": "Equivalent mass and the relation",
+        "marks": 1,
+        "mark_note": "Equivalent mass and formula",
+        "lines": [
+          "i = 2 A, t = 10 min = 10 × 60 = 600 s",
+          "Copper is deposited as Cu²⁺ + 2e⁻ → Cu,",
+          "so the valency is 2.",
+          { "text": "E = atomic mass / valency = 63.5 / 2 = 31.75", "style": "eq" },
+          { "text": "m = E × i × t / 96500", "style": "eq" }
+        ],
+        "why": "Faraday's first law says the mass deposited is proportional to the quantity of electricity, and Q = i × t, which is why the current and the time appear as a product. The 96500 is the charge on one mole of electrons in coulombs, so dividing by it converts coulombs into equivalents. The valency is 2 because copper in copper sulphate is Cu²⁺ and needs two electrons per atom.",
+        "common_mistakes": [
+          "Leaving the time in minutes. The 96500 is in coulombs, so the time must be in seconds.",
+          "Using 63.5 as the equivalent mass. That is the atomic mass; the equivalent mass divides it by the valency.",
+          "Taking the valency as 1. Copper is deposited from Cu²⁺, so two electrons are needed per atom."
+        ],
+        "memory_tip": "Equivalent mass is the atomic mass divided by the electrons needed: 63.5 over 2.",
+        "margin_note": "Convert the minutes to seconds and show the equivalent mass as a division. Both earn this mark."
+      },
+      {
+        "id": "s2_mass",
+        "kind": "boxed_final",
+        "label": "The mass deposited",
+        "marks": 1,
+        "mark_note": "Substitution and the value",
+        "lines": [
+          { "text": "m = 31.75 × 2 × 600 / 96500", "style": "eq" },
+          { "text": "m = 38100 / 96500", "style": "eq" },
+          { "text": "m = 0.395 g", "style": "boxed" }
+        ],
+        "why": "The three quantities on top multiply to 38100 coulomb-grams per equivalent, and dividing by the Faraday constant leaves a mass in grams. The book prints the equivalent mass as 31 rather than 31.75 and so reaches 0.39 g; the arithmetic here uses 31.75, which is what 63.5 divided by 2 actually is.",
+        "common_mistakes": [
+          "Writing the equivalent mass as 31. 63.5 divided by 2 is 31.75, and the book's own printed 31 is an error.",
+          "Multiplying by 96500 instead of dividing. The Faraday constant is the denominator.",
+          "Leaving the answer without a unit. The mass is in grams."
+        ],
+        "memory_tip": "Top line is equivalent mass times current times seconds; the bottom line is always 96500.",
+        "margin_note": "Show 38100/96500 before the answer, and box the value in grams."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two traps: the time must be in seconds, and the equivalent mass is 63.5/2 = 31.75. This book prints 31 and gets 0.39 g — write 31.75 and 0.395 g, and show the division 63.5/2 so the examiner can see where the number came from."
+}

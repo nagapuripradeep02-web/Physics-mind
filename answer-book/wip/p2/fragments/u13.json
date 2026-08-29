@@ -1,0 +1,143 @@
+{
+  "number": 13,
+  "name": "Atoms",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "Name a physical quantity whose dimensions are the same as those of angular momentum?",
+      "question_id": "ts_ipe_p2_atm_angular_momentum_dimensions"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Among alpha, beta and gamma radiation which get affected by the electric field?",
+      "question_id": "ts_ipe_p2_atm_radiation_electric_field"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "What do you understand by the phrase \"ground state atom\"?",
+      "question_id": "ts_ipe_p2_atm_ground_state_atom"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "How is impact parameter related to angle of scattering?",
+      "question_id": "ts_ipe_p2_atm_impact_parameter_scattering"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "What is the difference between α-particle and helium atom?",
+      "question_id": "ts_ipe_p2_atm_alpha_particle_vs_helium_atom"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "Give two drawbacks of Rutherford's atomic model?",
+      "question_id": "ts_ipe_p2_atm_rutherford_two_drawbacks"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "What is the angular momentum of electron in the second orbit of Bohr's model of hydrogen atom?",
+      "question_id": "ts_ipe_p2_atm_angular_momentum_second_orbit"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "The Lyman series of hydrogen spectrum lies in the ultraviolet region. Why?",
+      "question_id": "ts_ipe_p2_atm_lyman_series_ultraviolet"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 9,
+      "stars": 0,
+      "text": "The wavelengths of some of the spectral lines obtained in hydrogen spectrum are 1216 Å, 6463 Å and 9549 Å. Which one of these wavelengths belongs to the Paschen series?",
+      "question_id": "ts_ipe_p2_atm_paschen_series_wavelength"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What are the limitations of Bohr's theory of hydrogen atom?",
+      "question_id": "ts_ipe_p2_atm_bohr_theory_limitations"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Discuss Bohr's theory of the spectrum of hydrogen atom?",
+      "question_id": "ts_ipe_p2_atm_bohr_hydrogen_spectrum"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "Explain the impact parameter?",
+      "question_id": "ts_ipe_p2_atm_impact_parameter_explain"
+    },
+    {
+      "ref": "saq4",
+      "section": "SAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "State the basic postulates of Bohr's theory of atomic spectra. Hence obtain an expression for the radius of orbit and the energy of orbital electron in a hydrogen atom?",
+      "question_id": "ts_ipe_p2_atm_bohr_postulates_radius_energy"
+    },
+    {
+      "ref": "saq5",
+      "section": "SAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "Derive an expression for potential and kinetic energy of an electron in any orbit of a hydrogen atom according to Bohr's atomic model. How does P.E change with increasing n?",
+      "question_id": "ts_ipe_p2_atm_kinetic_potential_energy_orbit"
+    },
+    {
+      "ref": "saq6",
+      "section": "SAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "Explain the distance of closest approach and impact parameter.",
+      "question_id": "ts_ipe_p2_atm_closest_approach_impact_parameter"
+    },
+    {
+      "ref": "saq7",
+      "section": "SAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "Give a brief account of Thomson model of atom. What are its limitations?",
+      "question_id": "ts_ipe_p2_atm_thomson_model_limitations"
+    },
+    {
+      "ref": "saq8",
+      "section": "SAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "Describe Rutherford atom model. What are the drawbacks of this model?",
+      "question_id": "ts_ipe_p2_atm_rutherford_model_describe"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_myopia_and_correction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is myopia? How can it be corrected?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What myopia is",
+      "marks": 1
+    },
+    {
+      "label": "Correction with a concave lens",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. TRANSCRIPTION: the book prints a space before each question mark; the spaces are removed here, and the printed 'infront' is written 'in front'. Hand-checked physically: in myopia the image of a distant object falls in front of the retina, so a diverging (concave) lens is placed before the eye to move the image back on to the retina — the printed answer is correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_defect",
+        "kind": "text",
+        "label": "What myopia is",
+        "marks": 1,
+        "mark_note": "Image in front of the retina",
+        "lines": [
+          {
+            "text": "Myopia:",
+            "style": "heading"
+          },
+          "If the eye lens forms the image of a distant",
+          "object at a point IN FRONT OF the retina,",
+          "the defect is called myopia, or short sight.",
+          "Such an eye sees near objects clearly but",
+          "not distant ones."
+        ],
+        "margin_note": "First mark. The three words in front of carry it. Say where the image falls, not just that vision is blurred.",
+        "why": "The eye lens is too strong, or the eyeball is too long, so the rays meet before they reach the retina. Naming the position of the image is what makes the second half of the answer follow.",
+        "common_mistakes": [
+          "Saying only that distant objects look blurred. The mark is for where the image forms.",
+          "Writing behind the retina. That is hypermetropia."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in myopia the image of a distant object forms in front of the retina, so distant objects are not seen clearly.",
+          "accept": [
+            "image forms in front of the retina",
+            "short sight, distant objects are not clear",
+            "the eye lens focuses the light before the retina",
+            "image retina ki mundhu padutundi"
+          ],
+          "reject": [
+            "a concave lens corrects it"
+          ],
+          "heard_as": [
+            "myopia",
+            "in front of the retina",
+            "short sight",
+            "distant objects"
+          ]
+        },
+        "memory_tip": "Myopia is short sight: the image also falls short of the retina."
+      },
+      {
+        "id": "s2_correction",
+        "kind": "boxed_final",
+        "label": "Correction",
+        "marks": 1,
+        "mark_note": "Concave lens",
+        "lines": [
+          "To correct short sight, a diverging lens",
+          "(a concave lens) of suitable focal length is",
+          "placed in front of the eye.",
+          "It spreads the rays slightly before they",
+          "enter the eye, so the image moves back on",
+          "to the retina.",
+          {
+            "text": "Correction: concave (diverging) lens",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the lens as concave AND as diverging — the two words together are safest.",
+        "why": "The image has to be pushed further back, so the eye must be made weaker. A diverging lens has negative power, and adding it lowers the total power of eye plus lens.",
+        "common_mistakes": [
+          "Answering convex lens. A convex lens is used for hypermetropia.",
+          "Naming the lens without saying it is placed in front of the eye."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That myopia is corrected by placing a concave (diverging) lens of suitable focal length in front of the eye.",
+          "accept": [
+            "a concave lens corrects it",
+            "diverging lens of suitable focal length",
+            "concave lens in front of the eye",
+            "concave lens pettali"
+          ],
+          "reject": [
+            "image forms in front of the retina"
+          ],
+          "heard_as": [
+            "concave lens",
+            "diverging lens",
+            "focal length",
+            "spectacles"
+          ]
+        },
+        "memory_tip": "Image too near, so spread the rays: concave for myopia."
+      }
+    ]
+  },
+  "insider_note": "Two sentences: where the image falls, and which lens moves it back. Both name the retina."
+}

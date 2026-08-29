@@ -1,0 +1,113 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_infrared_detecting_animal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which animal can detect Infrared Waves?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Cold-blooded animals",
+      "marks": 1
+    },
+    {
+      "label": "An example, snakes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the book (p.42) answers 'Cold blooded animals. Ex: Snakes.' and the card writes the answer as the book marks it; the precise biology — pit vipers, pythons and boas sense infrared through heat-sensitive pit organs, and being cold-blooded is not itself the sensing mechanism — is recorded in the why fields, not in the answer lines."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_animals",
+        "kind": "text",
+        "label": "Cold-blooded animals",
+        "marks": 1,
+        "mark_note": "Cold-blooded animals",
+        "lines": [
+          "Snakes. Pit vipers, pythons and boas carry",
+          "heat-sensing pit organs that detect the",
+          "infrared a warm body gives off."
+        ],
+        "margin_note": "First mark. The book's marked answer is the group: cold-blooded animals.",
+        "why": "The book answers 'cold-blooded animals, Ex: snakes'. Snakes are the marked example and they are also the true one, so name them. Being cold-blooded is not itself what gives the sense — frogs, lizards and fish are cold-blooded and have no infrared organ. The pit organ is the reason, and it belongs to a few snakes and a few insects.",
+        "common_mistakes": [
+          "Writing that all cold-blooded animals detect infrared. Most do not — the pit organ is what does it.",
+          "Naming a warm-blooded animal. The pit organ evolved to find warm prey against a cooler background."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cold-blooded animals can detect infrared waves.",
+          "accept": [
+            "cold blooded animals",
+            "cold-blooded"
+          ],
+          "reject": [
+            "bats"
+          ],
+          "heard_as": [
+            "cold blooded",
+            "infrared"
+          ]
+        },
+        "memory_tip": "Cold body, heat sensor: the cold-blooded snake reads the warm prey."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example, snakes",
+        "marks": 1,
+        "mark_note": "Example: snakes",
+        "lines": [
+          "Example: snakes.",
+          {
+            "text": "Cold-blooded animals, for example snakes",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Give the example by name.",
+        "why": "The book's example is snakes. The exact carriers are the pit organs of pit vipers, pythons and boas, which sense the infrared radiation a warm body emits.",
+        "common_mistakes": [
+          "Giving no example. The book prints Ex: snakes, and the example carries a mark."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That snakes are the example.",
+          "accept": [
+            "snakes",
+            "snake"
+          ],
+          "reject": [
+            "bats"
+          ],
+          "heard_as": [
+            "snake"
+          ]
+        },
+        "memory_tip": "One word to keep: snakes."
+      }
+    ]
+  },
+  "insider_note": "Two half-answers make the full answer: the group cold-blooded animals plus the named example snakes."
+}

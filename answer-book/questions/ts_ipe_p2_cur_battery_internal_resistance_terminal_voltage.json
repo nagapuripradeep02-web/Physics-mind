@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_battery_internal_resistance_terminal_voltage",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A battery of emf 10 V and internal resistance 3 Ω is connected to a resistor. If the current in the circuit is 0.5 A, what is the resistance of the resistor? What is the terminal voltage of the battery when the circuit is closed?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The resistance of the resistor",
+      "marks": 1
+    },
+    {
+      "label": "The terminal voltage",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription: the book (p28, VSAQ 16) prints 10V, 3Ω and 0.5A without spaces and puts a space before each question mark; units are spaced and those spaces dropped. Hand-checked: R = ε/I − r = 10/0.5 − 3 = 17 Ω; V = ε − Ir = 10 − 1.5 = 8.5 V, and the cross-check V = IR = 0.5 × 17 = 8.5 V agrees. Both match the book."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_resistance",
+        "kind": "equation",
+        "label": "The resistance of the resistor",
+        "marks": 1,
+        "mark_note": "R = 17 Ω",
+        "lines": [
+          "Given: ε = 10 V, r = 3 Ω, I = 0.5 A.",
+          "For a closed circuit the emf drives current",
+          "through R and through r together:",
+          {
+            "text": "I = ε / (R + r)",
+            "style": "eq"
+          },
+          {
+            "text": "R = ε/I − r = 10/0.5 − 3 = 20 − 3",
+            "style": "eq"
+          },
+          {
+            "text": "R = 17 Ω",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "First mark. Subtract the internal resistance; ε/I alone is the TOTAL resistance.",
+        "why": "ε/I = 20 Ω is the total resistance of the circuit. The battery's own 3 Ω is part of that total, so the external resistor is what is left after it is subtracted.",
+        "common_mistakes": [
+          "Answering 20 Ω. That is the total resistance, not the resistor alone.",
+          "Adding r instead of subtracting it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That I equals emf by R plus r, so R equals emf by I minus r, giving 17 ohm.",
+          "accept": [
+            "I is epsilon by R plus r",
+            "R is 10 by 0.5 minus 3",
+            "seventeen ohm"
+          ],
+          "reject": [
+            "eight point five volt"
+          ],
+          "heard_as": [
+            "R plus r",
+            "seventeen ohm"
+          ]
+        },
+        "memory_tip": "ε/I gives the whole circuit; take the battery's 3 Ω out of it."
+      },
+      {
+        "id": "s2_terminal",
+        "kind": "boxed_final",
+        "label": "The terminal voltage",
+        "marks": 1,
+        "mark_note": "V = 8.5 V",
+        "lines": [
+          "The terminal voltage is the emf less the drop",
+          "inside the battery:",
+          {
+            "text": "V = ε − I r = 10 − (0.5 × 3)",
+            "style": "eq"
+          },
+          {
+            "text": "V = 10 − 1.5 = 8.5 V",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write V = ε − Ir, not V = ε.",
+        "why": "Part of the emf is used pushing the current through the battery's own resistance, so the voltage measured at the terminals is smaller than the emf whenever a current flows. The check V = IR = 0.5 × 17 = 8.5 V gives the same value.",
+        "common_mistakes": [
+          "Writing V = 10 V. The terminal voltage equals the emf only on open circuit.",
+          "Adding Ir instead of subtracting it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the terminal voltage is emf minus I r, which is 8.5 volt.",
+          "accept": [
+            "V is epsilon minus I r",
+            "ten minus one point five",
+            "eight point five volt"
+          ],
+          "reject": [
+            "seventeen ohm"
+          ],
+          "heard_as": [
+            "epsilon minus I r",
+            "eight point five"
+          ]
+        },
+        "memory_tip": "Closed circuit: the terminals always read less than the emf."
+      }
+    ]
+  },
+  "insider_note": "Most students find R correctly and then write the terminal voltage as 10 V. The terminal voltage equals the emf only when no current flows."
+}

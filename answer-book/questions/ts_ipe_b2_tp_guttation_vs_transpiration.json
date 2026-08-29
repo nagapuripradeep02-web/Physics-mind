@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_guttation_vs_transpiration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How does guttation differ from transpiration?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Guttation",
+      "marks": 1
+    },
+    {
+      "label": "Transpiration",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.38, printed question 53. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Three contrasts: the form the water takes, the time of day, and whether the plant controls it. Liquid against vapour is the one to write first.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_guttation",
+        "kind": "text",
+        "label": "Guttation",
+        "marks": 1,
+        "mark_note": "Guttation",
+        "margin_note": "Form, time, control. Three lines and the contrast is complete.",
+        "lines": [
+          "In guttation, water is lost from the leaves in",
+          "the form of liquid WATER DROPLETS.",
+          "It occurs at NIGHT.",
+          "It is an UNCONTROLLED process."
+        ],
+        "why": "Guttation pushes liquid water out through fixed pores that cannot close, which is why it is both liquid and uncontrolled.",
+        "common_mistakes": [
+          "Saying guttation releases vapour. It releases liquid DROPLETS.",
+          "Saying it happens by day. Guttation occurs at NIGHT."
+        ],
+        "memory_tip": "Guttation is drops at night; transpiration is vapour by day."
+      },
+      {
+        "id": "s2_transpiration",
+        "kind": "boxed_final",
+        "label": "Transpiration",
+        "marks": 1,
+        "mark_note": "Transpiration",
+        "margin_note": "Mirror all three points, and say WHY it is controlled.",
+        "lines": [
+          {
+            "text": "Drops at night against vapour by day",
+            "style": "boxed"
+          },
+          "In transpiration, water is lost from the leaves",
+          "in the form of WATER VAPOUR.",
+          "It occurs during the DAY.",
+          "It is a CONTROLLED process, because the",
+          "stomata can close."
+        ],
+        "why": "Transpiration goes through stomata, and because a stoma can shut, the plant has control over it in a way it never has over guttation.",
+        "common_mistakes": [
+          "Calling transpiration uncontrolled. The stomata can close, so it IS controlled.",
+          "Giving only the form and not the time. All three contrasts carry the mark."
+        ],
+        "memory_tip": "A pore that can shut is a process that can be controlled."
+      }
+    ]
+  }
+}

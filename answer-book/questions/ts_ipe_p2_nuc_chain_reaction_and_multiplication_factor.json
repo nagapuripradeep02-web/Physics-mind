@@ -1,0 +1,215 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_chain_reaction_and_multiplication_factor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the terms 'chain reaction' and 'multiplication factor'. How a chain reaction is sustained?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How the neutron numbers grow",
+      "marks": 1
+    },
+    {
+      "label": "Chain reaction defined",
+      "marks": 1
+    },
+    {
+      "label": "Multiplication factor K",
+      "marks": 1
+    },
+    {
+      "label": "How it is sustained",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. PRINTED ERROR CORRECTED. The book (p.51) writes \"If they again participate in FUSION reaction nine neutrons are produced\". The process that turns three neutrons into nine is FISSION: fusion joins light nuclei and releases no neutron chain. The numbers 3, 9, 27 in the book are the fission generations, so only the word is wrong. Hand-checked: 3, 3² = 9, 3³ = 27 is a geometric progression of ratio 3, matching the book's \"geometric progression\". The real average is about 2.5 neutrons per fission of ²³⁵U; the book rounds to three."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Nuclei · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_growth",
+        "kind": "text",
+        "label": "How the neutron numbers grow",
+        "marks": 1,
+        "mark_note": "Three neutrons per fission, then 9, then 27",
+        "lines": [
+          "In nuclear fission, nearly three neutrons are",
+          "produced when one uranium nucleus is split.",
+          "If these again take part in FISSION, nine",
+          "neutrons are produced; in the next generation",
+          "the number becomes 27.",
+          "The neutron number grows in geometric",
+          "progression, so the whole uranium is used up",
+          "in a few seconds."
+        ],
+        "margin_note": "First mark. The sequence 3, 9, 27 and the words geometric progression.",
+        "why": "The book prints \"if they again participate in fusion reaction nine neutrons are produced\". That must read FISSION: fusion joins light nuclei such as hydrogen and produces no neutron chain, while the numbers 3, 9, 27 are exactly the fission generations.",
+        "common_mistakes": [
+          "Copying the book and writing \"fusion\". Every generation here is a fission.",
+          "Saying the growth is in arithmetic progression. Each generation multiplies by three."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one fission gives about three neutrons, which cause further fissions giving nine and then 27 neutrons, a geometric progression.",
+          "accept": [
+            "three then nine then twenty seven neutrons",
+            "geometric progression",
+            "each fission gives about three neutrons"
+          ],
+          "reject": [
+            "self sustained fission reaction is called chain reaction"
+          ],
+          "heard_as": [
+            "three neutrons",
+            "twenty seven",
+            "geometric progression"
+          ]
+        },
+        "memory_tip": "Three, nine, twenty-seven: powers of three, one per generation."
+      },
+      {
+        "id": "s2_definition",
+        "kind": "text",
+        "label": "Chain reaction defined",
+        "marks": 1,
+        "mark_note": "A self-sustained fission reaction",
+        "lines": [
+          "This type of self-sustained fission reaction is",
+          "called a chain reaction.",
+          "It releases a large amount of energy, because",
+          "each fission releases about 200 MeV."
+        ],
+        "margin_note": "Second mark. The phrase \"self-sustained fission reaction\".",
+        "why": "The reaction sustains itself because the particle it needs to start — a neutron — is also a product of it.",
+        "common_mistakes": [
+          "Defining a chain reaction without the word fission.",
+          "Leaving out the energy release."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a self-sustained fission reaction of this kind, releasing a large amount of energy, is called a chain reaction.",
+          "accept": [
+            "self sustained fission reaction",
+            "called a chain reaction",
+            "releases a large amount of energy"
+          ],
+          "reject": [
+            "ratio of neutrons in the present generation"
+          ],
+          "heard_as": [
+            "chain reaction",
+            "self sustained",
+            "fission"
+          ]
+        },
+        "memory_tip": "Fission needs a neutron and makes neutrons — the reaction feeds itself."
+      },
+      {
+        "id": "s3_multiplication_factor",
+        "kind": "equation",
+        "label": "Multiplication factor K",
+        "marks": 1,
+        "mark_note": "Ratio of neutrons in successive generations",
+        "lines": [
+          "Neutron multiplication factor (K): the ratio of",
+          "the number of neutrons in the present",
+          "generation to the number in the previous",
+          "generation.",
+          {
+            "text": "K = (neutrons now) / (neutrons before)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The ratio between two successive generations.",
+        "why": "K compares one generation with the one before it, so it says at once whether the reaction is growing, steady or dying without counting any absolute number of neutrons.",
+        "common_mistakes": [
+          "Defining K as the number of neutrons per fission. It is a ratio between generations.",
+          "Giving K a unit. It is a pure number."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the neutron multiplication factor K is the ratio of the number of neutrons in the present generation to the number in the previous generation.",
+          "accept": [
+            "ratio of neutrons in present generation to previous generation",
+            "K is a pure number",
+            "compares two generations"
+          ],
+          "reject": [
+            "three nine twenty seven"
+          ],
+          "heard_as": [
+            "multiplication factor",
+            "present generation",
+            "previous generation"
+          ]
+        },
+        "memory_tip": "K is this generation divided by the last one."
+      },
+      {
+        "id": "s4_sustained",
+        "kind": "boxed_final",
+        "label": "How it is sustained",
+        "marks": 1,
+        "mark_note": "K = 1 steady, K > 1 growing, K < 1 stops",
+        "lines": [
+          "A chain reaction is sustained when K ≥ 1.",
+          "K = 1: the reaction is steady and controlled,",
+          "as in a nuclear reactor.",
+          "K > 1: the reaction grows rapidly and is",
+          "uncontrolled, as in an atom bomb.",
+          "K < 1: the reaction dies away.",
+          {
+            "text": "Sustained chain reaction: K ≥ 1",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. All three cases, with K = 1 named as the reactor.",
+        "why": "K = 1 is the boundary between a reaction that fades and one that runs away, which is why a reactor is designed to be held exactly at it.",
+        "common_mistakes": [
+          "Saying a reactor runs at K > 1. That is the bomb condition.",
+          "Giving only the K = 1 case. The question asks how the reaction is sustained."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a chain reaction is sustained when K is at least 1: K = 1 gives a steady controlled reaction as in a reactor, K greater than 1 gives an uncontrolled growing reaction, and K less than 1 stops.",
+          "accept": [
+            "K greater than or equal to one",
+            "K equals one is steady",
+            "K less than one the reaction dies away"
+          ],
+          "reject": [
+            "ratio of neutrons in two generations"
+          ],
+          "heard_as": [
+            "K equals one",
+            "K greater than one",
+            "sustained"
+          ]
+        },
+        "memory_tip": "Below 1 it fades, at 1 it holds, above 1 it grows fast."
+      }
+    ]
+  },
+  "insider_note": "Write the generation numbers 3, 9, 27 — they show the geometric growth the examiner is looking for. The printed book says \"fusion\" here; it is fission."
+}

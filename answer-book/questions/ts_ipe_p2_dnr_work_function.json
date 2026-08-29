@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_work_function",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is \"work function\"?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Symbol and unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.42); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: the book prints 'The munimum energy required by an electron to just escape from the metal surface if called work function' — corrected here to the standard definition: the MINIMUM energy needed to just remove an electron from the metal surface IS called the work function. Values run from about 2.14 eV for caesium to about 5.65 eV for platinum, so eV is the natural unit. A lecturer's pen tick marks this question in the source scan as one to expect."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Dual Nature of Radiation and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Minimum energy to remove an electron",
+        "lines": [
+          "The work function of a metal is the minimum",
+          "energy needed to just remove an electron",
+          "from the surface of the metal."
+        ],
+        "margin_note": "First mark. The word minimum is part of the definition, not an extra.",
+        "why": "An electron can be removed by giving it any energy above a floor value. The work function is that floor, so without the word minimum the definition does not pick out one energy.",
+        "common_mistakes": [
+          "Leaving out minimum. Any larger energy also removes the electron; the work function is the smallest one that does.",
+          "Saying energy to move an electron inside the metal. It is the energy to remove it from the surface."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work function is the minimum energy needed to just remove an electron from the metal surface.",
+          "accept": [
+            "minimum energy",
+            "to remove an electron from the surface",
+            "smallest energy to make an electron leave the metal"
+          ],
+          "reject": [
+            "measured in electron volt"
+          ],
+          "heard_as": [
+            "work function",
+            "minimum energy",
+            "metal surface"
+          ]
+        },
+        "memory_tip": "Three words carry the mark: minimum, remove, surface."
+      },
+      {
+        "id": "s2_symbol_unit",
+        "kind": "boxed_final",
+        "label": "Symbol and unit",
+        "marks": 1,
+        "mark_note": "W₀ or φ₀, measured in eV",
+        "lines": [
+          "It is written as W₀ or φ₀ and is usually",
+          "measured in electron volt (eV).",
+          "Each metal has its own work function value.",
+          {
+            "text": "W₀: minimum energy to remove an electron",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Give the symbol, the unit eV, and say the value depends on the metal.",
+        "why": "Work functions are a few electron volts — about 2 eV for caesium and near 6 eV for platinum — so eV is the natural unit, and the value is a property of the metal.",
+        "common_mistakes": [
+          "Writing joule as the usual unit. Joule is correct but the values are a few eV, and eV is what the examiner expects here.",
+          "Saying every metal has the same work function. The value differs from metal to metal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work function is written W₀ or φ₀, is measured in electron volt, and depends on the metal.",
+          "accept": [
+            "W naught",
+            "phi naught",
+            "electron volt",
+            "different for different metals"
+          ],
+          "reject": [
+            "minimum energy to remove an electron"
+          ],
+          "heard_as": [
+            "W0",
+            "phi0",
+            "eV",
+            "electron volt"
+          ]
+        },
+        "memory_tip": "Symbol W₀, unit eV, and the value belongs to the metal."
+      }
+    ]
+  },
+  "insider_note": "The book's own line here is misprinted; what earns the mark is minimum energy, to just remove an electron, from the metal surface — then W₀ and eV."
+}

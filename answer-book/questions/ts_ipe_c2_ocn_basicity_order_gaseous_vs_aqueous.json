@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_basicity_order_gaseous_vs_aqueous",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain why the order of basicity for methylamine, N,N-dimethylamine and N,N,N-trimethylamine changes in gaseous and aqueous medium.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The gas phase order and its cause",
+      "marks": 1
+    },
+    {
+      "label": "Solvation of the cation",
+      "marks": 1
+    },
+    {
+      "label": "Steric hindrance at the nitrogen",
+      "marks": 1
+    },
+    {
+      "label": "The aqueous order",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.118 as SAQ 9. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: both printed orders are correct and are kept — gas phase NH₃ < CH₃NH₂ < (CH₃)₂NH < (CH₃)₃N, aqueous 2° > 1° > 3° > NH₃. BOOK COUNT ERROR (book p.118, SAQ 9): the printed answer lists FOUR numbered points and then concludes \"by the combination of above 3 effects\". Point 2 is not an effect but the sentence \"in aqueous solution this order is not followed\", so only points 1, 3 and 4 are effects. The card names the three effects explicitly — inductive, solvation, steric — so the count and the list agree. BOOK NAMING: the printed answer calls point 3 \"ability to form hydrogen bond with water\"; the standard term is solvation of the protonated cation, and the card uses it. BOOK GAP, filled here: the aqueous order 2° > 1° > 3° > NH₃ holds for the METHYL amines. For the ethyl amines the measured order is (C₂H₅)₂NH > (C₂H₅)₃N > C₂H₅NH₂ > NH₃, with the 3° amine second rather than third. The book states its order as though it were general."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gas_phase",
+        "kind": "equation",
+        "label": "The gas phase order",
+        "marks": 1,
+        "mark_note": "Gas phase",
+        "lines": [
+          "In the gas phase there is no solvent, so",
+          "only the inductive effect operates.",
+          "Each methyl group releases electron density",
+          "towards nitrogen (+I), so the lone pair is",
+          "more available with every group added.",
+          {
+            "text": "NH₃ < CH₃NH₂ < (CH₃)₂NH < (CH₃)₃N",
+            "style": "eq"
+          },
+          "That is 3° > 2° > 1° > NH₃."
+        ],
+        "why": "Basic strength is measured by how readily the nitrogen lone pair takes a proton. With nothing else present, the only thing that changes from one amine to the next is the number of electron-releasing alkyl groups, so the order follows that count exactly.",
+        "common_mistakes": [
+          "Saying the alkyl group withdraws electron density. An alkyl group RELEASES electron density by the +I effect.",
+          "Giving the aqueous order for the gas phase. In the gas phase the trimethylamine is the strongest base, not the dimethylamine."
+        ],
+        "memory_tip": "No solvent means only one effect, so the gas phase order simply counts the alkyl groups.",
+        "margin_note": "Say clearly that only the inductive effect operates in the gas phase. That sentence is what earns the mark."
+      },
+      {
+        "id": "s2_solvation",
+        "kind": "text",
+        "label": "Solvation of the cation",
+        "marks": 1,
+        "mark_note": "Solvation",
+        "lines": [
+          "In water the strength of a base is measured",
+          "by how stable its protonated cation is.",
+          "The cation R₃NH⁺ is stabilised by hydrogen",
+          "bonds to water, and the number of hydrogen",
+          "bonds it can form equals the number of N–H",
+          "hydrogens it has.",
+          "NH₄⁺ has four, the 1° cation three, the 2°",
+          "cation two, the 3° cation one.",
+          "On this count alone the order is",
+          "NH₃ > 1° > 2° > 3°."
+        ],
+        "why": "In water the solvent itself takes part in the comparison. A base in water is only as strong as the cation it forms is stable, and that cation is held in place by hydrogen bonds from the water around it. Since each alkyl group replaces an N–H hydrogen, adding alkyl groups removes hydrogen bonds and works against the inductive effect.",
+        "common_mistakes": [
+          "Counting hydrogen bonds on the amine instead of on its cation. It is the protonated cation whose stabilisation is compared.",
+          "Saying solvation runs the same way as the inductive effect. Solvation runs the opposite way, which is what changes the order."
+        ],
+        "memory_tip": "Count the N–H hydrogens on the cation: more hydrogens means more hydrogen bonds to water and a stabler cation.",
+        "margin_note": "Write the reversed order NH₃ > 1° > 2° > 3° after this paragraph. Showing the reversal is the mark."
+      },
+      {
+        "id": "s3_steric",
+        "kind": "text",
+        "label": "Steric hindrance",
+        "marks": 1,
+        "mark_note": "Steric effect",
+        "lines": [
+          "The alkyl groups also take up space around",
+          "the nitrogen.",
+          "As more of them are added, the proton and",
+          "the water molecules reach the lone pair less",
+          "easily.",
+          "This is steric hindrance, and it also gives",
+          "NH₃ > 1° > 2° > 3°.",
+          "So two effects run one way and one runs",
+          "the other."
+        ],
+        "why": "The inductive effect makes the lone pair richer in electrons, but a proton cannot use it if the approach to the nitrogen is blocked. Bulky groups block that approach, so with the third alkyl group the fall from hindrance and reduced solvation is larger than the rise from induction.",
+        "common_mistakes": [
+          "Treating steric hindrance and solvation as the same effect. They are separate, and the book's own answer numbers them separately.",
+          "Saying steric hindrance changes the electron density on nitrogen. It changes how easily the lone pair is reached, not how rich it is."
+        ],
+        "memory_tip": "Three effects in all: induction one way, solvation and steric hindrance the other way.",
+        "margin_note": "Name the effect as steric hindrance. Naming all three effects is what makes the final order look earned."
+      },
+      {
+        "id": "s4_aqueous_order",
+        "kind": "boxed_final",
+        "label": "The aqueous order",
+        "marks": 1,
+        "mark_note": "Aqueous order",
+        "lines": [
+          "The three effects together give, for the",
+          "methylamines in water:",
+          {
+            "text": "(CH₃)₂NH > CH₃NH₂ > (CH₃)₃N > NH₃",
+            "style": "boxed"
+          },
+          "That is 2° > 1° > 3° > NH₃.",
+          "For the first alkyl group the rise from",
+          "induction is larger than the fall; for the",
+          "third the fall is the larger of the two.",
+          "The order is not the same for every alkyl",
+          "group: for the ethylamines it is",
+          "(C₂H₅)₂NH > (C₂H₅)₃N > C₂H₅NH₂ > NH₃."
+        ],
+        "why": "The final position of each amine is the balance of three effects, not one, which is why the strongest base is the middle member rather than an end member. Because the balance depends on the size of the alkyl group, the exact order is not the same for methyl and ethyl, and the methyl order must not be stated as a general rule.",
+        "common_mistakes": [
+          "Writing the aqueous order as 3° > 2° > 1° > NH₃. That is the gas phase order; in water the 2° amine is the strongest.",
+          "Quoting 2° > 1° > 3° > NH₃ as the order for EVERY alkyl group. It is the methylamine order; for the ethylamines the 3° amine comes second."
+        ],
+        "memory_tip": "In water the middle member is the strongest: among the methylamines the 2° amine is the strongest base.",
+        "margin_note": "Write both orders side by side, gas phase and aqueous. The question asks why they DIFFER, so both must appear."
+      }
+    ]
+  },
+  "insider_note": "The question asks for a change between two conditions, so both orders must be on the page — the gas phase order first, then the aqueous one. Three effects are named, not four: induction, solvation of the cation, and steric hindrance. The book's own answer numbers four points and then calls them three."
+}

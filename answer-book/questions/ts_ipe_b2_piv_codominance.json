@@ -1,0 +1,484 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_codominance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain co-dominance with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What co-dominance is",
+      "marks": 1
+    },
+    {
+      "label": "The lentil example",
+      "marks": 1
+    },
+    {
+      "label": "The F1 generation",
+      "marks": 1
+    },
+    {
+      "label": "The F2 ratio",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.31, printed question 35. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card, and it has two faults in one printed line. The guide's F2 legend reads \"1 CˢCˢ (spotted) : 2 CˢCᴰ (spotted & dotted) : 3 CᴰCᴰ (spotted & dotted)\". The third class is ONE, not three — a 2x2 Punnett square cannot give a 1:2:3 — and CᴰCᴰ is DOTTED, not \"spotted & dotted\". The correct legend is 1 spotted : 2 spotted and dotted : 1 dotted."
+  },
+  "insider_note": "Co-dominance and incomplete dominance are the pair examiners set against each other. Co-dominance shows BOTH parent characters; incomplete dominance shows a NEW one in between. Say which is which.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What co-dominance is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition with the words 'both' and 'fully'. This is the contrast with the next question.",
+        "lines": [
+          "CO-DOMINANCE is the condition in which BOTH",
+          "alleles of a pair are EQUALLY dominant.",
+          "In the heterozygote, both alleles express",
+          "themselves FULLY and INDEPENDENTLY.",
+          "Neither allele is dominant or recessive to the",
+          "other."
+        ],
+        "why": "Both alleles being expressed fully is what makes the heterozygote show two characters at once rather than one, or a blend.",
+        "common_mistakes": [
+          "Saying co-dominance gives a blended character. That is INCOMPLETE dominance.",
+          "Saying one allele is partly dominant. In co-dominance BOTH are fully expressed."
+        ],
+        "memory_tip": "Both show, and both show completely."
+      },
+      {
+        "id": "s2_example",
+        "kind": "text",
+        "label": "The lentil example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Give both examples if you have room. The blood group one is the strongest.",
+        "lines": [
+          "Example 1: the ABO blood groups in humans.",
+          "The alleles I^A and I^B are co-dominant, so a",
+          "person carrying both has blood group AB.",
+          "Example 2: seed coat pattern in LENTIL plants.",
+          "A pure-breeding SPOTTED lentil (CˢCˢ) is crossed",
+          "with a pure-breeding DOTTED lentil (CᴰCᴰ)."
+        ],
+        "why": "Blood group AB is the clearest case in the whole of genetics: the person is not intermediate between A and B but genuinely both.",
+        "common_mistakes": [
+          "Naming no example. The question asks for one.",
+          "Giving snapdragon flower colour. That is INCOMPLETE dominance, not co-dominance."
+        ],
+        "memory_tip": "Blood group AB is both, not in between."
+      },
+      {
+        "id": "s3_f1",
+        "kind": "text",
+        "label": "The F1 generation",
+        "marks": 1,
+        "mark_note": "F1",
+        "margin_note": "Say 'both, at the same time'. The word 'blend' must not appear.",
+        "lines": [
+          "The F₁ heterozygotes (CˢCᴰ) are BOTH SPOTTED",
+          "AND DOTTED.",
+          "They show the phenotypic features of BOTH",
+          "parents at the same time.",
+          "Neither the spotted nor the dotted allele is",
+          "dominant or recessive to the other."
+        ],
+        "why": "The F1 carrying both patterns at once, rather than one of them or a mixture, is the observation that defines co-dominance.",
+        "common_mistakes": [
+          "Saying the F1 is intermediate. It is not a blend; it shows BOTH patterns separately.",
+          "Saying the F1 resembles one parent. It resembles BOTH."
+        ],
+        "memory_tip": "Not in between, but both at once."
+      },
+      {
+        "id": "s4_f2",
+        "kind": "boxed_final",
+        "label": "The F2 ratio",
+        "marks": 1,
+        "mark_note": "F2 ratio",
+        "margin_note": "All three classes with their genotypes and appearances, then the reason the ratios match.",
+        "lines": [
+          {
+            "text": "F₂ = 1 spotted : 2 both : 1 dotted",
+            "style": "boxed"
+          },
+          "Selfing the F₁ gives:",
+          "1 CˢCˢ  spotted",
+          "2 CˢCᴰ  spotted AND dotted",
+          "1 CᴰCᴰ  dotted",
+          "The phenotypic and genotypic ratios are the",
+          "SAME, 1 : 2 : 1, because every genotype has its",
+          "own appearance."
+        ],
+        "why": "Because each of the three genotypes looks different, the two ratios cannot differ — which is the same reason incomplete dominance also gives 1:2:1.",
+        "common_mistakes": [
+          "Writing the third class as 3. A 2 by 2 square gives 1:2:1, never 1:2:3. The guide misprints this.",
+          "Calling CᴰCᴰ 'spotted and dotted'. It is DOTTED — it carries no spotted allele.",
+          "Giving 3:1. That is the ratio for complete dominance."
+        ],
+        "memory_tip": "Three genotypes, three different looks, so 1:2:1 twice over."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "Diagram — co-dominance in lentil",
+        "marks": 0,
+        "margin_note": "No diagram mark. Draw it anyway on this question — the square is what protects you from the wrong ratio the guide prints.",
+        "figure": {
+          "id": "b2_piv_codominance",
+          "width": 560,
+          "height": 448,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "cd_p1",
+              "caption": "Step 1 — a spotted parent and a dotted parent"
+            },
+            {
+              "type": "label",
+              "id": "cd_pl",
+              "x": 81,
+              "y": 40,
+              "text": "Spotted (CˢCˢ)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_x",
+              "x": 255,
+              "y": 40,
+              "text": "×",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_pr",
+              "x": 306,
+              "y": 40,
+              "text": "Dotted (CᴰCᴰ)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "cd_al",
+              "d": "M 150 50 L 150 72",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "cd_al_h",
+              "d": "M 147 66.8 L 150 72 L 153 66.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cd_ar",
+              "d": "M 370 50 L 370 72",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "cd_ar_h",
+              "d": "M 367 66.8 L 370 72 L 373 66.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cd_gl_o",
+              "d": "M 133 92 A 17 17 0 1 0 167 92 A 17 17 0 1 0 133 92",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "cd_gl_t",
+              "x": 140,
+              "y": 97,
+              "text": "Cˢ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "cd_gr_o",
+              "d": "M 353 92 A 17 17 0 1 0 387 92 A 17 17 0 1 0 353 92",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "cd_gr_t",
+              "x": 360,
+              "y": 97,
+              "text": "Cᴰ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "cd_p2",
+              "caption": "Step 2 — the F₁ shows BOTH parent patterns"
+            },
+            {
+              "type": "stroke",
+              "id": "cd_f1l",
+              "d": "M 172 104 L 234 124",
+              "ms": 930,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "cd_f1l_h",
+              "d": "M 228.1 125.3 L 234 124 L 230 119.5",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cd_f1r",
+              "d": "M 348 104 L 286 124",
+              "ms": 930,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "cd_f1r_h",
+              "d": "M 290 119.5 L 286 124 L 291.9 125.3",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "cd_f1",
+              "x": 116,
+              "y": 146,
+              "text": "F₁ — CˢCᴰ, spotted AND dotted",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "cd_p3",
+              "caption": "Step 3 — self the F₁"
+            },
+            {
+              "type": "stroke",
+              "id": "cd_sd",
+              "d": "M 260 156 L 260 174",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "cd_sd_h",
+              "d": "M 257 168.8 L 260 174 L 263 168.8",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "cd_sl",
+              "x": 130,
+              "y": 196,
+              "text": "CˢCᴰ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_sx",
+              "x": 255,
+              "y": 196,
+              "text": "×",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_sr",
+              "x": 350,
+              "y": 196,
+              "text": "CˢCᴰ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "cd_p4",
+              "caption": "Step 4 — the Punnett square"
+            },
+            {
+              "type": "stroke",
+              "id": "cd_sq_box_t",
+              "d": "M 196 260 L 364 260",
+              "ms": 2400,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cd_sq_box_b",
+              "d": "M 196 348 L 364 348",
+              "ms": 2400,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cd_sq_box_l",
+              "d": "M 196 260 L 196 348",
+              "ms": 1260,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cd_sq_box_r",
+              "d": "M 364 260 L 364 348",
+              "ms": 1260,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "cd_sq_v1",
+              "d": "M 280 260 L 280 348",
+              "ms": 1260,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "cd_sq_h1",
+              "d": "M 196 304 L 364 304",
+              "ms": 2400,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "cd_sq_ch0",
+              "x": 228,
+              "y": 246,
+              "text": "Cˢ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_sq_ch1",
+              "x": 312,
+              "y": 246,
+              "text": "Cᴰ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_sq_rh0",
+              "x": 164,
+              "y": 287,
+              "text": "Cˢ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_sq_rh1",
+              "x": 164,
+              "y": 331,
+              "text": "Cᴰ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_sq_c0",
+              "x": 218,
+              "y": 287,
+              "text": "CˢCˢ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_sq_c1",
+              "x": 302,
+              "y": 287,
+              "text": "CˢCᴰ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_sq_c2",
+              "x": 218,
+              "y": 331,
+              "text": "CˢCᴰ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_sq_c3",
+              "x": 302,
+              "y": 331,
+              "text": "CᴰCᴰ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "cd_p5",
+              "caption": "Step 5 — one spotted, two both, one dotted"
+            },
+            {
+              "type": "label",
+              "id": "cd_r1",
+              "x": 67,
+              "y": 392,
+              "text": "1 spotted : 2 spotted and dotted : 1 dotted",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cd_r2",
+              "x": 52,
+              "y": 432,
+              "text": "Phenotypic ratio = genotypic ratio = 1 : 2 : 1",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Setting the three F2 genotypes in a square shows immediately that there is one of the third class and not three, which is where the printed guide goes wrong.",
+        "common_mistakes": [
+          "Drawing an F1 that looks like one parent. The F1 shows BOTH patterns.",
+          "Writing a 1:2:3 ratio under the square. Four boxes cannot give six offspring.",
+          "Marking the CᴰCᴰ box as spotted and dotted. It is DOTTED."
+        ],
+        "memory_tip": "Four boxes, so the classes must add to four: 1 + 2 + 1."
+      }
+    ]
+  }
+}

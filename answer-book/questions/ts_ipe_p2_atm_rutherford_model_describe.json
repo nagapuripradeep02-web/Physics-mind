@@ -1,0 +1,215 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_rutherford_model_describe",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe Rutherford atom model. What are the drawbacks of this model?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The nucleus",
+      "marks": 1
+    },
+    {
+      "label": "The electrons and the empty space",
+      "marks": 1
+    },
+    {
+      "label": "Drawback: no stable atom",
+      "marks": 1
+    },
+    {
+      "label": "Drawback: no line spectrum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The book prints \"draw backs\" as two words in the question; it is written \"drawbacks\" here and the wording is unchanged. The book's own limitation list for this question repeats the electron-structure point; the card gives the two standard drawbacks instead, each with its reason. Physics hand-checked: an electron in a circular orbit is accelerating, so classical electromagnetism requires it to radiate continuously and spiral into the nucleus in about 10⁻⁸ s, and the frequency of that radiation would rise smoothly as the orbit shrank, giving a continuous spectrum rather than the sharp lines that are measured."
+  },
+  "recall_prompt": "Describe Rutherford's model of the atom, then give its two drawbacks with the reason for each.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atoms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nucleus",
+        "kind": "text",
+        "label": "The nucleus",
+        "marks": 1,
+        "mark_note": "Charge and mass at the centre",
+        "lines": [
+          "Rutherford atom model:",
+          "1. The entire positive charge and most of the",
+          "mass of the atom are concentrated at the centre",
+          "of the atom. This centre is called the nucleus.",
+          "2. The size of the nucleus is very small",
+          "compared with the size of the atom — about",
+          "10⁻¹⁵ m against 10⁻¹⁰ m."
+        ],
+        "margin_note": "First mark. Two things: charge and mass at the centre, and the nucleus is tiny.",
+        "why": "Both points come straight from the scattering experiment: the few α-particles turned right around show the charge is concentrated, and the very small fraction turned at all shows the target is tiny.",
+        "common_mistakes": [
+          "Saying the positive charge is spread through the atom. That is Thomson's model.",
+          "Leaving out the size comparison. The nucleus is about 10⁻⁵ times the atom across."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the whole positive charge and most of the mass sit in a very small nucleus at the centre.",
+          "accept": [
+            "positive charge and most of the mass at the centre",
+            "it is called the nucleus",
+            "the nucleus is very small compared to the atom"
+          ],
+          "reject": [
+            "electrons revolve around the nucleus"
+          ],
+          "heard_as": [
+            "nucleus",
+            "positive charge",
+            "very small"
+          ]
+        },
+        "memory_tip": "All the charge, nearly all the mass, in one hundred-thousandth of the width."
+      },
+      {
+        "id": "s2_electrons",
+        "kind": "text",
+        "label": "The electrons",
+        "marks": 1,
+        "mark_note": "Circular orbits, empty space",
+        "lines": [
+          "3. The electrons revolve around the nucleus in",
+          "circular orbits, in the same way that the",
+          "planets move round the sun. The electrostatic",
+          "attraction of the nucleus supplies the",
+          "centripetal force.",
+          "4. Most of the space inside the atom is empty."
+        ],
+        "margin_note": "Second mark. Circular orbits held by the Coulomb attraction, and the atom is mostly empty space.",
+        "why": "The empty space is the direct reading of the experiment: almost every α-particle went straight through the foil, which can only happen if there is very little in the way.",
+        "common_mistakes": [
+          "Saying the electrons are at rest. A static electron would fall into the nucleus at once.",
+          "Leaving out what holds the electron in its orbit — the electrostatic attraction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That electrons revolve in circular orbits held by the nucleus's attraction, and most of the atom is empty.",
+          "accept": [
+            "electrons revolve in circular orbits",
+            "coulomb attraction provides the centripetal force",
+            "most of the atom is empty space"
+          ],
+          "reject": [
+            "the nucleus is very small"
+          ],
+          "heard_as": [
+            "circular orbits",
+            "empty space",
+            "revolve"
+          ]
+        },
+        "memory_tip": "A tiny heavy centre, orbiting electrons, and empty space between."
+      },
+      {
+        "id": "s3_drawback_stability",
+        "kind": "text",
+        "label": "No stable atom",
+        "marks": 1,
+        "mark_note": "The electron spirals in",
+        "lines": [
+          "Drawbacks:",
+          "1. It could not explain the stability of the",
+          "atom. An electron moving in a circular orbit is",
+          "accelerating, so by classical theory it must",
+          "radiate energy all the time. It would lose",
+          "energy, spiral inwards and reach the nucleus in",
+          "about 10⁻⁸ s. Atoms in fact last."
+        ],
+        "margin_note": "First drawback. Accelerating charge radiates, the orbit shrinks, the atom collapses.",
+        "why": "This is the flaw that Bohr's stationary-orbit postulate was written to remove: Bohr stated that an electron in an allowed orbit does not radiate.",
+        "common_mistakes": [
+          "Saying the electron radiates because it moves. Uniform motion does not radiate; acceleration does.",
+          "Giving no time scale. About 10⁻⁸ s makes the failure concrete."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the orbiting electron accelerates, radiates and spirals into the nucleus, so the model gives no stable atom.",
+          "accept": [
+            "accelerating charge radiates energy",
+            "electron spirals into the nucleus",
+            "cannot explain the stability of the atom"
+          ],
+          "reject": [
+            "cannot explain the line spectrum"
+          ],
+          "heard_as": [
+            "stability",
+            "spirals in",
+            "radiates"
+          ]
+        },
+        "memory_tip": "Circle means acceleration; acceleration means radiation; radiation means collapse."
+      },
+      {
+        "id": "s4_drawback_spectrum",
+        "kind": "boxed_final",
+        "label": "No line spectrum",
+        "marks": 1,
+        "mark_note": "Continuous spectrum predicted",
+        "lines": [
+          "2. It could not explain the line spectra of",
+          "atoms. As the orbit shrinks the frequency of",
+          "the emitted radiation would rise smoothly, so",
+          "the model predicts a continuous spectrum.",
+          "Atoms in fact give sharp lines at fixed",
+          "wavelengths.",
+          {
+            "text": "Nucleus + electrons · unstable, no lines",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second drawback. Continuous spectrum predicted, line spectrum observed.",
+        "why": "Sharp lines need fixed energy levels, and Rutherford's model has none — the orbit can have any radius, so the emitted frequency can take any value. Bohr's quantum condition is what fixes this.",
+        "common_mistakes": [
+          "Saying no radiation is predicted. A continuous spectrum is predicted.",
+          "Naming a drawback without the reason. Both marks are for the reason."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the model predicts a continuous spectrum while atoms give sharp line spectra.",
+          "accept": [
+            "it predicts a continuous spectrum",
+            "cannot explain the line spectra",
+            "atoms give sharp lines"
+          ],
+          "reject": [
+            "the electron spirals into the nucleus"
+          ],
+          "heard_as": [
+            "line spectra",
+            "continuous spectrum",
+            "sharp lines"
+          ]
+        },
+        "memory_tip": "Any radius means any frequency — a band, not lines."
+      }
+    ]
+  },
+  "insider_note": "The model is two marks and the drawbacks two — write the reason under each drawback, because the bare statement earns half of it."
+}

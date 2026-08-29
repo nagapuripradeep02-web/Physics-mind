@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_enzymes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are enzymes?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "They are specific",
+      "marks": 1
+    },
+    {
+      "label": "Rate and working conditions",
+      "marks": 1
+    },
+    {
+      "label": "Control and quantity needed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.102 as SAQ 5. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK LIMIT NAMED: the printed answer says enzymes are \"naturally occurring simple or conjugate proteins\". That is true of almost all enzymes but not of every one; a small number are catalytic RNA molecules, called ribozymes. The exception is recorded in the first step's \"why\" rather than on the page, because the board answer expects the protein definition. RATE FIGURE: the printed \"ten million times\" is kept as the book's number; some enzymes accelerate their reaction by far more than this, and the printed figure should be read as an order of magnitude rather than a limit."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Enzymes are the catalysts of the reactions",
+          "that take place in living organisms.",
+          "They are naturally occurring proteins,",
+          "simple or conjugated.",
+          "They work by lowering the activation energy",
+          "of the reaction they catalyse."
+        ],
+        "why": "An enzyme is a biological catalyst, so the definition must say both what it does and what it is made of. The activation-energy line explains how a catalyst can speed a reaction without being used up, which is the fact the rest of the answer rests on. One exception is worth knowing: a few enzymes are RNA, not protein, and are called ribozymes.",
+        "common_mistakes": [
+          "Writing that enzymes are used up in the reaction. A catalyst is recovered unchanged.",
+          "Writing that enzymes supply energy to the reaction. They lower the activation energy; they do not supply energy."
+        ],
+        "memory_tip": "Enzyme means biological catalyst, and it is a protein.",
+        "margin_note": "\"Biological catalyst\" and \"protein\" together carry this mark. Add the activation energy line if there is room."
+      },
+      {
+        "id": "s2_specific",
+        "kind": "text",
+        "label": "They are specific",
+        "marks": 1,
+        "mark_note": "Specificity",
+        "lines": [
+          "Characteristics of enzymes",
+          "1. They are highly specific in their action.",
+          "Each enzyme catalyses only one type of",
+          "reaction, and often only one substrate.",
+          "Ex: urease catalyses the hydrolysis of urea",
+          "and of nothing else."
+        ],
+        "why": "Specificity is the property that separates an enzyme from an ordinary industrial catalyst, which will work on a whole class of compounds. It comes from the shape of the enzyme, which matches only one substrate, and it is the first characteristic the answer key lists.",
+        "common_mistakes": [
+          "Writing that one enzyme catalyses many different reactions. Each enzyme is specific to one type.",
+          "Giving no example. One named enzyme with its one substrate makes the point in a line."
+        ],
+        "memory_tip": "One enzyme, one reaction: urease works on urea only.",
+        "margin_note": "Number the characteristics. The examiner counts them, so make them countable."
+      },
+      {
+        "id": "s3_rate",
+        "kind": "text",
+        "label": "Rate and working conditions",
+        "marks": 1,
+        "mark_note": "Rate and conditions",
+        "lines": [
+          "2. They are extremely efficient. A reaction",
+          "can be speeded up about ten million times.",
+          "3. They work under mild conditions: a",
+          "moderate temperature near 300 K and a",
+          "moderate pH of about 6 to 8.",
+          "Outside this range the enzyme is denatured."
+        ],
+        "why": "Efficiency and mild conditions go together and are the pair that makes enzymes useful: an industrial catalyst may need high temperature and pressure, while an enzyme does more at body temperature. Naming the range also explains why a fever or a strong acid stops an enzyme working, because it denatures the protein.",
+        "common_mistakes": [
+          "Writing that enzymes work faster at high temperature. Above the moderate range the enzyme is denatured and stops.",
+          "Giving a pH of 1 or 14. The working range is about 6 to 8 for most enzymes."
+        ],
+        "memory_tip": "Body conditions: about 300 K and a pH near neutral.",
+        "margin_note": "The two numbers, 300 K and pH 6 to 8, are the marked part of this step."
+      },
+      {
+        "id": "s4_control",
+        "kind": "boxed_final",
+        "label": "Control and quantity needed",
+        "marks": 1,
+        "mark_note": "Control and amount",
+        "lines": [
+          {
+            "text": "Specific · efficient · mild conditions",
+            "style": "boxed"
+          },
+          "4. Their action can be controlled or",
+          "stopped by certain organic and inorganic",
+          "substances, called inhibitors.",
+          "5. Only a very small amount of enzyme is",
+          "needed, because it is not used up in the",
+          "reaction."
+        ],
+        "why": "Control and small quantity are both consequences of the enzyme being a catalyst rather than a reactant. Because it is recovered unchanged, a trace of it turns over a great deal of substrate; and because its action depends on its shape, a substance that alters that shape can switch it off.",
+        "common_mistakes": [
+          "Writing that a large quantity of enzyme is needed. A very small amount is enough, because it is not consumed.",
+          "Writing that an enzyme's action cannot be stopped. Inhibitors control and can stop it."
+        ],
+        "memory_tip": "Not used up, so a trace is enough; shape can be altered, so it can be stopped.",
+        "margin_note": "Five numbered characteristics in all. Write the numbers so the examiner can count them quickly."
+      }
+    ]
+  },
+  "insider_note": "The definition is one mark; the five numbered characteristics are the other three. Number them, because an unnumbered paragraph makes the examiner search for five separate points."
+}

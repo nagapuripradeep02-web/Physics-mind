@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mn_nitrogen_fixation_equation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Mineral Nutrition (Botany-II)"
+  },
+  "chapter": "Mineral Nutrition",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the balanced equation of nitrogen fixation.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "What it shows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.50, printed question 153. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Write the equation exactly, coefficients and all. Sixteen ATP is the number examiners check.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mineral Nutrition (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "margin_note": "Two lines, both coefficients correct. Nothing else is needed for this mark.",
+        "lines": [
+          {
+            "text": "N2 + 8H+ + 8e- + 16ATP",
+            "style": "eq"
+          },
+          {
+            "text": "   --> 2NH3 + H2 + 16ADP + 16Pi",
+            "style": "eq"
+          }
+        ],
+        "why": "The equation is the whole answer, so the coefficients are the content rather than decoration.",
+        "common_mistakes": [
+          "Writing NH3 without the coefficient 2. One N2 gives TWO ammonia molecules.",
+          "Leaving out the 16 ATP. The energy cost is the point of the equation."
+        ],
+        "memory_tip": "Sixteen ATP for one nitrogen molecule: the most expensive reaction in the plant."
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What it shows",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "margin_note": "Name the enzyme, the product and why the ATP cost is high.",
+        "lines": [
+          {
+            "text": "Sixteen ATP to break one N triple bond",
+            "style": "boxed"
+          },
+          "Nitrogen fixation converts atmospheric N2 into",
+          "ammonia.",
+          "It is catalysed by NITROGENASE.",
+          "The 16 ATP show how much energy it costs to",
+          "break the triple bond in N2."
+        ],
+        "why": "The N triple bond is one of the strongest in nature, which is why the reaction needs so much ATP and why only a few organisms can do it.",
+        "common_mistakes": [
+          "Naming no enzyme. Nitrogenase carries out the reaction.",
+          "Saying nitrogen is converted to nitrate here. The product of FIXATION is ammonia."
+        ],
+        "memory_tip": "A triple bond is expensive to break, and the ATP count says how expensive."
+      }
+    ]
+  }
+}

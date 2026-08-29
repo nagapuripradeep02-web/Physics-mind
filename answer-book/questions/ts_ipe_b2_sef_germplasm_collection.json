@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_germplasm_collection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by germplasm collection?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Why it matters",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 132. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "A definition to write almost word for word. 'All the diverse alleles for all genes' is the phrase.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Germplasm collection defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "The full definition plus what it includes.",
+        "lines": [
+          "A GERMPLASM COLLECTION is the entire collection",
+          "of plants or seeds having ALL THE DIVERSE",
+          "ALLELES for ALL GENES in a given crop.",
+          "It includes wild relatives, landraces and modern",
+          "varieties."
+        ],
+        "why": "A breeder can only work with alleles that exist somewhere, so the collection is the whole pool of what is possible.",
+        "common_mistakes": [
+          "Saying it is a collection of the best varieties. It is a collection of ALL the diversity.",
+          "Leaving out wild relatives. They carry most of the useful disease resistance genes."
+        ],
+        "memory_tip": "Everything, not just the best."
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why it matters",
+        "marks": 1,
+        "mark_note": "Importance",
+        "margin_note": "Its place in breeding, and why loss is permanent.",
+        "lines": [
+          {
+            "text": "You can only breed with alleles somebody has",
+            "style": "boxed"
+          },
+          {
+            "text": "already collected",
+            "style": "boxed"
+          },
+          "It is a PRE-REQUISITE for any breeding programme:",
+          "the first of the five steps in releasing a new",
+          "variety.",
+          "An allele that is not in the collection cannot be",
+          "bred into a crop, and once a wild population is",
+          "lost its alleles are gone for good."
+        ],
+        "why": "Extinction is irreversible, so a wild relative lost today removes options from every future breeding programme.",
+        "common_mistakes": [
+          "Giving no significance. The second mark is for why it matters.",
+          "Saying collections can be rebuilt later. Once a wild population is lost, its alleles are lost."
+        ],
+        "memory_tip": "Lose the wild relative and you lose the allele for ever."
+      }
+    ]
+  }
+}

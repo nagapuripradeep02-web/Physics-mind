@@ -1,0 +1,105 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_acetyl_chloride_and_benzamide",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write equations showing the conversion of i) acetic acid to acetyl chloride ii) benzoic acid to benzamide.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Acetic acid to acetyl chloride",
+      "marks": 1
+    },
+    {
+      "label": "Benzoic acid to benzamide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.112 as VSAQ 3. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOTH BOOK EQUATIONS CHECKED AND CORRECT: CH₃COOH + SOCl₂ → CH₃COCl + SO₂ + HCl balances at C2 H4 O3 S Cl2; and ammonium benzoate C₇H₉NO₂ losing one H₂O gives benzamide C₇H₇NO. BOOK GAP: the printed answer gives the two equations and nothing else — it never says that the first stage of (ii) is a SALT, ammonium benzoate, and that the amide appears only on heating. Both are stated here, and the second stage is written as its own line so the two stages are not read as one. BOOK GAP: the book does not say why SOCl₂ is the reagent of choice; the reason (both by-products are gases and leave the flask, so the acid chloride is obtained pure) is added from NCERT. CROSS-UNIT NEIGHBOUR: unit 7 card ts_ipe_c2_va_pcl5_reactions writes the same conversion with PCl₅ (CH₃COOH + PCl₅ → CH₃COCl + POCl₃ + HCl). That card and this one agree; this card names PCl₅ and PCl₃ as the alternatives and says why SOCl₂ is preferred."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_acetyl_chloride",
+        "kind": "equation",
+        "label": "Acetic acid to acetyl chloride",
+        "marks": 1,
+        "mark_note": "First conversion",
+        "lines": [
+          "i) The –OH of the acid is replaced by –Cl",
+          "using thionyl chloride:",
+          {
+            "text": "CH₃COOH + SOCl₂ → CH₃COCl + SO₂↑ + HCl↑",
+            "style": "eq"
+          },
+          "PCl₅ and PCl₃ do the same conversion, but",
+          "SOCl₂ is preferred because SO₂ and HCl are",
+          "gases and escape, leaving a pure product."
+        ],
+        "why": "All three reagents replace the –OH of the acid by –Cl. With PCl₅ the by-product POCl₃ is a liquid that has to be separated by distillation, while with SOCl₂ both by-products leave as gases, so the acetyl chloride is left behind pure. That is the only reason one reagent is chosen over another here.",
+        "common_mistakes": [
+          "Writing the product as CH₃COOCl. Acetyl chloride is CH₃COCl; the –OH is replaced, not added to.",
+          "Leaving out SO₂ or HCl. Both leave the flask as gases and both belong in the equation.",
+          "Using SOCl₂ on an alcohol and calling the product an acid chloride. From an alcohol it gives an alkyl chloride."
+        ],
+        "memory_tip": "SOCl₂ replaces the –OH by –Cl, and both of its by-products are gases.",
+        "margin_note": "Write SOCl₂ over the arrow on your answer sheet if you prefer; either form is accepted. Do not drop the two gaseous by-products."
+      },
+      {
+        "id": "s2_benzamide",
+        "kind": "boxed_final",
+        "label": "Benzoic acid to benzamide",
+        "marks": 1,
+        "mark_note": "Second conversion",
+        "lines": [
+          "ii) Ammonia first gives the ammonium salt:",
+          {
+            "text": "C₆H₅COOH + NH₃ → C₆H₅COO⁻NH₄⁺",
+            "style": "eq"
+          },
+          "On strong heating the salt loses water:",
+          {
+            "text": "C₆H₅COO⁻NH₄⁺ → C₆H₅CONH₂ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[Δ]",
+            "style": "indent"
+          },
+          {
+            "text": "Salt first, amide only on heating.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Ammonia is a base and benzoic acid is an acid, so at room temperature the only reaction is an acid-base reaction giving ammonium benzoate. Heating removes one molecule of water from that salt, and only then is the C–N bond of the amide formed. Writing one arrow straight from acid to amide leaves out the stage the examiner is looking for.",
+        "common_mistakes": [
+          "Writing acid plus ammonia straight to the amide in one step. The salt forms first and the amide needs heat.",
+          "Forgetting the water on the product side. One water molecule is removed from the salt.",
+          "Writing the salt as C₆H₅CONH₄. It is the ionic salt C₆H₅COO⁻NH₄⁺."
+        ],
+        "memory_tip": "Acid plus ammonia gives a salt; heat the salt and it loses water to give the amide.",
+        "margin_note": "Write Δ above the second arrow on your answer sheet. Two arrows are safer than one here: the salt stage is what carries this mark."
+      }
+    ]
+  },
+  "insider_note": "Part (ii) is where marks are lost. Writing benzoic acid straight to benzamide in one arrow loses the ammonium benzoate stage, which is the step this question is set to test."
+}

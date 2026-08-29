@@ -1,0 +1,174 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_transgenic_plant_benefits",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "List out the beneficial aspects of transgenic plants.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Resistance to pests and pathogens",
+      "marks": 1
+    },
+    {
+      "label": "Food processing",
+      "marks": 1
+    },
+    {
+      "label": "Nutritional value",
+      "marks": 1
+    },
+    {
+      "label": "Hybrid seed and stress tolerance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.35, printed question 45. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Five headings, and each needs a NAMED crop. A benefit without a named plant is half a point; Bt cotton, Flavr Savr and golden rice are the three that must appear.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_resistance",
+        "kind": "text",
+        "label": "Resistance to pests and pathogens",
+        "marks": 1,
+        "mark_note": "Resistance",
+        "margin_note": "All four examples with crop and pathogen. This heading alone is a full mark.",
+        "lines": [
+          "1. TRANSGENIC CROPS RESISTANT TO",
+          "PATHOGENS AND PESTS:",
+          "(i) Transgenic PAPAYA is resistant to papaya",
+          "    ring spot virus.",
+          "(ii) BT COTTON is resistant to insects, chiefly",
+          "     the bollworm.",
+          "(iii) Transgenic TOMATO resists the bacterial",
+          "      pathogen Pseudomonas.",
+          "(iv) Transgenic POTATO resists the fungus",
+          "     Phytophthora."
+        ],
+        "why": "One transgene can replace repeated spraying, so the benefit is measured in pesticide not used as much as in yield gained.",
+        "common_mistakes": [
+          "Naming benefits with no crops. Each example needs its plant AND its pest.",
+          "Saying Bt cotton resists viruses. It resists INSECTS."
+        ],
+        "memory_tip": "Four crops, four different enemies: virus, insect, bacterium, fungus."
+      },
+      {
+        "id": "s2_processing",
+        "kind": "text",
+        "label": "Food processing",
+        "marks": 1,
+        "mark_note": "Processing",
+        "margin_note": "Name the variety, the property, and why it matters.",
+        "lines": [
+          "2. TRANSGENIC PLANTS SUITABLE FOR FOOD",
+          "PROCESSING:",
+          "The transgenic tomato FLAVR SAVR is bruise",
+          "resistant, because its ripening is DELAYED.",
+          "So it can be stored and transported without",
+          "spoiling."
+        ],
+        "why": "A tomato that ripens slowly can be picked ripe and still survive transport, which is what makes delayed ripening commercially useful.",
+        "common_mistakes": [
+          "Saying Flavr Savr ripens faster. Its ripening is DELAYED.",
+          "Not naming the variety. Flavr Savr is the named example."
+        ],
+        "memory_tip": "Delayed ripening means it survives the journey."
+      },
+      {
+        "id": "s3_nutrition",
+        "kind": "text",
+        "label": "Nutritional value",
+        "marks": 1,
+        "mark_note": "Nutrition",
+        "margin_note": "The crop, the compound, and the deficiency it prevents.",
+        "lines": [
+          "3. TRANSGENIC PLANTS WITH IMPROVED",
+          "NUTRITIONAL VALUE:",
+          "GOLDEN RICE, developed from the Taipei rice",
+          "variety, is rich in beta-carotene, the",
+          "precursor of VITAMIN A.",
+          "It helps prevent blindness caused by vitamin A",
+          "deficiency."
+        ],
+        "why": "Rice grain normally carries no beta-carotene at all, so adding the pathway addresses a deficiency in the crop people already eat.",
+        "common_mistakes": [
+          "Saying golden rice contains vitamin A itself. It contains BETA-CAROTENE, which the body converts to vitamin A.",
+          "Not saying what deficiency it addresses. Blindness from vitamin A deficiency is the point."
+        ],
+        "memory_tip": "Golden because of the carotene, and carotene becomes vitamin A."
+      },
+      {
+        "id": "s4_hybrid",
+        "kind": "boxed_final",
+        "label": "Hybrid seed and stress tolerance",
+        "marks": 1,
+        "mark_note": "Hybrid, stress",
+        "margin_note": "Both remaining headings with their named crops. Five headings in total.",
+        "lines": [
+          {
+            "text": "Pest resistant, storable, more nutritious,",
+            "style": "boxed"
+          },
+          {
+            "text": "easier to breed, and stress tolerant",
+            "style": "boxed"
+          },
+          "4. FOR HYBRID SEED PRODUCTION:",
+          "MALE STERILE plants of Brassica napus remove the",
+          "need for manual emasculation, and so cut the",
+          "cost of hybrid seed.",
+          "5. TOLERANT TO ABIOTIC STRESS — cold,",
+          "drought, salt and heat:",
+          "The BASMATI rice variety was made resistant to",
+          "both biotic and abiotic stresses.",
+          "ROUND-UP READY SOYABEAN is herbicide",
+          "tolerant."
+        ],
+        "why": "Emasculating flowers by hand is the single most expensive step in hybrid seed production, so a male sterile plant removes the cost rather than reducing it.",
+        "common_mistakes": [
+          "Leaving out male sterility. It is one of the five named headings.",
+          "Saying herbicide tolerance kills weeds. It lets the CROP survive the herbicide that kills the weeds."
+        ],
+        "memory_tip": "Male sterile means no hand emasculation, and that is where the money is."
+      }
+    ]
+  }
+}

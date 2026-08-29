@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_becquerel_and_curie",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define Becquerel and Curie.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Becquerel",
+      "marks": 1
+    },
+    {
+      "label": "Curie",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The book prints the misspelling \"Becqueral\" in both the question and the answer; corrected here to Becquerel. Hand-checked: 1 Bq = 1 disintegration per second is the SI unit of activity; 1 Ci = 3.7 × 10¹⁰ Bq, the activity of 1 g of ²²⁶Ra, which is the value the book gives."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_becquerel",
+        "kind": "text",
+        "label": "Becquerel",
+        "marks": 1,
+        "mark_note": "1 Bq = 1 disintegration per second",
+        "lines": [
+          "Becquerel (Bq): the activity of a radioactive",
+          "sample in which one nucleus disintegrates per",
+          "second is called one becquerel.",
+          {
+            "text": "1 Bq = 1 disintegration per second",
+            "style": "eq"
+          },
+          "It is the SI unit of activity."
+        ],
+        "margin_note": "First mark. One disintegration per second, and the words \"SI unit of activity\".",
+        "why": "Activity is a rate of decay, not an amount of material, so its unit counts disintegrations per second and nothing else.",
+        "common_mistakes": [
+          "Defining becquerel as a number of nuclei. It is a rate of disintegration.",
+          "Leaving out \"per second\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one becquerel is an activity of one disintegration per second, and it is the SI unit of activity.",
+          "accept": [
+            "one disintegration per second",
+            "SI unit of activity",
+            "one becquerel is one decay per second"
+          ],
+          "reject": [
+            "three point seven into ten power ten"
+          ],
+          "heard_as": [
+            "becquerel",
+            "disintegration per second",
+            "activity"
+          ]
+        },
+        "memory_tip": "Bq is the smallest possible activity: one decay, one second."
+      },
+      {
+        "id": "s2_curie",
+        "kind": "boxed_final",
+        "label": "Curie",
+        "marks": 1,
+        "mark_note": "1 Ci = 3.7 × 10¹⁰ Bq",
+        "lines": [
+          "Curie (Ci): the activity of a radioactive",
+          "sample in which 3.7 × 10¹⁰ nuclei disintegrate",
+          "per second is called one curie.",
+          {
+            "text": "1 Ci = 3.7 × 10¹⁰ Bq",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The number 3.7 × 10¹⁰ and the relation to the becquerel.",
+        "why": "The curie was fixed as the activity of one gram of radium-226, which is why the number is an awkward 3.7 × 10¹⁰ rather than a round power of ten.",
+        "common_mistakes": [
+          "Writing 3.7 × 10⁷ or 3.7 × 10¹². The exponent is 10.",
+          "Saying curie is an SI unit. Becquerel is the SI unit; curie is the older one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one curie is an activity of 3.7 × 10¹⁰ disintegrations per second, that is 3.7 × 10¹⁰ becquerel.",
+          "accept": [
+            "three point seven into ten power ten disintegrations per second",
+            "one curie is three point seven into ten to the ten becquerel",
+            "Ci is the older unit"
+          ],
+          "reject": [
+            "one disintegration per second"
+          ],
+          "heard_as": [
+            "curie",
+            "three point seven",
+            "ten power ten"
+          ]
+        },
+        "memory_tip": "One gram of radium was the original curie — hence the odd 3.7 × 10¹⁰."
+      }
+    ]
+  },
+  "insider_note": "Both units are defined by a number of disintegrations per second. Write the number, the unit and the relation 1 Ci = 3.7 × 10¹⁰ Bq."
+}

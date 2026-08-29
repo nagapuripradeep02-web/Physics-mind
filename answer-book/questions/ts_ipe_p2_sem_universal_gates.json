@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_universal_gates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which gates are called universal gates.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two gates named",
+      "marks": 1
+    },
+    {
+      "label": "Why they are called universal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. The book (p.55) answers only with the two names; the reason for the name 'universal' is added here because a 2-mark question is unlikely to be paid in full for two words."
+  },
+  "recall_prompt": "Name the two universal gates and say what makes them universal.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "boxed_final",
+        "label": "The two gates",
+        "marks": 1,
+        "mark_note": "NAND and NOR",
+        "lines": [
+          "The NAND gate and the NOR gate are",
+          "called universal gates.",
+          {
+            "text": "Universal gates: NAND and NOR",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "First mark. Both names are needed; one alone is half the answer.",
+        "why": "The two names are the whole marked answer in the book, so they must be written first and written together.",
+        "common_mistakes": [
+          "Naming only NAND. NOR is universal as well.",
+          "Naming AND and OR. Those two cannot build a NOT gate by themselves."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That NAND and NOR are the universal gates.",
+          "accept": [
+            "NAND and NOR",
+            "the NAND gate and the NOR gate"
+          ],
+          "reject": [
+            "AND and OR"
+          ],
+          "heard_as": [
+            "nand",
+            "nor",
+            "and gate"
+          ]
+        },
+        "memory_tip": "Both universal gates end in a bubble: NAND and NOR."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "Why universal",
+        "marks": 1,
+        "mark_note": "Any gate can be built from them",
+        "lines": [
+          "They are called universal because every",
+          "other logic gate — NOT, AND, OR — can be",
+          "built using NAND gates alone, or using",
+          "NOR gates alone."
+        ],
+        "margin_note": "Second mark. 'Alone' is the word that matters: one type of gate is enough.",
+        "why": "The word universal is not about being common; it is about being sufficient. A single NAND gate with both inputs joined is a NOT gate, and a NAND followed by that NOT gate is an AND gate, so the whole set of gates can be made from one type.",
+        "common_mistakes": [
+          "Saying they are universal because they are used most often. The reason is that they can build every other gate.",
+          "Saying NAND and NOR together build the others. Each one alone is enough."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every other gate can be built from NAND gates alone or NOR gates alone.",
+          "accept": [
+            "any gate can be made from them",
+            "NOT AND OR can be built with NAND alone",
+            "one type of gate is enough"
+          ],
+          "reject": [
+            "output is high only when both inputs are low"
+          ],
+          "heard_as": [
+            "universal",
+            "built from",
+            "alone"
+          ]
+        },
+        "memory_tip": "Universal = enough on its own. One gate type builds the rest."
+      }
+    ]
+  },
+  "insider_note": "The book answers with two names only. Add one line saying why they are called universal — a 2-mark question rarely pays full marks for two words."
+}

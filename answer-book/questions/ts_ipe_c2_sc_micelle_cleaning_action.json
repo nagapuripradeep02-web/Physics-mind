@@ -1,0 +1,271 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_micelle_cleaning_action",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are micelles? Discuss the mechanism of micelle formation and cleaning active of soap.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "How a micelle forms",
+      "marks": 1
+    },
+    {
+      "label": "Cleansing action of soap",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.78, which prints the question and a model answer. The 1+1+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. QUESTION AS PRINTED (book p.78, SAQ 4): the printed question ends \"cleaning active of soap\"; the phrase intended is the cleansing action of soap, and the question text is kept verbatim while the answer uses the correct phrase. BOOK ERRORS in the printed answer: the figure is labelled \"Hydrophilic acid\" where it should read hydrophilic head, and the printed line \"C₁₇H₃₅ as not affinity for water\" should read HAS no affinity for water. BOOK SLOPPINESS: the printed line \"The tail part dissolves the grease and forms micelle\" reverses the sense. The tails dissolve IN the oil or grease; the oil does not dissolve in the tail. The card writes it the other way round. BOOK GAP: the printed answer does not say why the oil drops carrying the micelle do not join again, which is the negative charge of the outer heads; that is added. FIGURE SCOPE: the question says discuss, not draw, so the diagram step carries NO marks and the whole split sits on the three written steps. The figure is still authored, because the head and tail arrangement cannot be described in words alone in the time available."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Surface Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A micelle is the colloidal sized aggregate",
+          "formed in water when soap or detergent",
+          "ions associate with one another.",
+          "Each such ion has a hydrophilic head, with",
+          "affinity for water, and a hydrophobic",
+          "tail, with no affinity for water.",
+          "Micelles are formed only above the Kraft",
+          "temperature and above the critical micelle",
+          "concentration."
+        ],
+        "why": "The definition has to say what associates and under what conditions. The two ends of the soap ion are what make association possible at all, and the two limits, of temperature and of concentration, are what make the micelle appear at a definite point rather than gradually.",
+        "common_mistakes": [
+          "Calling a single soap molecule a micelle. The micelle is the aggregate of many soap ions.",
+          "Leaving out the two conditions. Below the Kraft temperature, or below the critical micelle concentration, no micelle is formed."
+        ],
+        "memory_tip": "One ion, two ends. Many ions above both limits, one micelle.",
+        "margin_note": "Name both ends of the ion in the first two lines. The conditions can follow in one sentence."
+      },
+      {
+        "id": "s2_formation",
+        "kind": "text",
+        "label": "How a micelle forms",
+        "marks": 1,
+        "mark_note": "Formation",
+        "lines": [
+          "Soap is sodium stearate, C₁₇H₃₅COONa.",
+          "In water it gives the stearate ion and the",
+          "sodium ion:",
+          {
+            "text": "C₁₇H₃₅COONa → C₁₇H₃₅COO⁻ + Na⁺",
+            "style": "eq"
+          },
+          "In the stearate ion the COO⁻ group has",
+          "affinity for water, so it is the",
+          "hydrophilic head.",
+          "The C₁₇H₃₅ chain has no affinity for water,",
+          "so it is the hydrophobic tail.",
+          "The ions therefore arrange themselves with",
+          "the tails inward and the heads outward,",
+          "and that aggregate is the micelle."
+        ],
+        "why": "Micelle formation follows from one fact about the stearate ion: its two ends behave in opposite ways towards water. The only arrangement in which every head is in the water and no tail is, is a spherical aggregate with the tails turned inward, and that is the micelle.",
+        "common_mistakes": [
+          "Writing that the sodium ion forms the micelle. The sodium ion stays in the water; the stearate ion associates.",
+          "Writing the arrangement the other way round. The hydrophilic heads face the water on the outside."
+        ],
+        "memory_tip": "COO⁻ is the head and C₁₇H₃₅ is the tail. Heads out to the water, tails in.",
+        "margin_note": "The ionisation equation is worth writing in full. It names the ion the rest of the answer is about."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "The diagram",
+        "marks": 0,
+        "figure": {
+          "id": "micelle_and_soap_ion",
+          "width": 520,
+          "height": 362,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "sm_head",
+              "d": "M 46 70 A 14 14 0 1 0 74 70 A 14 14 0 1 0 46 70",
+              "ms": 1260
+            },
+            {
+              "type": "stroke",
+              "id": "sm_tail",
+              "d": "M 74 76 L 96 100 L 118 76 L 140 100 L 162 76 L 184 100 L 206 76",
+              "ms": 2790
+            },
+            {
+              "type": "label",
+              "id": "sm_head_lbl",
+              "x": 20,
+              "y": 40,
+              "text": "head, COO⁻ (hydrophilic)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "sm_tail_lbl",
+              "x": 96,
+              "y": 124,
+              "text": "tail, C₁₇H₃₅ (hydrophobic)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "sm_name_lbl",
+              "x": 258,
+              "y": 76,
+              "text": "one soap ion",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mc_heads",
+              "d": "M 254 267 A 8 8 0 1 0 270 267 A 8 8 0 1 0 254 267 M 236 223 A 8 8 0 1 0 252 223 A 8 8 0 1 0 236 223 M 192 205 A 8 8 0 1 0 208 205 A 8 8 0 1 0 192 205 M 148 223 A 8 8 0 1 0 164 223 A 8 8 0 1 0 148 223 M 130 267 A 8 8 0 1 0 146 267 A 8 8 0 1 0 130 267 M 148 311 A 8 8 0 1 0 164 311 A 8 8 0 1 0 148 311 M 192 329 A 8 8 0 1 0 208 329 A 8 8 0 1 0 192 329 M 236 311 A 8 8 0 1 0 252 311 A 8 8 0 1 0 236 311",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "mc_tails",
+              "d": "M 254 267 L 223 267 M 238 229 L 216 251 M 200 213 L 200 244 M 162 229 L 184 251 M 146 267 L 177 267 M 162 305 L 184 283 M 200 321 L 200 290 M 238 305 L 216 283",
+              "ms": 3550
+            },
+            {
+              "type": "stroke",
+              "id": "mc_drop",
+              "d": "M 178 267 A 22 22 0 1 0 222 267 A 22 22 0 1 0 178 267",
+              "ms": 1970
+            },
+            {
+              "type": "stroke",
+              "id": "mc_leader_oil",
+              "d": "M 222 276 L 300 306",
+              "ms": 1190
+            },
+            {
+              "type": "label",
+              "id": "mc_oil_lbl",
+              "x": 306,
+              "y": 311,
+              "text": "oil drop inside",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mc_leader_heads",
+              "d": "M 202 190 L 202 202",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "mc_heads_lbl",
+              "x": 132,
+              "y": 182,
+              "text": "heads in the water",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mc_leader_tails",
+              "d": "M 78 237 L 170 239",
+              "ms": 1310
+            },
+            {
+              "type": "label",
+              "id": "mc_tails_lbl",
+              "x": 8,
+              "y": 232,
+              "text": "tails inside",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mc_water_lbl",
+              "x": 312,
+              "y": 232,
+              "text": "water",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "One soap ion is drawn first so that the head and the tail can be seen separately, and the micelle is drawn below it so that the same two parts can be recognised in the aggregate. The oil drop is drawn at the centre because that is where the tails point, and it is what the cleansing action is about.",
+        "common_mistakes": [
+          "Drawing the heads pointing inward. The heads have affinity for water and stay on the outside.",
+          "Drawing the oil drop outside the ring of soap ions. It sits at the centre, surrounded by the tails."
+        ],
+        "memory_tip": "A ring of heads facing the water, tails pointing in, and the oil drop at the centre.",
+        "margin_note": "The question says discuss, not draw, so this earns no marks. All four marks sit on the written steps; the sketch takes about a minute and makes the answer readable."
+      },
+      {
+        "id": "s4_cleaning",
+        "kind": "boxed_final",
+        "label": "Cleansing action of soap",
+        "marks": 2,
+        "mark_note": "Cleansing action",
+        "lines": [
+          {
+            "text": "Tails dissolve in the oil, heads in water.",
+            "style": "boxed"
+          },
+          "Dirt is held on cloth by a film of oil or",
+          "grease, and oil does not mix with water.",
+          "1) The hydrophobic tails dissolve in the",
+          "oil drop, while the heads stay in the",
+          "water outside.",
+          "2) The oil drop is drawn away from the",
+          "cloth and stays at the centre of a",
+          "micelle, surrounded by the tails.",
+          "3) The outer surface of every such micelle",
+          "carries COO⁻ groups, so the micelles have",
+          "the same charge and repel each other, and",
+          "the oil drops do not join again.",
+          "4) The micelles stay dispersed in the",
+          "water and are carried away when the cloth",
+          "is rinsed."
+        ],
+        "why": "Water alone cannot remove an oil film because the two do not mix. The soap ion has one end that dissolves in the oil and one that dissolves in the water, so it joins the two, and the oil leaves the cloth inside a micelle whose outside is water friendly. The charge on the outer heads is what keeps the drops separate until the rinse water carries them away.",
+        "common_mistakes": [
+          "Writing that soap dissolves the dirt. The tails dissolve in the oil film; the dirt itself is carried away with that oil.",
+          "Leaving out the charge on the outer surface. Without it there is no reason for the oil drops to stay separate.",
+          "Writing that the heads face the oil. The heads have affinity for water and face outward at every stage."
+        ],
+        "memory_tip": "Tail into the oil, head into the water, oil leaves the cloth inside the micelle, rinse carries it away.",
+        "margin_note": "Four numbered steps carry the two marks. The charge on the outer surface is the step most answers leave out."
+      }
+    ]
+  },
+  "insider_note": "Half of this question is the cleansing action, so do not spend the time on a long definition. Write the four steps in order and name the charge on the outer heads, which is the point most answers miss."
+}

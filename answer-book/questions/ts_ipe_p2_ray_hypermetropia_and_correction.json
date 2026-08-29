@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_hypermetropia_and_correction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is hypermetropia? How can it be corrected?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What hypermetropia is",
+      "marks": 1
+    },
+    {
+      "label": "Correction with a convex lens",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. TRANSCRIPTION: the book prints a space before each question mark (removed here), and its printed answer breaks the word as 'hyper metropia' and writes 'longsighted' — written here as 'hypermetropia' and 'long-sighted'. Hand-checked physically: in hypermetropia the image of a near object falls behind the retina, so a converging (convex) lens is placed before the eye — the printed answer is correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_defect",
+        "kind": "text",
+        "label": "What hypermetropia is",
+        "marks": 1,
+        "mark_note": "Image behind the retina",
+        "lines": [
+          {
+            "text": "Hypermetropia:",
+            "style": "heading"
+          },
+          "If the eye lens forms the image of a near",
+          "object at a point BEHIND the retina, the",
+          "defect is called hypermetropia, or long",
+          "sight. Such an eye sees distant objects",
+          "clearly but not near ones."
+        ],
+        "margin_note": "First mark. The word behind carries it. Myopia is in front; hypermetropia is behind.",
+        "why": "The eye lens is too weak, or the eyeball is too short, so the rays have not yet met when they reach the retina. Naming the position of the image is what fixes which lens is needed.",
+        "common_mistakes": [
+          "Saying only that near objects look blurred. The mark is for where the image forms.",
+          "Writing in front of the retina. That is myopia."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in hypermetropia the image of a near object forms behind the retina, so near objects are not seen clearly.",
+          "accept": [
+            "image forms behind the retina",
+            "long sight, near objects are not clear",
+            "the eye lens focuses the light beyond the retina",
+            "image retina venaka padutundi"
+          ],
+          "reject": [
+            "a convex lens corrects it"
+          ],
+          "heard_as": [
+            "hypermetropia",
+            "behind the retina",
+            "long sight",
+            "near objects"
+          ]
+        },
+        "memory_tip": "Long sight, long focus: the image overshoots and lands behind the retina."
+      },
+      {
+        "id": "s2_correction",
+        "kind": "boxed_final",
+        "label": "Correction",
+        "marks": 1,
+        "mark_note": "Convex lens",
+        "lines": [
+          "To correct long-sighted vision, a converging",
+          "lens (a convex lens) of suitable focal",
+          "length is placed in front of the eye.",
+          "It brings the rays together a little before",
+          "they enter the eye, so the image moves",
+          "forward on to the retina.",
+          {
+            "text": "Correction: convex (converging) lens",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the lens as convex AND as converging, and say it sits in front of the eye.",
+        "why": "The image has to be pulled forward, so the eye must be made stronger. A converging lens has positive power, and adding it raises the total power of eye plus lens.",
+        "common_mistakes": [
+          "Answering concave lens. A concave lens is used for myopia.",
+          "Naming the lens without saying it is placed in front of the eye."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That hypermetropia is corrected by placing a convex (converging) lens of suitable focal length in front of the eye.",
+          "accept": [
+            "a convex lens corrects it",
+            "converging lens of suitable focal length",
+            "convex lens in front of the eye",
+            "convex lens pettali"
+          ],
+          "reject": [
+            "image forms behind the retina"
+          ],
+          "heard_as": [
+            "convex lens",
+            "converging lens",
+            "focal length",
+            "spectacles"
+          ]
+        },
+        "memory_tip": "Image too far back, so bring the rays together: convex for hypermetropia."
+      }
+    ]
+  },
+  "insider_note": "The pair with myopia is exact: in front and concave, behind and convex. Write the position first and the lens follows."
+}

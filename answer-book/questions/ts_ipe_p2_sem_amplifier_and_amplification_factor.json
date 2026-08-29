@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_amplifier_and_amplification_factor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define amplifier and amplification factor.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Amplifier defined",
+      "marks": 1
+    },
+    {
+      "label": "Amplification factor defined",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run."
+  },
+  "recall_prompt": "Define an amplifier, then define the amplification factor as a ratio.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_amplifier",
+        "kind": "text",
+        "label": "Amplifier",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Amplifier: an electronic device that",
+          "increases the strength of a weak input",
+          "signal without changing its shape."
+        ],
+        "margin_note": "First mark. 'Increases the strength of a weak signal' is the marked phrase.",
+        "why": "The extra energy in the output does not come from the signal — it comes from the d.c. supply. The signal only controls how much of that supply power reaches the output, which is why an amplifier needs a battery to work.",
+        "common_mistakes": [
+          "Saying an amplifier increases the frequency. It increases the strength, not the frequency.",
+          "Saying it creates energy. The added energy comes from the d.c. supply."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an amplifier is a device that increases the strength of a weak signal.",
+          "accept": [
+            "raises the strength of a weak signal",
+            "makes a weak signal stronger",
+            "increases the amplitude of the input"
+          ],
+          "reject": [
+            "ratio of output to input"
+          ],
+          "heard_as": [
+            "amplifier",
+            "weak signal",
+            "strength"
+          ]
+        },
+        "memory_tip": "Amplifier makes it bigger; it does not make it different."
+      },
+      {
+        "id": "s2_factor",
+        "kind": "boxed_final",
+        "label": "Amplification factor",
+        "marks": 1,
+        "mark_note": "Output-to-input ratio",
+        "lines": [
+          "Amplification factor: the ratio of the",
+          "output voltage (or current) to the input",
+          "voltage (or current).",
+          {
+            "text": "Amplification factor = output / input",
+            "style": "boxed"
+          },
+          "It has no unit, because it is a ratio of",
+          "two quantities of the same kind."
+        ],
+        "margin_note": "Second mark. Output ON TOP. A ratio the other way round is less than one.",
+        "why": "Writing output over input is what makes the number greater than one for an amplifier, so the order of the ratio is the whole definition. Both quantities are of the same kind, which is why the factor has no unit.",
+        "common_mistakes": [
+          "Writing input divided by output. Output goes on top.",
+          "Giving the amplification factor a unit. It is a pure number."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the amplification factor is output voltage or current divided by input voltage or current.",
+          "accept": [
+            "output by input",
+            "ratio of output voltage to input voltage",
+            "output current divided by input current"
+          ],
+          "reject": [
+            "increases the strength of a weak signal"
+          ],
+          "heard_as": [
+            "amplification factor",
+            "ratio",
+            "output by input"
+          ]
+        },
+        "memory_tip": "Output on top — that is why the number is bigger than one."
+      }
+    ]
+  },
+  "insider_note": "Two definitions, one mark each. Write the amplification factor as a ratio with output on top, and add that it has no unit."
+}

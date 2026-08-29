@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_fresnel_distance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Fresnel distance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: the diffraction spread angle from a slit of size a is about λ/a, so at distance Z the spread is Zλ/a; setting Zλ/a = a gives Z_F = a²/λ — the distance at which the diffraction spreading equals the slit size. The book's wording (spreading due to diffraction from the centre of screen) is garbled; the definition here is the standard one; the printed answer's formula Z_F = a²/λ is correct and unchanged."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Write the definition as a comparison — the spreading due to diffraction becomes EQUAL to the size of the slit — and the formula follows from it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Wave Optics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Spreading equals slit size",
+        "lines": [
+          "Light passing through a slit or aperture of",
+          "size a spreads by diffraction as it travels.",
+          "The Fresnel distance is the distance of the",
+          "screen from the slit at which the spreading",
+          "of light due to diffraction becomes equal to",
+          "the size of the slit."
+        ],
+        "margin_note": "First mark. The definition is a comparison: diffraction spread = slit size. Both sides of the comparison must be named.",
+        "why": "Up to this distance the beam stays about as wide as the slit, so ray optics works; beyond it, diffraction spreading takes over. The Fresnel distance is the boundary between the two pictures, which is why it is defined by the spread becoming equal to the slit size.",
+        "common_mistakes": [
+          "Calling it the distance at which diffraction starts. Diffraction happens at every distance; the Fresnel distance is where the spread has grown to equal the slit size.",
+          "Defining it with the wavelength equal to the slit size instead of the spread equal to the slit size."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Fresnel distance is the distance from the slit at which the diffraction spreading of the light becomes equal to the size of the slit.",
+          "accept": [
+            "spreading equals the size of the slit",
+            "distance of the screen from the slit",
+            "spreading due to diffraction"
+          ],
+          "reject": [
+            "a squared over lambda"
+          ],
+          "heard_as": [
+            "Fresnel distance",
+            "diffraction",
+            "aperture"
+          ]
+        },
+        "memory_tip": "Fresnel distance is the border: closer, the beam is still slit-sized; farther, diffraction has widened it."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Z_F = a²/λ, symbols named",
+        "lines": [
+          {
+            "text": "Z_F = a²/λ",
+            "style": "boxed"
+          },
+          "where a = size of the slit or aperture and",
+          "λ = wavelength of the light used."
+        ],
+        "margin_note": "Second mark. The formula with both symbols named. A smaller wavelength gives a longer Fresnel distance.",
+        "why": "The spread angle from a slit of size a is about λ/a, so at distance Z the spread is Zλ/a. Setting this equal to a gives Z = a²/λ — the formula is one line of the definition, not a separate fact.",
+        "common_mistakes": [
+          "Inverting the formula to λ²/a or a/λ². The slit size is squared, the wavelength is not.",
+          "Leaving a and λ unnamed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The formula Z F equals a squared over lambda, with a the slit size and lambda the wavelength.",
+          "accept": [
+            "a squared over lambda",
+            "a is the slit size",
+            "lambda is the wavelength"
+          ],
+          "reject": [
+            "spreading equals the size of the slit"
+          ],
+          "heard_as": [
+            "a squared by lambda",
+            "zed F",
+            "Z F"
+          ]
+        },
+        "memory_tip": "Spread at distance Z is Zλ/a. Set it equal to a: Z = a²/λ."
+      }
+    ]
+  }
+}

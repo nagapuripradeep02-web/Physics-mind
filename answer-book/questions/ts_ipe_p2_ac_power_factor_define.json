@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_power_factor_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define power factor. On which factors does power factor depend?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "What it depends on",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: cos φ = R/Z from the impedance triangle (R adjacent to φ, Z the hypotenuse), so the two printed definitions — cosine of the phase angle, and ratio of resistance to impedance — are the same statement; Z = √(R² + (ωL − 1/ωC)²) carries ω, so the power factor depends on R, Z and through Z on the supply frequency, as the book notes."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "cos φ = R/Z defined",
+        "lines": [
+          "The power factor of an a.c. circuit is the",
+          "cosine of the phase angle φ between the",
+          "voltage and the current.",
+          {
+            "text": "power factor = cos φ = R / Z",
+            "style": "eq"
+          },
+          "It is also the ratio of the resistance R",
+          "to the impedance Z."
+        ],
+        "margin_note": "First mark. Either definition earns it; write both — they are the same statement.",
+        "why": "Both printed definitions are one statement: in the impedance triangle R is the side along the current and Z the longest side, so cos φ is exactly R/Z.",
+        "common_mistakes": [
+          "Defining it as the sine of the phase angle. The power factor is the cosine.",
+          "Writing Z/R. The power factor is R over Z, and it can never be more than 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the power factor is the cosine of the phase angle between the voltage and the current, equal to R/Z.",
+          "accept": [
+            "cosine of the phase angle",
+            "cos phi",
+            "R by Z"
+          ],
+          "reject": [
+            "depends on frequency"
+          ],
+          "heard_as": [
+            "power factor",
+            "cos phi"
+          ]
+        },
+        "memory_tip": "Power factor = cos φ = R/Z — cosine, and R on top."
+      },
+      {
+        "id": "s2_depends",
+        "kind": "boxed_final",
+        "label": "What it depends on",
+        "marks": 1,
+        "mark_note": "R and Z, so frequency",
+        "lines": [
+          "It depends on the resistance R and the",
+          "impedance Z of the circuit.",
+          "Z changes with the supply frequency, so the",
+          "power factor also changes with the frequency.",
+          {
+            "text": "cos φ = R / Z",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name R and Z, then add that Z depends on the frequency.",
+        "why": "Naming R and Z answers the asked question; adding that Z depends on frequency shows why the same circuit can have different power factors on different supplies.",
+        "common_mistakes": [
+          "Stopping at R and Z without noting that Z, and so the power factor, changes with the frequency."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the power factor depends on the resistance and the impedance, and through Z on the supply frequency.",
+          "accept": [
+            "depends on R and Z",
+            "Z depends on frequency"
+          ],
+          "reject": [
+            "cosine of the phase angle"
+          ],
+          "heard_as": [
+            "impedance",
+            "frequency"
+          ]
+        },
+        "memory_tip": "Two letters in the formula, two factors it depends on: R and Z."
+      }
+    ]
+  },
+  "insider_note": "The book's own answer adds that Z depends on frequency after naming R and Z — include that line, it is the second half of the asked question."
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_wheat_varieties",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give two examples of wheat varieties introduced in India which are high yielding and disease resistant.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The two varieties",
+      "marks": 1
+    },
+    {
+      "label": "What they achieved",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 127. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two names. Adding one line about the green revolution turns a bare list into an answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The two varieties",
+        "marks": 1,
+        "mark_note": "Names",
+        "margin_note": "Both names. Four lines.",
+        "lines": [
+          "Two high yielding, disease resistant wheat",
+          "varieties introduced in India:",
+          "1. SONALIKA",
+          "2. KALYAN SONA"
+        ],
+        "why": "Both are semi-dwarf wheats derived from the Mexican varieties Borlaug developed, which is why they arrived together.",
+        "common_mistakes": [
+          "Naming Jaya and Ratna. Those are RICE varieties.",
+          "Naming one variety. The question asks for two."
+        ],
+        "memory_tip": "Sonalika and Kalyan Sona are wheat; Jaya and Ratna are rice."
+      },
+      {
+        "id": "s2_achieved",
+        "kind": "boxed_final",
+        "label": "What they achieved",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Semi-dwarf, high yielding, and the green revolution link.",
+        "lines": [
+          {
+            "text": "They are what the green revolution in wheat",
+            "style": "boxed"
+          },
+          {
+            "text": "was made of",
+            "style": "boxed"
+          },
+          "Both are SEMI-DWARF and high yielding.",
+          "They were introduced in the 1960s and raised",
+          "Indian wheat production sharply.",
+          "They are the varieties behind the GREEN",
+          "REVOLUTION in wheat."
+        ],
+        "why": "These varieties are the concrete content of the green revolution, so naming them and naming the revolution together shows the connection.",
+        "common_mistakes": [
+          "Giving the names with no context. The link to the green revolution is the second mark.",
+          "Saying they were developed abroad and used unchanged. They were bred for Indian conditions."
+        ],
+        "memory_tip": "These two names ARE the wheat green revolution."
+      }
+    ]
+  }
+}

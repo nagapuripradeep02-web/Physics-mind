@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_totipotency_and_explant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define totipotency and explant.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Totipotency",
+      "marks": 1
+    },
+    {
+      "label": "Explant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 130. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two definitions and they belong together: totipotency is why an explant works at all.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_toti",
+        "kind": "text",
+        "label": "Totipotency",
+        "marks": 1,
+        "mark_note": "Totipotency",
+        "margin_note": "Definition plus the reason it is possible.",
+        "lines": [
+          "TOTIPOTENCY is the ability of a single cell to",
+          "REGENERATE INTO A COMPLETE PLANT.",
+          "Every living plant cell carries the whole genome,",
+          "so in principle any of them can do it."
+        ],
+        "why": "Each cell carries a complete copy of the genome, so nothing is missing that would stop it rebuilding the whole organism.",
+        "common_mistakes": [
+          "Saying totipotency means a cell can divide. It means it can become a WHOLE PLANT.",
+          "Saying only meristem cells are totipotent. Any living plant cell is, in principle."
+        ],
+        "memory_tip": "One cell, one whole plant."
+      },
+      {
+        "id": "s2_explant",
+        "kind": "boxed_final",
+        "label": "Explant",
+        "marks": 1,
+        "mark_note": "Explant",
+        "margin_note": "Definition with sterile conditions and the medium, plus examples.",
+        "lines": [
+          {
+            "text": "Totipotency is the property; the explant is",
+            "style": "boxed"
+          },
+          {
+            "text": "the piece you start from",
+            "style": "boxed"
+          },
+          "An EXPLANT is any part of a plant that is taken",
+          "out and grown in a test tube, under STERILE",
+          "conditions, in a special NUTRIENT MEDIUM, to",
+          "generate a whole plant.",
+          "Examples: a piece of root, stem, leaf, or a shoot",
+          "tip."
+        ],
+        "why": "The explant is only useful because its cells are totipotent, which is why the two terms are always defined together.",
+        "common_mistakes": [
+          "Saying an explant is a seed. It is any living PART of a plant.",
+          "Leaving out the sterile conditions. They are part of the definition."
+        ],
+        "memory_tip": "Totipotency is why it works; the explant is what you start with."
+      }
+    ]
+  }
+}

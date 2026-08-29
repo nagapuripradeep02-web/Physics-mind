@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_einstein_photoelectric_equation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write down Einstein's photoelectric equation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "Meaning of each term",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.42; the book's heading misprints 'photoelectirc'); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: the card writes the book's form E = W₀ + ½m v(max)² with E = hν, which is energy conservation for one photon absorbed by one electron — photon energy = work function + maximum kinetic energy; identical to hν = φ₀ + ½m v(max)². A lecturer's pen tick marks this question in the source scan as one to expect."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Dual Nature of Radiation and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          "Einstein's photoelectric equation is",
+          {
+            "text": "E = W₀ + ½m v(max)²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The equation itself, with the maximum speed — v(max), not just v.",
+        "why": "One photon gives its whole energy E to one electron. Part of it, W₀, is spent in removing the electron from the surface; the rest appears as the electron's kinetic energy, which is largest for an electron at the surface.",
+        "common_mistakes": [
+          "Writing ½mv² without the maximum. Electrons from below the surface lose extra energy, so only the fastest ones satisfy the equation.",
+          "Writing E = W₀ − ½m v(max)². The kinetic energy is added to the work function, not subtracted."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E equals W naught plus half m v max squared.",
+          "accept": [
+            "E equals W naught plus half m v max squared",
+            "h nu equals work function plus maximum kinetic energy",
+            "photon energy equals work function plus kinetic energy"
+          ],
+          "reject": [
+            "E is the energy of the photon"
+          ],
+          "heard_as": [
+            "W naught",
+            "half m v max squared",
+            "h nu"
+          ]
+        },
+        "memory_tip": "One photon, one electron: energy in = cost to leave + speed to spare."
+      },
+      {
+        "id": "s2_terms",
+        "kind": "text",
+        "label": "Meaning of each term",
+        "marks": 1,
+        "mark_note": "All three terms named",
+        "lines": [
+          "Here E = hν is the energy of the incident",
+          "photon, where h is Planck's constant and ν is",
+          "the frequency of the radiation. W₀ is the",
+          "work function of the metal, and v(max) is the",
+          "maximum speed of the emitted photoelectrons,",
+          "so ½m v(max)² is their maximum kinetic energy."
+        ],
+        "margin_note": "Second mark. Name all three: E as the photon energy hν, W₀ as the work function, v(max) as the maximum speed.",
+        "why": "The equation carries its meaning in its terms. Writing E = hν also gives the second standard form, hν = W₀ + ½m v(max)², at no extra cost.",
+        "common_mistakes": [
+          "Leaving a term unexplained. Each unexplained symbol costs part of the mark.",
+          "Calling W₀ the total energy of the electron. It is the minimum energy needed to remove the electron from the surface."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E is the photon energy h nu, W naught is the work function, and v max is the maximum speed of the photoelectrons.",
+          "accept": [
+            "E is the photon energy",
+            "W naught is the work function",
+            "v max is the maximum speed of the electrons"
+          ],
+          "reject": [
+            "E equals W naught plus half m v max squared"
+          ],
+          "heard_as": [
+            "photon energy",
+            "work function",
+            "maximum speed",
+            "Planck's constant"
+          ]
+        },
+        "memory_tip": "Three symbols, three names: photon energy, work function, maximum speed."
+      }
+    ]
+  },
+  "insider_note": "Write the equation, then spend a full sentence on each symbol — the second mark is for the meanings, not the algebra."
+}

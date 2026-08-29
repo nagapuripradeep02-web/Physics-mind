@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_com_modulation_necessity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Communication System"
+  },
+  "chapter": "Communication System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define modulation. Why is it necessary?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Why it is necessary",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Whether Communication Systems is still on the current Telangana second-year syllabus is UNCONFIRMED — NCERT removed this chapter in the 2023 rationalisation, but this book prints it. A lecturer's pen tick marks this question as expected. Physics hand-checked: modulation combines a low-frequency message signal with a high-frequency carrier by varying the carrier's amplitude, frequency or phase; it is needed because an antenna must be of the order of λ/4 (kilometres long at audio frequency), a low-frequency antenna radiates very little power, and modulation lets signals travel far and keeps different transmitters from mixing — the book's four reasons, all correct."
+  },
+  "recall_prompt": "Define modulation in one sentence, then give the reasons it is necessary — the antenna size argument is the one to include.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Communication System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Message signal combined with a carrier",
+        "lines": [
+          "Modulation is the process of combining a",
+          "low-frequency message signal with a",
+          "high-frequency carrier wave, so that the",
+          "amplitude, frequency or phase of the",
+          "carrier changes according to the signal."
+        ],
+        "margin_note": "First mark. Low-frequency message, high-frequency carrier, and what changes.",
+        "why": "The definition must name both signals and their roles: the message is low frequency and cannot travel well on its own, the carrier is high frequency and can — modulation puts the message onto the carrier by changing one of the carrier's properties.",
+        "common_mistakes": [
+          "Saying two signals are added. The carrier is not added to the message; one of its properties is VARIED according to the message.",
+          "Swapping the roles. The message signal is the low-frequency one; the carrier is the high-frequency one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That modulation combines a low-frequency message signal with a high-frequency carrier by varying the carrier's amplitude, frequency or phase according to the signal.",
+          "accept": [
+            "the message signal is put onto a high-frequency carrier",
+            "a property of the carrier is varied according to the signal",
+            "combining the audio signal with a high-frequency wave"
+          ],
+          "reject": [
+            "it keeps the antenna short"
+          ],
+          "heard_as": [
+            "modulation",
+            "carrier",
+            "message signal",
+            "amplitude frequency or phase"
+          ]
+        },
+        "memory_tip": "Low onto high: the low-frequency message is carried by the high-frequency wave."
+      },
+      {
+        "id": "s2_necessity",
+        "kind": "boxed_final",
+        "label": "Why it is necessary",
+        "marks": 1,
+        "mark_note": "Antenna size is the key reason",
+        "lines": [
+          "Modulation is necessary:",
+          "1. To send signals over long distances.",
+          "2. To keep the antenna size practical — an",
+          {
+            "text": "antenna needs a length of about λ/4, and",
+            "style": "indent"
+          },
+          {
+            "text": "an audio frequency would need one many",
+            "style": "indent"
+          },
+          {
+            "text": "kilometres long.",
+            "style": "indent"
+          },
+          "3. Because an antenna radiates very little",
+          {
+            "text": "power at low frequency.",
+            "style": "indent"
+          },
+          "4. To stop signals from different",
+          {
+            "text": "transmitters from mixing.",
+            "style": "indent"
+          },
+          {
+            "text": "Modulation: message signal onto a carrier",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Two clear reasons are enough; the λ/4 antenna argument is the strongest.",
+        "why": "All four reasons trace back to frequency: an antenna works well only when its length is about a quarter of the wavelength, and at audio frequency λ is hundreds of kilometres — so the signal must be moved to a high frequency, where the antenna is short, the radiated power is useful, and each transmitter can be given its own band.",
+        "common_mistakes": [
+          "Writing λ/4 as λ/2 or 4λ. The working antenna length is about a quarter of the wavelength, λ/4.",
+          "Giving only 'to travel far' with no reason. The antenna-size argument is what earns the mark.",
+          "Saying modulation removes noise. It does not; noise still enters in the channel."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That modulation is needed because an antenna must be about λ/4 long — impossibly long at audio frequency — and low frequencies radiate little power and would mix between transmitters.",
+          "accept": [
+            "the antenna must be about a quarter wavelength",
+            "an audio-frequency antenna would be kilometres long",
+            "low frequency radiates very little power",
+            "it stops different transmitters from mixing"
+          ],
+          "reject": [
+            "a property of the carrier is varied"
+          ],
+          "heard_as": [
+            "lambda by four",
+            "quarter wavelength",
+            "antenna size",
+            "mixing"
+          ]
+        },
+        "memory_tip": "Four reasons, one root: distance, antenna size, radiated power, no mixing — all fixed by raising the frequency."
+      }
+    ]
+  },
+  "insider_note": "One mark for the definition — both signals named with their roles — and one for the necessity, where the λ/4 antenna argument is the reason examiners look for."
+}

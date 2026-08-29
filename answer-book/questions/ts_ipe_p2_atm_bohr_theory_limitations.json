@@ -1,0 +1,211 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_bohr_theory_limitations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the limitations of Bohr's theory of hydrogen atom?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "It works only for one-electron atoms",
+      "marks": 1
+    },
+    {
+      "label": "No intensities and no fine structure",
+      "marks": 1
+    },
+    {
+      "label": "No Zeeman effect and no Stark effect",
+      "marks": 1
+    },
+    {
+      "label": "It mixes classical orbits with a quantum rule",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. SOURCE DEFECT: the book prints this question's title TWICE in a row — \"What are the limitations of Bohr's theory of hydrogen atom ? Limitations of Bohr's theory of hydrogen atom ?\" — it is ONE question and is authored as one card. Physics hand-checked: the book's six numbered limitations are all correct and are kept; the fifth point on the list here (that the theory joins a classical circular orbit to a quantum condition with no reason for either) is added because it is the root of the other five."
+  },
+  "recall_prompt": "List the limitations of Bohr's theory — which atoms it fails for, which spectral details it misses, and what is wrong with the model itself.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atoms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_electron",
+        "kind": "text",
+        "label": "Only one-electron atoms",
+        "marks": 1,
+        "mark_note": "Fails for multi-electron atoms",
+        "lines": [
+          "1. Bohr's theory applies only to hydrogen and",
+          "to hydrogen-like ions with one electron",
+          "(He⁺, Li²⁺). It could not explain the spectra",
+          "of atoms with more than one electron, because",
+          "it leaves out the repulsion between electrons."
+        ],
+        "margin_note": "First mark. Say one-electron atoms only, and give the reason: electron–electron repulsion is left out.",
+        "why": "The whole derivation balances one Coulomb attraction against one centripetal force. With two or more electrons there is also repulsion between them, and the simple orbit picture no longer closes.",
+        "common_mistakes": [
+          "Saying it fails for hydrogen. Hydrogen is the one case it does explain.",
+          "Naming the failure without the reason. The electron–electron repulsion is the reason."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the theory holds only for hydrogen and one-electron ions and fails for multi-electron atoms.",
+          "accept": [
+            "only hydrogen and hydrogen like ions",
+            "fails for multi electron atoms",
+            "repulsion between electrons is not included"
+          ],
+          "reject": [
+            "no fine structure"
+          ],
+          "heard_as": [
+            "hydrogen like",
+            "multi electron",
+            "one electron atoms"
+          ]
+        },
+        "memory_tip": "One electron in the derivation means one electron in the answer."
+      },
+      {
+        "id": "s2_intensity_fine",
+        "kind": "text",
+        "label": "No intensities, no fine structure",
+        "marks": 1,
+        "mark_note": "Two spectral details missing",
+        "lines": [
+          "2. It could not explain why some spectral lines",
+          "are brighter than others — it gives no relative",
+          "intensities.",
+          "3. It could not explain the fine structure: each",
+          "line is really a group of very close lines."
+        ],
+        "margin_note": "Second mark. Two separate points — brightness of lines, and each line splitting into close components.",
+        "why": "Bohr's rule gives the position of each line but says nothing about how strongly a transition occurs, and it has only one quantum number, so it cannot produce closely spaced components.",
+        "common_mistakes": [
+          "Treating intensity and fine structure as one point. They are two.",
+          "Confusing fine structure with the Zeeman splitting. Fine structure appears with no field applied."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the theory gives no relative intensities and no fine structure of the lines.",
+          "accept": [
+            "cannot explain intensity of the lines",
+            "no fine structure",
+            "each line is really several close lines"
+          ],
+          "reject": [
+            "Zeeman effect and Stark effect"
+          ],
+          "heard_as": [
+            "intensities",
+            "fine structure",
+            "closely spaced lines"
+          ]
+        },
+        "memory_tip": "How bright, and how many close lines — Bohr gives neither."
+      },
+      {
+        "id": "s3_fields",
+        "kind": "text",
+        "label": "No Zeeman or Stark effect",
+        "marks": 1,
+        "mark_note": "Splitting in a field",
+        "lines": [
+          "4. It could not explain the Zeeman effect — the",
+          "splitting of spectral lines in a magnetic field.",
+          "5. It could not explain the Stark effect — the",
+          "splitting of spectral lines in an electric field."
+        ],
+        "margin_note": "Third mark. Name both effects and say which field each needs.",
+        "why": "Both effects split one line into several, so the atom must have several states of the same Bohr energy. A model with a single quantum number n has no such states to split.",
+        "common_mistakes": [
+          "Swapping the two: Zeeman is magnetic, Stark is electric.",
+          "Naming the effects without saying what is observed — the splitting of the lines."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it explains neither the Zeeman effect in a magnetic field nor the Stark effect in an electric field.",
+          "accept": [
+            "Zeeman effect in magnetic field",
+            "Stark effect in electric field",
+            "splitting of spectral lines in a field"
+          ],
+          "reject": [
+            "wave nature of the electron"
+          ],
+          "heard_as": [
+            "Zeeman",
+            "Stark",
+            "splitting of lines"
+          ]
+        },
+        "memory_tip": "Zeeman needs a magnetic field; Stark needs an electric field."
+      },
+      {
+        "id": "s4_mixed_model",
+        "kind": "boxed_final",
+        "label": "The model itself is mixed",
+        "marks": 1,
+        "mark_note": "Classical orbit plus quantum rule",
+        "lines": [
+          "6. It says nothing about the wave nature of the",
+          "electron, and it gives no reason why the orbits",
+          "must be circular when elliptical orbits are",
+          "also possible.",
+          "7. It joins a classical circular orbit to a",
+          "quantum condition L = nh/2π with no reason for",
+          "either — the two parts do not follow from one",
+          "theory.",
+          {
+            "text": "Hydrogen only · no fine structure",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The deepest point: half classical, half quantum, and nothing links the halves.",
+        "why": "Every earlier limitation follows from this one. de Broglie later supplied the missing wave picture and quantum mechanics replaced the orbit altogether, which is exactly why Bohr's theory is a step and not the final answer.",
+        "common_mistakes": [
+          "Stopping at the list of failures. The last mark is for saying WHY the model is incomplete.",
+          "Saying Bohr's theory is wrong. Its energy levels for hydrogen are right; the model behind them is incomplete."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the theory says nothing about the wave nature of the electron and joins a classical orbit to a quantum condition with no justification.",
+          "accept": [
+            "says nothing about the wave nature of the electron",
+            "no reason why orbits are circular",
+            "mixes classical and quantum ideas"
+          ],
+          "reject": [
+            "splitting in a magnetic field"
+          ],
+          "heard_as": [
+            "wave nature",
+            "circular orbits",
+            "classical and quantum"
+          ]
+        },
+        "memory_tip": "Half classical orbit, half quantum rule, with nothing joining the halves."
+      }
+    ]
+  },
+  "insider_note": "Number the limitations down the page — the marks follow the count, and a paragraph of prose loses them even when every point is there."
+}

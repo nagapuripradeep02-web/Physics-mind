@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_decreasing_order_of_pkb",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Arrange the following bases in decreasing order of pKb values: C₂H₅NH₂, C₆H₅NHCH₃, (C₂H₅)₂NH and C₆H₅NH₂.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The decreasing pKb order",
+      "marks": 1
+    },
+    {
+      "label": "The reason for the order",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.115 as VSAQ 4. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: the printed order C₆H₅NH₂ > C₆H₅NHCH₃ > C₂H₅NH₂ > (C₂H₅)₂NH is CORRECT and is kept. Measured pKb values, which the book does not print, are aniline 9.38, N-methylaniline 9.30, ethylamine 3.29, diethylamine 3.02; they are added here so the order can be checked rather than memorised. BOOK STYLE: the printed question and answer write the symbol as \"Pᵏᵇ\" with a capital P; the standard form pKb is used here, and the card states in full that a larger pKb means a weaker base, which the book never says. BOOK LAYOUT: the printed answer breaks across two lines so that C₂H₅NH₂ > (C₂H₅)₂NH appears indented below, which can be misread as a separate order; it is one four-term chain."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_order",
+        "kind": "boxed_final",
+        "label": "The decreasing pKb order",
+        "marks": 1,
+        "mark_note": "Order",
+        "lines": [
+          "A larger pKb means a WEAKER base, so the",
+          "weakest base is written first.",
+          {
+            "text": "C₆H₅NH₂ > C₆H₅NHCH₃ >",
+            "style": "eq"
+          },
+          {
+            "text": "C₂H₅NH₂ > (C₂H₅)₂NH",
+            "style": "indent"
+          },
+          {
+            "text": "pKb: 9.38 > 9.30 > 3.29 > 3.02",
+            "style": "boxed"
+          }
+        ],
+        "why": "pKb = −log Kb, so a base with a small Kb has a large pKb. Decreasing pKb therefore runs from the weakest base to the strongest, which is the reverse of a basic-strength order. Reading the question the wrong way round reverses the whole answer, so the first thing to state is which way pKb runs.",
+        "common_mistakes": [
+          "Writing the order of basic strength instead. Decreasing pKb starts with the WEAKEST base, so aniline comes first, not last.",
+          "Placing diethylamine first because it is the strongest base. The strongest base has the SMALLEST pKb and comes last."
+        ],
+        "memory_tip": "Large pKb means weak base. Decreasing pKb runs weakest first, so the two aryl amines come first and the two alkyl amines come after.",
+        "margin_note": "Write the sentence \"larger pKb means weaker base\" before the chain. It shows the examiner the order is not a guess."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "The reason for the order",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "In aniline the nitrogen lone pair is in",
+          "conjugation with the ring and is spread over",
+          "it, so it is less available to a proton.",
+          "Both aryl amines are therefore much weaker",
+          "bases than the two alkyl amines.",
+          "The N-methyl group of C₆H₅NHCH₃ releases",
+          "electron density (+I), so it is slightly",
+          "stronger than aniline.",
+          "Two ethyl groups release more than one, so",
+          "(C₂H₅)₂NH is stronger than C₂H₅NH₂."
+        ],
+        "why": "Two separate effects set this order. Conjugation with the benzene ring removes the lone pair from the nitrogen and separates the aryl amines from the alkyl amines by about six pKb units. Within each pair, the inductive effect of an added alkyl group makes the lone pair more available and lowers pKb a little.",
+        "common_mistakes": [
+          "Saying aniline is a weak base because the ring is bulky. The reason is conjugation of the lone pair with the ring, not size.",
+          "Extending \"more alkyl groups means stronger base\" to the 3° amine in water. Triethylamine is a WEAKER base than diethylamine, because the three ethyl groups block water molecules from reaching the cation."
+        ],
+        "memory_tip": "Ring first, then alkyl count: conjugation makes the two aryl amines weak, and an extra alkyl group makes each amine slightly stronger.",
+        "margin_note": "One sentence on conjugation and one on the +I effect finish this mark. The exception at the 3° amine is worth adding."
+      }
+    ]
+  },
+  "insider_note": "This question is about pKb, not basic strength, and the two run in opposite directions. Write \"larger pKb means weaker base\" first, then the chain — a reversed chain scores nothing even though the chemistry behind it may be right."
+}

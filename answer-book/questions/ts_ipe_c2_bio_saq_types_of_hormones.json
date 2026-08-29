@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_types_of_hormones",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are hormones? Give one example for each: i) Steroid hormones ii) Polypeptide hormones iii) Amino acid derivatives",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What hormones are",
+      "marks": 1
+    },
+    {
+      "label": "i) Steroid hormones",
+      "marks": 1
+    },
+    {
+      "label": "ii) Polypeptide hormones",
+      "marks": 1
+    },
+    {
+      "label": "iii) Amino acid derivatives",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.103 as SAQ 11. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, corrected here. The printed answer gives the polypeptide hormone examples as \"Insulin, Glycogen\". Glycogen is a POLYSACCHARIDE, the animal storage carbohydrate, and is not a hormone at all; the intended word is GLUCAGON, the pancreatic hormone that raises blood glucose. This card writes glucagon and names the confusion as a common mistake. The same book defines glycogen correctly as a carbohydrate in VSAQ 6 on book p.99, so it contradicts itself. The printed question ends \"Give one example for each\" with no question mark; a question mark is added in question_text and the three sub-parts are set on one line."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What hormones are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Hormones are organic compounds made by the",
+          "ductless glands, also called the endocrine",
+          "glands.",
+          "They are carried by the blood to a target",
+          "organ, where they control a process.",
+          "They are needed in very small amounts and",
+          "are not stored in the body."
+        ],
+        "why": "Three facts define a hormone: it is made in a ductless gland, it travels in the blood, and it acts somewhere else. The word ductless matters, because a gland with a duct delivers its product straight to where it is used and its product is not a hormone.",
+        "common_mistakes": [
+          "Writing that hormones are enzymes. Hormones control a process; enzymes catalyse a reaction.",
+          "Leaving out that they travel in the blood. Acting at a distance from where they are made is part of the definition."
+        ],
+        "memory_tip": "Made in a ductless gland, carried by blood, acts elsewhere.",
+        "margin_note": "The word \"ductless\" and the words \"carried by the blood\" are what mark this step."
+      },
+      {
+        "id": "s2_steroid",
+        "kind": "text",
+        "label": "i) Steroid hormones",
+        "marks": 1,
+        "mark_note": "Steroid example",
+        "lines": [
+          "i) Steroid hormones",
+          "These are built on the four-ring steroid skeleton.",
+          "Ex: estrogen and progesterone.",
+          "Testosterone is a steroid hormone as well."
+        ],
+        "why": "Steroid hormones are all built on the same four-ring carbon framework and differ only in the groups attached to it, which is why they are grouped by structure rather than by what they do. They are fat soluble, so they pass through cell membranes easily.",
+        "common_mistakes": [
+          "Giving insulin as a steroid. Insulin is a polypeptide hormone.",
+          "Writing that steroid hormones are proteins. They are built on a carbon ring skeleton, not from amino acids."
+        ],
+        "memory_tip": "Steroid means the four fused rings, the same skeleton as cholesterol.",
+        "margin_note": "One named example is enough for each type. Naming the class by its structure is what earns the mark."
+      },
+      {
+        "id": "s3_polypeptide",
+        "kind": "text",
+        "label": "ii) Polypeptide hormones",
+        "marks": 1,
+        "mark_note": "Polypeptide example",
+        "lines": [
+          "ii) Polypeptide hormones",
+          "These are chains of amino acids joined by",
+          "peptide linkages.",
+          "Ex: insulin and glucagon.",
+          "Insulin lowers the blood glucose level and",
+          "glucagon raises it."
+        ],
+        "why": "Insulin and glucagon are both made in the pancreas and both are short amino acid chains, and they act in opposite directions on the same quantity. Giving the pair shows what the class is and what it does at the same time.",
+        "common_mistakes": [
+          "Giving glycogen instead of glucagon. Glycogen is a polysaccharide, not a hormone; glucagon is the hormone.",
+          "Writing that a polypeptide hormone is a steroid. These are amino acid chains, not ring compounds."
+        ],
+        "memory_tip": "Insulin lowers glucose, glucagon raises it. Both are amino acid chains.",
+        "margin_note": "Glucagon, not glycogen. The two words differ by two letters and only one is a hormone."
+      },
+      {
+        "id": "s4_amino_derivative",
+        "kind": "boxed_final",
+        "label": "iii) Amino acid derivatives",
+        "marks": 1,
+        "mark_note": "Amino acid derivative example",
+        "lines": [
+          {
+            "text": "Steroid · polypeptide · amino acid derived",
+            "style": "boxed"
+          },
+          "iii) Amino acid derivatives",
+          "These are made from a single amino acid.",
+          "Ex: thyroxine and epinephrine, which is also",
+          "called adrenaline.",
+          "Thyroxine is made from the amino acid",
+          "tyrosine."
+        ],
+        "why": "This class sits between the other two: the molecule is small, like a steroid, but it is built from an amino acid, like a polypeptide. Saying which amino acid thyroxine comes from is what makes the class name mean something.",
+        "common_mistakes": [
+          "Calling thyroxine a polypeptide. It is derived from one amino acid, not built from a chain of them.",
+          "Giving progesterone here. Progesterone is a steroid hormone."
+        ],
+        "memory_tip": "One amino acid, not a chain: thyroxine and adrenaline.",
+        "margin_note": "Three classes, each with a named example. That structure is the whole answer."
+      }
+    ]
+  },
+  "insider_note": "One definition and three named examples. The trap is writing glycogen for glucagon, which the book itself does; glycogen is a carbohydrate."
+}

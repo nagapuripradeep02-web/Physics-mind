@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_contact_process",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain in detail the manufacture of sulphuric acid by contact process.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Step I — SO₂ from sulphur",
+      "marks": 1
+    },
+    {
+      "label": "Step II — catalytic oxidation to SO₃",
+      "marks": 1
+    },
+    {
+      "label": "Step III — oleum",
+      "marks": 1
+    },
+    {
+      "label": "Dilution to sulphuric acid",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is Short Answer Question 1, the only one in that sub-box, book p.85. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. All four printed equations were checked and balance: S + O₂ → SO₂; 2SO₂ + O₂ → 2SO₃; SO₃ + H₂SO₄ → H₂S₂O₇ (H 2, S 2, O 7 each side); H₂S₂O₇ + H₂O → 2H₂SO₄ (H 4, S 2, O 8 each side). BOOK GAPS, all four written on this card: (1) no operating conditions are printed at all, no temperature and no pressure, on a question that says \"in detail\"; (2) step 2 is printed with a single arrow although the reaction is reversible, which removes the whole Le Chatelier argument; (3) no reason is printed for absorbing SO₃ in 98% sulphuric acid rather than in water; (4) no enthalpy change is printed. BOOK WORDING: \"98% con H₂SO₄\" for \"98% concentrated H₂SO₄\". CONDITIONS USED HERE are NCERT Class 12 p-block: ΔH = −196.6 kJ mol⁻¹, catalyst V₂O₅, about 2 bar and 720 K, product 96-98% pure. CROSS-BANK CONFLICT, for a teacher to settle: the Chemistry-I card ts_ipe_c1_ce_lechatelier_industrial gives the SAME reaction as ΔH = −189 kJ at about 673 K and 1.5-1.7 atm. Both sets of figures are in circulation in Indian textbooks. That card was NOT edited from this desk; the difference is recorded here so the two are reconciled together."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "VIA Group Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_burning_sulphur",
+        "kind": "text",
+        "label": "Step I — SO₂ from sulphur",
+        "marks": 1,
+        "mark_note": "Step I",
+        "lines": [
+          "The contact process has three steps.",
+          "Step I: Sulphur, or a sulphide ore such as",
+          "iron pyrites, is burnt in air to give sulphur",
+          "dioxide.",
+          {
+            "text": "S + O₂ → SO₂",
+            "style": "eq"
+          },
+          {
+            "text": "4FeS₂ + 11O₂ → 2Fe₂O₃ + 8SO₂",
+            "style": "eq"
+          },
+          "The SO₂ is then purified. Dust and arsenic",
+          "compounds must be removed, because they",
+          "poison the catalyst used in Step II."
+        ],
+        "why": "The whole plant depends on one catalyst, and that catalyst is destroyed by arsenic compounds carried over from the ore. So the first step is not only making SO₂ but making it clean, which is why purification is named as part of Step I in every full account of the process.",
+        "common_mistakes": [
+          "Writing S + 2O₂ → SO₂. One sulphur atom takes one oxygen molecule; the equation as printed already balances.",
+          "Leaving out the purification. On a question that says in detail, the arsenic line is often the difference between one mark and none."
+        ],
+        "memory_tip": "Burn, clean, then oxidise. The cleaning step is there because arsenic compounds destroy the catalyst.",
+        "margin_note": "One equation and the word purified earn this mark. The pyrites equation is optional supporting content."
+      },
+      {
+        "id": "s2_catalytic_oxidation",
+        "kind": "equation",
+        "label": "Step II — catalytic oxidation to SO₃",
+        "marks": 1,
+        "mark_note": "Step II",
+        "lines": [
+          "Step II: The purified SO₂ is oxidised by",
+          "atmospheric oxygen over a V₂O₅ catalyst.",
+          {
+            "text": "2SO₂(g) + O₂(g) ⇌ 2SO₃(g)",
+            "style": "eq"
+          },
+          {
+            "text": "ΔH = −196.6 kJ mol⁻¹",
+            "style": "indent"
+          },
+          "The forward reaction is exothermic and the",
+          "gas moles fall from 3 to 2, so by Le",
+          "Chatelier's principle a low temperature and",
+          "a high pressure give the most SO₃.",
+          "Too low a temperature makes the reaction",
+          "slow, so the plant is run at about 720 K and",
+          "2 bar, which is a compromise."
+        ],
+        "why": "This is the step the process is named after: the gases react on the surface of the solid catalyst, that is, in contact with it. The conditions are the marked content, and they are a compromise rather than the ideal, because the yield and the rate want opposite temperatures. Naming that compromise is what separates a full answer from a list of three equations.",
+        "common_mistakes": [
+          "Drawing a single arrow. The reaction is reversible, and with a single arrow the Le Chatelier argument has nothing to stand on.",
+          "Writing that a high temperature is used to increase the yield. A high temperature lowers the yield of an exothermic reaction; it is used only for speed.",
+          "Naming Fe₂O₃ or platinum as the catalyst. The catalyst is V₂O₅, vanadium pentoxide."
+        ],
+        "memory_tip": "Exothermic and fewer gas moles, so a low temperature and a high pressure. Then raise the temperature a little for speed: 720 K, 2 bar.",
+        "margin_note": "The equilibrium arrow, V₂O₅, and one line of conditions earn this mark. The arrow is the part most often written wrong."
+      },
+      {
+        "id": "s3_oleum",
+        "kind": "equation",
+        "label": "Step III — oleum",
+        "marks": 1,
+        "mark_note": "Step III",
+        "lines": [
+          "Step III: The SO₃ is absorbed in 98%",
+          "sulphuric acid to give oleum, which is also",
+          "called fuming sulphuric acid.",
+          {
+            "text": "SO₃ + H₂SO₄ → H₂S₂O₇",
+            "style": "eq"
+          },
+          "SO₃ is not absorbed in water directly.",
+          "That reaction is very fast and gives a fine",
+          "mist of sulphuric acid which is difficult to",
+          "condense, so the acid would be lost."
+        ],
+        "why": "SO₃ and water do react to give sulphuric acid, so the obvious route looks right and is not used. The reaction is so fast and so exothermic that the acid forms as a fog of fine droplets that will not settle. Dissolving SO₃ in acid that is already 98% strong avoids the fog, and the oleum is diluted afterwards under control.",
+        "common_mistakes": [
+          "Writing SO₃ + H₂O → H₂SO₄ as the plant reaction. That is the reaction being avoided, and saying so is part of this mark.",
+          "Calling H₂S₂O₇ sulphurous acid. It is oleum, or pyrosulphuric acid."
+        ],
+        "memory_tip": "Water gives a fog, acid does not. So SO₃ goes into 98% acid first and meets water only later.",
+        "margin_note": "The oleum equation plus one line saying water is not used earn this mark. Name the product oleum."
+      },
+      {
+        "id": "s4_dilution",
+        "kind": "boxed_final",
+        "label": "Dilution to sulphuric acid",
+        "marks": 1,
+        "mark_note": "Dilution",
+        "lines": [
+          "Step III is completed by diluting the oleum",
+          "with the correct amount of water.",
+          {
+            "text": "H₂S₂O₇ + H₂O → 2H₂SO₄",
+            "style": "boxed"
+          },
+          "One molecule of oleum gives two molecules",
+          "of sulphuric acid.",
+          "The acid made by the contact process is",
+          "96% to 98% pure."
+        ],
+        "why": "Dilution is where the acid of the wanted strength is finally made, and the amount of water added is what fixes that strength. The equation is worth checking atom by atom: two sulphur, four hydrogen and eight oxygen on each side, which is why one mole of oleum gives two moles of acid and not one.",
+        "common_mistakes": [
+          "Writing H₂S₂O₇ + H₂O → H₂SO₄. Two molecules of acid are formed; the equation does not balance with one.",
+          "Stopping at the oleum. The question asks for the manufacture of sulphuric acid, so the last equation has to be written."
+        ],
+        "memory_tip": "Oleum plus one water gives two acids. Two sulphur atoms in, two acid molecules out.",
+        "margin_note": "Box the final equation and give the purity. A process answer that stops at oleum reads as unfinished."
+      }
+    ]
+  },
+  "insider_note": "Three equations are easy marks and most students get them. The mark that separates answers is Step II: write the reversible arrow, V₂O₅, and one line saying the temperature is a compromise between yield and rate."
+}

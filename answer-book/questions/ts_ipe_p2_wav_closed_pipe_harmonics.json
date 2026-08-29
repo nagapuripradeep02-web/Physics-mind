@@ -1,0 +1,399 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_closed_pipe_harmonics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "How are the stationary waves formed in a closed pipe? Explain the various modes of vibrations in a closed pipe and establish the relation between their frequencies.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Closed pipe and its boundary condition",
+      "marks": 1
+    },
+    {
+      "label": "First harmonic",
+      "marks": 2
+    },
+    {
+      "label": "Third harmonic",
+      "marks": 2
+    },
+    {
+      "label": "Fifth harmonic",
+      "marks": 2
+    },
+    {
+      "label": "The ratio 1 : 3 : 5",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+2+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it — the figure carries 0 marks because the question does not ask for a diagram. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: a closed pipe holds a node at the closed end and an antinode at the open end, so the fits are l = λ/4, 3λ/4, 5λ/4 …, giving n₁ = v/4l, n₃ = 3n₁, n₅ = 5n₁ — the ratio 1 : 3 : 5 with only odd harmonics present."
+  },
+  "recall_prompt": "Say the derivation in order — the closed-pipe boundary condition, then the first, third and fifth harmonics, and the ratio.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Waves · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_closed_pipe",
+        "kind": "text",
+        "label": "Closed pipe and its boundary condition",
+        "marks": 1,
+        "mark_note": "Node at closed end, antinode at open end",
+        "lines": [
+          "An organ pipe with one end closed and",
+          "the other end open is a closed organ",
+          "pipe.",
+          "Sound waves reflect at the ends and",
+          "superpose, forming stationary waves in",
+          "the air column. The air at the closed",
+          "end cannot move, so a node always forms",
+          "there; the air at the open end moves",
+          "freely, so an antinode always forms at",
+          "the open end."
+        ],
+        "margin_note": "First mark. The two fixed facts — node at the closed end, antinode at the open end — set up every mode.",
+        "why": "The wall stops the air from moving (zero displacement, a node) while the open end leaves it free (maximum displacement, an antinode). Every allowed mode must satisfy both ends at once, and that is what selects the quarter-wave fits.",
+        "common_mistakes": [
+          "Placing the antinode at the closed end — the wall cannot move, so the closed end is always a node.",
+          "Copying the open-pipe condition — an open PIPE has antinodes at both ends; a closed pipe has one of each."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a closed pipe always has a node at the closed end and an antinode at the open end.",
+          "accept": [
+            "node at the closed end",
+            "antinode at the open end",
+            "the wall stops the air moving"
+          ],
+          "reject": [
+            "antinode at each end"
+          ],
+          "heard_as": [
+            "closed pipe",
+            "node",
+            "antinode"
+          ]
+        },
+        "memory_tip": "Wall = still air = node. Opening = free air = antinode."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The fundamental mode",
+        "marks": 0,
+        "figure": {
+          "id": "closed_pipe_fundamental",
+          "width": 340,
+          "height": 160,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "pipe_top",
+              "d": "M 40 50 L 300 50",
+              "ms": 3710
+            },
+            {
+              "type": "stroke",
+              "id": "pipe_bot",
+              "d": "M 40 110 L 300 110",
+              "ms": 3710
+            },
+            {
+              "type": "stroke",
+              "id": "pipe_end",
+              "d": "M 300 50 L 300 110",
+              "ms": 860
+            },
+            {
+              "type": "stroke",
+              "id": "curve_up",
+              "d": "M 40 55 Q 170 60 300 80",
+              "ms": 3730
+            },
+            {
+              "type": "stroke",
+              "id": "curve_dn",
+              "d": "M 40 105 Q 170 100 300 80",
+              "ms": 3730
+            },
+            {
+              "type": "label",
+              "id": "lbl_an",
+              "x": 30,
+              "y": 42,
+              "text": "an",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 306,
+              "y": 75,
+              "text": "n",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "len_line",
+              "d": "M 40 135 L 300 135",
+              "ms": 3710
+            },
+            {
+              "type": "stroke",
+              "id": "len_head_l",
+              "d": "M 49 130 L 40 135 L 49 140",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "len_head_r",
+              "d": "M 291 130 L 300 135 L 291 140",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_len",
+              "x": 140,
+              "y": 128,
+              "text": "l = λ₁/4",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The fundamental: antinode at the open (left) end, node at the closed wall — a quarter wavelength in the pipe.",
+        "why": "The sketch is the boundary condition made visible: one antinode-to-node span is a quarter of a wavelength, and that single span fills the whole pipe in the fundamental.",
+        "common_mistakes": [
+          "Drawing the closed wall on the antinode side — the wall belongs at the node."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the fundamental fits a quarter wavelength: antinode at the open end to node at the closed end.",
+          "accept": [
+            "draw the pipe closed at one end",
+            "antinode at the open end, node at the wall",
+            "a quarter wavelength fits"
+          ],
+          "reject": [
+            "n three equals three n one"
+          ],
+          "heard_as": [
+            "figure",
+            "quarter wave",
+            "diagram"
+          ]
+        },
+        "memory_tip": "Antinode to node is a quarter wave — the closed pipe's fundamental is exactly one such span."
+      },
+      {
+        "id": "s3_first",
+        "kind": "equation",
+        "label": "First harmonic",
+        "marks": 2,
+        "mark_note": "n₁ = v/4l",
+        "lines": [
+          "The first harmonic (fundamental) has one",
+          "node at the closed end and one antinode",
+          "at the open end, so a quarter wavelength",
+          "fits the pipe:",
+          {
+            "text": "l = λ₁/4 → λ₁ = 4l",
+            "style": "eq"
+          },
+          "With v the speed of sound in air:",
+          {
+            "text": "n₁ = v/λ₁ = v/4l … (1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: the quarter-wave fit, then n₁ = v/4l.",
+        "why": "One antinode-to-node span is the smallest piece of a wave that satisfies both ends, and it is a quarter of a full wavelength — that is why 4l appears under v, where the open pipe had 2l.",
+        "common_mistakes": [
+          "Writing l = λ₁/2 — the half-wave fit is the OPEN pipe's; the closed pipe fits a quarter wave.",
+          "Confusing displacement with pressure — these node/antinode positions are for displacement."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a quarter wavelength fits the closed pipe, so λ₁ = 4l and n₁ = v/4l.",
+          "accept": [
+            "l is lambda by four",
+            "lambda one is 4l",
+            "n one is v by 4l"
+          ],
+          "reject": [
+            "lambda one is 2l"
+          ],
+          "heard_as": [
+            "fundamental",
+            "v by 4l",
+            "quarter wavelength"
+          ]
+        },
+        "memory_tip": "Closed pipe fundamental: quarter wave in the pipe, so 4l under the v."
+      },
+      {
+        "id": "s4_third",
+        "kind": "equation",
+        "label": "Third harmonic",
+        "marks": 2,
+        "mark_note": "n₃ = 3n₁",
+        "lines": [
+          "The next possible mode has two nodes and",
+          "two antinodes. Three quarter-wavelengths",
+          "fit the pipe:",
+          {
+            "text": "l = 3λ₃/4 → λ₃ = 4l/3",
+            "style": "eq"
+          },
+          {
+            "text": "n₃ = v/λ₃ = 3v/4l = 3(v/4l)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ n₃ = 3n₁ … (2)",
+            "style": "eq"
+          },
+          "This is the third harmonic — the first",
+          "overtone of the closed pipe."
+        ],
+        "margin_note": "Two marks: λ₃ = 4l/3 from the fit, then n₃ = 3n₁ — the SECOND harmonic never appears.",
+        "why": "Adding one node-antinode pair adds half a wavelength — two more quarters — to the quarter-wave fit, taking it from 1 quarter to 3. The count jumps 1 → 3, skipping 2: the closed pipe cannot sound the even harmonics.",
+        "common_mistakes": [
+          "Calling this mode the second harmonic — the frequency is 3n₁, so it IS the third harmonic; no mode at 2n₁ exists.",
+          "Writing l = λ₃ — one full wavelength has a node at BOTH ends and cannot satisfy the open end."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the next mode fits three quarter-wavelengths, λ₃ = 4l/3, giving n₃ = 3n₁.",
+          "accept": [
+            "two nodes and two antinodes",
+            "lambda three is 4l by 3",
+            "n three is three n one"
+          ],
+          "reject": [
+            "three nodes and three antinodes"
+          ],
+          "heard_as": [
+            "third harmonic",
+            "first overtone",
+            "4l by 3"
+          ]
+        },
+        "memory_tip": "Each new mode adds TWO quarters, so the count goes 1, 3, 5 — odd numbers only."
+      },
+      {
+        "id": "s5_fifth",
+        "kind": "equation",
+        "label": "Fifth harmonic",
+        "marks": 2,
+        "mark_note": "n₅ = 5n₁",
+        "lines": [
+          "The next overtone has three nodes and",
+          "three antinodes. Five quarter-wavelengths",
+          "fit the pipe:",
+          {
+            "text": "l = 5λ₅/4 → λ₅ = 4l/5",
+            "style": "eq"
+          },
+          {
+            "text": "n₅ = v/λ₅ = 5v/4l = 5(v/4l)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ n₅ = 5n₁ … (3)",
+            "style": "eq"
+          },
+          "This is the fifth harmonic — the second",
+          "overtone of the closed pipe."
+        ],
+        "margin_note": "Two marks: λ₅ = 4l/5 from the fit, then n₅ = 5n₁.",
+        "why": "The same two-quarter jump repeats: 3 quarters become 5. Establishing this third point is what proves the pattern is 1, 3, 5 and not a coincidence of the first two modes.",
+        "common_mistakes": [
+          "Numbering it the third overtone — count overtones from the fundamental: 3n₁ is the first, 5n₁ the second.",
+          "Writing λ₅ = 5l/4 — invert carefully: l = 5λ₅/4 gives λ₅ = 4l/5."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the following mode fits five quarter-wavelengths, λ₅ = 4l/5, giving n₅ = 5n₁.",
+          "accept": [
+            "three nodes and three antinodes",
+            "lambda five is 4l by 5",
+            "n five is five n one"
+          ],
+          "reject": [
+            "lambda three is 4l by 3"
+          ],
+          "heard_as": [
+            "fifth harmonic",
+            "second overtone",
+            "4l by 5"
+          ]
+        },
+        "memory_tip": "Quarters count 1, 3, 5 — and the harmonic numbers copy the quarter count exactly."
+      },
+      {
+        "id": "s6_ratio",
+        "kind": "boxed_final",
+        "label": "The ratio",
+        "marks": 1,
+        "mark_note": "1 : 3 : 5, odd harmonics only",
+        "lines": [
+          "From equations (1), (2) and (3), the",
+          "fundamental and the overtones are in the",
+          "ratio:",
+          {
+            "text": "n₁ : n₃ : n₅ = 1 : 3 : 5 …",
+            "style": "boxed"
+          },
+          "A closed pipe produces only the odd",
+          "harmonics; the even harmonics are",
+          "absent."
+        ],
+        "margin_note": "Final mark. The ratio AND the sentence — only odd harmonics are present.",
+        "why": "The skipped even numbers are the closed pipe's signature and the standard contrast with the open pipe's 1 : 2 : 3 — the concluding sentence is the physics the whole derivation was building toward.",
+        "common_mistakes": [
+          "Writing 1 : 2 : 3 — that is the OPEN pipe; the closed pipe skips every even harmonic.",
+          "Giving the ratio without the odd-harmonics sentence — the ratio is evidence, the sentence is the conclusion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the frequencies are in the ratio 1 : 3 : 5 and only odd harmonics are present.",
+          "accept": [
+            "one is to three is to five",
+            "only odd harmonics",
+            "even harmonics are absent"
+          ],
+          "reject": [
+            "one is to two is to three"
+          ],
+          "heard_as": [
+            "ratio",
+            "1 3 5",
+            "odd harmonics"
+          ]
+        },
+        "memory_tip": "Closed pipe, closed to evens: 1, 3, 5, … only."
+      }
+    ]
+  },
+  "insider_note": "One end of each kind forces quarter-wave fits, and quarter counts can only be odd — hold that one sentence and the whole 1 : 3 : 5 answer rebuilds itself."
+}

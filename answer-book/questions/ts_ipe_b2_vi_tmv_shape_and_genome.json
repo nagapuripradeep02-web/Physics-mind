@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_vi_tmv_shape_and_genome",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Viruses (Botany-II)"
+  },
+  "chapter": "Viruses",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the shape of TMV? What is its genetic material?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Shape",
+      "marks": 1
+    },
+    {
+      "label": "Genetic material",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.51, printed question 164. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two short facts. Add the nucleotide count if you remember it; it costs one line and reads as precise knowledge.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Viruses (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shape",
+        "kind": "text",
+        "label": "Shape",
+        "marks": 1,
+        "mark_note": "Shape",
+        "margin_note": "Expansion plus the shape. Two lines.",
+        "lines": [
+          "TMV stands for TOBACCO MOSAIC VIRUS.",
+          "Its shape is a ROD."
+        ],
+        "why": "The rod shape comes from its capsomeres being stacked in a helix rather than packed into a sphere.",
+        "common_mistakes": [
+          "Saying TMV is spherical or polyhedral. It is ROD shaped.",
+          "Not expanding TMV. The full name is part of a complete answer."
+        ],
+        "memory_tip": "A rod, because the coat is a helix."
+      },
+      {
+        "id": "s2_genome",
+        "kind": "boxed_final",
+        "label": "Genetic material",
+        "marks": 1,
+        "mark_note": "Genome",
+        "margin_note": "Type, strandedness, count. Four lines.",
+        "lines": [
+          {
+            "text": "Single stranded RNA, about 6500 nucleotides",
+            "style": "boxed"
+          },
+          "Its genetic material is SINGLE STRANDED RNA.",
+          "The strand has about 6,500 nucleotides.",
+          "It lies spirally coiled inside the hollow core."
+        ],
+        "why": "TMV is one of the standard examples of an RNA virus, which is why this fact is asked so often.",
+        "common_mistakes": [
+          "Saying TMV has DNA. Its genetic material is RNA.",
+          "Saying the RNA is double stranded. It is SINGLE stranded."
+        ],
+        "memory_tip": "RNA, single stranded, coiled."
+      }
+    ]
+  }
+}

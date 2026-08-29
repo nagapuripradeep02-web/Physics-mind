@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_acidic_and_neutral_oxides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give an example of a) acidic oxide of phosphorus b) neutral oxide of nitrogen",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Acidic oxide of phosphorus",
+      "marks": 1
+    },
+    {
+      "label": "Neutral oxide of nitrogen",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.83 as VSAQ 14. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK (book p.83, VSAQ 14): the printed equation P₄O₁₀ + 6H₂O → 4H₃PO₄ was atom-counted and is balanced (P 4, H 12, O 16 on both sides). BOOK SLOPPINESS: the book writes \"P₂O₃, P₂O₅ (or) P₄O₆, P₄O₁₀\" as though the pairs were alternatives of equal standing. P₂O₃ and P₂O₅ are only the empirical formulae; the molecules that exist are P₄O₆ and P₄O₁₀, and this card says so. TREND AND EXCEPTION: acidic character of the group-15 oxides FALLS down the group (N₂O₃ and P₄O₆ acidic, As₄O₆ and Sb₄O₆ amphoteric, Bi₂O₃ basic) and RISES with oxidation state for one element (P₄O₁₀ is more acidic than P₄O₆). The exception is written on the same card and is exactly what part (b) asks about: not every oxide of nitrogen is acidic — N₂O and NO are neutral, while N₂O₃ and N₂O₅ are acidic."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_acidic_oxide",
+        "kind": "text",
+        "label": "Acidic oxide of phosphorus",
+        "marks": 1,
+        "mark_note": "Part (a)",
+        "lines": [
+          "a) P₄O₁₀ (empirical formula P₂O₅) is an",
+          "acidic oxide of phosphorus.",
+          "It dissolves in water and gives an acid, so it",
+          "is the anhydride of that acid.",
+          {
+            "text": "P₄O₁₀ + 6H₂O → 4H₃PO₄",
+            "style": "eq"
+          },
+          "P₄O₆ (empirical P₂O₃) is acidic in the same",
+          "way and gives H₃PO₃."
+        ],
+        "why": "An oxide is called acidic when it reacts with water to give an acid, or with a base to give a salt, so the definition needs an equation and not just a name. Both oxides of phosphorus are acidic, and the higher oxide P₄O₁₀ is the more acidic of the two because phosphorus is in the higher oxidation state, +5.",
+        "common_mistakes": [
+          "Writing P₂O₅ as the molecule. P₂O₅ is only the empirical formula; the molecule is P₄O₁₀.",
+          "Giving H₃PO₃ as the product from P₄O₁₀. P₄O₁₀ gives H₃PO₄; P₄O₆ gives H₃PO₃."
+        ],
+        "memory_tip": "Ten oxygens give phosphoric acid H₃PO₄, six oxygens give phosphorous acid H₃PO₃.",
+        "margin_note": "One named oxide plus its hydrolysis equation earns this mark. Do not stop at the formula alone."
+      },
+      {
+        "id": "s2_neutral_oxide",
+        "kind": "boxed_final",
+        "label": "Neutral oxide of nitrogen",
+        "marks": 1,
+        "mark_note": "Part (b)",
+        "lines": [
+          {
+            "text": "b) N₂O and NO are neutral oxides.",
+            "style": "boxed"
+          },
+          "They are neither acidic nor basic: they do",
+          "not react with water, acid or alkali, and they",
+          "form no salt.",
+          "Not every oxide of nitrogen is neutral —",
+          "N₂O₃ and N₂O₅ are acidic:",
+          {
+            "text": "N₂O₅ + H₂O → 2HNO₃",
+            "style": "eq"
+          }
+        ],
+        "why": "The two neutral oxides are the two with nitrogen in a low oxidation state, +1 in N₂O and +2 in NO. The higher oxides are acidic, which is why the answer must NAME which oxides are neutral rather than saying \"the oxides of nitrogen are neutral\". Down group 15 the oxides become less acidic and more basic overall: N₂O₃ and P₄O₆ are acidic, As₄O₆ and Sb₄O₆ are amphoteric, and Bi₂O₃ is basic.",
+        "common_mistakes": [
+          "Giving NO₂ as a neutral oxide. NO₂ is acidic; with water it gives a mixture of HNO₂ and HNO₃.",
+          "Writing that all nitrogen oxides are neutral. Only N₂O and NO are; N₂O₃ and N₂O₅ are acidic."
+        ],
+        "memory_tip": "The two low ones are neutral: N₂O at +1 and NO at +2. Everything above them is acidic.",
+        "margin_note": "Two formulae, N₂O and NO, with the words \"neither acidic nor basic\", complete this mark."
+      }
+    ]
+  },
+  "insider_note": "Part (b) is the one that goes wrong: NO₂ is often written as a neutral oxide, and it is acidic. Only N₂O and NO are neutral, and both have nitrogen in a low oxidation state."
+}

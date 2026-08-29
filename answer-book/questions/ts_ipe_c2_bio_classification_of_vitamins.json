@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_classification_of_vitamins",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How are vitamins classified? Name the vitamin responsible for the coagulation of blood.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The classification",
+      "marks": 1
+    },
+    {
+      "label": "The vitamin for clotting",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 14. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_classification",
+        "kind": "text",
+        "label": "The classification",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Vitamins are organic compounds needed in the",
+          "diet in small amounts for normal growth and",
+          "health.",
+          "They are classified by their solubility:",
+          {
+            "text": "Water soluble: the B group and C",
+            "style": "indent"
+          },
+          {
+            "text": "Fat soluble: A, D, E and K",
+            "style": "indent"
+          }
+        ],
+        "why": "Solubility is the basis of the classification because it determines what happens to the vitamin in the body. Fat soluble vitamins are stored in the liver and in fat tissue, so a large dose can build up; water soluble ones are passed out in the urine and must be taken regularly.",
+        "common_mistakes": [
+          "Putting vitamin C among the fat soluble vitamins. C and the B group are water soluble.",
+          "Classifying by source or by deficiency disease. The classification asked for is by solubility."
+        ],
+        "memory_tip": "Fat soluble are A, D, E, K. Everything else, B and C, is water soluble.",
+        "margin_note": "Give the two classes with their members. The word \"solubility\" is what earns this mark."
+      },
+      {
+        "id": "s2_vitamin_k",
+        "kind": "boxed_final",
+        "label": "The vitamin for clotting",
+        "marks": 1,
+        "mark_note": "Vitamin K",
+        "lines": [
+          {
+            "text": "Vitamin K is needed for blood coagulation",
+            "style": "boxed"
+          },
+          "Its deficiency increases the time the blood",
+          "takes to clot.",
+          "It is fat soluble, and green leafy",
+          "vegetables are a good source."
+        ],
+        "why": "Vitamin K is required to make several of the proteins that carry out clotting, so without it the clotting sequence is slow. The measurable sign of deficiency is therefore a longer clotting time rather than a named disease.",
+        "common_mistakes": [
+          "Naming vitamin D or vitamin C for clotting. Vitamin K is the one for coagulation.",
+          "Writing that deficiency causes bleeding with no clotting at all. It increases the clotting time."
+        ],
+        "memory_tip": "K for koagulation, the spelling the name came from.",
+        "margin_note": "One letter earns this mark, so write it clearly and add the deficiency effect in the same line."
+      }
+    ]
+  },
+  "insider_note": "Two separate asks in one question. Do not answer only the classification: the second half, vitamin K, is a full mark for one letter."
+}

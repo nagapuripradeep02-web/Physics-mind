@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_interhalogen_compounds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are interhalogen compounds? Give some examples to illustrate the definition. How are they classified?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Examples and equations",
+      "marks": 1
+    },
+    {
+      "label": "The four types with shapes",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.87-88, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer including the AX/AX3/AX5/AX7 table on book p.88. The 1+1+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed table was checked in full and its chemistry is correct: sp3 linear, sp3d T-shaped, sp3d2 square pyramidal, sp3d3 pentagonal bipyramidal. Both printed equations were atom-counted and balance as printed. BOOK GAPS: the printed answer never says which halogen takes the central place, never says why n is always odd, and never states that interhalogens are more reactive than the halogens except fluorine; all three are written here. BOOK NOTATION: hybridisation is printed \"SP3\"; it is written sp3 here. NOTE ON ICl3: the book lists it as an AX3 example, which is how the formula is taught, but it exists as the dimer I2Cl6 in the solid; that is recorded in the classification step's why and kept off the answer lines. FIGURE SCOPE: the question asks how they are classified, not for a drawing, and each type is fully named by its shape word, so no figure is authored on this card."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "VIIA Group Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Interhalogen compounds are binary",
+          "compounds formed when two different",
+          "halogens combine with each other.",
+          {
+            "text": "General formula: AXn, n = 1, 3, 5 or 7",
+            "style": "eq"
+          },
+          "A is the larger, less electronegative halogen",
+          "and X is the smaller, more electronegative",
+          "one. The number n is always odd."
+        ],
+        "why": "Only two elements are present, so the compound is binary. The larger halogen takes the central place because it has empty d orbitals it can use and room for more atoms around it. The number of X atoms it can hold grows as the size difference grows, which is why IF₇ exists but ClF₇ does not.",
+        "common_mistakes": [
+          "Giving Cl₂ or F₂ as an example. An interhalogen must contain two different halogens.",
+          "Writing that the smaller halogen is central. The larger, less electronegative one is central."
+        ],
+        "memory_tip": "Bigger halogen in the middle, smaller ones around it, and always an odd number of them.",
+        "margin_note": "The words binary, two different halogens and the formula AXn are what carry this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "equation",
+        "label": "Examples and equations",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Cl₂ + F₂ → 2ClF   (equal volumes)",
+            "style": "eq"
+          },
+          {
+            "text": "Cl₂ + 3F₂ → 2ClF₃   (excess F₂)",
+            "style": "eq"
+          },
+          "Examples: ClF, BrF, ICl, ClF₃, BrF₃, ClF₅,",
+          "BrF₅, IF₅ and IF₇.",
+          "Interhalogens are more reactive than the",
+          "halogens, because the A–X bond is weaker",
+          "than the X–X bond.",
+          "Fluorine is the exception: F₂ is more",
+          "reactive than any interhalogen."
+        ],
+        "why": "The two equations show that the type depends on how much fluorine is supplied: equal volumes give ClF, an excess of fluorine gives ClF₃. Both balance, with 2 Cl and 2 F in the first and 2 Cl and 6 F in the second. The A–X bond is between two different atoms and is weaker than the bond in either halogen, which is why these compounds react readily.",
+        "common_mistakes": [
+          "Writing ClF₂ or IF₆. Only odd numbers of X atoms occur, so the formulae are ClF, ClF₃, ClF₅ and IF₇.",
+          "Writing that interhalogens are more reactive than every halogen. F₂ is more reactive than any of them."
+        ],
+        "memory_tip": "Equal volumes give ClF, excess fluorine gives ClF₃. More fluorine, more fluorine atoms in the product.",
+        "margin_note": "Two or three named examples plus one equation earn this mark. Choose examples from different types."
+      },
+      {
+        "id": "s3_classification",
+        "kind": "boxed_final",
+        "label": "The four types with shapes",
+        "marks": 2,
+        "mark_note": "Four types",
+        "lines": [
+          "They are classified by the number of X",
+          "atoms around the central atom A.",
+          {
+            "text": "AX : sp³, linear — ClF, BrF, ICl",
+            "style": "eq"
+          },
+          {
+            "text": "AX₃ : sp³d, T-shaped — ClF₃, BrF₃",
+            "style": "eq"
+          },
+          {
+            "text": "AX₅ : sp³d², square pyramidal — IF₅",
+            "style": "eq"
+          },
+          {
+            "text": "AX₇ : sp³d³, pentagonal bipyramidal — IF₇",
+            "style": "eq"
+          },
+          "AX₃ is trigonal bipyramidal with two lone",
+          "pairs, and AX₅ is octahedral with one lone",
+          "pair, which is why their shapes are T and",
+          "square pyramidal."
+        ],
+        "why": "The central atom unpairs one, two or three of its electron pairs into empty d orbitals, so the hybridisation runs sp³, sp³d, sp³d², sp³d³ and the number of X atoms runs 1, 3, 5, 7. Two of the shapes are not the parent shape: AX₃ starts from a trigonal bipyramid and loses two positions to lone pairs, and AX₅ starts from an octahedron and loses one. ICl₃ is listed as an AX₃ formula in the book, and it is worth knowing that it exists as the dimer I₂Cl₆ in the solid.",
+        "common_mistakes": [
+          "Writing the AX₃ shape as trigonal planar or trigonal pyramidal. It is T-shaped, because two of the five positions hold lone pairs.",
+          "Writing AX₅ as trigonal bipyramidal. Five bonds and one lone pair give a square pyramid.",
+          "Giving the hybridisation without the shape, or the shape without the hybridisation. Both halves are marked."
+        ],
+        "memory_tip": "One, three, five, seven X atoms, and sp³, sp³d, sp³d², sp³d³ in the same order.",
+        "margin_note": "Two marks sit here, so set the four types out as four separate lines with type, hybridisation, shape and one example on each."
+      }
+    ]
+  },
+  "insider_note": "Half the marks on this question are in the four-line classification, so write it as four lines and put type, hybridisation, shape and example on each one."
+}

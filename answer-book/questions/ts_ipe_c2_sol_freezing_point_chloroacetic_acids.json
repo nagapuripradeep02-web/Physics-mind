@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_freezing_point_chloroacetic_acids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The depression in freezing point of water observed for the same amount of acetic acid, dichloroacetic acid and trichloroacetic acid increases in the order given above. Explain briefly.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why more particles are produced",
+      "marks": 1
+    },
+    {
+      "label": "The order and the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK MISMATCH (book p.66, VSAQ 15): the QUESTION names three acids (acetic, dichloroacetic, trichloroacetic) but the printed ANSWER gives a four-term order that also contains monochloroacetic acid, CH₂ClCOOH. The four-term order is correct and is kept here, with the three acids of the question marked inside it, so the card answers what was asked without dropping the extra term the book prints. BOOK GAP: the printed answer says the number of particles increases but never writes ΔTf = i Kf m or names the van't Hoff factor, which is the equation the reasoning rests on; it is added here. The book's printed order uses an italic script letter for the chlorine in CH₂ClCOOH and CHCl₂COOH, a typesetting artifact of the source; plain Cl is written here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dissociation",
+        "kind": "text",
+        "label": "Why more particles are produced",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Depression of freezing point depends on the",
+          "NUMBER of solute particles in the solution.",
+          "All three acids are weak acids and",
+          "dissociate only partly in water:",
+          {
+            "text": "RCOOH ⇌ RCOO⁻ + H⁺",
+            "style": "eq"
+          },
+          "Chlorine is electron withdrawing, so it",
+          "makes the anion RCOO⁻ more stable and",
+          "raises the degree of dissociation α."
+        ],
+        "why": "Depression of freezing point is a colligative property, so what matters is how many particles the same amount of acid produces. An electron withdrawing chlorine atom spreads the negative charge of the carboxylate anion over more atoms, which makes the anion more stable and lets more of the acid dissociate. More chlorine atoms, larger α, more particles.",
+        "common_mistakes": [
+          "Explaining the order by molar mass. The same AMOUNT is taken in each case, so the difference is in the number of particles produced, not in the mass.",
+          "Saying the acids dissociate completely. They are weak acids, so only a fraction α dissociates and it is that fraction which differs."
+        ],
+        "memory_tip": "More chlorine atoms, more dissociation, more particles, larger depression.",
+        "margin_note": "The marked idea is \"more particles\". Name the degree of dissociation α and say why chlorine raises it."
+      },
+      {
+        "id": "s2_order",
+        "kind": "boxed_final",
+        "label": "The order and the equation",
+        "marks": 1,
+        "mark_note": "Order",
+        "lines": [
+          "The van't Hoff factor i rises with α, and",
+          {
+            "text": "ΔTf = i Kf m",
+            "style": "eq"
+          },
+          "so a larger i gives a larger depression.",
+          "Order of acid strength (the book prints a",
+          "fourth acid, monochloroacetic acid, too):",
+          "CH₃COOH < CH₂ClCOOH <",
+          "CHCl₂COOH < CCl₃COOH",
+          {
+            "text": "ΔTf: CH₃COOH < CHCl₂COOH < CCl₃COOH",
+            "style": "boxed"
+          },
+          "So of the three acids asked, ΔTf increases",
+          "from acetic acid to trichloroacetic acid."
+        ],
+        "why": "The van't Hoff factor i is the number of particles actually present divided by the number expected with no dissociation, so it grows with α. Putting i into ΔTf = Kf m turns the chemistry into a number: the same molality of trichloroacetic acid gives more particles than acetic acid, and so a bigger drop in freezing point.",
+        "common_mistakes": [
+          "Writing ΔTf = Kf m with no i. For an acid that dissociates the factor i has to be there, and it is the whole reason the three values differ.",
+          "Putting trichloroacetic acid first in the order. Three chlorine atoms make it the STRONGEST of the four, so it goes last in an increasing order."
+        ],
+        "memory_tip": "Count the chlorine atoms: 0, 1, 2, 3. The order of acid strength and of ΔTf follows the count.",
+        "margin_note": "The written order is the marked line. Adding ΔTf = i Kf m beside it links the order to the property being asked about."
+      }
+    ]
+  },
+  "insider_note": "The book prints a four-acid order while the question names only three. Write the full order and then say which of the three asked acids sits where, so the answer covers the question and the printed key at the same time."
+}

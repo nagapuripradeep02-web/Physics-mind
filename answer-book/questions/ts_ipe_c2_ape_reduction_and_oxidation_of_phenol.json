@@ -1,0 +1,173 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_reduction_and_oxidation_of_phenol",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the products formed by the reduction and oxidation of phenol.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reduction with zinc dust",
+      "marks": 1
+    },
+    {
+      "label": "Reduction with hydrogen over nickel",
+      "marks": 1
+    },
+    {
+      "label": "Oxidation to benzoquinone",
+      "marks": 1
+    },
+    {
+      "label": "The three products together",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.110 as Short Answer 5. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO: the printed scheme for the second reduction reads \"H₂ / Hi\"; the catalyst is Ni, nickel. BOOK EQUATION UNBALANCED, CORRECTED: the same scheme shows one H₂ turning phenol into cyclohexanol. Three H₂ are needed — C₆H₅OH + 3H₂ → C₆H₁₁OH balances (C 6=6, H 12=12, O 1=1) while one H₂ does not. BOOK GAP: the oxidation is given in words only, with a drawn structure and no equation at all. The balanced form C₆H₅OH + 2[O] → C₆H₄O₂ + H₂O is added (C 6=6, H 6=6, O 3=3); one [O] would not balance. The zinc reduction C₆H₅OH + Zn → C₆H₆ + ZnO balances as the book prints it (C 6=6, H 6=6, O 1=1, Zn 1=1). ADDED: the product of the oxidation is named 1,4-benzoquinone, or para-benzoquinone; the book writes only \"benzoquinone\", which does not say which isomer. TREND AND EXCEPTION: the card states that the oxidation of phenol needs an oxidising mixture such as Na₂Cr₂O₇ with H₂SO₄, and names the exception on the same card — air alone does the same thing slowly, which is why stored phenol darkens and turns pink."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zinc_dust",
+        "kind": "equation",
+        "label": "Reduction with zinc dust",
+        "marks": 1,
+        "mark_note": "Reduction 1",
+        "lines": [
+          "Reduction (a): phenol vapour is passed over",
+          "heated zinc dust.",
+          "The –OH group is removed and replaced by",
+          "a hydrogen atom.",
+          {
+            "text": "C₆H₅OH + Zn → C₆H₆ + ZnO",
+            "style": "eq"
+          },
+          {
+            "text": "[zinc dust, heat]",
+            "style": "indent"
+          },
+          "The product is benzene."
+        ],
+        "why": "Zinc takes the oxygen away as zinc oxide, so the ring is left with a hydrogen where the –OH was. The ring itself is untouched, which is why the product is benzene and not a saturated ring.",
+        "common_mistakes": [
+          "Writing cyclohexane as the product. Zinc dust removes the oxygen only; the ring stays aromatic.",
+          "Leaving out ZnO. The oxygen has to go somewhere, and it leaves as zinc oxide."
+        ],
+        "memory_tip": "Zinc dust removes the oxygen. Phenol loses its –OH and becomes benzene.",
+        "margin_note": "Head this part Reduction (a). The question asks for reduction and oxidation, so label the sections."
+      },
+      {
+        "id": "s2_hydrogen_nickel",
+        "kind": "equation",
+        "label": "Reduction with hydrogen over nickel",
+        "marks": 1,
+        "mark_note": "Reduction 2",
+        "lines": [
+          "Reduction (b): phenol is treated with",
+          "hydrogen over a nickel catalyst.",
+          "Here the RING is reduced and the –OH group",
+          "is kept.",
+          {
+            "text": "C₆H₅OH + 3H₂ → C₆H₁₁OH",
+            "style": "eq"
+          },
+          {
+            "text": "[Ni catalyst, heat]",
+            "style": "indent"
+          },
+          "The product is cyclohexanol."
+        ],
+        "why": "The two reductions are in the question together because they act on different parts of the molecule: zinc removes the oxygen, hydrogen and nickel saturate the ring. Three H₂ are needed because the ring has three double bonds to saturate.",
+        "common_mistakes": [
+          "Writing one H₂. Three double bonds in the ring need three H₂, so the equation would not balance.",
+          "Writing cyclohexane. The –OH stays, so the product is cyclohexanol."
+        ],
+        "memory_tip": "Three double bonds in the ring, so three H₂. The –OH is untouched, so cyclohexanol.",
+        "margin_note": "Write Ni above the arrow, not Hi. The book has a typo here and copying it costs the reagent."
+      },
+      {
+        "id": "s3_oxidation",
+        "kind": "equation",
+        "label": "Oxidation to benzoquinone",
+        "marks": 1,
+        "mark_note": "Oxidation",
+        "lines": [
+          "Oxidation: phenol is treated with sodium",
+          "dichromate and sulphuric acid.",
+          {
+            "text": "C₆H₅OH + 2[O] → C₆H₄O₂ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[Na₂Cr₂O₇ / H₂SO₄]",
+            "style": "indent"
+          },
+          "The product is 1,4-benzoquinone, a yellow",
+          "solid.",
+          "It has two C=O groups at positions 1 and 4",
+          "and is no longer aromatic."
+        ],
+        "why": "Oxidation puts a second oxygen on the ring at the para position and removes two hydrogens, so the ring becomes a six-membered ring with two C=O groups and two C=C bonds. Two [O] are needed, one for the new oxygen and one for the water that is formed. Air alone does the same thing slowly, which is why stored phenol darkens and turns pink.",
+        "common_mistakes": [
+          "Writing one [O]. Two oxygen atoms are needed before the equation balances.",
+          "Calling the product an aromatic compound. Benzoquinone is a diketone and is not aromatic."
+        ],
+        "memory_tip": "Oxidation adds a second oxygen across the ring, giving the 1,4-diketone benzoquinone.",
+        "margin_note": "Name the isomer as 1,4-benzoquinone or para-benzoquinone. Benzoquinone on its own does not say which one."
+      },
+      {
+        "id": "s4_summary",
+        "kind": "boxed_final",
+        "label": "The three products together",
+        "marks": 1,
+        "mark_note": "Summary",
+        "lines": [
+          "The three reactions act on three different",
+          "parts of the same molecule.",
+          {
+            "text": "Zn dust → benzene",
+            "style": "boxed"
+          },
+          {
+            "text": "H₂ / Ni → cyclohexanol",
+            "style": "boxed"
+          },
+          {
+            "text": "Na₂Cr₂O₇ / H₂SO₄ → benzoquinone",
+            "style": "boxed"
+          },
+          "Zinc removes the oxygen, hydrogen",
+          "saturates the ring, and the oxidising",
+          "mixture adds a second oxygen."
+        ],
+        "why": "A question that asks for reduction and oxidation together is asking for the contrast, so a summary line that says what each reagent does is worth writing. It also prevents the commonest error, which is giving the same product for both reductions.",
+        "common_mistakes": [
+          "Giving only one reduction product. Two reduction reagents are used, zinc dust and hydrogen with nickel, so two products are needed.",
+          "Swapping the two reduction products. Zinc gives benzene; hydrogen and nickel give cyclohexanol."
+        ],
+        "memory_tip": "Zinc removes the oxygen, hydrogen saturates the ring, dichromate adds a second oxygen.",
+        "margin_note": "Three boxed lines are quick to write and make all three products easy for the examiner to find."
+      }
+    ]
+  },
+  "insider_note": "The book prints the catalyst for the second reduction as Hi and shows only one H₂. Write Ni and 3H₂. The oxidation has no equation in the book at all, so write C₆H₅OH + 2[O] → C₆H₄O₂ + H₂O and name the product 1,4-benzoquinone."
+}

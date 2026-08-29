@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_solenoid_moment",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the magnetic moment associated with a solenoid?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Bar-magnet behaviour",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: M = NiA for a solenoid of N total turns, current i and turn area A; for circular turns of radius a, A = πa², so M = n·i·πa² with n the total number of turns. The book (p36) prints this formula garbled as 'M = n2l × i × ða²' — π mis-set as 'ð' and a bar magnet's length 2l mixed in; the card writes the correct form and records the book's version in the formula step's why."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bar_magnet",
+        "kind": "text",
+        "label": "Bar-magnet behaviour",
+        "marks": 1,
+        "mark_note": "Moment along the axis",
+        "lines": [
+          "A current-carrying solenoid behaves like a",
+          "bar magnet. Its magnetic moment points",
+          "along the axis of the solenoid, given by",
+          "the right-hand rule."
+        ],
+        "margin_note": "First mark. Say what the moment of a solenoid is — a bar-magnet-like moment along its axis.",
+        "why": "Each turn of the solenoid is a current loop with moment iA along the axis, and the turns all point the same way, so the whole solenoid acts as one magnet with the moments added.",
+        "common_mistakes": [
+          "Saying the moment points across the turns. It points along the axis, the way the field of a bar magnet does."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a current-carrying solenoid acts like a bar magnet with its magnetic moment along the axis.",
+          "accept": [
+            "solenoid behaves like a bar magnet",
+            "moment along the axis"
+          ],
+          "reject": [
+            "M equals N i A"
+          ],
+          "heard_as": [
+            "solenoid",
+            "bar magnet",
+            "axis"
+          ]
+        },
+        "memory_tip": "Every turn is a small magnet pointing the same way along the axis — the solenoid is their sum."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "M = NiA stated",
+        "lines": [
+          "For a solenoid with total number of turns",
+          "n (also written N), current i and turn",
+          "radius a, the area of one turn is A = πa².",
+          {
+            "text": "M = NiA = n·i·πa²",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. One turn contributes iA; n turns contribute n times that.",
+        "why": "One current loop has moment iA, so n identical turns give M = niA = n·i·πa². The book (p36) prints this as M = n2l × i × ða² — π is mis-set as ð, and a bar magnet's length 2l has been mixed in. A solenoid's moment has no 2l in it; write M = NiA = n·i·πa².",
+        "common_mistakes": [
+          "Copying the book's printed M = n2l × i × ða². The 2l belongs to a bar magnet (M = m × 2l) and ð is a misprint of π.",
+          "Using n as turns per unit length here. In this formula n is the total number of turns."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the moment is M = NiA — total turns times current times the area πa² of one turn.",
+          "accept": [
+            "M equals N i A",
+            "n i pi a squared",
+            "turns times current times area"
+          ],
+          "reject": [
+            "moment along the axis"
+          ],
+          "heard_as": [
+            "N i A",
+            "pi a squared"
+          ]
+        },
+        "memory_tip": "One loop gives iA; a solenoid just multiplies by the number of turns — NiA."
+      }
+    ]
+  },
+  "insider_note": "The book's printed formula for this very question is garbled — students who memorise the page reproduce a bar-magnet 2l that does not belong; M = NiA is the whole answer."
+}

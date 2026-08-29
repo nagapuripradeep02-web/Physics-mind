@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ba_microbiology_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Bacteria (Botany-II)"
+  },
+  "chapter": "Bacteria",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define Microbiology.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "What it covers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.41, printed question 73. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "A definition question with a list attached. Name at least three groups of organisms.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Bacteria (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Microbiology defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition with the size criterion in it. Three lines.",
+        "lines": [
+          "MICROBIOLOGY is the branch of biological science",
+          "that deals with MICRO ORGANISMS — organisms too",
+          "small to be seen with the unaided eye."
+        ],
+        "why": "The subject is defined by the size of what it studies rather than by any one group, which is why it covers organisms as different as bacteria and protozoans.",
+        "common_mistakes": [
+          "Saying microbiology is the study of bacteria only. It covers viruses and protozoans too.",
+          "Leaving out the size. Being too small to see is what puts an organism in this subject."
+        ],
+        "memory_tip": "One subject, defined by size and not by group."
+      },
+      {
+        "id": "s2_covers",
+        "kind": "boxed_final",
+        "label": "What it covers",
+        "marks": 1,
+        "mark_note": "Scope",
+        "margin_note": "Name the groups, then the founders. Four lines.",
+        "lines": [
+          {
+            "text": "Bacteria, viruses, fungi and protozoans",
+            "style": "boxed"
+          },
+          "It includes the study of BACTERIA, VIRUSES,",
+          "FUNGI, ALGAE and PROTOZOANS.",
+          "Louis Pasteur and Robert Koch are regarded as",
+          "the founders of microbiology."
+        ],
+        "why": "The groups listed have nothing in common but their size, which is exactly the point the definition already made.",
+        "common_mistakes": [
+          "Naming one group. The list is the second mark.",
+          "Naming no founder. Pasteur and Koch are worth one line."
+        ],
+        "memory_tip": "Nothing in common but being small."
+      }
+    ]
+  }
+}

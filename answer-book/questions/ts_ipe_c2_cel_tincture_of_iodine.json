@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_tincture_of_iodine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is tincture of iodine? What are its uses?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Its uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 14, worded \"What is tincture of iodine? What is its uses.\" The question text here is tidied to \"What are its uses?\" Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.105, VSAQ 14): the printed answer reads \"It is a mixture of 2-3% Iodine sol(n) and alcohol.\" That describes a 2 to 3 per cent iodine solution being mixed with alcohol, which is not what tincture of iodine is. It is a single solution: 2 to 3 per cent iodine dissolved in a mixture of alcohol and water. The word tincture itself means a solution in alcohol, and the card says so. The uses printed by the book, cleaning wounds and acting as an antiseptic, are correct and are kept."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Composition",
+        "lines": [
+          "Tincture of iodine is a 2 to 3 per cent",
+          "solution of iodine in a mixture of",
+          "alcohol and water.",
+          "The word tincture means a solution made",
+          "in alcohol."
+        ],
+        "why": "The mark is for the concentration and the solvent together. Iodine is only slightly soluble in water, so alcohol is used, and the alcohol also helps the solution spread on the skin. Writing 2 to 3 per cent shows that the concentration is part of the definition.",
+        "common_mistakes": [
+          "Writing that iodine solution and alcohol are mixed together. It is one solution: iodine dissolved in alcohol and water.",
+          "Leaving out the concentration. The figure 2 to 3 per cent is part of the answer."
+        ],
+        "memory_tip": "Tincture means an alcohol solution, so tincture of iodine is iodine dissolved in alcohol and water.",
+        "margin_note": "Write the concentration and the solvent. Either one alone is half this mark."
+      },
+      {
+        "id": "s2_uses",
+        "kind": "boxed_final",
+        "label": "Its uses",
+        "marks": 1,
+        "mark_note": "Uses",
+        "lines": [
+          "Uses:",
+          {
+            "text": "1) It is applied on wounds and cuts to",
+            "style": "indent"
+          },
+          {
+            "text": "clean them.",
+            "style": "indent"
+          },
+          {
+            "text": "2) It acts as an antiseptic, because the",
+            "style": "indent"
+          },
+          {
+            "text": "iodine kills the micro-organisms",
+            "style": "indent"
+          },
+          {
+            "text": "on the skin.",
+            "style": "indent"
+          }
+        ],
+        "why": "The two uses are one point each in the book, so both are numbered here. The second one is the class name, antiseptic, and giving the reason beside it, that iodine kills the micro-organisms on the skin, is what makes it an answer rather than a label.",
+        "common_mistakes": [
+          "Calling it a disinfectant. It is applied on living tissue, so it is an antiseptic.",
+          "Giving one use when the question asks for uses. Number the two so the examiner can count them."
+        ],
+        "memory_tip": "It goes on skin, so it is an antiseptic, not a disinfectant.",
+        "margin_note": "Number the two uses. The word antiseptic is what secures this mark."
+      }
+    ]
+  },
+  "insider_note": "The concentration is part of the definition here, so write 2 to 3 per cent. The uses mark is secured by the single word antiseptic, because tincture of iodine is applied on living tissue."
+}

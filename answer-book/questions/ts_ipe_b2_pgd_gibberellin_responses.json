@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_pgd_gibberellin_responses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Plant Growth and Development (Botany-II)"
+  },
+  "chapter": "Plant Growth and Development",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the physiological responses of gibberellins in plants.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What gibberellins are",
+      "marks": 1
+    },
+    {
+      "label": "Stem and fruit responses",
+      "marks": 1
+    },
+    {
+      "label": "Industrial and crop uses",
+      "marks": 1
+    },
+    {
+      "label": "Senescence and maturity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.26, printed question 21. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide's first line lists \"Leaf and fruit senescence\" among the effects of gibberellins and its own point 7 then says \"They delay senescence.\" NCERT is clear that gibberellins DELAY senescence; the card writes the delay and records the contradiction. The guide also prints \"fruit repining\" for ripening."
+  },
+  "insider_note": "The named numbers are what lift this answer: GA3 in brewing, and 20 tonnes an acre in sugarcane. Write at least one of them.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Growth and Development (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What gibberellins are",
+        "marks": 1,
+        "mark_note": "What they are",
+        "margin_note": "Name the family and the numbering. Four lines.",
+        "lines": [
+          "Gibberellins are plant growth hormones.",
+          "There are more than a hundred of them, written",
+          "GA1, GA2, GA3 and so on.",
+          "GA3 was the first one discovered and is the",
+          "most studied."
+        ],
+        "why": "Gibberellins are a numbered family rather than one molecule, which is why answers name a particular one, GA3, when a use is specific.",
+        "common_mistakes": [
+          "Writing gibberellin as a single compound. It is a large family, numbered GA1, GA2, GA3.",
+          "Confusing GA3 with 2,4-D. 2,4-D is a synthetic AUXIN."
+        ],
+        "memory_tip": "A numbered family, and GA3 is the one that does the named jobs."
+      },
+      {
+        "id": "s2_stem",
+        "kind": "text",
+        "label": "Stem and fruit responses",
+        "marks": 1,
+        "mark_note": "Stem, fruit",
+        "margin_note": "Four numbered responses. Bolting is worth naming explicitly.",
+        "lines": [
+          "1. Gibberellins cause elongation of the stem",
+          "axis. They increase the length of grape stalks.",
+          "2. They cause fruits such as apple to elongate",
+          "and improve their shape.",
+          "3. They promote fruit ripening.",
+          "4. They cause BOLTING, the elongation of",
+          "internodes just before flowering."
+        ],
+        "why": "Every one of these is the same underlying action — internode elongation — which is why grapes, apples and bolting all appear on one list.",
+        "common_mistakes": [
+          "Saying gibberellins shorten the stem. They ELONGATE it.",
+          "Leaving out bolting. It is the named response and appears as a question on its own."
+        ],
+        "memory_tip": "One action, many uses: gibberellin makes things longer."
+      },
+      {
+        "id": "s3_industry",
+        "kind": "text",
+        "label": "Industrial and crop uses",
+        "marks": 1,
+        "mark_note": "Industry, crops",
+        "margin_note": "Three named uses with the numbers. The numbers are the mark.",
+        "lines": [
+          "5. GA3 speeds up the MALTING process in the",
+          "brewing industry.",
+          "6. Spraying GA on sugarcane stems increases",
+          "stem length and raises the yield by about",
+          "20 tonnes per acre.",
+          "7. GA hastens the maturity period of conifers,",
+          "so seed is produced earlier."
+        ],
+        "why": "Sugarcane stores its sugar in the stem, so anything that lengthens the stem directly raises the sugar harvested.",
+        "common_mistakes": [
+          "Giving no figures. The 20 tonnes per acre is what makes this a real answer.",
+          "Saying GA slows maturity in conifers. It HASTENS it."
+        ],
+        "memory_tip": "Longer sugarcane stem means more stored sugar."
+      },
+      {
+        "id": "s4_senescence",
+        "kind": "boxed_final",
+        "label": "Senescence and maturity",
+        "marks": 1,
+        "mark_note": "Senescence",
+        "margin_note": "State the delay clearly. The guide prints both answers, so be unambiguous.",
+        "lines": [
+          {
+            "text": "Gibberellins DELAY senescence",
+            "style": "boxed"
+          },
+          "8. Gibberellins DELAY senescence, so fruits can",
+          "be left on the tree longer and still be",
+          "transported.",
+          "9. They break seed and bud dormancy.",
+          "10. They induce flowering in long day plants."
+        ],
+        "why": "Delaying senescence keeps the tissue alive and working longer, which is the opposite of what ethylene and abscisic acid do.",
+        "common_mistakes": [
+          "Writing that gibberellins promote senescence. They DELAY it. The guide's own list contradicts itself on this line.",
+          "Confusing this with ethylene, which PROMOTES senescence and abscission."
+        ],
+        "memory_tip": "Gibberellin delays the end; ethylene brings it on."
+      }
+    ]
+  }
+}

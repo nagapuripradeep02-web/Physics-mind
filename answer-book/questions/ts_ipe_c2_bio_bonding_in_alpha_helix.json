@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_bonding_in_alpha_helix",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What type of bonding helps in stabilizing the α-helix structure of proteins?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The type of bond",
+      "marks": 1
+    },
+    {
+      "label": "The groups joined",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 10. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bond",
+        "kind": "text",
+        "label": "The type of bond",
+        "marks": 1,
+        "mark_note": "Type of bond",
+        "lines": [
+          "Hydrogen bonding stabilises the α-helix.",
+          "The bonding is intramolecular: both groups",
+          "belong to the same polypeptide chain.",
+          "The hydrogen bonds are weak on their own,",
+          "but there are many of them along the coil."
+        ],
+        "why": "Hydrogen bonding is what holds the coil; the peptide bonds hold the chain itself and are not what the question asks about. Calling it intramolecular is the word that separates the helix from the β-sheet, where the bonds run between separate chains.",
+        "common_mistakes": [
+          "Answering \"peptide bond\". The peptide bond joins the amino acids; hydrogen bonds hold the coil.",
+          "Calling the bonding intermolecular. In the α-helix both groups are on the same chain."
+        ],
+        "memory_tip": "Peptide bonds make the chain; hydrogen bonds make the coil.",
+        "margin_note": "The word \"hydrogen bonding\" alone is worth about half. Add \"intramolecular\" to secure the mark."
+      },
+      {
+        "id": "s2_groups",
+        "kind": "boxed_final",
+        "label": "The groups joined",
+        "marks": 1,
+        "mark_note": "Groups joined",
+        "lines": [
+          {
+            "text": "N–H of one residue to O=C of another",
+            "style": "boxed"
+          },
+          "The bond forms between the –NH group of one",
+          "amino acid residue and the >C=O group of a",
+          "residue in the adjacent turn of the helix.",
+          "Every turn is held this way, so the coil",
+          "keeps its shape along its whole length."
+        ],
+        "why": "Naming the two groups is what turns \"hydrogen bonding\" into an answer. The >C=O and –NH groups both belong to the peptide backbone, not to the side chains, which is why every protein can form a helix whatever its side chains are.",
+        "common_mistakes": [
+          "Writing that the side chains, the R groups, form the hydrogen bonds. The bonds are between the backbone –NH and >C=O groups.",
+          "Saying the bond joins two –NH groups. It joins an –NH group to a >C=O group."
+        ],
+        "memory_tip": "N–H gives the hydrogen; O of C=O receives it, one turn away.",
+        "margin_note": "Name both groups, –NH and >C=O, and say they are in adjacent turns. That is the second mark."
+      }
+    ]
+  },
+  "insider_note": "The answer is two words and two groups: hydrogen bonding, between the –NH and the >C=O of the same chain. Do not write \"peptide bond\"; that is the commonest wrong answer here."
+}

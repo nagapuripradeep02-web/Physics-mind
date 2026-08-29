@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bpp_visualise_dna_on_gel",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Biotechnology: Principles and Processes (Botany-II)"
+  },
+  "chapter": "Biotechnology: Principles and Processes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How does one visualise DNA on an agarose gel?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The stain",
+      "marks": 1
+    },
+    {
+      "label": "The light",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 116. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two things: a dye and ultraviolet light. Both are needed — DNA stained but not lit shows nothing.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology: Principles and Processes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_stain",
+        "kind": "text",
+        "label": "The stain",
+        "marks": 1,
+        "mark_note": "Stain",
+        "margin_note": "Name the stain and say what it binds to.",
+        "lines": [
+          "The separated DNA fragments are stained with",
+          "ETHIDIUM BROMIDE.",
+          "Ethidium bromide slots itself between the base",
+          "pairs of the DNA."
+        ],
+        "why": "The dye binds only to DNA, so only the DNA bands will glow and the rest of the gel stays dark.",
+        "common_mistakes": [
+          "Naming a different stain. It is ETHIDIUM BROMIDE.",
+          "Saying the gel is stained before the run. The DNA is stained after separation."
+        ],
+        "memory_tip": "One dye that sticks only to DNA."
+      },
+      {
+        "id": "s2_light",
+        "kind": "boxed_final",
+        "label": "The light",
+        "marks": 1,
+        "mark_note": "UV light",
+        "margin_note": "The light, the colour, and why both steps are needed.",
+        "lines": [
+          {
+            "text": "Ethidium bromide plus UV light: orange bands",
+            "style": "boxed"
+          },
+          "The stained gel is then exposed to ULTRAVIOLET",
+          "(UV) radiation.",
+          "The DNA appears as bright ORANGE coloured bands.",
+          "Without the UV light the stained DNA cannot be",
+          "seen at all."
+        ],
+        "why": "The dye fluoresces only under ultraviolet light, so the light is as necessary as the stain.",
+        "common_mistakes": [
+          "Leaving out the UV light. Staining alone shows nothing.",
+          "Saying the bands are blue. They fluoresce ORANGE."
+        ],
+        "memory_tip": "Stain it, then shine ultraviolet on it."
+      }
+    ]
+  }
+}

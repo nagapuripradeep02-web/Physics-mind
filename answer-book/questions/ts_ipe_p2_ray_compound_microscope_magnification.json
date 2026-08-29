@@ -1,0 +1,708 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_compound_microscope_magnification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Draw a neat labelled diagram of a compound microscope and explain its working. Derive an expression for its magnification.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Description of the instrument",
+      "marks": 1
+    },
+    {
+      "label": "Ray diagram — objective",
+      "marks": 1
+    },
+    {
+      "label": "Ray diagram — eyepiece",
+      "marks": 1
+    },
+    {
+      "label": "Working",
+      "marks": 1
+    },
+    {
+      "label": "m = m₀ × mₑ and m₀",
+      "marks": 1
+    },
+    {
+      "label": "Eyepiece magnification",
+      "marks": 1
+    },
+    {
+      "label": "Image at the near point",
+      "marks": 1
+    },
+    {
+      "label": "Image at infinity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed pp.14-15 — Section C, 8 marks. The 1+1+1+1+1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. THIS IS THE ONE QUESTION IN THE CHAPTER THAT SAYS 'Draw a neat labelled diagram', so the two diagram steps carry 1 mark each; every other figure in this chapter is authored at 0 marks. UN-NUMBERED PART: the book prints an extra part c) after this answer, on ultraviolet light and magnification, with no question number of its own. It is folded into this card as a final step at ZERO marks, because it is not part of the 8-mark question the book numbers. TRANSCRIPTION: the printed description writes 'rock and pinion'; the correct name is rack and pinion, and it is written correctly here with the slip recorded in that step's why. Hand-checked physically: m = m₀ × mₑ with m₀ = −v₀/u and mₑ = 1 + D/fₑ gives m = −(v₀/u)(1 + D/fₑ); with the object close to F₀ so that u ≈ −f₀ and v₀ ≈ L, this becomes m = −(L/f₀)(1 + D/fₑ) for the image at the near point, and m ≈ −LD/(f₀fₑ) for the image at infinity. All four printed equations are correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Ray Optics and Optical Instruments · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_description",
+        "kind": "text",
+        "label": "Description",
+        "marks": 1,
+        "mark_note": "Two lenses, objective and eyepiece",
+        "lines": [
+          {
+            "text": "Description:",
+            "style": "heading"
+          },
+          "A compound microscope has two converging",
+          "lenses on a common principal axis.",
+          "The lens near the object is the objective. It",
+          "has a small aperture and a small focal",
+          "length.",
+          "The lens near the eye is the eyepiece. It has",
+          "a larger aperture and a larger focal length.",
+          "Both are fitted at the ends of a metal tube.",
+          "A rack and pinion arrangement moves the",
+          "tube and so sets the distance of the object",
+          "from the objective."
+        ],
+        "margin_note": "First mark. Name both lenses and give the aperture and focal length of each.",
+        "why": "The objective is made small and strong so that it can be brought very close to the object and still form a large real image; the eyepiece is made larger so that the whole of that image can be seen at once. The book prints the adjusting mechanism as 'rock and pinion'; the correct name is rack and pinion, a toothed bar driven by a small gear wheel.",
+        "common_mistakes": [
+          "Giving the objective the larger focal length. The objective has the SMALLER focal length.",
+          "Saying the two lenses are of different types. Both are converging."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a compound microscope has two converging lenses on a common axis — an objective of small aperture and small focal length and an eyepiece of larger aperture and larger focal length — fitted at the ends of a tube.",
+          "accept": [
+            "two converging lenses, objective and eyepiece",
+            "objective has small focal length and eyepiece has larger",
+            "both lenses at the ends of a metal tube",
+            "rendu convex lenses, objective chinnadi eyepiece peddadi"
+          ],
+          "reject": [
+            "the object is placed just outside the focus of the objective"
+          ],
+          "heard_as": [
+            "objective",
+            "eyepiece",
+            "converging lenses",
+            "metal tube"
+          ]
+        },
+        "memory_tip": "Objective is small and near the object; eyepiece is large and near the eye."
+      },
+      {
+        "id": "s2_figure_objective",
+        "kind": "diagram",
+        "label": "Diagram — objective",
+        "marks": 1,
+        "mark_note": "Objective forms I₁G₁",
+        "figure": {
+          "id": "compound_objective",
+          "width": 400,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis",
+              "d": "M 20 70 L 380 70",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "lens_r",
+              "d": "M 150 20 Q 172 70 150 120",
+              "ms": 1470
+            },
+            {
+              "type": "stroke",
+              "id": "lens_l",
+              "d": "M 150 20 Q 128 70 150 120",
+              "ms": 1470
+            },
+            {
+              "type": "stroke",
+              "id": "object",
+              "d": "M 98 70 L 98 48",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "object_head",
+              "d": "M 93 54 L 98 48 L 103 54",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "ray1a",
+              "d": "M 98 48 L 150 48",
+              "ms": 740
+            },
+            {
+              "type": "stroke",
+              "id": "ray1b",
+              "d": "M 150 48 L 350 158",
+              "ms": 3260
+            },
+            {
+              "type": "stroke",
+              "id": "ray2",
+              "d": "M 98 48 L 350 155",
+              "ms": 3800
+            },
+            {
+              "type": "stroke",
+              "id": "image",
+              "d": "M 323 70 L 323 143",
+              "ms": 1040
+            },
+            {
+              "type": "stroke",
+              "id": "image_head",
+              "d": "M 318 137 L 323 143 L 328 137",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_j",
+              "x": 72,
+              "y": 44,
+              "text": "J",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 72,
+              "y": 88,
+              "text": "O",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_f0",
+              "x": 192,
+              "y": 50,
+              "text": "F₀",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_g1",
+              "x": 330,
+              "y": 128,
+              "text": "G₁",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_objective",
+              "x": 124,
+              "y": 18,
+              "text": "Objective",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Diagram mark. The object OJ sits just outside F₀, and the objective forms the real inverted image I₁G₁ beyond 2F₀.",
+        "why": "The object has to sit just outside the focus of the objective, because that is the position that gives the largest real image the tube can hold. The image is drawn below the axis because it is inverted.",
+        "common_mistakes": [
+          "Drawing the object inside the focal length of the objective. It must be just OUTSIDE F₀ for a real image.",
+          "Drawing the first image erect. The objective always inverts."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the diagram shows the object just outside F₀ and the objective forming a real inverted magnified image I₁G₁.",
+          "accept": [
+            "draw the objective with the object just outside its focus",
+            "the real inverted image forms beyond two F nought",
+            "two rays through the objective meeting at the image"
+          ],
+          "reject": [
+            "m equals m nought into m e"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "objective",
+            "real image"
+          ]
+        },
+        "memory_tip": "Object just outside F₀, image beyond 2F₀ and upside down."
+      },
+      {
+        "id": "s3_figure_eyepiece",
+        "kind": "diagram",
+        "label": "Diagram — eyepiece",
+        "marks": 1,
+        "mark_note": "Eyepiece forms the final image",
+        "figure": {
+          "id": "compound_eyepiece",
+          "width": 400,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis",
+              "d": "M 20 65 L 380 65",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "lens_r",
+              "d": "M 230 20 Q 250 65 230 110",
+              "ms": 1330
+            },
+            {
+              "type": "stroke",
+              "id": "lens_l",
+              "d": "M 230 20 Q 210 65 230 110",
+              "ms": 1330
+            },
+            {
+              "type": "stroke",
+              "id": "i1g1",
+              "d": "M 190 65 L 190 91",
+              "ms": 370
+            },
+            {
+              "type": "stroke",
+              "id": "i1g1_head",
+              "d": "M 185 85 L 190 91 L 195 85",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "raya1",
+              "d": "M 190 91 L 230 91",
+              "ms": 570
+            },
+            {
+              "type": "stroke",
+              "id": "raya2",
+              "d": "M 230 91 L 370 39",
+              "ms": 2130
+            },
+            {
+              "type": "stroke",
+              "id": "rayb",
+              "d": "M 190 91 L 290 26",
+              "ms": 1700
+            },
+            {
+              "type": "stroke",
+              "id": "ext_a",
+              "d": "M 230 91 L 137 126",
+              "ms": 1420,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "ext_b",
+              "d": "M 190 91 L 137 126",
+              "ms": 910,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "image",
+              "d": "M 137 65 L 137 126",
+              "ms": 870,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_g1",
+              "x": 194,
+              "y": 132,
+              "text": "G₁",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_fe",
+              "x": 306,
+              "y": 88,
+              "text": "Fₑ",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_eyepiece",
+              "x": 250,
+              "y": 140,
+              "text": "Eyepiece",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_final",
+              "x": 40,
+              "y": 146,
+              "text": "Final image",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Diagram mark. I₁G₁ acts as the object for the eyepiece. The emerging rays diverge, and the dashed backward extensions give the enlarged virtual final image IG.",
+        "why": "The image made by the objective becomes the object for the eyepiece, so the same two-ray construction is used a second time. The dashed lines say that the final image is virtual and lies on the same side as the eyepiece object.",
+        "common_mistakes": [
+          "Placing I₁G₁ outside the focal length of the eyepiece. It must lie INSIDE fₑ for a magnified virtual image.",
+          "Drawing the final image between the two lenses. It lies far behind the object side of the eyepiece."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That I₁G₁ acts as the object for the eyepiece, which forms a magnified virtual final image, drawn with dashed backward extensions.",
+          "accept": [
+            "the first image becomes the object for the eyepiece",
+            "the eyepiece forms a virtual magnified final image",
+            "dashed lines extended back give the final image"
+          ],
+          "reject": [
+            "m equals m nought into m e"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "eyepiece",
+            "virtual image"
+          ]
+        },
+        "memory_tip": "Do the same construction twice. The objective's image is the eyepiece's object."
+      },
+      {
+        "id": "s4_working",
+        "kind": "text",
+        "label": "Working",
+        "marks": 1,
+        "mark_note": "Two stages of the image",
+        "lines": [
+          {
+            "text": "Working:",
+            "style": "heading"
+          },
+          "The object OJ is placed just outside the",
+          "principal focus F₀ of the objective, so its",
+          "real image forms on the other side.",
+          "This image I₁G₁ forms beyond 2F₀ and is",
+          "real, inverted and magnified.",
+          "I₁G₁ acts as the object for the eyepiece. The",
+          "eyepiece is moved so that I₁G₁ lies within",
+          "its focal length.",
+          "The eyepiece then forms the final image IG",
+          "at the near point. It is virtual, inverted",
+          "and magnified."
+        ],
+        "margin_note": "Fourth mark. Both images described: real inverted magnified, then virtual inverted magnified.",
+        "why": "The instrument magnifies twice, once at each lens, which is why a compound microscope reaches far higher powers than a single magnifier. The final image is inverted because the objective inverts once and the eyepiece does not invert again.",
+        "common_mistakes": [
+          "Calling the final image real. It is virtual — the eyepiece is used as a magnifier.",
+          "Saying the final image is erect. It is inverted with respect to the object."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the objective forms a real inverted magnified image beyond 2F₀, which acts as the object for the eyepiece, and the eyepiece forms a virtual inverted magnified final image at the near point.",
+          "accept": [
+            "objective makes a real inverted image which the eyepiece magnifies again",
+            "the final image is virtual inverted and magnified",
+            "the first image lies inside the focal length of the eyepiece",
+            "objective real image, eyepiece virtual image"
+          ],
+          "reject": [
+            "m nought is minus v nought by u"
+          ],
+          "heard_as": [
+            "working",
+            "real inverted",
+            "virtual inverted",
+            "near point"
+          ]
+        },
+        "memory_tip": "Magnified twice: real and inverted at the objective, virtual and larger at the eyepiece."
+      },
+      {
+        "id": "s5_product",
+        "kind": "equation",
+        "label": "m = m₀ × mₑ",
+        "marks": 1,
+        "mark_note": "Product of the two",
+        "lines": [
+          "The magnifying power of the compound",
+          "microscope is the product of the magnifying",
+          "powers of the two lenses:",
+          {
+            "text": "m = m₀ × mₑ    ...(1)",
+            "style": "eq"
+          },
+          "For the objective, with image distance v₀",
+          "and object distance u,",
+          {
+            "text": "m₀ = v₀/u",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fifth mark. State the product rule and give m₀ with its minus sign.",
+        "why": "The second lens magnifies whatever the first one hands to it, so the two factors multiply rather than add. The minus sign in m₀ records that the objective inverts the image.",
+        "common_mistakes": [
+          "Adding the two magnifications instead of multiplying them.",
+          "Writing m₀ = −v₀/u. That is the MIRROR form; for a lens m₀ = v₀/u, and the inversion comes from u being negative."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m = m₀ × mₑ and that m₀ = −v₀/u for the objective.",
+          "accept": [
+            "m equals m nought into m e",
+            "the total magnification is the product of the two",
+            "m nought is minus v nought by u",
+            "m equals m nought into m e, product"
+          ],
+          "reject": [
+            "m e is one plus D by f e"
+          ],
+          "heard_as": [
+            "product",
+            "m nought",
+            "m e",
+            "minus v nought by u"
+          ]
+        },
+        "memory_tip": "Two lenses in a row multiply, they do not add."
+      },
+      {
+        "id": "s6_eyepiece_m",
+        "kind": "equation",
+        "label": "Eyepiece magnification",
+        "marks": 1,
+        "mark_note": "mₑ = 1 + D/fₑ",
+        "lines": [
+          "The eyepiece behaves as a simple microscope,",
+          "so with the final image at the near point D,",
+          {
+            "text": "mₑ = 1 + D/fₑ",
+            "style": "eq"
+          },
+          "where fₑ is the focal length of the eyepiece.",
+          "Substituting m₀ and mₑ in (1),",
+          {
+            "text": "m = (v₀/u)(1 + D/fₑ)    ...(2)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Sixth mark. Name the eyepiece as a simple microscope — that is where 1 + D/fₑ comes from.",
+        "why": "Nothing new has to be derived for the eyepiece, because it is used exactly as a magnifier: an object inside its focal length, an eye at the far side, and a virtual image at the near point. The simple-microscope result therefore carries over unchanged.",
+        "common_mistakes": [
+          "Writing mₑ = D/fₑ for the near-point case. That form belongs to the image at infinity.",
+          "Using f₀ in place of fₑ in the bracket."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the eyepiece acts as a simple microscope with mₑ = 1 + D/fₑ, giving m = (−v₀/u)(1 + D/fₑ).",
+          "accept": [
+            "m e is one plus D by f e",
+            "the eyepiece is a simple microscope so its power is one plus D over f e",
+            "m equals minus v nought by u into one plus D by f e",
+            "eyepiece simple microscope la pani chestundi"
+          ],
+          "reject": [
+            "m equals m nought into m e"
+          ],
+          "heard_as": [
+            "one plus D by f e",
+            "eyepiece",
+            "simple microscope",
+            "near point"
+          ]
+        },
+        "memory_tip": "The eyepiece is a magnifier, so it brings the magnifier formula 1 + D/fₑ with it."
+      },
+      {
+        "id": "s7_near_point",
+        "kind": "equation",
+        "label": "Image at the near point",
+        "marks": 1,
+        "mark_note": "m = −(L/f₀)(1 + D/fₑ)",
+        "lines": [
+          "When the object is very close to the",
+          "principal focus F₀ of the objective, the",
+          "image due to the objective forms very close",
+          "to the eyepiece. So",
+          {
+            "text": "u ≈ −f₀   and   v₀ ≈ L",
+            "style": "eq"
+          },
+          "where L is the separation between the",
+          "objective and the eyepiece, that is the",
+          "length of the microscope.",
+          "Putting these in (2),",
+          {
+            "text": "m = −(L/f₀)(1 + D/fₑ)    ...(3)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Seventh mark. Both approximations stated: u ≈ −f₀ and v₀ ≈ L.",
+        "why": "These two approximations replace the two quantities that change while the instrument is focused by two fixed lengths of the instrument itself. The result is a formula in f₀, fₑ, L and D alone, all of which are known once the microscope is built. Note where the minus in (3) comes from: not from the magnification formula, but from u ≈ −f₀. For a thin lens m = v/u, and a real object left of the lens has negative u, so the result is negative and the image inverted.",
+        "common_mistakes": [
+          "Writing v₀ ≈ f₀. It is the OBJECT distance that is close to f₀; the image distance is close to L.",
+          "Leaving L undefined. L is the distance between the two lenses."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That u ≈ −f₀ and v₀ ≈ L give m = −(L/f₀)(1 + D/fₑ) for the final image at the near point.",
+          "accept": [
+            "u is about minus f nought and v nought is about L",
+            "m is minus L by f nought into one plus D by f e",
+            "L is the length of the microscope",
+            "u minus f nought, v nought L ki daggara"
+          ],
+          "reject": [
+            "m is about minus L D by f nought f e"
+          ],
+          "heard_as": [
+            "L by f nought",
+            "one plus D by f e",
+            "length of the microscope",
+            "near point"
+          ]
+        },
+        "memory_tip": "Two swaps: the object distance becomes f₀, the image distance becomes L."
+      },
+      {
+        "id": "s8_infinity",
+        "kind": "boxed_final",
+        "label": "Image at infinity",
+        "marks": 1,
+        "mark_note": "m ≈ −LD/(f₀fₑ)",
+        "lines": [
+          "If the final image is formed at infinity, the",
+          "eyepiece magnification becomes D/fₑ, so",
+          {
+            "text": "m = (v₀/u)(D/fₑ)",
+            "style": "eq"
+          },
+          "and with the same approximations,",
+          {
+            "text": "m ≈ −LD/(f₀ fₑ)    ...(4)",
+            "style": "boxed"
+          },
+          "The minus sign in equations (3) and (4)",
+          "shows that the final image is inverted.",
+          "A large magnification therefore needs both",
+          "f₀ and fₑ to be small."
+        ],
+        "margin_note": "Eighth mark. Give the infinity form and say what the minus sign means.",
+        "why": "With both focal lengths in the denominator, a microscope is made powerful by making both lenses short-focus. The image at infinity is the setting a user chooses for long viewing, because the eye stays relaxed.",
+        "common_mistakes": [
+          "Writing m ≈ −LD/(f₀ + fₑ). The two focal lengths MULTIPLY in the denominator.",
+          "Ignoring the minus sign in the final result, which is what records the inversion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with the final image at infinity m ≈ −LD/(f₀fₑ), and the minus sign shows the image is inverted.",
+          "accept": [
+            "m is about minus L D by f nought f e",
+            "for the image at infinity the eyepiece gives D by f e",
+            "the minus sign means the final image is inverted",
+            "m minus L D by f nought f e"
+          ],
+          "reject": [
+            "u is about minus f nought and v nought is about L"
+          ],
+          "heard_as": [
+            "L D by f nought f e",
+            "infinity",
+            "inverted",
+            "minus sign"
+          ]
+        },
+        "memory_tip": "Both focal lengths sit below the line, so short lenses give a strong microscope."
+      },
+      {
+        "id": "s9_uv_light",
+        "kind": "text",
+        "label": "Ultraviolet light",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "c) Ultraviolet light:",
+            "style": "heading"
+          },
+          "Ultraviolet light has a smaller wavelength",
+          "than visible light, so a lens used with it",
+          "has a smaller focal length.",
+          {
+            "text": "m ∝ 1/f",
+            "style": "eq"
+          },
+          "A smaller focal length gives a larger",
+          "magnification, so the magnification",
+          "increases when ultraviolet light is used."
+        ],
+        "margin_note": "The book prints this extra part with no question number of its own. It carries no marks here; write it only if the paper asks for it.",
+        "why": "The focal length of a lens depends on the refractive index of its material, and the refractive index is larger for shorter wavelengths. Ultraviolet light therefore sees a shorter-focus lens than visible light does, and since m ∝ 1/f the magnification rises. Ultraviolet microscopes do resolve finer detail, but for a different reason: the diffraction limit is set by the WAVELENGTH, not by the focal length. Magnification without resolution is empty magnification.",
+        "common_mistakes": [
+          "Saying the magnification falls. A smaller focal length gives a LARGER magnification.",
+          "Explaining it by the brightness of the light. The reason is the focal length, through the wavelength."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ultraviolet light has a smaller wavelength, so the focal length is smaller, and since m ∝ 1/f the magnification increases.",
+          "accept": [
+            "ultraviolet has a smaller wavelength so the focal length is smaller",
+            "m is proportional to one by f so the magnification increases",
+            "smaller focal length gives more magnification",
+            "ultraviolet ki wavelength takkuva, f takkuva, m ekkuva"
+          ],
+          "reject": [
+            "m is about minus L D by f nought f e"
+          ],
+          "heard_as": [
+            "ultraviolet",
+            "small wavelength",
+            "one by f",
+            "magnification increases"
+          ]
+        },
+        "memory_tip": "Shorter wave, shorter focus, bigger magnification — three steps in one line."
+      }
+    ]
+  },
+  "insider_note": "Two diagrams and four equations. The chain is short: multiply the two magnifications, then replace u by f₀ and v₀ by L."
+}

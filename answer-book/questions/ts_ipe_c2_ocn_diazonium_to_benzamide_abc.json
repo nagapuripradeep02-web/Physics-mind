@@ -1,0 +1,108 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_diazonium_to_benzamide_abc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the structures of A, B and C in the following reaction: C₆H₅N₂Cl —CuCN→ A —H₂O/H⁺→ B —NH₃, Δ→ C",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A and B",
+      "marks": 1
+    },
+    {
+      "label": "C, with the equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.115 as VSAQ 7. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: the printed answer A = C₆H₅CN, B = C₆H₅COOH, C = C₆H₅CONH₂ is CORRECT and is kept. BOOK GAPS, filled here: (1) the printed answer writes the last arrow straight from benzoic acid to benzamide, skipping ammonium benzoate — the salt forms first and only loses water on heating, so the card writes both stages; (2) the first step is a Sandmeyer reaction and gives off N₂ and CuCl, neither of which the book writes; (3) the hydrolysis of a nitrile needs two water molecules and releases ammonia, which the book also omits. EQUATIONS CHECKED: C₆H₅CN + 2H₂O → C₆H₅COOH + NH₃ balances C 7/7, H 9/9, N 1/1, O 2/2; C₆H₅COONH₄ → C₆H₅CONH₂ + H₂O balances C 7/7, H 9/9, N 1/1, O 2/2."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_a_and_b",
+        "kind": "equation",
+        "label": "A and B",
+        "marks": 1,
+        "mark_note": "A and B",
+        "lines": [
+          "A: benzonitrile, C₆H₅–CN",
+          {
+            "text": "C₆H₅N₂⁺Cl⁻ + CuCN →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅–CN + N₂ + CuCl",
+            "style": "indent"
+          },
+          "B: benzoic acid, C₆H₅–COOH",
+          {
+            "text": "C₆H₅–CN + 2H₂O → C₆H₅–COOH + NH₃",
+            "style": "eq"
+          },
+          {
+            "text": "[H⁺, hydrolysis]",
+            "style": "indent"
+          }
+        ],
+        "why": "The first step is a Sandmeyer reaction: the –N₂⁺ group leaves as nitrogen gas and the cyanide group takes its place on the ring. The second step is the ordinary acid hydrolysis of a nitrile, which turns –CN into –COOH and releases ammonia.",
+        "common_mistakes": [
+          "Writing A as an isocyanide, C₆H₅–NC. Cuprous cyanide gives the nitrile, joined through carbon.",
+          "Forgetting that nitrogen gas leaves in the first step. Every diazonium replacement gives off N₂."
+        ],
+        "memory_tip": "Diazonium plus CuCN gives the nitrile; water and acid then turn every nitrile into the acid.",
+        "margin_note": "Name A and B in words as well as in formulae. Benzonitrile and benzoic acid are the marked words."
+      },
+      {
+        "id": "s2_c",
+        "kind": "boxed_final",
+        "label": "C, with the equations",
+        "marks": 1,
+        "mark_note": "C",
+        "lines": [
+          "Ammonia first gives the ammonium salt:",
+          {
+            "text": "C₆H₅COOH + NH₃ → C₆H₅COONH₄",
+            "style": "eq"
+          },
+          "On heating the salt loses water:",
+          {
+            "text": "C₆H₅COONH₄ → C₆H₅CONH₂ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "C: benzamide, C₆H₅–CONH₂",
+            "style": "boxed"
+          }
+        ],
+        "why": "Ammonia is a base and benzoic acid is an acid, so the first thing formed is the salt ammonium benzoate. Only when that salt is heated does it lose a water molecule to give the amide. Writing the amide straight from the acid skips the step the Δ in the question stands for.",
+        "common_mistakes": [
+          "Writing C as ammonium benzoate. That is the intermediate; heating it gives the amide, which is C.",
+          "Leaving out the water in the second equation. The amide is one water molecule lighter than the salt."
+        ],
+        "memory_tip": "Acid plus ammonia gives the ammonium salt; heat removes water and leaves the amide.",
+        "margin_note": "The Δ over the last arrow is the mark. Show the ammonium salt and then the loss of water."
+      }
+    ]
+  },
+  "insider_note": "The three answers are benzonitrile, benzoic acid and benzamide. The step most often shortened is the last one — ammonia gives ammonium benzoate first, and only heating turns that into benzamide, which is what the Δ in the question is asking for."
+}

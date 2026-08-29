@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_hf_liquid_hcl_gas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "HF is a liquid while HCl is a gas – explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Hydrogen bonding in HF",
+      "marks": 1
+    },
+    {
+      "label": "No hydrogen bonding in HCl",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.86, VSAQ 4): the printed answer is two lines and never says WHY hydrogen bonding occurs in HF and not in HCl, gives no boiling points, and does not state the group order. The electronegativity reason, the boiling points (HF 293 K, HCl 189 K) and the order HF > HI > HBr > HCl with HF as its exception are written here. The related acid-strength order HF < HCl < HBr < HI is put in this step's why, because it is the trend students most often invert after this question. PRINTED PUNCTUATION: the question is printed \"HF is a liquid while HCl is a gas explain ?\"; the dash is added and the stray space before the mark removed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hf",
+        "kind": "text",
+        "label": "Hydrogen bonding in HF",
+        "marks": 1,
+        "mark_note": "Hydrogen bonds",
+        "lines": [
+          "Fluorine is the most electronegative element,",
+          "so the H–F bond is strongly polar.",
+          "HF molecules are joined to one another by",
+          "intermolecular hydrogen bonds and form",
+          "long zig-zag chains.",
+          "Extra energy is needed to break these bonds,",
+          "so HF boils at 293 K and is a liquid at room",
+          "temperature."
+        ],
+        "why": "A hydrogen bond forms only when hydrogen is joined to a small, highly electronegative atom. Fluorine is the only halogen small enough and electronegative enough for this, so HF is the only hydrogen halide held together by hydrogen bonds. The hydrogen bonds are between molecules, and it is these, not the H–F bond inside the molecule, that set the boiling point.",
+        "common_mistakes": [
+          "Saying HF is a liquid because the H–F bond is strong. That bond is inside the molecule; boiling separates molecules from one another.",
+          "Writing \"hydrogen bond\" without saying it is between HF molecules. The examiner marks the word intermolecular."
+        ],
+        "memory_tip": "Hydrogen bonding needs a small, very electronegative partner. Of the halogens only fluorine qualifies.",
+        "margin_note": "The marked words are intermolecular hydrogen bonding in HF. Say it in the first two lines."
+      },
+      {
+        "id": "s2_hcl",
+        "kind": "boxed_final",
+        "label": "No hydrogen bonding in HCl",
+        "marks": 1,
+        "mark_note": "HCl and the order",
+        "lines": [
+          "Chlorine is less electronegative and its atom",
+          "is larger, so HCl forms no hydrogen bonds.",
+          "Only weak dipole-dipole forces hold the",
+          "molecules together, so HCl boils at 189 K",
+          "and is a gas at room temperature.",
+          {
+            "text": "Boiling point: HF > HI > HBr > HCl",
+            "style": "boxed"
+          },
+          "HF is the exception; from HCl to HI the",
+          "boiling point rises with molecular size."
+        ],
+        "why": "From HCl to HI the molecules get larger, the dispersion forces get stronger and the boiling point rises. HF breaks that trend because hydrogen bonding is far stronger than dispersion, which is why it is the only hydrogen halide that is a liquid at room temperature. The same strong H–F bond makes HF the weakest acid of the four: acid strength runs HF < HCl < HBr < HI.",
+        "common_mistakes": [
+          "Writing that HCl boils higher than HBr and HI because chlorine is more electronegative. Size sets that order, so HCl boils lowest.",
+          "Writing that HF is the strongest acid because fluorine is the most electronegative. HF is the weakest of the hydrogen halides."
+        ],
+        "memory_tip": "Two forces, two answers: hydrogen bonds lift HF, molecular size lifts HI above HBr above HCl.",
+        "margin_note": "This mark is for HCl having no hydrogen bonds. The boiling-point order is the line that shows HF is the exception."
+      }
+    ]
+  },
+  "insider_note": "Write the word intermolecular. \"HF has hydrogen bonding\" without it is the commonest half-mark answer on this question."
+}

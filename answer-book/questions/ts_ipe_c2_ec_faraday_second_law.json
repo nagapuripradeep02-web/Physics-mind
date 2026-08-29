@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_faraday_second_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Faraday's second law of electrolysis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The mathematical form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed statement (book p.69, VSAQ 8) is correct and is followed here. BOOK SLOPPINESS: the printed question reads \"State faraday's law second law of electrolysis\", with the words \"law second law\" and a lower case f; the question text on this card is the tidied form. The book writes \"equivalent weights\"; equivalent MASS is the current term and is used here, with the older word kept in the mistakes list so a student recognises it. WORKED NUMBERS: the example added on this card was recomputed from the equivalent masses (H = 1.008/1, Ag = 108/1, Cu = 63.5/2 = 31.75) and is not in the book."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Faraday's second law of electrolysis: when the",
+          "same quantity of electricity is passed through",
+          "different electrolytes joined in series, the",
+          "masses of the substances set free at the",
+          "electrodes are directly proportional to their",
+          "equivalent masses."
+        ],
+        "why": "Cells joined in series carry the same charge, so the same number of electrons reaches each of them. The same number of electrons sets free one equivalent of every substance, so the masses come out in the ratio of the equivalent masses.",
+        "common_mistakes": [
+          "Leaving out the words in series. The law compares cells that carry the same charge, which is what series joining guarantees.",
+          "Writing proportional to their atomic masses. It is the equivalent masses, which are the atomic masses divided by the valency."
+        ],
+        "memory_tip": "Same charge means the same number of electrons, and one mole of electrons sets free one equivalent of everything.",
+        "margin_note": "Two conditions carry this mark: same quantity of electricity, and cells joined in series. Write both."
+      },
+      {
+        "id": "s2_mathematical_form",
+        "kind": "boxed_final",
+        "label": "The mathematical form",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "m₁ : m₂ : m₃ = E₁ : E₂ : E₃",
+            "style": "eq"
+          },
+          {
+            "text": "m₁/E₁ = m₂/E₂ = m₃/E₃",
+            "style": "boxed"
+          },
+          "m = mass set free, E = equivalent mass",
+          "Example: the charge that sets free 1.008 g of",
+          "hydrogen sets free 108 g of silver and",
+          "31.75 g of copper from their solutions."
+        ],
+        "why": "Dividing each mass by its own equivalent mass gives the number of equivalents, and that number is the same in every cell of the series. Written that way the law is a statement that the equivalents are equal.",
+        "common_mistakes": [
+          "Writing m₁/m₂ = E₂/E₁ with the ratio turned over. The masses and the equivalent masses go the same way round.",
+          "Using the equivalent mass of the compound instead of the element set free at the electrode."
+        ],
+        "memory_tip": "Divide each mass by its equivalent mass and the same number comes out of every cell in the series.",
+        "margin_note": "One worked ratio, such as silver against copper, shows the law is understood and costs two lines."
+      }
+    ]
+  },
+  "insider_note": "The equivalent mass is the atomic mass divided by the valency, so copper deposited from CuSO₄ uses 63.5/2 = 31.75, not 63.5. That division is where this question is usually lost."
+}

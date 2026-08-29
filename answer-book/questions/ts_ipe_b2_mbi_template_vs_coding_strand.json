@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_template_vs_coding_strand",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the difference between the template strand and the coding strand in a DNA molecule?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Template strand",
+      "marks": 1
+    },
+    {
+      "label": "Coding strand",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 106. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The names are misleading and examiners know it: the CODING strand is the one that is NOT copied. Say that plainly.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_template",
+        "kind": "text",
+        "label": "Template strand",
+        "marks": 1,
+        "mark_note": "Template",
+        "margin_note": "What it is, what is built from it, and its direction.",
+        "lines": [
+          "During transcription the two strands of DNA",
+          "uncoil.",
+          "The TEMPLATE strand is the one that is actually",
+          "READ by RNA polymerase.",
+          "The mRNA is built complementary to it.",
+          "It runs 3' to 5'."
+        ],
+        "why": "The template is the strand the enzyme reads, so the RNA comes out complementary to it and identical to the other one.",
+        "common_mistakes": [
+          "Saying the template strand is the same as the mRNA. The mRNA is COMPLEMENTARY to it.",
+          "Giving its direction as 5' to 3'. The template is read 3' to 5'."
+        ],
+        "memory_tip": "The template is read, not copied."
+      },
+      {
+        "id": "s2_coding",
+        "kind": "boxed_final",
+        "label": "Coding strand",
+        "marks": 1,
+        "mark_note": "Coding",
+        "margin_note": "Say it is not read, then explain why it is still called coding.",
+        "lines": [
+          {
+            "text": "The CODING strand is the one NOT read",
+            "style": "boxed"
+          },
+          "The CODING strand is the OTHER strand, which is",
+          "NOT read during transcription.",
+          "It is called the coding strand because its",
+          "sequence is the SAME as the mRNA, with T in",
+          "place of U.",
+          "It runs 5' to 3'."
+        ],
+        "why": "The strand that codes for nothing is called the coding strand precisely because it matches the message — a name that describes the sequence, not the job.",
+        "common_mistakes": [
+          "Saying the coding strand is transcribed. It is NOT read at all.",
+          "Not explaining the name. The name is the confusing part and explaining it is the mark."
+        ],
+        "memory_tip": "The coding strand does no work; it just matches the message."
+      }
+    ]
+  }
+}

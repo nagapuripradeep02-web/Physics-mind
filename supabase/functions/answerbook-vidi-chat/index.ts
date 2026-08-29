@@ -313,20 +313,26 @@ Deno.serve(async (req: Request) => {
     const qid = String(body.question_id ?? '');
     const subjectKey = qid.startsWith('ts_ipe_m1a_') ? 'mathematics'
         : qid.startsWith('ts_ipe_m1b_') ? 'mathematics_1b'
-            : qid.startsWith('ts_ipe_c1_') ? 'chemistry' : 'physics';
+            : qid.startsWith('ts_ipe_c1_') ? 'chemistry'
+                : qid.startsWith('ts_ipe_p2_') ? 'physics_2'
+                    : qid.startsWith('ts_ipe_c2_') ? 'chemistry_2' : 'physics';
     const SUBJECT_WORD: Record<string, string> = {
-        physics: 'physics', chemistry: 'chemistry',
+        physics: 'physics', chemistry: 'chemistry', chemistry_2: 'chemistry',
         mathematics: 'mathematics', mathematics_1b: 'mathematics',
+        physics_2: 'physics',
     };
     const SUBJECT_LABEL: Record<string, string> = {
-        physics: 'Physics', chemistry: 'Chemistry',
+        physics: 'Physics', chemistry: 'Chemistry', chemistry_2: 'Chemistry-II',
         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+        physics_2: 'Physics II',
     };
     const SUBJECT_TERMS: Record<string, string> = {
         physics: 'velocity, speed, force, energy, mass, acceleration, momentum, friction, work, power, gravitational',
         chemistry: 'atom, orbital, bond, mole, oxidation, reduction, equilibrium, enthalpy, entropy, catalyst',
+        chemistry_2: 'solid state, unit cell, molarity, colligative, electrode potential, cell, rate of reaction, order, adsorption, colloid, ore, halogen, transition metal, ligand, polymer, monomer, carbohydrate, protein, amine, alcohol, phenol, aldehyde, ketone',
         mathematics: 'function, domain, range, matrix, determinant, inverse, vector, identity, period, triangle',
         mathematics_1b: 'locus, straight line, slope, plane, direction cosines, direction ratios, pair of lines, transformation',
+        physics_2: 'wavelength, frequency, refraction, lens, interference, charge, potential, capacitance, current, resistance, magnetic field, induction, photon, nucleus, semiconductor, diode, transistor',
     };
     const subjectWord = SUBJECT_WORD[subjectKey];
     const subjectTerms = SUBJECT_TERMS[subjectKey];

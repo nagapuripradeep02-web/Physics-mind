@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_capacitance_area_doubled",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to the capacitance of a parallel plate capacitor if the area of its plates is doubled?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). Hand-checked: C = ε₀A/d, C ∝ A at fixed d, so doubling A doubles C — the book's answer is correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Potential and Capacitance · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "C ∝ A",
+        "lines": [
+          "For a parallel plate capacitor",
+          {
+            "text": "C = ε₀A / d",
+            "style": "eq"
+          },
+          "With d unchanged, C is directly proportional",
+          "to the plate area A."
+        ],
+        "margin_note": "First mark. Quote C = ε₀A/d and read off C ∝ A.",
+        "why": "A bigger plate area stores more charge at the same potential difference — more surface for the charge to spread over — which is exactly what a larger C means.",
+        "common_mistakes": [
+          "Answering without the formula. The proportionality C ∝ A is the working.",
+          "Changing d as well. The question doubles only the area."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C equals epsilon-nought A by d, so C is proportional to the area.",
+          "accept": [
+            "C is epsilon nought A by d",
+            "C proportional to A",
+            "area in the numerator"
+          ],
+          "reject": [
+            "capacitance doubles"
+          ],
+          "heard_as": [
+            "epsilon nought A by d",
+            "proportional"
+          ]
+        },
+        "memory_tip": "A sits on top of the formula — grow A and C grows with it."
+      },
+      {
+        "id": "s2_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "C doubles",
+        "lines": [
+          "Doubling the area doubles the capacitance:",
+          {
+            "text": "A → 2A gives C → 2C",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. State the result: the capacitance doubles.",
+        "why": "Direct proportion means the factor on A becomes the factor on C — a factor of 2 in, a factor of 2 out.",
+        "common_mistakes": [
+          "Saying C becomes half — that is what doubling d would do, not doubling A."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the capacitance becomes double.",
+          "accept": [
+            "capacitance doubles",
+            "C becomes two times",
+            "twice the capacitance"
+          ],
+          "reject": [
+            "C is epsilon nought A by d"
+          ],
+          "heard_as": [
+            "doubles",
+            "two times"
+          ]
+        },
+        "memory_tip": "Double the area, double the capacitance — the factor passes straight through."
+      }
+    ]
+  },
+  "insider_note": "Write the formula before the conclusion — \"it doubles\" alone is the second mark without the first."
+}

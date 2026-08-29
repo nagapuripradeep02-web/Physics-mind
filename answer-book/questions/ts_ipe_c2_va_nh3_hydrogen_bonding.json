@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_va_nh3_hydrogen_bonding",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "VA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "NH₃ forms hydrogen bonds, but PH₃ does not. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Size and electronegativity",
+      "marks": 1
+    },
+    {
+      "label": "Effect on boiling point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question on book p.83 as VSAQ 6. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.83, VSAQ 6): the printed answer is one line, \"Nitrogen has small size and high electro negativity.\" It gives no electronegativity values, never explains that hydrogen bonding needs a large electronegativity DIFFERENCE across the E–H bond, and never mentions the consequence the examiner usually wants — the boiling point. All three are added. TREND AND EXCEPTION (this is the classic exception of group 15 and it is stated on the card): boiling points of the hydrides otherwise increase down the group with molar mass, PH₃ < AsH₃ < SbH₃ < BiH₃, but NH₃ does not follow that order — it boils at 239 K, higher than both PH₃ (185 K) and AsH₃ (211 K), because of hydrogen bonding. PH₃ therefore has the LOWEST boiling point in the group, not NH₃. Values are the standard NCERT ones."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_polarity",
+        "kind": "text",
+        "label": "Size and electronegativity",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "A hydrogen bond needs a small, strongly",
+          "electronegative atom joined to hydrogen.",
+          "N is small and its electronegativity is 3.0,",
+          "so the N–H bond is strongly polar and the",
+          "H atom has a large partial positive charge.",
+          "P is large and its electronegativity is 2.1,",
+          "the same as hydrogen, so the P–H bond is",
+          "almost non-polar."
+        ],
+        "why": "A hydrogen bond forms between a partly positive H on one molecule and a lone pair on a small electronegative atom of the next. Both halves fail for PH₃: the P–H bond has almost no polarity because P and H have the same electronegativity, and the lone pair on the large P atom is too spread out to attract an H atom.",
+        "common_mistakes": [
+          "Writing that PH₃ has no lone pair, so no hydrogen bond. PH₃ has a lone pair; the P–H bond is the part that is not polar.",
+          "Giving only \"small size\". The electronegativity difference across the N–H bond is the part that is marked."
+        ],
+        "memory_tip": "Hydrogen bonds need N, O or F. Phosphorus is not one of them, and its electronegativity equals that of hydrogen.",
+        "margin_note": "Quote the two electronegativity values, 3.0 and 2.1. Numbers turn this from a guess into an answer."
+      },
+      {
+        "id": "s2_boiling_point",
+        "kind": "boxed_final",
+        "label": "Effect on boiling point",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "NH₃ molecules are joined to each other by",
+          "hydrogen bonds, so extra energy is needed",
+          "to separate them.",
+          {
+            "text": "NH₃ boils at 239 K, PH₃ at 185 K",
+            "style": "boxed"
+          },
+          "Down the group the boiling point rises with",
+          "molar mass: PH₃ < AsH₃ < SbH₃ < BiH₃.",
+          "NH₃ does not follow that order."
+        ],
+        "why": "The boiling point is the measurable result of the hydrogen bonding and is what the examiner usually asks for next. This is the classic exception in group 15: PH₃, not NH₃, has the lowest boiling point of the five hydrides, because the trend from PH₃ downwards follows molar mass while NH₃ is above that order because of hydrogen bonding.",
+        "common_mistakes": [
+          "Writing that NH₃ has the highest boiling point in the group. SbH₃ (255 K) and BiH₃ (290 K) are higher; NH₃ is only higher than PH₃ and AsH₃.",
+          "Saying the boiling point falls down the group. From PH₃ onward it rises with molar mass."
+        ],
+        "memory_tip": "PH₃ has the lowest boiling point in group 15, not NH₃. NH₃ is the one that does not follow the order.",
+        "margin_note": "Two numbers, 239 K and 185 K, plus the word \"hydrogen bond\", complete this mark."
+      }
+    ]
+  },
+  "insider_note": "The exception is the part most often written backwards: PH₃ has the LOWEST boiling point in group 15, and NH₃ is above PH₃ and AsH₃ but still below SbH₃ and BiH₃. Write the order PH₃ < AsH₃ < SbH₃ < BiH₃ and then say NH₃ does not follow it."
+}

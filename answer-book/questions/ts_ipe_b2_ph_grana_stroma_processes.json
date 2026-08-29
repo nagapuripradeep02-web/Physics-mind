@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_grana_stroma_processes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the processes which take place in the grana and stroma regions of chloroplasts.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Grana",
+      "marks": 1
+    },
+    {
+      "label": "Stroma",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.40, printed question 63. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two words, two places. Naming the reaction without naming the region, or the other way round, answers half the question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_grana",
+        "kind": "text",
+        "label": "Grana",
+        "marks": 1,
+        "mark_note": "Grana",
+        "margin_note": "Reaction name plus region. Three lines.",
+        "lines": [
+          "The LIGHT REACTION takes place in the GRANA of",
+          "the chloroplast.",
+          "It is also called the photochemical phase."
+        ],
+        "why": "The grana hold the chlorophyll-bearing thylakoid membranes, so the reaction that needs light has to happen there.",
+        "common_mistakes": [
+          "Saying the dark reaction happens in the grana. The LIGHT reaction does.",
+          "Naming the region as thylakoid without saying grana. Grana is the word asked for."
+        ],
+        "memory_tip": "Grana are green stacks: green catches light."
+      },
+      {
+        "id": "s2_stroma",
+        "kind": "boxed_final",
+        "label": "Stroma",
+        "marks": 1,
+        "mark_note": "Stroma",
+        "margin_note": "Mirror the grana line. The contrast is the whole answer.",
+        "lines": [
+          {
+            "text": "Light in the grana, carbon in the stroma",
+            "style": "boxed"
+          },
+          "The DARK REACTION (carbon fixation) takes place",
+          "in the STROMA of the chloroplast.",
+          "It is also called the biosynthetic phase."
+        ],
+        "why": "The Calvin cycle enzymes are dissolved in the stroma, so the carbon reactions happen in the fluid rather than on the membranes.",
+        "common_mistakes": [
+          "Calling the dark reaction 'the reaction in darkness'. It does not need darkness, only that it does not use light directly.",
+          "Swapping the two regions. Grana for light, stroma for dark."
+        ],
+        "memory_tip": "Stroma is the fluid, and the sugar is built in it."
+      }
+    ]
+  }
+}

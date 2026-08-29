@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ss_paramagnetism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Solid State (Chemistry-II)"
+  },
+  "chapter": "Solid State",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain paramagnetism with a suitable example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.62-64, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NOTATION: the examples are printed Cu⁺², Fe⁺³ and Cr⁺³, with the sign written before the number (book p.62, VSAQ 11). The accepted form writes the number first, so they are written Cu²⁺, Fe³⁺ and Cr³⁺ here. BOOK TYPO: the printed answer reads \"They loose their magnetism\"; it should read \"lose\". BOOK GAP: the printed answer gives no cause. The presence of unpaired electrons is added from NCERT, since without it a student cannot say why Cu²⁺ is paramagnetic and Zn²⁺ is not."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solid State — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A substance that is weakly attracted by an",
+          "external magnetic field is called a",
+          "paramagnetic substance.",
+          "The attraction is caused by unpaired",
+          "electrons in its atoms or ions.",
+          "It loses its magnetism as soon as the field",
+          "is removed."
+        ],
+        "why": "Every unpaired electron gives the atom or ion a magnetic moment, and the applied field turns those moments towards itself. There are no domains to hold the alignment, so ordinary thermal motion breaks it up the moment the field is taken away.",
+        "common_mistakes": [
+          "Writing strongly attracted. Strong attraction is ferromagnetism; paramagnetic substances are only weakly attracted.",
+          "Writing that the magnetism is permanent. Paramagnetism disappears when the field is removed."
+        ],
+        "memory_tip": "Paired electrons cancel, unpaired electrons do not. Unpaired electrons mean paramagnetic.",
+        "margin_note": "The two scoring words are \"weakly\" and \"unpaired electrons\". Write both before the examples."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Examples: O₂, Cu²⁺, Fe³⁺, Cr³⁺.",
+            "style": "boxed"
+          },
+          "Each of these has one or more unpaired",
+          "electrons.",
+          "A species with all its electrons paired, such",
+          "as Zn²⁺, is diamagnetic instead."
+        ],
+        "why": "The example is a separate marking point, and each example has to fit the reason given in step 1: O₂ has two unpaired electrons, Cu²⁺ has one, Fe³⁺ has five, Cr³⁺ has three. Zn²⁺ is written as the contrast because its 3d subshell is full.",
+        "common_mistakes": [
+          "Giving Fe, Co or Ni as the example. Those metals are ferromagnetic.",
+          "Writing the charge as Cu⁺² with the sign first. The accepted form is Cu²⁺, with the number before the sign."
+        ],
+        "memory_tip": "Count the unpaired electrons before naming an example. If the count is zero the species is not paramagnetic.",
+        "margin_note": "One example is enough for the mark, but it must have an unpaired electron. O₂ is the safest one."
+      }
+    ]
+  },
+  "insider_note": "The marks turn on weakly attracted and unpaired electrons. Write the ion charges as Cu²⁺ and Fe³⁺, with the number before the sign."
+}

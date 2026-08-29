@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ba_transduction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Bacteria (Botany-II)"
+  },
+  "chapter": "Bacteria",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is transduction? Who discovered it and in which organism?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Who and where",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.41, printed question 81. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The third transfer, and the one that uses a virus. Lederberg and Zinder, in Salmonella typhimurium.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Bacteria (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What transduction is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition naming the bacteriophage. Three lines.",
+        "lines": [
+          "TRANSDUCTION is the transfer of genetic material",
+          "from one bacterium to another THROUGH A",
+          "BACTERIOPHAGE, that is, through a virus."
+        ],
+        "why": "The virus does the carrying, so no contact between the two bacteria is needed at any point.",
+        "common_mistakes": [
+          "Writing 'bacterio phase'. The carrier is a BACTERIOPHAGE, a virus.",
+          "Saying the two cells touch. In transduction they never need to meet."
+        ],
+        "memory_tip": "The virus is the postman."
+      },
+      {
+        "id": "s2_who",
+        "kind": "boxed_final",
+        "label": "Who and where",
+        "marks": 1,
+        "mark_note": "Discovery",
+        "margin_note": "Both names, the organism, and the three-way list as a check.",
+        "lines": [
+          {
+            "text": "Lederberg and Zinder, in Salmonella",
+            "style": "boxed"
+          },
+          {
+            "text": "typhimurium",
+            "style": "boxed"
+          },
+          "It was discovered by LEDERBERG and ZINDER.",
+          "They worked on SALMONELLA TYPHIMURIUM.",
+          "The three transfers together are conjugation,",
+          "transformation and transduction."
+        ],
+        "why": "Listing all three at the end is the fastest check that the right names have gone with the right process, because Lederberg appears in two of them.",
+        "common_mistakes": [
+          "Naming Tatum. Tatum worked with Lederberg on CONJUGATION, not transduction.",
+          "Naming E. coli. Transduction was shown in Salmonella typhimurium."
+        ],
+        "memory_tip": "Zinder goes with Salmonella; Tatum goes with E. coli."
+      }
+    ]
+  }
+}

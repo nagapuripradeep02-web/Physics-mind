@@ -1,0 +1,174 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_hinsberg_test_distinguishing_amines",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain with a suitable example how benzenesulphonyl chloride can distinguish 1°, 2° and 3° amines.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reagent and the test",
+      "marks": 1
+    },
+    {
+      "label": "With a 1° amine",
+      "marks": 1
+    },
+    {
+      "label": "With a 2° amine",
+      "marks": 1
+    },
+    {
+      "label": "With a 3° amine",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.117 as SAQ 5. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, corrected on this card (book p.117, SAQ 5): the two printed schemes are the same drawing twice. Both show the amine reactant as R–N(H)–R, with an R above and an R below the nitrogen, and both show a product with two R groups on nitrogen. That is the SECONDARY amine reaction, printed once under (i) for the 1° amine and again under (ii) for the 2° amine. The primary-amine reaction is C₆H₅SO₂Cl + R–NH₂ → C₆H₅SO₂–NH–R + HCl, with ONE R and one hydrogen left on nitrogen; that is what the card writes, and it is the hydrogen left behind that makes the 1° product soluble in alkali. (This reading is taken from a scanned page; the surrounding printed WORDS state the 1°/2° difference correctly, so only the drawing is affected.) BOOK GAP, filled here: the printed answer never says why the 1° product is acidic — the strongly electron-withdrawing SO₂ group is what makes the remaining N–H hydrogen acidic. BOOK TYPOS: \"Hinsberg's\" is spelled \"Hinsberg's\" but \"sulphonyl\" appears as \"sulhonyl\", and \"3⁰-Amines do not reacts\"."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reagent",
+        "kind": "text",
+        "label": "The reagent and the test",
+        "marks": 1,
+        "mark_note": "Reagent",
+        "lines": [
+          "Benzenesulphonyl chloride, C₆H₅SO₂Cl, is",
+          "called Hinsberg's reagent.",
+          "The amine is shaken with the reagent and",
+          "the mixture is then treated with aqueous KOH.",
+          "Two things are recorded: whether a product",
+          "forms at all, and whether that product",
+          "dissolves in the alkali.",
+          "Ethanamine, N-methylethanamine and",
+          "N,N-dimethylethanamine are used here as the",
+          "1°, 2° and 3° examples."
+        ],
+        "why": "Two separate observations are made, and it is the pair of them that identifies the amine. A 3° amine is separated by the first observation, because it does not react at all; the 1° and 2° amines both react and are then separated by the second, the solubility in alkali.",
+        "common_mistakes": [
+          "Describing only whether the amine reacts. Both the reaction and the alkali solubility are needed to tell the three classes apart.",
+          "Using nitrous acid instead. That is a different test; this question names benzenesulphonyl chloride."
+        ],
+        "memory_tip": "Two checks in order: does it react, and does the product dissolve in alkali.",
+        "margin_note": "Name Hinsberg's reagent and the alkali step in the opening lines. Both are marked wording."
+      },
+      {
+        "id": "s2_primary",
+        "kind": "equation",
+        "label": "With a 1° amine",
+        "marks": 1,
+        "mark_note": "1° amine",
+        "lines": [
+          {
+            "text": "C₆H₅SO₂Cl + C₂H₅–NH₂ →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅SO₂–NH–C₂H₅ + HCl",
+            "style": "indent"
+          },
+          "The product is N-ethylbenzenesulphonamide.",
+          "One hydrogen is left on the nitrogen, and",
+          "the SO₂ group makes it acidic.",
+          "So the product dissolves in aqueous KOH:",
+          {
+            "text": "C₆H₅SO₂–NH–C₂H₅ + KOH →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅SO₂–N⁻(K⁺)–C₂H₅ + H₂O",
+            "style": "indent"
+          }
+        ],
+        "why": "A primary amine has two N–H hydrogens. One is replaced by the sulphonyl group and one is left over, and the strongly electron-withdrawing SO₂ group makes that remaining hydrogen acidic enough to be removed by alkali. The salt formed is soluble, so the solid dissolves.",
+        "common_mistakes": [
+          "Drawing two alkyl groups on the nitrogen of the product. A 1° amine leaves one alkyl group and one hydrogen.",
+          "Saying the product is insoluble in alkali. The 1° product is the one that DISSOLVES; the 2° product does not."
+        ],
+        "memory_tip": "One hydrogen left on nitrogen means the product is acidic, so the 1° product is the one that dissolves in KOH.",
+        "margin_note": "Show the hydrogen still on nitrogen in the product. That single hydrogen is the reason for the solubility."
+      },
+      {
+        "id": "s3_secondary",
+        "kind": "equation",
+        "label": "With a 2° amine",
+        "marks": 1,
+        "mark_note": "2° amine",
+        "lines": [
+          {
+            "text": "C₆H₅SO₂Cl + (C₂H₅)(CH₃)NH →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅SO₂–N(C₂H₅)(CH₃) + HCl",
+            "style": "indent"
+          },
+          "The product is an",
+          "N,N-dialkylbenzenesulphonamide.",
+          "No hydrogen is left on the nitrogen, so the",
+          "product is not acidic.",
+          "It stays as a solid and does not dissolve",
+          "in aqueous KOH."
+        ],
+        "why": "A secondary amine has only one N–H hydrogen, and that one is used up in the substitution. With no hydrogen left on nitrogen there is nothing for the alkali to remove, so the sulphonamide is insoluble. The reaction happens; only the solubility differs from the 1° case.",
+        "common_mistakes": [
+          "Writing that the 2° amine does not react. It does react; its product is simply insoluble in alkali.",
+          "Confusing the two products. The 1° product dissolves in KOH, the 2° product stays undissolved."
+        ],
+        "memory_tip": "No hydrogen on nitrogen means no acidity, so the 2° product stays a solid in alkali.",
+        "margin_note": "The contrast with the 1° case is the mark. Write insoluble in alkali in so many words."
+      },
+      {
+        "id": "s4_tertiary",
+        "kind": "boxed_final",
+        "label": "With a 3° amine",
+        "marks": 1,
+        "mark_note": "3° amine",
+        "lines": [
+          "A 3° amine has no hydrogen on the nitrogen,",
+          "so no substitution is possible.",
+          {
+            "text": "C₆H₅SO₂Cl + (C₂H₅)(CH₃)₂N → no reaction",
+            "style": "eq"
+          },
+          "Summary of the test:",
+          {
+            "text": "1° soluble · 2° insoluble · 3° no reaction",
+            "style": "boxed"
+          },
+          "In practice p-toluenesulphonyl chloride is",
+          "often used in place of benzenesulphonyl",
+          "chloride, because it is easier to purify."
+        ],
+        "why": "The substitution replaces a hydrogen on nitrogen, and a tertiary amine has none to replace, so the reagent and the amine simply stay as they are. That is why a 3° amine is identified by the absence of any product rather than by a solubility.",
+        "common_mistakes": [
+          "Saying the 3° amine gives an insoluble product. It gives no product at all under these conditions.",
+          "Leaving out the summary of all three results. The question asks how the reagent distinguishes them, so the three outcomes must be set side by side."
+        ],
+        "memory_tip": "Count the N–H hydrogens: two gives a soluble product, one gives an insoluble product, none gives no reaction.",
+        "margin_note": "Finish with the three-way summary line. It is the sentence that answers the question as asked."
+      }
+    ]
+  },
+  "insider_note": "The whole test comes down to counting the hydrogens on nitrogen — two, one or none — so write that count beside each case. The book's own drawing for the 1° amine repeats the 2° amine scheme; the 1° product must show one alkyl group and one hydrogen on nitrogen, because that hydrogen is what makes it dissolve in alkali."
+}

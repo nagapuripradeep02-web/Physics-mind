@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_malus_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Malus law?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Statement of the law",
+      "marks": 1
+    },
+    {
+      "label": "Formula with symbols",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: I = I₀ cos²θ with θ the angle between the transmission axes of polariser and analyser; at θ = 0° the full intensity I₀ passes, at θ = 90° (crossed) the transmitted intensity is zero — both limits follow from the formula."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The mark is in naming θ correctly — the angle between the two transmission axes, not the angle between the light and the polaroid.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Wave Optics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "Statement of the law",
+        "marks": 1,
+        "mark_note": "Square of the cosine",
+        "lines": [
+          "When plane polarised light falls on an",
+          "analyser, the intensity of the transmitted",
+          "light varies as the square of the cosine of",
+          "the angle between the transmission axes of",
+          "the polariser and the analyser.",
+          "This is Malus law."
+        ],
+        "margin_note": "First mark. The words square of the cosine and transmission axes must both appear.",
+        "why": "The analyser passes only the component of the electric field along its axis, E₀ cos θ. Intensity goes as the square of the field, which is where the cosine squared comes from — the law is the component picture written as intensity.",
+        "common_mistakes": [
+          "Writing cosine instead of the square of the cosine. The field goes as cos θ; the intensity goes as cos²θ.",
+          "Applying the law to unpolarised light. Malus law is for plane polarised light falling on an analyser; unpolarised light simply halves."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the transmitted intensity varies as the square of the cosine of the angle between the transmission axes of the polariser and the analyser.",
+          "accept": [
+            "intensity varies as cos squared theta",
+            "angle between the transmission axes",
+            "plane polarised light on an analyser"
+          ],
+          "reject": [
+            "I equals I nought cos squared theta"
+          ],
+          "heard_as": [
+            "Malus law",
+            "analyser",
+            "cos squared"
+          ]
+        },
+        "memory_tip": "Field goes as cos θ, intensity is field squared — so intensity goes as cos²θ."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Formula with symbols",
+        "marks": 1,
+        "mark_note": "I = I₀ cos²θ, symbols named",
+        "lines": [
+          {
+            "text": "I = I₀ cos²θ",
+            "style": "boxed"
+          },
+          "where I₀ = intensity of the plane polarised",
+          "light falling on the analyser, I = intensity",
+          "of the transmitted light, and θ = the angle",
+          "between the two transmission axes."
+        ],
+        "margin_note": "Second mark. The formula alone is not enough — name I₀, I and θ.",
+        "why": "A formula earns its mark only when every symbol is identified. θ in particular has to be tied to the two transmission axes, because that is the definition the two limiting cases (θ = 0°, θ = 90°) are read from.",
+        "common_mistakes": [
+          "Leaving the symbols unnamed, so I₀ and I could mean anything.",
+          "Swapping I and I₀. I₀ is what falls on the analyser; I is what comes through."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The formula I equals I nought cos squared theta, with I₀ the incident polarised intensity, I the transmitted intensity, and θ the angle between the axes.",
+          "accept": [
+            "I equals I nought cos squared theta",
+            "I nought is the incident intensity",
+            "theta between the two axes"
+          ],
+          "reject": [
+            "intensity varies as the square of the cosine"
+          ],
+          "heard_as": [
+            "I nought",
+            "cos squared theta"
+          ]
+        },
+        "memory_tip": "Check the formula at the two ends: θ = 0° gives all the light, θ = 90° gives none."
+      }
+    ]
+  }
+}

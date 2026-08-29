@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_globular_vs_fibrous_proteins",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate between globular and fibrous proteins.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Globular proteins",
+      "marks": 1
+    },
+    {
+      "label": "Fibrous proteins",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 11. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book prints this as a two-column table. It is written here as ordinary lines, one column per step, because the notebook page is ruled for lines; a student may still answer it as a table in the examination."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_globular",
+        "kind": "text",
+        "label": "Globular proteins",
+        "marks": 1,
+        "mark_note": "Globular",
+        "lines": [
+          "Globular proteins:",
+          "The polypeptide chains are coiled round on",
+          "themselves to give a roughly spherical",
+          "shape.",
+          "They are soluble in water.",
+          "Ex: insulin, albumin."
+        ],
+        "why": "The shape and the solubility go together. A globular protein folds so that its water-attracting groups face outwards, which is why it dissolves; it can then travel in the blood and act as a hormone or an enzyme.",
+        "common_mistakes": [
+          "Giving keratin or myosin as a globular protein. Both are fibrous.",
+          "Writing only the shape. The mark expects the shape, the solubility and an example."
+        ],
+        "memory_tip": "Globular means ball shaped, soluble, and it works in solution.",
+        "margin_note": "Three things per column: shape, solubility, example. Answer it as a table if there is room."
+      },
+      {
+        "id": "s2_fibrous",
+        "kind": "boxed_final",
+        "label": "Fibrous proteins",
+        "marks": 1,
+        "mark_note": "Fibrous",
+        "lines": [
+          {
+            "text": "Fibrous: thread-like and insoluble in water",
+            "style": "boxed"
+          },
+          "The polypeptide chains run parallel to one",
+          "another and are held together by hydrogen",
+          "bonds.",
+          "They are insoluble in water.",
+          "Ex: keratin, myosin."
+        ],
+        "why": "Parallel chains held alongside one another make a thread, and that shape is what a structural material must have. Insolubility follows from the same packing, and it is what makes these proteins useful in hair, nails, skin and muscle.",
+        "common_mistakes": [
+          "Writing that fibrous proteins are soluble in water. They are insoluble; the globular ones dissolve.",
+          "Swapping the examples. Insulin and albumin are globular; keratin and myosin are fibrous."
+        ],
+        "memory_tip": "Fibrous means fibre: parallel chains, insoluble, structural.",
+        "margin_note": "A two-column table earns this quickly. Keep the same three rows in both columns."
+      }
+    ]
+  },
+  "insider_note": "Answer this as a table with three rows: shape, solubility, example. The examples are the fastest marks and the easiest to swap by mistake."
+}

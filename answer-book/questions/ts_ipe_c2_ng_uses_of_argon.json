@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_uses_of_argon",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write any two uses of argon.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Filling electric bulbs",
+      "marks": 1
+    },
+    {
+      "label": "Inert atmosphere in the laboratory",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.89 as VSAQ 4. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer is \"It is used for filling electric bulbs\" and \"It is used in the laboratory for handling substances that are air sensitive\". Both are kept. Two details are added because the printed answer gives no reason for either: argon is filled together with nitrogen, and the reason is that the hot filament would otherwise evaporate and react. The welding use is added as a third example of the same reason."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Noble Gases — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bulbs",
+        "kind": "text",
+        "label": "Filling electric bulbs",
+        "marks": 1,
+        "mark_note": "First use",
+        "lines": [
+          "1. Argon, mixed with nitrogen, is filled into",
+          {
+            "text": "electric bulbs.",
+            "style": "indent"
+          },
+          "The gas takes part in no reaction, so the hot",
+          "filament does not oxidise, and it evaporates",
+          "more slowly."
+        ],
+        "why": "A filament at about 2500 K would react at once with oxygen, and in a vacuum it would evaporate quickly. An unreactive gas at low pressure stops both: it cannot oxidise the metal, and its molecules slow the evaporation of tungsten.",
+        "common_mistakes": [
+          "Writing that neon fills electric bulbs. Neon is used in signs and discharge tubes; argon is the bulb-filling gas.",
+          "Saying the bulb is filled with argon alone. Argon is used together with nitrogen."
+        ],
+        "memory_tip": "Argon is the bulb gas: it takes part in no reaction, so the filament lasts longer.",
+        "margin_note": "Number the two uses. One line of reason after each use is enough at this length."
+      },
+      {
+        "id": "s2_laboratory",
+        "kind": "boxed_final",
+        "label": "Inert atmosphere in the laboratory",
+        "marks": 1,
+        "mark_note": "Second use",
+        "lines": [
+          {
+            "text": "2. Argon is used in the laboratory to handle",
+            "style": "boxed"
+          },
+          {
+            "text": "substances that react with air.",
+            "style": "indent"
+          },
+          "3. Argon also gives an inert atmosphere for",
+          {
+            "text": "arc welding and for metallurgy at high",
+            "style": "indent"
+          },
+          {
+            "text": "temperature.",
+            "style": "indent"
+          }
+        ],
+        "why": "Argon is chosen over nitrogen for these jobs because nitrogen is not fully unreactive at high temperature: it forms nitrides with magnesium, lithium and titanium. Argon forms no compound at all under laboratory conditions, and it is the cheapest noble gas because it makes up about 0.93% of air.",
+        "common_mistakes": [
+          "Writing that nitrogen would do the same job. Hot magnesium, lithium and titanium react with nitrogen to give nitrides; they do not react with argon.",
+          "Giving only one use when the question asks for two."
+        ],
+        "memory_tip": "Argon covers a substance so that air cannot reach it.",
+        "margin_note": "Any two of these three uses complete the answer. Both marks are for the uses, not for the reasons."
+      }
+    ]
+  },
+  "insider_note": "The question says \"any two\", so two numbered uses earn both marks. Adding a one-line reason to each is worth doing if one use is judged too close to the other."
+}

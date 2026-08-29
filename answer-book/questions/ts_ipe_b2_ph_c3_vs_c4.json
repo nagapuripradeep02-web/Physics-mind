@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_c3_vs_c4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Tabulate any eight differences between C3 and C4 plants/cycles.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "First product and climate",
+      "marks": 1
+    },
+    {
+      "label": "Kranz anatomy and chloroplast dimorphism",
+      "marks": 1
+    },
+    {
+      "label": "Photorespiration and transpiration",
+      "marks": 1
+    },
+    {
+      "label": "Efficiency, biomass and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.25, printed question 18. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The question says TABULATE. Draw the two columns and number the rows — an examiner marking eight differences in a paragraph will miss some, and that is entirely avoidable.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_product",
+        "kind": "text",
+        "label": "First product and climate",
+        "marks": 1,
+        "mark_note": "Product, climate",
+        "margin_note": "Set up two columns on the first line and keep the row numbers aligned throughout.",
+        "lines": [
+          "C3 CYCLE  |  C4 CYCLE",
+          "1. First stable product is a 3-carbon",
+          "compound, PGA (phosphoglyceric acid).",
+          "   | First stable product is a 4-carbon",
+          "   compound, OAA (oxaloacetic acid).",
+          "2. Occurs mostly in TEMPERATE plants.",
+          "   | Occurs in TROPICAL plants."
+        ],
+        "why": "The names C3 and C4 come from the number of carbons in the first stable product, so that row explains where both names came from.",
+        "common_mistakes": [
+          "Saying the first product of C4 is PGA. PGA is the C3 product; OAA is the C4 product.",
+          "Swapping the climates. C3 is temperate, C4 is tropical."
+        ],
+        "memory_tip": "Three carbons for C3, four for C4: the name IS the first product."
+      },
+      {
+        "id": "s2_anatomy",
+        "kind": "text",
+        "label": "Kranz anatomy and chloroplast dimorphism",
+        "marks": 1,
+        "mark_note": "Anatomy",
+        "margin_note": "Two rows, both about structure. These are the rows that explain the rest.",
+        "lines": [
+          "3. Leaves do NOT show Kranz anatomy.",
+          "   | Leaves DO show Kranz anatomy.",
+          "4. Chloroplast dimorphism is NOT seen.",
+          "   | Chloroplast dimorphism IS seen."
+        ],
+        "why": "Kranz anatomy is the wreath of bundle sheath cells that lets a C4 plant keep its two reactions apart, so it is the structural reason for every other difference in the table.",
+        "common_mistakes": [
+          "Giving Kranz anatomy to C3 plants. Only C4 leaves have it.",
+          "Leaving out chloroplast dimorphism. Two kinds of chloroplast is what Kranz anatomy holds."
+        ],
+        "memory_tip": "Kranz means wreath: only C4 leaves wear one."
+      },
+      {
+        "id": "s3_photoresp",
+        "kind": "text",
+        "label": "Photorespiration and transpiration",
+        "marks": 1,
+        "mark_note": "Losses",
+        "margin_note": "Two rows about what is lost. Both go the same way, which makes them easy to remember.",
+        "lines": [
+          "5. Photorespiration is very HIGH.",
+          "   | Photorespiration is NOT detectable.",
+          "6. Transpiration is MORE.",
+          "   | Transpiration is LESS."
+        ],
+        "why": "Both rows are losses, and C4 plants avoid both because they concentrate carbon dioxide around RuBisCO instead of letting oxygen compete with it.",
+        "common_mistakes": [
+          "Saying C4 plants photorespire more. C4 photorespiration is NOT detectable.",
+          "Reversing the transpiration row. C4 plants lose LESS water."
+        ],
+        "memory_tip": "C4 wastes less of everything: less carbon lost, less water lost."
+      },
+      {
+        "id": "s4_yield",
+        "kind": "boxed_final",
+        "label": "Efficiency, biomass and examples",
+        "marks": 1,
+        "mark_note": "Yield, examples",
+        "margin_note": "Finish with the examples. Eight numbered rows is the target the question sets.",
+        "lines": [
+          {
+            "text": "C4 fixes more carbon with less water lost",
+            "style": "boxed"
+          },
+          "7. Less efficient at using atmospheric CO2.",
+          "   | MORE efficient at using atmospheric CO2.",
+          "8. Biomass produced is LESS.",
+          "   | Biomass produced is HIGH.",
+          "9. Example: almost all dicot plants.",
+          "   | Example: maize, sugarcane, sorghum."
+        ],
+        "why": "The examples are the check on the whole table: maize and sugarcane are tropical grasses, which is exactly what rows 2 and 3 predict.",
+        "common_mistakes": [
+          "Giving no examples. The example row is part of the eight differences asked for.",
+          "Naming a C3 plant as C4. Maize, sugarcane and sorghum are the standard C4 three."
+        ],
+        "memory_tip": "Tropical grasses are the C4 plants: maize, sugarcane, sorghum."
+      }
+    ]
+  }
+}

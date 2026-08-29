@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_gabriel_fails_for_aromatic_amines",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why can't aromatic primary amines be prepared by Gabriel phthalimide synthesis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The step that fails",
+      "marks": 1
+    },
+    {
+      "label": "Why the C–X bond does not break",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.116 as VSAQ 9. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: the printed reason — potassium phthalimide does not react with an aryl halide because the C–X bond in a halo arene has partial double bond character — is CORRECT and is kept. BOOK TYPOS on the same answer: \"pthalimide\" for phthalimide (used twice), \"don't reacts\", \"Aramatic\", and \"can't prepared\". BOOK GAP, filled here: the printed answer does not say that a BENZYLIC halide such as benzyl chloride DOES react, because there the halogen sits on an sp³ carbon outside the ring; benzylamine is therefore obtainable by this synthesis even though aniline is not."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_step_that_fails",
+        "kind": "equation",
+        "label": "The step that fails",
+        "marks": 1,
+        "mark_note": "The failing step",
+        "lines": [
+          "Gabriel synthesis needs potassium",
+          "phthalimide to replace the halogen of an",
+          "alkyl halide by nucleophilic substitution.",
+          "An aryl halide does not undergo this",
+          "substitution.",
+          {
+            "text": "C₆H₄(CO)₂N⁻K⁺ + C₆H₅–X → no reaction",
+            "style": "eq"
+          },
+          {
+            "text": "[heat]",
+            "style": "indent"
+          }
+        ],
+        "why": "Every Gabriel synthesis begins with the phthalimide anion replacing a halogen. If that one step does not take place, no N-aryl phthalimide is made, and there is nothing to hydrolyse in the last step. The synthesis stops at the very first arrow.",
+        "common_mistakes": [
+          "Saying the hydrolysis step fails. The failure is at the substitution step, before any N-substituted phthalimide exists.",
+          "Writing that phthalimide is not nucleophilic enough. The phthalimide anion is a good nucleophile; the aryl halide is the part that will not react."
+        ],
+        "memory_tip": "The synthesis begins with a substitution on the halide, so a halide that will not substitute stops it at step one.",
+        "margin_note": "Write \"no reaction\" beside the equation. Naming which step fails is the first mark."
+      },
+      {
+        "id": "s2_c_x_bond",
+        "kind": "boxed_final",
+        "label": "Why the C–X bond is strong",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "In a halo arene the halogen lone pair is",
+          "delocalised into the ring.",
+          {
+            "text": "C–X has partial double bond character",
+            "style": "boxed"
+          },
+          "So the C–X bond is shorter and stronger",
+          "than in an alkyl halide and is hard to break.",
+          "The ring carbon is also sp² and its π",
+          "electrons repel the approaching nucleophile.",
+          "So only aliphatic 1° amines are made this",
+          "way; benzyl chloride is an exception,",
+          "because there the halogen is on an sp³",
+          "carbon outside the ring."
+        ],
+        "why": "Delocalisation of the halogen lone pair into the ring gives the C–X bond some double bond character, which shortens and strengthens it. A stronger bond needs more energy to break, so the substitution that Gabriel synthesis depends on does not take place under these conditions.",
+        "common_mistakes": [
+          "Saying the C–X bond in a halo arene is weaker. It is stronger and shorter than in an alkyl halide, which is why it does not break.",
+          "Claiming no benzene-containing amine can be made this way. Benzylamine can, because benzyl chloride carries its halogen on an sp³ carbon."
+        ],
+        "memory_tip": "The halogen lone pair goes into the ring, so the C–X bond gains double bond character and will not break.",
+        "margin_note": "The phrase partial double bond character is the marked phrase. Write it in those words."
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for one phrase: the C–X bond in a halo arene has partial double bond character and does not undergo nucleophilic substitution. Adding that benzyl chloride is the exception shows the limit is about the sp² ring carbon, not about benzene rings in general."
+}

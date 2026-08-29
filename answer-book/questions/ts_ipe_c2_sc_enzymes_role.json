@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_enzymes_role",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are enzymes? What is their role in human body?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What enzymes are",
+      "marks": 1
+    },
+    {
+      "label": "Their role in the human body",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.77, VSAQ 10): the printed answer is circular and answers only half the question — \"Enzyme are termed as biochemical catalysis and the phenomenon of catalysis is known as bio chemical catalysis\". It defines enzymes as catalysis rather than as catalysts, repeats the same phrase on both sides of the sentence, and never answers the second half of the question, the role in the human body. This is the largest single gap found in the unit. The card states the NCERT definition (complex nitrogenous organic compounds, mostly globular proteins, produced by living cells, acting as catalysts for the reactions of the living body) and answers the second half with digestion and metabolism, naming salivary amylase, pepsin and maltase."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_they_are",
+        "kind": "text",
+        "label": "What enzymes are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Enzymes are complex nitrogenous organic",
+          "compounds, mostly globular proteins,",
+          "produced by living cells.",
+          "They catalyse the reactions that take",
+          "place in living bodies, so they are called",
+          "biochemical catalysts.",
+          "The phenomenon is called enzyme catalysis",
+          "or biochemical catalysis."
+        ],
+        "why": "Two separate facts are marked here: what an enzyme is made of, a protein produced by a living cell, and what it does, catalyse a reaction. The book's own answer states the second and never states the first, so a student who copies it has only half of this mark.",
+        "common_mistakes": [
+          "Writing that enzymes are catalysis. Enzymes are catalysts; catalysis is the process they carry out.",
+          "Calling every enzyme an inorganic substance. Enzymes are organic, and almost all of them are proteins."
+        ],
+        "memory_tip": "Protein made by a living cell, working as a catalyst. That is an enzyme in one line.",
+        "margin_note": "Say protein and say catalyst. An answer with only one of the two words reads as incomplete."
+      },
+      {
+        "id": "s2_role",
+        "kind": "boxed_final",
+        "label": "Their role in the human body",
+        "marks": 1,
+        "mark_note": "Role in the body",
+        "lines": [
+          {
+            "text": "They catalyse digestion and metabolism.",
+            "style": "boxed"
+          },
+          "Amylase in saliva changes starch into",
+          "maltose.",
+          "Pepsin in the stomach breaks proteins down",
+          "into smaller peptides.",
+          "Maltase changes maltose into glucose.",
+          "Body temperature is far too low for these",
+          "changes without an enzyme."
+        ],
+        "why": "The second half of the question asks what enzymes do for the body, so it needs named examples from the body itself. Each named enzyme, its place and its reaction is one complete answer to that half; three of them make the point that the same idea runs through the whole of digestion.",
+        "common_mistakes": [
+          "Naming enzymes from outside the body, such as urease from soyabean. The question asks about the human body.",
+          "Writing that enzymes supply energy. They speed up the reactions; the energy comes from the food itself."
+        ],
+        "memory_tip": "Saliva has amylase, the stomach has pepsin. Name the place and the enzyme together.",
+        "margin_note": "One named enzyme with its reaction earns this mark. Two or three is safer and costs one line each."
+      }
+    ]
+  },
+  "insider_note": "The printed answer in the book does not answer the second half of the question at all. Write at least one named enzyme from the human body with the change it brings about."
+}

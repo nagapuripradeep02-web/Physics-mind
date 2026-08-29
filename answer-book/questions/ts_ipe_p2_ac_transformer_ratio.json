@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_transformer_ratio",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is transformer ratio?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: the transformer ratio r = Nₛ/Nₚ; for an ideal transformer Vₛ/Vₚ = Nₛ/Nₚ, so r also equals the ratio of output emf to input emf, matching the book's answer; r > 1 is a step-up and r < 1 a step-down transformer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Secondary over primary",
+        "lines": [
+          "The ratio of the number of turns in the",
+          "secondary to the number of turns in the",
+          "primary of a transformer is called the",
+          "transformer ratio."
+        ],
+        "margin_note": "First mark. The order matters: secondary turns on top.",
+        "why": "The definition is a turns ratio, secondary over primary — the order matters, because the same two numbers the other way round describe the reciprocal.",
+        "common_mistakes": [
+          "Writing primary over secondary. The transformer ratio is Nₛ/Nₚ, secondary on top.",
+          "Calling it a power ratio. An ideal transformer does not change the power, only the voltage and the current."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the transformer ratio is the number of secondary turns divided by the number of primary turns.",
+          "accept": [
+            "secondary turns by primary turns",
+            "N s by N p"
+          ],
+          "reject": [
+            "output emf by input emf"
+          ],
+          "heard_as": [
+            "turns",
+            "ratio"
+          ]
+        },
+        "memory_tip": "Say it in the order you write it: secondary turns over primary turns."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "r = Nₛ/Nₚ = Vₛ/Vₚ",
+        "lines": [
+          "For an ideal transformer the turns ratio also",
+          "equals the ratio of output emf to input emf.",
+          {
+            "text": "r = Nₛ / Nₚ = Vₛ / Vₚ",
+            "style": "eq"
+          },
+          {
+            "text": "r > 1: step-up · r < 1: step-down",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write the relation with both ratios in it.",
+        "why": "Writing r as both a turns ratio and an emf ratio is what makes the number usable — r > 1 means the transformer steps the voltage up, r < 1 means it steps it down.",
+        "common_mistakes": [
+          "Using the emf ratio for a real transformer with losses. Vₛ/Vₚ = Nₛ/Nₚ holds for the ideal, 100% efficient case."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = Nₛ/Nₚ = Vₛ/Vₚ for an ideal transformer, with r > 1 a step-up and r < 1 a step-down.",
+          "accept": [
+            "equals V s by V p",
+            "output emf by input emf",
+            "r greater than 1 is step-up"
+          ],
+          "reject": [
+            "secondary turns by primary turns"
+          ],
+          "heard_as": [
+            "step up",
+            "step down",
+            "ideal"
+          ]
+        },
+        "memory_tip": "One r, two readings: turns ratio always, emf ratio when the transformer is ideal."
+      }
+    ]
+  },
+  "insider_note": "Write the definition in words AND the relation r = Nₛ/Nₚ = Vₛ/Vₚ — the book's answer gives both, and each carries a mark."
+}

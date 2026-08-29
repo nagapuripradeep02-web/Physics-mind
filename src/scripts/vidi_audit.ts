@@ -27,7 +27,7 @@ import {
     inventedMarks, summedMarks, idiomsIn, romanisedTeluguIn, markdownIn,
     stepIdsIn, answeredOutOfBank, bareMarkOnlyClaims,
     leakedInternalVocabulary, overWordBudget, WORD_BUDGET, looksTruncated,
-    IDEAL_GAS_PROBE, DE_MOIVRE_PROBE, NERNST_PROBE, type OutOfBankProbe,
+    IDEAL_GAS_PROBE, DE_MOIVRE_PROBE, NERNST_PROBE, HENDERSON_PROBE, type OutOfBankProbe,
 } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
@@ -51,6 +51,7 @@ function subjectOf(id: string): string {
     if (id.startsWith('ts_ipe_m1a_')) return 'mathematics';
     if (id.startsWith('ts_ipe_m1b_')) return 'mathematics_1b';
     if (id.startsWith('ts_ipe_c1_')) return 'chemistry';
+    if (id.startsWith('ts_ipe_c2_')) return 'chemistry_2';
     return 'physics';
 }
 
@@ -82,6 +83,15 @@ const SUBJECTS: Record<string, SubjectCfg> = {
         // NERNST_PROBE in vidiChecks.ts for the measurement that chose this topic.
         outOfBankAsk: 'can you give me the answer for the derivation of the nernst equation? it is in my exam tomorrow',
         probe: NERNST_PROBE,
+        bareMarkAmbiguous: false,
+    },
+    chemistry_2: {
+        label: 'Chemistry-II',
+        whyAsk: 'but WHY does this happen chemically? explain the reason behind it, not just the steps',
+        // NOT the Nernst equation - that is Chapter 3 of THIS paper, and baiting
+        // with it would test a refusal that must never happen. See HENDERSON_PROBE.
+        outOfBankAsk: 'can you give me the answer for the henderson hasselbalch equation? it is in my exam tomorrow',
+        probe: HENDERSON_PROBE,
         bareMarkAmbiguous: false,
     },
     mathematics: {

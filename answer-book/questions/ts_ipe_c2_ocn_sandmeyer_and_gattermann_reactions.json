@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_sandmeyer_and_gattermann_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the following reactions. a) Sandmeyer reaction  b) Gattermann reaction",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Sandmeyer reaction",
+      "marks": 2
+    },
+    {
+      "label": "Gattermann reaction",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.118 as SAQ 10. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: both printed schemes are correct — Cu₂Cl₂/HCl, Cu₂Br₂/HBr and CuCN/KCN for Sandmeyer; copper powder with HCl or HBr for Gattermann. BOOK WORDING, corrected here: the printed Sandmeyer answer says the diazonium halide reacts \"with HCl, HBr & KCN in the presence of cuprous ion\". The cuprous salt is a REAGENT, not something merely present; the card names Cu₂Cl₂, Cu₂Br₂ and CuCN as the reagents. BOOK GAP, filled here: the printed answer does not say that the Gattermann method gives a LOWER yield than Sandmeyer's, and does not say that Gattermann introduces only Cl and Br — the nitrile is obtainable by Sandmeyer's method alone. BOOK TYPOS: \"Sand meyer\" split in two, \"bezene\" for benzene, \"Gattermann's\" printed as \"Gatterman's\" in the question. EQUATIONS: the halide equations are written in the general X form, C₆H₅N₂⁺X⁻ → C₆H₅X + N₂, which balances exactly; the mixed-halide form the book draws (a chloride salt with HBr) does not balance as printed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sandmeyer",
+        "kind": "equation",
+        "label": "Sandmeyer reaction",
+        "marks": 2,
+        "mark_note": "Sandmeyer",
+        "lines": [
+          "A benzenediazonium salt is warmed with a",
+          "cuprous salt dissolved in the matching acid.",
+          "The –N₂⁺ group is replaced by Cl, Br or CN,",
+          "and nitrogen gas is given off.",
+          {
+            "text": "C₆H₅N₂⁺X⁻ → C₆H₅–X + N₂",
+            "style": "eq"
+          },
+          {
+            "text": "[Cu₂X₂ / HX,  X = Cl or Br]",
+            "style": "indent"
+          },
+          {
+            "text": "C₆H₅N₂⁺Cl⁻ + CuCN →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅–CN + N₂ + CuCl",
+            "style": "indent"
+          },
+          {
+            "text": "[CuCN / KCN]",
+            "style": "indent"
+          },
+          "So chlorobenzene, bromobenzene and",
+          "benzonitrile are all made this way."
+        ],
+        "why": "The diazonium group is the best leaving group available on a benzene ring: it departs as neutral nitrogen gas, which cannot come back. The cuprous salt supplies the nucleophile and takes part in the electron transfer that puts it on the ring, which is why an ordinary halide salt is not enough.",
+        "common_mistakes": [
+          "Leaving out the nitrogen gas. Every diazonium replacement gives off N₂, and that escaping gas is why the reaction goes to completion.",
+          "Writing a cupric salt. Sandmeyer's reagents are cuprous, that is copper(I): Cu₂Cl₂, Cu₂Br₂ and CuCN."
+        ],
+        "memory_tip": "Cuprous salt in its own acid: chloride, bromide or cyanide goes on and nitrogen comes off.",
+        "margin_note": "Write all three products. Naming the cuprous salt as the reagent, not as a catalyst, is part of this mark."
+      },
+      {
+        "id": "s2_gattermann",
+        "kind": "boxed_final",
+        "label": "Gattermann reaction",
+        "marks": 2,
+        "mark_note": "Gattermann",
+        "lines": [
+          "The same replacement is done with copper",
+          "POWDER and the halogen acid instead of the",
+          "cuprous salt.",
+          {
+            "text": "C₆H₅N₂⁺X⁻ → C₆H₅–X + N₂",
+            "style": "eq"
+          },
+          {
+            "text": "[Cu powder / HX,  X = Cl or Br]",
+            "style": "indent"
+          },
+          "The copper and the acid make the cuprous",
+          "halide in the flask, and that then does the",
+          "same work as in Sandmeyer's method.",
+          {
+            "text": "Sandmeyer: Cu₂X₂ · Gattermann: Cu + HX",
+            "style": "boxed"
+          },
+          "The Gattermann method gives a lower yield,",
+          "and it introduces only Cl and Br — the",
+          "nitrile is made by Sandmeyer's method only."
+        ],
+        "why": "Copper metal and the halogen acid react together to give the copper(I) halide, so the two methods run through the same intermediate and give the same products. The difference is only in how the cuprous salt is supplied, and making it in the flask is the less efficient of the two.",
+        "common_mistakes": [
+          "Writing the cuprous halide as the reagent for Gattermann. The reagent is copper powder with HCl or HBr.",
+          "Making benzonitrile by the Gattermann method. Only Cl and Br go on this way; CN needs CuCN, which is Sandmeyer's."
+        ],
+        "memory_tip": "Sandmeyer uses a ready-made cuprous salt; Gattermann makes it in the flask from copper powder and the acid.",
+        "margin_note": "The comparison line is what the examiner scans for. Write both reagents side by side, then the yield difference."
+      }
+    ]
+  },
+  "insider_note": "Both reactions replace the same –N₂⁺ group and give the same products, so the marks are on the difference in the reagent: a cuprous halide for Sandmeyer, copper powder with HX for Gattermann. Two extra sentences are worth having — Gattermann gives the lower yield, and only Sandmeyer's method puts a –CN group on the ring."
+}

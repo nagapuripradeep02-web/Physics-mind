@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_met_c_vs_co_at_673k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Metallurgy (Chemistry-II)"
+  },
+  "chapter": "Metallurgy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Between C and CO, which is better reducing agent at 673 K?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The Ellingham reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECKED AND CORRECT (book p.79, VSAQ 5): the printed crossing temperature of 983 K was verified against standard thermodynamic data. For 2C + O₂ → 2CO, ΔG° ≈ −221 kJ − 0.179 T kJ; for 2CO + O₂ → 2CO₂, ΔG° ≈ −566 kJ + 0.173 T kJ. The two are equal at T ≈ 980 K, so 983 K is sound and the book's conclusion (CO better below it, C better above it) is right. BOOK TYPOS: the printed answer reads \"intersed each other at 983K above\" for \"intersect each other at 983 K; above\"; the sense is clear and the corrected wording is used on the card."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Metallurgy — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "CO is the better reducing agent at 673 K.",
+          "On the Ellingham diagram the line for",
+          "C → CO and the line for CO → CO₂ cross",
+          "each other at about 983 K.",
+          "673 K is below this crossing temperature."
+        ],
+        "why": "The question is answered entirely by where 673 K lies relative to the crossing point of the two carbon lines. Below 983 K the CO → CO₂ line lies lower, so CO has the more negative ΔG° per mole of oxygen and is the better reducing agent.",
+        "common_mistakes": [
+          "Answering carbon out of habit. Carbon is the better reducing agent only above 983 K.",
+          "Comparing the two without the diagram. The answer changes with temperature, so the crossing point has to be quoted."
+        ],
+        "memory_tip": "983 K is the dividing line. 673 K is below it, so the answer is CO.",
+        "margin_note": "Write the crossing temperature 983 K. The comparison cannot be marked without it."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The Ellingham reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "Below 983 K: CO.  Above 983 K: C.",
+            "style": "boxed"
+          },
+          "Below 983 K the reaction",
+          {
+            "text": "2CO + O₂ → 2CO₂",
+            "style": "eq"
+          },
+          "has the more negative ΔG°, so CO removes",
+          "oxygen more readily than carbon does.",
+          "Above 983 K the reaction",
+          {
+            "text": "2C + O₂ → 2CO",
+            "style": "eq"
+          },
+          "lies lower and carbon is then better."
+        ],
+        "why": "The C → CO line falls as the temperature rises because one mole of O₂ makes two moles of gas, and the CO → CO₂ line rises because three moles of gas become two. The two lines therefore cross, and the crossing at about 983 K is the temperature at which the better reducing agent changes over.",
+        "common_mistakes": [
+          "Saying carbon is always the better reducing agent. It is better only above the crossing temperature.",
+          "Writing 2CO + O₂ → CO₂. Two CO₂ are needed on the right for the carbon and the oxygen to balance."
+        ],
+        "memory_tip": "The carbon line falls, the CO line rises, and they cross at 983 K.",
+        "margin_note": "Both lines and the crossing temperature earn this mark. A small sketch of the crossing helps, but the words are enough."
+      }
+    ]
+  },
+  "insider_note": "This question and the ZnO question are the same diagram asked from opposite sides of 983 K. Learn the crossing temperature once and both are answered."
+}

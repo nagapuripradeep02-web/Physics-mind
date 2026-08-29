@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_cmc_and_kraft_temperature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is micelle concentration (CMC) & Kraft temperature (Tk)?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Critical micelle concentration",
+      "marks": 1
+    },
+    {
+      "label": "Kraft temperature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. QUESTION AS PRINTED (book p.77, VSAQ 13): the printed question reads \"What is micelle concentration (CMC) & Kraft temperature (T_K)?\" and omits the word CRITICAL, although its own abbreviation CMC contains it. The word is restored in the answer, and the question text is kept close to the print with the subscript written plain as Tk, since Unicode has no subscript capital K and the house rule forbids mixing a Unicode subscript with plain letters. BOOK GAP: the printed answer gives no value for the CMC; the range for soaps, about 10⁻⁴ to 10⁻³ mol L⁻¹, is added from NCERT. The book's spelling Kraft is kept, matching NCERT."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cmc",
+        "kind": "text",
+        "label": "Critical micelle concentration",
+        "marks": 1,
+        "mark_note": "CMC",
+        "lines": [
+          "The lowest concentration of a soap or",
+          "detergent at which its ions begin to",
+          "associate into micelles is called the",
+          "critical micelle concentration (CMC).",
+          "Below the CMC the ions stay separate in",
+          "the water and no micelle is formed.",
+          "For soaps the CMC is about 10⁻⁴ to",
+          "10⁻³ mol L⁻¹."
+        ],
+        "why": "Micelle formation is not gradual: below a definite concentration there are no micelles at all, and above it they appear. That sharp change is what the word critical marks, so the definition is written as the lowest concentration and not as a rough amount.",
+        "common_mistakes": [
+          "Writing that micelles form at any concentration. Below the CMC the soap ions stay separate.",
+          "Leaving the word critical out of the name. The abbreviation CMC stands for critical micelle concentration."
+        ],
+        "memory_tip": "Critical means a sharp line: no micelles below it, micelles above it.",
+        "margin_note": "The words lowest concentration carry this mark. Add the value only if there is room."
+      },
+      {
+        "id": "s2_kraft",
+        "kind": "boxed_final",
+        "label": "Kraft temperature",
+        "marks": 1,
+        "mark_note": "Kraft temperature",
+        "lines": [
+          {
+            "text": "Micelles form above Tk and above the CMC.",
+            "style": "boxed"
+          },
+          "The lowest temperature above which",
+          "micelles are formed is called the Kraft",
+          "temperature (Tk).",
+          "Below Tk no micelle is formed, whatever",
+          "the concentration.",
+          "So both conditions have to be met at the",
+          "same time."
+        ],
+        "why": "The two quantities are a pair of conditions, not alternatives: one is a limit on concentration and the other a limit on temperature, and micelles appear only when both are satisfied. Writing them as a pair is what turns two definitions into one complete answer.",
+        "common_mistakes": [
+          "Writing that either condition alone is enough. Both the temperature and the concentration must be above their limits.",
+          "Calling Tk the temperature at which soap dissolves. It is the temperature above which micelles are formed."
+        ],
+        "memory_tip": "Two limits, both passed: temperature above Tk and concentration above the CMC.",
+        "margin_note": "End with the sentence that both conditions apply together. That line is what an examiner reads for the pair."
+      }
+    ]
+  },
+  "insider_note": "The pair is marked together. After defining both, write one closing line saying micelles form only above the Kraft temperature and above the critical micelle concentration."
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_molar_conductivity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define molar conductivity Λm and how is it related to conductivity (κ)?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The relation to κ and the units",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERRORS (book p.69, VSAQ 5), all three corrected on this card. (a) The printed answer ENDS with \"is called molar conductivity (k)\", giving molar conductivity the symbol κ, which is the conductivity it is being distinguished from. The symbol is Λm. (b) The printed answer says \"CONDUCTIVITY of an electrolytic conductor containing 1 gr.mole ...\". The quantity being defined is the CONDUCTANCE of that volume of solution, not its conductivity; using the word conductivity in its own definition is what produced error (a). (c) The printed formula Λm = (k × 1000)/M never says what M is. M is the MOLARITY in mol L⁻¹, not the molar mass, and the 1000 is the number of cm³ in a litre. This card states both."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Molar conductivity Λm is the conductance of",
+          "the whole volume of solution that holds one",
+          "mole of the electrolyte, placed between two",
+          "electrodes one unit of length apart, with the",
+          "electrodes large enough to hold that volume.",
+          "It measures the current carrying power of one",
+          "mole of the electrolyte."
+        ],
+        "why": "Conductivity κ counts the ions in a fixed volume, so it falls on dilution simply because the ions are spread further apart. Molar conductivity fixes the amount of electrolyte instead of the volume, so it compares electrolytes mole for mole and rises on dilution.",
+        "common_mistakes": [
+          "Saying one mole of solution. It is one mole of the electrolyte, dissolved in whatever volume of solvent is needed.",
+          "Giving molar conductivity the symbol κ. Its symbol is Λm; κ is the conductivity."
+        ],
+        "memory_tip": "Conductivity fixes the volume at one cube. Molar conductivity fixes the amount at one mole.",
+        "margin_note": "The words one mole of the electrolyte must appear. That is what separates Λm from κ."
+      },
+      {
+        "id": "s2_relation_units",
+        "kind": "boxed_final",
+        "label": "The relation to κ and the units",
+        "marks": 1,
+        "mark_note": "Relation and units",
+        "lines": [
+          "One mole of electrolyte at concentration c",
+          "occupies a volume 1/c, so",
+          {
+            "text": "Λm = κ / c        (c in mol m⁻³)",
+            "style": "eq"
+          },
+          "In laboratory units, with κ in S cm⁻¹ and the",
+          "molarity M in mol L⁻¹:",
+          {
+            "text": "Λm = (κ × 1000) / M",
+            "style": "boxed"
+          },
+          "Units: S cm² mol⁻¹   (SI: S m² mol⁻¹)"
+        ],
+        "why": "The 1000 is only a unit conversion: one litre is 1000 cm³, so dividing S cm⁻¹ by mol L⁻¹ needs that factor to come out as S cm² mol⁻¹. Knowing that stops the 1000 from being memorised as part of the chemistry.",
+        "common_mistakes": [
+          "Reading M as the molar mass. M in this formula is the molarity in mol L⁻¹.",
+          "Writing the units as S cm⁻¹ mol⁻¹. Dividing a conductivity by a concentration gives S cm² mol⁻¹."
+        ],
+        "memory_tip": "The 1000 is only litres to cm³. Λm = κ divided by concentration, in whatever units are being used.",
+        "margin_note": "The units are asked for on almost every version of this question. Write S cm² mol⁻¹ beside the formula."
+      }
+    ]
+  },
+  "insider_note": "The M in Λm = (κ × 1000)/M is the molarity, not the molar mass. Students who read it as molar mass get an answer that is wrong by a factor of hundreds."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_disinfectants",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are disinfectants? Give examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples and the concentration boundary",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 8. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.105, VSAQ 7 and VSAQ 8): the printed definitions of antiseptic and disinfectant are the same sentence with the words rearranged, and neither says where the chemical is applied. The distinction is added here: a disinfectant is applied on a non-living surface, an antiseptic on living tissue. BOOK GAP: the book prints \"1% Phenol solution\" without saying that 0.2% phenol is an antiseptic, so the one example that shows a compound changing class with concentration is lost. It is written on this card and on ts_ipe_c2_cel_antiseptics, and the two cards are written to agree. BOOK OMISSION: formalin is given as an example with no statement of what it is; it is about a 40 per cent solution of formaldehyde in water, and that is stated here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Disinfectants are chemicals that kill",
+          "micro-organisms or stop their growth.",
+          "They are applied on non-living surfaces",
+          "such as floors, drains and instruments.",
+          "They are too harmful for living tissue."
+        ],
+        "why": "A disinfectant and an antiseptic do the same thing to a micro-organism, so the action alone cannot earn the mark. What separates them is the surface: a disinfectant is used on a non-living surface, and it is too harmful to be put on skin.",
+        "common_mistakes": [
+          "Writing the definition without saying where it is applied. That same sentence also defines an antiseptic.",
+          "Writing that a disinfectant can be applied on a wound. It is too harmful for living tissue."
+        ],
+        "memory_tip": "Disinfectant goes on a floor or a drain; antiseptic goes on skin.",
+        "margin_note": "The words non-living surface are the whole mark. Without them this reads as an antiseptic answer."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples and the concentration boundary",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Ex: 1% phenol solution and formalin.",
+          "Formalin is about a 40% solution of",
+          "formaldehyde in water.",
+          "Chlorine at 0.2 to 0.4 ppm in water and",
+          "sulphur dioxide in low concentration are",
+          "also disinfectants.",
+          {
+            "text": "Phenol: 0.2% antiseptic, 1% disinfectant",
+            "style": "boxed"
+          }
+        ],
+        "why": "The concentration is part of the example here, not decoration. Phenol at 0.2 per cent is dilute enough to be used on skin as an antiseptic; at 1 per cent it is used only on a non-living surface. Chlorine at a few tenths of a part per million is the amount used to disinfect drinking water.",
+        "common_mistakes": [
+          "Writing phenol as a disinfectant with no concentration. The concentration is what makes the statement true.",
+          "Giving dettol or tincture of iodine as disinfectants. Both are antiseptics, applied on living tissue."
+        ],
+        "memory_tip": "Phenol at 1 per cent is a disinfectant; at 0.2 per cent it is an antiseptic.",
+        "margin_note": "Two examples finish this mark. The phenol line also shows that the definition above is the right one."
+      }
+    ]
+  },
+  "insider_note": "This question is marked against the antiseptic question. Write where the chemical is applied, a non-living surface here, and give the 0.2% and 1% phenol pair; that one line answers both questions."
+}

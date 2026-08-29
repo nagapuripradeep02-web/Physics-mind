@@ -1,0 +1,111 @@
+{
+  "number": 4,
+  "name": "Electric Charges and Fields",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What is meant by the statement charge is quantized?",
+      "question_id": "ts_ipe_p2_ecf_charge_quantized"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Repulsion is the sure test of charging than attraction. Why?",
+      "question_id": "ts_ipe_p2_ecf_repulsion_sure_test"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "How many electrons constitute 1 C of charge?",
+      "question_id": "ts_ipe_p2_ecf_electrons_in_one_coulomb"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "What happens to the weight of a body when it is charged positively?",
+      "question_id": "ts_ipe_p2_ecf_weight_positively_charged"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "The electric lines of force do not intersect. Why?",
+      "question_id": "ts_ipe_p2_ecf_field_lines_never_intersect"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "State Gauss's law in electrostatics.",
+      "question_id": "ts_ipe_p2_ecf_gauss_law_statement"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "What happens to the force between two charges if the distance between them is (a) halved (b) doubled?",
+      "question_id": "ts_ipe_p2_ecf_force_distance_halved_doubled"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "State and explain Coulomb's inverse square law in electricity.",
+      "question_id": "ts_ipe_p2_ecf_coulombs_law"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Derive an expression for the intensity due to a point charge.",
+      "question_id": "ts_ipe_p2_ecf_intensity_point_charge"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "Derive the equation for couple acting on an electric dipole in uniform electric field.",
+      "question_id": "ts_ipe_p2_ecf_couple_on_dipole"
+    },
+    {
+      "ref": "saq4",
+      "section": "SAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "Derive an expression for the intensity of the electric field at a point on the axial line of an electric dipole.",
+      "question_id": "ts_ipe_p2_ecf_axial_line_dipole_field"
+    },
+    {
+      "ref": "saq5",
+      "section": "SAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "Derive an expression for the intensity of the electric field at a point on the equatorial plane of an electric dipole.",
+      "question_id": "ts_ipe_p2_ecf_equatorial_plane_dipole_field"
+    },
+    {
+      "ref": "saq6",
+      "section": "SAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "State Gauss's law in electrostatics and its importance.",
+      "question_id": "ts_ipe_p2_ecf_gauss_law_and_importance"
+    }
+  ]
+}

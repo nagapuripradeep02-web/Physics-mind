@@ -1,0 +1,110 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_geac",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is GEAC and what are its objectives?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What GEAC stands for",
+      "marks": 1
+    },
+    {
+      "label": "Its objectives",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 120. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The expansion is the first mark. Get all four words: Genetic Engineering Approval Committee.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What GEAC stands for",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "The four words in full, then what kind of body it is.",
+        "lines": [
+          "GEAC stands for the GENETIC ENGINEERING",
+          "APPROVAL COMMITTEE.",
+          "It is the regulatory body set up by the",
+          "government for genetic engineering work."
+        ],
+        "why": "Genetic modification carries the biosafety risks listed elsewhere in this chapter, so a body with the power to approve or refuse is needed.",
+        "common_mistakes": [
+          "Expanding it as 'Genetic Engineering Advisory Committee'. It is APPROVAL Committee.",
+          "Saying GEAC is an international body. It is a national regulatory body."
+        ],
+        "memory_tip": "Approval, not advice: it can say no."
+      },
+      {
+        "id": "s2_objectives",
+        "kind": "boxed_final",
+        "label": "Its objectives",
+        "marks": 1,
+        "mark_note": "Objectives",
+        "margin_note": "Both objectives numbered. Six lines.",
+        "lines": [
+          {
+            "text": "It decides whether GM research and GM releases",
+            "style": "boxed"
+          },
+          {
+            "text": "are valid and safe",
+            "style": "boxed"
+          },
+          "Its objectives are:",
+          "1. to make decisions on the VALIDITY of GM",
+          "   research;",
+          "2. to judge the SAFETY of introducing GM organisms",
+          "   for public services."
+        ],
+        "why": "Both objectives are about permission: nothing may be researched or released without GEAC's decision.",
+        "common_mistakes": [
+          "Giving one objective. There are two.",
+          "Saying GEAC develops GM crops. It APPROVES or refuses them."
+        ],
+        "memory_tip": "Two questions it asks: is the research sound, and is the release safe."
+      }
+    ]
+  }
+}

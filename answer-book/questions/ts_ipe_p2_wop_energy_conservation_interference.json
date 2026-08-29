@@ -1,0 +1,206 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_energy_conservation_interference",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Does the principle of conservation of energy hold for interference and diffraction phenomena? Explain briefly.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The intensity pattern",
+      "marks": 1
+    },
+    {
+      "label": "The average intensity",
+      "marks": 1
+    },
+    {
+      "label": "Energy is redistributed",
+      "marks": 1
+    },
+    {
+      "label": "Holds for diffraction too",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: I = 4I₀ cos²(φ/2) runs from 0 to 4I₀; the average of cos²(φ/2) over a cycle is 1/2, so the average intensity is 2I₀, exactly the sum I₀ + I₀ of the two waves acting separately — energy is redistributed between dark and bright fringes with no gain or loss, and the same argument applies to diffraction maxima and minima."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The average intensity 2I₀ equalling I₀ + I₀ IS the answer — write that comparison explicitly, not just the word redistributed.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Wave Optics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pattern",
+        "kind": "text",
+        "label": "The intensity pattern",
+        "marks": 1,
+        "mark_note": "I from 0 to 4I₀",
+        "lines": [
+          "Two coherent waves, each of intensity I₀,",
+          "meet at a point P with phase difference φ.",
+          "The resultant intensity at P is",
+          {
+            "text": "I = 4I₀ cos²(φ/2)",
+            "style": "eq"
+          },
+          "Bright fringe: I = 4I₀. Dark fringe: I = 0."
+        ],
+        "margin_note": "First mark. Set up the pattern: the intensity swings between 0 and 4I₀ as φ changes across the screen.",
+        "why": "The question is about where the energy goes, so the answer must start from how the energy is arranged: the formula shows some points receive 4I₀ and others receive nothing. That is the apparent problem the next steps resolve.",
+        "common_mistakes": [
+          "Writing the maximum as 2I₀. Amplitudes add before squaring: (a + a)² = 4a², so the bright fringe is 4I₀."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two waves of intensity I₀ each give I = 4I₀ cos²(φ/2), running from 0 at dark fringes to 4I₀ at bright fringes.",
+          "accept": [
+            "I is four I nought cos squared phi by two",
+            "bright is four I nought",
+            "dark is zero"
+          ],
+          "reject": [
+            "the average of cos squared is half"
+          ],
+          "heard_as": [
+            "four I nought",
+            "phase difference"
+          ]
+        },
+        "memory_tip": "Two I₀ waves make fringes from 0 up to 4I₀ — remember the two extremes."
+      },
+      {
+        "id": "s2_average",
+        "kind": "equation",
+        "label": "The average intensity",
+        "marks": 1,
+        "mark_note": "Iₐᵥ = 2I₀",
+        "lines": [
+          "Across the pattern, the average value of",
+          "cos²(φ/2) over a cycle is 1/2.",
+          {
+            "text": "Iₐᵥ = 4I₀ × 1/2 = 2I₀",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. One line of averaging: the mean of cos² over a cycle is 1/2.",
+        "why": "The conservation question is settled by the average, not by any single point. Averaging cos²(φ/2) over a full cycle of φ gives 1/2, so the screen as a whole receives 2I₀ — this number is what gets compared in the next step.",
+        "common_mistakes": [
+          "Averaging cos(φ/2) instead of cos²(φ/2). The average of the cosine itself is zero; the average of its square is 1/2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the average of cos²(φ/2) over a cycle is 1/2, so the average intensity is 2I₀.",
+          "accept": [
+            "average of cos squared is half",
+            "average intensity two I nought"
+          ],
+          "reject": [
+            "energy missing from the dark fringes"
+          ],
+          "heard_as": [
+            "average",
+            "two I nought"
+          ]
+        },
+        "memory_tip": "cos² averages to 1/2 over a cycle — half of 4I₀ is 2I₀."
+      },
+      {
+        "id": "s3_redistribution",
+        "kind": "text",
+        "label": "Energy is redistributed",
+        "marks": 1,
+        "mark_note": "2I₀ = I₀ + I₀, no gain or loss",
+        "lines": [
+          "Two waves acting separately would give",
+          "I₀ + I₀ = 2I₀ — exactly the average of the",
+          "pattern. The energy missing from the dark",
+          "fringes appears in the bright fringes.",
+          "There is no gain and no loss of energy."
+        ],
+        "margin_note": "Third mark. The comparison line — average with interference = sum without interference — is the actual argument.",
+        "why": "Conservation is shown by comparing the same light with and without interference: both give 2I₀ over the screen. Interference therefore only moves energy from the dark places to the bright places; it creates and destroys nothing.",
+        "common_mistakes": [
+          "Saying the waves destroy each other at the dark fringes. The energy is not destroyed — it is found in the bright fringes.",
+          "Stating redistribution without the 2I₀ comparison that proves it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2I₀ equals what the two waves would give separately, so interference only redistributes energy from dark fringes to bright fringes.",
+          "accept": [
+            "same as the two waves acting separately",
+            "energy moves from dark to bright",
+            "no gain and no loss"
+          ],
+          "reject": [
+            "the average of cos squared is half"
+          ],
+          "heard_as": [
+            "redistributed",
+            "conservation"
+          ]
+        },
+        "memory_tip": "With interference: average 2I₀. Without: I₀ + I₀ = 2I₀. Equal — so nothing was made or lost."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "Holds for diffraction too",
+        "marks": 1,
+        "mark_note": "Yes, for both phenomena",
+        "lines": [
+          "In diffraction also, the energy removed from",
+          "the minima appears in the maxima of the",
+          "diffraction pattern.",
+          "So the principle of conservation of energy",
+          "holds for both interference and diffraction.",
+          {
+            "text": "Yes — energy is only redistributed",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The question names BOTH phenomena — answer for diffraction as well, then give the one-line yes.",
+        "why": "A diffraction pattern is also a set of maxima and minima made by superposition, so the same argument transfers: the pattern rearranges the incident energy without changing its total. The question asks does it hold — the answer must end with a clear yes.",
+        "common_mistakes": [
+          "Answering only for interference. The question names diffraction too, and the concluding sentence must cover both.",
+          "Ending without a direct answer. Write the yes explicitly."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the same redistribution argument applies to diffraction, so conservation of energy holds for both phenomena.",
+          "accept": [
+            "same for diffraction",
+            "holds for both",
+            "yes energy is conserved"
+          ],
+          "reject": [
+            "bright is four I nought"
+          ],
+          "heard_as": [
+            "diffraction",
+            "conservation of energy"
+          ]
+        },
+        "memory_tip": "Both patterns are superposition patterns — one argument answers both."
+      }
+    ]
+  }
+}

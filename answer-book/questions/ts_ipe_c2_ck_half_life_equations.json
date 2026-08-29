@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_half_life_equations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the equation useful to calculate half life (t1/2) values for zero and first order reactions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Zero order",
+      "marks": 1
+    },
+    {
+      "label": "First order",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. Both printed equations are CORRECT and were re-derived: zero order t1/2 = [R]₀/2k and first order t1/2 = 0.693/k, with 2.303 × 0.3010 = 0.6932. The book prints t1/2 with the subscript notation and prints the question with the same symbol; it is written t1/2 in plain text throughout this unit. The derivations themselves are LAQ 1 of this unit; this VSAQ is marked on the two statements only."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Kinetics — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zero_order",
+        "kind": "boxed_final",
+        "label": "Zero order",
+        "marks": 1,
+        "mark_note": "Zero order",
+        "lines": [
+          "Let R → P and let [R]₀ be the initial",
+          "concentration of R.",
+          "Zero order reaction:",
+          {
+            "text": "t1/2 = [R]₀ / 2k",
+            "style": "boxed"
+          },
+          "The half life depends on the initial",
+          "concentration: start with twice as much",
+          "and the half life is twice as long."
+        ],
+        "why": "For zero order the rate is the constant k, so the reactant is used up at a steady number of moles per litre per second. Using up half of a bigger starting amount therefore takes proportionally longer, and [R]₀ has to appear in the formula.",
+        "common_mistakes": [
+          "Leaving [R]₀ out and writing t1/2 = 1/2k. The zero order half life must contain the initial concentration.",
+          "Writing 2k in the numerator. The 2k divides, so a larger k gives a shorter half life."
+        ],
+        "memory_tip": "Zero order: steady rate, so a bigger start takes longer. [R]₀ sits on top.",
+        "margin_note": "Define [R]₀ in words before the formula, or the symbol earns nothing."
+      },
+      {
+        "id": "s2_first_order",
+        "kind": "boxed_final",
+        "label": "First order",
+        "marks": 1,
+        "mark_note": "First order",
+        "lines": [
+          "First order reaction:",
+          {
+            "text": "t1/2 = 0.693 / k",
+            "style": "boxed"
+          },
+          "Here 0.693 = 2.303 × log 2.",
+          "The half life does not depend on the",
+          "initial concentration. Once k is fixed at a",
+          "given temperature, t1/2 is fixed."
+        ],
+        "why": "For first order the rate falls as the concentration falls, so a bigger sample also reacts faster, and the two effects cancel exactly. That cancellation is why the initial concentration does not appear and why the formula holds only for first order.",
+        "common_mistakes": [
+          "Writing t1/2 = 0.693k. The 0.693 is divided by k, not multiplied.",
+          "Putting [R]₀ into the first order formula. The independence from the starting concentration is the point of the question."
+        ],
+        "memory_tip": "First order does not depend on the starting amount; zero order does.",
+        "margin_note": "Say in words that the first order half life is independent of [R]₀. That sentence is often the mark."
+      }
+    ]
+  },
+  "insider_note": "The two formulas are usually swapped under pressure. Fix them by the meaning: only the steady zero order rate can depend on how much there was at the start."
+}

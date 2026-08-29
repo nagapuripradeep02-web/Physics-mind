@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_reducing_sugars",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are reducing sugars?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Reason and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 2. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer spells the reagent \"Tollen's\"; it is written Tollens' here, after Bernhard Tollens. The book also states the free aldehydic or ketonic group without saying why a ketose passes the test, so the alkaline isomerisation of fructose is added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A reducing sugar is a carbohydrate that",
+          "reduces Tollens' reagent or Fehling's",
+          "solution.",
+          "With Tollens' reagent it gives a silver",
+          "mirror; with Fehling's solution it gives a",
+          "red precipitate of Cu₂O."
+        ],
+        "why": "The class is named after a test, so the definition has to name the two reagents. The visible result of each test is what the examiner recognises, and it also tells a student what the word \"reducing\" is describing: the sugar is oxidised and the reagent is reduced.",
+        "common_mistakes": [
+          "Naming only one reagent. Both Tollens' reagent and Fehling's solution are expected.",
+          "Writing that the reagent reduces the sugar. It is the other way round: the sugar reduces the reagent."
+        ],
+        "memory_tip": "Silver mirror with Tollens'; red Cu₂O with Fehling's.",
+        "margin_note": "Name both reagents. One reagent alone usually earns only part of this mark."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "Reason and examples",
+        "marks": 1,
+        "mark_note": "Reason and examples",
+        "lines": [
+          {
+            "text": "Free –CHO or free >C=O group is present",
+            "style": "boxed"
+          },
+          "All monosaccharides are reducing sugars.",
+          "Ex: glucose and fructose.",
+          "Fructose is a ketose, but in alkali it",
+          "changes to an aldose, so it reduces both",
+          "reagents as well."
+        ],
+        "why": "The free carbonyl group is the reason for the test result, so it belongs in the answer. Fructose is the exception a student has to remember: it is a ketose, and a ketone does not normally reduce Tollens' reagent, but in the alkaline medium of the test fructose isomerises to an aldose and so does reduce it.",
+        "common_mistakes": [
+          "Writing that only aldoses are reducing sugars. Fructose is a ketose and still reduces both reagents.",
+          "Leaving out the reason. The mark is for the free –CHO or >C=O group, not for the examples alone."
+        ],
+        "memory_tip": "Free carbonyl group means reducing sugar; fructose still counts.",
+        "margin_note": "Write the free-group reason in one line. It is the half of this mark that students most often skip."
+      }
+    ]
+  },
+  "insider_note": "Two reagents and one reason is the whole answer. The reason line, \"a free aldehyde or keto group is present\", is what separates a full mark from half."
+}

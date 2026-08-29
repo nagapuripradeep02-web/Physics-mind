@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sol_concentration_from_osmotic_pressure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Solutions (Chemistry-II)"
+  },
+  "chapter": "Solutions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the osmotic pressure of a glucose solution is 1.52 bar at 300 K, what would be its concentration if R = 0.083 L bar mol⁻¹ K⁻¹?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The equation and the data",
+      "marks": 1
+    },
+    {
+      "label": "The concentration",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 (Solutions) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.65-68, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. ARITHMETIC RECHECKED: 1.52 / (0.083 × 300) = 1.52 / 24.9 = 0.06104, so the printed 0.061 M is correct. BOOK WORDING: the question is printed with a full stop in the middle, \"…is 1.52 bar at 300K. What would be its concentration…\"; the comma is restored here and the unit spacing normalised, with no change of wording. BOOK SLOPPINESS (book p.66, VSAQ 14): the printed working writes \"1.52 = C × 0.083 × 300\" and then jumps straight to C = 0.061 M with no division line and no unit on C. The division and the unit mol L⁻¹ are written out here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Solutions — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "The equation and the data",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "Osmotic pressure π = 1.52 bar",
+          "Temperature T = 300 K",
+          "R = 0.083 L bar mol⁻¹ K⁻¹",
+          "Concentration C = ?",
+          "For a dilute solution:",
+          {
+            "text": "π = CRT",
+            "style": "eq"
+          }
+        ],
+        "why": "Osmotic pressure, concentration and temperature are linked by one equation, so listing the three known quantities with their units shows at once that only C is missing. Writing R with its unit is what confirms the pressure is in bar and the volume in litres, which is the pairing this value of R belongs to.",
+        "common_mistakes": [
+          "Using the temperature in degrees Celsius. T in π = CRT must be in kelvin, so 300 K is used as given.",
+          "Bringing in R = 0.0821 L atm mol⁻¹ K⁻¹ out of habit. The pressure here is in bar, so R = 0.083 L bar mol⁻¹ K⁻¹ is the matching value."
+        ],
+        "memory_tip": "π = CRT is the gas equation with C written in place of n/V.",
+        "margin_note": "List the data with units before substituting. The equation π = CRT on its own line is half of this mark."
+      },
+      {
+        "id": "s2_concentration",
+        "kind": "boxed_final",
+        "label": "The concentration",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "C = π / RT",
+            "style": "eq"
+          },
+          {
+            "text": "C = 1.52 / (0.083 × 300)",
+            "style": "eq"
+          },
+          {
+            "text": "C = 1.52 / 24.9",
+            "style": "indent"
+          },
+          {
+            "text": "C = 0.061 mol L⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "why": "Rearranging π = CRT gives C = π/RT, and the units cancel to leave mol L⁻¹: bar divided by (L bar mol⁻¹ K⁻¹ × K) is mol L⁻¹. Carrying the unit through the division is the check that the right value of R was used, because a mismatch shows up as a leftover unit.",
+        "common_mistakes": [
+          "Multiplying instead of dividing. C = π/RT, so the 24.9 goes in the denominator.",
+          "Writing the answer with no unit. Concentration here is a molarity, so it is mol L⁻¹, also written M."
+        ],
+        "memory_tip": "RT = 0.083 × 300 = 24.9 at 300 K in bar units. Divide the osmotic pressure by 24.9.",
+        "margin_note": "Show the division line 1.52 / 24.9 before the answer. A boxed number with no working usually loses part of this mark."
+      }
+    ]
+  },
+  "insider_note": "Every mark in this question is in matching R to the unit of pressure. Pressure in bar takes R = 0.083 L bar mol⁻¹ K⁻¹; pressure in atmospheres takes 0.0821 L atm mol⁻¹ K⁻¹."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_hydrolysis_of_sucrose_and_lactose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the hydrolysis products of (a) sucrose and (b) lactose?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Sucrose",
+      "marks": 1
+    },
+    {
+      "label": "Lactose",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.99 as VSAQ 7. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sucrose",
+        "kind": "text",
+        "label": "Sucrose",
+        "marks": 1,
+        "mark_note": "Sucrose products",
+        "lines": [
+          "(a) Sucrose gives one molecule of",
+          "α-D-glucose and one of β-D-fructose.",
+          {
+            "text": "C₁₂H₂₂O₁₁ + H₂O → C₆H₁₂O₆ + C₆H₁₂O₆",
+            "style": "eq"
+          },
+          "Sucrose is table sugar, and the mixture of",
+          "the two products is called invert sugar."
+        ],
+        "why": "Sucrose is a glucose unit joined to a fructose unit, so hydrolysis of the one glycosidic linkage returns exactly those two. The α and β labels are the configurations the two units hold inside sucrose and are what the printed answer expects.",
+        "common_mistakes": [
+          "Writing glucose plus glucose for sucrose. That is maltose; sucrose gives glucose and fructose.",
+          "Leaving out the α and β labels. The printed answer key gives α-D-glucose and β-D-fructose."
+        ],
+        "memory_tip": "Sucrose splits into the two commonest hexoses, glucose and fructose.",
+        "margin_note": "Both products with their α and β labels earn this mark. The equation is a useful extra, not a requirement."
+      },
+      {
+        "id": "s2_lactose",
+        "kind": "boxed_final",
+        "label": "Lactose",
+        "marks": 1,
+        "mark_note": "Lactose products",
+        "lines": [
+          {
+            "text": "Lactose → β-D-galactose + β-D-glucose",
+            "style": "boxed"
+          },
+          "(b) Lactose is the sugar of milk.",
+          "It gives one molecule of β-D-galactose and",
+          "one of β-D-glucose.",
+          "In both sugars only one glycosidic linkage",
+          "is broken."
+        ],
+        "why": "Lactose is galactose joined to glucose, and galactose differs from glucose only in the configuration at carbon 4, which is why the two are easy to confuse. Naming milk as the source fixes lactose in memory and separates it from maltose, which comes from starch.",
+        "common_mistakes": [
+          "Giving glucose and fructose for lactose. That is sucrose; lactose gives galactose and glucose.",
+          "Writing galactose alone. Hydrolysis of a disaccharide always gives two monosaccharide units."
+        ],
+        "memory_tip": "Lactose is milk sugar: galactose plus glucose.",
+        "margin_note": "Two products for each sugar, four names in all. Anything less loses half the question."
+      }
+    ]
+  },
+  "insider_note": "Four names in total, two for each part. Label them α and β exactly as the answer key does, because that is what is being compared."
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_charge_quantized",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by the statement charge is quantized?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Integral multiple of e",
+      "marks": 1
+    },
+    {
+      "label": "Q = ± ne with n an integer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: Q = ± ne with n an integer and e = 1.6 × 10⁻¹⁹ C is the standard quantisation statement; no body carries a fractional part of e. Matches the book's answer (Fast Track IPE Sr., printed p.19)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Charges and Fields · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "Integral multiple of e",
+        "marks": 1,
+        "mark_note": "Integral multiple of e",
+        "lines": [
+          "The charge on any body is an integral",
+          "multiple of the elementary charge e, the",
+          "charge of one electron.",
+          {
+            "text": "e = 1.6 × 10⁻¹⁹ C",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The words integral multiple of e carry the meaning of the statement.",
+        "why": "Quantized means the quantity comes in fixed steps, not in any amount. For charge the step is e, so the whole statement reduces to one sentence about integral multiples of e.",
+        "common_mistakes": [
+          "Writing only Q = ne without saying that n is an integer. The integer is what makes the charge quantized.",
+          "Confusing e with the charge of a proton being different in size. The proton charge is +e, the same magnitude."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the charge on any body is an integral multiple of the electron charge e.",
+          "accept": [
+            "integral multiple of e",
+            "whole number times the electron charge",
+            "charge comes in steps of e"
+          ],
+          "reject": [
+            "n can be a fraction"
+          ],
+          "heard_as": [
+            "quantized",
+            "quantised",
+            "integral multiple",
+            "electron charge"
+          ]
+        },
+        "memory_tip": "Charge is counted, not poured — it comes in whole steps of e."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "Q = ± ne",
+        "marks": 1,
+        "mark_note": "Q = ± ne, n an integer",
+        "lines": [
+          {
+            "text": "Q = ± ne, n = 0, 1, 2, 3, …",
+            "style": "eq"
+          },
+          "No body can have a fractional part of e.",
+          "Charge changes only in whole steps of e.",
+          "This is why charge is said to be quantized.",
+          {
+            "text": "Q = ± ne",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write the equation and say a fractional part of e is impossible.",
+        "why": "The equation is the compact form of the statement: n counts electrons gained or lost, and the sign says which way. A fractional n would mean a fraction of an electron, which does not exist.",
+        "common_mistakes": [
+          "Dropping the ± sign. A body can be charged either positively or negatively.",
+          "Writing Q = ne² or Q = n/e. The charge is n times e, nothing else."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Q = ± ne with n a whole number, so a fractional part of e is impossible.",
+          "accept": [
+            "Q equals plus or minus n e",
+            "n is a whole number",
+            "no fractional charge"
+          ],
+          "reject": [
+            "integral multiple of e"
+          ],
+          "heard_as": [
+            "Q equals ne",
+            "plus or minus ne",
+            "fractional"
+          ]
+        },
+        "memory_tip": "Write Q = ± ne and read n as a count — you cannot count half an electron."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for Q = ± ne with n named as an integer; the phrase integral multiple of e carries the first mark."
+}

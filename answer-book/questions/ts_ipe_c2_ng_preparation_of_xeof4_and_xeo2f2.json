@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ng_preparation_of_xeof4_and_xeo2f2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Noble Gases (Chemistry-II)"
+  },
+  "chapter": "Noble Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the preparation of a) XeOF₄ b) XeO₂F₂.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Preparation of XeOF₄",
+      "marks": 1
+    },
+    {
+      "label": "Preparation of XeO₂F₂",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 10 (Noble Gases) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.89-90, the shaded sub-box \"NOBLE GASES\" of printed chapter 7; this question is printed on book p.89 as VSAQ 2. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: both printed equations, XeF6 + H2O gives XeOF4 + 2HF and XeF6 + 2H2O gives XeO2F2 + 4HF, balance and are kept exactly as printed. BOOK GAP: the printed answer calls both reactions \"partial hydrolysis of XeF6\" without saying what separates them, which is the amount of water. The mole of water is named on this card, and the complete hydrolysis to XeO3 is added because it is the third member of the same series and is asked elsewhere in the syllabus."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Noble Gases — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_xeof4",
+        "kind": "equation",
+        "label": "Preparation of XeOF₄",
+        "marks": 1,
+        "mark_note": "Partial hydrolysis, 1 mole H₂O",
+        "lines": [
+          "XeOF₄ is made by the partial hydrolysis of",
+          "XeF₆ with one mole of water.",
+          {
+            "text": "XeF₆ + H₂O → XeOF₄ + 2HF",
+            "style": "eq"
+          }
+        ],
+        "why": "One water molecule replaces two fluorine atoms on xenon by one oxygen atom, and the two fluorine atoms leave as HF. Counting that swap is enough to write the equation without memorising it: XeF₆ loses 2F and gains 1O, giving XeOF₄.",
+        "common_mistakes": [
+          "Writing only one HF on the right. Two fluorine atoms are removed, so two HF are formed.",
+          "Using excess water for XeOF₄. With excess water the hydrolysis is complete and XeO₃ is formed."
+        ],
+        "memory_tip": "One water takes away two F and puts in one O. Do that swap once for XeOF₄.",
+        "margin_note": "The balanced equation is the mark. Write the words \"partial hydrolysis\" above it so the examiner sees the method named."
+      },
+      {
+        "id": "s2_xeo2f2",
+        "kind": "boxed_final",
+        "label": "Preparation of XeO₂F₂",
+        "marks": 1,
+        "mark_note": "Partial hydrolysis, 2 moles H₂O",
+        "lines": [
+          "XeO₂F₂ is made by the partial hydrolysis of",
+          "XeF₆ with two moles of water.",
+          {
+            "text": "XeF₆ + 2H₂O → XeO₂F₂ + 4HF",
+            "style": "boxed"
+          },
+          "With three moles of water the hydrolysis is",
+          "complete and XeO₃ is formed.",
+          {
+            "text": "XeF₆ + 3H₂O → XeO₃ + 6HF",
+            "style": "eq"
+          }
+        ],
+        "why": "The same swap done twice gives XeO₂F₂ and done three times gives XeO₃, so the three equations form one series set only by the amount of water. Writing all three together is the safest way to keep XeOF₄ and XeO₂F₂ apart in the exam hall.",
+        "common_mistakes": [
+          "Swapping the two products. One mole of water gives XeOF₄; two moles give XeO₂F₂.",
+          "Leaving the equation unbalanced. Two water molecules remove four fluorine atoms, so four HF are formed."
+        ],
+        "memory_tip": "Water 1, 2, 3 gives XeOF₄, XeO₂F₂, XeO₃. Each extra water takes away two more F.",
+        "margin_note": "The XeO₃ line is extra and is not part of this mark, but it costs one line and it helps if the two products have been mixed up."
+      }
+    ]
+  },
+  "insider_note": "Both marks are for balanced equations, so check the fluorine count before you move on: XeF₆ has six F, and every F that leaves must appear as HF."
+}

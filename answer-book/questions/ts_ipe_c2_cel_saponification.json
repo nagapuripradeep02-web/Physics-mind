@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_saponification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is saponification?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The reaction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.106 as VSAQ 17. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.106, VSAQ 17): the printed answer gives the word equation \"oil/fat + NaOH(aq) -> soap + glycerol\" and stops. Two things are added. First, that an oil or a fat is the glyceryl ester of long chain fatty acids, which is what makes this an ester hydrolysis and explains where the glycerol comes from. Second, that three moles of alkali are used for one mole of the ester, because the ester has three fatty acid chains on one glycerol. The book's word equation is not balanced and is not intended to be; it is kept in the book's own form and the mole count is written as a separate line rather than as a changed equation. CROSS-CARD BOUNDARY: ts_ipe_c2_cel_soap_vs_synthetic_detergent carries what a soap is; this card carries how it is made, and neither restates the other's marked lines."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Soaps are prepared by the alkaline",
+          "hydrolysis of oils or fats.",
+          "This process is called saponification.",
+          "An oil or a fat is the glyceryl ester of",
+          "long chain fatty acids."
+        ],
+        "why": "Saponification is the hydrolysis of an ester by an alkali. Saying which ester is being hydrolysed, the glyceryl ester of long chain fatty acids, is what explains both products: the sodium salt of the fatty acid is the soap, and the glycerol is the alcohol part of the ester.",
+        "common_mistakes": [
+          "Writing acid hydrolysis. Saponification is hydrolysis by an alkali, and the products are different.",
+          "Leaving out the word ester. The reaction is an ester hydrolysis, and that is where the glycerol comes from."
+        ],
+        "memory_tip": "Sapo means soap: alkaline hydrolysis of a fat gives soap.",
+        "margin_note": "The words alkaline hydrolysis are the mark. Naming the ester secures it."
+      },
+      {
+        "id": "s2_reaction",
+        "kind": "boxed_final",
+        "label": "The reaction",
+        "marks": 1,
+        "mark_note": "Reaction",
+        "lines": [
+          {
+            "text": "oil or fat + NaOH(aq) → soap + glycerol",
+            "style": "boxed"
+          },
+          "Three moles of NaOH are used for one",
+          "mole of the ester, because the ester has",
+          "three fatty acid chains on one glycerol.",
+          "The soap is the sodium salt of the fatty",
+          "acid, and glycerol is the by-product."
+        ],
+        "why": "One glycerol molecule carries three fatty acid chains, so three ester links are hydrolysed and three moles of alkali are used. That is why one mole of fat gives three moles of soap and only one mole of glycerol.",
+        "common_mistakes": [
+          "Writing glycol in place of glycerol. Glycerol is a trihydric alcohol with three OH groups; a glycol has two.",
+          "Writing that the soap is the acid itself. The soap is the sodium salt of the fatty acid, not the free acid."
+        ],
+        "memory_tip": "One glycerol carries three chains, so one fat gives three soap molecules and one glycerol.",
+        "margin_note": "Box the equation. Naming both products, soap and glycerol, is what completes this mark."
+      }
+    ]
+  },
+  "insider_note": "The equation on its own is usually half the answer. Add the words alkaline hydrolysis of an ester and name glycerol as the second product; both together make the full two marks."
+}

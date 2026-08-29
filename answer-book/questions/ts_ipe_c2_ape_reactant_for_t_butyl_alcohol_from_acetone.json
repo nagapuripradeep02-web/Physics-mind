@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_reactant_for_t_butyl_alcohol_from_acetone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Identify the reactant needed to form t-butyl alcohol from acetone.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Naming the reactant",
+      "marks": 1
+    },
+    {
+      "label": "The two equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.109 as Very Short Answer 4. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO: the printed answer reads \"CH₃MgX (methyl megnessium halide)\" — magnesium is misspelt. BOOK GAP: the printed scheme gives no solvent and no conditions. A Grignard reagent is made and used in DRY ether, and any moisture destroys it (CH₃MgBr + H₂O gives CH₄ + Mg(OH)Br), so \"dry ether\" is added here and the water is shown only at the hydrolysis step, where it is wanted. BALANCE CHECKED: CH₃COCH₃ + CH₃MgBr → (CH₃)₃C–OMgBr balances (C 4=4, H 9=9, O 1=1, Mg 1=1, Br 1=1); (CH₃)₃C–OMgBr + H₂O → (CH₃)₃C–OH + Mg(OH)Br balances (C 4=4, H 11=11, O 2=2, Mg 1=1, Br 1=1). TREND AND EXCEPTION: the card states the Grignard order — a ketone gives a tertiary alcohol, any other aldehyde gives a secondary alcohol — and names the exception on the same card: methanal, HCHO, is the aldehyde that breaks the pattern and gives a PRIMARY alcohol, because it carries no alkyl group of its own."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alcohols, Phenols and Ethers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_reactant",
+        "kind": "text",
+        "label": "Naming the reactant",
+        "marks": 1,
+        "mark_note": "Reactant",
+        "lines": [
+          "The reactant is a Grignard reagent,",
+          "methyl magnesium bromide, CH₃MgBr.",
+          "Any methyl magnesium halide CH₃MgX will do.",
+          "It is prepared and used in dry ether.",
+          "Acetone is CH₃–CO–CH₃, and adding one more",
+          "methyl group to its carbonyl carbon gives",
+          "the three methyl groups of t-butyl alcohol."
+        ],
+        "why": "t-Butyl alcohol, (CH₃)₃C–OH, has three methyl groups on the carbon that carries the –OH. Acetone already supplies two of them, so the reagent has to bring in the third methyl group and the reagent that carries a methyl group as a nucleophile is CH₃MgX.",
+        "common_mistakes": [
+          "Naming CH₃Cl or CH₃OH. Neither supplies a nucleophilic methyl group; only the Grignard reagent does.",
+          "Leaving out dry ether. Moisture destroys the Grignard reagent before it can reach the acetone."
+        ],
+        "memory_tip": "Count the methyl groups: t-butyl alcohol needs three, acetone brings two, so one more comes from CH₃MgBr.",
+        "margin_note": "Write both the formula and the name. A one-symbol answer is thin for a question that says identify the reactant."
+      },
+      {
+        "id": "s2_equations",
+        "kind": "boxed_final",
+        "label": "The two equations",
+        "marks": 1,
+        "mark_note": "Equations",
+        "lines": [
+          {
+            "text": "CH₃–CO–CH₃ + CH₃MgBr →",
+            "style": "eq"
+          },
+          {
+            "text": "(CH₃)₃C–OMgBr    [dry ether]",
+            "style": "indent"
+          },
+          {
+            "text": "(CH₃)₃C–OMgBr + H₂O →",
+            "style": "eq"
+          },
+          {
+            "text": "(CH₃)₃C–OH + Mg(OH)Br",
+            "style": "boxed"
+          },
+          "The product is 2-methylpropan-2-ol, the",
+          "IUPAC name for t-butyl alcohol."
+        ],
+        "why": "The reaction is in two stages. The methyl group of the Grignard reagent bonds to the carbonyl carbon and gives an addition product, and only then is water added, which hydrolyses that product to the alcohol. A ketone gives a tertiary alcohol this way; other aldehydes give secondary alcohols; the exception is methanal, HCHO, which carries no alkyl group of its own and so gives a primary alcohol.",
+        "common_mistakes": [
+          "Showing water in the first step. Water destroys the Grignard reagent, so it is added only after the addition is over.",
+          "Writing the product as (CH₃)₂CH–OH. That is propan-2-ol, a secondary alcohol; the product here is tertiary."
+        ],
+        "memory_tip": "Add first, hydrolyse second. Ketone gives tertiary, aldehyde gives secondary, methanal gives primary.",
+        "margin_note": "Both stages are needed for this mark. Stopping at the –OMgBr addition product leaves the answer unfinished."
+      }
+    ]
+  },
+  "insider_note": "The answer the examiner is looking for is one formula, CH₃MgX, but a bare formula is worth about half the question. Add the two-stage equation and the words dry ether, and name the product as 2-methylpropan-2-ol."
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_earth_field_from_h",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The horizontal component of the earth's magnetic field at a certain place is 2.6×10⁻⁵ T and the angle of dip is 60°. What is the magnetic field of the earth at this location?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Relation and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: H = B cos θ, so B = H / cos 60° = 2.6×10⁻⁵ / (1/2) = 5.2×10⁻⁵ T, matching the book's worked value."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation_substitution",
+        "kind": "equation",
+        "label": "Relation and substitution",
+        "marks": 1,
+        "mark_note": "B = H / cos θ with values in",
+        "lines": [
+          "Given: H = 2.6×10⁻⁵ T, dip θ = 60°.",
+          "The horizontal component of the earth's",
+          "field is H = B cos θ, so",
+          {
+            "text": "B = H / cos θ = 2.6×10⁻⁵ / cos 60°",
+            "style": "eq"
+          },
+          {
+            "text": "B = 2.6×10⁻⁵ / (1/2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Start from H = B cos θ — the dip θ is the angle the total field B makes with the horizontal.",
+        "why": "The total field B leans at the dip angle θ below the horizontal, so its horizontal part is B cos θ. That equals the given H, and dividing by cos θ recovers B.",
+        "common_mistakes": [
+          "Multiplying by cos θ instead of dividing. H is the component, so H = B cos θ and B = H / cos θ.",
+          "Using sin 60°. The vertical component carries sin θ; the horizontal one carries cos θ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the horizontal component is B cos θ, so the total field is H divided by cos 60°.",
+          "accept": [
+            "H equals B cos theta",
+            "divide H by cos sixty",
+            "cos sixty is half"
+          ],
+          "reject": [
+            "five point two into ten power minus five"
+          ],
+          "heard_as": [
+            "cos theta",
+            "horizontal component"
+          ]
+        },
+        "memory_tip": "The component is smaller than the whole: H = B cos θ, so to get B back, divide by cos θ."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "5.2×10⁻⁵ T",
+        "lines": [
+          {
+            "text": "B = 5.2×10⁻⁵ T",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Dividing by 1/2 doubles the number: 2.6 becomes 5.2.",
+        "why": "cos 60° = 1/2, so B is exactly twice H. The unit stays tesla because only a pure number divided H.",
+        "common_mistakes": [
+          "Writing 1.3×10⁻⁵ T — that comes from multiplying by 1/2 instead of dividing.",
+          "Dropping the power of ten or the unit T in the final line."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the earth's total field there is 5.2 × 10⁻⁵ tesla, twice the horizontal component.",
+          "accept": [
+            "five point two into ten power minus five tesla",
+            "twice the horizontal component"
+          ],
+          "reject": [
+            "H equals B cos theta"
+          ],
+          "heard_as": [
+            "five point two",
+            "ten power minus five",
+            "tesla"
+          ]
+        },
+        "memory_tip": "At 60° dip the total field is double the horizontal component, because cos 60° = 1/2."
+      }
+    ]
+  },
+  "insider_note": "The whole numerical turns on one choice — divide by cos 60°, not multiply — and the halved answer 1.3×10⁻⁵ is the wrong turn the examiner sees most."
+}

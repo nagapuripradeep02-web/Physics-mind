@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_zener_bias_for_regulator",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In which bias can a zener diode be used as voltage regulator?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The bias named",
+      "marks": 1
+    },
+    {
+      "label": "Why that bias regulates",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the book prints 'In whihc bias can a zener diode be used as voltage regulator' — 'whihc' is corrected to 'which' and the missing question mark is added."
+  },
+  "recall_prompt": "Say which bias a zener diode is used in as a regulator, and what stays constant there.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reverse_bias",
+        "kind": "text",
+        "label": "The bias",
+        "marks": 1,
+        "mark_note": "Reverse bias",
+        "lines": [
+          "A zener diode is used as a voltage",
+          "regulator in reverse bias."
+        ],
+        "margin_note": "First mark. One word carries it: reverse.",
+        "why": "A zener diode in forward bias behaves like any other diode, so nothing about it would regulate. Its special property — a sharp, repeatable breakdown at a fixed voltage — exists only in reverse bias.",
+        "common_mistakes": [
+          "Answering forward bias. In forward bias a zener diode is an ordinary diode.",
+          "Answering 'both biases'. Only the reverse breakdown region regulates."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the zener diode is used in reverse bias.",
+          "accept": [
+            "reverse bias",
+            "reverse biased",
+            "it is connected in reverse"
+          ],
+          "reject": [
+            "forward bias"
+          ],
+          "heard_as": [
+            "reverse",
+            "bias"
+          ]
+        },
+        "memory_tip": "Every other diode is used forward. The zener is the reverse one."
+      },
+      {
+        "id": "s2_breakdown_reason",
+        "kind": "boxed_final",
+        "label": "Why reverse bias",
+        "marks": 1,
+        "mark_note": "Constant voltage in breakdown",
+        "lines": [
+          "In reverse bias the diode is worked in",
+          "the breakdown region. There the voltage",
+          "across it stays nearly constant at the",
+          "zener voltage while the current through",
+          "it changes over a wide range.",
+          {
+            "text": "Reverse bias — the breakdown region",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the breakdown region and say the voltage stays constant while the current changes.",
+        "why": "Regulation means holding the output voltage fixed while the input voltage or the load current changes. Only a device whose voltage barely moves while its current moves a lot can do that, and the reverse breakdown region of a zener diode is exactly that region of the characteristic.",
+        "common_mistakes": [
+          "Saying the current stays constant. It is the VOLTAGE that stays constant.",
+          "Leaving out the word breakdown. The regulating region is the reverse breakdown region."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in reverse breakdown the voltage across the diode stays nearly constant while the current varies.",
+          "accept": [
+            "in breakdown the voltage stays constant",
+            "current changes but voltage does not",
+            "reverse breakdown region"
+          ],
+          "reject": [
+            "the depletion layer becomes narrow"
+          ],
+          "heard_as": [
+            "breakdown",
+            "constant voltage",
+            "zener voltage"
+          ]
+        },
+        "memory_tip": "Voltage flat, current free — that flat piece of the curve is the regulator."
+      }
+    ]
+  },
+  "insider_note": "Two words earn the first mark, but the second mark needs the reason — constant voltage in the breakdown region — so do not stop at 'reverse bias'."
+}

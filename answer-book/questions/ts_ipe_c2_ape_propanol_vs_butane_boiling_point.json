@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_propanol_vs_butane_boiling_point",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain why propanol has higher boiling point than that of hydrocarbon butane.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Hydrogen bonding in propanol",
+      "marks": 1
+    },
+    {
+      "label": "Only van der Waals forces in butane",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.108 as Very Short Answer 1 — the first question of the sub-box. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer gives the two force types and nothing else — no boiling points, and no statement that the two molar masses are almost equal (propan-1-ol 60 g/mol, butane 58 g/mol). The near-equal mass is the whole force of the comparison, because it rules out molar mass as the reason, so it is added here. The boiling points added (propan-1-ol 370 K, butane 273 K) are the standard values and are not in the book. BOOK SPELLING: the printed answer writes \"vander waals\"; the card writes van der Waals. TREND AND EXCEPTION: the card names two limits on \"an -OH group raises the boiling point\" — among isomeric alcohols branching LOWERS it (butan-1-ol 391 K against 2-methylpropan-2-ol 356 K), and an ether has an oxygen but no O-H, so ethoxyethane boils at 308 K, close to its parent alkane and far below butan-1-ol."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alcohols, Phenols and Ethers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hydrogen_bonding",
+        "kind": "text",
+        "label": "Hydrogen bonding in propanol",
+        "marks": 1,
+        "mark_note": "Hydrogen bonding",
+        "lines": [
+          "Propan-1-ol has an O–H group.",
+          "The hydrogen of one molecule is held by the",
+          "oxygen of the next, so the molecules are",
+          "joined by intermolecular hydrogen bonds.",
+          {
+            "text": "C₃H₇–O–H ⋯ O(C₃H₇)–H ⋯ O(C₃H₇)–H",
+            "style": "eq"
+          },
+          "Extra heat is needed to break this network",
+          "before a molecule can leave the liquid."
+        ],
+        "why": "A hydrogen bond is far stronger than a van der Waals force, so it is the hydrogen bonding that sets the boiling point of an alcohol. The bond needs a hydrogen attached to oxygen, which is exactly what butane does not have.",
+        "common_mistakes": [
+          "Calling it intramolecular hydrogen bonding. The bond is between two molecules, not inside one.",
+          "Saying the O–H bond itself is broken on boiling. Boiling breaks the hydrogen bonds between molecules, not the covalent O–H bond."
+        ],
+        "memory_tip": "An O–H group gives a hydrogen bond, and a hydrogen bond has to be broken before the molecule can leave the liquid.",
+        "margin_note": "Write the word intermolecular. Hydrogen bonding on its own does not earn this mark."
+      },
+      {
+        "id": "s2_butane_and_numbers",
+        "kind": "boxed_final",
+        "label": "Only van der Waals forces in butane",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          "Butane is a hydrocarbon with no O–H group,",
+          "so only weak van der Waals forces act",
+          "between its molecules.",
+          "The two molar masses are almost equal,",
+          "60 g/mol and 58 g/mol, so mass is not the",
+          "reason for the difference.",
+          {
+            "text": "Propan-1-ol 370 K, butane 273 K",
+            "style": "boxed"
+          }
+        ],
+        "why": "Comparing molecules of nearly equal molar mass is what makes the argument work: the only real difference left is the O–H group. The rule has limits worth knowing — among isomeric alcohols branching lowers the boiling point (butan-1-ol 391 K, 2-methylpropan-2-ol 356 K), and an ether such as ethoxyethane has an oxygen but no O–H, so it boils at only 308 K.",
+        "common_mistakes": [
+          "Saying butane boils lower because it is lighter. Butane is 58 g/mol against 60 g/mol for propan-1-ol, so the masses are almost the same.",
+          "Saying an ether boils as high as an alcohol because it has oxygen. An ether has no O–H, so it cannot form hydrogen bonds with itself."
+        ],
+        "memory_tip": "Same mass, different force. Hydrogen bond in the alcohol, van der Waals in the alkane.",
+        "margin_note": "Naming the weak force in butane is what earns this mark. Adding the two boiling points makes the answer complete."
+      }
+    ]
+  },
+  "insider_note": "Two marks means two named forces, one on each side. Most answers name the hydrogen bonding in propanol and stop; the second mark is for saying that butane has only weak van der Waals forces, and the answer is stronger still if it adds that the two molar masses are almost equal."
+}

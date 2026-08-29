@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_maximum_percentage_rectification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the maximum percentage rectification in half wave and full wave rectifiers?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Half wave — 40.6%",
+      "marks": 1
+    },
+    {
+      "label": "Full wave — 81.2%",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the book prints 'perecentage' twice; the word is spelled correctly here. Physics hand-checked: the standard maxima are 4/π² = 0.406 and 8/π² = 0.812, so 40.6% and 81.2% — the full wave figure is exactly twice the half wave figure."
+  },
+  "recall_prompt": "Give the two maximum efficiency figures — half wave first, then full wave.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_half_wave",
+        "kind": "text",
+        "label": "Half wave rectifier",
+        "marks": 1,
+        "mark_note": "40.6%",
+        "lines": [
+          "i) The maximum percentage rectification",
+          "in a half wave rectifier is 40.6%."
+        ],
+        "margin_note": "First mark. The figure with the per cent sign.",
+        "why": "A half wave rectifier throws away one half of every cycle, so at best it can deliver only about two fifths of the input power as d.c. The exact maximum is 4/π² = 0.406.",
+        "common_mistakes": [
+          "Writing 50%. Half the cycle is used, but that does not make the efficiency 50%.",
+          "Leaving out the per cent sign. The question asks for a percentage."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the maximum efficiency of a half wave rectifier is 40.6%.",
+          "accept": [
+            "forty point six per cent",
+            "40.6 percent",
+            "about forty per cent"
+          ],
+          "reject": [
+            "eighty one point two per cent"
+          ],
+          "heard_as": [
+            "forty point six",
+            "half wave",
+            "percent"
+          ]
+        },
+        "memory_tip": "Half wave 40.6, full wave exactly double: 81.2."
+      },
+      {
+        "id": "s2_full_wave",
+        "kind": "boxed_final",
+        "label": "Full wave rectifier",
+        "marks": 1,
+        "mark_note": "81.2%",
+        "lines": [
+          "ii) The maximum percentage rectification",
+          "in a full wave rectifier is 81.2%.",
+          {
+            "text": "Half wave 40.6%  ·  Full wave 81.2%",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Exactly twice the half wave figure.",
+        "why": "A full wave rectifier uses both halves of every cycle, so it delivers twice the d.c. power for the same input. The exact maximum is 8/π² = 0.812, which is why the two figures are in the ratio 2 : 1.",
+        "common_mistakes": [
+          "Writing 100%. Even a full wave rectifier cannot reach 100%.",
+          "Swapping the two figures. The larger number belongs to the full wave rectifier."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the maximum efficiency of a full wave rectifier is 81.2%.",
+          "accept": [
+            "eighty one point two per cent",
+            "81.2 percent",
+            "about eighty per cent"
+          ],
+          "reject": [
+            "forty point six per cent"
+          ],
+          "heard_as": [
+            "eighty one point two",
+            "full wave",
+            "percent"
+          ]
+        },
+        "memory_tip": "Both halves used, so double the efficiency: 2 × 40.6 = 81.2."
+      }
+    ]
+  },
+  "insider_note": "Two numbers, one mark each. If only one is remembered, the other is its double or its half — 40.6 and 81.2."
+}

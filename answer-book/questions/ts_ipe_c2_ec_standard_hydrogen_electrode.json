@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_standard_hydrogen_electrode",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is standard hydrogen electrode?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Its representation and its potential",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SLOPPINESS (book p.69, VSAQ 2): the printed answer says the electrode is dipped in \"1M HCl solution\". The condition is that the H⁺ ion concentration is 1 M; 1 M HCl is only the usual way of supplying it, and this card says so. The book also writes \"1 atm or 1 bar\" as if the two were the same. The current standard state is 1 bar, which is what NCERT uses and what is written here. The book gives no temperature; 298 K is added. LONG ANSWER PAIR: LAQ 3 of the same unit asks for the construction, working and diagram of the same electrode (card ts_ipe_c2_ec_she_construction_working). This VSAQ is deliberately kept to the definition, the representation and the zero potential."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electro Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The standard hydrogen electrode (SHE) is the",
+          "reference electrode against which every other",
+          "electrode potential is measured.",
+          "It is a platinum foil coated with platinum",
+          "black, dipped in a solution in which the H⁺",
+          "ion concentration is 1 M, with pure hydrogen",
+          "gas passed over it at 1 bar and 298 K."
+        ],
+        "why": "A single electrode potential cannot be measured on its own, because a voltmeter always reads the difference between two electrodes. One electrode therefore has to be fixed at zero by agreement, and the hydrogen electrode under stated conditions is the one that was chosen.",
+        "common_mistakes": [
+          "Writing 1 M HCl as the requirement. The requirement is that the H⁺ concentration is 1 M; HCl is only one way of supplying it.",
+          "Leaving out the conditions. Without 1 M H⁺, 1 bar H₂ and 298 K the electrode is a hydrogen electrode but not a STANDARD one."
+        ],
+        "memory_tip": "Three conditions, one for each part: 1 M for the ion, 1 bar for the gas, 298 K for the temperature.",
+        "margin_note": "All three conditions must appear. The word standard is what they are being marked for."
+      },
+      {
+        "id": "s2_representation",
+        "kind": "boxed_final",
+        "label": "Its representation and its potential",
+        "marks": 1,
+        "mark_note": "Notation and E°",
+        "lines": [
+          {
+            "text": "Pt(s) | H₂(g, 1 bar) | H⁺(aq, 1 M)",
+            "style": "eq"
+          },
+          "The electrode reaction is reversible:",
+          {
+            "text": "2H⁺(aq) + 2e⁻ ⇌ H₂(g)",
+            "style": "eq"
+          },
+          {
+            "text": "E°(H⁺/H₂) = 0.00 V by convention",
+            "style": "boxed"
+          },
+          "Because it contributes nothing, the emf of a",
+          "cell made with it is the standard electrode",
+          "potential of the other electrode."
+        ],
+        "why": "The zero is a convention, not a measurement: nothing about hydrogen makes its potential truly zero. Fixing it at zero is what turns a cell emf, which can be measured, into a single electrode potential, which cannot.",
+        "common_mistakes": [
+          "Saying the potential of the hydrogen electrode is zero because hydrogen is unreactive. It is zero because it was agreed to be the reference.",
+          "Writing the electrode reaction with a single arrow. The electrode is reversible, so ⇌ is used."
+        ],
+        "memory_tip": "Its value is zero by agreement, so every other standard potential is really a reading against hydrogen.",
+        "margin_note": "The zero volt line plus the representation completes the second mark. Write both."
+      }
+    ]
+  },
+  "insider_note": "Students write the definition and stop. The line worth the second mark is E° = 0.00 V together with the representation Pt | H₂(1 bar) | H⁺(1 M); write both before moving on."
+}

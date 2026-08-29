@@ -1,0 +1,107 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_hvz_alpha_halogenation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the reaction showing α-halogenation of carboxylic acid and give its name.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reaction with its conditions",
+      "marks": 1
+    },
+    {
+      "label": "The name and the α-hydrogen condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.112 as VSAQ 1. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING: the printed answer reads \"Carboxylic acids having an α-hydrogen position on treatment with chlorine (or) bromine ... to give α-halo carboxylic acids\" — a sentence with a word missing after \"α-hydrogen\"; it is rewritten here as \"a carboxylic acid with an α-hydrogen is halogenated at the α-carbon\". BOOK SPELLING: the printed name is \"Hell-volhard zelinsky\"; the three chemists are Hell, Volhard and Zelinsky, so the name is written here as Hell-Volhard-Zelinsky. BOOK GAP: the printed equation shows only the halogen and red phosphorus and stops there. The reaction actually goes through an acyl halide, and the α-halo ACID is obtained only after a water work-up, so step (ii) H₂O is added from NCERT. BOOK GAP: the printed answer never states the exception — an acid with no α-hydrogen (benzoic acid, formic acid) does not undergo the reaction at all — so that is added. CROSS-UNIT NEIGHBOUR: unit 7 card ts_ipe_c2_va_pcl5_reactions covers CH₃COOH + PCl₅ → CH₃COCl; that is a different reaction (the –OH is replaced) and does not overlap this one (an α-hydrogen is replaced)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reaction",
+        "kind": "equation",
+        "label": "The reaction with its conditions",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          "A carboxylic acid with an α-hydrogen is",
+          "halogenated at the α-carbon by chlorine or",
+          "bromine, with a small amount of red",
+          "phosphorus, and is then treated with water.",
+          {
+            "text": "R–CH₂–COOH + Cl₂ → R–CHCl–COOH + HCl",
+            "style": "eq"
+          },
+          {
+            "text": "[(i) red P   (ii) H₂O]",
+            "style": "indent"
+          },
+          {
+            "text": "R–CH₂–COOH + Br₂ → R–CHBr–COOH + HBr",
+            "style": "eq"
+          },
+          {
+            "text": "[(i) red P   (ii) H₂O]",
+            "style": "indent"
+          }
+        ],
+        "why": "Red phosphorus and the halogen first make a small amount of PCl₃ or PBr₃, which turns the acid into its acyl halide. Only the acyl halide has an α-hydrogen acidic enough to be replaced, so the halogen goes to the α-carbon and not to the –OH group. The water at the end turns the α-halo acyl halide back into the α-halo acid.",
+        "common_mistakes": [
+          "Putting the halogen on the –OH group. That gives an acyl halide; here the halogen replaces an α-hydrogen.",
+          "Leaving out red phosphorus. Without it the acid is not halogenated at the α-carbon at all.",
+          "Forgetting the HCl or HBr on the product side. One hydrogen leaves for every halogen that enters."
+        ],
+        "memory_tip": "Halogen plus red phosphorus, then water. The halogen bonds to the carbon next to –COOH.",
+        "margin_note": "Write the reagents red P and H₂O ABOVE the arrow on your answer sheet; they are printed in brackets here only because a plain line cannot carry text over an arrow. Both conditions are needed for this mark."
+      },
+      {
+        "id": "s2_name",
+        "kind": "boxed_final",
+        "label": "The name and the α-hydrogen condition",
+        "marks": 1,
+        "mark_note": "The name",
+        "lines": [
+          {
+            "text": "Hell-Volhard-Zelinsky (HVZ) reaction",
+            "style": "boxed"
+          },
+          "The product is an α-halo carboxylic acid.",
+          "It is used to make α-amino acids and",
+          "α-hydroxy acids.",
+          "Condition: the acid must have an α-hydrogen.",
+          "Benzoic acid C₆H₅COOH and formic acid HCOOH",
+          "have no α-hydrogen, so they do not react."
+        ],
+        "why": "The α-hydrogen is the whole condition of the reaction, so naming it is what turns a remembered name into a usable rule. Benzoic acid has a benzene ring on the carbonyl carbon and formic acid has only a hydrogen there, so neither has a carbon next to –COOH carrying a hydrogen, and neither gives the reaction.",
+        "common_mistakes": [
+          "Spelling the name as one person. It is three: Hell, Volhard and Zelinsky.",
+          "Writing that any carboxylic acid gives the reaction. An acid with no α-hydrogen, such as benzoic acid, does not."
+        ],
+        "memory_tip": "HVZ = Hell, Volhard, Zelinsky, and the H at the front is a reminder that an α-hydrogen is required.",
+        "margin_note": "The name alone is worth this mark, but add the one-line α-hydrogen condition; it costs one line and it is what the examiner reads for understanding."
+      }
+    ]
+  },
+  "insider_note": "The name Hell-Volhard-Zelinsky is half the marks on this two-mark question, so write it even if you are unsure of the equation. The most common loss is putting the halogen on the –OH group instead of on the α-carbon."
+}

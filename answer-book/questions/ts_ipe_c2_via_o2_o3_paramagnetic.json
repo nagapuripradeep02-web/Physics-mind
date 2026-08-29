@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_via_o2_o3_paramagnetic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "VIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Out of O₂ and O₃ which is paramagnetic? Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "O₂ and its unpaired electrons",
+      "marks": 1
+    },
+    {
+      "label": "O₃ is diamagnetic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 5 of that sub-box, book p.85. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer, \"O₂ paramagnetic because it contains 2 unpaired electrons\", answers only half of a question that names two molecules. It never says that O₃ is diamagnetic, and it never says WHERE the two unpaired electrons are. Both are written on this card. The unpaired electrons sit in the two antibonding molecular orbitals π*2px and π*2py, one each, which is a molecular orbital result: the Lewis structure O=O shows every electron paired and predicts the wrong magnetic behaviour. PRINTED WORDING: the book writes \"O₂ paramagnetic\" with no verb; this card writes \"O₂ is the paramagnetic one\". QUESTION WORDING: printed as \"Out of O₂ and O₃ which is paramagnetic. Why?\" with a full stop after paramagnetic; written here with a question mark. Nothing else in the wording was changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_o2_paramagnetic",
+        "kind": "text",
+        "label": "O₂ and its unpaired electrons",
+        "marks": 1,
+        "mark_note": "O₂, two unpaired",
+        "lines": [
+          "O₂ is the paramagnetic one.",
+          "Its molecular orbital arrangement is",
+          {
+            "text": "σ1s² σ*1s² σ2s² σ*2s² σ2pz²",
+            "style": "eq"
+          },
+          {
+            "text": "π2px² π2py² π*2px¹ π*2py¹",
+            "style": "eq"
+          },
+          "The last two orbitals hold one electron",
+          "each, so O₂ has two unpaired electrons and",
+          "is paramagnetic."
+        ],
+        "why": "Paramagnetism means the molecule has at least one unpaired electron. Oxygen has sixteen electrons, and after every bonding orbital is filled the last two go singly into the two antibonding orbitals π*2px and π*2py, following Hund's rule. This is a molecular orbital result and cannot be read off the Lewis structure O=O, which shows all eight pairs neatly paired and predicts the wrong answer.",
+        "common_mistakes": [
+          "Writing that oxygen has two unpaired electrons in its 2p atomic orbitals. The question is about the O₂ molecule, so the electrons must be placed in molecular orbitals.",
+          "Putting both electrons in one antibonding orbital. Hund's rule fills π*2px and π*2py singly first, which is what makes the molecule paramagnetic."
+        ],
+        "memory_tip": "Two antibonding orbitals of equal energy, one electron each. Two unpaired electrons means paramagnetic.",
+        "margin_note": "The words two unpaired electrons are the marked phrase. The molecular orbital lines make the answer complete."
+      },
+      {
+        "id": "s2_o3_diamagnetic",
+        "kind": "boxed_final",
+        "label": "O₃ is diamagnetic",
+        "marks": 1,
+        "mark_note": "O₃ diamagnetic",
+        "lines": [
+          {
+            "text": "O₃ is diamagnetic.",
+            "style": "boxed"
+          },
+          "In ozone every electron is paired, so there",
+          "is no unpaired electron and the molecule is",
+          "diamagnetic.",
+          "Ozone is a bent molecule with a bond angle",
+          "of about 117°, and its two O–O bonds are",
+          "equal in length because of resonance."
+        ],
+        "why": "The question names two molecules, so the answer has to sort both. Ozone has an even number of electrons and every one of them is paired, so it has no magnetic moment of its own. The bent shape and the two equal bonds are the standard supporting facts about ozone and cost one line to add.",
+        "common_mistakes": [
+          "Leaving O₃ out of the answer. A question that asks which of two is paramagnetic is marked on both molecules.",
+          "Writing that ozone is linear. Ozone is bent, with a bond angle of about 117°.",
+          "Writing that ozone has one single and one double bond. Resonance makes the two O–O bonds equal."
+        ],
+        "memory_tip": "Odd number of oxygen atoms, even number of electrons. All paired, so ozone is diamagnetic.",
+        "margin_note": "One sentence naming O₃ as diamagnetic earns this mark. The shape and resonance lines are supporting content."
+      }
+    ]
+  },
+  "insider_note": "Half the marks are for the molecule the question mentions second. Students answer O₂ correctly and stop, and lose the mark for saying O₃ is diamagnetic."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_coagulation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is coagulation?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "How it is brought about",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAPS (book p.76, VSAQ 8): the printed answer names only one method, adding an electrolyte, and gives no reason. The reason is that the added ions neutralise the charge on the colloidal particles, so the particles no longer repel each other and join into larger particles that settle. Boiling, persistent dialysis, electrophoresis and mixing two oppositely charged sols are the other standard methods and are added, because \"how is a sol coagulated\" is the form the question often takes. The alternative name flocculation is also added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The process in which the particles of a",
+          "colloidal solution join into larger",
+          "particles and settle down as a precipitate",
+          "is called coagulation.",
+          "It is also called flocculation or",
+          "precipitation of the sol."
+        ],
+        "why": "Coagulation is the end of the colloidal state: the particles stop being of colloidal size and become large enough for gravity to pull them down. Both halves, joining together and settling, belong in the definition, because a sol whose particles only join is not yet coagulated.",
+        "common_mistakes": [
+          "Writing that the colloidal particles dissolve. They come out of the dispersion as a solid; they do not go into solution.",
+          "Describing only the settling. The joining of the particles into larger ones has to be written as well."
+        ],
+        "memory_tip": "Small particles join into large ones, and large ones settle. That is coagulation.",
+        "margin_note": "Write both halves: joining together and settling as a precipitate."
+      },
+      {
+        "id": "s2_methods",
+        "kind": "boxed_final",
+        "label": "How it is brought about",
+        "marks": 1,
+        "mark_note": "Method and reason",
+        "lines": [
+          {
+            "text": "Usual method: add a suitable electrolyte.",
+            "style": "boxed"
+          },
+          "The ions of opposite charge neutralise the",
+          "charge on the colloidal particles, so the",
+          "particles no longer repel each other and",
+          "they join together.",
+          "Other methods: boiling, persistent",
+          "dialysis, electrophoresis, and mixing two",
+          "oppositely charged sols."
+        ],
+        "why": "A lyophobic sol is stable because every particle carries the same sign of charge and like charges repel. Removing that charge removes the stability, and adding an electrolyte is the quickest way to do it, which is why the electrolyte method is the one the book names.",
+        "common_mistakes": [
+          "Writing that any electrolyte works equally well. The coagulating power depends on the charge of the flocculating ion, by the Hardy-Schulze rule.",
+          "Giving the reason as heating alone. Heating is one method, but the reason in every method is loss of the charge on the particles."
+        ],
+        "memory_tip": "Remove the charge and the repulsion goes with it, so the particles join and settle.",
+        "margin_note": "Name the electrolyte method and give the charge reason. The other methods are a bonus, not the mark."
+      }
+    ]
+  },
+  "insider_note": "The second mark is for the reason, not for a longer list of methods. One sentence on neutralising the charge on the particles earns it."
+}

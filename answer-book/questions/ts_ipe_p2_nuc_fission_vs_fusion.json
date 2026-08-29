@@ -1,0 +1,216 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_fission_vs_fusion",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between nuclear fission and nuclear fusion?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What each process is",
+      "marks": 1
+    },
+    {
+      "label": "How each one starts",
+      "marks": 1
+    },
+    {
+      "label": "Energy released",
+      "marks": 1
+    },
+    {
+      "label": "Particles and applications",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. This is the book's SAQ 14: the printed Short Answer numbering runs 1, 2, 3, 4, 5 and then jumps straight to 14, and that jump is the book's own — no questions 6 to 13 exist in this chapter. Cited \"(June 2015 TS)\"; the appearances field records the year 2015 and the board only, since it has no sitting field. PRINTED ERRORS CORRECTED: the book spells the question \"neclear fussion\" and heads the comparison columns \"Fision\" and \"Fusion\", and its row 6 states \"Fision takes place at room temp.\" Fission is started by NEUTRON CAPTURE and needs no high temperature; it is FUSION that needs temperatures of the order of 10⁷ K, so the pair is written here as \"fission needs no high temperature, fusion needs millions of kelvin\". Hand-checked: about 200 MeV per fission of ²³⁵U, about 26.7 MeV per helium nucleus formed from four hydrogen nuclei, and the energy per nucleon is larger for fusion (26.7/4 ≈ 6.7 MeV against 200/236 ≈ 0.85 MeV)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Nuclei · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_each_is",
+        "kind": "text",
+        "label": "What each process is",
+        "marks": 1,
+        "mark_note": "Splitting a heavy nucleus against joining light nuclei",
+        "lines": [
+          "Fission: a heavy nucleus such as U-235 splits",
+          "into two lighter nuclei when a moving neutron",
+          "strikes it, and energy is released.",
+          "Fusion: two light nuclei such as hydrogen join",
+          "to form a heavier nucleus, and energy is",
+          "released."
+        ],
+        "margin_note": "First mark. Splitting against joining, with one named nucleus on each side.",
+        "why": "Both release energy because both move the product closer to iron-56, where the binding energy per nucleon is largest: a heavy nucleus reaches it by splitting, a light one by joining.",
+        "common_mistakes": [
+          "Saying fusion splits a nucleus. Fusion joins.",
+          "Leaving out the neutron that starts fission."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That fission is the splitting of a heavy nucleus such as uranium-235 into lighter nuclei, and fusion is the joining of light nuclei such as hydrogen into a heavier nucleus.",
+          "accept": [
+            "heavy nucleus splits into two lighter nuclei",
+            "light nuclei join to form a heavier nucleus",
+            "fission splits fusion joins"
+          ],
+          "reject": [
+            "two hundred MeV per fission"
+          ],
+          "heard_as": [
+            "fission",
+            "fusion",
+            "splits"
+          ]
+        },
+        "memory_tip": "Fission: a heavy nucleus comes apart. Fusion: light nuclei come together."
+      },
+      {
+        "id": "s2_how_each_starts",
+        "kind": "text",
+        "label": "How each one starts",
+        "marks": 1,
+        "mark_note": "Neutron capture against very high temperature",
+        "lines": [
+          "Fission is started when the nucleus captures a",
+          "neutron, so no high temperature is needed.",
+          "Fusion needs temperatures of the order of",
+          "10⁷ K and very high pressure, so that the",
+          "nuclei overcome their electric repulsion."
+        ],
+        "margin_note": "Second mark. This is the row students copy wrongly; state both conditions.",
+        "why": "The book prints \"Fision takes place at room temp.\" That is loose: fission is not caused by temperature at all, it is caused by neutron capture, and the correct contrast is that fusion alone needs the enormous temperature.",
+        "common_mistakes": [
+          "Writing that fission needs high temperature. It needs a neutron.",
+          "Writing that fusion happens at room temperature."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That fission is started by neutron capture and needs no high temperature, while fusion needs temperatures of the order of 10⁷ K and high pressure to overcome the electric repulsion.",
+          "accept": [
+            "fission starts when a neutron is captured",
+            "fusion needs very high temperature and pressure",
+            "no high temperature is needed for fission"
+          ],
+          "reject": [
+            "fission gives two hundred MeV"
+          ],
+          "heard_as": [
+            "neutron capture",
+            "high temperature",
+            "ten power seven kelvin"
+          ]
+        },
+        "memory_tip": "Fission needs a bullet; fusion needs a furnace."
+      },
+      {
+        "id": "s3_energy",
+        "kind": "text",
+        "label": "Energy released",
+        "marks": 1,
+        "mark_note": "200 MeV per fission; 26.7 MeV per fusion; more per nucleon in fusion",
+        "lines": [
+          "Fission releases about 200 MeV each time one",
+          "heavy nucleus splits.",
+          "Fusion releases about 26.7 MeV for each helium",
+          "nucleus formed from four hydrogen nuclei.",
+          "Energy released per nucleon is less in fission",
+          "and more in fusion."
+        ],
+        "margin_note": "Third mark. Both numbers, and the per-nucleon comparison that reverses them.",
+        "why": "The totals and the per-nucleon values point opposite ways because fission shares 200 MeV among 236 nucleons while fusion shares 26.7 MeV among 4, so fusion gives about eight times as much per nucleon.",
+        "common_mistakes": [
+          "Saying fusion releases more energy per reaction. Per reaction fission gives more; per nucleon fusion gives more.",
+          "Writing 200 eV or 26.7 eV. Both values are in MeV."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That fission releases about 200 MeV per nucleus split and fusion about 26.7 MeV per helium nucleus formed, with more energy per nucleon in fusion.",
+          "accept": [
+            "two hundred MeV per fission",
+            "twenty six point seven MeV per fusion",
+            "energy per nucleon is more in fusion"
+          ],
+          "reject": [
+            "fission is started by a neutron"
+          ],
+          "heard_as": [
+            "two hundred MeV",
+            "twenty six point seven",
+            "per nucleon"
+          ]
+        },
+        "memory_tip": "200 shared among 236, or 26.7 shared among 4 — that is why fusion wins per nucleon."
+      },
+      {
+        "id": "s4_particles_uses",
+        "kind": "boxed_final",
+        "label": "Particles and applications",
+        "marks": 1,
+        "mark_note": "Neutrons and the atom bomb; protons, the hydrogen bomb and stars",
+        "lines": [
+          "Fission involves neutrons, and the atom bomb",
+          "works on nuclear fission.",
+          "Fusion involves protons and other light nuclei,",
+          "and the hydrogen bomb and the stars work on",
+          "nuclear fusion.",
+          {
+            "text": "Fission splits heavy · Fusion joins light",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. One application named for each process.",
+        "why": "The two bombs are the clearest marker of the difference: the atom bomb is an uncontrolled fission chain, the hydrogen bomb a fusion reaction that a fission bomb heats to ignition.",
+        "common_mistakes": [
+          "Swapping the bombs. Atom bomb is fission, hydrogen bomb is fusion.",
+          "Saying stars run on fission. Stellar energy comes from fusion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That fission involves neutrons and is the principle of the atom bomb, while fusion involves protons and light nuclei and is the principle of the hydrogen bomb and of stars.",
+          "accept": [
+            "atom bomb works on fission",
+            "hydrogen bomb works on fusion",
+            "stars run on fusion"
+          ],
+          "reject": [
+            "two hundred MeV per fission"
+          ],
+          "heard_as": [
+            "atom bomb",
+            "hydrogen bomb",
+            "stars"
+          ]
+        },
+        "memory_tip": "A for atom bomb, A for apart — fission. H for hydrogen bomb, H for hydrogen joining — fusion."
+      }
+    ]
+  },
+  "insider_note": "Four marks, four points of difference, each written for BOTH processes. A list about fission alone earns half."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_sc_emulsion_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Surface Chemistry (Chemistry-II)"
+  },
+  "chapter": "Surface Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is emulsion? Give examples?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The two types with examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 5 (Surface Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.76-79, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAPS (book p.76, VSAQ 9): the printed answer gives the definition and one example, milk. It never says that the two liquids must be liquids that do NOT mix with each other, without which water in alcohol would count as an emulsion. It also gives no water in oil example, although the question says examples in the plural and the book's own SAQ 3 on p.78 prints butter for that type. Both are added. NOTE ON MILK: the book's SAQ 6 on p.78 calls milk an aquasol; milk is an emulsion, and that disagreement is settled on the card ts_ipe_c2_sc_dispersed_phase_and_medium."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Surface Chemistry — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An emulsion is a colloidal solution in",
+          "which both the dispersed phase and the",
+          "dispersion medium are liquids.",
+          "The two liquids must be liquids that do",
+          "not mix with each other."
+        ],
+        "why": "The name of a colloid comes from the states of its two parts, and an emulsion is the liquid in liquid case. The second line is needed because two liquids that mix give a true solution, not a colloid, so the definition is not complete without it.",
+        "common_mistakes": [
+          "Writing that a solid dispersed in a liquid is an emulsion. That is a sol; an emulsion is liquid in liquid.",
+          "Leaving out that the two liquids do not mix. Alcohol in water mixes completely and is not an emulsion."
+        ],
+        "memory_tip": "Liquid in liquid, and the two liquids do not mix.",
+        "margin_note": "Both phases must be named as liquids. That single sentence carries this mark."
+      },
+      {
+        "id": "s2_types_examples",
+        "kind": "boxed_final",
+        "label": "The two types with examples",
+        "marks": 1,
+        "mark_note": "Types and examples",
+        "lines": [
+          {
+            "text": "Ex: milk and butter.",
+            "style": "boxed"
+          },
+          "Oil in water type (o/w): oil is the",
+          "dispersed phase and water the medium.",
+          "Ex: milk, vanishing cream.",
+          "Water in oil type (w/o): water is the",
+          "dispersed phase and oil the medium.",
+          "Ex: butter, cold cream."
+        ],
+        "why": "Which liquid is dispersed and which is the medium determines the type, and the same two liquids can give either one. Naming one example from each type shows that the difference has been understood rather than a single example memorised.",
+        "common_mistakes": [
+          "Giving milk for both types. Milk is fat dispersed in water, so it is the oil in water type only.",
+          "Writing butter as oil in water. Butter is water dispersed in fat, which is the water in oil type."
+        ],
+        "memory_tip": "Milk is oil in water. Butter is water in oil. The first named liquid is always the dispersed one.",
+        "margin_note": "The question asks for examples in the plural, so give one from each type."
+      }
+    ]
+  },
+  "insider_note": "The question says examples, not example. One from each type, milk and butter, is what a full two marks looks like."
+}

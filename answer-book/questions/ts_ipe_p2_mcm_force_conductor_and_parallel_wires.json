@@ -1,0 +1,663 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_force_conductor_and_parallel_wires",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Deduce an expression for the force on a current carrying conductor placed in a magnetic field. Derive an expression for the force per unit length between two parallel current carrying conductors?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The conductor in the field",
+      "marks": 1
+    },
+    {
+      "label": "Force on one moving charge",
+      "marks": 1
+    },
+    {
+      "label": "Force on the whole conductor",
+      "marks": 1
+    },
+    {
+      "label": "Field of the first wire",
+      "marks": 1
+    },
+    {
+      "label": "Force on the second wire",
+      "marks": 1
+    },
+    {
+      "label": "Force on the first wire",
+      "marks": 1
+    },
+    {
+      "label": "Force per unit length",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1+1+1+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: i = nqvA, f = qvB sin θ, F = (nlA)f = B i l sin θ, vector form F = i(l × B); then B₁ = μ₀i₁/2πr, F₂ = i₂lB₁ = μ₀i₁i₂l/2πr and F₁ = i₁lB₂ equal to it, so F/l = μ₀i₁i₂/2πr, attractive for currents in the same direction — all matching the book. The book's printed question reads 'megnetic field' and 'Derive on expression'; corrected here to 'magnetic field' and 'Derive an expression'. ONE DEPARTURE FROM THE BOOK'S FIGURE: the book draws the force F in the plane of the page while also drawing B in that plane. With the current and the field both in the page, F = i(l × B) is perpendicular to the page, so the first figure here shows F as ⊙ out of the page; the algebra is unchanged and the book's drawing is noted in the figure step's why line."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Two halves, but not four marks each way: the force on a conductor carries 3 and the parallel-wire result 5. A full first half with no second half earns 3 of 8, so budget the time for both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Moving Charges and Magnetism · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fig_conductor",
+        "kind": "diagram",
+        "label": "The conductor in the field",
+        "marks": 0,
+        "figure": {
+          "id": "conductor_in_field",
+          "width": 400,
+          "height": 290,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "wire_line",
+              "d": "M 100 149 L 320 149",
+              "ms": 3140,
+              "w": 4
+            },
+            {
+              "type": "stroke",
+              "id": "i_arrowhead",
+              "d": "M 270 143 L 282 149 L 270 155",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "b_line",
+              "d": "M 110 250 L 250 180",
+              "ms": 2240
+            },
+            {
+              "type": "stroke",
+              "id": "b_arrowhead",
+              "d": "M 243 189 L 250 180 L 239 180",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "theta_ray",
+              "d": "M 200 149 L 280 109",
+              "ms": 1280,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "theta_arc",
+              "d": "M 248 149 A 48 48 0 0 0 243 128",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "l_line",
+              "d": "M 100 95 L 320 95",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "l_arrowhead_left",
+              "d": "M 110 90 L 100 95 L 110 100",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "l_arrowhead_right",
+              "d": "M 310 90 L 320 95 L 310 100",
+              "ms": 320
+            },
+            {
+              "type": "label",
+              "id": "lbl_i",
+              "x": 292,
+              "y": 140,
+              "text": "i",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 256,
+              "y": 188,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 254,
+              "y": 143,
+              "text": "θ",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_l",
+              "x": 204,
+              "y": 86,
+              "text": "l",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_symbol",
+              "x": 160,
+              "y": 156,
+              "text": "⊙",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_text",
+              "x": 8,
+              "y": 128,
+              "text": "F is out of the page",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "A wire of length l carrying current i, the uniform field B at an angle θ to the wire, and the force F out of the page.",
+        "why": "The book draws F as an arrow in the plane of the page, but with both the current and the field drawn in that plane F = i(l × B) must point out of it, so the ⊙ symbol is used here; the formula worked out below is the same either way.",
+        "common_mistakes": [
+          "Measuring θ between the wire and the force. It is the angle between the wire and the field.",
+          "Drawing F along the field. F is perpendicular to both the wire and the field."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a wire of length l with current i is drawn in a uniform field B at an angle θ, with the force marked.",
+          "accept": [
+            "draw the wire in the field",
+            "mark the angle theta between wire and field",
+            "mark the force"
+          ],
+          "reject": [
+            "F equals B i l sine theta"
+          ],
+          "heard_as": [
+            "conductor",
+            "figure"
+          ]
+        },
+        "memory_tip": "Wire across, field slanting into it, force at right angles to both."
+      },
+      {
+        "id": "s2_setup",
+        "kind": "equation",
+        "label": "The conductor in the field",
+        "marks": 1,
+        "mark_note": "The set-up and i = nqvA",
+        "lines": [
+          "Consider a straight wire of length l and",
+          "cross sectional area A carrying a current i,",
+          "placed in a uniform magnetic field of",
+          "induction B. Let θ be the angle between the",
+          "wire and the field.",
+          "Because of the potential difference across",
+          "its ends the free electrons move with a",
+          "drift velocity v, and the current is",
+          {
+            "text": "i = n q v A",
+            "style": "eq"
+          },
+          "where n is the number of free electrons per",
+          "unit volume and q is the charge on one",
+          "electron."
+        ],
+        "margin_note": "First mark. Name l, A, i, B and θ, then write the current in terms of the drift velocity.",
+        "why": "The magnetic force acts on moving charges, not on the wire itself, so the current must first be written in terms of how fast the charges move.",
+        "common_mistakes": [
+          "Writing i = nqv without the area A.",
+          "Taking θ as the angle between the wire and the force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a wire of length l and area A carries current i = nqvA in a field B at an angle θ.",
+          "accept": [
+            "wire of length l and area A in a field B",
+            "i equals n q v A",
+            "angle theta between wire and field"
+          ],
+          "reject": [
+            "f equals q v B sine theta"
+          ],
+          "heard_as": [
+            "drift velocity",
+            "n q v A"
+          ]
+        },
+        "memory_tip": "Current is charges per volume, times charge, times speed, times area."
+      },
+      {
+        "id": "s3_force_on_charge",
+        "kind": "equation",
+        "label": "Force on one moving charge",
+        "marks": 1,
+        "mark_note": "f = qvB sin θ",
+        "lines": [
+          "A charge q moving with velocity v in a",
+          "magnetic field of induction B experiences a",
+          "force",
+          {
+            "text": "f = q v B sin θ",
+            "style": "eq"
+          },
+          "where θ is the angle between the velocity",
+          "and the field. This force is perpendicular",
+          "to both v and B."
+        ],
+        "margin_note": "Second mark. The single-charge force. Everything below is this force counted over all the electrons.",
+        "why": "The whole derivation is built up from one charge, so this line has to be written before the total force can be found.",
+        "common_mistakes": [
+          "Writing f = qE, which is the electric force, not the magnetic one.",
+          "Using cos θ in place of sin θ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one charge q moving with velocity v feels a force f = qvB sin θ.",
+          "accept": [
+            "f equals q v B sine theta",
+            "force on a moving charge",
+            "perpendicular to velocity and field"
+          ],
+          "reject": [
+            "n l A electrons"
+          ],
+          "heard_as": [
+            "q v B sine theta",
+            "moving charge"
+          ]
+        },
+        "memory_tip": "One charge, one force: q times v times B times sin θ."
+      },
+      {
+        "id": "s4_total_force",
+        "kind": "equation",
+        "label": "Force on the whole conductor",
+        "marks": 1,
+        "mark_note": "F = B i l sin θ",
+        "lines": [
+          "The number of free electrons in the length l",
+          "of the wire is n l A, so the total force is",
+          {
+            "text": "F = (n l A) f = n l A q v B sin θ",
+            "style": "eq"
+          },
+          "Grouping the terms and using i = n q v A,",
+          {
+            "text": "F = (n q v A) l B sin θ",
+            "style": "eq"
+          },
+          {
+            "text": "F = B i l sin θ",
+            "style": "eq"
+          },
+          "In vector form this is",
+          {
+            "text": "F = i (l × B)",
+            "style": "eq"
+          },
+          "F is maximum when θ = 90°, giving F = B i l,",
+          "and F is zero when θ = 0°."
+        ],
+        "margin_note": "Third mark. Multiply the single-charge force by the number of electrons, then bring back i = nqvA so the microscopic terms disappear.",
+        "why": "Every microscopic quantity — n, q, v, A — collects into the single measured quantity i, which is why the final formula uses only things a student can read off an instrument.",
+        "common_mistakes": [
+          "Multiplying by n alone instead of by n l A.",
+          "Leaving n, q and v in the final answer instead of grouping them into i."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by nlA electrons and using i = nqvA gives F = B i l sin θ, with the vector form F = i(l × B).",
+          "accept": [
+            "number of electrons is n l A",
+            "F equals B i l sine theta",
+            "F equals i l cross B"
+          ],
+          "reject": [
+            "f equals q v B sine theta"
+          ],
+          "heard_as": [
+            "B i l sine theta",
+            "n l A"
+          ]
+        },
+        "memory_tip": "Count the electrons, then swap n q v A back for i."
+      },
+      {
+        "id": "s5_fig_parallel",
+        "kind": "diagram",
+        "label": "Two parallel conductors",
+        "marks": 0,
+        "figure": {
+          "id": "parallel_conductors",
+          "width": 400,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "wire1",
+              "d": "M 110 40 L 110 260",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "wire1_arrowhead",
+              "d": "M 104 85 L 110 74 L 116 85",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "wire2",
+              "d": "M 290 40 L 290 260",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "wire2_arrowhead",
+              "d": "M 284 85 L 290 74 L 296 85",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "r_line",
+              "d": "M 110 130 L 290 130",
+              "ms": 2570
+            },
+            {
+              "type": "stroke",
+              "id": "f1_line",
+              "d": "M 114 190 L 176 190",
+              "ms": 890
+            },
+            {
+              "type": "stroke",
+              "id": "f1_arrowhead",
+              "d": "M 166 185 L 176 190 L 166 195",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "f2_line",
+              "d": "M 286 190 L 224 190",
+              "ms": 890
+            },
+            {
+              "type": "stroke",
+              "id": "f2_arrowhead",
+              "d": "M 234 185 L 224 190 L 234 195",
+              "ms": 320
+            },
+            {
+              "type": "label",
+              "id": "lbl_i1",
+              "x": 82,
+              "y": 80,
+              "text": "i₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_i2",
+              "x": 302,
+              "y": 80,
+              "text": "i₂",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 194,
+              "y": 120,
+              "text": "r",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_f1",
+              "x": 136,
+              "y": 178,
+              "text": "F₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_f2",
+              "x": 238,
+              "y": 178,
+              "text": "F₂",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "Two long parallel wires a distance r apart carrying currents i₁ and i₂ in the same direction, with the two forces drawn towards each other.",
+        "why": "Drawing both currents upward fixes one case: the arrows then point towards each other, which is the attraction the algebra will produce.",
+        "common_mistakes": [
+          "Drawing the two forces in the same direction. They are equal and opposite.",
+          "Measuring r along a wire. It is the perpendicular separation of the two wires."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That two parallel wires distance r apart are drawn with currents i₁ and i₂ and the forces on each.",
+          "accept": [
+            "draw two parallel wires",
+            "separation r",
+            "mark the force on each wire"
+          ],
+          "reject": [
+            "B one is mu nought i one by two pi r"
+          ],
+          "heard_as": [
+            "parallel wires",
+            "figure"
+          ]
+        },
+        "memory_tip": "Two uprights, one gap marked r, one arrow on each pointing inward."
+      },
+      {
+        "id": "s6_field_first",
+        "kind": "equation",
+        "label": "Field of the first wire",
+        "marks": 1,
+        "mark_note": "B₁ = μ₀i₁/2πr",
+        "lines": [
+          "Consider two long parallel conductors I and",
+          "II, each of length l, carrying currents i₁",
+          "and i₂ in the same direction and separated",
+          "by a distance r.",
+          "The magnetic induction at the second wire",
+          "due to the current in the first wire is",
+          {
+            "text": "B₁ = μ₀ i₁ / 2πr",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fourth mark. The first wire's own field, at the position of the second wire.",
+        "why": "Neither wire feels its own field, so each force has to be worked out from the field made by the other wire.",
+        "common_mistakes": [
+          "Using both currents in B₁. The field of the first wire depends on i₁ only.",
+          "Writing μ₀i₁/4πr. For a long straight wire it is 2πr."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the field at the second wire due to the first is B₁ = μ₀i₁/2πr.",
+          "accept": [
+            "B one equals mu nought i one by two pi r",
+            "field of the first wire at the second",
+            "two long parallel conductors distance r apart"
+          ],
+          "reject": [
+            "F two equals i two l B one"
+          ],
+          "heard_as": [
+            "B one",
+            "mu nought i one"
+          ]
+        },
+        "memory_tip": "First wire's field carries only the first wire's current."
+      },
+      {
+        "id": "s7_force_second",
+        "kind": "equation",
+        "label": "Force on the second wire",
+        "marks": 1,
+        "mark_note": "F₂ = μ₀i₁i₂l/2πr",
+        "lines": [
+          "The second wire, of length l and carrying",
+          "current i₂, lies in this field B₁. The field",
+          "is at right angles to the wire, so sin θ = 1",
+          "and F = B i l sin θ becomes",
+          {
+            "text": "F₂ = i₂ l B₁",
+            "style": "eq"
+          },
+          {
+            "text": "F₂ = (μ₀ / 2π) · i₁ i₂ l / r",
+            "style": "eq"
+          },
+          "This force acts towards the first wire."
+        ],
+        "margin_note": "Fifth mark. Reuse the first half's result F = Bil sin θ with sin θ = 1, then put B₁ in.",
+        "why": "The field of a straight wire circles the wire, so at the second wire it is perpendicular to that wire — which is why sin θ = 1 and no angle survives in the answer.",
+        "common_mistakes": [
+          "Keeping sin θ in the answer. Here θ = 90°, so sin θ = 1.",
+          "Writing F₂ = i₁lB₁, mixing up which current is in the second wire."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F₂ = i₂lB₁ = μ₀i₁i₂l/2πr, directed towards the first wire.",
+          "accept": [
+            "F two equals i two l B one",
+            "mu nought i one i two l by two pi r",
+            "towards the first wire"
+          ],
+          "reject": [
+            "B two equals mu nought i two by two pi r"
+          ],
+          "heard_as": [
+            "F two",
+            "i two l B one"
+          ]
+        },
+        "memory_tip": "Second wire's current, second wire's length, first wire's field."
+      },
+      {
+        "id": "s8_force_first",
+        "kind": "equation",
+        "label": "Force on the first wire",
+        "marks": 1,
+        "mark_note": "F₁ = F₂",
+        "lines": [
+          "In the same way, the magnetic induction at",
+          "the first wire due to the second wire is",
+          {
+            "text": "B₂ = μ₀ i₂ / 2πr",
+            "style": "eq"
+          },
+          "and the force on the first wire is",
+          {
+            "text": "F₁ = i₁ l B₂ = (μ₀ / 2π) · i₁ i₂ l / r",
+            "style": "eq"
+          },
+          "This force acts towards the second wire.",
+          {
+            "text": "∴ F₁ = F₂ = (μ₀ / 2π) · i₁ i₂ l / r",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Sixth mark. Repeat the step with the wires swapped and show that the two forces come out equal.",
+        "why": "The two expressions are the same because the product i₁i₂ is symmetric, which is Newton's third law appearing in the algebra.",
+        "common_mistakes": [
+          "Assuming the thicker or higher-current wire feels the bigger force. Both forces are equal.",
+          "Giving both forces the same direction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That B₂ = μ₀i₂/2πr gives F₁ = i₁lB₂, equal to F₂ and directed towards the second wire.",
+          "accept": [
+            "B two equals mu nought i two by two pi r",
+            "F one equals i one l B two",
+            "F one equals F two"
+          ],
+          "reject": [
+            "force per unit length"
+          ],
+          "heard_as": [
+            "F one",
+            "equal and opposite"
+          ]
+        },
+        "memory_tip": "Swap the labels and the same expression comes back."
+      },
+      {
+        "id": "s9_final",
+        "kind": "boxed_final",
+        "label": "Force per unit length",
+        "marks": 2,
+        "mark_note": "F/l = μ₀i₁i₂/2πr, with the direction",
+        "lines": [
+          "Dividing by the length l, the force per unit",
+          "length between the two conductors is",
+          {
+            "text": "F / l = μ₀ i₁ i₂ / 2πr",
+            "style": "boxed"
+          },
+          "The two forces are equal in size and",
+          "opposite in direction. When the currents run",
+          "in the same direction the wires attract each",
+          "other, and when they run in opposite",
+          "directions the wires repel each other.",
+          "This result defines the ampere: one ampere is",
+          "the current which, flowing in each of two",
+          "long parallel wires 1 m apart in vacuum,",
+          "gives a force of 2 × 10⁻⁷ N on each metre of",
+          "wire."
+        ],
+        "margin_note": "Last two marks. The boxed formula, the attract-or-repel line, and the definition of the ampere.",
+        "why": "Dividing by l removes the one quantity that is not fixed by the arrangement, leaving a result that holds for any length of wire — which is why it can be used to define the ampere.",
+        "common_mistakes": [
+          "Leaving l in the final answer. It cancels when the force per unit length is asked for.",
+          "Saying parallel currents repel. Currents in the same direction attract."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F/l = μ₀i₁i₂/2πr, attractive for currents in the same direction, and that this defines the ampere.",
+          "accept": [
+            "F by l equals mu nought i one i two by two pi r",
+            "same direction attract opposite repel",
+            "definition of the ampere"
+          ],
+          "reject": [
+            "F one equals i one l B two"
+          ],
+          "heard_as": [
+            "force per unit length",
+            "ampere"
+          ]
+        },
+        "memory_tip": "Divide out the length and the ampere's own definition is what is left."
+      }
+    ]
+  }
+}

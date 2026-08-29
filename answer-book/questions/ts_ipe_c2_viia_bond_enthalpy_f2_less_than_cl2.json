@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_bond_enthalpy_f2_less_than_cl2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Bond dissociation enthalpy of F₂ is less than that of Cl₂ – explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The values and the order",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK REASON NARROWED (book p.86, VSAQ 2): the printed answer gives two causes, \"inter electron repulsion and inter nuclear repulsion\". The standard reason is the repulsion between the LONE PAIRS (the non-bonding electrons) on the two small fluorine atoms across a very short bond; internuclear repulsion is not the accepted explanation and is not written here. BOOK GAP: the printed answer gives no values and no group order, so the reader cannot see that F₂ falls below Br₂ as well. The values (F₂ 158.8, Cl₂ 242.6, Br₂ 192.8, I₂ 151.1 kJ/mol) and the order Cl₂ > Br₂ > F₂ > I₂ are written here. PRINTED PUNCTUATION: the question is printed \"Bond dissociation enthalpy of F2 is less than that of Cl2 explain\"; the dash is added for readability and the subscripts are set in Unicode."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "The fluorine atom is very small, so the two",
+          "atoms in F₂ lie very close together.",
+          "Each atom carries three lone pairs, and over",
+          "this short bond the lone pairs on the two",
+          "atoms repel each other strongly.",
+          "This repulsion weakens the F–F bond.",
+          "In Cl₂ the atoms are larger and further",
+          "apart, so the repulsion is much smaller."
+        ],
+        "why": "The F–F bond is only 143 pm long, so the six non-bonding electrons on the two atoms are forced close together and their repulsion cancels part of the bonding. The Cl–Cl bond is 199 pm long and its lone pairs sit in a larger 3p shell, so the same loss is small there.",
+        "common_mistakes": [
+          "Writing that F₂ has the stronger bond because fluorine is the most electronegative element. Electronegativity does not set the bond enthalpy here; the lone-pair repulsion does.",
+          "Naming the repulsion between the two nuclei as the reason. The accepted reason is the repulsion between the lone pairs on the two atoms."
+        ],
+        "memory_tip": "Short bond, lone pairs close together, weak bond. Everything follows from the small size of fluorine.",
+        "margin_note": "The marked words are the small size of fluorine and the repulsion between the lone pairs on the two atoms."
+      },
+      {
+        "id": "s2_order_values",
+        "kind": "boxed_final",
+        "label": "The values and the order",
+        "marks": 1,
+        "mark_note": "Values and order",
+        "lines": [
+          "Bond dissociation enthalpy of F₂ is",
+          "158.8 kJ/mol and of Cl₂ is 242.6 kJ/mol.",
+          {
+            "text": "Order: Cl₂ > Br₂ > F₂ > I₂",
+            "style": "boxed"
+          },
+          "Fluorine is the exception in this order.",
+          "From chlorine onwards the value falls down",
+          "the group, but F₂ lies below Br₂ as well.",
+          "This weak bond is one reason why fluorine",
+          "is the strongest oxidising agent."
+        ],
+        "why": "Down the group from Cl₂ to I₂ the bond gets weaker because the atoms are larger and the overlap is poorer. F₂ is out of place because of the lone-pair repulsion, and its value (158.8 kJ/mol) falls below Br₂ (192.8 kJ/mol) and only just above I₂ (151.1 kJ/mol). A bond that is easy to break is part of why F₂ oxidises so strongly.",
+        "common_mistakes": [
+          "Placing F₂ between Cl₂ and Br₂ in the order. The correct order is Cl₂ > Br₂ > F₂ > I₂.",
+          "Writing that the value falls steadily down the whole group. It falls from Cl₂ to I₂, and F₂ sits outside that fall."
+        ],
+        "memory_tip": "F₂ sits between Br₂ and I₂, not at the top of the group.",
+        "margin_note": "One line carrying the order Cl₂ > Br₂ > F₂ > I₂ earns this mark, because it states the trend and the exception together."
+      }
+    ]
+  },
+  "insider_note": "The mark is lost by naming electronegativity instead of the lone-pair repulsion. Write the words small size, short bond and lone-pair repulsion in that order."
+}

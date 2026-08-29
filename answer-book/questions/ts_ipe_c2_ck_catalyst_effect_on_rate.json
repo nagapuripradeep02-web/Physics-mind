@@ -1,0 +1,298 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ck_catalyst_effect_on_rate",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Chemical Kinetics (Chemistry-II)"
+  },
+  "chapter": "Chemical Kinetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the effect of catalyst on the kinetics of chemical reaction with diagram.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a catalyst is",
+      "marks": 2
+    },
+    {
+      "label": "The new reaction path",
+      "marks": 2
+    },
+    {
+      "label": "What a catalyst does not change",
+      "marks": 2
+    },
+    {
+      "label": "The Arrhenius account",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 2+2+2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.75, LAQ 4): the printed answer defines a catalyst as \"a substance which increase the speed of reaction without involving in the reaction\". That is wrong. A catalyst DOES take part: it forms an intermediate with a reactant and is released again when the products form. What is true is that it is not CONSUMED, and that it is recovered chemically unchanged at the end. NCERT's wording, a substance that alters the rate of a reaction without itself undergoing any permanent chemical change, is used on this card. BOOK GAP on the same answer: the printed answer stops after \"decrease the activation energy hence increases the rate\". It never says that a catalyst does NOT change ΔH, that it lowers the forward and reverse activation energies by the SAME amount, and that it therefore leaves the equilibrium constant and the equilibrium yield unchanged and only shortens the time taken to reach equilibrium. Those are added, because they are the half of this topic a board question most often depends on. FIGURE SCOPE: the question says \"with diagram\", not \"draw a neat labelled diagram\", so the diagram step carries NO marks and the whole 2+2+2+2 split sits on the four written steps."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Chemical Kinetics — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_a_catalyst_is",
+        "kind": "text",
+        "label": "What a catalyst is",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          "A catalyst is a substance that alters the",
+          "rate of a chemical reaction without itself",
+          "undergoing any permanent chemical",
+          "change.",
+          "It does take part in the reaction: it forms",
+          "an intermediate with a reactant and is",
+          "released again when the products form.",
+          "So it is not used up, and it is recovered",
+          "unchanged at the end.",
+          "A small amount is enough, because the",
+          "same catalyst is used again and again."
+        ],
+        "why": "The word permanent is what makes the definition correct. A catalyst that took no part at all could not change anything; it does react, but every step that consumes it is followed by a step that returns it, so the amount present at the end is the amount present at the start.",
+        "common_mistakes": [
+          "Writing that a catalyst does not take part in the reaction. It takes part and is then regenerated; only a permanent change is ruled out.",
+          "Writing that a catalyst is used up slowly. If it were, it would be a reactant, not a catalyst."
+        ],
+        "memory_tip": "Takes part, then is released again. Not consumed, and recovered unchanged.",
+        "margin_note": "Two marks: the definition, then the sentence that it is regenerated. The second is the one most answers leave out."
+      },
+      {
+        "id": "s2_new_path",
+        "kind": "text",
+        "label": "The new reaction path",
+        "marks": 2,
+        "mark_note": "New path",
+        "lines": [
+          "A catalyst provides a different path from",
+          "the reactants to the products, and that",
+          "path has a lower activation energy.",
+          "The uncatalysed reaction must reach the",
+          "higher threshold energy; the catalysed",
+          "reaction reaches a lower one.",
+          "At the same temperature a much larger",
+          "fraction of the molecules has enough",
+          "energy for the lower barrier, so many",
+          "more collisions form products and the",
+          "rate increases."
+        ],
+        "why": "The catalyst does not push the same reaction over the same barrier more quickly. It makes a second route available, and the reaction then runs mostly by that route because its barrier is smaller. That is why the effect is described as a change of path and not a change of speed along one path.",
+        "common_mistakes": [
+          "Writing that the catalyst lowers the energy of the reactants. The reactant and product energies are unchanged; only the peak between them is lowered.",
+          "Writing that the catalyst gives the molecules extra energy. It supplies no energy; it reduces how much is needed."
+        ],
+        "memory_tip": "Same start, same finish, lower peak. The path changes, the ends do not.",
+        "margin_note": "Two marks: the lower activation energy, then the larger fraction of molecules that can pass it."
+      },
+      {
+        "id": "s3_what_it_does_not_change",
+        "kind": "text",
+        "label": "What a catalyst does not change",
+        "marks": 2,
+        "mark_note": "What is unchanged",
+        "lines": [
+          "1. It does not change ΔH of the reaction.",
+          "    The energies of the reactants and of the",
+          "    products are the same with and without",
+          "    the catalyst.",
+          "2. It lowers the activation energy of the",
+          "    forward and of the reverse reaction by",
+          "    the same amount, so both are speeded",
+          "    up equally.",
+          "3. The equilibrium constant is therefore",
+          "    unchanged, and so is the yield at",
+          "    equilibrium.",
+          "4. A catalyst only shortens the time taken",
+          "    to reach equilibrium."
+        ],
+        "why": "The single threshold level is shared by both directions, so lowering it lowers both activation energies by exactly the same amount. Since the equilibrium constant is the ratio of the forward and reverse rate constants, multiplying both by the same factor leaves it unchanged.",
+        "common_mistakes": [
+          "Writing that a catalyst increases the yield of product. It changes only how quickly equilibrium is reached, not where equilibrium lies.",
+          "Writing that a catalyst speeds up only the forward reaction. It speeds up both by the same factor."
+        ],
+        "memory_tip": "Sooner, not more. The catalyst changes the time, never the yield.",
+        "margin_note": "Two marks. Points 1 and 3 are the ones examiners look for; number all four."
+      },
+      {
+        "id": "s4_arrhenius",
+        "kind": "boxed_final",
+        "label": "The Arrhenius account",
+        "marks": 2,
+        "mark_note": "Arrhenius",
+        "lines": [
+          "The Arrhenius equation gives the size of",
+          "the effect:",
+          {
+            "text": "k = Ae^(−Eₐ/RT)",
+            "style": "boxed"
+          },
+          "Eₐ appears in the exponent with a minus",
+          "sign, so lowering Eₐ at a fixed",
+          "temperature raises k.",
+          "In logarithmic form:",
+          {
+            "text": "log k = log A − Eₐ/2.303RT",
+            "style": "eq"
+          },
+          "A small drop in Eₐ produces a large rise",
+          "in the rate, because the dependence is",
+          "exponential and not proportional."
+        ],
+        "why": "The exponential is what makes catalysis worth doing. At 300 K, lowering the activation energy from 100 to 75 kJ mol⁻¹ multiplies k by e^(25000/(8.314 × 300)) = e^10.02, which is about 2 × 10⁴. Lowering the barrier by one quarter gives a rate about twenty thousand times larger.",
+        "common_mistakes": [
+          "Writing k = Ae^(Eₐ/RT) without the minus sign. With a plus sign the equation would say a higher barrier gives a faster reaction.",
+          "Saying the catalyst changes A. In this account the frequency factor is treated as unchanged; the effect comes from Eₐ."
+        ],
+        "memory_tip": "Eₐ is in the exponent, so a small drop in it gives a very large rise in k.",
+        "margin_note": "Two marks: the equation with the correct sign, and the sentence saying why the effect is large."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "The energy profile",
+        "marks": 0,
+        "figure": {
+          "id": "ck_catalyst_energy_profile",
+          "width": 560,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cat_axes",
+              "d": "M 75 25 L 75 200 L 400 200",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cat_curve_without",
+              "d": "M 100 125 L 135 125 C 170 125 195 48 225 45 C 258 42 275 170 310 170 L 370 170",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cat_curve_with",
+              "d": "M 100 125 L 135 125 C 168 125 193 88 225 85 C 260 82 275 170 310 170 L 370 170",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cat_level_reactants",
+              "d": "M 77 125 L 470 125",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cat_level_peak_without",
+              "d": "M 225 45 L 470 45",
+              "ms": 3500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cat_level_peak_with",
+              "d": "M 225 85 L 440 85",
+              "ms": 3070,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cat_arrow_without",
+              "d": "M 460 125 L 460 45 M 456 51 L 460 45 L 464 51 M 456 119 L 460 125 L 464 119",
+              "ms": 1550
+            },
+            {
+              "type": "stroke",
+              "id": "cat_arrow_with",
+              "d": "M 430 125 L 430 85 M 426 91 L 430 85 L 434 91 M 426 119 L 430 125 L 434 119",
+              "ms": 980
+            },
+            {
+              "type": "label",
+              "id": "cat_lbl_axis_y",
+              "x": 16,
+              "y": 18,
+              "text": "Potential energy",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cat_lbl_axis_x",
+              "x": 240,
+              "y": 222,
+              "text": "Reaction coordinate",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cat_lbl_reactants",
+              "x": 100,
+              "y": 115,
+              "text": "Reactants",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cat_lbl_products",
+              "x": 380,
+              "y": 174,
+              "text": "Products",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cat_lbl_ea_without",
+              "x": 350,
+              "y": 32,
+              "text": "Eₐ without catalyst",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cat_lbl_ea_with",
+              "x": 350,
+              "y": 108,
+              "text": "Eₐ with catalyst",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two curves start at the same reactant level and end at the same product level, and only the height of the peak between them differs. That is the whole argument of the answer in one picture: the ends are fixed, so ΔH is fixed, and only the activation energy changes.",
+        "common_mistakes": [
+          "Drawing the catalysed curve ending at a different product level. Both curves must end at the same level, or the diagram claims the catalyst changed ΔH.",
+          "Marking only one activation energy arrow. Two arrows to two different peaks are what show the effect."
+        ],
+        "memory_tip": "Two peaks, one start, one finish. The dashed peak is the catalysed path.",
+        "margin_note": "The question does not say draw, so this earns no marks. All eight sit on the four written steps; sketch it only after they are written."
+      }
+    ]
+  },
+  "insider_note": "The line that separates a full answer from a half one is that the catalyst does not change ΔH or the equilibrium yield. Write it even if the question only asks about rate."
+}

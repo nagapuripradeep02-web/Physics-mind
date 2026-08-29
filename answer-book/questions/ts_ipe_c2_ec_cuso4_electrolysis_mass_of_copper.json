@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ec_cuso4_electrolysis_mass_of_copper",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Electro Chemistry (Chemistry-II)"
+  },
+  "chapter": "Electro Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A solution of CuSO₄ is electrolysed for 10 minutes with a current of 1.5 amperes. What is the mass of copper deposited at the cathode?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Given data and the charge passed",
+      "marks": 1
+    },
+    {
+      "label": "The cathode reaction and the equivalent mass",
+      "marks": 1
+    },
+    {
+      "label": "Faraday's first law applied",
+      "marks": 1
+    },
+    {
+      "label": "The answer with units",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 (Electro Chemistry) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.69-72, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. ARITHMETIC RECOMPUTED (book p.70, SAQ 4): Q = 1.5 × 600 = 900 C; equivalent mass of copper = 63.5/2 = 31.75; m = 31.75 × 900 / 96500 = 28575 / 96500 = 0.29611 g, which rounds to 0.296 g. The book's printed answer of 0.296 is CORRECT and is followed. BOOK SLOPPINESS: the book writes the unit as \"gr\", which is the symbol for the grain and not for the gram; g is used here. It also writes the charge as \"1.5 × 10 × 60\" inside the formula instead of the 900 C it had already worked out on the line above. THE BOOK GETS THE SAME NUMBER WRONG ELSEWHERE: the boxed PROBLEM on book p.72, which is the same calculation at 2 A, prints the equivalent mass of copper as 31 instead of 31.75 and reports 0.39 g; recomputed with 31.75 the answer is 31.75 × 1200 / 96500 = 0.3948 g. That PROBLEM is not authored, because PROBLEMS sections are deferred, but the error is recorded here since it is the same quantity this card computes. CHECK ADDED: the silver comparison on the last step was recomputed as 108 × 900 / 96500 = 1.007 g and is not in the book."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electro Chemistry — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given_and_charge",
+        "kind": "equation",
+        "label": "Given data and the charge passed",
+        "marks": 1,
+        "mark_note": "Charge",
+        "lines": [
+          "Given: I = 1.5 A",
+          "t = 10 minutes = 10 × 60 = 600 s",
+          "The quantity of electricity passed is",
+          {
+            "text": "Q = I t = 1.5 × 600 = 900 C",
+            "style": "eq"
+          }
+        ],
+        "why": "Faraday's first law is written in terms of charge, not current, so the current and the time have to be combined into Q before anything else happens. The time must be in seconds, because one ampere is one coulomb per second.",
+        "common_mistakes": [
+          "Leaving the time in minutes. Using t = 10 makes the answer sixty times too small.",
+          "Writing Q = I/t. Charge is current multiplied by time."
+        ],
+        "memory_tip": "An ampere is a coulomb every second, so seconds times amperes gives coulombs.",
+        "margin_note": "Convert minutes to seconds on its own line. That single line is what this mark is usually given for."
+      },
+      {
+        "id": "s2_reaction_and_equivalent",
+        "kind": "equation",
+        "label": "The cathode reaction and the equivalent mass",
+        "marks": 1,
+        "mark_note": "Equivalent mass",
+        "lines": [
+          "At the cathode copper is reduced and",
+          "deposited:",
+          {
+            "text": "Cu²⁺(aq) + 2e⁻ → Cu(s)",
+            "style": "eq"
+          },
+          "Two moles of electrons deposit one mole",
+          "(63.5 g) of copper, so",
+          {
+            "text": "Equivalent mass E = 63.5 / 2 = 31.75",
+            "style": "eq"
+          }
+        ],
+        "why": "The equivalent mass is the mass deposited by one mole of electrons, so it is the atomic mass divided by the number of electrons in the electrode reaction. Reading that number off the cathode equation is what makes it a chemistry step and not a guess.",
+        "common_mistakes": [
+          "Using 63.5 as the equivalent mass. Copper here is Cu²⁺, so the atomic mass is divided by 2.",
+          "Dividing by the charge on the sulphate ion or by the whole formula. The 2 comes from the 2e⁻ in the cathode reaction."
+        ],
+        "memory_tip": "Count the electrons in the electrode reaction, then divide the atomic mass by that number.",
+        "margin_note": "Write the cathode reaction above the division. It shows where the 2 came from, and this mark is then safe."
+      },
+      {
+        "id": "s3_faraday_law",
+        "kind": "equation",
+        "label": "Faraday's first law applied",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "By Faraday's first law,",
+          {
+            "text": "m = (E / 96500) × Q",
+            "style": "eq"
+          },
+          {
+            "text": "m = (31.75 / 96500) × 900",
+            "style": "eq"
+          },
+          {
+            "text": "= 28575 / 96500",
+            "style": "indent"
+          }
+        ],
+        "why": "96500 C is the charge on one mole of electrons, so E/96500 is the mass deposited by one coulomb. Multiplying by the charge actually passed scales that up to the answer.",
+        "common_mistakes": [
+          "Dividing by 96500 twice, once inside E and once outside. It appears only once.",
+          "Multiplying by the current instead of the charge. Q = 900 C already contains the time."
+        ],
+        "memory_tip": "One coulomb deposits E/96500 grams, so 900 coulombs deposit 900 times that.",
+        "margin_note": "Write the formula in symbols before the numbers. Most schemes give this mark for the formula alone."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The answer with units",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "m = 0.296 g of copper",
+            "style": "boxed"
+          },
+          "About 0.3 g of copper is deposited at the",
+          "cathode.",
+          "As a check, the same 900 C would deposit",
+          "108 × 900 / 96500 = 1.007 g of silver, whose",
+          "equivalent mass is 108."
+        ],
+        "why": "The answer is small because 900 C is only about one hundredth of a Faraday, so only about one hundredth of an equivalent of copper is deposited. Comparing with silver is Faraday's second law in use, since the two masses come out in the ratio of the equivalent masses.",
+        "common_mistakes": [
+          "Writing the unit as gr. The symbol for the gram is g.",
+          "Rounding to 0.3 g in the boxed line. Keep three figures, 0.296 g, and give the rounded value separately."
+        ],
+        "memory_tip": "900 C is about one hundredth of 96500 C, so expect about one hundredth of 31.75 g.",
+        "margin_note": "Box the answer with its unit. A number with no unit does not take this mark."
+      }
+    ]
+  },
+  "insider_note": "The equivalent mass of copper here is 63.5/2 = 31.75, taken from the 2e⁻ in Cu²⁺ + 2e⁻ → Cu. The book's own PROBLEM on the next page uses 31 instead and gets a wrong answer, so do not copy that number."
+}

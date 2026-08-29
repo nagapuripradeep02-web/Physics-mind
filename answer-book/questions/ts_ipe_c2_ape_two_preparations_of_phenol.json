@@ -1,0 +1,174 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_two_preparations_of_phenol",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write any two preparations of phenol.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "From chlorobenzene: conditions",
+      "marks": 1
+    },
+    {
+      "label": "From chlorobenzene: equations",
+      "marks": 1
+    },
+    {
+      "label": "From aniline: diazotisation",
+      "marks": 1
+    },
+    {
+      "label": "From aniline: hydrolysis to phenol",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.111 as Short Answer 8. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CONTRADICTS ITSELF: this answer prints \"623K and 320atms\" for the chlorobenzene route, while the same conversion printed as Very Short Answer 5 on book p.109 reads \"623K, 300 atm\". Two pressures for one reaction. The card writes 300 atm, which is the NCERT value, and records the disagreement. BOOK GAP, added here: the printed diazotisation gives no temperature. A diazonium salt is stable only in the cold, so the diazotisation is carried out at 273-278 K; above that the salt hydrolyses on its own and the yield falls. Leaving the temperature out is a real omission, not a detail. BOOK TYPO: \"daizonization\" for diazotisation. BALANCE CHECKED, all four equations: C₆H₅Cl + 2NaOH → C₆H₅ONa + NaCl + H₂O (C 6=6, H 7=7, O 2=2, Na 2=2, Cl 1=1); C₆H₅ONa + HCl → C₆H₅OH + NaCl (C 6=6, H 6=6, O 1=1, Na 1=1, Cl 1=1); C₆H₅NH₂ + NaNO₂ + 2HCl → C₆H₅N₂Cl + NaCl + 2H₂O (C 6=6, H 9=9, N 2=2, O 2=2, Na 1=1, Cl 2=2); C₆H₅N₂Cl + H₂O → C₆H₅OH + N₂ + HCl (C 6=6, H 7=7, N 2=2, O 1=1, Cl 1=1). The book prints only reagents over arrows and balances none of these. TREND AND EXCEPTION: the card states that warming the diazonium salt with water gives the phenol, and names on the same card that this is not automatic — the SAME diazonium salt gives chlorobenzene with Cu₂Cl₂ and HCl, iodobenzene with KI, and benzene with H₃PO₂, so it is the warm water that makes this a preparation of phenol."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dow_conditions",
+        "kind": "text",
+        "label": "From chlorobenzene: conditions",
+        "marks": 1,
+        "mark_note": "Method 1",
+        "lines": [
+          "Method 1: from chlorobenzene, called",
+          "Dow's process.",
+          "Chlorobenzene is heated with aqueous NaOH",
+          "at 623 K under 300 atm pressure.",
+          "Sodium phenoxide is formed, and dilute HCl",
+          "then gives phenol.",
+          "The severe conditions are needed because",
+          "the C–Cl bond of an aryl halide has partial",
+          "double bond character and is hard to break."
+        ],
+        "why": "The conditions are the answer here, not a footnote. In an alkyl halide the same substitution happens at room temperature; in an aryl halide the C–Cl bond is shortened and strengthened by resonance, so a temperature of 623 K and a pressure of 300 atm are required. The exception is a ring that already carries strong electron withdrawing groups at positions 2, 4 and 6: 2,4,6-trinitrochlorobenzene gives its phenol with warm water alone.",
+        "common_mistakes": [
+          "Leaving out the temperature and the pressure. Without them this reads like an ordinary substitution, which it is not.",
+          "Writing 320 atm, which is what the book prints on this question. Its own Very Short Answer 5 gives 300 atm, the standard value."
+        ],
+        "memory_tip": "Dow's process: chlorobenzene, strong alkali, 623 K, 300 atm.",
+        "margin_note": "Name the process. A named method is quicker for the examiner to place than a bare set of conditions."
+      },
+      {
+        "id": "s2_dow_equations",
+        "kind": "equation",
+        "label": "From chlorobenzene: equations",
+        "marks": 1,
+        "mark_note": "Equations 1",
+        "lines": [
+          {
+            "text": "C₆H₅Cl + 2NaOH →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅ONa + NaCl + H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "[623 K, 300 atm]",
+            "style": "indent"
+          },
+          {
+            "text": "C₆H₅ONa + HCl → C₆H₅OH + NaCl",
+            "style": "eq"
+          },
+          "Two NaOH are used: one displaces the",
+          "chlorine and one neutralises the phenol."
+        ],
+        "why": "The second NaOH is the part most answers miss. Phenol cannot stay as the free acid in a hot alkaline solution, so as soon as it forms it is neutralised, and that consumes a second molecule of alkali. This is also why the acid step is needed at the end.",
+        "common_mistakes": [
+          "Writing one NaOH. Two are consumed, so the equation would not balance.",
+          "Showing phenol as the direct product of the alkali step. In alkali the product is the phenoxide."
+        ],
+        "memory_tip": "Two alkalis in, one salt and one water out, then acid to form the phenol.",
+        "margin_note": "Write both equations, not just the first. The acidification is where the phenol actually appears."
+      },
+      {
+        "id": "s3_diazotisation",
+        "kind": "equation",
+        "label": "From aniline: diazotisation",
+        "marks": 1,
+        "mark_note": "Method 2",
+        "lines": [
+          "Method 2: from aniline.",
+          "Aniline is treated with NaNO₂ and HCl at",
+          "273 to 278 K. This is diazotisation.",
+          {
+            "text": "C₆H₅NH₂ + NaNO₂ + 2HCl →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅N₂⁺Cl⁻ + NaCl + 2H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "[273–278 K]",
+            "style": "indent"
+          },
+          "The product is benzene diazonium",
+          "chloride."
+        ],
+        "why": "The low temperature is part of the method and not a refinement. A diazonium salt is stable only in the cold; above about 278 K it reacts with the water of the solution and the yield of the next step falls. NaNO₂ with HCl supplies the nitrous acid that does the work.",
+        "common_mistakes": [
+          "Omitting the temperature. The book omits it, but a diazotisation written without 273–278 K is incomplete.",
+          "Writing HNO₃ instead of NaNO₂ with HCl. Nitric acid would nitrate the ring instead."
+        ],
+        "memory_tip": "Ice cold, nitrous acid made in the flask from NaNO₂ and HCl, and the diazonium salt is used at once.",
+        "margin_note": "Write the temperature range beside the arrow. It is the one condition an examiner checks in a diazotisation."
+      },
+      {
+        "id": "s4_hydrolysis",
+        "kind": "boxed_final",
+        "label": "From aniline: hydrolysis to phenol",
+        "marks": 1,
+        "mark_note": "Equations 2",
+        "lines": [
+          "The diazonium salt is then warmed with",
+          "water.",
+          {
+            "text": "C₆H₅N₂⁺Cl⁻ + H₂O →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅OH + N₂↑ + HCl",
+            "style": "boxed"
+          },
+          "Nitrogen gas is given off, which is the",
+          "visible sign that the reaction is running.",
+          "So the two preparations are from",
+          "chlorobenzene and from aniline."
+        ],
+        "why": "The nitrogen leaves as a gas, so this step cannot go backwards and the phenol is the final product. It is worth knowing that the warm water is what makes this a phenol preparation: the same diazonium salt gives chlorobenzene with Cu₂Cl₂ and HCl, iodobenzene with KI, and benzene with H₃PO₂.",
+        "common_mistakes": [
+          "Leaving out the nitrogen. Losing N₂ is the whole reason the reaction goes to completion.",
+          "Warming the diazonium salt before it is needed. It is made cold and hydrolysed at once, in that order."
+        ],
+        "memory_tip": "Cold to make the diazonium salt, warm water to turn it into phenol, and nitrogen bubbles off.",
+        "margin_note": "Close with one line naming the two methods. The question asks for two, so say plainly that two have been given."
+      }
+    ]
+  },
+  "insider_note": "Both routes are common answers, but the two conditions are where marks go: 623 K with 300 atm for the chlorobenzene route, and 273 to 278 K for the diazotisation. The book omits the diazotisation temperature altogether and prints 320 atm here against 300 atm on book p.109."
+}
