@@ -3766,34 +3766,50 @@
 
     function enabled() { return !!TRACKS; }
 
+    /**
+     * Which stream a remembered choice opens. A choice saved BEFORE the
+     * multi-stream build carries no `stream` key, so it is resolved from TRACKS
+     * by group+year — that is what stops the first two-year deploy from
+     * stranding everyone who already has a choice in localStorage.
+     */
+    function resolveStream(t) {
+      if (!t) return null;
+      if (t.stream) return t.stream;
+      for (var i = 0; i < TRACKS.length; i++) {
+        if (TRACKS[i].id !== t.group) continue;
+        for (var j = 0; j < TRACKS[i].years.length; j++) {
+          if (TRACKS[i].years[j].id === t.year) return TRACKS[i].years[j].stream || null;
+        }
+      }
+      return null;
+    }
+
     function chosen() {
       if (!TRACKS) return null;
       try {
         var t = JSON.parse(g(KEY) || 'null');
-        return (t && t.group && t.year) ? t : null;
+        if (!(t && t.group && t.year)) return null;
+        // On a MULTI-stream artifact a remembered cell that opens nothing must
+        // send the student back to the door. Treating it as a choice skips the
+        // chooser and — because there is no stream to lens by — paints BOTH
+        // years at once under an eyebrow naming one of them: 1,664 answers
+        // labelled "First year · MPC". Found by replaying a stored BiPC choice,
+        // which no live cell can currently write but which any future stream
+        // change could strand. Falling back to the whole book was the wrong
+        // instinct: too much, wrongly labelled, is worse than asking again.
+        if (STREAM_SUBJECTS && !resolveStream(t)) return null;
+        return t;
       } catch (e) { return null; }
     }
 
     /**
-     * Re-apply a remembered choice on load. A student who chose second year last
-     * week must not open the book on first year. A choice remembered BEFORE this
-     * build carries no `stream`, so it is resolved from TRACKS by group+year —
-     * which is what stops the first multi-stream deploy from stranding everyone
-     * who already has a choice in localStorage.
+     * Re-apply a remembered choice on load, BEFORE the router paints anything —
+     * a student who chose second year last week must not open on first year.
      */
     function restore() {
       var t = chosen();
       if (!t) return;
-      var stream = t.stream || null;
-      if (!stream) {
-        for (var i = 0; i < TRACKS.length && !stream; i++) {
-          if (TRACKS[i].id !== t.group) continue;
-          for (var j = 0; j < TRACKS[i].years.length; j++) {
-            if (TRACKS[i].years[j].id === t.year) { stream = TRACKS[i].years[j].stream || null; break; }
-          }
-        }
-      }
-      applyYearLens(stream);
+      applyYearLens(resolveStream(t));
     }
 
     function trackById(id) {
