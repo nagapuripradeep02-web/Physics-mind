@@ -168,7 +168,7 @@
           "⇒ x² + y² + x + y = x² + y² + 2y + 1",
           "⇒ x + y = 2y + 1",
           {
-            "text": "∴ Locus of z: x − y = 1",
+            "text": "∴ Locus of z: x − y = 1, z ≠ −i",
             "style": "boxed"
           }
         ],
@@ -195,11 +195,11 @@
             "straight line"
           ]
         },
-        "why": "The condition 'real part is 1' is used exactly here. Because the denominator x² + (y + 1)² also has x² + y² in it, both squares cancel and only a linear equation survives — the locus is a line, not a circle.",
+        "why": "The condition 'real part is 1' is used exactly here. Because the denominator x² + (y + 1)² also has x² + y² in it, both squares cancel and only a linear equation survives — the locus is a line, not a circle. One point must be removed: at z = −i the denominator z + i is zero, so the expression is undefined there. That point is (0, −1), and 0 − (−1) = 1 — it lies on the line, so it has to be excluded by name or the stated locus contains a point that is not in it.",
         "common_mistakes": [
           "Setting the real part to 0 (the 'purely imaginary' condition from the previous question).",
           "Expanding (y + 1)² as y² + 1.",
-          "Ending at x + y = 2y + 1 without simplifying to x − y = 1."
+          "Leaving z = −i in the locus, where the expression is undefined."
         ]
       }
     ]

@@ -232,7 +232,7 @@
             "range"
           ]
         },
-        "why": "Δ = 0 at each end value gives a real x there, so the ends belong to the range and the interval is closed.",
+        "why": "Δ = 0 at each end value gives a real x there, so the ends belong to the range and the interval is closed. At y = 1 the x² term vanishes and the equation is linear, so the discriminant test does not cover that value — check it on its own: x = 0 gives (0 + 0 + 1)/(0 − 0 + 1) = 1, so y = 1 is attained and the interval is unbroken.",
         "common_mistakes": [
           "Writing (1/3, 3) with round brackets.",
           "Giving 3 as the minimum and 1/3 as the maximum.",

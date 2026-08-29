@@ -183,7 +183,7 @@
         "why": "The event keeps the values 1 and 2 of the range, and the probability is the sum of those two terms of the series — the same terms already written in the first step.",
         "common_mistakes": [
           "Including X = 0, which is not in the range.",
-          "Writing c²/2! as c²/2 · 2.",
+          "Writing c²/2! as c², forgetting the 2 in the denominator.",
           "Replacing logₑ 2 by 0.693 without being asked — keep the exact form."
         ]
       }

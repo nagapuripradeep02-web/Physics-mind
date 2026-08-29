@@ -234,7 +234,7 @@
             "at most"
           ]
         },
-        "why": "The largest y for which a real x exists is 4, and Δ = 0 there gives that x (x = 1). So 4 is not just an upper bound — it is a value the expression actually takes.",
+        "why": "The largest y for which a real x exists is 4, and Δ = 0 there gives that x (x = 1). So 4 is not just an upper bound — it is a value the expression actually takes. At y = 1 the x² term vanishes and the equation is linear, so the discriminant test does not cover that value — check it on its own: −12x − 6 = 0 gives x = −1/2, and the expression there is 1, so y = 1 is attained and the interval is unbroken.",
         "common_mistakes": [
           "Answering with the whole interval when only the maximum was asked.",
           "Giving 4 without the sentence saying it is the maximum value.",

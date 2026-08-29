@@ -130,7 +130,7 @@
             "two thirds"
           ]
         },
-        "why": "The end points are excluded because the series does not converge at |y| = 1 for this index.",
+        "why": "The theorem is stated with the hypothesis |y| < 1, so that open interval is the validity set the question asks for. What the series does at |y| = 1 is outside this syllabus and is not the reason for the open ends — do not claim it diverges there.",
         "common_mistakes": [
           "Writing a closed interval.",
           "Getting (−3/2, 3/2) by inverting the fraction."

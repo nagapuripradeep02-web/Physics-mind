@@ -105,7 +105,7 @@
         "common_mistakes": [
           "Keeping λ = 0 as an answer.",
           "Writing 2! as 2 on one side and 1 on the other.",
-          "Cancelling λ² instead of λ and getting 1 = 2."
+          "Dividing by λ without saying that λ = 0 is being discarded."
         ]
       },
       {

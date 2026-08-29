@@ -143,7 +143,7 @@
             "M D"
           ]
         },
-        "why": "Mean deviation about the median is the average distance from the median. Here it equals the mean deviation about the mean of the same data (3.25) by coincidence, not by rule.",
+        "why": "Mean deviation about the median is the average distance from the median. It is never larger than the mean deviation about the mean: the median minimises the total distance. Here n is even, so every value from 10 to 12 gives the same smallest total 26 — and the mean of this data is exactly 10, one of those two middle values, which is why both measures come to 3.25.",
         "common_mistakes": [
           "Subtracting from the mean 10 instead of from the median 11.",
           "Dropping one of the three 1's when adding.",

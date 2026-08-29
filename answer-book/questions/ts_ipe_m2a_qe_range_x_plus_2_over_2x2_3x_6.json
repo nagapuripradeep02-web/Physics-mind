@@ -202,6 +202,8 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Square brackets, because Δ = 0 at each end: y = 1/3 happens at x = 0 and y = −1/13 at x = −4, so both end values are actually reached.",
         "lines": [
+          "At y = 0 the equation is linear, not quadratic:",
+          "x + 2 = 0 gives x = −2, so y = 0 is reached.",
           "y takes every value from −1/13 to 1/3.",
           {
             "text": "∴ range = [−1/13, 1/3]",
@@ -231,7 +233,7 @@
             "range"
           ]
         },
-        "why": "The end values are reached (Δ = 0 there gives a real x), so the interval is closed. Writing round brackets would claim the ends are missed, which is false.",
+        "why": "The end values are reached (Δ = 0 there gives a real x), so the interval is closed. Writing round brackets would claim the ends are missed, which is false. At y = 0 the x² term vanishes and the equation is linear, so the discriminant test does not cover that value — it has to be checked on its own: x + 2 = 0 gives x = −2, where the denominator is 8, so y = 0 really is attained and the interval is unbroken.",
         "common_mistakes": [
           "Writing (−1/13, 1/3) with round brackets.",
           "Giving the interval the wrong way round, 1/3 first.",

@@ -162,7 +162,7 @@
             "one row down"
           ]
         },
-        "why": "Once every term is ⁿ⁺¹Cᵣ₊₁ times a power of x, the whole sum is the expansion of (1 + x)ⁿ⁺¹ with its first term missing.",
+        "why": "Once every term is ⁿ⁺¹Cᵣ₊₁, the whole sum is the sum of the coefficients of (1 + x)ⁿ⁺¹ with its first term missing — which is what putting x = 1 in the expansion gives.",
         "common_mistakes": [
           "Writing ((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ.",
           "Forgetting that the sum now starts at ⁿ⁺¹C₁, not ⁿ⁺¹C₀."
@@ -204,7 +204,7 @@
             "divide"
           ]
         },
-        "why": "ⁿ⁺¹C₁x + ⁿ⁺¹C₂x² + … + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹ is (1 + x)ⁿ⁺¹ minus its first term 1. Dividing back by what was multiplied gives S.",
+        "why": "ⁿ⁺¹C₁ + ⁿ⁺¹C₂ + … + ⁿ⁺¹Cₙ₊₁ is 2ⁿ⁺¹ minus its first term ⁿ⁺¹C₀ = 1. Dividing back by what was multiplied gives S.",
         "common_mistakes": [
           "Writing the sum of the coefficients as 2ⁿ instead of 2ⁿ⁺¹.",
           "Forgetting the −1 for the missing ⁿ⁺¹C₀."

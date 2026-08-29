@@ -113,7 +113,7 @@
         "why": "For a reciprocal equation the roots come in pairs x and 1/x. A root that is its own reciprocal must be 1 or −1, and the class (whether aₖ equals aₙ₋ₖ or −aₙ₋ₖ) together with the parity of the degree tells you which of them the equation must contain. Naming it costs one line and saves a whole degree.",
         "common_mistakes": [
           "Reading the class from only the first and last coefficients instead of every pair.",
-          "Naming the wrong one of ±1 as the root (class I odd gives −1, class II gives +1).",
+          "Naming only one of ±1 here — this is class II of even degree, so 1 and −1 are BOTH roots.",
           "Not substituting the root back to confirm it, which the examiner expects to see."
         ]
       },

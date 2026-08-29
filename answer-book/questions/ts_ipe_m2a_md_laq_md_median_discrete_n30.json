@@ -167,7 +167,7 @@
             "median"
           ]
         },
-        "why": "For a discrete table each value occupies a block of positions; the c.f. column is the end of each block. The N/2-th position falls in the block of 13, so the middle item is a 13.",
+        "why": "For a discrete table each value occupies a block of positions; the c.f. column is the end of each block. N = 30 is even, so the median is the average of the 15th and 16th items — here both fall in the block of 13, so the median is 13. Read both positions: when a cumulative frequency lands exactly on N/2 the two middle items are different values and the median is their average.",
         "common_mistakes": [
           "Using the grouped-data formula l + (C/f)(N/2 − m) on discrete data.",
           "Taking the median as the middle of the xᵢ list (12 or 13 by position) and ignoring the frequencies.",

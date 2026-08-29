@@ -92,7 +92,7 @@
         "why": "The place-value method needs every digit to appear equally often in every place, and that is only true if 0 is treated like the others for now. The numbers that wrongly start with 0 are counted here and subtracted in step 3.",
         "common_mistakes": [
           "Trying to apply the zero rule in this step and getting unequal counts per place.",
-          "Taking the digit sum as 2 + 4 + 7 + 8 = 21 but then also excluding 0 from the count of arrangements — the two views must not be mixed."
+          "Counting 5P4 = 120 arrangements and forgetting that those beginning with 0 are not four-digit numbers."
         ]
       },
       {
