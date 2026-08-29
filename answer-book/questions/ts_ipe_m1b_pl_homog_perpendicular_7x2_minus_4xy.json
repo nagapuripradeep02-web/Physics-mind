@@ -12,7 +12,7 @@
   },
   "chapter": "Pair of Straight Lines",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Show that the lines joining the origin with the points of intersection of the curve 7x²−4xy+8y²+2x−4y−8=0 with the line 3x−y=2 are mutually perpendicular.",
@@ -40,19 +40,19 @@
     },
     {
       "label": "Add the squared coefficients",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 13.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 13.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Add the squared coefficients."
   },
   "recall_prompt": "Say how you would solve this — say what you homogenise, and what condition proves the lines are perpendicular.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Pair of Straight Lines · 7 marks"
+      "Pair of Straight Lines · 8 marks"
     ],
     "steps": [
       {
@@ -183,8 +183,8 @@
         "id": "s4_apply_the_condition",
         "kind": "boxed_final",
         "label": "Add the squared coefficients",
-        "marks": 2,
-        "margin_note": "The last two marks. Perpendicular through the origin means the coefficient of x² plus the coefficient of y² is zero. Nothing else needs computing — the cross term is not used at all.",
+        "marks": 3,
+        "margin_note": "The last three marks. Perpendicular through the origin means the coefficient of x² plus the coefficient of y² is zero. Nothing else needs computing — the cross term is not used at all.",
         "lines": [
           "Here, coeff. of x² + coeff. of y² = −8 + 8 = 0",
           {

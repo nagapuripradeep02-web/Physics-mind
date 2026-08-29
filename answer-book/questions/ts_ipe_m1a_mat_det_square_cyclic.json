@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 14,
   "question_text": "Show that the square of the determinant with rows (a, b, c), (b, c, a) and (c, a, b) equals the determinant with rows (2bc−a², c², b²), (c², 2ac−b², a²) and (b², a², 2ab−c²), and that both equal (a³+b³+c³−3abc)².",
@@ -37,19 +37,19 @@
     },
     {
       "label": "Multiply Δ by Δ to reach the second determinant",
-      "marks": 4
+      "marks": 5
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 3 Matrices, answer 16. The book labels it 'I'm different but not difficult' because it is the only determinant question in the chapter that is proved in two independent halves rather than one chain. The mark split is PRINTED in that book's margin as [3 Marks] against the first half and [4 Marks] against the second — a sourced 3+4. Appearances are printed board-split (AP 17,19 · TS 18; the book prints 'TS 18,18', read here as the single year 2018). Star rank is the CHAPTER's ★★★, not this question's. The book's own margin note calls the column interchange 'very crucial', and it is: the whole second half turns on it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 3 Matrices, answer 16. The book labels it 'I'm different but not difficult' because it is the only determinant question in the chapter that is proved in two independent halves rather than one chain. The mark split is PRINTED in that book's margin as [3 Marks] against the first half and [4 Marks] against the second — a sourced 3+4. Appearances are printed board-split (AP 17,19 · TS 18; the book prints 'TS 18,18', read here as the single year 2018). Star rank is the CHAPTER's ★★★, not this question's. The book's own margin note calls the column interchange 'very crucial', and it is: the whole second half turns on it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Multiply Δ by Δ to reach the second determinant\" step."
   },
   "recall_prompt": "Say how you would prove this one — say what the two halves of the proof are, and what you do to one determinant before multiplying.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -101,7 +101,7 @@
         "label": "Expand Δ",
         "marks": 3,
         "mark_note": "Value of Δ",
-        "margin_note": "Three of the seven marks — the first half of the proof, complete on its own. Expand along the top row, collect the terms, and notice that abc appears three times. The minus sign in front matters less than you might expect, because Δ is about to be squared.",
+        "margin_note": "Three of the eight marks — the first half of the proof, complete on its own. Expand along the top row, collect the terms, and notice that abc appears three times. The minus sign in front matters less than you might expect, because Δ is about to be squared.",
         "lines": [
           "Expanding along R₁:",
           "Δ = a(bc − a²) − b(b² − ac) + c(ab − c²)",
@@ -237,7 +237,7 @@
         "id": "s5_multiply",
         "kind": "equation",
         "label": "Multiply row by row",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Product determinant",
         "margin_note": "Multiply row 1 of the first by row 1 of the second for the top-left entry, and so on. First entry: (−a)(a) + c(b) + b(c) = −a² + 2bc. Every entry falls out the same way.",
         "lines": [

@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 7,
     "name": "Product of Vectors"
   },
   "chapter": "Product of Vectors",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 14,
   "question_text": "If a = i−2j+k, b = 2i+j+k and c = i+2j−k, then find a×(b×c) and |(a×b)×c|.",
@@ -41,19 +41,19 @@
     },
     {
       "label": "Find |(a×b)×c|",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Product of Vectors, answer 22.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 16. The mirror of answer 22.1 on the same page: it asks for the two triple products in the OPPOSITE order, and one answer is a vector while the other is a magnitude. Read which is which before starting.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Product of Vectors, answer 22.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 16. The mirror of answer 22.1 on the same page: it asks for the two triple products in the OPPOSITE order, and one answer is a vector while the other is a magnitude. Read which is which before starting.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find |(a×b)×c|."
   },
   "recall_prompt": "Say how you would find both of these — and say what is asked for in each.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Product of Vectors · 7 marks"
+      "Product of Vectors · 8 marks"
     ],
     "steps": [
       {
@@ -103,7 +103,7 @@
         "label": "Find b×c",
         "marks": 2,
         "mark_note": "First product",
-        "margin_note": "Two of the seven marks. The first thing asked for is a×(b×c), whose bracket is on the RIGHT — so b×c comes first.",
+        "margin_note": "Two of the eight marks. The first thing asked for is a×(b×c), whose bracket is on the RIGHT — so b×c comes first.",
         "lines": [
           {
             "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & 1 \\\\ 1 & 2 & -1 \\end{vmatrix}",
@@ -234,7 +234,7 @@
         "id": "s5_final",
         "kind": "boxed_final",
         "label": "Find |(a×b)×c|",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Last two marks together. Cross that by c, then take the magnitude — this part DOES want a number. √174 has no square factor, so it stands.",
         "lines": [

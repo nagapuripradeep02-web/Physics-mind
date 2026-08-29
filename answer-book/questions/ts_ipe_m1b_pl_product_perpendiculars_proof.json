@@ -12,7 +12,7 @@
   },
   "chapter": "Pair of Straight Lines",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Prove that the product of the perpendiculars from (α,β) to the pair of lines ax²+2hxy+by²=0 is |aα²+2hαβ+bβ²| : √((a−b)²+4h²).",
@@ -47,19 +47,19 @@
     },
     {
       "label": "Convert to a, h, b",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 8, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J 17 · TS 18,22 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 8, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J 17 · TS 18,22 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b."
   },
   "recall_prompt": "Say how you would prove this — say what form you split the pair into, and what the numerator turns into.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Pair of Straight Lines · 7 marks"
+      "Pair of Straight Lines · 8 marks"
     ],
     "steps": [
       {
@@ -188,8 +188,8 @@
         "id": "s4_convert",
         "kind": "boxed_final",
         "label": "Convert to a, h, b",
-        "marks": 2,
-        "margin_note": "The last two marks. The numerator substitutes directly. The denominator needs one rearrangement: add and subtract 2l₁l₂m₁m₂ so it becomes a difference of squares plus a square.",
+        "marks": 3,
+        "margin_note": "The last three marks. The numerator substitutes directly. The denominator needs one rearrangement: add and subtract 2l₁l₂m₁m₂ so it becomes a difference of squares plus a square.",
         "lines": [
           "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂ + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
           "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",

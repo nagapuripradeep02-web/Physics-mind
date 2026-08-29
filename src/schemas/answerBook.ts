@@ -14,6 +14,67 @@
  */
 import { z } from 'zod/v4';
 
+// ── the paper each subject sits (TGBIE, first year, w.e.f. 2026-27) ──────────
+//
+// ONE table for the whole product: the build emits it as window.PM_PATTERNS,
+// the schema below holds every card's marks_total to it, and the player reads
+// its labels from it. Until 2026-08-28 the Maths papers were 75 marks with a
+// 7-mark Section C (any 5 of 7), and 99 maths LAQ cards were authored at 7.
+// The 2026-27 reform moved BOTH maths papers to 60 written + 15 activity-based
+// learning, and the Telugu Akademi Maths-1A textbook prints the new model
+// paper: 3 hours · 60 marks · A 10×2 all · B any 6 of 8 ×4 · C any 2 of 3 ×8 —
+// the Physics shape. Physics/Chemistry/Botany/Zoology theory is unchanged
+// (the 15 they gained is a practical, outside the written paper).
+// Source record: docs/SYLLABUS_2026_27.md.
+export type PaperSection = {
+    key: 'VSAQ' | 'SAQ' | 'LAQ';
+    section: string;
+    /** questions printed */
+    printed: number;
+    /** questions the student must answer */
+    answer: number;
+    marks: number;
+};
+export type PaperPattern = {
+    label: string;
+    total: number;
+    /**
+     * Marks outside the written paper (practical / activity-based learning).
+     * OPTIONAL, deliberately: notebook.js builds Vidi's student-facing PAPER line
+     * from this ("...plus N marks practical outside the written paper"), so an
+     * unsourced number here is a number a student reads as fact. A second-year
+     * paper has no sourced figure in this corpus - the reform's 15 is FIRST year
+     * and the pre-reform 30 describes the old arrangement - so second-year rows
+     * omit the key and the player's own `pat.internal ? ...` guard drops the
+     * clause. Say nothing rather than assert.
+     */
+    internal?: { marks: number; kind: string };
+    sections: PaperSection[];
+    wef: string;
+};
+const ABC_60: PaperSection[] = [
+    { key: 'VSAQ', section: 'Section A', printed: 10, answer: 10, marks: 2 },
+    { key: 'SAQ', section: 'Section B', printed: 8, answer: 6, marks: 4 },
+    { key: 'LAQ', section: 'Section C', printed: 3, answer: 2, marks: 8 },
+];
+export const PAPER_PATTERNS: Record<string, PaperPattern> = {
+    physics: { label: 'Physics', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
+    chemistry: { label: 'Chemistry', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
+    mathematics: { label: 'Maths 1A', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
+    mathematics_1b: { label: 'Maths 1B', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
+    botany: { label: 'Botany', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
+    // Second year. Its shape is the same 60-mark A/B/C paper and the reform does not
+    // reach second year until 2027-28, so `wef` names the syllabus year this row
+    // DESCRIBES - the sense in which physics, also untouched by the reform, carries
+    // it. `internal` is omitted on purpose: see the type above.
+    chemistry_2: { label: 'Chemistry II', total: 60, sections: ABC_60, wef: '2026-27' },
+};
+/** The marks a question of this qtype carries on this subject's paper. */
+export function paperMarksFor(subject: string, qtype: 'VSAQ' | 'SAQ' | 'LAQ'): number | undefined {
+    const p = PAPER_PATTERNS[subject];
+    return p?.sections.find((s) => s.key === qtype)?.marks;
+}
+
 // ── figure (progressive-stroke diagram) ─────────────────────────────────────
 
 /** One drawn element. Array order IS the draw order — no separate order field. */
@@ -294,6 +355,25 @@ export const answerBookQuestionSchema = z
                 code: 'custom',
                 message: `sum(mark_split[].marks) = ${splitSum} but marks_total = ${q.marks_total}`,
             });
+        }
+        // The card must carry the marks its PAPER gives that section — a 7-mark
+        // maths LAQ is the old pattern and would print the wrong number on every
+        // surface (rail chip, red gutter, Vidi). Cuts are held to the same table.
+        const want = paperMarksFor(q.subject, q.qtype);
+        if (want !== undefined && q.marks_total !== want) {
+            ctx.addIssue({
+                code: 'custom',
+                message: `marks_total = ${q.marks_total} but a ${q.subject} ${q.qtype} is ${want} marks on the ${PAPER_PATTERNS[q.subject].wef} paper (PAPER_PATTERNS)`,
+            });
+        }
+        for (const c of q.cuts ?? []) {
+            const cw = paperMarksFor(q.subject, c.qtype);
+            if (cw !== undefined && c.marks_total !== cw) {
+                ctx.addIssue({
+                    code: 'custom',
+                    message: `cut "${c.key}": marks_total = ${c.marks_total} but a ${q.subject} ${c.qtype} is ${cw} marks on the ${PAPER_PATTERNS[q.subject].wef} paper (PAPER_PATTERNS)`,
+                });
+            }
         }
         const ids = q.answer.steps.map((s) => s.id);
         const dupes = ids.filter((id, i) => ids.indexOf(id) !== i);

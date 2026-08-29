@@ -12,7 +12,7 @@
   },
   "chapter": "Pair of Straight Lines",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Prove that the equation 3x²+7xy+2y²+5x+5y+2=0 represents a pair of straight lines and find the coordinates of the point of intersection.",
@@ -37,19 +37,19 @@
     },
     {
       "label": "Find the point of intersection",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Pair of Straight Lines, answer 11. Printed appearance: AP J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer. This split follows the answer's own printed lettering instead: the book sets it out as part (a) with four numbered checks (i)-(iv) and part (b) for the point of intersection, and the cut here gives the four checks four marks between them and part (b) the rest. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Pair of Straight Lines, answer 11. Printed appearance: AP J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer. This split follows the answer's own printed lettering instead: the book sets it out as part (a) with four numbered checks (i)-(iv) and part (b) for the point of intersection, and the cut here gives the four checks four marks between them and part (b) the rest. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find the point of intersection."
   },
   "recall_prompt": "Say how you would solve this — name the four conditions you must check, and how you get the point without factorising.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Pair of Straight Lines · 7 marks"
+      "Pair of Straight Lines · 8 marks"
     ],
     "steps": [
       {
@@ -183,8 +183,8 @@
         "id": "s4_point",
         "kind": "boxed_final",
         "label": "Find the point of intersection",
-        "marks": 2,
-        "margin_note": "The last two marks. The two lines meet at a point given directly by a formula in the same six coefficients — no factorising and no solving is needed.",
+        "marks": 3,
+        "margin_note": "The last three marks. The two lines meet at a point given directly by a formula in the same six coefficients — no factorising and no solving is needed.",
         "lines": [
           "(b) Point of intersection  P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
           "(hf − bg)/(ab − h²) = [(7/2)(5/2) − 2(5/2)] / [3(2) − (7/2)²]",
