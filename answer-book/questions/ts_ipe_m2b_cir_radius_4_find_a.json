@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_radius_4_find_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the circle x² + y² − 4x + 6y + a = 0 has radius 4 then find a.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Read g, f, c and the radius formula",
+      "marks": 1
+    },
+    {
+      "label": "Square and solve for a",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 12 Circle, answer 103.1. It sits on a ★★★ SSP (Super Scoring Page): book p.77 carries the SSP banner. Printed appearance tag: AP 16. Every number was re-derived and the book is correct: a = −3. It is the first answer of the chapter and the whole chapter is the highest-frequency 2-mark ground on the paper. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "A negative answer is correct here and is not a mistake: a = −3 simply means the constant term of the circle is negative, which is what makes the radius as large as 4.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_read_and_formula",
+        "kind": "equation",
+        "label": "Read g, f, c and the radius formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Halve the coefficients of x and y; the unknown is the constant, so c = a.",
+        "memory_tip": "Radius = √(g² + f² − c). Halve the x and y coefficients to get g and f.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² − 4x + 6y + a = 0",
+          "Here g = −2, f = 3, c = a",
+          "Radius = √(g² + f² − c) = √((−2)² + 3² − a)",
+          "= √(13 − a)"
+        ],
+        "why": "Comparing with x² + y² + 2gx + 2fy + c = 0 gives 2g = −4 and 2f = 6. The unknown sits in the constant, so it goes straight into the radius formula.",
+        "common_mistakes": [
+          "Taking g = −4 and f = 6 without halving.",
+          "Writing √(13 + a) by adding the constant."
+        ]
+      },
+      {
+        "id": "s2_square_and_solve",
+        "kind": "boxed_final",
+        "label": "Square and solve for a",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Square both sides before solving; the root is the only thing standing in the way.",
+        "memory_tip": "Square both sides: 13 − a = 16.",
+        "lines": [
+          "Given radius = 4",
+          "⇒ √(13 − a) = 4",
+          "Squaring both sides: 13 − a = 16",
+          {
+            "text": "∴ a = 13 − 16 = −3",
+            "style": "boxed"
+          }
+        ],
+        "why": "Squaring removes the root and leaves a one-step linear equation. The answer is negative, which is allowed: a circle can have a negative constant term.",
+        "common_mistakes": [
+          "Solving 13 − a = 16 as a = 3.",
+          "Rejecting the answer because it is negative."
+        ]
+      }
+    ]
+  }
+}

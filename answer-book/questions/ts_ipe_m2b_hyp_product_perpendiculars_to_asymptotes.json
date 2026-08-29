@@ -1,0 +1,79 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_hyp_product_perpendiculars_to_asymptotes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Hyperbola (Maths-2B)"
+  },
+  "chapter": "Hyperbola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the product of the lengths of the perpendiculars from any point on the hyperbola x²/16 − y²/9 = 1 to its asymptotes.",
+  "appearances": [
+    { "year": 2016, "board": "ts_ipe" },
+    { "year": 2019, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "State the formula", "marks": 1 },
+    { "label": "Evaluate", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 15 Hyperbola, the first answer of this page, answer 135, continuing chapter 15. NOT on an SSP page (book p.76 lists p.84 among the 9 VSAQ SSP pages but not p.85). Printed appearance: TS 16,19. No mark tags printed — the 1+1 split here is OURS. Re-derived the a²b²/(a²+b²) identity independently from the asymptote pair bx∓ay=0 and the hyperbola equation; matches the book's 144/25. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim; answer 135 does not appear in the Bullet Model Paper. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "This 'product of perpendiculars' result is CONSTANT — it does not depend on which point of the hyperbola is chosen, which is exactly why the question can ask for 'any point' without naming one.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "State the formula",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. The asymptotes, in bx±ay=0 form, feed a ready-made product formula.",
+        "memory_tip": "The product of perpendiculars to the asymptotes of any hyperbola is always a²b²/(a²+b²).",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Given hyperbola x²/16 − y²/9 = 1 ⇒ a² = 16, b² = 9",
+          "The asymptotes are x/a − y/b = 0 and x/a + y/b = 0, i.e. bx − ay = 0 and bx + ay = 0",
+          "For a point (x₁,y₁) on the hyperbola, the product of its distances to the two asymptotes is a²b²/(a²+b²)"
+        ],
+        "why": "The two asymptotes, written with a common denominator, become the pair of lines bx∓ay=0; the standard result for the product of perpendicular distances from any point on the curve to this pair simplifies to a²b²/(a²+b²) using the hyperbola equation itself.",
+        "common_mistakes": [
+          "Writing the asymptotes as ax±by=0 instead of bx±ay=0.",
+          "Trying to substitute a specific point (x₁,y₁) instead of using the ready-made formula a²b²/(a²+b²)."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. Substitute a² and b² directly into the formula.",
+        "memory_tip": "144/25 is already in lowest terms — leave it as a fraction, do not convert it.",
+        "lines": [
+          "= (16)(9)/(16+9)",
+          { "text": "= 144/25", "style": "boxed" }
+        ],
+        "why": "Substituting the values of a² and b² read off the standard form gives the numeric product directly.",
+        "common_mistakes": [
+          "Adding a² and b² incorrectly, or dividing by the wrong sum.",
+          "Leaving the answer as an unsimplified fraction when 144/25 is already in lowest terms and should stay as a fraction."
+        ]
+      }
+    ]
+  }
+}

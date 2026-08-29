@@ -1,0 +1,277 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_touch_externally_6x_2y_plus1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that the circles x² + y² − 6x − 2y + 1 = 0 and x² + y² + 2x − 8y + 13 = 0 touch each other. Find the point of contact and the equation of the common tangent at their point of contact.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Centre and radius of the first circle",
+      "marks": 1
+    },
+    {
+      "label": "Centre and radius of the second circle",
+      "marks": 1
+    },
+    {
+      "label": "Show that the circles touch",
+      "marks": 2
+    },
+    {
+      "label": "Find the point of contact",
+      "marks": 2
+    },
+    {
+      "label": "Find the common tangent",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.19 — LAQ chapter 1 Circle, answer 5.3. It sits on a ★★★ SSP (Super Scoring Page): book p.19 carries the SSP banner. Printed appearance tags: AP 16,17,19. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct: C₁C₂ = 5 = r₁ + r₂ = 3 + 2, the point of contact (3/5, 14/5) satisfies 4x − 3y + 6 = 0, and the tangent itself is the S − S′ = 0 line. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks and the whole split sits on the written steps; the figure is included because the external-touch picture is what makes the ratio r₁ : r₂ and the word \"internally\" in the section formula readable. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two separate facts decide everything: C₁C₂ = r₁ + r₂ means external touching, and external touching means the point of contact divides C₁C₂ INTERNALLY in the ratio r₁ : r₂ — the wording is the opposite of what most students expect and is where the marks are lost.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_circle",
+        "kind": "equation",
+        "label": "Centre and radius of the first circle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Read g and f as half the coefficients of x and y, then change the sign for the centre.",
+        "memory_tip": "Centre is (−g, −f) and radius is √(g² + f² − c). Halve, then flip the sign.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "First circle S ≡ x² + y² − 6x − 2y + 1 = 0",
+          "Here g = −3, f = −1, c = 1",
+          "Centre C₁ = (−g, −f) = (3, 1)",
+          "Radius r₁ = √(g² + f² − c) = √(9 + 1 − 1) = 3"
+        ],
+        "why": "Comparing with x² + y² + 2gx + 2fy + c = 0 gives 2g = −6 and 2f = −2, so g = −3 and f = −1. The centre is (−g, −f) and the radius is √(g² + f² − c).",
+        "common_mistakes": [
+          "Reading g = −6 instead of g = −3.",
+          "Writing the centre as (−3, −1) by forgetting the second sign change."
+        ]
+      },
+      {
+        "id": "s2_second_circle",
+        "kind": "equation",
+        "label": "Centre and radius of the second circle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Both radii come out whole here, which is the sign that the numbers in the question were chosen to touch.",
+        "memory_tip": "Do the two circles the same way, one under the other, so the comparison later is easy to read.",
+        "lines": [
+          "Second circle S′ ≡ x² + y² + 2x − 8y + 13 = 0",
+          "Here g = 1, f = −4, c = 13",
+          "Centre C₂ = (−1, 4)",
+          "Radius r₂ = √(1 + 16 − 13) = √4 = 2"
+        ],
+        "why": "The same reading gives the second centre and radius. Both radii are whole numbers, so the touching test that follows will be exact rather than approximate.",
+        "common_mistakes": [
+          "Writing C₂ = (1, −4) instead of (−1, 4).",
+          "Computing √(1 + 16 + 13) by taking c as +13 with the wrong sign in the formula."
+        ]
+      },
+      {
+        "id": "s3_show_touch",
+        "kind": "equation",
+        "label": "Show that the circles touch",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two marks. Say WHICH kind of touching: C₁C₂ = r₁ + r₂ is external, C₁C₂ = |r₁ − r₂| is internal.",
+        "memory_tip": "Sum of the radii equals the distance between the centres: the circles are outside each other and meet at one point.",
+        "lines": [
+          "C₁C₂ = √((3+1)² + (1−4)²) = √(16 + 9)",
+          "= √25 = 5",
+          "Also r₁ + r₂ = 3 + 2 = 5",
+          "⇒ C₁C₂ = r₁ + r₂",
+          "∴ The circles touch each other externally."
+        ],
+        "why": "If the distance between the centres equals the sum of the radii, the two circles meet at exactly one point and each lies outside the other. If it equalled the difference, one would lie inside the other.",
+        "common_mistakes": [
+          "Showing only that the circles meet, without naming external or internal touching.",
+          "Comparing C₁C₂ with r₁ − r₂ and concluding they do not touch."
+        ]
+      },
+      {
+        "id": "s4_point_of_contact",
+        "kind": "equation",
+        "label": "Find the point of contact",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two marks. External touching uses the INTERNAL division formula — the point of contact lies between the centres.",
+        "memory_tip": "The contact point is between the centres, so it divides C₁C₂ internally in the ratio r₁ : r₂.",
+        "lines": [
+          "The point of contact P lies on C₁C₂ and",
+          "divides it internally in the ratio 3 : 2",
+          "P = ((3(−1) + 2(3))/5, (3(4) + 2(1))/5)",
+          "= ((−3 + 6)/5, (12 + 2)/5)",
+          "∴ P = (3/5, 14/5)"
+        ],
+        "why": "For circles touching externally the contact point sits on the segment joining the centres, at distance r₁ from C₁ and r₂ from C₂. That is exactly internal division in the ratio r₁ : r₂.",
+        "common_mistakes": [
+          "Using external division and getting (−9, 10).",
+          "Writing the ratio as r₂ : r₁ and swapping the two centres in the formula."
+        ]
+      },
+      {
+        "id": "s5_common_tangent",
+        "kind": "boxed_final",
+        "label": "Find the common tangent",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Subtract the two equations exactly as written; the x² and y² terms must vanish.",
+        "memory_tip": "The common tangent at the point of contact is simply S − S′ = 0.",
+        "lines": [
+          "The common tangent at the point of contact",
+          "is S − S′ = 0",
+          "⇒ (x²+y²−6x−2y+1) − (x²+y²+2x−8y+13) = 0",
+          "⇒ −8x + 6y − 12 = 0",
+          "⇒ −2(4x − 3y + 6) = 0",
+          {
+            "text": "∴ Common tangent is 4x − 3y + 6 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both circles have the same x² and y² terms, so S − S′ = 0 is a straight line. When the circles touch, that line meets both of them only at the contact point, so it is the common tangent there. A check: 4(3/5) − 3(14/5) + 6 = (12 − 42 + 30)/5 = 0, so P lies on it.",
+        "common_mistakes": [
+          "Subtracting only some of the terms and leaving an x² behind.",
+          "Dividing by −2 and keeping the signs of the original line."
+        ]
+      },
+      {
+        "id": "s6_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. Draw it in rough to decide internal or external division before writing the section formula.",
+        "memory_tip": "Sketch the two circles side by side. The contact point sits between the centres, so the division is internal.",
+        "figure": {
+          "id": "cir_touch_ext_1",
+          "width": 470,
+          "height": 285,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_touch_ext_1_c1",
+              "d": "M 84 130 A 66 66 0 1 0 216 130 A 66 66 0 1 0 84 130",
+              "ms": 922
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_ext_1_c2",
+              "d": "M 216 130 A 44 44 0 1 0 304 130 A 44 44 0 1 0 216 130",
+              "ms": 614
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_ext_1_axis",
+              "d": "M 76 130 L 316 130",
+              "ms": 533,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_ext_1_tan",
+              "d": "M 216 48 L 216 212",
+              "ms": 364
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_ext_1_d1",
+              "d": "M 146.5 130 A 3.5 3.5 0 1 0 153.5 130 A 3.5 3.5 0 1 0 146.5 130",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_ext_1_d2",
+              "d": "M 256.5 130 A 3.5 3.5 0 1 0 263.5 130 A 3.5 3.5 0 1 0 256.5 130",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_ext_1_dp",
+              "d": "M 212.5 130 A 3.5 3.5 0 1 0 219.5 130 A 3.5 3.5 0 1 0 212.5 130",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "cir_touch_ext_1_l1",
+              "x": 142,
+              "y": 154,
+              "text": "C₁",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_touch_ext_1_l2",
+              "x": 252,
+              "y": 154,
+              "text": "C₂",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_touch_ext_1_lp",
+              "x": 225,
+              "y": 116,
+              "text": "P",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_touch_ext_1_lt",
+              "x": 98,
+              "y": 252,
+              "text": "common tangent at P",
+              "ms": 500,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The picture settles the one decision that carries the marks. With the circles drawn outside each other, P is plainly between C₁ and C₂, so the section formula must be the internal one, and the common tangent is the line through P at right angles to C₁C₂.",
+        "common_mistakes": [
+          "Drawing one circle inside the other, which leads to external division and a wrong point.",
+          "Drawing the tangent through a centre instead of through the contact point."
+        ]
+      }
+    ]
+  }
+}

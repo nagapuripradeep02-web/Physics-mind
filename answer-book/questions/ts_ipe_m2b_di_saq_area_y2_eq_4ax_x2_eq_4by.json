@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_saq_area_y2_eq_4ax_x2_eq_4by",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the area of the region bounded by y² = 4ax and x² = 4by.",
+  "appearances": [
+    { "year": 2019, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Solve for the points of intersection", "marks": 1 },
+    { "label": "Identify the upper and lower curves", "marks": 1 },
+    { "label": "Integrate and evaluate", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.71 — SAQ chapter 10 'Definite Integrals', sub-heading 'AREAS', answer 91, the last item on the page — the general-parameter version of the previous question (90), which is its a = b = 1 special case. Printed appearance: AP 19. Chapter star rank ★★★ applies. The book draws a small sketch here too, with the region hatched and labelled A — reproduced here as a figure for the same reason as answer 90. No margin mark tags are printed, so the 1+1+2 split is OURS, patterned on the identical three-stage shape of the two preceding area answers (89, 90) on this same page. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "Setting a = b = 1 in the final answer 16ab/3 gives 16/3 — exactly the previous question's numeric answer — a fast way to check this general-parameter result is consistent.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Definite Integrals · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intersect",
+        "kind": "equation",
+        "label": "Solve for the points of intersection",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "One mark. Same elimination method as the a = b = 1 case, now carrying a and b through the algebra.",
+        "memory_tip": "64ab² inside a cube root always simplifies because 64 is a perfect cube (4³) — pull that out first.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "The given curves are y² = 4ax …(1), x² = 4by …(2)",
+          "From (2): y = x²/(4b). Substituting in (1): (x²/(4b))² = 4ax ⇒ x⁴ = 64ab²x ⇒ x(x³ − 64ab²) = 0",
+          "⇒ x = 0 or x = 4(ab²)^(1/3)"
+        ],
+        "why": "Eliminating y between the two equations, the same way as the numeric a=b=1 version, leaves a single equation in x whose nonzero root involves a cube root because the elimination raises x to the fourth power against a linear term.",
+        "common_mistakes": [
+          "Not recognising 64 = 4³, which is what lets x³ = 64ab² simplify to x = 4(ab²)^(1/3).",
+          "Dividing by x and losing the root x = 0."
+        ]
+      },
+      {
+        "id": "s2_boundary",
+        "kind": "diagram",
+        "label": "Identify the upper and lower curves",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "One more mark. Same picture shape as the previous question, now with general labels y² = 4ax and x² = 4by.",
+        "memory_tip": "y² = 4ax opens sideways (upper curve); x² = 4by opens upward (lower curve) — same roles as the previous question.",
+        "figure": {
+          "id": "area_two_parabolas_4ax_4by",
+          "width": 300,
+          "height": 240,
+          "elements": [
+            { "type": "stroke", "id": "ax2_x", "d": "M 30 200 L 275 200 M 268 194 L 278 200 L 268 206", "ms": 500 },
+            { "type": "stroke", "id": "ax2_y", "d": "M 60 220 L 60 25 M 54 33 L 60 23 L 66 33", "ms": 500 },
+            { "type": "label", "id": "lbl2_o", "x": 42, "y": 214, "text": "O(0,0)", "ms": 300, "sm": true },
+            { "type": "stroke", "id": "curve2_y2_4ax", "d": "M 60 200 Q 105 200 128 152 Q 142 122 150 100", "ms": 650 },
+            { "type": "label", "id": "lbl2_y2_4ax", "x": 158, "y": 92, "text": "y² = 4ax", "ms": 300, "sm": true },
+            { "type": "stroke", "id": "curve2_x2_4by", "d": "M 60 200 Q 62 145 92 122 Q 122 104 150 100", "ms": 650 },
+            { "type": "label", "id": "lbl2_x2_4by", "x": 158, "y": 118, "text": "x² = 4by", "ms": 300, "sm": true },
+            { "type": "label", "id": "lbl2_a_pt", "x": 140, "y": 88, "text": "A", "ms": 300, "em": true },
+            { "type": "stroke", "id": "hatch2_1", "d": "M 90 178 L 98 168", "ms": 300, "pen": "pencil", "wipe": "y" },
+            { "type": "stroke", "id": "hatch2_2", "d": "M 108 158 L 116 148", "ms": 300, "pen": "pencil", "wipe": "y" },
+            { "type": "stroke", "id": "hatch2_3", "d": "M 122 138 L 130 128", "ms": 300, "pen": "pencil", "wipe": "y" },
+            { "type": "label", "id": "lbl2_area", "x": 100, "y": 150, "text": "A", "ms": 300, "sm": true }
+          ]
+        },
+        "why": "The general-parameter curves keep the exact same shapes as the a=b=1 case (a sideways parabola and an upward parabola meeting at the origin and one other point), so the same picture, now labelled with a and b, shows which curve bounds the region from above.",
+        "common_mistakes": [
+          "Assuming the general and numeric versions look different — the shapes are identical, only the labels change.",
+          "Swapping which parabola is the upper boundary."
+        ]
+      },
+      {
+        "id": "s3_final",
+        "kind": "boxed_final",
+        "label": "Integrate and evaluate",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Carry a and b through every line of the integration — do not substitute numbers early.",
+        "memory_tip": "Set a = b = 1 in the final answer as a check — it must reduce to the previous question's 16/3.",
+        "lines": [
+          "Upper curve: y² = 4ax ⇒ y = 2√a·√x. Lower curve: x² = 4by ⇒ y = x²/(4b)",
+          "A = ∫₀^(4(ab²)^(1/3)) (2√a√x − x²/(4b)) dx = [ (4√a/3)x^(3/2) − x³/(12b) ]₀^(4(ab²)^(1/3))",
+          "= (4√a/3)[4(ab²)^(1/3)]^(3/2) − (1/(12b))[4(ab²)^(1/3)]³ = (4√a/3)(8b√a) − (1/(12b))(64ab²)",
+          "= 32ab/3 − 16ab/3",
+          { "text": "∴ Area = 16ab/3 sq. units", "style": "boxed" }
+        ],
+        "why": "The same integration as the numeric case, carried through with a and b as constants, gives two fractional multiples of ab whose difference is 16ab/3 — setting a = b = 1 recovers the previous question's 16/3, confirming the general result.",
+        "common_mistakes": [
+          "Losing track of a or b while raising the upper limit to the 3/2 power.",
+          "An arithmetic slip in [4(ab²)^(1/3)]³ = 64ab², since (ab²)^(1/3) cubed returns exactly ab²."
+        ]
+      }
+    ]
+  }
+}

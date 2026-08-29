@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_laq_log_1plus_tanx_0_to_pi4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫₀^(π/4) log(1 + tanx) dx.",
+  "appearances": [
+    { "year": 2016 },
+    { "year": 2022 },
+    { "year": 2016, "board": "ap_ipe" },
+    { "year": 2018, "board": "ap_ipe" },
+    { "year": 2019, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Apply the property and simplify tan(π/4 − x)", "marks": 3 },
+    { "label": "Substitute back and isolate I on one side", "marks": 2 },
+    { "label": "Solve for I", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.42 (PDF page 41) — LAQ chapter 4 'Definite Integrals', answer 36.1, on a printed Super Scoring Page (SSP 42), the left-hand twin of answer 36.2. The book's own note calls the pair 'SUPER TWIN BABIES' because, after simplification, answer 36.2 reduces to this exact integral. Printed appearance: TS 16, 22 and AP 16, 18, 19. Chapter star rank ★★★ applies. No margin mark tags are printed on this two-column page, so the 3+2+2 split is OURS: the tan(A−B) algebra is the heaviest single block of this derivation and is weighted 3, patterned on the 1+1+1+4 shape already printed in this book (Circle LAQ answer 4, book p.17) where the algebraically heaviest block also carries the largest share. Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the third Q23 item on the Bullet Model Paper, book p.116, in the identical 'or' form alongside answer 36.2 — no separate card is authored for that appearance."
+  },
+  "insider_note": "The next question in this chapter (∫₀^1 log(1+x)/(1+x²)dx) reduces to this exact integral after the substitution x = tanθ — the book calls the pair 'twins' for exactly that reason.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Definite Integrals · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the property and simplify tan(π/4 − x)",
+        "marks": 3,
+        "mark_note": "Method",
+        "margin_note": "First three marks — the heaviest step. Get the tan(A−B) formula exactly right before simplifying further.",
+        "memory_tip": "tan(π/4 − x) = (1 − tanx)/(1 + tanx) — memorise this special case of tan(A−B) with A = π/4 (tan π/4 = 1).",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "I = ∫₀^(π/4) log(1 + tanx) dx …(1)",
+          "By x → π/4 − x: I = ∫₀^(π/4) log[1 + tan(π/4 − x)] dx",
+          "tan(π/4 − x) = (1 − tanx)/(1 + tanx)     [tan(A−B) formula]",
+          "1 + tan(π/4 − x) = [(1 + tanx) + (1 − tanx)]/(1 + tanx) = 2/(1 + tanx)"
+        ],
+        "why": "The tan(A−B) formula with A = π/4 (where tan π/4 = 1) gives a clean fraction (1−tanx)/(1+tanx); adding 1 to it collapses the numerator to a plain 2, which is the key simplification the rest of the proof depends on.",
+        "common_mistakes": [
+          "Using the tan(A+B) formula instead of tan(A−B).",
+          "Forgetting to combine the fraction over the common denominator (1+tanx) before adding 1."
+        ]
+      },
+      {
+        "id": "s2_isolate",
+        "kind": "equation",
+        "label": "Substitute back and isolate I on one side",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. log(2/(1+tanx)) splits into log2 minus log(1+tanx) — the second piece is exactly I again.",
+        "memory_tip": "log(a/b) = log a − log b — always split a log of a fraction this way before integrating term by term.",
+        "lines": [
+          "⇒ I = ∫₀^(π/4) log[2/(1 + tanx)] dx = ∫₀^(π/4) [log2 − log(1 + tanx)] dx",
+          "= log2 ∫₀^(π/4) dx − ∫₀^(π/4) log(1 + tanx) dx",
+          "= log2·[x]₀^(π/4) − I = (π/4)log2 − I"
+        ],
+        "why": "Splitting the log of a fraction into a difference of two logs isolates a term identical to the original I, so the equation becomes I = (a constant) − I — solvable for I by simple algebra.",
+        "common_mistakes": [
+          "Not recognising that the second integral is exactly I again.",
+          "Evaluating log2 ∫dx incorrectly as log2 instead of (π/4)log2."
+        ]
+      },
+      {
+        "id": "s3_final",
+        "kind": "boxed_final",
+        "label": "Solve for I",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Add I to both sides and halve.",
+        "memory_tip": "Whenever I = (constant) − I appears, add I to both sides to get 2I = (constant).",
+        "lines": [
+          "⇒ I + I = (π/4)log2",
+          "⇒ 2I = (π/4)log2",
+          { "text": "∴ I = (π/8) log2", "style": "boxed" }
+        ],
+        "why": "Adding I to both sides of I = (π/4)log2 − I gives 2I = (π/4)log2 directly, and dividing by 2 gives the final value.",
+        "common_mistakes": [
+          "Subtracting I instead of adding it, giving 0 = (π/4)log2.",
+          "Forgetting to divide by 2 at the very last step."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_parametric_2x2_2y2_7",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the parametric equations of the circle 2x² + 2y² = 7.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Divide to the standard form",
+      "marks": 1
+    },
+    {
+      "label": "Write the parametric equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.97 — Star Questions Plus, answer 200, printed under the banner \"CIRCLES-VSAQ\". The banner names the chapter and the mark cut, but a bank question's section is still OURS: it is classed VSAQ because it is the same one-formula shape as answers 106 and 107 in the VSAQ chapter. Printed appearance tag: TS 19. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Every number was re-derived and the book is correct: r = √(7/2). Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The radius is √(7/2), an awkward surd, and it must be carried as it stands — squaring it away or writing 7/2 as the radius is the only place this question goes wrong.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_divide",
+        "kind": "equation",
+        "label": "Divide to the standard form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Divide the whole equation by 2, including the right side.",
+        "memory_tip": "Standard form x² + y² = r². The right side is r squared.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: 2x² + 2y² = 7",
+          "Divide by 2: x² + y² = 7/2",
+          "Compare with x² + y² = r²",
+          "⇒ Centre C = (0, 0), radius r = √(7/2)"
+        ],
+        "why": "The coefficients of x² and y² must be 1 before the right side can be read as r². Here 7/2 is r², so the radius is its square root.",
+        "common_mistakes": [
+          "Taking the radius as 7/2.",
+          "Dividing the left side only."
+        ]
+      },
+      {
+        "id": "s2_parametric",
+        "kind": "boxed_final",
+        "label": "Write the parametric equations",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Keep the surd; a decimal is not an exact answer.",
+        "memory_tip": "Centre at the origin: x = r cos θ and y = r sin θ.",
+        "lines": [
+          "The centre is the origin, so",
+          "x = r cos θ,  y = r sin θ",
+          {
+            "text": "∴ x = √(7/2) cos θ,  y = √(7/2) sin θ",
+            "style": "boxed"
+          }
+        ],
+        "why": "A point on a circle centred at the origin is at distance r in the direction θ, so its coordinates are r cos θ and r sin θ. The surd stays as it is.",
+        "common_mistakes": [
+          "Replacing √(7/2) with 1.87 or another decimal.",
+          "Leaving θ out of the answer."
+        ]
+      }
+    ]
+  }
+}

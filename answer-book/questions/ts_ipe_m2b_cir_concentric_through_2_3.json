@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_concentric_through_2_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the circle passing through the point (2,3) and concentric with x² + y² + 8x + 12y + 15 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the concentric family",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the point and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 12 Circle, answer 109.2. It is the right-hand twin of answer 109.1. No appearance tag is printed beside it. Every number was re-derived and the book is correct: k = −65 and the circle is x² + y² + 8x + 12y − 65 = 0. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The given circle has a positive constant and the answer has a negative one, and that is expected: the new circle passes through a point far from the centre, so it is the larger of the two.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_family",
+        "kind": "equation",
+        "label": "Write the concentric family",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Copy +8x and +12y exactly and replace only the constant.",
+        "memory_tip": "Concentric circles share g and f. Only c changes.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Concentric circles have the same centre,",
+          "so g and f are unchanged and only c differs.",
+          "Required circle: x² + y² + 8x + 12y + k = 0 … (1)"
+        ],
+        "why": "Since the centre is (−g, −f), keeping g and f keeps the centre. The constant alone sets the size of the circle.",
+        "common_mistakes": [
+          "Keeping the original constant 15 as well as introducing k.",
+          "Halving 8 and 12 before writing the family."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute the point and solve",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 4 + 9 + 16 + 36 = 65, so k = −65.",
+        "memory_tip": "Add the four numbers, then k is the negative of that total.",
+        "lines": [
+          "(1) passes through P(2, 3)",
+          "⇒ 4 + 9 + 8(2) + 12(3) + k = 0",
+          "⇒ 4 + 9 + 16 + 36 + k = 0",
+          "⇒ 65 + k = 0 ⇒ k = −65",
+          {
+            "text": "∴ x² + y² + 8x + 12y − 65 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Every term is positive here, so the sum is 65 and the constant must be −65 to make the equation vanish at the given point.",
+        "common_mistakes": [
+          "Adding 8(2) as 10.",
+          "Reporting k = 65 without the sign change."
+        ]
+      }
+    ]
+  }
+}

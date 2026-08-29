@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_find_a_2x2_ay2_and_radius",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of 'a' if 2x² + ay² − 3x + 2y − 1 = 0 represents a circle, and also find its radius.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a and divide to the standard form",
+      "marks": 1
+    },
+    {
+      "label": "Find the radius",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 12 Circle, answer 105.1. It sits on a ★★★ SSP (Super Scoring Page): book p.77 carries the SSP banner. Printed appearance tag: AP 15. Every number was re-derived and the book is correct: a = 2 and the radius is √21/4. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The equation must be divided by 2 before g, f and c can be read — reading them off the undivided equation is the commonest mistake on this question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_a_and_divide",
+        "kind": "equation",
+        "label": "Find a and divide to the standard form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Two conditions define a circle: equal coefficients of x² and y², and no xy term. Only the first is in question here.",
+        "memory_tip": "A circle needs the x² and y² coefficients equal, and no xy term.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For a circle, coefficient of x²",
+          "= coefficient of y²",
+          "⇒ 2 = a ⇒ a = 2",
+          "Circle is 2x² + 2y² − 3x + 2y − 1 = 0",
+          "Divide by 2: x² + y² − (3/2)x + y − 1/2 = 0"
+        ],
+        "why": "The standard form has coefficient 1 on x² and y², so the equation must be divided by 2 before g, f and c can be read. Skipping the division gives the wrong radius.",
+        "common_mistakes": [
+          "Reading g = −3/2 from the undivided equation.",
+          "Setting a = 1 because the standard form has coefficient 1."
+        ]
+      },
+      {
+        "id": "s2_radius",
+        "kind": "boxed_final",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. g = −3/4 and f = 1/2 — halve again after the division.",
+        "memory_tip": "Halve the divided coefficients: g = −3/4, f = 1/2, c = −1/2.",
+        "lines": [
+          "Here g = −3/4, f = 1/2, c = −1/2",
+          "Radius = √(9/16 + 1/4 + 1/2)",
+          "= √((9 + 4 + 8)/16)",
+          {
+            "text": "∴ Radius = √(21/16) = √21/4",
+            "style": "boxed"
+          }
+        ],
+        "why": "Every term is put over 16 so the root is taken once. Since 21 is not a perfect square, the answer stays as a surd over 4.",
+        "common_mistakes": [
+          "Writing √(21/16) as 21/4.",
+          "Forgetting that −c with c = −1/2 adds 1/2."
+        ]
+      }
+    ]
+  }
+}

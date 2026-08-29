@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_laq_xsinx_over_1plus_cos2x_0_to_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫₀^π (x sinx)/(1 + cos²x) dx.",
+  "appearances": [
+    { "year": 2016, "board": "ap_ipe" },
+    { "year": 2018, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Apply the King's property", "marks": 2 },
+    { "label": "Add and reduce to an x-free integral", "marks": 2 },
+    { "label": "Substitute cosx = t and integrate", "marks": 2 },
+    { "label": "Evaluate the limits", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.38 (PDF page 37) — LAQ chapter 4 'Definite Integrals' (chapter banner ★★★, 7 Marks), answer 32.1, on a printed Super Scoring Page (SSP 38), twinned in the same two-column layout with answer 32.2. Printed appearance tag: AP 16, 18 — no TS tag is printed beside this item. The chapter star rank ★★★ (book p.13 LAQ chapter table and the chapter header on this same page) applies to every Definite Integrals LAQ entry. The book prints NO margin mark tags on this two-column page, so the 2+2+2+1 split here is OURS, patterned on the nearest printed LAQ split of a comparable four-stage derive-then-simplify shape in this book (p.22, Parabola LAQ answer 9: 2+2+2+1, already authored as ts_ipe_m2b_par_standard_form_derivation). Chapter boundary confirmed by reading printed p.37 (PDF page 36, the last Integration LAQ answer, 31) and printed p.44 (PDF page 44, the Differential Equations LAQ chapter opening) on both sides. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). The same integral is re-answered as the first Q23 item on the Bullet Model Paper, book p.115 — same value, so no separate card is authored for that appearance."
+  },
+  "insider_note": "Every King's-property question in this chapter follows the same three moves: replace x by (the limit sum minus x), add the two forms so the x cancels, then solve the x-free integral that remains.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Definite Integrals · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the King's property",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. Get this line exactly right before adding — a sign slip here ruins everything after it.",
+        "memory_tip": "sin(π − x) = sinx (same sign), cos(π − x) = −cosx (sign flips, but squaring removes it).",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "I = ∫₀^π (x sinx)/(1 + cos²x) dx …(1)",
+          "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
+          "⇒ I = ∫₀^π (π − x)sin(π − x)/(1 + cos²(π − x)) dx",
+          "⇒ I = ∫₀^π (π − x)sinx/(1 + cos²x) dx …(2)"
+        ],
+        "why": "The King's property replaces x by π − x inside the same limits. Since sin(π − x) = sinx and cos(π − x) = −cosx (and cos² removes the sign), the denominator is unchanged while the x in the numerator turns into π − x — this is what lets I cancel with itself later.",
+        "common_mistakes": [
+          "Forgetting that cos²(π − x) = cos²x, so wrongly changing the denominator.",
+          "Writing sin(π − x) as −sinx instead of +sinx."
+        ]
+      },
+      {
+        "id": "s2_add",
+        "kind": "equation",
+        "label": "Add and reduce to an x-free integral",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. This is the whole point of the King's property — the x disappears.",
+        "memory_tip": "x + (π − x) always cancels to a plain π — that is the signal the property worked.",
+        "lines": [
+          "Adding (1) and (2):",
+          "I + I = ∫₀^π [x sinx + (π − x)sinx]/(1 + cos²x) dx",
+          "⇒ 2I = π∫₀^π sinx/(1 + cos²x) dx",
+          "⇒ I = (π/2)∫₀^π sinx/(1 + cos²x) dx"
+        ],
+        "why": "Adding the two equal forms of I cancels the x term (x + (π − x) = π), leaving a single, x-free integral that is easy to solve by substitution.",
+        "common_mistakes": [
+          "Adding the numerators but not combining them over the common denominator correctly.",
+          "Losing the factor of 1/2 when isolating I."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Substitute cosx = t and integrate",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for the substitution and its new limits.",
+        "memory_tip": "cosx = t always turns sinx dx into −dt — this pair is used again and again in this chapter.",
+        "lines": [
+          "Put cosx = t ⇒ −sinx dx = dt, so sinx dx = −dt",
+          "x = 0 ⇒ t = cos0 = 1; x = π ⇒ t = cosπ = −1",
+          "I = (π/2)∫₁^(−1) (−dt)/(1 + t²) = (π/2)∫₋₁^1 dt/(1 + t²)",
+          "= (π/2)[Tan⁻¹t]₋₁^1"
+        ],
+        "why": "cosx = t turns sinx dx into a plain −dt, and 1 + cos²x becomes 1 + t² — a standard Tan⁻¹ form. Flipping the limits absorbs the negative sign.",
+        "common_mistakes": [
+          "Forgetting to flip the limits when the negative sign is absorbed.",
+          "Writing the antiderivative as log(1 + t²) instead of Tan⁻¹t."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Evaluate the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Underline π²/4.",
+        "memory_tip": "Tan⁻¹(1) and Tan⁻¹(−1) are a pair: π/4 and −π/4 — their difference is always π/2.",
+        "lines": [
+          "= (π/2)[Tan⁻¹(1) − Tan⁻¹(−1)] = (π/2)(π/4 + π/4) = (π/2)(π/2)",
+          { "text": "∴ I = π²/4", "style": "boxed" }
+        ],
+        "why": "Tan⁻¹(1) = π/4 and Tan⁻¹(−1) = −π/4, so subtracting gives π/2 exactly — a clean angle pair that makes the final multiplication easy.",
+        "common_mistakes": [
+          "Writing Tan⁻¹(−1) as +π/4 instead of −π/4, which would give the wrong final value.",
+          "Leaving the answer as (π/2)(π/2) instead of simplifying to π²/4."
+        ]
+      }
+    ]
+  }
+}

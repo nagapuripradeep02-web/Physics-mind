@@ -1,0 +1,177 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_circle_through_1_2_3_minus4_5_minus6",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of the circle passing through the points A(1,2), B(3,−4), C(5,−6).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "First equation from SA = SB",
+      "marks": 1
+    },
+    {
+      "label": "Second equation from SA = SC",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the centre",
+      "marks": 2
+    },
+    {
+      "label": "Find the radius",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the circle",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Circle, answer 1.1. It is the first answer of the chapter and sits on a ★★★ SSP (Super Scoring Page): book p.14 carries the SSP banner. Printed appearance tags: TS 16,18. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. The book’s working is correct throughout; every number here was re-derived. The same question is re-answered in the Bullet Model Paper (book p.111, Q18 & 19 CIRCLES) with identical working, so it is authored once, here. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The two distance equations are only the setup — the marks sit in the centre, the radius and the final expanded form, so always finish at x² + y² + 2gx + 2fy + c = 0 rather than stopping at the centre-radius form.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_equation",
+        "kind": "equation",
+        "label": "First equation from SA = SB",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark for reaching a clean linear equation in x₁ and y₁. The squared terms must cancel; if they do not, an expansion is wrong.",
+        "memory_tip": "Three points, three equal distances. Two equalities are enough — SA = SB and SA = SC.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S(x₁, y₁) be the centre of the circle.",
+          "A = (1, 2), B = (3, −4), C = (5, −6)",
+          "S is the same distance from all three points.",
+          "⇒ SA = SB = SC",
+          "Now SA = SB ⇒ SA² = SB²",
+          "⇒ (x₁−1)² + (y₁−2)² = (x₁−3)² + (y₁+4)²",
+          "⇒ −2x₁ + 1 − 4y₁ + 4 = −6x₁ + 9 + 8y₁ + 16",
+          "⇒ 4x₁ − 12y₁ − 20 = 0",
+          "⇒ x₁ − 3y₁ − 5 = 0 … (1)"
+        ],
+        "why": "The centre of a circle is the one point at equal distance from every point on it. Squaring both sides removes the square roots, and the x₁² and y₁² terms are the same on both sides, so they cancel and leave a straight line.",
+        "common_mistakes": [
+          "Forgetting to square both sides and trying to work with square roots.",
+          "Sign slip on (y₁ + 4)², which expands with +8y₁.",
+          "Dividing 4x₁ − 12y₁ − 20 = 0 by 4 but leaving the 20 as 20."
+        ]
+      },
+      {
+        "id": "s2_second_equation",
+        "kind": "equation",
+        "label": "Second equation from SA = SC",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Use A again, not B — reusing the same first point keeps the algebra short and the sign pattern the same.",
+        "memory_tip": "Keep A fixed in both equations. Then only the second point changes each time.",
+        "lines": [
+          "Also SA = SC ⇒ SA² = SC²",
+          "⇒ (x₁−1)² + (y₁−2)² = (x₁−5)² + (y₁+6)²",
+          "⇒ −2x₁ + 1 − 4y₁ + 4 = −10x₁ + 25 + 12y₁ + 36",
+          "⇒ 8x₁ − 16y₁ − 56 = 0",
+          "⇒ x₁ − 2y₁ − 7 = 0 … (2)"
+        ],
+        "why": "A second equal-distance condition gives a second straight line. Two straight lines meet at one point, and that point is the centre.",
+        "common_mistakes": [
+          "Using SB = SC here, which gives a correct but different pair and more arithmetic.",
+          "Writing (y₁ + 6)² as y₁² − 12y₁ + 36."
+        ]
+      },
+      {
+        "id": "s3_solve_centre",
+        "kind": "equation",
+        "label": "Solve for the centre",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two marks. Subtracting is faster than substitution here because the x₁ coefficients are already equal.",
+        "memory_tip": "Both equations start with x₁, so subtract them and x₁ disappears in one line.",
+        "lines": [
+          "(1) − (2) ⇒ −y₁ + 2 = 0 ⇒ y₁ = 2",
+          "Put y₁ = 2 in (1): x₁ − 6 − 5 = 0",
+          "⇒ x₁ = 11",
+          "∴ Centre S(x₁, y₁) = (11, 2)"
+        ],
+        "why": "Equations (1) and (2) both have coefficient 1 on x₁, so one subtraction removes x₁ and gives y₁ at once. Back-substitution then gives x₁.",
+        "common_mistakes": [
+          "Subtracting in the wrong order and getting y₁ = −2.",
+          "Putting y₁ = 2 into equation (2) and then mixing the two results."
+        ]
+      },
+      {
+        "id": "s4_radius",
+        "kind": "equation",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "One mark. Work with r², not r — the equation of the circle needs r² anyway, so the square root is never taken.",
+        "memory_tip": "Any one of the three given points serves as the radius end. A is the shortest to compute.",
+        "lines": [
+          "A = (1, 2) lies on the circle, so r = SA.",
+          "r² = SA² = (11−1)² + (2−2)² = 10² = 100"
+        ],
+        "why": "The radius is the distance from the centre to any point on the circle, and all three given points are on it. Keeping r² avoids an unnecessary square root.",
+        "common_mistakes": [
+          "Taking the square root to get r = 10 and then squaring it again later.",
+          "Using a point that is not on the circle, such as the origin."
+        ]
+      },
+      {
+        "id": "s5_equation_of_circle",
+        "kind": "boxed_final",
+        "label": "Equation of the circle",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Finish in the expanded general form; the centre-radius form alone is usually marked short.",
+        "memory_tip": "Centre (h, k), radius r gives (x − h)² + (y − k)² = r². Expand, then collect.",
+        "lines": [
+          "Circle with centre (11, 2) and r² = 100 is",
+          "(x − 11)² + (y − 2)² = 100",
+          "⇒ (x² − 22x + 121) + (y² − 4y + 4) = 100",
+          {
+            "text": "∴ x² + y² − 22x − 4y + 25 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The centre-radius form is the definition written down. Expanding it gives the general form x² + y² + 2gx + 2fy + c = 0, in which g = −11, f = −2 and c = 25, and that is the form the rest of the chapter uses.",
+        "common_mistakes": [
+          "Arithmetic slip on 121 + 4 − 100 = 25.",
+          "Writing −22x as +22x because the centre x-coordinate is +11."
+        ]
+      }
+    ]
+  }
+}

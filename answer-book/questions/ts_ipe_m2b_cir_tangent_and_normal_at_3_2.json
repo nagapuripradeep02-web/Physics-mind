@@ -1,0 +1,204 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_tangent_and_normal_at_3_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of tangent and normal at (3,2) on the circle x² + y² − x − 3y − 4 = 0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Tangent at the given point",
+      "marks": 2
+    },
+    {
+      "label": "Normal at the same point",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.96 — Star Questions Plus, answer 197, printed under the banner \"CIRCLE-LAQ & SAQ\". The banner names the chapter and two mark cuts but not which one this question belongs to, so the SECTION IS OURS: it is classed SAQ because its shape matches the chapter’s answer 49 (tangent at a point, plus one more line of the same kind) and a 4-mark Section-B slot fits it exactly. Printed appearance tag: AP 19. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: the tangent is 5x + y − 17 = 0 and the normal is x − 5y + 7 = 0. The point (3, 2) does lie on the circle, since 9 + 4 − 3 − 6 − 4 = 0. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The normal at a point on a circle passes through the centre, so a quick check on the answer is to put the centre into the normal — here (1/2, 3/2) gives 1/2 − 15/2 + 7 = 0, which confirms it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tangent",
+        "kind": "equation",
+        "label": "Tangent at the given point",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The coefficients are odd, so g and f are halves; multiplying the whole line by 2 at the end clears them.",
+        "memory_tip": "S₁ = xx₁ + yy₁ + g(x + x₁) + f(y + y₁) + c = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle S ≡ x² + y² − x − 3y − 4 = 0",
+          "Here g = −1/2, f = −3/2, c = −4",
+          "(3, 2) lies on the circle, since",
+          "9 + 4 − 3 − 6 − 4 = 0",
+          "Tangent at (3, 2) is S₁ = 0",
+          "⇒ 3x + 2y − (1/2)(x + 3) − (3/2)(y + 2) − 4 = 0",
+          "Multiplying by 2:",
+          "⇒ 6x + 4y − (x + 3) − 3(y + 2) − 8 = 0",
+          "⇒ 5x + y − 17 = 0"
+        ],
+        "why": "S₁ = 0 gives the tangent at a point that lies on the circle, which is why the check 9 + 4 − 3 − 6 − 4 = 0 is written first. Multiplying through by 2 early keeps the halves from spreading through the rest of the working.",
+        "common_mistakes": [
+          "Taking g = −1 and f = −3 without halving.",
+          "Multiplying only part of the equation by 2."
+        ]
+      },
+      {
+        "id": "s2_normal",
+        "kind": "boxed_final",
+        "label": "Normal at the same point",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The normal is perpendicular to the tangent, so its slope is the negative reciprocal.",
+        "memory_tip": "Perpendicular slopes multiply to −1. Tangent slope −5 gives normal slope 1/5.",
+        "lines": [
+          "Slope of the tangent 5x + y − 17 = 0 is −5",
+          "The normal is perpendicular to the tangent,",
+          "so its slope is 1/5",
+          "Normal at (3, 2): y − 2 = (1/5)(x − 3)",
+          "⇒ 5y − 10 = x − 3",
+          {
+            "text": "∴ Normal is x − 5y + 7 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The normal at a point on a circle is the line through that point and the centre. A check: the centre is (1/2, 3/2), and 1/2 − 5(3/2) + 7 = 1/2 − 15/2 + 7 = 0, so the normal does pass through it.",
+        "common_mistakes": [
+          "Using slope −1/5 instead of 1/5.",
+          "Writing the normal through the centre only, without checking it passes through (3, 2)."
+        ]
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. It is worth sketching because the normal through the centre is the free check.",
+        "memory_tip": "Tangent and normal meet at right angles at P, and the normal runs on through the centre.",
+        "figure": {
+          "id": "cir_tangent_normal_1",
+          "width": 380,
+          "height": 230,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_tangent_normal_1_circle",
+              "d": "M 88 115 A 62 62 0 1 0 212 115 A 62 62 0 1 0 88 115",
+              "ms": 866
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_normal_1_normal",
+              "d": "M 106 159 L 238 27",
+              "ms": 416,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_normal_1_tan",
+              "d": "M 142 19 L 246 123",
+              "ms": 327
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_normal_1_ra",
+              "d": "M 183 70 L 193 60 L 203 70",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_normal_1_dc",
+              "d": "M 146.5 115 A 3.5 3.5 0 1 0 153.5 115 A 3.5 3.5 0 1 0 146.5 115",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_normal_1_dp",
+              "d": "M 190.5 71 A 3.5 3.5 0 1 0 197.5 71 A 3.5 3.5 0 1 0 190.5 71",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_normal_1_lc",
+              "x": 140,
+              "y": 138,
+              "text": "C",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_normal_1_lp",
+              "x": 200,
+              "y": 58,
+              "text": "P",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_normal_1_lt",
+              "x": 250,
+              "y": 130,
+              "text": "tangent",
+              "ms": 480,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_normal_1_ln",
+              "x": 244,
+              "y": 20,
+              "text": "normal",
+              "ms": 480,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_normal_1_cap",
+              "x": 24,
+              "y": 218,
+              "text": "the normal at P passes through C",
+              "ms": 520,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The radius CP is perpendicular to the tangent at P, so the normal at P is the line CP extended. That single fact both defines the normal and gives a way to check the answer.",
+        "common_mistakes": [
+          "Drawing the normal as a chord rather than through the centre.",
+          "Drawing the tangent through the centre."
+        ]
+      }
+    ]
+  }
+}

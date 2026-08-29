@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_polar_of_1_minus2_wrt_10x_10y_25",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the polar of (1,−2) with respect to x² + y² − 10x − 10y + 25 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the polar formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 12 Circle, answer 115. It sits on a ★★★ SSP (Super Scoring Page): book p.79 carries the SSP banner. Printed appearance tag: TS 15. It is the last answer of the Circle VSAQ chapter, and the book prints the pointer \"Few More VSAQ are in Page 97\" directly beneath it, which is the cross-reference into the Star Questions Plus run. Every number was re-derived and the book is correct: the polar is 4x + 7y − 30 = 0. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The polar formula is the same as the tangent formula S₁ = 0 — the only difference is that the point need not be on the circle, and here it is not.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Write the polar formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Halve −10 and −10 to get g = −5 and f = −5.",
+        "memory_tip": "Polar of P(x₁, y₁) is S₁ = xx₁ + yy₁ + g(x + x₁) + f(y + y₁) + c = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² − 10x − 10y + 25 = 0",
+          "Here g = −5, f = −5, c = 25",
+          "Polar of P(x₁, y₁) is S₁ = 0",
+          "⇒ xx₁ + yy₁ + g(x + x₁) + f(y + y₁) + c = 0"
+        ],
+        "why": "The polar has the same form as the tangent at a point on the circle. Halving the coefficients is what turns 2g into g inside the bracket.",
+        "common_mistakes": [
+          "Using −10 in place of g and f.",
+          "Writing g(x · x₁) instead of g(x + x₁)."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Multiply through by −1 at the end so the leading coefficient is positive.",
+        "memory_tip": "Collect the x terms, the y terms and the numbers separately before tidying.",
+        "lines": [
+          "With (x₁, y₁) = (1, −2):",
+          "x(1) + y(−2) − 5(x + 1) − 5(y − 2) + 25 = 0",
+          "⇒ x − 2y − 5x − 5 − 5y + 10 + 25 = 0",
+          "⇒ −4x − 7y + 30 = 0",
+          {
+            "text": "∴ Polar is 4x + 7y − 30 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The x terms give x − 5x = −4x, the y terms give −2y − 5y = −7y and the numbers give −5 + 10 + 25 = 30. Multiplying by −1 puts the answer in its usual form.",
+        "common_mistakes": [
+          "Writing −5(y − 2) as −5y − 10.",
+          "Leaving the answer with a negative leading coefficient, which is correct but is usually rewritten."
+        ]
+      }
+    ]
+  }
+}

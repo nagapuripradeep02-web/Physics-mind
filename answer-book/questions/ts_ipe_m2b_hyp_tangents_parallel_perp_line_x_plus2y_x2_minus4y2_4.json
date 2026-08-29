@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_hyp_tangents_parallel_perp_line_x_plus2y_x2_minus4y2_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Hyperbola (Maths-2B)"
+  },
+  "chapter": "Hyperbola",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equations of the tangents to the hyperbola x² − 4y² = 4 which (i) are parallel to x + 2y = 0, (ii) are perpendicular to x + 2y = 0.",
+  "appearances": [
+    { "year": 2019, "board": "ap_ipe" },
+    { "year": 2015, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Parallel tangent", "marks": 2 },
+    { "label": "Perpendicular tangent", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 9 Hyperbola, answer 79.1, the first of a printed twin pair (79.1/79.2). On a ★★ SSP page (p.66 is listed on p.49's 13-page SSP list; chapter banner and table both read ★★). Printed appearances: AP 19 · TS 15. Two-column page, no printed mark tags — the 2+2 split (parallel/perpendicular) here is OURS, matching the natural two-part shape of the question. FINDING: the book's printed working for part (i) — 'y = −x/2 ± √(4(1/4) − 1) ⇒ y = −x/2 ⇒ x + 2y = 0' (book p.66) — is presented as an ordinary tangent, but it is mathematically degenerate: the given line x + 2y = 0 is one of the two asymptotes of x² − 4y² = 4 (asymptote slopes are ±b/a = ±1/2, and the given line's slope is exactly −1/2), and no finite point on a hyperbola ever has a tangent slope equal to its asymptote slope (the tangent slope b²x/(a²y) approaches ±b/a only in the limit as the point recedes to infinity — a hyperbola gets arbitrarily close to its asymptote but never touches it). This card keeps the book's mechanically-derived boxed result for part (i) — since that is what the mark scheme rewards — but the step's `why` and this note record that it is not a genuine tangent. Part (ii) has no such issue: slope 2 is not an asymptote slope, so y = 2x ± √15 are two genuine tangent lines, matching the book. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "This question is a trap by design: the given line x + 2y = 0 is exactly one of the hyperbola's own asymptotes, so a tangent 'parallel' to it does not really exist — write the examiner-marked mechanical result down for the marks, but be ready to explain in words that it is the asymptote itself, not a true tangent.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Hyperbola · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the tangent formula",
+        "marks": 0,
+        "margin_note": "No mark of its own — every result below substitutes into this formula.",
+        "memory_tip": "Start every hyperbola tangent-parallel/perpendicular question the same way: standard form, tangent-with-slope-m formula, then the given line's own slope.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Given hyperbola is x² − 4y² = 4",
+          "Divide by 4: x²/4 − y²/1 = 1 ⇒ a² = 4, b² = 1",
+          "Tangent with slope m: y = mx ± √(a²m² − b²)",
+          "Slope of the given line x + 2y = 0: m = −1/2"
+        ],
+        "why": "Every 'tangent parallel/perpendicular to a line' question starts the same way: write the hyperbola's tangent-with-slope-m formula, then read the given line's own slope off it.",
+        "common_mistakes": [
+          "Using the ellipse tangent formula y = mx ± √(a²m² + b²) — a hyperbola SUBTRACTS b², it does not add it.",
+          "Reading the slope of x + 2y = 0 as +1/2 instead of −1/2."
+        ]
+      },
+      {
+        "id": "s2_parallel",
+        "kind": "equation",
+        "label": "Parallel tangent",
+        "marks": 2,
+        "mark_note": "Parallel tangent",
+        "margin_note": "Two marks. This case is degenerate — see the why for this step.",
+        "memory_tip": "If the root under the tangent formula collapses to zero, check whether the given slope IS an asymptote slope ±b/a.",
+        "lines": [
+          "Parallel tangent has the same slope m = −1/2",
+          "y = −(1/2)x ± √(4(1/4) − 1) = −(1/2)x ± √(1 − 1) = −(1/2)x",
+          { "text": "x + 2y = 0", "style": "boxed" }
+        ],
+        "why": "Substituting m = −1/2 into the tangent formula makes the term under the root vanish (4m² − b² = 0) — that happens exactly because −1/2 is the SLOPE OF AN ASYMPTOTE of this hyperbola (asymptote slopes are ±b/a = ±1/2), and no genuine tangent line is ever parallel to an asymptote.",
+        "common_mistakes": [
+          "Treating the line x + 2y = 0 that comes out of the formula as a real tangent point — it is the asymptote itself, which the hyperbola gets arbitrarily close to but never touches.",
+          "Not noticing that a zero under the root here is a special case (the given line's slope equals an asymptote slope), not a coincidence to ignore."
+        ]
+      },
+      {
+        "id": "s3_perpendicular",
+        "kind": "equation",
+        "label": "Perpendicular tangent",
+        "marks": 2,
+        "mark_note": "Perpendicular tangent",
+        "margin_note": "Two marks. This case is a genuine, ordinary tangent pair.",
+        "memory_tip": "The negative reciprocal of −1/2 is 2, not −2.",
+        "lines": [
+          "Slope of the perpendicular is the negative reciprocal: m = 2",
+          "y = 2x ± √(4(2)² − 1) = 2x ± √15",
+          { "text": "y = 2x + √15 and y = 2x − √15", "style": "boxed" }
+        ],
+        "why": "Slope 2 is not an asymptote slope (the asymptotes have slope ±1/2), so the tangent formula gives two genuine tangent lines here.",
+        "common_mistakes": [
+          "Taking the negative reciprocal of −1/2 incorrectly (it is 2, not −2).",
+          "Dropping the ± sign and reporting only one of the two tangent lines."
+        ]
+      }
+    ]
+  }
+}

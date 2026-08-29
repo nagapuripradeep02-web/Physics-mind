@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_laq_log_1plusx_over_1plusx2_0_to_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫₀^1 log(1 + x)/(1 + x²) dx.",
+  "appearances": [
+    { "year": 2018, "board": "ap_ipe" },
+    { "year": 2022, "board": "ap_ipe" },
+    { "year": 2017 },
+    { "year": 2019 }
+  ],
+  "mark_split": [
+    { "label": "Substitute x = tanθ", "marks": 2 },
+    { "label": "Apply the property and simplify tan(π/4 − θ)", "marks": 3 },
+    { "label": "Solve for I", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.42 (PDF page 41) — LAQ chapter 4 'Definite Integrals', answer 36.2, the right-hand twin of answer 36.1 on the same printed Super Scoring Page (SSP 42). The book's own printed note calls the pair 'SUPER TWIN BABIES' and states 'AFTER SIMPLIFICATION BABY 2 BECOMES SAME AS BABY 1' — verified independently here by the x = tanθ substitution, which turns this integral into exactly answer 36.1's ∫₀^(π/4) log(1+tanθ)dθ. Printed appearance: AP 18, 22 and TS 17, 19, plus a third year at the scan's right edge that is cropped and not legibly recorded. Chapter star rank ★★★ applies. No margin mark tags are printed on this page, so the 2+3+2 split is OURS, weighting the tan(A−B) algebra block at 3 marks the same way as its twin (ts_ipe_m2b_di_laq_log_1plus_tanx_0_to_pi4), patterned on the same book p.17 1+1+1+4 precedent. Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered on the Bullet Model Paper (book p.116) in the identical 'or' form alongside answer 36.1 — no separate card is authored for that appearance."
+  },
+  "insider_note": "The x = tanθ substitution is the key step: once it is made, this question becomes word-for-word the previous one. Recognising the twin saves re-deriving the tan(A−B) algebra from scratch.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Definite Integrals · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Substitute x = tanθ",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. 1 + x² becomes sec²θ, which cancels the sec²θ dθ from dx exactly.",
+        "memory_tip": "x = tanθ is the standard substitution whenever 1 + x² sits in a denominator.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Put x = tanθ ⇒ dx = sec²θ dθ. x = 0 ⇒ θ = 0; x = 1 ⇒ θ = π/4",
+          "Also 1 + x² = 1 + tan²θ = sec²θ",
+          "∴ I = ∫₀^1 log(1 + x)/(1 + x²) dx = ∫₀^(π/4) log(1 + tanθ)/sec²θ · sec²θ dθ",
+          "⇒ I = ∫₀^(π/4) log(1 + tanθ) dθ …(1)"
+        ],
+        "why": "x = tanθ turns 1 + x² into sec²θ, which exactly cancels the sec²θ that comes from dx — the whole denominator vanishes, leaving a plain log(1+tanθ) integral in the new variable θ.",
+        "common_mistakes": [
+          "Forgetting to change the limits from x = 0, 1 to θ = 0, π/4.",
+          "Not cancelling the sec²θ from the numerator (dx) with the sec²θ in the denominator (1+x²)."
+        ]
+      },
+      {
+        "id": "s2_property",
+        "kind": "equation",
+        "label": "Apply the property and simplify tan(π/4 − θ)",
+        "marks": 3,
+        "mark_note": "Method",
+        "margin_note": "Three marks — the same algebra as the previous question, now with θ in place of x.",
+        "memory_tip": "tan(π/4 − θ) = (1 − tanθ)/(1 + tanθ) — the identical identity as the previous question.",
+        "lines": [
+          "By θ → π/4 − θ: I = ∫₀^(π/4) log[1 + tan(π/4 − θ)] dθ",
+          "tan(π/4 − θ) = (1 − tanθ)/(1 + tanθ)     [tan(A−B) formula]",
+          "1 + tan(π/4 − θ) = 2/(1 + tanθ)",
+          "⇒ I = ∫₀^(π/4) log[2/(1 + tanθ)] dθ = (π/4)log2 − I"
+        ],
+        "why": "Once the integral is written in θ it is identical in form to the previous question's integral, so the same tan(A−B) reduction applies unchanged.",
+        "common_mistakes": [
+          "Re-deriving the algebra with the wrong variable name and losing track of which step is which.",
+          "Skipping the log-splitting step log[2/(1+tanθ)] = log2 − log(1+tanθ)."
+        ]
+      },
+      {
+        "id": "s3_final",
+        "kind": "boxed_final",
+        "label": "Solve for I",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Same final arithmetic as the previous question.",
+        "memory_tip": "Add I to both sides of I = (π/4)log2 − I to get 2I = (π/4)log2.",
+        "lines": [
+          "⇒ I + I = (π/4)log2 ⇒ 2I = (π/4)log2",
+          { "text": "∴ I = (π/8) log2", "style": "boxed" }
+        ],
+        "why": "Adding I to both sides gives 2I directly, and dividing by 2 gives the same final value as the twin question — confirming the book's claim that the two integrals are equal.",
+        "common_mistakes": [
+          "Forgetting the final division by 2.",
+          "Reporting a different numeric value from the twin question 36.1 without checking the arithmetic — both must agree."
+        ]
+      }
+    ]
+  }
+}

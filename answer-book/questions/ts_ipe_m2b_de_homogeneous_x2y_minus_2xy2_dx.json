@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_homogeneous_x2y_minus_2xy2_dx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Solve (x²y − 2xy²)dx = (x³ − 3x²y)dy.",
+  "appearances": [
+    { "year": 2018, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Recognise homogeneous form and substitute", "marks": 2 },
+    { "label": "Separate the variables", "marks": 1 },
+    { "label": "Integrate both sides", "marks": 2 },
+    { "label": "Return to x and y", "marks": 1 },
+    { "label": "Final equation", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.46 — LAQ chapter 5 Differential Equations, answer 41.1. Not on an SSP page (this chapter carries no Super Scoring Pages at all). Printed appearance tag: AP 18 — no TS tag. The mark split is OURS: this chapter prints no margin mark tags. It follows the same five-checkpoint shape as answer 39.1 — recognise the homogeneous form and substitute y = vx, separate v from x, integrate, undo the substitution, state the final relation. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. The same question is re-answered in the Bullet Model Paper (book p.117, Q24), so it is authored once, here. The book's working was re-derived line by line and is correct throughout, including the final rearrangement into an equation for the constant c rather than a bare polynomial relation — this book leaves the answer as c = (x²/y³)e^(−x/y) rather than clearing the exponential, which is the marked form and is kept here. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "This equation's final integral splits into a 1/v² term and a 1/v term, not one clean log — write both antiderivatives separately (−1/v and −3 log v) before combining, rather than trying to force one combined log form too early.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differential Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup_substitute",
+        "kind": "equation",
+        "label": "Recognise homogeneous form and substitute",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Every term on both sides has total degree 3 in x and y, so the equation is homogeneous.",
+        "memory_tip": "Check the degree of EVERY term, not just one — x²y, xy², x³ and x²y are all degree 3.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Given D.E is (x²y − 2xy²)dx = (x³ − 3x²y)dy",
+          "⇒ dy/dx = (x²y − 2xy²)/(x³ − 3x²y) … (1)",
+          "(1) is a homogeneous D.E",
+          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
+          "(1) ⇒ v + x·dv/dx = (vx³ − 2v²x³)/(x³ − 3vx³) = (v − 2v²)/(1 − 3v)"
+        ],
+        "why": "Every term of both the numerator and denominator has total degree 3 in x and y, so dividing every term by x³ after substituting y = vx leaves a function of v alone, confirming the homogeneous form.",
+        "common_mistakes": [
+          "Missing a factor of x when expanding (vx)² = v²x², undercounting the degree.",
+          "Dividing numerator and denominator by different powers of x by mistake."
+        ]
+      },
+      {
+        "id": "s2_separate",
+        "kind": "equation",
+        "label": "Separate the variables",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Subtract v as a fraction with denominator (1 − 3v) before combining.",
+        "memory_tip": "v(1 − 3v) = v − 3v² is the piece that cancels part of the numerator, leaving v² behind.",
+        "lines": [
+          "x·dv/dx = (v − 2v²)/(1 − 3v) − v = [v − 2v² − v(1 − 3v)]/(1 − 3v) = v²/(1 − 3v)",
+          "⇒ (1 − 3v)/v² dv = dx/x"
+        ],
+        "why": "Writing v as v(1 − 3v)/(1 − 3v) puts both terms over the same denominator, and expanding v − 2v² − v + 3v² leaves exactly v², which is what makes the equation separable.",
+        "common_mistakes": [
+          "Losing the −v term when expanding v(1 − 3v) = v − 3v².",
+          "Sign error turning v² into −v² in the final numerator."
+        ]
+      },
+      {
+        "id": "s3_integrate",
+        "kind": "equation",
+        "label": "Integrate both sides",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Split (1 − 3v)/v² into 1/v² − 3/v before integrating each piece separately.",
+        "memory_tip": "1/v² integrates to −1/v; 1/v integrates to log v — two different rules, so split first.",
+        "lines": [
+          "∫ (1/v² − 3/v) dv = ∫ dx/x",
+          "⇒ −1/v − 3 log v = log x + log c"
+        ],
+        "why": "The fraction (1 − 3v)/v² splits into two separate standard integrals, ∫v⁻²dv = −1/v and −3∫(1/v)dv = −3 log v, which together match the right side's ∫dx/x = log x.",
+        "common_mistakes": [
+          "Integrating 1/v² as log v² instead of −1/v.",
+          "Losing the factor of 3 in front of log v."
+        ]
+      },
+      {
+        "id": "s4_back_substitute",
+        "kind": "equation",
+        "label": "Return to x and y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Combine log x + 3 log v + log c into a single log before substituting v = y/x.",
+        "memory_tip": "3 log v = log v³, so the whole right side is log(cxv³).",
+        "lines": [
+          "⇒ log x + log c + 3 log v = −1/v ⇒ log(cxv³) = −1/v",
+          "Put v = y/x: log(cx·y³/x³) = −x/y ⇒ log(cy³/x²) = −x/y"
+        ],
+        "why": "Combining all the log terms into log(cxv³) before substituting keeps the working compact, and replacing v by y/x turns the whole relation back into the original variables.",
+        "common_mistakes": [
+          "Substituting v = y/x before combining the logs, leading to a fraction inside a fraction.",
+          "Writing x/v³ instead of xv³ when combining the log terms."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Remove the log by exponentiating both sides, then isolate c.",
+        "memory_tip": "log(A) = B means A = e^B — apply that once to remove the log entirely.",
+        "lines": [
+          "⇒ cy³/x² = e^(−x/y)",
+          { "text": "c = (x²/y³)·e^(−x/y)", "style": "boxed" }
+        ],
+        "why": "Exponentiating both sides of log(cy³/x²) = −x/y removes the log, and rearranging for c gives the family of solutions in the exact form the book marks — the relation between x, y and the arbitrary constant.",
+        "common_mistakes": [
+          "Forgetting to exponentiate BOTH sides, leaving a log on one side only.",
+          "Inverting the fraction and writing c = (y³/x²)·e^(−x/y) instead of (x²/y³)·e^(−x/y)."
+        ]
+      }
+    ]
+  }
+}

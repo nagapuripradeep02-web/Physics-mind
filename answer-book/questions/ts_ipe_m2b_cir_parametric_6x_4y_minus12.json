@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_parametric_6x_4y_minus12",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the parametric equations of the circle x² + y² − 6x + 4y − 12 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Centre and radius",
+      "marks": 1
+    },
+    {
+      "label": "Write the parametric equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 12 Circle, answer 106.1. The printed appearance tag reads \"AP 15,15\" — the same year twice, which is a misprint or a scan artefact; only AP 2015 is recorded. Every number was re-derived and the book is correct: centre (3, −2), radius 5. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The parametric form is nothing more than centre plus radius times cosine and sine, so the whole answer is the centre and the radius written into two lines.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centre_and_radius",
+        "kind": "equation",
+        "label": "Centre and radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. c = −12, so −c adds 12 and the radius is whole.",
+        "memory_tip": "Centre (−g, −f), radius √(g² + f² − c).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² − 6x + 4y − 12 = 0",
+          "Here g = −3, f = 2, c = −12",
+          "Centre C = (3, −2)",
+          "Radius r = √(9 + 4 + 12) = √25 = 5"
+        ],
+        "why": "The parametric equations are built from the centre and the radius alone, so both are read off first.",
+        "common_mistakes": [
+          "Writing the centre as (−3, 2).",
+          "Computing √(9 + 4 − 12) = 1."
+        ]
+      },
+      {
+        "id": "s2_parametric",
+        "kind": "boxed_final",
+        "label": "Write the parametric equations",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Write θ in the answer; a parametric form without its parameter is incomplete.",
+        "memory_tip": "x = −g + r cos θ and y = −f + r sin θ. Centre first, then radius times cosine or sine.",
+        "lines": [
+          "Parametric equations of a circle:",
+          "x = −g + r cos θ,  y = −f + r sin θ",
+          {
+            "text": "∴ x = 3 + 5 cos θ,  y = −2 + 5 sin θ",
+            "style": "boxed"
+          }
+        ],
+        "why": "A point on the circle is the centre shifted by r in the direction θ. The horizontal shift is r cos θ and the vertical shift is r sin θ, which is why the centre coordinates appear untouched in front.",
+        "common_mistakes": [
+          "Writing x = 3 cos θ and y = −2 sin θ, which drops the radius.",
+          "Leaving out θ altogether."
+        ]
+      }
+    ]
+  }
+}

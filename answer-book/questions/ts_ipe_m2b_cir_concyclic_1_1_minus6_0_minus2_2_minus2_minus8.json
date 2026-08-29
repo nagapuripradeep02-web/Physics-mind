@@ -1,0 +1,184 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_concyclic_1_1_minus6_0_minus2_2_minus2_minus8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that the points (1,1), (−6,0), (−2,2) and (−2,−8) are concyclic.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "First equation from SA = SB",
+      "marks": 1
+    },
+    {
+      "label": "Second equation from SB = SC",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the centre",
+      "marks": 2
+    },
+    {
+      "label": "Radius and the equation of the circle",
+      "marks": 2
+    },
+    {
+      "label": "Show D lies on the circle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 Circle, answer 3. The mark split 1 + 1 + 2 + 2 + 1 IS THE BOOK’S: this answer sits alone on a single-column page and carries printed margin tags — \"1 Mark\" beside equation (1), \"1 Mark\" beside equation (2), \"2 Marks\" beside the centre, \"2 Marks\" beside the equation of the circle, and \"1 Mark\" beside the substitution of D. Printed appearance tags: AP 17, AP 19 and TS 15. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct. The same question is re-answered in the Bullet Model Paper (book p.111) with identical working, so it is authored once, here. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Concyclic means one circle through all four, so build the circle from any three and then test the fourth — that last substitution is a printed mark of its own and is the line students most often leave out.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_equation",
+        "kind": "equation",
+        "label": "First equation from SA = SB",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First printed mark, tagged \"1 Mark\" in the book beside equation (1).",
+        "memory_tip": "Four points, but only three are used to build the circle. Keep D back as the test.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A = (1, 1), B = (−6, 0), C = (−2, 2), D = (−2, −8)",
+          "Let S(x₁, y₁) be the centre of the circle",
+          "through A, B and C ⇒ SA = SB = SC",
+          "Now SA = SB ⇒ SA² = SB²",
+          "⇒ (x₁−1)² + (y₁−1)² = (x₁+6)² + y₁²",
+          "⇒ −2x₁ + 1 − 2y₁ + 1 = 12x₁ + 36",
+          "⇒ −14x₁ − 2y₁ − 34 = 0",
+          "⇒ 7x₁ + y₁ + 17 = 0 … (1)"
+        ],
+        "why": "Four points are concyclic when one circle passes through all of them. Three points fix a circle, so the circle is built from A, B and C and the fourth point is checked afterwards.",
+        "common_mistakes": [
+          "Trying to force all four points into the distance conditions at once.",
+          "Losing the y₁² term of B because B has y = 0."
+        ]
+      },
+      {
+        "id": "s2_second_equation",
+        "kind": "equation",
+        "label": "Second equation from SB = SC",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second printed mark, tagged \"1 Mark\" beside equation (2). The book pairs B with C here, not A with C.",
+        "memory_tip": "Any two of the three equalities work. B and C are chosen because B has a zero coordinate.",
+        "lines": [
+          "Also SB = SC ⇒ SB² = SC²",
+          "⇒ (x₁+6)² + y₁² = (x₁+2)² + (y₁−2)²",
+          "⇒ 12x₁ + 36 = 4x₁ + 4 − 4y₁ + 4",
+          "⇒ 8x₁ + 4y₁ + 28 = 0",
+          "⇒ 2x₁ + y₁ + 7 = 0 … (2)"
+        ],
+        "why": "Any two of the three equal-distance conditions are enough; the third follows. Pairing B with C keeps the numbers small because B has y = 0.",
+        "common_mistakes": [
+          "Expanding (y₁ − 2)² as y₁² + 4y₁ + 4.",
+          "Dividing 8x₁ + 4y₁ + 28 = 0 by 4 and writing the constant as 4."
+        ]
+      },
+      {
+        "id": "s3_solve_centre",
+        "kind": "equation",
+        "label": "Solve for the centre",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two printed marks, tagged \"2 Marks\" beside the centre. Both equations have coefficient 1 on y₁, so subtract.",
+        "memory_tip": "Both equations end in y₁, so subtracting removes y₁ in one line.",
+        "lines": [
+          "(1) − (2) ⇒ 5x₁ + 10 = 0 ⇒ x₁ = −2",
+          "From (1): 7(−2) + y₁ + 17 = 0",
+          "⇒ y₁ + 3 = 0 ⇒ y₁ = −3",
+          "∴ Centre S(x₁, y₁) = (−2, −3)"
+        ],
+        "why": "The two perpendicular bisectors meet at the centre. Because y₁ has coefficient 1 in both, one subtraction gives x₁ directly.",
+        "common_mistakes": [
+          "Writing (1) − (2) as 5x₁ − 10 = 0 and getting x₁ = 2.",
+          "Substituting x₁ = −2 as 7(2) and getting y₁ = −31."
+        ]
+      },
+      {
+        "id": "s4_radius_and_circle",
+        "kind": "equation",
+        "label": "Radius and the equation of the circle",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two printed marks, tagged \"2 Marks\". Radius and equation are one block in the book, so keep them together.",
+        "memory_tip": "r² = 25 is a perfect square, which is a quick sign that the arithmetic so far is right.",
+        "lines": [
+          "A = (1, 1) lies on the circle, so r = SA.",
+          "r² = SA² = (1+2)² + (1+3)² = 9 + 16 = 25",
+          "Circle with centre (−2, −3) and r² = 25 is",
+          "(x + 2)² + (y + 3)² = 25",
+          "⇒ (x² + 4x + 4) + (y² + 6y + 9) = 25",
+          "⇒ x² + y² + 4x + 6y − 12 = 0"
+        ],
+        "why": "This is the circle through A, B and C. Its equation has to be written out in general form because the fourth point is about to be substituted into it.",
+        "common_mistakes": [
+          "Stopping at (x + 2)² + (y + 3)² = 25, which makes the next substitution slower.",
+          "Getting the constant as +12 instead of −12."
+        ]
+      },
+      {
+        "id": "s5_test_fourth_point",
+        "kind": "boxed_final",
+        "label": "Show D lies on the circle",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last printed mark, tagged \"1 Mark\". Substitute and show the value is exactly 0, then write the conclusion sentence.",
+        "memory_tip": "Substituting a point into the left side gives 0 only when the point is on the circle.",
+        "lines": [
+          "Put D(−2, −8) in x² + y² + 4x + 6y − 12:",
+          "= (−2)² + (−8)² + 4(−2) + 6(−8) − 12",
+          "= 4 + 64 − 8 − 48 − 12 = 68 − 68 = 0",
+          "∴ D(−2, −8) lies on the circle.",
+          {
+            "text": "∴ The four given points are concyclic.",
+            "style": "boxed"
+          }
+        ],
+        "why": "A point lies on a circle exactly when substituting its coordinates into the left side of the general equation gives 0. Since the circle already passes through A, B and C, showing D also satisfies it proves all four lie on one circle.",
+        "common_mistakes": [
+          "Getting a non-zero value from a sign slip and then claiming the points are concyclic anyway.",
+          "Leaving out the final sentence, which carries the conclusion mark."
+        ]
+      }
+    ]
+  }
+}

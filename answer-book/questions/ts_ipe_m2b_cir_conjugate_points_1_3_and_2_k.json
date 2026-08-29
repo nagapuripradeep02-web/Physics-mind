@@ -1,0 +1,112 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_conjugate_points_1_3_and_2_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of k if the points (1,3), (2,k) are conjugate with respect to the circle x² + y² = 35.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the conjugate points condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and solve for k",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 12 Circle, answer 113.1. It sits on a ★★★ SSP (Super Scoring Page): book p.79 carries the SSP banner. Printed appearance tags: TS 17,19,22 and AP 17,19 — five printed years, the most-asked Circle VSAQ in the book. Every number was re-derived and the book is correct: 2 + 3k − 35 = 0 gives k = 11. The same question is re-answered in the Bullet Model Paper (book p.103, Q1 & 2 CIRCLES) with identical working, so it is authored once, here. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "For a circle centred at the origin the condition collapses to x₁x₂ + y₁y₂ = r², which is one line — no g, no f, no c to carry.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the conjugate points condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The circle is centred at the origin, so g = f = 0 and the condition is short.",
+        "memory_tip": "Two points are conjugate when S₁₂ = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Two points are conjugate with respect to",
+          "a circle when S₁₂ = 0",
+          "For S ≡ x² + y² − 35 = 0:",
+          "S₁₂ = x₁x₂ + y₁y₂ − 35"
+        ],
+        "why": "Two points are conjugate when each lies on the polar of the other, and writing that out gives S₁₂ = 0. With the centre at the origin there are no linear terms, so only the product terms and the constant survive.",
+        "common_mistakes": [
+          "Using S₁₁ instead of S₁₂ and putting one point in twice.",
+          "Writing the constant as +35."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Substitute and solve for k",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Multiply the x-coordinates together and the y-coordinates together, then subtract 35.",
+        "memory_tip": "(1)(2) + (3)(k) = 35, so 3k = 33.",
+        "lines": [
+          "With (x₁, y₁) = (1, 3) and (x₂, y₂) = (2, k):",
+          "(1)(2) + (3)(k) − 35 = 0",
+          "⇒ 2 + 3k = 35 ⇒ 3k = 33",
+          {
+            "text": "∴ k = 11",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting both points gives a single linear equation in k. Only the y-coordinates carry the unknown, so it is solved in one step.",
+        "common_mistakes": [
+          "Pairing x₁ with y₂ instead of x₂.",
+          "Solving 3k = 33 as k = 3."
+        ]
+      }
+    ]
+  }
+}

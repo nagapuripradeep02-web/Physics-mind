@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_pole_of_x_y_2_wrt_4x_6y_minus12",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the pole of the line x + y + 2 = 0 with respect to the circle x² + y² − 4x + 6y − 12 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the polar of the unknown pole",
+      "marks": 1
+    },
+    {
+      "label": "Compare with the given line",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the pole",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.53 — SAQ chapter 6 Circle, answer 51.1. It sits on a ★★★ SSP (Super Scoring Page): book p.53 carries the SSP banner. Printed appearance tags: AP 15,17. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: k = −25 gives the pole (−23, −28), and substituting it back gives −25x − 25y − 50 = 0, which is x + y + 2 = 0. The same question is re-answered in the Bullet Model Paper (book p.107) with identical working, so it is authored once, here. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The pole is found backwards: write the polar of an unknown point, then force it to BE the given line by comparing coefficients — the single letter k that carries the comparison is what makes the algebra short.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_polar",
+        "kind": "equation",
+        "label": "Write the polar of the unknown pole",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The polar of a point has exactly the same shape as the tangent formula S₁ = 0.",
+        "memory_tip": "Polar of P(x₁, y₁) is S₁ = 0, the same formula as the tangent at a point on the circle.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P(x₁, y₁) be the pole of x + y + 2 = 0.",
+          "The polar of P with respect to",
+          "S ≡ x² + y² − 4x + 6y − 12 = 0 is S₁ = 0",
+          "⇒ xx₁ + yy₁ − 2(x + x₁) + 3(y + y₁) − 12 = 0",
+          "⇒ (x₁ − 2)x + (y₁ + 3)y + (−2x₁ + 3y₁ − 12) = 0"
+        ],
+        "why": "The polar of a point is the line S₁ = 0, so writing it with the unknown pole inside gives a line whose coefficients depend on x₁ and y₁. Grouping the x terms, the y terms and the constants is what makes the next comparison possible.",
+        "common_mistakes": [
+          "Using 2g and 2f instead of g and f in S₁.",
+          "Leaving the polar ungrouped, which makes the comparison step much harder."
+        ]
+      },
+      {
+        "id": "s2_compare",
+        "kind": "equation",
+        "label": "Compare with the given line",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Two equations for the same line have proportional coefficients, not equal ones — that is what the letter k stands for.",
+        "memory_tip": "Same line, so the three coefficients are in the same ratio. Call that ratio k.",
+        "lines": [
+          "This is the same line as x + y + 2 = 0, so",
+          "(x₁ − 2)/1 = (y₁ + 3)/1 = (−2x₁ + 3y₁ − 12)/2 = k",
+          "⇒ x₁ = k + 2, y₁ = k − 3",
+          "and −2x₁ + 3y₁ − 12 = 2k"
+        ],
+        "why": "Two equations describe the same straight line when their coefficients are proportional. Setting the common ratio equal to k turns three conditions into one equation in k.",
+        "common_mistakes": [
+          "Setting the coefficients equal instead of proportional.",
+          "Forgetting the denominator 2 under the constant term."
+        ]
+      },
+      {
+        "id": "s3_solve_for_pole",
+        "kind": "boxed_final",
+        "label": "Solve for the pole",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Substitute both expressions into the third condition and solve the single equation in k.",
+        "memory_tip": "One unknown left. Put x₁ and y₁ in terms of k into the third condition.",
+        "lines": [
+          "−2(k + 2) + 3(k − 3) − 12 = 2k",
+          "⇒ −2k − 4 + 3k − 9 − 12 = 2k",
+          "⇒ k − 25 = 2k ⇒ k = −25",
+          "⇒ x₁ = −25 + 2 = −23",
+          "⇒ y₁ = −25 − 3 = −28",
+          {
+            "text": "∴ Pole P(x₁, y₁) = (−23, −28)",
+            "style": "boxed"
+          }
+        ],
+        "why": "A check: with x₁ = −23 and y₁ = −28 the polar is −25x − 25y − 50 = 0, and dividing by −25 gives x + y + 2 = 0, the line asked about. So the pole is right.",
+        "common_mistakes": [
+          "Solving k − 25 = 2k as k = 25.",
+          "Reading x₁ = k − 2 instead of k + 2."
+        ]
+      }
+    ]
+  }
+}

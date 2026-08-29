@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_linear_x_in_y_taninvy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve (1 + y²)dx = (Tan⁻¹y − x)dy.",
+  "appearances": [
+    { "year": 2015, "board": "ap_ipe" },
+    { "year": 2015, "board": "ts_ipe" },
+    { "year": 2018, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Rewrite as linear in x and identify P", "marks": 1 },
+    { "label": "Find the integrating factor", "marks": 1 },
+    { "label": "Set up the integral and substitute", "marks": 1 },
+    { "label": "Integrate by parts and finish", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.74 — SAQ chapter 11 Differential Equations, answer 100, the third answer on the page. Not on an SSP page (this book's SAQ SSP pages for this chapter are only 72 and 73). Printed appearance tags: AP 15; TS 15,18. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 94's printed 1+1+1+1 shape, since this equation is also linear (in x rather than y) with four distinct checkpoints: rewrite, find I.F., set up an integration-by-parts substitution, then finish. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-in-x skill. The book's working was re-derived line by line and is correct throughout, including the integration by parts ∫te^t dt = e^t(t − 1) + c. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The equation has dx and dy mixed with the unknown x appearing without a derivative attached, which is the signal that this is linear IN x, not in y — write it as dx/dy + P(y)x = Q(y) rather than trying to force it into the usual dy/dx form.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differential Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite_identify_p",
+        "kind": "equation",
+        "label": "Rewrite as linear in x and identify P",
+        "marks": 1,
+        "mark_note": "P and ∫P dy",
+        "margin_note": "One mark. The x term appears without a derivative, so divide by (1+y²) and treat this as linear in x with y as the free variable.",
+        "memory_tip": "When x sits alone (not as dx/dy) alongside a dy term, the equation is linear in x, solved with y as the independent variable.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Given D.E is (1 + y²)dx = (Tan⁻¹y − x)dy",
+          "⇒ dx/dy = (Tan⁻¹y − x)/(1 + y²) ⇒ dx/dy + x/(1 + y²) = Tan⁻¹y/(1 + y²)",
+          "This is in the form dx/dy + xP(y) = Q(y), which is linear D.E in x.",
+          "Here P = 1/(1 + y²) ⇒ ∫P dy = ∫1/(1 + y²) dy = Tan⁻¹y"
+        ],
+        "why": "Because x appears without a derivative next to a dy term, the equation is naturally linear in x rather than in y, so it is rewritten as dx/dy + Px = Q with y playing the role x usually plays.",
+        "common_mistakes": [
+          "Trying to force this into a dy/dx = … linear-in-y form, which does not work because x is not isolated the same way.",
+          "Losing the minus sign on x when dividing (Tan⁻¹y − x) by (1 + y²)."
+        ]
+      },
+      {
+        "id": "s2_integrating_factor",
+        "kind": "equation",
+        "label": "Find the integrating factor",
+        "marks": 1,
+        "mark_note": "I.F.",
+        "margin_note": "One mark. I.F. = e^(∫P dy), the same formula as before but integrated with respect to y.",
+        "memory_tip": "The formula for the integrating factor never changes — only the variable of integration switches to y here.",
+        "lines": [
+          "∴ I.F. = e^(∫P dy) = e^(Tan⁻¹y)"
+        ],
+        "why": "The integrating-factor formula applies identically whether the equation is linear in x or in y — only the variable being integrated changes, from x to y.",
+        "common_mistakes": [
+          "Writing e^(Tan⁻¹x) by mistake, confusing this with the earlier answer 98 which used Tan⁻¹x.",
+          "Forgetting the e^(...) wrapper and leaving the I.F. as Tan⁻¹y."
+        ]
+      },
+      {
+        "id": "s3_setup_substitute",
+        "kind": "equation",
+        "label": "Set up the integral and substitute",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "One mark. x·(I.F.) = ∫(I.F.)Q dy is the same formula as before, with x and y swapped.",
+        "memory_tip": "t = Tan⁻¹y makes dt = dy/(1+y²) exactly, matching the leftover factor in the integral.",
+        "lines": [
+          "Hence the solution is x·(I.F.) = ∫(I.F.)Q dy",
+          "⇒ x·e^(Tan⁻¹y) = ∫e^(Tan⁻¹y)·[Tan⁻¹y/(1 + y²)] dy",
+          "Put Tan⁻¹y = t ⇒ 1/(1 + y²) dy = dt, so the integral becomes ∫t·eᵗ dt"
+        ],
+        "why": "Multiplying Q by the integrating factor and substituting t = Tan⁻¹y turns the integral into ∫t eᵗ dt, since dt is exactly the 1/(1+y²)dy factor already present in the integrand.",
+        "common_mistakes": [
+          "Forgetting that Tan⁻¹y appears twice — once inside the exponential and once as the plain factor t multiplying it.",
+          "Missing that dt = dy/(1+y²) is the exact leftover factor, and trying to substitute something else."
+        ]
+      },
+      {
+        "id": "s4_integrate_finish",
+        "kind": "boxed_final",
+        "label": "Integrate by parts and finish",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. ∫teᵗdt = eᵗ(t − 1) + c is a standard integration-by-parts result.",
+        "memory_tip": "Integration by parts on t·eᵗ always gives eᵗ(t − 1) — worth memorising as a standard pair.",
+        "lines": [
+          "∫t·eᵗ dt = teᵗ − ∫eᵗ dt = teᵗ − eᵗ + c = eᵗ(t − 1) + c",
+          "So x·eᵗ = eᵗ(t − 1) + c, and putting t = Tan⁻¹y back in:",
+          { "text": "x = Tan⁻¹y − 1 + c·e^(−Tan⁻¹y)", "style": "boxed" }
+        ],
+        "why": "Integration by parts on t·eᵗ gives the standard result eᵗ(t − 1); dividing the whole equation by eᵗ afterwards isolates x and, substituting t = Tan⁻¹y back in, gives the final answer with a negative exponential term for the arbitrary constant.",
+        "common_mistakes": [
+          "Choosing the wrong parts for integration by parts, taking eᵗ as the part to differentiate instead of t.",
+          "Forgetting to divide the constant term c by eᵗ as well, and leaving it as +c·eᵗ instead of +c·e^(−Tan⁻¹y)."
+        ]
+      }
+    ]
+  }
+}

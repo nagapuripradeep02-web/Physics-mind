@@ -1,0 +1,79 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_hyp_equation_given_foci_and_transverse_axis_length",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Hyperbola (Maths-2B)"
+  },
+  "chapter": "Hyperbola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the hyperbola whose foci are (±5, 0) and whose transverse axis has length 8.",
+  "appearances": [
+    { "year": 2018, "board": "ap_ipe" },
+    { "year": 2016, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Find a and e", "marks": 1 },
+    { "label": "Find b and write the equation", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 15 Hyperbola, answer 136, and repeated verbatim as the fifth sub-item of the Bullet Model Paper's Q5 (book p.104). NOT on an SSP page. Printed appearances: AP 18 · TS 16. No mark tags printed — the 1+1 split here is OURS. No error found in the book's printed working. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "Foci on the x-axis with the transverse-axis length also given (not eccentricity) is the fastest route: get a first from 2a, then e = (given ae)/a, then b² last — trying to find b² before a wastes time.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Find a and e",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. The axis length gives a directly; the foci then give e.",
+        "memory_tip": "Transverse axis LENGTH is 2a, not a — halve it first.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Foci = (±ae, 0) = (±5, 0) ⇒ ae = 5",
+          "Length of transverse axis = 2a = 8 ⇒ a = 4",
+          "So e = 5/4"
+        ],
+        "why": "The foci give ae directly, and the transverse-axis length gives a on its own — dividing the two recovers e without needing b at all yet.",
+        "common_mistakes": [
+          "Using 2a = 8 to say a = 8 instead of a = 4 — the axis length is 2a, not a.",
+          "Mixing up ae = 5 (from the foci) with a itself."
+        ]
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "Find b and write the equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. b² = a²(e²−1), never a²(1−e²) as for an ellipse.",
+        "memory_tip": "For a hyperbola e > 1, so e² − 1 is always positive — the ellipse formula a²(1−e²) would give a NEGATIVE number here, a sure sign of using the wrong formula.",
+        "lines": [
+          "b² = a²(e² − 1) = 16(25/16 − 1) = 16(9/16) = 9",
+          { "text": "Equation of the hyperbola: x²/16 − y²/9 = 1", "style": "boxed" }
+        ],
+        "why": "b² is found from the identity b² = a²(e²−1), which comes from e² = (a²+b²)/a² rearranged; once a² and b² are known the standard form follows directly.",
+        "common_mistakes": [
+          "Using b² = a²(1−e²) — the ellipse formula — instead of the hyperbola's b² = a²(e²−1); for a hyperbola e>1 so e²−1 is positive, giving a positive b².",
+          "Forgetting to square a before substituting into the standard form (writing x²/4 instead of x²/16)."
+        ]
+      }
+    ]
+  }
+}

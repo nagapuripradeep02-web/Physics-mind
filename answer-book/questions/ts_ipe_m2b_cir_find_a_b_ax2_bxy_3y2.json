@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_find_a_b_ax2_bxy_3y2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the values of a, b if ax² + bxy + 3y² − 5x + 2y − 3 = 0 represents a circle. Also find the radius and centre.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a and b and divide to the standard form",
+      "marks": 1
+    },
+    {
+      "label": "Find the centre and the radius",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 12 Circle, answer 105.2. It sits on a ★★★ SSP (Super Scoring Page): book p.77 carries the SSP banner. It is the right-hand twin of answer 105.1 and adds the second condition, the missing xy term. No appearance tag is printed beside it. Every number was re-derived and the book is correct: a = 3, b = 0, centre (5/6, −1/3) and radius √65/6. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Both conditions are needed here and each is worth stating in words: the x² and y² coefficients must match, and the xy coefficient must be zero — writing only one of them is a half answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_a_b",
+        "kind": "equation",
+        "label": "Find a and b and divide to the standard form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Say both conditions. b = 0 is easy to leave out because the xy term is not printed in the answer.",
+        "memory_tip": "Equal x² and y² coefficients, and no xy term at all.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For a circle:",
+          "(i) coefficient of x² = coefficient of y²",
+          "⇒ a = 3",
+          "(ii) coefficient of xy = 0 ⇒ b = 0",
+          "Circle is 3x² + 3y² − 5x + 2y − 3 = 0",
+          "Divide by 3: x² + y² − (5/3)x + (2/3)y − 1 = 0"
+        ],
+        "why": "A general second-degree equation is a circle only when the two squared terms have the same coefficient and the xy term is absent. An xy term would tilt the curve into an ellipse or a hyperbola.",
+        "common_mistakes": [
+          "Giving a = 3 and stopping, without saying b = 0.",
+          "Dividing by 3 but leaving the constant as −3."
+        ]
+      },
+      {
+        "id": "s2_centre_and_radius",
+        "kind": "boxed_final",
+        "label": "Find the centre and the radius",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Halve the divided coefficients: g = −5/6 and f = 1/3.",
+        "memory_tip": "Half of −5/3 is −5/6; half of 2/3 is 1/3.",
+        "lines": [
+          "Here g = −5/6, f = 1/3, c = −1",
+          "Centre = (−g, −f) = (5/6, −1/3)",
+          "Radius = √(25/36 + 1/9 + 1)",
+          "= √((25 + 4 + 36)/36)",
+          {
+            "text": "∴ Centre (5/6, −1/3), radius √65/6",
+            "style": "boxed"
+          }
+        ],
+        "why": "Putting every term over 36 makes the addition one step: 25 + 4 + 36 = 65. Since 65 is not a perfect square, the radius stays as √65 over 6.",
+        "common_mistakes": [
+          "Writing the centre as (−5/6, 1/3).",
+          "Adding 1/9 as 1/36 instead of 4/36."
+        ]
+      }
+    ]
+  }
+}

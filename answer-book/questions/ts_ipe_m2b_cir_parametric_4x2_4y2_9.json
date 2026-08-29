@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_parametric_4x2_4y2_9",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Obtain the parametric equations of the circle 4(x² + y²) = 9.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Divide to the standard form",
+      "marks": 1
+    },
+    {
+      "label": "Write the parametric equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 12 Circle, answer 107.2. Printed appearance tag: TS 17. Every number was re-derived and the book is correct: centre (0, 0) and radius 3/2. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Dividing by 4 first is the whole question: 9/4 is r², so the radius is 3/2 and not 9/4 — squaring and un-squaring at the wrong moment is the only way to go wrong here.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_divide",
+        "kind": "equation",
+        "label": "Divide to the standard form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Divide by 4 so the coefficient of x² is 1, then read 9/4 as r².",
+        "memory_tip": "x² + y² = r². Whatever sits on the right is r squared, not r.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: 4(x² + y²) = 9",
+          "⇒ x² + y² = 9/4 = (3/2)²",
+          "Compare with x² + y² = r²",
+          "⇒ Centre C = (0, 0), radius r = 3/2"
+        ],
+        "why": "The standard form needs coefficient 1 on x² and y². After dividing, the right side is r², so the radius is its square root.",
+        "common_mistakes": [
+          "Taking the radius as 9/4.",
+          "Dividing only the left side by 4."
+        ]
+      },
+      {
+        "id": "s2_parametric",
+        "kind": "boxed_final",
+        "label": "Write the parametric equations",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. The centre is the origin, so there is nothing to add in front.",
+        "memory_tip": "Centre at the origin: x = r cos θ and y = r sin θ, with nothing added.",
+        "lines": [
+          "Here g = 0 and f = 0, so the centre is the origin.",
+          "x = r cos θ,  y = r sin θ",
+          {
+            "text": "∴ x = (3/2) cos θ,  y = (3/2) sin θ",
+            "style": "boxed"
+          }
+        ],
+        "why": "With the centre at the origin the constant parts vanish and the parametric form is the plain r cos θ and r sin θ.",
+        "common_mistakes": [
+          "Writing x = (9/4) cos θ.",
+          "Adding a centre term that is not there."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_polar_of_3_minus1_wrt_2x2_2y2_11",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the polar of (3,−1) with respect to 2x² + 2y² = 11.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the polar formula for this circle",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.97 — Star Questions Plus, answer 201, printed under the banner \"CIRCLES-VSAQ\". The banner names the chapter and the mark cut, but a bank question's section is still OURS: it is classed VSAQ because it is the same one-formula shape as answer 115 in the VSAQ chapter, and the book’s own VSAQ hit list on book p.11 names it as VSAQ 10. Printed appearance tag: TS 19. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Every number was re-derived and the book is correct: the polar is 6x − 2y − 11 = 0. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The book keeps the coefficient 2 and uses the polar of ax² + ay² − r² = 0 as ax₁x + ay₁y − r² = 0; dividing by 2 first and then clearing the halves gives the same line, so either route is marked.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Write the polar formula for this circle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Keep the coefficient 2 in front of both x and y, exactly as the circle has it.",
+        "memory_tip": "For ax² + ay² − r² = 0 the polar of (x₁, y₁) is ax₁x + ay₁y − r² = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: 2x² + 2y² = 11",
+          "i.e. S ≡ 2x² + 2y² − 11 = 0",
+          "The polar of P(x₁, y₁) is S₁ = 0",
+          "⇒ 2x₁x + 2y₁y − 11 = 0"
+        ],
+        "why": "S₁ replaces one x of x² by x₁ and one y of y² by y₁, keeping every coefficient as it stands. The same line comes out if the circle is divided by 2 first and the halves are cleared at the end.",
+        "common_mistakes": [
+          "Dropping the coefficient 2 and writing x₁x + y₁y − 11 = 0.",
+          "Dividing only the squared terms by 2."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 2(−1) = −2, so the y coefficient is negative.",
+        "memory_tip": "2(3) = 6 and 2(−1) = −2. The constant stays 11.",
+        "lines": [
+          "With (x₁, y₁) = (3, −1):",
+          "2(3)x + 2(−1)y − 11 = 0",
+          {
+            "text": "∴ Polar is 6x − 2y − 11 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "A check by the other route: dividing the circle by 2 gives x² + y² = 11/2, whose polar is 3x − y − 11/2 = 0, and doubling that gives 6x − 2y − 11 = 0, the same line.",
+        "common_mistakes": [
+          "Writing +2y because the point has a negative y.",
+          "Halving the 11 as well as the squared terms."
+        ]
+      }
+    ]
+  }
+}

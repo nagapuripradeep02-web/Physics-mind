@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_hyp_tangent_find_k_3x_minus4y_plus_k_x2_minus4y2_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Hyperbola (Maths-2B)"
+  },
+  "chapter": "Hyperbola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of k if 3x − 4y + k = 0 is a tangent to the hyperbola x² − 4y² = 5.",
+  "appearances": [
+    { "year": 2015, "board": "ts_ipe" },
+    { "year": 2017, "board": "ts_ipe" },
+    { "year": 2018, "board": "ts_ipe" },
+    { "year": 2019, "board": "ap_ipe" },
+    { "year": 2020, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Set up the tangency condition", "marks": 1 },
+    { "label": "Solve for k", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 15 Hyperbola, answer 137, and repeated verbatim as the fourth sub-item of the Bullet Model Paper's Q5 (book p.104). NOT on an SSP page. Printed appearances: TS 15,17,18 · AP 19,20. No mark tags printed — the 1+1 split here is OURS. The book adds a printed 'Try this' side-note on p.85 suggesting the alternative slope-form method (convert to y = mx + c, apply c² = a²m² − b²) as a self-check; this card mentions that alternative route in its insider_note rather than repeating it as a second full derivation, since both routes give the same k = ±5. No error found in the book's printed working. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "This same tangency condition n² = a²l² − b²m² can be reached the slower way too — convert the line to y = mx + c form and use c² = a²m² − b² — the book's own 'Try this' note on p.85 suggests exactly that as a cross-check; both routes give k = ±5.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the tangency condition",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. Comparing coefficients avoids first converting the line to slope form.",
+        "memory_tip": "For a line lx + my + n = 0 tangent to a hyperbola, use n² = a²l² − b²m² — subtract, do not add.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Given hyperbola x² − 4y² = 5 ⇒ x²/5 − y²/(5/4) = 1 ⇒ a² = 5, b² = 5/4",
+          "Comparing 3x − 4y + k = 0 with the general line lx + my + n = 0: l = 3, m = −4, n = k",
+          "Tangency condition: n² = a²l² − b²m²"
+        ],
+        "why": "The line-form tangency test avoids first converting the line to slope form — compare its coefficients l, m, n directly against the hyperbola's a², b².",
+        "common_mistakes": [
+          "Reading m as +4 instead of −4 from 3x − 4y + k = 0.",
+          "Using the ellipse's tangency test n² = a²l² + b²m² instead of the hyperbola's, which subtracts."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve for k",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. Squaring a line's constant term always allows both signs.",
+        "memory_tip": "A tangency condition solved for k always gives ± — never report only the positive root.",
+        "lines": [
+          "k² = 5(3²) − (5/4)(−4)² = 45 − 20 = 25",
+          { "text": "k = ±5", "style": "boxed" }
+        ],
+        "why": "Substituting l=3, m=−4 into the tangency condition gives a single equation in k alone, which has two solutions since squaring a line's intercept always allows both signs.",
+        "common_mistakes": [
+          "Dropping the ± and reporting only k=5.",
+          "Computing (−4)² as −16 instead of +16 before multiplying by 5/4."
+        ]
+      }
+    ]
+  }
+}

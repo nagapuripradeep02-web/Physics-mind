@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_tangent_length_2_5_root37_find_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of k if the length of the tangent from (2,5) to x² + y² − 5x + 4y + k = 0 is √37.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the tangent length as √S₁₁",
+      "marks": 1
+    },
+    {
+      "label": "Square and solve for k",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 12 Circle, answer 110.2. It sits on a ★★★ SSP (Super Scoring Page): book p.79 carries the SSP banner. It is the right-hand twin of answer 110.1. Printed appearance tags: TS 18 and AP 17. Every number was re-derived and the book is correct: 39 + k = 37 gives k = −2. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The unknown here is the constant term itself, so S₁₁ ends in \"+ k\" and the answer is one subtraction — the risk is halving the −5x, which S₁₁ never does.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tangent_length",
+        "kind": "equation",
+        "label": "Write the tangent length as √S₁₁",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. S₁₁ uses the coefficients as printed; there is no halving anywhere in it.",
+        "memory_tip": "Length of the tangent is √S₁₁, and S₁₁ is the equation with the point put in.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Length of the tangent from (2, 5) to",
+          "S ≡ x² + y² − 5x + 4y + k = 0 is √S₁₁",
+          "Given √S₁₁ = √37",
+          "Squaring both sides: S₁₁ = 37"
+        ],
+        "why": "S₁₁ is the left side of the circle equation with x replaced by 2 and y by 5. Squaring both sides first turns a surd equation into an ordinary one.",
+        "common_mistakes": [
+          "Halving −5 and 4 as if reading g and f.",
+          "Writing S₁₁ = √37 without squaring."
+        ]
+      },
+      {
+        "id": "s2_solve_k",
+        "kind": "boxed_final",
+        "label": "Square and solve for k",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 4 + 25 − 10 + 20 = 39, so k = 37 − 39.",
+        "memory_tip": "Add the four numbers first, then subtract from 37.",
+        "lines": [
+          "S₁₁ = 2² + 5² − 5(2) + 4(5) + k",
+          "= 4 + 25 − 10 + 20 + k = 39 + k",
+          "⇒ 39 + k = 37",
+          {
+            "text": "∴ k = −2",
+            "style": "boxed"
+          }
+        ],
+        "why": "The four numerical terms add to 39, so k must be −2 for the total to be 37. The answer is small and negative, which is exactly what a short tangent length gives.",
+        "common_mistakes": [
+          "Adding −5(2) as +10.",
+          "Solving 39 + k = 37 as k = 2."
+        ]
+      }
+    ]
+  }
+}

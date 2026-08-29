@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_laq_sinx_plus_cosx_over_9plus16sin2x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫₀^(π/4) (sinx + cosx)/(9 + 16 sin2x) dx.",
+  "appearances": [
+    { "year": 2015, "board": "ap_ipe" },
+    { "year": 2017, "board": "ap_ipe" },
+    { "year": 2015 }
+  ],
+  "mark_split": [
+    { "label": "Substitute sinx − cosx = t", "marks": 2 },
+    { "label": "Rewrite 9 + 16sin2x in terms of t", "marks": 2 },
+    { "label": "Integrate using the standard log formula", "marks": 2 },
+    { "label": "Evaluate the limits", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.43 (PDF page 42) — LAQ chapter 4 'Definite Integrals', answer 38, the second and last item on this page, directly following answer 37. Printed appearance: AP 15, 17 and TS 15. Chapter star rank ★★★ applies. No margin mark tags are printed here, so the 2+2+2+1 split is OURS, patterned the same way as the neighbouring answer 37 on this page and on book p.22 answer 9's printed 2+2+2+1 shape. Note: PDF page 42 was read for printed p.43, and PDF page 43 is a duplicate scan of the same page (confirmed identical). Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the fourth Q23 item on the Bullet Model Paper, book p.116 — same value, so no separate card is authored for that appearance."
+  },
+  "insider_note": "The whole question turns on spotting that d(sinx − cosx) = (cosx + sinx) dx — the numerator is a disguised derivative of the substitution variable, which is what makes an otherwise messy denominator solvable.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Definite Integrals · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Substitute sinx − cosx = t",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. Check both new limits carefully — the lower limit works out to −1, not 0.",
+        "memory_tip": "d(sinx − cosx) = (cosx + sinx) dx — the numerator IS the derivative of the substitution.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Let sinx − cosx = t. Then (cosx + sinx) dx = dt",
+          "x = 0 ⇒ t = sin0 − cos0 = 0 − 1 = −1",
+          "x = π/4 ⇒ t = sin(π/4) − cos(π/4) = 1/√2 − 1/√2 = 0"
+        ],
+        "why": "Choosing t = sinx − cosx works because its derivative dt = (cosx + sinx)dx is exactly the numerator of the integrand — the substitution absorbs the whole numerator into dt.",
+        "common_mistakes": [
+          "Computing the lower limit as t = 0 by mis-simplifying sin0 − cos0.",
+          "Choosing sinx + cosx as the substitution instead of sinx − cosx, which does not match the given numerator."
+        ]
+      },
+      {
+        "id": "s2_rewrite",
+        "kind": "equation",
+        "label": "Rewrite 9 + 16sin2x in terms of t",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. Squaring the substitution is the trick that reveals sin2x hiding inside 9 + 16sin2x.",
+        "memory_tip": "(sinx − cosx)² = 1 − sin2x always — squaring the substitution variable is how sin2x is reached.",
+        "lines": [
+          "(sinx − cosx)² = t² ⇒ sin²x + cos²x − 2sinx cosx = t² ⇒ 1 − sin2x = t²",
+          "⇒ sin2x = 1 − t²",
+          "∴ 9 + 16sin2x = 9 + 16(1 − t²) = 25 − 16t²"
+        ],
+        "why": "Squaring t = sinx − cosx produces the term −2sinx cosx = −sin2x, which is exactly the quantity needed to rewrite the whole denominator purely in terms of t.",
+        "common_mistakes": [
+          "Expanding (sinx − cosx)² with the wrong sign on the cross term, giving 1 + sin2x instead of 1 − sin2x.",
+          "Substituting sin2x = 1 − t² only partially, leaving a mixed x-and-t expression."
+        ]
+      },
+      {
+        "id": "s3_integrate",
+        "kind": "equation",
+        "label": "Integrate using the standard log formula",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for matching the integral to the standard a² − x² log formula, with a = 5 and the variable 4t.",
+        "memory_tip": "∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c — here a = 5 and the variable is 4t, so an extra factor of 1/4 appears from d(4t) = 4dt.",
+        "lines": [
+          "∴ I = ∫₋₁^0 dt/(25 − 16t²) = ∫₋₁^0 dt/(5² − (4t)²)",
+          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁^0     [∵ ∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c]",
+          "= (1/40) [log|(5 + 4t)/(5 − 4t)|]₋₁^0"
+        ],
+        "why": "25 − 16t² matches the standard a² − x² form with a = 5 and x replaced by 4t; the extra 1/4 factor accounts for the fact that d(4t) = 4 dt, not dt.",
+        "common_mistakes": [
+          "Forgetting the extra 1/4 factor that comes from treating 4t as the variable of the standard formula.",
+          "Writing the log formula with a Tan⁻¹ form instead of the correct log form (a²−x² takes a log, not a²+x² which takes a Tan⁻¹)."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Evaluate the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. log9 = log3², so the 2 in the numerator cancels one of the two 2's hiding in 40.",
+        "memory_tip": "log1 = 0, so only the t = −1 term survives with a minus sign in front.",
+        "lines": [
+          "= (1/40)[log(5/5) − log(1/9)] = (1/40)[0 − log(1/9)] = (1/40) log9",
+          "= (1/40) log3² = (2 log3)/40",
+          { "text": "∴ I = (log3)/20", "style": "boxed" }
+        ],
+        "why": "At t = 0 the log term is log1 = 0, and at t = −1 it is log(1/9) = −log9; subtracting the second from the first flips the sign, and log3² = 2log3 lets the final fraction simplify to a clean quotient by 20.",
+        "common_mistakes": [
+          "Writing log(1/9) as +log9 instead of −log9, flipping the final sign.",
+          "Leaving the answer as (2log3)/40 instead of simplifying to (log3)/20."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_chord_length_x2_y2_a2_normal_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the length of the chord formed by x² + y² = a² on the line x cos α + y sin α = p.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Read the centre, radius and distance",
+      "marks": 1
+    },
+    {
+      "label": "Write the length of the chord",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.97 — Star Questions Plus, answer 202, printed under the banner \"CIRCLES-VSAQ\". The banner names the chapter and the mark cut, but a bank question's section is still OURS: it is classed VSAQ because it is a single substitution into the chord formula with no numbers to work out, which is the VSAQ shape rather than the four-mark chord questions of the SAQ chapter. NOTE ON THE BOOK'S NUMBERING: on book p.97 this answer 202 is printed AFTER answer 203, so the page runs 199, 200, 201, 203, 202, 204, 205. The order in this unit follows the page as printed. No appearance tag is printed beside it. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Every step was re-derived and the book is correct: the chord is 2√(a² − p²). Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The line is already in normal form, so p IS the perpendicular distance from the origin — recognising that is the whole question, and computing the distance from scratch wastes the time it saves.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_read_off",
+        "kind": "equation",
+        "label": "Read the centre, radius and distance",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Say in words that the line is in normal form; that sentence is what earns it.",
+        "memory_tip": "x cos α + y sin α = p is the normal form, and p is the distance from the origin.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² = a²",
+          "⇒ Centre C = (0, 0), radius r = a",
+          "The line x cos α + y sin α = p is in normal",
+          "form, so the perpendicular distance from",
+          "the origin is p."
+        ],
+        "why": "In the normal form the coefficients satisfy cos²α + sin²α = 1, so the usual distance formula divides by 1 and the distance is simply p. The centre is the origin, so no further work is needed.",
+        "common_mistakes": [
+          "Computing √(cos²α + sin²α) as something other than 1.",
+          "Taking a² as the radius instead of a."
+        ]
+      },
+      {
+        "id": "s2_chord",
+        "kind": "boxed_final",
+        "label": "Write the length of the chord",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. The answer is a formula in a and p; there is nothing numerical to compute.",
+        "memory_tip": "Length of chord = 2√(r² − p²), with r = a.",
+        "lines": [
+          "Length of the chord = 2√(r² − p²)",
+          {
+            "text": "∴ Length of the chord = 2√(a² − p²)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The perpendicular from the centre bisects the chord, so half the chord is √(r² − p²) by Pythagoras. Here r = a, so the whole chord is 2√(a² − p²). It is real only when p < a, that is when the line actually cuts the circle.",
+        "common_mistakes": [
+          "Writing 2√(a − p) without the squares.",
+          "Leaving out the factor 2 and giving half the chord."
+        ]
+      }
+    ]
+  }
+}

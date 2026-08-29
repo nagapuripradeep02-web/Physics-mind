@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_saq_a_sinx_plus_b_cosx_over_sinx_plus_cosx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Evaluate ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx) dx.",
+  "appearances": [
+    { "year": 2017, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Apply the property with a = π/2", "marks": 1 },
+    { "label": "Write the second form", "marks": 1 },
+    { "label": "Add and solve", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 10 'Definite Integrals' (chapter banner ★★★, 4 Marks), the opening item, answer 82, on a printed Super Scoring Page (SSP 68). Printed appearance: AP 17. This is one of only three SAQ Definite Integrals answers with a genuinely PRINTED margin mark split (book p.13/p.49-equivalent chapter table gives the chapter ★★★): the page prints '1 Mark' beside the first line, '1 Mark' beside the second, and '2 Marks' beside the final combined line — transcribed here exactly. Boundary reading: printed p.67 (last Hyperbola SAQ answers, 80-81) and printed p.72 (Differential Equations SAQ opening, 92) confirm the chapter span on both sides. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "The book's own note calls the first three SAQ answers in this chapter 'Back 2 Back Same Dead Easy Models' — all three (82, 83, 84) share the identical King's-property-then-add shape, so learning this one teaches the next two almost for free.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Definite Integrals · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the property with a = π/2",
+        "marks": 1,
+        "mark_note": "First form",
+        "margin_note": "One mark. State the property before using it.",
+        "memory_tip": "sin(π/2 − x) = cosx and cos(π/2 − x) = sinx — the two swap places.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
+          "∴ I = ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx) dx …(1)"
+        ],
+        "why": "Stating the property first, with the given integral labelled (1), sets up the second form that will be added to it.",
+        "common_mistakes": [
+          "Skipping the property statement and jumping straight to the substitution.",
+          "Mislabelling which integral is (1) and which will be (2)."
+        ]
+      },
+      {
+        "id": "s2_second_form",
+        "kind": "equation",
+        "label": "Write the second form",
+        "marks": 1,
+        "mark_note": "Second form",
+        "margin_note": "One more mark. sinx and cosx swap under x → π/2 − x.",
+        "memory_tip": "Under x → π/2 − x, every sinx becomes cosx and every cosx becomes sinx — swap them consistently everywhere.",
+        "lines": [
+          "By x → π/2 − x:",
+          "I = ∫₀^(π/2) [a sin(π/2−x) + b cos(π/2−x)]/[sin(π/2−x) + cos(π/2−x)] dx",
+          "⇒ I = ∫₀^(π/2) (a cosx + b sinx)/(cosx + sinx) dx …(2)"
+        ],
+        "why": "Every sinx becomes cosx and every cosx becomes sinx under the substitution, so the numerator's a and b swap partners while the denominator (being symmetric in sinx and cosx) is unchanged.",
+        "common_mistakes": [
+          "Swapping the numerator but forgetting the denominator is unchanged (it already contains both sinx and cosx).",
+          "Swapping only one of the two terms in the numerator."
+        ]
+      },
+      {
+        "id": "s3_final",
+        "kind": "boxed_final",
+        "label": "Add and solve",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Adding (1) and (2) makes (a+b) a common factor of the whole numerator.",
+        "memory_tip": "a(sinx+cosx) + b(cosx+sinx) = (a+b)(sinx+cosx) — the denominator cancels completely.",
+        "lines": [
+          "Adding (1) and (2): I + I = ∫₀^(π/2) [a(sinx+cosx) + b(cosx+sinx)]/(cosx+sinx) dx",
+          "⇒ 2I = ∫₀^(π/2) (a+b)(cosx+sinx)/(cosx+sinx) dx = ∫₀^(π/2) (a+b) dx",
+          "⇒ 2I = (a+b)[x]₀^(π/2) = (a+b)(π/2)",
+          { "text": "∴ I = (a + b)π/4", "style": "boxed" }
+        ],
+        "why": "Adding the two forms lets (a+b) factor out of the whole numerator, which then cancels exactly with the denominator sinx+cosx, leaving a plain constant to integrate.",
+        "common_mistakes": [
+          "Not factoring (a+b) out correctly before cancelling with the denominator.",
+          "Forgetting the final division by 2 when isolating I from 2I."
+        ]
+      }
+    ]
+  }
+}

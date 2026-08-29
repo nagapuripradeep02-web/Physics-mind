@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_linear_cosx_dy_ysinx_sec2x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve cos x·dy/dx + y sin x = sec²x.",
+  "appearances": [
+    { "year": 2019, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Rewrite in standard form and identify P", "marks": 1 },
+    { "label": "Find the integrating factor", "marks": 1 },
+    { "label": "Integrate and finish", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 11 Differential Equations, answer 96, the second answer on the page. On a ★★★ SSP (Super Scoring Page): book p.73 carries the SSP 73 banner. Printed appearance tag: TS 19 — no AP tag. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 95's printed 1+1+2 shape on the same page, since both are linear equations solved by the same P/I.F./integrate sequence, only this one needs an extra rewriting step to reach the standard dy/dx + Py = Q form first. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-equation skill. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The equation must be divided by cos x before it matches the standard dy/dx + Py = Q form — skipping that division is the most common way students misidentify P and Q here.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differential Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite_identify_p",
+        "kind": "equation",
+        "label": "Rewrite in standard form and identify P",
+        "marks": 1,
+        "mark_note": "P and ∫P dx",
+        "margin_note": "One mark. Divide the whole equation by cos x to reach the standard linear form.",
+        "memory_tip": "sin x/cos x = tan x and sec²x/cos x = sec³x — divide every term by cos x together.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Given D.E is cos x·dy/dx + y sin x = sec²x",
+          "⇒ dy/dx + y(sin x/cos x) = sec²x/cos x",
+          "⇒ dy/dx + y tan x = sec³x",
+          "This is in the form dy/dx + yP(x) = Q(x). Here P = tan x ⇒ ∫P dx = ∫tan x dx = log sec x"
+        ],
+        "why": "Dividing every term by cos x turns the coefficient of dy/dx into 1, which is required before the equation matches the standard linear form and P can be read off directly.",
+        "common_mistakes": [
+          "Trying to identify P and Q before dividing by cos x, and reading P as sin x instead of tan x.",
+          "Simplifying sec²x/cos x incorrectly, forgetting it becomes sec³x."
+        ]
+      },
+      {
+        "id": "s2_integrating_factor",
+        "kind": "equation",
+        "label": "Find the integrating factor",
+        "marks": 1,
+        "mark_note": "I.F.",
+        "margin_note": "One mark. I.F. = e^(∫P dx) always.",
+        "memory_tip": "e^(log sec x) = sec x — the same simplification as every other linear equation with P = tan x.",
+        "lines": [
+          "∴ I.F. = e^(∫P dx) = e^(log sec x) = sec x"
+        ],
+        "why": "Since P = tan x here just as in the two previous linear equations in this chapter, the integrating factor formula gives the same result: sec x.",
+        "common_mistakes": [
+          "Forgetting to redo the I.F. calculation and copying a different integrating factor from a nearby question.",
+          "Writing I.F. as tan x instead of e raised to ∫P dx."
+        ]
+      },
+      {
+        "id": "s3_integrate_finish",
+        "kind": "boxed_final",
+        "label": "Integrate and finish",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Two marks. sec x · sec³x = sec⁴x, and sec⁴x splits into sec²x + sec²x·tan²x for integration.",
+        "memory_tip": "sec²x = 1 + tan²x — write sec⁴x = sec²x(1 + tan²x) so one piece integrates plainly and the other by a direct substitution.",
+        "lines": [
+          "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
+          "⇒ y sec x = ∫sec x·sec³x dx = ∫sec⁴x dx = ∫sec²x(1 + tan²x) dx",
+          "= ∫sec²x dx + ∫sec²x tan²x dx = tan x + tan³x/3 + c",
+          { "text": "y sec x = tan x + tan³x/3 + c", "style": "boxed" }
+        ],
+        "why": "Writing sec⁴x as sec²x(1 + tan²x) splits it into a plain sec²x integral and a sec²x·tan²x term, and since sec²x is the derivative of tan x, the second piece integrates directly using tan x as the new variable.",
+        "common_mistakes": [
+          "Trying to integrate sec⁴x directly without the sec²x = 1 + tan²x identity.",
+          "Missing the /3 that comes from integrating tan²x·sec²x, which uses the power rule on tan x."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_saq_sqrt_sinx_over_sqrt_sinx_plus_sqrt_cosx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Evaluate ∫_(π/6)^(π/3) √sinx/(√sinx + √cosx) dx.",
+  "appearances": [
+    { "year": 2020 }
+  ],
+  "mark_split": [
+    { "label": "Apply the property with a + b = π/2", "marks": 1 },
+    { "label": "Write the second form", "marks": 1 },
+    { "label": "Add and solve", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 10 'Definite Integrals', answer 85, directly below answer 84's practice-question box. Printed tags beside the question: TS 20 and IPE 14. The IPE 14 tag (pre-2014 undivided-board paper) is NOT an appearance per the schema's enum and is recorded here only in prose. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1+2 split is OURS, patterned on the printed 1+1+2 splits of answers 82 and 83 in this same chapter. Note the LIMITS here are π/6 to π/3, not 0 to π/2, so the property used is the general ∫ₐ^b f(x)dx = ∫ₐ^b f(a+b−x)dx form with a+b = π/6+π/3 = π/2 — the same sin↔cos swap results, but the property statement itself must show the general form, not the 0-to-a special case. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "The limits π/6 and π/3 add up to π/2, exactly the angle where sinx and cosx swap under the property — that sum, not 0-to-π/2 itself, is what makes the swap trick work here.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Definite Integrals · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the property with a + b = π/2",
+        "marks": 1,
+        "mark_note": "First form",
+        "margin_note": "One mark. Use the general ∫ₐ^b form here, not the 0-to-a special case — the limits are not 0 and π/2.",
+        "memory_tip": "π/6 + π/3 = π/2 — check this sum first, it is what makes the sin↔cos swap appear.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "We know ∫ₐ^b f(x)dx = ∫ₐ^b f(a + b − x)dx",
+          "∴ I = ∫_(π/6)^(π/3) √sinx/(√sinx + √cosx) dx …(1)"
+        ],
+        "why": "The general King's property replaces x by (the sum of the two limits, minus x); here π/6 + π/3 = π/2, so the replacement is x → π/2 − x, the same swap that makes sinx and cosx exchange places.",
+        "common_mistakes": [
+          "Using the 0-to-a special case of the property when the lower limit is not 0.",
+          "Computing a + b as π/6 × π/3 instead of the sum π/6 + π/3."
+        ]
+      },
+      {
+        "id": "s2_second_form",
+        "kind": "equation",
+        "label": "Write the second form",
+        "marks": 1,
+        "mark_note": "Second form",
+        "margin_note": "One more mark. √sinx becomes √cosx under the swap.",
+        "memory_tip": "sin(π/2 − x) = cosx, so √sin(π/2−x) = √cosx.",
+        "lines": [
+          "By x → π/6 + π/3 − x = π/2 − x:",
+          "I = ∫_(π/6)^(π/3) √sin(π/2−x)/[√sin(π/2−x) + √cos(π/2−x)] dx",
+          "⇒ I = ∫_(π/6)^(π/3) √cosx/(√cosx + √sinx) dx …(2)"
+        ],
+        "why": "Since π/6 + π/3 = π/2, the swap x → π/2 − x turns sinx into cosx and vice versa, so the numerator and denominator terms exchange places while the limits stay the same.",
+        "common_mistakes": [
+          "Leaving the numerator unchanged at √sinx instead of turning it into √cosx.",
+          "Forgetting that the limits π/6 and π/3 stay exactly as they were — only the integrand changes."
+        ]
+      },
+      {
+        "id": "s3_final",
+        "kind": "boxed_final",
+        "label": "Add and solve",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The added numerator equals the denominator, so the fraction is 1.",
+        "memory_tip": "π/3 minus π/6 is π/6 — the length of the original interval survives into the final answer.",
+        "lines": [
+          "Adding (1) and (2): I + I = ∫_(π/6)^(π/3) (√sinx + √cosx)/(√sinx + √cosx) dx",
+          "⇒ 2I = ∫_(π/6)^(π/3) 1 dx = [x]_(π/6)^(π/3) = π/3 − π/6 = π/6",
+          { "text": "∴ I = π/12", "style": "boxed" }
+        ],
+        "why": "The two numerators add up to exactly the denominator, so the integrand becomes 1 for every x, reducing the integral to the length of the interval between the two limits.",
+        "common_mistakes": [
+          "Computing π/3 − π/6 incorrectly instead of the correct π/6.",
+          "Forgetting the final division by 2 to isolate I."
+        ]
+      }
+    ]
+  }
+}

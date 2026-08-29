@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_centre_2_3_find_g_f_radius",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If x² + y² + 2gx + 2fy − 12 = 0 is a circle with centre (2,3) then find (g,f) and its radius.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find g and f from the centre",
+      "marks": 1
+    },
+    {
+      "label": "Find the radius",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 12 Circle, answer 104.2. It sits on a ★★★ SSP (Super Scoring Page): book p.77 carries the SSP banner. It is the right-hand twin of answer 104.1. Printed appearance tag: AP 19. Every number was re-derived and the book is correct: g = −2, f = −3 and the radius is 5. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Here c = −12, so −c adds 12 and the radius comes out as a whole number — a negative constant always makes the radius larger, never smaller.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_g_and_f",
+        "kind": "equation",
+        "label": "Find g and f from the centre",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Centre (−g, −f), so a positive centre gives negative g and f.",
+        "memory_tip": "Centre (2, 3) means −g = 2 and −f = 3, so g and f are both negative.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² + 2gx + 2fy − 12 = 0",
+          "Centre = (−g, −f) = (2, 3)",
+          "⇒ −g = 2 and −f = 3",
+          "∴ g = −2, f = −3"
+        ],
+        "why": "The centre of x² + y² + 2gx + 2fy + c = 0 is (−g, −f), so a centre with positive coordinates comes from negative g and f.",
+        "common_mistakes": [
+          "Writing g = 2 and f = 3 by copying the centre.",
+          "Reading the constant −12 as part of the centre."
+        ]
+      },
+      {
+        "id": "s2_radius",
+        "kind": "boxed_final",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. c = −12, and the formula subtracts c, so +12 is added.",
+        "memory_tip": "Subtracting a negative adds. −c with c = −12 gives +12.",
+        "lines": [
+          "Here c = −12",
+          "Circle is x² + y² − 4x − 6y − 12 = 0",
+          "Radius = √(g² + f² − c) = √(4 + 9 + 12)",
+          {
+            "text": "∴ Radius = √25 = 5",
+            "style": "boxed"
+          }
+        ],
+        "why": "The formula subtracts c, and c is itself negative, so the two minus signs make a plus. That is why 12 is added rather than taken away.",
+        "common_mistakes": [
+          "Computing √(4 + 9 − 12) = 1.",
+          "Using the printed −12 in place of −c, so that 12 is subtracted."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_tangent_length_from_1_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the length of the tangent from (1,3) to the circle x² + y² − 2x + 4y − 11 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the tangent length as √S₁₁",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 12 Circle, answer 112. It sits on a ★★★ SSP (Super Scoring Page): book p.79 carries the SSP banner. No appearance tag is printed beside this answer. Every number was re-derived and the book is correct: S₁₁ = 9 and the tangent length is 3. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Here S₁₁ is asked for as a length, so the square root IS taken — the neighbouring question about the power of a point stops one step earlier, and mixing the two is the usual error.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tangent_length",
+        "kind": "equation",
+        "label": "Write the tangent length as √S₁₁",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. A length is asked for, so the square root is part of the answer.",
+        "memory_tip": "Tangent length = √S₁₁. Power of a point = S₁₁ with no root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Length of the tangent from (1, 3) to",
+          "S ≡ x² + y² − 2x + 4y − 11 = 0 is √S₁₁",
+          "S₁₁ = x₁² + y₁² + 2gx₁ + 2fy₁ + c"
+        ],
+        "why": "The tangent from an external point, the radius to the point of contact and the line to the centre form a right-angled triangle, and Pythagoras on it gives the tangent length as √S₁₁.",
+        "common_mistakes": [
+          "Answering S₁₁ = 9 and stopping.",
+          "Using the distance to the centre as the tangent length."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Substitute and evaluate",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. S₁₁ = 9 is positive, so the point is outside the circle and a real tangent exists.",
+        "memory_tip": "1 + 9 − 2 + 12 − 11 = 9, and √9 = 3.",
+        "lines": [
+          "S₁₁ = 1² + 3² − 2(1) + 4(3) − 11",
+          "= 1 + 9 − 2 + 12 − 11 = 9",
+          {
+            "text": "∴ Length of the tangent = √9 = 3",
+            "style": "boxed"
+          }
+        ],
+        "why": "S₁₁ comes out positive, which confirms the point is outside the circle — a negative value would mean there is no real tangent from it.",
+        "common_mistakes": [
+          "Adding −2(1) as +2.",
+          "Reporting the answer as 9 rather than 3."
+        ]
+      }
+    ]
+  }
+}

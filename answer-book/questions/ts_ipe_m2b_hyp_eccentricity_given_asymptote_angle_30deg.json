@@ -1,0 +1,78 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_hyp_eccentricity_given_asymptote_angle_30deg",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Hyperbola (Maths-2B)"
+  },
+  "chapter": "Hyperbola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the angle between the asymptotes of a hyperbola is 30°, then find its eccentricity.",
+  "appearances": [
+    { "year": 2017, "board": "ap_ipe" },
+    { "year": 2020, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Halve the angle", "marks": 1 },
+    { "label": "Evaluate the eccentricity", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Hyperbola, answer 133. Same ★★★ SSP page as the earlier answers on this page. Printed appearances: AP 17 · TS 20. No mark tags printed on this page — the 1+1 split here is OURS. No error found in the book's printed working: sec15° = √6 − √2 was re-derived independently from cos15° = (√6+√2)/4 and matches. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim; answer 133 does not appear in the Bullet Model Paper. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "sec15° = √6 − √2 (≈1.035) is a standard exact surd value worth memorising directly, since it reappears in trigonometric-ratio questions outside this chapter too.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Halve the angle",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. The formula gives the FULL angle 2θ, so halve 30° first.",
+        "memory_tip": "This question runs the angle-between-asymptotes formula backwards, from angle to eccentricity.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "The angle between the asymptotes of a hyperbola is 2Sec⁻¹e (previous result).",
+          "2Sec⁻¹e = 30° ⇒ Sec⁻¹e = 15° ⇒ e = sec15°"
+        ],
+        "why": "This question reuses the general angle-between-asymptotes formula in reverse — set it equal to the given 30° and solve for e.",
+        "common_mistakes": [
+          "Forgetting to halve 30° before taking the secant — the formula gives the FULL angle 2θ, not θ.",
+          "Writing e = sec30° directly, skipping the halving step."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate the eccentricity",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. Rationalise the denominator to reach the exact surd form.",
+        "memory_tip": "cos15° = (√6+√2)/4 is a standard value — invert it and rationalise to get sec15° = √6 − √2.",
+        "lines": [
+          "sec15° = 1/cos15° = 4/(√6+√2)",
+          { "text": "e = sec15° = √6 − √2", "style": "boxed" }
+        ],
+        "why": "Rationalising 4/(√6+√2) by multiplying top and bottom by (√6−√2) clears the denominator, since (√6+√2)(√6−√2) = 6−2 = 4.",
+        "common_mistakes": [
+          "Leaving the answer as sec15° without simplifying to the exact surd form √6 − √2, which the mark scheme expects.",
+          "Using the standard value cos15° = (√6+√2)/4 with the wrong sign."
+        ]
+      }
+    ]
+  }
+}

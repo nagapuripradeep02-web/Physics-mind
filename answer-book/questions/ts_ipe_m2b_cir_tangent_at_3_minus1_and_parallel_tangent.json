@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_tangent_at_3_minus1_and_parallel_tangent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of tangent of x² + y² − 2x + 4y = 0 at (3,−1). Also find the equation of the other tangent parallel to it.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Tangent at the given point",
+      "marks": 2
+    },
+    {
+      "label": "The parallel tangent",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.52 — SAQ chapter 6 Circle, answer 49. Printed appearance tag: TS 17. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: the tangent at (3, −1) is 2x + y − 5 = 0 and the parallel tangent is 2x + y + 5 = 0. The point (3, −1) does lie on the circle — 9 + 1 − 6 − 4 = 0 — which is what makes S₁ = 0 the right formula rather than the pair-of-tangents formula. The same question is re-answered in the Bullet Model Paper (book p.107) with identical working, so it is authored once, here. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the book prints a small sketch beside this answer. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The two tangents are on opposite sides of the centre, so the parallel one has the same slope and the constant simply changes sign — reaching 2x + y ± 5 = 0 and then picking the sign the given tangent does not use is the fastest finish.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tangent_at_point",
+        "kind": "equation",
+        "label": "Tangent at the given point",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. S₁ = 0 is the formula for a tangent AT a point on the circle. Halve the coefficients before substituting.",
+        "memory_tip": "S₁ = xx₁ + yy₁ + g(x + x₁) + f(y + y₁) + c = 0. Replace one x by x₁ and one y by y₁ everywhere.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle S ≡ x² + y² − 2x + 4y = 0",
+          "Here g = −1, f = 2, c = 0",
+          "The point (3, −1) lies on the circle, since",
+          "9 + 1 − 6 − 4 = 0",
+          "Tangent at (3, −1) is S₁ = 0",
+          "⇒ x(3) + y(−1) − (x + 3) + 2(y − 1) = 0",
+          "⇒ 3x − y − x − 3 + 2y − 2 = 0",
+          "⇒ 2x + y − 5 = 0"
+        ],
+        "why": "S₁ = 0 gives the tangent only when the point is on the circle, so the check 9 + 1 − 6 − 4 = 0 is worth writing. Each squared term loses one factor to the point: x² becomes xx₁ and 2gx becomes g(x + x₁).",
+        "common_mistakes": [
+          "Using 2g and 2f in S₁ instead of g and f.",
+          "Writing +2(y + 1) instead of 2(y − 1), since y₁ = −1."
+        ]
+      },
+      {
+        "id": "s2_parallel_tangent",
+        "kind": "boxed_final",
+        "label": "The parallel tangent",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The ± gives both tangents; one of them is the tangent already found, so the other is the answer.",
+        "memory_tip": "Tangents with slope m: y + f = m(x + g) ± r√(1 + m²). The ± produces the pair.",
+        "lines": [
+          "Slope of 2x + y − 5 = 0 is m = −2",
+          "Radius r = √(1 + 4 − 0) = √5",
+          "Tangents with slope m are",
+          "y + f = m(x + g) ± r√(1 + m²)",
+          "⇒ y + 2 = −2(x − 1) ± √5 · √5",
+          "⇒ y + 2 = −2x + 2 ± 5 ⇒ 2x + y ± 5 = 0",
+          {
+            "text": "∴ The parallel tangent is 2x + y + 5 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "A circle has exactly two tangents with any given slope, one on each side of the centre. The formula produces both at once as 2x + y ± 5 = 0; the minus sign is the tangent already found, so the plus sign is the other one.",
+        "common_mistakes": [
+          "Writing y − f = m(x − g) and losing both signs.",
+          "Giving 2x + y − 5 = 0 as the answer, which is the tangent already found."
+        ]
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. The book prints one, and it shows the two tangents on opposite sides of the centre.",
+        "memory_tip": "Parallel tangents come in pairs, one on each side of the centre, and the centre is midway between them.",
+        "figure": {
+          "id": "cir_parallel_tangents_1",
+          "width": 400,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_1_circle",
+              "d": "M 123 115 A 62 62 0 1 0 247 115 A 62 62 0 1 0 123 115",
+              "ms": 866
+            },
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_1_t1",
+              "d": "M 177 19 L 281 123",
+              "ms": 327
+            },
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_1_t2",
+              "d": "M 89 107 L 193 211",
+              "ms": 327
+            },
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_1_given",
+              "d": "M 272 62 L 368 158",
+              "ms": 302,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_1_dc",
+              "d": "M 181.5 115 A 3.5 3.5 0 1 0 188.5 115 A 3.5 3.5 0 1 0 181.5 115",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "cir_parallel_tangents_1_lc",
+              "x": 179,
+              "y": 138,
+              "text": "C",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_parallel_tangents_1_ll",
+              "x": 296,
+              "y": 184,
+              "text": "same slope",
+              "ms": 520,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_parallel_tangents_1_cap",
+              "x": 24,
+              "y": 228,
+              "text": "two tangents of the same slope",
+              "ms": 520,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two tangents with the same slope are the two positions of a line of that slope at distance r from the centre. They lie on opposite sides of C and are the same distance from it, which is why their constants differ only in sign.",
+        "common_mistakes": [
+          "Drawing both tangents on the same side of the circle.",
+          "Drawing the second line through the centre rather than touching the circle."
+        ]
+      }
+    ]
+  }
+}

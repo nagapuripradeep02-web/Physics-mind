@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_power_of_point_minus1_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the power of the point P(−1,1) with respect to the circle x² + y² − 6x + 4y − 12 = 0.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the power as S₁₁",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 12 Circle, answer 111. It sits on a ★★★ SSP (Super Scoring Page): book p.79 carries the SSP banner. Printed appearance tag: TS 16. Every number was re-derived and the book is correct: the power is 0, which means P lies ON the circle. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The answer is exactly 0, and that is the point of the question: a power of zero says the point lies on the circle, so write that sentence as well as the number.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_power_formula",
+        "kind": "equation",
+        "label": "Write the power as S₁₁",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The power of a point is S₁₁ itself, not its square root.",
+        "memory_tip": "Power of P with respect to S = 0 is S₁₁ = x₁² + y₁² + 2gx₁ + 2fy₁ + c.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The power of P(x₁, y₁) with respect to",
+          "S = 0 is S₁₁",
+          "S₁₁ = x₁² + y₁² + 2gx₁ + 2fy₁ + c",
+          "Here S ≡ x² + y² − 6x + 4y − 12 = 0",
+          "and P = (−1, 1)"
+        ],
+        "why": "The power of a point is defined as the value of the circle expression at that point. It is positive outside the circle, negative inside and zero on it.",
+        "common_mistakes": [
+          "Taking the square root and reporting the tangent length instead.",
+          "Halving the coefficients before substituting."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Substitute and evaluate",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. −6(−1) is +6, which is the one sign the answer depends on.",
+        "memory_tip": "1 + 1 + 6 + 4 − 12 = 0. A power of zero means the point is on the circle.",
+        "lines": [
+          "S₁₁ = (−1)² + (1)² − 6(−1) + 4(1) − 12",
+          "= 1 + 1 + 6 + 4 − 12",
+          {
+            "text": "∴ Power = 0, so P lies on the circle.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The four positive terms add to 12 and the constant takes 12 away, so the power is exactly zero. That is the condition for a point to lie on the circle, and saying so completes the answer.",
+        "common_mistakes": [
+          "Writing −6(−1) as −6 and getting −12.",
+          "Reporting 0 without saying what a zero power means."
+        ]
+      }
+    ]
+  }
+}
