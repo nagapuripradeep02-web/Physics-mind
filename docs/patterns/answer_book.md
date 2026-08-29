@@ -1153,3 +1153,59 @@ clipped labels here and one in senior chemistry; a label it calls fine can still
 label needs **≥ 40 figure units** of vertical clearance from any label whose horizontal extent
 overlaps it. Render every figure and look at it as well: that is how the two wrong geometries were
 found, and no gate would have reported them.
+
+## The independent examiner pass — and why a card's own claim of correctness is worthless (Maths-2B / Maths-2A, 2026-08-29)
+
+Both senior maths papers ran an adversarial re-derivation pass after authoring, and the two results
+together settle something the project had only suspected.
+
+**Maths-2B: 7 of 271 cards were mathematically WRONG and 10 more misleading**, in a paper where every
+unit had already been checked by the agent that wrote it. **Maths-2A: 0 of 257 wrong**, 23 prose
+defects. Same method, different books — so the pass is not guaranteed to find errors, and its value
+is that you cannot know which book you have until you run it.
+
+**A card's own claim of correctness is not evidence, in either direction.** 165 of the 2B cards
+carried a sentence like *"Every number was re-derived and the book is correct: g = −2, f = −3 and the
+radius is 5."* All four of the cards that turned out mathematically wrong carried exactly that claim.
+On the 2A side the inverse appeared: all 23 of its claims held, and its single worst finding sat on a
+card that made **no** claim at all. So the sentence is uncorrelated with correctness both ways. Do not
+reword such claims into hedged versions — that only produces a more carefully worded non-signal.
+**Record WHO checked the card instead**: an unattributed "re-derived" is the author's opinion of their
+own working, and the authoring pass is the party least able to see its own mistake.
+
+**What the errors cluster on.** In 2B they were coefficient-combining and constant-tracking —
+a middle term out by 2√2, another by exactly 2×, a partial-fraction pair swapped, a dropped power of x
+when clearing a denominator. Twice the final boxed answer was RIGHT while an intermediate line was
+wrong, which is how they survived: a self-check that looks at the destination never sees the route,
+and the route is what a student copies. Name the likely cluster for the subject in the prompt rather
+than asking for a general review.
+
+**Recipe that worked:**
+- **Split by mathematical TECHNIQUE, not by unit count.** 2A's series examiner found 8 of its 23
+  findings alone, because series traps cluster; a unit-count split would have scattered them.
+- **Require a CLEAN verdict to name the checks it ran.** Without this an examiner can return a silent
+  green. Bands: WRONG / MISLEADING / THIN / CLEAN.
+- **Give the domain recipe, not "review this":** differentiate every indefinite integral back;
+  substitute every differential-equation solution into its own equation; recompute every conic's
+  a, b, e, foci and directrices from the printed equation and check the orientation BEFORE choosing a
+  formula; test every root of a squared equation against the ORIGINAL unsquared one.
+- **Ask where the examiner initially DISAGREED and the card turned out right** (2A's addition). That
+  section stops a later session re-litigating settled ground — one examiner nearly filed a θ-restriction
+  on `1 + cos θ + i sin θ = 2cos(θ/2)cis(θ/2)`, worked out that De Moivre applies to the `cis` factor
+  whatever the sign of the real scalar, verified it at three angles, and recorded the reasoning.
+- **Demand an honest coverage statement.** 2B's conics examiner reported that only 87 of its 137 cards
+  had a dedicated pass and the other 50 rested on a faster sweep — and supplied the proof that the
+  sweep was unreliable, since it had cleared a card that was wrong in three places. A dedicated pass
+  over those 47 then found nothing further. **An admitted gap is worth more than a complete-looking
+  verdict**, and a card nobody checked must never be counted CLEAN.
+
+**Two defect classes that no gate sees and both papers hit:**
+1. **`common_mistakes` that names the CORRECT move as the error.** 2B had a card whose bullet told
+   students that rejecting an extraneous root was the mistake to avoid, with a `why` defending the
+   wrong root as valid. Read every mistakes entry back against that step's own marked lines.
+2. **A condition parked where the student never sees it.** 2A found an identity `θ = Tan⁻¹(q/p)` that
+   needs `p > 0` — false at p = −3, q = 4 — with the condition filed in `verification.note` while the
+   visible page stated it unconditionally, in a unit whose sibling cards exist to teach that very
+   quadrant rule. **`verification.note` is provenance, not a place to put mathematics a student needs.**
+   Grep for it: a condition word in the note that appears nowhere in the lines, `why`,
+   `common_mistakes`, `memory_tip` or `insider_note` is the signature.
