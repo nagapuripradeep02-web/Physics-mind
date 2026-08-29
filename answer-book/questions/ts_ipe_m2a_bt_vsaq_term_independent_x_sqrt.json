@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_term_independent_x_sqrt",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the term independent of x in the expansion of (√(x/3) + 3/(2x²))¹⁰.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "General term and the power of x",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate T₃",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 17 Binomial Theorem, answer 160. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q8 of Model Paper 2 (book p.113). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. The general term carries the fractional exponent (10 − r)/2, so that one line is typeset (KaTeX); the rest is plain."
+  },
+  "recall_prompt": "Say how you would find the term independent of x — the power of x in the general term, the r that makes it zero, and the value of that term.",
+  "insider_note": "The square root halves the power: x carries (10 − r)/2 − 2r, and that whole expression is set to zero. Treating √(x/3) as power 1 gives a wrong r before any arithmetic starts.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "General term and the power of x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. √(x/3) = (x/3) to the power 1/2, so the power of x is (10 − r)/2 − 2r. Set it to zero.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "T_{r+1} = {}^{10}C_r \\left(\\sqrt{\\tfrac{x}{3}}\\right)^{10-r} \\left(\\tfrac{3}{2x^2}\\right)^{r} = {}^{10}C_r \\left(\\tfrac{1}{3}\\right)^{\\frac{10-r}{2}} \\left(\\tfrac{3}{2}\\right)^{r} x^{\\frac{10-r}{2} - 2r}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "For the term independent of x:",
+          "(10 − r)/2 − 2r = 0 ⇒ 10 − r = 4r ⇒ r = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the power of x in the general term is (10 − r)/2 − 2r, and setting it to zero gives r = 2.",
+          "accept": [
+            "the power of x is ten minus r by two minus two r, set it to zero, ten minus r is four r, r is two",
+            "root x is x to the half so the power is ten minus r by two minus two r",
+            "r equals two makes the power of x zero",
+            "x power ten minus r by two minus two r zero pettithe r two vasthundi",
+            "independent of x means the power of x is zero"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "r equals two",
+            "ten minus r by two",
+            "power zero",
+            "root x"
+          ]
+        },
+        "why": "A term independent of x is a term where the powers of x cancel exactly; the half-power from the root is why the equation has a fraction.",
+        "common_mistakes": [
+          "Treating √(x/3) as having power 1 instead of 1/2.",
+          "Writing the power of x as 10 − r − 2r."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate T₃",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. r = 2: ¹⁰C₂ = 45, (1/3)⁴ = 1/81, (3/2)² = 9/4.",
+        "lines": [
+          "T₃ = ¹⁰C₂ (1/3)⁴ (3/2)² = 45 · (1/81) · (9/4)",
+          {
+            "text": "∴ the term independent of x = 5/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the term is ¹⁰C₂ (1/3)⁴ (3/2)² = 45 · (1/81) · (9/4) = 5/4.",
+          "accept": [
+            "ten C two into one by three to the four into three by two squared is forty five by eighty one into nine by four which is five by four",
+            "the term is five by four",
+            "forty five times one by eighty one times nine by four",
+            "r two pettithe five by four vasthundi",
+            "five quarters"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "five by four",
+            "forty five",
+            "eighty one",
+            "nine by four"
+          ]
+        },
+        "why": "The x has gone; what is left is the constant ¹⁰C₂ times the two constants raised to their powers.",
+        "common_mistakes": [
+          "Writing (1/3) to the power 10 − 2 = 8 instead of (10 − 2)/2 = 4.",
+          "Leaving the answer as 405/324."
+        ]
+      }
+    ]
+  }
+}

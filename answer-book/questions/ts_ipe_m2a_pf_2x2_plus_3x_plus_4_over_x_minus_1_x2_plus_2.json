@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_2x2_plus_3x_plus_4_over_x_minus_1_x2_plus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve (2x² + 3x + 4)/((x − 1)(x² + 2)) into partial fractions.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 11 Partial Fractions, answer 99 (a ★★★ SSP 66 Super Scoring Page). Printed appearances: AP 15; TS 18, 19. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not at Q15 in the five model papers, but the Bullet Model Paper re-solves it as the second Q15 question on book p.102; that second solution agrees with the chapter answer. No two-book check and no board back-test exist for this paper — recorded, not hidden. Truth check: putting x = 2 in the identity gives 18 = A(6) + (2B + C)(1) = 18 + 0 = 18 with A = 3, B = −1, C = 2."
+  },
+  "recall_prompt": "Say how you would resolve (2x² + 3x + 4)/((x − 1)(x² + 2)) into partial fractions — name each move in order.",
+  "insider_note": "x² + 2 has no real factors, so its numerator must be Bx + C, never a constant; after x = 1 gives A, the easy value x = 0 gives C, and only B needs a coefficient comparison.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Set up the form",
+        "marks": 1,
+        "mark_note": "Form",
+        "margin_note": "First mark. x² + 2 has no real factors (x² = −2 has no real solution), so it is an irreducible quadratic and gets the numerator Bx + C. The linear factor gets A.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x² + 2 has no real factors.",
+          "Let (2x² + 3x + 4)/((x − 1)(x² + 2))",
+          "= A/(x − 1) + (Bx + C)/(x² + 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² + 2 is irreducible and the form is A/(x − 1) + (Bx + C)/(x² + 2).",
+          "accept": [
+            "x squared plus two cannot be factorised so write A over x minus one plus Bx plus C over x squared plus two",
+            "linear factor gets a constant, the quadratic gets Bx plus C",
+            "A by x minus 1 plus Bx plus C by x square plus 2",
+            "x square plus two ki real factors levu, kabatti A by x minus one plus Bx plus C by x square plus two ani rasali",
+            "the quadratic factor is irreducible so its numerator is linear"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "x squared plus two",
+            "irreducible",
+            "no real factors",
+            "Bx plus C",
+            "A over x minus one"
+          ]
+        },
+        "why": "The numerator over a quadratic must be one degree lower, so linear. Bx + C carries two unknowns, and together with A that gives three, matching the three coefficients of the quadratic identity that follows.",
+        "common_mistakes": [
+          "Writing a constant B over x² + 2.",
+          "Trying to factorise x² + 2 as (x + √2)(x − √2) with irrational factors; the form asked for uses the real quadratic as it is.",
+          "Writing (Bx + C)/(x − 1) and A/(x² + 2), swapping the numerators."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply by (x − 1)(x² + 2). A keeps (x² + 2), (Bx + C) keeps (x − 1). Keep Bx + C in a bracket.",
+        "lines": [
+          "Multiply by (x − 1)(x² + 2):",
+          "2x² + 3x + 4 = A(x² + 2) + (Bx + C)(x − 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying through gives 2x² + 3x + 4 = A(x² + 2) + (Bx + C)(x − 1).",
+          "accept": [
+            "multiply both sides by x minus one into x squared plus two to get two x squared plus three x plus four equals A into x squared plus two plus Bx plus C into x minus one",
+            "clear the denominators so A keeps x squared plus two and Bx plus C keeps x minus one",
+            "multiply through by the whole denominator to get an identity in x",
+            "denominator tho multiply cheste A into x square plus two plus Bx plus C into x minus one vastundi",
+            "remove the fractions by multiplying with x minus one times x squared plus two"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "A into x squared plus two",
+            "Bx plus C into x minus one",
+            "identity"
+          ]
+        },
+        "why": "One line turns the fraction equation into a polynomial identity. From here one substitution and two coefficient comparisons are enough, because both sides are quadratics.",
+        "common_mistakes": [
+          "Writing Bx + C(x − 1) without the bracket.",
+          "Giving A the factor (x − 1) instead of (x² + 2).",
+          "Dropping the left side 2x² + 3x + 4."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A, B and C",
+        "margin_note": "Third mark. x = 1 gives A directly. x = 0 is not a root but it is an easy value: it gives 2A − C, hence C. Then compare x² for B. The book uses exactly these three lines.",
+        "lines": [
+          "Put x = 1: 9 = A(3) ⇒ A = 3",
+          "Put x = 0: 4 = 2A − C ⇒ C = 2",
+          "Compare x²: A + B = 2 ⇒ B = −1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1 gives A = 3, x = 0 gives 4 = 2A − C so C = 2, and comparing x² gives A + B = 2 so B = −1.",
+          "accept": [
+            "put x equals one to get A equals three, x equals zero to get four equals two A minus C so C is two, compare x squared to get B equals minus one",
+            "A is three from the root, C is two from x equals zero, B is minus one from the x squared coefficient",
+            "A three C two B minus one",
+            "x equals one pedithe A three, x equals zero pedithe C two, x square compare cheste B minus one",
+            "one root, one easy value and one coefficient give the three constants"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals one",
+            "x equals zero",
+            "A is three",
+            "C is two",
+            "B is minus one",
+            "compare x squared"
+          ]
+        },
+        "why": "Any value of x may be put into an identity, not only roots. x = 0 is chosen because it makes Bx vanish and leaves a one-line equation in A and C. The x² comparison then gives B from A.",
+        "common_mistakes": [
+          "Putting x = 0 and writing (0 + C)(0 − 1) as +C instead of −C, so C comes out as −2.",
+          "Writing B = 2 by forgetting A in the x² coefficient.",
+          "Adding 2(1)² + 3(1) + 4 as 8 instead of 9."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Bx + C = −x + 2, written as 2 − x. Write the original fraction on the left.",
+        "lines": [
+          "∴ (2x² + 3x + 4)/((x − 1)(x² + 2))",
+          {
+            "text": "= 3/(x − 1) + (2 − x)/(x² + 2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals 3/(x − 1) + (2 − x)/(x² + 2).",
+          "accept": [
+            "the answer is three over x minus one plus two minus x over x squared plus two",
+            "three by x minus one plus two minus x by x square plus two",
+            "B is minus one and C is two so the numerator is two minus x",
+            "final answer three by x minus one plus two minus x by x square plus two ani rasali",
+            "put A B and C back to get three over x minus one plus minus x plus two over x squared plus two"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "three over x minus one",
+            "two minus x",
+            "x squared plus two",
+            "final answer"
+          ]
+        },
+        "why": "The resolved form with the linear numerator −x + 2 in place is the marked answer. Writing it as 2 − x is neater and is how the book prints it.",
+        "common_mistakes": [
+          "Writing (x + 2)/(x² + 2) after finding B = −1.",
+          "Writing (−1x + 2) instead of (2 − x).",
+          "Not checking: put x = 2 in the identity, 18 = 18 + 0. If the two sides differ, a constant is wrong."
+        ]
+      }
+    ]
+  }
+}

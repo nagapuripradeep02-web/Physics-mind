@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_cis_alpha_cis_beta_x2_plus_y2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If x + iy = cis α · cis β, then find the value of x² + y².",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Combine cis α · cis β = cis(α + β) and read off x and y",
+      "marks": 1
+    },
+    {
+      "label": "Square and add",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.72 — VSAQ chapter 12 Complex Numbers, answer 114. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots — this question IS Q2 of the book's Model Paper 1 (book p.111), and the Bullet Model Paper re-solves it on book p.96 with the same working. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find x² + y² — what the product of two cis values is, and what identity finishes it.",
+  "insider_note": "cis α · cis β adds the angles in one line, and then x² + y² is cos² + sin² of the single angle α + β, which is 1. Expanding the two brackets term by term reaches the same 1 with four extra products and four chances for a sign slip.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_combine",
+        "kind": "equation",
+        "label": "Combine the cis product",
+        "marks": 1,
+        "mark_note": "cis rule",
+        "margin_note": "First mark. cis θ means cos θ + i sin θ, and cis α · cis β = cis(α + β). Then x and y are the cos and sin of α + β.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x + iy = cis α · cis β = cis(α + β)",
+          "= cos(α + β) + i sin(α + β)",
+          "Equating real and imaginary parts:",
+          "x = cos(α + β),  y = sin(α + β)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cis α times cis β is cis(α + β), so x = cos(α + β) and y = sin(α + β).",
+          "accept": [
+            "cis alpha into cis beta is cis of alpha plus beta so x is cos of alpha plus beta and y is sin of alpha plus beta",
+            "the product of the cis values adds the angles, then compare parts",
+            "x equals cos alpha plus beta and y equals sin alpha plus beta",
+            "cis alpha cis beta ante cis alpha plus beta, real part cos, imaginary part sin",
+            "combine into cis of the sum and read off cos and sin"
+          ],
+          "reject": [
+            "multiply them",
+            "compare parts"
+          ],
+          "heard_as": [
+            "cis",
+            "alpha plus beta",
+            "cos of alpha plus beta",
+            "sin of alpha plus beta",
+            "real part"
+          ]
+        },
+        "why": "Multiplying two cis values adds the angles — that is De Moivre's rule in its simplest form. It turns a product of four trigonometric terms into one angle, so x and y can be read off at once.",
+        "common_mistakes": [
+          "Multiplying the angles: cis(αβ).",
+          "Expanding (cos α + i sin α)(cos β + i sin β) term by term and losing a sign — correct but long."
+        ]
+      },
+      {
+        "id": "s2_square_add",
+        "kind": "boxed_final",
+        "label": "Square and add",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cos² + sin² of the same angle is 1.",
+        "lines": [
+          "x² + y² = cos²(α + β) + sin²(α + β)",
+          {
+            "text": "∴ x² + y² = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² + y² = cos²(α + β) + sin²(α + β) = 1.",
+          "accept": [
+            "x squared plus y squared is cos squared plus sin squared of alpha plus beta which is one",
+            "square and add, cos squared plus sin squared equals one",
+            "the answer is one",
+            "square chesi add cheste cos square plus sin square, one vasthundi",
+            "x squared plus y squared equals one by the identity"
+          ],
+          "reject": [
+            "square them",
+            "add"
+          ],
+          "heard_as": [
+            "one",
+            "cos squared plus sin squared",
+            "x squared plus y squared",
+            "identity"
+          ]
+        },
+        "why": "x² + y² is |x + iy|², and a cis value has modulus 1 — so the answer had to be 1 before any algebra. The identity is just the written form of that fact.",
+        "common_mistakes": [
+          "Writing cos² α + sin² β and being unable to simplify.",
+          "Giving the answer as cos(α + β) + sin(α + β)."
+        ]
+      }
+    ]
+  }
+}

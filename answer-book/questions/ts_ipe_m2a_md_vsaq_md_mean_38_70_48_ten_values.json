@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_vsaq_md_mean_38_70_48_ten_values",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the mean deviation about the mean for the data 38, 70, 48, 40, 42, 55, 63, 46, 54, 44.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the mean",
+      "marks": 1
+    },
+    {
+      "label": "Find the mean deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 18 Measures of Dispersion, answer 171.1. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) The unit table in docs/IPE_MATHS_2A_SOURCE.md lists chapter 18 as answers 168–172; the page shows answer 168 is the last Binomial Theorem VSAQ (book p.84) and chapter 18 runs 169.1–172.2 — eight answers in four twin pairs. Printed appearances: AP 15 · TS 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book pp.85–86. It is patterned on the 1A Matrices VSAQ 1+1 (1A book p.82, answers 100–101 — the one place this book series prints a VSAQ split): 1 for the centre (the mean or the median), 1 for the spread (the mean deviation or the variance). All eight VSAQs of this unit share that shape deliberately, and the twins of each pair share the same step ids. The chapter header (book p.85) carries ★★★ and reads '2 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q9 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question is not in the five model papers or the Bullet Model Paper; Q9 is its slot. Recomputed: sum 500, x̄ = 50, |xᵢ − x̄| = 12, 20, 2, 10, 8, 5, 13, 4, 4, 6, total 84, 84/10 = 8.4 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the mean deviation about the mean for ten numbers — what you find first and what you average at the end.",
+  "insider_note": "One mark is the mean 50, the other is the deviation step: take every deviation without its sign — with signs they add to 0 — and divide by n = 10 both times.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Measures of Dispersion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mean",
+        "kind": "equation",
+        "label": "Mean",
+        "marks": 1,
+        "mark_note": "Mean",
+        "margin_note": "First mark. Ten values that add to exactly 500, so the mean is 50. The sum is written on two rows because it does not fit on one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "n = 10",
+          "Σxᵢ = 38 + 70 + 48 + 40 + 42",
+          "      + 55 + 63 + 46 + 54 + 44 = 500",
+          "Mean x̄ = Σxᵢ/n = 500/10 = 50"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ten values add to 500 and the mean is 500/10 = 50.",
+          "accept": [
+            "add the ten numbers to get five hundred and divide by ten, the mean is fifty",
+            "x bar is five hundred by ten equals fifty",
+            "the mean of the data is fifty",
+            "padi numbers add cheste five hundred, ten tho divide cheste mean fifty",
+            "sum five hundred, n ten, mean fifty"
+          ],
+          "reject": [
+            "find the mean",
+            "add them up"
+          ],
+          "heard_as": [
+            "x bar",
+            "five hundred",
+            "fifty",
+            "mean"
+          ]
+        },
+        "why": "Mean deviation is measured from the mean, so the mean has to exist first. A round sum like 500 is a good sign the addition is right; a sum such as 497 should be re-added.",
+        "common_mistakes": [
+          "An addition slip across ten numbers — add them in two groups of five (238 and 262).",
+          "Dividing by 9 or 11 instead of n = 10."
+        ]
+      },
+      {
+        "id": "s2_md",
+        "kind": "boxed_final",
+        "label": "Mean deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Ten absolute deviations from 50, in the given order: 12, 20, 2, 10, 8, 5, 13, 4, 4, 6. Sum 84, divide by n = 10. 84/10 = 8.4.",
+        "lines": [
+          "|xᵢ − x̄| : 12, 20, 2, 10, 8, 5, 13, 4, 4, 6",
+          "Σ|xᵢ − x̄| = 84",
+          "M.D. = Σ|xᵢ − x̄|/n = 84/10 = 8.4",
+          {
+            "text": "∴ M.D. about the mean = 8.4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the absolute deviations from 50 add to 84 and 84/10 gives 8.4.",
+          "accept": [
+            "take each number minus fifty without sign, add to eighty four, divide by ten, eight point four",
+            "the absolute deviations add to eighty four and eighty four by ten is eight point four",
+            "mean deviation is sigma mod x i minus x bar by n equals eighty four by ten equals eight point four",
+            "fifty nunchi deviations mod teesukoni add cheste eighty four, ten tho divide cheste eight point four",
+            "the answer is eight point four"
+          ],
+          "reject": [
+            "divide it",
+            "that is the answer",
+            "find the deviations"
+          ],
+          "heard_as": [
+            "mod",
+            "absolute",
+            "eighty four",
+            "eight point four",
+            "M D"
+          ]
+        },
+        "why": "Mean deviation is the average distance from the mean. Dropping the signs is what keeps the ten distances from cancelling to zero.",
+        "common_mistakes": [
+          "Keeping the signs, which gives 0.",
+          "Miscounting a deviation: 63 − 50 = 13, 38 − 50 = −12 → 12.",
+          "Dividing 84 by 9 or by 11 — the divisor is n = 10."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_12_books_4_alike_of_3_kinds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "There are 4 copies alike each of 3 different books. Find the number of ways of arranging these 12 books on a shelf in a single row.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Count the letters and the repeats",
+      "marks": 1
+    },
+    {
+      "label": "Apply n!/(p!·q!·r!)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.93 — Star Questions Plus, Permutations & Combinations banner, answer 198. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_count_letters, s2_formula) are used on every 'arrangements of a word with repeated letters' VSAQ in this unit (answers 147.1 to 148.2 and Star Questions Plus 197, 198), deliberately: one formula n!/(p!·q!·r!) over different words. Section: the Star Questions Plus pages print NO mark cut; classing this answer as a VSAQ (2 marks) is OURS, by its shape and length — a one-formula count with no cases, the same shape as the 2-mark answers 147–148. The chapter's VSAQ header carries ★★★; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. The book leaves the answer as 12!/(4!4!4!); the card also evaluates it (479001600/13824 = 34,650)."
+  },
+  "recall_prompt": "Say how you would count the arrangements of twelve books, four alike copies of each of three titles, in a row — what you count first and which formula you use.",
+  "insider_note": "The divisor is one 4! per title, three times in all: 12!/(4!·4!·4!) = 34,650. Writing 4! once counts the copies of two titles as if they were different books.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_count_letters",
+        "kind": "text",
+        "label": "Count the letters and the repeats",
+        "marks": 1,
+        "mark_note": "Counting",
+        "margin_note": "First mark. 3 × 4 = 12 books; the 4 copies of each title are alike, so three groups of 4.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Total books = 3 · 4 = 12.",
+          "Four alike of the first book, four alike of",
+          "the second, four alike of the third."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That there are 12 books in three groups of 4 alike copies.",
+          "accept": [
+            "twelve books, three groups of four alike",
+            "three times four is twelve books with four copies of each alike",
+            "the repeats are four, four and four",
+            "twelve books, prathi book ki four alike copies",
+            "count the total and the alike groups first"
+          ],
+          "reject": [
+            "count the letters",
+            "use the formula"
+          ],
+          "heard_as": [
+            "twelve books",
+            "four alike",
+            "three groups",
+            "copies"
+          ]
+        },
+        "why": "Alike letters cannot be told apart, so swapping them does not give a new arrangement. The count of each repeated letter is what the formula divides by, so it must be found before anything else.",
+        "common_mistakes": [
+          "Answering 12! as if every copy were different.",
+          "Answering 3! by arranging only the titles."
+        ]
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Apply n!/(p!·q!·r!)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 12!/(4!·4!·4!) = 479001600/13824 = 34,650.",
+        "lines": [
+          "Arrangements = n!/(p!·q!·r!)",
+          {
+            "text": "= 12!/(4!·4!·4!) = 34,650",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the count is 12 factorial over 4 factorial cubed.",
+          "accept": [
+            "twelve factorial over four factorial four factorial four factorial",
+            "twelve factorial by four factorial cubed",
+            "divide twelve factorial by twenty four three times",
+            "twelve factorial by four factorial into four factorial into four factorial",
+            "the answer is twelve factorial over four factorial cubed which is thirty four thousand six hundred fifty"
+          ],
+          "reject": [
+            "apply the formula",
+            "divide"
+          ],
+          "heard_as": [
+            "twelve factorial",
+            "four factorial",
+            "cubed",
+            "thirty four thousand"
+          ]
+        },
+        "why": "n! counts the arrangements as if every letter were different; each group of p alike letters has been counted p! times over, so dividing by p! for each group leaves the true count.",
+        "common_mistakes": [
+          "Dividing by 4! once instead of three times.",
+          "Dividing by 12! ÷ 3 or some other guess — the denominator is the product of the group factorials."
+        ]
+      }
+    ]
+  }
+}

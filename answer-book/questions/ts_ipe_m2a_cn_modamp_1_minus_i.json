@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_modamp_1_minus_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Express 1 − i in the modulus-amplitude form.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the modulus r",
+      "marks": 1
+    },
+    {
+      "label": "Find the amplitude θ from the quadrant and write r(cos θ + i sin θ)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.71 — VSAQ chapter 12 Complex Numbers, answer 110.4. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: TS 16 · AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The six modulus-amplitude VSAQs of this unit (110.1–110.6) share the same split and step ids deliberately. The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would write a complex number in modulus-amplitude form — what two numbers you need and how the quadrant fixes the angle.",
+  "insider_note": "tan θ = −1 fits two angles, so the second mark is the quadrant sentence: (1, −1) is in the fourth quadrant and θ = −π/4. Without that sentence the examiner cannot tell the angle was chosen and not guessed.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Find r",
+        "marks": 1,
+        "mark_note": "Modulus",
+        "margin_note": "First mark. x = 1, y = −1, so r = √(1 + 1) = √2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let 1 − i = x + iy ⇒ x = 1, y = −1",
+          "r = √(x² + y²) = √(1 + 1) = √2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1, y = −1 and the modulus r = √(1 + 1) = √2.",
+          "accept": [
+            "x is one, y is minus one, r is root of one plus one which is root two",
+            "the modulus is root two",
+            "r equals root x squared plus y squared, that is root two",
+            "modulus root two vasthundi",
+            "one plus one is two, root of that is root two"
+          ],
+          "reject": [
+            "find r",
+            "find the modulus"
+          ],
+          "heard_as": [
+            "root two",
+            "modulus",
+            "r equals",
+            "minus one"
+          ]
+        },
+        "why": "r is the distance from the origin; the negative y squares to +1. The sign of y is used in the next step to place the point in the fourth quadrant.",
+        "common_mistakes": [
+          "Writing 1² + (−1)² as 0.",
+          "Taking r = 1 − 1 = 0."
+        ]
+      },
+      {
+        "id": "s2_amplitude",
+        "kind": "boxed_final",
+        "label": "Find θ and write the form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. tan θ = −1 and (1, −1) is in the fourth quadrant, so θ = −π/4. The i sin(−π/4) becomes −i sin(π/4).",
+        "lines": [
+          "tan θ = y/x = (−1)/1 = −1",
+          "(1, −1) lies in the fourth quadrant ⇒ θ = −π/4",
+          "∴ 1 − i = √2(cos(−π/4) + i sin(−π/4))",
+          {
+            "text": "= √2(cos(π/4) − i sin(π/4))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan θ = −1 with the point in the fourth quadrant gives θ = −π/4, so the form is √2(cos(−π/4) + i sin(−π/4)) = √2(cos π/4 − i sin π/4).",
+          "accept": [
+            "tan theta is minus one and the point is in the fourth quadrant so theta is minus pi by four",
+            "the form is root two times cos minus pi by four plus i sin minus pi by four",
+            "fourth quadrant, theta equals minus pi by four",
+            "point fourth quadrant lo undi kabatti theta minus pi by four",
+            "root two times cos pi by four minus i sin pi by four"
+          ],
+          "reject": [
+            "find theta",
+            "write the form",
+            "theta is pi by four"
+          ],
+          "heard_as": [
+            "minus pi by four",
+            "fourth quadrant",
+            "tan theta minus one",
+            "root two",
+            "cos minus i sin"
+          ]
+        },
+        "why": "tan θ = −1 is true for both −π/4 and 3π/4; a positive x with negative y is the fourth quadrant, so −π/4 is the principal amplitude. Because cos is even and sin is odd, cos(−π/4) + i sin(−π/4) is the same as cos π/4 − i sin π/4 — both forms are correct.",
+        "common_mistakes": [
+          "Taking θ = 3π/4 — that is the second quadrant, the point (−1, 1).",
+          "Writing √2(cos π/4 + i sin π/4), which is 1 + i.",
+          "Forgetting the r = √2."
+        ]
+      }
+    ]
+  }
+}

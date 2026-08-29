@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_arrange_mathematics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the number of ways of arranging the letters of the word MATHEMATICS.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Count the letters and the repeats",
+      "marks": 1
+    },
+    {
+      "label": "Apply n!/(p!·q!·r!)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 16 Permutations & Combinations, answer 148.1. Printed appearances: AP 18 and TS 18, 20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_count_letters, s2_formula) are used on every 'arrangements of a word with repeated letters' VSAQ in this unit (answers 147.1 to 148.2 and Star Questions Plus 197, 198), deliberately: one formula n!/(p!·q!·r!) over different words. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is re-solved in the Bullet Model Paper Q6&7 block (book p.98), which agrees, and is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. The book leaves the answer as 11!/(2!2!2!); the card also evaluates it (39916800/8 = 49,89,600)."
+  },
+  "recall_prompt": "Say how you would count the arrangements of the word MATHEMATICS — what you count first and which formula you use.",
+  "insider_note": "MATHEMATICS is 11 letters with three pairs — M, A and T each appear twice — so the divisor is 2!·2!·2! = 8. The T pair is the one most often missed, and each missed pair doubles the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_count_letters",
+        "kind": "text",
+        "label": "Count the letters and the repeats",
+        "marks": 1,
+        "mark_note": "Counting",
+        "margin_note": "First mark. M-A-T-H-E-M-A-T-I-C-S: 11 letters. M twice, A twice, T twice; H, E, I, C, S once.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "MATHEMATICS has 11 letters:",
+          "M twice, A twice, T twice."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That MATHEMATICS has 11 letters with M, A and T each appearing twice.",
+          "accept": [
+            "eleven letters, M twice, A twice, T twice",
+            "count the letters, eleven, with two M, two A and two T",
+            "the repeats are M A and T, each two",
+            "eleven letters, M A T rendu rendu sarlu vastayi",
+            "find the repeated letters first, three pairs"
+          ],
+          "reject": [
+            "count the letters",
+            "use the formula"
+          ],
+          "heard_as": [
+            "eleven letters",
+            "two M",
+            "two A",
+            "two T",
+            "pairs"
+          ]
+        },
+        "why": "Alike letters cannot be told apart, so swapping them does not give a new arrangement. The count of each repeated letter is what the formula divides by, so it must be found before anything else.",
+        "common_mistakes": [
+          "Counting 12 letters — MATHEMATICS has 11.",
+          "Missing one of the three pairs, usually the T pair."
+        ]
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Apply n!/(p!·q!·r!)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 11!/(2!·2!·2!) = 39916800/8 = 49,89,600.",
+        "lines": [
+          "Arrangements = n!/(p!·q!·r!)",
+          {
+            "text": "= 11!/(2!·2!·2!) = 49,89,600",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the count is 11 factorial over 2 factorial cubed, that is over 8.",
+          "accept": [
+            "eleven factorial over two factorial two factorial two factorial",
+            "eleven factorial by eight",
+            "n factorial by p factorial q factorial r factorial, eleven factorial by two factorial cubed",
+            "eleven factorial ni eight tho divide cheyali",
+            "the answer is eleven factorial over two factorial two factorial two factorial which is about fifty lakh"
+          ],
+          "reject": [
+            "apply the formula",
+            "divide"
+          ],
+          "heard_as": [
+            "eleven factorial",
+            "two factorial",
+            "by eight",
+            "forty nine lakh"
+          ]
+        },
+        "why": "n! counts the arrangements as if every letter were different; each group of p alike letters has been counted p! times over, so dividing by p! for each group leaves the true count.",
+        "common_mistakes": [
+          "Dividing by 2! once instead of three times.",
+          "Using 12! for an 11-letter word."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_monic_roots_2_3_6",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the monic polynomial equation of degree 3 whose roots are 2, 3 and 6.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the equation as a product of factors",
+      "marks": 1
+    },
+    {
+      "label": "Expand",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 15 Theory of Equations, answer 136. Printed appearances: none — this answer carries no year chip. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. Step ids are this card's own (s1_factors, s2_answer): the book builds the equation from its factors rather than by a substitution or a root relation. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: S₁ = 11, S₂ = 6 + 12 + 18 = 36, S₃ = 36 give x³ − 11x² + 36x − 36, the card's expansion. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden."
+  },
+  "recall_prompt": "Say what monic means and how you build the equation from its roots.",
+  "insider_note": "The coefficients are −S₁, +S₂, −S₃ = −11, 36, −36; expanding the factors and the root relations must give the same three numbers.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_factors",
+        "kind": "equation",
+        "label": "Write the factors",
+        "marks": 1,
+        "mark_note": "(x − 2)(x − 3)(x − 6)",
+        "margin_note": "First mark. Monic means the leading coefficient is 1, so the equation is just the product of (x − root) for each root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Monic means the leading coefficient is 1.",
+          "The equation with roots 2, 3, 6 is",
+          "(x − 2)(x − 3)(x − 6) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a monic equation with roots 2, 3, 6 is (x − 2)(x − 3)(x − 6) = 0.",
+          "accept": [
+            "monic means leading coefficient one so the equation is x minus two times x minus three times x minus six equals zero",
+            "write the product of x minus each root",
+            "the factors are x minus two, x minus three and x minus six",
+            "monic ante leading coefficient one, x minus two into x minus three into x minus six",
+            "multiply the three linear factors"
+          ],
+          "reject": [
+            "expand it",
+            "use the relations"
+          ],
+          "heard_as": [
+            "monic",
+            "x minus two",
+            "x minus three",
+            "x minus six",
+            "factors"
+          ]
+        },
+        "why": "A polynomial with roots 2, 3, 6 must contain (x − 2), (x − 3) and (x − 6) as factors; 'monic' fixes the overall constant at 1, so this product IS the polynomial. (The relations S₁ = 11, S₂ = 36, S₃ = 36 give the same coefficients.)",
+        "common_mistakes": [
+          "Writing (x + 2)(x + 3)(x + 6), whose roots are −2, −3, −6.",
+          "Not saying what monic means, which is part of the question."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Expand",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Multiply two brackets first, then the third. The coefficients are −S₁, +S₂, −S₃: 11, 36, 36.",
+        "lines": [
+          "(x − 2)(x² − 9x + 18) = 0",
+          "x³ − 9x² + 18x − 2x² + 18x − 36 = 0",
+          {
+            "text": "∴ x³ − 11x² + 36x − 36 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding the product gives x³ − 11x² + 36x − 36 = 0.",
+          "accept": [
+            "expand and the equation is x cube minus eleven x square plus thirty six x minus thirty six",
+            "multiply out to x cubed minus eleven x squared plus thirty six x minus thirty six equals zero",
+            "the answer is x cube minus eleven x square plus thirty six x minus thirty six",
+            "expand chesthe x cube minus eleven x square plus thirty six x minus thirty six",
+            "multiply the first two brackets then the third"
+          ],
+          "reject": [
+            "expand it",
+            "multiply"
+          ],
+          "heard_as": [
+            "x cube",
+            "minus eleven x square",
+            "thirty six x",
+            "minus thirty six"
+          ]
+        },
+        "why": "The coefficients that come out are −(sum of roots), +(sum of pairwise products), −(product): 11, 36, 36. Expanding and the relations must agree — that is the check.",
+        "common_mistakes": [
+          "A slip collecting like terms: −9x² − 2x² = −11x² and 18x + 18x = 36x.",
+          "Writing the constant as +36 (it is −2 × 18 = −36)."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_ace_or_spade_52_cards",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Find the probability of drawing an ace or a spade from a well shuffled pack of 52 playing cards.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Sample space and the two events",
+      "marks": 1
+    },
+    {
+      "label": "Count each event and the overlap",
+      "marks": 2
+    },
+    {
+      "label": "Apply the addition theorem",
+      "marks": 3
+    },
+    {
+      "label": "Simplify and state the answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Probability, answer 34 (PDF p.37: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 34. It is patterned on answer 36 on book p.37 (1 + 2 + 4): set-up 1, the values 2, the computation 4 (split here as 3 for the addition-theorem line + 1 for the simplified answer). This is a short question for 7 marks; the book lists it in the LAQ chapter and Section C is where it would sit, but a teacher may also treat it as a 4-mark question. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question appears in no model paper and not in the Bullet Model Paper; it is Section-C material by the book's chapter placement only. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. Answer checked: 13/52 + 4/52 − 1/52 = 16/52 = 4/13 — agrees with the book."
+  },
+  "recall_prompt": "Say how you would find the probability of an ace or a spade — what you count, which theorem you use, and the answer.",
+  "insider_note": "The overlap card (the ace of spades) is what this question tests: forget it and the answer is 17/52, which is wrong.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Probability · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sample_space",
+        "kind": "text",
+        "label": "Sample space and events",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. One card from 52, so n(S) = ⁵²C₁ = 52. Name the two events before counting anything.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "One card is drawn from 52 cards:",
+            "style": "normal"
+          },
+          {
+            "text": "n(S) = ⁵²C₁ = 52",
+            "style": "eq"
+          },
+          {
+            "text": "Let E₁ = the card is a spade,",
+            "style": "normal"
+          },
+          {
+            "text": "E₂ = the card is an ace.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sample space has 52 outcomes and that E₁ (spade) and E₂ (ace) are named as the two events.",
+          "accept": [
+            "the sample space is 52 cards and let E one be a spade and E two be an ace",
+            "n of S is fifty two and the two events are spade and ace",
+            "one card out of 52 so 52 outcomes, name the spade event and the ace event",
+            "total 52 cards, spade ni E one, ace ni E two ga teeskovali",
+            "fifty two ways to draw a card, define the spade event and the ace event"
+          ],
+          "reject": [
+            "draw a card",
+            "find the probability",
+            "there are 52 cards"
+          ],
+          "heard_as": [
+            "fifty two",
+            "n of S",
+            "spade",
+            "ace",
+            "E one E two"
+          ]
+        },
+        "why": "Every probability in this question is a count divided by 52. Naming the events first is what makes the theorem line readable.",
+        "common_mistakes": [
+          "Starting to count spades without writing n(S).",
+          "Not naming the events, so the theorem line has no symbols to refer to."
+        ]
+      },
+      {
+        "id": "s2_counts",
+        "kind": "equation",
+        "label": "Count E₁, E₂ and E₁ ∩ E₂",
+        "marks": 2,
+        "mark_note": "Values",
+        "margin_note": "Two marks. 13 spades, 4 aces, and ONE card that is both — the ace of spades. n(E₁ ∩ E₂) = 1 is the value most often missed.",
+        "lines": [
+          {
+            "text": "n(E₁) = ¹³C₁ = 13   (13 spades)",
+            "style": "eq"
+          },
+          {
+            "text": "n(E₂) = ⁴C₁ = 4   (4 aces)",
+            "style": "eq"
+          },
+          {
+            "text": "One card, the ace of spades, is both:",
+            "style": "normal"
+          },
+          {
+            "text": "n(E₁ ∩ E₂) = 1",
+            "style": "eq"
+          },
+          {
+            "text": "P(E₁) = 13/52, P(E₂) = 4/52, P(E₁ ∩ E₂) = 1/52",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That there are 13 spades, 4 aces, and 1 card (the ace of spades) in both, giving 13/52, 4/52 and 1/52.",
+          "accept": [
+            "thirteen spades four aces and one card is both the ace of spades",
+            "P of spade is 13 by 52, P of ace is 4 by 52 and the intersection is 1 by 52",
+            "count 13 and 4 and the overlap ace of spades is one",
+            "spades 13, aces 4, rendintilo unna card ace of spades okkate",
+            "the overlap is the single ace of spades so one by fifty two"
+          ],
+          "reject": [
+            "count the cards",
+            "find the probabilities",
+            "thirteen and four"
+          ],
+          "heard_as": [
+            "thirteen",
+            "four aces",
+            "ace of spades",
+            "one by fifty two",
+            "intersection"
+          ]
+        },
+        "why": "The events overlap in exactly one outcome. The addition theorem needs that overlap explicitly, so it must be counted, not assumed to be zero.",
+        "common_mistakes": [
+          "Taking n(E₁ ∩ E₂) = 0 because \"an ace is not a spade\".",
+          "Counting 12 spades to \"avoid double counting\" — the theorem does the correction, not the count.",
+          "Writing 13 + 4 = 17 outcomes and dividing by 52."
+        ]
+      },
+      {
+        "id": "s3_addition_theorem",
+        "kind": "equation",
+        "label": "Apply the addition theorem",
+        "marks": 3,
+        "mark_note": "Addition theorem",
+        "margin_note": "Three marks. Write the theorem in symbols first, then substitute. The theorem line with the minus term is what an examiner looks for.",
+        "lines": [
+          {
+            "text": "By the addition theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁ ∪ E₂) = P(E₁) + P(E₂) − P(E₁ ∩ E₂)",
+            "style": "eq"
+          },
+          {
+            "text": "= 13/52 + 4/52 − 1/52",
+            "style": "eq"
+          },
+          {
+            "text": "= 16/52",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(ace or spade) = P(E₁) + P(E₂) − P(E₁ ∩ E₂) = 13/52 + 4/52 − 1/52 = 16/52.",
+          "accept": [
+            "P of E one union E two is P E one plus P E two minus P E one intersection E two which is 13 plus 4 minus 1 over 52",
+            "by the addition theorem 13 by 52 plus 4 by 52 minus 1 by 52 equals 16 by 52",
+            "add the spade and ace probabilities and subtract the ace of spades",
+            "addition theorem prakaram 13 by 52 plus 4 by 52 minus 1 by 52, 16 by 52 vasthundi",
+            "union probability is the sum minus the overlap, sixteen by fifty two"
+          ],
+          "reject": [
+            "use the theorem",
+            "add them",
+            "sixteen by fifty two"
+          ],
+          "heard_as": [
+            "addition theorem",
+            "union",
+            "sixteen by fifty two",
+            "minus one by fifty two"
+          ]
+        },
+        "why": "The word \"or\" means union. The union of overlapping events is the sum minus the overlap — that is the addition theorem proved in this chapter.",
+        "common_mistakes": [
+          "Substituting numbers without first writing the theorem in symbols.",
+          "Forgetting the minus term and getting 17/52."
+        ]
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Simplify and answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 16/52 reduces by 4 to 4/13. Leave the answer as a reduced fraction.",
+        "lines": [
+          {
+            "text": "∴ P(ace or spade) = 16/52 = 4/13",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 16/52 simplifies to 4/13, the required probability.",
+          "accept": [
+            "sixteen by fifty two simplifies to four by thirteen",
+            "the answer is 4 by 13",
+            "divide top and bottom by four to get four thirteenths",
+            "answer 16 by 52 ante 4 by 13",
+            "the probability of an ace or a spade is four by thirteen"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer",
+            "reduce the fraction"
+          ],
+          "heard_as": [
+            "four by thirteen",
+            "sixteen by fifty two",
+            "four thirteenths"
+          ]
+        },
+        "why": "A probability is reported in lowest terms; 16/52 and 4/13 are the same number but only one is the expected final form.",
+        "common_mistakes": [
+          "Leaving 16/52 unreduced.",
+          "Reducing to 8/26 and stopping."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_12pr_1320_find_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ¹²Pᵣ = 1320, find r.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write 1320 as factors counting down from 12",
+      "marks": 1
+    },
+    {
+      "label": "Count the factors and state r",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 16 Permutations & Combinations, answer 138.2. Printed appearances: AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_expand, s2_solve) are used on every 'solve for n or r' VSAQ in this unit (answers 138.1 to 142), deliberately: they are one method — write the permutation or combination out, compare or solve — over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would find r when 12 P r is 1320.",
+  "insider_note": "The same product 12 · 11 · 10 = 1320 appears in the ⁿP₃ twin, but here the unknown is r: count the factors written, 3 — the last factor 10 is not r.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Write 1320 as factors counting down from 12",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ¹²Pᵣ = 12 · 11 · 10 · … with r factors. Divide 1320 by 12, then 11, then 10 until 1 is reached.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "¹²Pᵣ = 12 · 11 · 10 · … (r factors)",
+          "1320 = 12 · 11 · 10"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 12 P r is a product of r factors starting at 12 and counting down, and 1320 is 12 times 11 times 10.",
+          "accept": [
+            "twelve P r is twelve into eleven into ten and so on for r factors and thirteen twenty is twelve times eleven times ten",
+            "divide thirteen twenty by twelve then eleven then ten",
+            "thirteen twenty is twelve times eleven times ten, three factors",
+            "thirteen twenty ni twelve eleven ten ga rayali",
+            "count how many factors from twelve downward make thirteen twenty"
+          ],
+          "reject": [
+            "find r",
+            "use the formula"
+          ],
+          "heard_as": [
+            "twelve P r",
+            "thirteen twenty",
+            "twelve eleven ten",
+            "factors"
+          ]
+        },
+        "why": "In ¹²Pᵣ the first factor is fixed at 12, so the unknown is how many factors are taken. Dividing 1320 by 12, then 11, then 10 answers that directly.",
+        "common_mistakes": [
+          "Writing ¹²Pᵣ = 12!/r! — the correct form is 12!/(12 − r)!.",
+          "Stopping at 12 · 11 = 132 and misreading 1320 as 132."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Count the factors and state r",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Three factors, so ¹²Pᵣ = ¹²P₃ and r = 3.",
+        "lines": [
+          "Three factors, so ¹²Pᵣ = ¹²P₃",
+          {
+            "text": "∴ r = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That there are three factors, so r = 3.",
+          "accept": [
+            "three factors so r is three",
+            "r equals three",
+            "twelve P r is twelve P three so r is three",
+            "moodu factors kabatti r three",
+            "the number of factors is r, which is three"
+          ],
+          "reject": [
+            "count",
+            "solve"
+          ],
+          "heard_as": [
+            "r is three",
+            "three factors",
+            "three"
+          ]
+        },
+        "why": "r counts the factors in the product, not the last factor; the last factor is 12 − r + 1 = 10, which confirms r = 3.",
+        "common_mistakes": [
+          "Answering r = 10, the last factor, instead of the number of factors.",
+          "Answering r = 12."
+        ]
+      }
+    ]
+  }
+}

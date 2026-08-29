@@ -1,0 +1,253 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_x_over_x2_5x_9_between_1_and_minus_1_11",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If x is real, prove that x/(x² − 5x + 9) lies between 1 and −1/11.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Quadratic in x",
+      "marks": 1
+    },
+    {
+      "label": "Δ ≥ 0",
+      "marks": 1
+    },
+    {
+      "label": "Solve for y",
+      "marks": 1
+    },
+    {
+      "label": "Range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.53 (PDF p.54 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — SAQ chapter 8 Quadratic Expressions, answer 65. Printed appearances: TS 16,18 · AP 17,19. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.52–54. It follows the four moves an examiner ticks in this method: form the quadratic in x · write Δ ≥ 0 · solve the inequality in y · state the range. The SAME split and the SAME step ids (s1_quadratic_in_x, s2_discriminant, s3_solve_in_y, s4_range) are used on all five range / maximum / lies-between SAQs in this unit (answers 63.1, 63.2, 64, 65, 66), deliberately: they are one method — cross-multiply, quadratic in x, discriminant ≥ 0, solve the inequality in y — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q12 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This exact question is Q12 of the book's Model Paper 2 (book p.113) AND of Model Paper 5 (book p.119), and is re-solved as the second Q12 item of the Bullet Model Paper (book p.100) with the same result. No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would prove the expression lies between −1/11 and 1 — say what you call y, what equation in x you form, what condition x being real gives, and how the two bounds come out.",
+  "insider_note": "Squaring b = −(5y + 1) removes its minus, and the condition becomes a product ≤ 0 between the two bounds. Both bounds are reached — end by stating the question's own sentence; stopping at the y-inequality loses the last mark.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Quadratic Expressions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quadratic_in_x",
+        "kind": "equation",
+        "label": "Quadratic in x",
+        "marks": 1,
+        "mark_note": "Quadratic in x",
+        "margin_note": "First mark. The x terms collect to −5yx − x = −(5y + 1)x; the constant is 9y. The denominator x² − 5x + 9 is never zero (Δ = 25 − 36 < 0), so every real x is allowed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = x/(x² − 5x + 9)",
+          "⇒ y(x² − 5x + 9) = x",
+          "⇒ yx² − 5yx + 9y − x = 0",
+          "⇒ yx² − (5y + 1)x + 9y = 0 … (1)",
+          "(1) is a quadratic in x, and x is real."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is set equal to y, cross-multiplied, and collected into a quadratic in x: yx² − (5y + 1)x + 9y = 0.",
+          "accept": [
+            "let y equal the expression, cross multiply and collect terms to get a quadratic in x",
+            "put y equal to the fraction, multiply out the denominator and write it as a quadratic in x",
+            "call the expression y and rearrange it into a x squared plus b x plus c equals zero",
+            "expression ni y ani pettukoni cross multiply chesi x lo quadratic rayali"
+          ],
+          "reject": [
+            "find the range",
+            "write the equation",
+            "let y be the expression"
+          ],
+          "heard_as": [
+            "y equals",
+            "cross multiply",
+            "quadratic in x",
+            "x squared",
+            "y x squared",
+            "five y plus one",
+            "nine y"
+          ]
+        },
+        "why": "To prove a bound on the expression, treat its value as y and ask for which y a real x exists. The quadratic in x is the form the discriminant test needs.",
+        "common_mistakes": [
+          "Writing the x coefficient as −(5y − 1).",
+          "Forgetting the −x when moving the right side across.",
+          "Not writing that (1) is a quadratic in x with x real."
+        ]
+      },
+      {
+        "id": "s2_discriminant",
+        "kind": "equation",
+        "label": "Δ ≥ 0",
+        "marks": 1,
+        "mark_note": "Discriminant",
+        "margin_note": "Second mark. a = y, b = −(5y + 1), c = 9y. Squaring removes the minus on b, and 4ac = 36y². Then 25y² − 36y² = −11y².",
+        "lines": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (5y + 1)² − 4(y)(9y) ≥ 0",
+          "⇒ 25y² + 10y + 1 − 36y² ≥ 0",
+          "⇒ −11y² + 10y + 1 ≥ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x real gives Δ ≥ 0: (5y + 1)² − 36y² ≥ 0, which simplifies to −11y² + 10y + 1 ≥ 0.",
+          "accept": [
+            "x is real so the discriminant b squared minus four a c must be greater than or equal to zero",
+            "the quadratic in x has real roots so delta is at least zero",
+            "apply b squared minus 4 a c greater than or equal to zero to the quadratic in x",
+            "x real kabatti delta greater than or equal to zero pettali"
+          ],
+          "reject": [
+            "find delta",
+            "use the discriminant",
+            "solve the quadratic"
+          ],
+          "heard_as": [
+            "discriminant",
+            "delta",
+            "b squared minus four a c",
+            "greater than or equal to zero",
+            "twenty five y squared",
+            "thirty six y squared",
+            "minus eleven y squared"
+          ]
+        },
+        "why": "x is real, so the quadratic (1) has a real root and its discriminant is at least zero. Every restriction on y comes from this one line.",
+        "common_mistakes": [
+          "Writing b² as (5y + 1) without squaring, or as 25y² + 1.",
+          "Computing 4ac as 36y instead of 36y².",
+          "Using Δ > 0, which loses the two bounds themselves."
+        ]
+      },
+      {
+        "id": "s3_solve_in_y",
+        "kind": "equation",
+        "label": "Solve for y",
+        "marks": 1,
+        "mark_note": "Inequality in y",
+        "margin_note": "Third mark. Multiplying by −1 REVERSES the inequality. Split −10y as −11y + y so the pairs factorise. A product ≤ 0 means y is between the roots: −1/11 and 1.",
+        "lines": [
+          "⇒ 11y² − 10y − 1 ≤ 0",
+          "⇒ 11y² − 11y + y − 1 ≤ 0",
+          "⇒ 11y(y − 1) + 1(y − 1) ≤ 0",
+          "⇒ (11y + 1)(y − 1) ≤ 0",
+          "⇒ −1/11 ≤ y ≤ 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by −1 reverses the inequality to 11y² − 10y − 1 ≤ 0, which factorises as (11y + 1)(y − 1) ≤ 0, so −1/11 ≤ y ≤ 1.",
+          "accept": [
+            "multiply by minus one to make the leading coefficient positive, factorise and read off the interval for y",
+            "factorise the quadratic in y and find where the product is less than or equal to zero",
+            "solve the quadratic inequality in y by factoring",
+            "y lo quadratic inequality ni factorise chesi y ki interval teeyali"
+          ],
+          "reject": [
+            "solve it",
+            "find y",
+            "factorise"
+          ],
+          "heard_as": [
+            "factorise",
+            "less than or equal to",
+            "between",
+            "interval",
+            "y lies",
+            "eleven y plus one",
+            "y minus one",
+            "minus one by eleven",
+            "one"
+          ]
+        },
+        "why": "The inequality's two roots are exactly the two bounds the question names. 'Product ≤ 0' places y between them, which is the statement to be proved.",
+        "common_mistakes": [
+          "Keeping ≥ after multiplying by −1 and concluding the opposite (outside the roots).",
+          "Factorising with the wrong pair; check 11·1 = 11 and 11(−1) + 1·1 = −10.",
+          "Writing the roots as 1/11 and −1."
+        ]
+      },
+      {
+        "id": "s4_range",
+        "kind": "boxed_final",
+        "label": "Range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Both bounds are reached: y = 1 at x = 3 and y = −1/11 at x = −3, so 'lies between' here includes the ends. Finish with the sentence the question asked for, in the question's own words.",
+        "lines": [
+          "So the expression lies between −1/11 and 1.",
+          {
+            "text": "∴ −1/11 ≤ x/(x² − 5x + 9) ≤ 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression's value always lies between −1/11 and 1, both included, which is what was to be proved.",
+          "accept": [
+            "so the expression lies between minus one by eleven and one",
+            "y is between minus one eleventh and one so the statement is proved",
+            "the value of the expression is at least minus one by eleven and at most one",
+            "expression minus one by eleven ki one ki madhya untundi, proved",
+            "hence proved that it lies between minus one by eleven and one"
+          ],
+          "reject": [
+            "that is the range",
+            "write the answer",
+            "box it"
+          ],
+          "heard_as": [
+            "minus one by eleven",
+            "one",
+            "lies between",
+            "hence proved"
+          ]
+        },
+        "why": "A 'prove that' question is complete only when the required statement is written down as the conclusion. The inequality on y IS that statement.",
+        "common_mistakes": [
+          "Ending at the inequality in y without saying it proves the claim.",
+          "Writing the bounds as 1 and 1/11.",
+          "Claiming the expression is strictly between the bounds — both are reached."
+        ]
+      }
+    ]
+  }
+}

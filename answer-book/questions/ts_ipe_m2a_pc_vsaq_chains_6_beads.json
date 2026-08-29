@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_chains_6_beads",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the number of different chains that can be prepared using 6 different coloured beads.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "A chain is a circular arrangement that can be turned over",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate for n = 6",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 16 Permutations & Combinations, answer 153.1. Printed appearances: TS 16, 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_setup, s2_compute) are used on every direct-count VSAQ in this unit (answers 149.1 to 155.2 and Star Questions Plus 199, 200), deliberately: one mark to name the count (which ⁿPᵣ, ⁿCᵣ, nʳ or formula, and why), one to evaluate it. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is re-solved in the Bullet Model Paper Q6&7 block (book p.98), which agrees, and is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. The SAME split and step ids are used on the 7-bead twin (answer 153.2), deliberately."
+  },
+  "recall_prompt": "Say how you would count the chains from six different beads — why the circular count is halved, and the number.",
+  "insider_note": "A chain is a circle that can also be turned over, so the count is (n − 1)!/2 and the division by 2 is the mark students lose — 120 is the round-table answer, not the chain answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "A chain is a circular arrangement that can be turned over",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Beads on a chain form a circle, so (n − 1)! arrangements; and a chain can be turned over, so clockwise and anticlockwise are the same chain — halve it: (n − 1)!/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Beads on a chain form a circle: (n − 1)!",
+          "A chain can be turned over, so clockwise and",
+          "anticlockwise are the same chain: (n − 1)!/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That beads on a chain are a circular arrangement, (n minus 1) factorial, halved because the chain can be turned over.",
+          "accept": [
+            "circular arrangement is n minus one factorial and a chain can be flipped so divide by two",
+            "n minus one factorial by two because clockwise and anticlockwise are the same chain",
+            "a chain is a circle that can be turned over so half of n minus one factorial",
+            "circle ki n minus one factorial, chain ni flip cheyochu kabatti by two",
+            "the formula for chains is n minus one factorial over two"
+          ],
+          "reject": [
+            "set it up",
+            "use the formula"
+          ],
+          "heard_as": [
+            "n minus one factorial",
+            "by two",
+            "turned over",
+            "clockwise",
+            "circular"
+          ]
+        },
+        "why": "On a circle, rotating an arrangement gives the same arrangement, which is why one bead is fixed and (n − 1)! counts the rest. A chain has no fixed side either, so each arrangement and its mirror image are one chain — hence the further division by 2.",
+        "common_mistakes": [
+          "Using n! as for a row.",
+          "Using (n − 1)! without halving — that counts a ring that cannot be turned over, such as people at a round table."
+        ]
+      },
+      {
+        "id": "s2_compute",
+        "kind": "boxed_final",
+        "label": "Evaluate for n = 6",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (6 − 1)!/2 = 5!/2 = 120/2 = 60.",
+        "lines": [
+          "Number of chains = (6 − 1)!/2 = 5!/2 = 120/2",
+          {
+            "text": "= 60",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 5 factorial over 2 is 60.",
+          "accept": [
+            "five factorial by two is sixty",
+            "sixty",
+            "one twenty by two is sixty",
+            "five factorial by two sixty",
+            "the answer is sixty chains"
+          ],
+          "reject": [
+            "evaluate",
+            "compute"
+          ],
+          "heard_as": [
+            "sixty",
+            "five factorial",
+            "one twenty by two"
+          ]
+        },
+        "why": "With n = 6, (n − 1)! = 120 and half of it is 60; the halving is what the question tests.",
+        "common_mistakes": [
+          "Answering 120 (forgetting the halving).",
+          "Answering 360 (using 6!/2)."
+        ]
+      }
+    ]
+  }
+}

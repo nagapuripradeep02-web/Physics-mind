@@ -1,0 +1,239 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_real_x_y_3_plus_i_3_minus_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the real values of x and y if (x − 1)/(3 + i) + (y − 1)/(3 − i) = i.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Combine the two fractions over (3 + i)(3 − i) = 10",
+      "marks": 1
+    },
+    {
+      "label": "Expand the numerator into real and imaginary parts",
+      "marks": 1
+    },
+    {
+      "label": "Compare parts to get two equations",
+      "marks": 1
+    },
+    {
+      "label": "Solve for x and y",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 7 Complex Numbers, answer 62. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A house habit of one mark per named move for a four-move SAQ (the Cramer LAQs of 1A, book pp.27–28, give one mark per determinant). The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot. The book writes the two equations as x + y − 2 = 0 and y − x = 10 and adds them; the card writes the first as x + y = 2 so the addition is one line — same equations, same answer x = −4, y = 6. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find x and y — how you combine the fractions, what you compare, and how you solve the two equations.",
+  "insider_note": "The two denominators are conjugates, so one multiplication gives the real common denominator 10 — rationalising each fraction separately doubles the work for the same marks. The right side becomes 10i, whose real part is 0: those two comparisons are where the third mark sits.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_combine",
+        "kind": "equation",
+        "label": "Combine the fractions",
+        "marks": 1,
+        "mark_note": "Common denominator",
+        "margin_note": "First mark. The two denominators are conjugates, so their product (3 + i)(3 − i) = 9 + 1 = 10 is real — that is the common denominator, and it is a plain number.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(3 + i)(3 − i) = 3² + 1² = 10",
+          "Given equation becomes",
+          {
+            "text": "[(x − 1)(3 − i) + (y − 1)(3 + i)] / 10 = i",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two fractions are combined over the common denominator (3 + i)(3 − i) = 10.",
+          "accept": [
+            "combine the fractions over three plus i times three minus i which is ten",
+            "the common denominator is ten because the two denominators are conjugates",
+            "cross multiply, the bottom becomes nine plus one equals ten",
+            "rendu fractions ni common denominator ten meeda kalapali",
+            "put both over three plus i into three minus i, that is ten"
+          ],
+          "reject": [
+            "add the fractions",
+            "take LCM"
+          ],
+          "heard_as": [
+            "common denominator",
+            "ten",
+            "three plus i",
+            "three minus i",
+            "conjugate"
+          ]
+        },
+        "why": "Because 3 + i and 3 − i are conjugates, their product is real. Combining over it removes every i from the denominator in one move — no separate rationalising is needed.",
+        "common_mistakes": [
+          "Computing (3 + i)(3 − i) as 9 − 1 = 8.",
+          "Pairing (x − 1) with (3 + i) instead of with the OTHER denominator (3 − i).",
+          "Rationalising each fraction separately, which doubles the work."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "equation",
+        "label": "Expand the numerator",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Second mark. Expand both products, then collect the terms without i and the terms with i. The right side is i, which is 0 + 10i once multiplied by 10.",
+        "lines": [
+          "(x − 1)(3 − i) = 3x − xi − 3 + i",
+          "(y − 1)(3 + i) = 3y + yi − 3 − i",
+          "Adding: (3x + 3y − 6) + i(y − x)",
+          {
+            "text": "∴ (3x + 3y − 6) + i(y − x) = 10i",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator expands to (3x + 3y − 6) + i(y − x), and the equation becomes that equal to 10i.",
+          "accept": [
+            "expand to three x plus three y minus six plus i times y minus x and set it equal to ten i",
+            "the real part is three x plus three y minus six and the imaginary part is y minus x",
+            "multiply the ten across so the right side is ten i, the left is three x plus three y minus six plus i y minus x",
+            "expand cheste three x plus three y minus six plus i into y minus x, equals ten i",
+            "collect the real terms and the i terms after expanding both brackets"
+          ],
+          "reject": [
+            "expand it",
+            "simplify",
+            "open the brackets"
+          ],
+          "heard_as": [
+            "three x plus three y",
+            "minus six",
+            "y minus x",
+            "ten i",
+            "real part",
+            "imaginary part"
+          ]
+        },
+        "why": "Two complex numbers can only be compared part by part, so the left side has to be sorted into (real) + i(imaginary). Multiplying the 10 across first keeps the fractions out of the comparison.",
+        "common_mistakes": [
+          "Sign slip in −xi + i or in yi − i, so the imaginary part comes out as x + y instead of y − x.",
+          "Forgetting to multiply the right side by 10.",
+          "Writing the right side as 10 instead of 10i."
+        ]
+      },
+      {
+        "id": "s3_compare",
+        "kind": "equation",
+        "label": "Compare parts",
+        "marks": 1,
+        "mark_note": "Two equations",
+        "margin_note": "Third mark. The right side 10i has real part 0 and imaginary part 10. That gives one equation from each part.",
+        "lines": [
+          "Comparing real parts:",
+          {
+            "text": "3x + 3y − 6 = 0 ⇒ x + y = 2    …(1)",
+            "style": "eq"
+          },
+          "Comparing imaginary parts:",
+          {
+            "text": "y − x = 10    …(2)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equating real parts gives x + y = 2 and equating imaginary parts gives y − x = 10.",
+          "accept": [
+            "real parts give x plus y equals two and imaginary parts give y minus x equals ten",
+            "compare with zero plus ten i to get two equations x plus y two and y minus x ten",
+            "the real part is zero so x plus y is two, the imaginary part is ten so y minus x is ten",
+            "real parts compare cheste x plus y equals two, imaginary parts compare cheste y minus x equals ten",
+            "two simultaneous equations from the two parts"
+          ],
+          "reject": [
+            "compare both sides",
+            "equate"
+          ],
+          "heard_as": [
+            "x plus y equals two",
+            "y minus x equals ten",
+            "real parts",
+            "imaginary parts",
+            "two equations"
+          ]
+        },
+        "why": "Equality of complex numbers is two real equalities at once. Two unknowns, two equations — the question is designed so that this comparison is exactly enough to fix x and y.",
+        "common_mistakes": [
+          "Setting the real part equal to 10 instead of 0.",
+          "Not dividing 3x + 3y − 6 = 0 by 3, which makes the next step messier.",
+          "Losing the sign in y − x = 10."
+        ]
+      },
+      {
+        "id": "s4_solve",
+        "kind": "boxed_final",
+        "label": "Solve for x and y",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Adding (1) and (2) removes x at once. Then put y back into (1). Check: −4 + 6 = 2 and 6 − (−4) = 10.",
+        "lines": [
+          "(1) + (2): 2y = 12 ⇒ y = 6",
+          "From (1): x = 2 − 6 = −4",
+          {
+            "text": "∴ x = −4, y = 6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding the two equations gives y = 6, and then x = −4.",
+          "accept": [
+            "add the two equations to get two y equals twelve so y is six and then x is minus four",
+            "y equals six and x equals minus four",
+            "adding removes x, y is six, substitute back and x is minus four",
+            "rendu equations add cheste y six, x minus four vasthundi",
+            "solve the pair to get x minus four and y six"
+          ],
+          "reject": [
+            "solve them",
+            "find x and y"
+          ],
+          "heard_as": [
+            "y equals six",
+            "x equals minus four",
+            "add",
+            "two y equals twelve"
+          ]
+        },
+        "why": "The x terms in (1) and (2) have opposite signs, so adding is the quickest route. Both answers are real, as the question promised — a non-real x or y would signal an earlier slip.",
+        "common_mistakes": [
+          "Subtracting instead of adding, which gives 2x = −8 and is also fine — but then y must come from (1), not be guessed.",
+          "Writing x = 4 by dropping the sign.",
+          "Not checking the pair in the original equation."
+        ]
+      }
+    ]
+  }
+}

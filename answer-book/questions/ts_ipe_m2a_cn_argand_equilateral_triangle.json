@@ -1,0 +1,341 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_argand_equilateral_triangle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that the points in the Argand diagram represented by the complex numbers 2 + 2i, −2 − 2i, −2√3 + 2√3i are the vertices of an equilateral triangle.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the three points and the distance formula",
+      "marks": 1
+    },
+    {
+      "label": "Find the three sides AB, BC, CA",
+      "marks": 2
+    },
+    {
+      "label": "State that the sides are equal and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.48 — SAQ chapter 7 Complex Numbers, answer 54.1. (In this part of the scan book page = PDF page − 1: book p.48 is PDF p.49, not p.50 as the −2 rule predicts.) Printed appearances: TS 18 · AP 15. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2: 1 for the set-up, 2 for the bulk computation, 1 for the conclusion); the three Argand-polygon SAQs of this unit (54.1, 54.2, 55) share the same split and the same step ids deliberately, because they are one method over different points. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 3 (book p.115). The figure carries no mark — the question does not ask for a drawing. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show that the three points make an equilateral triangle — what you turn each complex number into, what you compute, and what you compare at the end.",
+  "insider_note": "All three distances are needed — two equal sides only show an isosceles triangle. The last mark is a sentence, not a number: say the three sides are equal and name the triangle.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_points",
+        "kind": "equation",
+        "label": "Write the points",
+        "marks": 1,
+        "mark_note": "Points",
+        "margin_note": "First mark. A complex number x + iy is the point (x, y) in the Argand plane. Write all three as points and write the distance formula once — every later line uses it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The numbers 2 + 2i, −2 − 2i, −2√3 + 2√3i are",
+          "the points A(2, 2), B(−2, −2), C(−2√3, 2√3).",
+          "Distance between two points:",
+          {
+            "text": "d = √((x₁ − x₂)² + (y₁ − y₂)²)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each complex number x + iy is taken as the point (x, y), giving A(2, 2), B(−2, −2), C(−2√3, 2√3), and that side lengths come from the distance formula.",
+          "accept": [
+            "write each complex number as a point x comma y and use the distance formula for the sides",
+            "the three numbers become the points two two, minus two minus two and minus two root three comma two root three",
+            "take real part as x and imaginary part as y to get three points",
+            "prathi complex number ni point ga rasi distance formula use cheyali",
+            "convert to points in the argand plane then find the distances"
+          ],
+          "reject": [
+            "plot the points",
+            "write the points"
+          ],
+          "heard_as": [
+            "argand",
+            "point",
+            "real part",
+            "imaginary part",
+            "distance formula"
+          ]
+        },
+        "why": "The Argand plane turns a complex-number question into a coordinate-geometry question. Once the three numbers are points, a triangle is equilateral exactly when its three sides have the same length — nothing about i is needed after this line.",
+        "common_mistakes": [
+          "Reading −2√3 + 2√3i as the point (−2, 2) by dropping the √3.",
+          "Swapping x and y, taking the imaginary part as x.",
+          "Never writing the distance formula, then making a sign error inside the root."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Sketch the triangle",
+        "marks": 0,
+        "margin_note": "Worth no mark, but it takes ten seconds and it shows the examiner which point is which. The dashed lines are the axes; the triangle sits with A in the first quadrant, B in the third, C in the second.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the three points are marked on the Argand plane and joined into triangle ABC. Naming the sketch is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the three points on the argand plane and join them",
+            "sketch triangle A B C on the axes",
+            "mark A B and C and draw the triangle",
+            "moodu points ni plane lo guruthu pettukoni triangle geeyali",
+            "plot the points and join them into a triangle"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "sketch",
+            "plot",
+            "triangle",
+            "argand plane"
+          ]
+        },
+        "why": "The sketch is not proof, but it stops the commonest slip: joining the wrong pairs of points. With A, B, C labelled, the three sides you must compute are AB, BC and CA and nothing else.",
+        "common_mistakes": [
+          "Placing C(−2√3, 2√3) in the wrong quadrant — it is in the second, with a negative x and positive y.",
+          "Treating the sketch as the proof and skipping the distances."
+        ],
+        "figure": {
+          "id": "argand_equilateral_triangle",
+          "width": 300,
+          "height": 220,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 22 130 L 280 130",
+              "ms": 3690,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 160 208 L 160 18",
+              "ms": 2710,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_x",
+              "d": "M 272 125 L 280 130 L 272 135",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_y",
+              "d": "M 155 26 L 160 18 L 165 26",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 208 82 L 112 178",
+              "ms": 1940
+            },
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 112 178 L 77 47",
+              "ms": 1940
+            },
+            {
+              "type": "stroke",
+              "id": "side_ca",
+              "d": "M 77 47 L 208 82",
+              "ms": 1940
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 268,
+              "y": 148,
+              "text": "x",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 168,
+              "y": 30,
+              "text": "y",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 214,
+              "y": 80,
+              "text": "A(2, 2)",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 96,
+              "y": 198,
+              "text": "B(−2, −2)",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 8,
+              "y": 40,
+              "text": "C(−2√3, 2√3)",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_sides",
+        "kind": "equation",
+        "label": "Find AB, BC, CA",
+        "marks": 2,
+        "mark_note": "Three sides",
+        "margin_note": "Half the marks. AB is quick. BC and CA both have a √3 inside the root; the identity (a + b)² + (a − b)² = 2(a² + b²) does both in one line each and avoids expanding (2 + 2√3)² by hand.",
+        "lines": [
+          {
+            "text": "AB = √((2 + 2)² + (2 + 2)²) = √(16 + 16) = √32",
+            "style": "eq"
+          },
+          {
+            "text": "BC = √((−2 + 2√3)² + (−2 − 2√3)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(2[(−2)² + (2√3)²]) = √(2(4 + 12)) = √32",
+            "style": "indent"
+          },
+          "(using (a + b)² + (a − b)² = 2(a² + b²))",
+          {
+            "text": "CA = √((2 + 2√3)² + (2 − 2√3)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(2[2² + (2√3)²]) = √(2(4 + 12)) = √32",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three distances AB, BC and CA are each computed with the distance formula and each comes to √32.",
+          "accept": [
+            "find A B, B C and C A with the distance formula and each one is root thirty two",
+            "compute all three sides and they all come to root thirty two",
+            "the three distances are equal, each is root thirty two",
+            "moodu sides distance formula tho kanukunte anni root thirty two vasthai",
+            "use a plus b squared plus a minus b squared equals two a squared plus b squared to get root thirty two each time"
+          ],
+          "reject": [
+            "find the sides",
+            "use the distance formula",
+            "find AB"
+          ],
+          "heard_as": [
+            "root thirty two",
+            "root 32",
+            "A B",
+            "B C",
+            "C A",
+            "distance"
+          ]
+        },
+        "why": "Three equal sides is the definition of an equilateral triangle, so all three distances must be shown — two equal sides only prove isosceles. Leaving the answer as √32 (not 4√2) is fine; what matters is that the three roots are the same number.",
+        "common_mistakes": [
+          "Computing only AB and BC and concluding — that shows isosceles, not equilateral.",
+          "Writing (−2 − 2√3)² as 4 − 12 instead of expanding it as a square, which is positive.",
+          "A sign slip in (x₁ − x₂) when both coordinates are negative."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Say the three sides are equal AND name the shape. A page of correct distances with no sentence at the end loses this mark.",
+        "lines": [
+          "AB = BC = CA = √32",
+          {
+            "text": "∴ A, B, C form an equilateral triangle.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That since AB = BC = CA, the three points are the vertices of an equilateral triangle.",
+          "accept": [
+            "all three sides are equal so the triangle is equilateral",
+            "A B equals B C equals C A therefore A B C is an equilateral triangle",
+            "since the three sides are the same length it is equilateral",
+            "moodu sides equal kabatti equilateral triangle",
+            "equal sides means equilateral"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is a triangle"
+          ],
+          "heard_as": [
+            "equilateral",
+            "equal sides",
+            "therefore",
+            "hence"
+          ]
+        },
+        "why": "The question says 'show that', so the last line must say what has been shown. The examiner marks the statement, not the feeling that the work is done.",
+        "common_mistakes": [
+          "Ending on the third distance with no conclusion.",
+          "Writing 'hence proved' without naming which sides are equal."
+        ]
+      }
+    ]
+  }
+}

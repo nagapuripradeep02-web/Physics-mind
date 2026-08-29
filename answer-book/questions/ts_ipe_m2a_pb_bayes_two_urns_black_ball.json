@@ -1,0 +1,318 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_bayes_two_urns_black_ball",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Suppose that an urn B₁ contains 2 white and 3 black balls and another urn B₂ contains 3 white and 4 black balls. One urn is selected at random and a ball is drawn from it. If the ball drawn is found black, find the probability that the urn chosen was B₁.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Define the events",
+      "marks": 1
+    },
+    {
+      "label": "Prior probabilities of choosing each container",
+      "marks": 1
+    },
+    {
+      "label": "Probability of the colour from each container",
+      "marks": 1
+    },
+    {
+      "label": "Total probability of the colour",
+      "marks": 2
+    },
+    {
+      "label": "Bayes' theorem and the answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Probability, answer 36 (PDF p.38: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 17,19. The book prints [1 Mark] · [2 Marks] · [4 Marks] against answer 36 (define the events · the priors and the colour probabilities · Bayes' computation). The card keeps that 1 + 2 + 4 and refines it as 1 + (1 + 1) + (2 + 2) so that each of the five steps carries its own mark; the refinement is OURS. The SAME five step ids and the SAME split are used on all four urn/box Bayes answers of this unit (36, 37, 38, 39), deliberately: they are one method over different numbers. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question is Q23 of Model Paper 3 (book p.116) and is re-solved in the Bullet Model Paper Q23 block (book p.109) — that second solution is identical. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. Answer checked: numerator (1/2)(3/5) = 3/10; denominator 3/10 + 2/7 = 41/70; ratio (3/10)·(70/41) = 21/41 — agrees with the book."
+  },
+  "recall_prompt": "Say how you would find the probability that the black ball came from B₁ — the events, the priors, the two black-ball probabilities, the total, and Bayes.",
+  "insider_note": "The urn is chosen first and the colour is seen second; the question asks the REVERSE direction, which is exactly what Bayes is for. The denominator 41/70 is where arithmetic slips happen.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Probability · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_events",
+        "kind": "text",
+        "label": "Define the events",
+        "marks": 1,
+        "mark_note": "Events",
+        "margin_note": "First mark. Two events for the two urns, one event for the colour seen. Name all three before writing any number.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Let E₁, E₂ be the events of selecting urn B₁",
+            "style": "normal"
+          },
+          {
+            "text": "and urn B₂ respectively, and let B be the",
+            "style": "normal"
+          },
+          {
+            "text": "event that the ball drawn is black.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E₁ and E₂ are the events of choosing urn B₁ and B₂, and B is the event that the drawn ball is black.",
+          "accept": [
+            "let E one and E two be choosing urn B one and B two and B be drawing a black ball",
+            "define events for selecting each urn and one event for the ball being black",
+            "E one is urn one chosen E two is urn two chosen B is black ball",
+            "urn B one select ayithe E one, B two ayithe E two, black ball vaste B",
+            "name the two urn events and the black ball event"
+          ],
+          "reject": [
+            "define the events",
+            "let the events be",
+            "take two events"
+          ],
+          "heard_as": [
+            "E one",
+            "E two",
+            "urn B one",
+            "black ball",
+            "event B"
+          ]
+        },
+        "why": "Bayes' theorem is written in terms of named events. The urn events are the mutually exclusive and exhaustive ones; the colour event is the A of the theorem.",
+        "common_mistakes": [
+          "Using the same letter B for the urn B₁ and for the black-ball event.",
+          "Not writing the colour event at all and then having no symbol for the condition."
+        ]
+      },
+      {
+        "id": "s2_priors",
+        "kind": "equation",
+        "label": "Priors",
+        "marks": 1,
+        "mark_note": "Priors",
+        "margin_note": "Second mark. \"Selected at random\" between two urns means each urn has probability 1/2.",
+        "lines": [
+          {
+            "text": "The urn is chosen at random, so",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁) = P(E₂) = 1/2",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each urn is equally likely to be chosen, so P(E₁) = P(E₂) = 1/2.",
+          "accept": [
+            "each urn is chosen with probability half",
+            "P of E one equals P of E two equals one by two",
+            "the urn is picked at random so both priors are half",
+            "rendu urns ki probability half half",
+            "the prior for each urn is one half"
+          ],
+          "reject": [
+            "find the priors",
+            "the probabilities of the urns",
+            "equal probability"
+          ],
+          "heard_as": [
+            "one by two",
+            "half",
+            "P of E one",
+            "at random"
+          ]
+        },
+        "why": "The priors are the probabilities BEFORE the colour is seen. They come from how the urn was chosen, not from the balls.",
+        "common_mistakes": [
+          "Taking P(E₁) = 5/12 and P(E₂) = 7/12 from the number of balls — the urn, not a ball, is chosen at random.",
+          "Leaving the priors out because they are equal; they still appear in the formula."
+        ]
+      },
+      {
+        "id": "s3_likelihoods",
+        "kind": "equation",
+        "label": "P(black | each urn)",
+        "marks": 1,
+        "mark_note": "Conditional probabilities",
+        "margin_note": "Third mark. Read each urn separately: B₁ has 3 black out of 5, B₂ has 4 black out of 7.",
+        "lines": [
+          {
+            "text": "P(B|E₁) = 3/5   (3 black of 5 in B₁)",
+            "style": "eq"
+          },
+          {
+            "text": "P(B|E₂) = 4/7   (4 black of 7 in B₂)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(B|E₁) = 3/5 and P(B|E₂) = 4/7, each read from its own urn.",
+          "accept": [
+            "black given urn one is three by five and black given urn two is four by seven",
+            "P of B given E one is 3 by 5 and P of B given E two is 4 by 7",
+            "from B one three black out of five, from B two four black out of seven",
+            "B one lo black probability 3 by 5, B two lo 4 by 7",
+            "the likelihoods are three fifths and four sevenths"
+          ],
+          "reject": [
+            "find the conditional probabilities",
+            "black ball probability",
+            "three and four"
+          ],
+          "heard_as": [
+            "three by five",
+            "four by seven",
+            "B given E one",
+            "B given E two"
+          ]
+        },
+        "why": "These are the probabilities the experiment gives directly — the colour given the urn. Bayes reverses them into the urn given the colour.",
+        "common_mistakes": [
+          "Using 3/12 and 4/12 (black balls over ALL balls) instead of over each urn's own total.",
+          "Swapping the two fractions between the urns."
+        ]
+      },
+      {
+        "id": "s4_total_probability",
+        "kind": "equation",
+        "label": "Total probability of black",
+        "marks": 2,
+        "mark_note": "Total probability",
+        "margin_note": "Two marks. P(B) = P(E₁)·P(B|E₁) + P(E₂)·P(B|E₂). Keep the fractions exact: 3/10 + 2/7 = (21 + 20)/70 = 41/70.",
+        "lines": [
+          {
+            "text": "By total probability,",
+            "style": "normal"
+          },
+          {
+            "text": "P(B) = P(E₁)·P(B|E₁) + P(E₂)·P(B|E₂)",
+            "style": "eq"
+          },
+          {
+            "text": "= (1/2)(3/5) + (1/2)(4/7)",
+            "style": "eq"
+          },
+          {
+            "text": "= 3/10 + 2/7 = (21 + 20)/70 = 41/70",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(B) = (1/2)(3/5) + (1/2)(4/7) = 3/10 + 2/7 = 41/70.",
+          "accept": [
+            "P of B is half times three by five plus half times four by seven which is forty one by seventy",
+            "total probability of black is 3 by 10 plus 2 by 7 equals 41 by 70",
+            "add prior times likelihood for both urns to get forty one by seventy",
+            "P of black ante half into 3 by 5 plus half into 4 by 7, 41 by 70 vasthundi",
+            "the denominator of bayes is 41 by 70"
+          ],
+          "reject": [
+            "find P of B",
+            "total probability",
+            "add them"
+          ],
+          "heard_as": [
+            "forty one by seventy",
+            "three by ten",
+            "two by seven",
+            "total probability"
+          ]
+        },
+        "why": "A black ball can come from either urn; the two routes are disjoint, so their probabilities add. This sum is the denominator of Bayes' theorem.",
+        "common_mistakes": [
+          "Adding 3/5 + 4/7 without the priors.",
+          "Getting 3/10 + 2/7 wrong: the common denominator is 70, giving 21 + 20 = 41.",
+          "Writing 2/7 as 4/14 and then not simplifying consistently."
+        ]
+      },
+      {
+        "id": "s5_bayes",
+        "kind": "boxed_final",
+        "label": "Bayes' theorem",
+        "marks": 2,
+        "mark_note": "Bayes' theorem",
+        "margin_note": "Last two marks. P(E₁|B) = P(E₁)·P(B|E₁)/P(B) = (3/10)/(41/70). Divide by a fraction by multiplying by its reciprocal; 70/10 = 7 gives 21/41.",
+        "lines": [
+          {
+            "text": "By Bayes' theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁|B) = P(E₁)·P(B|E₁) / P(B)",
+            "style": "eq"
+          },
+          {
+            "text": "= (3/10) / (41/70) = (3/10)·(70/41)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(E₁|B) = 21/41",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(E₁|B) = P(E₁)·P(B|E₁)/P(B) = (3/10)/(41/70) = 21/41.",
+          "accept": [
+            "P of E one given B is P E one times P B given E one over P B which is three by ten over forty one by seventy equals twenty one by forty one",
+            "by bayes theorem the answer is 21 by 41",
+            "divide the urn one route three by ten by the total forty one by seventy to get twenty one by forty one",
+            "bayes prakaram 3 by 10 ni 41 by 70 tho divide cheste 21 by 41",
+            "the probability the urn was B one given black is twenty one by forty one"
+          ],
+          "reject": [
+            "apply bayes",
+            "twenty one by forty one",
+            "use the formula"
+          ],
+          "heard_as": [
+            "twenty one by forty one",
+            "E one given B",
+            "bayes",
+            "three by ten over forty one by seventy"
+          ]
+        },
+        "why": "The answer is the share of the black-ball probability that came through urn B₁: the B₁ route over all routes.",
+        "common_mistakes": [
+          "Writing P(B|E₁) = 3/5 as the answer — that is the forward direction, not the one asked.",
+          "Inverting the division: (41/70)/(3/10).",
+          "Cancelling 70 and 10 wrongly and getting 3/41 or 210/41."
+        ]
+      }
+    ]
+  }
+}

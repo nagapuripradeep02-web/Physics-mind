@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_n1p5_np6_ratio_2_7",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ⁽ⁿ⁺¹⁾P₅ : ⁿP₆ = 2 : 7, then find n.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the ratio and cancel",
+      "marks": 1
+    },
+    {
+      "label": "Solve the quadratic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 16 Permutations & Combinations, answer 140.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_expand, s2_solve) are used on every 'solve for n or r' VSAQ in this unit (answers 138.1 to 142), deliberately: they are one method — write the permutation or combination out, compare or solve — over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. The book's working ends '(n − 11)(2n − 3) = 0 ⇒ n = 11 (∵ n cannot be a fraction)'; the card adds that n must also be at least 6 for ⁿP₆ to exist."
+  },
+  "recall_prompt": "Say how you would find n when n plus 1 P 5 to n P 6 is 2 to 7.",
+  "insider_note": "Unlike the 3 : 2 twin, the denominator here is ⁿP₆ — six factors, so two of them survive the cancelling and the equation is a quadratic. Both roots appear, 11 and 3/2, and the fraction is rejected because n must be a whole number.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Write the ratio and cancel",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ⁽ⁿ⁺¹⁾P₅ = (n + 1)n(n − 1)(n − 2)(n − 3) and ⁿP₆ = n(n − 1)(n − 2)(n − 3)(n − 4)(n − 5). Four factors cancel.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "⁽ⁿ⁺¹⁾P₅ / ⁿP₆ = 2/7",
+          "(n + 1)n(n − 1)(n − 2)(n − 3)",
+          "÷ [n(n − 1)(n − 2)(n − 3)(n − 4)(n − 5)] = 2/7",
+          "(n + 1) / [(n − 4)(n − 5)] = 2/7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That writing both permutations as products and cancelling four common factors leaves n plus 1 over n minus 4 times n minus 5 equal to 2 over 7.",
+          "accept": [
+            "write both as products, four factors cancel, leaving n plus one over n minus four into n minus five equals two by seven",
+            "cancel the common factors to get n plus one by n minus four n minus five",
+            "the ratio reduces to n plus one over the product n minus four times n minus five",
+            "common factors cancel chesthe n plus one by n minus four into n minus five, two by seven",
+            "expand both permutations and cancel"
+          ],
+          "reject": [
+            "cancel",
+            "use the formula"
+          ],
+          "heard_as": [
+            "n plus one",
+            "n minus four",
+            "n minus five",
+            "two by seven",
+            "cancel"
+          ]
+        },
+        "why": "ⁿP₆ has one factor more than ⁽ⁿ⁺¹⁾P₅, so after cancelling, the bottom keeps two factors while the top keeps one. That is why this ratio leads to a quadratic where 140.1 led to a linear equation.",
+        "common_mistakes": [
+          "Cancelling (n − 4) as well and reaching a linear equation — ⁿP₆ has six factors, two of which survive.",
+          "Writing the surviving denominator as (n − 5)(n − 6)."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve the quadratic",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 7(n + 1) = 2(n − 4)(n − 5) gives 2n² − 25n + 33 = 0, which factors as (n − 11)(2n − 3); n = 3/2 is not a whole number and is below 6, so n = 11.",
+        "lines": [
+          "7(n + 1) = 2(n − 4)(n − 5)",
+          "7n + 7 = 2n² − 18n + 40",
+          "2n² − 25n + 33 = 0",
+          "(n − 11)(2n − 3) = 0",
+          "n = 3/2 is not a whole number ≥ 6.",
+          {
+            "text": "∴ n = 11",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cross-multiplying gives 2n² minus 25n plus 33 = 0, which factors as n minus 11 times 2n minus 3, and n = 11 because 3 over 2 is not a whole number.",
+          "accept": [
+            "cross multiply to two n squared minus twenty five n plus thirty three equals zero, factors n minus eleven and two n minus three, n is eleven",
+            "the quadratic gives eleven or three by two, reject the fraction, n is eleven",
+            "n equals eleven because n must be a whole number",
+            "quadratic solve chesthe n eleven, three by two fraction kabatti reject",
+            "n minus eleven times two n minus three equals zero"
+          ],
+          "reject": [
+            "solve",
+            "eleven"
+          ],
+          "heard_as": [
+            "n is eleven",
+            "two n squared",
+            "twenty five n",
+            "three by two",
+            "reject"
+          ]
+        },
+        "why": "A quadratic gives two candidates, and a permutation problem accepts only whole numbers large enough for the permutation to exist. Saying WHY 3/2 is rejected is part of the answer.",
+        "common_mistakes": [
+          "Expanding (n − 4)(n − 5) as n² − 9n − 20; the constant is +20.",
+          "Keeping both roots and answering n = 11 or 3/2.",
+          "Slip in collecting terms: −18n − 7n = −25n, not −11n."
+        ]
+      }
+    ]
+  }
+}

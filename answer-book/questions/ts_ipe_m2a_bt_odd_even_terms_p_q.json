@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_odd_even_terms_p_q",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If P and Q are the sum of odd terms and the sum of even terms respectively in the expansion of (x + a)ⁿ, then prove that (i) P² − Q² = (x² − a²)ⁿ and (ii) 4PQ = (x + a)²ⁿ − (x − a)²ⁿ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split (x + a)ⁿ into P + Q",
+      "marks": 2
+    },
+    {
+      "label": "Show (x − a)ⁿ = P − Q",
+      "marks": 1
+    },
+    {
+      "label": "Prove (i) by multiplying",
+      "marks": 2
+    },
+    {
+      "label": "Prove (ii) by squaring",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.95 — Star Questions Plus, Binomial Theorem banner, answer 205. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — a two-part prove-that identity of LAQ length, the standard 7-mark shape for this chapter in the IPE papers. Printed appearances: none — this answer carries no year tag. ⚠ THE 2+1+2+2 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is patterned on the one-mark-per-idea tagging on p.27: (x + a)ⁿ split into P + Q (2), (x − a)ⁿ shown to be P − Q (1), part (i) by multiplying (2), part (ii) by squaring and subtracting (2). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would prove both parts — what P and Q are, why (x + a)ⁿ is P + Q and (x − a)ⁿ is P − Q, and how multiplying gives (i) and squaring-and-subtracting gives (ii).",
+  "insider_note": "P holds the odd TERMS, and the odd terms carry the EVEN powers of a. Sort by that and (x − a)ⁿ = P − Q comes in one line; sort by odd powers and both proofs break.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_p_q",
+        "kind": "equation",
+        "label": "Split (x + a)ⁿ into P + Q",
+        "marks": 2,
+        "mark_note": "P + Q",
+        "margin_note": "First two marks. Odd terms are the 1st, 3rd, 5th… — they carry EVEN powers of a (a⁰, a², a⁴). Even terms carry odd powers of a.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(x + a)ⁿ = ⁿC₀xⁿ + ⁿC₁xⁿ⁻¹a + ⁿC₂xⁿ⁻²a²",
+          "  + ⁿC₃xⁿ⁻³a³ + … + ⁿCₙaⁿ",
+          "P = ⁿC₀xⁿ + ⁿC₂xⁿ⁻²a² + … (odd terms)",
+          "Q = ⁿC₁xⁿ⁻¹a + ⁿC₃xⁿ⁻³a³ + … (even terms)",
+          "∴ (x + a)ⁿ = P + Q …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P collects the 1st, 3rd, 5th… terms (even powers of a) and Q the 2nd, 4th… terms (odd powers of a), so (x + a)ⁿ = P + Q.",
+          "accept": [
+            "expand x plus a to the n, P is the odd terms with even powers of a, Q is the even terms with odd powers of a, so x plus a to the n is P plus Q",
+            "group the expansion into P the first third fifth terms and Q the second fourth sixth terms",
+            "x plus a to the n equals P plus Q",
+            "odd terms P, even terms Q, x plus a power n equals P plus Q",
+            "P has a to the even powers and Q has a to the odd powers"
+          ],
+          "reject": [
+            "write P and Q",
+            "expand it"
+          ],
+          "heard_as": [
+            "P plus Q",
+            "odd terms",
+            "even terms",
+            "powers of a"
+          ]
+        },
+        "why": "The proof rests on one observation: P and Q differ in whether the power of a is even or odd, which is exactly what changing a to −a detects.",
+        "common_mistakes": [
+          "Putting the odd POWERS of a into P — the odd TERMS carry even powers.",
+          "Forgetting that P starts with ⁿC₀xⁿ."
+        ]
+      },
+      {
+        "id": "s2_x_minus_a",
+        "kind": "equation",
+        "label": "Show (x − a)ⁿ = P − Q",
+        "marks": 1,
+        "mark_note": "P − Q",
+        "margin_note": "Third mark. Replace a by −a: even powers of a are unchanged, odd powers change sign.",
+        "lines": [
+          "(x − a)ⁿ = ⁿC₀xⁿ − ⁿC₁xⁿ⁻¹a + ⁿC₂xⁿ⁻²a²",
+          "  − ⁿC₃xⁿ⁻³a³ + … + ⁿCₙ(−a)ⁿ",
+          "Even powers of a keep their sign,",
+          "odd powers of a change sign:",
+          "∴ (x − a)ⁿ = P − Q …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That replacing a by −a leaves P unchanged and changes the sign of Q, so (x − a)ⁿ = P − Q.",
+          "accept": [
+            "replace a by minus a, the even powers stay so P stays and the odd powers flip so Q flips, giving P minus Q",
+            "x minus a to the n equals P minus Q",
+            "the expansion of x minus a to the n is the same with alternating signs which is P minus Q",
+            "a ni minus a tho replace cheste x minus a power n equals P minus Q",
+            "only Q changes sign when a becomes minus a"
+          ],
+          "reject": [
+            "write x minus a to the n",
+            "change the sign"
+          ],
+          "heard_as": [
+            "P minus Q",
+            "minus a",
+            "changes sign"
+          ]
+        },
+        "why": "(−a)ᵏ is aᵏ for even k and −aᵏ for odd k. That single fact converts the second expansion into P − Q with no new work.",
+        "common_mistakes": [
+          "Writing (x − a)ⁿ = Q − P.",
+          "Re-expanding from scratch and grouping again."
+        ]
+      },
+      {
+        "id": "s3_prove_i",
+        "kind": "equation",
+        "label": "Prove (i) by multiplying",
+        "marks": 2,
+        "mark_note": "P² − Q²",
+        "margin_note": "Fourth and fifth marks. (P + Q)(P − Q) = P² − Q² on one side, (x + a)ⁿ(x − a)ⁿ = ((x + a)(x − a))ⁿ on the other.",
+        "lines": [
+          "(i) P² − Q² = (P + Q)(P − Q)",
+          "= (x + a)ⁿ(x − a)ⁿ   [from (1), (2)]",
+          "= [(x + a)(x − a)]ⁿ = (x² − a²)ⁿ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P² − Q² = (P + Q)(P − Q) = (x + a)ⁿ(x − a)ⁿ = (x² − a²)ⁿ.",
+          "accept": [
+            "P squared minus Q squared is P plus Q into P minus Q which is x plus a to the n into x minus a to the n which is x squared minus a squared to the n",
+            "multiply one and two to get the difference of squares",
+            "P plus Q times P minus Q equals x plus a times x minus a all to the n",
+            "one and two multiply cheste P square minus Q square equals x square minus a square power n",
+            "difference of squares on both sides"
+          ],
+          "reject": [
+            "prove part one",
+            "multiply them"
+          ],
+          "heard_as": [
+            "P squared minus Q squared",
+            "x squared minus a squared",
+            "to the n"
+          ]
+        },
+        "why": "P² − Q² factorises as (P + Q)(P − Q), and both factors are already known as whole binomials.",
+        "common_mistakes": [
+          "Writing (x + a)ⁿ(x − a)ⁿ = (x² − a²)²ⁿ.",
+          "Trying to square P and Q term by term."
+        ]
+      },
+      {
+        "id": "s4_prove_ii",
+        "kind": "boxed_final",
+        "label": "Prove (ii) by squaring",
+        "marks": 2,
+        "mark_note": "4PQ",
+        "margin_note": "Sixth and seventh marks. (P + Q)² − (P − Q)² = 4PQ is the identity; then substitute (1) and (2).",
+        "lines": [
+          "(ii) 4PQ = (P + Q)² − (P − Q)²",
+          "= [(x + a)ⁿ]² − [(x − a)ⁿ]²",
+          {
+            "text": "∴ 4PQ = (x + a)²ⁿ − (x − a)²ⁿ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4PQ = (P + Q)² − (P − Q)² = (x + a)²ⁿ − (x − a)²ⁿ.",
+          "accept": [
+            "four P Q is P plus Q squared minus P minus Q squared, which is x plus a to the two n minus x minus a to the two n",
+            "square one and two and subtract to get four P Q",
+            "four P Q equals x plus a to the two n minus x minus a to the two n",
+            "P plus Q square minus P minus Q square four P Q vasthundi",
+            "the squares of the two binomials differ by four P Q"
+          ],
+          "reject": [
+            "prove part two",
+            "square them"
+          ],
+          "heard_as": [
+            "four P Q",
+            "two n",
+            "squared minus"
+          ]
+        },
+        "why": "(P + Q)² − (P − Q)² = 4PQ is a one-line algebra identity, and squaring (x + a)ⁿ doubles the index to 2n.",
+        "common_mistakes": [
+          "Writing [(x + a)ⁿ]² as (x + a)ⁿ².",
+          "Getting 2PQ from (P + Q)² − (P − Q)²."
+        ]
+      }
+    ]
+  }
+}

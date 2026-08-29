@@ -12,8 +12,13 @@ MATHS-2A, Baby Bullet-Q"**, Sri Publishers, Machilipatnam (SRI Publishers @STAR-
 (DocScanner, 31 Oct 2022), 76 MB, ~122 pages, **no text layer** — every fact below was read from the
 page images. PDF p.1 is a stray YouTube screenshot; PDF p.2 is the cover.
 
-- **Book page = PDF page − 2** (book p.5 "IPE 24 QF" = PDF p.7; book p.14 = PDF p.16; book p.111 =
-  PDF p.113). Verified at four points; watch for ±1 drift.
+- **Book page = PDF page − 1.** ⚠ CORRECTED 2026-08-29, after all ten unit agents independently
+  reported the same drift: this file first said −2, read off the front matter (PDF p.1 is a stray
+  YouTube screenshot, p.2 the cover), and that held only for the first few sheets. From the LAQ
+  section onward every agent measured −1 — book p.14 = PDF 15, p.48 = PDF 49, p.55 = PDF 56,
+  p.63 = PDF 64, p.73 = PDF 74, p.85 = PDF 86, p.92 = PDF 93, p.111 = PDF 112. Ten readings, no
+  disagreement. Every card's `verification.note` cites the **book** page, so the cards are
+  unaffected; only a future reader opening the PDF needs this. **Read the page, not the offset.**
 - Same series and layout as the Maths-1A source: a question bank organised by mark cut, with
   chapter stars, `TS 17,19` / `AP 15,22` year chips, `[N Marks]` margin tags printed page-by-page
   (never assume from the section — look at the page), `★★★ SSP n ★★★` Super Scoring Page headers,
@@ -58,47 +63,73 @@ Equations 9 · P&C 12 · Binomial 16 · Partial Fractions 4 · Dispersion 9 · P
 Variables 9. The book's own IPE-trend table (p.3) shows real papers deviating slightly
 (AP May-22 counted 6 LAQ / 5 SAQ / 9 VSAQ).
 
-## The 10 units — book pages (PDF = book + 2)
+## The 10 units — AS COUNTED, not as indexed (book pages; PDF = book + 1)
 
-`unit.number` = the blueprint/syllabus order, NOT the book's section-chapter numbers.
+Authored 2026-08-29, one agent per unit, each walking its own pages to the boundary. The counts
+below are what the pages hold, and **five of them disagree with the index this file first carried**
+— every disagreement is named. 257 cards.
 
-| Unit | abbr | Name | LAQ (7M) | SAQ (4M) | VSAQ (2M) | Star Q Plus | Chapter stars |
-|---|---|---|---|---|---|---|---|
-| 1 | `cn` | Complex Numbers | – | pp.48–51 (ch.7, ans 54–62) | pp.70–72 (ch.12, ans 105–115) | p.89 (179–184) | SAQ ★★ · VSAQ ★★★ |
-| 2 | `dm` | De Moivre's Theorem | pp.14–19 (ch.1, ans 1–9) | – | p.73 (ch.13, ans 116–119.2) | p.90 (185–190) | LAQ ★★★ · VSAQ ★★★ |
-| 3 | `qe` | Quadratic Expressions | – | pp.52–54 (ch.8, ans 63–67) | pp.74–75 (ch.14, ans 120–126) | p.91 (191–194) | SAQ ★★★ · VSAQ ★★ |
-| 4 | `te` | Theory of Equations | pp.20–26 (ch.2, ans 10–19) | – | pp.76–77 (ch.15, ans 127–137) | p.92 (check) | LAQ ★★★ · VSAQ ★★★ |
-| 5 | `pc` | Permutations & Combinations | – | pp.55–58 (ch.9, ans 68–76) | pp.78–81 (ch.16, ans 138–155) | pp.92–93 (195–201) | SAQ ★★★ · VSAQ ★★★ |
-| 6 | `bt` | Binomial Theorem | pp.27–35 (ch.3, ans 20–30) | – | pp.82–84 (ch.17, ans 156–167) | pp.94–95 (202–207) | LAQ ★★★ · VSAQ ★★★ |
-| 7 | `pf` | Partial Fractions | – | pp.63–68 (ch.11, ans 90–104) | – | (check) | SAQ ★★★ |
-| 8 | `md` | Measures of Dispersion | pp.44–46 (ch.6, ans 48–53) | – | pp.85–86 (ch.18, ans 168–172) | (check) | LAQ ★★ · VSAQ ★★★ |
-| 9 | `pb` | Probability | pp.36–39 (ch.4, ans 33–40) | pp.59–62 (ch.10, ans 77–89) | – | (check) | LAQ ★★★ · SAQ ★★ |
-| 10 | `rv` | Random Variables & Probability Distributions | pp.40–43 (ch.5, ans 41–47) | – | pp.87–88 (ch.19, ans 173–178) | (check) | LAQ ★★★ · VSAQ ★★ |
+| Unit | abbr | Name | LAQ 7M | SAQ 4M | VSAQ 2M | Cards | of which Star Q | Stars |
+|---|---|---|---|---|---|---|---|---|
+| 1 | `cn` | Complex Numbers | – | 10 (pp.48–51, ans 54.1–62) | 28 (pp.70–72, ans 105.1–115) | **38** | 6 VSAQ (p.89, 179–184) | SAQ ★★ · VSAQ ★★★ |
+| 2 | `dm` | De Moivre's Theorem | 10 (pp.14–19, ans 1.1–9) | – | 12 (p.73, ans 116–119.2) | **22** | 6 VSAQ (p.90, 185–190) | ★★★ both |
+| 3 | `qe` | Quadratic Expressions | – | 7 (pp.52–54, ans 63.1–67) | 17 (pp.74–75, ans 120.1–126.2) | **24** | 1 SAQ + 3 VSAQ (p.91, 191–194) | SAQ ★★★ · VSAQ ★★ |
+| 4 | `te` | Theory of Equations | 12 (pp.20–26, ans 10–19 + 1 PQ) | – | 12 (pp.76–77, ans 127–137) | **24** | 1 LAQ + 1 VSAQ (p.92, 195–196) | ★★★ both |
+| 5 | `pc` | Permutations & Combinations | – | 12 (pp.55–58, ans 68.1–76 + 1 PQ) | 37 (pp.78–81, ans 138.1–155.2) | **49** | 1 SAQ + 4 VSAQ (p.93, 197–201) | ★★★ both |
+| 6 | `bt` | Binomial Theorem | 20 (pp.27–35, ans 20–32) | – | 14 (pp.82–84, ans 156–168) | **34** | 5 LAQ + 1 VSAQ (pp.94–95, 202–207) | ★★★ both |
+| 7 | `pf` | Partial Fractions | – | 15 (pp.63–68, ans 92–104 + 2 PQ) | – | **15** | none | SAQ ★★★ |
+| 8 | `md` | Measures of Dispersion | 6 (pp.44–46, ans 48–53) | – | 8 (pp.85–86, ans 169.1–172.2) | **14** | none | LAQ ★★ · VSAQ ★★★ |
+| 9 | `pb` | Probability | 8 (pp.36–39, ans 33–40) | 15 (pp.59–62, ans 77–91) | – | **23** | none | LAQ ★★★ · SAQ ★★ |
+| 10 | `rv` | Random Variables & Probability Distributions | 8 (pp.40–43, ans 41.1–47) | – | 6 (pp.87–88, ans 173–178) | **14** | none | LAQ ★★★ · VSAQ ★★ |
+| | | | **64** | **59** | **134** | **257** | **29** | |
 
-These ranges come from the index and page samples. **They are hints. Each unit agent walks its own
-pages to the boundary (read the page AFTER the one you think is last), counts its own unit, and
-reports the count** — the Chemistry-II index was wrong by two at a column break, and the 1A "TOP 40
-SAQ" hit list missed two questions because a hit list is a selection, not an inventory. Reading
-order is left column then right column; a chapter can hand over mid-column. Where this table and the
-page disagree, the page wins and the disagreement is recorded here.
+Every count is the number of CARDS, read back from the authored files, not from the index — a
+Star-bank backfill carries a real section, so it is inside its section's count and named again in
+the "of which" column. The `.1/.2` twins are separate cards throughout (see correction 5).
 
-Treatment of the other sections:
-- **Star Questions Plus (pp.89–95)** — extra questions organised by chapter banner, no mark cut
-  printed. Folded INTO the chapter units as backfill (1A founder decision 2026-08-22), classed by
-  shape and length; the note names "Star Questions Plus, answer N" and says the section is OURS.
-  Skip only a genuine duplicate of a question already authored, and record which.
-- **Bullet Model Paper (pp.96–110)** — the hit-list questions re-solved compactly, arranged by
-  paper slot Q1…Q24 (verified: pp.96–99 repeat VSAQ 105–108, 116–118, 138–141, 152, 154, 158, 163,
-  165, 169…). NOT new cards. A second solution for arithmetic cross-checks; a question found ONLY
-  here becomes a card whose note says so.
+**Where the index was wrong** — five corrections, each found by the agent that owned the pages:
+
+1. **Binomial's LAQ chapter runs to answer 32, not 30** (book pp.27–35). Two whole questions were
+   outside the range this file first printed.
+2. **Binomial's VSAQ chapter runs to 168, not 167** — and answer **168 is Binomial**, not the first
+   Dispersion question. Dispersion's VSAQ chapter opens at **169.1** on book p.85, which is why
+   unit 8 counts 8 cards (169.1–172.2, four twin pairs) and not the "168–172" first written here.
+3. **Partial Fractions starts at answer 92, not 90.** Answers 90 (conditional probability) and 91
+   (complements of independent events) are still under the Probability banner on book p.62 — so
+   **Probability's SAQ chapter runs 77–91, not 77–89**, and unit 9 holds 15 short answers, not 13.
+4. **The Star Questions Plus banners are one page later than assumed for P&C.** The bank runs
+   Complex Numbers p.89 · De Moivre p.90 · Quadratic p.91 · **Theory of Equations p.92** · **P&C
+   p.93** · Binomial pp.94–95. There is **no banner at all** for Partial Fractions, Measures of
+   Dispersion, Probability or Random Variables — four units correctly backfill nothing.
+5. **The twins hide the real counts.** "ans 105–115" is 22 cards, not 11: 105–108 and 111 are
+   `.1/.2` pairs and **110 is a sextuplet** (110.1–110.6, six modulus-amplitude conversions). Every
+   heading in Quadratic's VSAQ chapter (120–126) is a twin, so 7 headings = 14 cards. Read the
+   headings, never the range.
+
+Beyond the printed answer numbers, **four unsolved "PQ" practice questions** carry a printed final
+answer and no working (one under Theory of Equations answer 16, one under P&C answer 76, two under
+Partial Fractions on book p.68). All four are authored as full cards, and each note says the
+working is ours and reaches the book's printed answer.
+
+Treatment of the other sections, as executed:
+- **Star Questions Plus (pp.89–95)** — folded into the six chapter units that have a banner, section
+  classed by shape and length (the banners name the chapter, never the mark cut), each note naming
+  "Star Questions Plus, answer N" and saying the section is OURS. **Zero duplicates found** — no
+  Star question repeats a chapter question in this book, unlike Maths-1A where two did.
+- **Bullet Model Paper (pp.96–110)** — re-solved copies of hit-list questions arranged by paper slot
+  Q1…Q24. Not cards. Used as a second, independent solution to cross-check arithmetic on roughly 80
+  questions; **every one agreed**. No question exists only there.
 - **5 Model Guess Papers (pp.111–120)** — questions only, each cross-referenced to an answer page
-  ≤ 95. Evidence for "paper position" in notes.
+  ≤ 95. Used as the "paper position" evidence in every card's note (which of Q1–Q24 the chapter
+  fills). Two of their answer-page indices are off by one (recorded below).
 - **"IPE 24 QF" (pp.4–5)** — the formula sheet; not questions.
 
 **Two structural checks cannot be run for this subject, and that is recorded, not hidden:** no
 two-book union check (no second Maths-2A source in the corpus) and no board back-test
 (`answer-book/papers/` holds first-year physics only). Same call as 1A/1B/Chemistry-II: proceed
-single-source and say so on every card and in the `units.json` comment.
+single-source and say so on every card and in the `units.json` comment. What replaced them here was
+the boundary walk (read the page after the one you think is last — it is what found corrections 1–3
+above) and re-deriving every printed answer.
 
 ## Notation ledger — MEASURED 2026-08-29, quoted in every unit agent's prompt
 
@@ -148,9 +179,62 @@ honestly on one plain line — every typeset line is a small break in the handwr
 KaTeX lines skip the wrap gate (`measure_wrap.mjs`) and are typeset at build time, so a bad macro
 fails `check:cards` naming the card.
 
-## Where this book is wrong — appended as units land
+## Where this book is wrong
 
-(Every case is written correctly on the card that answers it, with the book's printed claim recorded
-in that step's `why` and in `verification.note` — never silently followed, never silently fixed.)
+Every case below is written correctly on the card that answers it, with the book's printed claim
+recorded in that step's `why` and in `verification.note` — never silently followed, never silently
+fixed. Ten units re-derived every printed answer; the book is **markedly cleaner than the Senior
+Chemistry Fastrack** (~130 findings there), and four units found nothing mathematical at all
+(Partial Fractions, Probability, Binomial, Random Variables — only typographic slips).
 
-- *pending — unit agents append here via their reports*
+**Wrong mathematics.**
+- **p.71, ans 110.3 (Complex Numbers)** — the modulus-amplitude form of −1 − i is printed with
+  θ = 3π/4, i.e. √2(cos 3π/4 + i sin 3π/4). That is **−1 + i**, a different number, and
+  tan(3π/4) = −1 ≠ +1. The point is in the third quadrant, so the principal amplitude is **−3π/4**.
+  The book's own answer 110.6 uses (−π, π] correctly, so it is a slip, not a convention.
+- **p.76, ans 131 (Theory of Equations)** — the equation is printed `x³ − 2x² + 5x + 6 = 0`, for
+  which 1 is not a root (f(1) = 10) and the book's own answer 3, −2 fails the coefficient relations.
+  The question is `x³ − 2x² − 5x + 6 = 0`. **The same misprint is reproduced twice more** — in the
+  Bullet Model Paper (p.97) and in Model Paper 4 (p.117) — so it is set once and copied.
+- **p.89, ans 184 (Complex Numbers)** — "Locus is x − 1 = 0", the whole vertical line.
+  Arg(z − 1) = π/2 also forces **y > 0**; the lower half-line has argument −π/2, and z = 1 is
+  undefined. The card gives x = 1 with y > 0.
+- **p.79, ans 145.2 (P&C)** — `⁹C₃ + ⁹C₅ = ¹⁰Cᵣ` is answered r = 4 only. Since ¹⁰C₄ = ¹⁰C₆,
+  **r = 6 satisfies it too** (both sides 210). The book gives both values on the neighbouring 144.2,
+  so the omission is inconsistent as well as incomplete.
+- **p.86, ans 172.2 (Dispersion)** — σ = √24.25 printed as ≅ 4.95. It is **4.92** (4.95² = 24.50).
+- **p.74, ans 123.2 (Quadratic)** — the maximum of 2x − 7 − 5x² is printed 34/5; with a = −5 < 0 and
+  Δ < 0 the expression is negative everywhere, and its maximum is **−34/5**. Possibly a lost minus
+  in the scan, but the printed value is unusable as it stands.
+- **p.74, ans 120.2 (Quadratic)** — concludes "Δ is positive" for Δ = (a − b)² + 4h²; it is **≥ 0**
+  (zero when a = b and h = 0, giving equal roots). The conclusion "the roots are real" still holds.
+
+**Dropped symbols and copy slips that change the meaning.**
+- **p.16, ans 5 (De Moivre)** — the last line prints `(p + iq)^(1/n) + (p − q)^(1/n)`: the **i is
+  missing** from the second bracket, which is the conjugate the whole proof depends on.
+- **p.26, ans 19 (Theory of Equations)** — one line reads "roots 2 + √3, 2 − √3"; the i is dropped
+  (the sum and product used on the same page are those of 2 ± i√3).
+- **p.22, ans 13 (Theory of Equations)** — the last entry of a synthetic-division row prints 2 where
+  it must be −2; the zero remainder that justifies the factor depends on it.
+- **p.44, ans 49 (Dispersion)** — the table header prints `dᵢ = (xᵢ − 25)/10`, copied from answer 48,
+  while the text and every number in the column use **A = 35**.
+- **p.76, ans 126.1 (Quadratic)** — the step α = 1 needs **b ≠ c**, which is not stated.
+- **p.84, ans 164 (Binomial)** — gives r = 0 and r = 3; r = 0 makes the two terms the same term, so
+  only r = 3 is a real answer.
+- **p.45, ans 51 (Dispersion)** — "Median deviation about median" for *mean* deviation.
+- **p.109, ans 47 (Random Variables)** — prints `2ᴷ` with a capital K mid-expression.
+
+**Its own cross-references, off by one.** Model Paper 2's Q22 index cites "P 45(50)" for an answer
+that is 49 on p.44; Model Paper 3's Q18 cites "P 15(3)" for answer 4 on p.16; Model Paper 4's Q18
+cites "P 16(4)" for answer 5. The Bullet Model Paper's internal labels "22." and "29." point at book
+answers 24 and 30.
+
+**Year chips printed twice** (AP 18,18 · AP 17,17 · TS 15,15 · TS 16,16 · AP 16,16 · AP 19,19 and
+others) are recorded ONCE in `appearances` with the doubled chip quoted in the note — two papers in
+one year is possible, but a repeated chip is more likely a setting artefact, and the card should not
+silently assert either.
+
+**Where our numbers come from.** Unlike the chemistry book, this one is almost entirely
+self-contained: every value on these cards is derived on the card itself. Nothing was imported from
+an outside table, so a verifying teacher's highest-value checks are the seven wrong-mathematics
+items above and the four PQ practice questions, whose working is ours.

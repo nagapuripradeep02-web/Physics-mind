@@ -1,0 +1,213 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_die_mean_variance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "A cubical die is thrown. Find the mean and variance of X, giving the number on the face that shows up.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the distribution",
+      "marks": 2
+    },
+    {
+      "label": "Find the mean",
+      "marks": 2
+    },
+    {
+      "label": "Find the variance",
+      "marks": 3
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.41 — LAQ chapter 5 Random Variables, answer 43. (In this part of the scan book page = PDF page − 1: book p.41 was read at PDF p.42, not p.43 as the −2 rule predicts.) Printed appearances: AP 15, 20 · TS 16, 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It follows the same 2 + 2 + 3 shape as the distribution-table LAQs of this unit (patterned on answer 45's printed split on book p.42): 2 for setting up the distribution, 2 for the mean, 3 for the variance. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot, and this question IS Q24 of the book's Model Paper 3 (book p.116); the Bullet Model Paper re-solves it under Q24 on book p.110 with the same μ = 7/2, σ² = 35/12 — both printings recompute. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the mean and variance of the number on a die — what the distribution is, and what you add for each formula.",
+  "insider_note": "The variance formula Σxᵢ²·P − μ² needs the mean found first, and it subtracts μ² = 49/4, not μ = 7/2; a mean of 7/2 is correct even though no face of the die shows 3.5.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Random Variables · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_distribution",
+        "kind": "equation",
+        "label": "Write the distribution",
+        "marks": 2,
+        "mark_note": "Distribution",
+        "margin_note": "First two marks. Say what X is (the number on the face), list its values 1 to 6, and give each the probability 1/6. A fair die is what makes all six probabilities equal — write that the die is fair or unbiased.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let X = the number on the upper face.",
+          "The die is fair, so X takes the values",
+          "1 to 6, each with probability 1/6:",
+          {
+            "text": "X = xᵢ:       1     2     3     4     5     6",
+            "style": "indent"
+          },
+          {
+            "text": "P(X = xᵢ):  1/6   1/6   1/6   1/6   1/6   1/6",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That X is the number on the face, takes the values 1 to 6, and each has probability 1/6.",
+          "accept": [
+            "X is the number on the face, it takes one to six each with probability one by six",
+            "write the table with values one to six and probability one sixth for each",
+            "a fair die gives each face probability one by six",
+            "X ante face meeda number, one nunchi six varaku, prathi daaniki probability one by six",
+            "the distribution is uniform, one sixth for every value"
+          ],
+          "reject": [
+            "write the table",
+            "throw the die"
+          ],
+          "heard_as": [
+            "one by six",
+            "one sixth",
+            "one to six",
+            "fair die",
+            "distribution"
+          ]
+        },
+        "why": "Mean and variance are computed from a probability table, so the table has to exist on the page before either formula can be used. For a fair die the table is the simplest possible: six equal probabilities.",
+        "common_mistakes": [
+          "Taking X to be 0 to 5 or 1 to 5.",
+          "Writing the probability as 6 or as 1/36.",
+          "Starting the mean without writing the distribution."
+        ]
+      },
+      {
+        "id": "s2_mean",
+        "kind": "equation",
+        "label": "Find the mean",
+        "marks": 2,
+        "mark_note": "Mean",
+        "margin_note": "Two marks. Mean μ = Σxᵢ·P(X = xᵢ) = (1/6)(1 + 2 + 3 + 4 + 5 + 6) = 21/6 = 7/2. Factor the 1/6 out; the sum 1 + 2 + … + 6 = 21 is the only arithmetic.",
+        "lines": [
+          {
+            "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
+            "style": "eq"
+          },
+          "= 1(1/6) + 2(1/6) + 3(1/6)",
+          "   + 4(1/6) + 5(1/6) + 6(1/6)",
+          "= (1/6)(1 + 2 + 3 + 4 + 5 + 6) = 21/6 = 7/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean is Σxᵢ·P(X = xᵢ) = (1/6)(1 + 2 + … + 6) = 21/6 = 7/2.",
+          "accept": [
+            "mean is sigma x P of x which is one sixth into one plus two up to six equals twenty one by six equals seven by two",
+            "multiply each face value by one sixth and add to get seven by two",
+            "mu equals one by six times twenty one which is three point five",
+            "prathi value ni one by six tho multiply chesi add cheste mean seven by two",
+            "the mean is twenty one by six which is seven halves"
+          ],
+          "reject": [
+            "find the mean",
+            "add them"
+          ],
+          "heard_as": [
+            "mu",
+            "seven by two",
+            "twenty one by six",
+            "one sixth",
+            "mean"
+          ]
+        },
+        "why": "With equal probabilities the mean is the ordinary average of the values, 3.5 — halfway between 1 and 6. A mean need not be a value X can actually take.",
+        "common_mistakes": [
+          "Writing μ = 3 or μ = 4 because 3.5 is not on the die.",
+          "Adding 1 + 2 + … + 6 = 21 and forgetting the 1/6.",
+          "Leaving 21/6 unsimplified."
+        ]
+      },
+      {
+        "id": "s3_variance",
+        "kind": "boxed_final",
+        "label": "Find the variance",
+        "marks": 3,
+        "mark_note": "Variance",
+        "margin_note": "Three marks. Variance σ² = Σxᵢ²·P(X = xᵢ) − μ² = (1/6)(1 + 4 + 9 + 16 + 25 + 36) − (7/2)² = 91/6 − 49/4. The common denominator is 12: (182 − 147)/12 = 35/12.",
+        "lines": [
+          {
+            "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
+            "style": "eq"
+          },
+          "= (1/6)(1² + 2² + 3² + 4² + 5² + 6²) − (7/2)²",
+          "= (1/6)(1 + 4 + 9 + 16 + 25 + 36) − 49/4",
+          "= 91/6 − 49/4 = (182 − 147)/12 = 35/12",
+          {
+            "text": "∴ Mean μ = 7/2, variance σ² = 35/12",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the variance is Σxᵢ²·P(X = xᵢ) − μ² = 91/6 − 49/4 = 35/12.",
+          "accept": [
+            "variance is sigma x squared P of x minus mu squared which is ninety one by six minus forty nine by four equals thirty five by twelve",
+            "square each face value, average them, subtract seven by two squared to get thirty five by twelve",
+            "sigma squared equals ninety one by six minus forty nine by four",
+            "squares add chesi one by six tho multiply chesi, mean square teesesthe thirty five by twelve",
+            "the variance comes to thirty five by twelve"
+          ],
+          "reject": [
+            "find the variance",
+            "subtract the mean"
+          ],
+          "heard_as": [
+            "sigma squared",
+            "ninety one by six",
+            "forty nine by four",
+            "thirty five by twelve",
+            "variance"
+          ]
+        },
+        "why": "Variance is the mean of the squares minus the square of the mean. The sum of squares 1 + 4 + … + 36 = 91 is worth remembering: it appears in every fair-die variance question.",
+        "common_mistakes": [
+          "Subtracting μ = 7/2 instead of μ² = 49/4.",
+          "Writing 91/6 − 49/4 = 42/2 by subtracting numerators and denominators separately.",
+          "Squaring the probability 1/6 instead of the values."
+        ]
+      }
+    ]
+  }
+}

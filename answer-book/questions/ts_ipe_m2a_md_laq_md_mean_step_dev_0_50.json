@@ -1,0 +1,305 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_laq_md_mean_step_dev_0_50",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Find the mean deviation about the mean for the given data using the step deviation method: Marks obtained 0–10, 10–20, 20–30, 30–40, 40–50; Number of students 5, 8, 15, 16, 6.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Form the table with midpoints, dᵢ and fᵢdᵢ",
+      "marks": 2
+    },
+    {
+      "label": "Find the mean by the step deviation formula",
+      "marks": 2
+    },
+    {
+      "label": "Find |xᵢ − x̄| and fᵢ|xᵢ − x̄| and their sum",
+      "marks": 2
+    },
+    {
+      "label": "Find the mean deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Measures of Dispersion, answer 48. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: AP 15,16,17,22 · TS 16,18. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the four Cramer answers 18.1–18.4: the bulk computation carries most of the marks, the finish carries the rest): 2 for the first table (midpoints, dᵢ, fᵢdᵢ and the two sums), 2 for the mean by the step-deviation formula, 2 for the deviation columns and their sum, 1 for the mean deviation. The two step-deviation mean-deviation LAQs of this unit (answers 48 and 49) share the same split and the same step ids deliberately, because they are one method over different numbers. The book prints one seven-column table; the card writes it in two passes (the last two columns need x̄, which is only known after the mean step) and the margin note says so. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 1 (book p.112, index P44(48)) and is re-solved as the first Q22 of the Bullet Model Paper (book p.108) with the same table, the same Σfᵢ|xᵢ − x̄| = 472 and the same 9.44 — a second solution that agrees. Every column and every sum was recomputed for this card and the book's table is correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the mean deviation about the mean by the step deviation method — what you put in the table, how you get the mean from dᵢ, and what you divide at the end.",
+  "insider_note": "Four of the seven marks are the two tables and every later number is computed from them: write A = 25 and C = 10 down first, and divide by N = 50, never by the 5 classes.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Measures of Dispersion · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_table",
+        "kind": "equation",
+        "label": "Table: xᵢ, dᵢ, fᵢdᵢ",
+        "marks": 2,
+        "mark_note": "Table",
+        "margin_note": "First two marks. Columns: class, frequency fᵢ, midpoint xᵢ, step deviation dᵢ = (xᵢ − 25)/10, product fᵢdᵢ. A = 25 is the middle midpoint and C = 10 is the class width. On the exam page this table and the one in the deviations step are ONE table of seven columns; the last two columns are filled after the mean is known.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Assumed mean A = 25, class width C = 10.",
+          "dᵢ = (xᵢ − A)/C = (xᵢ − 25)/10",
+          {
+            "text": "Class      fᵢ     xᵢ     dᵢ     fᵢdᵢ",
+            "style": "indent"
+          },
+          {
+            "text": "0–10       5      5      −2     −10",
+            "style": "indent"
+          },
+          {
+            "text": "10–20      8      15     −1     −8",
+            "style": "indent"
+          },
+          {
+            "text": "20–30      15     25     0      0",
+            "style": "indent"
+          },
+          {
+            "text": "30–40      16     35     1      16",
+            "style": "indent"
+          },
+          {
+            "text": "40–50      6      45     2      12",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ = 50 = N,   Σfᵢdᵢ = 10",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the table is built with midpoints xᵢ, an assumed mean A = 25, class width C = 10, dᵢ = (xᵢ − 25)/10 and fᵢdᵢ, with N = 50 and Σfᵢdᵢ = 10.",
+          "accept": [
+            "take the midpoints, assumed mean twenty five, divide by ten to get d i, multiply by f i and add to get ten",
+            "make the table with midpoints d i equals x i minus twenty five by ten and f i d i, the sum of f i d i is ten",
+            "assumed mean twenty five, class width ten, the d i column is minus two to two and sigma f i d i is ten",
+            "midpoints teesukoni, A twenty five tho d i kanukkoni, f i d i sum ten vasthundi",
+            "build the step deviation table with N fifty and sigma f i d i equal to ten"
+          ],
+          "reject": [
+            "make a table",
+            "find the midpoints",
+            "write the data"
+          ],
+          "heard_as": [
+            "midpoint",
+            "assumed mean",
+            "twenty five",
+            "d i",
+            "f i d i",
+            "sigma",
+            "fifty"
+          ]
+        },
+        "why": "Step deviation replaces the midpoints 5, 15, 25, 35, 45 by −2, −1, 0, 1, 2. Every product and sum then uses small integers, which is where the method saves time and arithmetic errors.",
+        "common_mistakes": [
+          "Using the class lower limit (0, 10, 20, …) instead of the midpoint (5, 15, 25, …).",
+          "Writing dᵢ = xᵢ − 25 and forgetting to divide by C = 10.",
+          "Adding fᵢdᵢ without the signs: −10 − 8 + 0 + 16 + 12 = 10, not 46."
+        ]
+      },
+      {
+        "id": "s2_mean",
+        "kind": "equation",
+        "label": "Mean by step deviation",
+        "marks": 2,
+        "mark_note": "Mean",
+        "margin_note": "Next two marks. The formula puts C back: the dᵢ were divided by 10, so Σfᵢdᵢ/N is multiplied by 10 before adding to A. Here 10·(10/50) = 2, so x̄ = 27.",
+        "lines": [
+          "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
+          "= 25 + 10·(10/50) = 25 + 2 = 27"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean is A + C·(Σfᵢdᵢ/N) = 25 + 10·(10/50) = 27.",
+          "accept": [
+            "mean is A plus C times sigma f i d i by N which is twenty five plus two equals twenty seven",
+            "x bar equals twenty five plus ten times ten by fifty which is twenty seven",
+            "add C times the average of f i d i to the assumed mean to get twenty seven",
+            "mean ante A plus C into sigma f i d i by N, twenty five plus two, twenty seven",
+            "the mean comes to twenty seven"
+          ],
+          "reject": [
+            "find the mean",
+            "twenty five",
+            "use the formula"
+          ],
+          "heard_as": [
+            "x bar",
+            "A plus C",
+            "sigma f i d i by N",
+            "twenty seven"
+          ]
+        },
+        "why": "The assumed mean is only a guess. Σfᵢdᵢ/N measures how far the true mean sits from the guess, in units of C, and the formula corrects the guess by that amount.",
+        "common_mistakes": [
+          "Forgetting to multiply by C, which gives 25 + 0.2 = 25.2.",
+          "Dividing Σfᵢdᵢ by the number of classes (5) instead of by N = 50.",
+          "Taking A as the mean and skipping this step."
+        ]
+      },
+      {
+        "id": "s3_abs_table",
+        "kind": "equation",
+        "label": "Deviations from the mean",
+        "marks": 2,
+        "mark_note": "Deviations",
+        "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, the absolute deviation |xᵢ − 27|, and its product with fᵢ. Absolute values are all positive: 5 − 27 = −22 is written as 22. The sum 472 is the number the last step divides.",
+        "lines": [
+          "With x̄ = 27, fill the last two columns:",
+          {
+            "text": "xᵢ     fᵢ     |xᵢ − x̄|     fᵢ|xᵢ − x̄|",
+            "style": "indent"
+          },
+          {
+            "text": "5      5      22           110",
+            "style": "indent"
+          },
+          {
+            "text": "15     8      12           96",
+            "style": "indent"
+          },
+          {
+            "text": "25     15     2            30",
+            "style": "indent"
+          },
+          {
+            "text": "35     16     8            128",
+            "style": "indent"
+          },
+          {
+            "text": "45     6      18           108",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ|xᵢ − x̄| = 472",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each midpoint's absolute deviation from 27 is found, multiplied by its frequency, and the products add to 472.",
+          "accept": [
+            "subtract twenty seven from each midpoint, take the absolute value, multiply by f i and add to get four hundred seventy two",
+            "the mod x i minus x bar column is twenty two, twelve, two, eight, eighteen and the weighted sum is four seventy two",
+            "find the absolute deviations from the mean, weight them by frequency, total four hundred and seventy two",
+            "prathi midpoint nunchi twenty seven teesi mod teesukoni f i tho multiply cheste sum four seventy two",
+            "the sum of f i into mod x i minus x bar is four seventy two"
+          ],
+          "reject": [
+            "find the deviations",
+            "subtract the mean",
+            "fill the table"
+          ],
+          "heard_as": [
+            "mod",
+            "absolute",
+            "twenty seven",
+            "four seventy two",
+            "four hundred and seventy two"
+          ]
+        },
+        "why": "Mean deviation averages DISTANCES from the mean, so the sign of each deviation is dropped. Without the absolute value the weighted deviations would add to zero, which is exactly why the mean is the mean.",
+        "common_mistakes": [
+          "Keeping the signs, so the column adds to 0.",
+          "Using dᵢ instead of xᵢ − x̄ in this column.",
+          "Multiplying by dᵢ instead of by fᵢ."
+        ]
+      },
+      {
+        "id": "s4_md",
+        "kind": "boxed_final",
+        "label": "Mean deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Divide the weighted sum by N = 50, not by the number of classes. 472/50 = 9.44 exactly.",
+        "lines": [
+          "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
+          "= (1/50)·472 = 9.44",
+          {
+            "text": "∴ M.D. about the mean = 9.44",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean deviation is Σfᵢ|xᵢ − x̄| divided by N: 472/50 = 9.44.",
+          "accept": [
+            "mean deviation is four seventy two by fifty which is nine point four four",
+            "divide the weighted sum four hundred seventy two by N fifty to get nine point four four",
+            "M D equals sigma f i mod x i minus x bar by N equals nine point four four",
+            "four seventy two ni fifty tho divide cheste nine point four four",
+            "the answer is nine point four four"
+          ],
+          "reject": [
+            "divide it",
+            "that is the answer",
+            "find the mean deviation"
+          ],
+          "heard_as": [
+            "nine point four four",
+            "by fifty",
+            "M D",
+            "mean deviation"
+          ]
+        },
+        "why": "The mean deviation is the average distance of a mark from the mean: on average a student's marks are 9.44 away from 27. The division by N is what makes it an average.",
+        "common_mistakes": [
+          "Dividing by 5 (the number of classes) instead of 50.",
+          "Stopping at 472 without dividing.",
+          "Writing the answer without the words 'about the mean'."
+        ]
+      }
+    ]
+  }
+}

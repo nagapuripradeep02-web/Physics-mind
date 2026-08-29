@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_max_value_2x_minus_7_minus_5x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the maximum or minimum value of 2x − 7 − 5x², where x ∈ R.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Sign of a",
+      "marks": 1
+    },
+    {
+      "label": "Value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.74 (PDF p.75 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 123.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. Correction to the book, recorded not silently fixed: the book's working reaches 136/(−20) and the final fraction on the scanned page reads as '34/5' with no visible minus sign (a scan may have lost it). The correct maximum is −34/5: at x = 1/5 the expression is 2/5 − 7 − 1/5 = −34/5, and since a = −5 < 0 with Δ = 4 − 140 < 0 the expression is negative for every x, so a positive maximum is impossible. The card states −34/5."
+  },
+  "recall_prompt": "Say how you would find the maximum or minimum value — say what decides which one it is, and what formula gives the value.",
+  "insider_note": "Rewrite in descending powers first: a = −5, so there is a maximum. Expect that maximum itself to be negative — the whole expression sits below the axis, and 'correcting' the sign at the end is the standard lost mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sign_of_a",
+        "kind": "equation",
+        "label": "Sign of a",
+        "marks": 1,
+        "mark_note": "Which one it is",
+        "margin_note": "First mark. Rewrite in descending powers first: −5x² + 2x − 7, so a = −5, b = 2, c = −7. a < 0 means the graph opens downward, so there is a highest point and no lowest — a MAXIMUM.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Comparing 2x − 7 − 5x² with ax² + bx + c:",
+          "a = −5, b = 2, c = −7",
+          "a = −5 < 0, so the expression has a",
+          "maximum value and no minimum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a, b, c are read off as −5, 2, −7, and that a < 0 means the expression has a maximum value, not a minimum.",
+          "accept": [
+            "compare with a x squared plus b x plus c, a is minus five which is negative so it has a maximum",
+            "a is negative so the expression has a greatest value and no least value",
+            "only the sign of a matters, a equals minus five less than zero means maximum",
+            "a negative kabatti maximum untundi, minimum undadu",
+            "a is minus five b is two c is minus seven and a negative gives a maximum"
+          ],
+          "reject": [
+            "find the maximum",
+            "use the formula",
+            "it has a maximum"
+          ],
+          "heard_as": [
+            "a is negative",
+            "less than zero",
+            "maximum",
+            "no minimum",
+            "minus five"
+          ]
+        },
+        "why": "The expression is written out of order to test whether a is read correctly. Whether a maximum or a minimum exists depends only on the sign of a: negative a opens downward and has a highest point, so only a maximum exists.",
+        "common_mistakes": [
+          "Reading a = 2 because 2x comes first.",
+          "Reading c as 7 instead of −7.",
+          "Deciding 'minimum' from the constant −7 being negative — only a matters."
+        ]
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "Value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Maximum = (4ac − b²)/(4a) = (4(−5)(−7) − 4)/(−20) = 136/(−20) = −34/5. The maximum value is NEGATIVE: the whole expression is below the axis (a < 0 and b² − 4ac = 4 − 140 < 0), so its highest point is still negative. The maximum occurs at x = −b/2a = 1/5.",
+        "lines": [
+          "Maximum value = (4ac − b²)/(4a)",
+          "= (4(−5)(−7) − 2²)/(4(−5))",
+          "= (140 − 4)/(−20) = 136/(−20)",
+          {
+            "text": "∴ maximum value = −34/5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the maximum value is (4ac − b²)/(4a) = (140 − 4)/(−20) = −34/5, a negative number.",
+          "accept": [
+            "the maximum is four a c minus b squared over four a which is one hundred forty minus four over minus twenty equals minus thirty four by five",
+            "substitute into four a c minus b squared by four a to get minus thirty four by five",
+            "one thirty six over minus twenty is minus thirty four by five",
+            "four a c minus b square by four a lo pettithe minus thirty four by five vasthundi",
+            "maximum value minus thirty four by five"
+          ],
+          "reject": [
+            "find the value",
+            "substitute",
+            "box it"
+          ],
+          "heard_as": [
+            "four a c minus b squared",
+            "over four a",
+            "minus thirty four by five",
+            "one thirty six",
+            "minus twenty"
+          ]
+        },
+        "why": "Completing the square gives a(x + b/2a)² + (4ac − b²)/(4a); with a < 0 the squared term only lowers the value, so (4ac − b²)/(4a) is the greatest value. Here 4ac = (−5)(−7)·4 = +140 — two negatives multiply to a positive.",
+        "common_mistakes": [
+          "Dropping the minus sign and answering 34/5 — a negative expression cannot have a positive maximum.",
+          "Computing 4ac as −140.",
+          "Answering x = 1/5 (where the maximum occurs) instead of the maximum value."
+        ]
+      }
+    ]
+  }
+}

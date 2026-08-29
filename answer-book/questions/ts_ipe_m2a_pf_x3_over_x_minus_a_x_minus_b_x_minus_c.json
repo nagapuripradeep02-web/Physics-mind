@@ -1,0 +1,252 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_x3_over_x_minus_a_x_minus_b_x_minus_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve x³/((x − a)(x − b)(x − c)) into partial fractions.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Divide, then set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, answer 104. Printed appearances: TS 16, 19; AP 16. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Model Paper 5 (book p.119) asks exactly this question at Q15. No two-book check and no board back-test exist for this paper — recorded, not hidden. The book's final line prints the third constant with a lowercase c, 'c(x − a)(x − b)', in its identity; it is the constant C, and the card writes C. The book states A and then writes 'similarly' for B and C; the card writes all three so the pattern (each letter's cube over the differences from the other two) is visible. Truth check: with a = 1, b = 2, c = 3 the constants are A = 1/2, B = −8, C = 27/2, and putting x = 0 in the identity gives 0 = (−1)(−2)(−3) + (1/2)(−2)(−3) + (−8)(−1)(−3) + (27/2)(−1)(−2) = −6 + 3 − 24 + 27 = 0."
+  },
+  "recall_prompt": "Say how you would resolve x³/((x − a)(x − b)(x − c)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
+  "insider_note": "Equal degrees give the constant quotient 1 — no long division needed — and each constant follows one pattern: the letter cubed over its differences from the other two, so B's denominator is (b − a)(b − c), never a copy of A's.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Divide, then set up the form",
+        "marks": 1,
+        "mark_note": "Divide and form",
+        "margin_note": "First mark. Degree 3 over degree 3: improper. Both leading coefficients are 1, so the quotient is the constant 1. Then one constant over each of the three different linear factors.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Degree 3 = degree 3: improper.",
+          "Leading coefficients 1 and 1, so the",
+          "quotient is the constant 1.",
+          "Let x³/((x − a)(x − b)(x − c))",
+          "= 1 + A/(x − a) + B/(x − b) + C/(x − c)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal degrees make the quotient the constant 1, and the form is 1 + A/(x − a) + B/(x − b) + C/(x − c).",
+          "accept": [
+            "the degrees are equal so the quotient is one, then write one plus A over x minus a plus B over x minus b plus C over x minus c",
+            "improper with equal degrees so a constant one comes first and then one constant over each factor",
+            "one plus A by x minus a plus B by x minus b plus C by x minus c",
+            "degrees same kabatti quotient one, tarvata A by x minus a plus B by x minus b plus C by x minus c rasali",
+            "write the constant one and then three fractions for the three linear factors"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "equal degrees",
+            "quotient one",
+            "one plus",
+            "A over x minus a",
+            "B over x minus b",
+            "C over x minus c"
+          ]
+        },
+        "why": "The denominator expands to x³ + …, so x³ over it is 1 plus a proper fraction. The 1 must be written into the form; the letters a, b, c change nothing about the method.",
+        "common_mistakes": [
+          "Writing A/(x − a) + B/(x − b) + C/(x − c) with no 1 in front.",
+          "Trying to expand (x − a)(x − b)(x − c) fully and do a long division; with equal degrees the quotient is read off the leading coefficients.",
+          "Using a, b, c as if they were numbers to be found; they are given constants."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply by (x − a)(x − b)(x − c). The 1 keeps the whole denominator; A keeps (x − b)(x − c), B keeps (x − a)(x − c), C keeps (x − a)(x − b).",
+        "lines": [
+          "Multiply by (x − a)(x − b)(x − c):",
+          "x³ = (x − a)(x − b)(x − c)",
+          "+ A(x − b)(x − c) + B(x − a)(x − c)",
+          "+ C(x − a)(x − b)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying through gives x³ = (x − a)(x − b)(x − c) + A(x − b)(x − c) + B(x − a)(x − c) + C(x − a)(x − b).",
+          "accept": [
+            "multiply both sides by all three factors to get x cubed equals the whole denominator plus A into x minus b into x minus c plus B into x minus a into x minus c plus C into x minus a into x minus b",
+            "clear the denominators and the one keeps the whole denominator while each constant keeps the other two factors",
+            "x cubed equals the product plus A B C times the other two factors each",
+            "moodu factors tho multiply cheste x cube equals whole denominator plus A B C into migatha rendu factors",
+            "remove the fractions and keep the one term as the full product"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "whole denominator",
+            "A into x minus b",
+            "B into x minus a",
+            "C into x minus a",
+            "identity"
+          ]
+        },
+        "why": "The quotient 1 is a term of the equation and is multiplied by the denominator like the fractions. Each constant is left with the two factors it does not sit over, ready to be isolated.",
+        "common_mistakes": [
+          "Dropping the (x − a)(x − b)(x − c) term that comes from the 1.",
+          "Giving A the factor (x − a) that it sits over.",
+          "Writing lowercase c for the constant C, which the book does in its own final line."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A, B and C",
+        "margin_note": "Third mark. x = a makes the product and the B and C terms zero: a³ = A(a − b)(a − c). The same pattern with x = b and x = c. Each constant is that letter cubed over its differences from the other two letters.",
+        "lines": [
+          "Put x = a: a³ = A(a − b)(a − c)",
+          "⇒ A = a³/((a − b)(a − c))",
+          "Put x = b: B = b³/((b − a)(b − c))",
+          "Put x = c: C = c³/((c − a)(c − b))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = a gives A = a³/((a − b)(a − c)), and likewise B = b³/((b − a)(b − c)) and C = c³/((c − a)(c − b)).",
+          "accept": [
+            "put x equals a to get A equals a cubed over a minus b into a minus c, and the same way B equals b cubed over b minus a into b minus c and C equals c cubed over c minus a into c minus b",
+            "each constant is that letter cubed divided by its differences from the other two letters",
+            "A is a cube by a minus b a minus c, B is b cube by b minus a b minus c, C is c cube by c minus a c minus b",
+            "x equals a pedithe A equals a cube by a minus b into a minus c, alage B and C",
+            "substitute the three roots a b and c to get the three constants"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals a",
+            "a cubed over",
+            "a minus b",
+            "a minus c",
+            "b cubed",
+            "c cubed",
+            "same way"
+          ]
+        },
+        "why": "The roots are a, b and c themselves. Substituting x = a makes every term with (x − a) vanish, which is the product and the B and C terms, leaving a³ = A(a − b)(a − c). B and C follow by the same one-line move.",
+        "common_mistakes": [
+          "Writing A = a³/((a − b)(a − c)) and then B with the same denominator instead of (b − a)(b − c).",
+          "Forgetting that at x = a the product (x − a)(x − b)(x − c) is zero and keeping it on the right.",
+          "Writing a² instead of a³ in the numerator; the left side is x³ at x = a."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The 1 comes first, then each constant over its own factor. The result is four terms and too long for one box, so the constants are boxed under it.",
+        "lines": [
+          "∴ x³/((x − a)(x − b)(x − c)) = 1",
+          "+ a³/((a − b)(a − c)(x − a))",
+          "+ b³/((b − a)(b − c)(x − b))",
+          "+ c³/((c − a)(c − b)(x − c))",
+          {
+            "text": "∴ A = a³/((a − b)(a − c)); B, C likewise",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals 1 + a³/((a − b)(a − c)(x − a)) + b³/((b − a)(b − c)(x − b)) + c³/((c − a)(c − b)(x − c)).",
+          "accept": [
+            "the answer is one plus a cubed over a minus b a minus c x minus a plus b cubed over b minus a b minus c x minus b plus c cubed over c minus a c minus b x minus c",
+            "one first then each constant over its own factor x minus a x minus b x minus c",
+            "write one plus the three fractions with a cube b cube and c cube on top",
+            "final answer one plus a cube by a minus b a minus c x minus a plus b cube by b minus a b minus c x minus b plus c cube by c minus a c minus b x minus c ani rasali",
+            "put A B C back into the form with the one in front"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "one plus",
+            "a cubed over",
+            "b cubed over",
+            "c cubed over",
+            "x minus a",
+            "final answer"
+          ]
+        },
+        "why": "The constant quotient 1 and the three fractions together are the resolution. Each fraction has its constant written out in a, b, c over its own factor; that is what the examiner marks.",
+        "common_mistakes": [
+          "Leaving out the 1 in the final line.",
+          "Writing A/(x − a) without replacing A by a³/((a − b)(a − c)).",
+          "Not checking: take a = 1, b = 2, c = 3, so A = 1/2, B = −8, C = 27/2; put x = 0 in the identity, 0 = −6 + 3 − 24 + 27. If the two sides differ, a constant is wrong."
+        ]
+      }
+    ]
+  }
+}

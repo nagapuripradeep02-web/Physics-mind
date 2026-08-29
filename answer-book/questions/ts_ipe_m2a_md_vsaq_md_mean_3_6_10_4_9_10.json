@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_vsaq_md_mean_3_6_10_4_9_10",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the mean deviation about the mean for the data 3, 6, 10, 4, 9, 10.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the mean",
+      "marks": 1
+    },
+    {
+      "label": "Find the mean deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 18 Measures of Dispersion, answer 169.1. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) The unit table in docs/IPE_MATHS_2A_SOURCE.md lists chapter 18 as answers 168–172; the page shows answer 168 is the last Binomial Theorem VSAQ (book p.84) and chapter 18 runs 169.1–172.2 — eight answers in four twin pairs. Printed appearances: TS 17,18,22 · AP 16,18,20,22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book pp.85–86. It is patterned on the 1A Matrices VSAQ 1+1 (1A book p.82, answers 100–101 — the one place this book series prints a VSAQ split): 1 for the centre (the mean or the median), 1 for the spread (the mean deviation or the variance). All eight VSAQs of this unit share that shape deliberately, and the twins of each pair share the same step ids. The chapter header (book p.85) carries ★★★ and reads '2 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q9 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q9 of the book's Model Paper 1 (book p.111, index P85(169.1)) and is re-solved as the first Q9 of the Bullet Model Paper (book p.99) with the same 16/6 = 2.67 — a second solution that agrees. Recomputed: sum 42, x̄ = 7, |xᵢ − x̄| = 4, 1, 3, 3, 2, 3, total 16, 16/6 = 2.666…, printed 2.67 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the mean deviation about the mean for six numbers — what you find first and what you average at the end.",
+  "insider_note": "n = 6 counts the repeated 10 twice and divides both steps; the answer 16/6 = 2.666… is written 2.67, the two-decimal form this chapter uses.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Measures of Dispersion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mean",
+        "kind": "equation",
+        "label": "Mean",
+        "marks": 1,
+        "mark_note": "Mean",
+        "margin_note": "First mark. Six values, sum 42, mean 7. Write n = 6 — it is the divisor in both steps.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "n = 6",
+          "Mean x̄ = (3 + 6 + 10 + 4 + 9 + 10)/6 = 42/6 = 7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean of the six values is 42/6 = 7.",
+          "accept": [
+            "add the six numbers to get forty two and divide by six, the mean is seven",
+            "x bar is forty two by six equals seven",
+            "the mean of the data is seven",
+            "aaru numbers add cheste forty two, six tho divide cheste mean seven",
+            "sum forty two, n six, mean seven"
+          ],
+          "reject": [
+            "find the mean",
+            "add them up"
+          ],
+          "heard_as": [
+            "x bar",
+            "forty two",
+            "seven",
+            "mean"
+          ]
+        },
+        "why": "Mean deviation is measured from the mean, so the mean has to exist first. The signed deviations from the mean add to zero, which is why the next step drops the signs.",
+        "common_mistakes": [
+          "A slip in the sum: 3 + 6 + 10 + 4 + 9 + 10 = 42.",
+          "Dividing by 5 because 10 appears twice — n counts every value, so n = 6."
+        ]
+      },
+      {
+        "id": "s2_md",
+        "kind": "boxed_final",
+        "label": "Mean deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Write the six absolute deviations, add them (16), divide by n = 6. 16/6 = 2.666…, written 2.67.",
+        "lines": [
+          "|xᵢ − x̄| : 4, 1, 3, 3, 2, 3",
+          "M.D. = Σ|xᵢ − x̄|/n",
+          "= (4 + 1 + 3 + 3 + 2 + 3)/6 = 16/6 = 2.67",
+          {
+            "text": "∴ M.D. about the mean = 2.67",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the absolute deviations from 7 are 4, 1, 3, 3, 2, 3, their sum 16 divided by 6 gives 2.67.",
+          "accept": [
+            "take each number minus seven without sign, four one three three two three, add to sixteen, divide by six, two point six seven",
+            "the absolute deviations add to sixteen and sixteen by six is two point six seven",
+            "mean deviation is sigma mod x i minus x bar by n equals sixteen by six equals two point six seven",
+            "seven nunchi deviations mod teesukoni add cheste sixteen, six tho divide cheste two point six seven",
+            "the answer is two point six seven"
+          ],
+          "reject": [
+            "divide it",
+            "that is the answer",
+            "find the deviations"
+          ],
+          "heard_as": [
+            "mod",
+            "absolute",
+            "sixteen",
+            "two point six seven",
+            "M D"
+          ]
+        },
+        "why": "Mean deviation is the average distance from the mean. The absolute value is what stops the distances cancelling — without it the total is 0 for every data set.",
+        "common_mistakes": [
+          "Keeping the signs: −4 − 1 + 3 − 3 + 2 + 3 = 0.",
+          "Dividing 16 by 5 or by 7 instead of by n = 6.",
+          "Writing 2.66 — the book rounds 2.666… to 2.67."
+        ]
+      }
+    ]
+  }
+}

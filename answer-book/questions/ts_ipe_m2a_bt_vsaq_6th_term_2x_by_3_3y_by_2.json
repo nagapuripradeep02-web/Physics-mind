@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_6th_term_2x_by_3_3y_by_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the 6th term in the expansion of (2x/3 + 3y/2)⁹.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write T₆ from the general term",
+      "marks": 1
+    },
+    {
+      "label": "Cancel and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.94 — Star Questions Plus, Binomial Theorem banner, answer 202. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 2-mark VSAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — the same one-move general-term question as book VSAQ 156. Printed appearances: AP 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would find the 6th term — which r you use in the general term, and how the fractions cancel to a whole number.",
+  "insider_note": "The 6th term is Tᵣ₊₁ with r = 5, not 6. The fractions are built to cancel — (2⁴/3⁴)(3⁵/2⁵) reduces to a single small fraction — so heavy arithmetic means a wrong r.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write T₆ from the general term",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The 6th term is Tᵣ₊₁ with r = 5: ⁹C₅ times the first entry to the power 4 times the second to the power 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "In (x + y)ⁿ, Tᵣ₊₁ = ⁿCᵣ xⁿ⁻ʳ yʳ",
+          "T₆ = T₅₊₁ = ⁹C₅ (2x/3)⁹⁻⁵ (3y/2)⁵"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 6th term is T₅₊₁ = ⁹C₅ (2x/3)⁴ (3y/2)⁵.",
+          "accept": [
+            "the sixth term is r equal to five in the general term, nine C five into two x by three to the four into three y by two to the five",
+            "use T r plus one with r five",
+            "T six is nine C five two x by three power four three y by two power five",
+            "sixth term ante r five, nine C five two x by three power four three y by two power five",
+            "r is one less than six"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "nine C five",
+            "r equal to five",
+            "power four",
+            "power five"
+          ]
+        },
+        "why": "The r-th power of the second entry appears in the (r + 1)-th term, so the 6th term has r = 5.",
+        "common_mistakes": [
+          "Using r = 6.",
+          "Giving the first entry the power 5."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Cancel and evaluate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. ⁹C₅ = 126; (2⁴/3⁴)(3⁵/2⁵) = 3/2; 126 × 3/2 = 189.",
+        "lines": [
+          "= 126 · (2⁴/3⁴) · (3⁵/2⁵) · x⁴y⁵ = 126 · (3/2) · x⁴y⁵",
+          {
+            "text": "∴ T₆ = 189 x⁴y⁵",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ⁹C₅ = 126 and the fractions reduce to 3/2, so T₆ = 189 x⁴y⁵.",
+          "accept": [
+            "nine C five is one twenty six, the fractions reduce to three by two, so the term is one eighty nine x to the four y to the five",
+            "the sixth term is one eighty nine x power four y power five",
+            "two to the four by three to the four times three to the five by two to the five is three by two",
+            "fractions cancel ayyi three by two, one twenty six into three by two one eighty nine",
+            "one hundred eighty nine x to the fourth y to the fifth"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "one eighty nine",
+            "one twenty six",
+            "three by two",
+            "x to the four"
+          ]
+        },
+        "why": "The two fractions are almost reciprocals; one extra 3 on top and one extra 2 below survive, and 126 × 3/2 is a whole number.",
+        "common_mistakes": [
+          "Cancelling to 2/3 instead of 3/2.",
+          "Writing ⁹C₅ = 63."
+        ]
+      }
+    ]
+  }
+}

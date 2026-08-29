@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_sqp_conjugate_5i_over_7_plus_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the conjugate of 5i/(7 + i).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Simplify 5i/(7 + i) to the form a + ib",
+      "marks": 1
+    },
+    {
+      "label": "Write the conjugate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.89 — Star Questions Plus, Complex Numbers banner, answer 179. (Book page = PDF page − 1 in this part of the scan.) THIS SECTION IS OURS: Star Questions Plus prints no mark cut and no chapter stars; the question is classed as a 2-mark VSAQ by shape and length (two lines of working, the same shape as chapter 12's conjugate questions) and folded into the Complex Numbers unit as backfill. Printed appearances: TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The stars on this card are the VSAQ CHAPTER's ★★★ (chapter 12, the section it joins), not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the conjugate of this quotient — what you do first, and what a conjugate changes.",
+  "insider_note": "Simplify the quotient to a + ib first and only then flip the sign of the i part. Watch −5i² in the numerator: it is +5, and after cancelling 5 the number is (1 + 7i)/10 — the conjugate is then one sign change.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_simplify",
+        "kind": "equation",
+        "label": "Simplify the quotient",
+        "marks": 1,
+        "mark_note": "Simplify",
+        "margin_note": "First mark. Multiply above and below by 7 − i. The denominator becomes 49 + 1 = 50; the numerator 35i − 5i² = 5 + 35i.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "5i/(7 + i) = 5i(7 − i) / ((7 + i)(7 − i))",
+          "= (35i − 5i²)/(49 + 1) = (5 + 35i)/50",
+          "= (1 + 7i)/10        (since i² = −1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by the conjugate 7 − i simplifies the quotient to (1 + 7i)/10.",
+          "accept": [
+            "multiply top and bottom by seven minus i, the bottom is fifty and the top is five plus thirty five i, so one plus seven i by ten",
+            "rationalise to get one plus seven i over ten",
+            "the quotient simplifies to one plus seven i by ten",
+            "conjugate seven minus i tho multiply cheste one plus seven i by ten vasthundi",
+            "five i into seven minus i over fifty, that is one plus seven i over ten"
+          ],
+          "reject": [
+            "rationalise",
+            "simplify"
+          ],
+          "heard_as": [
+            "seven minus i",
+            "one plus seven i",
+            "ten",
+            "fifty",
+            "conjugate"
+          ]
+        },
+        "why": "The conjugate of a quotient must be taken after the quotient is a single a + ib; a complex denominator hides which part is imaginary. Multiplying by 7 − i makes the denominator real, and the common factor 5 cancels.",
+        "common_mistakes": [
+          "Writing −5i² as −5 instead of +5.",
+          "Forgetting to cancel the 5, leaving (5 + 35i)/50 — not wrong, but the conjugate is easier to read from (1 + 7i)/10."
+        ]
+      },
+      {
+        "id": "s2_conjugate",
+        "kind": "boxed_final",
+        "label": "Take the conjugate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Keep the real part 1/10, flip the imaginary part.",
+        "lines": [
+          "The conjugate of a + ib is a − ib.",
+          {
+            "text": "∴ conjugate of (1 + 7i)/10 is (1 − 7i)/10",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the conjugate changes the sign of the imaginary part, so the conjugate is (1 − 7i)/10.",
+          "accept": [
+            "change the sign of the imaginary part, the conjugate is one minus seven i by ten",
+            "the answer is one minus seven i over ten",
+            "flip the sign of seven i to get one minus seven i by ten",
+            "imaginary part sign marchithe one minus seven i by ten",
+            "conjugate keeps one by ten and turns plus seven i into minus seven i"
+          ],
+          "reject": [
+            "take the conjugate",
+            "write the conjugate"
+          ],
+          "heard_as": [
+            "one minus seven i",
+            "by ten",
+            "conjugate",
+            "sign"
+          ]
+        },
+        "why": "Conjugation reflects the number in the real axis: the real part 1/10 stays, the imaginary part 7/10 becomes −7/10. The denominator 10 is real and is not touched.",
+        "common_mistakes": [
+          "Changing the sign of the whole fraction to (−1 − 7i)/10.",
+          "Stopping at (1 + 7i)/10 without writing its conjugate."
+        ]
+      }
+    ]
+  }
+}

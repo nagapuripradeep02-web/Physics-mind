@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_equal_coefficients_find_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the coefficients of the (2r + 4)-th term and the (3r + 4)-th term in the expansion of (1 + x)²¹ are equal, then find r.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the two coefficients and the rule",
+      "marks": 1
+    },
+    {
+      "label": "Solve for r",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 17 Binomial Theorem, answer 164. Printed appearances: TS 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. The book gives both r = 0 (from 2r + 3 = 3r + 3) and r = 3 (from the indices adding to 21). r = 0 makes the two terms the SAME term, so the card boxes r = 3 and records r = 0 as the trivial case — the book's line is kept, not silently dropped."
+  },
+  "recall_prompt": "Say how you would find r — the coefficient of the k-th term, the rule for when two binomial coefficients are equal, and the value of r.",
+  "insider_note": "Equal coefficients ⁿCᵣ = ⁿCₛ has two branches, r = s and r + s = n. The first gives only the same term twice — the real answer comes from the r + s = 21 branch, the one students forget.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the two coefficients and the rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The k-th term of (1 + x)²¹ has coefficient ²¹Cₖ₋₁, so the two coefficients are ²¹C₂ᵣ₊₃ and ²¹C₃ᵣ₊₃. Two coefficients ⁿCᵣ, ⁿCₛ are equal when r = s or r + s = n.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The coefficient of the k-th term",
+          "of (1 + x)²¹ is ²¹Cₖ₋₁",
+          "Given ²¹C₂ᵣ₊₃ = ²¹C₃ᵣ₊₃",
+          "ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficients are ²¹C₂ᵣ₊₃ and ²¹C₃ᵣ₊₃, and two binomial coefficients with the same n are equal when the lower indices are equal or add to n.",
+          "accept": [
+            "the coefficients are twenty one C two r plus three and twenty one C three r plus three, and equal coefficients mean the indices are equal or add to twenty one",
+            "the k th term has coefficient n C k minus one",
+            "n C r equals n C s means r equals s or r plus s equals n",
+            "two r plus three and three r plus three equal or sum twenty one",
+            "use the rule that equal coefficients have indices adding to n"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "two r plus three",
+            "three r plus three",
+            "add to twenty one",
+            "k minus one"
+          ]
+        },
+        "why": "ⁿCᵣ = ⁿCₙ₋ᵣ is the only way two different binomial coefficients of the same n can be equal, so the rule has exactly two branches.",
+        "common_mistakes": [
+          "Using ²¹C₂ᵣ₊₄ and ²¹C₃ᵣ₊₄ — the index is one less than the position.",
+          "Forgetting the r + s = n branch."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Solve for r",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The first branch gives r = 0, which makes the two terms the same term; the second branch gives r = 3.",
+        "lines": [
+          "2r + 3 = 3r + 3 ⇒ r = 0 (the same term twice)",
+          "(2r + 3) + (3r + 3) = 21 ⇒ 5r = 15 ⇒ r = 3",
+          {
+            "text": "∴ r = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equal-indices branch gives r = 0 (the same term twice) and the indices-add-to-21 branch gives r = 3.",
+          "accept": [
+            "equal indices give r zero which is the same term, indices adding to twenty one give five r equals fifteen so r is three",
+            "r equals three",
+            "two r plus three plus three r plus three is twenty one so r is three",
+            "indices add chesi twenty one pettithe r three vasthundi",
+            "the useful answer is three"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "r equals three",
+            "r is three",
+            "five r",
+            "fifteen"
+          ]
+        },
+        "why": "The branch r = 0 is not wrong, but it names one term twice; the question asks for the r that makes two DIFFERENT terms equal.",
+        "common_mistakes": [
+          "Stopping at r = 0.",
+          "Adding the indices as 5r + 6 = 21 and getting r = 3, then writing 5r = 21."
+        ]
+      }
+    ]
+  }
+}

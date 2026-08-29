@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_9c3_9c5_10cr_find_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ⁹C₃ + ⁹C₅ = ¹⁰Cᵣ, then find r.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite ⁹C₅ and apply Pascal",
+      "marks": 1
+    },
+    {
+      "label": "Match ¹⁰C₄ = ¹⁰Cᵣ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 16 Permutations & Combinations, answer 145.2. Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_rewrite, s2_pascal) are used on the three Pascal-identity VSAQs in this unit (answers 145.1, 145.2, 146.1), deliberately: one identity over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. BOOK INCOMPLETE, recorded: the printed answer stops at '¹⁰Cᵣ = ¹⁰C₄ ⇒ r = 4'. But ¹⁰C₄ = ¹⁰C₆ by ⁿCᵣ = ⁿCₙ₋ᵣ, so r = 6 also satisfies the equation (both sides are 210). The card gives r = 4 or r = 6 and says why; a student who writes only r = 4 has followed the book."
+  },
+  "recall_prompt": "Say how you would find r when 9 C 3 plus 9 C 5 equals 10 C r.",
+  "insider_note": "Rewrite ⁹C₅ as ⁹C₄ first so the lower numbers differ by one; Pascal then gives ¹⁰C₄. The full answer is r = 4 or r = 6, since ¹⁰C₄ = ¹⁰C₆ — the book stops at r = 4 and misses the second value.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Rewrite ⁹C₅ and apply Pascal",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ⁹C₅ = ⁹C₄, then ⁹C₃ + ⁹C₄ = ¹⁰C₄ by ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "⁹C₅ = ⁹C₉₋₅ = ⁹C₄",
+          "L.H.S. = ⁹C₃ + ⁹C₄ = ¹⁰C₄"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 9 C 5 is rewritten as 9 C 4, and 9 C 3 plus 9 C 4 is 10 C 4 by Pascal's identity.",
+          "accept": [
+            "nine C five is nine C four, then nine C three plus nine C four is ten C four by Pascal",
+            "change nine C five to nine C four and add to get ten C four",
+            "the left side becomes ten C four",
+            "nine C five ni nine C four ga rasi Pascal tho ten C four",
+            "complement rule then Pascal gives ten C four"
+          ],
+          "reject": [
+            "use the identity",
+            "add them"
+          ],
+          "heard_as": [
+            "nine C five",
+            "nine C four",
+            "ten C four",
+            "Pascal"
+          ]
+        },
+        "why": "The lower numbers 3 and 5 are two apart; rewriting 5 as 4 makes them one apart so that Pascal's identity collapses the sum to a single combination.",
+        "common_mistakes": [
+          "Applying Pascal to ⁹C₃ + ⁹C₅ directly and writing ¹⁰C₅.",
+          "Computing ⁹C₃ = 84 and ⁹C₅ = 126 numerically — it gives 210 but then r must still be found by trial."
+        ]
+      },
+      {
+        "id": "s2_pascal",
+        "kind": "boxed_final",
+        "label": "Match ¹⁰C₄ = ¹⁰Cᵣ",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. r = 4, and also r = 10 − 4 = 6, because ¹⁰C₄ = ¹⁰C₆. The book prints only r = 4.",
+        "lines": [
+          "¹⁰Cᵣ = ¹⁰C₄ ⇒ r = 4",
+          "or r = 10 − 4 = 6, since ¹⁰C₄ = ¹⁰C₆",
+          {
+            "text": "∴ r = 4 or r = 6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 10 C r = 10 C 4 gives r = 4, and also r = 6 because 10 C 4 equals 10 C 6.",
+          "accept": [
+            "ten C r is ten C four so r is four, and also six because ten C four equals ten C six",
+            "r is four or six",
+            "r equals four, and by the complement rule also ten minus four which is six",
+            "r four, ledha ten minus four six",
+            "both four and six work"
+          ],
+          "reject": [
+            "find r",
+            "four"
+          ],
+          "heard_as": [
+            "r is four",
+            "r is six",
+            "four or six",
+            "ten minus four"
+          ]
+        },
+        "why": "Matching ¹⁰Cᵣ = ¹⁰C₄ is the same ⁿCᵣ = ⁿCₛ situation as answer 143.1: r = 4 OR r + 4 = 10. Both make the equation true, so both are answers.",
+        "common_mistakes": [
+          "Answering r = 4 only, as the book does.",
+          "Answering r = 6 only."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_modamp_minus_1_minus_i_root3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Express −1 − i√3 in the modulus-amplitude form.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the modulus r",
+      "marks": 1
+    },
+    {
+      "label": "Find the amplitude θ from the quadrant and write r(cos θ + i sin θ)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.72 — VSAQ chapter 12 Complex Numbers, answer 110.6. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: TS 20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The six modulus-amplitude VSAQs of this unit (110.1–110.6) share the same split and step ids deliberately. The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. This is the answer where the book itself uses the principal range (−π, π] correctly (θ = −2π/3), which is why the card treats the book's θ = 3π/4 in answer 110.3 as a slip. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would write a complex number in modulus-amplitude form — what two numbers you need and how the quadrant fixes the angle.",
+  "insider_note": "tan θ = √3 also fits π/3, the first-quadrant point (1, √3) — the quadrant sentence is what separates the two and carries the second mark. (−1, −√3) is in the third quadrant, so θ = −π + π/3 = −2π/3.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Find r",
+        "marks": 1,
+        "mark_note": "Modulus",
+        "margin_note": "First mark. x = −1, y = −√3, so r = √(1 + 3) = 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let −1 − i√3 = x + iy ⇒ x = −1, y = −√3",
+          "r = √(x² + y²) = √(1 + 3) = √4 = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = −1, y = −√3 and the modulus r = √(1 + 3) = 2.",
+          "accept": [
+            "x is minus one, y is minus root three, r is root of one plus three which is two",
+            "the modulus is root four equals two",
+            "r equals root x squared plus y squared, that is two",
+            "modulus root four, ante two",
+            "one plus three is four, root of that is two"
+          ],
+          "reject": [
+            "find r",
+            "find the modulus"
+          ],
+          "heard_as": [
+            "two",
+            "root four",
+            "modulus",
+            "minus root three"
+          ]
+        },
+        "why": "Both coordinates are negative, but both square to positive numbers, so r = 2 exactly as for 1 + i√3. The two signs return in the next step to put the point in the third quadrant.",
+        "common_mistakes": [
+          "Writing (−√3)² as −3.",
+          "Taking r negative because both coordinates are negative."
+        ]
+      },
+      {
+        "id": "s2_amplitude",
+        "kind": "boxed_final",
+        "label": "Find θ and write the form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. tan θ = √3, but (−1, −√3) is in the THIRD quadrant, so the principal amplitude is θ = −π + π/3 = −2π/3. Check: 2 cos(−2π/3) = −1 and 2 sin(−2π/3) = −√3.",
+        "lines": [
+          "tan θ = y/x = (−√3)/(−1) = √3",
+          "(−1, −√3) lies in the third quadrant",
+          "⇒ θ = −π + π/3 = −2π/3",
+          "∴ −1 − i√3 = 2(cos(−2π/3) + i sin(−2π/3))",
+          {
+            "text": "= 2(cos(2π/3) − i sin(2π/3))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan θ = √3 with the point in the third quadrant gives the principal amplitude θ = −2π/3, so the form is 2(cos(−2π/3) + i sin(−2π/3)) = 2(cos 2π/3 − i sin 2π/3).",
+          "accept": [
+            "tan theta is root three but the point is in the third quadrant so theta is minus two pi by three",
+            "the form is two times cos minus two pi by three plus i sin minus two pi by three",
+            "third quadrant, theta equals minus pi plus pi by three equals minus two pi by three",
+            "point third quadrant lo undi kabatti theta minus two pi by three",
+            "two times cos two pi by three minus i sin two pi by three"
+          ],
+          "reject": [
+            "find theta",
+            "write the form",
+            "theta is pi by three"
+          ],
+          "heard_as": [
+            "minus two pi by three",
+            "third quadrant",
+            "tan theta root three",
+            "two",
+            "cos minus i sin"
+          ]
+        },
+        "why": "tan θ = √3 is true for π/3 (first quadrant) and −2π/3 (third quadrant). The point has both coordinates negative, so it is in the third, and the principal amplitude in (−π, π] is −2π/3. Since cos is even and sin is odd, this is the same as 2(cos 2π/3 − i sin 2π/3).",
+        "common_mistakes": [
+          "Taking θ = π/3 straight from tan θ = √3 — that is the point (1, √3).",
+          "Writing 2(cos 2π/3 + i sin 2π/3), which is −1 + i√3.",
+          "Forgetting the r = 2."
+        ]
+      }
+    ]
+  }
+}

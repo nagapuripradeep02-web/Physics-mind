@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_15_4x_3x2_negative",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For what values of x is the expression 15 + 4x − 3x² negative?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Roots and the sign of a",
+      "marks": 1
+    },
+    {
+      "label": "Interval",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.91 (PDF p.92 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — Star Questions Plus, Quadratic Equations banner, answer 193. The book prints no mark cut for Star Questions Plus; THE SECTION IS OURS — classed by shape: a sign-of-a-quadratic question whose whole answer is the two roots, the sign of a, and one interval — the 2-mark length, so it is filed as a VSAQ. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is the 1 (method: roots + sign of a) + 1 (answer: the interval) split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). Star Questions Plus prints no stars and no mark cut; the star rank carried in the manifest is the CHAPTER's (SAQ chapter 8 ★★★ / VSAQ chapter 14 ★★), not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. The book prints two solutions side by side (a four-step Δ / roots / sign-of-a argument, and a multiply-by-minus-one 'Easy Solution'); the card keeps a = −3 and applies the sign rule directly, which is the same argument in the fewest lines. 'Easy Solution' is the book's label and does not appear on the card (Rule 41)."
+  },
+  "recall_prompt": "Say how you would find these values of x — say what you find first, what the sign of a tells you, and how you write the answer.",
+  "insider_note": "Rewrite as −3x² + 4x + 15 first: a = −3, so the expression is negative OUTSIDE its two roots. 'Between the roots' is the a > 0 habit, and here it is exactly where the expression is positive.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_roots_sign",
+        "kind": "equation",
+        "label": "Roots and the sign of a",
+        "marks": 1,
+        "mark_note": "Roots and sign of a",
+        "margin_note": "First mark. Rewrite as −3x² + 4x + 15, so a = −3 < 0. The roots come from 3x² − 4x − 15 = (3x + 5)(x − 3) = 0: x = −5/3 and 3. Rule: outside the roots the expression has the sign of a, which is negative.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "15 + 4x − 3x² = −3x² + 4x + 15",
+          "Roots: 3x² − 4x − 15 = 0",
+          "⇒ (3x + 5)(x − 3) = 0 ⇒ x = −5/3, 3",
+          "a = −3 < 0",
+          "For x outside the roots the expression",
+          "has the sign of a, so it is negative."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression has roots −5/3 and 3, that a = −3 is negative, and that a quadratic has the sign of a for x outside its roots — so it is negative outside −5/3 and 3.",
+          "accept": [
+            "the roots are minus five by three and three, a is minus three which is negative, so the expression is negative outside the roots",
+            "factorise three x squared minus four x minus fifteen as three x plus five into x minus three, and a is negative",
+            "a quadratic takes the sign of a outside its roots, here a is negative so negative outside",
+            "roots minus five by three and three, a negative kabatti roots bayata expression negative",
+            "outside the roots the sign is the sign of a which is minus"
+          ],
+          "reject": [
+            "find the roots",
+            "write the interval",
+            "x greater than three"
+          ],
+          "heard_as": [
+            "minus five by three",
+            "three",
+            "a is negative",
+            "outside the roots",
+            "sign of a"
+          ]
+        },
+        "why": "A quadratic with real distinct roots changes sign only at those roots, and far from them it behaves like ax². Here a is negative, so the expression is negative outside the roots and positive between them.",
+        "common_mistakes": [
+          "Reading a as 15 or as 4 because of the order the terms are written in.",
+          "Factorising with the wrong pair; check that (3x + 5)(x − 3) expands to 3x² − 4x − 15.",
+          "Saying negative BETWEEN the roots — with a < 0 that is where it is positive."
+        ]
+      },
+      {
+        "id": "s2_interval",
+        "kind": "boxed_final",
+        "label": "Interval",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Negative for x < −5/3 or x > 3. In interval form (−∞, −5/3) ∪ (3, ∞), round brackets because at the roots the expression is zero, not negative.",
+        "lines": [
+          "⇒ 15 + 4x − 3x² < 0 for x < −5/3 or x > 3",
+          {
+            "text": "∴ x ∈ (−∞, −5/3) ∪ (3, ∞)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is negative for x < −5/3 or x > 3, written as x ∈ (−∞, −5/3) ∪ (3, ∞) with the roots excluded.",
+          "accept": [
+            "negative for x less than minus five by three or x greater than three, minus infinity to minus five by three union three to infinity",
+            "x is in the open intervals below minus five thirds and above three",
+            "the answer is x less than minus five by three or x greater than three with round brackets",
+            "x minus five by three kanna takkuva leda three kanna ekkuva, open intervals",
+            "x belongs to minus infinity comma minus five by three union three comma infinity"
+          ],
+          "reject": [
+            "write the interval",
+            "box it",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "less than minus five by three",
+            "greater than three",
+            "minus infinity",
+            "union",
+            "open interval"
+          ]
+        },
+        "why": "'Negative' is strict, so the two roots — where the expression is zero — are left out; round brackets say exactly that.",
+        "common_mistakes": [
+          "Writing (−5/3, 3), the interval where it is positive.",
+          "Using square brackets at the roots.",
+          "Writing the root as 5/3 instead of −5/3."
+        ]
+      }
+    ]
+  }
+}

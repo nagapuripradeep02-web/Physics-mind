@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_x2_5x_6_positive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For what values of x is the expression x² − 5x + 6 positive?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Roots and the sign of a",
+      "marks": 1
+    },
+    {
+      "label": "Interval",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.91 (PDF p.92 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — Star Questions Plus, Quadratic Equations banner, answer 192. The book prints no mark cut for Star Questions Plus; THE SECTION IS OURS — classed by shape: a sign-of-a-quadratic question whose whole answer is the two roots, the sign of a, and one interval — the 2-mark length, so it is filed as a VSAQ. Printed appearances: AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is the 1 (method: roots + sign of a) + 1 (answer: the interval) split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). Star Questions Plus prints no stars and no mark cut; the star rank carried in the manifest is the CHAPTER's (SAQ chapter 8 ★★★ / VSAQ chapter 14 ★★), not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. The book prints two solutions side by side (a four-step Δ / roots / sign-of-a argument, and a factorise-and-read-off 'Easy Solution'); the card writes the factorised form with the sign rule, which is the same argument in the fewest lines. 'Easy Solution' is the book's label and does not appear on the card (Rule 41)."
+  },
+  "recall_prompt": "Say how you would find these values of x — say what you find first, what the sign of a tells you, and how you write the answer.",
+  "insider_note": "With a = 1 > 0 the expression is positive outside the two roots. The brackets stay round — at a root the expression is zero, not positive — and the 'or' between the two intervals must not become 'and'.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_roots_sign",
+        "kind": "equation",
+        "label": "Roots and the sign of a",
+        "marks": 1,
+        "mark_note": "Roots and sign of a",
+        "margin_note": "First mark. Factorise: x² − 5x + 6 = (x − 2)(x − 3), roots 2 and 3, real and distinct. a = 1 > 0. The rule: for x OUTSIDE the two roots the expression has the sign of a; between them, the opposite sign.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x² − 5x + 6 = (x − 2)(x − 3)",
+          "Roots: x = 2, 3 (real, distinct)",
+          "a = 1 > 0",
+          "For x outside the roots the expression",
+          "has the sign of a, so it is positive."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression factorises with roots 2 and 3, that a = 1 is positive, and that a quadratic has the sign of a for x outside its roots — so it is positive outside 2 and 3.",
+          "accept": [
+            "factorise to x minus two into x minus three, roots two and three, a is positive so the expression is positive outside the roots",
+            "the roots are two and three and since a is one the expression is positive for x outside them",
+            "a quadratic takes the sign of a outside its roots, here a is positive",
+            "roots two and three, a positive kabatti roots bayata expression positive",
+            "outside two and three the sign is the sign of a which is positive"
+          ],
+          "reject": [
+            "find the roots",
+            "write the interval",
+            "x less than two"
+          ],
+          "heard_as": [
+            "roots two and three",
+            "a is positive",
+            "outside the roots",
+            "sign of a",
+            "factorise"
+          ]
+        },
+        "why": "A quadratic with real distinct roots changes sign only at those roots, and far from them it behaves like ax², which has the sign of a. So the sign is the sign of a outside the roots and the opposite between them.",
+        "common_mistakes": [
+          "Factorising as (x + 2)(x + 3).",
+          "Saying the expression is positive BETWEEN the roots — that is where it is negative when a > 0.",
+          "Not stating the sign of a, so the interval has no justification."
+        ]
+      },
+      {
+        "id": "s2_interval",
+        "kind": "boxed_final",
+        "label": "Interval",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Positive for x < 2 or x > 3. In interval form: (−∞, 2) ∪ (3, ∞), round brackets because at x = 2 and x = 3 the expression is zero, not positive.",
+        "lines": [
+          "⇒ x² − 5x + 6 > 0 for x < 2 or x > 3",
+          {
+            "text": "∴ x ∈ (−∞, 2) ∪ (3, ∞)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is positive for x < 2 or x > 3, written as x ∈ (−∞, 2) ∪ (3, ∞) with the roots excluded.",
+          "accept": [
+            "positive for x less than two or x greater than three, that is minus infinity to two union three to infinity",
+            "x is in the open intervals up to two and beyond three",
+            "the answer is x less than two or x greater than three with round brackets",
+            "x two kanna takkuva leda three kanna ekkuva, minus infinity to two union three to infinity",
+            "x belongs to minus infinity comma two union three comma infinity"
+          ],
+          "reject": [
+            "write the interval",
+            "box it",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "less than two",
+            "greater than three",
+            "minus infinity",
+            "union",
+            "open interval",
+            "round brackets"
+          ]
+        },
+        "why": "'Positive' is strict, so the two roots — where the expression equals zero — are not included; that is what the round brackets say.",
+        "common_mistakes": [
+          "Writing [−∞, 2] ∪ [3, ∞] with square brackets.",
+          "Writing (2, 3), the interval where it is negative.",
+          "Writing 2 < x < 3 in words 'x less than 2 or greater than 3' — the 'or' must not become 'and'."
+        ]
+      }
+    ]
+  }
+}

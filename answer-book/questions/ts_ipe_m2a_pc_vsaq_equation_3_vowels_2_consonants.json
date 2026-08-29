@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_equation_3_vowels_2_consonants",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the number of ways of selecting 3 vowels and 2 consonants from the letters of the word EQUATION.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Separate the vowels and consonants",
+      "marks": 1
+    },
+    {
+      "label": "Multiply",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 16 Permutations & Combinations, answer 152.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_setup, s2_compute) are used on every direct-count VSAQ in this unit (answers 149.1 to 155.2 and Star Questions Plus 199, 200), deliberately: one mark to name the count (which ⁿPᵣ, ⁿCᵣ, nʳ or formula, and why), one to evaluate it. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would count the selections of three vowels and two consonants from EQUATION — the two groups, the two selections and how they combine.",
+  "insider_note": "EQUATION has five vowels — U counts even though it follows Q — leaving three consonants. The question says selecting only, so the answer stops at ⁵C₃ · ³C₂ = 30; an extra 5! for arranging answers a different question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Separate the vowels and consonants",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. EQUATION: vowels E, U, A, I, O (5), consonants Q, T, N (3), all different. Select from each group: ⁵C₃ and ³C₂.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "EQUATION: vowels E, U, A, I, O (5),",
+          "consonants Q, T, N (3), all different.",
+          "3 vowels: ⁵C₃ = 10; 2 consonants: ³C₂ = 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That EQUATION has 5 vowels and 3 consonants, and the selections are 5 C 3 = 10 and 3 C 2 = 3.",
+          "accept": [
+            "five vowels and three consonants, five C three is ten and three C two is three",
+            "separate the eight letters into five vowels and three consonants and select from each",
+            "ten ways for vowels and three ways for consonants",
+            "vowels five, consonants three, five C three ten, three C two three",
+            "count the vowels first, E U A I O"
+          ],
+          "reject": [
+            "set it up",
+            "use the formula"
+          ],
+          "heard_as": [
+            "five vowels",
+            "three consonants",
+            "five C three",
+            "three C two",
+            "ten"
+          ]
+        },
+        "why": "The condition is on the two groups separately, so the letters must first be sorted into vowels and consonants; each group then has its own selection.",
+        "common_mistakes": [
+          "Counting 4 vowels — EQUATION has five: E, U, A, I, O.",
+          "Treating U as a consonant because it follows Q."
+        ]
+      },
+      {
+        "id": "s2_compute",
+        "kind": "boxed_final",
+        "label": "Multiply",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 10 × 3 = 30. (The question asks for selections, not words, so no arrangement factor.)",
+        "lines": [
+          "Required = ⁵C₃ · ³C₂ = 10 · 3",
+          {
+            "text": "= 30",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two selection counts multiply to give 30.",
+          "accept": [
+            "ten into three is thirty",
+            "thirty",
+            "five C three times three C two is thirty",
+            "ten times three thirty",
+            "the answer is thirty selections"
+          ],
+          "reject": [
+            "evaluate",
+            "compute"
+          ],
+          "heard_as": [
+            "thirty",
+            "ten into three"
+          ]
+        },
+        "why": "The vowel selection and the consonant selection are made together, so the counts multiply. No 5! appears because the question asks for selections, not words.",
+        "common_mistakes": [
+          "Multiplying by 5! to arrange the chosen letters — that answers a different question (words).",
+          "Adding 10 + 3 = 13."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_coefficients_x9_x10_x11_ap",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If the coefficients of x⁹, x¹⁰, x¹¹ in the expansion of (1 + x)ⁿ are in A.P., then prove that n² − 41n + 398 = 0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the three coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Write the A.P. condition",
+      "marks": 2
+    },
+    {
+      "label": "Replace the ratios",
+      "marks": 2
+    },
+    {
+      "label": "Clear fractions and simplify",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.94 — Star Questions Plus, Binomial Theorem banner, answer 204. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — it is book answer 22 (the r-th, (r + 1)-th, (r + 2)-th coefficients in A.P.) with r = 10, and the general result gives n² − 41n + 398 = 0 directly. Printed appearances: AP 19. ⚠ THE 1+2+2+2 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is the SAME split with the SAME step ids as book answer 22 (the general A.P.-coefficients proof), deliberately: one method, once general and once numeric. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would prove this — what the three coefficients are, what being in A.P. means once you divide by the middle one, the two ratio formulas you substitute, and how the algebra reaches n² − 41n + 398 = 0.",
+  "insider_note": "The coefficient of x⁹ is ⁿC₉ — here the power IS the index, and shifting to ⁿC₈ proves a different equation. Write 2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁ and divide by the middle coefficient so the two ratios appear.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "equation",
+        "label": "Name the three coefficients",
+        "marks": 1,
+        "mark_note": "Setting up",
+        "margin_note": "First mark. The coefficient of x⁹ in (1 + x)ⁿ is ⁿC₉ — here the power of x IS the index, unlike the \"r-th term\" wording of the general question.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The coefficients of x⁹, x¹⁰, x¹¹ in (1 + x)ⁿ are",
+          "ⁿC₉, ⁿC₁₀, ⁿC₁₁ and they are in A.P."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficients of x⁹, x¹⁰, x¹¹ are ⁿC₉, ⁿC₁₀, ⁿC₁₁.",
+          "accept": [
+            "the coefficients are n C nine, n C ten and n C eleven",
+            "the coefficient of x to the k is n C k so the three are n C nine ten and eleven",
+            "take n C nine n C ten n C eleven in A P",
+            "x power nine ten eleven coefficients n C nine n C ten n C eleven",
+            "three consecutive coefficients nine ten eleven"
+          ],
+          "reject": [
+            "write the coefficients",
+            "name them"
+          ],
+          "heard_as": [
+            "n C nine",
+            "n C ten",
+            "n C eleven"
+          ]
+        },
+        "why": "A coefficient of (1 + x)ⁿ is a binomial coefficient, and the coefficient of the r-th term carries r − 1, not r. Naming the three correctly is the step the rest of the answer depends on.",
+        "common_mistakes": [
+          "Shifting the index and writing ⁿC₈, ⁿC₉, ⁿC₁₀ — that shift belongs to \"r-th term\" wording, not to \"coefficient of xᵏ\".",
+          "Treating x⁹, x¹⁰, x¹¹ as the 9th, 10th, 11th terms."
+        ]
+      },
+      {
+        "id": "s2_ap_condition",
+        "kind": "equation",
+        "label": "Write the A.P. condition",
+        "marks": 2,
+        "mark_note": "A.P. condition",
+        "margin_note": "Three numbers are in A.P. when the middle one is the average of the other two: 2·(middle) = (first) + (last). Divide through by the middle coefficient so the ratios appear.",
+        "lines": [
+          "2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁",
+          "Dividing by ⁿC₁₀:",
+          "2 = ⁿC₉/ⁿC₁₀ + ⁿC₁₁/ⁿC₁₀"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁, and dividing by ⁿC₁₀ gives 2 = ⁿC₉/ⁿC₁₀ + ⁿC₁₁/ⁿC₁₀.",
+          "accept": [
+            "twice n C ten equals n C nine plus n C eleven, divide by n C ten to get two equals the sum of the two ratios",
+            "A P means two times the middle equals the sum of the ends, then divide by the middle",
+            "two equals n C nine by n C ten plus n C eleven by n C ten",
+            "A P condition rasi n C ten tho divide cheste two equals two ratios",
+            "middle coefficient is the average of the other two"
+          ],
+          "reject": [
+            "use the A.P. condition",
+            "they are in A.P."
+          ],
+          "heard_as": [
+            "twice the middle",
+            "two equals",
+            "divide by"
+          ]
+        },
+        "why": "Dividing by the middle coefficient turns three binomial coefficients into two RATIOS of consecutive coefficients, and those ratios have a one-line formula.",
+        "common_mistakes": [
+          "Writing the A.P. condition as first + middle = last.",
+          "Not dividing by the middle term and trying to expand the factorials."
+        ]
+      },
+      {
+        "id": "s3_ratios",
+        "kind": "equation",
+        "label": "Replace the ratios",
+        "marks": 2,
+        "mark_note": "Ratio formulas",
+        "margin_note": "Third and fourth marks. With r = 10: ⁿC₉/ⁿC₁₀ = 10/(n − 9) and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11.",
+        "lines": [
+          "ⁿC₁₀/ⁿC₉ = (n − 9)/10",
+          "and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11",
+          "2 = 10/(n − 9) + (n − 10)/11"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two ratios are 10/(n − 9) and (n − 10)/11, so 2 = 10/(n − 9) + (n − 10)/11.",
+          "accept": [
+            "n C nine by n C ten is ten by n minus nine and n C eleven by n C ten is n minus ten by eleven",
+            "two equals ten over n minus nine plus n minus ten over eleven",
+            "substitute the two consecutive coefficient ratio formulas with r equal to ten",
+            "ratio formulas pettithe two equals ten by n minus nine plus n minus ten by eleven",
+            "use n C r by n C r minus one equals n minus r plus one by r with r ten"
+          ],
+          "reject": [
+            "substitute the ratios",
+            "use the formula"
+          ],
+          "heard_as": [
+            "n minus nine",
+            "n minus ten",
+            "ten by",
+            "eleven"
+          ]
+        },
+        "why": "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1) come straight from the factorial form; they replace every binomial coefficient by plain algebra in n and r.",
+        "common_mistakes": [
+          "Inverting one of the two ratios.",
+          "Using (n − r)/r instead of (n − r + 1)/r for the lower ratio."
+        ]
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "boxed_final",
+        "label": "Clear fractions and simplify",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Fifth to seventh marks. Multiply through by 11(n − 9). The right side is 110 + (n − 10)(n − 9) = n² − 19n + 200.",
+        "lines": [
+          "2·11(n − 9) = 110 + (n − 10)(n − 9)",
+          "22n − 198 = 110 + n² − 19n + 90",
+          "0 = n² − 19n + 200 − 22n + 198",
+          {
+            "text": "∴ n² − 41n + 398 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by 11(n − 9) gives 22n − 198 = 110 + (n − 10)(n − 9), and collecting terms gives n² − 41n + 398 = 0.",
+          "accept": [
+            "multiply by eleven into n minus nine, twenty two n minus one ninety eight equals one ten plus n squared minus nineteen n plus ninety, collect to get n squared minus forty one n plus three ninety eight",
+            "clear the fractions and expand n minus ten into n minus nine as n squared minus nineteen n plus ninety",
+            "collecting gives n squared minus forty one n plus three hundred ninety eight equals zero",
+            "fractions clear chesi collect cheste n squared minus forty one n plus three ninety eight equals zero",
+            "the n terms are minus nineteen minus twenty two which is minus forty one"
+          ],
+          "reject": [
+            "simplify",
+            "expand and collect"
+          ],
+          "heard_as": [
+            "n squared",
+            "forty one",
+            "three ninety eight",
+            "twenty two n"
+          ]
+        },
+        "why": "Cross-multiplying once and collecting like terms is all that remains; the required equation is exactly what falls out, with nothing to guess.",
+        "common_mistakes": [
+          "Expanding (n − 10)(n − 9) as n² − 19n − 90.",
+          "Multiplying only one side by 11(n − 9).",
+          "Getting +41n by moving terms to the wrong side."
+        ]
+      }
+    ]
+  }
+}

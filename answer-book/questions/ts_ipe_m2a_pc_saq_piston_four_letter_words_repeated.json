@@ -1,0 +1,173 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_saq_piston_four_letter_words_repeated",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the number of 4-letter words that can be formed using the letters of the word PISTON in which at least one letter is repeated.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Words with repetition allowed",
+      "marks": 1
+    },
+    {
+      "label": "Words with no letter repeated",
+      "marks": 1
+    },
+    {
+      "label": "Subtract to get at least one repeat",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.93 — Star Questions Plus, Permutations & Combinations banner, answer 201. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1+2 shape used for the telescoping SAQs in this unit (two set-up marks, two for the step that answers the question). Section: the Star Questions Plus pages print NO mark cut; classing this answer as a SAQ (4 marks) is OURS, by its shape and length — the book itself places this exact question in the 4-mark Q13 slot of its Model Paper 5 (book p.119), which is the strongest evidence available for the section. The chapter's SAQ header carries ★★★; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q13 of the book's Model Paper 5 (book p.119). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would count the four-letter words from PISTON with at least one repeated letter — what you count first, what you count next, and why you subtract.",
+  "insider_note": "\"At least one letter repeated\" is counted by subtraction: all words 6⁴ minus the no-repeat words ⁶P₄. Two of the four marks sit on the subtraction step, so say in words what is taken from what — the bare line 1296 − 360 is not the full step.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Permutations and Combinations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_with_repetition",
+        "kind": "equation",
+        "label": "Words with repetition allowed",
+        "marks": 1,
+        "mark_note": "All words",
+        "margin_note": "First mark. PISTON has 6 different letters. With repetition allowed each of the 4 positions has 6 choices: 6⁴.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "PISTON has 6 different letters.",
+          "4-letter words, repetition allowed:",
+          "nʳ = 6⁴ = 1296"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with repetition allowed each of the four positions takes any of the six letters, giving 6 to the power 4 = 1296.",
+          "accept": [
+            "with repetition each place has six choices so six to the power four which is one thousand two hundred ninety six",
+            "six to the four is twelve ninety six words in all",
+            "n to the r, six to the four",
+            "repetition allow chesthe prathi place ki six choices, six power four twelve ninety six",
+            "six times six times six times six"
+          ],
+          "reject": [
+            "count the words",
+            "use the formula"
+          ],
+          "heard_as": [
+            "six to the four",
+            "twelve ninety six",
+            "one thousand two hundred ninety six",
+            "repetition allowed"
+          ]
+        },
+        "why": "\"At least one repeat\" is hard to count directly because a word may repeat one letter, two letters, or one letter three times. Counting ALL words first is the method that avoids it.",
+        "common_mistakes": [
+          "Using ⁶P₄ or ⁶C₄ here — those exclude repeats.",
+          "Computing 4⁶ instead of 6⁴; the base is the number of letters, the power is the word length."
+        ]
+      },
+      {
+        "id": "s2_without_repetition",
+        "kind": "equation",
+        "label": "Words with no letter repeated",
+        "marks": 1,
+        "mark_note": "No repeats",
+        "margin_note": "Second mark. No letter repeated means an arrangement of 4 of the 6 letters: ⁶P₄ = 360.",
+        "lines": [
+          "4-letter words with no letter repeated:",
+          "ⁿPᵣ = ⁶P₄ = 6 · 5 · 4 · 3 = 360"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the words with no repeated letter are the arrangements 6 P 4 = 360.",
+          "accept": [
+            "no repetition means six P four which is three hundred sixty",
+            "six times five times four times three is three sixty",
+            "the words with all letters different are six P four",
+            "repetition lekunda six P four three hundred sixty",
+            "arrangements of four out of six, three sixty"
+          ],
+          "reject": [
+            "count the words",
+            "subtract"
+          ],
+          "heard_as": [
+            "six P four",
+            "three sixty",
+            "three hundred sixty",
+            "no repetition"
+          ]
+        },
+        "why": "Every word either has no repeated letter or has at least one, and never both. So the \"no repeat\" count is exactly what must be removed from the total.",
+        "common_mistakes": [
+          "Using ⁶C₄ = 15 — a word is an arrangement, so order matters and it is ⁶P₄.",
+          "Computing 6 · 5 · 4 = 120 (three factors) instead of four."
+        ]
+      },
+      {
+        "id": "s3_subtract",
+        "kind": "boxed_final",
+        "label": "Subtract",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "Two marks. All words minus words with no repeat: 1296 − 360 = 936.",
+        "lines": [
+          "Words with at least one repeated letter",
+          "= all words − words with no repetition",
+          {
+            "text": "= 1296 − 360 = 936",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the words with at least one repeat are all words minus the words with no repeat, 1296 minus 360 = 936.",
+          "accept": [
+            "at least one repeat is all words minus no repeat, twelve ninety six minus three sixty is nine hundred thirty six",
+            "subtract three sixty from twelve ninety six to get nine thirty six",
+            "the answer is nine hundred and thirty six",
+            "total nunchi no repetition subtract cheste nine hundred thirty six",
+            "twelve ninety six minus three sixty"
+          ],
+          "reject": [
+            "subtract",
+            "nine hundred"
+          ],
+          "heard_as": [
+            "nine hundred thirty six",
+            "nine thirty six",
+            "subtract",
+            "twelve ninety six minus three sixty"
+          ]
+        },
+        "why": "The two sets in step 1 and step 2 differ exactly by the words with a repeat, so the subtraction is the count itself, not an estimate. This complement method is the standard way to count \"at least one\".",
+        "common_mistakes": [
+          "Adding 1296 and 360 instead of subtracting.",
+          "Answering 360 — that is the count of words with NO repeat.",
+          "Writing the subtraction without the line that says what is being subtracted from what."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_sqrt_minus_5_plus_12i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the square root of −5 + 12i.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find r = |−5 + 12i| = 13",
+      "marks": 1
+    },
+    {
+      "label": "Apply the square-root formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.71 — VSAQ chapter 12 Complex Numbers, answer 109.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots; the Bullet Model Paper re-solves this question on book p.96 with the same arithmetic. The card adds a one-line check (2 + 3i)² = −5 + 12i that the book does not print. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the square root of a complex number — what you compute first and what formula you put it into.",
+  "insider_note": "Keep the sign on a = −5 all the way through: r + a = 13 − 5 = 8 and r − a = 13 + 5 = 18, which halve to 4 and 9. Then say the sign choice — b = 12 is positive, so both parts take the same sign — and keep the ±.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Find the modulus",
+        "marks": 1,
+        "mark_note": "Modulus",
+        "margin_note": "First mark. a = −5 (negative), b = 12. The square of −5 is +25, so r = √(25 + 144) = 13 — the 5, 12, 13 triple.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let −5 + 12i = a + ib ⇒ a = −5, b = 12",
+          "r = √(a² + b²) = √(25 + 144) = √169 = 13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = −5, b = 12 and the modulus r = √(25 + 144) = 13.",
+          "accept": [
+            "a is minus five, b is twelve, and r is root of twenty five plus one forty four which is thirteen",
+            "the modulus is root one sixty nine equals thirteen",
+            "find r equals root a squared plus b squared, that is thirteen",
+            "modulus kanukunte root one sixty nine, thirteen vasthundi",
+            "five twelve thirteen triple, so r is thirteen"
+          ],
+          "reject": [
+            "find r",
+            "find the modulus"
+          ],
+          "heard_as": [
+            "thirteen",
+            "one sixty nine",
+            "modulus",
+            "r equals",
+            "minus five"
+          ]
+        },
+        "why": "r is always positive, whatever the sign of a. The negative a matters in the NEXT line, where r + a = 13 − 5 = 8 and r − a = 13 + 5 = 18 — the negative sign is where this question differs from 7 + 24i.",
+        "common_mistakes": [
+          "Writing (−5)² as −25 and getting r = √119.",
+          "Taking a = 5, losing the sign that changes the next step."
+        ]
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Apply the formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. b > 0, so the two parts share a sign. r + a = 13 + (−5) = 8 and r − a = 13 − (−5) = 18; halved, 4 and 9.",
+        "lines": [
+          "For b > 0:",
+          {
+            "text": "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
+            "style": "eq"
+          },
+          {
+            "text": "√(−5 + 12i) = ±(√((13 − 5)/2) + i·√((13 + 5)/2))",
+            "style": "eq"
+          },
+          "= ±(√4 + i√9)",
+          {
+            "text": "∴ √(−5 + 12i) = ±(2 + 3i)",
+            "style": "boxed"
+          },
+          "Check: (2 + 3i)² = 4 + 12i − 9 = −5 + 12i"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the formula with r = 13 and a = −5 gives ±(√4 + i√9) = ±(2 + 3i).",
+          "accept": [
+            "use root of r plus a by two plus i root of r minus a by two, that is root four plus i root nine, so plus or minus two plus three i",
+            "the square root is plus or minus two plus three i",
+            "thirteen minus five by two is four and thirteen plus five by two is nine, so two plus three i",
+            "formula lo pettithe root four plus i root nine, plus or minus two plus three i",
+            "plus or minus two plus three i, and two plus three i squared is minus five plus twelve i"
+          ],
+          "reject": [
+            "apply the formula",
+            "substitute"
+          ],
+          "heard_as": [
+            "two plus three i",
+            "plus or minus",
+            "root four",
+            "root nine",
+            "r plus a by two"
+          ]
+        },
+        "why": "With a negative, r + a is the SMALLER of the two numbers, so the real part of the root is the smaller one (2) and the imaginary part the larger (3). Squaring back is the one-line check that the order is right.",
+        "common_mistakes": [
+          "Computing r + a as 13 + 5 = 18 and getting ±(3 + 2i), which squares to 5 + 12i.",
+          "Dropping the ±.",
+          "Skipping the check by squaring."
+        ]
+      }
+    ]
+  }
+}

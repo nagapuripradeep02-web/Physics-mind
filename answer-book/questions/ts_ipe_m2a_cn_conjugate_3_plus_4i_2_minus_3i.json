@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_conjugate_3_plus_4i_2_minus_3i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the conjugate of (3 + 4i)(2 − 3i).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Multiply out and simplify to 18 − i",
+      "marks": 1
+    },
+    {
+      "label": "Write the conjugate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.70 — VSAQ chapter 12 Complex Numbers, answer 106.1. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: TS 17 · AP 16, 17, 20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots — this question IS Q1 of the book's Model Paper 1 (book p.111), and the Bullet Model Paper re-solves it on book p.96 with the same arithmetic. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the conjugate of this product — what you do first, and what a conjugate changes.",
+  "insider_note": "The order is fixed: multiply to one number a + ib, then flip only the sign of the i part. The product 18 − i is not the answer — the question asks for its conjugate, 18 + i, and stopping one line early loses the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply",
+        "kind": "equation",
+        "label": "Multiply out",
+        "marks": 1,
+        "mark_note": "Product",
+        "margin_note": "First mark. Multiply first, then take the conjugate — a conjugate of a product needs the product as one number a + ib.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(3 + 4i)(2 − 3i) = 6 − 9i + 8i − 12i²",
+          "= 6 − i + 12 = 18 − i        (since i² = −1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product is expanded and simplified with i² = −1 to 18 − i.",
+          "accept": [
+            "multiply the brackets and use i squared minus one to get eighteen minus i",
+            "the product comes to eighteen minus i",
+            "six minus nine i plus eight i minus twelve i squared which is eighteen minus i",
+            "brackets multiply chesi i square minus one pettithe eighteen minus i",
+            "expand first, the product is eighteen minus i"
+          ],
+          "reject": [
+            "multiply",
+            "expand"
+          ],
+          "heard_as": [
+            "eighteen minus i",
+            "twelve i squared",
+            "i squared",
+            "product"
+          ]
+        },
+        "why": "A conjugate flips the sign of the imaginary part of ONE number, so the product has to be a single a + ib before the flip. (Taking conjugates of each factor first also works, but the exam expects the product.)",
+        "common_mistakes": [
+          "Missing a cross term and getting 6 − 12i².",
+          "Using i² = +1 to get −6 − i."
+        ]
+      },
+      {
+        "id": "s2_conjugate",
+        "kind": "boxed_final",
+        "label": "Take the conjugate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Conjugate = same real part, opposite sign on the i part. 18 − i becomes 18 + i.",
+        "lines": [
+          "The conjugate of a + ib is a − ib.",
+          {
+            "text": "∴ conjugate of 18 − i is 18 + i",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the conjugate changes the sign of the imaginary part, so the conjugate of 18 − i is 18 + i.",
+          "accept": [
+            "change the sign of the imaginary part, the conjugate of eighteen minus i is eighteen plus i",
+            "the answer is eighteen plus i",
+            "flip the sign of i to get eighteen plus i",
+            "imaginary part sign marchithe eighteen plus i",
+            "conjugate keeps eighteen and turns minus i into plus i"
+          ],
+          "reject": [
+            "take the conjugate",
+            "write the conjugate"
+          ],
+          "heard_as": [
+            "eighteen plus i",
+            "conjugate",
+            "sign",
+            "imaginary part"
+          ]
+        },
+        "why": "The conjugate is the mirror image across the real axis: the real part stays, the imaginary part changes sign. That is the entire definition, and it is applied once.",
+        "common_mistakes": [
+          "Changing the sign of the real part too, giving −18 + i.",
+          "Stopping at 18 − i, the product, without writing its conjugate."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_sin_pi_8_power_8_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Show that one value of [(1 + sin π/8 + i cos π/8)/(1 + sin π/8 − i cos π/8)]^(8/3) is −1.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Let z = sin π/8 + i cos π/8 and find 1/z",
+      "marks": 2
+    },
+    {
+      "label": "The fraction simplifies to z",
+      "marks": 2
+    },
+    {
+      "label": "Write z as cis 3π/8",
+      "marks": 1
+    },
+    {
+      "label": "Raise to 8/3 by De Moivre's theorem",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 1 De Moivre's Theorem, answer 6. Printed appearances: AP 18 · TS 16,20. ⚠ THE 2+2+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the [2 Marks] · [2 Marks] · [1 Mark] · [2 Marks] shape the book prints against answer 2 on book p.15: two marks each for the two algebraic reductions (1/z, and the fraction collapsing to z), one for writing z as cis 3π/8, two for the final power. The same step names (s1_de_moivre / s2 … / final) are used across the 'x = cis α' identity answers 3 and 7 of this unit as far as their shapes allow; answer 6 is a single evaluation and stands alone. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. Re-derived: with z = sin π/8 + i cos π/8 the fraction is z itself, z = cis(3π/8), and z^(8/3) has cis π = −1 as one value; the book's answer is correct. The 8/3 power is many-valued; the question asks for ONE value, and the card says so. Notation: the 8/3 exponent is typeset with KaTeX on the page per the notation ledger; in this plain-text question line it is written with a caret. Asked as Model Paper 5, Q18 (book p.120)."
+  },
+  "recall_prompt": "Say how you would show this — what you call z, why the fraction is just z, how you write z in cis form, and what the 8/3 power does to the angle.",
+  "insider_note": "The question looks long and is short: the fraction is z itself. Students who convert both brackets to mod-amp form separately run out of time.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "De Moivre's Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Let z = sin π/8 + i cos π/8 and find 1/z",
+        "marks": 2,
+        "mark_note": "Set-up",
+        "margin_note": "First and second marks. Put z = sin π/8 + i cos π/8. Then 1/z = (sin π/8 − i cos π/8)/(sin² π/8 + cos² π/8) = sin π/8 − i cos π/8, so the number in the denominator is 1/z and the two brackets are 1 + z and 1 + 1/z.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let z = sin π/8 + i cos π/8",
+          "1/z = 1/(sin π/8 + i cos π/8)",
+          "= (sin π/8 − i cos π/8)/(sin² π/8 + cos² π/8)",
+          "= sin π/8 − i cos π/8  (∵ sin² θ + cos² θ = 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator's number is named z, and 1/z is its conjugate sin π/8 − i cos π/8 because its modulus is 1.",
+          "accept": [
+            "let z be sin pi by eight plus i cos pi by eight, then one by z is the conjugate since the modulus is one",
+            "call the number z, its reciprocal is sin pi by eight minus i cos pi by eight",
+            "one over z equals the conjugate because sin squared plus cos squared is one",
+            "z ni sin pi by eight plus i cos pi by eight ga teeskunte one by z conjugate avuthundi",
+            "the denominator's number is exactly one by z"
+          ],
+          "reject": [
+            "let z be",
+            "find one by z",
+            "rationalise"
+          ],
+          "heard_as": [
+            "one by z",
+            "conjugate",
+            "modulus one",
+            "sin pi by eight",
+            "cos pi by eight"
+          ]
+        },
+        "why": "The two brackets in the question are 1 + z and 1 + 1/z for the same z. Seeing that the denominator's number is the reciprocal of the numerator's is the idea of the whole question.",
+        "common_mistakes": [
+          "Not noticing that sin π/8 − i cos π/8 is 1/z, and trying to write both brackets in mod-amp form separately.",
+          "Writing 1/z = sin π/8 + i cos π/8 with no sign change.",
+          "Leaving sin² π/8 + cos² π/8 in the denominator instead of replacing it by 1."
+        ]
+      },
+      {
+        "id": "s2_reduce",
+        "kind": "equation",
+        "label": "The fraction simplifies to z",
+        "marks": 2,
+        "mark_note": "Reduce",
+        "margin_note": "Third and fourth marks. 1 + 1/z = (z + 1)/z, so (1 + z) divided by it leaves z. The whole expression is z to the power 8/3 and nothing more.",
+        "lines": [
+          "The given expression",
+          {
+            "text": "= \\left[\\frac{1+z}{1+\\frac{1}{z}}\\right]^{8/3} = \\left[\\frac{1+z}{\\frac{z+1}{z}}\\right]^{8/3} = z^{8/3}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (1 + z)/(1 + 1/z) simplifies to z, so the whole expression is z to the power 8/3.",
+          "accept": [
+            "one plus z over one plus one by z is z, so the expression is z to the eight by three",
+            "multiply top and bottom by z and the fraction becomes z",
+            "the bracket simplifies to z so we need z power eight by three",
+            "fraction simplify cheste z matrame migulutundi, z power eight by three",
+            "one plus one by z is z plus one over z, and it cancels with the numerator"
+          ],
+          "reject": [
+            "simplify",
+            "cancel",
+            "reduce it"
+          ],
+          "heard_as": [
+            "z to the eight by three",
+            "simplifies to z",
+            "cancel",
+            "one plus z"
+          ]
+        },
+        "why": "1 + 1/z = (z + 1)/z, so dividing 1 + z by it leaves z. The long expression is z to the power 8/3 and nothing more.",
+        "common_mistakes": [
+          "Cancelling the 1's and writing z/(1/z) = z², which is wrong algebra.",
+          "Expanding 1 + z with sines and cosines and making errors.",
+          "Forgetting to carry the 8/3 power onto z."
+        ]
+      },
+      {
+        "id": "s3_polar",
+        "kind": "equation",
+        "label": "Write z as cis 3π/8",
+        "marks": 1,
+        "mark_note": "Cis form",
+        "margin_note": "Fifth mark. z is written sine first, so use cos(π/2 − π/8) = sin π/8 and sin(π/2 − π/8) = cos π/8 to swap them: z = cos(3π/8) + i sin(3π/8). De Moivre needs the cosine first and the sine second.",
+        "lines": [
+          "z = sin π/8 + i cos π/8",
+          "= cos(π/2 − π/8) + i sin(π/2 − π/8)",
+          "= cos(3π/8) + i sin(3π/8)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin π/8 = cos(π/2 − π/8) and cos π/8 = sin(π/2 − π/8), so z = cos 3π/8 + i sin 3π/8.",
+          "accept": [
+            "sin pi by eight is cos of pi by two minus pi by eight so z is cos three pi by eight plus i sin three pi by eight",
+            "swap sin and cos using the complementary angle, z is cis three pi by eight",
+            "write z as cos three pi by eight plus i sin three pi by eight",
+            "sin ni cos ga marchali, pi by two minus pi by eight three pi by eight, z is cis three pi by eight",
+            "the amplitude of z is three pi by eight"
+          ],
+          "reject": [
+            "convert it",
+            "write in cis form",
+            "use the identity"
+          ],
+          "heard_as": [
+            "three pi by eight",
+            "cis",
+            "pi by two minus",
+            "complementary"
+          ]
+        },
+        "why": "De Moivre's theorem needs cos first and sin second. z is written sin-first, so the complementary-angle identities swap the roles: the angle becomes π/2 − π/8 = 3π/8.",
+        "common_mistakes": [
+          "Applying De Moivre directly to sin π/8 + i cos π/8, which is not in cos + i sin form.",
+          "Getting π/2 − π/8 = π/4 or 3π/4 instead of 3π/8.",
+          "Writing z = cis(π/8), ignoring the swap."
+        ]
+      },
+      {
+        "id": "s4_power",
+        "kind": "boxed_final",
+        "label": "Raise to 8/3 by De Moivre",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Sixth and seventh marks. The angle becomes (8/3) · (3π/8) = π, so the value is cos π + i sin π = −1 + i(0). A fractional power has several values; this is the one the question asks for.",
+        "lines": [
+          {
+            "text": "z^{8/3} = \\left[\\cos\\tfrac{3\\pi}{8} + i\\sin\\tfrac{3\\pi}{8}\\right]^{8/3}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\cos\\!\\left(\\tfrac{8}{3}\\cdot\\tfrac{3\\pi}{8}\\right) + i\\sin\\!\\left(\\tfrac{8}{3}\\cdot\\tfrac{3\\pi}{8}\\right)",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= cos π + i sin π = −1 + i(0)",
+          {
+            "text": "∴ one value of the expression is −1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one value of z to the 8/3 is cis((8/3)(3π/8)) = cis π = −1 by De Moivre's theorem.",
+          "accept": [
+            "by De Moivre the angle is eight by three times three pi by eight which is pi, so cos pi plus i sin pi is minus one",
+            "multiply the angle by eight by three to get pi and cis pi is minus one",
+            "one value is cos pi plus i sin pi equals minus one",
+            "angle ni eight by three tho multiply cheste pi vasthundi, cis pi is minus one",
+            "the eight and the three cancel leaving pi, and cis pi is minus one"
+          ],
+          "reject": [
+            "raise it",
+            "use De Moivre",
+            "we get minus one"
+          ],
+          "heard_as": [
+            "cis pi",
+            "minus one",
+            "eight by three",
+            "cos pi",
+            "one value"
+          ]
+        },
+        "why": "The 8 and the 3 cancel against the 3π/8, leaving the angle π. cos π = −1 and sin π = 0, so this value of the power is −1. A fractional power has several values; the question asks for one, and De Moivre supplies it.",
+        "common_mistakes": [
+          "Writing cos π + i sin π = 1.",
+          "Multiplying 3π/8 by 3/8 instead of 8/3.",
+          "Claiming −1 is the only value of the expression; the question says 'one value' for a reason."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_sqp_least_n_1_plus_i_over_1_minus_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the least positive integer n satisfying ((1 + i)/(1 − i))ⁿ = 1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Simplify (1 + i)/(1 − i) to i",
+      "marks": 1
+    },
+    {
+      "label": "Find the least n with iⁿ = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.89 — Star Questions Plus, Complex Numbers banner, answer 181. (Book page = PDF page − 1 in this part of the scan.) THIS SECTION IS OURS: Star Questions Plus prints no mark cut and no chapter stars; the question is classed as a 2-mark VSAQ by shape and length (two lines of working) and folded into the Complex Numbers unit as backfill. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The stars on this card are the VSAQ CHAPTER's ★★★ (chapter 12, the section it joins), not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. The book states 'the least positive integer n such that iⁿ = 1 is 4' without listing the powers; the card lists i, i², i³, i⁴ so the 'least' is seen, not asserted. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the least n — what the base simplifies to, and why the answer is what it is.",
+  "insider_note": "The base collapses to a single i, because (1 + i)² = 2i sits over 1 + 1 = 2 — after that the question is only the cycle of powers of i. 'Least positive' rules out n = 0, and i² = −1 rules out n = 2; the answer is n = 4.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_simplify",
+        "kind": "equation",
+        "label": "Simplify the base",
+        "marks": 1,
+        "mark_note": "Base",
+        "margin_note": "First mark. Multiply above and below by 1 + i: the top becomes (1 + i)² = 2i and the bottom 1 + 1 = 2. The whole base is just i.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(1 + i)/(1 − i) = (1 + i)(1 + i) / ((1 − i)(1 + i))",
+          "= (1 + 2i + i²)/(1 + 1) = 2i/2 = i",
+          "(since i² = −1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by the conjugate 1 + i simplifies (1 + i)/(1 − i) to i.",
+          "accept": [
+            "multiply top and bottom by one plus i, the top is two i and the bottom is two, so the base is i",
+            "one plus i over one minus i simplifies to i",
+            "rationalise, one plus i squared is two i, divide by two, i",
+            "conjugate tho multiply cheste base i vasthundi",
+            "the base is just i"
+          ],
+          "reject": [
+            "rationalise",
+            "simplify"
+          ],
+          "heard_as": [
+            "i",
+            "two i",
+            "one plus i",
+            "conjugate",
+            "base"
+          ]
+        },
+        "why": "The power is impossible to handle until the base is a single simple number. (1 + i)² = 1 + 2i − 1 = 2i is the step that reduces the whole base to i.",
+        "common_mistakes": [
+          "Writing (1 + i)² as 1 + i² = 0.",
+          "Multiplying by 1 − i and getting (1 − i)²/2 = −i, the wrong base."
+        ]
+      },
+      {
+        "id": "s2_least_n",
+        "kind": "boxed_final",
+        "label": "Least n with iⁿ = 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. i¹ = i, i² = −1, i³ = −i, i⁴ = 1 — the first power that gives 1 is the fourth.",
+        "lines": [
+          "So the condition is iⁿ = 1.",
+          "i¹ = i, i² = −1, i³ = −i, i⁴ = 1",
+          {
+            "text": "∴ least positive integer n = 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation becomes iⁿ = 1, and the least positive n for which i to the n is 1 is 4.",
+          "accept": [
+            "i to the n equals one, and the powers of i are i minus one minus i one, so the least n is four",
+            "the least positive integer with i to the n equal to one is four",
+            "i to the four is one and no smaller positive power is, so n is four",
+            "i power n equals one ayye least n four",
+            "n equals four"
+          ],
+          "reject": [
+            "find n",
+            "n is one"
+          ],
+          "heard_as": [
+            "four",
+            "i to the n",
+            "i to the four",
+            "least",
+            "powers of i"
+          ]
+        },
+        "why": "The powers of i repeat every four: i, −1, −i, 1. So iⁿ = 1 exactly when n is a multiple of 4, and the least positive multiple is 4 itself. Listing the four powers is what shows 'least' rather than just 'a'.",
+        "common_mistakes": [
+          "Answering n = 2 because i² = −1 'is a unit'.",
+          "Answering n = 0 — the question asks for a positive integer."
+        ]
+      }
+    ]
+  }
+}

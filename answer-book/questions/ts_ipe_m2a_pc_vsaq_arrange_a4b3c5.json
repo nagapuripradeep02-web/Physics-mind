@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_arrange_a4b3c5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the number of ways of arranging the letters of the word a⁴b³c⁵ in its expanded form.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Count the letters and the repeats",
+      "marks": 1
+    },
+    {
+      "label": "Apply n!/(p!·q!·r!)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 16 Permutations & Combinations, answer 148.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_count_letters, s2_formula) are used on every 'arrangements of a word with repeated letters' VSAQ in this unit (answers 147.1 to 148.2 and Star Questions Plus 197, 198), deliberately: one formula n!/(p!·q!·r!) over different words. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. The book leaves the answer as 12!/(4!3!5!); the card also evaluates it (479001600/17280 = 27,720)."
+  },
+  "recall_prompt": "Say how you would count the arrangements of the letters of a to the 4, b cubed, c to the 5 written out in full — what you count first and which formula you use.",
+  "insider_note": "In expanded form a⁴b³c⁵ is a word of 4 + 3 + 5 = 12 letters, so the count is 12!/(4!·3!·5!) — the exponents are letter counts to divide by, not powers to evaluate.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_count_letters",
+        "kind": "text",
+        "label": "Count the letters and the repeats",
+        "marks": 1,
+        "mark_note": "Counting",
+        "margin_note": "First mark. Expanded, a⁴b³c⁵ is aaaabbbccccc: 12 letters, a four times, b three times, c five times.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Expanded, a⁴b³c⁵ = aaaabbbccccc: 12 letters,",
+          "a four times, b three times, c five times."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expanded word has 4 + 3 + 5 = 12 letters, with a four times, b three times and c five times.",
+          "accept": [
+            "twelve letters, a four times, b three times, c five times",
+            "expand it to four a, three b, five c, twelve letters in all",
+            "the exponents are the counts, four three and five, total twelve",
+            "a nalugu, b moodu, c aidu, total twelve letters",
+            "the powers tell how many times each letter repeats"
+          ],
+          "reject": [
+            "count the letters",
+            "use the formula"
+          ],
+          "heard_as": [
+            "twelve letters",
+            "four a",
+            "three b",
+            "five c",
+            "exponents"
+          ]
+        },
+        "why": "Alike letters cannot be told apart, so swapping them does not give a new arrangement. The count of each repeated letter is what the formula divides by, so it must be found before anything else.",
+        "common_mistakes": [
+          "Treating a⁴b³c⁵ as three letters and answering 3! = 6.",
+          "Adding the exponents wrongly: 4 + 3 + 5 = 12, not 11."
+        ]
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Apply n!/(p!·q!·r!)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 12!/(4!·3!·5!) = 479001600/17280 = 27,720.",
+        "lines": [
+          "Arrangements = n!/(p!·q!·r!)",
+          {
+            "text": "= 12!/(4!·3!·5!) = 27,720",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the count is 12 factorial over 4 factorial times 3 factorial times 5 factorial.",
+          "accept": [
+            "twelve factorial over four factorial three factorial five factorial",
+            "n factorial by p factorial q factorial r factorial with four three and five",
+            "twelve factorial divided by twenty four times six times one twenty",
+            "twelve factorial by four factorial into three factorial into five factorial",
+            "the answer is twelve factorial over four factorial three factorial five factorial which is twenty seven thousand seven hundred twenty"
+          ],
+          "reject": [
+            "apply the formula",
+            "divide"
+          ],
+          "heard_as": [
+            "twelve factorial",
+            "four factorial",
+            "five factorial",
+            "twenty seven thousand"
+          ]
+        },
+        "why": "n! counts the arrangements as if every letter were different; each group of p alike letters has been counted p! times over, so dividing by p! for each group leaves the true count.",
+        "common_mistakes": [
+          "Dividing by 4!·3! and forgetting 5! for the c group.",
+          "Computing 5! as 60."
+        ]
+      }
+    ]
+  }
+}

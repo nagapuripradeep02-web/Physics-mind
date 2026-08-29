@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_form_equation_roots_minus_3_plus_minus_5i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Form a quadratic equation whose roots are −3 ± 5i.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Sum and product",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.74 (PDF p.75 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 121.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would form the equation — say what two numbers you compute from the roots and which formula you put them into.",
+  "insider_note": "i² = −1 makes the product 9 + 25, not 9 − 25, and −(α + β) with a negative sum makes the middle term POSITIVE. Both signs go against habit, and both marks sit on them.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_product",
+        "kind": "equation",
+        "label": "Sum and product",
+        "marks": 1,
+        "mark_note": "α + β and αβ",
+        "margin_note": "First mark. The imaginary parts cancel in the sum: −3 + 5i − 3 − 5i = −6. The product is (−3)² − (5i)² = 9 − 25i² = 9 + 25 = 34, because i² = −1 turns the minus into a plus.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let α = −3 + 5i, β = −3 − 5i",
+          "α + β = −6",
+          "αβ = (−3 + 5i)(−3 − 5i)",
+          "= 9 − 25i² = 9 + 25 = 34"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two roots are added to get −6 and multiplied, using i² = −1, to get 9 + 25 = 34.",
+          "accept": [
+            "add the roots to get minus six and multiply them to get nine minus twenty five i squared which is thirty four",
+            "sum is minus six, product is nine plus twenty five equals thirty four because i squared is minus one",
+            "the imaginary parts cancel in the sum and the product is thirty four",
+            "roots add cheste minus six, multiply cheste nine plus twenty five is thirty four",
+            "sum minus six product thirty four"
+          ],
+          "reject": [
+            "find the roots",
+            "write the equation",
+            "add them"
+          ],
+          "heard_as": [
+            "minus six",
+            "thirty four",
+            "i squared is minus one",
+            "sum",
+            "product"
+          ]
+        },
+        "why": "Complex roots of a real quadratic come as a conjugate pair, so their sum and product are both real and the equation has real coefficients. i² = −1 is the only fact that changes the arithmetic from the surd case.",
+        "common_mistakes": [
+          "Writing the product as 9 − 25 = −16 by forgetting i² = −1.",
+          "Getting the sum as 0 or as −6 + 10i.",
+          "Writing (5i)² as 5i²."
+        ]
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The formula has −(α + β)x, and α + β = −6, so the middle term is +6x. Two minus signs make a plus; this is the line where the sign is lost.",
+        "lines": [
+          "Required equation: x² − (α + β)x + αβ = 0",
+          {
+            "text": "∴ x² + 6x + 34 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is x² − (sum)x + (product) = 0, and with sum −6 this becomes x² + 6x + 34 = 0.",
+          "accept": [
+            "x squared minus sum x plus product with sum minus six gives x squared plus six x plus thirty four",
+            "minus of minus six is plus six so the equation is x squared plus six x plus thirty four equals zero",
+            "the equation is x squared plus six x plus thirty four equals zero",
+            "sum minus six kabatti minus into minus plus avthundi, x squared plus six x plus thirty four",
+            "x squared plus six x plus thirty four"
+          ],
+          "reject": [
+            "write the equation",
+            "box it",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "plus six x",
+            "thirty four",
+            "sum",
+            "product",
+            "equals zero"
+          ]
+        },
+        "why": "x² − (α + β)x + αβ = (x − α)(x − β), so this formula gives exactly the quadratic with those two roots. The sign of the middle term follows from the sign of the sum.",
+        "common_mistakes": [
+          "Writing x² − 6x + 34 = 0.",
+          "Leaving off '= 0'.",
+          "Writing the constant as −34."
+        ]
+      }
+    ]
+  }
+}

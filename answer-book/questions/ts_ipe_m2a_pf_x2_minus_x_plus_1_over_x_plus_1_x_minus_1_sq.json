@@ -1,0 +1,239 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_x2_minus_x_plus_1_over_x_plus_1_x_minus_1_sq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve (x² − x + 1)/((x + 1)(x − 1)²) into partial fractions.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 11 Partial Fractions, answer 94 (a ★★★ SSP 64 Super Scoring Page). Printed appearances: TS 15, 22. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Model Paper 2 (book p.113) asks exactly this question at Q15. No two-book check and no board back-test exist for this paper — recorded, not hidden. Truth check: putting x = 0 in the identity gives 1 = A(1) + B(1)(−1) + C(1) = 3/4 − 1/4 + 1/2 = 1 with A = 3/4, B = 1/4, C = 1/2."
+  },
+  "recall_prompt": "Say how you would resolve (x² − x + 1)/((x + 1)(x − 1)²) into partial fractions — name each move in order.",
+  "insider_note": "The repeated factor needs both B/(x − 1) and C/(x − 1)² in the form; there is no third root, so B can only come from comparing the x² coefficients — no substitution will produce it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Set up the form",
+        "marks": 1,
+        "mark_note": "Form",
+        "margin_note": "First mark. (x − 1)² is a REPEATED linear factor, so it needs two fractions: one over (x − 1) and one over (x − 1)². Three fractions in all.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let (x² − x + 1)/((x + 1)(x − 1)²)",
+          "= A/(x + 1) + B/(x − 1) + C/(x − 1)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the repeated factor (x − 1)² gives two fractions, B/(x − 1) and C/(x − 1)², beside A/(x + 1).",
+          "accept": [
+            "write A over x plus one plus B over x minus one plus C over x minus one squared because x minus one is repeated",
+            "the repeated factor needs both x minus one and x minus one squared in the denominators",
+            "three fractions A by x plus 1, B by x minus 1 and C by x minus 1 whole square",
+            "x minus one repeat avutundi kabatti B by x minus one plus C by x minus one square rasali, plus A by x plus one",
+            "one fraction for x plus one and two fractions for the repeated x minus one"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "repeated",
+            "x minus one squared",
+            "x minus one whole square",
+            "A over",
+            "B over",
+            "C over",
+            "three fractions"
+          ]
+        },
+        "why": "A repeated factor (x − 1)² contains two denominators, (x − 1) and (x − 1)². Writing only C/(x − 1)² leaves one fraction short and the identity cannot then be satisfied for every x.",
+        "common_mistakes": [
+          "Writing only A/(x + 1) + C/(x − 1)² and missing the B/(x − 1) fraction.",
+          "Writing (Bx + C)/(x − 1)² instead of B/(x − 1) + C/(x − 1)²; both give the same result, but the split form is the one marked.",
+          "Expanding (x − 1)² to x² − 2x + 1 and treating it as an irreducible quadratic."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply by (x + 1)(x − 1)². A keeps (x − 1)², B keeps (x + 1)(x − 1) because one (x − 1) cancels, and C keeps only (x + 1) because both cancel.",
+        "lines": [
+          "Multiply by (x + 1)(x − 1)²:",
+          "x² − x + 1 = A(x − 1)² + B(x + 1)(x − 1)",
+          "+ C(x + 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying through gives x² − x + 1 = A(x − 1)² + B(x + 1)(x − 1) + C(x + 1).",
+          "accept": [
+            "multiply both sides by x plus one into x minus one squared to get x squared minus x plus one equals A into x minus one squared plus B into x plus one into x minus one plus C into x plus one",
+            "clear the denominators and the C term keeps only x plus one because both x minus one cancel",
+            "multiply through by the whole denominator to get an identity in x",
+            "denominator tho multiply cheste A into x minus one square plus B into x plus one x minus one plus C into x plus one vastundi",
+            "remove the fractions so each constant keeps what did not cancel"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "A into x minus one squared",
+            "B into",
+            "C into x plus one",
+            "identity"
+          ]
+        },
+        "why": "The B fraction has one (x − 1) under it and the C fraction has two, so after multiplying by (x − 1)² the B term keeps one (x − 1) and the C term keeps none. Getting these leftover factors right is the whole of this step.",
+        "common_mistakes": [
+          "Giving the C term (x + 1)(x − 1) instead of (x + 1).",
+          "Giving the B term (x − 1)² instead of (x + 1)(x − 1).",
+          "Dropping the left side x² − x + 1."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A, B and C",
+        "margin_note": "Third mark. Only two roots, 1 and −1, but three constants. x = 1 gives C, x = −1 gives A, and B comes from comparing the x² coefficient on both sides.",
+        "lines": [
+          "Put x = 1: 1 = C(2) ⇒ C = 1/2",
+          "Put x = −1: 3 = A(4) ⇒ A = 3/4",
+          "Compare x²: A + B = 1 ⇒ B = 1/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1 gives C = 1/2, x = −1 gives A = 3/4, and comparing the x² coefficients gives A + B = 1, so B = 1/4.",
+          "accept": [
+            "put x equals one to get C equals half, x equals minus one to get A equals three by four, then compare x squared to get A plus B equals one so B is one by four",
+            "two substitutions give C half and A three quarters and the x squared coefficient gives B one quarter",
+            "C is half A is three by four and B is one by four from the coefficient of x squared",
+            "x equals one pedithe C half, x equals minus one pedithe A three by four, x square coefficient compare cheste B one by four",
+            "the third constant comes from equating the x squared coefficients because there is no third root"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals one",
+            "x equals minus one",
+            "C is half",
+            "A is three by four",
+            "B is one by four",
+            "compare x squared",
+            "coefficient"
+          ]
+        },
+        "why": "A repeated factor has only one root, so substitution gives fewer equations than there are constants. Equating the coefficient of x² on both sides is the extra equation; it works because an identity has equal coefficients term by term.",
+        "common_mistakes": [
+          "Trying to find B by substitution; there is no third root, so no substitution isolates B.",
+          "Reading the x² coefficient on the right as A only and forgetting the B(x + 1)(x − 1) term also gives x².",
+          "Putting x = −1 and getting (−1)² − (−1) + 1 as 1 instead of 3."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The three fractional constants go into the denominators: 3/(4(x + 1)), 1/(4(x − 1)), 1/(2(x − 1)²). Write the original fraction on the left.",
+        "lines": [
+          "∴ (x² − x + 1)/((x + 1)(x − 1)²)",
+          {
+            "text": "= 3/(4(x + 1)) + 1/(4(x − 1)) + 1/(2(x − 1)²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals 3/(4(x + 1)) + 1/(4(x − 1)) + 1/(2(x − 1)²).",
+          "accept": [
+            "the answer is three over four x plus one plus one over four x minus one plus one over two x minus one squared",
+            "three by four into x plus one plus one by four into x minus one plus one by two into x minus one whole square",
+            "write three by four x plus 1 plus one by four x minus 1 plus one by two x minus 1 square as the answer",
+            "final answer three by four x plus one plus one by four x minus one plus one by two x minus one square ani rasali",
+            "put A B and C back into the three fractions and write the original fraction on the left"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "three over four",
+            "one over four",
+            "one over two",
+            "x minus one squared",
+            "final answer"
+          ]
+        },
+        "why": "The mark is for the resolved form with all three fractions, including the one over (x − 1)². A student who found the constants but wrote two fractions has not resolved the given fraction.",
+        "common_mistakes": [
+          "Dropping the B/(x − 1) fraction in the final line after correctly finding B.",
+          "Writing 3/4 over (x + 1) as a stacked fraction instead of 3/(4(x + 1)).",
+          "Not checking: put x = 0 in the identity, 1 = 3/4 − 1/4 + 1/2. If the two sides differ, a constant is wrong."
+        ]
+      }
+    ]
+  }
+}

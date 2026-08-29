@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_roots_of_x_minus_a_x_minus_b_h2_real",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that the roots of (x − a)(x − b) = h² are always real.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write as a quadratic",
+      "marks": 1
+    },
+    {
+      "label": "Δ ≥ 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.74 (PDF p.75 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 120.2. Printed appearances: AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. Correction to the book, recorded not silently fixed: the book concludes 'Here Δ is positive'. Δ = (a − b)² + (2h)² is ≥ 0, and equals 0 when a = b and h = 0 (equal real roots), so the honest line is Δ ≥ 0; the printed conclusion 'roots are real' is still correct."
+  },
+  "recall_prompt": "Say how you would prove the roots are always real — say what you expand to, what you compute, and why it can never be negative.",
+  "insider_note": "Move h² across before computing Δ — the constant becomes ab − h², which is what the proof needs. Write Δ as (a − b)² + (2h)²: a sum of two squares is never negative, and that visible form is the whole argument.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Write as a quadratic",
+        "marks": 1,
+        "mark_note": "Standard form",
+        "margin_note": "First mark. Expand the left side and move h² across: x² − (a + b)x + (ab − h²) = 0. The constant term is ab − h², and that minus sign is what the proof uses.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(x − a)(x − b) = h²",
+          "⇒ x² − (a + b)x + ab − h² = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is expanded and rearranged to the standard form x² − (a + b)x + (ab − h²) = 0.",
+          "accept": [
+            "expand the brackets and bring h squared to the left to get x squared minus a plus b x plus a b minus h squared",
+            "write it as a quadratic with coefficients one, minus a plus b, and a b minus h squared",
+            "put it in the form x squared minus sum times x plus product minus h squared equals zero",
+            "brackets expand chesi h squared ni left ki techi standard form lo rayali",
+            "the constant term is a b minus h squared"
+          ],
+          "reject": [
+            "expand it",
+            "find delta",
+            "write the equation"
+          ],
+          "heard_as": [
+            "expand",
+            "standard form",
+            "a plus b",
+            "a b minus h squared"
+          ]
+        },
+        "why": "The discriminant test only applies to the standard form ax² + bx + c = 0, so the equation must be rearranged before Δ can be read off.",
+        "common_mistakes": [
+          "Leaving h² on the right and using c = ab.",
+          "Writing the x coefficient as +(a + b).",
+          "Expanding (x − a)(x − b) as x² − abx + ab."
+        ]
+      },
+      {
+        "id": "s2_discriminant",
+        "kind": "boxed_final",
+        "label": "Δ ≥ 0",
+        "marks": 1,
+        "mark_note": "Δ is a sum of squares",
+        "margin_note": "Second mark. Δ = (a + b)² − 4ab + 4h² = (a − b)² + 4h². Write 4h² as (2h)² so it is visibly a square. A sum of two squares is never negative, so Δ ≥ 0 for every a, b, h — that IS the proof.",
+        "lines": [
+          "Δ = (a + b)² − 4(ab − h²)",
+          "= a² + 2ab + b² − 4ab + 4h²",
+          "= (a − b)² + (2h)² ≥ 0",
+          "(a sum of two squares is never negative)",
+          {
+            "text": "∴ the roots are always real",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ = (a + b)² − 4(ab − h²) simplifies to (a − b)² + (2h)², a sum of two squares, so Δ ≥ 0 and the roots are always real.",
+          "accept": [
+            "the discriminant simplifies to a minus b squared plus four h squared which is a sum of squares so it is never negative and the roots are real",
+            "delta is a minus b whole squared plus two h whole squared, at least zero, so real roots",
+            "a plus b squared minus four a b is a minus b squared, add four h squared, sum of two squares is non negative",
+            "delta a minus b squared plus two h squared avthundi, sum of squares negative kaadu, so roots real",
+            "since delta is a sum of two squares it cannot be negative hence the roots are real"
+          ],
+          "reject": [
+            "find delta",
+            "delta is positive",
+            "the roots are real"
+          ],
+          "heard_as": [
+            "sum of squares",
+            "a minus b squared",
+            "two h squared",
+            "never negative",
+            "always real"
+          ]
+        },
+        "why": "The whole proof is one identity: (a + b)² − 4ab = (a − b)². Once Δ is a sum of squares it cannot be negative, no matter what a, b, h are — and that is exactly what 'always real' means. Note it is ≥ 0, not > 0: when a = b and h = 0 the two roots are equal, still real.",
+        "common_mistakes": [
+          "Writing (a + b)² − 4ab as (a + b)² and never reaching (a − b)².",
+          "Dropping the +4h² or writing it as −4h².",
+          "Claiming Δ > 0; it can equal zero (a = b, h = 0), and the roots are still real."
+        ]
+      }
+    ]
+  }
+}

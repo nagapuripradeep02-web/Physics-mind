@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_roots_1_m2_3_find_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 1, −2, 3 are the roots of x³ − 2x² + ax + 6 = 0, then find a.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Substitute the root x = 1",
+      "marks": 1
+    },
+    {
+      "label": "Find a",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.76 — VSAQ chapter 15 Theory of Equations, answer 129. Printed appearances: TS 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. Step ids are this card's own (s1_substitute, s2_answer): the book solves it by substituting a root rather than by a root relation, and the card follows the book. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: with a = −5 the three given roots satisfy the equation (f(−2) = −8 − 8 + 10 + 6 = 0, f(3) = 27 − 18 − 15 + 6 = 0) and the pairwise products add to −5 = a₂/a₀. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would find a — which root you substitute and what it gives.",
+  "insider_note": "Substituting x = 1 is two lines; the pairwise-product relation a₂/a₀ = −5 is the check, and either route earns both marks.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Substitute a root",
+        "marks": 1,
+        "mark_note": "x = 1 satisfies",
+        "margin_note": "First mark. A root makes the equation true, so put x = 1 in. Any of the three roots works; 1 gives the least arithmetic.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1 is a root, so x = 1 satisfies the equation:",
+          "1³ − 2(1)² + a(1) + 6 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because 1 is a root, x = 1 is substituted into the equation.",
+          "accept": [
+            "one is a root so put x equals one into the equation",
+            "substitute the root one and the equation must give zero",
+            "a root satisfies the equation so use x equals one",
+            "one root kabatti x equals one substitute cheyyali",
+            "put x equal to one because it is a root"
+          ],
+          "reject": [
+            "use the sum of roots",
+            "find a"
+          ],
+          "heard_as": [
+            "substitute",
+            "x equals one",
+            "satisfies",
+            "root"
+          ]
+        },
+        "why": "A root is a value that makes the polynomial 0, so substituting it gives an equation in the unknown coefficient a. This is faster than the root relations when only one coefficient is missing. (The relation a₂/a₀ = sum of pairwise products = (1)(−2) + (−2)(3) + (3)(1) = −5 gives the same a.)",
+        "common_mistakes": [
+          "Substituting x = −2 or 3, which is correct but takes more arithmetic.",
+          "Writing (1)² as 2 or 1³ as 3."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Find a",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 1 − 2 + a + 6 = 0 gives a = −5. Check: the pairwise products of 1, −2, 3 add to −2 − 6 + 3 = −5 = a₂/a₀.",
+        "lines": [
+          "1 − 2 + a + 6 = 0",
+          "a + 5 = 0",
+          {
+            "text": "∴ a = −5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 − 2 + a + 6 = 0 gives a = −5.",
+          "accept": [
+            "one minus two plus a plus six is zero so a is minus five",
+            "a equals minus five",
+            "simplify and a plus five equals zero",
+            "one minus two plus a plus six zero, kabatti a minus five",
+            "a comes out as minus five"
+          ],
+          "reject": [
+            "find a",
+            "solve it"
+          ],
+          "heard_as": [
+            "a equals minus five",
+            "minus five",
+            "a plus five"
+          ]
+        },
+        "why": "The sum-of-pairwise-products relation is the free check: (1)(−2) + (−2)(3) + (3)(1) = −5 = a₂/a₀. Two routes agreeing is how a three-line answer proves itself.",
+        "common_mistakes": [
+          "Writing a = 5 from a sign slip.",
+          "Not checking with a second root or with the pairwise-product relation."
+        ]
+      }
+    ]
+  }
+}

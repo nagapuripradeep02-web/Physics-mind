@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_divisors_of_1080",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the number of positive divisors of 1080.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Prime factorisation of 1080",
+      "marks": 1
+    },
+    {
+      "label": "Multiply (exponent + 1) for each prime",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 16 Permutations & Combinations, answer 154.2. Printed appearances: AP 16, 17, 20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_setup, s2_compute) are used on every direct-count VSAQ in this unit (answers 149.1 to 155.2 and Star Questions Plus 199, 200), deliberately: one mark to name the count (which ⁿPᵣ, ⁿCᵣ, nʳ or formula, and why), one to evaluate it. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; this exact question is Q7 of the book's Model Paper 5 (book p.119) and is re-solved in the Bullet Model Paper Q6&7 block (book p.98), which agrees. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would count the positive divisors of 1080 — the prime factorisation, and how the count comes from the exponents.",
+  "insider_note": "The first mark is the factorisation written in full: 1080 = 2³ · 3³ · 5. Then each exponent gains 1 before multiplying — (3 + 1)(3 + 1)(1 + 1) = 32 — and the +1 on the single 5 is the one most often dropped.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Prime factorisation of 1080",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 1080 = 108 × 10 = (4 × 27) × (2 × 5) = 2³ · 3³ · 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1080 = 108 · 10 = (4 · 27) · (2 · 5)",
+          "= 2³ · 3³ · 5¹"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1080 is factorised into primes as 2 cubed times 3 cubed times 5.",
+          "accept": [
+            "one thousand eighty is two cubed into three cubed into five",
+            "prime factorise, two to the three, three to the three, five to the one",
+            "one zero eight zero is eight into twenty seven into five",
+            "ten eighty ni primes ga rasthe two cube three cube five",
+            "break it into prime powers first"
+          ],
+          "reject": [
+            "set it up",
+            "use the formula"
+          ],
+          "heard_as": [
+            "two cubed",
+            "three cubed",
+            "five",
+            "prime factors",
+            "ten eighty"
+          ]
+        },
+        "why": "Every positive divisor of 1080 is 2ᵃ·3ᵇ·5ᶜ with a, b, c chosen from the exponents available, so the count can only be read off once the prime factorisation is written.",
+        "common_mistakes": [
+          "Writing 1080 = 2² · 3³ · 10 and leaving a non-prime factor.",
+          "Miscounting the power of 2: 1080/8 = 135, so 2³ is right and 2⁴ is not."
+        ]
+      },
+      {
+        "id": "s2_compute",
+        "kind": "boxed_final",
+        "label": "Multiply (exponent + 1) for each prime",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (3 + 1)(3 + 1)(1 + 1) = 4 × 4 × 2 = 32.",
+        "lines": [
+          "Divisors = (3 + 1)(3 + 1)(1 + 1) = 4 · 4 · 2",
+          {
+            "text": "= 32",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the number of divisors is the product of each exponent plus one, 4 times 4 times 2 = 32.",
+          "accept": [
+            "add one to each exponent and multiply, four into four into two is thirty two",
+            "thirty two divisors",
+            "three plus one times three plus one times one plus one is thirty two",
+            "exponents ki one add chesi multiply, thirty two",
+            "the answer is thirty two"
+          ],
+          "reject": [
+            "evaluate",
+            "compute"
+          ],
+          "heard_as": [
+            "thirty two",
+            "exponent plus one",
+            "four into four into two"
+          ]
+        },
+        "why": "The exponent of 2 in a divisor can be 0, 1, 2 or 3 — four choices — and likewise for 3 and 5; the choices are independent, so they multiply. The count 32 includes 1 and 1080 itself.",
+        "common_mistakes": [
+          "Multiplying the exponents themselves (3 × 3 × 1 = 9).",
+          "Forgetting the +1 on the prime 5, giving 16."
+        ]
+      }
+    ]
+  }
+}

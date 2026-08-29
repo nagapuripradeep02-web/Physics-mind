@@ -1,0 +1,190 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_saq_cricket_team_atleast_5_bowlers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the number of ways of selecting a cricket team of 11 players from 7 batsmen and 6 bowlers such that there will be at least 5 bowlers in the team.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "List the allowed compositions",
+      "marks": 1
+    },
+    {
+      "label": "Count each composition",
+      "marks": 2
+    },
+    {
+      "label": "Add the cases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 9 Permutations & Combinations, answer 70. Printed appearances: TS 16, 18, 20 and AP 16. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_cases, s2_count_cases, s3_total) are used on all three selection-with-conditions SAQs in this unit (answers 70, 71, 72), deliberately: they are one method — list the allowed compositions, count each, add — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q14 of the book's Model Paper 1 (book p.111) and is re-solved in the Bullet Model Paper Q13&14 block (book p.101), which agrees with the chapter answer. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would count the teams — which compositions are allowed, how each is counted, and how you finish.",
+  "insider_note": "\"At least 5 bowlers\" is exactly two cases here, 5 and 6, because only 6 bowlers exist. The case table carries its own mark, and the two case totals are added at the end, never multiplied.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Permutations and Combinations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cases",
+        "kind": "text",
+        "label": "List the allowed compositions",
+        "marks": 1,
+        "mark_note": "Cases",
+        "margin_note": "First mark. There are only 6 bowlers, so \"at least 5\" means exactly 5 or exactly 6. The batsmen fill the rest of the 11.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Team of 11 from 7 batsmen and 6 bowlers,",
+          "with at least 5 bowlers. Two cases:",
+          "5 bowlers + 6 batsmen, or 6 bowlers + 5 batsmen."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That \"at least 5 bowlers\" gives exactly two cases — 5 bowlers with 6 batsmen, or 6 bowlers with 5 batsmen.",
+          "accept": [
+            "at least five bowlers means five bowlers and six batsmen or six bowlers and five batsmen",
+            "two cases, five plus six or six plus five",
+            "there are only six bowlers so the cases are five bowlers or six bowlers",
+            "at least five ante five bowlers six batsmen leda six bowlers five batsmen, rendu cases",
+            "list the compositions, five and six or six and five"
+          ],
+          "reject": [
+            "make cases",
+            "pick five bowlers"
+          ],
+          "heard_as": [
+            "at least five",
+            "two cases",
+            "five bowlers",
+            "six bowlers",
+            "six batsmen"
+          ]
+        },
+        "why": "A team with 5 bowlers and a team with 6 bowlers can never be the same team, so the cases do not overlap and can be added. Listing them first is what makes the addition legal.",
+        "common_mistakes": [
+          "Reading \"at least 5\" as \"exactly 5\" and missing the second case.",
+          "Adding a case with 7 bowlers — there are only 6."
+        ]
+      },
+      {
+        "id": "s2_count_cases",
+        "kind": "equation",
+        "label": "Count each composition",
+        "marks": 2,
+        "mark_note": "Counting",
+        "margin_note": "Two marks. Each case is a choice of bowlers times a choice of batsmen — multiply within a case. ⁷C₅ = ⁷C₂ = 21 saves arithmetic.",
+        "lines": [
+          "Case 1: ⁶C₅ · ⁷C₆ = 6 · 7 = 42",
+          "Case 2: ⁶C₆ · ⁷C₅ = 1 · 21 = 21",
+          "(⁷C₅ = ⁷C₂ = (7 · 6)/(1 · 2) = 21)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That within each case the bowler choice and the batsman choice are multiplied — 6 C 5 times 7 C 6 is 42, and 6 C 6 times 7 C 5 is 21.",
+          "accept": [
+            "six C five times seven C six is forty two and six C six times seven C five is twenty one",
+            "multiply the bowler selection by the batsman selection in each case, forty two and twenty one",
+            "case one gives forty two and case two gives twenty one",
+            "prathi case lo bowlers into batsmen multiply cheyali, forty two and twenty one",
+            "six times seven is forty two, one times twenty one is twenty one"
+          ],
+          "reject": [
+            "use combinations",
+            "count the cases"
+          ],
+          "heard_as": [
+            "forty two",
+            "twenty one",
+            "six C five",
+            "seven C five",
+            "multiply"
+          ]
+        },
+        "why": "Inside one case the two choices are made together — every set of bowlers goes with every set of batsmen — so the counts multiply. Between cases the choices are alternatives, so they add.",
+        "common_mistakes": [
+          "Adding ⁶C₅ and ⁷C₆ inside a case instead of multiplying.",
+          "Using ⁷P₆ or ⁷P₅ — a team is a selection, order does not matter.",
+          "Computing ⁷C₅ as 7·6·5/6 = 35 (that is ⁷C₃); ⁷C₅ = ⁷C₂ = 21."
+        ]
+      },
+      {
+        "id": "s3_total",
+        "kind": "boxed_final",
+        "label": "Add the cases",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The two cases are alternatives, so add them: 42 + 21 = 63.",
+        "lines": [
+          {
+            "text": "∴ number of ways = 42 + 21 = 63",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two case counts are added to give 63.",
+          "accept": [
+            "add the two cases forty two plus twenty one is sixty three",
+            "total is sixty three",
+            "the cases are added to give sixty three ways",
+            "rendu cases add cheste sixty three",
+            "forty two and twenty one make sixty three"
+          ],
+          "reject": [
+            "add them",
+            "sixty"
+          ],
+          "heard_as": [
+            "sixty three",
+            "add",
+            "total"
+          ]
+        },
+        "why": "Different compositions cannot be the same team, so no team is counted twice and the sum is the full count.",
+        "common_mistakes": [
+          "Multiplying the cases (42 · 21) instead of adding.",
+          "Forgetting to add the second case and answering 42."
+        ]
+      }
+    ]
+  }
+}

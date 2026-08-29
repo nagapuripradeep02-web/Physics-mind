@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_conjugate_2_plus_5i_minus_4_plus_6i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the conjugate of (2 + 5i)(−4 + 6i).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply out and simplify to −38 − 8i",
+      "marks": 1
+    },
+    {
+      "label": "Write the conjugate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.70 — VSAQ chapter 12 Complex Numbers, answer 106.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the conjugate of this product — what you do first, and what a conjugate changes.",
+  "insider_note": "Multiply first and take the conjugate last — the conjugate needs the product written as one number a + ib. Both real contributions are negative here, −8 and 30i² = −30, so the real part is −38; the conjugate then changes only the sign of the i part.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply",
+        "kind": "equation",
+        "label": "Multiply out",
+        "marks": 1,
+        "mark_note": "Product",
+        "margin_note": "First mark. Both real parts and the i² term are negative here, so the real part is −8 − 30 = −38. Watch the signs on every product.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(2 + 5i)(−4 + 6i) = −8 + 12i − 20i + 30i²",
+          "= −8 − 8i − 30 = −38 − 8i    (since i² = −1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product is expanded and simplified with i² = −1 to −38 − 8i.",
+          "accept": [
+            "multiply the brackets and use i squared minus one to get minus thirty eight minus eight i",
+            "the product comes to minus thirty eight minus eight i",
+            "minus eight plus twelve i minus twenty i plus thirty i squared, that is minus thirty eight minus eight i",
+            "brackets multiply chesi i square minus one pettithe minus thirty eight minus eight i",
+            "expand first, thirty i squared is minus thirty, so minus thirty eight minus eight i"
+          ],
+          "reject": [
+            "multiply",
+            "expand"
+          ],
+          "heard_as": [
+            "minus thirty eight",
+            "minus eight i",
+            "thirty i squared",
+            "i squared",
+            "product"
+          ]
+        },
+        "why": "The conjugate acts on one number a + ib, so the product must be simplified to that shape first. Here 30i² = −30 is the term most often mis-signed.",
+        "common_mistakes": [
+          "Writing 30i² as +30 and getting 22 − 8i.",
+          "Adding 12i and −20i as +8i."
+        ]
+      },
+      {
+        "id": "s2_conjugate",
+        "kind": "boxed_final",
+        "label": "Take the conjugate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Keep −38, flip −8i to +8i.",
+        "lines": [
+          "The conjugate of a + ib is a − ib.",
+          {
+            "text": "∴ conjugate of −38 − 8i is −38 + 8i",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the conjugate changes the sign of the imaginary part, so the conjugate of −38 − 8i is −38 + 8i.",
+          "accept": [
+            "change the sign of the imaginary part, the conjugate is minus thirty eight plus eight i",
+            "the answer is minus thirty eight plus eight i",
+            "keep minus thirty eight and flip minus eight i to plus eight i",
+            "imaginary part sign marchithe minus thirty eight plus eight i",
+            "conjugate keeps the real part and changes minus eight i to plus eight i"
+          ],
+          "reject": [
+            "take the conjugate",
+            "write the conjugate"
+          ],
+          "heard_as": [
+            "minus thirty eight plus eight i",
+            "conjugate",
+            "sign",
+            "imaginary part"
+          ]
+        },
+        "why": "Only the imaginary part changes sign under conjugation. The real part −38 is negative and stays negative — a negative real part is not a reason to flip it.",
+        "common_mistakes": [
+          "Writing 38 + 8i, flipping both signs.",
+          "Stopping at the product −38 − 8i."
+        ]
+      }
+    ]
+  }
+}

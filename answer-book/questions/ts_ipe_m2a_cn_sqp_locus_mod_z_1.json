@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_sqp_locus_mod_z_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If z = x + iy and |z| = 1, find the locus of z.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write |z| in terms of x and y",
+      "marks": 1
+    },
+    {
+      "label": "Square and state the locus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.89 — Star Questions Plus, Complex Numbers banner, answer 182. (Book page = PDF page − 1 in this part of the scan.) THIS SECTION IS OURS: Star Questions Plus prints no mark cut and no chapter stars; the question is classed as a 2-mark VSAQ by shape and length (one line of working in the book) and folded into the Complex Numbers unit as backfill — and the book's own Model Paper 4 (book p.117) places it at Q2, a Section-A 2-mark slot, which confirms the classing. Printed appearances: TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The stars on this card are the VSAQ CHAPTER's ★★★ (chapter 12, the section it joins), not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. The card names the locus as a circle (centre origin, radius 1) — the book gives only the equation. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the locus — what |z| is in x and y, and what shape the equation is.",
+  "insider_note": "A locus answer ends as an equation in x and y: square the modulus to x² + y² = 1 and say it is a circle with centre the origin and radius 1. Leaving the root in the final line is the usual way the second mark is lost.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Write |z| in x and y",
+        "marks": 1,
+        "mark_note": "Modulus",
+        "margin_note": "First mark. |z| is the distance of the point (x, y) from the origin, √(x² + y²). Set it equal to 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "z = x + iy ⇒ |z| = √(x² + y²)",
+          "|z| = 1 ⇒ √(x² + y²) = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |z| = √(x² + y²), so the condition is √(x² + y²) = 1.",
+          "accept": [
+            "mod z is root x squared plus y squared and that equals one",
+            "the modulus is the distance from the origin, root x squared plus y squared equals one",
+            "write mod z as root of x squared plus y squared",
+            "mod z ante root x square plus y square, adi one",
+            "root of x squared plus y squared is one"
+          ],
+          "reject": [
+            "use the modulus",
+            "write mod z"
+          ],
+          "heard_as": [
+            "mod z",
+            "root x squared plus y squared",
+            "equals one",
+            "modulus",
+            "distance"
+          ]
+        },
+        "why": "A locus is the set of points (x, y) obeying a condition; the condition here is on |z|, so |z| must be written in x and y before the shape can be seen.",
+        "common_mistakes": [
+          "Writing |z| = x + y.",
+          "Writing |z| = x² + y² without the root, which changes nothing here but is the wrong definition."
+        ]
+      },
+      {
+        "id": "s2_locus",
+        "kind": "boxed_final",
+        "label": "Square and state the locus",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Square both sides. The equation is a circle with centre at the origin and radius 1.",
+        "lines": [
+          "Squaring: x² + y² = 1",
+          {
+            "text": "∴ Locus of z: x² + y² = 1",
+            "style": "boxed"
+          },
+          "(a circle, centre the origin, radius 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring gives x² + y² = 1, a circle with centre origin and radius 1.",
+          "accept": [
+            "square both sides, x squared plus y squared equals one, which is a circle of radius one about the origin",
+            "the locus is the circle x squared plus y squared equals one",
+            "the unit circle, x squared plus y squared equals one",
+            "square cheste x square plus y square equals one, unit circle",
+            "a circle with centre origin and radius one"
+          ],
+          "reject": [
+            "find the locus",
+            "square it"
+          ],
+          "heard_as": [
+            "x squared plus y squared equals one",
+            "circle",
+            "radius one",
+            "origin",
+            "unit circle"
+          ]
+        },
+        "why": "|z| = 1 says the point is at distance 1 from the origin — every such point lies on the unit circle. The equation is that geometric fact written in coordinates.",
+        "common_mistakes": [
+          "Leaving the root in the final answer.",
+          "Calling the locus a line."
+        ]
+      }
+    ]
+  }
+}

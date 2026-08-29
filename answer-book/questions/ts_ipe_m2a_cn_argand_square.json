@@ -1,0 +1,396 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_argand_square",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that the four points in the Argand plane represented by the complex numbers 2 + i, 4 + 3i, 2 + 5i, 3i are the vertices of a square.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the four points and the distance formula",
+      "marks": 1
+    },
+    {
+      "label": "Find the four sides and the two diagonals",
+      "marks": 2
+    },
+    {
+      "label": "State equal sides, equal diagonals, and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.48 — SAQ chapter 7 Complex Numbers, answer 54.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 22 · TS 17. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2); the three Argand-polygon SAQs of this unit (54.1, 54.2, 55) share the same split and step ids deliberately. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 1 (book p.111) and the Q11 of the Bullet Model Paper (book p.100), whose re-solution gives the same six distances. The figure carries no mark — the question does not ask for a drawing. No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show that the four points make a square — what you compute, how many distances there are, and what two facts you need at the end.",
+  "insider_note": "Six distances, not four — equal sides alone only prove a rhombus, so the two diagonals must also be computed and shown equal. And read 3i as the point (0, 3): taking it as (3, 0) breaks every distance that uses D.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_points",
+        "kind": "equation",
+        "label": "Write the points",
+        "marks": 1,
+        "mark_note": "Points",
+        "margin_note": "First mark. Note that 3i is 0 + 3i, the point (0, 3) — the missing real part is where this question is most often lost. Write the four points in the order given; that order is the order round the square.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The numbers 2 + i, 4 + 3i, 2 + 5i, 3i are the",
+          "points A(2, 1), B(4, 3), C(2, 5), D(0, 3).",
+          "Distance between two points:",
+          {
+            "text": "d = √((x₁ − x₂)² + (y₁ − y₂)²)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four complex numbers are taken as the points A(2, 1), B(4, 3), C(2, 5), D(0, 3) — with 3i as (0, 3) — and that the distance formula gives the lengths.",
+          "accept": [
+            "write the four numbers as points and note that three i is zero comma three",
+            "the points are two one, four three, two five and zero three",
+            "take real and imaginary parts as x and y for all four points",
+            "naalugu complex numbers ni points ga rayali, three i ante zero comma three",
+            "convert each number to a point then use the distance formula"
+          ],
+          "reject": [
+            "plot the points",
+            "write the points"
+          ],
+          "heard_as": [
+            "zero comma three",
+            "point",
+            "argand",
+            "distance formula",
+            "real part"
+          ]
+        },
+        "why": "A square is a coordinate-geometry fact: four equal sides and two equal diagonals. Turning the four numbers into four points is the only place the complex numbers are used; everything after is distances.",
+        "common_mistakes": [
+          "Reading 3i as the point (3, 0) instead of (0, 3).",
+          "Taking the points in a different order from the question, so the 'sides' computed are actually diagonals.",
+          "Never writing the distance formula and then dropping a square inside the root."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Sketch the square",
+        "marks": 0,
+        "margin_note": "Worth no mark. The square stands on the corner A, so its diagonals AC and BD (dashed) are vertical and horizontal — that is why they come out as whole numbers, 4 and 4.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the four points are marked on the Argand plane, joined in order A B C D, and both diagonals drawn. Naming the sketch is full credit.",
+          "accept": [
+            "draw the four points and join them in order with both diagonals",
+            "sketch A B C D on the axes and draw A C and B D",
+            "mark the four points and draw the square with its diagonals",
+            "naalugu points guruthu pettukoni square geesi diagonals geeyali",
+            "plot and join the points, then the two diagonals"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "sketch",
+            "square",
+            "diagonals",
+            "plot"
+          ]
+        },
+        "why": "The sketch fixes which pairs are sides (AB, BC, CD, DA) and which are diagonals (AC, BD). Without it a student often computes AC as a side and 'proves' the sides unequal.",
+        "common_mistakes": [
+          "Joining A to C as a side.",
+          "Drawing the square with sides parallel to the axes — this one is tilted 45°."
+        ],
+        "figure": {
+          "id": "argand_square",
+          "width": 300,
+          "height": 220,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "phase1",
+              "caption": "Step 1 — the axes"
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 22 190 L 280 190",
+              "ms": 3690,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 60 208 L 60 18",
+              "ms": 2710,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_x",
+              "d": "M 272 185 L 280 190 L 272 195",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_y",
+              "d": "M 55 26 L 60 18 L 65 26",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "phase2",
+              "caption": "Step 2 — the four sides AB, BC, CD, DA"
+            },
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 116 162 L 172 106",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 172 106 L 116 50",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "side_cd",
+              "d": "M 116 50 L 60 106",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "side_da",
+              "d": "M 60 106 L 116 162",
+              "ms": 1130
+            },
+            {
+              "type": "pause",
+              "id": "phase3",
+              "caption": "Step 3 — the two diagonals AC and BD"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_ac",
+              "d": "M 116 162 L 116 50",
+              "ms": 1600,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_bd",
+              "d": "M 172 106 L 60 106",
+              "ms": 1600,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "pause",
+              "id": "phase4",
+              "caption": "Step 4 — the vertex labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 268,
+              "y": 208,
+              "text": "x",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 66,
+              "y": 30,
+              "text": "y",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 122,
+              "y": 182,
+              "text": "A(2, 1)",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 180,
+              "y": 112,
+              "text": "B(4, 3)",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 122,
+              "y": 44,
+              "text": "C(2, 5)",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 4,
+              "y": 100,
+              "text": "D(0, 3)",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_sides",
+        "kind": "equation",
+        "label": "Find sides and diagonals",
+        "marks": 2,
+        "mark_note": "Six distances",
+        "margin_note": "Half the marks, six short distances. Every side is √8 and every diagonal is √16 = 4. Do all six — four equal sides alone would only show a rhombus.",
+        "lines": [
+          {
+            "text": "AB = √((2 − 4)² + (1 − 3)²) = √(4 + 4) = √8",
+            "style": "eq"
+          },
+          {
+            "text": "BC = √((4 − 2)² + (3 − 5)²) = √(4 + 4) = √8",
+            "style": "eq"
+          },
+          {
+            "text": "CD = √((2 − 0)² + (5 − 3)²) = √(4 + 4) = √8",
+            "style": "eq"
+          },
+          {
+            "text": "DA = √((0 − 2)² + (3 − 1)²) = √(4 + 4) = √8",
+            "style": "eq"
+          },
+          {
+            "text": "AC = √((2 − 2)² + (1 − 5)²) = √16 = 4",
+            "style": "eq"
+          },
+          {
+            "text": "BD = √((4 − 0)² + (3 − 3)²) = √16 = 4",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four sides AB, BC, CD, DA each come to √8 and the two diagonals AC, BD each come to 4, all by the distance formula.",
+          "accept": [
+            "the four sides are each root eight and the two diagonals are each four",
+            "compute A B, B C, C D, D A which are all root eight and A C, B D which are both four",
+            "all four sides equal root eight and both diagonals equal four",
+            "naalugu sides root eight, rendu diagonals four vasthai",
+            "six distances, sides root eight, diagonals four"
+          ],
+          "reject": [
+            "find the sides",
+            "find the distances",
+            "use the distance formula"
+          ],
+          "heard_as": [
+            "root eight",
+            "root 8",
+            "four",
+            "diagonal",
+            "A C",
+            "B D"
+          ]
+        },
+        "why": "A square needs two facts, not one: equal sides (which a rhombus also has) and equal diagonals (which only a rectangle or square has). Both together force a square, so both sets of distances are part of the proof.",
+        "common_mistakes": [
+          "Stopping after the four sides — that proves only a rhombus.",
+          "Computing AC and BD as sides and reporting 'the sides are not equal'.",
+          "Writing √8 as 2√2 in some lines and √8 in others, then doubting they are equal."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Two sentences: sides equal, diagonals equal. Then name the shape.",
+        "lines": [
+          "AB = BC = CD = DA = √8 — the four sides are equal.",
+          "AC = BD = 4 — the two diagonals are equal.",
+          {
+            "text": "∴ A, B, C, D form a square.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal sides together with equal diagonals make ABCD a square.",
+          "accept": [
+            "four equal sides and two equal diagonals so A B C D is a square",
+            "sides are equal and diagonals are equal therefore it is a square",
+            "since all sides match and both diagonals match the figure is a square",
+            "sides equal, diagonals equal kabatti square",
+            "equal sides plus equal diagonals means square"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is a square"
+          ],
+          "heard_as": [
+            "square",
+            "equal sides",
+            "equal diagonals",
+            "therefore"
+          ]
+        },
+        "why": "The conclusion has to name both facts because the question is 'show that'. A rhombus with unequal diagonals (the next question in this chapter) fails the second test — writing both lines is what separates the two answers.",
+        "common_mistakes": [
+          "Concluding 'square' from equal sides only.",
+          "Ending on the last distance with no sentence."
+        ]
+      }
+    ]
+  }
+}

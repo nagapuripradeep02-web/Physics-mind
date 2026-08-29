@@ -1,0 +1,211 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_three_newspapers_at_least_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A, B, C are three newspapers published from a city. 20% of the population read A, 16% read B, 14% read C, 8% read both A and B, 5% read both A and C, 4% read both B and C and 2% read all the three. Find the percentage of the population who read at least one newspaper.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the seven probabilities from the percentages",
+      "marks": 1
+    },
+    {
+      "label": "Addition theorem for three events",
+      "marks": 1
+    },
+    {
+      "label": "Substitute, compute 0.35, convert to 35%",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 10 Probability, answer 86 (PDF p.62: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: TS 17,18,20. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). It is patterned on the only split this unit prints, answer 36 on book p.37 (1 set-up · 2 values · 4 computation), scaled to 4 marks: the set-up is light and the computation that reaches the answer carries the most. The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question appears in no model paper; it is re-solved in the Bullet Model Paper Q16 & 17 block (book p.103), where the working is identical. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. Answer checked: 0.2 + 0.16 + 0.14 − 0.08 − 0.05 − 0.04 + 0.02 = 0.35 → 35% — agrees with the book."
+  },
+  "recall_prompt": "Say how you would find the percentage reading at least one paper — the seven values, the three-event addition formula with its signs, and the answer.",
+  "insider_note": "The three-event formula has seven terms: add the singles, subtract the pairs, add the triple back. The sign of the last term is where the mark is lost.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_values",
+        "kind": "text",
+        "label": "The seven probabilities",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Turn each percentage into a probability. Seven numbers: three singles, three pairs, one triple.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Let A, B, C be the events of reading A, B, C.",
+            "style": "normal"
+          },
+          {
+            "text": "P(A) = 0.2, P(B) = 0.16, P(C) = 0.14",
+            "style": "eq"
+          },
+          {
+            "text": "P(A ∩ B) = 0.08, P(A ∩ C) = 0.05,",
+            "style": "eq"
+          },
+          {
+            "text": "P(B ∩ C) = 0.04",
+            "style": "eq"
+          },
+          {
+            "text": "P(A ∩ B ∩ C) = 0.02",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the seven percentages become P(A) = 0.2, P(B) = 0.16, P(C) = 0.14, the pairs 0.08, 0.05, 0.04 and the triple 0.02.",
+          "accept": [
+            "write the percentages as probabilities point two point one six point one four the pairs point zero eight point zero five point zero four and the triple point zero two",
+            "convert all seven percentages to decimals",
+            "singles 0.2 0.16 0.14, pairs 0.08 0.05 0.04, all three 0.02",
+            "percentages ni decimals ga rayali, 0.2, 0.16, 0.14, pairs, triple 0.02"
+          ],
+          "reject": [
+            "write the values",
+            "define the events"
+          ],
+          "heard_as": [
+            "point two",
+            "point one six",
+            "point zero eight",
+            "point zero two",
+            "all three"
+          ]
+        },
+        "why": "The addition theorem works with probabilities; percentages become probabilities by dividing by 100 and go back at the end.",
+        "common_mistakes": [
+          "Mixing percentages and decimals in one line.",
+          "Reading \"5% read both A and C\" as P(B ∩ C)."
+        ]
+      },
+      {
+        "id": "s2_formula",
+        "kind": "equation",
+        "label": "Addition theorem, three events",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "Second mark. Singles plus, pairs minus, triple plus. Write it in symbols before any number.",
+        "lines": [
+          {
+            "text": "P(A ∪ B ∪ C) = P(A) + P(B) + P(C) − P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "− P(B ∩ C) − P(C ∩ A) + P(A ∩ B ∩ C)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A ∪ B ∪ C) = P(A) + P(B) + P(C) − P(A ∩ B) − P(B ∩ C) − P(C ∩ A) + P(A ∩ B ∩ C).",
+          "accept": [
+            "the union of three is the sum of the singles minus the three pairs plus the triple intersection",
+            "add the three, subtract the three pairwise intersections, add back all three",
+            "P A union B union C equals P A plus P B plus P C minus the pairs plus the triple",
+            "moodu add, pairs subtract, triple add cheyyali"
+          ],
+          "reject": [
+            "use the formula",
+            "addition theorem"
+          ],
+          "heard_as": [
+            "A union B union C",
+            "minus the pairs",
+            "plus the triple",
+            "three events"
+          ]
+        },
+        "why": "Adding the singles counts each pair-overlap twice and the triple three times; subtracting the pairs removes the triple entirely, so it is added back once.",
+        "common_mistakes": [
+          "Subtracting the triple instead of adding it.",
+          "Leaving out one of the three pair terms."
+        ]
+      },
+      {
+        "id": "s3_compute",
+        "kind": "boxed_final",
+        "label": "Substitute and convert to %",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "Two marks. Singles 0.5, pairs 0.17: 0.5 − 0.17 + 0.02 = 0.35, i.e. 35%.",
+        "lines": [
+          {
+            "text": "= 0.2 + 0.16 + 0.14 − 0.08 − 0.04 − 0.05 + 0.02",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.52 − 0.17 = 0.35",
+            "style": "eq"
+          },
+          {
+            "text": "∴ 0.35 × 100% = 35% read at least one",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives 0.52 − 0.17 = 0.35, so 35% read at least one newspaper.",
+          "accept": [
+            "substituting gives point three five which is thirty five percent",
+            "the singles and the triple make 0.52, minus the pairs 0.17, gives 0.35",
+            "thirty five percent read at least one",
+            "values pettithe 0.35 vasthundi, ante 35 percent"
+          ],
+          "reject": [
+            "substitute",
+            "thirty five"
+          ],
+          "heard_as": [
+            "point three five",
+            "thirty five percent",
+            "point five two minus point one seven"
+          ]
+        },
+        "why": "The question asks a percentage, so the decimal is multiplied by 100 at the end.",
+        "common_mistakes": [
+          "Answering 0.35 with no conversion to a percentage.",
+          "Arithmetic: 0.2 + 0.16 + 0.14 = 0.5, not 0.6."
+        ]
+      }
+    ]
+  }
+}

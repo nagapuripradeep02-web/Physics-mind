@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_roots_negatives",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the transformed equation whose roots are the negatives of the roots of x⁴ + 5x³ + 11x + 3 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Replace x by −x",
+      "marks": 1
+    },
+    {
+      "label": "Simplify and write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 15 Theory of Equations, answer 135. Printed appearances: AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. The SAME step ids (s1_transform, s2_answer) are used on answers 132, 133, 134, 135 and Star Questions Plus 196, deliberately: one substitution (x → 1/x, x/k, −x or x + h) applied to f(x), then one clearing of fractions or brackets. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: the odd-degree coefficients 5 and 11 change sign, the even-degree ones 1 and 3 do not; the card's answer matches the book's. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden."
+  },
+  "recall_prompt": "Say what you replace x by, and which terms change sign as a result.",
+  "insider_note": "Only the odd-power terms change sign; the x² term is absent here, so exactly two signs flip.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transform",
+        "kind": "equation",
+        "label": "Replace x by −x",
+        "marks": 1,
+        "mark_note": "f(−x) = 0",
+        "margin_note": "First mark. New roots −α ⇒ α = −x, so the required equation is f(−x) = 0. Even powers keep their sign, odd powers change it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = x⁴ + 5x³ + 11x + 3.",
+          "The required equation is f(−x) = 0:",
+          "(−x)⁴ + 5(−x)³ + 11(−x) + 3 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation whose roots are the negatives of the old ones is f(−x) = 0, obtained by replacing x by −x.",
+          "accept": [
+            "replace x by minus x because the new roots are the negatives",
+            "the required equation is f of minus x equals zero",
+            "put minus x in place of x",
+            "x place lo minus x pettali, f of minus x equals zero",
+            "negative roots means substitute minus x"
+          ],
+          "reject": [
+            "change the signs",
+            "find the roots"
+          ],
+          "heard_as": [
+            "minus x",
+            "f of minus x",
+            "replace x",
+            "negatives"
+          ]
+        },
+        "why": "If f(α) = 0 then f(−(−α)) = 0, so −α is a root of f(−x) = 0. The rule 'change the sign of the odd-power terms' is the consequence, not the reason.",
+        "common_mistakes": [
+          "Changing the sign of every term, which gives back the same equation.",
+          "Changing the sign of the even-power terms instead of the odd ones."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (−x)⁴ = x⁴, (−x)³ = −x³, −x stays. Only the x³ and x terms change sign.",
+        "lines": [
+          {
+            "text": "∴ x⁴ − 5x³ − 11x + 3 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That simplifying f(−x) gives x⁴ − 5x³ − 11x + 3 = 0: only the odd-power terms change sign.",
+          "accept": [
+            "simplify and the equation is x four minus five x cube minus eleven x plus three, only the odd powers change sign",
+            "the answer is x to the four minus five x cubed minus eleven x plus three equals zero",
+            "x to the four stays, five x cube and eleven x become negative",
+            "odd powers sign marutundi, x four minus five x cube minus eleven x plus three",
+            "the even power terms keep their sign and the odd ones flip"
+          ],
+          "reject": [
+            "simplify it",
+            "write the answer"
+          ],
+          "heard_as": [
+            "odd powers",
+            "change sign",
+            "minus five x cube",
+            "minus eleven x",
+            "x four"
+          ]
+        },
+        "why": "(−x)ⁿ is xⁿ for even n and −xⁿ for odd n, which is why exactly the odd-degree terms flip. The x² term is missing here, so only two signs change.",
+        "common_mistakes": [
+          "Writing (−x)⁴ = −x⁴.",
+          "Changing the sign of the constant 3."
+        ]
+      }
+    ]
+  }
+}

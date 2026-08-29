@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_c0_2c1_4c2_3n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that C₀ + 2·C₁ + 4·C₂ + 8·C₃ + … + 2ⁿ·Cₙ = 3ⁿ.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the expansion of (1 + x)ⁿ",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and read off 3ⁿ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 17 Binomial Theorem, answer 165. Printed appearances: AP 15 · TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). This question is re-solved in the Bullet Model Paper Q8 block (book p.98) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would prove this — which expansion you start from and which value of x you put in.",
+  "insider_note": "The multipliers 1, 2, 4, 8 are powers of 2, so the whole question is x = 2 in (1 + x)ⁿ. Write the (1 + 2)ⁿ line before 3ⁿ — that written substitution is the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the expansion of (1 + x)ⁿ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The powers 1, 2, 4, 8, … are 2⁰, 2¹, 2², 2³, so the left side is the expansion with x = 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(1 + x)ⁿ = C₀ + C₁x + C₂x² + … + Cₙxⁿ",
+          "The multipliers 1, 2, 4, 8, … are powers of 2,",
+          "so put x = 2:"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the left side is the expansion of (1 + x)ⁿ with x = 2.",
+          "accept": [
+            "write one plus x to the n as C nought plus C one x and so on and put x equal to two",
+            "the multipliers are powers of two so substitute x equals two",
+            "start from the binomial expansion and choose x two",
+            "one plus x power n expansion lo x two pettali",
+            "two four eight are powers of two"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "x equal to two",
+            "one plus x to the n",
+            "powers of two"
+          ]
+        },
+        "why": "Every identity in the C's comes from choosing a value of x in the expansion; the multipliers tell you which value.",
+        "common_mistakes": [
+          "Putting x = 1 and getting 2ⁿ.",
+          "Trying to prove it by induction."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Substitute and read off 3ⁿ",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (1 + 2)ⁿ = 3ⁿ.",
+        "lines": [
+          "C₀ + C₁·2 + C₂·2² + … + Cₙ·2ⁿ = (1 + 2)ⁿ",
+          {
+            "text": "∴ C₀ + 2C₁ + 4C₂ + … + 2ⁿCₙ = 3ⁿ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting x = 2 gives the left side equal to (1 + 2)ⁿ = 3ⁿ.",
+          "accept": [
+            "with x two the left side is C nought plus two C one plus four C two and so on and the right side is one plus two to the n which is three to the n",
+            "one plus two to the n is three to the n",
+            "the sum is three to the n",
+            "x two pettithe three power n vasthundi",
+            "proved by substituting two"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "three to the n",
+            "one plus two",
+            "three power n"
+          ]
+        },
+        "why": "The substitution is the proof: both sides are the same expression evaluated at x = 2.",
+        "common_mistakes": [
+          "Writing 2ⁿ on the right.",
+          "Not writing the (1 + 2)ⁿ step and jumping to 3ⁿ."
+        ]
+      }
+    ]
+  }
+}

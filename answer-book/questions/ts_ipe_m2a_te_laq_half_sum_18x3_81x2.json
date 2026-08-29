@@ -1,0 +1,321 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_laq_half_sum_18x3_81x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Solve 18x³ + 81x² + 121x + 60 = 0, given that one root is equal to half the sum of the remaining roots.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take the roots as a − d, a, a + d",
+      "marks": 1
+    },
+    {
+      "label": "Sum of roots S₁ = −a₁/a₀",
+      "marks": 1
+    },
+    {
+      "label": "Find a",
+      "marks": 1
+    },
+    {
+      "label": "Product of roots S₃ = −a₃/a₀",
+      "marks": 1
+    },
+    {
+      "label": "Find d",
+      "marks": 1
+    },
+    {
+      "label": "Write the three roots",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Theory of Equations, answer 18. Printed appearances: TS 18, 20 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — p.26 prints no [N Marks] tags against this answer. It is the 1+1+1+1+1+2 the book prints against answer 16 (book p.25), the A.P. question this one turns into, as the book itself says ('this solution is just like AP solution'). The SAME step ids (s1_assume, s2_sum, s3_a, s4_product, s5_d, s6_roots) and the same 1+1+1+1+1+2 shape are used on answers 16, 18 and the practice question under 16, deliberately: they are one method — roots a − d, a, a + d, S₁ gives a, S₃ gives d — over different numbers. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 4 Q19 (book p.118) is this question. Truth check: the roots −5/3, −3/2, −4/3 have equal gaps of 1/6, the middle one is half the sum of the other two, they add to −9/2 = −a₁/a₀, and their pairwise products add to 5/2 + 2 + 20/9 = 121/18 = a₂/a₀, the relation the book never uses. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would solve this — what the given condition tells you about the roots, how you name them, and which two relations you use.",
+  "insider_note": "The first mark is for turning the words into 2β = α + γ; after that it is the A.P. question with three negative roots.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Theory of Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_assume",
+        "kind": "text",
+        "label": "Roots in A.P.",
+        "marks": 1,
+        "mark_note": "Assume the roots",
+        "margin_note": "First mark. The condition 2β = α + γ is the A.P. condition, so the a − d, a, a + d form applies. Every coefficient here is positive, so both sums carry a minus sign.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the roots be α, β, γ with β = (α + γ)/2.",
+          "Then α + γ = 2β, so α, β, γ are in A.P.",
+          "Take the roots as a − d, a, a + d.",
+          "Here a₀ = 18, a₁ = 81, a₂ = 121, a₃ = 60."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 'one root is half the sum of the other two' means 2β = α + γ, which is the A.P. condition, so the roots can be written a − d, a, a + d.",
+          "accept": [
+            "one root is half the sum of the others means twice that root equals the other two added, so they are in A P and I take a minus d a a plus d",
+            "the condition is the arithmetic progression condition so write the roots as a minus d a a plus d",
+            "beta equals alpha plus gamma by two is the A P condition",
+            "oka root migatha rendu sum lo half ante A P, kabatti a minus d, a, a plus d",
+            "half the sum of the other two makes the middle root the average so they form an A P"
+          ],
+          "reject": [
+            "let the roots be alpha beta gamma",
+            "assume the roots"
+          ],
+          "heard_as": [
+            "half the sum",
+            "arithmetic progression",
+            "A P",
+            "a minus d",
+            "a plus d"
+          ]
+        },
+        "why": "β = (α + γ)/2 says β is the average of the other two, which is exactly what the middle term of an A.P. is. So the given condition IS the A.P. condition in other words, and the a − d, a, a + d form applies.",
+        "common_mistakes": [
+          "Not recognising that 'half the sum of the other two' means the roots are in A.P.",
+          "Starting with α + β + γ and substituting β = (α + γ)/2 by hand, which works but takes longer."
+        ]
+      },
+      {
+        "id": "s2_sum",
+        "kind": "equation",
+        "label": "Sum of roots",
+        "marks": 1,
+        "mark_note": "S₁ = −a₁/a₀",
+        "margin_note": "Second mark. S₁ = −a₁/a₀ = −81/18 = −9/2. The two d's cancel, so the left side is just 3a.",
+        "lines": [
+          "Sum of roots S₁ = −a₁/a₀:",
+          "(a − d) + a + (a + d) = −81/18 = −9/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of the three roots equals −a₁/a₀ = −9/2, and that the d terms cancel in the sum.",
+          "accept": [
+            "sum of the roots is minus a one by a naught which is −9/2",
+            "add the three roots, the d's cancel, and the sum is −9/2",
+            "S one equals −9/2 from the coefficients",
+            "roots sum minus a one by a naught, ante −9/2",
+            "the sum of roots comes from the x squared coefficient and is −9/2"
+          ],
+          "reject": [
+            "find the sum",
+            "add them",
+            "use S one"
+          ],
+          "heard_as": [
+            "sum of roots",
+            "S one",
+            "minus a one by a naught",
+            "−9/2"
+          ]
+        },
+        "why": "For a₀x³ + a₁x² + a₂x + a₃ = 0 the sum of the roots is −a₁/a₀ — note the minus. With the symmetric letters the ±d cancel, so the sum relation contains a alone.",
+        "common_mistakes": [
+          "Dropping the minus sign in S₁ = −a₁/a₀.",
+          "Dividing by the constant term instead of the leading coefficient.",
+          "Not cancelling the fraction before writing 3a = …"
+        ]
+      },
+      {
+        "id": "s3_a",
+        "kind": "equation",
+        "label": "Find a",
+        "marks": 1,
+        "mark_note": "a",
+        "margin_note": "Third mark. 3a = −9/2 gives a = −3/2, the middle root.",
+        "lines": [
+          "3a = −9/2, so a = −3/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 3a equals the sum, so a = −3/2.",
+          "accept": [
+            "three a equals the sum so a is −3/2",
+            "the middle root a comes out as −3/2",
+            "divide the sum by three to get a equals −3/2",
+            "three a ante sum, kabatti a equals −3/2",
+            "a is one third of the sum, −3/2"
+          ],
+          "reject": [
+            "find a",
+            "solve for a"
+          ],
+          "heard_as": [
+            "three a",
+            "a equals",
+            "−3/2"
+          ]
+        },
+        "why": "Because the sum is 3a exactly, a is found before d is even touched. a is the middle root, so the other two sit at equal distances d on either side of it.",
+        "common_mistakes": [
+          "Writing a = the sum instead of a = the sum divided by 3."
+        ]
+      },
+      {
+        "id": "s4_product",
+        "kind": "equation",
+        "label": "Product of roots",
+        "marks": 1,
+        "mark_note": "S₃ = −a₃/a₀",
+        "margin_note": "Fourth mark. S₃ = −a₃/a₀ = −60/18 = −10/3. (a − d)(a + d) is a difference of squares, so the product is a(a² − d²).",
+        "lines": [
+          "Product of roots S₃ = −a₃/a₀:",
+          "(a − d)·a·(a + d) = −60/18 = −10/3",
+          "a(a² − d²) = −10/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product of the three roots equals −a₃/a₀ = −10/3, and that (a − d)·a·(a + d) = a(a² − d²).",
+          "accept": [
+            "product of the roots is minus a three by a naught which is −10/3 and it equals a times a squared minus d squared",
+            "multiply the three roots, a minus d times a plus d is a squared minus d squared, and set it equal to −10/3",
+            "S three equals −10/3 gives a times a square minus d square",
+            "roots product minus a three by a naught, ante −10/3, a into a square minus d square",
+            "the product of roots comes from the constant term and equals −10/3"
+          ],
+          "reject": [
+            "find the product",
+            "multiply them",
+            "use S three"
+          ],
+          "heard_as": [
+            "product of roots",
+            "S three",
+            "a squared minus d squared",
+            "−10/3"
+          ]
+        },
+        "why": "The product of the roots is −a₃/a₀ — again a minus, because the constant term is a₃. (a − d)(a + d) = a² − d², so with a known the product relation has only d² in it.",
+        "common_mistakes": [
+          "Writing S₃ = a₃/a₀ and losing the minus.",
+          "Expanding (a − d)·a·(a + d) as a³ − d² instead of a(a² − d²).",
+          "Using the x coefficient a₂ instead of the constant a₃."
+        ]
+      },
+      {
+        "id": "s5_d",
+        "kind": "equation",
+        "label": "Find d",
+        "marks": 1,
+        "mark_note": "d",
+        "margin_note": "Fifth mark. Put a = −3/2 in, divide out the a, and solve for d². d = ±1/6; either sign gives the same three roots.",
+        "lines": [
+          "(−3/2)(9/4 − d²) = −10/3",
+          "9/4 − d² = −10/3 × (−2/3) = 20/9",
+          "d² = 9/4 − 20/9 = (81 − 80)/36 = 1/36",
+          "d = ±1/6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is substituted into the product relation and solved for d², giving d = ±1/6.",
+          "accept": [
+            "put a into the product equation and solve for d squared, d is ±1/6",
+            "substitute a and get d squared, so d equals ±1/6",
+            "solve the product relation for d which is ±1/6",
+            "a value petti d square kanukkovali, d equals ±1/6",
+            "d comes from the product relation as ±1/6"
+          ],
+          "reject": [
+            "find d",
+            "solve for d"
+          ],
+          "heard_as": [
+            "d squared",
+            "d equals",
+            "plus or minus",
+            "±1/6"
+          ]
+        },
+        "why": "d² is what the product relation gives; d = ± its square root. Both signs produce the same three numbers in a different order, so either one may be used.",
+        "common_mistakes": [
+          "A slip when dividing both sides by the fraction a.",
+          "Forgetting the ± when taking the square root, and never noticing it does not matter.",
+          "Leaving d² = 9 as if d were 9."
+        ]
+      },
+      {
+        "id": "s6_roots",
+        "kind": "boxed_final",
+        "label": "The three roots",
+        "marks": 2,
+        "mark_note": "Roots",
+        "margin_note": "Last two marks. Substitute a and d back; the three numbers must have equal gaps and must add to the sum found in step 2.",
+        "lines": [
+          "Take d = 1/6 (d = −1/6 gives the same three roots):",
+          "a − d = −3/2 − 1/6 = −10/6 = −5/3",
+          "a + d = −3/2 + 1/6 = −8/6 = −4/3",
+          {
+            "text": "∴ roots: −5/3, −3/2, −4/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a and d are put back into a − d, a, a + d to give the roots −5/3, −3/2, −4/3, and that the sign of d does not change the set of roots.",
+          "accept": [
+            "put a and d back into a minus d a a plus d and the roots are −5/3, −3/2, −4/3",
+            "the three roots are −5/3, −3/2, −4/3",
+            "substitute a and d and list the roots, the other sign of d gives the same three",
+            "a, d values petti roots −5/3, −3/2, −4/3 vasthai",
+            "write out a minus d a and a plus d with the numbers"
+          ],
+          "reject": [
+            "write the roots",
+            "the answer is",
+            "substitute back"
+          ],
+          "heard_as": [
+            "roots are",
+            "a minus d",
+            "a plus d",
+            "same three roots"
+          ]
+        },
+        "why": "Substituting back is the check as much as the answer: the three numbers must be in A.P. (equal gaps) and must satisfy the sum found in step 2. A wrong sign anywhere shows up here.",
+        "common_mistakes": [
+          "Listing a and d as the roots.",
+          "Not substituting one root back into the equation (each must give 0).",
+          "Leaving the fractions unsimplified so the A.P. is not visible."
+        ]
+      }
+    ]
+  }
+}

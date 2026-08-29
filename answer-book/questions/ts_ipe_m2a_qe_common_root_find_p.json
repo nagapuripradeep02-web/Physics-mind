@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_common_root_find_p",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If x² − 6x + 5 = 0 and x² − 12x + p = 0 have a common root, then find p.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the common root",
+      "marks": 1
+    },
+    {
+      "label": "Substitute in the second",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.75 (PDF p.76 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 125.1. Printed appearances: TS 15,17,22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This exact question is Q4 of the book's Model Paper 5 (book p.119), and is re-solved as the fourth Q4 item of the Bullet Model Paper (book p.97) with the same result p = 11, 35. No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden."
+  },
+  "recall_prompt": "Say how you would find this — say which equation you solve first and why, and what you do with each root you get.",
+  "insider_note": "The first equation has no unknown, so solve it and take both roots forward — each one gives its own p. Subtracting the equations instead mixes p and x in one line and solves nothing.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common_root",
+        "kind": "equation",
+        "label": "Find the common root",
+        "marks": 1,
+        "mark_note": "The common root",
+        "margin_note": "First mark. One of the two equations has no unknown in it — solve THAT one. x² − 6x + 5 = (x − 1)(x − 5), so the common root can only be 1 or 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let α be the common root.",
+          "α² − 6α + 5 = 0 ⇒ (α − 1)(α − 5) = 0",
+          "⇒ α = 1 or α = 5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the common root α must satisfy the fully known equation x² − 6x + 5 = 0, which factorises as (α − 1)(α − 5) = 0, so α = 1 or 5.",
+          "accept": [
+            "the common root satisfies x squared minus six x plus five equals zero which factorises to give one or five",
+            "solve the first equation because it has no unknown, the roots are one and five",
+            "let alpha be the common root, from the first equation alpha is one or five",
+            "first equation lo unknown ledu kabatti daanini solve cheste alpha one leda five",
+            "the possible common roots are one and five"
+          ],
+          "reject": [
+            "substitute",
+            "find p",
+            "solve the second equation"
+          ],
+          "heard_as": [
+            "common root",
+            "alpha",
+            "one or five",
+            "factorise",
+            "x squared minus six x plus five"
+          ]
+        },
+        "why": "A common root is a root of both equations; the first equation is completely known, so it fixes the common root as one of two numbers before p is touched at all.",
+        "common_mistakes": [
+          "Trying to subtract the equations and getting an expression with both p and x in it.",
+          "Factorising as (x + 1)(x + 5).",
+          "Keeping only α = 1 and forgetting α = 5."
+        ]
+      },
+      {
+        "id": "s2_find_p",
+        "kind": "boxed_final",
+        "label": "Substitute in the second",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Each candidate goes into x² − 12x + p = 0. α = 1: 1 − 12 + p = 0 gives p = 11. α = 5: 25 − 60 + p = 0 gives p = 35. Two values of α, two values of p — give both.",
+        "lines": [
+          "α also satisfies α² − 12α + p = 0.",
+          "α = 1: 1 − 12 + p = 0 ⇒ p = 11",
+          "α = 5: 25 − 60 + p = 0 ⇒ p = 35",
+          {
+            "text": "∴ p = 11 or p = 35",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each candidate root is substituted into x² − 12x + p = 0, giving p = 11 for α = 1 and p = 35 for α = 5, and both values are reported.",
+          "accept": [
+            "put alpha equals one into the second equation to get p eleven and alpha equals five to get p thirty five",
+            "substitute each root into x squared minus twelve x plus p equals zero, p is eleven or thirty five",
+            "one gives one minus twelve plus p zero so p eleven, five gives twenty five minus sixty plus p zero so p thirty five",
+            "alpha one pettithe p eleven, alpha five pettithe p thirty five",
+            "p equals eleven or thirty five"
+          ],
+          "reject": [
+            "substitute",
+            "find p",
+            "solve for p"
+          ],
+          "heard_as": [
+            "eleven",
+            "thirty five",
+            "substitute",
+            "second equation",
+            "p equals"
+          ]
+        },
+        "why": "The common root must also make the second equation true, and substituting is the only way p enters. Each candidate for α gives its own p, and nothing in the question rules either out.",
+        "common_mistakes": [
+          "Giving only p = 11.",
+          "Computing 25 − 60 as −25 and getting p = 25.",
+          "Substituting α = 1 and α = 5 into the first equation again, which gives nothing."
+        ]
+      }
+    ]
+  }
+}

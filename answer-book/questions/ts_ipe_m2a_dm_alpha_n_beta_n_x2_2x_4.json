@@ -1,0 +1,292 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_alpha_n_beta_n_x2_2x_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If α, β are the roots of the equation x² − 2x + 4 = 0, then show that αⁿ + βⁿ = 2ⁿ⁺¹ cos(nπ/3).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the roots α and β",
+      "marks": 1
+    },
+    {
+      "label": "Mod-amp form of 1 + i√3",
+      "marks": 2
+    },
+    {
+      "label": "Raise to n by De Moivre's theorem",
+      "marks": 1
+    },
+    {
+      "label": "The conjugate power",
+      "marks": 1
+    },
+    {
+      "label": "Add and simplify",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 De Moivre's Theorem, answer 4. Printed appearances: AP 17,19,19 · TS 16 (the book prints AP 19 twice, presumably two 2019 papers; recorded as two entries). THE 1+2+1+1+2 SPLIT IS THE BOOK'S — book p.16 prints five tags down the answer: [1 Mark] against the roots 1 ± i√3, [2 Marks] against r and tan θ, [1 Mark] against the mod-amp form raised to n, [1 Mark] against equation (1) by De Moivre, and [2 Marks] against the addition; the 'Similarly … (2)' line carries no tag of its own. We keep the printed totals and step order with ONE placement call flagged for the teacher: the fourth tag's mark is put on the conjugate equation (2) rather than as a second mark on equation (1), so the conjugate step is not a 0-mark step and the answer keeps the family's shape. The SAME split shape and the SAME step ids (s1_mod_amp, s2_de_moivre, s3_conjugate, s4_add) are used on answers 1.1, 1.2, 2 and 5 of this unit, deliberately: they are one method (mod-amp form → De Moivre → the conjugate pair → add) over different numbers. Answer 4 carries the same step names shifted by one because the book's own [1 Mark] roots step precedes them. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. Re-derived: x² − 2x + 4 = 0 gives 1 ± i√3 = 2 cis(±π/3), so αⁿ + βⁿ = 2ⁿ⁺¹ cos(nπ/3); the book's answer is correct. Asked as Model Paper 3, Q18 (book p.116), whose answer-page index prints 'P 15(3)' although this answer is number 4 on book p.16. Re-solved in the Bullet Model Paper Q18 (book p.104) with the same steps."
+  },
+  "recall_prompt": "Say how you would prove this — how you get α and β, how you write 1 + i√3, what De Moivre's theorem does to it, and how the two powers combine.",
+  "insider_note": "Five printed mark tags and a four-times-asked question. The one mark most students drop is the first: the roots must be written as 1 ± i√3 before anything else.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "De Moivre's Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_roots",
+        "kind": "equation",
+        "label": "Find the roots α and β",
+        "marks": 1,
+        "mark_note": "Roots",
+        "margin_note": "First mark. The discriminant is 4 − 16 = −12, so √(−12) = 2i√3 and x = (2 ± 2i√3)/2 = 1 ± i√3. Divide both terms by 2, not only the first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x² − 2x + 4 = 0",
+          "x = (2 ± √(4 − 16))/2 = (2 ± √(−12))/2",
+          "= (2 ± 2i√3)/2 = 1 ± i√3",
+          "Take α = 1 + i√3, β = 1 − i√3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quadratic is solved first and its roots are the conjugate pair 1 ± i√3.",
+          "accept": [
+            "solve the quadratic first, the roots are one plus i root three and one minus i root three",
+            "alpha and beta are one plus or minus i root three from the quadratic formula",
+            "the discriminant is minus twelve so the roots are one plus minus i root three",
+            "quadratic solve cheste alpha beta one plus minus i root three vasthai",
+            "the roots are complex conjugates one plus i root three and one minus i root three"
+          ],
+          "reject": [
+            "solve it",
+            "find the roots",
+            "use the formula"
+          ],
+          "heard_as": [
+            "one plus i root three",
+            "root three",
+            "conjugate",
+            "discriminant",
+            "minus twelve"
+          ]
+        },
+        "why": "The question names α and β but never writes them down; nothing can be raised to a power until the roots are found. The negative discriminant is what makes this a De Moivre question at all.",
+        "common_mistakes": [
+          "Writing √(−12) = 2√3 and losing the i.",
+          "Simplifying (2 ± 2i√3)/2 to 2 ± i√3 by dividing only the first term.",
+          "Stopping at the roots and trying to expand (1 + i√3)ⁿ by the binomial theorem."
+        ]
+      },
+      {
+        "id": "s2_mod_amp",
+        "kind": "equation",
+        "label": "Mod-amp form of 1 + i√3",
+        "marks": 2,
+        "mark_note": "Mod-amp form",
+        "margin_note": "Second and third marks. For 1 + i√3: r = √(1 + 3) = 2 and tan θ = √3, so θ = π/3, with x and y both positive. That r = 2 outside the bracket is where the 2ⁿ⁺¹ in the answer comes from.",
+        "lines": [
+          "Let 1 + i√3 = x + iy ⇒ x = 1, y = √3",
+          "r = √(x² + y²) = √(1 + 3) = 2",
+          "tan θ = y/x = √3 ⇒ θ = π/3",
+          "∴ 1 + i√3 = 2(cos π/3 + i sin π/3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + i√3 is first written in modulus-amplitude form: r = 2 and θ = π/3, giving r(cos θ + i sin θ).",
+          "accept": [
+            "first write 1 + i√3 in mod amp form with r equal to 2 and theta equal to π/3",
+            "find the modulus and the amplitude of 1 + i√3 and write it as r cos theta plus i sin theta",
+            "convert 1 + i√3 to polar form r cis theta before raising the power",
+            "1 + i√3 ni mod amp form lo rasi r 2 theta π/3 teeskovali",
+            "modulus amplitude form first, r is 2 and the angle is π/3"
+          ],
+          "reject": [
+            "write it in polar form",
+            "find r",
+            "find theta"
+          ],
+          "heard_as": [
+            "mod amp",
+            "modulus amplitude",
+            "r cis theta",
+            "polar form",
+            "theta"
+          ]
+        },
+        "why": "De Moivre's theorem works only on a number written as cos θ + i sin θ. Pulling out r first is what makes the theorem usable, so this line is the method, not a preliminary.",
+        "common_mistakes": [
+          "Writing r = √3 or r = 4 instead of √(1 + 3) = 2.",
+          "Reading tan θ = √3 as θ = π/6; π/6 has tan = 1/√3.",
+          "Forgetting the r = 2 outside the bracket, which is where the 2ⁿ comes from."
+        ]
+      },
+      {
+        "id": "s3_de_moivre",
+        "kind": "equation",
+        "label": "Raise to n by De Moivre",
+        "marks": 1,
+        "mark_note": "De Moivre",
+        "margin_note": "Fourth mark. αⁿ = 2ⁿ[cos(nπ/3) + i sin(nπ/3)]: the modulus 2 is raised to n as an ordinary real number and the power moves onto the angle inside. Label it (1).",
+        "lines": [
+          "αⁿ = (1 + i√3)ⁿ = [2(cos π/3 + i sin π/3)]ⁿ",
+          "= 2ⁿ [cos(nπ/3) + i sin(nπ/3)] …(1)",
+          "(by De Moivre's theorem)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That De Moivre's theorem is applied: raising the mod-amp form to the power n multiplies the angle by n and gives 2ⁿ(cos(nπ/3) + i sin(nπ/3)), called equation (1).",
+          "accept": [
+            "apply De Moivre's theorem so the angle is multiplied by n and we get 2ⁿ(cos(nπ/3) + i sin(nπ/3))",
+            "raise the mod amp form to the power and multiply the angle by n by De Moivre",
+            "by De Moivre cos theta plus i sin theta to the power gives cos n theta plus i sin n theta",
+            "De Moivre theorem apply chesi angle ni n tho multiply cheyyali",
+            "the power goes onto the angle by De Moivre's theorem, that is equation one"
+          ],
+          "reject": [
+            "raise to the power",
+            "use the theorem",
+            "expand it"
+          ],
+          "heard_as": [
+            "De Moivre",
+            "demoivre",
+            "cos n theta",
+            "equation one",
+            "multiply the angle"
+          ]
+        },
+        "why": "De Moivre's theorem says (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ for every integer n: the power moves onto the angle. The real factor r is raised separately, as an ordinary real number.",
+        "common_mistakes": [
+          "Raising r to the power but forgetting to multiply the angle by the same power.",
+          "Multiplying the angle by the power but leaving r un-raised.",
+          "Writing (cos θ + i sin θ)ⁿ = cosⁿ θ + i sinⁿ θ, which is false."
+        ]
+      },
+      {
+        "id": "s4_conjugate",
+        "kind": "equation",
+        "label": "The conjugate power",
+        "marks": 1,
+        "mark_note": "Conjugate",
+        "margin_note": "Fifth mark. β = 1 − i√3 is the conjugate of α, so βⁿ has the same 2ⁿ and the same angle with the sine sign reversed. Label it (2); nothing is recomputed.",
+        "lines": [
+          "Similarly,",
+          "βⁿ = (1 − i√3)ⁿ",
+          "= 2ⁿ [cos(nπ/3) − i sin(nπ/3)] …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the conjugate number is treated in the same way and gives 2ⁿ(cos(nπ/3) − i sin(nπ/3)), called equation (2), with the sign of the sine term changed.",
+          "accept": [
+            "similarly the conjugate gives the same thing with minus i sin, that is equation two",
+            "do the same for the conjugate and only the sign of the sine changes",
+            "the second bracket is the conjugate so its power is 2ⁿ(cos(nπ/3) − i sin(nπ/3))",
+            "conjugate ki same step, sin term sign matrame minus avuthundi",
+            "equation two is the conjugate with cos minus i sin"
+          ],
+          "reject": [
+            "do it again",
+            "the other one",
+            "similarly"
+          ],
+          "heard_as": [
+            "conjugate",
+            "minus i sin",
+            "equation two",
+            "similarly"
+          ]
+        },
+        "why": "The second number is the conjugate of the first, so it has the same r and the angle −θ. Nothing new has to be computed; only the sign of the sine changes.",
+        "common_mistakes": [
+          "Changing the sign of the cosine as well as the sine.",
+          "Recomputing r and θ from scratch and losing time.",
+          "Writing equation (2) without the minus sign, so nothing cancels in the next step."
+        ]
+      },
+      {
+        "id": "s5_add",
+        "kind": "boxed_final",
+        "label": "Add (1) and (2)",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the two i sin terms and doubles the cosine: 2ⁿ · 2 cos(nπ/3). Combine the powers of 2 into 2ⁿ⁺¹, the form the question asks for.",
+        "lines": [
+          "Adding (1) and (2):",
+          "αⁿ + βⁿ = 2ⁿ · 2 cos(nπ/3)",
+          {
+            "text": "αⁿ + βⁿ = 2ⁿ⁺¹ cos(nπ/3)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equations (1) and (2) are added, the i sin terms cancel, and the result is 2ⁿ⁺¹ cos(nπ/3).",
+          "accept": [
+            "add one and two, the i sin terms cancel and we get 2ⁿ⁺¹ cos(nπ/3)",
+            "adding the two equations the sine parts cancel leaving two times the cosine",
+            "one plus two gives two cos and the final answer is 2ⁿ⁺¹ cos(nπ/3)",
+            "rendu equations add cheste sin terms cancel ayyi 2ⁿ⁺¹ cos(nπ/3) vasthundi",
+            "the imaginary parts cancel on adding and the answer is two to the n plus one times cos"
+          ],
+          "reject": [
+            "add them",
+            "then we get the answer",
+            "simplify"
+          ],
+          "heard_as": [
+            "adding",
+            "cancel",
+            "two cos",
+            "n plus one",
+            "final answer"
+          ]
+        },
+        "why": "The two numbers are conjugates, so their sum is twice the real part. Adding removes the i sin terms and leaves exactly the cosine the question asks for.",
+        "common_mistakes": [
+          "Subtracting instead of adding, which leaves 2i sin instead of 2 cos.",
+          "Leaving the answer as 2ⁿ · 2 cos instead of combining into one power of 2.",
+          "Dropping the factor that comes from r, which is the whole reason the answer has a power of 2."
+        ]
+      }
+    ]
+  }
+}

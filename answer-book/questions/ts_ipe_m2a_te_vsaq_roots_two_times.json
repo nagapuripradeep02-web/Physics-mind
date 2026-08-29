@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_roots_two_times",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the algebraic equation whose roots are two times the roots of x⁵ − 2x⁴ + 3x³ − 2x² + 4x + 3 = 0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Replace x by x/2",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by 2⁵ and write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 15 Theory of Equations, answer 133. Printed appearances: AP 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. The SAME step ids (s1_transform, s2_answer) are used on answers 132, 133, 134, 135 and Star Questions Plus 196, deliberately: one substitution (x → 1/x, x/k, −x or x + h) applied to f(x), then one clearing of fractions or brackets. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: coefficient by coefficient, (1, −2, 3, −2, 4, 3) × (1, 2, 4, 8, 16, 32) = (1, −4, 12, −16, 64, 96), the card's answer. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden."
+  },
+  "recall_prompt": "Say what you replace x by, and how you clear the fractions afterwards.",
+  "insider_note": "Doubling the roots means replacing x by x/2, not 2x — the direction is the first mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transform",
+        "kind": "equation",
+        "label": "Replace x by x/2",
+        "marks": 1,
+        "mark_note": "f(x/2) = 0",
+        "margin_note": "First mark. If the new roots are 2α, then x = 2α ⇒ α = x/2, so the required equation is f(x/2) = 0. Write each power of x/2 with its denominator.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = x⁵ − 2x⁴ + 3x³ − 2x² + 4x + 3.",
+          "The required equation is f(x/2) = 0:",
+          "x⁵/32 − x⁴/8 + 3x³/8 − x²/2 + 2x + 3 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation whose roots are twice the old ones is f(x/2) = 0, obtained by replacing x by x/2.",
+          "accept": [
+            "replace x by x by two because the new root is twice the old one",
+            "the required equation is f of x by two equals zero",
+            "put x over two in place of x",
+            "x place lo x by two pettali, f of x by two equals zero",
+            "roots doubled means substitute x over two"
+          ],
+          "reject": [
+            "multiply the coefficients",
+            "find the roots"
+          ],
+          "heard_as": [
+            "x by two",
+            "x over two",
+            "f of x by two",
+            "replace x",
+            "twice"
+          ]
+        },
+        "why": "If f(α) = 0 then f((2α)/2) = 0, so 2α is a root of f(x/2) = 0. Doubling the roots means halving the variable, not doubling it — that is the direction students most often reverse.",
+        "common_mistakes": [
+          "Replacing x by 2x, which halves the roots instead of doubling them.",
+          "Forgetting to raise the 2 to the power along with x: (x/2)⁵ = x⁵/32."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Multiply by 2⁵",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Multiply through by 2⁵ = 32 to clear every denominator: 32 · (1/8) = 4, 32 · (3/8) = 12, 32 · (1/2) = 16, 32 · 2 = 64, 32 · 3 = 96.",
+        "lines": [
+          "Multiply by 2⁵ = 32:",
+          {
+            "text": "∴ x⁵ − 4x⁴ + 12x³ − 16x² + 64x + 96 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by 2⁵ = 32 clears the fractions and gives x⁵ − 4x⁴ + 12x³ − 16x² + 64x + 96 = 0.",
+          "accept": [
+            "multiply by thirty two and the equation is x five minus four x four plus twelve x cube minus sixteen x square plus sixty four x plus ninety six",
+            "clear the denominators with two to the five",
+            "the answer is x to the five minus four x to the four plus twelve x cubed minus sixteen x squared plus sixty four x plus ninety six equals zero",
+            "thirty two tho multiply chesthe x five minus four x four plus twelve x cube minus sixteen x square plus sixty four x plus ninety six",
+            "multiply through by two to the power five"
+          ],
+          "reject": [
+            "multiply it out",
+            "simplify"
+          ],
+          "heard_as": [
+            "thirty two",
+            "two to the five",
+            "multiply",
+            "ninety six",
+            "sixty four x"
+          ]
+        },
+        "why": "Multiplying by 32 does not change the roots and gives integer coefficients. Each coefficient of the original is multiplied by 2 to the power of (5 − its degree): 1, 2, 4, 8, 16, 32.",
+        "common_mistakes": [
+          "Multiplying the constant 3 by 1 instead of 32.",
+          "A slip in one denominator, for example 2x²/4 = x²/2, so 32 · (1/2) = 16."
+        ]
+      }
+    ]
+  }
+}

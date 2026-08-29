@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_a_plus_ib_squared_x2_plus_y2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If (a + ib)² = x + iy, find x² + y².",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take the modulus of both sides",
+      "marks": 1
+    },
+    {
+      "label": "Square to get x² + y²",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.72 — VSAQ chapter 12 Complex Numbers, answer 113. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: TS 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots — this question IS Q2 of the book's Model Paper 5 (book p.119). No two-book check and no board back-test exist for this paper — recorded, not hidden. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find x² + y² without expanding the square — what you take on both sides and what that gives.",
+  "insider_note": "This is a modulus question, not an expansion question: x² + y² is |x + iy|², so take the modulus of both sides and square to get (a² + b²)². Expanding, comparing parts, then squaring and adding reaches the same answer with four times the work.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Take the modulus",
+        "marks": 1,
+        "mark_note": "Modulus",
+        "margin_note": "First mark. Do not expand. x² + y² is |x + iy|², so take the modulus of both sides: |(a + ib)²| = |a + ib|² = a² + b².",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(a + ib)² = x + iy",
+          "Taking modulus: |a + ib|² = |x + iy|",
+          "⇒ (√(a² + b²))² = √(x² + y²)",
+          "⇒ a² + b² = √(x² + y²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That taking the modulus of both sides gives |a + ib|² = |x + iy|, that is a² + b² = √(x² + y²).",
+          "accept": [
+            "take modulus on both sides, mod of a plus i b squared is a squared plus b squared and mod of x plus i y is root x squared plus y squared",
+            "the modulus of the square is the square of the modulus, so a squared plus b squared equals root of x squared plus y squared",
+            "use mod of z squared equals mod z squared",
+            "rendu sides modulus teeste a square plus b square equals root x square plus y square",
+            "modulus both sides, a squared plus b squared on the left, root x squared plus y squared on the right"
+          ],
+          "reject": [
+            "take modulus",
+            "expand the square"
+          ],
+          "heard_as": [
+            "modulus",
+            "mod",
+            "a squared plus b squared",
+            "root x squared plus y squared",
+            "both sides"
+          ]
+        },
+        "why": "|z₁z₂| = |z₁||z₂|, so |z²| = |z|². The modulus turns the complex equation into a real one in a single line, which is why the question is worth 2 marks and not 4.",
+        "common_mistakes": [
+          "Expanding (a + ib)², comparing parts, and then squaring and adding — correct but four times the work.",
+          "Writing |a + ib|² as a² − b²."
+        ]
+      },
+      {
+        "id": "s2_square",
+        "kind": "boxed_final",
+        "label": "Square both sides",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Square to remove the root on the right.",
+        "lines": [
+          "Squaring both sides:",
+          {
+            "text": "∴ x² + y² = (a² + b²)²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring gives x² + y² = (a² + b²)².",
+          "accept": [
+            "square both sides, x squared plus y squared equals a squared plus b squared whole square",
+            "x squared plus y squared is the square of a squared plus b squared",
+            "squaring removes the root, so a squared plus b squared whole squared",
+            "square cheste x square plus y square equals a square plus b square whole square",
+            "the answer is a squared plus b squared all squared"
+          ],
+          "reject": [
+            "square it",
+            "hence"
+          ],
+          "heard_as": [
+            "whole square",
+            "a squared plus b squared squared",
+            "x squared plus y squared",
+            "square both sides"
+          ]
+        },
+        "why": "The question asks for x² + y², which is the square of the right-hand modulus. One squaring finishes it; the answer is (a² + b²)², not a² + b².",
+        "common_mistakes": [
+          "Stopping at a² + b² = √(x² + y²) and reporting a² + b² as the answer.",
+          "Writing (a² + b²)² as a⁴ + b⁴."
+        ]
+      }
+    ]
+  }
+}
