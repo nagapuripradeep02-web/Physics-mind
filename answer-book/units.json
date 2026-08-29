@@ -17103,22 +17103,6 @@
           "section": "SAQ",
           "number": 12,
           "stars": 3,
-          "text": "Find the area of the region bounded by y = x³ + 3, the x-axis and the lines x = −1, x = 2.",
-          "question_id": "ts_ipe_m2b_di_saq_area_y_eq_x3plus3_neg1_to_2"
-        },
-        {
-          "ref": "saq13",
-          "section": "SAQ",
-          "number": 13,
-          "stars": 3,
-          "text": "Find the area enclosed between the curve y = x², the x-axis and the lines x = −1, x = 2.",
-          "question_id": "ts_ipe_m2b_di_saq_area_y_eq_x2_neg1_to_2"
-        },
-        {
-          "ref": "saq14",
-          "section": "SAQ",
-          "number": 14,
-          "stars": 3,
           "text": "Show that the area of the region bounded by the ellipse x²/a² + y²/b² = 1 is πab. Hence deduce the area of the circle x² + y² = a².",
           "question_id": "ts_ipe_m2b_di_saq_area_ellipse_deduce_circle"
         },
@@ -17313,6 +17297,22 @@
           "stars": 3,
           "text": "Evaluate ∫₀^π x sin⁷x cos⁶x dx.",
           "question_id": "ts_ipe_m2b_di_vsaq_xsin7xcos6x_0_to_pi"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 3,
+          "text": "Find the area of the region bounded by y = x³ + 3, the x-axis and the lines x = −1, x = 2.",
+          "question_id": "ts_ipe_m2b_di_saq_area_y_eq_x3plus3_neg1_to_2"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 3,
+          "text": "Find the area enclosed between the curve y = x², the x-axis and the lines x = −1, x = 2.",
+          "question_id": "ts_ipe_m2b_di_saq_area_y_eq_x2_neg1_to_2"
         }
       ]
     },
