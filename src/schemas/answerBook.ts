@@ -54,6 +54,9 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     mathematics: { label: 'Maths 1A', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
     mathematics_1b: { label: 'Maths 1B', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
     botany: { label: 'Botany', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
+    // Junior Zoology is the same ABC_60 shape: Section A 10 of 10 x 2, B any 6 of 8 x 4,
+    // C any 2 of 3 x 8 = 60, plus the 15-mark practical (docs/ZOOLOGY_START_HERE.md).
+    zoology: { label: 'Zoology', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
     // Sr. Botany is the SAME shape as the first-year paper: Section A 10 of 10 x 2,
     // B any 6 of 8 x 4, C any 2 of 3 x 8 = 60, plus the 15-mark practical. Confirmed
     // against the 2022 BIE blue print and all five of the book's model papers.
