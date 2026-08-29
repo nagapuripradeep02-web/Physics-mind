@@ -1089,3 +1089,67 @@ and cuts only. Today's `appearances[].board` tags are the data foundation for th
 Maths 1A+1B merged into ONE 100M paper (was 75+75; objective questions added; pass 26→35).
 Botany+Zoology merged into one Biology paper (43+42=85, separate booklets). Physics/Chemistry 85M
 each (+20 internal; practicals separate, pass 11; theory pass 29/85 Yr-1).
+
+## Line wrap: measure it DURING authoring, and know that boxed lines are a separate job (Maths-2B, 2026-08-29)
+
+One authored line must equal one ruled row. `npm run measure:wrap -- <prefix>` renders every line in
+real Kalam 26px and reports what wraps. Shipped rates: physics 0.1% · botany 1.3% · Chemistry-I 4.1%
+· Chemistry-II 0.0% · Maths-2A 0.0% · Maths-2B 0.0% (from **20.7%**).
+
+**Maths-2B started at 20.7% — 557 of 2692 lines, five times the worst previously shipped.** The cause
+was uniform across eight unit agents: each chained several algebra steps onto one `lines[]` entry
+(`x·dv/dx = (1−3v²)/(v³−3v) − v = [1 − 3v² − v(v³−3v)]/(v³−3v) = (1−v⁴)/(v³−3v)` measured 1014px
+against a 568px budget). Three things are worth carrying:
+
+1. **The cheap fix is in the unit agent's prompt, not in a retrofit.** Maths-2A measured 0.0% by
+   telling every unit agent the three budgets and requiring it to run `measure:wrap` on its own
+   prefix and reflow before reporting; several came back having fixed 8-28 lines themselves.
+   Retrofitting 653 lines afterwards costs far more, and a character-count proxy cannot find the
+   problem because **the budgets are unequal**: `boxed` 535px · `eq`/`indent` 568px · everything
+   else 624px.
+2. **Splitting mechanically needs a PRIORITY LADDER, not a single rule.** Split at the boundaries a
+   hand actually uses, in this order, dropping to the next tier only when the one above cannot make
+   every piece fit: sentence end → a label colon → a chaining arrow (`⇒`, `∴`) → a dash or comma
+   clause → "compare X **with** Y" → a continuation `=` → a plain word boundary (which
+   `measure_wrap`'s own header sanctions: "reflow at word boundaries, no words changed"). The ladder
+   is not decoration. Splitting at `=` first produced *"This is in the form dy/dx + yP(x)"* /
+   *"= Q(x). Here P = tanx"* — worse than the wrap it fixed — and splitting before the colon left a
+   dangling *"Differentiating (1) w.r.t x: y₁"*.
+3. **`boxed` lines are a different job and cannot be automated.** `measure_wrap` forbids splitting
+   them (a boxed line renders inside a drawn box; splitting gives two boxes for one answer), so after
+   the mechanical pass every survivor was boxed — 41 of them. They need editorial shortening: drop a
+   restatement of the question where the card already defines `I`, move the assembled result onto the
+   working lines above so the box holds only the final term, move an alternative form ("or
+   equivalently 2Tan⁻¹(b/a)") out of the box, drop a preamble the step's own `why` already states.
+   Never drop `+ c`, a modulus bar, `sq. units`, or anything an examiner marks — if it cannot fit
+   without losing something marked, leave it and say so. One line was left 4px over for exactly that
+   reason.
+
+## A figure can contradict the answer it illustrates, and arithmetic catches it (Maths-2B / Maths-2A, 2026-08-29)
+
+Every figure gate checks *drawing hygiene* — label overlap, clipped construction lines, stroke pace.
+**Nothing checks whether the picture asserts what the card proves.** Maths-2B shipped past every gate
+with an equilateral-triangle card whose foci were drawn at the ellipse's vertices — a picture that
+says e = 1 on a card whose answer is e = 1/2 — and a hyperbola director circle drawn beside an
+unrelated arc instead of concentric with it.
+
+**The check is mechanical, and it beats eyesight for this class.** Pull the drawn coordinates out of
+the SVG path data and recompute the quantity the card proves. `answer-book/tools/figcheck_m2b.py` is
+the worked example: it reads each figure's `elements[]`, recovers a conic's centre and radii from its
+two `A` arcs, and asserts the invariant — eccentricity `c/a` off the drawing equals the card's answer,
+the auxiliary circle's radius equals the ellipse's `a`, the ellipse director circle is `√(a²+b²)` and
+outside while the hyperbola's is `√(a²−b²)` and inside (opposite relationships, which is why mixing
+them up is the easy mistake), and two touching circles satisfy `C₁C₂ = r₁+r₂` or `|r₁−r₂|`. Twelve
+invariants, all exact. Maths-2A ran the same idea on its Argand figures by measuring every side and
+diagonal — equal diagonals are what make a square rather than a rhombus, and that is precisely what
+its card turns on.
+
+**Copy the pattern per subject rather than trying to generalise it**: the invariants ARE the
+subject's mathematics, so the file is short, specific and worth writing.
+
+Two supporting facts. `figures:gallery`'s bounds check estimates a label at `8.5 × len × 0.8` where
+real Kalam runs to about **9.8px per character**, so it under-reports by roughly 10% — it passed four
+clipped labels here and one in senior chemistry; a label it calls fine can still be cut off. And a
+label needs **≥ 40 figure units** of vertical clearance from any label whose horizontal extent
+overlaps it. Render every figure and look at it as well: that is how the two wrong geometries were
+found, and no gate would have reported them.
