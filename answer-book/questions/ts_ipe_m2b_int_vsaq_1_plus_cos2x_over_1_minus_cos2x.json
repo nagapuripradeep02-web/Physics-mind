@@ -78,8 +78,9 @@
           "(1/2)[cosec²x+cot²x]",
           "= (1/2)[cosec²x+cosec²x−1]",
           "= (1/2)[2cosec²x−1] = cosec²x − 1/2",
+          "∴ ∫ [(1+cos²x)/(1−cos2x)] dx =",
           {
-            "text": "∴ ∫ [(1+cos²x)/(1−cos2x)] dx = −cotx − x/2 + c",
+            "text": "−cotx − x/2 + c",
             "style": "boxed"
           }
         ],

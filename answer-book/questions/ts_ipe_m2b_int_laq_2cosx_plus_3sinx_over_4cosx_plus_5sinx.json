@@ -142,7 +142,7 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "∴ ∫ [(2cosx+3sinx)/(4cosx+5sinx)] dx = −(2/41)log|4cosx+5sinx| + (23/41)x + c",
+            "text": "∴ I = −(2/41)log|4cosx+5sinx| +(23/41)x + c",
             "style": "boxed"
           }
         ],

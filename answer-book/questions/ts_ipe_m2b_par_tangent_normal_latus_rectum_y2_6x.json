@@ -78,7 +78,11 @@
           "Normal at (3/2, 3) with slope −1:",
           "y − 3 = −1(x − 3/2) ⇒ 2x + 2y − 9 = 0",
           {
-            "text": "∴ tangent: 2x − 2y + 3 = 0, normal: 2x + 2y − 9 = 0",
+            "text": "∴ tangent: 2x − 2y + 3 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "normal: 2x + 2y − 9 = 0",
             "style": "boxed"
           }
         ],

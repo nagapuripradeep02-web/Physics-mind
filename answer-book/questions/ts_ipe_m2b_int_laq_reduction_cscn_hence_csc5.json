@@ -144,8 +144,9 @@
           "I₃ = −cosecx cotx/2 + (1/2)I₁,",
           "and I₁ = ∫cosecx dx = log|tan(x/2)| + c",
           "So I₃ = −cosecx cotx/2 + (1/2)log|tan(x/2)| + c",
+          "∴ I = −cosec³x cotx/4 − (3/8)cosecx cotx",
           {
-            "text": "∴ ∫ cosec⁵x dx = −cosec³x cotx/4 − (3/8)cosecx cotx + (3/8)log|tan(x/2)| + c",
+            "text": "+ (3/8)log|tan(x/2)| + c",
             "style": "boxed"
           }
         ],

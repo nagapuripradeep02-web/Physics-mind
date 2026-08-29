@@ -138,8 +138,9 @@
           "I₃ = secx tanx/2 + (1/2)I₁,",
           "and I₁ = ∫secx dx = log|secx + tanx| + c",
           "So I₃ = secx tanx/2 + (1/2)log|secx + tanx| + c",
+          "∴ I = sec³x tanx/4 + (3/8)secx tanx",
           {
-            "text": "∴ ∫ sec⁵x dx = sec³x tanx/4 + (3/8)secx tanx + (3/8)log|secx + tanx| + c",
+            "text": "+ (3/8)log|secx + tanx| + c",
             "style": "boxed"
           }
         ],

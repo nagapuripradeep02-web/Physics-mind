@@ -143,8 +143,9 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
+          "∴ ∫ dx/(4x²−4x−7) =",
           {
-            "text": "∴ ∫ dx/(4x²−4x−7) = (1/(8√2))log|(2x−1−2√2)/(2x−1+2√2)| + c",
+            "text": "(1/(8√2))log|(2x−1−2√2)/(2x−1+2√2)| + c",
             "style": "boxed"
           }
         ],

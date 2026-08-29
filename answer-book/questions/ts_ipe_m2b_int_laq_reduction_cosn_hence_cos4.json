@@ -149,8 +149,9 @@
           "I₂ = cosx sinx/2 + (1/2)I₀, and I₀ = ∫dx = x",
           "So I₂ = cosx sinx/2 + x/2",
           "I₄ = cos³x sinx/4 + (3/4)[cosx sinx/2 + x/2]",
+          "∴ I = cos³x sinx/4 + (3/8)cosx sinx",
           {
-            "text": "∴ ∫ cos⁴x dx = cos³x sinx/4 + (3/8)cosx sinx + 3x/8 + c",
+            "text": "+ 3x/8 + c",
             "style": "boxed"
           }
         ],

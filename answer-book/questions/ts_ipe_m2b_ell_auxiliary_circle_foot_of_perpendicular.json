@@ -135,7 +135,7 @@
         "lines": [
           "(x₁² + y₁²)(1 + m²) = a²(1 + m²) ⇒ x₁² + y₁² = a²",
           {
-            "text": "Locus of P(x₁, y₁) is x² + y² = a² — the auxiliary circle",
+            "text": "Locus is x² + y² = a² — the auxiliary circle",
             "style": "boxed"
           }
         ],

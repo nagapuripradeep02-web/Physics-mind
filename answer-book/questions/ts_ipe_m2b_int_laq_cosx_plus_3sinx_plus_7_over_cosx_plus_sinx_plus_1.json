@@ -120,8 +120,9 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
+          "∴ I = −log|cosx+sinx+1| + 2x",
           {
-            "text": "∴ I = −log|cosx+sinx+1| + 2x + 5log|1+tan(x/2)| + c",
+            "text": "+ 5log|1+tan(x/2)| + c",
             "style": "boxed"
           }
         ],

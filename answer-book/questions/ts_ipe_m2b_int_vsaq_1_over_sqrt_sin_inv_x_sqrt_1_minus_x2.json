@@ -75,7 +75,7 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "∴ ∫ {1/[√(Sin⁻¹x)·√(1−x²)]} dx = 2√(Sin⁻¹x) + c",
+            "text": "∴ I = 2√(Sin⁻¹x) + c",
             "style": "boxed"
           }
         ],

@@ -127,7 +127,7 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "∴ ∫ [(9cosx−sinx)/(4sinx+5cosx)] dx = log|4sinx+5cosx| + x + c",
+            "text": "∴ I = log|4sinx+5cosx| + x + c",
             "style": "boxed"
           }
         ],

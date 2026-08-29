@@ -134,8 +134,9 @@
         "memory_tip": "This locus 2xy = k(x²−a²) is a curve through both vertices (x=±a gives y=0) — a useful mental check.",
         "lines": [
           "tanθ₁ + tanθ₂ = 2x₁y₁ / (x₁² − a²) = k",
+          "⇒ 2x₁y₁ = k(x₁² − a²)",
           {
-            "text": "2x₁y₁ = k(x₁² − a²) ⇒ locus of P(x₁, y₁) is 2xy = k(x² − a²)",
+            "text": "∴ Locus is 2xy = k(x² − a²)",
             "style": "boxed"
           }
         ],

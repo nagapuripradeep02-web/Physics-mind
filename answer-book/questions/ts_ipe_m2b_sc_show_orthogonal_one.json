@@ -64,7 +64,7 @@
           "L.H.S = 2gg′ + 2ff′",
           "= 2(−1)(−4/3) + 2(−1)(29/6) = 8/3 − 29/3 = −7",
           "R.H.S = c + c′ = −7 + 0 = −7",
-          { "text": "∴ L.H.S = R.H.S — the circles cut orthogonally.", "style": "boxed" }
+          { "text": "∴ L.H.S = R.H.S ⇒ circles are orthogonal.", "style": "boxed" }
         ],
         "why": "Evaluating the two sides of the orthogonality condition separately and finding them equal is the actual proof — a 'show that' question is graded on this equality being demonstrated, not merely asserted.",
         "common_mistakes": [

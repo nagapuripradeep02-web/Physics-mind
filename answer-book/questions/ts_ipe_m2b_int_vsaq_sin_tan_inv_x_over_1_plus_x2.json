@@ -79,7 +79,7 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "∴ ∫ [sin(Tan⁻¹x)/(1+x²)] dx = −cos(Tan⁻¹x) + c",
+            "text": "∴ I = −cos(Tan⁻¹x) + c",
             "style": "boxed"
           }
         ],

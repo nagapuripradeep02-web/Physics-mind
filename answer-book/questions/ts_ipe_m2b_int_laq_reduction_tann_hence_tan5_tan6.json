@@ -123,7 +123,7 @@
           "I₅ = tan⁴x/4 − I₃",
           "I₃ = tan²x/2 − I₁, and I₁ = ∫tanx dx = log|secx| + c",
           {
-            "text": "∴ ∫ tan⁵x dx = tan⁴x/4 − tan²x/2 + log|secx| + c",
+            "text": "∴ I = tan⁴x/4 − tan²x/2 + log|secx| + c",
             "style": "boxed"
           }
         ],
@@ -147,7 +147,7 @@
           "I₂ = tanx − I₀, and I₀ = ∫dx = x",
           "So I₂ = tanx − x, I₄ = tan³x/3 − tanx + x",
           {
-            "text": "∴ ∫ tan⁶x dx = tan⁵x/5 − tan³x/3 + tanx − x + c",
+            "text": "∴ I = tan⁵x/5 − tan³x/3 + tanx − x + c",
             "style": "boxed"
           }
         ],

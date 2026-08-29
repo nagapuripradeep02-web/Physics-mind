@@ -129,8 +129,9 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
+          "∴ I = (1/2)log|x²+3x+12|",
           {
-            "text": "∴ ∫ [(x+1)/(x²+3x+12)] dx = (1/2)log|x²+3x+12| − (1/√39)Tan⁻¹[(2x+3)/√39] + c",
+            "text": "− (1/√39)Tan⁻¹[(2x+3)/√39] + c",
             "style": "boxed"
           }
         ],

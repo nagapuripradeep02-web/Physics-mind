@@ -69,8 +69,8 @@
         "lines": [
           "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
           "= (a²/2 − a² − a²/2) / (2 · a · a/√2)",
-          "= −a² / (√2 a²) = −1/√2 = cos 135°",
-          { "text": "∴ Angle between the circles is θ = 135° = 3π/4", "style": "boxed" }
+          "= −a² / (√2 a²) = −1/√2 = cos 135° ⇒ θ = 135°",
+          { "text": "∴ Angle between the circles is 3π/4", "style": "boxed" }
         ],
         "why": "The angle between two intersecting circles is found from cos θ = (d² − r₁² − r₂²) / (2r₁r₂); substituting the expressions from step 1 leaves a² cancelling out completely, so the angle 3π/4 holds for EVERY value of a, which is exactly what 'show that' asks for.",
         "common_mistakes": [

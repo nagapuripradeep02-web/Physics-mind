@@ -207,7 +207,7 @@
           "[a circle of radius a]",
           "Putting b = a in the area formula πab gives",
           {
-            "text": "∴ Area of the circle x² + y² = a² is πa² sq. units",
+            "text": "∴ Area of the circle is πa² sq. units",
             "style": "boxed"
           }
         ],

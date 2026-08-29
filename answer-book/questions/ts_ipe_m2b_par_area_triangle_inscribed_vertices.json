@@ -133,7 +133,7 @@
           "|(y₂−y₃)/(2a)|",
           "= |(y₁−y₂)(y₂−y₃)(y₃−y₁)| / (8a)",
           {
-            "text": "∴ Area = (1/8a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
+            "text": "∴ (1/8a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
             "style": "boxed"
           }
         ],

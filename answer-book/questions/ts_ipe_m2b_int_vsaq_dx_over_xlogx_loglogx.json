@@ -71,7 +71,7 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "∴ ∫ dx/{x logx[log(logx)]} = log|log(logx)| + c",
+            "text": "∴ I = log|log(logx)| + c",
             "style": "boxed"
           }
         ],

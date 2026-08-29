@@ -83,8 +83,9 @@
             "render": "katex",
             "style": "eq"
           },
+          "∴ ∫[1/(1−x²)+1/(1+x²)] dx =",
           {
-            "text": "∴ ∫[1/(1−x²)+1/(1+x²)] dx = Tanh⁻¹x + Tan⁻¹x + c",
+            "text": "Tanh⁻¹x + Tan⁻¹x + c",
             "style": "boxed"
           }
         ],

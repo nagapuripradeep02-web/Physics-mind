@@ -73,7 +73,7 @@
         "lines": [
           "When x₁ = 0: y₁² = 4a(0) = 0 ⇒ y₁ = 0",
           {
-            "text": "∴ x₁ = 0, y₁ = 0, so the vertex A(0, 0) is the point nearest to the focus",
+            "text": "∴ x₁ = 0, y₁ = 0 — the vertex A(0, 0)",
             "style": "boxed"
           }
         ],

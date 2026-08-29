@@ -121,8 +121,9 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
+          "∴ I = (18/25)x + (1/25)log|3sinx+4cosx+5|",
           {
-            "text": "∴ I = (18/25)x + (1/25)log|3sinx+4cosx+5| − (4/5)/(tan(x/2)+3) + c",
+            "text": "− (4/5)/(tan(x/2)+3) + c",
             "style": "boxed"
           }
         ],

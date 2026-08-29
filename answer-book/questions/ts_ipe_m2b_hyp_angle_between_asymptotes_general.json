@@ -80,9 +80,9 @@
         "margin_note": "Second mark. The full angle between the two asymptotes is twice θ.",
         "memory_tip": "One asymptote sits at +θ above the x-axis, the other at −θ below — so the angle BETWEEN them is 2θ, not θ.",
         "lines": [
-          "secθ = e ⇒ θ = Sec⁻¹e",
+          "secθ = e ⇒ θ = Sec⁻¹e = Tan⁻¹(b/a)",
           {
-            "text": "Angle between the two asymptotes = 2θ = 2Sec⁻¹(e), or equivalently 2Tan⁻¹(b/a)",
+            "text": "Angle between the asymptotes = 2Sec⁻¹(e)",
             "style": "boxed"
           }
         ],

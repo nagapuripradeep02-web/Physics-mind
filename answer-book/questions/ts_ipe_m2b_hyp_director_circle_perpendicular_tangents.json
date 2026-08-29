@@ -130,7 +130,7 @@
         "lines": [
           "y₁² + b² = −(x₁² − a²) ⇒ x₁² + y₁² = a² − b²",
           {
-            "text": "Locus of P(x₁, y₁) is x² + y² = a² − b² — the director circle",
+            "text": "x² + y² = a² − b² — director circle",
             "style": "boxed"
           }
         ],
