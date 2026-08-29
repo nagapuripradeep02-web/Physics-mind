@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_vertex_focus_directrix_axis_y2_16x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the vertex, focus, equation of the directrix and axis of the parabola y² = 16x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a",
+      "marks": 1
+    },
+    {
+      "label": "State the vertex, focus, directrix and axis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 127, printed alone below the twin pair (126.1/126.2). No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_a",
+        "kind": "equation",
+        "label": "Find a",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for a = 4.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given parabola y² = 16x ⇒ 4a = 16 ⇒ a = 4"
+        ],
+        "why": "Comparing the given equation to the standard form y² = 4ax is the one step needed before every one of the four quantities asked for can be read off.",
+        "common_mistakes": [
+          "Reading a = 16 instead of dividing by 4 to get a = 4."
+        ],
+        "memory_tip": "Compare to y² = 4ax first — every other answer in this question is read straight off a."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "State the vertex, focus, directrix and axis",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for all four answers together — losing any one of the four costs part of this mark.",
+        "lines": [
+          "(i) Vertex A = (0, 0)",
+          "(ii) Focus S = (a, 0) = (4, 0)",
+          "(iii) Equation of the directrix: x = −a ⇒ x + 4 = 0",
+          {
+            "text": "(iv) Axis of the parabola: y = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "For the standard form y² = 4ax the vertex is always the origin, the focus and directrix sit at ±a on the x-axis, and the axis is the x-axis itself — all four facts follow from the single number a found in step 1.",
+        "common_mistakes": [
+          "Writing the directrix as x = a instead of x = −a.",
+          "Giving the axis as x = 0 instead of y = 0."
+        ],
+        "memory_tip": "For y² = 4ax: vertex at the origin, focus at (a,0), directrix at x = −a, axis is the x-axis itself (y = 0)."
+      }
+    ]
+  },
+  "insider_note": "All four parts are asked in one question worth two marks total, so each part needs to be stated cleanly and briefly rather than derived at length."
+}

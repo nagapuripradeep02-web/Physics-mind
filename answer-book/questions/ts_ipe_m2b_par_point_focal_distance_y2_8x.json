@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_point_focal_distance_y2_8x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the coordinates of the point on the parabola y² = 8x whose focal distance is 10.",
+  "appearances": [
+    {
+      "year": 2017
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a and set up the focal distance",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola (chapter banner ★★★, 2 Marks), answer 121.1, the first of a printed twin pair on a two-column page ('This First Page is First Best. Next Page is Second Best.'). Printed appearances: TS 2017; AP 2017, 2019. THE MARK SPLIT IS OURS — this is a two-column page with no printed margin mark tags anywhere in the chapter; the 1+1 split follows the natural break between setting up the focal-distance formula and solving it. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Find a and set up the focal distance",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for finding a and setting up x₁ + a = 10.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given parabola y² = 8x ⇒ 4a = 8 ⇒ a = 2",
+          "Focal distance SP = x₁ + a. Given SP = 10 ⇒ x₁ + 2 = 10 ⇒ x₁ = 8"
+        ],
+        "why": "The focal distance of any point on y² = 4ax is always x₁ + a — a fixed rule that turns the word 'focal distance' straight into an equation for x₁.",
+        "common_mistakes": [
+          "Reading 4a from y² = 8x as a = 8 instead of a = 2.",
+          "Writing the focal distance as x₁ − a instead of x₁ + a."
+        ],
+        "memory_tip": "Focal distance is always x-coordinate plus a — SP = x₁ + a, for any point on y² = 4ax."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Solve for the point",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for both coordinates of the point, with the ± sign.",
+        "lines": [
+          "y₁² = 8x₁ = 8(8) = 64 ⇒ y₁ = ±8",
+          {
+            "text": "∴ P(x₁, y₁) = (8, ±8)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Once x₁ is known, y₁ follows straight from the parabola's own equation — and every x on this curve pairs with two values of y, one above the axis and one below.",
+        "common_mistakes": [
+          "Giving only one value of y₁ and forgetting the ± sign.",
+          "Writing y₁ = 8x₁ instead of y₁² = 8x₁ before taking the square root."
+        ],
+        "memory_tip": "Every x on the curve gives two points, one above the axis and one below — always write the ± sign."
+      }
+    ]
+  },
+  "insider_note": "The ± sign on y₁ is the easiest mark to drop in this question — the parabola is symmetric about its axis, so every valid x always gives two points."
+}

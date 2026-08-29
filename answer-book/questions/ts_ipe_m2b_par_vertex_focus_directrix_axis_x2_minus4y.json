@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_vertex_focus_directrix_axis_x2_minus4y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the vertex, focus, equation of the directrix and axis of the parabola x² = −4y.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a and the vertex",
+      "marks": 1
+    },
+    {
+      "label": "State the focus, directrix and axis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B Star 'Q' Plus, book p.99 — under the printed banner 'PARABOLA-VSAQ', answer 208, the first of two Parabola entries in the Star Q+ bank (p.98 tail is System of Circles, answers 206-207; p.99 continues to Ellipse at answer 210, confirming the boundary on both sides). No appearance tag is printed. The book's own banner already classes this as VSAQ, so no classification judgement was needed; it is authored here as a Star Q+ extra at the VSAQ section's rank (3 stars, matching the VSAQ chapter banner). THE MARK SPLIT IS OURS, same reasoning as the rest of the VSAQ section. FIGURE: the book prints a small sketch of a downward parabola with A(0,0) and S below it; reproduced here in miniature since this is the chapter's only downward-along-the-y-axis example and the picture makes the direction of opening immediate. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_a",
+        "kind": "equation",
+        "label": "Find a and the direction",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for a = 1 and noticing the parabola opens downward.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given parabola x² = −4y. Comparing with x² = −4ay gives 4a = 4 ⇒ a = 1",
+          "This is a downward parabola (the y-axis is the axis, opening in the −y direction)."
+        ],
+        "why": "Comparing the given equation to the standard downward form x² = −4ay is what fixes a, the one number every other answer in this question depends on.",
+        "common_mistakes": [
+          "Comparing to y² = 4ax instead, which is the sideways form, not the up-down form this equation actually is.",
+          "Missing the minus sign and treating this as an upward parabola."
+        ],
+        "memory_tip": "x² with y alone means a vertical parabola; the minus sign in x² = −4ay means it opens downward."
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Sketch the downward parabola",
+        "marks": 0,
+        "margin_note": "Worth no mark by itself; it is a quick check that the direction found above is right.",
+        "figure": {
+          "id": "downward_parabola_sketch",
+          "width": 220,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "sq_curve_left",
+              "d": "M 110 60 Q 90 60 78 110 Q 70 140 68 165",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "sq_curve_right",
+              "d": "M 110 60 Q 130 60 142 110 Q 150 140 152 165",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "sq_axis",
+              "d": "M 110 60 L 110 175",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "sq_axis_arrow",
+              "d": "M 105 170 L 110 177 L 115 170",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "sq_lbl_a",
+              "x": 75,
+              "y": 50,
+              "text": "A(0,0)",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "sq_lbl_s",
+              "x": 118,
+              "y": 140,
+              "text": "S",
+              "ms": 300,
+              "em": true
+            }
+          ]
+        },
+        "why": "A quick sketch of the curve opening downward from the origin, with the focus marked below it, is the fastest way to check the four answers below make sense together — the focus must sit inside the curve, on the side it opens toward.",
+        "common_mistakes": [
+          "Drawing the curve opening upward instead of downward.",
+          "Placing S above the vertex instead of below it."
+        ],
+        "memory_tip": "The curve opens toward the focus — draw the curve first, then put S on the inside of it."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "State the focus, directrix and axis",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for all four answers together, matching the downward direction found in step 1.",
+        "lines": [
+          "(i) Vertex A = (0, 0)",
+          "(ii) Focus S = (0, −a) = (0, −1)",
+          "(iii) Equation of the directrix: y = a ⇒ y − 1 = 0",
+          {
+            "text": "(iv) Axis of the parabola: x = 0 (the y-axis)",
+            "style": "boxed"
+          }
+        ],
+        "why": "For the standard downward form x² = −4ay the vertex is again the origin, but now the focus and directrix sit above and below on the y-axis rather than left-right on the x-axis, since the whole picture is rotated 90° from the familiar y² = 4ax case.",
+        "common_mistakes": [
+          "Writing the focus as (0, a) instead of (0, −a) — the sign matters because the parabola opens downward.",
+          "Giving the axis as y = 0 instead of x = 0."
+        ],
+        "memory_tip": "For x² = −4ay: vertex at the origin, focus at (0,−a) below it, directrix at y = a above it, axis is the y-axis itself (x = 0)."
+      }
+    ]
+  },
+  "insider_note": "This question is the mirror image of answer 127 (y² = 16x) with x and y exchanged and the direction flipped — the same four facts, rotated 90° and reflected."
+}

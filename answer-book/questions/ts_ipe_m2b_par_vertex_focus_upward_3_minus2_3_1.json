@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_vertex_focus_upward_3_minus2_3_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the parabola whose vertex is (3, −2), focus is (3, 1).",
+  "appearances": [
+    {
+      "year": 2018
+    },
+    {
+      "year": 2019
+    },
+    {
+      "year": 2022
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the direction of the axis and the value of a",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 126.1, the first of a printed twin pair on a two-column page. Printed appearances: TS 2018, 2019, 2022; AP 2017. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_direction_and_a",
+        "kind": "equation",
+        "label": "Find the axis direction and a",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for the direction of the axis and a = 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given vertex A = (3, −2), focus S = (3, 1). The x-coordinates of A and S are equal, so the axis is parallel to the y-axis.",
+          "Since S lies above A, the parabola opens vertically upward.",
+          "a = AS = √((3−3)² + (1−(−2))²) = √9 = 3"
+        ],
+        "why": "Two points with the same x-coordinate lie on a vertical line, so the axis must be parallel to the y-axis; which way the parabola opens follows from which of the two points, vertex or focus, is higher up.",
+        "common_mistakes": [
+          "Comparing the y-coordinates instead of the x-coordinates to decide the axis direction.",
+          "Writing a = 9 instead of a = 3 by forgetting to take the square root."
+        ],
+        "memory_tip": "Equal x-coordinates mean a vertical axis; the focus sitting above the vertex means the parabola opens upward."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for the correct equation with the sign of 4a matching the upward direction.",
+        "lines": [
+          "An upward parabola with vertex (h,k) is (x−h)² = 4a(y−k).",
+          "(x−3)² = 4(3)(y−(−2))",
+          {
+            "text": "∴ (x−3)² = 12(y+2)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Once the direction and a are known, the vertex form (x−h)² = 4a(y−k) is a direct substitution — no further derivation needed.",
+        "common_mistakes": [
+          "Using (x−h)² = −4a(y−k), the downward form, by mixing up the two cases.",
+          "Writing y−(−2) as y−2 instead of y+2."
+        ],
+        "memory_tip": "Upward parabola: (x−h)² = 4a(y−k). Downward: the same with a minus sign in front of 4a."
+      }
+    ]
+  },
+  "insider_note": "Deciding upward or downward before writing the equation is the step that actually earns the mark — the substitution afterward is routine."
+}

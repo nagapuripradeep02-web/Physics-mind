@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_area_triangle_tangent_points",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Prove that the area of the triangle formed by the tangents at (x₁,y₁), (x₂,y₂), (x₃,y₃) to the parabola y² = 4ax is (1/16a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| square units.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the tangent at each point and find the pairwise intersections",
+      "marks": 3
+    },
+    {
+      "label": "Set up the area determinant and factor it",
+      "marks": 2
+    },
+    {
+      "label": "Convert to y-differences and write the boxed area",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.25 — LAQ chapter 2 Parabola, answer 15, on the same Super Scoring Page (SSP 25) as answer 14, with the printed aside 'VERY EASY METHOD'. Printed appearances: AP 2018, TS 2015. One of the chapter's Five STAR Q's. THE MARK SPLIT IS OURS — no margin mark tags are printed; the split follows the proof's stages. NOTATION: like answer 14, the book's own working passes through a 2×2 determinant of coordinate differences; one line is typeset here with render:katex for the same reason. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Parabola · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tangent_intersections",
+        "kind": "equation",
+        "label": "Find the pairwise tangent intersections",
+        "marks": 3,
+        "mark_note": "Method",
+        "margin_note": "Three marks for all three intersection points — the biggest single step of the proof.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let D(at₁²,2at₁), E(at₂²,2at₂), F(at₃²,2at₃) be the three points on y² = 4ax.",
+          "The tangent at parameter t is ty = x + at²; so at D, E, F: t₁y=x+at₁² …(1), t₂y=x+at₂² …(2), t₃y=x+at₃² …(3)",
+          "(1) − (2): (t₁−t₂)y = a(t₁²−t₂²) ⇒ y = a(t₁+t₂); from (1), x = t₁y − at₁² = at₁t₂",
+          "So the tangents at D, E meet at P = (at₁t₂, a(t₁+t₂)); similarly Q = (at₂t₃, a(t₂+t₃)), R = (at₃t₁, a(t₃+t₁))"
+        ],
+        "why": "Every tangent to y² = 4ax at parameter t has the same shape ty = x + at², so subtracting two such equations cancels x immediately and gives y directly, which is the fastest way to the two tangents' meeting point.",
+        "common_mistakes": [
+          "Using the point form of the tangent (yy₁=2a(x+x₁)) instead of the parameter form, which makes the elimination far harder.",
+          "Mixing up which pair of tangents meets at which of P, Q, R."
+        ],
+        "memory_tip": "The tangent at parameter t is always ty = x + at² — subtract two of these and x cancels, handing over y first."
+      },
+      {
+        "id": "s2_area_determinant",
+        "kind": "equation",
+        "label": "Set up and factor the area determinant",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Half of this determinant's work was already done when P, Q, R were written down in step 1.",
+        "lines": [
+          {
+            "text": "\\text{Area of }\\triangle PQR = \\frac{1}{2}\\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix}",
+            "render": "katex"
+          },
+          "x₁−x₂ = at₁t₂−at₂t₃ = at₂(t₁−t₃); x₁−x₃ = at₁t₂−at₃t₁ = at₁(t₂−t₃)",
+          "y₁−y₂ = a(t₁−t₃); y₁−y₃ = a(t₂−t₃)",
+          "Determinant = at₂(t₁−t₃)·a(t₂−t₃) − at₁(t₂−t₃)·a(t₁−t₃) = a²(t₁−t₃)(t₂−t₃)(t₂−t₁)"
+        ],
+        "why": "Each coordinate difference of P, Q, R factors neatly because P, Q, R were themselves built from t₁, t₂, t₃ — substituting those factored forms into the determinant leaves one common factor (t₁−t₃)(t₂−t₃) that can be pulled straight out.",
+        "common_mistakes": [
+          "Re-deriving x₁−x₂ etc. from scratch by expanding the coordinates instead of factoring them directly.",
+          "Losing the sign in the final factoring, which flips (t₂−t₁) to (t₁−t₂)."
+        ],
+        "memory_tip": "P, Q, R were built from products and sums of t₁, t₂, t₃ — their differences factor the same way column by column."
+      },
+      {
+        "id": "s3_final",
+        "kind": "boxed_final",
+        "label": "Convert to y-differences and write the boxed area",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Last two marks. Compare the denominator with answer 14's — 16a here, not 8a, because of the extra 1/2.",
+        "lines": [
+          "Area = (1/2)|a²(t₁−t₂)(t₁−t₃)(t₂−t₃)| = (a²/2)|(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
+          "Using t = y/(2a) as before: |(t₁−t₂)(t₁−t₃)(t₂−t₃)| = |(y₁−y₂)(y₁−y₃)(y₂−y₃)| / (8a³)",
+          "Area = (a²/2) × |(y₁−y₂)(y₁−y₃)(y₂−y₃)| / (8a³) = |(y₁−y₂)(y₂−y₃)(y₃−y₁)| / (16a)",
+          {
+            "text": "∴ Area = (1/16a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
+            "style": "boxed"
+          }
+        ],
+        "why": "This area comes out to exactly half of answer 14's area for the same three parameters, because the extra factor of 1/2 sitting in front of the determinant here has no counterpart in the earlier proof — that is also why the denominator here is 16a instead of 8a.",
+        "common_mistakes": [
+          "Reusing answer 14's final denominator of 8a instead of the 16a that the extra 1/2 here produces.",
+          "Dropping the absolute value bars again, the same slip as in answer 14."
+        ],
+        "memory_tip": "This triangle (from tangents) is always half the area of the triangle in answer 14 (from the points themselves) for the same three parameters — 16a instead of 8a."
+      }
+    ]
+  },
+  "insider_note": "This proof and answer 14's share almost every line — the only real difference is the extra 1/2 in front of the determinant here, which is exactly why the final denominator doubles from 8a to 16a."
+}

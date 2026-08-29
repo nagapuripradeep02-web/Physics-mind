@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_tangent_normal_latus_rectum_y2_6x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the tangent and normal at the positive end of the latus rectum on the parabola y² = 6x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a and the positive end of the latus rectum",
+      "marks": 1
+    },
+    {
+      "label": "Write the tangent and normal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 128. No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Find a and the positive end of the latus rectum",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for a = 3/2 and the point (3/2, 3).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given parabola y² = 6x ⇒ 4a = 6 ⇒ 2a = 3 ⇒ a = 3/2",
+          "The positive end of the latus rectum is (a, 2a) = (3/2, 3)"
+        ],
+        "why": "The latus rectum is the chord through the focus perpendicular to the axis, and its two ends are always (a,2a) and (a,−2a) — the positive end is the one with the positive y-coordinate.",
+        "common_mistakes": [
+          "Writing the latus rectum's end as (2a, a) with the coordinates swapped.",
+          "Using the negative end (a, −2a) instead of the positive one asked for."
+        ],
+        "memory_tip": "The latus rectum's ends are always (a, 2a) and (a, −2a) — same x-coordinate as the focus, y equal to ±2a."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Write the tangent and normal",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for both the tangent and the normal — this question asks for two equations, not one.",
+        "lines": [
+          "Tangent at (x₁,y₁) on y² = 4ax is yy₁ = 2a(x + x₁): y(3) = 3(x + 3/2) ⇒ y = x + 3/2 ⇒ 2x − 2y + 3 = 0",
+          "Slope of this tangent is 1, so the slope of the normal is −1",
+          "Normal at (3/2, 3) with slope −1: y − 3 = −1(x − 3/2) ⇒ 2x + 2y − 9 = 0",
+          {
+            "text": "∴ tangent: 2x − 2y + 3 = 0, normal: 2x + 2y − 9 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The tangent comes straight from the standard point-form of the tangent formula, and the normal follows immediately once the tangent's slope is known, since a normal is always perpendicular to its tangent.",
+        "common_mistakes": [
+          "Using the normal's slope formula directly instead of first finding the tangent's slope and flipping its sign.",
+          "Making an arithmetic slip converting y − 3 = −1(x − 3/2) into the final whole-number form."
+        ],
+        "memory_tip": "Find the tangent first — its slope, flipped in sign, is the normal's slope, since a normal is always perpendicular to its tangent."
+      }
+    ]
+  },
+  "insider_note": "Two full equations are expected for two marks — writing only the tangent, or only the normal, earns half credit at best."
+}

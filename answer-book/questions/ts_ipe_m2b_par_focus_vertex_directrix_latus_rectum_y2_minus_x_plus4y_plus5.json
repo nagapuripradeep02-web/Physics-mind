@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_focus_vertex_directrix_latus_rectum_y2_minus_x_plus4y_plus5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the focus, vertex, equation of the directrix and the length of the latus rectum of the parabola y² − x + 4y + 5 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Complete the square to reach the standard form",
+      "marks": 1
+    },
+    {
+      "label": "State the vertex, focus, directrix and latus rectum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B Star 'Q' Plus, book p.99 — under the printed banner 'PARABOLA-VSAQ', answer 209, the second of the two Parabola entries in the Star Q+ bank, immediately followed by 'ELLIPSE' answer 210 on the same page, confirming the boundary. No appearance tag is printed. Classed as VSAQ by the book's own banner, at the VSAQ section's rank (3 stars). THE MARK SPLIT IS OURS, same reasoning as the rest of the VSAQ section. No figure: this question is pure algebra (completing the square), and the book itself prints none. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_complete_square",
+        "kind": "equation",
+        "label": "Complete the square",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for correctly completing the square and reaching a = 1/4, h = 1, k = −2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given y² − x + 4y + 5 = 0 ⇒ y² + 4y = x − 5",
+          "⇒ y² + 4y + 4 = x − 5 + 4 ⇒ (y + 2)² = x − 1",
+          "This is a horizontal parabola opening in the +x direction. Comparing with (y − k)² = 4a(x − h) gives 4a = 1 ⇒ a = 1/4, h = 1, k = −2"
+        ],
+        "why": "Completing the square on the y-terms is what turns this equation into the standard sideways form (y−k)² = 4a(x−h) — every one of the four quantities asked for reads straight off h, k and a once that form is reached.",
+        "common_mistakes": [
+          "Completing the square with the wrong constant, adding 2 instead of 4 to both sides.",
+          "Reading off h and k with their signs swapped — the vertex is (h,k) = (1,−2), not (−1,2)."
+        ],
+        "memory_tip": "Half of 4 is 2, and 2² = 4 — that is the number added to both sides to complete the square on y² + 4y."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "State the vertex, focus, directrix and latus rectum",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for all four answers together, each shifted from the origin case by h and k.",
+        "lines": [
+          "(i) Vertex = (h, k) = (1, −2)",
+          "(ii) Focus = (h + a, k) = (1 + 1/4, −2) = (5/4, −2)",
+          "(iii) Equation of the directrix: x = h − a ⇒ x = 1 − 1/4 = 3/4 ⇒ 4x − 3 = 0",
+          {
+            "text": "(iv) Length of the latus rectum = 4a = 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "With the equation in standard form (y−k)² = 4a(x−h), the vertex is (h,k), the focus and directrix sit at h±a along the axis, and the latus rectum's length is always 4a — the same four facts as any sideways parabola, just centred at (h,k) instead of the origin.",
+        "common_mistakes": [
+          "Adding a to h for the directrix instead of subtracting it (the directrix sits on the opposite side of the vertex from the focus).",
+          "Giving the latus rectum's length as a instead of 4a."
+        ],
+        "memory_tip": "Focus is h plus a; directrix is h minus a — the focus and directrix always sit on opposite sides of the vertex."
+      }
+    ]
+  },
+  "insider_note": "This question is answer 127's method (vertex, focus, directrix, axis of a sideways parabola) with two extra twists — the equation must first be completed to standard form, and the vertex has shifted away from the origin."
+}

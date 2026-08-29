@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_tangent_point_of_contact_2x_minus_y_plus2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that the line 2x − y + 2 = 0 is a tangent to y² = 16x. Find the point of contact.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the line in y = mx + c form and verify c = a/m",
+      "marks": 1
+    },
+    {
+      "label": "Find the point of contact",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 123, paired on the page with answer 124 (two questions side by side). No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_verify_tangent",
+        "kind": "equation",
+        "label": "Verify the line is a tangent",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for showing a/m equals c, which is the proof the question asks for.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given parabola y² = 16x ⇒ 4a = 16 ⇒ a = 4",
+          "Given line 2x − y + 2 = 0 ⇒ y = 2x + 2, so m = 2, c = 2",
+          "Tangential condition: a/m = 4/2 = 2 = c, so the line is a tangent."
+        ],
+        "why": "Rewriting the line as y = 2x + 2 exposes m and c, and checking a/m equals c is the whole test for whether a given line touches this parabola.",
+        "common_mistakes": [
+          "Rearranging 2x − y + 2 = 0 to y = −2x − 2, with the sign of the slope flipped.",
+          "Stopping after finding a/m without stating that it matches c, which is the actual proof of tangency."
+        ],
+        "memory_tip": "Rearrange to y = mx + c first — then check a/m against c."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Find the point of contact",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for the correct point of contact using the formula (a/m², 2a/m).",
+        "lines": [
+          "The point of contact is (a/m², 2a/m) = (4/4, 8/2) = (1, 4)",
+          {
+            "text": "∴ the point of contact is (1, 4)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The point of contact formula (a/m², 2a/m) comes directly from the tangent's own equation, and plugging in the already-known a and m is a one-line calculation.",
+        "common_mistakes": [
+          "Writing the point of contact as (a/m, 2a/m²) with the powers of m swapped.",
+          "Substituting m = 2 as m² = 2 instead of squaring it to 4."
+        ],
+        "memory_tip": "The point of contact is (a/m², 2a/m) — the m² sits under the first coordinate, not the second."
+      }
+    ]
+  },
+  "insider_note": "Two separate things are asked here — proving the line is a tangent, and then finding where it touches — and both need their own line of working for full marks."
+}

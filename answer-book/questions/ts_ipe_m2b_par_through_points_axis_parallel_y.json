@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_through_points_axis_parallel_y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of the parabola whose axis is parallel to the y-axis and passes through the points (4, 5), (−2, 11), (−4, 21).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the general equation and substitute the three points",
+      "marks": 2
+    },
+    {
+      "label": "Eliminate n to get two equations in l and m",
+      "marks": 2
+    },
+    {
+      "label": "Solve for m and l",
+      "marks": 2
+    },
+    {
+      "label": "Substitute back for n and write the final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.24 — LAQ chapter 2 Parabola, answer 12 (this scan's page numbering jumps 22 → 24, so the printed page shows both answers 12 and 13; see the ts_ipe_m2b_par_through_points_axis_parallel_x_v1 card for that gap). No appearance year tag is printed next to this question. THE MARK SPLIT IS OURS — no margin mark tags are printed anywhere on this page for either answer 12 or 13; the 2/2/2/1 split below follows the same natural break points as the sibling axis-parallel-to-x-axis question (answer 10 / Bullet MP Q20), since both are the identical method with x and y exchanged. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Parabola · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the general equation",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks, for the correct general form and all three substitutions.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The equation of a parabola with axis parallel to the y-axis is y = lx² + mx + n.",
+          "Through (4, 5): 5 = 16l + 4m + n   ……(1)",
+          "Through (−2, 11): 11 = 4l − 2m + n   ……(2)",
+          "Through (−4, 21): 21 = 16l − 4m + n   ……(3)"
+        ],
+        "why": "An axis parallel to the y-axis means y is written in terms of x², the familiar shape of an upward or downward parabola — three unknowns need three points, exactly as given.",
+        "common_mistakes": [
+          "Writing the general form as x = ly² + my + n, the axis-parallel-to-x-axis case instead.",
+          "Sign-slipping on the negative x-coordinates when squaring them."
+        ],
+        "memory_tip": "Axis along y means y is written in terms of x — y = lx² + mx + n, the everyday shape from school."
+      },
+      {
+        "id": "s2_eliminate_n",
+        "kind": "equation",
+        "label": "Eliminate n",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The m-coefficients look small but the sign changes are where marks are usually lost.",
+        "lines": [
+          "(1) − (2): 5 − 11 = 16l + 4m + n − (4l − 2m + n)",
+          "⇒ −6 = 12l + 6m   ……(4)",
+          "(3) − (2): 21 − 11 = 16l − 4m + n − (4l − 2m + n)",
+          "⇒ 10 = 12l − 2m   ……(5)"
+        ],
+        "why": "Subtracting equation (2) from each of the other two removes n immediately, and leaves a pair of equations in only l and m.",
+        "common_mistakes": [
+          "Subtracting (2) from (1) but computing the m-terms as 4m − (−2m) = 2m instead of the correct 6m.",
+          "Dropping the factor of 12 shared by both new equations before combining them."
+        ],
+        "memory_tip": "Subtract the middle equation from the other two — n cancels both times, leaving a clean 2×2 system in l and m."
+      },
+      {
+        "id": "s3_solve_l",
+        "kind": "equation",
+        "label": "Solve for m and l",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Both unknowns fall out cleanly here because the coefficients of l happen to match.",
+        "lines": [
+          "(4) − (5): (12l + 6m) − (12l − 2m) = −6 − 10",
+          "⇒ 8m = −16 ⇒ m = −2",
+          "From (4): 12l + 6(−2) = −6 ⇒ 12l = 6 ⇒ l = 1/2"
+        ],
+        "why": "Subtracting (5) from (4) cancels the l-terms this time, since both carry the same 12l, and that hands over m directly; l then follows from a one-line substitution.",
+        "common_mistakes": [
+          "Adding (4) and (5) instead of subtracting, which leaves l in the equation rather than cancelling it.",
+          "Forgetting to substitute the value of m back into (4) and instead guessing l."
+        ],
+        "memory_tip": "This time it is l, not n, that shares the same coefficient in both new equations — subtract to cancel it and read off m."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Write the final equation",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Check the boxed equation by substituting (4, 5) back in — it should give 0.",
+        "lines": [
+          "From (1): 16(1/2) + 4(−2) + n = 5 ⇒ 8 − 8 + n = 5 ⇒ n = 5",
+          "Substitute l = 1/2, m = −2, n = 5 in y = lx² + mx + n:",
+          "y = (1/2)x² − 2x + 5",
+          "Multiply by 2: 2y = x² − 4x + 10",
+          {
+            "text": "∴ x² − 4x − 2y + 10 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying by 2 clears the only fraction in the equation and leaves the standard whole-number form for a locus.",
+        "common_mistakes": [
+          "Leaving the final equation with the 1/2 fraction still in it instead of clearing it.",
+          "Writing the boxed line as x² − 2y − 4x + 10 = 0 without checking it is the same equation, just reordered — both forms are correct, but a term must not be dropped while rearranging."
+        ],
+        "memory_tip": "Multiply through by 2 the moment a fraction appears — one clean whole-number equation is the target."
+      }
+    ]
+  },
+  "insider_note": "The book reaches n by putting l and m back into equation (1); putting them into (2) or (3) instead gives the same n and is a fast, free check most students skip."
+}

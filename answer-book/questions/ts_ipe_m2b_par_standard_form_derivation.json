@@ -1,0 +1,287 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_standard_form_derivation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Derive the standard form of the parabola.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    },
+    {
+      "year": 2017
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Show the vertex A lies on the parabola",
+      "marks": 2
+    },
+    {
+      "label": "Choose the axes and locate S, Z and the directrix",
+      "marks": 2
+    },
+    {
+      "label": "Set up P, its projections N and M, and the focus–directrix condition",
+      "marks": 2
+    },
+    {
+      "label": "Simplify to y² = 4ax",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 2 Parabola (chapter banner ★★★, 7 Marks), answer 9, on a printed Super Scoring Page (SSP 22) marked 'SUPER STANDARD STAR Q'. The chapter's own BABY CHAT box names this as one of 'these Five STAR Q's in Parabola' (answers 9, 12, 13, 14, 15). Printed appearances (partially readable): AP 2015, 2017 and TS 2016, 2017, 2018 — the black tag boxes are cropped at the scan's right edge, so one or two further years may be cut off and are not recorded. THE MARK SPLIT: the book prints right-margin numeric tags next to this single-column derivation ('1 Mark', '2 Mark[s]', more), but they too sit at the cropped edge and only fragments survive legibly — a '2 Mark[s]' fragment near the axis-choice line and isolated '1 Mark' fragments further down. The fragments could not be transcribed with confidence, so the 2/2/2/1 split below is authored to match the visible fragments and the natural break points of the proof, not presented as a certain transcription. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Parabola · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_vertex_on_locus",
+        "kind": "equation",
+        "label": "Show A lies on the parabola",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. This paragraph is the whole reason the origin can be placed at A — get the SA = AZ step down before moving on.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S be the focus and the line L = 0 be the directrix.",
+          "Let Z be the foot of the perpendicular from S to the directrix.",
+          "Let A be the midpoint of SZ.",
+          "Then SA = AZ, so SA/AZ = 1, so A is a point on the parabola."
+        ],
+        "why": "The vertex is defined as the point exactly midway between the focus and the directrix, and this same point is the one point where the focus-directrix ratio SP/PM equals 1 by simple symmetry — so the midpoint of SZ has to lie on the curve, and it becomes the natural place to put the origin.",
+        "common_mistakes": [
+          "Placing A anywhere on the axis instead of exactly at the midpoint of SZ.",
+          "Skipping the SA = AZ argument and just asserting A is the vertex."
+        ],
+        "memory_tip": "S to Z, straight across; A sits exactly in the middle, and that middle point is on the curve."
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the focus, directrix and a general point",
+        "marks": 0,
+        "margin_note": "Worth no mark by itself, but every later line refers back to this picture.",
+        "figure": {
+          "id": "parabola_standard_form",
+          "width": 360,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "par_yaxis",
+              "d": "M 130 20 L 130 280",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "par_xaxis",
+              "d": "M 20 150 L 335 150",
+              "ms": 600
+            },
+            {
+              "type": "stroke",
+              "id": "par_directrix",
+              "d": "M 95 30 L 95 270",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "par_curve_upper",
+              "d": "M 130 150 Q 175 150 195 90 Q 208 58 220 40",
+              "ms": 650
+            },
+            {
+              "type": "stroke",
+              "id": "par_curve_lower",
+              "d": "M 130 150 Q 175 150 195 210 Q 208 242 220 260",
+              "ms": 650
+            },
+            {
+              "type": "stroke",
+              "id": "par_pm_pn_segment",
+              "d": "M 195 90 L 95 90",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "par_sp_segment",
+              "d": "M 165 150 L 195 90",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "par_right_angle_m",
+              "d": "M 95 84 L 101 84 L 101 90",
+              "ms": 150
+            },
+            {
+              "type": "label",
+              "id": "par_lbl_directrix",
+              "x": 62,
+              "y": 35,
+              "text": "L=0",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "par_lbl_z",
+              "x": 80,
+              "y": 163,
+              "text": "Z",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "par_lbl_a",
+              "x": 105,
+              "y": 172,
+              "text": "A(0,0)",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "par_lbl_s",
+              "x": 168,
+              "y": 168,
+              "text": "S(a,0)",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "par_lbl_p",
+              "x": 200,
+              "y": 82,
+              "text": "P",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "par_lbl_m",
+              "x": 78,
+              "y": 80,
+              "text": "M",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "par_lbl_n",
+              "x": 133,
+              "y": 76,
+              "text": "N",
+              "ms": 300,
+              "em": true
+            }
+          ]
+        },
+        "why": "The picture fixes every symbol used in the rest of the proof — focus S, directrix L, vertex A, the general point P, and its two projections M and N — so the algebra that follows has a fixed picture to refer back to.",
+        "common_mistakes": [
+          "Drawing the directrix on the same side as the focus instead of the opposite side of the vertex.",
+          "Leaving out N or M, which is what P is being measured against."
+        ],
+        "memory_tip": "Directrix on the left, focus on the right, vertex exactly between them — P sits on the curve with M and N marking its distances."
+      },
+      {
+        "id": "s2_choose_axes",
+        "kind": "equation",
+        "label": "Choose axes and locate S, Z, directrix",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. This is the step that turns a general parabola into one fixed by a single number a.",
+        "lines": [
+          "Take AS, the principal axis of the parabola, as the X-axis.",
+          "Take the line through A perpendicular to AS as the Y-axis, so A = (0, 0).",
+          "Let AS = a. Then S = (a, 0) and Z = (−a, 0).",
+          "So the equation of the directrix is x = −a, that is, x + a = 0."
+        ],
+        "why": "Once the axis is fixed as the x-axis with the vertex at the origin, every later distance can be written as a plain coordinate instead of a general length — that is the whole purpose of choosing axes this way.",
+        "common_mistakes": [
+          "Writing S = (−a, 0) and Z = (a, 0) with the two swapped.",
+          "Writing the directrix as x = a instead of x = −a."
+        ],
+        "memory_tip": "Focus and directrix sit on opposite sides of the vertex: S at +a, Z (and the directrix) at −a."
+      },
+      {
+        "id": "s3_general_point",
+        "kind": "equation",
+        "label": "Set up P, N, M and the focus-directrix condition",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. This line is where the defining property of the parabola (SP = PM) actually enters the proof.",
+        "lines": [
+          "Let P(x₁, y₁) be any point on the parabola.",
+          "Let N be the foot of the perpendicular from P to the Y-axis.",
+          "Let M be the foot of the perpendicular from P to the directrix.",
+          "Then PM = PN + NM = x₁ + a, since PN is the x-coordinate of P and NM = AZ = AS = a.",
+          "By the focus–directrix property, SP/PM = 1, so SP = PM, so SP² = PM²."
+        ],
+        "why": "PM is measured in two pieces — from P across to the y-axis (which is just x₁), then from the y-axis across to the directrix (which is the fixed length a) — and adding those two pieces is what turns the geometric distance PM into a plain algebraic expression in x₁.",
+        "common_mistakes": [
+          "Writing PM = x₁ − a instead of x₁ + a.",
+          "Squaring SP = PM before both sides are written out, then losing track of which side is which."
+        ],
+        "memory_tip": "PM is the trip from P to the y-axis, then from the y-axis to the directrix — x₁, then a, added together."
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify to y² = 4ax",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. y² = 4ax is the box the examiner is looking for — underline it.",
+        "lines": [
+          "SP² = (x₁ − a)² + (y₁ − 0)² and PM² = (x₁ + a)²",
+          "⇒ (x₁ − a)² + y₁² = (x₁ + a)²",
+          "⇒ y₁² = (x₁ + a)² − (x₁ − a)² = 4ax₁     [∵ (a+b)² − (a−b)² = 4ab]",
+          {
+            "text": "∴ the locus of P(x₁, y₁) is y² = 4ax",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two squared terms (x₁+a)² and (x₁−a)² share every term except the sign in front of the 2·x₁·a part, so subtracting them cancels the x₁² and a² parts and leaves exactly 4ax₁ — that one identity is what turns the distance equation into the parabola's equation.",
+        "common_mistakes": [
+          "Expanding (x₁+a)² − (x₁−a)² by brute force and dropping a sign instead of using the identity directly.",
+          "Writing the final answer as x² = 4ay by swapping the axes."
+        ],
+        "memory_tip": "(a+b)² minus (a−b)² is always 4ab — here a = x₁, b = a, so the answer is 4·x₁·a."
+      }
+    ]
+  },
+  "insider_note": "The examiner is really checking two things: that SA = AZ is argued (not assumed) so A is shown to be on the curve, and that PM is correctly split as x₁ + a — most marks are lost on the sign of that second one."
+}

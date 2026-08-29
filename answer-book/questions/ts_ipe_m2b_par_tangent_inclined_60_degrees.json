@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_tangent_inclined_60_degrees",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the tangent to the parabola y² = 16x, inclined at 60° to the X-axis.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a and the slope from the given angle",
+      "marks": 1
+    },
+    {
+      "label": "Write the tangent equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 124, paired on the page with answer 123. Printed appearance: AP 2016. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Find a and the slope",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for a = 4 and m = √3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given parabola y² = 16x ⇒ 4a = 16 ⇒ a = 4",
+          "Slope of the tangent m = tan 60° = √3"
+        ],
+        "why": "The angle a line makes with the x-axis fixes its slope through m = tan(angle), so the given 60° converts directly into m = √3.",
+        "common_mistakes": [
+          "Using sin 60° or cos 60° in place of tan 60° for the slope.",
+          "Leaving tan 60° as a decimal approximation instead of the exact value √3."
+        ],
+        "memory_tip": "The slope of a line is always the tangent of the angle it makes with the x-axis — m = tan(angle)."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Write the tangent equation",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for the tangent equation with the surd cleared.",
+        "lines": [
+          "Equation of the tangent with slope m is y = mx + a/m ⇒ y = √3x + 4/√3",
+          "⇒ √3y = 3x + 4 ⇒ 3x − √3y + 4 = 0",
+          {
+            "text": "∴ 3x − √3y + 4 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying through by √3 clears the surd from the denominator and leaves the tangent's equation in the same whole-coefficient style as every other boxed answer in this chapter.",
+        "common_mistakes": [
+          "Leaving √3 in the denominator instead of rationalising it.",
+          "Writing the final line with a sign error, e.g. 3x + √3y + 4 = 0."
+        ],
+        "memory_tip": "Multiply through by √3 the moment it appears in a denominator, the same habit as clearing any other fraction."
+      }
+    ]
+  },
+  "insider_note": "tan 60° = √3 exactly, never 1.732 rounded — an exact surd is expected in the final boxed line, not a decimal."
+}
