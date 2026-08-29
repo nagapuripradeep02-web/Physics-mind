@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_tangent_condition_find_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the value of k if 4x + y + k = 0 is a tangent to the ellipse x² + 3y² = 3.",
+  "appearances": [
+    { "year": 2015, "board": "ap_ipe" },
+    { "year": 2016, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Standard form and the line's slope", "marks": 1 },
+    { "label": "Apply the tangency condition", "marks": 2 },
+    { "label": "Solve for k", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.99 — SR.MATHS-2B STAR 'Q' PLUS section, answer 210, under its own 'ELLIPSE' banner (a single-question section between the Parabola-VSAQ run ending at answer 209 and the Hyperbola run starting at answer 211 on p.100 — checked, so this is the chapter's ONLY Star Q+ entry, not the first of several). Printed appearances: AP 15, AP 16 — both tags are AP; no TS tag is printed for this question. This question does NOT appear anywhere in the SAQ chapter 8 Ellipse run (answers 58-77, book pp.57-65), so it is authored here as a genuine Star Q+ EXTRA, classed into Section B (SAQ, 4 marks) because it matches the shape of this chapter's other tangent-condition questions (Q62, Q63, Q74) and because Ellipse has no VSAQ or LAQ slot on the blueprint for it to belong to instead — that section assignment is OURS, not printed. The Bullet Model Paper's 'Q13 & 14: ELLIPSE' section (book pp.108-109) was diffed against the 20-question SAQ chapter and found to be entirely verbatim repeats (of answers 59, 63, 64, 58, 62(i)/(ii) and 72) — no extra card was needed from the Bullet Model Paper. The mark split 1+2+1 is OURS: no margin tags are printed on a Star Q+ page, and the tangency-condition substitution (comparing y = mx + c against the given line and applying c² = a²m² + b²) is the larger share of the work here, so it carries 2 of the 4 marks. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "This question runs the tangent-condition formula BACKWARDS from Q62/Q63 — here k is the unknown and the line is already given, so the answer comes from solving c² = a²m² + b² for k, not from writing a tangent line from scratch.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Standard form and the line's slope",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. Write the given line as y = mx + c to read off m and c.",
+        "memory_tip": "Rearrange the line to y = (slope)x + (intercept) before comparing it to anything.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "x² + 3y² = 3 ⇒ x²/3 + y²/1 = 1 ⇒ a² = 3, b² = 1",
+          "Given line: 4x + y + k = 0 ⇒ y = −4x − k",
+          "Comparing with y = mx + c: m = −4, c = −k"
+        ],
+        "why": "The tangency condition needs the ellipse's a², b² and the line's slope m and intercept c, so both are found first before the condition is applied.",
+        "common_mistakes": [
+          "Reading a² = 1, b² = 3 by taking the equation's coefficients directly instead of dividing by 3 first.",
+          "Losing the negative sign when rearranging 4x + y + k = 0 to y = −4x − k."
+        ]
+      },
+      {
+        "id": "s2_apply",
+        "kind": "equation",
+        "label": "Apply the tangency condition",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Middle two marks. A line y = mx + c touches the ellipse exactly when c² = a²m² + b².",
+        "memory_tip": "c² = a²m² + b² is the same condition used to build a tangent line, run here in the opposite direction to find an unknown.",
+        "lines": [
+          "Tangency condition: c² = a²m² + b²",
+          "(−k)² = 3(−4)² + 1",
+          "k² = 3(16) + 1"
+        ],
+        "why": "A line touches the ellipse at exactly one point precisely when c² = a²m² + b² — the same condition that builds y = mx ± √(a²m² + b²), used here with c already given as −k.",
+        "common_mistakes": [
+          "Squaring (−4)² as −16 instead of +16.",
+          "Using the condition for a circle or a parabola instead of the ellipse's own c² = a²m² + b²."
+        ]
+      },
+      {
+        "id": "s3_solve",
+        "kind": "boxed_final",
+        "label": "Solve for k",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Fourth mark. Both signs of k are valid — a tangent line exists on either side of the ellipse.",
+        "memory_tip": "k² = (a number) always gives TWO values of k, ± the square root.",
+        "lines": [
+          "k² = 48 + 1 = 49",
+          { "text": "k = ±7", "style": "boxed" }
+        ],
+        "why": "k² = 49 has two square roots, +7 and −7, and both give a genuine tangent line — one on each side of the ellipse — so neither root is rejected.",
+        "common_mistakes": [
+          "Writing only k = 7 and dropping k = −7.",
+          "Computing √49 as a value other than 7."
+        ]
+      }
+    ]
+  }
+}

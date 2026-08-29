@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_tangents_parallel_perp_45deg_2x2_y2_8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equations of the tangents to the ellipse 2x² + y² = 8 which (i) are parallel to x − 2y − 4 = 0, (ii) are perpendicular to x + y + 2 = 0, (iii) make an angle 45° with the x-axis.",
+  "appearances": [
+    { "year": 2017, "board": "ap_ipe" },
+    { "year": 2017 },
+    { "year": 2019, "board": "ap_ipe" },
+    { "year": 2019 }
+  ],
+  "mark_split": [
+    { "label": "Standard form and tangent formula", "marks": 1 },
+    { "label": "Tangent parallel to the given line", "marks": 1 },
+    { "label": "Tangent perpendicular to the given line", "marks": 1 },
+    { "label": "Tangent at 45° to the x-axis", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Ellipse, answer 62, on a ★★★ SSP page (book p.49 chapter table). Printed appearances: AP 17,19 · TS 17,19. Book p.59 prints three empty tick boxes (one per sub-part) but NO numeric '1 Mark' tags, so the 1+1+1+1 split here is OURS — patterned on Q58/Q59's printed 'one mark per result' shape in this same chapter, with the shared setup (standard form + the y = mx ± √(a²m² + b²) formula) folded into part (i)'s mark. Note (ii) and (iii) land on the identical tangent pair y = x ± 2√3 because a line perpendicular to x + y + 2 = 0 and a line at 45° to the x-axis both have slope 1 — this is a genuine feature of the question, not a duplication error. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "Parts (ii) and (iii) both come out to slope m = 1 and give the same pair of tangent lines — writing that observation down, rather than re-deriving from scratch, is the fast way to pick up all four marks.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Standard form and tangent formula",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. This formula is used all three times below — write it once here.",
+        "memory_tip": "The tangent-with-slope-m formula is y = mx ± √(a²m² + b²), always with a plus-minus.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "2x² + y² = 8 ⇒ x²/4 + y²/8 = 1 ⇒ a² = 4, b² = 8",
+          "Equation of the tangent with slope m: y = mx ± √(a²m² + b²)"
+        ],
+        "why": "Every tangent line in this question uses the same formula, so writing the ellipse in standard form and stating the formula once saves repeating it for each of the three parts.",
+        "common_mistakes": [
+          "Skipping the division by 8 and using 2 and 1 as a² and b² directly.",
+          "Forgetting the ± sign, which is what makes each part give a PAIR of parallel tangents."
+        ]
+      },
+      {
+        "id": "s2_parallel",
+        "kind": "equation",
+        "label": "Tangent parallel to the given line",
+        "marks": 1,
+        "mark_note": "Part (i)",
+        "margin_note": "Second mark. A parallel line has the same slope as the given line.",
+        "memory_tip": "Parallel lines share the same m; read m straight off the given line's equation.",
+        "lines": [
+          "Slope of x − 2y − 4 = 0 is m = 1/2",
+          "y = ½x ± √(4·¼ + 8) = ½x ± √9 = ½x ± 3",
+          { "text": "x − 2y + 6 = 0 and x − 2y − 6 = 0", "style": "boxed" }
+        ],
+        "why": "A line parallel to a given line has exactly the same slope, so the given line's own slope goes straight into the tangent formula.",
+        "common_mistakes": [
+          "Using the negative reciprocal of the slope, which is for a perpendicular line, not a parallel one.",
+          "Losing the factor of 2 when clearing 2y = x ± 6 to standard form."
+        ]
+      },
+      {
+        "id": "s3_perpendicular",
+        "kind": "equation",
+        "label": "Tangent perpendicular to the given line",
+        "marks": 1,
+        "mark_note": "Part (ii)",
+        "margin_note": "Third mark. A perpendicular line has slope equal to minus the reciprocal.",
+        "memory_tip": "Perpendicular slopes multiply to −1: flip the fraction and change the sign.",
+        "lines": [
+          "Slope of x + y + 2 = 0 is −1 ⇒ slope of its perpendicular is m = 1",
+          "y = (1)x ± √(4·1 + 8) = x ± √12 = x ± 2√3",
+          { "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0", "style": "boxed" }
+        ],
+        "why": "Perpendicular lines have slopes that multiply to −1, so the required slope is the negative reciprocal of the given line's slope.",
+        "common_mistakes": [
+          "Using the same slope as the given line instead of its negative reciprocal.",
+          "Simplifying √12 incorrectly instead of 2√3."
+        ]
+      },
+      {
+        "id": "s4_45deg",
+        "kind": "equation",
+        "label": "Tangent at 45° to the x-axis",
+        "marks": 1,
+        "mark_note": "Part (iii)",
+        "margin_note": "Fourth mark. tan 45° = 1, which is the same slope as part (ii) — the two answers coincide.",
+        "memory_tip": "A line making angle θ with the x-axis has slope m = tan θ.",
+        "lines": [
+          "θ = 45° ⇒ m = tan 45° = 1",
+          "y = (1)x ± √(4(1)² + 8) = x ± 2√3",
+          { "text": "x − y + 2√3 = 0 and x − y − 2√3 = 0", "style": "boxed" }
+        ],
+        "why": "The slope of a line making angle θ with the x-axis is tan θ; here tan 45° = 1 is the same slope found in part (ii), so the same tangent pair results.",
+        "common_mistakes": [
+          "Using sin 45° or cos 45° instead of tan 45° for the slope.",
+          "Treating this as a different answer from part (ii) and re-deriving unnecessarily."
+        ]
+      }
+    ]
+  }
+}

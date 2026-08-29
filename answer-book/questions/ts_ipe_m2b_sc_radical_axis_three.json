@@ -1,0 +1,78 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_radical_axis_three",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the radical axis of the circles x² + y² − 3x − 4y + 5 = 0, 3(x² + y²) − 7x + 8y − 11 = 0.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Write both circles in standard form", "marks": 1 },
+    { "label": "Subtract to find the radical axis", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.103 — the Bullet Model Paper's VSAQ Section-A, under the printed heading 'Q3: SYSTEM OF CIRCLES', the second of the two System of Circles questions on that page (confirmed as the section's full extent by reading book p.104, which opens Q4: Parabola / Q5: Hyperbola immediately after). No appearance year is printed against any Bullet Model Paper question. DIFF AGAINST THE CHAPTER: this pair of circles is DIFFERENT from the twin radical-axis answers 118.1/118.2 in this unit's own chapter (book p.80) — 118.1's second circle happens to print the identical '3x²+3y²−7x+8y−11=0', but its FIRST circle (2x²+2y²+3x+6y−5=0) is different from this question's first circle (x²+y²−3x−4y+5=0, already in standard form, no scaling needed); the resulting radical axis is also different (x + 10y − 13 = 0 here, versus 23x + 2y + 7 = 0 for 118.1), confirming this is a genuinely distinct question, authored here as an extra. ⚠ THE SECTION IS OURS in the same sense as this unit's other Bullet Model Paper extra — the Model Paper prints it directly under 'VSAQ SECTION-A' with no further sub-label, matching this chapter's own short radical-axis VSAQ shape exactly. Chapter star rank taken as the VSAQ section's ★★, per book p.76. ⚠ THE MARK SPLIT IS OURS — the Bullet Model Paper prints no marks tags. Cut 1+1, matching the shape used for this unit's own radical-axis answers 118.1/118.2. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead."
+  },
+  "insider_note": "Only the second circle needs dividing by its leading coefficient here — the first circle is already standard, so do not scale it by mistake while standardising the second.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "System of Circles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_standard_form",
+        "kind": "equation",
+        "label": "Write both circles in standard form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The first circle needs no change; only the second is divided, by 3.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "S ≡ x² + y² − 3x − 4y + 5 = 0",
+          "3(x² + y²) − 7x + 8y − 11 = 0",
+          "⇒ S′ ≡ x² + y² − 7/3 x + 8/3 y − 11/3 = 0"
+        ],
+        "why": "The second circle's leading coefficient of 3 must be divided out of every term before it can be subtracted from S, which is already in standard form.",
+        "common_mistakes": [
+          "Dividing the first circle by 3 as well, when it does not need it — only the circle actually printed with a leading coefficient other than 1 needs standardising.",
+          "Dividing the −7x and 8y terms by 3 but leaving the constant −11 undivided."
+        ],
+        "memory_tip": "Check each circle's OWN leading coefficient separately — here only one of the two needs the standardising step."
+      },
+      {
+        "id": "s2_subtract",
+        "kind": "boxed_final",
+        "label": "Subtract to find the radical axis",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for the subtraction and the cleared final line.",
+        "lines": [
+          "Radical axis is S − S′ = 0",
+          "⇒ (−3 + 7/3)x + (−4 − 8/3)y + (5 + 11/3) = 0",
+          "⇒ (−2/3)x + (−20/3)y + 26/3 = 0",
+          { "text": "⇒ x + 10y − 13 = 0", "style": "boxed" }
+        ],
+        "why": "Subtracting the two standard-form circles cancels x² and y², leaving the radical axis; multiplying through by −3/2 clears every fraction to give whole-number coefficients.",
+        "common_mistakes": [
+          "Computing −3 − (−7/3) as −3 − 7/3 instead of −3 + 7/3, a sign slip that changes the whole line.",
+          "Leaving the equation as −2x − 20y + 26 = 0 instead of dividing through by −2 to reach the simplest form."
+        ],
+        "memory_tip": "−3 = −9/3, so −3 + 7/3 = −2/3 — always convert whole numbers to the same denominator as the fraction before adding."
+      }
+    ]
+  }
+}

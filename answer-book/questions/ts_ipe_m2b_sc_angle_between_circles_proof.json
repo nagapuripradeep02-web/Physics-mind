@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_angle_between_circles_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that the angle between the circles x² + y² = a², x² + y² = ax + ay is 3π/4.",
+  "appearances": [
+    { "year": 2016 },
+    { "year": 2020 }
+  ],
+  "mark_split": [
+    { "label": "Find the centres, radii and distance", "marks": 1 },
+    { "label": "Apply the angle formula", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 119.1. Book p.81 is NOT a Super Scoring Page — the SSP list on book p.76 names pages 77,79,80,82,84,86,90,92,93, and 81 is absent from it, and the page's own header carries no 'SSP' banner (unlike p.80). Chapter star rank ★★, per the VSAQ section table (book p.76). Two printed appearance tags surround this answer — TS 16 beside the question, and a further TS 20 beside the r₁ = a line mid-solution — both are recorded here since no other question sits between them. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this VSAQ chapter. Cut 1+1: one mark for finding both centres, radii and the distance between centres, one mark for applying the angle-between-circles formula and identifying the angle. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75)."
+  },
+  "insider_note": "cos θ coming out negative is the whole point of this question — a negative cosine means an OBTUSE angle, and 3π/4 (135°) is exactly that, not a sign error to be chased away.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "System of Circles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centres_radii_distance",
+        "kind": "equation",
+        "label": "Find the centres, radii and distance",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both circles are written in terms of the letter a, so every quantity below is also in terms of a.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Given circles are x² + y² − a² = 0 ...(1)",
+          "x² + y² − ax − ay = 0 ...(2)",
+          "Centre C₁ = (0, 0), C₂ = (a/2, a/2)",
+          "d = C₁C₂ = √(a²/4 + a²/4) = a/√2",
+          "From (1), r₁ = a",
+          "From (2), r₂ = √(a²/4 + a²/4) = a/√2"
+        ],
+        "why": "The angle between two circles is computed from their centres, radii, and the distance between centres — all three are needed before the angle formula can be applied, and here every one of them is an expression in a rather than a plain number.",
+        "common_mistakes": [
+          "Reading the centre of (2) as (−a/2, −a/2) instead of (a/2, a/2) — the centre is (−g, −f), and here g = f = −a/2, so the centre is (a/2, a/2).",
+          "Confusing r₁ (simply a, since (1) has no linear terms) with r₂ (which needs the full g² + f² − c formula)."
+        ],
+        "memory_tip": "Circle (1) has no g or f at all, so its radius is just √(−c) = a directly — the simpler of the two radii to find."
+      },
+      {
+        "id": "s2_angle_formula",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for substituting into the angle formula and naming the angle.",
+        "lines": [
+          "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
+          "= (a²/2 − a² − a²/2) / (2 · a · a/√2)",
+          "= −a² / (√2 a²) = −1/√2 = cos 135°",
+          { "text": "∴ Angle between the circles is θ = 135° = 3π/4", "style": "boxed" }
+        ],
+        "why": "The angle between two intersecting circles is found from cos θ = (d² − r₁² − r₂²) / (2r₁r₂); substituting the expressions from step 1 leaves a² cancelling out completely, so the angle 3π/4 holds for EVERY value of a, which is exactly what 'show that' asks for.",
+        "common_mistakes": [
+          "Substituting r₁² as a instead of a², forgetting to square the radius before using it in the formula.",
+          "Reporting the final answer only as cos θ = −1/√2 without converting it to the required angle 3π/4."
+        ],
+        "memory_tip": "cos θ = −1/√2 is always 135° = 3π/4 — a value worth memorising directly, alongside cos θ = 1/√2 for 45° = π/4."
+      }
+    ]
+  }
+}

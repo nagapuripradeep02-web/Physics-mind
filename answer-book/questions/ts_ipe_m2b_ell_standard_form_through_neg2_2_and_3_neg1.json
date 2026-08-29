@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_standard_form_through_neg2_2_and_3_neg1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the ellipse in the standard form, if it passes through the points (−2, 2) and (3, −1).",
+  "appearances": [
+    { "year": 2017 },
+    { "year": 2022 }
+  ],
+  "mark_split": [
+    { "label": "Substitute the first point", "marks": 1 },
+    { "label": "Substitute the second point", "marks": 1 },
+    { "label": "Solve the system", "marks": 1 },
+    { "label": "Final equation", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Ellipse, answer 69, the last question on the page. NOT on an SSP page (book p.49 lists SSP pages 57,58,59,60 for this chapter). Printed appearances: TS 17,22 — no AP tag. Book p.61 prints no margin mark tags, so the 1+1+1+1 split here is OURS, following the four natural stages of a two-point-substitution derivation. Verified boundary: p.62 opens a new 'LEVEL-II' heading with answer 70, confirming answer 69 is the last question of Level I and this card's scope is complete for this page. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "Working with 1/a² and 1/b² as the two unknowns, instead of a² and b² directly, turns this into simple simultaneous linear equations instead of a harder system.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_point",
+        "kind": "equation",
+        "label": "Substitute the first point",
+        "marks": 1,
+        "mark_note": "Point 1",
+        "margin_note": "First mark. Let u = 1/a² and v = 1/b² to keep the system linear.",
+        "memory_tip": "Two unknown constants (a², b²) need exactly two points to pin them down.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Let the ellipse be x²/a² + y²/b² = 1 …(A)",
+          "(A) passes through (−2, 2): 4/a² + 4/b² = 1 …(1)"
+        ],
+        "why": "Substituting a known point on the curve into its equation gives one linear equation in the unknowns 1/a² and 1/b², since (−2)² and 2² are already fixed numbers.",
+        "common_mistakes": [
+          "Squaring −2 as −4 instead of +4.",
+          "Substituting the point as (x, y) = (2, −2) instead of (−2, 2), swapping the coordinates."
+        ]
+      },
+      {
+        "id": "s2_second_point",
+        "kind": "equation",
+        "label": "Substitute the second point",
+        "marks": 1,
+        "mark_note": "Point 2",
+        "margin_note": "Second mark. The same substitution, with the second given point.",
+        "memory_tip": "Each point on the curve gives one equation — two points give two equations.",
+        "lines": [
+          "(A) passes through (3, −1): 9/a² + 1/b² = 1 …(2)"
+        ],
+        "why": "The second point gives a second, independent linear equation in the same two unknowns 1/a² and 1/b², which together can be solved.",
+        "common_mistakes": [
+          "Squaring −1 as −1 instead of +1.",
+          "Re-using the same equation from step 1 instead of substituting the new point."
+        ]
+      },
+      {
+        "id": "s3_solve",
+        "kind": "equation",
+        "label": "Solve the system",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Eliminate one unknown by subtracting a suitable multiple of one equation from the other.",
+        "memory_tip": "Solve for 1/a² and 1/b² first, then take reciprocals only at the very end.",
+        "lines": [
+          "From (1) and (2): 4/a²+4/b² = 9/a²+1/b² ⇒ 3/b² = 5/a² ⇒ 1/b² = 5/(3a²)",
+          "Sub into (2): 9/a² + 5/(3a²) = 1 ⇒ (27+5)/(3a²) = 1 ⇒ 1/a² = 3/32",
+          "1/b² = 1 − 9/a² = 1 − 9(3/32) = (32−27)/32 = 5/32"
+        ],
+        "why": "Eliminating one unknown between the two linear equations, then back-substituting, gives 1/a² and 1/b² as plain fractions.",
+        "common_mistakes": [
+          "Trying to solve for a² and b² directly by cross-multiplying too early, which tangles the algebra unnecessarily.",
+          "Losing a sign or a factor of 3 when eliminating 1/b² between the two equations."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Fourth mark. Substitute 1/a² and 1/b² back into x²/a² + y²/b² = 1 and clear the fraction 32.",
+        "memory_tip": "Multiply through by 32 to turn the fractional equation into whole numbers.",
+        "lines": [
+          "x²/a² + y²/b² = (3/32)x² + (5/32)y² = 1",
+          { "text": "3x² + 5y² = 32", "style": "boxed" }
+        ],
+        "why": "Once 1/a² = 3/32 and 1/b² = 5/32 are known, substituting them directly into the standard form and multiplying through by 32 gives the whole-number final equation.",
+        "common_mistakes": [
+          "Writing the answer as a fraction equation instead of clearing it to 3x² + 5y² = 32.",
+          "Swapping the coefficients of x² and y² in the final equation."
+        ]
+      }
+    ]
+  }
+}

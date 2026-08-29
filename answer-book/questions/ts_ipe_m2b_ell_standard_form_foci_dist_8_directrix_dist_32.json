@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_standard_form_foci_dist_8_directrix_dist_32",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the ellipse in the standard form such that the distance between the foci is 8 and the distance between the directrices is 32.",
+  "appearances": [
+    { "year": 2017, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Distance between foci", "marks": 1 },
+    { "label": "Distance between directrices", "marks": 1 },
+    { "label": "Solve for a² and b²", "marks": 1 },
+    { "label": "Final equation", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Ellipse, answer 65, on a ★★★ SSP page (book p.49 chapter table). Printed appearance: AP 17 only — no TS tag printed. Book p.60 prints NO margin mark tags or tick boxes for answers 64-66, so the 1+1+1+1 split here is OURS, patterned on the four natural stages of the derivation, matching the shape used for Q64 in this same chapter. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "Multiplying the two given conditions together — (ae) times (a/e) — cancels the e and leaves a² directly, which is faster than solving for e first.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_foci_condition",
+        "kind": "equation",
+        "label": "Distance between foci",
+        "marks": 1,
+        "mark_note": "Condition 1",
+        "margin_note": "First mark. Distance between the two foci is 2ae.",
+        "memory_tip": "Distance BETWEEN the foci is 2ae; distance BETWEEN the directrices is 2(a/e).",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Let the ellipse be x²/a² + y²/b² = 1, with foci S(ae, 0), S′(−ae, 0)",
+          "Distance between foci is 8 ⇒ 2ae = 8 ⇒ ae = 4 …(1)"
+        ],
+        "why": "As with any pair of foci, the distance between them is twice the single distance ae from the centre.",
+        "common_mistakes": [
+          "Setting ae = 8 directly, forgetting the factor of 2.",
+          "Confusing this condition with the directrix condition below, which uses a/e instead of ae."
+        ]
+      },
+      {
+        "id": "s2_directrix_condition",
+        "kind": "equation",
+        "label": "Distance between directrices",
+        "marks": 1,
+        "mark_note": "Condition 2",
+        "margin_note": "Second mark. The two directrices are at x = ±a/e, so their distance apart is 2(a/e).",
+        "memory_tip": "Directrices use a/e (division); foci use ae (multiplication) — do not swap them.",
+        "lines": [
+          "Distance between directrices is 32 ⇒ 2(a/e) = 32 ⇒ a/e = 16 …(2)"
+        ],
+        "why": "The two directrices sit symmetrically at x = a/e and x = −a/e, so their distance apart is 2(a/e), the mirror of the foci condition.",
+        "common_mistakes": [
+          "Writing a/e = 32 directly, forgetting the factor of 2 between the two directrices.",
+          "Using ae instead of a/e for the directrix distance."
+        ]
+      },
+      {
+        "id": "s3_solve",
+        "kind": "equation",
+        "label": "Solve for a² and b²",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Multiplying equations (1) and (2) cancels e and leaves a² directly.",
+        "memory_tip": "(ae) × (a/e) = a² — the e's cancel because one condition multiplies by e and the other divides by e.",
+        "lines": [
+          "Multiplying (1) and (2): (ae)(a/e) = 4 × 16 = 64 ⇒ a² = 64",
+          "b² = a²(1 − e²) = a² − (ae)² = 64 − 16 = 48"
+        ],
+        "why": "Multiplying the foci condition by the directrix condition cancels the eccentricity e entirely, giving a² in one step; b² then follows from a² − (ae)², since ae is already known.",
+        "common_mistakes": [
+          "Trying to find e first by dividing instead of multiplying — that is a slower, error-prone route.",
+          "Using a² − a²e² but substituting a²e² incorrectly instead of (ae)² = 16."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Fourth mark. Substitute a² and b² into the standard form.",
+        "memory_tip": "The last step is substitution only — no more algebra needed.",
+        "lines": [
+          "a² = 64, b² = 48",
+          { "text": "Equation of the ellipse: x²/64 + y²/48 = 1", "style": "boxed" }
+        ],
+        "why": "With both a² and b² known, the standard form x²/a² + y²/b² = 1 is complete.",
+        "common_mistakes": [
+          "Swapping a² and b² in the final equation.",
+          "Leaving the answer as a = 8 instead of squaring to a² = 64 in the denominator."
+        ]
+      }
+    ]
+  }
+}

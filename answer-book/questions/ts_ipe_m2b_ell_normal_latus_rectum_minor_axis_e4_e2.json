@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_normal_latus_rectum_minor_axis_e4_e2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If the normal at one end of a latus rectum of the ellipse x²/a² + y²/b² = 1 with eccentricity e, passes through one end of the minor axis, then show that e⁴ + e² = 1.",
+  "appearances": [
+    { "year": 2017 }
+  ],
+  "mark_split": [
+    { "label": "Equation of the normal at the end of the latus rectum", "marks": 1 },
+    { "label": "Substitute the end of the minor axis", "marks": 1 },
+    { "label": "Simplify to ab = a²e²", "marks": 1 },
+    { "label": "Conclude e⁴ + e² = 1", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 8 Ellipse, answer 76. NOT on an SSP page. Printed appearance: TS 17 only — no AP tag. Book p.65 prints tick boxes with no numeric mark tags, so the 1+1+1+1 split here is OURS, following the four natural stages of the proof. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "The identity b² = a²(1 − e²) is what turns ab = a² − b² into ab = a²e² — writing that substitution as its own line, rather than doing it mentally, is where most students lose a mark in a rushed answer.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_normal_at_l",
+        "kind": "equation",
+        "label": "Equation of the normal at the end of the latus rectum",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. L = (ae, b²/a) is the end of the latus rectum used here.",
+        "memory_tip": "The general normal formula a²x/x₁ − b²y/y₁ = a² − b² works at any point (x₁, y₁) on the ellipse — substitute L into it.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Equation of the normal at (x₁, y₁): a²x/x₁ − b²y/y₁ = a² − b²",
+          "Let L = (ae, b²/a) be the end of the latus rectum",
+          "Normal at L: a²x/(ae) − b²y/(b²/a) = a² − b² ⇒ ax/e − ay = a² − b² …(1)"
+        ],
+        "why": "The general normal formula applies at any point on the ellipse, so substituting the specific point L directly gives the normal at the end of the latus rectum.",
+        "common_mistakes": [
+          "Using the OTHER end of the latus rectum, (ae, −b²/a), instead of the positive one.",
+          "Simplifying b²y/(b²/a) incorrectly — it should become ay, not by."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "equation",
+        "label": "Substitute the end of the minor axis",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The end of the minor axis meant here is B′(0, −b), the lower end.",
+        "memory_tip": "There are two ends of the minor axis — the book uses the one that makes the algebra work out to a positive equation.",
+        "lines": [
+          "This normal passes through B′(0, −b), one end of the minor axis:",
+          "a(0)/e − a(−b) = a² − b² ⇒ ab = a² − b²"
+        ],
+        "why": "The condition 'the normal passes through one end of the minor axis' becomes an algebraic equation once the coordinates of that end are substituted into the normal's equation (1).",
+        "common_mistakes": [
+          "Using B(0, b) instead of B′(0, −b), which changes the sign of the resulting equation.",
+          "Losing the negative sign when substituting y = −b into −ay."
+        ]
+      },
+      {
+        "id": "s3_simplify",
+        "kind": "equation",
+        "label": "Simplify to ab = a²e²",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Replace b² using b² = a²(1 − e²).",
+        "memory_tip": "b² = a²(1 − e²) is the single most useful substitution in this whole chapter — it connects a, b and e.",
+        "lines": [
+          "ab = a² − b² = a² − a²(1 − e²) [since b² = a²(1 − e²)]",
+          { "text": "ab = a²e²", "style": "boxed" }
+        ],
+        "why": "Replacing b² with a²(1 − e²) turns the equation ab = a² − b² into one written purely in terms of a and e, ready for the final step.",
+        "common_mistakes": [
+          "Expanding a² − a²(1 − e²) incorrectly and losing the a²e² term.",
+          "Forgetting to divide both sides by a at all — the a on the left must stay to match a²e² on the right."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude e⁴ + e² = 1",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Fourth mark. Divide by a, square, and use b² = a²(1 − e²) once more.",
+        "memory_tip": "Once e² = b/a is known, squaring gives e⁴ = b²/a² — substitute b² = a²(1 − e²) one more time to finish.",
+        "lines": [
+          "From ab = a²e²: e² = b/a",
+          "e⁴ = b²/a² = a²(1 − e²)/a² = 1 − e²",
+          { "text": "e⁴ + e² = 1", "style": "boxed" }
+        ],
+        "why": "Squaring e² = b/a gives e⁴ = b²/a², and substituting b² = a²(1 − e²) once more shows this equals 1 − e², which rearranges directly to the required identity.",
+        "common_mistakes": [
+          "Dividing ab = a²e² by a² instead of by a, which gives b/a = ae² instead of e² = b/a.",
+          "Stopping at e⁴ = 1 − e² without writing the final rearranged form e⁴ + e² = 1."
+        ]
+      }
+    ]
+  }
+}

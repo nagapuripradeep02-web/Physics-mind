@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_focus_1_neg1_e_2by3_directrix_xyplus2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the ellipse if focus = (1, −1), e = 2/3 and directrix is x + y + 2 = 0.",
+  "appearances": [
+    { "year": 2016, "board": "ap_ipe" },
+    { "year": 2022, "board": "ap_ipe" },
+    { "year": 2019 }
+  ],
+  "mark_split": [
+    { "label": "Set up SP = e·PM", "marks": 1 },
+    { "label": "Square and substitute coordinates", "marks": 1 },
+    { "label": "Expand both sides", "marks": 1 },
+    { "label": "Simplify to the final equation", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Ellipse, answer 67. NOT on an SSP page — book p.49 lists SSP pages 57,58,59,60 for this chapter; page 61 carries no SSP banner. Printed appearances: AP 16,22 · TS 19. Book p.61 prints no margin mark tags for this focus-directrix style question, so the 1+1+1+1 split here is OURS, following the natural four stages of a focus-directrix derivation (set up the ratio, square and substitute, expand, simplify) — the same four-stage shape used across this chapter's derivation-style answers. This is the first of two focus-directrix questions in the chapter (67, 68); this one gives an axis-aligned final equation with an xy term of −4, unlike Q68's oblique case. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "The focus-directrix definition SP = e·PM works for any ellipse, tilted or not — it does not need the ellipse to already be lined up with the coordinate axes, which is why the final equation here carries an xy term.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up SP = e·PM",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. S is the given focus, and PM is the perpendicular distance from P to the given directrix.",
+        "memory_tip": "SP over PM equals e — that ratio IS the definition of an ellipse.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Given: focus S(1, −1), e = 2/3, directrix x + y + 2 = 0",
+          "Let P(x₁, y₁) be any point on the ellipse ⇒ SP = e·PM",
+          "√((x₁−1)² + (y₁+1)²) = (2/3) · |x₁+y₁+2| / √2"
+        ],
+        "why": "The focus-directrix property defines the ellipse directly: the distance from any point P to the focus, divided by its perpendicular distance to the directrix, is always the constant e.",
+        "common_mistakes": [
+          "Using the point-to-line distance formula without the √2 denominator that comes from the coefficients of x and y in x + y + 2 = 0.",
+          "Writing PM as the distance to the focus instead of to the directrix line."
+        ]
+      },
+      {
+        "id": "s2_square",
+        "kind": "equation",
+        "label": "Square and substitute coordinates",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Squaring removes both the square root and the absolute value.",
+        "memory_tip": "Squaring both sides is always the next move once a ratio has a square root in it.",
+        "lines": [
+          "9[(x₁−1)² + (y₁+1)²] = 2(x₁+y₁+2)²"
+        ],
+        "why": "Squaring both sides of SP = e·PM clears the square root on the left and the absolute value on the right, turning the equation into pure algebra.",
+        "common_mistakes": [
+          "Squaring e = 2/3 incorrectly, getting 4/3 instead of 4/9.",
+          "Forgetting to also square the 3 in the denominator on the left, which is what produces the factor of 9."
+        ]
+      },
+      {
+        "id": "s3_expand",
+        "kind": "equation",
+        "label": "Expand both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Expand each squared bracket term by term before collecting.",
+        "memory_tip": "Expand fully before simplifying — combining terms too early causes sign errors.",
+        "lines": [
+          "9(x₁²−2x₁+1+y₁²+2y₁+1) = 2(x₁²+y₁²+4+2x₁y₁+4x₁+4y₁)",
+          "9x₁²+9y₁²−18x₁+18y₁+18 = 2x₁²+2y₁²+4x₁y₁+8x₁+8y₁+8"
+        ],
+        "why": "Expanding both squared expressions fully, term by term, is what makes the next simplification step reliable.",
+        "common_mistakes": [
+          "Missing the cross term 2x₁y₁ when expanding (x₁+y₁+2)², since it is not a perfect square of a single variable.",
+          "Sign-slipping on (y₁+1)², which expands with +2y₁, not −2y₁."
+        ]
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify to the final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Fourth mark. Collect all terms on one side and combine like terms carefully.",
+        "memory_tip": "This equation will have an xy term — that is expected, because the focus and directrix are not aligned with the coordinate axes.",
+        "lines": [
+          "9x₁²−2x₁² + 9y₁²−2y₁² − 4x₁y₁ − 18x₁−8x₁ + 18y₁−8y₁ + 18−8 = 0",
+          { "text": "7x₁² − 4x₁y₁ + 7y₁² − 26x₁ + 10y₁ + 10 = 0", "style": "boxed" }
+        ],
+        "why": "Collecting the x₁², y₁², x₁y₁ and linear terms separately, on the same side of the equation, gives the final second-degree equation of the ellipse.",
+        "common_mistakes": [
+          "Combining 9x₁² and 2x₁² on the left with the wrong sign, giving the wrong coefficient of x₁².",
+          "Dropping the xy term entirely, mistakenly expecting an axis-aligned ellipse."
+        ]
+      }
+    ]
+  }
+}

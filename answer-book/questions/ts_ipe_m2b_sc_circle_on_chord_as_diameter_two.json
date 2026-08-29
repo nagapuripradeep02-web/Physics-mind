@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_circle_on_chord_as_diameter_two",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If the straight line 2x + 3y = 1 intersects the circle x² + y² = 4 at the points A and B, find the equation of the circle having AB as diameter.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Write the family through S and L", "marks": 1 },
+    { "label": "Write the centre of the family", "marks": 1 },
+    { "label": "Apply the diameter condition", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 System of Circles, answer 55.2, on a ★★★ Super Scoring Page (SSP 55). Chapter star rank ★★★, per the SAQ section table (book p.49). NO appearance year is printed against this answer — the book prints no black tag beside it, unlike its twin 55.1. ⚠ THE MARK SPLIT IS OURS, same 1+1+2 reasoning as the twin answer 55.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75)."
+  },
+  "insider_note": "The circle here is the simple x² + y² = 4, with no linear terms at all — do not let that simplicity skip the family-of-circles setup; the marks are for the METHOD, not just the final line.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "System of Circles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_family_through_s_and_l",
+        "kind": "equation",
+        "label": "Write the family through S and L",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Clear the line to the form (expression) − 1 = 0 before writing the family.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "S ≡ x² + y² − 4 = 0",
+          "L ≡ 2x + 3y − 1 = 0",
+          "Any circle through the points of intersection",
+          "of S = 0 and L = 0 is S + λL = 0",
+          "⇒ x² + y² + 2λx + 3λy − (4 + λ) = 0"
+        ],
+        "why": "S + λL = 0 is the family of every circle through the same two intersection points as the given circle and line — one member of it will have AB as a diameter.",
+        "common_mistakes": [
+          "Writing L as 2x + 3y = 1 without moving the 1 across, then adding a wrong constant.",
+          "Forgetting the constant −4 in S while combining terms."
+        ],
+        "memory_tip": "Clear every line to (expression) = 0 first — a family formula only works cleanly once both S and L equal zero."
+      },
+      {
+        "id": "s2_centre_of_family",
+        "kind": "equation",
+        "label": "Write the centre of the family",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. This circle has no cross terms, so the centre comes out simply in terms of λ.",
+        "lines": [
+          "Centre of the above circle is",
+          "( −λ , −3λ/2 )"
+        ],
+        "why": "Reading the centre (−g, −f) directly from the coefficients of x and y in step 1 gives the centre of every member of the family, in terms of λ.",
+        "common_mistakes": [
+          "Writing the y-coordinate as −3λ instead of −3λ/2 — the coefficient of y is 3λ, so half of it is 3λ/2.",
+          "Missing the negative sign on either coordinate."
+        ],
+        "memory_tip": "Coefficient of x is 2λ, so g = λ and the centre's x-coordinate is −λ — halve, then negate, exactly as always."
+      },
+      {
+        "id": "s3_diameter_condition",
+        "kind": "boxed_final",
+        "label": "Apply the diameter condition",
+        "marks": 2,
+        "mark_note": "Method + Solution",
+        "margin_note": "Last two marks: one for solving for λ, one for the final circle, cleared of fractions.",
+        "lines": [
+          "Line L = 0 becomes a diameter if the",
+          "centre lies on L ≡ 2x + 3y − 1 = 0",
+          "⇒ 2(−λ) + 3(−3λ/2) − 1 = 0",
+          "⇒ −4λ − 9λ − 2 = 0 ⇒ 13λ = −2",
+          "⇒ λ = −2/13",
+          "From (1), the required circle is",
+          { "text": "13(x² + y²) − 4x − 6y − 50 = 0", "style": "boxed" }
+        ],
+        "why": "Substituting the family's centre into L = 0 finds the exact λ whose member circle has L as a diameter; multiplying through by 13 clears the fraction from λ = −2/13 into a whole-number equation.",
+        "common_mistakes": [
+          "Multiplying the whole equation by 2 (to clear the /2) but forgetting to also clear the /13 that λ introduces.",
+          "Leaving the final answer with λ still visible instead of substituting its value back in."
+        ],
+        "memory_tip": "Whenever λ comes out as a fraction, multiply the whole final circle through by its denominator so every coefficient is a whole number."
+      }
+    ]
+  }
+}

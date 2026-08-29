@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_ecc_foci_directrices_vertical_4x2_y2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the eccentricity, foci and directrices of the ellipse 4x² + y² − 8x + 2y + 1 = 0.",
+  "appearances": [
+    { "year": 2018, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Standard form", "marks": 1 },
+    { "label": "Eccentricity", "marks": 1 },
+    { "label": "Foci", "marks": 1 },
+    { "label": "Directrices", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 8 Ellipse, answer 60, on a ★★★ SSP page (book p.49 chapter table). Printed appearance: AP 18 only — no TS tag is printed beside this question. Book p.58 prints NO margin '1 Mark' tags and no tick boxes for this question (unlike answers 58-59 on p.57), so the 1+1+1+1 mark split here is OURS, not the book's — patterned on the same '1 mark per result' shape the book prints for answers 58 and 59 in this same chapter, extended to credit the completing-the-square step because this question (unlike 58) starts from a genuinely unfactored general equation. Only three final results are asked (eccentricity, foci, directrices) — this question does NOT ask for the latus rectum, unlike Q58/Q59. This ellipse is VERTICAL (a < b): the book's own working correctly gets a = 1, b = 2 and states 'the ellipse is vertical', so the foci and directrix formulas use b·e and b/e, not a·e and a/e. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "The first thing to check after completing the square is whether a or b is bigger — this ellipse is vertical (b > a), so the foci sit on the y-axis, the opposite of the more common horizontal case.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_standard_form",
+        "kind": "equation",
+        "label": "Standard form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Group the x-terms and y-terms, then complete each square.",
+        "memory_tip": "Divide by the number on the right at the end so the equation reads = 1.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "4x² + y² − 8x + 2y + 1 = 0",
+          "⇒ 4(x² − 2x) + (y² + 2y) = −1",
+          "⇒ 4(x − 1)² + (y + 1)² = −1 + 4 + 1 = 4",
+          "⇒ (x − 1)²/1 + (y + 1)²/4 = 1"
+        ],
+        "why": "Completing the square in both x and y turns the general equation into the shifted standard form (x − h)²/a² + (y − k)²/b² = 1, so a² and b² can be read off directly.",
+        "common_mistakes": [
+          "Adding 1 and 1 inside the brackets but forgetting the 4× multiplier when adding to the right-hand side.",
+          "Dividing the whole equation by 4 at the wrong stage and losing the separate a² and b²."
+        ]
+      },
+      {
+        "id": "s2_eccentricity",
+        "kind": "equation",
+        "label": "Eccentricity",
+        "marks": 1,
+        "mark_note": "Eccentricity",
+        "margin_note": "Second mark. Here a² = 1, b² = 4, so a < b — the ellipse is vertical.",
+        "memory_tip": "When the y-denominator is bigger, use b² − a² over b² — the bigger axis is always on the bottom.",
+        "lines": [
+          "Here a² = 1, b² = 4 ⇒ a = 1, b = 2. Since a < b, the ellipse is vertical.",
+          "e = √(b² − a²) / b",
+          "= √(4 − 1) / 2",
+          { "text": "e = √3 / 2", "style": "boxed" }
+        ],
+        "why": "For a vertical ellipse (b > a), the eccentricity formula swaps roles: it is the square root of b² − a², divided by b, because the major axis is now along y.",
+        "common_mistakes": [
+          "Using the horizontal-ellipse formula √(a² − b²)/a by habit, without checking a < b first.",
+          "Getting a negative number under the root by subtracting in the wrong order."
+        ]
+      },
+      {
+        "id": "s3_foci",
+        "kind": "equation",
+        "label": "Foci",
+        "marks": 1,
+        "mark_note": "Foci",
+        "margin_note": "Third mark. Centre (h, k) = (1, −1); foci move along y = k ± be.",
+        "memory_tip": "Vertical ellipse: foci sit above and below the centre, on the y-axis direction.",
+        "lines": [
+          "Foci = (h, k ± be)",
+          "= (1, −1 ± 2·√3/2)",
+          { "text": "Foci = (1, −1 ± √3)", "style": "boxed" }
+        ],
+        "why": "A vertical ellipse has its major axis along y, so the foci lie directly above and below the centre, at a distance be.",
+        "common_mistakes": [
+          "Writing the foci as (1 ± be, −1), which puts them on the wrong axis.",
+          "Forgetting the shifted centre (1, −1) and writing (0, ±be)."
+        ]
+      },
+      {
+        "id": "s4_directrices",
+        "kind": "equation",
+        "label": "Directrices",
+        "marks": 1,
+        "mark_note": "Directrices",
+        "margin_note": "Fourth mark. y = k ± b/e, then rationalise by multiplying by √3.",
+        "memory_tip": "Vertical ellipse: directrices are horizontal lines, y = k ± b/e.",
+        "lines": [
+          "y = k ± b/e",
+          "⇒ y = −1 ± 4/√3",
+          "Multiply by √3: √3y = −√3 ± 4",
+          { "text": "√3y + √3 − 4 = 0 and √3y + √3 + 4 = 0", "style": "boxed" }
+        ],
+        "why": "The directrices of a vertical ellipse are horizontal lines y = k ± b/e — the reciprocal of the focus distance be, shifted by the same centre k.",
+        "common_mistakes": [
+          "Writing the directrices as vertical lines (in terms of x) instead of horizontal lines (in terms of y).",
+          "Combining both directrices onto one line with a single ± sign in front of 4, which does not pair a sign correctly with each line."
+        ]
+      }
+    ]
+  }
+}

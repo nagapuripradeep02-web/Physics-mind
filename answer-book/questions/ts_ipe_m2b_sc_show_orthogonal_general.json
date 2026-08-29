@@ -1,0 +1,77 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_show_orthogonal_general",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that the circles x² + y² − 2lx + g = 0, x² + y² + 2my − g = 0 intersect each other orthogonally.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Write g, f, c for both circles", "marks": 1 },
+    { "label": "Check the orthogonal condition", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 117.2, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). No appearance year is printed against this answer. NOTATION NOTE: the question reuses the letters l, m, g as ARBITRARY constants (a common textbook habit), which collides with the standard circle notation g = half the x-coefficient; this card keeps the book's own letters in the question and working, and uses capital G₁, G₂ / F₁, F₂ / C₁, C₂ for the circle-parameter reading in step 1 to avoid the reader confusing the constant g in the question with the circle-formula symbol g. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 117.1 (justified in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75)."
+  },
+  "insider_note": "This result is TRUE for every value of l, m, g — the two given circles are orthogonal no matter what the constants are, because the cross terms in the orthogonality condition vanish by the very shape of the two equations.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "System of Circles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_parameters",
+        "kind": "equation",
+        "label": "Write g, f, c for both circles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write G₁, F₁, C₁ for the first circle's parameters, so they are not confused with the question's own constant g.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Here, G₁ = −l, F₁ = 0, C₁ = g and",
+          "G₂ = 0, F₂ = m, C₂ = −g"
+        ],
+        "why": "The first circle has no y term, so F₁ = 0; the second has no x term, so G₂ = 0 — reading these parameters correctly is the key step, since it is exactly these two zeros that force orthogonality.",
+        "common_mistakes": [
+          "Confusing the question's own constant g (the constant term of the first circle) with the circle-formula symbol g for half the x-coefficient — this card uses G₁ for the latter to keep them apart.",
+          "Missing that F₁ = 0 and G₂ = 0 because each circle is missing one variable term."
+        ],
+        "memory_tip": "One circle has no y-term, the other has no x-term — that pairing of missing terms is exactly what will make the cross-product terms vanish next."
+      },
+      {
+        "id": "s2_check_orthogonal",
+        "kind": "boxed_final",
+        "label": "Check the orthogonal condition",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Both product terms vanish because F₁ = 0 and G₂ = 0 — true for every l, m, g.",
+        "lines": [
+          "Orthogonal condition: 2G₁G₂ + 2F₁F₂ = C₁ + C₂",
+          "L.H.S = 2(−l)(0) + 2(0)(m) = 0",
+          "R.H.S = C₁ + C₂ = g + (−g) = 0",
+          { "text": "∴ L.H.S = R.H.S — the circles cut orthogonally for every l, m, g.", "style": "boxed" }
+        ],
+        "why": "Because one circle has no y-term and the other has no x-term, the product terms G₁G₂ and F₁F₂ both involve a factor of 0 and vanish identically; and the two constant terms g and −g cancel to 0 as well — so both sides equal 0 for EVERY choice of l, m, g, not just particular numbers.",
+        "common_mistakes": [
+          "Trying to solve for l, m, or g as if they were unknowns to be found, when the question only asks to verify orthogonality holds identically.",
+          "Missing that C₁ + C₂ = g − g = 0 cancels completely, and instead leaving g in the final answer."
+        ],
+        "memory_tip": "When both sides of an identity reduce to 0 = 0 for every value of the letters involved, that is a genuine proof of the general statement, not a coincidence to double-check with numbers."
+      }
+    ]
+  }
+}

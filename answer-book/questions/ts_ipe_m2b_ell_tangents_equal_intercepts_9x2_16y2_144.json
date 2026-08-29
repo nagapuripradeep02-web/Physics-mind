@@ -1,0 +1,79 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_tangents_equal_intercepts_9x2_16y2_144",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equations of the tangents to 9x² + 16y² = 144, which make equal intercepts on the coordinate axes.",
+  "appearances": [
+    { "year": 2015, "board": "ap_ipe" },
+    { "year": 2015 }
+  ],
+  "mark_split": [
+    { "label": "Standard form and the equal-intercept line", "marks": 2 },
+    { "label": "Final tangent equations", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Ellipse, answer 63, on a ★★★ SSP page (book p.49 chapter table). Printed appearances: AP 15 · TS 15. This same ellipse and this exact question also appear in the Bullet Model Paper's Q13 & 14: Ellipse section (book p.108), where it is a verbatim repeat, not a new question — no extra card is authored for it. Book p.59 prints three empty tick boxes but NO numeric '1 Mark' tags, so the 2+2 split here is OURS — a setup/result split, since this question has only one final result (a pair of tangent lines) rather than several separate named quantities like Q58/Q59. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in)."
+  },
+  "insider_note": "'Equal intercepts on the axes' always means slope m = ±1 — writing the line as x ± y + k = 0 straight away, instead of x/p + y/p = 1, is the fast route to the tangent formula.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Standard form and the equal-intercept line",
+        "marks": 2,
+        "mark_note": "Setup",
+        "margin_note": "First two marks. A line with equal intercepts always has slope ±1.",
+        "memory_tip": "'Equal intercepts on the axes' is the signal for m = ±1 — no other information is needed to get the slope.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "9x² + 16y² = 144 ⇒ x²/16 + y²/9 = 1 ⇒ a² = 16, b² = 9",
+          "A line making equal intercepts on the axes is x ± y + k = 0, so its slope is m = ±1",
+          "Equation of the tangent with slope m: y = mx ± √(a²m² + b²)"
+        ],
+        "why": "A line x/p + y/p = 1 has equal intercepts p on both axes; rewriting it as x ± y = p shows its slope must be ±1, which is the only fact the tangent formula needs.",
+        "common_mistakes": [
+          "Trying to introduce a separate intercept variable p instead of going straight to slope m = ±1.",
+          "Using a² = 9, b² = 16 by reading the equation's coefficients directly instead of dividing by 144 first."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Final tangent equations",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Last two marks. Both signs of m give tangents, so the ± on m combines with the ± from the formula.",
+        "memory_tip": "Equal-intercept tangents to an ellipse come in a symmetric family: y = ±x ± (same number).",
+        "lines": [
+          "y = mx ± √(a²m² + b²) = (±1)x ± √(16(1) + 9) = ±x ± √25 = ±x ± 5",
+          { "text": "y = ±x ± 5", "style": "boxed" }
+        ],
+        "why": "Substituting m = ±1 into the tangent formula gives the same constant √25 = 5 for both signs of m, so all four combinations of sign produce the four tangent lines with equal intercepts.",
+        "common_mistakes": [
+          "Only writing the m = 1 case and dropping the m = −1 case, which loses half the answer.",
+          "Computing √(16 + 9) as something other than 5."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_radical_axis_two",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the radical axis of the circles x² + y² + 4x + 6y − 7 = 0, 4(x² + y²) + 8x + 12y − 9 = 0.",
+  "appearances": [
+    { "year": 2019, "board": "ap_ipe" },
+    { "year": 2019 }
+  ],
+  "mark_split": [
+    { "label": "Write both circles in standard form", "marks": 1 },
+    { "label": "Subtract to find the radical axis", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 118.2, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: AP 19, TS 19. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 118.1 (justified in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75)."
+  },
+  "insider_note": "The second circle is printed with the '4(x² + y²)' factored outside a bracket — divide the WHOLE bracket by 4, every term inside it, not just the x² + y² part.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "System of Circles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_standard_form",
+        "kind": "equation",
+        "label": "Write both circles in standard form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Only the second circle needs dividing here — by 4.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "S ≡ x² + y² + 4x + 6y − 7 = 0",
+          "4(x² + y²) + 8x + 12y − 9 = 0",
+          "⇒ S′ ≡ x² + y² + 2x + 3y − 9/4 = 0"
+        ],
+        "why": "The second circle's leading coefficient of 4 must be divided out of every term, including the constant, before it can be subtracted from S in the radical axis formula.",
+        "common_mistakes": [
+          "Dividing only the 8x + 12y part by 4 and leaving the constant −9 undivided.",
+          "Treating the bracket 4(x² + y²) as though it only affects x² and y², forgetting it multiplies the whole equation."
+        ],
+        "memory_tip": "A bracket like 4(x² + y²) means the WHOLE equation was scaled by 4 — divide every single term by 4 to undo it, constant included."
+      },
+      {
+        "id": "s2_subtract",
+        "kind": "boxed_final",
+        "label": "Subtract to find the radical axis",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for the subtraction and the cleared final line.",
+        "lines": [
+          "Radical axis is S − S′ = 0",
+          "⇒ (4 − 2)x + (6 − 3)y + (−7 + 9/4) = 0",
+          "⇒ 2x + 3y − 19/4 = 0",
+          { "text": "⇒ 8x + 12y − 19 = 0", "style": "boxed" }
+        ],
+        "why": "Subtracting the two standard-form circles cancels x² and y², leaving the radical axis; multiplying through by 4 clears the remaining fraction.",
+        "common_mistakes": [
+          "Computing −7 + 9/4 incorrectly as −7 − 9/4, flipping the sign of the constant.",
+          "Stopping at the fractional form 2x + 3y − 19/4 = 0 instead of clearing it to whole numbers."
+        ],
+        "memory_tip": "−7 = −28/4, so −7 + 9/4 = −19/4 — convert to a common denominator before adding, rather than mixing whole numbers and quarters."
+      }
+    ]
+  }
+}

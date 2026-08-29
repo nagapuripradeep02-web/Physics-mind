@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_common_chord_length_two",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation and length of the common chord of the two circles x² + y² + 3x + 5y + 4 = 0, x² + y² + 5x + 3y + 4 = 0.",
+  "appearances": [
+    { "year": 2018 }
+  ],
+  "mark_split": [
+    { "label": "Find the common chord", "marks": 1 },
+    { "label": "Find the centre and radius", "marks": 1 },
+    { "label": "Find the perpendicular distance", "marks": 1 },
+    { "label": "Find the length of the chord", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles, answer 54.2, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tag: TS 18. ⚠ THE MARK SPLIT IS OURS, same 1+1+1+1 reasoning as the twin answer 54.1 (justified in full in that card's note against Circle SAQ answer 48, book p.51). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52, and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75)."
+  },
+  "insider_note": "Both circles here have half-integer centres and radii — keep every fraction over a common denominator of 4 through the whole answer, or the final surd will not match the book's 3/√2.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "System of Circles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common_chord",
+        "kind": "equation",
+        "label": "Find the common chord",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Subtract the two circles exactly as given — both already share coefficient 1 on x² and y².",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "S ≡ x² + y² + 3x + 5y + 4 = 0",
+          "S′ ≡ x² + y² + 5x + 3y + 4 = 0",
+          "Equation of the common chord is S − S′ = 0",
+          "⇒ −2x + 2y = 0",
+          "⇒ x − y = 0"
+        ],
+        "why": "S − S′ = 0 cancels the x² and y² terms of two circles, leaving the straight line through their two points of intersection — the common chord.",
+        "common_mistakes": [
+          "Leaving the equation as −2x + 2y = 0 instead of dividing through by −2.",
+          "Copying the coefficients from S′ − S instead of S − S′, which flips the sign but not the line itself."
+        ],
+        "memory_tip": "x − y = 0 is the line y = x — a 45° line, easy to sanity-check against the two circles' near-symmetric coefficients."
+      },
+      {
+        "id": "s2_centre_and_radius",
+        "kind": "equation",
+        "label": "Find the centre and radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Use S here, and keep using S (not S′) in every step that follows.",
+        "lines": [
+          "For the circle S ≡ x² + y² + 3x + 5y + 4 = 0",
+          "centre C(−3/2, −5/2)",
+          "radius r = √(9/4 + 25/4 − 4) = √(9/2) = 3/√2"
+        ],
+        "why": "Centre and radius come from writing the circle as x² + y² + 2gx + 2fy + c = 0 and reading off centre (−g, −f) and radius √(g² + f² − c).",
+        "common_mistakes": [
+          "Writing the centre as (3/2, 5/2) instead of (−3/2, −5/2).",
+          "Forgetting to subtract 4 (the value of c) inside the square root for the radius."
+        ],
+        "memory_tip": "g = 3/2, f = 5/2 here — halve each coefficient, then negate for the centre."
+      },
+      {
+        "id": "s3_perpendicular_distance",
+        "kind": "equation",
+        "label": "Find the perpendicular distance",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark, for the distance from C(−3/2, −5/2) to the chord x − y = 0.",
+        "lines": [
+          "Length of the perpendicular from C(−3/2, −5/2)",
+          "to the line x − y = 0 is",
+          "p = |−3/2 − (−5/2)| / √(1 + 1) = 1/√2"
+        ],
+        "why": "The perpendicular from the centre to the chord bisects it, so this distance combines with the radius to give half the chord length.",
+        "common_mistakes": [
+          "Substituting the wrong sign for −5/2 and getting a different numerator.",
+          "Forgetting the absolute value bars and reporting a signed distance."
+        ],
+        "memory_tip": "The line x − y = 0 makes the distance formula especially short: just the difference of the coordinates over √2."
+      },
+      {
+        "id": "s4_length_of_chord",
+        "kind": "boxed_final",
+        "label": "Find the length of the chord",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Fourth mark, for the final chord length.",
+        "lines": [
+          "Length of the common chord",
+          { "text": "= 2√(r² − p²) = 2√(9/2 − 1/2) = 4 units", "style": "boxed" }
+        ],
+        "why": "Pythagoras on the right triangle formed by the radius, the perpendicular distance, and half the chord gives half the chord as √(r² − p²).",
+        "common_mistakes": [
+          "Forgetting to square r = 3/√2 correctly (it is 9/2, not 3/2).",
+          "Leaving the final answer as 2√4 instead of simplifying to the whole number 4."
+        ],
+        "memory_tip": "√(9/2 − 1/2) = √4 = 2 is a clean number — a sign that the earlier centre and distance were computed correctly."
+      }
+    ]
+  }
+}

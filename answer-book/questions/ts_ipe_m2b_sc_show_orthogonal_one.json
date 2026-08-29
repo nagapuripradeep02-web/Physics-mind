@@ -1,0 +1,78 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_show_orthogonal_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that the circles x² + y² − 2x − 2y − 7 = 0, 3x² + 3y² − 8x + 29y = 0 intersect each other orthogonally.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Write g, f, c for both circles", "marks": 1 },
+    { "label": "Check the orthogonal condition", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 117.1, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). No appearance year is printed against this answer. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 116.1 (one mark for reading g, f, c correctly, one for the check itself), adapted here to a 'show that' proof rather than a 'find k' equation — the marking logic is identical either way. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75)."
+  },
+  "insider_note": "A 'show that' orthogonality question is graded on evaluating BOTH sides separately and writing L.H.S = R.H.S at the end — stopping at a single combined equation loses the proof-style mark even if the numbers are right.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "System of Circles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_g_f_c",
+        "kind": "equation",
+        "label": "Write g, f, c for both circles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The second circle has leading coefficient 3, so it must be divided by 3 before reading off g′, f′, c′.",
+        "lines": [
+          { "text": "Sol:", "style": "heading" },
+          "Here, g = −1, f = −1, c = −7 and",
+          "g′ = −4/3, f′ = 29/6, c′ = 0"
+        ],
+        "why": "Dividing the second circle by its leading coefficient 3 first puts it in standard form, so its g′, f′, c′ can be read off correctly before checking orthogonality.",
+        "common_mistakes": [
+          "Applying the orthogonality test to the un-divided circle 3x² + 3y² − 8x + 29y = 0 directly.",
+          "Reading f′ as 29/3 instead of 29/6 — it is half the coefficient of y after dividing by 3."
+        ],
+        "memory_tip": "Divide by the leading coefficient before reading g′, f′, c′ — this is true every single time a circle is not already written with coefficient 1."
+      },
+      {
+        "id": "s2_check_orthogonal",
+        "kind": "boxed_final",
+        "label": "Check the orthogonal condition",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for evaluating both sides and concluding L.H.S = R.H.S.",
+        "lines": [
+          "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
+          "L.H.S = 2gg′ + 2ff′",
+          "= 2(−1)(−4/3) + 2(−1)(29/6) = 8/3 − 29/3 = −7",
+          "R.H.S = c + c′ = −7 + 0 = −7",
+          { "text": "∴ L.H.S = R.H.S — the circles cut orthogonally.", "style": "boxed" }
+        ],
+        "why": "Evaluating the two sides of the orthogonality condition separately and finding them equal is the actual proof — a 'show that' question is graded on this equality being demonstrated, not merely asserted.",
+        "common_mistakes": [
+          "Combining both sides into one equation and solving for an unknown, when there is no unknown here to solve for.",
+          "Not writing the final concluding sentence ('the circles cut orthogonally'), leaving the numeric equality unexplained."
+        ],
+        "memory_tip": "For a 'show that' orthogonality question, compute L.H.S and R.H.S SEPARATELY and end with the words 'L.H.S = R.H.S' — that sentence is itself worth marks."
+      }
+    ]
+  }
+}

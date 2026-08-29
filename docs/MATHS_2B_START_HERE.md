@@ -40,10 +40,24 @@ worse, `notebook.js` `LEGACY_UNIT_KEYS` remaps `mathematics-N` keys for the 2026
 
 `C:\Users\PRADEEEP\Downloads\Telegram Desktop\DocScanner 01-Nov-2022 5-56 am.pdf` —
 **"SENIOR INTER MATHS-2B, My Baby Bullet-Q"**, SRI Publishers, Machilipatnam, **128 pages**, a
-phone scan with no text layer. **PDF page = book page** (PDF p.3 = book p.3, PDF p.118 = book
-p.118; no offset — unlike the 1A/1B scans). Read it with the Read tool's `pages` parameter,
-≤ 8 pages per call, and **read your own pages every time** — never author from another
-session's or agent's transcription.
+phone scan with no text layer. **PDF page = printed page EXCEPT for one stretch** (found by the
+2026-08-29 page survey, verified on the pages): printed p.23 was never scanned and printed p.43
+was scanned twice, so
+
+| PDF page | Printed page |
+|---|---|
+| 1–22 | 1–22 |
+| **23–42** | **24–43** (request PDF N−1 for printed N) |
+| 43 | 43 again (duplicate of PDF 42) |
+| 44–128 | 44–128 |
+
+**Printed p.23 (Parabola LAQ answers 10 and 11) is absent from the scan.** Answer 10 (parabola
+through (−1,2), (1,−1), (2,1), axis ∥ x-axis) is authored by us from the method the book uses for
+answer 12; answer 11 is presumed to be the Bullet Model Paper p.113 item (parabola through (−2,1),
+(1,2), (−1,3)) and is taken from there. Both cards say so. **Always cite PRINTED page numbers in
+`verification.note`** and say which PDF page you read when they differ. Read it with the Read
+tool's `pages` parameter, ≤ 8 pages per call, and **read your own pages every time** — never
+author from another session's or agent's transcription.
 
 Same publisher, series and organising principle as the 1A/1B books: **a question bank organised
 by mark cut**, giving question text, chapter star rank, printed appearance years and, on
