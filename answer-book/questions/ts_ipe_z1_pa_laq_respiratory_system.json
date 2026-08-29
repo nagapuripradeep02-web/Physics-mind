@@ -1,0 +1,627 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_pa_laq_respiratory_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Periplaneta americana (Zoology)"
+  },
+  "chapter": "Periplaneta americana",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the respiratory system of cockroach with the help of neat and labelled diagrams.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Parts of the tracheal system",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Spiracles",
+      "marks": 1
+    },
+    {
+      "label": "Tracheae",
+      "marks": 2
+    },
+    {
+      "label": "Tracheoles",
+      "marks": 1
+    },
+    {
+      "label": "Mechanism of breathing",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.23-24, LAQ 8). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [AP M-16,18] and [TS M-15,19]. ONE POINT DIFFERS BETWEEN SOURCES and this card follows the source book: which spiracles open during inspiration. The book says the two thoracic pairs stay open and the eight abdominal pairs stay closed during inspiration, and the reverse during expiration; several other texts print the first four pairs open during inspiration and the last six during expiration. A teacher must settle this before the card is taught. The book's question line ends with a question mark; the wording is kept verbatim and only the punctuation is cleaned. The book prints TWO diagrams for it (the whole-body tracheal plan and a tracheole inset pair); this card draws one combined figure that carries both. FIGURE SCOPE: the book prints a whole-body tracheal plan plus two tracheole insets; this card draws only the whole-body plan a student can reproduce — ten pairs of spiracles, the longitudinal trunks, the commissural tracheae and one trachea branching into tracheoles."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Periplaneta americana · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts",
+        "kind": "text",
+        "label": "Parts of the system",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "The cockroach breathes through a tracheal",
+          "system. Air tubes carry the air straight to",
+          "the tissues, so the blood does not carry it.",
+          "The tracheal system has three parts —",
+          "stigmata (spiracles), tracheae and",
+          "tracheoles.",
+          "Breathing itself has two events, inspiration",
+          "and expiration."
+        ],
+        "why": "Naming the three parts in order from outside to inside gives the answer its plan: air enters at the spiracles, travels in the tracheae and is delivered by the tracheoles.",
+        "common_mistakes": [
+          "Writing that the blood carries oxygen to the tissues. Haemolymph has no respiratory pigment; the tracheoles do that work.",
+          "Naming only the tracheae. Spiracles and tracheoles are separate named parts."
+        ],
+        "memory_tip": "Outside to inside: spiracle, trachea, tracheole — big opening, big tube, fine tube.",
+        "margin_note": "Three parts of the tracheal system plus the two events of breathing. Three short lines."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — tracheal system",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "pa_tracheal_system",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — body outline and the head"
+            },
+            {
+              "type": "stroke",
+              "id": "body_l",
+              "d": "M 240 62 L 238.9 62.4 L 237.4 62.9 L 235.5 63.4 L 233.5 64 L 231.4 64.6 L 229.2 65.4 L 227.1 66.3 L 225.1 67.4 L 223.4 68.6 L 222 70 L 220.9 71.6 L 220 73.4 L 219.3 75.4 L 218.6 77.6 L 218.1 79.9 L 217.7 82.2 L 217.3 84.7 L 216.9 87.1 L 216.5 89.6 L 216 92 L 215.5 94.4 L 215 96.8 L 214.6 99.3 L 214.2 101.8 L 213.8 104.4 L 213.4 107 L 213 109.6 L 212.6 112.4 L 212.3 115.1 L 212 118 L 211.7 120.9 L 211.5 123.9 L 211.2 126.9 L 211 130 L 210.8 133.1 L 210.6 136.3 L 210.5 139.6 L 210.3 143 L 210.2 146.4 L 210 150 L 209.8 153.7 L 209.7 157.5 L 209.5 161.4 L 209.4 165.4 L 209.2 169.5 L 209.1 173.6 L 209 177.7 L 209 181.9 L 209 186 L 209 190 L 209.1 194 L 209.1 198 L 209.3 202.1 L 209.4 206.1 L 209.6 210.1 L 209.8 214.1 L 210 218.1 L 210.3 222.1 L 210.6 226.1 L 211 230 L 211.4 233.9 L 211.8 237.9 L 212.3 241.8 L 212.8 245.7 L 213.3 249.6 L 213.9 253.5 L 214.6 257.3 L 215.3 260.9 L 216.1 264.5 L 217 268 L 218 271.4 L 219 274.8 L 220.2 278.1 L 221.4 281.3 L 222.6 284.4 L 224 287.5 L 225.4 290.4 L 226.8 293.1 L 228.4 295.6 L 230 298 L 231.8 300.2 L 233.9 302.2 L 236.1 304.1 L 238.5 305.8 L 240.8 307.4 L 243.1 308.8 L 245.2 310.1 L 247.2 311.2 L 248.8 312.2 L 250 313",
+              "ms": 3970
+            },
+            {
+              "type": "stroke",
+              "id": "body_r",
+              "d": "M 280 62 L 281.1 62.4 L 282.6 62.9 L 284.5 63.4 L 286.5 64 L 288.6 64.6 L 290.8 65.4 L 292.9 66.3 L 294.9 67.4 L 296.6 68.6 L 298 70 L 299.1 71.6 L 300 73.4 L 300.7 75.4 L 301.4 77.6 L 301.9 79.9 L 302.3 82.2 L 302.7 84.7 L 303.1 87.1 L 303.5 89.6 L 304 92 L 304.5 94.4 L 305 96.8 L 305.4 99.3 L 305.8 101.8 L 306.2 104.4 L 306.6 107 L 307 109.6 L 307.4 112.4 L 307.7 115.1 L 308 118 L 308.3 120.9 L 308.5 123.9 L 308.8 126.9 L 309 130 L 309.2 133.1 L 309.4 136.3 L 309.5 139.6 L 309.7 143 L 309.8 146.4 L 310 150 L 310.2 153.7 L 310.3 157.5 L 310.5 161.4 L 310.6 165.4 L 310.8 169.5 L 310.9 173.6 L 311 177.7 L 311 181.9 L 311 186 L 311 190 L 310.9 194 L 310.9 198 L 310.7 202.1 L 310.6 206.1 L 310.4 210.1 L 310.2 214.1 L 310 218.1 L 309.7 222.1 L 309.4 226.1 L 309 230 L 308.6 233.9 L 308.2 237.9 L 307.7 241.8 L 307.2 245.7 L 306.7 249.6 L 306.1 253.5 L 305.4 257.3 L 304.7 260.9 L 303.9 264.5 L 303 268 L 302 271.4 L 301 274.8 L 299.8 278.1 L 298.6 281.3 L 297.4 284.4 L 296 287.5 L 294.6 290.4 L 293.2 293.1 L 291.6 295.6 L 290 298 L 288.2 300.2 L 286.1 302.2 L 283.9 304.1 L 281.5 305.8 L 279.2 307.4 L 276.9 308.8 L 274.8 310.1 L 272.8 311.2 L 271.2 312.2 L 270 313",
+              "ms": 3970
+            },
+            {
+              "type": "stroke",
+              "id": "head",
+              "d": "M 234 46 A 26 17 0 1 0 286 46 A 26 17 0 1 0 234 46",
+              "ms": 1950
+            },
+            {
+              "type": "stroke",
+              "id": "thorax_line",
+              "d": "M 213 122 L 307 122",
+              "ms": 1340,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — ten pairs of spiracles: 2 thoracic, 8 abdominal"
+            },
+            {
+              "type": "stroke",
+              "id": "spiracles_l",
+              "d": "M 213.6 86 A 3.5 3.5 0 1 0 220.6 86 A 3.5 3.5 0 1 0 213.6 86 M 209.4 110 A 3.5 3.5 0 1 0 216.4 110 A 3.5 3.5 0 1 0 209.4 110 M 206.9 142 A 3.5 3.5 0 1 0 213.9 142 A 3.5 3.5 0 1 0 206.9 142 M 205.9 164 A 3.5 3.5 0 1 0 212.9 164 A 3.5 3.5 0 1 0 205.9 164 M 205.5 186 A 3.5 3.5 0 1 0 212.5 186 A 3.5 3.5 0 1 0 205.5 186 M 206 208 A 3.5 3.5 0 1 0 213 208 A 3.5 3.5 0 1 0 206 208 M 207.5 230 A 3.5 3.5 0 1 0 214.5 230 A 3.5 3.5 0 1 0 207.5 230 M 210.2 252 A 3.5 3.5 0 1 0 217.2 252 A 3.5 3.5 0 1 0 210.2 252 M 215.3 274 A 3.5 3.5 0 1 0 222.3 274 A 3.5 3.5 0 1 0 215.3 274 M 223.9 294 A 3.5 3.5 0 1 0 230.9 294 A 3.5 3.5 0 1 0 223.9 294",
+              "ms": 3140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "spiracles_r",
+              "d": "M 306.4 86 A 3.5 3.5 -0 1 1 299.4 86 A 3.5 3.5 -0 1 1 306.4 86 M 310.6 110 A 3.5 3.5 -0 1 1 303.6 110 A 3.5 3.5 -0 1 1 310.6 110 M 313.1 142 A 3.5 3.5 -0 1 1 306.1 142 A 3.5 3.5 -0 1 1 313.1 142 M 314.1 164 A 3.5 3.5 -0 1 1 307.1 164 A 3.5 3.5 -0 1 1 314.1 164 M 314.5 186 A 3.5 3.5 -0 1 1 307.5 186 A 3.5 3.5 -0 1 1 314.5 186 M 314 208 A 3.5 3.5 -0 1 1 307 208 A 3.5 3.5 -0 1 1 314 208 M 312.5 230 A 3.5 3.5 -0 1 1 305.5 230 A 3.5 3.5 -0 1 1 312.5 230 M 309.8 252 A 3.5 3.5 -0 1 1 302.8 252 A 3.5 3.5 -0 1 1 309.8 252 M 304.7 274 A 3.5 3.5 -0 1 1 297.7 274 A 3.5 3.5 -0 1 1 304.7 274 M 296.1 294 A 3.5 3.5 -0 1 1 289.1 294 A 3.5 3.5 -0 1 1 296.1 294",
+              "ms": 3140,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — atria and the three longitudinal trunks"
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_lat_l",
+              "d": "M 224 100 L 224 298",
+              "ms": 2830,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_lat_r",
+              "d": "M 296 100 L 296 298",
+              "ms": 2830,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_dor_l",
+              "d": "M 236 100 L 236 298",
+              "ms": 2830,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_dor_r",
+              "d": "M 284 100 L 284 298",
+              "ms": 2830,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_ven_l",
+              "d": "M 248 100 L 248 298",
+              "ms": 2830,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_ven_r",
+              "d": "M 272 100 L 272 298",
+              "ms": 2830,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "connect_l",
+              "d": "M 220.6 86 L 224 86 M 216.4 110 L 224 110 M 213.9 142 L 224 142 M 212.9 164 L 224 164 M 212.5 186 L 224 186 M 213 208 L 224 208 M 214.5 230 L 224 230 M 217.2 252 L 224 252 M 222.3 274 L 224 274 M 230.9 294 L 224 294",
+              "ms": 1140,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "connect_r",
+              "d": "M 299.4 86 L 296 86 M 303.6 110 L 296 110 M 306.1 142 L 296 142 M 307.1 164 L 296 164 M 307.5 186 L 296 186 M 307 208 L 296 208 M 305.5 230 L 296 230 M 302.8 252 L 296 252 M 297.7 274 L 296 274 M 289.1 294 L 296 294",
+              "ms": 1140,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — cephalic trunks and commissural tracheae"
+            },
+            {
+              "type": "stroke",
+              "id": "ceph_dor_l",
+              "d": "M 236 100 C 234 82 244 68 252 60",
+              "ms": 640,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "ceph_dor_r",
+              "d": "M 284 100 C 286 82 276 68 268 60",
+              "ms": 640,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "ceph_ven_l",
+              "d": "M 248 100 C 248 84 252 72 258 64",
+              "ms": 540,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "ceph_ven_r",
+              "d": "M 272 100 C 272 84 268 72 262 64",
+              "ms": 540,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "commissure1",
+              "d": "M 224 152 L 296 152",
+              "ms": 1030,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "commissure2",
+              "d": "M 224 214 L 296 214",
+              "ms": 1030,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "commissure3",
+              "d": "M 224 276 L 296 276",
+              "ms": 1030,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — a trachea ending in tracheoles"
+            },
+            {
+              "type": "stroke",
+              "id": "trachea_top",
+              "d": "M 150 336 L 246 336",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "trachea_bot",
+              "d": "M 150 350 L 246 350",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "taenidia",
+              "d": "M 162 337 L 162 349 M 174 337 L 174 349 M 186 337 L 186 349 M 198 337 L 198 349 M 210 337 L 210 349 M 222 337 L 222 349 M 234 337 L 234 349",
+              "ms": 1200,
+              "w": 1.2
+            },
+            {
+              "type": "stroke",
+              "id": "tracheoblast",
+              "d": "M 245 343 A 13 10 0 1 0 271 343 A 13 10 0 1 0 245 343",
+              "ms": 1040
+            },
+            {
+              "type": "stroke",
+              "id": "tracheoles",
+              "d": "M 270 343 L 308 318 M 270 343 L 314 330 M 270 343 L 316 343 M 270 343 L 314 356 M 270 343 L 308 368",
+              "ms": 3270,
+              "w": 1.2
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_venceph",
+              "x": 6,
+              "y": 76,
+              "text": "Ventral cephalic trunk",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_venceph",
+              "d": "M 169.4 72 L 254 66",
+              "ms": 1210,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_thoracic",
+              "x": 6,
+              "y": 120,
+              "text": "Thoracic spiracles",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_thoracic",
+              "d": "M 136.9 116 L 211 110",
+              "ms": 1060,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_abdominal",
+              "x": 6,
+              "y": 170,
+              "text": "Abdominal spiracles",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_abdominal",
+              "d": "M 152.4 166 L 209 172",
+              "ms": 810,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_atrium",
+              "x": 6,
+              "y": 222,
+              "text": "Atrium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_atrium",
+              "d": "M 59.8 218 L 223 208",
+              "ms": 2340,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_lattrunk",
+              "x": 6,
+              "y": 272,
+              "text": "Lateral longitudinal trunk",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lattrunk",
+              "d": "M 193.9 268 L 224 262",
+              "ms": 440,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_trachea",
+              "x": 6,
+              "y": 336,
+              "text": "Trachea",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_trachea",
+              "d": "M 66 332 L 172 340",
+              "ms": 1520,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_dorceph",
+              "x": 318,
+              "y": 76,
+              "text": "Dorsal cephalic trunk",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_dorceph",
+              "d": "M 314 72 L 268 64",
+              "ms": 670,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_dortrunk",
+              "x": 318,
+              "y": 124,
+              "text": "Dorsal longitudinal trunk",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_dortrunk",
+              "d": "M 314 120 L 284 132",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_ventrunk",
+              "x": 318,
+              "y": 172,
+              "text": "Ventral longitudinal trunk",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ventrunk",
+              "d": "M 314 168 L 272 166",
+              "ms": 600,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_commissure",
+              "x": 318,
+              "y": 220,
+              "text": "Commissural trachea",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_commissure",
+              "d": "M 314 216 L 282 214",
+              "ms": 460,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_tracheole",
+              "x": 336,
+              "y": 336,
+              "text": "Tracheoles",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_tracheole",
+              "d": "M 332 332 L 314 332",
+              "ms": 300,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "The count and the position of the spiracles are the marked facts, and a drawing shows them faster than a sentence: two pairs on the thorax, eight pairs down the abdomen, joined by the longitudinal trunks.",
+        "common_mistakes": [
+          "Drawing an unequal number of spiracles on the two sides. They are in ten PAIRS, so both sides match.",
+          "Putting all ten pairs on the abdomen. The first two pairs are thoracic.",
+          "Leaving out the commissural tracheae that join the trunks of the two sides."
+        ],
+        "memory_tip": "Draw the body outline, mark 2 pairs on the thorax and 8 pairs down the abdomen, then run the trunks between them and join the sides across.",
+        "margin_note": "Label thoracic and abdominal spiracles, the cephalic trunks, the three longitudinal trunks, the atrium and the commissural trachea."
+      },
+      {
+        "id": "s3_spiracles",
+        "kind": "text",
+        "label": "Stigmata (spiracles)",
+        "marks": 1,
+        "mark_note": "Part 1",
+        "lines": [
+          "Stigmata (spiracles): the outer openings of",
+          "the tracheal system. They lie on the pleura.",
+          "There are ten pairs. The first two pairs are",
+          "thoracic and the remaining eight pairs are",
+          "abdominal.",
+          "The system is called polypneustic, because",
+          "more than three pairs are present, and",
+          "holopneustic, because all of them work.",
+          "Every spiracle has a valve and is held open",
+          "by a chitinous ring called the peritreme.",
+          "Hair-like trichomes inside it filter dust",
+          "from the incoming air."
+        ],
+        "why": "Two words carry this step's mark, polypneustic and holopneustic, and both are defined by the count itself, so the ten pairs must be stated before the terms are used.",
+        "common_mistakes": [
+          "Writing ten spiracles instead of ten PAIRS, which is twenty openings.",
+          "Swapping the two terms. Polypneustic is about the number; holopneustic is about all of them working."
+        ],
+        "memory_tip": "Two plus eight makes ten pairs. Poly = many pairs, holo = all of them open.",
+        "margin_note": "Ten pairs with the two-plus-eight split, both terms with their meanings, peritreme and trichomes. One mark."
+      },
+      {
+        "id": "s4_tracheae",
+        "kind": "text",
+        "label": "Tracheae",
+        "marks": 2,
+        "mark_note": "Part 2",
+        "lines": [
+          "Tracheae: each spiracle opens inside into a",
+          "small chamber called an atrium.",
+          "In the thorax, tracheae from the atria join",
+          "to form the dorso-cephalic and the",
+          "ventro-cephalic trunks, whose branches",
+          "supply the head. Lateral longitudinal trunks",
+          "are also present.",
+          "From each abdominal atrium three tubes arise.",
+          "They open into the dorsal, lateral and",
+          "ventral longitudinal trunks.",
+          "The trunks of the two sides are joined by",
+          "commissural tracheae, and branches pass from",
+          "them to all parts of the body.",
+          "The tracheal wall has three layers — an outer",
+          "basement membrane, a middle epithelium and",
+          "an inner cuticle called intima.",
+          "The intima is thickened in a spiral called",
+          "taenidia. It stops the tube collapsing when",
+          "there is no air in it."
+        ],
+        "why": "The tracheae are described twice over, once as a plan of trunks and once as a wall of three layers, and the taenidia is the detail that explains why an air tube stays open at all.",
+        "common_mistakes": [
+          "Writing that the spiracle opens straight into a trunk. It opens into an atrium first.",
+          "Calling the taenidia a layer. It is a spiral thickening OF the intima, the innermost layer.",
+          "Giving two wall layers. Three are expected: basement membrane, epithelium and intima."
+        ],
+        "memory_tip": "Three longitudinal trunks along the body, three wall layers across it, and one spiral, the taenidia, holding the tube open.",
+        "margin_note": "Atria, the cephalic trunks, the three longitudinal trunks, commissural tracheae, then the three wall layers and taenidia. Two marks."
+      },
+      {
+        "id": "s5_tracheoles",
+        "kind": "text",
+        "label": "Tracheoles",
+        "marks": 1,
+        "mark_note": "Part 3",
+        "lines": [
+          "Tracheoles: each trachea ends in a",
+          "tracheoblast cell, which holds many fine",
+          "tubules called tracheoles inside it.",
+          "Tracheoles have no intima and no taenidia.",
+          "Their inner surface is lined by a protein",
+          "called trachein.",
+          "They are filled with tracheolar fluid, and",
+          "they deliver the air to the tissues."
+        ],
+        "why": "The tracheoles are where gas exchange actually happens, and their two differences from a trachea, no taenidia and a fluid filling, are exactly what a fine exchange surface needs.",
+        "common_mistakes": [
+          "Writing that tracheoles have taenidia. Both intima and taenidia are absent in tracheoles.",
+          "Calling the tracheole lining chitin. It is a protein called trachein."
+        ],
+        "memory_tip": "Trachea has taenidia; tracheole has trachein and fluid. Same start, opposite lining.",
+        "margin_note": "Tracheoblast cell, no intima or taenidia, trachein, tracheolar fluid. Four facts for one mark."
+      },
+      {
+        "id": "s6_mechanism",
+        "kind": "boxed_final",
+        "label": "Mechanism of breathing",
+        "marks": 1,
+        "mark_note": "Mechanism",
+        "lines": [
+          {
+            "text": "Inspiration is passive, expiration is active",
+            "style": "boxed"
+          },
+          "The dorsoventral and the ventral longitudinal",
+          "muscles carry out both events.",
+          "Inspiration: these muscles relax, the body",
+          "volume increases and air is drawn into the",
+          "tracheae. The thoracic spiracles stay open",
+          "and the abdominal spiracles stay closed.",
+          "Inspiration uses no energy, so it is passive.",
+          "Expiration: the thoracic spiracles close, the",
+          "abdominal spiracles open and the air is",
+          "pushed out. Expiration uses energy, so it is",
+          "active.",
+          "The spiracles open and close according to the",
+          "carbon dioxide level in the haemolymph and",
+          "the oxygen level in the tracheae."
+        ],
+        "why": "This step names which muscles move, which spiracles are open at each event, and which event costs energy, so the two events can be told apart in a single line each.",
+        "common_mistakes": [
+          "Writing that inspiration is active. Inspiration is passive; expiration is the active one.",
+          "Saying the muscles contract during inspiration. They RELAX, so the body volume increases."
+        ],
+        "memory_tip": "In through the thorax, out through the abdomen. Passive in, active out.",
+        "margin_note": "Two named muscle sets, then one line each for inspiration and expiration with which spiracles are open. One mark."
+      }
+    ]
+  },
+  "insider_note": "The mark most often lost here is 'ten pairs' written as 'ten', and the second is the passive-active pair — write inspiration passive and expiration active in those exact words, because that is the line the examiner scans for."
+}

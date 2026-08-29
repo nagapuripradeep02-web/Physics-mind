@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_air_bladder_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the importance of air bladder in fishes?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Hydrostatic organ",
+      "marks": 1
+    },
+    {
+      "label": "Other uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.55, VSAQ 111). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. TEXT BEYOND THE BOOK: the book gives three uses (hydrostatic organ, vertical movement, respiration in some); the sound use is added from the standard syllabus account."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hydrostatic",
+        "kind": "text",
+        "label": "Hydrostatic organ",
+        "marks": 1,
+        "mark_note": "Floating",
+        "margin_note": "State that it is a hydrostatic organ and say what that means. Two or three lines.",
+        "lines": [
+          "The air bladder is a gas filled sac present in",
+          "bony fishes.",
+          "It acts as a hydrostatic organ. The gas in it",
+          "changes the density of the fish, so the fish",
+          "floats at the depth it needs without swimming."
+        ],
+        "why": "The air bladder works by changing density, and every use of it follows from that one idea, so the density line is written first.",
+        "common_mistakes": [
+          "Writing that the air bladder is a lung. It is a hydrostatic organ in most bony fishes.",
+          "Giving the air bladder to sharks. Cartilaginous fishes have no air bladder."
+        ],
+        "memory_tip": "Gas in, density down, fish rises. The air bladder is a float, not a lung."
+      },
+      {
+        "id": "s2_other",
+        "kind": "boxed_final",
+        "label": "Other uses",
+        "marks": 1,
+        "mark_note": "Uses",
+        "margin_note": "Name the extra uses in a list. One line each is enough.",
+        "lines": [
+          {
+            "text": "Hydrostatic organ: up and down, respiration",
+            "style": "boxed"
+          },
+          "It helps the fish move up and down in the",
+          "water.",
+          "In some fishes it also helps in respiration.",
+          "In some fishes it helps in producing and",
+          "receiving sound."
+        ],
+        "why": "The second mark is for the extra uses, and they are easiest to remember as a short list in the order float, move, breathe.",
+        "common_mistakes": [
+          "Giving only the floating use. Two marks need at least two uses.",
+          "Writing that all fishes have an air bladder. Cartilaginous fishes do not."
+        ],
+        "memory_tip": "Float, move up and down, breathe in a few: three uses in that order."
+      }
+    ]
+  },
+  "insider_note": "The word hydrostatic is the marked word; an answer that only says the fish floats usually loses half the credit."
+}

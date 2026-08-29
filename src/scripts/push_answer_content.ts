@@ -129,3 +129,25 @@ for (const f of files.sort()) {
 rmSync(tmp, { recursive: true, force: true });
 console.log(`✓ content:push — ${files.length} units, ${totalQ} questions, ${(totalB / 1024).toFixed(0)} KB`);
 if (totalQ === 0) { console.error('✗ zero questions uploaded — refusing to call that success'); process.exit(1); }
+
+// ── which chapters are FREE, after the push ──────────────────────────────────
+// The `free` flag lives on the ab_content ROW, keyed by unit_key, and an upsert
+// leaves it alone. That is right until a unit_key changes meaning: the 2026-27
+// physics renumbering (2026-08-28) moved every physics chapter down one key, so
+// a row flagged free as "physics-4 Motion in a Plane" is, after this push,
+// "physics-4 Laws of Motion" — still flagged free. Nothing in the push can
+// know which chapter the founder MEANT to be free, so it prints the free rows
+// by NAME and leaves the UPDATE to a human:
+//   UPDATE ab_content SET free = (unit_key IN ('physics-3','chemistry-3','mathematics-4','mathematics_1b-3'));
+try {
+    const listed = execFileSync('curl', [
+        '-s', `${url}/rest/v1/ab_content?select=unit_key,name,question_n&free=is.true&order=unit_key`,
+        '-H', `apikey: ${key}`, '-H', `Authorization: Bearer ${key}`, '-H', 'Expect:',
+    ], { encoding: 'utf8' });
+    const rows = JSON.parse(listed) as { unit_key: string; name: string; question_n: number }[];
+    console.log(`  free chapters now (ab_content.free): ${rows.length ? '' : 'NONE'}`);
+    for (const r of rows) console.log(`    ${r.unit_key.padEnd(18)} ${r.name} (${r.question_n})`);
+    console.log('  → if a free row names the wrong chapter (a renumbered unit_key), fix it with one UPDATE — see the comment above this report.');
+} catch (e) {
+    console.error(`  (could not list free rows: ${(e as Error).message.slice(0, 120)})`);
+}

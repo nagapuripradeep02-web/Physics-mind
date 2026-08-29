@@ -62,9 +62,19 @@ if (!m) fail('  could not find window.PM_UNITS in the built index.html');
 let entryCount = 0;
 let unitCount = 0;
 try {
-    const units = JSON.parse(m[1]) as Array<{ questions?: unknown[] }>;
-    unitCount = units.length;
-    for (const u of units) entryCount += (u.questions ?? []).length;
+    // ANSWERS, not manifest rows. Since 2026-08-28 the manifest also lists
+    // chapters the 2026-27 syllabus announced but that are not written yet
+    // (physics "Physics of Emerging Technologies", Maths-1A "Sets and
+    // Relations" / "Sequences and Series"), as coming-soon rows with no
+    // question_id. The catalog shows those for the book's true shape — but this
+    // card is the storefront, and a storefront must not count what it cannot
+    // hand over.
+    const units = JSON.parse(m[1]) as Array<{ questions?: Array<{ question_id?: string }> }>;
+    for (const u of units) {
+        const ready = (u.questions ?? []).filter((e) => e.question_id).length;
+        if (ready > 0) unitCount += 1;
+        entryCount += ready;
+    }
 } catch (e) {
     fail(`  PM_UNITS did not parse: ${(e as Error).message}`);
 }

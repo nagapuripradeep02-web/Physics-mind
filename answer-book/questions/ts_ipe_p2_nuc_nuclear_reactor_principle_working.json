@@ -117,6 +117,11 @@
               "ms": 4500
             },
             {
+              "type": "pause",
+              "id": "ph_inside",
+              "caption": "Inside the shielding"
+            },
+            {
               "type": "stroke",
               "id": "core",
               "d": "M 60 88 L 220 88 L 220 188 L 60 188 Z",
@@ -139,6 +144,11 @@
               "id": "control_rod",
               "d": "M 140 34 L 140 165",
               "ms": 1870
+            },
+            {
+              "type": "pause",
+              "id": "ph_coolant",
+              "caption": "The coolant loop"
             },
             {
               "type": "stroke",

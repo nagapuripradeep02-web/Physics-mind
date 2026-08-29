@@ -12,7 +12,7 @@
   },
   "chapter": "The Straight Line",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "If Q(h,k) is the image of the point P(x₁,y₁) with respect to the straight line ax+by+c=0 then prove that (h−x₁) : a = (k−y₁) : b = −2(ax₁+by₁+c) : (a²+b²).",
@@ -37,19 +37,19 @@
     },
     {
       "label": "Find r from the condition",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 1 The Straight Line, answer 5.2. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. ⚠ The book prints a note between answers 5.1 and 5.2 reading 'First half of the solution is same to same' — the two proofs share their first three steps EXACTLY, and differ only in the closing condition. The step ids and labels here are deliberately identical across the two files for that reason, which follows the Maths-1A precedent of giving one method over different conditions one shared skeleton. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 1 The Straight Line, answer 5.2. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. ⚠ The book prints a note between answers 5.1 and 5.2 reading 'First half of the solution is same to same' — the two proofs share their first three steps EXACTLY, and differ only in the closing condition. The step ids and labels here are deliberately identical across the two files for that reason, which follows the Maths-1A precedent of giving one method over different conditions one shared skeleton. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find r from the condition."
   },
   "recall_prompt": "Say how you would prove this — say what perpendicularity gives you, and what condition on Q finishes it.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "The Straight Line · 7 marks"
+      "The Straight Line · 8 marks"
     ],
     "steps": [
       {
@@ -295,8 +295,8 @@
         "id": "s4_find_r",
         "kind": "boxed_final",
         "label": "Find r from the condition",
-        "marks": 2,
-        "margin_note": "The last two marks, and the ONLY place this proof differs from its neighbour. The IMAGE is the mirror point, so the line bisects PQ — it is the MIDPOINT R that lies on the line, not Q itself. That midpoint is where the factor 2 in the answer comes from.",
+        "marks": 3,
+        "margin_note": "The last three marks, and the ONLY place this proof differs from its neighbour. The IMAGE is the mirror point, so the line bisects PQ — it is the MIDPOINT R that lies on the line, not Q itself. That midpoint is where the factor 2 in the answer comes from.",
         "lines": [
           "Now P = (x₁, y₁), Q = (h, k) ⇒ Mid point of PQ is",
           "R = ((x₁ + h)/2, (y₁ + k)/2)",

@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_echinoidea_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the salient features of the echinoids?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Test and spines",
+      "marks": 1
+    },
+    {
+      "label": "Aristotle's lantern",
+      "marks": 1
+    },
+    {
+      "label": "Larva and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.36, SAQ 27). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK SPELLING corrected here: the book prints 'Peidicellaria' for pedicellariae and 'calcarious' for calcareous."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-I (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What the echinoids are",
+        "marks": 1,
+        "why": "The class is defined by what it does not have — no arms — which is why the body closes into a globe or a disc instead of spreading into a star.",
+        "common_mistakes": [
+          "Giving them arms. Arms are absent in Echinoidea; it is the starfish that has arms.",
+          "Calling Echinoidea a phylum. It is a class of the phylum Echinodermata."
+        ],
+        "memory_tip": "Echinoid means spiny and globular: a ball or a disc, with no arms.",
+        "margin_note": "Class, phylum, body form, and the absence of arms. Four or five lines.",
+        "mark_note": "What they are",
+        "lines": [
+          "Echinoidea is a class of the phylum",
+          "Echinodermata.",
+          "Its members are the sea urchins, the heart",
+          "urchins and the sand dollars.",
+          "The body form is semi-globular or disc-like.",
+          "Arms are absent."
+        ]
+      },
+      {
+        "id": "s2_test",
+        "kind": "text",
+        "label": "Test, spines and pedicellariae",
+        "marks": 1,
+        "why": "The ossicles are locked together instead of lying loose in the skin, and that fixed test is what gives the spines a firm base to be worked from.",
+        "common_mistakes": [
+          "Writing that the spines are fixed. In echinoids the spines are movable.",
+          "Giving the pedicellariae five jaws. A pedicellaria has three jaws; Aristotle's lantern has five."
+        ],
+        "memory_tip": "Three jaws for a pedicellaria, five jaws for the lantern. Keep the two counts apart.",
+        "margin_note": "Test, spines, pedicellariae, grooves. Four short lines.",
+        "mark_note": "Test and spines",
+        "lines": [
+          "The calcareous ossicles are united to form a",
+          "strong shell called the test, or corona.",
+          "The spines over the body are movable.",
+          "Pedicellariae are present. Each pedicellaria",
+          "has three jaws.",
+          "The ambulacral grooves are closed."
+        ]
+      },
+      {
+        "id": "s3_lantern",
+        "kind": "text",
+        "label": "Aristotle's lantern",
+        "marks": 1,
+        "why": "The mouth faces the rock the animal feeds on and the anus faces away from it, so the two openings lie on opposite surfaces of the test.",
+        "common_mistakes": [
+          "Placing the anus on the oral surface. In echinoids the anus is aboral.",
+          "Writing that every echinoid has the lantern. It is absent in the heart urchin."
+        ],
+        "memory_tip": "Mouth below on the rock, anus above. The lantern is the five-jawed mill at the mouth.",
+        "margin_note": "Position of the two openings, then the lantern. The five jaws carry the mark.",
+        "mark_note": "Aristotle's lantern",
+        "lines": [
+          "The madreporite and the anus are aboral, that",
+          "is, they lie on the surface away from the",
+          "mouth.",
+          "Aristotle's lantern is present. It is a",
+          "five-jawed masticatory apparatus in the",
+          "buccal cavity.",
+          "It is present in the sea urchins and absent",
+          "in the heart urchin."
+        ]
+      },
+      {
+        "id": "s4_larva",
+        "kind": "boxed_final",
+        "label": "Larva and examples",
+        "marks": 1,
+        "why": "The larva is named after the class it belongs to, so echinopluteus goes with Echinoidea just as auricularia goes with Holothuroidea.",
+        "common_mistakes": [
+          "Naming the bipinnaria. That is the larva of a starfish; the echinoid larva is the echinopluteus.",
+          "Giving no example. Two or three named animals are expected."
+        ],
+        "memory_tip": "Echinopluteus for the echinoid, and all three examples begin with Echino-.",
+        "margin_note": "Larva in one line, then the examples. Close with the boxed hallmarks.",
+        "mark_note": "Larva and examples",
+        "lines": [
+          {
+            "text": "Test · movable spines · Aristotle's lantern",
+            "style": "boxed"
+          },
+          "The larva is the echinopluteus.",
+          "Examples:",
+          "Echinus — the sea urchin.",
+          "Echinocardium — the heart urchin.",
+          "Echinodiscus — the sand dollar."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Aristotle's lantern is asked as a 2-mark question of its own, so it is always worth a full line here — five jaws, in the buccal cavity of the sea urchin."
+}

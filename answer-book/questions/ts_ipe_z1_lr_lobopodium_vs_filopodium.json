@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_lobopodium_vs_filopodium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between lobopodium and filopodium. Give an example to each of them.",
+  "appearances": [
+    { "year": 2015, "board": "ap_ipe" },
+    { "year": 2016, "board": "ap_ipe" },
+    { "year": 2017, "board": "ap_ipe" },
+    { "year": 2017, "board": "ts_ipe" },
+    { "year": 2020, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Lobopodium", "marks": 1 },
+    { "label": "Filopodium", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, VSAQ chapter 16 'Locomotion & Reproduction' (book p.57, question 129). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. MARKS: the VSAQ chapter header prints '2+2=4 MARKS', which is the blueprint's two 2-mark questions drawn from this unit, not 4 marks for one question; this card is authored at the Section A standard of 2 marks. APPEARANCES: the book prints [AP M-15,16,17] and [TS M-17,20] beside the two answer lines. TEXT BEYOND THE BOOK: the book gives one line per type; the lines saying a lobopodium carries both ectoplasm and endoplasm while a filopodium is ectoplasm alone are added here as standard zoology, because that is the structural difference behind the shapes."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Locomotion and Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lobopodium",
+        "kind": "text",
+        "label": "Lobopodium",
+        "marks": 1,
+        "mark_note": "Lobopodium",
+        "lines": [
+          "A lobopodium is a blunt, finger-like",
+          "pseudopodium with a rounded tip.",
+          "It contains both ectoplasm and endoplasm.",
+          "Example: Amoeba, Entamoeba."
+        ],
+        "why": "Both names describe a shape, so each answer line has to say the shape first; the example is then the mark the examiner can tick without reading further.",
+        "common_mistakes": [
+          "Writing that a lobopodium is pointed. Its tip is blunt and rounded.",
+          "Giving no example. The question asks for one for each type."
+        ],
+        "memory_tip": "Lobe means a blunt rounded part, so a lobopodium is the blunt one.",
+        "margin_note": "Shape in one line, example in the next. Never leave the example out."
+      },
+      {
+        "id": "s2_filopodium",
+        "kind": "boxed_final",
+        "label": "Filopodium",
+        "marks": 1,
+        "mark_note": "Filopodium",
+        "lines": [
+          "A filopodium is a long, fine, thread-like",
+          "pseudopodium with a pointed tip.",
+          "It is made of ectoplasm only.",
+          "Example: Euglypha.",
+          {
+            "text": "Lobopodium blunt; filopodium thread-like",
+            "style": "boxed"
+          }
+        ],
+        "why": "A filopodium has no endoplasm inside it, and that is why it can stay so thin while a lobopodium has to stay thick.",
+        "common_mistakes": [
+          "Writing Amoeba as the example for a filopodium. Amoeba forms lobopodia; Euglypha forms filopodia.",
+          "Calling a filopodium a network. A network of joined threads is a reticulopodium."
+        ],
+        "memory_tip": "Filo- means thread, as in filament: the thread-like one.",
+        "margin_note": "One mark each. The example is half of each mark."
+      }
+    ]
+  },
+  "insider_note": "Every year some students write Amoeba for both types — the example is the fastest mark on this question and the easiest to lose."
+}

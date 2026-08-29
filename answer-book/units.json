@@ -1,9 +1,9 @@
 {
-  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books. UNIT 2 (Units and Measurements, added 2026-08-22): the union check produced a THIRD outcome — both books are VSAQ-ONLY. The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the TSBIE BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new (\"Why do we have different units for the same physical quantity?\", shipped as vsaq12 source:\"blm\"). NEITHER book has a Short Answer or Long Answer section for this unit, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented — the standing rule. Two further cells come from the AP March 2026 paper, which neither book lists: Section A Q1 (which quantity has no dimensions → vsaq13) and Q10 (J m⁻¹ and J m⁻² → vsaq14), both source:\"ap_2026_paper\". SOURCE DISAGREEMENT recorded, not resolved: the Fastrack says there are THREE types of error (systematic, random, gross), the BLM says TWO (systematic, random); vsaq2 writes the Fastrack’s three and records the BLM’s two in that step’s why line, the same house rule used for the rolling-friction \"laws\". The sweep deliberately SKIPS units-and-dimensions cells the bank already holds in other units — G (Unit 9), impulse (Unit 5) and torque (Unit 7) — so no predicted card duplicates them. UNIT 3 (Motion in a Straight Line, added 2026-08-22): the union check produced a FOURTH outcome — each book holds a whole SECTION the other lacks. The Fastrack (pp.6-8) has 4 Very Short Answer, 6 Short Answer and a PROBLEMS section but NO Long Answer section; the TSBIE BLM (pp.4-5) has a Short Answer section ONLY, with no VSAQ section at all. Neither has Section C, so no 8-mark form is invented. The BLM’s Short Answer 5 (roof jump, 9 m s⁻¹) is the Fastrack’s PROBLEM 3 — a book sources it as an SAQ, so it ships as saq8 source:\"blm\", the same promotion precedent as the Unit 8 problem the AP paper asked; Fastrack problems 1, 2 and 4 stay deferred. RE-HOMED: ts_ipe_p1_mp_average_instantaneous_velocity was filed under Unit 4 by the AP-paper session before Unit 3 existed. BOTH books place it here, and they DISAGREE on the section — Fastrack VSAQ 2 (3 stars) against BLM Short Answer 1 — so it now carries two cuts and appears twice in this unit, as vsaq2 (2 marks) and saq7 (4 marks, source:\"blm\"). Its question_id keeps the mp_ prefix because ids are stable forever. The AP March 2026 paper adds Q4 (value of g in free fall → vsaq5) and confirms Q11 (rest and motion relative) as vsaq1, recorded in that card’s appearances[]. The sweep deliberately SKIPS relative velocity: the bank already holds ts_ipe_p1_mp_relative_velocity_plane in Unit 4, where the Fastrack files it. ||| MATHEMATICS (Maths-1A, merged 2026-08-23 from feat/ipe-mathematics-answerbook): Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — the `subject` field namespaces them from the physics units (merged 2026-08-23). Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). MERGED 2026-08-23 (feat/ipe-answerbook): this manifest now carries BOTH subjects - physics units untagged (absent = physics) plus the ten Maths-1A units tagged subject:mathematics. The 2026-08-22 mathematics-only deletion of physics Unit 4 was deliberately NOT taken in this merge; the physics units here are the live superset. The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS COMPLETE at 11 of 11 (book answers 40-47, pp.51-56) — CORRECTED 2026-08-21 from an earlier claim of 9 of 9 over pp.51-55, which scoped the chapter from the book's 'TOP 40 SAQ' hit list. That list is a SELECTION, not an inventory: the chapter runs two answers further, to 47 on p.56, and answers 46 and 47 were missed until the walk to the Addition of Vectors boundary for Unit 4 found them. The LAQ pass had read every page and was unaffected. Lesson recorded in docs/IPE_MATHS_1A_SOURCE.md: scope a chapter by walking to its boundary, never from a hit list: one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. Its VSAQ CHAPTER IS ALSO COMPLETE at 18 of 18 (book answers 99.1-112.2, pp.82-86), so UNIT 3 IS COMPLETE AT 44 OF 44 (17 LAQ + 9 SAQ + 18 VSAQ). The VSAQ chapter corrected a standing claim in docs/IPE_MATHS_1A_SOURCE.md: that doc said after Unit 1 that this book never prints a mark split on its VSAQ pages, which held for the Functions VSAQ pages (pp.79-81) but is FALSE here — p.82 prints [1 mark] tags against answers 100 and 101. The real pattern tracks PAGE LAYOUT, not section: a question set alone on a page usually carries margin tags, and a question set two-to-a-page in two columns almost never does, because the columns take the margin. That explains every gap in this unit. The doc has been corrected. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form. Unit 5 (Product of Vectors) is COMPLETE at 26 of 26 — 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64) + 12 VSAQ (pp.89-91). It is the first MATHS unit to occupy all three sections of the paper (Q7 VSAQ, Q13 SAQ, Q22 LAQ), and the first since Matrices whose chapters print mark splits: answer 23 on p.37 is printed 1+1+1+1+1+2, answers 58 and 59 on p.63 are printed 1+1+1+1, and answer 61 on p.64 is printed 1+2+1 — so four of the unit's 26 splits are sourced rather than inferred, and the rest follow those shapes. Its LAQ chapter is titled 'Product of Vectors' on the chapter page but 'Vector Algebra' in the book's own hit list; the chapter pages were followed. Every chapter boundary in this unit was walked (pp.39, 65 and 92 were each read to confirm where the chapter ends), per the scoping rule recorded after the Unit 3 gap. Unit 6 (Trigonometric Ratios upto Transformations) is COMPLETE at 42 of 42 — 8 LAQ (book pp.39-42) + 10 SAQ (pp.65-67) + 24 VSAQ (pp.92-95). It is the SECOND-LARGEST unit after Matrices and holds the most slots on the paper: Q8 and Q9 (VSAQ), Q14 (SAQ) and Q23 (LAQ), where Q23 is always a transformation identity. All eight LAQs share ONE five-move method and one split, and four of them are TWINS on facing halves of a page differing by a single sign. No split is printed anywhere in this unit; the LAQ shape follows the printed split of LAQ answer 23 on p.37 and the SAQ/VSAQ shapes follow the printed splits on pp.63-64 and p.82, and every file says which. The VSAQ chapter's own header note — 'Writing Formula itself gets you 1 Mark in these Questions' — is why the first step of every VSAQ answer here IS the formula. All three boundaries were walked: pp.43, 68 and 96. Unit 7 (Trigonometric Equations) is COMPLETE at 8 of 8 — SAQ ONLY, book pp.68-71. The paper gives it no Section-A and no Section-C slot (Q15 is its only appearance), and the book has no Trigonometric Equations LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. The eight are four matched PAIRS, one per page: a sin+b cos=c (70.x), quadratic in one ratio (71.x), sum-to-product (72.x), and roots-of-a-quadratic (73.x) where nothing is ever solved. Boundary walked at p.72 (Inverse Trig Functions). Unit 8 (Inverse Trigonometric Functions) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.72-74, the same shape as Unit 7: the paper gives it only Q16, and the book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). Its five families are: name-the-angle plus a compound formula (74.x, 75), chaining the Tan-inverse addition formula (76.x), the doubled-Tan-inverse conversion (77 — the ONLY printed split in the chapter, 1+1+1+1), evaluating both sides independently (78.x), and one fully general proof with no numbers (79). Boundary walked at p.75 (Properties of Triangles). Unit 9 (Hyperbolic Functions) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.96-97. The paper gives it only Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ chapter (SAQ chapters 7-13). Three families: the logarithmic forms of the inverse functions (137.x, 138.x), one ratio given then the double angles (139.x), and proofs worked straight from the exponential DEFINITIONS (140.x, 141.x). VSAQ chapter 19 is the LAST VSAQ chapter; boundary walked to p.98, where the book's separate STAR QUESTIONS PLUS bank begins. THAT BANK IS NOW FOLDED IN (founder decision 2026-08-22): pp.98-111, answers 142-180, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory. All 37 answers were surveyed; 3 went into Unit 10 when that unit was built (178-180), 34 are now backfilled into Units 1-9, and 2 were SKIPPED as duplicates of questions already authored — answer 155 (unit vector of 2i+3j+k, TS 17) duplicates Unit 4 VSAQ 113.1, and answer 166 (cos A + cos B - cos C on a triangle, TS 18,19) duplicates Unit 6 LAQ answer 29. Unit 9 receives NOTHING: the bank has no hyperbolic-functions questions. Distribution of the 34: Unit 1 gets 2 (142, 143), Unit 2 gets 2 (144, 145), Unit 3 gets 9 (146-154), Unit 4 gets 1 (157), Unit 5 gets 6 (156, 158-162), Unit 6 gets 11 (163-165, 167-174), Unit 7 gets 2 (175, 176), Unit 8 gets 1 (177). SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S, and every backfilled file says so in its verification note. The bank's page headings name the CHAPTER, never the mark cut — the sole exception is p.98, which reads 'FUNCTIONS LAQ'. Two headings do read 'MATRICES-VSAQ' (p.100) and 'MATRICES' (p.102), but they are chapter banners rather than section markers: the p.102 'MATRICES' run holds answers 151 and 152, which are plainly VSAQ shapes, while the p.100 'MATRICES-VSAQ' run spills onto p.101 and swallows answer 150, a full 3x3 inverse that is Section-B work on the real paper. So every backfilled question is classed by its own length and shape against the unit's existing chapters, except where the unit itself fixes the section - Units 2 (LAQ-only), 7 (SAQ-only) and 8 (SAQ-only) admit no other answer. Mark splits are ours throughout: the bank prints no [N Marks] tags anywhere. CHEMISTRY OPENS (2026-08-23), Unit 1 Atomic Structure. SOURCE: the Sri Chaitanya Junior Fastrack chemistry section, book pp.48-52 (PDF pp.50-54; the chemistry half runs book pp.48-96 over 13 chapters). THE TWO-BOOK UNION CHECK CANNOT BE RUN FOR CHEMISTRY AND IS PENDING: the TSBIE Basic Learning Material PDF in hand is PHYSICS ONLY, so chemistry has exactly one source book. Founder decision 2026-08-23: proceed Fastrack-only and record the gap rather than wait. Every chemistry card therefore carries needs_teacher_verification. Chapter 1 as printed: 10 VSAQ, 7 SAQ, 2 LAQ. Stars are front-loaded, exactly as in the physics half — VSAQ 1-8 are three-star and 9-10 unranked, SAQ 1-5 three-star, SAQ 6 unranked, SAQ 7 two-star, both LAQs three-star. NO exam-year citations appear anywhere in chapter 1, so appearances[] is empty throughout; in the chemistry half years are printed only at ch.4 VSAQ 23/24/25 and ch.5 SAQ 9/10/12. There is NO Problems section anywhere in chemistry: numericals sit inside the VSAQ and SAQ lists (ch.1 VSAQ 2 is one), so the physics 'PROBLEMS deferred' decision does not arise here. Chapter 1 has no cuts — no question in it is asked at two lengths. TWO SOURCE DISCREPANCIES, recorded not resolved: (a) VSAQ 9, the book prints 'number of nodes = n - l - 1', which is the count of RADIAL nodes, the total being n - 1 and the nodal planes l; the card writes radial nodes = n - l - 1 plus the total, so the worked 3d count still agrees with the book; (b) LAQ 2, the book credits the magnetic quantum number to Lande, which is the attribution the paper marks, though it is more usually traced to Sommerfeld and Zeeman. Also: the book works VSAQ 2 in CGS and the card works it in SI, reaching the same 5 x 10^14 Hz, and the book prints h = 6.625e-34 J s where the card writes the accepted 6.626e-34. ENUMERATION SWEEP: 10 predicted lean cards (7 VSAQ, 3 SAQ) source:'enumerated', numbered after the book's own list. Their objects are the syllabus sections the Fastrack skips entirely — the whole of atomic number/mass number/isotopes, the Rutherford model and its limitations, the Rydberg equation, wave number, and psi-squared — the same whole-section pattern seen in physics Units 5, 6 and 9. Swept against the WHOLE bank, not just this unit: nothing collides with the physics or mathematics units. BACK-TEST: no chemistry board paper is held in the corpus, so the diff-against-a-real-paper step is PENDING for chemistry, exactly like the union check. NOTATION: Unicode has a subscript x but no subscript y or z, so the p and d orbitals are written px, py, pz and dxy, dz2 in plain letters — the same call as the plain i, j, k axis vectors in the mathematics cards. Ids are ts_ipe_c1_as_<slug>: c1 = Chemistry paper 1, as = Atomic Structure. MATHEMATICS-1B OPENS 2026-08-23 — the SECOND mathematics paper, and the first unit block to carry subject 'mathematics_1b'. Maths-1A owns 'mathematics' and its own Units 1-10, so the two papers CANNOT share a subject value: unit numbers namespace per subject and the catalog, triage, exam-eve route and study planner all key on subject-number (the build's unitKey guard fails on a collision — it was added after physics Unit 3 and maths Unit 3 keyed alike and Matrices' 17 LAQs were scheduled into physics study plans). Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), 127 pages, no text layer — question text, star rank, printed appearance years and the PRINTED per-step mark split only, never its prose (Rule 41/30i). Maths-1B is a 75-mark paper with the same shape as 1A: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers are Maths-1B SYLLABUS units (1 Locus, 2 Transformation of Axes, 3 The Straight Line, 4 Pair of Straight Lines, 5 3D-Coordinates, 6 D.C's & D.R's, 7 The Plane, 8 Limits & Continuity, 9 Differentiation, 10 Applications of Derivatives). ⚠ Unit 10 is a COMPOSITE: the book splits it into five sub-chapters with separate mark cuts (10.1 Errors, 10.2 Tangents & Normals, 10.3 Rate Measure, 10.4 Mean Value Theorems, 10.5 Maxima & Minima) — that will need a catalog decision when the unit is authored. Unlike 1A, the topic-by-question-number map is NOT a guarantee: the book's own IPE Blue Print (book p.3) carries a printed caveat that the public paper deviates from the model paper it is drawn from. Unit 1 (Locus) is COMPLETE at 12 of 12 — SAQ ONLY, book pp.53-56. The Blue Print gives Locus 4 marks in Section B and nothing in Section A or C, and the book has no Locus LAQ chapter (LAQ chapters 1-6) and no Locus VSAQ chapter (VSAQ chapters 14-20), so it is the 1B counterpart of 1A's Units 7 and 8. Scoped by BOUNDARY WALK to book p.57 (Transformation of Axes), NOT from the TOP 35 SAQ hit list — that list names only 6 of the 12, which is the Unit 3 scoping lesson repeating. Five families over one method: right angle at P (42.1-42.3, a circle), fixed area (43.1, 43.2, a PAIR of parallel lines and the only answers here that are not a single curve), PA²+PB²=2PC² (44, a straight line), sum of distances (45.1, 45.2, an ellipse), and ratio or difference of distances (46, 47.1, 47.2, 48, a circle or a hyperbola). The mark split 1+1+2 is the BOOK'S on answers 44 and 46, which sit alone on a page and carry printed margin tags; the other ten are set two-to-a-page in two columns, which takes the margin, so their splits are ours — patterned on those two printed ones rather than inferred from another chapter, because all twelve answers take the same three moves. ⚠ Star Questions Plus (book pp.104-108) is NOT yet folded in — on 1A that bank was found late and added 34 questions; plan for it per unit. Unit 2 (Transformation of Axes) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.57-60 (8 questions, answers 49.1-54) PLUS one from the Star Questions Plus bank (answer 181, book p.104). Same shape as Unit 1: the Blue Print gives it only a Section-B slot, and the book has no Transformation of Axes LAQ or VSAQ chapter. Boundary walked to book p.61 (SAQ chapter 9, The Straight Line). Two methods, four questions each: TRANSLATION (shift of origin — 49.1, 49.2 find the new equation; 50 and SQP 181 find the ORIGINAL) and ROTATION (51.1, 51.2, 52 find the new equation; 53 finds the original), plus the general proof 54. The split 1+1+1+1 is OURS but its DECOMPOSITION IS THE BOOK'S: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — take the given equation, write the change-of-axes formulas, put them in, simplify — and every answer in the chapter is cut on those four. Answer 54 is the exception: it is the chapter's only fully general proof, carries no numbers, and its four steps are its own. NO [N Marks] tags are printed anywhere in this chapter. The direction of the transformation is the chapter's whole teaching point and its commonest error: finding the NEW equation uses x = X+h / x = Xcosθ − Ysinθ, while finding the ORIGINAL reverses them to X = x−h / X = xcosθ + ysinθ, moving the minus sign from the x-formula to the Y-formula. STAR QUESTIONS PLUS SURVEY (founder decision 2026-08-23 — fold the bank into each unit AS THAT UNIT IS BUILT, rather than late as 1A did): the bank is book pp.104-108, answers 181-196, sixteen questions, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory; boundary walked to p.109, the Bullet Model Paper. Distribution: Unit 2 gets 1 (181), Unit 3 gets 3 (182-184), Unit 4 gets 2 (185, 186), Unit 5 gets 2 (187, 188), Unit 8 gets 2 (189, 190), Unit 9 gets 5 (191-195), Unit 10 gets 1 (196). UNITS 1, 6 AND 7 RECEIVE NOTHING — the bank has no Locus, D.C's & D.R's or Plane questions, so Unit 1 stays complete at 12. SECTION CLASSIFICATION FOR BANK QUESTIONS IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut, and each backfilled file says so. Unit 10 (Applications of Derivatives) WILL BE ONE UNIT (founder decision 2026-08-23), not the five the book splits it into (10.1 Errors, 10.2 Tangents & Normals, 10.3 Rate Measure, 10.4 Mean Value Theorems, 10.5 Maxima & Minima) — the syllabus unit is the catalog unit, the same rule that makes unit numbers syllabus numbers everywhere else. Unit 3 (The Straight Line) is COMPLETE at 44 of 44 and is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the Blue Print gives it 2+2 in Section A, 4 in Section B and 7 in Section C, 15 marks in all, tying Differentiation as the highest-scoring unit. It therefore has three separate chapters in the book: LAQ chapter 1 (pp.14-18, 8 answers 1.1-5.2 plus 4 PRACTICE questions = 12), SAQ chapter 9 (pp.61-64, 10 answers 55.1-61 plus 1 practice = 11), VSAQ chapter 14 (pp.79-82, 18 answers 88.1-96), plus 3 from the Star Questions Plus bank (answers 182-184, p.104). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, p.83 opens 3-D Coordinates. FIVE OF THE 44 ARE THE BOOK'S 'PQ' PRACTICE QUESTIONS, posed with ONLY their final answer printed and no worked solution — laq3, laq6, laq8, laq10 and saq3. Their WORKING IS OURS, checked against the book's own printed answers, and each file says so; the 1A precedent is Unit 2 laq8. THE ONE PRINTED SPLIT IN THE UNIT is on SAQ answer 59 (book p.63): 1+1+2 against slope-to-cos-and-sin, the parametric point, and the two required points. Every other split is ours — the LAQ chapter's 1+2+2+2 follows the book's own printed 'Step-1 / Step-2 / Step-3' structure and its boxed 'SOLUTION STEPS' panels on pp.16 and 17; the SAQ chapter uses 1+1+2 after answer 59 where the shape matches and 1+1+1+1 where the answer is four equal moves; the VSAQ chapter uses 1+1, matching the printed 1+1 on VSAQ answer 98 (p.83) in the very next chapter. Five families across the unit: CIRCUMCENTRE by equal distances (perpendicular bisectors), ORTHOCENTRE by altitudes, both asked either from VERTICES or from SIDES — the sides form needs the vertices manufactured first, which is the only difference — plus the two general proofs 5.1 (foot of perpendicular) and 5.2 (image), whose first three steps are IDENTICAL and differ only in the closing condition: the foot lies ON the line, the image's MIDPOINT does, and that midpoint is where the factor 2 in the image formula comes from. The book prints a note between them reading 'First half of the solution is same to same', so the two files deliberately share one step skeleton. Answer 3 PQ is worth a note: its triangle is RIGHT ANGLED (sides x+y+10=0 and x-y-2=0 have slopes -1 and 1), so the orthocentre sits exactly on the right-angled vertex and one computed altitude comes out identical to a given side — correct, not an error. That observation is ours; the book gives only the answer. Unit 4 (Pair of Straight Lines) is COMPLETE at 15 of 15 — LAQ ONLY, book pp.19-26 (11 worked answers 6-15 plus 2 PRACTICE questions) plus 2 from the Star Questions Plus bank (answers 185, 186, book p.105). It holds TWO Section-C slots: the chapter header reads '7+7=14 Marks' and the Blue Print gives it 14 marks all in Section C and NOTHING in Section A or B, so LAQ is the only cut this unit admits — which is what fixes the section for its two bank questions too, the same way 1A's Units 2, 7 and 8 fix their own. It is the 1B counterpart of 1A's Matrices, the only other unit on either paper with two long slots. Boundary walked to book p.27, LAQ chapter 3 D.C's & D.R's. ⚠ THIS CHAPTER HOLDS THE BOOK'S ONLY PRINTED LAQ MARK SPLITS, and both are HOMOGENISATION answers: answer 12 (book p.24) is printed 1+1+2+1+2 and answer 15 (p.26) is printed 1+1+1+1+1+2, each totalling 7. Those two fix the shape for the whole homogenisation run (answers 12-15 plus the two practice questions, book pp.24-26), and every other split in the unit is ours and says so. Two method families: the SIX GENERAL PROOFS (6 angular bisectors, 7 area of the triangle, 8 product of perpendiculars, 9 the parallel-lines conditions, 10 the pair conditions Delta=0 with h²≥ab f²≥bc g²≥ac, plus bank answer 185), every one of which opens by SPLITTING the pair into two lines with unknown coefficients and matching against the given equation — that dictionary is what every later step spends; and HOMOGENISATION (12-15), where a curve and a chord are combined into a pair of lines through the origin by multiplying the linear terms by the chord written as '= 1' once and the constant twice. Within homogenisation the closing condition is the only thing that varies: perpendicular is coeff x² + coeff y² = 0 (13.1, 13.2, 14, 15PQ), coincident is h² = ab (15), and an angle needs the cosθ formula (12). Answers 15 and 15PQ are a matched pair differing by ONE word in the question — coincident versus right angle at the origin — with identical homogenisation and different closing conditions. Unit 5 (3D-Coordinates) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.83-84 (7 worked answers 97.1-100.2 plus 1 PRACTICE question) plus 2 from the Star Questions Plus bank (answers 187, 188, book p.106). The Blue Print gives it 2 marks in Section A and nothing elsewhere, and the book has no 3D LAQ chapter (LAQ chapters 1-6) and no 3D SAQ chapter (SAQ chapters 7-13), so VSAQ is the only cut this unit admits — which fixes the section for its two bank questions too. Its chapter header carries the note 'Just 2 Pages - 2 Marks'. Boundary walked to book p.85, VSAQ chapter 16 The Plane. ⚠ THE UNIT'S SPLIT IS SOURCED: answer 98 (book p.83) carries printed margin tags '1 Mark' against the midpoint equation and '1 Mark' against the fourth vertex — the only tagged answer in the chapter, and the one that fixes the 1+1 shape used across this unit AND cited from Unit 3's VSAQ chapter, which prints none of its own. Three families: CENTROID conditions (97.1 a triangle, 97.2 a TETRAHEDRON dividing by 4 not 3, 98 a parallelogram via bisecting diagonals), COORDINATE-PLANE section ratios (99.1 XZ, 99.2 YZ — a plane is where one coordinate is zero, so the ratio is minus that coordinate of the first point to the second, and a NEGATIVE ratio means external division), and the THREE-DISTANCES family (100.1 equilateral, 100.2 and its practice question collinear, plus bank answer 187). That last family computes the SAME three pairwise distances and differs only in the conclusion drawn — all three equal means equilateral, two summing to the third means collinear — which is why the book prints the note 'Questioning is different but Answering is similar' beneath them. The practice question 100.2 PQ is unusual in printing NO answer at all, not even a final one, so its working is entirely ours. Unit 6 (D.C's & D.R's) is COMPLETE at 7 of 7 — LAQ ONLY, book pp.27-31, answers 16.1-20, with NO practice questions and NOTHING from the Star Questions Plus bank (that bank holds no D.C's question, so this unit is one of the three — with Units 1 and 7 — that receive none). The Blue Print gives it 7 marks in Section C and nothing in Section A or B, and the book has no D.C's SAQ or VSAQ chapter; the book's own LAQ chapter table calls it the EASIEST of the six LAQ chapters. Boundary walked to book p.32, LAQ chapter 4 Differentiation. Two families. The FIVE RELATION questions (16.1, 16.2, 17.1, 17.2, 18) all give two relations connecting l, m, n — one linear and one of second degree — which together fix only the RATIO l:m:n, and that is all a direction needs. Four of them (16.1, 16.2, 17.1, 17.2) rearrange the linear relation, substitute, factorise the resulting homogeneous quadratic, and take each factor as one line; 16.1 and 16.2 then apply the angle formula while 17.1 and 17.2 normalise to direction COSINES by dividing by the root of the sum of squares. ⚠ ANSWER 18 IS DELIBERATELY DIFFERENT and is the unit's teaching point: it NEVER FINDS EITHER LINE. Perpendicularity needs only l1l2+m1m2+n1n2, and each product is the PRODUCT OF THE ROOTS (c/a) of a quadratic obtained by eliminating one letter — so two eliminations give all three products as a chain of equal fractions, and the three coefficients of the given second relation (2, 3, -5) turn out to BE those products up to a common factor, adding to zero. The TWO CUBE questions (19, 20) both begin by CHOOSING coordinates — one vertex at the origin, three edges along the axes — so every vertex is a triple of 0's and a's; the side a cancels in both, which is the check that the answer cannot depend on the cube's size. Answer 19 uses two of the four body diagonals and the book prints a contrast worth carrying: the angle between the diagonals of a SQUARE is 90 degrees, but for a CUBE it is Cos-inverse(1/3). Answer 20 uses all four. NO [N Marks] tags are printed anywhere in this chapter, so every split here is ours; the book's printed 7-mark shapes elsewhere (answers 12, 15 and 21) show both weighted and even cuts are its own at this length. Unit 7 (The Plane) is COMPLETE at 11 of 11 — VSAQ ONLY, book pp.85-86, 9 worked answers 101-107.2 plus 2 PRACTICE questions, and NOTHING from the Star Questions Plus bank (it holds no Plane question, so this is the third and last unit — with 1 and 6 — that receives none). The Blue Print gives it 2 marks in Section A and nothing elsewhere, and the book has no Plane LAQ or SAQ chapter. Boundary walked to book p.87, VSAQ chapter 17 Limits. Four families, all resting on one fact — A PLANE'S EQUATION CARRIES ITS NORMAL DIRECTION IN ITS COEFFICIENTS. INTERCEPT FORM (101, 102, 102PQ) divides by the CONSTANT so the right side is 1, and the three denominators that appear ARE the intercepts; 103 and 103PQ run the same thing backwards from given intercepts. NORMAL FORM (104) divides instead by the ROOT of the sum of the squared coefficients, so the coefficients become direction cosines and the right side becomes the distance from the origin — the contrast between what the two forms divide by is the chapter's teaching point. D.C's OF THE NORMAL (105) reads the coefficients as direction ratios and normalises them, with a ± because a normal points both ways out of the plane. ANGLE BETWEEN PLANES (106.1, 106.2) is the angle between the two NORMALS, so it reuses the line formula from Unit 6 unchanged. PARALLEL PLANE THROUGH A POINT (107.1, 107.2) keeps the coefficients and changes only the constant, which is what parallel means. NO [N Marks] tags are printed in this chapter, so its 1+1 splits are ours, following the printed 1+1 on VSAQ answer 98 (book p.83).\n\n=== BOTANY (units 1-13, subject \"botany\", ids ts_ipe_b1_*) - opened 2026-08-24/25. ===\nSource: Sri Chaitanya Junior Botany Fastrack (Studocu scan), book pp.3-37, 13 chapters. PDF page = book page - 1. 194 entries over 194 files, 35 figures. Question text and structure only, never the book's prose.\nTWO CHECKS ARE STRUCTURALLY IMPOSSIBLE HERE, and this is NOT the same as 'checked and clean': (1) the two-book union check - the TSBIE Basic Learning Material in hand is PHYSICS ONLY, there is no second botany source; (2) the back-test - no botany board paper is in the corpus. Founder call 2026-08-24: proceed Fastrack-only and RECORD both gaps. Run both the moment a second source arrives.\nTHIS BOOK PRINTS NO STAR RANKS AND NO YEAR CITATIONS (the physics and chemistry Fastracks do). So stars=0 and appearances=[] on every botany entry: the pyq-frequency signal does not exist for this subject and was NOT invented.\nA LONG ANSWER SECTION EXISTS ONLY IN CHAPTERS 5, 7 AND 12 (13 LAQs total: 3 + 4 + 6). No 8-mark form was invented anywhere else; Section-C-grade content found in the other ten chapters is listed in the chapter reports for founder review. Chapter 5 has NO SAQ section at all - it runs VSAQ straight into LAQ. Chapter 12 has no VSAQ section. No PROBLEMS section anywhere, so the physics 'PROBLEMS deferred' decision does not arise; the few numericals (E. coli generations, 1024 cells, 1200 pollen grains -> 300 PMC) sit inside VSAQ and ARE the asked bank.\nTHE BOOK IS WRONG MORE OFTEN THAN THE PHYSICS HALF. Every case is written CORRECTLY on the card with the book's position recorded in that step's `why` + the card's verification note - never silently followed, never silently fixed. The clearest: ch.13's primary-vs-secondary succession table contradicts itself in one column ('Long time for completion' AND 'It is a fastest process' - row 4's columns are swapped); ch.9's nucleosome text says 200 bp wrapped round the octamer while its own figure caption says 146 (correct: ~146 bp wrapped, ~200 bp per repeat including linker); ch.9's prokaryote answer as printed reads 'cell organelles are found in prokaryotic cell'; ch.5 answers Euphorbia for needle-like phylloclades (standard: Casuarina needle-like, Euphorbia cylindrical); ch.11 answers 'Synthesis phase of Interphase' for the longest phase (correct: interphase); ch.13 answers 'give two examples of xerarch succession' with pioneer ORGANISMS, not successions (correct: lithosere, psammosere); ch.8's floral diagram is drawn WITH a bract under a formula that starts 'Ebr' (ebracteate); ch.7 defines mesogamy via the funiculus in one answer and the integuments in another. Plus many scan/spelling errors (floridian->floridean, corolloid->coralloid, Bantham->Bentham, Alfa->alpha, meosis->meiosis, Arachis hypogea->hypogaea, Eugen warming->Eugenius Warming).\nCROSS-SUBJECT: no genuine duplicate against the 752 physics/chemistry/maths questions. Biomolecules does NOT overlap the chemistry bank - biomolecules is a TS IPE SECOND-year chemistry topic and is absent from the first-year bank; recheck when Chemistry-II opens. Intra-botany adjacencies recorded in the chapter reports (ch.3 amphibians / ch.4 bryophytes; ch.4 rock colonisers / ch.13 xeric pioneers; ch.5 papilionaceous corolla VSAQ / ch.8 Fabaceae SAQ with the figure).\nENUMERATION SWEEP RAN PER CHAPTER BUT NO PREDICTED CARDS WERE AUTHORED (founder call 2026-08-24: asked-only this run). Gaps are recorded in the chapter reports. The largest: the whole ENZYMES section of ch.10; the fluid-mosaic model and Golgi complex in ch.9; the individual phases of mitosis in ch.11; and - notably - 'Ecological Services' is in ch.13's own title yet the book asks not one question on it.\nEvery botany card is status 'unverified' with needs_teacher_verification true. The mark splits are CLAIMS: this book prints no [N Marks] tags anywhere, so every split is ours, following the standard TS IPE 2/4/8 shape.",
+  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books. UNIT 2 (Units and Measurements, added 2026-08-22): the union check produced a THIRD outcome — both books are VSAQ-ONLY. The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the TSBIE BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new (\"Why do we have different units for the same physical quantity?\", shipped as vsaq12 source:\"blm\"). NEITHER book has a Short Answer or Long Answer section for this unit, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented — the standing rule. Two further cells come from the AP March 2026 paper, which neither book lists: Section A Q1 (which quantity has no dimensions → vsaq13) and Q10 (J m⁻¹ and J m⁻² → vsaq14), both source:\"ap_2026_paper\". SOURCE DISAGREEMENT recorded, not resolved: the Fastrack says there are THREE types of error (systematic, random, gross), the BLM says TWO (systematic, random); vsaq2 writes the Fastrack’s three and records the BLM’s two in that step’s why line, the same house rule used for the rolling-friction \"laws\". The sweep deliberately SKIPS units-and-dimensions cells the bank already holds in other units — G (Unit 9), impulse (Unit 5) and torque (Unit 7) — so no predicted card duplicates them. UNIT 3 (Motion in a Straight Line, added 2026-08-22): the union check produced a FOURTH outcome — each book holds a whole SECTION the other lacks. The Fastrack (pp.6-8) has 4 Very Short Answer, 6 Short Answer and a PROBLEMS section but NO Long Answer section; the TSBIE BLM (pp.4-5) has a Short Answer section ONLY, with no VSAQ section at all. Neither has Section C, so no 8-mark form is invented. The BLM’s Short Answer 5 (roof jump, 9 m s⁻¹) is the Fastrack’s PROBLEM 3 — a book sources it as an SAQ, so it ships as saq8 source:\"blm\", the same promotion precedent as the Unit 8 problem the AP paper asked; Fastrack problems 1, 2 and 4 stay deferred. RE-HOMED: ts_ipe_p1_mp_average_instantaneous_velocity was filed under Unit 4 by the AP-paper session before Unit 3 existed. BOTH books place it here, and they DISAGREE on the section — Fastrack VSAQ 2 (3 stars) against BLM Short Answer 1 — so it now carries two cuts and appears twice in this unit, as vsaq2 (2 marks) and saq7 (4 marks, source:\"blm\"). Its question_id keeps the mp_ prefix because ids are stable forever. The AP March 2026 paper adds Q4 (value of g in free fall → vsaq5) and confirms Q11 (rest and motion relative) as vsaq1, recorded in that card’s appearances[]. The sweep deliberately SKIPS relative velocity: the bank already holds ts_ipe_p1_mp_relative_velocity_plane in Unit 4, where the Fastrack files it. ||| MATHEMATICS (Maths-1A, merged 2026-08-23 from feat/ipe-mathematics-answerbook): Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — the `subject` field namespaces them from the physics units (merged 2026-08-23). Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). MERGED 2026-08-23 (feat/ipe-answerbook): this manifest now carries BOTH subjects - physics units untagged (absent = physics) plus the ten Maths-1A units tagged subject:mathematics. The 2026-08-22 mathematics-only deletion of physics Unit 4 was deliberately NOT taken in this merge; the physics units here are the live superset. The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS COMPLETE at 11 of 11 (book answers 40-47, pp.51-56) — CORRECTED 2026-08-21 from an earlier claim of 9 of 9 over pp.51-55, which scoped the chapter from the book's 'TOP 40 SAQ' hit list. That list is a SELECTION, not an inventory: the chapter runs two answers further, to 47 on p.56, and answers 46 and 47 were missed until the walk to the Addition of Vectors boundary for Unit 4 found them. The LAQ pass had read every page and was unaffected. Lesson recorded in docs/IPE_MATHS_1A_SOURCE.md: scope a chapter by walking to its boundary, never from a hit list: one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. Its VSAQ CHAPTER IS ALSO COMPLETE at 18 of 18 (book answers 99.1-112.2, pp.82-86), so UNIT 3 IS COMPLETE AT 44 OF 44 (17 LAQ + 9 SAQ + 18 VSAQ). The VSAQ chapter corrected a standing claim in docs/IPE_MATHS_1A_SOURCE.md: that doc said after Unit 1 that this book never prints a mark split on its VSAQ pages, which held for the Functions VSAQ pages (pp.79-81) but is FALSE here — p.82 prints [1 mark] tags against answers 100 and 101. The real pattern tracks PAGE LAYOUT, not section: a question set alone on a page usually carries margin tags, and a question set two-to-a-page in two columns almost never does, because the columns take the margin. That explains every gap in this unit. The doc has been corrected. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form. Unit 5 (Product of Vectors) is COMPLETE at 26 of 26 — 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64) + 12 VSAQ (pp.89-91). It is the first MATHS unit to occupy all three sections of the paper (Q7 VSAQ, Q13 SAQ, Q22 LAQ), and the first since Matrices whose chapters print mark splits: answer 23 on p.37 is printed 1+1+1+1+1+2, answers 58 and 59 on p.63 are printed 1+1+1+1, and answer 61 on p.64 is printed 1+2+1 — so four of the unit's 26 splits are sourced rather than inferred, and the rest follow those shapes. Its LAQ chapter is titled 'Product of Vectors' on the chapter page but 'Vector Algebra' in the book's own hit list; the chapter pages were followed. Every chapter boundary in this unit was walked (pp.39, 65 and 92 were each read to confirm where the chapter ends), per the scoping rule recorded after the Unit 3 gap. Unit 6 (Trigonometric Ratios upto Transformations) is COMPLETE at 42 of 42 — 8 LAQ (book pp.39-42) + 10 SAQ (pp.65-67) + 24 VSAQ (pp.92-95). It is the SECOND-LARGEST unit after Matrices and holds the most slots on the paper: Q8 and Q9 (VSAQ), Q14 (SAQ) and Q23 (LAQ), where Q23 is always a transformation identity. All eight LAQs share ONE five-move method and one split, and four of them are TWINS on facing halves of a page differing by a single sign. No split is printed anywhere in this unit; the LAQ shape follows the printed split of LAQ answer 23 on p.37 and the SAQ/VSAQ shapes follow the printed splits on pp.63-64 and p.82, and every file says which. The VSAQ chapter's own header note — 'Writing Formula itself gets you 1 Mark in these Questions' — is why the first step of every VSAQ answer here IS the formula. All three boundaries were walked: pp.43, 68 and 96. Unit 7 (Trigonometric Equations) is COMPLETE at 8 of 8 — SAQ ONLY, book pp.68-71. The paper gives it no Section-A and no Section-C slot (Q15 is its only appearance), and the book has no Trigonometric Equations LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. The eight are four matched PAIRS, one per page: a sin+b cos=c (70.x), quadratic in one ratio (71.x), sum-to-product (72.x), and roots-of-a-quadratic (73.x) where nothing is ever solved. Boundary walked at p.72 (Inverse Trig Functions). Unit 8 (Inverse Trigonometric Functions) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.72-74, the same shape as Unit 7: the paper gives it only Q16, and the book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). Its five families are: name-the-angle plus a compound formula (74.x, 75), chaining the Tan-inverse addition formula (76.x), the doubled-Tan-inverse conversion (77 — the ONLY printed split in the chapter, 1+1+1+1), evaluating both sides independently (78.x), and one fully general proof with no numbers (79). Boundary walked at p.75 (Properties of Triangles). Unit 9 (Hyperbolic Functions) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.96-97. The paper gives it only Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ chapter (SAQ chapters 7-13). Three families: the logarithmic forms of the inverse functions (137.x, 138.x), one ratio given then the double angles (139.x), and proofs worked straight from the exponential DEFINITIONS (140.x, 141.x). VSAQ chapter 19 is the LAST VSAQ chapter; boundary walked to p.98, where the book's separate STAR QUESTIONS PLUS bank begins. THAT BANK IS NOW FOLDED IN (founder decision 2026-08-22): pp.98-111, answers 142-180, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory. All 37 answers were surveyed; 3 went into Unit 10 when that unit was built (178-180), 34 are now backfilled into Units 1-9, and 2 were SKIPPED as duplicates of questions already authored — answer 155 (unit vector of 2i+3j+k, TS 17) duplicates Unit 4 VSAQ 113.1, and answer 166 (cos A + cos B - cos C on a triangle, TS 18,19) duplicates Unit 6 LAQ answer 29. Unit 9 receives NOTHING: the bank has no hyperbolic-functions questions. Distribution of the 34: Unit 1 gets 2 (142, 143), Unit 2 gets 2 (144, 145), Unit 3 gets 9 (146-154), Unit 4 gets 1 (157), Unit 5 gets 6 (156, 158-162), Unit 6 gets 11 (163-165, 167-174), Unit 7 gets 2 (175, 176), Unit 8 gets 1 (177). SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S, and every backfilled file says so in its verification note. The bank's page headings name the CHAPTER, never the mark cut — the sole exception is p.98, which reads 'FUNCTIONS LAQ'. Two headings do read 'MATRICES-VSAQ' (p.100) and 'MATRICES' (p.102), but they are chapter banners rather than section markers: the p.102 'MATRICES' run holds answers 151 and 152, which are plainly VSAQ shapes, while the p.100 'MATRICES-VSAQ' run spills onto p.101 and swallows answer 150, a full 3x3 inverse that is Section-B work on the real paper. So every backfilled question is classed by its own length and shape against the unit's existing chapters, except where the unit itself fixes the section - Units 2 (LAQ-only), 7 (SAQ-only) and 8 (SAQ-only) admit no other answer. Mark splits are ours throughout: the bank prints no [N Marks] tags anywhere. CHEMISTRY OPENS (2026-08-23), Unit 1 Atomic Structure. SOURCE: the Sri Chaitanya Junior Fastrack chemistry section, book pp.48-52 (PDF pp.50-54; the chemistry half runs book pp.48-96 over 13 chapters). THE TWO-BOOK UNION CHECK CANNOT BE RUN FOR CHEMISTRY AND IS PENDING: the TSBIE Basic Learning Material PDF in hand is PHYSICS ONLY, so chemistry has exactly one source book. Founder decision 2026-08-23: proceed Fastrack-only and record the gap rather than wait. Every chemistry card therefore carries needs_teacher_verification. Chapter 1 as printed: 10 VSAQ, 7 SAQ, 2 LAQ. Stars are front-loaded, exactly as in the physics half — VSAQ 1-8 are three-star and 9-10 unranked, SAQ 1-5 three-star, SAQ 6 unranked, SAQ 7 two-star, both LAQs three-star. NO exam-year citations appear anywhere in chapter 1, so appearances[] is empty throughout; in the chemistry half years are printed only at ch.4 VSAQ 23/24/25 and ch.5 SAQ 9/10/12. There is NO Problems section anywhere in chemistry: numericals sit inside the VSAQ and SAQ lists (ch.1 VSAQ 2 is one), so the physics 'PROBLEMS deferred' decision does not arise here. Chapter 1 has no cuts — no question in it is asked at two lengths. TWO SOURCE DISCREPANCIES, recorded not resolved: (a) VSAQ 9, the book prints 'number of nodes = n - l - 1', which is the count of RADIAL nodes, the total being n - 1 and the nodal planes l; the card writes radial nodes = n - l - 1 plus the total, so the worked 3d count still agrees with the book; (b) LAQ 2, the book credits the magnetic quantum number to Lande, which is the attribution the paper marks, though it is more usually traced to Sommerfeld and Zeeman. Also: the book works VSAQ 2 in CGS and the card works it in SI, reaching the same 5 x 10^14 Hz, and the book prints h = 6.625e-34 J s where the card writes the accepted 6.626e-34. ENUMERATION SWEEP: 10 predicted lean cards (7 VSAQ, 3 SAQ) source:'enumerated', numbered after the book's own list. Their objects are the syllabus sections the Fastrack skips entirely — the whole of atomic number/mass number/isotopes, the Rutherford model and its limitations, the Rydberg equation, wave number, and psi-squared — the same whole-section pattern seen in physics Units 5, 6 and 9. Swept against the WHOLE bank, not just this unit: nothing collides with the physics or mathematics units. BACK-TEST: no chemistry board paper is held in the corpus, so the diff-against-a-real-paper step is PENDING for chemistry, exactly like the union check. NOTATION: Unicode has a subscript x but no subscript y or z, so the p and d orbitals are written px, py, pz and dxy, dz2 in plain letters — the same call as the plain i, j, k axis vectors in the mathematics cards. Ids are ts_ipe_c1_as_<slug>: c1 = Chemistry paper 1, as = Atomic Structure. MATHEMATICS-1B OPENS 2026-08-23 — the SECOND mathematics paper, and the first unit block to carry subject 'mathematics_1b'. Maths-1A owns 'mathematics' and its own Units 1-10, so the two papers CANNOT share a subject value: unit numbers namespace per subject and the catalog, triage, exam-eve route and study planner all key on subject-number (the build's unitKey guard fails on a collision — it was added after physics Unit 3 and maths Unit 3 keyed alike and Matrices' 17 LAQs were scheduled into physics study plans). Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), 127 pages, no text layer — question text, star rank, printed appearance years and the PRINTED per-step mark split only, never its prose (Rule 41/30i). Maths-1B is a 75-mark paper with the same shape as 1A: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers are Maths-1B SYLLABUS units (1 Locus, 2 Transformation of Axes, 3 The Straight Line, 4 Pair of Straight Lines, 5 3D-Coordinates, 6 D.C's & D.R's, 7 The Plane, 8 Limits & Continuity, 9 Differentiation, 10 Applications of Derivatives). ⚠ Unit 10 is a COMPOSITE: the book splits it into five sub-chapters with separate mark cuts (10.1 Errors, 10.2 Tangents & Normals, 10.3 Rate Measure, 10.4 Mean Value Theorems, 10.5 Maxima & Minima) — that will need a catalog decision when the unit is authored. Unlike 1A, the topic-by-question-number map is NOT a guarantee: the book's own IPE Blue Print (book p.3) carries a printed caveat that the public paper deviates from the model paper it is drawn from. Unit 1 (Locus) is COMPLETE at 12 of 12 — SAQ ONLY, book pp.53-56. The Blue Print gives Locus 4 marks in Section B and nothing in Section A or C, and the book has no Locus LAQ chapter (LAQ chapters 1-6) and no Locus VSAQ chapter (VSAQ chapters 14-20), so it is the 1B counterpart of 1A's Units 7 and 8. Scoped by BOUNDARY WALK to book p.57 (Transformation of Axes), NOT from the TOP 35 SAQ hit list — that list names only 6 of the 12, which is the Unit 3 scoping lesson repeating. Five families over one method: right angle at P (42.1-42.3, a circle), fixed area (43.1, 43.2, a PAIR of parallel lines and the only answers here that are not a single curve), PA²+PB²=2PC² (44, a straight line), sum of distances (45.1, 45.2, an ellipse), and ratio or difference of distances (46, 47.1, 47.2, 48, a circle or a hyperbola). The mark split 1+1+2 is the BOOK'S on answers 44 and 46, which sit alone on a page and carry printed margin tags; the other ten are set two-to-a-page in two columns, which takes the margin, so their splits are ours — patterned on those two printed ones rather than inferred from another chapter, because all twelve answers take the same three moves. ⚠ Star Questions Plus (book pp.104-108) is NOT yet folded in — on 1A that bank was found late and added 34 questions; plan for it per unit. Unit 2 (Transformation of Axes) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.57-60 (8 questions, answers 49.1-54) PLUS one from the Star Questions Plus bank (answer 181, book p.104). Same shape as Unit 1: the Blue Print gives it only a Section-B slot, and the book has no Transformation of Axes LAQ or VSAQ chapter. Boundary walked to book p.61 (SAQ chapter 9, The Straight Line). Two methods, four questions each: TRANSLATION (shift of origin — 49.1, 49.2 find the new equation; 50 and SQP 181 find the ORIGINAL) and ROTATION (51.1, 51.2, 52 find the new equation; 53 finds the original), plus the general proof 54. The split 1+1+1+1 is OURS but its DECOMPOSITION IS THE BOOK'S: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — take the given equation, write the change-of-axes formulas, put them in, simplify — and every answer in the chapter is cut on those four. Answer 54 is the exception: it is the chapter's only fully general proof, carries no numbers, and its four steps are its own. NO [N Marks] tags are printed anywhere in this chapter. The direction of the transformation is the chapter's whole teaching point and its commonest error: finding the NEW equation uses x = X+h / x = Xcosθ − Ysinθ, while finding the ORIGINAL reverses them to X = x−h / X = xcosθ + ysinθ, moving the minus sign from the x-formula to the Y-formula. STAR QUESTIONS PLUS SURVEY (founder decision 2026-08-23 — fold the bank into each unit AS THAT UNIT IS BUILT, rather than late as 1A did): the bank is book pp.104-108, answers 181-196, sixteen questions, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory; boundary walked to p.109, the Bullet Model Paper. Distribution: Unit 2 gets 1 (181), Unit 3 gets 3 (182-184), Unit 4 gets 2 (185, 186), Unit 5 gets 2 (187, 188), Unit 8 gets 2 (189, 190), Unit 9 gets 5 (191-195), Unit 10 gets 1 (196). UNITS 1, 6 AND 7 RECEIVE NOTHING — the bank has no Locus, D.C's & D.R's or Plane questions, so Unit 1 stays complete at 12. SECTION CLASSIFICATION FOR BANK QUESTIONS IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut, and each backfilled file says so. Unit 10 (Applications of Derivatives) WILL BE ONE UNIT (founder decision 2026-08-23), not the five the book splits it into (10.1 Errors, 10.2 Tangents & Normals, 10.3 Rate Measure, 10.4 Mean Value Theorems, 10.5 Maxima & Minima) — the syllabus unit is the catalog unit, the same rule that makes unit numbers syllabus numbers everywhere else. Unit 3 (The Straight Line) is COMPLETE at 44 of 44 and is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the Blue Print gives it 2+2 in Section A, 4 in Section B and 7 in Section C, 15 marks in all, tying Differentiation as the highest-scoring unit. It therefore has three separate chapters in the book: LAQ chapter 1 (pp.14-18, 8 answers 1.1-5.2 plus 4 PRACTICE questions = 12), SAQ chapter 9 (pp.61-64, 10 answers 55.1-61 plus 1 practice = 11), VSAQ chapter 14 (pp.79-82, 18 answers 88.1-96), plus 3 from the Star Questions Plus bank (answers 182-184, p.104). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, p.83 opens 3-D Coordinates. FIVE OF THE 44 ARE THE BOOK'S 'PQ' PRACTICE QUESTIONS, posed with ONLY their final answer printed and no worked solution — laq3, laq6, laq8, laq10 and saq3. Their WORKING IS OURS, checked against the book's own printed answers, and each file says so; the 1A precedent is Unit 2 laq8. THE ONE PRINTED SPLIT IN THE UNIT is on SAQ answer 59 (book p.63): 1+1+2 against slope-to-cos-and-sin, the parametric point, and the two required points. Every other split is ours — the LAQ chapter's 1+2+2+2 follows the book's own printed 'Step-1 / Step-2 / Step-3' structure and its boxed 'SOLUTION STEPS' panels on pp.16 and 17; the SAQ chapter uses 1+1+2 after answer 59 where the shape matches and 1+1+1+1 where the answer is four equal moves; the VSAQ chapter uses 1+1, matching the printed 1+1 on VSAQ answer 98 (p.83) in the very next chapter. Five families across the unit: CIRCUMCENTRE by equal distances (perpendicular bisectors), ORTHOCENTRE by altitudes, both asked either from VERTICES or from SIDES — the sides form needs the vertices manufactured first, which is the only difference — plus the two general proofs 5.1 (foot of perpendicular) and 5.2 (image), whose first three steps are IDENTICAL and differ only in the closing condition: the foot lies ON the line, the image's MIDPOINT does, and that midpoint is where the factor 2 in the image formula comes from. The book prints a note between them reading 'First half of the solution is same to same', so the two files deliberately share one step skeleton. Answer 3 PQ is worth a note: its triangle is RIGHT ANGLED (sides x+y+10=0 and x-y-2=0 have slopes -1 and 1), so the orthocentre sits exactly on the right-angled vertex and one computed altitude comes out identical to a given side — correct, not an error. That observation is ours; the book gives only the answer. Unit 4 (Pair of Straight Lines) is COMPLETE at 15 of 15 — LAQ ONLY, book pp.19-26 (11 worked answers 6-15 plus 2 PRACTICE questions) plus 2 from the Star Questions Plus bank (answers 185, 186, book p.105). It holds TWO Section-C slots: the chapter header reads '7+7=14 Marks' and the Blue Print gives it 14 marks all in Section C and NOTHING in Section A or B, so LAQ is the only cut this unit admits — which is what fixes the section for its two bank questions too, the same way 1A's Units 2, 7 and 8 fix their own. It is the 1B counterpart of 1A's Matrices, the only other unit on either paper with two long slots. Boundary walked to book p.27, LAQ chapter 3 D.C's & D.R's. ⚠ THIS CHAPTER HOLDS THE BOOK'S ONLY PRINTED LAQ MARK SPLITS, and both are HOMOGENISATION answers: answer 12 (book p.24) is printed 1+1+2+1+2 and answer 15 (p.26) is printed 1+1+1+1+1+2, each totalling 7. Those two fix the shape for the whole homogenisation run (answers 12-15 plus the two practice questions, book pp.24-26), and every other split in the unit is ours and says so. Two method families: the SIX GENERAL PROOFS (6 angular bisectors, 7 area of the triangle, 8 product of perpendiculars, 9 the parallel-lines conditions, 10 the pair conditions Delta=0 with h²≥ab f²≥bc g²≥ac, plus bank answer 185), every one of which opens by SPLITTING the pair into two lines with unknown coefficients and matching against the given equation — that dictionary is what every later step spends; and HOMOGENISATION (12-15), where a curve and a chord are combined into a pair of lines through the origin by multiplying the linear terms by the chord written as '= 1' once and the constant twice. Within homogenisation the closing condition is the only thing that varies: perpendicular is coeff x² + coeff y² = 0 (13.1, 13.2, 14, 15PQ), coincident is h² = ab (15), and an angle needs the cosθ formula (12). Answers 15 and 15PQ are a matched pair differing by ONE word in the question — coincident versus right angle at the origin — with identical homogenisation and different closing conditions. Unit 5 (3D-Coordinates) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.83-84 (7 worked answers 97.1-100.2 plus 1 PRACTICE question) plus 2 from the Star Questions Plus bank (answers 187, 188, book p.106). The Blue Print gives it 2 marks in Section A and nothing elsewhere, and the book has no 3D LAQ chapter (LAQ chapters 1-6) and no 3D SAQ chapter (SAQ chapters 7-13), so VSAQ is the only cut this unit admits — which fixes the section for its two bank questions too. Its chapter header carries the note 'Just 2 Pages - 2 Marks'. Boundary walked to book p.85, VSAQ chapter 16 The Plane. ⚠ THE UNIT'S SPLIT IS SOURCED: answer 98 (book p.83) carries printed margin tags '1 Mark' against the midpoint equation and '1 Mark' against the fourth vertex — the only tagged answer in the chapter, and the one that fixes the 1+1 shape used across this unit AND cited from Unit 3's VSAQ chapter, which prints none of its own. Three families: CENTROID conditions (97.1 a triangle, 97.2 a TETRAHEDRON dividing by 4 not 3, 98 a parallelogram via bisecting diagonals), COORDINATE-PLANE section ratios (99.1 XZ, 99.2 YZ — a plane is where one coordinate is zero, so the ratio is minus that coordinate of the first point to the second, and a NEGATIVE ratio means external division), and the THREE-DISTANCES family (100.1 equilateral, 100.2 and its practice question collinear, plus bank answer 187). That last family computes the SAME three pairwise distances and differs only in the conclusion drawn — all three equal means equilateral, two summing to the third means collinear — which is why the book prints the note 'Questioning is different but Answering is similar' beneath them. The practice question 100.2 PQ is unusual in printing NO answer at all, not even a final one, so its working is entirely ours. Unit 6 (D.C's & D.R's) is COMPLETE at 7 of 7 — LAQ ONLY, book pp.27-31, answers 16.1-20, with NO practice questions and NOTHING from the Star Questions Plus bank (that bank holds no D.C's question, so this unit is one of the three — with Units 1 and 7 — that receive none). The Blue Print gives it 7 marks in Section C and nothing in Section A or B, and the book has no D.C's SAQ or VSAQ chapter; the book's own LAQ chapter table calls it the EASIEST of the six LAQ chapters. Boundary walked to book p.32, LAQ chapter 4 Differentiation. Two families. The FIVE RELATION questions (16.1, 16.2, 17.1, 17.2, 18) all give two relations connecting l, m, n — one linear and one of second degree — which together fix only the RATIO l:m:n, and that is all a direction needs. Four of them (16.1, 16.2, 17.1, 17.2) rearrange the linear relation, substitute, factorise the resulting homogeneous quadratic, and take each factor as one line; 16.1 and 16.2 then apply the angle formula while 17.1 and 17.2 normalise to direction COSINES by dividing by the root of the sum of squares. ⚠ ANSWER 18 IS DELIBERATELY DIFFERENT and is the unit's teaching point: it NEVER FINDS EITHER LINE. Perpendicularity needs only l1l2+m1m2+n1n2, and each product is the PRODUCT OF THE ROOTS (c/a) of a quadratic obtained by eliminating one letter — so two eliminations give all three products as a chain of equal fractions, and the three coefficients of the given second relation (2, 3, -5) turn out to BE those products up to a common factor, adding to zero. The TWO CUBE questions (19, 20) both begin by CHOOSING coordinates — one vertex at the origin, three edges along the axes — so every vertex is a triple of 0's and a's; the side a cancels in both, which is the check that the answer cannot depend on the cube's size. Answer 19 uses two of the four body diagonals and the book prints a contrast worth carrying: the angle between the diagonals of a SQUARE is 90 degrees, but for a CUBE it is Cos-inverse(1/3). Answer 20 uses all four. NO [N Marks] tags are printed anywhere in this chapter, so every split here is ours; the book's printed 7-mark shapes elsewhere (answers 12, 15 and 21) show both weighted and even cuts are its own at this length. Unit 7 (The Plane) is COMPLETE at 11 of 11 — VSAQ ONLY, book pp.85-86, 9 worked answers 101-107.2 plus 2 PRACTICE questions, and NOTHING from the Star Questions Plus bank (it holds no Plane question, so this is the third and last unit — with 1 and 6 — that receives none). The Blue Print gives it 2 marks in Section A and nothing elsewhere, and the book has no Plane LAQ or SAQ chapter. Boundary walked to book p.87, VSAQ chapter 17 Limits. Four families, all resting on one fact — A PLANE'S EQUATION CARRIES ITS NORMAL DIRECTION IN ITS COEFFICIENTS. INTERCEPT FORM (101, 102, 102PQ) divides by the CONSTANT so the right side is 1, and the three denominators that appear ARE the intercepts; 103 and 103PQ run the same thing backwards from given intercepts. NORMAL FORM (104) divides instead by the ROOT of the sum of the squared coefficients, so the coefficients become direction cosines and the right side becomes the distance from the origin — the contrast between what the two forms divide by is the chapter's teaching point. D.C's OF THE NORMAL (105) reads the coefficients as direction ratios and normalises them, with a ± because a normal points both ways out of the plane. ANGLE BETWEEN PLANES (106.1, 106.2) is the angle between the two NORMALS, so it reuses the line formula from Unit 6 unchanged. PARALLEL PLANE THROUGH A POINT (107.1, 107.2) keeps the coefficients and changes only the constant, which is what parallel means. NO [N Marks] tags are printed in this chapter, so its 1+1 splits are ours, following the printed 1+1 on VSAQ answer 98 (book p.83).\n\n=== BOTANY (units 1-13, subject \"botany\", ids ts_ipe_b1_*) - opened 2026-08-24/25. ===\nSource: Sri Chaitanya Junior Botany Fastrack (Studocu scan), book pp.3-37, 13 chapters. PDF page = book page - 1. 194 entries over 194 files, 35 figures. Question text and structure only, never the book's prose.\nTWO CHECKS ARE STRUCTURALLY IMPOSSIBLE HERE, and this is NOT the same as 'checked and clean': (1) the two-book union check - the TSBIE Basic Learning Material in hand is PHYSICS ONLY, there is no second botany source; (2) the back-test - no botany board paper is in the corpus. Founder call 2026-08-24: proceed Fastrack-only and RECORD both gaps. Run both the moment a second source arrives.\nTHIS BOOK PRINTS NO STAR RANKS AND NO YEAR CITATIONS (the physics and chemistry Fastracks do). So stars=0 and appearances=[] on every botany entry: the pyq-frequency signal does not exist for this subject and was NOT invented.\nA LONG ANSWER SECTION EXISTS ONLY IN CHAPTERS 5, 7 AND 12 (13 LAQs total: 3 + 4 + 6). No 8-mark form was invented anywhere else; Section-C-grade content found in the other ten chapters is listed in the chapter reports for founder review. Chapter 5 has NO SAQ section at all - it runs VSAQ straight into LAQ. Chapter 12 has no VSAQ section. No PROBLEMS section anywhere, so the physics 'PROBLEMS deferred' decision does not arise; the few numericals (E. coli generations, 1024 cells, 1200 pollen grains -> 300 PMC) sit inside VSAQ and ARE the asked bank.\nTHE BOOK IS WRONG MORE OFTEN THAN THE PHYSICS HALF. Every case is written CORRECTLY on the card with the book's position recorded in that step's `why` + the card's verification note - never silently followed, never silently fixed. The clearest: ch.13's primary-vs-secondary succession table contradicts itself in one column ('Long time for completion' AND 'It is a fastest process' - row 4's columns are swapped); ch.9's nucleosome text says 200 bp wrapped round the octamer while its own figure caption says 146 (correct: ~146 bp wrapped, ~200 bp per repeat including linker); ch.9's prokaryote answer as printed reads 'cell organelles are found in prokaryotic cell'; ch.5 answers Euphorbia for needle-like phylloclades (standard: Casuarina needle-like, Euphorbia cylindrical); ch.11 answers 'Synthesis phase of Interphase' for the longest phase (correct: interphase); ch.13 answers 'give two examples of xerarch succession' with pioneer ORGANISMS, not successions (correct: lithosere, psammosere); ch.8's floral diagram is drawn WITH a bract under a formula that starts 'Ebr' (ebracteate); ch.7 defines mesogamy via the funiculus in one answer and the integuments in another. Plus many scan/spelling errors (floridian->floridean, corolloid->coralloid, Bantham->Bentham, Alfa->alpha, meosis->meiosis, Arachis hypogea->hypogaea, Eugen warming->Eugenius Warming).\nCROSS-SUBJECT: no genuine duplicate against the 752 physics/chemistry/maths questions. Biomolecules does NOT overlap the chemistry bank - biomolecules is a TS IPE SECOND-year chemistry topic and is absent from the first-year bank; recheck when Chemistry-II opens. Intra-botany adjacencies recorded in the chapter reports (ch.3 amphibians / ch.4 bryophytes; ch.4 rock colonisers / ch.13 xeric pioneers; ch.5 papilionaceous corolla VSAQ / ch.8 Fabaceae SAQ with the figure).\nENUMERATION SWEEP RAN PER CHAPTER BUT NO PREDICTED CARDS WERE AUTHORED (founder call 2026-08-24: asked-only this run). Gaps are recorded in the chapter reports. The largest: the whole ENZYMES section of ch.10; the fluid-mosaic model and Golgi complex in ch.9; the individual phases of mitosis in ch.11; and - notably - 'Ecological Services' is in ch.13's own title yet the book asks not one question on it.\nEvery botany card is status 'unverified' with needs_teacher_verification true. The mark splits are CLAIMS: this book prints no [N Marks] tags anywhere, so every split is ours, following the standard TS IPE 2/4/8 shape. PHYSICS RENUMBERED TO THE 2026-27 TEXTBOOK (2026-08-28): the new book merges the old Units 1 (Physical World) and 2 (Units and Measurements) into Unit 1 \"Physical World and Measurement\" (the old unit-2 refs continue the numbering, vsaq4 onward), so the old Units 3-14 are now 2-13, and a new Unit 14 \"Physics of Emerging Technologies\" (AI, robotics, renewable energy, space science, communication technology — per the TGBIE reform coverage) enters as coming-soon placeholders until the textbook is in hand. Chapter list source: careers360 TS Inter 1st year Physics syllabus 2026-27 (11 Aug 2026) — confirm against the textbook contents page; sub-topic deletions inside chapters are NOT yet applied (docs/SYLLABUS_2026_27.md §open cells). Forwarded exam-eve links and saved plans from before this date carry the OLD keys; notebook.js LEGACY_UNIT_KEYS remaps them. MATHS STARS PREDATE THE 2026-27 PATTERN: the Fastrack ranks were compiled under the 75-mark paper (Section C any 5 of 7 at 7 marks); under the 60-mark paper (any 2 of 3 at 8 marks) long answers carry 16 marks instead of 35 — the ranks still say what was asked, not what now weighs most. Not re-ranked automatically (founder call, same as appearances driving no ranking). MATHS-1A RENUMBERED TO THE 2026-27 TEXTBOOK (2026-08-28): the Telugu Akademi 2026 edition adds \"Sets and Relations\" as chapter 1 and \"Sequences and Series\" as chapter 3, so the old chapters 1-10 become 2, 4, 5, 6, 7, 8, 9, 10, 11, 12; chapter 8 takes the book's exact name \"Trigonometric Ratios AND Transformations\" (was \"upto\"). The two new chapters enter as coming-soon rows naming their printed sub-topics until they are authored. NOTHING WAS REMOVED FROM MATHS: Trigonometric Equations survives as chapter 9 (a circular proposed dropping it and some coverage repeated that; the book keeps it, reduced to 9.1 general solutions only) and MATHS-1B IS UNCHANGED end to end, so its units 1-7 keep their numbers — the two new 1A chapters are NCERT foundation additions, not transfers out of 1B. Verified twice: the textbook's own Contents pages, and a chapter-by-chapter walkthrough of the official syllabus in \"TS Inter 1st Year Maths 1A & 1B Updated Syllabus 2026-27\" (Vedantu IPE & EAPCET / Santhosh Sir, 26 Jun 2026, youtu.be/h_tJPDRj3hU). Full record + sub-topic lists: docs/SYLLABUS_2026_27.md. SENIOR INTER PHYSICS (Physics-II) OPENS THE SECOND YEAR (2026-08-29), units 1-16, subject 'physics_2'. SOURCE: the Sri Chaitanya FAST TRACK IPE for Sr. Students, physics section, 57 phone-scanned pages; printed book page = PDF page + 3. THE BOOK HAS SIXTEEN CHAPTERS, not fifteen — a VSAQ-only Communication System closes it, which NCERT dropped in the 2023 rationalisation but which is the only fully pen-ticked page in the scan, so it is authored and flagged on every card. BOTH STRUCTURAL SOURCE CHECKS ARE IMPOSSIBLE HERE, as for chemistry, botany and zoology: the TSBIE Basic Learning Material in hand is first-year physics only, so there is no two-book union check, and answer-book/papers/ holds only Paper-I papers, so there is no back-test. backtest:physics stays green only because it filters on !u.subject; that is not evidence. This edition prints NO star ranks at all (stars: 0 everywhere) and only six exam-year citations in 57 pages, so appearances[] is empty almost everywhere and the pyq-frequency signal does not exist for this paper. NINE of the sixteen chapters have NO Long Answer section and no 8-mark form was invented anywhere — Ch.13 SAQ 4 (Bohr's postulates, orbit radius and energy) is the paper's strongest Section-C candidate and is deliberately left at the 4 marks the book prints. Ch.6 has no Short Answer section at all (22 VSAQ straight into LAQ), and Ch.14's SAQ numbering jumps 5 -> 14, which is the book's own numbering and is followed. The five banner-labelled PROBLEMS (Ch.6 x1, Ch.7 x3, plus one more) are DEFERRED per the standing 2026-08-20 decision and carry no entry; numericals printed INSIDE a VSAQ/SAQ/LAQ list are authored, because a numerical inside a section IS the asked bank. The source book is wrong in at least seventeen places, every one written correctly on the card with the book's position in that step's `why` — including K > 1 for 'controlled', 'fusion' for fission, the pnp/npn transistor symbols swapped, a figure drawing F in the plane of the page when F = i(l x B) is perpendicular to it, beryllium listed as a control rod, thermal neutrons at 0.025 MeV, and '1u = 931.5 MeV' equating a mass to an energy. Every card carries needs_teacher_verification: every mark split is invented and a Telangana IPE teacher has to confirm them.",
   "units": [
     {
       "number": 1,
-      "name": "Physical World",
+      "name": "Physical World and Measurement",
       "questions": [
         {
           "ref": "vsaq1",
@@ -31,162 +31,129 @@
           "text": "What is the contribution of S. Chandrasekhar to Physics?",
           "question_id": "ts_ipe_p1_pw_chandrasekhar_contribution",
           "source": "ts_paper"
-        }
-      ]
-    },
-    {
-      "number": 2,
-      "name": "Units and Measurements",
-      "questions": [
-        {
-          "ref": "vsaq1",
-          "section": "VSAQ",
-          "number": 1,
-          "stars": 3,
-          "text": "Distinguish between accuracy and precision.",
-          "question_id": "ts_ipe_p1_um_accuracy_vs_precision"
-        },
-        {
-          "ref": "vsaq2",
-          "section": "VSAQ",
-          "number": 2,
-          "stars": 2,
-          "text": "What are the different types of errors that can occur in a measurement?",
-          "question_id": "ts_ipe_p1_um_types_of_errors"
-        },
-        {
-          "ref": "vsaq3",
-          "section": "VSAQ",
-          "number": 3,
-          "stars": 3,
-          "text": "Distinguish between fundamental units and derived units.",
-          "question_id": "ts_ipe_p1_um_fundamental_vs_derived_units"
         },
         {
           "ref": "vsaq4",
           "section": "VSAQ",
           "number": 4,
           "stars": 3,
-          "text": "Express unified atomic mass unit in kg.",
-          "question_id": "ts_ipe_p1_um_unified_atomic_mass_unit"
+          "text": "Distinguish between accuracy and precision.",
+          "question_id": "ts_ipe_p1_um_accuracy_vs_precision"
         },
         {
           "ref": "vsaq5",
           "section": "VSAQ",
           "number": 5,
           "stars": 2,
-          "text": "What is dimensional analysis?",
-          "question_id": "ts_ipe_p1_um_dimensional_analysis"
+          "text": "What are the different types of errors that can occur in a measurement?",
+          "question_id": "ts_ipe_p1_um_types_of_errors"
         },
         {
           "ref": "vsaq6",
           "section": "VSAQ",
           "number": 6,
-          "stars": 2,
-          "text": "The velocity of a body is given by v = At² + Bt + C. If v and t are expressed in SI units, what are the units of A, B and C?",
-          "question_id": "ts_ipe_p1_um_units_of_a_b_c"
+          "stars": 3,
+          "text": "Distinguish between fundamental units and derived units.",
+          "question_id": "ts_ipe_p1_um_fundamental_vs_derived_units"
         },
         {
           "ref": "vsaq7",
           "section": "VSAQ",
           "number": 7,
-          "stars": 1,
-          "text": "State the number of significant figures in the following: a) 6729  b) 0.024  c) 0.08240  d) 6.032  e) 4.57 × 10⁸",
-          "question_id": "ts_ipe_p1_um_count_significant_figures"
+          "stars": 3,
+          "text": "Express unified atomic mass unit in kg.",
+          "question_id": "ts_ipe_p1_um_unified_atomic_mass_unit"
         },
         {
           "ref": "vsaq8",
           "section": "VSAQ",
           "number": 8,
-          "stars": 0,
-          "text": "How can systematic errors be minimised or eliminated?",
-          "question_id": "ts_ipe_p1_um_minimise_systematic_errors"
+          "stars": 2,
+          "text": "What is dimensional analysis?",
+          "question_id": "ts_ipe_p1_um_dimensional_analysis"
         },
         {
           "ref": "vsaq9",
           "section": "VSAQ",
           "number": 9,
-          "stars": 0,
-          "text": "The error in the measurement of the radius of a sphere is 1%. What is the error in the measurement of its volume?",
-          "question_id": "ts_ipe_p1_um_sphere_volume_error"
+          "stars": 2,
+          "text": "The velocity of a body is given by v = At² + Bt + C. If v and t are expressed in SI units, what are the units of A, B and C?",
+          "question_id": "ts_ipe_p1_um_units_of_a_b_c"
         },
         {
           "ref": "vsaq10",
           "section": "VSAQ",
           "number": 10,
-          "stars": 0,
-          "text": "The percentage errors in the mass and the speed are 2% and 3% respectively. What is the maximum error in the kinetic energy calculated using these quantities?",
-          "question_id": "ts_ipe_p1_um_kinetic_energy_error"
+          "stars": 1,
+          "text": "State the number of significant figures in the following: a) 6729  b) 0.024  c) 0.08240  d) 6.032  e) 4.57 × 10⁸",
+          "question_id": "ts_ipe_p1_um_count_significant_figures"
         },
         {
           "ref": "vsaq11",
           "section": "VSAQ",
           "number": 11,
           "stars": 0,
-          "text": "What are significant figures and what do they represent when reporting the result of a measurement?",
-          "question_id": "ts_ipe_p1_um_significant_figures_meaning"
+          "text": "How can systematic errors be minimised or eliminated?",
+          "question_id": "ts_ipe_p1_um_minimise_systematic_errors"
         },
         {
           "ref": "vsaq12",
           "section": "VSAQ",
           "number": 12,
           "stars": 0,
-          "text": "Why do we have different units for the same physical quantity?",
-          "question_id": "ts_ipe_p1_um_different_units_same_quantity",
-          "source": "blm"
+          "text": "The error in the measurement of the radius of a sphere is 1%. What is the error in the measurement of its volume?",
+          "question_id": "ts_ipe_p1_um_sphere_volume_error"
         },
         {
           "ref": "vsaq13",
           "section": "VSAQ",
           "number": 13,
           "stars": 0,
-          "text": "Which of the following physical quantities has no dimensions: angular velocity, angular acceleration, angular displacement, stress?",
-          "question_id": "ts_ipe_p1_um_dimensionless_quantity",
-          "source": "ap_2026_paper"
+          "text": "The percentage errors in the mass and the speed are 2% and 3% respectively. What is the maximum error in the kinetic energy calculated using these quantities?",
+          "question_id": "ts_ipe_p1_um_kinetic_energy_error"
         },
         {
           "ref": "vsaq14",
           "section": "VSAQ",
           "number": 14,
           "stars": 0,
-          "text": "Write the physical quantities that have J m⁻¹ and J m⁻² as their units.",
-          "question_id": "ts_ipe_p1_um_quantities_jm1_jm2",
-          "source": "ap_2026_paper"
+          "text": "What are significant figures and what do they represent when reporting the result of a measurement?",
+          "question_id": "ts_ipe_p1_um_significant_figures_meaning"
         },
         {
           "ref": "vsaq15",
           "section": "VSAQ",
           "number": 15,
           "stars": 0,
-          "text": "Name the seven fundamental quantities in the SI system and write their units.",
-          "question_id": "ts_ipe_p1_um_si_base_quantities",
-          "source": "enumerated"
+          "text": "Why do we have different units for the same physical quantity?",
+          "question_id": "ts_ipe_p1_um_different_units_same_quantity",
+          "source": "blm"
         },
         {
           "ref": "vsaq16",
           "section": "VSAQ",
           "number": 16,
           "stars": 0,
-          "text": "Write the dimensional formulae of work, power and pressure.",
-          "question_id": "ts_ipe_p1_um_dimensional_formulae_set",
-          "source": "enumerated"
+          "text": "Which of the following physical quantities has no dimensions: angular velocity, angular acceleration, angular displacement, stress?",
+          "question_id": "ts_ipe_p1_um_dimensionless_quantity",
+          "source": "ap_2026_paper"
         },
         {
           "ref": "vsaq17",
           "section": "VSAQ",
           "number": 17,
           "stars": 0,
-          "text": "State the principle of homogeneity of dimensions.",
-          "question_id": "ts_ipe_p1_um_principle_of_homogeneity",
-          "source": "enumerated"
+          "text": "Write the physical quantities that have J m⁻¹ and J m⁻² as their units.",
+          "question_id": "ts_ipe_p1_um_quantities_jm1_jm2",
+          "source": "ap_2026_paper"
         },
         {
           "ref": "vsaq18",
           "section": "VSAQ",
           "number": 18,
           "stars": 0,
-          "text": "Check the correctness of the equation v² = u² + 2as using dimensional analysis.",
-          "question_id": "ts_ipe_p1_um_check_equation_by_dimensions",
+          "text": "Name the seven fundamental quantities in the SI system and write their units.",
+          "question_id": "ts_ipe_p1_um_si_base_quantities",
           "source": "enumerated"
         },
         {
@@ -194,8 +161,8 @@
           "section": "VSAQ",
           "number": 19,
           "stars": 0,
-          "text": "Using dimensional analysis, derive an expression for the time period of a simple pendulum.",
-          "question_id": "ts_ipe_p1_um_derive_pendulum_period",
+          "text": "Write the dimensional formulae of work, power and pressure.",
+          "question_id": "ts_ipe_p1_um_dimensional_formulae_set",
           "source": "enumerated"
         },
         {
@@ -203,8 +170,8 @@
           "section": "VSAQ",
           "number": 20,
           "stars": 0,
-          "text": "What are the limitations of dimensional analysis?",
-          "question_id": "ts_ipe_p1_um_limitations_dimensional_analysis",
+          "text": "State the principle of homogeneity of dimensions.",
+          "question_id": "ts_ipe_p1_um_principle_of_homogeneity",
           "source": "enumerated"
         },
         {
@@ -212,14 +179,41 @@
           "section": "VSAQ",
           "number": 21,
           "stars": 0,
-          "text": "State the rules for rounding off a measurement to the correct number of significant figures.",
-          "question_id": "ts_ipe_p1_um_rounding_rules",
+          "text": "Check the correctness of the equation v² = u² + 2as using dimensional analysis.",
+          "question_id": "ts_ipe_p1_um_check_equation_by_dimensions",
           "source": "enumerated"
         },
         {
           "ref": "vsaq22",
           "section": "VSAQ",
           "number": 22,
+          "stars": 0,
+          "text": "Using dimensional analysis, derive an expression for the time period of a simple pendulum.",
+          "question_id": "ts_ipe_p1_um_derive_pendulum_period",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "What are the limitations of dimensional analysis?",
+          "question_id": "ts_ipe_p1_um_limitations_dimensional_analysis",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "State the rules for rounding off a measurement to the correct number of significant figures.",
+          "question_id": "ts_ipe_p1_um_rounding_rules",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
           "stars": 0,
           "text": "Define the astronomical unit, the light year and the parsec.",
           "question_id": "ts_ipe_p1_um_units_of_large_distances",
@@ -228,7 +222,7 @@
       ]
     },
     {
-      "number": 3,
+      "number": 2,
       "name": "Motion in a Straight Line",
       "questions": [
         {
@@ -424,7 +418,7 @@
       ]
     },
     {
-      "number": 4,
+      "number": 3,
       "name": "Motion in a Plane",
       "questions": [
         {
@@ -704,7 +698,7 @@
       ]
     },
     {
-      "number": 5,
+      "number": 4,
       "name": "Laws of Motion",
       "questions": [
         {
@@ -963,7 +957,7 @@
       ]
     },
     {
-      "number": 6,
+      "number": 5,
       "name": "Work Power Energy",
       "questions": [
         {
@@ -1184,7 +1178,7 @@
       ]
     },
     {
-      "number": 7,
+      "number": 6,
       "name": "System of Particles and Rotational Motion",
       "questions": [
         {
@@ -1467,7 +1461,7 @@
       ]
     },
     {
-      "number": 8,
+      "number": 7,
       "name": "Oscillations",
       "questions": [
         {
@@ -1656,7 +1650,7 @@
       ]
     },
     {
-      "number": 9,
+      "number": 8,
       "name": "Gravitation",
       "questions": [
         {
@@ -1891,7 +1885,7 @@
       ]
     },
     {
-      "number": 10,
+      "number": 9,
       "name": "Mechanical Properties of Solids",
       "questions": [
         {
@@ -1933,7 +1927,7 @@
       ]
     },
     {
-      "number": 11,
+      "number": 10,
       "name": "Mechanical Properties of Fluids",
       "questions": [
         {
@@ -2020,7 +2014,7 @@
       ]
     },
     {
-      "number": 12,
+      "number": 11,
       "name": "Thermal Properties of Matter",
       "questions": [
         {
@@ -2152,7 +2146,7 @@
       ]
     },
     {
-      "number": 13,
+      "number": 12,
       "name": "Thermodynamics",
       "questions": [
         {
@@ -2176,7 +2170,7 @@
       ]
     },
     {
-      "number": 14,
+      "number": 13,
       "name": "Kinetic Theory",
       "questions": [
         {
@@ -2223,6 +2217,52 @@
           "text": "The absolute temperature of a gas is increased 3 times. What will be the increase in rms velocity of the gas molecule?",
           "question_id": "ts_ipe_p1_kin_rms_velocity_temperature_tripled",
           "source": "ts_paper"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "name": "Physics of Emerging Technologies",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Artificial intelligence in physics — what it is and where physics uses it",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Robotics — sensors, actuators and the physics they depend on",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Renewable energy — solar, wind and the physics of energy conversion",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Space science — satellites, launch and orbital physics",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Communication technology — signals, waves and the physics of transmission",
+          "source": "syllabus_2026_27"
         }
       ]
     },
@@ -3983,6 +4023,117 @@
     },
     {
       "number": 1,
+      "subject": "mathematics",
+      "name": "Sets and Relations (Maths-1A)",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Sets and their representation",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "The empty set",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Finite and infinite sets",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Equal sets",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Subsets",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Intervals as subsets of R",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Venn diagrams",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Operations on sets",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Complement of a set",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Cartesian product of sets",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Relations",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Types of relations",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Equivalence relation",
+          "source": "syllabus_2026_27"
+        }
+      ]
+    },
+    {
+      "number": 2,
       "name": "Functions (Maths-1A)",
       "subject": "mathematics",
       "questions": [
@@ -4197,7 +4348,54 @@
       ]
     },
     {
-      "number": 2,
+      "number": 3,
+      "subject": "mathematics",
+      "name": "Sequences and Series (Maths-1A)",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Sequences",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Series",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Arithmetic progression (A.P.)",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Geometric progression (G.P.)",
+          "source": "syllabus_2026_27"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Relation between A.M. and G.M.",
+          "source": "syllabus_2026_27"
+        }
+      ]
+    },
+    {
+      "number": 4,
       "name": "Mathematical Induction (Maths-1A)",
       "subject": "mathematics",
       "questions": [
@@ -4284,7 +4482,7 @@
       ]
     },
     {
-      "number": 3,
+      "number": 5,
       "name": "Matrices (Maths-1A)",
       "subject": "mathematics",
       "questions": [
@@ -4731,7 +4929,7 @@
       ]
     },
     {
-      "number": 4,
+      "number": 6,
       "name": "Addition of Vectors (Maths-1A)",
       "subject": "mathematics",
       "questions": [
@@ -4906,7 +5104,7 @@
       ]
     },
     {
-      "number": 5,
+      "number": 7,
       "name": "Product of Vectors (Maths-1A)",
       "subject": "mathematics",
       "questions": [
@@ -5169,8 +5367,8 @@
       ]
     },
     {
-      "number": 6,
-      "name": "Trigonometric Ratios upto Transformations (Maths-1A)",
+      "number": 8,
+      "name": "Trigonometric Ratios and Transformations (Maths-1A)",
       "subject": "mathematics",
       "questions": [
         {
@@ -5600,7 +5798,7 @@
       ]
     },
     {
-      "number": 7,
+      "number": 9,
       "name": "Trigonometric Equations (Maths-1A)",
       "subject": "mathematics",
       "questions": [
@@ -5687,7 +5885,7 @@
       ]
     },
     {
-      "number": 8,
+      "number": 10,
       "name": "Inverse Trigonometric Functions (Maths-1A)",
       "subject": "mathematics",
       "questions": [
@@ -5774,7 +5972,7 @@
       ]
     },
     {
-      "number": 9,
+      "number": 11,
       "name": "Hyperbolic Functions (Maths-1A)",
       "subject": "mathematics",
       "questions": [
@@ -5861,7 +6059,7 @@
       ]
     },
     {
-      "number": 10,
+      "number": 12,
       "name": "Properties of Triangles (Maths-1A)",
       "subject": "mathematics",
       "questions": [
@@ -8609,6 +8807,1582 @@
     },
     {
       "number": 1,
+      "name": "Diversity of Living World (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq59",
+          "section": "VSAQ",
+          "number": 59,
+          "stars": 0,
+          "text": "What does ICZN stand for?",
+          "question_id": "ts_ipe_z1_dlw_iczn_full_form"
+        },
+        {
+          "ref": "vsaq60",
+          "section": "VSAQ",
+          "number": 60,
+          "stars": 0,
+          "text": "What is biogenesis?",
+          "question_id": "ts_ipe_z1_dlw_biogenesis"
+        },
+        {
+          "ref": "vsaq61",
+          "section": "VSAQ",
+          "number": 61,
+          "stars": 0,
+          "text": "Define the term histology. What is it otherwise called?",
+          "question_id": "ts_ipe_z1_dlw_histology_definition"
+        },
+        {
+          "ref": "vsaq62",
+          "section": "VSAQ",
+          "number": 62,
+          "stars": 0,
+          "text": "What is trinomial nomenclature? Give an example.",
+          "question_id": "ts_ipe_z1_dlw_trinomial_nomenclature"
+        },
+        {
+          "ref": "vsaq63",
+          "section": "VSAQ",
+          "number": 63,
+          "stars": 0,
+          "text": "What is meant by tautonymy? Give two examples.",
+          "question_id": "ts_ipe_z1_dlw_tautonymy"
+        },
+        {
+          "ref": "vsaq64",
+          "section": "VSAQ",
+          "number": 64,
+          "stars": 0,
+          "text": "Differentiate between Protostomia and Deuterostomia.",
+          "question_id": "ts_ipe_z1_dlw_protostomia_vs_deuterostomia"
+        },
+        {
+          "ref": "vsaq65",
+          "section": "VSAQ",
+          "number": 65,
+          "stars": 0,
+          "text": "What is ecological diversity? Mention the different types of ecological diversities.",
+          "question_id": "ts_ipe_z1_dlw_ecological_diversity"
+        },
+        {
+          "ref": "vsaq66",
+          "section": "VSAQ",
+          "number": 66,
+          "stars": 0,
+          "text": "Define species richness.",
+          "question_id": "ts_ipe_z1_dlw_species_richness"
+        },
+        {
+          "ref": "vsaq67",
+          "section": "VSAQ",
+          "number": 67,
+          "stars": 0,
+          "text": "List out any four sacred groves in India.",
+          "question_id": "ts_ipe_z1_dlw_sacred_groves_india"
+        },
+        {
+          "ref": "vsaq68",
+          "section": "VSAQ",
+          "number": 68,
+          "stars": 0,
+          "text": "Write the full form of IUCN. In which book are threatened species listed?",
+          "question_id": "ts_ipe_z1_dlw_iucn_red_data_book"
+        },
+        {
+          "ref": "vsaq69",
+          "section": "VSAQ",
+          "number": 69,
+          "stars": 0,
+          "text": "Define the term metabolism. Give any one example.",
+          "question_id": "ts_ipe_z1_dlw_metabolism_definition"
+        },
+        {
+          "ref": "vsaq70",
+          "section": "VSAQ",
+          "number": 70,
+          "stars": 0,
+          "text": "How do you differentiate between growth in a living organism and growth in a non-living object?",
+          "question_id": "ts_ipe_z1_dlw_growth_living_vs_nonliving"
+        },
+        {
+          "ref": "vsaq71",
+          "section": "VSAQ",
+          "number": 71,
+          "stars": 0,
+          "text": "'Zoos are tools for classification.' Explain.",
+          "question_id": "ts_ipe_z1_dlw_zoos_tools_for_classification"
+        },
+        {
+          "ref": "vsaq72",
+          "section": "VSAQ",
+          "number": 72,
+          "stars": 0,
+          "text": "Where and how do we preserve skeletons of animals, dry specimens etc.?",
+          "question_id": "ts_ipe_z1_dlw_museum_preservation"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Define species. Explain the various aspects of 'species'.",
+          "question_id": "ts_ipe_z1_dlw_species_and_its_aspects"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "What is the 'evil quartet'?",
+          "question_id": "ts_ipe_z1_dlw_evil_quartet"
+        },
+        {
+          "ref": "saq15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Explain the 'Rivet Popper' hypothesis.",
+          "question_id": "ts_ipe_z1_dlw_rivet_popper_hypothesis"
+        },
+        {
+          "ref": "saq16",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What are the reasons for greater biodiversity in the tropics?",
+          "question_id": "ts_ipe_z1_dlw_tropics_greater_biodiversity"
+        },
+        {
+          "ref": "saq17",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Explain in brief 'Biodiversity Hot Spots'.",
+          "question_id": "ts_ipe_z1_dlw_biodiversity_hot_spots"
+        },
+        {
+          "ref": "saq177",
+          "section": "SAQ",
+          "number": 177,
+          "stars": 0,
+          "text": "What is genetic diversity and what are the different types of genetic diversity?",
+          "question_id": "ts_ipe_z1_dlw_genetic_diversity"
+        },
+        {
+          "ref": "saq178",
+          "section": "SAQ",
+          "number": 178,
+          "stars": 0,
+          "text": "Explain the hierarchy of classification.",
+          "question_id": "ts_ipe_z1_dlw_hierarchy_of_classification"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Structural Organisation in Animals (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq73",
+          "section": "VSAQ",
+          "number": 73,
+          "stars": 0,
+          "text": "What is cephalization? How is it useful to its possessors?",
+          "question_id": "ts_ipe_z1_so_cephalization"
+        },
+        {
+          "ref": "vsaq74",
+          "section": "VSAQ",
+          "number": 74,
+          "stars": 0,
+          "text": "Mention the animals that exhibited a 'tube-within-a-tube' organisation for the first time. Name their body cavity.",
+          "question_id": "ts_ipe_z1_so_tube_within_a_tube"
+        },
+        {
+          "ref": "vsaq75",
+          "section": "VSAQ",
+          "number": 75,
+          "stars": 0,
+          "text": "Why is the true coelom considered a secondary body cavity?",
+          "question_id": "ts_ipe_z1_so_true_coelom_secondary_cavity"
+        },
+        {
+          "ref": "vsaq76",
+          "section": "VSAQ",
+          "number": 76,
+          "stars": 0,
+          "text": "What are retroperitoneal organs?",
+          "question_id": "ts_ipe_z1_so_retroperitoneal_organs"
+        },
+        {
+          "ref": "vsaq77",
+          "section": "VSAQ",
+          "number": 77,
+          "stars": 0,
+          "text": "What is Enterocoelom? Name the enterocoelomate phyla in the animal kingdom.",
+          "question_id": "ts_ipe_z1_so_enterocoelom"
+        },
+        {
+          "ref": "vsaq78",
+          "section": "VSAQ",
+          "number": 78,
+          "stars": 0,
+          "text": "Distinguish between endocrine and exocrine glands with examples.",
+          "question_id": "ts_ipe_z1_so_endocrine_vs_exocrine_glands"
+        },
+        {
+          "ref": "vsaq79",
+          "section": "VSAQ",
+          "number": 79,
+          "stars": 0,
+          "text": "Mention any two substances secreted by mast cells and their functions.",
+          "question_id": "ts_ipe_z1_so_mast_cell_secretions"
+        },
+        {
+          "ref": "vsaq80",
+          "section": "VSAQ",
+          "number": 80,
+          "stars": 0,
+          "text": "Distinguish between a ligament and a tendon.",
+          "question_id": "ts_ipe_z1_so_ligament_vs_tendon"
+        },
+        {
+          "ref": "vsaq81",
+          "section": "VSAQ",
+          "number": 81,
+          "stars": 0,
+          "text": "What is the strongest cartilage? In which regions of the human body do you find it?",
+          "question_id": "ts_ipe_z1_so_strongest_cartilage"
+        },
+        {
+          "ref": "vsaq82",
+          "section": "VSAQ",
+          "number": 82,
+          "stars": 0,
+          "text": "Define osteon.",
+          "question_id": "ts_ipe_z1_so_define_osteon"
+        },
+        {
+          "ref": "vsaq83",
+          "section": "VSAQ",
+          "number": 83,
+          "stars": 0,
+          "text": "What is a Sesamoid bone? Give an example.",
+          "question_id": "ts_ipe_z1_so_sesamoid_bone"
+        },
+        {
+          "ref": "vsaq84",
+          "section": "VSAQ",
+          "number": 84,
+          "stars": 0,
+          "text": "What are microglia and what is their origin? Add a note on their function.",
+          "question_id": "ts_ipe_z1_so_microglia"
+        },
+        {
+          "ref": "vsaq85",
+          "section": "VSAQ",
+          "number": 85,
+          "stars": 0,
+          "text": "What is the haematocrit value?",
+          "question_id": "ts_ipe_z1_so_haematocrit_value"
+        },
+        {
+          "ref": "vsaq86",
+          "section": "VSAQ",
+          "number": 86,
+          "stars": 0,
+          "text": "What are intercalated discs? What is their significance?",
+          "question_id": "ts_ipe_z1_so_intercalated_discs"
+        },
+        {
+          "ref": "vsaq87",
+          "section": "VSAQ",
+          "number": 87,
+          "stars": 0,
+          "text": "\"Cardiac muscle is highly resistant to fatigue\". Justify.",
+          "question_id": "ts_ipe_z1_so_cardiac_muscle_fatigue_resistance"
+        },
+        {
+          "ref": "vsaq88",
+          "section": "VSAQ",
+          "number": 88,
+          "stars": 0,
+          "text": "Distinguish between white matter and grey matter of the central nervous system.",
+          "question_id": "ts_ipe_z1_so_white_vs_grey_matter"
+        },
+        {
+          "ref": "vsaq173",
+          "section": "VSAQ",
+          "number": 173,
+          "stars": 0,
+          "text": "What is lymph? How does it differ from plasma?",
+          "question_id": "ts_ipe_z1_so_lymph_vs_plasma"
+        },
+        {
+          "ref": "saq18",
+          "section": "SAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Explain Haversian system.",
+          "question_id": "ts_ipe_z1_so_haversian_system"
+        },
+        {
+          "ref": "saq19",
+          "section": "SAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Describe the structure of a skeletal muscle.",
+          "question_id": "ts_ipe_z1_so_skeletal_muscle_structure"
+        },
+        {
+          "ref": "saq20",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Describe the three types of cartilage.",
+          "question_id": "ts_ipe_z1_so_three_types_of_cartilage"
+        },
+        {
+          "ref": "saq21",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Describe the structure of a cardiac muscle.",
+          "question_id": "ts_ipe_z1_so_cardiac_muscle_structure"
+        },
+        {
+          "ref": "saq22",
+          "section": "SAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Describe the structure of a multipolar neuron.",
+          "question_id": "ts_ipe_z1_so_multipolar_neuron_structure"
+        },
+        {
+          "ref": "saq23",
+          "section": "SAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Give an account of glandular epithelium.",
+          "question_id": "ts_ipe_z1_so_glandular_epithelium"
+        },
+        {
+          "ref": "saq179",
+          "section": "SAQ",
+          "number": 179,
+          "stars": 0,
+          "text": "Write short notes on lymph.",
+          "question_id": "ts_ipe_z1_so_lymph_short_notes"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Animal Diversity-I (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq89",
+          "section": "VSAQ",
+          "number": 89,
+          "stars": 0,
+          "text": "What are the functions of the canal system of sponges?",
+          "question_id": "ts_ipe_z1_ad1_sponge_canal_system_functions"
+        },
+        {
+          "ref": "vsaq90",
+          "section": "VSAQ",
+          "number": 90,
+          "stars": 0,
+          "text": "What is metagenesis? Animals belonging to which phylum exhibit metagenesis?",
+          "question_id": "ts_ipe_z1_ad1_metagenesis"
+        },
+        {
+          "ref": "vsaq91",
+          "section": "VSAQ",
+          "number": 91,
+          "stars": 0,
+          "text": "What are the excretory cells of flatworms called? What is the other important function of these specialized cells?",
+          "question_id": "ts_ipe_z1_ad1_flame_cells"
+        },
+        {
+          "ref": "vsaq92",
+          "section": "VSAQ",
+          "number": 92,
+          "stars": 0,
+          "text": "Distinguish between amphids and phasmids.",
+          "question_id": "ts_ipe_z1_ad1_amphids_vs_phasmids"
+        },
+        {
+          "ref": "vsaq93",
+          "section": "VSAQ",
+          "number": 93,
+          "stars": 0,
+          "text": "What is botryoidal tissue?",
+          "question_id": "ts_ipe_z1_ad1_botryoidal_tissue"
+        },
+        {
+          "ref": "vsaq94",
+          "section": "VSAQ",
+          "number": 94,
+          "stars": 0,
+          "text": "Which arthropod is called a 'living fossil'? Name its respiratory organs.",
+          "question_id": "ts_ipe_z1_ad1_living_fossil_arthropod"
+        },
+        {
+          "ref": "vsaq95",
+          "section": "VSAQ",
+          "number": 95,
+          "stars": 0,
+          "text": "What is the function of radula? Give the name of the group of molluscs which do not possess a radula.",
+          "question_id": "ts_ipe_z1_ad1_radula_function"
+        },
+        {
+          "ref": "vsaq96",
+          "section": "VSAQ",
+          "number": 96,
+          "stars": 0,
+          "text": "What is Aristotle's lantern? Give one example of an animal possessing it.",
+          "question_id": "ts_ipe_z1_ad1_aristotles_lantern"
+        },
+        {
+          "ref": "vsaq97",
+          "section": "VSAQ",
+          "number": 97,
+          "stars": 0,
+          "text": "What is the essential difference between the larvae and adults of echinoderms, symmetry wise?",
+          "question_id": "ts_ipe_z1_ad1_echinoderm_larva_symmetry"
+        },
+        {
+          "ref": "vsaq98",
+          "section": "VSAQ",
+          "number": 98,
+          "stars": 0,
+          "text": "What are the two chief morphological 'body forms' of cnidarians? What are their chief functions?",
+          "question_id": "ts_ipe_z1_ad1_cnidarian_body_forms"
+        },
+        {
+          "ref": "vsaq99",
+          "section": "VSAQ",
+          "number": 99,
+          "stars": 0,
+          "text": "What do you call the locomotor structures of Nereis? Why is Nereis called a polychaete?",
+          "question_id": "ts_ipe_z1_ad1_nereis_parapodia"
+        },
+        {
+          "ref": "vsaq100",
+          "section": "VSAQ",
+          "number": 100,
+          "stars": 0,
+          "text": "What do you call the first and second pairs of cephalic appendages of a scorpion?",
+          "question_id": "ts_ipe_z1_ad1_scorpion_cephalic_appendages"
+        },
+        {
+          "ref": "vsaq101",
+          "section": "VSAQ",
+          "number": 101,
+          "stars": 0,
+          "text": "What are the respiratory structures of Limulus and Palamnaeus respectively?",
+          "question_id": "ts_ipe_z1_ad1_limulus_palamnaeus_respiration"
+        },
+        {
+          "ref": "vsaq102",
+          "section": "VSAQ",
+          "number": 102,
+          "stars": 0,
+          "text": "What are antennae? What is the arthropod group without antennae?",
+          "question_id": "ts_ipe_z1_ad1_antennae_chelicerata"
+        },
+        {
+          "ref": "vsaq103",
+          "section": "VSAQ",
+          "number": 103,
+          "stars": 0,
+          "text": "What is the other name for the gill of a mollusc? What is the function of osphradium?",
+          "question_id": "ts_ipe_z1_ad1_ctenidium_osphradium"
+        },
+        {
+          "ref": "vsaq104",
+          "section": "VSAQ",
+          "number": 104,
+          "stars": 0,
+          "text": "What are spermathecae on the body of Pheretima?",
+          "question_id": "ts_ipe_z1_ad1_spermathecae_pheretima"
+        },
+        {
+          "ref": "vsaq105",
+          "section": "VSAQ",
+          "number": 105,
+          "stars": 0,
+          "text": "What do you call the perivisceral cavity of an arthropod? Where from is it derived during development?",
+          "question_id": "ts_ipe_z1_ad1_haemocoel_arthropod"
+        },
+        {
+          "ref": "vsaq106",
+          "section": "VSAQ",
+          "number": 106,
+          "stars": 0,
+          "text": "What are blood glands in Pheretima?",
+          "question_id": "ts_ipe_z1_ad1_blood_glands_pheretima"
+        },
+        {
+          "ref": "saq24",
+          "section": "SAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write short notes on the salient features of the anthozoans.",
+          "question_id": "ts_ipe_z1_ad1_anthozoa_features"
+        },
+        {
+          "ref": "saq25",
+          "section": "SAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "What are the salient features exhibited by polychaetes?",
+          "question_id": "ts_ipe_z1_ad1_polychaeta_features"
+        },
+        {
+          "ref": "saq26",
+          "section": "SAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "What are the chief characters of the crustaceans?",
+          "question_id": "ts_ipe_z1_ad1_crustacea_characters"
+        },
+        {
+          "ref": "saq27",
+          "section": "SAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "What are the salient features of the echinoids?",
+          "question_id": "ts_ipe_z1_ad1_echinoidea_features"
+        },
+        {
+          "ref": "saq28",
+          "section": "SAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "Mention the salient features of Holothuroidea.",
+          "question_id": "ts_ipe_z1_ad1_holothuroidea_features"
+        },
+        {
+          "ref": "saq29",
+          "section": "SAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "Mention the general characters of Arachnida.",
+          "question_id": "ts_ipe_z1_ad1_arachnida_characters"
+        },
+        {
+          "ref": "saq180",
+          "section": "SAQ",
+          "number": 180,
+          "stars": 0,
+          "text": "What is the class to which the flukes belong? Write short notes on the chief characters of that group.",
+          "question_id": "ts_ipe_z1_ad1_trematoda_flukes"
+        },
+        {
+          "ref": "saq181",
+          "section": "SAQ",
+          "number": 181,
+          "stars": 0,
+          "text": "Compare briefly a centipede and a millipede.",
+          "question_id": "ts_ipe_z1_ad1_centipede_vs_millipede"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Animal Diversity-II (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq107",
+          "section": "VSAQ",
+          "number": 107,
+          "stars": 0,
+          "text": "List out the characters shared by chordates and echinoderms.",
+          "question_id": "ts_ipe_z1_ad2_chordates_echinoderms_shared"
+        },
+        {
+          "ref": "vsaq108",
+          "section": "VSAQ",
+          "number": 108,
+          "stars": 0,
+          "text": "Write four salient features of cyclostomes.",
+          "question_id": "ts_ipe_z1_ad2_cyclostomes_features"
+        },
+        {
+          "ref": "vsaq109",
+          "section": "VSAQ",
+          "number": 109,
+          "stars": 0,
+          "text": "What is the importance of endostyle in lancelets and ascidians?",
+          "question_id": "ts_ipe_z1_ad2_endostyle_importance"
+        },
+        {
+          "ref": "vsaq110",
+          "section": "VSAQ",
+          "number": 110,
+          "stars": 0,
+          "text": "Name the type of caudal fin and scales that are present in a shark and Catla, respectively.",
+          "question_id": "ts_ipe_z1_ad2_shark_catla_fin_scales"
+        },
+        {
+          "ref": "vsaq111",
+          "section": "VSAQ",
+          "number": 111,
+          "stars": 0,
+          "text": "What is the importance of air bladder in fishes?",
+          "question_id": "ts_ipe_z1_ad2_air_bladder_importance"
+        },
+        {
+          "ref": "vsaq112",
+          "section": "VSAQ",
+          "number": 112,
+          "stars": 0,
+          "text": "How do you justify the statement — \"heart in fishes is a branchial heart\"?",
+          "question_id": "ts_ipe_z1_ad2_branchial_heart_fishes"
+        },
+        {
+          "ref": "vsaq113",
+          "section": "VSAQ",
+          "number": 113,
+          "stars": 0,
+          "text": "What are claspers? Which group of fishes possesses them?",
+          "question_id": "ts_ipe_z1_ad2_claspers"
+        },
+        {
+          "ref": "vsaq114",
+          "section": "VSAQ",
+          "number": 114,
+          "stars": 0,
+          "text": "How does the heart of an amphibian differ from that of a reptile?",
+          "question_id": "ts_ipe_z1_ad2_amphibian_vs_reptile_heart"
+        },
+        {
+          "ref": "vsaq115",
+          "section": "VSAQ",
+          "number": 115,
+          "stars": 0,
+          "text": "How do you distinguish a male frog from a female frog?",
+          "question_id": "ts_ipe_z1_ad2_male_vs_female_frog"
+        },
+        {
+          "ref": "vsaq116",
+          "section": "VSAQ",
+          "number": 116,
+          "stars": 0,
+          "text": "Distinguish between milt and spawn.",
+          "question_id": "ts_ipe_z1_ad2_milt_vs_spawn"
+        },
+        {
+          "ref": "vsaq117",
+          "section": "VSAQ",
+          "number": 117,
+          "stars": 0,
+          "text": "Name two poisonous and two non-poisonous snakes found in South India.",
+          "question_id": "ts_ipe_z1_ad2_snakes_south_india"
+        },
+        {
+          "ref": "vsaq118",
+          "section": "VSAQ",
+          "number": 118,
+          "stars": 0,
+          "text": "Name the four extra embryonic membranes.",
+          "question_id": "ts_ipe_z1_ad2_extra_embryonic_membranes"
+        },
+        {
+          "ref": "vsaq119",
+          "section": "VSAQ",
+          "number": 119,
+          "stars": 0,
+          "text": "What are Jacobson's organs? What is their function?",
+          "question_id": "ts_ipe_z1_ad2_jacobsons_organs"
+        },
+        {
+          "ref": "vsaq120",
+          "section": "VSAQ",
+          "number": 120,
+          "stars": 0,
+          "text": "What are pneumatic bones? How do they help birds?",
+          "question_id": "ts_ipe_z1_ad2_pneumatic_bones"
+        },
+        {
+          "ref": "vsaq121",
+          "section": "VSAQ",
+          "number": 121,
+          "stars": 0,
+          "text": "What is wish bone? What are the skeletal components that form it?",
+          "question_id": "ts_ipe_z1_ad2_wish_bone"
+        },
+        {
+          "ref": "vsaq122",
+          "section": "VSAQ",
+          "number": 122,
+          "stars": 0,
+          "text": "How does a mature RBC of a mammal differ from that of other vertebrates?",
+          "question_id": "ts_ipe_z1_ad2_mammal_rbc_difference"
+        },
+        {
+          "ref": "vsaq123",
+          "section": "VSAQ",
+          "number": 123,
+          "stars": 0,
+          "text": "Name the three meninges. In which group of animals do you find all of them?",
+          "question_id": "ts_ipe_z1_ad2_three_meninges"
+        },
+        {
+          "ref": "saq30",
+          "section": "SAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "Name the four 'hallmarks' of chordates and explain the principal function of each of them.",
+          "question_id": "ts_ipe_z1_ad2_chordate_hallmarks"
+        },
+        {
+          "ref": "saq31",
+          "section": "SAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "Compare and contrast cartilaginous and bony fishes.",
+          "question_id": "ts_ipe_z1_ad2_cartilaginous_vs_bony_fishes"
+        },
+        {
+          "ref": "saq32",
+          "section": "SAQ",
+          "number": 32,
+          "stars": 0,
+          "text": "What are the modifications that are observed in birds that help them in flight?",
+          "question_id": "ts_ipe_z1_ad2_bird_flight_modifications"
+        },
+        {
+          "ref": "saq33",
+          "section": "SAQ",
+          "number": 33,
+          "stars": 0,
+          "text": "Describe the structure of the heart of frog.",
+          "question_id": "ts_ipe_z1_ad2_frog_heart_structure"
+        },
+        {
+          "ref": "saq34",
+          "section": "SAQ",
+          "number": 34,
+          "stars": 0,
+          "text": "List out the extant orders of the Class Reptilia. Give two examples for each order.",
+          "question_id": "ts_ipe_z1_ad2_reptilia_extant_orders"
+        },
+        {
+          "ref": "saq35",
+          "section": "SAQ",
+          "number": 35,
+          "stars": 0,
+          "text": "List out eight characteristics that help distinguish a fish from the other vertebrates.",
+          "question_id": "ts_ipe_z1_ad2_fish_distinguishing_characters"
+        },
+        {
+          "ref": "saq36",
+          "section": "SAQ",
+          "number": 36,
+          "stars": 0,
+          "text": "Write eight salient features of the class Amphibia.",
+          "question_id": "ts_ipe_z1_ad2_amphibia_salient_features"
+        },
+        {
+          "ref": "saq182",
+          "section": "SAQ",
+          "number": 182,
+          "stars": 0,
+          "text": "What are the features peculiar to ratite birds? Give two examples of ratite birds.",
+          "question_id": "ts_ipe_z1_ad2_ratite_birds"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Locomotion and Reproduction (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq124",
+          "section": "VSAQ",
+          "number": 124,
+          "stars": 0,
+          "text": "Draw a labelled diagram of T.S. of flagellum.",
+          "question_id": "ts_ipe_z1_lr_ts_flagellum_diagram"
+        },
+        {
+          "ref": "vsaq125",
+          "section": "VSAQ",
+          "number": 125,
+          "stars": 0,
+          "text": "List any two differences between a flagellum and a cilium.",
+          "question_id": "ts_ipe_z1_lr_flagellum_vs_cilium"
+        },
+        {
+          "ref": "vsaq126",
+          "section": "VSAQ",
+          "number": 126,
+          "stars": 0,
+          "text": "What is a kinety?",
+          "question_id": "ts_ipe_z1_lr_kinety"
+        },
+        {
+          "ref": "vsaq127",
+          "section": "VSAQ",
+          "number": 127,
+          "stars": 0,
+          "text": "Distinguish between synchronous and metachronous movements.",
+          "question_id": "ts_ipe_z1_lr_synchronous_vs_metachronous"
+        },
+        {
+          "ref": "vsaq128",
+          "section": "VSAQ",
+          "number": 128,
+          "stars": 0,
+          "text": "Distinguish between proter and opisthe.",
+          "question_id": "ts_ipe_z1_lr_proter_vs_opisthe"
+        },
+        {
+          "ref": "vsaq129",
+          "section": "VSAQ",
+          "number": 129,
+          "stars": 0,
+          "text": "Distinguish between lobopodium and filopodium. Give an example to each of them.",
+          "question_id": "ts_ipe_z1_lr_lobopodium_vs_filopodium"
+        },
+        {
+          "ref": "vsaq130",
+          "section": "VSAQ",
+          "number": 130,
+          "stars": 0,
+          "text": "Define conjugation with reference to ciliates. Give two examples.",
+          "question_id": "ts_ipe_z1_lr_conjugation_in_ciliates"
+        },
+        {
+          "ref": "vsaq174",
+          "section": "VSAQ",
+          "number": 174,
+          "stars": 0,
+          "text": "What are dynein arms? What is their significance?",
+          "question_id": "ts_ipe_z1_lr_dynein_arms"
+        },
+        {
+          "ref": "vsaq175",
+          "section": "VSAQ",
+          "number": 175,
+          "stars": 0,
+          "text": "Why do we refer to the offspring, formed by asexual method of reproduction, a clone?",
+          "question_id": "ts_ipe_z1_lr_clone_asexual_offspring"
+        },
+        {
+          "ref": "saq37",
+          "section": "SAQ",
+          "number": 37,
+          "stars": 0,
+          "text": "Describe the process of transverse binary fission in Paramecium.",
+          "question_id": "ts_ipe_z1_lr_transverse_fission_paramecium"
+        },
+        {
+          "ref": "saq38",
+          "section": "SAQ",
+          "number": 38,
+          "stars": 0,
+          "text": "Describe the process of longitudinal binary fission in Euglena.",
+          "question_id": "ts_ipe_z1_lr_longitudinal_fission_euglena"
+        },
+        {
+          "ref": "saq39",
+          "section": "SAQ",
+          "number": 39,
+          "stars": 0,
+          "text": "What are lateral appendages? Based on their presence and absence, write the various types of flagella giving at least one example for each type.",
+          "question_id": "ts_ipe_z1_lr_types_of_flagella"
+        },
+        {
+          "ref": "saq40",
+          "section": "SAQ",
+          "number": 40,
+          "stars": 0,
+          "text": "Give an account of pseudopodia.",
+          "question_id": "ts_ipe_z1_lr_pseudopodia_account"
+        },
+        {
+          "ref": "saq41",
+          "section": "SAQ",
+          "number": 41,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of Euglena.",
+          "question_id": "ts_ipe_z1_lr_euglena_diagram"
+        },
+        {
+          "ref": "saq42",
+          "section": "SAQ",
+          "number": 42,
+          "stars": 0,
+          "text": "Draw a neat diagram of Paramecium.",
+          "question_id": "ts_ipe_z1_lr_paramecium_diagram"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Biology in Human Welfare (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq131",
+          "section": "VSAQ",
+          "number": 131,
+          "stars": 0,
+          "text": "Define parasitism and justify this term.",
+          "question_id": "ts_ipe_z1_bhw_parasitism_define"
+        },
+        {
+          "ref": "vsaq132",
+          "section": "VSAQ",
+          "number": 132,
+          "stars": 0,
+          "text": "What is a hyper-parasite? Mention the name of one hyper-parasite.",
+          "question_id": "ts_ipe_z1_bhw_hyper_parasite"
+        },
+        {
+          "ref": "vsaq133",
+          "section": "VSAQ",
+          "number": 133,
+          "stars": 0,
+          "text": "What do you mean by parasitic castration? Give one example.",
+          "question_id": "ts_ipe_z1_bhw_parasitic_castration"
+        },
+        {
+          "ref": "vsaq134",
+          "section": "VSAQ",
+          "number": 134,
+          "stars": 0,
+          "text": "Define neoplasia. Give one example.",
+          "question_id": "ts_ipe_z1_bhw_neoplasia"
+        },
+        {
+          "ref": "vsaq135",
+          "section": "VSAQ",
+          "number": 135,
+          "stars": 0,
+          "text": "A person is suffering from bowel irregularity, abdominal pain, blood and mucus in stool, etc. Based on these symptoms, name the disease and its causative organism.",
+          "question_id": "ts_ipe_z1_bhw_amoebic_dysentery_symptoms"
+        },
+        {
+          "ref": "vsaq136",
+          "section": "VSAQ",
+          "number": 136,
+          "stars": 0,
+          "text": "Define prepatent period. What is its duration in the life cycle of Plasmodium vivax?",
+          "question_id": "ts_ipe_z1_bhw_prepatent_period"
+        },
+        {
+          "ref": "vsaq137",
+          "section": "VSAQ",
+          "number": 137,
+          "stars": 0,
+          "text": "Define incubation period. What is its duration in the life cycle of Plasmodium vivax?",
+          "question_id": "ts_ipe_z1_bhw_incubation_period"
+        },
+        {
+          "ref": "vsaq138",
+          "section": "VSAQ",
+          "number": 138,
+          "stars": 0,
+          "text": "The eggs of Ascaris are called 'mammillated eggs'. Justify.",
+          "question_id": "ts_ipe_z1_bhw_mammillated_egg"
+        },
+        {
+          "ref": "vsaq139",
+          "section": "VSAQ",
+          "number": 139,
+          "stars": 0,
+          "text": "What is meant by nocturnal periodicity with reference to the life history of a nematode parasite you have studied?",
+          "question_id": "ts_ipe_z1_bhw_nocturnal_periodicity"
+        },
+        {
+          "ref": "vsaq140",
+          "section": "VSAQ",
+          "number": 140,
+          "stars": 0,
+          "text": "Distinguish between lymphadenitis and lymphangitis.",
+          "question_id": "ts_ipe_z1_bhw_lymphadenitis_lymphangitis"
+        },
+        {
+          "ref": "vsaq141",
+          "section": "VSAQ",
+          "number": 141,
+          "stars": 0,
+          "text": "In which way does tobacco affect the respiration? Name the alkaloid found in tobacco.",
+          "question_id": "ts_ipe_z1_bhw_tobacco_respiration"
+        },
+        {
+          "ref": "vsaq142",
+          "section": "VSAQ",
+          "number": 142,
+          "stars": 0,
+          "text": "Define drug abuse.",
+          "question_id": "ts_ipe_z1_bhw_drug_abuse_define"
+        },
+        {
+          "ref": "vsaq143",
+          "section": "VSAQ",
+          "number": 143,
+          "stars": 0,
+          "text": "From which substances 'Smack' and 'Coke' are obtained?",
+          "question_id": "ts_ipe_z1_bhw_smack_and_coke"
+        },
+        {
+          "ref": "vsaq144",
+          "section": "VSAQ",
+          "number": 144,
+          "stars": 0,
+          "text": "'Entamoeba histolytica is an obligatory anaerobe'. Justify.",
+          "question_id": "ts_ipe_z1_bhw_entamoeba_anaerobe"
+        },
+        {
+          "ref": "vsaq145",
+          "section": "VSAQ",
+          "number": 145,
+          "stars": 0,
+          "text": "What are haemozoin granules? What is their significance?",
+          "question_id": "ts_ipe_z1_bhw_haemozoin_granules"
+        },
+        {
+          "ref": "vsaq146",
+          "section": "VSAQ",
+          "number": 146,
+          "stars": 0,
+          "text": "What is exflagellation and what are the resultant products called?",
+          "question_id": "ts_ipe_z1_bhw_exflagellation"
+        },
+        {
+          "ref": "vsaq147",
+          "section": "VSAQ",
+          "number": 147,
+          "stars": 0,
+          "text": "Why is the syngamy found in Plasmodium called anisogamy?",
+          "question_id": "ts_ipe_z1_bhw_anisogamy_plasmodium"
+        },
+        {
+          "ref": "vsaq176",
+          "section": "VSAQ",
+          "number": 176,
+          "stars": 0,
+          "text": "Why are cannabinoids and anabolic steroids banned in sports and games?",
+          "question_id": "ts_ipe_z1_bhw_steroids_banned_sports"
+        },
+        {
+          "ref": "saq43",
+          "section": "SAQ",
+          "number": 43,
+          "stars": 0,
+          "text": "What are the adverse effects of tobacco?",
+          "question_id": "ts_ipe_z1_bhw_tobacco_adverse_effects"
+        },
+        {
+          "ref": "saq44",
+          "section": "SAQ",
+          "number": 44,
+          "stars": 0,
+          "text": "Why is adolescence considered a vulnerable phase?",
+          "question_id": "ts_ipe_z1_bhw_adolescence_vulnerable"
+        },
+        {
+          "ref": "saq45",
+          "section": "SAQ",
+          "number": 45,
+          "stars": 0,
+          "text": "'Prevention is better than cure'. Justify with regard to TDA abuse.",
+          "question_id": "ts_ipe_z1_bhw_prevention_tda_abuse"
+        },
+        {
+          "ref": "saq46",
+          "section": "SAQ",
+          "number": 46,
+          "stars": 0,
+          "text": "Distinguish between hypertrophy and hyperplasia with an example for each.",
+          "question_id": "ts_ipe_z1_bhw_hypertrophy_hyperplasia"
+        },
+        {
+          "ref": "saq47",
+          "section": "SAQ",
+          "number": 47,
+          "stars": 0,
+          "text": "Write short notes on Opioids.",
+          "question_id": "ts_ipe_z1_bhw_opioids"
+        },
+        {
+          "ref": "saq48",
+          "section": "SAQ",
+          "number": 48,
+          "stars": 0,
+          "text": "Write short notes on Cannabinoids.",
+          "question_id": "ts_ipe_z1_bhw_cannabinoids"
+        },
+        {
+          "ref": "saq49",
+          "section": "SAQ",
+          "number": 49,
+          "stars": 0,
+          "text": "Write a short note on the pathogenicity of Entamoeba histolytica.",
+          "question_id": "ts_ipe_z1_bhw_entamoeba_pathogenicity"
+        },
+        {
+          "ref": "saq183",
+          "section": "SAQ",
+          "number": 183,
+          "stars": 0,
+          "text": "What is the need for parasites to develop special adaptations? Mention some special adaptations developed by the parasites.",
+          "question_id": "ts_ipe_z1_bhw_parasitic_adaptations"
+        },
+        {
+          "ref": "saq184",
+          "section": "SAQ",
+          "number": 184,
+          "stars": 0,
+          "text": "Distinguish between addiction and dependence.",
+          "question_id": "ts_ipe_z1_bhw_addiction_dependence"
+        },
+        {
+          "ref": "saq185",
+          "section": "SAQ",
+          "number": 185,
+          "stars": 0,
+          "text": "Describe the structure of sporozoite of Plasmodium vivax.",
+          "question_id": "ts_ipe_z1_bhw_sporozoite_structure"
+        },
+        {
+          "ref": "saq186",
+          "section": "SAQ",
+          "number": 186,
+          "stars": 0,
+          "text": "Explain the pathogenicity of Wuchereria bancrofti in man.",
+          "question_id": "ts_ipe_z1_bhw_wuchereria_pathogenicity"
+        },
+        {
+          "ref": "saq187",
+          "section": "SAQ",
+          "number": 187,
+          "stars": 0,
+          "text": "Write short notes on pneumonia and its prophylaxis.",
+          "question_id": "ts_ipe_z1_bhw_pneumonia"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain the structure and life cycle of Entamoeba histolytica with the help of neat labelled diagrams.",
+          "question_id": "ts_ipe_z1_bhw_laq_entamoeba_histolytica"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Describe the life cycle of Plasmodium vivax in man.",
+          "question_id": "ts_ipe_z1_bhw_laq_plasmodium_in_man"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Describe the life cycle of Plasmodium vivax in mosquito.",
+          "question_id": "ts_ipe_z1_bhw_laq_plasmodium_in_mosquito"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Describe the structure and life cycle of Ascaris lumbricoides with the help of a neat labelled diagram.",
+          "question_id": "ts_ipe_z1_bhw_laq_ascaris_lumbricoides"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Describe the life cycle of Wuchereria bancrofti with a neat diagram.",
+          "question_id": "ts_ipe_z1_bhw_laq_wuchereria_bancrofti"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Periplaneta americana (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "saq50",
+          "section": "SAQ",
+          "number": 50,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of the mouthparts of cockroach.",
+          "question_id": "ts_ipe_z1_pa_mouthparts_diagram"
+        },
+        {
+          "ref": "saq51",
+          "section": "SAQ",
+          "number": 51,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of the salivary apparatus of cockroach.",
+          "question_id": "ts_ipe_z1_pa_salivary_apparatus"
+        },
+        {
+          "ref": "saq52",
+          "section": "SAQ",
+          "number": 52,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of ommatidium.",
+          "question_id": "ts_ipe_z1_pa_ommatidium_diagram"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Describe the digestive system of cockroach with the help of a neat labelled diagram.",
+          "question_id": "ts_ipe_z1_pa_laq_digestive_system"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Describe the blood circulatory system of Periplaneta in detail and draw a neat and labelled diagram of it.",
+          "question_id": "ts_ipe_z1_pa_laq_blood_circulatory_system"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Describe the respiratory system of cockroach with the help of neat and labelled diagrams.",
+          "question_id": "ts_ipe_z1_pa_laq_respiratory_system"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Ecology and Environment (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq148",
+          "section": "VSAQ",
+          "number": 148,
+          "stars": 0,
+          "text": "What is the primordial source of energy for all organisms?",
+          "question_id": "ts_ipe_z1_ee_primordial_source_of_energy"
+        },
+        {
+          "ref": "vsaq149",
+          "section": "VSAQ",
+          "number": 149,
+          "stars": 0,
+          "text": "What are biological rhythms?",
+          "question_id": "ts_ipe_z1_ee_biological_rhythms"
+        },
+        {
+          "ref": "vsaq150",
+          "section": "VSAQ",
+          "number": 150,
+          "stars": 0,
+          "text": "What are circadian rhythms?",
+          "question_id": "ts_ipe_z1_ee_circadian_rhythms"
+        },
+        {
+          "ref": "vsaq151",
+          "section": "VSAQ",
+          "number": 151,
+          "stars": 0,
+          "text": "What is Photoperiodism?",
+          "question_id": "ts_ipe_z1_ee_photoperiodism"
+        },
+        {
+          "ref": "vsaq152",
+          "section": "VSAQ",
+          "number": 152,
+          "stars": 0,
+          "text": "Mention the advantages of some UV rays to us.",
+          "question_id": "ts_ipe_z1_ee_advantages_of_uv_rays"
+        },
+        {
+          "ref": "vsaq153",
+          "section": "VSAQ",
+          "number": 153,
+          "stars": 0,
+          "text": "What is cyclomorphosis? Explain its importance in Daphnia.",
+          "question_id": "ts_ipe_z1_ee_cyclomorphosis_daphnia"
+        },
+        {
+          "ref": "vsaq154",
+          "section": "VSAQ",
+          "number": 154,
+          "stars": 0,
+          "text": "Define commensalism. Give one example.",
+          "question_id": "ts_ipe_z1_ee_commensalism_definition"
+        },
+        {
+          "ref": "vsaq155",
+          "section": "VSAQ",
+          "number": 155,
+          "stars": 0,
+          "text": "Define mutualism. Give one example.",
+          "question_id": "ts_ipe_z1_ee_mutualism_definition"
+        },
+        {
+          "ref": "vsaq156",
+          "section": "VSAQ",
+          "number": 156,
+          "stars": 0,
+          "text": "What is meant by osmotrophic nutrition?",
+          "question_id": "ts_ipe_z1_ee_osmotrophic_nutrition"
+        },
+        {
+          "ref": "vsaq157",
+          "section": "VSAQ",
+          "number": 157,
+          "stars": 0,
+          "text": "What is an ecosystem?",
+          "question_id": "ts_ipe_z1_ee_what_is_an_ecosystem"
+        },
+        {
+          "ref": "vsaq158",
+          "section": "VSAQ",
+          "number": 158,
+          "stars": 0,
+          "text": "Distinguish between lotic and lentic habitats.",
+          "question_id": "ts_ipe_z1_ee_lotic_vs_lentic_habitats"
+        },
+        {
+          "ref": "vsaq159",
+          "section": "VSAQ",
+          "number": 159,
+          "stars": 0,
+          "text": "Distinguish the terms phototaxis and photokinesis.",
+          "question_id": "ts_ipe_z1_ee_phototaxis_vs_photokinesis"
+        },
+        {
+          "ref": "vsaq160",
+          "section": "VSAQ",
+          "number": 160,
+          "stars": 0,
+          "text": "What is camouflage? Give its significance.",
+          "question_id": "ts_ipe_z1_ee_camouflage_significance"
+        },
+        {
+          "ref": "vsaq161",
+          "section": "VSAQ",
+          "number": 161,
+          "stars": 0,
+          "text": "Which air pollutants are chiefly responsible for acid rains?",
+          "question_id": "ts_ipe_z1_ee_acid_rain_pollutants"
+        },
+        {
+          "ref": "vsaq162",
+          "section": "VSAQ",
+          "number": 162,
+          "stars": 0,
+          "text": "What is BOD?",
+          "question_id": "ts_ipe_z1_ee_what_is_bod"
+        },
+        {
+          "ref": "vsaq163",
+          "section": "VSAQ",
+          "number": 163,
+          "stars": 0,
+          "text": "What is biological magnification?",
+          "question_id": "ts_ipe_z1_ee_biological_magnification"
+        },
+        {
+          "ref": "vsaq164",
+          "section": "VSAQ",
+          "number": 164,
+          "stars": 0,
+          "text": "Why are incinerators used in hospitals?",
+          "question_id": "ts_ipe_z1_ee_incinerators_in_hospitals"
+        },
+        {
+          "ref": "vsaq165",
+          "section": "VSAQ",
+          "number": 165,
+          "stars": 0,
+          "text": "Define parasitism. Give one example.",
+          "question_id": "ts_ipe_z1_ee_parasitism_definition"
+        },
+        {
+          "ref": "vsaq166",
+          "section": "VSAQ",
+          "number": 166,
+          "stars": 0,
+          "text": "What is optimum temperature?",
+          "question_id": "ts_ipe_z1_ee_optimum_temperature"
+        },
+        {
+          "ref": "vsaq167",
+          "section": "VSAQ",
+          "number": 167,
+          "stars": 0,
+          "text": "Distinguish between photoperiod and critical photoperiod.",
+          "question_id": "ts_ipe_z1_ee_photoperiod_vs_critical"
+        },
+        {
+          "ref": "vsaq168",
+          "section": "VSAQ",
+          "number": 168,
+          "stars": 0,
+          "text": "What is PAR?",
+          "question_id": "ts_ipe_z1_ee_what_is_par"
+        },
+        {
+          "ref": "vsaq169",
+          "section": "VSAQ",
+          "number": 169,
+          "stars": 0,
+          "text": "What is the percentage of PAR in the incident solar radiation?",
+          "question_id": "ts_ipe_z1_ee_percentage_of_par"
+        },
+        {
+          "ref": "vsaq170",
+          "section": "VSAQ",
+          "number": 170,
+          "stars": 0,
+          "text": "Distinguish between neuston and nekton.",
+          "question_id": "ts_ipe_z1_ee_neuston_vs_nekton"
+        },
+        {
+          "ref": "vsaq171",
+          "section": "VSAQ",
+          "number": 171,
+          "stars": 0,
+          "text": "What is Gause's principle? When is it applicable?",
+          "question_id": "ts_ipe_z1_ee_gause_principle"
+        },
+        {
+          "ref": "vsaq172",
+          "section": "VSAQ",
+          "number": 172,
+          "stars": 0,
+          "text": "What is predation? Give an example.",
+          "question_id": "ts_ipe_z1_ee_predation_definition"
+        },
+        {
+          "ref": "saq53",
+          "section": "SAQ",
+          "number": 53,
+          "stars": 0,
+          "text": "Describe Green House Effect.",
+          "question_id": "ts_ipe_z1_ee_greenhouse_effect"
+        },
+        {
+          "ref": "saq54",
+          "section": "SAQ",
+          "number": 54,
+          "stars": 0,
+          "text": "Discuss the causes and effects of global warming. What measures need to be taken to control 'Global Warming'?",
+          "question_id": "ts_ipe_z1_ee_global_warming_causes_effects"
+        },
+        {
+          "ref": "saq55",
+          "section": "SAQ",
+          "number": 55,
+          "stars": 0,
+          "text": "What are the deleterious effects of depletion of ozone in the stratosphere?",
+          "question_id": "ts_ipe_z1_ee_ozone_depletion_effects"
+        },
+        {
+          "ref": "saq56",
+          "section": "SAQ",
+          "number": 56,
+          "stars": 0,
+          "text": "What is summer stratification? Explain.",
+          "question_id": "ts_ipe_z1_ee_summer_stratification"
+        },
+        {
+          "ref": "saq57",
+          "section": "SAQ",
+          "number": 57,
+          "stars": 0,
+          "text": "Compare the adaptations of animals with freshwater and seawater mode of life.",
+          "question_id": "ts_ipe_z1_ee_freshwater_vs_seawater_adaptations"
+        },
+        {
+          "ref": "saq58",
+          "section": "SAQ",
+          "number": 58,
+          "stars": 0,
+          "text": "Write a note on DFC. Give the significance in a terrestrial ecosystem.",
+          "question_id": "ts_ipe_z1_ee_detritus_food_chain_note"
+        },
+        {
+          "ref": "saq188",
+          "section": "SAQ",
+          "number": 188,
+          "stars": 0,
+          "text": "Explain Van't Hoff rule.",
+          "question_id": "ts_ipe_z1_ee_vant_hoff_rule"
+        },
+        {
+          "ref": "saq189",
+          "section": "SAQ",
+          "number": 189,
+          "stars": 0,
+          "text": "How do terrestrial animals protect themselves from the danger of dehydration of bodies?",
+          "question_id": "ts_ipe_z1_ee_terrestrial_dehydration_protection"
+        },
+        {
+          "ref": "saq190",
+          "section": "SAQ",
+          "number": 190,
+          "stars": 0,
+          "text": "Distinguish between euryhaline and stenohaline animals.",
+          "question_id": "ts_ipe_z1_ee_euryhaline_vs_stenohaline"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Describe lake as an ecosystem by giving examples for the various zones and the biotic components in it.",
+          "question_id": "ts_ipe_z1_ee_laq_lake_as_an_ecosystem"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Describe different types of food chains that exist in an ecosystem.",
+          "question_id": "ts_ipe_z1_ee_laq_types_of_food_chains"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Give an account of flow of energy in an ecosystem.",
+          "question_id": "ts_ipe_z1_ee_laq_flow_of_energy"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "List out the major air pollutants and describe their effects on human beings.",
+          "question_id": "ts_ipe_z1_ee_laq_major_air_pollutants"
+        }
+      ]
+    },
+    {
+      "number": 1,
       "name": "Waves",
       "subject": "physics_2",
       "questions": [
@@ -8769,7 +10543,7 @@
           "section": "LAQ",
           "number": 5,
           "stars": 0,
-          "text": "What is Doppler shift? Obtain an expression for the apparent frequency of sound heard when the observer is in motion with respect to a source at rest?",
+          "text": "What is Doppler shift? Obtain an expression for the apparent frequency of sound heard when the observer is in motion with respect a source at rest?",
           "question_id": "ts_ipe_p2_wav_doppler_observer_moving"
         },
         {

@@ -1,0 +1,110 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_aristotles_lantern",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Aristotle's lantern? Give one example of an animal possessing it.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.53, VSAQ 96). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "why": "The apparatus is named by its jaw count, so five jaws is the fact that carries the mark.",
+        "common_mistakes": [
+          "Giving the number of jaws as three. Three jaws belong to the pedicellariae; the lantern has five.",
+          "Writing that it lies in the stomach. It lies in the buccal cavity, at the mouth."
+        ],
+        "memory_tip": "Five jaws matches the five-part symmetry of the echinoderm body.",
+        "margin_note": "Say what it is, how many jaws it has, and where it lies.",
+        "mark_note": "What it is",
+        "lines": [
+          "Aristotle's lantern is the masticatory",
+          "apparatus in the buccal cavity of a sea",
+          "urchin.",
+          "It is made of five calcareous jaws, each",
+          "carrying one tooth, held together by muscles",
+          "and ossicles.",
+          "The five teeth meet at the mouth and scrape",
+          "algae off the rock."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "One example",
+        "marks": 1,
+        "why": "The lantern is present only in the urchins that scrape hard surfaces, which is why the burrowing heart urchin and sand dollar do without it.",
+        "common_mistakes": [
+          "Naming a starfish. The lantern belongs to the sea urchins, class Echinoidea.",
+          "Writing that every echinoid has one. The heart urchin and the sand dollar do not."
+        ],
+        "memory_tip": "Lantern goes with Echinoidea, and Echinus is the named example.",
+        "margin_note": "One example is asked for. Add the two echinoids that lack it if there is room.",
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Five jaws · Example: Echinus (sea urchin)",
+            "style": "boxed"
+          },
+          "Example: Echinus, the sea urchin.",
+          "It is present in sea urchins.",
+          "It is absent in the heart urchin",
+          "(Echinocardium) and in the sand dollar",
+          "(Echinodiscus)."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for two words, five-jawed and sea urchin; the name Echinus alone has earned the second mark."
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_synchronous_vs_metachronous",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between synchronous and metachronous movements.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Synchronous movement", "marks": 1 },
+    { "label": "Metachronous movement", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, VSAQ chapter 16 'Locomotion & Reproduction' (book p.57, question 127), which prints the question and a model answer but NO year citation — so appearances are empty by fact, not by omission. Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. MARKS: the VSAQ chapter header prints '2+2=4 MARKS', which is the blueprint's two 2-mark questions drawn from this unit, not 4 marks for one question; this card is authored at the Section A standard of 2 marks. WORDING BEYOND THE BOOK: the book describes the metachronous beat as looking like wind passing over a paddy field. That comparison is dropped here under Rule 35 and Rule 41, and the beat is described literally as a wave travelling along the row; the standard term metachronal wave is used instead."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Locomotion and Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_synchronous",
+        "kind": "text",
+        "label": "Synchronous movement",
+        "marks": 1,
+        "mark_note": "Synchronous",
+        "lines": [
+          "These are the two ways in which the cilia of a",
+          "ciliate beat.",
+          "In synchronous movement, all the cilia of one",
+          "transverse row beat together at the same",
+          "moment and in the same direction."
+        ],
+        "why": "The two terms are told apart by WHICH row is being watched and WHEN the cilia in it beat, so the answer must name the row and the timing in the same sentence.",
+        "common_mistakes": [
+          "Writing that synchronous means all the cilia of the whole cell beat together. It is one transverse row.",
+          "Leaving out 'in the same direction'."
+        ],
+        "memory_tip": "Synchronous = same time, and it is the ACROSS row (transverse).",
+        "margin_note": "Name the transverse row and say the beats happen together."
+      },
+      {
+        "id": "s2_metachronous",
+        "kind": "boxed_final",
+        "label": "Metachronous movement",
+        "marks": 1,
+        "mark_note": "Metachronous",
+        "lines": [
+          "In metachronous movement, the cilia of one",
+          "longitudinal row beat one after another.",
+          "Each cilium beats a moment later than the one",
+          "in front of it, so the beat travels along the",
+          "row as a wave. This is the metachronal wave.",
+          {
+            "text": "Synchronous: transverse row, together.",
+            "style": "boxed"
+          },
+          {
+            "text": "Metachronous: longitudinal row, one by one.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The delay between one cilium and the next is what makes a travelling wave, and that wave is what pushes the ciliate steadily forward instead of jerking it.",
+        "common_mistakes": [
+          "Swapping the rows. Synchronous is the transverse row; metachronous is the longitudinal row.",
+          "Writing that metachronous cilia beat in different directions. They beat in the same direction, but at different times."
+        ],
+        "memory_tip": "Meta- means after: one after another, down the length.",
+        "margin_note": "Two rows, two timings. A two-row table is the fastest full-mark answer."
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for the pair transverse-together and longitudinal-one-after-another; a student who names only the timing and not the row usually gets one mark of the two."
+}

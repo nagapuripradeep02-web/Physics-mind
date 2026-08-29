@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_radula_function",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the function of radula? Give the name of the group of molluscs which do not possess a radula.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Function",
+      "marks": 1
+    },
+    {
+      "label": "Group without it",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.53, VSAQ 95). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_function",
+        "kind": "text",
+        "label": "Function of the radula",
+        "marks": 1,
+        "why": "The radula scrapes rather than bites, which is why the molluscs that use it feed on films of algae and not on large pieces of food.",
+        "common_mistakes": [
+          "Calling the radula a tongue. It is a toothed rasping ribbon, not a muscular tongue.",
+          "Writing that it grinds food in the stomach. It works at the mouth, in the buccal cavity."
+        ],
+        "memory_tip": "Radula rasps: a ribbon of teeth that scrapes food off a surface.",
+        "margin_note": "Say what it is and what it does. Two or three lines.",
+        "mark_note": "Function",
+        "lines": [
+          "The radula is a ribbon of chitinous teeth in",
+          "the buccal cavity of most molluscs.",
+          "It is a rasping organ used for feeding.",
+          "It scrapes food off a surface and carries the",
+          "scraped particles back into the gut."
+        ]
+      },
+      {
+        "id": "s2_absent",
+        "kind": "boxed_final",
+        "label": "The group without a radula",
+        "marks": 1,
+        "why": "The radula scrapes and the gill strains, so the animal that filters its food is the one that does without a radula.",
+        "common_mistakes": [
+          "Naming Gastropoda. Snails have a well developed radula; it is the bivalves that lack one.",
+          "Writing 'oysters'. Name the class: Bivalvia or Pelecypoda."
+        ],
+        "memory_tip": "Bivalves filter with their gills, so they need no rasping ribbon.",
+        "margin_note": "Name the class, then one line on why it does without a radula.",
+        "mark_note": "Group without it",
+        "lines": [
+          {
+            "text": "Radula is absent in class Bivalvia",
+            "style": "boxed"
+          },
+          "The radula is absent in the class Bivalvia,",
+          "also called Pelecypoda.",
+          "Bivalves are filter feeders. They strain food",
+          "particles from the water with their gills, so",
+          "no rasping organ is present.",
+          "Examples: Unio, Pinctada (pearl oyster)."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Write both names for the class, Bivalvia and Pelecypoda, because different question papers have used each of them."
+}

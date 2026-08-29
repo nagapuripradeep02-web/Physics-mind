@@ -1,0 +1,519 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_haversian_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain Haversian system.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Canal and lamellae",
+      "marks": 1
+    },
+    {
+      "label": "Lacunae and canaliculi",
+      "marks": 1
+    },
+    {
+      "label": "Volkmann's canals",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.32, SAQ 18). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK CORRECTION: the book says Volkmann's canals 'connect haversian canal to marrow cavity'. Standard anatomy has them running transversely and connecting one Haversian canal with another, and with the periosteum as well as the marrow cavity; the card is written the standard way and the book's narrower statement is recorded in that step's reasoning. ADDED BEYOND THE BOOK: the NERVE in the Haversian canal (the book lists artery, vein and lymph vessel only). FIGURE SCOPE: the question does not ask for a diagram and this book prints none, so the transverse section of one osteon is authored as a 0-mark study figure, not a mark-bearing step."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What the Haversian system is",
+        "marks": 1,
+        "why": "The Haversian system is a unit built of several parts, so the answer opens by naming the parts it is about to describe one by one.",
+        "common_mistakes": [
+          "Defining only the Haversian canal. The system is the canal plus everything around it.",
+          "Writing that it is found in spongy bone. It is found in compact bone."
+        ],
+        "memory_tip": "One canal, rings around it, cells between the rings, threads joining the cells — that is one osteon.",
+        "margin_note": "Name the parts in the definition, then describe them in that order. Four short lines.",
+        "mark_note": "Definition",
+        "lines": [
+          "In compact (dense) bone, a Haversian canal",
+          "together with the concentric lamellae, the",
+          "lacunae and the canaliculi around it is called",
+          "a Haversian system, or osteon.",
+          "It is the structural unit of compact bone and",
+          "works as a transport system."
+        ]
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — one osteon",
+        "marks": 0,
+        "why": "The parts are named by their POSITION — rings around a canal, cells between the rings, threads joining the cells — so a student who can draw the arrangement can name every part from the drawing.",
+        "common_mistakes": [
+          "Drawing the lamellae as straight lines. They are complete rings around the canal.",
+          "Putting the lacunae inside the canal. They lie between the rings.",
+          "Drawing Volkmann's canal along the bone. It runs across the bone."
+        ],
+        "memory_tip": "Draw the canal first, then the rings, then the cells between the rings, then the fine threads.",
+        "margin_note": "The question does not ask for a diagram, so no mark is given for it here. Draw it anyway if there is time — it makes the written description easy to check.",
+        "figure": {
+          "id": "so_haversian_system",
+          "width": 520,
+          "height": 352,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — Haversian canal with its blood vessels"
+            },
+            {
+              "type": "stroke",
+              "id": "hav_canal",
+              "d": "M 280 176 A 20 20 0 1 0 320 176 A 20 20 0 1 0 280 176",
+              "ms": 1790
+            },
+            {
+              "type": "stroke",
+              "id": "artery",
+              "d": "M 287 170 A 7 7 0 1 0 301 170 A 7 7 0 1 0 287 170",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "vein",
+              "d": "M 301.5 178 A 5.5 5.5 0 1 0 312.5 178 A 5.5 5.5 0 1 0 301.5 178",
+              "ms": 490
+            },
+            {
+              "type": "stroke",
+              "id": "lymph_vessel",
+              "d": "M 292 184 A 4 4 0 1 0 300 184 A 4 4 0 1 0 292 184",
+              "ms": 360
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — four concentric lamellae round the canal"
+            },
+            {
+              "type": "stroke",
+              "id": "lamella_1",
+              "d": "M 264 176 A 36 36 0 1 0 336 176 A 36 36 0 1 0 264 176",
+              "ms": 3230
+            },
+            {
+              "type": "stroke",
+              "id": "lamella_2",
+              "d": "M 248 176 A 52 52 0 1 0 352 176 A 52 52 0 1 0 248 176",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "lamella_3",
+              "d": "M 232 176 A 68 68 0 1 0 368 176 A 68 68 0 1 0 232 176",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "lamella_4",
+              "d": "M 216 176 A 84 84 0 1 0 384 176 A 84 84 0 1 0 216 176",
+              "ms": 4500
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — lacunae holding the osteocytes"
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_1",
+              "d": "M 334.4 204.5 L 333.2 203 L 333.1 200.5 L 333.9 197.5 L 335.6 194.6 L 337.7 192.4 L 340 191.3 L 341.9 191.5 L 343 193 L 343.2 195.5 L 342.3 198.5 L 340.6 201.4 L 338.5 203.6 L 336.2 204.7 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_2",
+              "d": "M 271.5 210.4 L 273 209.2 L 275.5 209.1 L 278.5 209.9 L 281.4 211.6 L 283.6 213.7 L 284.7 216 L 284.5 217.9 L 283 219 L 280.5 219.2 L 277.5 218.3 L 274.6 216.6 L 272.4 214.5 L 271.3 212.2 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_3",
+              "d": "M 265.6 147.5 L 266.8 149 L 266.9 151.5 L 266.1 154.5 L 264.4 157.4 L 262.3 159.6 L 260 160.7 L 258.1 160.5 L 257 159 L 256.8 156.5 L 257.7 153.5 L 259.4 150.6 L 261.5 148.4 L 263.8 147.3 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_4",
+              "d": "M 328.5 141.6 L 327 142.8 L 324.5 142.9 L 321.5 142.1 L 318.6 140.4 L 316.4 138.3 L 315.3 136 L 315.5 134.1 L 317 133 L 319.5 132.8 L 322.5 133.7 L 325.4 135.4 L 327.6 137.5 L 328.7 139.8 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_5",
+              "d": "M 308.3 235.9 L 308.6 234 L 310.2 232.1 L 312.9 230.6 L 316.1 229.8 L 319.2 229.7 L 321.6 230.5 L 322.8 232 L 322.5 233.9 L 320.9 235.8 L 318.2 237.3 L 314.9 238.2 L 311.8 238.2 L 309.5 237.4 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_6",
+              "d": "M 240.1 184.3 L 242 184.6 L 243.9 186.2 L 245.4 188.9 L 246.2 192.1 L 246.3 195.2 L 245.5 197.6 L 244 198.8 L 242.1 198.5 L 240.2 196.9 L 238.7 194.2 L 237.8 190.9 L 237.8 187.8 L 238.6 185.5 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_7",
+              "d": "M 291.7 116.1 L 291.4 118 L 289.8 119.9 L 287.1 121.4 L 283.9 122.2 L 280.8 122.3 L 278.4 121.5 L 277.2 120 L 277.5 118.1 L 279.1 116.2 L 281.8 114.7 L 285.1 113.8 L 288.2 113.8 L 290.5 114.6 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_8",
+              "d": "M 359.9 167.7 L 358 167.4 L 356.1 165.8 L 354.6 163.1 L 353.8 159.9 L 353.7 156.8 L 354.5 154.4 L 356 153.2 L 357.9 153.5 L 359.8 155.1 L 361.3 157.8 L 362.2 161.1 L 362.2 164.2 L 361.4 166.5 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_9",
+              "d": "M 371.5 202.9 L 370 201.7 L 369.2 199.4 L 369.2 196.3 L 370.1 193 L 371.6 190.3 L 373.5 188.7 L 375.4 188.4 L 376.8 189.6 L 377.6 192 L 377.6 195.1 L 376.7 198.3 L 375.2 201 L 373.3 202.6 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_10",
+              "d": "M 273.1 247.5 L 274.3 246 L 276.6 245.2 L 279.7 245.2 L 283 246.1 L 285.7 247.6 L 287.3 249.5 L 287.6 251.4 L 286.4 252.8 L 284 253.6 L 280.9 253.6 L 277.7 252.7 L 275 251.2 L 273.4 249.3 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_11",
+              "d": "M 228.5 149.1 L 230 150.3 L 230.8 152.6 L 230.8 155.7 L 229.9 159 L 228.4 161.7 L 226.5 163.3 L 224.6 163.6 L 223.2 162.4 L 222.4 160 L 222.4 156.9 L 223.3 153.7 L 224.8 151 L 226.7 149.4 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "lacuna_12",
+              "d": "M 326.9 104.5 L 325.7 106 L 323.4 106.8 L 320.3 106.8 L 317 105.9 L 314.3 104.4 L 312.7 102.5 L 312.4 100.6 L 313.6 99.2 L 316 98.4 L 319.1 98.4 L 322.3 99.3 L 325 100.8 L 326.6 102.7 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "osteocytes",
+              "d": "M 335.9 198 A 2.2 2.2 0 1 0 340.3 198 A 2.2 2.2 0 1 0 335.9 198 M 275.8 214.1 A 2.2 2.2 0 1 0 280.2 214.1 A 2.2 2.2 0 1 0 275.8 214.1 M 259.7 154 A 2.2 2.2 0 1 0 264.1 154 A 2.2 2.2 0 1 0 259.7 154 M 319.8 137.9 A 2.2 2.2 0 1 0 324.2 137.9 A 2.2 2.2 0 1 0 319.8 137.9 M 313.3 234 A 2.2 2.2 0 1 0 317.7 234 A 2.2 2.2 0 1 0 313.3 234 M 239.8 191.5 A 2.2 2.2 0 1 0 244.2 191.5 A 2.2 2.2 0 1 0 239.8 191.5 M 282.3 118 A 2.2 2.2 0 1 0 286.7 118 A 2.2 2.2 0 1 0 282.3 118 M 355.8 160.5 A 2.2 2.2 0 1 0 360.2 160.5 A 2.2 2.2 0 1 0 355.8 160.5 M 371.2 195.7 A 2.2 2.2 0 1 0 375.6 195.7 A 2.2 2.2 0 1 0 371.2 195.7 M 278.1 249.4 A 2.2 2.2 0 1 0 282.5 249.4 A 2.2 2.2 0 1 0 278.1 249.4 M 224.4 156.3 A 2.2 2.2 0 1 0 228.8 156.3 A 2.2 2.2 0 1 0 224.4 156.3 M 317.5 102.6 A 2.2 2.2 0 1 0 321.9 102.6 A 2.2 2.2 0 1 0 317.5 102.6",
+              "ms": 2370,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — canaliculi joining the lacunae"
+            },
+            {
+              "type": "stroke",
+              "id": "canaliculi_in",
+              "d": "M 334.1 195.7 L 328.6 192.5 M 280.3 210.1 L 283.5 204.6 M 265.9 156.3 L 271.4 159.5 M 319.7 141.9 L 316.5 147.4 M 314.3 229.5 L 312.7 223.3 M 246.5 190.3 L 252.7 188.7 M 285.7 122.5 L 287.3 128.7 M 353.5 161.7 L 347.3 163.3 M 369 194.5 L 362.8 192.8 M 281.5 245 L 283.2 238.8 M 231 157.5 L 237.2 159.2 M 318.5 107 L 316.8 113.2",
+              "ms": 1100,
+              "w": 1.2
+            },
+            {
+              "type": "stroke",
+              "id": "canaliculi_out",
+              "d": "M 342.1 200.3 L 347.6 203.5 M 275.7 218.1 L 272.5 223.6 M 257.9 151.7 L 252.4 148.5 M 324.3 133.9 L 327.5 128.4 M 316.7 238.4 L 318.4 244.6 M 237.6 192.7 L 231.4 194.4 M 283.3 113.6 L 281.6 107.4 M 362.4 159.3 L 368.6 157.6 M 377.9 196.9 L 384 198.5 M 279.1 253.9 L 277.5 260 M 222.1 155.1 L 216 153.5 M 320.9 98.1 L 322.5 92",
+              "ms": 1090,
+              "w": 1.2
+            },
+            {
+              "type": "stroke",
+              "id": "canaliculi_to_canal",
+              "d": "M 318.2 186.5 L 333.8 195.5 M 289.5 194.2 L 280.5 209.8 M 281.8 165.5 L 266.2 156.5 M 310.5 157.8 L 319.5 142.2",
+              "ms": 1030,
+              "w": 1.2
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — Volkmann's canal across the lamellae"
+            },
+            {
+              "type": "stroke",
+              "id": "volkmann_a",
+              "d": "M 235 236 L 291 194",
+              "ms": 1000
+            },
+            {
+              "type": "stroke",
+              "id": "volkmann_b",
+              "d": "M 229 228 L 285 186",
+              "ms": 1000
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_hav_canal",
+              "x": 6,
+              "y": 80,
+              "text": "Haversian canal",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_hav_canal",
+              "d": "M 154.5 76 L 284 166",
+              "ms": 2250,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_lamellae",
+              "x": 6,
+              "y": 168,
+              "text": "Concentric lamellae",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lamellae",
+              "d": "M 194.1 164 L 218 172",
+              "ms": 360,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_volkmann",
+              "x": 6,
+              "y": 256,
+              "text": "Volkmann's canal",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_volkmann",
+              "d": "M 164.4 252 L 242 226",
+              "ms": 1170,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_artery",
+              "x": 396,
+              "y": 44,
+              "text": "Artery",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_artery",
+              "d": "M 392 40 L 296 164",
+              "ms": 2240,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_vein",
+              "x": 396,
+              "y": 92,
+              "text": "Vein",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vein",
+              "d": "M 392 88 L 312 176",
+              "ms": 1700,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_lymph",
+              "x": 396,
+              "y": 140,
+              "text": "Lymph vessel",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lymph",
+              "d": "M 392 136 L 300 183",
+              "ms": 1480,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_lacuna",
+              "x": 396,
+              "y": 188,
+              "text": "Lacuna",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lacuna",
+              "d": "M 392 184 L 381 197",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_osteocyte",
+              "x": 396,
+              "y": 236,
+              "text": "Osteocyte",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_osteocyte",
+              "d": "M 392 232 L 359 161",
+              "ms": 1120,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_canaliculi",
+              "x": 396,
+              "y": 284,
+              "text": "Canaliculi",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_canaliculi",
+              "d": "M 392 280 L 322 244",
+              "ms": 1120,
+              "w": 1.4
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_canal",
+        "kind": "text",
+        "label": "Haversian canal and lamellae",
+        "marks": 1,
+        "why": "The canal is the centre of the unit and every other part is described by its distance from it, so it is described first.",
+        "common_mistakes": [
+          "Writing that the lamellae surround the marrow cavity. They surround the Haversian canal.",
+          "Leaving out the word concentric. The rings sit one inside another."
+        ],
+        "memory_tip": "Think of a tree trunk cut across: the canal is the centre and the lamellae are the growth rings.",
+        "margin_note": "Two parts, plus what the canal carries. The word concentric must appear.",
+        "mark_note": "Canal and lamellae",
+        "lines": [
+          "1) Haversian canal: a narrow canal running along",
+          "the length of the bone, parallel to the marrow",
+          "cavity.",
+          "It carries an artery, a vein, a lymph vessel and",
+          "a nerve.",
+          "2) Concentric lamellae: rings of bone matrix",
+          "laid one inside another around the canal."
+        ]
+      },
+      {
+        "id": "s4_lacunae",
+        "kind": "text",
+        "label": "Lacunae and canaliculi",
+        "marks": 1,
+        "why": "Bone matrix is solid, so the cells buried in it can be reached only through these fine canals; the canaliculi are the reason an osteocyte stays alive.",
+        "common_mistakes": [
+          "Writing that the canaliculi carry blood. They carry tissue fluid and the cell processes, not blood.",
+          "Placing the lacunae inside the Haversian canal. They lie between the lamellae."
+        ],
+        "memory_tip": "A lacuna is a small lake holding one cell; the canaliculi are the little channels joining the lakes.",
+        "margin_note": "Say what each space holds. Both names are marked, and so is the osteocyte.",
+        "mark_note": "Lacunae and canaliculi",
+        "lines": [
+          "3) Lacunae: small fluid-filled spaces lying",
+          "between the lamellae.",
+          "Each lacuna holds an osteocyte, a mature bone",
+          "cell.",
+          "4) Canaliculi: very fine canals joining the",
+          "lacunae to one another and to the Haversian",
+          "canal.",
+          "The processes of the osteocytes run inside",
+          "them."
+        ]
+      },
+      {
+        "id": "s5_volkmann",
+        "kind": "boxed_final",
+        "label": "Volkmann's canals",
+        "marks": 1,
+        "why": "The Haversian canals all run lengthwise, so a set of cross canals is needed to link them; this book's answer states only the link to the marrow cavity, while standard anatomy also has them joining neighbouring Haversian canals and the periosteum.",
+        "common_mistakes": [
+          "Writing that Volkmann's canals run lengthwise. They run across, joining the lengthwise canals.",
+          "Leaving out the transport function, which is the point of the whole system."
+        ],
+        "memory_tip": "Haversian canals run along the bone; Volkmann's canals run across and join them, like the rungs of a ladder.",
+        "margin_note": "Name the canals, say what they connect, then close with the transport function.",
+        "mark_note": "Volkmann's canals",
+        "lines": [
+          {
+            "text": "Volkmann's canals join osteon to osteon",
+            "style": "boxed"
+          },
+          "5) Volkmann's canals run across the bone.",
+          "They connect one Haversian canal with another,",
+          "and with the periosteum and the marrow cavity.",
+          "Blood vessels pass through them, so the whole",
+          "system carries food and oxygen to the bone",
+          "cells."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Five named parts carry this answer, and the two most often dropped are the canaliculi and Volkmann's canals — number the parts 1 to 5 so the examiner can count them at a glance."
+}

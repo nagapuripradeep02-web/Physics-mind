@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_advantages_of_uv_rays",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the advantages of some UV rays to us.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Killing microbes",
+      "marks": 1
+    },
+    {
+      "label": "Vitamin D",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.60, VSAQ 152). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_microbes",
+        "kind": "text",
+        "label": "Killing microbes",
+        "marks": 1,
+        "mark_note": "Microbes",
+        "lines": [
+          "UV rays kill the micro organisms present on",
+          "the body surface of animals.",
+          "This keeps the skin surface free of harmful",
+          "bacteria."
+        ],
+        "why": "The question asks for advantages in the plural, so two separate uses are needed; this is the first and it is the one students forget because UV is usually taught as a harm.",
+        "common_mistakes": [
+          "Writing only about the harmful effects of UV. The question asks for the ADVANTAGES.",
+          "Writing that UV kills germs inside the body. It acts on the body SURFACE."
+        ],
+        "memory_tip": "Two uses, two places: on the skin it kills microbes, in the skin it makes vitamin D.",
+        "margin_note": "One short sentence per advantage. Do not write about ozone here."
+      },
+      {
+        "id": "s2_vitamin_d",
+        "kind": "boxed_final",
+        "label": "Vitamin D",
+        "marks": 1,
+        "mark_note": "Vitamin D",
+        "lines": [
+          {
+            "text": "UV rays make vitamin D in the skin",
+            "style": "boxed"
+          },
+          "UV rays convert the sterols present in the",
+          "skin into vitamin D.",
+          "Vitamin D is needed for the absorption of",
+          "calcium and so for strong bones."
+        ],
+        "why": "Naming the starting material, the sterols, is what separates a full answer from the half answer that only says sunlight gives vitamin D.",
+        "common_mistakes": [
+          "Writing that UV rays contain vitamin D. They CONVERT the sterols in the skin into it.",
+          "Leaving out the word sterols, which is the named material in this step."
+        ],
+        "memory_tip": "Sterols in the skin plus UV gives vitamin D; vitamin D then brings in the calcium.",
+        "margin_note": "Name the sterols and the vitamin. One extra line on what the vitamin does."
+      }
+    ]
+  },
+  "insider_note": "This is a two-point question and each point is a separate mark, so a student who writes four lines on vitamin D alone still scores only one."
+}

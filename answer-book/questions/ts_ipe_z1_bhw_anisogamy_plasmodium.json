@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_anisogamy_plasmodium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is the syngamy found in Plasmodium called anisogamy?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Syngamy",
+      "marks": 1
+    },
+    {
+      "label": "Why anisogamy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.59, VSAQ 147). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_syngamy",
+        "kind": "text",
+        "label": "Syngamy",
+        "marks": 1,
+        "mark_note": "Syngamy",
+        "lines": [
+          "Syngamy is the complete fusion of a male gamete",
+          "with a female gamete to form a zygote.",
+          "In Plasmodium this fusion takes place in the",
+          "crop of the female Anopheles mosquito."
+        ],
+        "why": "The answer starts from the general word so the special word has something to be measured against, and it fixes the place where the fusion happens.",
+        "common_mistakes": [
+          "Writing that syngamy takes place in man. It takes place in the mosquito.",
+          "Confusing syngamy with schizogony. Syngamy is fusion; schizogony is splitting."
+        ],
+        "memory_tip": "Syn- means together: syngamy is two gametes fusing into one zygote.",
+        "margin_note": "One line for the definition, one for the place. Two lines."
+      },
+      {
+        "id": "s2_aniso",
+        "kind": "boxed_final",
+        "label": "Why anisogamy",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "Unequal gametes fuse, so it is anisogamy",
+            "style": "boxed"
+          },
+          "The male gamete of Plasmodium is small and the",
+          "female gamete is large, so the two are",
+          "dissimilar in size.",
+          "Fusion of two gametes that are unlike in size is",
+          "called anisogamy."
+        ],
+        "why": "Aniso- means unequal, so the reason is a comparison of the two gametes: name both sizes and the term follows on its own.",
+        "common_mistakes": [
+          "Writing that the gametes are alike. Alike gametes would make it isogamy.",
+          "Giving the reason as a difference in number instead of a difference in size."
+        ],
+        "memory_tip": "Iso- equal, aniso- unequal: small male, large female, so anisogamy.",
+        "margin_note": "Name both sizes, then close with the term. Two lines."
+      }
+    ]
+  },
+  "insider_note": "The mark is on the word 'dissimilar in size'; a correct definition of syngamy with no size comparison does not answer the question asked."
+}

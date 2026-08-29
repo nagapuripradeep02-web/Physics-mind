@@ -1,0 +1,175 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_cartilaginous_vs_bony_fishes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Compare and contrast cartilaginous and bony fishes.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Habitat, skeleton and mouth",
+      "marks": 1
+    },
+    {
+      "label": "Scales and air bladder",
+      "marks": 1
+    },
+    {
+      "label": "Excretion and caudal fin",
+      "marks": 1
+    },
+    {
+      "label": "Reproduction and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.37, SAQ 31). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book lists 'cycloid, ctenoid, ganoid or cosmoid' scales for bony fishes. Cosmoid scales are found in the extinct lobe-finned fishes and in lungfishes, not in the common bony fishes of the syllabus, so the card gives cycloid, ctenoid or ganoid. The book also prints 'Scolidon' and 'Exocoetus'; the accepted spellings are Scoliodon and Exocoetus."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-II (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_skeleton",
+        "kind": "text",
+        "label": "Habitat, skeleton, mouth",
+        "marks": 1,
+        "mark_note": "Skeleton",
+        "margin_note": "Write this as two columns or as paired lines. Keep the same order in every row.",
+        "lines": [
+          "1) Habitat:",
+          "Cartilaginous fishes are mostly marine.",
+          "Bony fishes live in all aquatic habitats, both",
+          "marine and fresh water.",
+          "2) Endoskeleton:",
+          "In cartilaginous fishes it is made of cartilage.",
+          "In bony fishes it is made of bone.",
+          "3) Mouth:",
+          "The mouth is ventral in cartilaginous fishes.",
+          "The mouth is terminal in bony fishes."
+        ],
+        "why": "The name of each group already gives the skeleton, so the skeleton row is written first and every other row is then read as a consequence of a cartilage or a bone body.",
+        "common_mistakes": [
+          "Writing that cartilaginous fishes have bones as well. Their skeleton is cartilage throughout life.",
+          "Giving a terminal mouth to a shark. The shark mouth opens on the under side, so it is ventral."
+        ],
+        "memory_tip": "Cartilage body, mouth underneath. Bone body, mouth at the front end."
+      },
+      {
+        "id": "s2_scales",
+        "kind": "text",
+        "label": "Scales and air bladder",
+        "marks": 1,
+        "mark_note": "Scales",
+        "margin_note": "Two rows here. The air bladder row carries the reason as well, so give it a line.",
+        "lines": [
+          "4) Scales:",
+          "Cartilaginous fishes have placoid scales.",
+          "Bony fishes have cycloid, ctenoid or ganoid",
+          "scales.",
+          "5) Air bladder:",
+          "It is absent in cartilaginous fishes, so they",
+          "must keep swimming to stay afloat.",
+          "It is present in bony fishes and works as a",
+          "hydrostatic organ."
+        ],
+        "why": "The missing air bladder is why a shark sinks when it stops swimming, so this row explains a behaviour and not only a structure.",
+        "common_mistakes": [
+          "Giving cycloid scales to the shark. Placoid scales belong to cartilaginous fishes only.",
+          "Writing that both groups have an air bladder. It is absent in cartilaginous fishes."
+        ],
+        "memory_tip": "No air bladder, so a shark must keep swimming. A bony fish can hang still in the water."
+      },
+      {
+        "id": "s3_excretion",
+        "kind": "text",
+        "label": "Excretion and caudal fin",
+        "marks": 1,
+        "mark_note": "Excretion",
+        "margin_note": "Two more rows. Add the meaning of hetero and homo in brackets; it costs one line.",
+        "lines": [
+          "6) Excretion:",
+          "Cartilaginous fishes are ureotelic. They give",
+          "out urea.",
+          "Bony fishes are ammonotelic. They give out",
+          "ammonia.",
+          "7) Caudal fin:",
+          "It is heterocercal in cartilaginous fishes: the",
+          "two lobes are unequal.",
+          "It is homocercal or diphycercal in bony fishes:",
+          "the two lobes are equal."
+        ],
+        "why": "The excretory product follows the water supply: an ammonotelic fish needs a lot of water to wash out ammonia, and a bony fish in fresh water has it.",
+        "common_mistakes": [
+          "Swapping the two words. Cartilaginous fishes are ureotelic; bony fishes are ammonotelic.",
+          "Writing homocercal for the shark. Its tail lobes are unequal, so it is heterocercal."
+        ],
+        "memory_tip": "Cartilage: Urea, so ureotelic. Bony: ammonia. Hetero means unequal, homo means equal."
+      },
+      {
+        "id": "s4_reproduction",
+        "kind": "boxed_final",
+        "label": "Reproduction and examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "margin_note": "Finish with the examples. Two named fishes on each side complete the comparison.",
+        "lines": [
+          {
+            "text": "Cartilage, placoid scales, ventral mouth",
+            "style": "boxed"
+          },
+          "8) Claspers:",
+          "Present in the males of cartilaginous fishes.",
+          "Absent in the males of bony fishes.",
+          "9) Reproduction:",
+          "Cartilaginous fishes are mostly viviparous.",
+          "Bony fishes are mostly oviparous.",
+          "10) Examples:",
+          "Cartilaginous: Scoliodon (dog fish), Torpedo.",
+          "Bony: Exocoetus (flying fish), Catla."
+        ],
+        "why": "Claspers and viviparity go together: an animal that fertilises inside can also hold the young inside, so the last two rows are one idea.",
+        "common_mistakes": [
+          "Writing that bony fishes have claspers. They are absent in the males of bony fishes.",
+          "Giving Catla as a cartilaginous fish. Catla is a bony fish; Scoliodon is the cartilaginous one."
+        ],
+        "memory_tip": "Claspers mean fertilisation inside, and fertilisation inside means young born alive."
+      }
+    ]
+  },
+  "insider_note": "This is a comparison, so the examiner reads DOWN each column — an answer that gives five points about sharks and then three about bony fishes loses marks even when every fact is right."
+}

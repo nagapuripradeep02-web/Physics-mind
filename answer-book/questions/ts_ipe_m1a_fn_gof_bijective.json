@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 1,
+    "number": 2,
     "name": "Functions"
   },
   "chapter": "Functions",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "If f: A→B, g: B→C are two bijective functions then prove that gof: A→C is also a bijective function.",
@@ -41,19 +41,19 @@
     },
     {
       "label": "Proof that gof is onto",
-      "marks": 4
+      "marks": 5
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 1, on a ★★★ SSP (Super Scoring Page). The 3+4 mark split is PRINTED in that book's margin, so it is a sourced claim rather than an invented one — but the book is a coaching publication, not a TSBIE document, so it stays unverified until a Telangana IPE teacher confirms it. Appearance years are printed board-split (TS 17,19 · AP 16,18) and are recorded here with the appearances[].board tag that feat/ipe-answerbook added for physics in its Session 89; on master's schema that key is simply ignored, so the signal is stored now and renders as the 'Asked:' chip the moment that branch merges. No question numbers are printed. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 1, on a ★★★ SSP (Super Scoring Page). The 3+4 mark split is PRINTED in that book's margin, so it is a sourced claim rather than an invented one — but the book is a coaching publication, not a TSBIE document, so it stays unverified until a Telangana IPE teacher confirms it. Appearance years are printed board-split (TS 17,19 · AP 16,18) and are recorded here with the appearances[].board tag that feat/ipe-answerbook added for physics in its Session 89; on master's schema that key is simply ignored, so the signal is stored now and renders as the 'Asked:' chip the moment that branch merges. No question numbers are printed. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that gof is onto."
   },
   "recall_prompt": "Say how you would prove that gof is bijective — name the two things you have to prove, and say how each proof goes.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Functions · 7 marks"
+      "Functions · 8 marks"
     ],
     "steps": [
       {
@@ -113,7 +113,7 @@
         "label": "Prove gof is one one",
         "marks": 3,
         "mark_note": "One one",
-        "margin_note": "Three of the seven marks. Take two elements with the same image and work backwards through g first, then f. Quote the reason in brackets at each step — the reasons are what the examiner marks.",
+        "margin_note": "Three of the eight marks. Take two elements with the same image and work backwards through g first, then f. Quote the reason in brackets at each step — the reasons are what the examiner marks.",
         "lines": [
           {
             "text": "(i) To prove gof: A→C is one one",
@@ -164,9 +164,9 @@
         "id": "s3_onto",
         "kind": "equation",
         "label": "Prove gof is onto",
-        "marks": 4,
+        "marks": 5,
         "mark_note": "Onto",
-        "margin_note": "Four of the seven marks — the bigger half. Start from any c in C and walk backwards: g onto gives you b, then f onto gives you a. Finish by showing that this a really does map to c.",
+        "margin_note": "Five of the eight marks — the bigger half. Start from any c in C and walk backwards: g onto gives you b, then f onto gives you a. Finish by showing that this a really does map to c.",
         "lines": [
           {
             "text": "(ii) To prove gof: A→C is onto",

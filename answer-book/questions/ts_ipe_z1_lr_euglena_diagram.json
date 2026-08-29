@@ -1,0 +1,539 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_euglena_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw a neat labelled diagram of Euglena.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Shape and parts to show",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Named parts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, SAQ chapter 8 'Locomotion & Reproduction' (book p.42, question 41), which prints the labelled figure with NO written answer and NO year citation — so appearances are empty by fact, not by omission. Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. TEXT BEYOND THE BOOK: the book prints the figure alone; the two written steps here are authored from the labels the book itself prints. FIGURE SCOPE: the book labels fifteen parts — long flagellum, cytostome, cytopharynx, stigma, paraflagellar body, reservoir, short flagellum, blepharoplast, contractile vacuole, chromatophores, paramylum, myonemes, nucleus, pellicle and cytoplasm. This figure draws and labels thirteen of them. CYTOPLASM and MYONEMES are deliberately not labelled: cytoplasm is the whole ground substance and needs no leader line at exam scale, and the myonemes are fine strips under the pellicle that crowd the pellicle label. A teacher who wants both can add them on the left body wall."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locomotion and Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shape",
+        "kind": "text",
+        "label": "Shape and parts to show",
+        "marks": 1,
+        "mark_note": "Plan",
+        "lines": [
+          "Euglena is a spindle-shaped single-celled",
+          "organism with a blunt anterior end and a",
+          "pointed posterior end.",
+          "The body is covered by a flexible pellicle.",
+          "The drawing must show the anterior reservoir",
+          "with the two flagella, the stigma beside it,",
+          "the contractile vacuole, the chromatophores,",
+          "the paramylum granules and the nucleus."
+        ],
+        "why": "Naming the shape and listing the parts before drawing fixes the order of work, so the anterior structures are placed first and the body contents afterwards.",
+        "common_mistakes": [
+          "Drawing a round cell. Euglena is spindle-shaped, blunt in front and pointed behind.",
+          "Drawing the flagella at the pointed end. They come out of the reservoir at the BLUNT anterior end."
+        ],
+        "memory_tip": "Blunt end in front carries the swimming parts; pointed end behind carries nothing.",
+        "margin_note": "Three lines of plan are enough. Do not describe nutrition or movement."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "lr_euglena",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the spindle body and the pellicle"
+            },
+            {
+              "type": "stroke",
+              "id": "body_r",
+              "d": "M 250 90 L 253.7 90.2 L 257.5 90.7 L 261.3 91.5 L 265.2 92.7 L 269 94.1 L 272.8 95.9 L 276.4 98 L 279.8 100.4 L 283 103 L 286 106 L 288.7 109.3 L 291.3 113.1 L 293.7 117.2 L 296 121.7 L 298.1 126.4 L 300.1 131.3 L 301.8 136.4 L 303.4 141.6 L 304.8 146.8 L 306 152 L 307 157.3 L 307.7 162.9 L 308.2 168.6 L 308.6 174.4 L 308.8 180.4 L 308.8 186.4 L 308.7 192.4 L 308.5 198.3 L 308.3 204.2 L 308 210 L 307.6 215.7 L 307.2 221.5 L 306.6 227.3 L 305.9 233 L 305.1 238.8 L 304.3 244.4 L 303.3 250 L 302.3 255.5 L 301.2 260.8 L 300 266 L 298.7 271.1 L 297.4 276.1 L 295.9 281 L 294.4 285.9 L 292.8 290.6 L 291.1 295.2 L 289.3 299.7 L 287.6 304 L 285.8 308.1 L 284 312 L 282.1 315.7 L 280.2 319.3 L 278.1 322.7 L 276 325.9 L 273.9 329 L 271.8 331.9 L 269.7 334.7 L 267.7 337.3 L 265.8 339.7 L 264 342 L 262.4 344.2 L 260.8 346.3 L 259.4 348.3 L 258 350.1 L 256.6 351.8 L 255.3 353.2 L 254 354.4 L 252.7 355.2 L 251.4 355.8 L 250 356",
+              "ms": 4450
+            },
+            {
+              "type": "stroke",
+              "id": "body_l",
+              "d": "M 250 356 L 248.6 355.8 L 247.3 355.2 L 246 354.4 L 244.7 353.2 L 243.4 351.8 L 242 350.1 L 240.6 348.3 L 239.2 346.3 L 237.6 344.2 L 236 342 L 234.2 339.7 L 232.3 337.3 L 230.3 334.7 L 228.2 331.9 L 226.1 329 L 224 325.9 L 221.9 322.7 L 219.8 319.3 L 217.9 315.7 L 216 312 L 214.2 308.1 L 212.4 304 L 210.7 299.7 L 208.9 295.2 L 207.2 290.6 L 205.6 285.9 L 204.1 281 L 202.6 276.1 L 201.3 271.1 L 200 266 L 198.8 260.8 L 197.7 255.5 L 196.7 250 L 195.7 244.4 L 194.9 238.8 L 194.1 233 L 193.4 227.3 L 192.8 221.5 L 192.4 215.7 L 192 210 L 191.7 204.2 L 191.5 198.3 L 191.3 192.4 L 191.2 186.4 L 191.2 180.4 L 191.4 174.4 L 191.8 168.6 L 192.3 162.9 L 193 157.3 L 194 152 L 195.2 146.8 L 196.6 141.6 L 198.2 136.4 L 199.9 131.3 L 201.9 126.4 L 204 121.7 L 206.3 117.2 L 208.7 113.1 L 211.3 109.3 L 214 106 L 217 103 L 220.2 100.4 L 223.6 98 L 227.2 95.9 L 231 94.1 L 234.8 92.7 L 238.7 91.5 L 242.5 90.7 L 246.3 90.2 L 250 90",
+              "ms": 4450
+            },
+            {
+              "type": "stroke",
+              "id": "pellicle_lines",
+              "d": "M 304 180 C 300 190 295 197 288 202 M 306 226 C 302 236 297 243 290 248 M 300 272 C 296 282 291 289 284 294",
+              "ms": 1180,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — cytostome, cytopharynx and the reservoir"
+            },
+            {
+              "type": "stroke",
+              "id": "cytostome",
+              "d": "M 238 92 C 242 84 258 84 262 92",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "pharynx_l",
+              "d": "M 240 94 L 240 126",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "pharynx_r",
+              "d": "M 260 94 L 260 126",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "reservoir",
+              "d": "M 240 126 C 218 130 212 158 220 176 C 232 196 268 196 280 176 C 288 158 282 130 260 126 Z",
+              "ms": 3040
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the two flagella and the blepharoplasts"
+            },
+            {
+              "type": "stroke",
+              "id": "flag_long",
+              "d": "M 242 178 C 238 134 232 82 220 44",
+              "ms": 1940
+            },
+            {
+              "type": "stroke",
+              "id": "flag_short",
+              "d": "M 258 178 C 264 168 270 158 274 150",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "blepharo_1",
+              "d": "M 237 180 A 5 5 0 1 0 247 180 A 5 5 0 1 0 237 180",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "blepharo_2",
+              "d": "M 253 180 A 5 5 0 1 0 263 180 A 5 5 0 1 0 253 180",
+              "ms": 450
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — stigma, paraflagellar body, contractile vacuole"
+            },
+            {
+              "type": "stroke",
+              "id": "stigma",
+              "d": "M 205 134 A 9 6 0 1 0 223 134 A 9 6 0 1 0 205 134",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "paraflag",
+              "d": "M 232 140 A 6 6 0 1 0 244 140 A 6 6 0 1 0 232 140",
+              "ms": 540
+            },
+            {
+              "type": "stroke",
+              "id": "cont_vac",
+              "d": "M 211 210 A 13 13 0 1 0 237 210 A 13 13 0 1 0 211 210",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "acc_vac1",
+              "d": "M 199 202 A 6 6 0 1 0 211 202 A 6 6 0 1 0 199 202",
+              "ms": 540
+            },
+            {
+              "type": "stroke",
+              "id": "acc_vac2",
+              "d": "M 203 228 A 5 5 0 1 0 213 228 A 5 5 0 1 0 203 228",
+              "ms": 450
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — chromatophores, paramylum granules, nucleus"
+            },
+            {
+              "type": "stroke",
+              "id": "chrom1",
+              "d": "M 200 242 A 12 7 0 1 0 224 242 A 12 7 0 1 0 200 242",
+              "ms": 870
+            },
+            {
+              "type": "stroke",
+              "id": "chrom2",
+              "d": "M 276 214 A 12 7 0 1 0 300 214 A 12 7 0 1 0 276 214",
+              "ms": 870
+            },
+            {
+              "type": "stroke",
+              "id": "chrom3",
+              "d": "M 210 290 A 12 7 0 1 0 234 290 A 12 7 0 1 0 210 290",
+              "ms": 870
+            },
+            {
+              "type": "stroke",
+              "id": "chrom4",
+              "d": "M 276 264 A 12 7 0 1 0 300 264 A 12 7 0 1 0 276 264",
+              "ms": 870
+            },
+            {
+              "type": "stroke",
+              "id": "chrom5",
+              "d": "M 226 316 A 12 7 0 1 0 250 316 A 12 7 0 1 0 226 316",
+              "ms": 870
+            },
+            {
+              "type": "stroke",
+              "id": "chrom6",
+              "d": "M 254 304 A 12 7 0 1 0 278 304 A 12 7 0 1 0 254 304",
+              "ms": 870
+            },
+            {
+              "type": "stroke",
+              "id": "para1",
+              "d": "M 248 216 A 8 5 0 1 0 264 216 A 8 5 0 1 0 248 216",
+              "ms": 590
+            },
+            {
+              "type": "stroke",
+              "id": "para2",
+              "d": "M 240 228 A 8 5 0 1 0 256 228 A 8 5 0 1 0 240 228",
+              "ms": 590
+            },
+            {
+              "type": "stroke",
+              "id": "para3",
+              "d": "M 276 238 A 8 5 0 1 0 292 238 A 8 5 0 1 0 276 238",
+              "ms": 590
+            },
+            {
+              "type": "stroke",
+              "id": "para4",
+              "d": "M 238 290 A 8 5 0 1 0 254 290 A 8 5 0 1 0 238 290",
+              "ms": 590
+            },
+            {
+              "type": "stroke",
+              "id": "para5",
+              "d": "M 242 330 A 8 5 0 1 0 258 330 A 8 5 0 1 0 242 330",
+              "ms": 590
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus",
+              "d": "M 230 258 A 22 18 0 1 0 274 258 A 22 18 0 1 0 230 258",
+              "ms": 1800
+            },
+            {
+              "type": "stroke",
+              "id": "endosome",
+              "d": "M 245 258 A 7 7 0 1 0 259 258 A 7 7 0 1 0 245 258",
+              "ms": 630
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_flag_long",
+              "x": 6,
+              "y": 44,
+              "text": "Long flagellum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_flag_long",
+              "d": "M 149.6 40 L 226 62",
+              "ms": 1140,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cytostome",
+              "x": 6,
+              "y": 96,
+              "text": "Cytostome",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cytostome",
+              "d": "M 100.1 92 L 250 88",
+              "ms": 2140,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_pharynx",
+              "x": 6,
+              "y": 148,
+              "text": "Cytopharynx",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pharynx",
+              "d": "M 119.9 144 L 238 116",
+              "ms": 1730,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_stigma",
+              "x": 6,
+              "y": 200,
+              "text": "Stigma",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_stigma",
+              "d": "M 70.4 196 L 206 134",
+              "ms": 2130,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_reservoir",
+              "x": 6,
+              "y": 252,
+              "text": "Reservoir",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_reservoir",
+              "d": "M 100.1 248 L 221 152",
+              "ms": 2210,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_blepharo",
+              "x": 6,
+              "y": 304,
+              "text": "Blepharoplast",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_blepharo",
+              "d": "M 139.7 300 L 240 182",
+              "ms": 2210,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_pellicle",
+              "x": 6,
+              "y": 356,
+              "text": "Pellicle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pellicle",
+              "d": "M 90.2 352 L 204 292",
+              "ms": 1840,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_paraflag",
+              "x": 330,
+              "y": 60,
+              "text": "Paraflagellar body",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_paraflag",
+              "d": "M 326 56 L 242 140",
+              "ms": 1700,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_short_flag",
+              "x": 330,
+              "y": 112,
+              "text": "Short flagellum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_short_flag",
+              "d": "M 326 108 L 272 152",
+              "ms": 1000,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cont_vac",
+              "x": 330,
+              "y": 164,
+              "text": "Contractile vacuole",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cont_vac",
+              "d": "M 326 160 L 236 208",
+              "ms": 1460,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_chrom",
+              "x": 330,
+              "y": 216,
+              "text": "Chromatophores",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_chrom",
+              "d": "M 326 212 L 298 214",
+              "ms": 400,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_paramylum",
+              "x": 330,
+              "y": 268,
+              "text": "Paramylum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_paramylum",
+              "d": "M 326 264 L 290 238",
+              "ms": 630,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_nucleus",
+              "x": 330,
+              "y": 320,
+              "text": "Nucleus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nucleus",
+              "d": "M 326 316 L 274 258",
+              "ms": 1110,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "The figure is built from the front backwards, because every anterior structure is placed against the reservoir and would have nowhere to sit if the body contents were drawn first.",
+        "common_mistakes": [
+          "Drawing one flagellum. There are two, one long and one short.",
+          "Placing the stigma inside the reservoir. It lies in the cytoplasm beside the reservoir.",
+          "Drawing the nucleus at the anterior end. It lies towards the middle or the posterior half."
+        ],
+        "memory_tip": "Draw the outline, then the reservoir and its flagella, then the stigma and vacuole, then the body contents, then label.",
+        "margin_note": "Two marks sit here. Both flagella, the reservoir, the stigma and the nucleus decide them."
+      },
+      {
+        "id": "s3_parts",
+        "kind": "boxed_final",
+        "label": "Named parts",
+        "marks": 1,
+        "mark_note": "Labels",
+        "lines": [
+          {
+            "text": "Reservoir, two flagella, stigma, nucleus",
+            "style": "boxed"
+          },
+          "The two flagella arise from blepharoplasts at",
+          "the base of the reservoir. One is long, one",
+          "is short.",
+          "The reservoir opens outside through the",
+          "cytopharynx and the cytostome.",
+          "The stigma is the orange eye spot. The",
+          "paraflagellar body on the long flagellum is",
+          "the light-sensitive part.",
+          "The contractile vacuole beside the reservoir",
+          "removes excess water.",
+          "The chromatophores hold chlorophyll and the",
+          "paramylum granules store food."
+        ],
+        "why": "Each label is easier to remember with the one job it does, and a single job line per part is also what an examiner accepts as a full description under a diagram.",
+        "common_mistakes": [
+          "Calling the stigma the light-sensitive part. The stigma shades the light; the paraflagellar body detects it.",
+          "Writing that paramylum is a protein. It is a stored carbohydrate."
+        ],
+        "memory_tip": "Front group: reservoir, flagella, blepharoplast, stigma, paraflagellar body, contractile vacuole. Body group: chromatophores, paramylum, nucleus.",
+        "margin_note": "One short line per part. Do not repeat every label already on the figure."
+      }
+    ]
+  },
+  "insider_note": "This is a drawing question, so nearly all the credit is in the labels — the parts most often left out are the paraflagellar body and the blepharoplast, and a neat unlabelled Euglena scores close to nothing."
+}

@@ -142,6 +142,16 @@
     marksChip.className = 'chip chip-marks';
     marksChip.textContent = marksTotal + ' marks';
     meta.appendChild(marksChip);
+    // A forwarded link to a card whose topic left the syllabus: say so, plainly,
+    // above the answer (Rule 41). The card still renders — the student asked
+    // for it — but nothing else in the book will offer it again.
+    var ret = retiredOf(question.question_id);
+    if (ret) {
+      var rc = document.createElement('span');
+      rc.className = 'chip chip-retired';
+      rc.textContent = 'Not in the ' + ret.wef + ' syllabus — ' + ret.reason;
+      meta.appendChild(rc);
+    }
 
     $('accTotal').textContent = '/' + marksTotal;
   }
@@ -179,6 +189,7 @@
       var subjectWord = (question.subject || '').indexOf('mathematics') === 0 ? 'mathematics'
         : question.subject === 'chemistry' ? 'chemistry'
         : question.subject === 'botany' ? 'botany'
+        : question.subject === 'zoology' ? 'zoology'
         : question.subject === 'physics_2' ? 'physics' : 'physics';
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
         'The ' + subjectWord + ' and the method are checked; the exact split is a claim.';
@@ -260,6 +271,61 @@
   var UNITS = window.PM_UNITS || [];
   var qIndexById = {};
   questions.forEach(function (q, i) { qIndexById[q.question_id] = i; });
+
+  /** The paper each subject sits (build-emitted from src/schemas/answerBook.ts
+      PAPER_PATTERNS — one table for the schema, the build and this player).
+      Absent on a build older than 2026-08-28; every reader below has a fallback. */
+  var PATTERNS = window.PM_PATTERNS || {};
+  /** Cards whose topic left the syllabus (build-emitted): still in PM_QUESTIONS
+      so a forwarded link renders, absent from UNITS so they are never offered.
+      question_id → {wef, reason, unit}. */
+  var RETIRED = window.PM_RETIRED || {};
+  function retiredOf(qid) { return RETIRED[qid] || null; }
+
+  /** The 2026-27 textbooks renumbered two papers (2026-08-28): the PHYSICS book
+      merged the old Units 1+2 into one and added a Unit 14, moving every chapter
+      down by one; the MATHS-1A book inserted "Sets and Relations" at 1 and
+      "Sequences and Series" at 3, pushing the old ten down. Links and saved plans
+      written BEFORE that carry the OLD keys — and the old keys are all still
+      valid keys, now naming a different chapter — so a legacy key cannot be told
+      from a new one by its shape. New exam-eve links therefore carry the exam
+      year as a trailing segment (#/exam-eve/physics-3/2027) and saved plans carry
+      `syllabus`; anything without the marker is remapped here. Maths-1B,
+      Chemistry and Botany did not move and pass through unchanged. */
+  var SYLLABUS_YEAR = '2027';
+  var LEGACY_UNIT_KEYS = {
+    'physics-1': 'physics-1', 'physics-2': 'physics-1', 'physics-3': 'physics-2',
+    'physics-4': 'physics-3', 'physics-5': 'physics-4', 'physics-6': 'physics-5',
+    'physics-7': 'physics-6', 'physics-8': 'physics-7', 'physics-9': 'physics-8',
+    'physics-10': 'physics-9', 'physics-11': 'physics-10', 'physics-12': 'physics-11',
+    'physics-13': 'physics-12', 'physics-14': 'physics-13',
+    'mathematics-1': 'mathematics-2', 'mathematics-2': 'mathematics-4',
+    'mathematics-3': 'mathematics-5', 'mathematics-4': 'mathematics-6',
+    'mathematics-5': 'mathematics-7', 'mathematics-6': 'mathematics-8',
+    'mathematics-7': 'mathematics-9', 'mathematics-8': 'mathematics-10',
+    'mathematics-9': 'mathematics-11', 'mathematics-10': 'mathematics-12'
+  };
+  function legacyUnitKey(key) {
+    return Object.prototype.hasOwnProperty.call(LEGACY_UNIT_KEYS, key) ? LEGACY_UNIT_KEYS[key] : key;
+  }
+  /** Read-side normaliser for a saved plan (localStorage or another device via
+      sync): a plan without `syllabus` was written against the old physics
+      numbering. Never a migration step — the stored blob is left as it was. */
+  function normalisePlan(p) {
+    if (!p || typeof p !== 'object' || p.syllabus === SYLLABUS_YEAR) return p;
+    var out = {};
+    for (var k in p) if (Object.prototype.hasOwnProperty.call(p, k)) out[k] = p[k];
+    if (Array.isArray(p.units)) {
+      var seen = {}, us = [];
+      for (var i = 0; i < p.units.length; i++) {
+        var nk = legacyUnitKey(String(p.units[i]));
+        if (!seen[nk]) { seen[nk] = true; us.push(nk); }
+      }
+      out.units = us;
+    }
+    out.syllabus = SYLLABUS_YEAR;
+    return out;
+  }
 
   var currentView = null;               // 'catalog' | 'notebook'
   var catFilter = { subject: 'ALL', qtype: 'ALL', unit: 'ALL', search: '' };
@@ -372,12 +438,42 @@
       answers, since locked() is false until then — which is why the first paint
       waits on Gate.whenListed rather than reshuffling under a thumb. */
   function unitsFreeFirst(list) {
+    // Only when the lock cues are actually on. Reordering a chapter list out of
+    // chapter order is its own bug (see above) and is justified ONLY by the
+    // paywall — so with no gate, or with a pass, the catalog reads 1, 2, 3 …
+    // exactly as units.json lists it, unwritten chapters included, in place.
+    // Before 2026-08-28 this fell out for free: nothing was locked, so the
+    // partition was a no-op. Once "openable" also meant "has answers", the three
+    // announced-but-unwritten chapters started being moved to the end of the
+    // FREE book too, which no reader has a reason to expect.
+    if (!lockCuesOn()) return list;
     var open = [], shut = [];
     for (var i = 0; i < list.length; i++) {
-      (Gate.locked(unitKey(list[i])) ? shut : open).push(list[i]);
+      (unitOpenable(list[i]) ? open : shut).push(list[i]);
     }
     return open.concat(shut);
   }
+
+  /** Answers a student can actually open in this chapter. */
+  function readyCount(u) {
+    var n = 0;
+    for (var i = 0; i < u.questions.length; i++) if (u.questions[i].question_id) n++;
+    return n;
+  }
+
+  /** A chapter is LOCKED only if the pass would actually open something in it.
+      A chapter listed for its true shape but with nothing written yet (physics
+      Unit 14 "Physics of Emerging Technologies", 2026-08-28) has no answers to
+      sell: labelling it "Locked" invites a student to pay for an empty chapter,
+      and counting its coming-soon rows into the offer overstates what the pass
+      buys. It reads as "0 of 5 ready" either way, which is the honest line. */
+  function unitLocked(u) { return readyCount(u) > 0 && Gate.locked(unitKey(u)); }
+
+  /** Can a student open something here RIGHT NOW? Drives the order only. An
+      unwritten chapter is not locked (nothing to sell) but it is not openable
+      either, so it must not be promoted into the free half — it sorts last,
+      with no pill, reading "0 of 5 ready". */
+  function unitOpenable(u) { return readyCount(u) > 0 && !Gate.locked(unitKey(u)); }
 
   /** Draw a lock cue only when the answer is KNOWN and MEANINGFUL: the gate is
       live, the list has actually answered, and this student does not already
@@ -399,7 +495,7 @@
   function buildWall() {
     var lockedQs = 0;
     UNITS.forEach(function (u) {
-      if (Gate.locked(unitKey(u))) lockedQs += u.questions.length;
+      if (unitLocked(u)) lockedQs += readyCount(u);
     });
     var price = Gate.price();
 
@@ -407,7 +503,11 @@
     w.className = 'cat-wall';
     var t = document.createElement('p');
     t.className = 'cat-wall-title';
-    t.textContent = 'Unlock all ' + UNITS.length + ' chapters' + (price ? ' · ₹' + price : '');
+    // Chapters that HAVE answers — the pass cannot unlock a chapter nobody has
+    // written yet, so it must not be counted in what the pass buys.
+    var sellableUnits = 0;
+    UNITS.forEach(function (u) { if (readyCount(u) > 0) sellableUnits++; });
+    t.textContent = 'Unlock all ' + sellableUnits + ' chapters' + (price ? ' · ₹' + price : '');
     w.appendChild(t);
     var s = document.createElement('p');
     s.className = 'cat-wall-sub';
@@ -635,7 +735,7 @@
         // text. Without it the picker was the one surface carrying no lock
         // signal: a student chose "Physical World" off a clean-looking list and
         // learned it was locked only after tapping a card inside it.
-        var shut = lockCuesOn() && Gate.locked(unitKey(u));
+        var shut = lockCuesOn() && unitLocked(u);
         // Once the subject is known — either picked, or the optgroup heading
         // says it — a trailing "(Chemistry)" on the chapter name is noise the
         // student has to read past. Strip ONLY a known subject label, so a
@@ -681,7 +781,7 @@
       if (!visible.length) return;
       shown += visible.length;
 
-      var uLocked = cues && Gate.locked(unitKey(u));
+      var uLocked = cues && unitLocked(u);
       // The offer, ONCE, immediately above the first locked chapter on screen —
       // never repeated per chapter. Everything above it opens; everything below
       // it is what the pass buys, and it stays listed and countable because those
@@ -702,7 +802,10 @@
       // used to live as a bare emoji on every card inside it — the same fact
       // repeated twenty-nine times, and absent from the chapter heading and the
       // chapter picker, the two places a student actually decides from.
-      if (cues) {
+      // No pill at all on a chapter with nothing written yet: "Locked" would
+      // sell an empty chapter and "Free" would promise answers that do not
+      // exist. The count pill beside it already says "0 of 5 ready".
+      if (cues && readyCount(u) > 0) {
         var lockPill = document.createElement('span');
         lockPill.className = 'cat-lock' + (uLocked ? '' : ' free');
         lockPill.textContent = uLocked ? '🔒 Locked' : 'Free';
@@ -917,8 +1020,11 @@
 
   function route() {
     if (askGuard()) return;
-    var ee = location.hash.match(/^#\/exam-eve\/([a-z]+-\d+|\d+)$/);
-    if (ee) { showExamEve(ee[1]); return; }
+    // Subject keys carry underscores (mathematics_1b-3) — the old [a-z]+ never
+    // matched a Maths-1B link. The optional trailing year is the post-renumbering
+    // marker (see LEGACY_UNIT_KEYS).
+    var ee = location.hash.match(/^#\/exam-eve\/([a-z0-9_]+-\d+|\d+)(?:\/(\d{4}))?$/);
+    if (ee) { showExamEve(ee[1], ee[2] || null); return; }
     // #/pricing — reachable from a locked chapter, and a link the founder can
     // send on its own. Renders over whatever view is behind it.
     if (location.hash === '#/pricing') { showCatalog(); Gate.showPricing(); return; }
@@ -1100,8 +1206,14 @@
   function buildFigure(fig) {
     var wrap = document.createElement('div');
     wrap.className = 'figure-wrap';
+    // A phased figure (any captioned pause) reserves ONE extra rule for the
+    // phase-caption line — unconditionally, so pagination is identical across
+    // the animated, instant and print paths.
+    var hasCaptions = fig.elements.some(function (el) {
+      return el.type === 'pause' && el.caption;
+    });
     // reserve a whole number of rules so the block below stays on the rules
-    var rules = Math.ceil(fig.height / 32);
+    var rules = Math.ceil(fig.height / 32) + (hasCaptions ? 1 : 0);
     wrap.style.height = (rules * 32) + 'px';
 
     var svg = document.createElementNS(SVG_NS, 'svg');
@@ -1112,6 +1224,7 @@
     svg.appendChild(defs);
 
     fig.elements.forEach(function (el) {
+      if (el.type === 'pause') return;   // a phase boundary draws nothing
       if (el.type === 'stroke') {
         var path = document.createElementNS(SVG_NS, 'path');
         path.setAttribute('d', el.d);
@@ -1158,6 +1271,12 @@
     });
 
     wrap.appendChild(svg);
+    if (hasCaptions) {
+      var cap = document.createElement('div');
+      cap.className = 'figure-caption';
+      wrap.appendChild(cap);
+      wrap._caption = cap;
+    }
     wrap._fig = fig;
     return wrap;
   }
@@ -1165,7 +1284,9 @@
   // hide every element (after layout, so getTotalLength works), ready to play
   function armFigure(wrap) {
     var fig = wrap._fig;
+    if (wrap._caption) wrap._caption.textContent = '';
     fig.elements.forEach(function (el) {
+      if (el.type === 'pause') return;
       var node = el._node;
       if (el.type === 'stroke') {
         if (el._clipRect) {
@@ -1190,14 +1311,26 @@
 
   function playFigure(wrap, onDone) {
     var fig = wrap._fig;
-    var i = 0;
+    var i = 0;                           // next element to start
     var timer = null;
     var cancelled = false;
+    var waiting = false;                 // stopped at a phase boundary; a tap resumes
+
+    function setCaption(text) {
+      if (wrap._caption) wrap._caption.textContent = text || '';
+    }
 
     function playNext() {
       if (cancelled) return;
-      if (i >= fig.elements.length) { onDone(); return; }
-      var el = fig.elements[i++];
+      if (i >= fig.elements.length) { setCaption(''); onDone(); return; }
+      var el = fig.elements[i];
+      if (el.type === 'pause') {
+        setCaption(el.caption);
+        if (i === 0) { i++; playNext(); return; }  // caption-only phase-1 marker
+        waiting = true;                  // stop drawing; the next tap starts the phase
+        return;
+      }
+      i++;
       var node = el._node;
       if (el.type === 'stroke') {
         if (el._clipRect) {
@@ -1228,31 +1361,60 @@
 
     playNext();
 
-    return function finish() {           // tap-to-finish
-      cancelled = true;
+    return function finish(force) {
+      if (force) {                       // teardown (rail jump / cut switch): complete everything
+        cancelled = true;
+        if (timer) clearTimeout(timer);
+        finishFigure(wrap);
+        onDone();
+        return;
+      }
+      if (waiting) {                     // tap at a phase boundary: draw the next phase
+        waiting = false;
+        i++;                             // step past the pause
+        playNext();
+        return;
+      }
+      // Tap mid-phase (impatience): instantly complete the CURRENT phase only and
+      // stop at its boundary. Finishing from 0 is deliberate — the element still
+      // animating is behind i, and re-finishing done elements is a no-op. A figure
+      // with no pauses degenerates to finish-everything, today's exact behavior.
       if (timer) clearTimeout(timer);
-      finishFigure(wrap);
-      onDone();
+      var stop = i;
+      while (stop < fig.elements.length && fig.elements[stop].type !== 'pause') stop++;
+      for (var k = 0; k < stop; k++) finishElement(fig.elements[k]);
+      i = stop;
+      if (i >= fig.elements.length) {
+        cancelled = true;
+        setCaption('');
+        onDone();
+        return;
+      }
+      playNext();                        // lands on the pause: caption + wait
     };
   }
 
-  function finishFigure(wrap) {
-    wrap._fig.elements.forEach(function (el) {
-      var node = el._node;
-      if (el.type === 'stroke') {
-        if (el._clipRect) {
-          el._clipRect.style.transition = 'none';
-          el._clipRect.setAttribute('width', String(el._bb.width + 8));
-          el._clipRect.setAttribute('height', String(el._bb.height + 8));
-        } else {
-          node.style.transition = 'none';
-          node.style.strokeDashoffset = '0';
-        }
+  function finishElement(el) {
+    if (el.type === 'pause') return;
+    var node = el._node;
+    if (el.type === 'stroke') {
+      if (el._clipRect) {
+        el._clipRect.style.transition = 'none';
+        el._clipRect.setAttribute('width', String(el._bb.width + 8));
+        el._clipRect.setAttribute('height', String(el._bb.height + 8));
       } else {
         node.style.transition = 'none';
-        node.style.opacity = '1';
+        node.style.strokeDashoffset = '0';
       }
-    });
+    } else {
+      node.style.transition = 'none';
+      node.style.opacity = '1';
+    }
+  }
+
+  function finishFigure(wrap) {
+    wrap._fig.elements.forEach(finishElement);
+    if (wrap._caption) wrap._caption.textContent = '';
   }
 
   // ═══ typing (board-mvp.html L591-623 harvest, adapted) ═══════════════════
@@ -1481,7 +1643,9 @@
 
   /** One code path for jump/restart — pagination identical to tapping through. */
   function renderUpTo(targetIndex, animateLast) {
-    if (revealing && finishCurrent) finishCurrent();
+    // force=true: a phased figure must complete outright here — a plain tap
+    // semantics call would RESUME drawing into DOM this wipe is about to destroy.
+    if (revealing && finishCurrent) finishCurrent(true);
     revealing = false; finishCurrent = null; completed = false;
     notebook.innerHTML = '';
     pageBodies = [];
@@ -2290,12 +2454,12 @@
       setWin: function (w) { lsSet('pm_vidi_win', JSON.stringify(w)); },
       // ── the study plan (per device, like every other Vidi key) ────────────
       todayStr: todayStr,
-      getPlan: function () { try { return JSON.parse(lsGet('pm_plan_v1') || 'null'); } catch (e) { return null; } },
+      getPlan: function () { try { return normalisePlan(JSON.parse(lsGet('pm_plan_v1') || 'null')); } catch (e) { return null; } },
       setPlan: function (p) {
         // saved_at is what lets two devices agree on WHICH plan is current
         // (the plan is one blob, so it is last-write-wins — unlike the stage
         // ticks, which merge). Stamped here so every write is comparable.
-        if (p && typeof p === 'object') p.saved_at = new Date().toISOString();
+        if (p && typeof p === 'object') { p.saved_at = new Date().toISOString(); p.syllabus = SYLLABUS_YEAR; }
         lsSet('pm_plan_v1', JSON.stringify(p));
         syncTouch();
       },
@@ -4220,7 +4384,21 @@
     // "I finished all long answers elsewhere — plan only SAQs and VSAQs."
     // A deterministic plan dimension, never the model's: all three ticked =
     // null scope = everything, so the default student never notices the step.
-    var SCOPE_OPTS = [['LAQ', 'Long answers (8 marks)'], ['SAQ', 'Short answers (4 marks)'], ['VSAQ', 'Very short answers (2 marks)']];
+    // The mark values are read off PM_PATTERNS (the same table the schema holds
+    // every card to), never typed here: on the 2026-27 papers every subject's
+    // long answer is 8 marks, but a hardcoded number is exactly how the maths
+    // section once printed "8 marks" over 7-mark cards.
+    function scopeMarks(qtype, fallback) {
+      var p = PATTERNS.physics || PATTERNS[Object.keys(PATTERNS)[0]];
+      if (!p || !p.sections) return fallback;
+      for (var i = 0; i < p.sections.length; i++) if (p.sections[i].key === qtype) return p.sections[i].marks;
+      return fallback;
+    }
+    var SCOPE_OPTS = [
+      ['LAQ', 'Long answers (' + scopeMarks('LAQ', 8) + ' marks)'],
+      ['SAQ', 'Short answers (' + scopeMarks('SAQ', 4) + ' marks)'],
+      ['VSAQ', 'Very short answers (' + scopeMarks('VSAQ', 2) + ' marks)']
+    ];
 
     function scopeBoxes(w, current) {
       var boxes = [];
@@ -4856,6 +5034,20 @@
       out.push('QUESTION: ' + (cut.question_text || question.question_text));
       out.push('SECTION: ' + cut.paper_section + ' · ' + cut.qtype + ' · ' + marksTotal +
         ' marks · about ' + cut.expected_time_min + ' minutes');
+      // The paper's shape, from the one table (PM_PATTERNS). Byte-stable per
+      // subject, so the prefix cache is unaffected; a student asking "how many
+      // long answers do I write" gets the 2026-27 paper, not the model's memory
+      // of the old 75-mark maths paper.
+      var pat = PATTERNS[question.subject || 'physics'];
+      if (pat && pat.sections) {
+        var secs = [];
+        for (var pi = 0; pi < pat.sections.length; pi++) {
+          var ps = pat.sections[pi];
+          secs.push(ps.section + ' ' + (ps.answer === ps.printed ? 'all ' + ps.printed : 'any ' + ps.answer + ' of ' + ps.printed) + ' × ' + ps.marks);
+        }
+        out.push('PAPER: ' + pat.label + ' · ' + pat.total + ' marks written (w.e.f. ' + pat.wef + ') · ' + secs.join(' · ') +
+          (pat.internal ? ' · plus ' + pat.internal.marks + ' marks ' + pat.internal.kind + ' outside the written paper' : ''));
+      }
       if (question.chapter) out.push('CHAPTER: ' + question.chapter);
       var e = manifestEntry();
       // Say what the rank MEANS, both ways. The old line emitted a bare "STARS: 0" on a
@@ -5266,7 +5458,8 @@
     box.appendChild(links);
     var eve = document.createElement('a');
     eve.className = 'vidi-eve-link';
-    eve.setAttribute('href', '#/exam-eve/' + unitKey(u));
+    // The trailing year marks the link as post-renumbering (see LEGACY_UNIT_KEYS).
+    eve.setAttribute('href', '#/exam-eve/' + unitKey(u) + '/' + SYLLABUS_YEAR);
     eve.textContent = 'Exam soon? Open the 15-minute list →';
     box.appendChild(eve);
     box.hidden = false;
@@ -5274,10 +5467,12 @@
 
   /** #/exam-eve/<unit> — the 15-minute list: weakest self-checks first, then the
       most-asked questions of the chapter. Deterministic; history from localStorage. */
-  function showExamEve(unitRef) {
+  function showExamEve(unitRef, year) {
     // unitRef: 'physics-4' (subject-qualified) or a bare '4' from a historic
     // link — the bare form takes the FIRST unit with that number (= physics,
-    // which is what every pre-merge link meant).
+    // which is what every pre-merge link meant). A link with no trailing year
+    // predates the 2026-27 renumbering, so its key is remapped.
+    if (!year) unitRef = legacyUnitKey(/^\d+$/.test(String(unitRef)) ? 'physics-' + unitRef : String(unitRef));
     var u = null;
     for (var i = 0; i < UNITS.length; i++) {
       var cand = UNITS[i];

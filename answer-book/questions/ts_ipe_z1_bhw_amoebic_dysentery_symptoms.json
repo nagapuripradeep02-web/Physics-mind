@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_amoebic_dysentery_symptoms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A person is suffering from bowel irregularity, abdominal pain, blood and mucus in stool, etc. Based on these symptoms, name the disease and its causative organism.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Disease",
+      "marks": 1
+    },
+    {
+      "label": "Causative organism",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.58, VSAQ 135). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_disease",
+        "kind": "text",
+        "label": "Disease",
+        "marks": 1,
+        "mark_note": "Disease",
+        "lines": [
+          "The symptoms given are those of amoebic",
+          "dysentery, also called intestinal amoebiasis."
+        ],
+        "why": "Blood and mucus together in the stool point to ulcers in the wall of the large intestine, and that is what separates amoebic dysentery from ordinary loose motions.",
+        "common_mistakes": [
+          "Answering 'diarrhoea'. Blood and mucus in the stool make it dysentery.",
+          "Answering malaria or ascariasis. Those do not give blood and mucus in the stool."
+        ],
+        "memory_tip": "Blood and mucus in the stool means ulcers in the large intestine, and that means amoebic dysentery.",
+        "margin_note": "One line. Give both names of the disease if you can."
+      },
+      {
+        "id": "s2_organism",
+        "kind": "boxed_final",
+        "label": "Causative organism",
+        "marks": 1,
+        "mark_note": "Organism",
+        "lines": [
+          {
+            "text": "Entamoeba histolytica",
+            "style": "boxed"
+          },
+          "The disease is caused by Entamoeba histolytica,",
+          "which lives in the large intestine of man.",
+          "Its trophozoites make ulcers in the intestinal",
+          "wall, and the ulcers ooze blood and mucus."
+        ],
+        "why": "Naming the organism is only half the mark here; the link between its trophozoites and the ulcers is what explains the symptoms in the question.",
+        "common_mistakes": [
+          "Writing only 'Entamoeba'. Give the full name, Entamoeba histolytica.",
+          "Writing Entamoeba coli, which is a harmless species."
+        ],
+        "memory_tip": "Histolytica means tissue-dissolving, and that is exactly what makes the ulcers.",
+        "margin_note": "Full binomial name first, then one line linking it to the symptoms."
+      }
+    ]
+  },
+  "insider_note": "This is a symptom-to-name question, so both the disease name and the full binomial of the organism must appear; a half name loses the mark."
+}

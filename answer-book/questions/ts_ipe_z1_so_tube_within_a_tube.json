@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_tube_within_a_tube",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the animals that exhibited a 'tube-within-a-tube' organisation for the first time. Name their body cavity.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Phylum",
+      "marks": 1
+    },
+    {
+      "label": "Body cavity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.51, VSAQ 74). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_animals",
+        "kind": "text",
+        "label": "Animals that show it first",
+        "marks": 1,
+        "why": "The phrase names the plan itself, so the answer names the phylum and then says which structure is each of the two tubes.",
+        "common_mistakes": [
+          "Naming Platyhelminthes. Flatworms have an incomplete gut with no anus, so no inner tube runs right through the body.",
+          "Naming Annelida. The plan appears earlier, in Nematoda."
+        ],
+        "memory_tip": "Two tubes: the body wall outside, the gut from mouth to anus inside.",
+        "margin_note": "Name the phylum, then say which structure is each tube. Two short lines.",
+        "mark_note": "Phylum",
+        "lines": [
+          "The 'tube-within-a-tube' plan is seen for the",
+          "first time in the phylum Nematoda",
+          "(Aschelminthes).",
+          "The body wall is the outer tube and the",
+          "alimentary canal is the inner tube."
+        ]
+      },
+      {
+        "id": "s2_cavity",
+        "kind": "boxed_final",
+        "label": "Their body cavity",
+        "marks": 1,
+        "why": "Nematodes keep the embryonic blastocoel as their body cavity, and because it has no complete mesodermal lining it is called a false coelom.",
+        "common_mistakes": [
+          "Calling it a true coelom. A true coelom is lined by mesoderm on both sides; the nematode cavity is not."
+        ],
+        "memory_tip": "Pseudo means false: the cavity is there, the complete mesodermal lining is not.",
+        "margin_note": "One word carries this mark — pseudocoelom. Add one line saying why it is called false.",
+        "mark_note": "Body cavity",
+        "lines": [
+          {
+            "text": "Body cavity: pseudocoelom",
+            "style": "boxed"
+          },
+          "The space between the two tubes is a",
+          "pseudocoelom, or false coelom.",
+          "It is not lined by mesodermal epithelium on",
+          "all sides."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two names carry the two marks: Nematoda and pseudocoelom. Everything else on the page is decoration."
+}

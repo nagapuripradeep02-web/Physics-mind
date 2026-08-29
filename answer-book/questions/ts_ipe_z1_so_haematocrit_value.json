@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_haematocrit_value",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the haematocrit value?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Other name",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.52, VSAQ 85). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: the typical adult value of about 40 to 45 per cent is standard physiology and is not printed in this book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What it measures",
+        "marks": 1,
+        "why": "It is a ratio, so the answer must say what is measured against what — cell volume against whole blood volume.",
+        "common_mistakes": [
+          "Writing that it is the number of red blood cells. It is a volume, not a count.",
+          "Leaving out the word percentage. The value is a percentage."
+        ],
+        "memory_tip": "Spin the blood: the packed red column, as a percentage of the whole column, is the haematocrit.",
+        "margin_note": "One sentence of definition. Say percentage, and say volume.",
+        "mark_note": "Definition",
+        "lines": [
+          "The haematocrit value is the volume of red",
+          "blood cells written as a percentage of the",
+          "total volume of blood.",
+          "It is found by spinning blood in a tube until",
+          "the cells settle at the bottom."
+        ]
+      },
+      {
+        "id": "s2_other_name",
+        "kind": "boxed_final",
+        "label": "Its other name",
+        "marks": 1,
+        "why": "The second name explains the first one: the packed cells are the red cell column left at the bottom after spinning.",
+        "common_mistakes": [
+          "Leaving out the second name. Packed cell volume is the term the examiner looks for."
+        ],
+        "memory_tip": "Packed cell volume names the method: the cells are packed at the bottom of the tube.",
+        "margin_note": "The second name is the mark. The typical value is a useful extra line.",
+        "mark_note": "Other name",
+        "lines": [
+          {
+            "text": "Also called packed cell volume (PCV)",
+            "style": "boxed"
+          },
+          "It is also called the packed cell volume.",
+          "In a healthy adult it is about 40 to 45 per",
+          "cent."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The words 'packed cell volume' are worth a full mark on their own, so write them even if the definition is shaky."
+}

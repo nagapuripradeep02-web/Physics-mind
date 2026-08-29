@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_shark_catla_fin_scales",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the type of caudal fin and scales that are present in a shark and Catla, respectively.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Shark",
+      "marks": 1
+    },
+    {
+      "label": "Catla",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.55, VSAQ 110). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book answers 'scales are cycloid or ctenoid' for Catla. Catla catla is a carp and carries CYCLOID scales; ctenoid scales are found in perch-like bony fishes. The card writes cycloid."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shark",
+        "kind": "text",
+        "label": "Shark",
+        "marks": 1,
+        "mark_note": "Shark",
+        "margin_note": "Name the group, then the fin, then the scale. Three short lines.",
+        "lines": [
+          "Shark is a cartilaginous fish.",
+          "Its caudal fin is heterocercal: the upper lobe",
+          "is longer than the lower lobe.",
+          "Its scales are placoid scales."
+        ],
+        "why": "A shark is cartilaginous and a Catla is bony, so naming the group first makes both answers follow from one fact instead of two memorised pairs.",
+        "common_mistakes": [
+          "Writing homocercal for the shark. The two lobes of a shark tail are unequal.",
+          "Giving cycloid scales to the shark. Placoid scales belong to cartilaginous fishes."
+        ],
+        "memory_tip": "Hetero means unequal: the shark tail has unequal lobes."
+      },
+      {
+        "id": "s2_catla",
+        "kind": "boxed_final",
+        "label": "Catla",
+        "marks": 1,
+        "mark_note": "Catla",
+        "margin_note": "One boxed line answers the whole question; the rest is the reason.",
+        "lines": [
+          {
+            "text": "Shark: heterocercal fin, placoid scales",
+            "style": "boxed"
+          },
+          {
+            "text": "Catla: homocercal fin, cycloid scales",
+            "style": "boxed"
+          },
+          "Catla is a bony fish.",
+          "Its caudal fin is homocercal: the two lobes",
+          "are equal.",
+          "Its scales are cycloid scales."
+        ],
+        "why": "Homo means equal, so the word itself tells the shape of the tail and there is nothing extra to remember.",
+        "common_mistakes": [
+          "Writing placoid for Catla. Placoid scales are found only in cartilaginous fishes.",
+          "Leaving out one half of the answer. Each fish needs both the fin and the scale."
+        ],
+        "memory_tip": "Cartilaginous shark: unequal tail, placoid. Bony Catla: equal tail, cycloid."
+      }
+    ]
+  },
+  "insider_note": "Four words carry the two marks — heterocercal, placoid, homocercal, cycloid — so write all four even if you write nothing else."
+}

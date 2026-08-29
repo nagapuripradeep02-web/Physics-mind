@@ -23,7 +23,7 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'fs';
 import { join } from 'path';
 import katex from 'katex';
-import { answerBookQuestionSchema, type AnswerBookQuestion } from '../schemas/answerBook';
+import { answerBookQuestionSchema, PAPER_PATTERNS, type AnswerBookQuestion } from '../schemas/answerBook';
 // The Rule 41 word list, IMPORTED not copied — it is the same list the shakedown
 // grades Vidi's replies with, so the bank and the model are held to one standard.
 import { idiomsIn } from '../lib/answerBook/vidiChecks';
@@ -218,6 +218,20 @@ if (STREAM_SUBJECTS && questions.length === 0) {
 // authored question the manifest does not list would be invisible in the
 // catalog, and a manifest pointer at nothing would be a dead card. Both are
 // exactly the silent-drop failure mode PILOT_CONCEPTS once had.
+//
+// RETIRED entries (2026-08-28, the TGBIE 2026-27 syllabus revision): a question
+// whose topic left the syllabus keeps its file and its manifest row — the
+// seven-paper corpus (answer-book/papers/matches.json) still resolves to it and
+// its exam history is real — but it is NOT the book any more. `status:
+// "retired"` + `retired: {wef, reason}` on the entry (or on a whole unit) keeps
+// both drift checks satisfied and strips the entry from EVERYTHING a student is
+// offered: the catalog, the counts, the chapter picker, the planner, exam-eve,
+// Vidi's chapter lists, the door, the og card and the gated content bundles.
+// The card itself still ships, so a forwarded #/q/<id> link renders with a
+// "removed from the 2026-27 syllabus" banner instead of a dead route
+// (window.PM_RETIRED carries the reason). Deleting the file was the only
+// alternative, and deleting is exactly what the corpus tags forbid.
+type Retired = { wef: string; reason: string };
 type ManifestEntry = {
     ref: string;
     section: 'VSAQ' | 'SAQ' | 'LAQ';
@@ -226,8 +240,18 @@ type ManifestEntry = {
     text: string;
     question_id?: string;
     cut?: string;
+    source?: string;
+    status?: 'retired';
+    retired?: Retired;
 };
-type ManifestUnit = { number: number; name: string; subject?: string; questions: ManifestEntry[] };
+type ManifestUnit = {
+    number: number;
+    name: string;
+    subject?: string;
+    questions: ManifestEntry[];
+    status?: 'retired';
+    retired?: Retired;
+};
 
 const manifestPath = join(BOOK_DIR, 'units.json');
 let manifest: { units: ManifestUnit[] };
@@ -259,7 +283,7 @@ const listedIds = new Set<string>();
 // below). `mathematics` is Maths-1A for historical reasons — it predates 1B, the
 // same way an absent subject means physics. Physics-II will need the same
 // treatment when it opens.
-const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'physics_2'];
+const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2'];
 // STREAMS (top of file) names subjects too. If the two lists drift — a stream
 // naming a subject that no longer exists, or a renamed subject — the lens would
 // silently drop a whole paper from a student's book rather than erroring. Cheap
@@ -287,10 +311,31 @@ for (const u of manifest.units) {
     if (u.subject !== undefined && !SUBJECTS.includes(u.subject)) {
         fail(`${manifestPath}\n  unit ${u.number}: subject "${u.subject}" is not one of ${SUBJECTS.join('/')}`);
     }
+    if (u.status !== undefined && u.status !== 'retired') {
+        fail(`${manifestPath}\n  unit ${u.number}: status "${u.status}" — the only status is "retired"`);
+    }
+    if ((u.status === 'retired') !== (u.retired !== undefined)) {
+        fail(`${manifestPath}\n  unit ${u.number}: status "retired" and a retired {wef, reason} block go together`);
+    }
+    if (u.retired && !(u.retired.wef && u.retired.reason)) {
+        fail(`${manifestPath}\n  unit ${u.number}: retired needs both wef and reason`);
+    }
     const refs = new Set<string>();
     for (const e of u.questions) {
         if (refs.has(e.ref)) fail(`${manifestPath}\n  unit ${u.number}: duplicate ref "${e.ref}"`);
         refs.add(e.ref);
+        if (e.status !== undefined && e.status !== 'retired') {
+            fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: status "${e.status}" — the only status is "retired"`);
+        }
+        if ((e.status === 'retired') !== (e.retired !== undefined)) {
+            fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: status "retired" and a retired {wef, reason} block go together`);
+        }
+        if (e.retired && !(e.retired.wef && e.retired.reason)) {
+            fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: retired needs both wef and reason`);
+        }
+        if (e.status === 'retired' && !e.question_id) {
+            fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: a coming-soon entry cannot be retired — delete the row instead`);
+        }
         if (!['VSAQ', 'SAQ', 'LAQ'].includes(e.section)) {
             fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: section "${e.section}" is not VSAQ/SAQ/LAQ`);
         }
@@ -319,6 +364,28 @@ for (const q of questions) {
         fail(`${manifestPath}\n  authored question "${q.question_id}" is not listed in any unit — it would be invisible in the catalog`);
     }
 }
+
+// Strip what is retired, NOW that both drift checks have run over the full
+// manifest. From here down `manifest.units` is the book a student is offered;
+// `retiredById` is what the notebook shows on a forwarded link to a retired
+// card. A question retired under one entry but still live under another (a cut
+// listed twice) stays live — retirement is per entry, and the banner keys on
+// the question having NO live entry left.
+const retiredById: Record<string, Retired & { unit: string }> = {};
+const liveIds = new Set<string>();
+for (const u of manifest.units) {
+    for (const e of u.questions) {
+        if (!e.question_id) continue;
+        const r = u.retired ?? e.retired;
+        if (r) retiredById[e.question_id] = { ...r, unit: u.name };
+        else liveIds.add(e.question_id);
+    }
+}
+for (const id of liveIds) delete retiredById[id];
+const retiredCount = Object.keys(retiredById).length;
+manifest.units = manifest.units
+    .filter((u) => u.status !== 'retired')
+    .map((u) => ({ ...u, questions: u.questions.filter((e) => e.status !== 'retired') }));
 
 // ── 1c. completeness + plain-language (Rule 41) ──────────────────────────────
 // Four of these fields ARE the model's grounding text (notebook.js buildVidiContext
@@ -604,8 +671,12 @@ const doorTracks = TRACKS.map((t) => ({
             label: y.label,
             live,
             note: y.note,
-            units: live ? manifest.units.length : 0,
-            questions: live ? manifest.units.reduce((n, u) => n + u.questions.length, 0) : 0,
+            // Chapters and answers a student can OPEN — coming-soon rows for a
+            // chapter the 2026-27 syllabus announced but nobody has written yet
+            // are listed in the catalog (true shape) and must not be counted in
+            // a number the door uses to say what this book contains.
+            units: live ? manifest.units.filter((u) => u.questions.some((e) => e.question_id)).length : 0,
+            questions: live ? manifest.units.reduce((n, u) => n + u.questions.filter((e) => e.question_id).length, 0) : 0,
         };
     }),
 }));
@@ -623,6 +694,12 @@ if (STREAM) {
 const dataJs =
     `window.PM_QUESTIONS = ${JSON.stringify(GATED ? gatedQuestions : browserQuestions).replace(/</g, '\\u003c')};\n` +
     `window.PM_UNITS = ${JSON.stringify(manifest.units).replace(/</g, '\\u003c')};\n` +
+    // The paper each subject sits — ONE table (src/schemas/answerBook.ts), so
+    // the marks the schema enforces and the marks the player prints agree.
+    `window.PM_PATTERNS = ${JSON.stringify(PAPER_PATTERNS).replace(/</g, '\\u003c')};\n` +
+    // Cards whose topic left the syllabus: still in PM_QUESTIONS (a forwarded
+    // link must not 404), absent from PM_UNITS (never offered).
+    `window.PM_RETIRED = ${JSON.stringify(retiredById).replace(/</g, '\\u003c')};\n` +
     `window.PM_API_BASE = ${JSON.stringify(apiBase)};\n` +
     `window.PM_VIDI_BASE = ${JSON.stringify(vidiBase)};
 ` +
@@ -709,6 +786,9 @@ if (STREAM) {
         (dropped.length ? ` (excluded: ${dropped.join(', ')})` : ''));
 } else {
     console.log(`  stream:       (none — the FULL bank, every subject)`);
+}
+if (retiredCount) {
+    console.log(`  retired:      ${retiredCount} card(s) kept on file but not offered (syllabus revision — see units.json status:"retired")`);
 }
 console.log(`  checking API: ${apiBase || '(unset — no photo, no mic, page stays fully offline)'}`);
 console.log(`  Vidi chat:    ${vidiBase || '(unset — deterministic Vidi only, no ask row, no telemetry)'}`);

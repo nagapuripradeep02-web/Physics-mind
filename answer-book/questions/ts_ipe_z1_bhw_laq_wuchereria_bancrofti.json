@@ -1,0 +1,586 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_laq_wuchereria_bancrofti",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the life cycle of Wuchereria bancrofti with a neat diagram.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identity of the parasite",
+      "marks": 1
+    },
+    {
+      "label": "Structure",
+      "marks": 1
+    },
+    {
+      "label": "Life cycle in man",
+      "marks": 2
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Life cycle in the mosquito",
+      "marks": 1
+    },
+    {
+      "label": "Return to man and pathogenicity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.18, LAQ 5). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. INVENTORY NOTE: the book's own 'TOP 10+ LAQ' hit list skips this question, but it is printed as a full 8-mark LAQ answer on book p.18 (global qno 5) and is asked in the book's Guess Paper 5. FIGURE SCOPE: the book prints an elaborate plate with the mosquito and the man drawn in; this card draws the simplified exam figure — a numbered ring of the named stages split into an IN MAN half and an IN MOSQUITO half."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Biology in Human Welfare · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "text",
+        "label": "Identity of the parasite",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "Wuchereria bancrofti: Phylum Nematoda, Class",
+          "Phasmidia.",
+          "It is commonly called the filaria worm.",
+          "It is a digenetic, dimorphic, histozoic and",
+          "pseudocoelomate parasite, so it needs TWO hosts,",
+          "the two sexes look different and it lives in the",
+          "tissues.",
+          "It lives in the lymph vessels of man. Its",
+          "secondary host is the female Culex mosquito."
+        ],
+        "why": "Two hosts and one tissue decide the whole answer: the worm lives in the lymph vessels of man and the larva must reach a Culex mosquito, so the cycle has two halves from the start.",
+        "common_mistakes": [
+          "Writing that the vector is Anopheles. The vector of Wuchereria is the female CULEX mosquito.",
+          "Writing that the adult lives in the blood. The adult lives in the LYMPH vessels.",
+          "Calling it monogenetic. It is digenetic: man and the mosquito."
+        ],
+        "memory_tip": "Lymph vessels of man, Culex mosquito outside: two hosts, two halves.",
+        "margin_note": "Four short lines. Culex and the lymph vessels are both marked facts."
+      },
+      {
+        "id": "s2_structure",
+        "kind": "text",
+        "label": "Structure",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          "The sexes are separate and the sexual dimorphism",
+          "is distinct.",
+          "The body is long and thread-like, that is",
+          "filiform. The anterior end is blunt and the",
+          "posterior end is pointed.",
+          "The mouth is at the anterior end and it has no",
+          "lips.",
+          "Male: the posterior end is curved. It bears a",
+          "cloaca and a pair of UNEQUAL copulatory",
+          "spicules.",
+          "Female: the anus is at the straight posterior",
+          "end. The female genital pore is at about one",
+          "third of the body length from the mouth, and the",
+          "female is ovoviviparous."
+        ],
+        "why": "Wuchereria is compared with Ascaris in the exam, and the two differences that matter are the lips and the spicules: Wuchereria has no lips and unequal spicules.",
+        "common_mistakes": [
+          "Giving Wuchereria three lips. Ascaris has three lips; Wuchereria has NONE.",
+          "Writing that the spicules are equal. In Wuchereria they are UNEQUAL.",
+          "Writing that the female lays eggs. It is ovoviviparous, so it releases larvae."
+        ],
+        "memory_tip": "No lips, unequal spicules, and the young come out alive: that is Wuchereria, not Ascaris.",
+        "margin_note": "Five short lines, with the male and female as named sub-headings."
+      },
+      {
+        "id": "s3_in_man",
+        "kind": "text",
+        "label": "Life cycle in man",
+        "marks": 2,
+        "mark_note": "In man",
+        "lines": [
+          "Wuchereria completes its life cycle in two",
+          "hosts: man and the female Culex mosquito.",
+          "In man: the male and female worms remain coiled",
+          "together in the lymph vessels.",
+          "After copulation the female releases sheathed",
+          "microfilaria larvae.",
+          "Each larva is surrounded by a loose cuticular",
+          "sheath.",
+          "The larva lives in the deep blood vessels during",
+          "the day time and comes to the periphery during",
+          "the night, between 10 PM and 4 AM. This is",
+          "called nocturnal periodicity.",
+          "The Culex mosquito bites at night, so the larva",
+          "is at the surface at the time it can be taken",
+          "up.",
+          "The larva can live for 70 days, and within that",
+          "time it has to enter a mosquito."
+        ],
+        "why": "The larva can go no further inside man, so everything in this half of the cycle is about getting into a mosquito, and the night-time movement is what makes that possible.",
+        "common_mistakes": [
+          "Writing that the microfilaria develops further in man. It only develops inside the mosquito.",
+          "Giving the wrong hours. The larva comes to the periphery between 10 PM and 4 AM.",
+          "Writing 70 hours instead of 70 days for the life of the larva."
+        ],
+        "memory_tip": "Deep by day, surface by night, and 70 days to catch a mosquito.",
+        "margin_note": "Seven short lines. Nocturnal periodicity and the 70 days are the two marked facts."
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "Diagram — life cycle",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "bhw_wuchereria_life_cycle",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the adult worms and the sheathed microfilaria"
+            },
+            {
+              "type": "stroke",
+              "id": "g1_w1",
+              "d": "M 274.1 77.6 C 286.1 62.6 298.1 82.1 304.1 91.1 C 295.1 106.1 280.1 98.6 274.1 88.1",
+              "ms": 1110
+            },
+            {
+              "type": "stroke",
+              "id": "g1_w2",
+              "d": "M 275.6 95.6 C 287.6 106.1 299.6 89.6 302.6 77.6 C 293.6 64.1 278.6 73.1 274.9 83.6",
+              "ms": 1070,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "g2_l_a",
+              "d": "M 328.6 135.9 L 330.8 137.8 L 332.3 139.5 L 332.8 140.5 L 332.7 141.3 L 331.9 142.6 L 330.1 144.3 L 327.9 146.3 L 325.5 148.4 L 323.6 151 L 322.8 154.1 L 323.6 157.2 L 325.5 159.8 L 327.9 161.9 L 330.1 163.9 L 331.9 165.6 L 332.7 166.9",
+              "ms": 580
+            },
+            {
+              "type": "stroke",
+              "id": "g2_l_b",
+              "d": "M 331.8 132.3 L 334.1 134.4 L 336.2 136.7 L 337.5 139.7 L 337.2 142.9 L 335.6 145.6 L 333.3 147.9 L 331 149.9 L 329 151.8 L 327.9 153.2 L 327.6 154.1 L 327.9 155 L 329 156.4 L 331 158.3 L 333.3 160.3 L 335.6 162.6 L 337.2 165.3",
+              "ms": 610
+            },
+            {
+              "type": "stroke",
+              "id": "g2_sh",
+              "d": "M 319.2 150.1 A 11 19 0 1 0 341.2 150.1 A 11 19 0 1 0 319.2 150.1",
+              "ms": 1370,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_l_a",
+              "d": "M 328.8 229.8 L 330.9 231.5 L 332.4 232.9 L 332.8 233.6 L 332.7 234 L 332 235 L 330.3 236.5 L 328 238.2 L 325.6 240.1 L 323.7 242.4 L 322.8 245.4 L 323.7 248.4 L 325.6 250.7 L 328 252.6 L 330.3 254.3 L 332 255.8 L 332.7 256.8",
+              "ms": 530
+            },
+            {
+              "type": "stroke",
+              "id": "g3_l_b",
+              "d": "M 331.6 226 L 334 227.8 L 336.1 229.9 L 337.5 232.7 L 337.2 235.8 L 335.5 238.3 L 333.2 240.3 L 330.9 242.1 L 328.9 243.7 L 327.8 244.9 L 327.6 245.4 L 327.8 245.9 L 328.9 247.1 L 330.9 248.7 L 333.2 250.5 L 335.5 252.5 L 337.2 255",
+              "ms": 570
+            },
+            {
+              "type": "stroke",
+              "id": "g3_sh",
+              "d": "M 319.2 241.9 A 11 17 0 1 0 341.2 241.9 A 11 17 0 1 0 319.2 241.9",
+              "ms": 1270,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_bite",
+              "d": "M 346.2 223.9 L 356.2 213.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "g3_bh",
+              "d": "M 348 217.1 L 346.2 223.9 L 353 222.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — inside the mosquito: sheath lost, larva moults"
+            },
+            {
+              "type": "stroke",
+              "id": "g4_a",
+              "d": "M 287.4 292.9 L 289.6 294.8 L 291 296.4 L 291.5 297.4 L 291.4 298 L 290.6 299.2 L 288.9 301 L 286.6 302.9 L 284.3 305.1 L 282.4 307.7 L 281.5 310.9 L 282.4 314.1 L 284.3 316.7 L 286.6 318.9 L 288.9 320.8 L 290.6 322.6 L 291.4 323.8",
+              "ms": 570
+            },
+            {
+              "type": "stroke",
+              "id": "g4_b",
+              "d": "M 290.8 288.9 L 293.2 291 L 295.3 293.4 L 296.6 296.4 L 296.3 299.8 L 294.6 302.6 L 292.4 304.8 L 290 306.9 L 288 308.7 L 286.9 310.1 L 286.7 310.9 L 286.9 311.7 L 288 313.1 L 290 314.9 L 292.4 317 L 294.6 319.2 L 296.3 322",
+              "ms": 610
+            },
+            {
+              "type": "stroke",
+              "id": "g5_a",
+              "d": "M 228.9 298.6 L 230.6 299.9 L 231.5 300.8 L 231.5 300.7 L 231.6 300.1 L 231.3 300.4 L 230.1 301.5 L 228.3 302.8 L 226.3 304.4 L 224.4 306.5 L 223.5 309.6 L 224.4 312.8 L 226.3 314.9 L 228.3 316.5 L 230.1 317.8 L 231.3 318.9 L 231.6 319.2",
+              "ms": 430
+            },
+            {
+              "type": "stroke",
+              "id": "g5_b",
+              "d": "M 232.9 293.2 L 234.9 294.6 L 236.8 296.5 L 238.2 299.3 L 237.8 302.7 L 236.2 305.1 L 234.2 306.8 L 232.3 308.3 L 230.8 309.4 L 230.2 310.1 L 230.3 309.6 L 230.2 309.2 L 230.8 309.9 L 232.3 311 L 234.2 312.5 L 236.2 314.2 L 237.8 316.6",
+              "ms": 490
+            },
+            {
+              "type": "stroke",
+              "id": "g6_a",
+              "d": "M 187.9 230.5 L 190 232.1 L 191.3 233.4 L 191.6 233.8 L 191.6 233.7 L 191 234.4 L 189.4 235.9 L 187.1 237.6 L 184.7 239.5 L 182.6 242 L 181.6 245.4 L 182.6 248.8 L 184.7 251.3 L 187.1 253.2 L 189.4 254.9 L 191 256.4 L 191.6 257.1",
+              "ms": 530
+            },
+            {
+              "type": "stroke",
+              "id": "g6_b",
+              "d": "M 191.7 225.3 L 194.1 227.2 L 196.4 229.4 L 197.9 232.5 L 197.5 236.1 L 195.7 238.9 L 193.3 240.9 L 190.9 242.7 L 189 244.3 L 188.1 245.3 L 188 245.4 L 188.1 245.5 L 189 246.5 L 190.9 248.1 L 193.3 249.9 L 195.7 251.9 L 197.5 254.7",
+              "ms": 570
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the infective larva and the return to man"
+            },
+            {
+              "type": "stroke",
+              "id": "g7_a",
+              "d": "M 188.1 134.1 L 190.5 136.2 L 192.1 138.1 L 192.7 139.3 L 192.6 140.2 L 191.7 141.7 L 189.7 143.7 L 187.2 145.9 L 184.7 148.3 L 182.6 151.1 L 181.7 154.6 L 182.6 158.1 L 184.7 160.9 L 187.2 163.3 L 189.7 165.5 L 191.7 167.5 L 192.6 169",
+              "ms": 640
+            },
+            {
+              "type": "stroke",
+              "id": "g7_b",
+              "d": "M 191.5 130.1 L 194.1 132.5 L 196.4 135.1 L 197.8 138.4 L 197.5 142 L 195.7 145 L 193.3 147.5 L 190.7 149.8 L 188.5 151.9 L 187.2 153.6 L 186.9 154.6 L 187.2 155.6 L 188.5 157.3 L 190.7 159.4 L 193.3 161.7 L 195.7 164.2 L 197.5 167.2",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "g8_w",
+              "d": "M 216.9 79.5 C 229.5 64.1 242.1 80.9 243.5 92.1 C 236.5 104.7 221.1 97.7 218.3 86.5",
+              "ms": 1040,
+              "w": 2.3
+            },
+            {
+              "type": "pause",
+              "id": "pa",
+              "caption": "Step 4 — the arrows that close the ring"
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar0",
+              "d": "M 304.9 99.2 L 306.5 101.1 L 308 103 L 309.5 104.9 L 310.9 106.9 L 312.4 109 L 313.7 111.1 L 315.1 113.3 L 316.4 115.6 L 317.7 117.9 L 318.9 120.2 L 320.1 122.6",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah0",
+              "d": "M 314.6 120.6 L 321.3 125 L 321.8 117.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar1",
+              "d": "M 335.1 177.7 L 335.4 180.8 L 335.6 183.8 L 335.8 186.8 L 335.9 189.9 L 336 192.9 L 336 196 L 336 199.1 L 335.9 202.1 L 335.8 205.2 L 335.6 208.2 L 335.4 211.2",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah1",
+              "d": "M 331.7 207 L 335.1 214.3 L 339.7 207.7",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar2",
+              "d": "M 321.3 267 L 320.1 269.4 L 318.9 271.8 L 317.7 274.1 L 316.4 276.4 L 315.1 278.7 L 313.7 280.9 L 312.4 283 L 310.9 285.1 L 309.5 287.1 L 308 289 L 306.5 290.9",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah2",
+              "d": "M 306.2 284.9 L 304.9 292.8 L 312.4 289.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar3",
+              "d": "M 271.6 314.6 L 269.6 315 L 267.7 315.4 L 265.8 315.7 L 263.9 315.8 L 261.9 316 L 260 316 L 258.1 316 L 256.1 315.8 L 254.2 315.7 L 252.3 315.4 L 250.4 315",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah3",
+              "d": "M 256 312.1 L 248.4 314.6 L 254.4 319.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar4",
+              "d": "M 215.1 292.8 L 213.5 290.9 L 212 289 L 210.5 287.1 L 209.1 285.1 L 207.6 283 L 206.3 280.9 L 204.9 278.7 L 203.6 276.4 L 202.3 274.1 L 201.1 271.8 L 199.9 269.4",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah4",
+              "d": "M 205.4 271.4 L 198.7 267 L 198.2 274.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar5",
+              "d": "M 184.9 214.3 L 184.6 211.2 L 184.4 208.2 L 184.2 205.2 L 184.1 202.1 L 184 199.1 L 184 196 L 184 192.9 L 184.1 189.9 L 184.2 186.8 L 184.4 183.8 L 184.6 180.8",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah5",
+              "d": "M 188.3 185 L 184.9 177.7 L 180.3 184.3",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar6",
+              "d": "M 198.7 125 L 199.9 122.6 L 201.1 120.2 L 202.3 117.9 L 203.6 115.6 L 204.9 113.3 L 206.3 111.1 L 207.6 109 L 209.1 106.9 L 210.5 104.9 L 212 103 L 213.5 101.1",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah6",
+              "d": "M 213.8 107.1 L 215.1 99.2 L 207.6 102.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar7",
+              "d": "M 248.4 77.4 L 250.4 77 L 252.3 76.6 L 254.2 76.3 L 256.1 76.2 L 258.1 76 L 260 76 L 261.9 76 L 263.9 76.2 L 265.8 76.3 L 267.7 76.6 L 269.6 77",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah7",
+              "d": "M 264 79.9 L 271.6 77.4 L 265.6 72.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "pl",
+              "caption": "Step 5 — numbered stage names and the two hosts"
+            },
+            {
+              "type": "label",
+              "id": "lbl_inman",
+              "x": 230,
+              "y": 170,
+              "text": "IN MAN",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_inmos",
+              "x": 205,
+              "y": 214,
+              "text": "IN MOSQUITO",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l0",
+              "x": 300.6,
+              "y": 49.4,
+              "text": "1. Adult worms",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l1",
+              "x": 357.9,
+              "y": 130.6,
+              "text": "2. Microfilaria",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l2",
+              "x": 357.9,
+              "y": 267.4,
+              "text": "3. Culex bites",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l3",
+              "x": 300.6,
+              "y": 348.6,
+              "text": "4. Sheath lost",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l4",
+              "x": 100.6,
+              "y": 348.6,
+              "text": "5. 1st stage",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l5",
+              "x": 43.3,
+              "y": 267.4,
+              "text": "6. 2nd stage",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l6",
+              "x": 43.3,
+              "y": 130.6,
+              "text": "7. 3rd stage",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l7",
+              "x": 80.8,
+              "y": 49.4,
+              "text": "8. Back in man",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The cycle is a ring split into two labelled halves, in man and in the mosquito, and the two crossing points are the mosquito bite and the return bite.",
+        "common_mistakes": [
+          "Drawing the microfilaria without its sheath. The sheathed larva is what the mosquito takes up.",
+          "Placing the moultings in man. The first two moultings happen inside the MOSQUITO.",
+          "Leaving out the labium of the mosquito, which is where the infective larva waits."
+        ],
+        "memory_tip": "Draw the ring, split it into IN MAN and IN MOSQUITO, then place the stages and the arrowheads on last.",
+        "margin_note": "Label the adult worms in the lymph vessels, the sheathed microfilaria, the midgut, the thoracic muscles, the three larval stages and the labium."
+      },
+      {
+        "id": "s5_in_mosquito",
+        "kind": "text",
+        "label": "Life cycle in the mosquito",
+        "marks": 1,
+        "mark_note": "In mosquito",
+        "lines": [
+          "When a female Culex mosquito bites an infected",
+          "person, the microfilariae enter the midgut of",
+          "the mosquito.",
+          "The sheath is dissolved in the midgut.",
+          "The larva penetrates the gut wall, reaches the",
+          "haemocoel and then the thoracic muscles.",
+          "In two days it becomes the first stage",
+          "microfilaria.",
+          "It undergoes two moultings and becomes the long,",
+          "slender, infective third stage microfilaria.",
+          "The third stage larva then moves to the labium",
+          "of the mosquito."
+        ],
+        "why": "The larva grows but does not multiply inside the mosquito, so this half of the cycle is a chain of moves and moultings that ends at the mouth parts, ready for the next bite.",
+        "common_mistakes": [
+          "Writing that the parasite multiplies in the mosquito. It only grows and moults.",
+          "Writing that the larva stays in the gut. It reaches the thoracic muscles through the haemocoel.",
+          "Calling the first stage infective. The THIRD stage larva is the infective one."
+        ],
+        "memory_tip": "Sheath off, wall through, muscles in, two moults, then out to the labium.",
+        "margin_note": "Six short lines in one chain. The third stage larva and the labium close the step."
+      },
+      {
+        "id": "s6_back",
+        "kind": "boxed_final",
+        "label": "Return to man and pathogenicity",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "Third stage larva returns, matures in man",
+            "style": "boxed"
+          },
+          "When the infected mosquito bites a healthy",
+          "person, the third stage larva enters the blood",
+          "circulation and finally reaches the lymphatic",
+          "vessels.",
+          "It undergoes the third and the fourth moultings",
+          "and becomes a young filarial worm.",
+          "It attains maturity in 5 to 6 months.",
+          "Pathogenicity: a light infection causes filarial",
+          "fever. A heavy infection causes inflammation of",
+          "the lymph vessels and the lymph glands. The",
+          "final condition is elephantiasis."
+        ],
+        "why": "Four moultings are shared between the two hosts, two in the mosquito and two in man, so the cycle only closes when the last two happen back inside the lymph vessels.",
+        "common_mistakes": [
+          "Writing that all four moultings happen in the mosquito. The third and fourth happen in man.",
+          "Giving 5 to 6 weeks for maturity. It takes 5 to 6 months.",
+          "Leaving out elephantiasis, which is the marked end point of this answer."
+        ],
+        "memory_tip": "Two moults in the mosquito, two in man: four in all, and the worm matures in 5 to 6 months.",
+        "margin_note": "Four short lines closing the ring, then the pathogenicity line. Elephantiasis must appear."
+      }
+    ]
+  },
+  "insider_note": "This is the LAQ the printed hit list leaves out, so it is often unprepared — the four moultings split two and two between the hosts is the fact examiners look for."
+}

@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_glandular_epithelium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give an account of glandular epithelium.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "By number of cells",
+      "marks": 1
+    },
+    {
+      "label": "Exocrine glands",
+      "marks": 1
+    },
+    {
+      "label": "Endocrine glands",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.34, SAQ 23). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book writes that glandular epithelium 'forms the covering of all major glands'. Glandular epithelium forms the SECRETORY part of a gland, not only its covering, and the card is written that way."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What glandular epithelium is",
+        "marks": 1,
+        "why": "Every gland begins as an epithelium whose cells took up secretion, and that is why glands are studied under epithelial tissue at all.",
+        "common_mistakes": [
+          "Writing that glandular epithelium only covers a gland. Its cells form the secretory part of the gland itself.",
+          "Calling it a connective tissue. It is an epithelial tissue."
+        ],
+        "memory_tip": "A gland is an epithelium that took up one job: secretion.",
+        "margin_note": "One sentence of definition and one line of function. The two classifications come next.",
+        "mark_note": "Definition",
+        "lines": [
+          "Glandular epithelium is the epithelial tissue",
+          "that forms the glands of the body.",
+          "Its cells are cuboidal or columnar cells that",
+          "have become specialised for secretion.",
+          "Secretion is its main function."
+        ]
+      },
+      {
+        "id": "s2_cell_number",
+        "kind": "text",
+        "label": "Classified by the number of cells",
+        "marks": 1,
+        "why": "The tissue is classified twice — once by how many cells make the gland, once by how the secretion leaves it — so the answer must keep the two classifications apart.",
+        "common_mistakes": [
+          "Mixing the two classifications. Unicellular and multicellular is one pair; exocrine and endocrine is a different pair.",
+          "Giving no example. One example on each side is expected."
+        ],
+        "memory_tip": "One cell or many cells: a goblet cell against a salivary gland.",
+        "margin_note": "Two kinds with one example each. Keep this pair separate from the next.",
+        "mark_note": "By number of cells",
+        "lines": [
+          "By the number of cells, glands are of two kinds.",
+          "1) Unicellular glands: single, separate gland",
+          "cells. Example: goblet cells of the gut.",
+          "2) Multicellular glands: clusters of gland",
+          "cells. Example: salivary glands."
+        ]
+      },
+      {
+        "id": "s3_exocrine",
+        "kind": "text",
+        "label": "Exocrine glands",
+        "marks": 1,
+        "why": "A duct is a tube, so an exocrine secretion can be delivered to one named place, which is why saliva reaches the mouth and milk reaches the outside.",
+        "common_mistakes": [
+          "Writing that exocrine glands pour into the blood. Their duct carries the secretion out.",
+          "Naming the thyroid as exocrine. The thyroid is ductless, so it is endocrine."
+        ],
+        "memory_tip": "Exo means out, and the duct is the way out.",
+        "margin_note": "Duct, what it carries, two examples. Three lines.",
+        "mark_note": "Exocrine",
+        "lines": [
+          "By the way the secretion leaves, glands are",
+          "again of two kinds.",
+          "1) Exocrine glands: glands with ducts.",
+          "The duct carries the secretion to a surface or",
+          "into a cavity.",
+          "Examples: salivary glands, mammary glands."
+        ]
+      },
+      {
+        "id": "s4_endocrine",
+        "kind": "boxed_final",
+        "label": "Endocrine glands",
+        "marks": 1,
+        "why": "With no duct the only route out is the blood, which is why a hormone reaches the whole body while saliva reaches only the mouth.",
+        "common_mistakes": [
+          "Naming a duct for an endocrine gland. They are ductless, and that is the definition.",
+          "Calling the secretion an enzyme. Endocrine glands secrete hormones."
+        ],
+        "memory_tip": "No duct means only one road out: the blood.",
+        "margin_note": "The duct is the marked contrast. Close with two examples.",
+        "mark_note": "Endocrine",
+        "lines": [
+          {
+            "text": "Exocrine: with duct  ·  Endocrine: ductless",
+            "style": "boxed"
+          },
+          "2) Endocrine glands: ductless glands.",
+          "They release their secretions, called hormones,",
+          "directly into the blood.",
+          "The blood carries the hormones to the organs",
+          "they act on.",
+          "Examples: pituitary gland, thyroid gland."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The question looks open but the answer has a fixed shape — definition, then the two classifications with examples — and the marks are spread one to each block."
+}

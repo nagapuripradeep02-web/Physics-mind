@@ -86,6 +86,169 @@ Read from `docs/SYLLABUS_2026_27.md` on the sibling desk (researched 2026-08-20,
 - **Ch.13 SAQ 4** (Bohr's postulates + radius + energy) is the paper's strongest 8-mark candidate and stays at 4; **Ch.15 SAQ 8** duplicates the full-wave half of LAQ 1 and may want `cuts[]`. Both recorded on the cards.
 - **Ch.16 Communication System may no longer be examinable** (NCERT dropped it in 2023); authored as instructed and flagged on every card.
 - No `deploy:answers`, no `content:push`, no `ab_content` edit — Rule 17.
+## 🦋 SESSION — Answer Book: **ZOOLOGY OPENS — the whole Junior Zoology book, 8 units, 190 cards, 32 phased figures** (2026-08-25, desk `physics-mind-ipe-zoology`, `feat/ipe-answerbook-zoology`, commits `ab34a71d` → `ae91927b`, pushed, no PR yet)
+
+**The book's FIFTH subject, and the first with phased "watch it drawn" figures.** Bank
+946 → 1136 files, 45 → 53 units. Ids `ts_ipe_z1_<abbr>_<slug>`; abbrs
+`dlw so ad1 ad2 lr bhw pa ee`. Doc: `docs/ZOOLOGY_START_HERE.md`. Per-unit counts:
+1 DLW 21 · 2 SO 24 · 3 AD-I 26 · 4 AD-II 25 · 5 LR 15 · 6 BHW 35 · 7 PA 6 · 8 EE 38.
+
+**Verified:** build 1137 cards 8/8 units ready · tsc 0 · pace gate PASS (strict 40–160 u/s over
+32 figures) · **back-test 259/259** · wrap 0.1% (4 of 3721) · 8 figures read stage-by-stage by eye.
+
+### THE HIT LISTS UNDERCOUNT — every unit, without exception
+The book prints "TOP 10+ LAQ / TOP 30 SAQ / TOP 50+ VSAQ" and they read as an inventory. They are
+not. Authoring from them would have shipped roughly HALF the book and silently dropped an 8-mark
+question. index → actual: unit 1 **10 → 21** · unit 2 19 → 24 · unit 6 13 → 35 · unit 8 15 → 38.
+And the LAQ list skips global qno 5 entirely — book p.18 is *Wuchereria bancrofti*, a real printed
+8-mark LAQ (**unit 6 has FIVE LAQs**). Every agent walked from the question CLOSING the previous
+chapter to the one OPENING the next and reported both as evidence. **Transcribing the back-test
+corpus BEFORE authoring is what surfaced the missing LAQ** — do that first on any future subject.
+
+### The back-test is zoology's substitute for two impossible checks
+The two-book union check and a real board-paper back-test are **structurally impossible** (the
+TSBIE BLM in hand is physics-only; no zoology board paper in the corpus). But this book cites every
+answer as `P <page>(<qno>)` across 3 hit lists + the Bullet Model Paper + 5 guess papers: **259
+references, all 259 resolve** (`npm run backtest:zoology`). Three printed numbers disagree with
+where the text matches — all three were independently flagged during transcription, so they are the
+book's own typos. Never let "not checked" read as "checked and clean" — recorded on every card.
+
+### The engine work the founder's directive forced
+Figures may carry `{type:'pause', id, caption}`: the player stops, shows the caption on ONE reserved
+32px rule, waits for a tap; a mid-phase tap completes only the CURRENT phase. Unphased figures are
+byte-identical to before (pinned by a new e2e test — that behaviour had never been tested).
+**Pacing moved to AUTHORING time, deliberately not a runtime field** — `ms` stays the single source
+of truth so print/reduced-motion can never disagree, and the 96 legacy figures are never silently
+retimed. `pace_figures.ts` fills `ms` from measured path length at **70 u/s**; `check_figure_pace.ts`
+gates 40–160 u/s and requires phases above 16 drawn elements, strict for `ts_ipe_z1` only.
+**Measured: the 96 pre-existing figures draw at 200–770 u/s** — the rushing the founder named, now
+a number. NB **no e2e gate has ever watched a figure animate** (both sweeps take the instant path).
+
+### Renderer fact worth keeping
+This renderer draws **OUTLINES ONLY — no fills, no occlusion**, so "in front of" is impossible: a
+later stroke adds lines, it never hides them. Depth is expressed by giving a vessel its own clear
+lane and drawing the structure behind in dashed pencil (the frog heart's dorsal sinus venosus).
+Cost seven iterations to discover.
+
+### Defects no gate can see (found only by rendering and LOOKING)
+`figlib.scallop()` used SVG arc **sweep-flag 0**, bowing every arc inward and spiking each vertex —
+hepatic caecae and salivary acini rendered as starbursts (the founder's first complaint) · the
+flagellum T.S. drew **eighteen evenly spaced tubules instead of nine countable doublets** (counting
+9+2 IS the mark) · the sporozoite was a symmetric lens, not a sickle · leader lines struck through
+their own labels (generators assumed 6.8 u/char; real Kalam at 17px runs **6.7–9.8**, so widths are
+measured now) · a lake plant leaned across its zone divider · setae hidden inside the parapodia ·
+"liver cell" and "amoeboid stage" rendered identically · cardiac nuclei touching intercalated discs.
+
+### Conventions set this run
+**Diagram marks follow the ASKED question**: only "draw a neat labelled diagram of …" carries
+diagram marks; elsewhere the figure is a study drawing — `marks: 0`, **no `mark_note`** (schema
+forbids one at zero), whole split on the written steps, said so in `margin_note`.
+**Measure a candidate line before authoring it** — `answer-book/tools/measure_candidates.mjs`.
+Four lines wrap deliberately (four reptile orders, five mouthparts, four sacred groves, four
+chordate hallmarks): the required TERMS alone exceed 535px, and a wrapped-but-correct final answer
+beats a fitting-but-wrong one. The wrap pass had shortened "gill slits" to "slits"; restored.
+
+### Two process scars from this run
+1. **An interrupted run loses whatever is not a finished card.** The first pilot was killed by API
+   credit exhaustion after building tooling but before writing ONE card. Order unit agents
+   cards-first, and preserve scratchpad tooling into the repo early.
+2. **`git add <directory>` on a desk shared by six agents sweeps their in-flight files**, and
+   `2f2395eb` committed a `units.json` listing 50 cards whose files were not staged — that tree
+   fails the build. Fixed in `deea1a49`. Stage a NAMED list.
+Also: `git worktree add -b X origin/master` sets upstream to **origin/master**, so the auto-push
+hook fails rc=128 — `git push -u origin <branch>` once, immediately.
+
+### Still open
+No PR yet. Not deployed (Rule 17 — founder only). Every card `needs_teacher_verification: true`;
+mark splits are claims and no teacher has seen a figure. Section-C-grade content flagged but NOT
+authored in the five units with no LAQ chapter (listed in each unit's agent report).
+
+## 🦋 SESSION (superseded by the entry above) — zoology engine + tooling, authoring blocked on API credits
+
+### Done and verified
+- **Phased "watch it drawn" figures** (founder directive: a student must watch a diagram being
+  drawn, in named steps, never rushed). Figures may carry `{type:'pause', id, caption}` elements:
+  the player stops there, shows the caption on ONE reserved 32px rule, waits for a tap; a
+  mid-phase tap completes only the CURRENT phase. Figures with no pauses behave byte-for-byte as
+  before (pinned by a new e2e test — that behaviour had never been tested). Instant path
+  (revealAll/print/reduced-motion/rail jump) draws phased figures complete, caption hidden.
+  `renderUpTo` now calls `finishCurrent(true)` so teardown cannot resume timers into wiped DOM.
+- **Pacing is authoring-time, never runtime.** `src/lib/answerBook/pathLength.ts` measures SVG
+  path length (verified against analytic circle/ellipse); `pace_figures.ts` fills every stroke's
+  `ms` at **70 units/second** (300–4500 ms clamp; labels 450 ms); `check_figure_pace.ts` gates
+  40–160 u/s and requires phases on any figure with >= 16 drawn elements — **strict for
+  `ts_ipe_z1`, warning-only for legacy**. First sweep: the 96 existing figures run at **200–770
+  u/s**. That is the rushing the founder named, now measurable.
+- **Subject wiring**: `SUBJECTS`, the zod enum, `subjectWord` (the silent one — zoology would
+  have printed "The physics ... are checked"), both chip label maps. e2e sweep budgets
+  1.2M -> 1.8M ms for the ~1136-file bank. `answer-book/README.md` was two subjects stale — fixed.
+- **Tooling promoted into the repo** (`answer-book/tools/`, previously scratchpad-only and nearly
+  lost): `render_figures.py` (gallery, **one snapshot per phase, cumulative**), `measure_wrap.mjs`
+  (fleet line-wrap measure — the e2e wrap gate still checks only ONE question), `merge_units.py`
+  (parameterised by subject/prefix/suffix, refuses to write unless units.json round-trips
+  byte-identically). npm: `check:figure-pace`, `pace:figures`, `figures:gallery`, `measure:wrap`,
+  `backtest:zoology`.
+- **The back-test** (`backtest_zoology.ts` + `zoology_wip/backtest_refs.json`, 259 refs). The
+  two-book union check and a real board paper are BOTH impossible for zoology — but the book
+  cites every answer as "P <page>(<qno>)" across 3 hit lists, the Bullet Model Paper and 5 guess
+  papers, and each must resolve to an authored card.
+- Verified: build 946/946 · `tsc` 0 · vitest 416/416 · 3 new figure e2e tests pass.
+
+### The finding that would have cost an LAQ
+The **"TOP 10+ LAQ" hit list skips global qno 5.** LAQ answer pages run 10, 12, 14, 16, **18**,
+19, 21, 23, 25–28; Guess Paper 5 names p.18 — *"Describe the life cycle of Wuchereria bancrofti
+with a neat diagram"*. **Unit 6 has FIVE LAQs.** Standing rule now in the brief: walk the chapter
+PAGES; hit lists are a cross-check, never the inventory.
+
+### Resume here
+1. Re-dispatch the unit-7 pilot (brief: `answer-book/tools/zoology_wip/BRIEF.md`; ranges:
+   `DISPATCH_RANGES.md`). The pilot's finished figure geometry is already in
+   `zoology_wip/figs_1.json` + `gen_pa_1.py` (alimentary canal 59 elements / 5 phases; salivary
+   apparatus 40 / 5) with the reusable builder `figlib.py` — **reuse it, do not redraw**.
+   Render: `pilot_figures_preview.png`. Still to draw for unit 7: heart/circulatory, tracheal
+   system, mouthparts, ommatidium. **No question file has been written yet.**
+2. **FOUNDER CHECKPOINT after the pilot** (his call, this session): he reviews the drawing pace
+   and phase granularity before the other 7 units are dispatched. Do not fan out first.
+3. Then waves of one agent per unit (ranges in `DISPATCH_RANGES.md`), orchestrator-only
+   `merge_units.py --subject zoology --prefix ts_ipe_z1 --suffix "(Zoology)" --stars-zero`,
+   then build -> tsc -> vitest -> smoke -> pace gate -> back-test -> **render every figure and LOOK**.
+4. Eyes-only defect already spotted in the pilot render: hepatic caecae and salivary-gland acini
+   read as spiky starbursts; they should be finger-like diverticula / rounded lobes. The gates
+   pass them — the same class as chemistry's wrong-shaped `dz²`.
+
+### Zoology source facts (differ from botany)
+`stars: 0` everywhere (this book ranks CHAPTERS, not questions) · **`appearances[]` IS authored**
+(the book cites years: `[TS M-19]`, `[AP M-15,18]`; bare `[IPE-14]` = no board) · LAQ chapters
+exist only for units 6/7/8 · unit 7 has no VSAQ chapter · Star Questions Plus (book 63–68) is
+part of the asked bank · the Bullet Model Paper and guess papers are NEVER authored (back-test
+corpus only) · ids `ts_ipe_z1_<abbr>_<slug>`, abbrs `dlw so ad1 ad2 lr bhw pa ee`.
+
+## 📕 SESSION — THE 2026-27 SYLLABUS: the maths paper changed SHAPE, not just total, and the physics book renumbered itself (2026-08-28, `feat/answerbook-mpc-stream-and-brand`)
+
+**Bottom line: a junior lecturer's one-line message ("Jr Inter syllabus changed in all streams, questions deleted from every chapter, Maths is 60 theory + 15 internal") was researched to the official documents where they could be reached, and the book was moved onto everything that is verified. The Maths 1A/1B written paper is now 60 marks in the PHYSICS shape (A 10×2 all · B any 6 of 8 ×4 · C any 2 of 3 ×8 — printed as "MODEL QUESTION PAPER w.e.f. 2026-27" in the Telugu Akademi 1A textbook), so every one of the 99 maths long-answer cards was at the wrong mark value; all 99 re-cut to 8. The physics textbook merged old Units 1+2 and added Unit 14, so the physics bank is renumbered and the old links are remapped. A retire mechanism exists for the per-chapter deletions, which are announced everywhere and published only behind a 403. Record: `docs/SYLLABUS_2026_27.md`.**
+
+- **The visible fact was "60 + 15 for maths"; the invisible one was the section shape.** The 2026-08-20 board research had the total right and never saw the sections, so 65 Maths-1A + 34 Maths-1B LAQ cards carried `marks_total: 7`, a 7-mark `mark_split`, "· 7 marks" page headers and "two of the seven marks" margin notes — wrong on every surface a student reads. `PAPER_PATTERNS` (`src/schemas/answerBook.ts`) is now the one table: the schema holds every card and every cut to its paper's marks, the build emits it as `window.PM_PATTERNS`, the planner's scope labels read it, and Vidi's grounding context carries a PAPER line so it stops answering from its memory of the 75-mark paper. A 7-mark maths LAQ fails the build from today.
+- **The eighth mark was placed by judgment, not arithmetic.** Four parallel read-only agents (one per chapter group) read each card and named the step whose work was most under-rewarded; a mechanical, EOL-preserving applier did the edits (`marks_total`, `mark_split`, step marks, page header, any prose stating a count, and a provenance sentence appended to `verification.note`). Two things they surfaced that predate this work and are NOT fixed: `pv_triple_product_pair` / `pv_two_triple_products` have step notes whose mark words never matched their `marks` fields; `pl_check_2x2_minus_13xy` had a "Two marks" note on a 1-mark step (now accidentally true). Every card stays `needs_teacher_verification: true`.
+- **Physics renumbered to the book the student will hold in March 2027.** careers360's 2026-27 list (11 Aug 2026): Unit 1 "Physical World and Measurement" (old 1+2 merged; the old unit-2 refs continue as vsaq4…), old 3-14 → 2-13, new Unit 14 "Physics of Emerging Technologies" (AI, robotics, renewable energy, space science, communication technology) as five coming-soon placeholders with `source: "syllabus_2026_27"`. 243 cards, one-line diffs each, 18 CRLF cards preserved. Students see "Unit N" on the catalog heading, the exam-eve title, the question chips and Vidi's chapter list, so the number had to match the book.
+- **Old links keep their meaning.** Every old physics key is still a valid key naming the neighbouring chapter, so a forwarded `#/exam-eve/physics-4` could not be told from a new one by shape. New exam-eve links carry the exam year (`#/exam-eve/physics-3/2027`), saved plans carry `syllabus: "2027"`, and `LEGACY_UNIT_KEYS` remaps anything without the marker (`#/exam-eve/4` and `#/exam-eve/physics-4` → Unit 3 Motion in a Plane, verified in the built page). Found and fixed on the way: the exam-eve route regex was `[a-z]+-\d+`, so **no Maths-1B exam-eve link ever matched** (`mathematics_1b-3` fell through to the catalog).
+- **`ab_content.free` is keyed by unit_key and an upsert leaves it alone** — after the next `content:push` the row flagged free as "physics-4 Motion in a Plane" is "physics-4 Laws of Motion". The push script now prints the free rows by NAME and the one UPDATE that fixes it; nothing in the push can know which chapter the founder meant.
+- **The retire mechanism is built and empty.** `status: "retired"` + `retired: {wef, reason}` on a units.json entry or unit: both drift checks still see the row (the seven-paper corpus resolves to the file), the build strips it from `PM_UNITS` (catalog, counts, picker, planner, exam-eve, Vidi, door, og card, gated bundles all read `PM_UNITS`) and emits `PM_RETIRED`, so a forwarded `#/q/<id>` renders with a plain "Not in the 2026-27 syllabus — <reason>" line above the answer. Waiting on the per-chapter lists.
+- **The official documents are unreachable from this machine.** The six syllabus PDFs at `tgbienew.cgg.gov.in/scannedPhotos/Circulars/` and all four TGBIE hosts answered 403 (F5 WAF) to WebFetch, curl and the founder's own Chrome. The cheapest complete input is the new textbooks' back matter — Contents · Syllabus · Model Question Paper — six books, three pages each, from the lecturer. Open cells: chemistry's three cut chapters (States of Matter, 43 cards, is the exposed unit), botany's one or two (careers360 omits "Modes of Reproduction"), Maths 1B's new contents, Maths 1A's two new chapters to author, physics Unit 14 to author, and every chapter's sub-topic deletions.
+- **Verification:** `tsc` 0 · `build:answers` + `build:answers:gated` + `build:answers:gated:mpc` pass (38 chapters / 816 entries in the MPC artifact; 51 unstreamed content bundles regenerated onto the new physics keys) · vitest **443/443** · `backtest:physics` **154/154, 100% coverage** · `check:papers` clean (taught the `syllabus_2026_27` source value) · Playwright **92/92 (56.3 m)**, including four NEW gates: the legacy exam-eve remap (`#/exam-eve/4` and `/physics-4` → Unit 3 Motion in a Plane, `/physics-4/2027` → Unit 4 Laws of Motion, and a Maths-1B link that the old route regex could never match), the 2026-27 numbering + `PM_PATTERNS.mathematics.LAQ === 8`, the retired banner via a pinned `PM_RETIRED`, and its negative control. A whole-bank sweep re-checks all 991 cards against `PAPER_PATTERNS` and both mark sums: 0 problems.
+- **Three pre-existing gates broke on the renumbering and were repaired, not silenced.** Two were stale references (a gated test's free unit_key, and the planner helper's default chapter names); the third is worth recording — `the nearer a paper is, the bigger its share of the day` measured the physics share over the FIRST TEN DAYS, and the merged 25-card Unit 1 is small enough that BOTH the near-paper and far-paper plans finish it inside ten days, so the cumulative shares tied at exactly 25/45 and `toBeGreaterThan` failed on equality. Verified as a test-sample artifact, not a planner regression, by stashing every change and re-running the gate green at HEAD. Window narrowed to five days, where urgency is still visible.
+- **MATHS-1A RENUMBERED THE SAME DAY, after the syllabus was verified a SECOND time.** The founder sent two Telangana Open School (TOSS) course-311 volumes asking whether they were the new books: they are not — TOSS is the open-school stream, First Published 2023, six modules across two volumes, carrying second-year topics (complex numbers, conics, integration, probability) and missing 1A/1B ones. He then sent a Vedantu walkthrough of the OFFICIAL syllabus (Santhosh Sir, 26 Jun 2026, youtu.be/h_tJPDRj3hU), watched via frames + captions. It matches the Telugu Akademi Contents pages line for line and settles two things the newspapers had wrong: **Trigonometric Equations was NOT removed** (a circular proposed it, the video's own description still repeats it, but the book keeps it as ch.9 with 9.1 general solutions only — our 10 cards stay), and **Maths-1B is unchanged end to end** (so the two new 1A chapters are NCERT foundation additions, not transfers out of 1B — the Deccan Chronicle "moved from 1B" line described a proposal). **Nothing in maths is retired.** 1A renumbered — old 1-10 → 2, 4, 5, 6, 7, 8, 9, 10, 11, 12 across units.json and all 250 cards, ch.8 renamed to the book's "Trigonometric Ratios AND Transformations" — with Sets and Relations (13 sub-topics) and Sequences and Series (5) added as coming-soon. 1B's numbering was ALREADY right. `LEGACY_PHYSICS_KEYS` became `LEGACY_UNIT_KEYS` and now carries maths too; the free chapter key moved `mathematics-4` → `mathematics-6` (Addition of Vectors).
+- **Adding unwritten chapters exposed an honesty bug in four places, all fixed.** A chapter listed for its true shape but with nothing authored was being sold: it drew a "🔒 Locked" pill (inviting payment for an empty chapter), and after the first fix drew "Free" instead (promising answers that do not exist). It also got promoted into the free half of the catalog order, and its rows were counted into three numbers a student reads — the offer ("Unlock all 40 chapters"), the door, and the link-preview card ("834 questions"). Now: no pill at all on an unwritten chapter, it sorts last, and every count is of ANSWERS that exist — the preview card reads **811 questions · 37 chapters** while the catalog still lists 40 with "0 of 13 ready". Three gates lock it in, and the lock-count assertion now DERIVES the unwritten count instead of a magic offset (it was `- 2` for a day and would have been wrong by evening).
+- **A hardcoded unit key in a test found the same class of rot:** the gated leak probe read `mathematics-3.json` for a KaTeX sample; chapter 3 is now the unwritten Sequences and Series, so the probe found no TeX and the LEAK gate failed for a reason that had nothing to do with leaking. It now scans the maths bundles.
+- **The free build caught a design error the gated build could not.** Making an unwritten chapter "not openable" also moved it to the END of the catalog — correct behaviour behind the paywall (openable chapters first), wrong everywhere else: with no gate, or with a pass, there is no reason to move a chapter out of chapter order, and the free book started listing 1, 2, 4, 5 … with the unwritten ones swept to the bottom. It slipped through because before this change the partition was a no-op when nothing was locked. `unitsFreeFirst` now returns the list untouched unless the lock cues are actually on. Found by two offline gates that pin the WHOLE inventory (`the catalog is the landing view and shows the full inventory`, `chapter chips appear from the second unit`) — the value of a test that asserts the entire list rather than a sample.
+- **Ops scar, recorded:** two Playwright runs overlapped for ~40 minutes, each rebuilding `dist/` under the other. The older run's 2 failures were real, but its PASS lines proved nothing — it was grading an artifact that had been overwritten mid-run (the known "editing dist mid-run invalidates it" scar, met again). Kill the stale run before trusting either; the clean run took 51.5 m alone versus 25 m for 12 tests while contended.
+- **Verification, final:** `tsc` 0 · `build:answers` + `build:answers:gated` + `build:answers:gated:mpc` · vitest **443/443** · **offline 65/65 (51.5 m)** · **gated 30/30** · `backtest:physics` 154/154 · `check:papers` clean · whole-bank sweep of all 991 cards against `PAPER_PATTERNS` 0 problems. Preview card reads **811 questions · 37 chapters**; the catalog lists 40.
+- **THE MATHS 2026-27 SYLLABUS, AS FILED.** Verified TWICE and independently: the Telugu Akademi 2026-edition textbook’s own Contents pages, and a chapter-by-chapter walkthrough of the official syllabus on screen in *“TS Inter 1st Year Maths 1A & 1B Updated Syllabus 2026-27”* (Vedantu IPE & EAPCET / Santhosh Sir, 26 Jun 2026, youtu.be/h_tJPDRj3hU — watched via extracted frames + captions). They agree line for line. **Maths 1A = 12 chapters in three groups.** I Algebra: 1 **Sets and Relations (NEW)** — sets and their representation, the empty set, finite and infinite sets, equal sets, subsets, intervals as subsets of R, Venn diagrams, operations on sets, complement of a set, Cartesian product of sets, relations, types of relations, equivalence relation (13 sub-topics); 2 Functions (ordered pairs, types of functions, inverse functions and theorems, real valued functions); 3 **Sequences and Series (NEW)** — sequences, series, arithmetic progression, geometric progression, relation between A.M. and G.M.; 4 Mathematical Induction; 5 Matrices. II Vector Algebra: 6 Addition of Vectors (6.1-6.8); 7 Product of Vectors (7.1-7.12). III Trigonometry: 8 Trigonometric Ratios **and** Transformations (the book’s word — we had “upto”); 9 Trigonometric Equations; 10 Inverse Trigonometric Functions; 11 Hyperbolic Functions; 12 Properties of Triangles. **Maths 1B = unchanged end to end**: 0 Prerequisites, 1 Locus, 2 Transformation of Axes, 3 The Straight Line, 4 Pair of Straight Lines, 5 Introduction to Three Dimensional Coordinate Geometry, 6 Direction Cosines and Direction Ratios, 7 The Plane, 8 Limits and Continuity, 9 Differentiation, 10 Applications of Derivatives. **Two beliefs taken from newspapers were WRONG and are corrected in the record:** (a) *Trigonometric Equations was NOT removed* — a circular proposed dropping it and the video’s OWN DESCRIPTION still says it went, but on screen it is chapter 9 (9.1 general solutions only) and the teacher says “they said in that notice that I will remove this chapter, but it was not removed”; a video description is not the video, and our 10 cards stay. (b) *Maths 1B lost nothing to 1A* — the Deccan Chronicle “difficult 1B topics moved to 1A” line described a proposal; the two new 1A chapters are NCERT foundation additions. **Net effect: no maths card is retired.** The teacher, holding the new book, says the old book still serves for everything else — “there is no real change, only the chapters that have been added as extras”. Full record and every sub-topic: `docs/SYLLABUS_2026_27.md`.
+- **A source check worth repeating: the founder’s two “official Telangana” PDFs were the WRONG BOOK.** `311_Inter_Maths_Vol_I/II_EM` came from telanganaopenschool.org and are **Telangana Open School Society (TOSS)** course 311, **First Published 2023**, aligned to the 2023 academic year — a different stream from regular TGBIE intermediate, structured as six modules across two volumes rather than the 1A/1B papers, carrying second-year topics (complex numbers and De Moivre, permutations and combinations, binomial theorem, circles, conic sections, integration, definite integrals, differential equations, probability) and missing 1A/1B ones (Sequences and Series, Hyperbolic Functions, Locus, Transformation of Axes, Pair of Straight Lines). **A .gov domain is not a provenance check — read the title page.**
+- **SHIPPED to answers.viditra.co (2026-08-29), and the hand-run step in the middle got skipped exactly as the safeguard anticipated.** The sequence was `content:push:mpc` → a manual SQL `UPDATE` of the free flags → `deploy:answers`. Steps 1 and 3 ran; **step 2 did not.** Because `ab_content.free` is keyed by unit_key and an upsert leaves the flag alone while the key’s MEANING moved underneath it, two of the four free chapters silently became the wrong ones — `physics-4` served Laws of Motion instead of Motion in a Plane, `mathematics-4` served Mathematical Induction (10 questions) instead of Addition of Vectors (21). Nothing broke and no student lost access; the free maths sample just halved. **It was caught only because the push script had been taught to print the free rows BY NAME** — a count would have reported “4 free” and looked perfect. Fixed with the one idempotent `UPDATE`; the endpoint re-reads `free=is.true` on every request, so it took effect with no redeploy. **Standing rule: a step a human runs by hand between two scripted steps WILL be skipped — make the scripted step print, BY NAME, the thing the manual step is supposed to fix.**
+- **Deploy verified end to end, read-only.** The live page is **byte-identical** (same sha256, 2,607,048 bytes) to the `dist-gated-mpc` artifact the 30/30 gated suite ran against — so no other session’s disk state was published (the standing deploy scar). Live: 40 chapters, 811 answers, physics and Maths-1A both on the new numbering, `PM_PATTERNS` reporting the maths long answer at 8 marks, `PM_RETIRED` present. `ab_content`: 40 rows, **all fresh**, the only empty bundles the three announced-but-unwritten chapters, and exactly 4 free rows naming the right chapters. The 811-vs-797 gap between page and bundles is BENIGN and reconciles exactly — 14 manifest entries are one answer served at two lengths, so unique ids = 797 = the bundle total.
+- **Landed as PR #168** (`6ac0988d`, 540 files, base master): CI verify green on both runs, GitHub `MERGEABLE`/`CLEAN`, and `validate:concepts` 162 PASS / 0 FAIL as a regression check that master’s 49 merged commits did not disturb the sim fleet. The two scratch directories stayed out. `PROGRESS.md` needed a hand-splice around the fast-forward; content and line endings were both verified afterwards (blob uniformly LF, worktree uniformly CRLF, no mixing).
+- **Collision to watch:** PR #167 (`feat/ipe-answerbook-sr-physics`, Senior Inter Physics, 98 cards) also edits `answer-book/notebook.js`. **Merge #168 first** — it is what is already serving students — then rebase #167 onto it. Second-year papers stay on the OLD pattern until 2027-28, so senior physics needs no 8-mark re-cut.
+- **NOT done, deliberately:** no re-ranking of maths by the new weighting (the Fastrack stars were compiled under the 75-mark paper — recorded in the units.json comment), nothing retired (the mechanism is built and waiting on the chapter lists), the two new Maths-1A chapters and Physics Unit 14 are listed but unwritten, every re-cut mark split still carries `needs_teacher_verification`, and the Physics / Chemistry / Botany / Zoology sub-topic diffs still wait on their textbooks — Contents, Syllabus and Model Question Paper from each, the three pages the Maths-1A book proved carry everything needed.
 
 
 ## 📐 SESSION — #8 `solids_of_revolution` AUTHORED, and the engine that had "never once been executed" (2026-08-27 → 28, `feat/mathematics-solids-of-revolution` + PR #161 merged)

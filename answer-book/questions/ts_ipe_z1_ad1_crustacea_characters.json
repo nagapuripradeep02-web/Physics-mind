@@ -1,0 +1,164 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_crustacea_characters",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the chief characters of the crustaceans?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Appendages",
+      "marks": 1
+    },
+    {
+      "label": "Organ systems",
+      "marks": 1
+    },
+    {
+      "label": "Development and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.35, SAQ 26). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK SPELLINGS corrected here: the book prints 'antinnules' for antennules, 'Palamon' for Palaemon and 'Daphina' for Daphnia. The line 'two pairs of antennae is the mark of the class' is added by this card; the book lists the five head appendages but never says why the pair count matters."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-I (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What the crustaceans are",
+        "marks": 1,
+        "why": "The lime in the cuticle is what gives the class its name, because crusta means a hard shell.",
+        "common_mistakes": [
+          "Writing that the exoskeleton is only chitin. It is chitin hardened with calcium carbonate.",
+          "Keeping the head and thorax separate. In crustaceans they are fused into a cephalothorax."
+        ],
+        "memory_tip": "Crusta means a hard shell: chitin plus lime, and the head fused with the thorax.",
+        "margin_note": "Class, habitat, exoskeleton, body divisions. Four or five lines.",
+        "mark_note": "What they are",
+        "lines": [
+          "Crustacea is a class of mandibulate",
+          "arthropods. Its members are mostly aquatic.",
+          "The exoskeleton is a chitinous cuticle made",
+          "hard by calcium carbonate.",
+          "The head and the thorax are fused into one",
+          "piece called the cephalothorax."
+        ]
+      },
+      {
+        "id": "s2_appendages",
+        "kind": "text",
+        "label": "Appendages",
+        "marks": 1,
+        "why": "Two pairs of antennae and a two-branched limb are the two features that separate a crustacean from an insect, so both are written out in full.",
+        "common_mistakes": [
+          "Giving one pair of antennae. Crustaceans have two pairs: antennules and antennae.",
+          "Writing uniramous. Crustacean appendages are biramous; insect appendages are uniramous."
+        ],
+        "memory_tip": "Five pairs on the head, and every limb behind the head splits into two branches.",
+        "margin_note": "Name the five pairs in order, then the word biramous. It carries a mark on its own.",
+        "mark_note": "Appendages",
+        "lines": [
+          "The head bears five pairs of appendages:",
+          "1) antennules 2) antennae 3) mandibles",
+          "4) first maxillae 5) second maxillae.",
+          "Two pairs of antennae is the mark of the",
+          "class. No other arthropod has two pairs.",
+          "The thoracic and the abdominal appendages",
+          "are biramous, that is, each has two branches."
+        ]
+      },
+      {
+        "id": "s3_organs",
+        "kind": "text",
+        "label": "Organ systems",
+        "marks": 1,
+        "why": "The excretory gland opens at the base of the antenna, which is why the same organ carries the two names green gland and antennary gland.",
+        "common_mistakes": [
+          "Naming Malpighian tubules. Those are the excretory organs of insects; crustaceans have green glands.",
+          "Leaving out the statocyst. It is the organ of balance and is part of the marked list."
+        ],
+        "memory_tip": "Gills to breathe, green glands to excrete, statocysts to balance.",
+        "margin_note": "Three systems, one line each. Give both names for the green gland.",
+        "mark_note": "Organ systems",
+        "lines": [
+          "Respiration is by gills, also called",
+          "branchiae.",
+          "The excretory organs are the green glands,",
+          "also called antennary glands.",
+          "The sense organs are the antennae, a pair of",
+          "compound eyes, and the statocysts, which are",
+          "the organs of balance."
+        ]
+      },
+      {
+        "id": "s4_development",
+        "kind": "boxed_final",
+        "label": "Development and examples",
+        "marks": 1,
+        "why": "An indirect development spreads the young into the plankton, which is why a bottom-living adult begins life as a swimming larva.",
+        "common_mistakes": [
+          "Writing that development is direct. It is indirect, with several larval stages.",
+          "Giving no example. Two or three named animals are expected."
+        ],
+        "memory_tip": "Prawn, crab, water flea: Palaemon, Cancer, Daphnia.",
+        "margin_note": "One line on development, then the examples. Close with the boxed pair of hallmarks.",
+        "mark_note": "Development and examples",
+        "lines": [
+          {
+            "text": "Antennae: two pairs · Biramous appendages",
+            "style": "boxed"
+          },
+          "Development is indirect. Several larval",
+          "stages follow one another, such as the",
+          "nauplius and the zoea.",
+          "Examples:",
+          "Palaemon — the fresh water prawn.",
+          "Cancer — the crab.",
+          "Daphnia — the water flea."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The two hallmarks of the class — two pairs of antennae and biramous appendages — are the lines that separate a full answer from a general one about arthropods."
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_tropics_greater_biodiversity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the reasons for greater biodiversity in the tropics?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What the tropics are",
+      "marks": 1
+    },
+    {
+      "label": "Long undisturbed evolutionary time",
+      "marks": 1
+    },
+    {
+      "label": "Constant climate",
+      "marks": 1
+    },
+    {
+      "label": "More solar energy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.31, SAQ 16). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book's last point reads 'Solar energy and water are abundant in nature. Hence food production also leads to greater biodiversity.' The standard reason is that more solar energy raises the productivity of the ecosystem, and higher productivity supports more species; the card states it that way. ADDED BEYOND THE BOOK: the latitude limits of the tropics and the naming of past glaciations are standard and are not printed in this book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Diversity of Living World (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tropics",
+        "kind": "text",
+        "label": "What the tropics are",
+        "marks": 1,
+        "mark_note": "The tropics",
+        "why": "The question asks for reasons, so the answer first fixes which regions are being compared — the tropics against the temperate regions.",
+        "common_mistakes": [
+          "Writing that the tropics are simply hot regions. They are defined by their position on either side of the equator.",
+          "Comparing tropical forests with deserts. The comparison is with temperate regions."
+        ],
+        "memory_tip": "The tropics lie on either side of the equator; the temperate regions lie beyond them.",
+        "margin_note": "One sentence on where the tropics are, then announce the three reasons.",
+        "lines": [
+          "The tropics are the regions on either side of",
+          "the equator, between 23.5° North and",
+          "23.5° South.",
+          "A tropical forest holds far more species than",
+          "a temperate forest of the same size.",
+          "There are three main reasons for this."
+        ]
+      },
+      {
+        "id": "s2_time",
+        "kind": "text",
+        "label": "Long undisturbed evolutionary time",
+        "marks": 1,
+        "mark_note": "Time",
+        "why": "Speciation is slow, so a region left undisturbed for longer has simply had more time to form species — which is why the answer starts with glaciation.",
+        "common_mistakes": [
+          "Writing only that the tropics are old. The mark is for saying that temperate regions were disturbed by glaciations and the tropics were not.",
+          "Confusing speciation with migration. New species were formed there, not merely moved there."
+        ],
+        "memory_tip": "Ice reached the temperate regions again and again; the tropics were left alone, so speciation continued.",
+        "margin_note": "The glaciation contrast, then the result. Three or four lines.",
+        "lines": [
+          "1) Long undisturbed evolutionary time:",
+          "Temperate regions were covered by ice again",
+          "and again during past glaciations.",
+          "Tropical latitudes were not disturbed by these",
+          "glaciations, so they have remained much the",
+          "same for millions of years.",
+          "This long undisturbed period let speciation go",
+          "on without a break, and so more species were",
+          "formed."
+        ]
+      },
+      {
+        "id": "s3_climate",
+        "kind": "text",
+        "label": "Constant climate",
+        "marks": 1,
+        "mark_note": "Climate",
+        "why": "A species can afford to specialise only where conditions stay the same, and specialisation is what packs many species into one area.",
+        "common_mistakes": [
+          "Writing that the tropics are hot and stopping there. The mark is for the climate being constant, not for it being hot.",
+          "Leaving out the word niche, which is the word the examiner looks for here."
+        ],
+        "memory_tip": "Steady conditions allow narrow niches, and narrow niches allow more species in the same space.",
+        "margin_note": "Constant climate, niche specialisation, more species. Three short lines.",
+        "lines": [
+          "2) Constant and predictable climate:",
+          "The tropical climate changes little from",
+          "season to season.",
+          "A constant environment allows a species to",
+          "specialise for a narrow niche.",
+          "More niches in the same area means more",
+          "species can live side by side."
+        ]
+      },
+      {
+        "id": "s4_energy",
+        "kind": "boxed_final",
+        "label": "More solar energy",
+        "marks": 1,
+        "mark_note": "Energy",
+        "why": "The energy entering an ecosystem sets how much food it can produce, and the amount of food sets how many species it can support.",
+        "common_mistakes": [
+          "Writing that more sunlight directly makes new species. It raises productivity, and higher productivity supports more species."
+        ],
+        "memory_tip": "Three reasons: undisturbed time, steady climate, more energy.",
+        "margin_note": "One mark. Close by naming the three reasons together.",
+        "lines": [
+          {
+            "text": "More solar energy, higher productivity",
+            "style": "boxed"
+          },
+          "3) More solar energy:",
+          "The tropics receive more solar energy through",
+          "the year than temperate regions do.",
+          "More energy, together with plenty of water,",
+          "raises the productivity of the ecosystem.",
+          "Higher productivity means more food, and more",
+          "food supports a greater number of species.",
+          "These three reasons together — undisturbed",
+          "time, a constant climate and high",
+          "productivity — give the tropics their",
+          "greater biodiversity."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Three reasons carry this answer — undisturbed evolutionary time, a constant climate and more solar energy — so name all three even if you can write only one line for each."
+}

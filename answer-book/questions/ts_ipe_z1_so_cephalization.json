@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_cephalization",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is cephalization? How is it useful to its possessors?",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Use to the animal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.51, VSAQ 73). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What cephalization is",
+        "marks": 1,
+        "why": "The name says it: cephalo means head, so the definition is about WHERE the nerve and sense cells lie, not how many there are.",
+        "common_mistakes": [
+          "Writing that cephalization means a large brain. It is the position of the nerve and sense cells at the front end.",
+          "Placing the nerve cells at the posterior end. Cephalization is anterior."
+        ],
+        "memory_tip": "Cephalo means head: the nerve cells and the sense organs collect at the end that goes first.",
+        "margin_note": "One sentence of definition, one line on the head. Two lines are enough.",
+        "mark_note": "Definition",
+        "lines": [
+          "Cephalization is the collecting of nerve cells",
+          "and sense organs at the anterior (front) end",
+          "of the body.",
+          "That end becomes the head."
+        ]
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "How it helps the animal",
+        "marks": 1,
+        "why": "The use follows straight from the position: the end that arrives first carries the sense organs, so the animal gets the earliest information about what is ahead.",
+        "common_mistakes": [
+          "Giving only the definition. The question asks for the use as well, and that is the second mark."
+        ],
+        "memory_tip": "Front end first: whatever the animal meets, the head meets it before the rest of the body.",
+        "margin_note": "Two or three uses named. Do not write a paragraph for a 2-mark question.",
+        "mark_note": "Use",
+        "lines": [
+          {
+            "text": "The head end meets the surroundings first",
+            "style": "boxed"
+          },
+          "The animal moves head first, so its sense",
+          "organs meet the surroundings before the rest",
+          "of the body does.",
+          "This helps it find food, find a mate and move",
+          "away from predators."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Half the marks here are for the USE, and that is the half most students leave out — write the definition in one line and spend the rest on what cephalization does for the animal."
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_parasitic_castration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you mean by parasitic castration? Give one example.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.58, VSAQ 133). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Degeneration of the gonads of the host caused by",
+          "the presence of a parasite is called parasitic",
+          "castration.",
+          "The host can no longer breed."
+        ],
+        "why": "The definition names the organ that is damaged, the gonad, and the cause, the parasite — and the loss of breeding is what makes it 'castration'.",
+        "common_mistakes": [
+          "Writing that the parasite eats the host. The damage is to the gonads only.",
+          "Leaving out the word gonads and writing 'reproductive organs are affected'. Use the syllabus word."
+        ],
+        "memory_tip": "Castration means the gonad stops working; here a parasite, not surgery, causes it.",
+        "margin_note": "One sentence naming the gonads and the parasite. A second short line on breeding is enough."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Sacculina makes crab ovaries degenerate",
+            "style": "boxed"
+          },
+          "Sacculina is a crustacean parasite of crabs.",
+          "Its presence causes the ovaries of the crab to",
+          "degenerate, so the crab cannot breed."
+        ],
+        "why": "The example is marked as a pair — the parasite and the host it castrates — because either name alone does not show the effect.",
+        "common_mistakes": [
+          "Naming Sacculina without naming the crab.",
+          "Writing that Sacculina kills the crab. The crab lives on; only the gonads degenerate."
+        ],
+        "memory_tip": "Sacculina and crab: the parasite stays, the crab's ovaries go.",
+        "margin_note": "Name both, then one line on what degenerates. Two lines."
+      }
+    ]
+  },
+  "insider_note": "Both marks are name-bound: the definition must contain the word gonads and the example must contain both Sacculina and crab."
+}

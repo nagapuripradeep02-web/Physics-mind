@@ -1,0 +1,362 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_sporozoite_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the structure of sporozoite of Plasmodium vivax.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Shape and size",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Internal parts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.67, Star Q 185). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shape",
+        "kind": "text",
+        "label": "Shape and size",
+        "marks": 1,
+        "mark_note": "Shape",
+        "lines": [
+          "The structure of the sporozoite of Plasmodium",
+          "was studied by Garnham.",
+          "The sporozoite is sickle shaped. It is swollen",
+          "in the middle and pointed at both ends.",
+          "Its length is about 15 microns and its width is",
+          "about 1 micron."
+        ],
+        "why": "Shape and size are the two facts that identify the stage, and the sickle shape is what a student is asked to draw, so it is stated before anything inside is described.",
+        "common_mistakes": [
+          "Calling the sporozoite round. The round stage is the schizont.",
+          "Giving the size in millimetres. It is about 15 microns long."
+        ],
+        "memory_tip": "Sickle shaped, swollen in the middle, pointed at both ends, about 15 microns long.",
+        "margin_note": "Three short lines: who studied it, the shape, the size."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — sporozoite",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "bhw_sporozoite",
+          "width": 460,
+          "height": 352,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the sickle-shaped body"
+            },
+            {
+              "type": "stroke",
+              "id": "body_l",
+              "d": "M 170 46 C 104 104 92 232 160 314",
+              "ms": 4200
+            },
+            {
+              "type": "stroke",
+              "id": "body_r",
+              "d": "M 170 46 C 152 110 140 244 160 314",
+              "ms": 3860
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the pellicle and its microtubules"
+            },
+            {
+              "type": "stroke",
+              "id": "pellicle",
+              "d": "M 169 58 C 110 112 100 230 160 302",
+              "ms": 3800,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "microtubules",
+              "d": "M 147.5 74.2 L 155.5 73.2 M 135.9 94.5 L 143.9 93.5 M 127 116.7 L 135 115.7 M 120.7 140.3 L 128.7 139.3 M 117.2 165.1 L 125.2 164.1 M 116.5 190.4 L 124.5 189.4 M 118.9 216 L 126.9 215 M 124.3 241.3 L 132.3 240.3 M 132.9 265.9 L 140.9 264.9",
+              "ms": 1040,
+              "w": 1.2
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — apical cup and secretory organelles"
+            },
+            {
+              "type": "stroke",
+              "id": "apical",
+              "d": "M 143 86 Q 154 74 165 82",
+              "ms": 360,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "secr1",
+              "d": "M 148.4 68 A 3.6 6.5 0 1 0 155.6 68 A 3.6 6.5 0 1 0 148.4 68",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "secr2",
+              "d": "M 158.4 66 A 3.6 6.5 0 1 0 165.6 66 A 3.6 6.5 0 1 0 158.4 66",
+              "ms": 460
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — Golgi complex, nucleus and mitochondrion"
+            },
+            {
+              "type": "stroke",
+              "id": "golgi",
+              "d": "M 122 128 Q 136 122 150 130 M 122 136 Q 136 130 149 138 M 123 144 Q 136 138 148 146",
+              "ms": 1200,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus",
+              "d": "M 119 200 A 14 21 0 1 0 147 200 A 14 21 0 1 0 119 200",
+              "ms": 1590
+            },
+            {
+              "type": "stroke",
+              "id": "nucleolus",
+              "d": "M 128 200 A 5 5 0 1 0 138 200 A 5 5 0 1 0 128 200",
+              "ms": 450,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "mito",
+              "d": "M 132 252 A 8 14 0 1 0 148 252 A 8 14 0 1 0 132 252",
+              "ms": 1010
+            },
+            {
+              "type": "stroke",
+              "id": "mito_c",
+              "d": "M 136 245 Q 144 249 137 254 Q 145 258 138 263",
+              "ms": 350,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "tubule",
+              "d": "M 141 280 Q 150 287 143 293 Q 137 299 145 305",
+              "ms": 430,
+              "w": 1.5
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_apical",
+              "x": 290,
+              "y": 48,
+              "text": "Apical cup",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_apical",
+              "d": "M 286 44 L 163 82",
+              "ms": 1840,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_secretory",
+              "x": 258,
+              "y": 92,
+              "text": "Secretory organelles",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_secretory",
+              "d": "M 254 88 L 165 66",
+              "ms": 1310,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_golgi",
+              "x": 290,
+              "y": 136,
+              "text": "Golgi complex",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_golgi",
+              "d": "M 286 132 L 150 138",
+              "ms": 1940,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_pellicle",
+              "x": 290,
+              "y": 180,
+              "text": "Pellicle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pellicle",
+              "d": "M 286 176 L 124 170",
+              "ms": 2320,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_nucleus",
+              "x": 290,
+              "y": 224,
+              "text": "Nucleus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nucleus",
+              "d": "M 286 220 L 147 202",
+              "ms": 2000,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_mito",
+              "x": 290,
+              "y": 268,
+              "text": "Mitochondrion",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mito",
+              "d": "M 286 264 L 148 252",
+              "ms": 1980,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_tubule",
+              "x": 287.7,
+              "y": 312,
+              "text": "Convoluted tubule",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_tubule",
+              "d": "M 283.7 308 L 148 292",
+              "ms": 1950,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_micro",
+              "x": 4,
+              "y": 92,
+              "text": "Microtubules",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_micro",
+              "d": "M 127.8 88 L 116 126",
+              "ms": 570,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "The parts sit in a fixed order from the tip backwards — apical cup, then the organelles, then the nucleus — so drawing them in that order fixes the internal plan in the memory.",
+        "common_mistakes": [
+          "Drawing the nucleus at the pointed anterior tip. The apical cup is at the tip; the nucleus lies behind the middle.",
+          "Drawing a round cell. The sporozoite is long and sickle shaped.",
+          "Leaving the pellicle unlabelled. It is the outer covering and carries a mark."
+        ],
+        "memory_tip": "Draw one long curved body first, then fill it from the tip backwards: cup, organelles, Golgi, nucleus.",
+        "margin_note": "Label the apical cup, secretory organelles, pellicle, Golgi complex, nucleus, mitochondrion and microtubules."
+      },
+      {
+        "id": "s3_parts",
+        "kind": "boxed_final",
+        "label": "Internal parts",
+        "marks": 1,
+        "mark_note": "Parts",
+        "lines": [
+          {
+            "text": "Apical cup holds secretory organelles",
+            "style": "boxed"
+          },
+          "The body is covered by a pellicle, which carries",
+          "microtubules. These help the wriggling movement",
+          "of the sporozoite.",
+          "The cytoplasm contains a Golgi complex,",
+          "endoplasmic reticulum, mitochondria and a",
+          "nucleus.",
+          "Convoluted tubules of unknown function are",
+          "present.",
+          "An apical cup at the anterior end holds a pair",
+          "of secretory organelles. They produce a",
+          "cytolytic enzyme, which helps the sporozoite to",
+          "enter the liver cells."
+        ],
+        "why": "The apical cup is the working end of the sporozoite: its enzyme opens the liver cell, which is the first event of the whole cycle in man.",
+        "common_mistakes": [
+          "Writing that the microtubules are inside the nucleus. They lie in the pellicle.",
+          "Leaving out the cytolytic enzyme. It is what lets the sporozoite enter the liver cell."
+        ],
+        "memory_tip": "The front end does the work: apical cup, two secretory organelles, one enzyme that opens the liver cell.",
+        "margin_note": "Name every part in order from the outside in. The enzyme line is the closing mark."
+      }
+    ]
+  },
+  "insider_note": "This is a structure question with a printed figure, so the labels carry most of the credit — the apical cup and the pellicle are the ones most often missed."
+}

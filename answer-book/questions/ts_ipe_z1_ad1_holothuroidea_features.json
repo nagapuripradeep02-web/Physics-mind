@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_holothuroidea_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Mention the salient features of Holothuroidea.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "What is absent",
+      "marks": 1
+    },
+    {
+      "label": "Internal features",
+      "marks": 1
+    },
+    {
+      "label": "Larva and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.36, SAQ 28). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-I (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What the holothuroids are",
+        "marks": 1,
+        "why": "The ossicles are reduced to loose spicules in the skin instead of a fixed test, and that is why a sea cucumber is soft while a sea urchin is rigid.",
+        "common_mistakes": [
+          "Writing that the body is flattened. It is elongated along the oro-aboral axis.",
+          "Giving them a hard test. The skin is leathery, with only small spicules in it."
+        ],
+        "memory_tip": "Soft, long and leathery: the sea cucumber lies on its side, mouth at one end.",
+        "margin_note": "Class, common name, body form, skin. Five lines.",
+        "mark_note": "What they are",
+        "lines": [
+          "Holothuroidea is a class of the phylum",
+          "Echinodermata.",
+          "Its members are the sea cucumbers. The body",
+          "is soft and cucumber-shaped.",
+          "The body is elongated along the oro-aboral",
+          "axis, so the mouth is at one end and the",
+          "anus at the other.",
+          "The skin is leathery and holds small dermal",
+          "spicules."
+        ]
+      },
+      {
+        "id": "s2_absent",
+        "kind": "text",
+        "label": "What is absent, and the tentacles",
+        "marks": 1,
+        "why": "The tentacles round the mouth are tube feet that took up feeding, which is why one water vascular system works both the feet below and the tentacles in front.",
+        "common_mistakes": [
+          "Giving them spines. Spines and pedicellariae are absent in this class.",
+          "Writing that the tentacles are arms. They are modified tube feet."
+        ],
+        "memory_tip": "No arms, no spines, no pedicellariae — only a ring of tentacles round the mouth.",
+        "margin_note": "Three absences in one line, then the tentacles and the tube feet.",
+        "mark_note": "What is absent",
+        "lines": [
+          "Arms, spines and pedicellariae are all",
+          "absent.",
+          "The mouth is surrounded by a ring of",
+          "retractile tentacles. They are modified tube",
+          "feet and are used to collect food.",
+          "The ambulacral grooves are closed.",
+          "Tube feet are present and are used in",
+          "locomotion."
+        ]
+      },
+      {
+        "id": "s3_internal",
+        "kind": "text",
+        "label": "Internal features",
+        "marks": 1,
+        "why": "The respiratory tree is a branched sac inside the body, so a sea cucumber breathes by drawing water in and out through the cloaca instead of over a gill on the outside.",
+        "common_mistakes": [
+          "Writing that the madreporite is on the surface. In this class it is internal.",
+          "Naming dermal branchiae. Those belong to the starfish; sea cucumbers have respiratory trees."
+        ],
+        "memory_tip": "Madreporite inside, respiratory trees inside, water in and out through the cloaca.",
+        "margin_note": "Two internal structures. Say where each one opens.",
+        "mark_note": "Internal features",
+        "lines": [
+          "The madreporite is internal. It lies inside",
+          "the coelom and does not open on the surface.",
+          "The respiratory organs are the respiratory",
+          "trees, a pair of branched tubes that open",
+          "into the cloaca.",
+          "Water is drawn in and out through the cloaca,",
+          "and the exchange of gases takes place in the",
+          "walls of these trees."
+        ]
+      },
+      {
+        "id": "s4_larva",
+        "kind": "boxed_final",
+        "label": "Larva and examples",
+        "marks": 1,
+        "why": "The auricularia is a bilaterally symmetrical swimming larva, so the sea cucumber, like every echinoderm, begins life bilateral and becomes radial later.",
+        "common_mistakes": [
+          "Naming the echinopluteus. That belongs to the sea urchin; the holothurian larva is the auricularia.",
+          "Giving no example. Two or three named animals are expected."
+        ],
+        "memory_tip": "Auricularia for the sea cucumber; echinopluteus for the sea urchin.",
+        "margin_note": "Larva in one line, then the examples. Close with the boxed hallmarks.",
+        "mark_note": "Larva and examples",
+        "lines": [
+          {
+            "text": "No arms or spines · Respiratory trees",
+            "style": "boxed"
+          },
+          "The larva is the auricularia.",
+          "Examples:",
+          "Holothuria — the sea cucumber.",
+          "Synapta.",
+          "Thyone."
+        ]
+      }
+    ]
+  },
+  "insider_note": "This class is defined mostly by absences — no arms, no spines, no pedicellariae — so write those three in one line and spend the space on the tentacles and the respiratory trees."
+}

@@ -355,7 +355,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(1_200_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), and at botany (~945). Never trim the sweep.
+    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), and at zoology (~1136). Never trim the sweep.
     // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -389,7 +389,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(1_200_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), and at botany (~945). Never trim the sweep.
+    test.setTimeout(1_800_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), and at zoology (~1136). Never trim the sweep.
     // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -426,6 +426,208 @@ test('no two figure labels overlap, in any question', async ({ page }) => {
         const id = await page.evaluate(() => (window as any).PM_ANSWER.question.question_id);
         expect(clashes, `${id} figure labels collide`).toEqual([]);
     }
+});
+
+test('a tap mid-draw on an unphased figure completes the whole figure (legacy pin)', async ({ page }) => {
+    // Pins the pre-phase impatience semantics: a figure WITHOUT pause elements
+    // must fast-forward to fully drawn on ONE tap, exactly as before phased
+    // figures existed. Nothing tested this while it was the only behavior;
+    // now that playFigure branches on pauses, it needs a pin. (Phased-figure
+    // behavior gets its own constant-work tests targeting a zoology question.)
+    await openFirst(page);
+    const pick = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        for (const q of qs) {
+            const steps = q.answer.steps as any[];
+            const di = steps.findIndex((s: any) => {
+                if (s.kind !== 'diagram') return false;
+                const els = s.figure.elements as any[];
+                if (els.some((e) => e.type === 'pause')) return false;
+                // long enough that a 200ms tap is genuinely mid-draw
+                return els.reduce((t, e) => t + (e.ms || 0), 0) >= 2000;
+            });
+            if (di >= 0) return { qid: q.question_id, di };
+        }
+        return null;
+    });
+    expect(pick, 'no unphased figure question in the bank').not.toBeNull();
+    await openQ(page, pick!.qid);
+
+    // reveal every step BEFORE the diagram (impatient-tap each one)
+    for (let i = 0; i < pick!.di; i++) {
+        await page.evaluate(() => new Promise<void>((resolve) => {
+            document.addEventListener('pm:step-revealed', () => resolve(), { once: true });
+            (window as any).PM_ANSWER.revealNext();
+            setTimeout(() => (window as any).PM_ANSWER.revealNext(), 60);
+        }));
+    }
+
+    // start the diagram, let it draw ~200ms, then exactly ONE impatient tap
+    const finished = await page.evaluate(() => new Promise<boolean>((resolve) => {
+        let done = false;
+        document.addEventListener('pm:step-revealed', () => { done = true; resolve(true); }, { once: true });
+        (window as any).PM_ANSWER.revealNext();
+        setTimeout(() => { if (!done) (window as any).PM_ANSWER.revealNext(); }, 200);
+        setTimeout(() => { if (!done) resolve(false); }, 4000);
+    }));
+    expect(finished, 'one mid-draw tap did not complete the unphased figure').toBe(true);
+
+    const undrawn = await page.evaluate(() => {
+        const bad: string[] = [];
+        document.querySelectorAll('.figure-wrap svg path').forEach((p) => {
+            const off = parseFloat((p as SVGPathElement).style.strokeDashoffset || '0');
+            if (off > 0.5) bad.push('stroke at dashoffset ' + off);
+        });
+        document.querySelectorAll('.figure-wrap svg text').forEach((t) => {
+            const el = t as SVGTextElement;
+            if (el.style.opacity !== '' && parseFloat(el.style.opacity) < 1) {
+                bad.push('label "' + el.textContent + '" at opacity ' + el.style.opacity);
+            }
+        });
+        document.querySelectorAll('.figure-wrap clipPath rect').forEach((r) => {
+            const w = parseFloat(r.getAttribute('width') || '0');
+            const h = parseFloat(r.getAttribute('height') || '0');
+            if (w <= 0 || h <= 0) bad.push('clip rect ' + w + 'x' + h);
+        });
+        return bad;
+    });
+    expect(undrawn).toEqual([]);
+});
+
+/**
+ * Phased figures ("watch it drawn", zoology 2026-08-25). A figure may carry
+ * `pause` elements: the player stops at each one, shows its caption under the
+ * figure, and waits for a tap. These tests INJECT pauses into an existing long
+ * figure at runtime (PM_QUESTIONS is the live array the player reads), so they
+ * are constant-work and do not depend on any particular authored question.
+ * Element objects are shared with the player, which hangs `_node` on them —
+ * that is how the tests read each element's drawn/undrawn state.
+ */
+async function injectPhasedFigure(page: any): Promise<{ qid: string; di: number; pauseAt: number; n: number }> {
+    const pick = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        for (const q of qs) {
+            const steps = q.answer.steps as any[];
+            const di = steps.findIndex((s: any) => {
+                if (s.kind !== 'diagram') return false;
+                const els = s.figure.elements as any[];
+                if (els.some((e) => e.type === 'pause')) return false;
+                return els.length >= 8 && els.reduce((t, e) => t + (e.ms || 0), 0) >= 2000;
+            });
+            if (di < 0) continue;
+            const els = steps[di].figure.elements as any[];
+            const mid = Math.floor(els.length / 2);
+            els.splice(mid, 0, { type: 'pause', id: 'p_mid', caption: 'Step 2 — test phase' });
+            els.unshift({ type: 'pause', id: 'p_0', caption: 'Step 1 — outline' });
+            return { qid: q.question_id, di, pauseAt: mid + 1, n: els.length };
+        }
+        return null;
+    });
+    expect(pick, 'no long unphased figure to inject pauses into').not.toBeNull();
+    return pick!;
+}
+
+async function revealBefore(page: any, di: number): Promise<void> {
+    for (let i = 0; i < di; i++) {
+        await page.evaluate(() => new Promise<void>((resolve) => {
+            document.addEventListener('pm:step-revealed', () => resolve(), { once: true });
+            (window as any).PM_ANSWER.revealNext();
+            setTimeout(() => (window as any).PM_ANSWER.revealNext(), 60);
+        }));
+    }
+}
+
+/** drawn state of every non-pause element of the figure at step `di` */
+const figureStates = (page: any, qid: string, di: number) => page.evaluate(([id, d]: [string, number]) => {
+    const q = ((window as any).PM_QUESTIONS as any[]).find((x) => x.question_id === id);
+    const els = q.answer.steps[d].figure.elements as any[];
+    const caption = document.querySelector('.figure-caption');
+    return {
+        caption: caption ? caption.textContent : null,
+        states: els.map((e) => {
+            if (e.type === 'pause') return 'pause';
+            const n = e._node;
+            if (!n) return 'nonode';
+            if (e.type === 'label') return n.style.opacity === '1' ? 'on' : 'off';
+            if (e._clipRect) {
+                const w = parseFloat(e._clipRect.getAttribute('width') || '0');
+                const h = parseFloat(e._clipRect.getAttribute('height') || '0');
+                return w > 0 && h > 0 ? 'on' : 'off';
+            }
+            return parseFloat(n.style.strokeDashoffset || '0') < 0.5 ? 'on' : 'off';
+        }),
+    };
+}, [qid, di]);
+
+test('a phased figure stops at each pause, and a mid-phase tap completes only the current phase', async ({ page }) => {
+    await openFirst(page);
+    const pick = await injectPhasedFigure(page);
+    await openQ(page, pick.qid);
+    await revealBefore(page, pick.di);
+
+    // start the diagram: the index-0 pause names phase 1 without waiting
+    let revealed = false;
+    await page.evaluate(() => {
+        document.addEventListener('pm:step-revealed', () => { (window as any).__phaseDone = true; }, { once: true });
+        (window as any).__phaseDone = false;
+        (window as any).PM_ANSWER.revealNext();
+    });
+    await page.waitForTimeout(300);
+    let s = await figureStates(page, pick.qid, pick.di);
+    expect(s.caption).toBe('Step 1 — outline');
+
+    // ONE tap mid-phase: phase 1 completes instantly, phase 2 stays undrawn, step not done
+    await page.evaluate(() => (window as any).PM_ANSWER.revealNext());
+    await page.waitForTimeout(150);
+    s = await figureStates(page, pick.qid, pick.di);
+    revealed = await page.evaluate(() => (window as any).__phaseDone);
+    expect(revealed, 'step completed on the first tap — the pause was skipped').toBe(false);
+    expect(s.caption).toBe('Step 2 — test phase');
+    const before = s.states.slice(1, pick.pauseAt).filter((x: string) => x !== 'pause');
+    const after = s.states.slice(pick.pauseAt + 1);
+    expect(before.every((x: string) => x === 'on'), 'phase 1 not fully drawn: ' + before.join(',')).toBe(true);
+    expect(after.every((x: string) => x === 'off'), 'phase 2 drew before its tap: ' + after.join(',')).toBe(true);
+
+    // tap at the boundary starts phase 2; a further mid-phase tap finishes the figure
+    await page.evaluate(() => (window as any).PM_ANSWER.revealNext());
+    await page.waitForTimeout(200);
+    const finished = await page.evaluate(() => new Promise<boolean>((resolve) => {
+        if ((window as any).__phaseDone) { resolve(true); return; }
+        document.addEventListener('pm:step-revealed', () => resolve(true), { once: true });
+        (window as any).PM_ANSWER.revealNext();
+        setTimeout(() => resolve(false), 4000);
+    }));
+    expect(finished, 'the last phase did not complete on its tap').toBe(true);
+    s = await figureStates(page, pick.qid, pick.di);
+    expect(s.caption).toBe('');
+    expect(s.states.filter((x: string) => x !== 'pause').every((x: string) => x === 'on')).toBe(true);
+});
+
+test('the instant path draws a phased figure completely, with no caption and one reserved caption rule', async ({ page }) => {
+    await openFirst(page);
+    const pick = await injectPhasedFigure(page);
+    await openQ(page, pick.qid);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await page.waitForTimeout(400);
+
+    const s = await figureStates(page, pick.qid, pick.di);
+    expect(s.caption, 'a caption survived the instant path').toBe('');
+    expect(s.states.filter((x: string) => x !== 'pause').every((x: string) => x === 'on')).toBe(true);
+
+    const geom = await page.evaluate(([id, d]: [string, number]) => {
+        const q = ((window as any).PM_QUESTIONS as any[]).find((x) => x.question_id === id);
+        const fig = q.answer.steps[d].figure;
+        const wrap = document.querySelector(`[data-step-id="${q.answer.steps[d].id}"] .figure-wrap`) as HTMLElement;
+        const collapsed: string[] = [];
+        wrap.querySelectorAll('clipPath rect').forEach((r) => {
+            const w = parseFloat(r.getAttribute('width') || '0');
+            const h = parseFloat(r.getAttribute('height') || '0');
+            if (w <= 0 || h <= 0) collapsed.push(w + 'x' + h);
+        });
+        return { height: wrap.style.height, expected: (Math.ceil(fig.height / 32) + 1) * 32 + 'px', collapsed };
+    }, [pick.qid, pick.di] as [string, number]);
+    expect(geom.collapsed).toEqual([]);
+    expect(geom.height, 'a captioned figure reserves exactly one extra rule').toBe(geom.expected);
 });
 
 test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
@@ -468,18 +670,19 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
     // never trim the sweep or the waits to fit, because a shortened sweep silently
     // stops checking the questions it drops.
-    test.setTimeout(2_400_000);   // the WIDEST sweep: questions x cuts. 1247 questions after Physics-II opened.
+    test.setTimeout(2_400_000);   // the WIDEST sweep: questions x cuts. ~1600 entries with zoology AND Physics-II.
     // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~1.05 s/question.
-    // Raised 1_200_000 -> 2_400_000 on 2026-08-28, when Senior Inter Physics took the
-    // bank 991 -> 1247 and this sweep TIMED OUT at 20 min. The projection said it would:
-    // 1247 x 1.05 s = ~21.8 min, so the old budget held ~7% headroom — not enough to
-    // survive one paper. The timeout was NOT an assertion; it reported "failed" while
-    // naming nothing, which is this sweep's recorded failure mode. The product was
-    // verified independently BEFORE the budget was touched: sum(steps.marks) and
-    // sum(mark_split.marks) are held to marks_total on all 256 new cards by both
-    // answer-book/tools/check_p2_cards.ts and build_answer_book.ts, and both are green.
-    // The new figure is ~1.8x the projected need, which also covers Chemistry-II and
-    // Maths-2A/2B (~1900 questions -> ~33 min) without another raise mid-paper.
+    // Raised to 2_400_000 on 2026-08-29. Two papers landed at once — zoology took
+    // the bank to ~1340 and Senior Inter Physics adds 256 more — and this sweep had
+    // already TIMED OUT at 20 min on Physics-II alone (1247 x 1.05 s = ~21.8 min, so
+    // that ceiling held ~7% headroom). At ~1600 entries the projection is ~28 min,
+    // which the 30-min figure this merge superseded would have cut very fine.
+    // The timeout is NOT an assertion; it reports "failed" while naming nothing,
+    // which is this sweep's recorded failure mode — so the product was verified
+    // independently BEFORE the budget was touched: sum(steps.marks) and
+    // sum(mark_split.marks) are held to marks_total by both
+    // answer-book/tools/check_p2_cards.ts and build_answer_book.ts, both green.
+    // 40 min also covers Chemistry-II and Maths-2A/2B without another mid-paper raise.
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -1053,7 +1256,9 @@ test('rename is offered once after the first Mark revised, blocklist holds, name
 });
 
 test('the exam-eve route renders the most-asked list and Back returns to the catalog', async ({ page }) => {
-    await page.goto(URL + '#/exam-eve/4');
+    // physics-3 = Motion in a Plane since the 2026-27 renumbering; the trailing
+    // year marks the link as post-renumbering (a bare '4' would be remapped).
+    await page.goto(URL + '#/exam-eve/physics-3/2027');
     await page.waitForSelector('#examEveView:not([hidden])');
 
     const r = await page.evaluate(() => ({
@@ -1063,8 +1268,8 @@ test('the exam-eve route renders the most-asked list and Back returns to the cat
         catCardsInEve: document.querySelectorAll('#eveBody .cat-card').length,
         backShown: !document.getElementById('btnCatalog')!.hidden,
     }));
-    expect(r.title).toContain('Unit 4');
-    expect(r.cards).toBeGreaterThan(0);          // unit 4 has 3-star questions
+    expect(r.title).toContain('Unit 3');
+    expect(r.cards).toBeGreaterThan(0);          // Motion in a Plane has 3-star questions
     expect(r.catCardsInEve).toBe(0);
     expect(r.backShown).toBe(true);
 
@@ -1251,7 +1456,7 @@ async function bootPlanner(page: any, today: string, seed: Record<string, string
     2026-08-26. For several papers with their own dates, use
     buildMultiSubjectPlan. */
 async function buildPlanViaChat(page: any, examDate: string,
-    unitNames: string[] = ['Units and Measurements', 'Motion in a Straight Line'],
+    unitNames: string[] = ['Physical World and Measurement', 'Motion in a Straight Line'],
     hoursLabel = '1 hour', scopeUntick: string[] = []) {
     return buildMultiSubjectPlan(page, { physics: examDate }, unitNames, hoursLabel, scopeUntick);
 }
@@ -1261,7 +1466,7 @@ async function buildPlanViaChat(page: any, examDate: string,
     `dates` is keyed by the subject value units.json uses — 'physics',
     'chemistry', 'mathematics' (Maths-1A), 'mathematics_1b', 'botany'. */
 async function buildMultiSubjectPlan(page: any, dates: Record<string, string>,
-    unitNames: string[] = ['Units and Measurements', 'Motion in a Straight Line'],
+    unitNames: string[] = ['Physical World and Measurement', 'Motion in a Straight Line'],
     hoursLabel = '1 hour', scopeUntick: string[] = []) {
     if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
     const lastW = () => page.locator('.vidi-widget').last();
@@ -1952,7 +2157,7 @@ test('three papers, three dates: nothing is scheduled on or after its OWN subjec
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const plan = await buildMultiSubjectPlan(page, {
         physics: '2026-09-13', chemistry: '2026-09-18', mathematics: '2026-09-24',
-    }, ['Units and Measurements', 'Atomic Structure', 'Matrices']);
+    }, ['Physical World and Measurement', 'Atomic Structure', 'Matrices']);
 
     expect(plan.examDates).toEqual({
         physics: '2026-09-13', chemistry: '2026-09-18', mathematics: '2026-09-24',
@@ -1981,7 +2186,7 @@ test('day one mixes every paper the student picked', async ({ page }) => {
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const plan = await buildMultiSubjectPlan(page, {
         physics: '2026-09-13', chemistry: '2026-09-18', mathematics: '2026-09-24',
-    }, ['Units and Measurements', 'Atomic Structure', 'Matrices'], '2 hours');
+    }, ['Physical World and Measurement', 'Atomic Structure', 'Matrices'], '2 hours');
 
     const day1 = countBySubject(plan, plan.days[0].learn);
     expect(Object.keys(day1).sort()).toEqual(['chemistry', 'mathematics', 'physics']);
@@ -1991,26 +2196,32 @@ test('the nearer a paper is, the bigger its share of the day', async ({ page }) 
     // Same chapters, same pace, same rival — ONLY the physics date moves. A
     // bare threshold would not prove urgency drives the split; this comparison
     // does, and carries its own control.
+    // Sample = a 22-question chapter (Motion in a Straight Line since the 2026-27
+    // renumbering; it was Units and Measurements, also 22). The merged 25-card
+    // Unit 1 saturates the ten-day window in BOTH cases and the shares tie.
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const far = await buildMultiSubjectPlan(page, {
         physics: '2026-10-20', chemistry: '2026-10-24',
-    }, ['Units and Measurements', 'Atomic Structure'], '1 hour');
+    }, ['Physical World and Measurement', 'Atomic Structure'], '2 hours');
 
     await page.evaluate(() => localStorage.removeItem('pm_plan_v1'));
     await page.reload();
     await page.waitForFunction(() => (window as any).PM_ANSWER);
     const near = await buildMultiSubjectPlan(page, {
         physics: '2026-09-12', chemistry: '2026-10-24',
-    }, ['Units and Measurements', 'Atomic Structure'], '1 hour');
+    }, ['Physical World and Measurement', 'Atomic Structure'], '2 hours');
 
-    // Measured over the opening WEEK, not day one. Day one saturates: at 60
-    // minutes the same 3 physics questions fit whether the paper is six weeks
-    // out or ten days out, so a day-1 comparison reads 3 vs 3 and can see
-    // nothing. The share across the first ten days is where urgency shows —
-    // measured 42% when the paper is far, 50% when it is near.
+    // Measured over the first FIVE days, not day one and not ten. Day one
+    // saturates: the same physics questions fit whether the paper is six weeks
+    // out or ten days out, so a day-1 comparison can see nothing. Ten days
+    // saturates the other way since the 2026-27 renumbering merged old Units 1+2
+    // into one 25-card chapter that BOTH plans finish inside ten days — the
+    // cumulative shares then tie exactly. Five days is where urgency shows.
+    // Sample: merged Unit 1 + Atomic Structure at 2 hours a day (2026-08-28) —
+    // the comparison is the assertion, so no fixed percentage is recorded here.
     const share = (p: any) => {
         let phy = 0, tot = 0;
-        for (let d = 0; d < Math.min(10, p.days.length); d++) {
+        for (let d = 0; d < Math.min(5, p.days.length); d++) {
             for (const q of p.days[d].learn) { if (p.subjectByQid[q] === 'physics') phy++; tot++; }
         }
         return phy / Math.max(1, tot);
@@ -2026,7 +2237,7 @@ test('a paper already written leaves the plan — the rest keep going', async ({
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const plan = await buildMultiSubjectPlan(page, {
         physics: '2026-09-10', chemistry: '2026-09-25',
-    }, ['Units and Measurements', 'Atomic Structure']);
+    }, ['Physical World and Measurement', 'Atomic Structure']);
 
     // walk the clock past the physics paper, keeping the plan
     await bootPlanner(page, '2026-09-14', {
@@ -2318,4 +2529,129 @@ test('the home chat is never blank: a returning student with nothing due still g
     expect(text.trim().length).toBeGreaterThan(20);
     expect(text).toMatch(/step by step/i);
     expect(text).not.toMatch(/study plan|plan your exam|exam preparation/i);
+});
+
+
+// ═══ the 2026-27 syllabus revision (2026-08-28) ═══════════════════════════════
+// Three mechanisms landed together: the physics renumbering (old Units 1+2 merged,
+// old 3-14 → 2-13, new Unit 14), the legacy-link remap that keeps forwarded
+// exam-eve links pointing at the chapter they meant, and the retire mechanism.
+
+test('a pre-renumbering exam-eve link still lands on the chapter it meant', async ({ page }) => {
+    // Old links carried the OLD physics key and no year: "#/exam-eve/4" and
+    // "#/exam-eve/physics-4" both meant Motion in a Plane (old Unit 4), which is
+    // Unit 3 in the 2026-27 book. A link WITH the year is taken literally.
+    await page.goto(URL + '#/exam-eve/physics-4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 3 — Motion in a Plane');
+
+    await page.goto(URL + '#/exam-eve/4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 3 — Motion in a Plane');
+
+    await page.goto(URL + '#/exam-eve/physics-4/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 4 — Laws of Motion');
+
+    // Subject keys with an underscore never matched the old route regex, so a
+    // Maths-1B exam-eve link fell through to the catalog.
+    await page.goto(URL + '#/exam-eve/mathematics_1b-3/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('The Straight Line');
+});
+
+test('the physics bank is on the 2026-27 numbering and Unit 14 is coming-soon', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const r = await page.evaluate(() => {
+        const units = ((window as any).PM_UNITS as any[]).filter((u) => !u.subject);
+        const byN: Record<number, any> = {};
+        for (const u of units) byN[u.number] = u;
+        return {
+            n: units.length,
+            u1: byN[1]?.name, u1n: byN[1]?.questions.length,
+            u3: byN[3]?.name, u14: byN[14]?.name,
+            u14ready: byN[14]?.questions.filter((e: any) => e.question_id).length,
+            u14coming: byN[14]?.questions.length,
+            patternsLaq: (window as any).PM_PATTERNS?.mathematics?.sections?.find((s: any) => s.key === 'LAQ')?.marks,
+        };
+    });
+    expect(r.n).toBe(14);
+    expect(r.u1).toBe('Physical World and Measurement');
+    expect(r.u1n).toBe(25);                               // 3 + 22 merged
+    expect(r.u3).toBe('Motion in a Plane');
+    expect(r.u14).toBe('Physics of Emerging Technologies');
+    expect(r.u14ready).toBe(0);
+    expect(r.u14coming).toBeGreaterThan(0);
+    expect(r.patternsLaq).toBe(8);                        // the maths LAQ is 8 marks now
+});
+
+test('a retired card renders on a forwarded link with the syllabus banner', async ({ page }) => {
+    // No card is retired yet (the official syllabus lists are not in hand), so the
+    // banner path is exercised by pinning PM_RETIRED before the page's own data
+    // script assigns it — a setter that ignores the assignment keeps the pin.
+    const qid = 'ts_ipe_p1_um_fundamental_vs_derived_units';
+    await page.addInitScript((id: string) => {
+        const pinned = { [id]: { wef: '2026-27', reason: 'this topic was removed from the syllabus', unit: 'Physical World and Measurement' } };
+        Object.defineProperty(window, 'PM_RETIRED', { get: () => pinned, set: () => { /* pinned */ }, configurable: true });
+    }, qid);
+    await page.goto(URL + '#/q/' + qid);
+    await page.waitForSelector('.page', { timeout: 8000 });
+    const chip = page.locator('.question-meta .chip-retired');
+    expect(await chip.count()).toBe(1);
+    expect(await chip.textContent()).toContain('Not in the 2026-27 syllabus');
+    expect(await chip.textContent()).toContain('removed from the syllabus');
+});
+
+test('a card that is not retired shows no syllabus banner', async ({ page }) => {
+    await page.goto(URL + '#/q/ts_ipe_p1_um_fundamental_vs_derived_units');
+    await page.waitForSelector('.page', { timeout: 8000 });
+    expect(await page.locator('.question-meta .chip-retired').count()).toBe(0);
+});
+
+
+test('a pre-renumbering Maths-1A link lands on the chapter it meant', async ({ page }) => {
+    // The 2026-27 Maths-1A book inserted Sets and Relations at 1 and Sequences
+    // and Series at 3, so old mathematics-4 (Addition of Vectors) is now
+    // mathematics-6. Same trap as physics: every old key is still a valid key
+    // naming a DIFFERENT chapter, so only the trailing year tells them apart.
+    await page.goto(URL + '#/exam-eve/mathematics-4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Addition of Vectors');
+
+    await page.goto(URL + '#/exam-eve/mathematics-6/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Addition of Vectors');
+
+    // Maths-1B did NOT renumber, so its old keys must pass through untouched.
+    await page.goto(URL + '#/exam-eve/mathematics_1b-3');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('The Straight Line');
+});
+
+test('Maths-1A is on the 2026-27 numbering with its two new chapters listed', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const r = await page.evaluate(() => {
+        const u = ((window as any).PM_UNITS as any[]).filter((x) => x.subject === 'mathematics');
+        const byN: Record<number, any> = {};
+        for (const x of u) byN[x.number] = x;
+        const ready = (n: number) => byN[n]?.questions.filter((e: any) => e.question_id).length;
+        return {
+            n: u.length,
+            u1: byN[1]?.name, u1ready: ready(1),
+            u3: byN[3]?.name, u3ready: ready(3),
+            u8: byN[8]?.name, u9: byN[9]?.name, u12: byN[12]?.name,
+        };
+    });
+    expect(r.n).toBe(12);
+    expect(r.u1).toContain('Sets and Relations');
+    expect(r.u1ready).toBe(0);                       // announced, not written yet
+    expect(r.u3).toContain('Sequences and Series');
+    expect(r.u3ready).toBe(0);
+    // the book says "and", not the old "upto"
+    expect(r.u8).toContain('Trigonometric Ratios and Transformations');
+    // NOT removed, despite a circular proposing it — see docs/SYLLABUS_2026_27.md
+    expect(r.u9).toContain('Trigonometric Equations');
+    expect(r.u12).toContain('Properties of Triangles');
 });

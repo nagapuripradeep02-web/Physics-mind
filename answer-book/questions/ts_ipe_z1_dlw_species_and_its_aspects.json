@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_species_and_its_aspects",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define species. Explain the various aspects of 'species'.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2014
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Species — the basic unit",
+      "marks": 1
+    },
+    {
+      "label": "Definition of species",
+      "marks": 1
+    },
+    {
+      "label": "Aspects of species",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.30, SAQ 13). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR: the book prints the whole definition — 'an interbreeding group of similar individuals, sharing a common gene pool and producing fertile offspring' — as 'Buffon's definition'. Buffon's criterion was interbreeding with fertile offspring; the 'common gene pool' wording belongs to the modern biological species concept and could not have been Buffon's, so the card separates the two and records the book's attribution in the step's `why`. BOOK WORDING: the book writes that a species 'isolates reproductivity of individuals'; the card uses the standard wording, reproductively isolated from other species. CROSS-BANK: botany asks the definition of species in ts_ipe_b1_lw_species_basic_unit."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Diversity of Living World (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_basic_unit",
+        "kind": "text",
+        "label": "Species is the basic unit",
+        "marks": 1,
+        "mark_note": "Basic unit",
+        "why": "Every larger group is built out of species, so the answer opens by placing the species at the bottom of the hierarchy and naming the worker who first defined it by descent.",
+        "common_mistakes": [
+          "Calling the genus the basic unit. The genus is a group of related species; the species is the basic unit.",
+          "Crediting the common-descent idea to the wrong worker. John Ray described species on the basis of common descent."
+        ],
+        "memory_tip": "Species sits at the bottom of the hierarchy, so it is the unit everything above is built from.",
+        "margin_note": "Two facts and one worker's name. Three or four lines.",
+        "lines": [
+          "Species is the basic unit of classification of",
+          "living organisms.",
+          "It is the lowest category in the taxonomic",
+          "hierarchy.",
+          "John Ray described a species on the basis of",
+          "common descent, that is, the members of a",
+          "species share common ancestors."
+        ]
+      },
+      {
+        "id": "s2_definition",
+        "kind": "text",
+        "label": "Definition of species",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Interbreeding is the test that separates one species from another: two groups that cannot produce fertile offspring together are two species, however alike they look. NOTE: this book prints the whole gene-pool wording as Buffon's definition; the gene-pool idea belongs to the modern biological species concept, and the card separates the two.",
+        "common_mistakes": [
+          "Leaving out 'fertile'. Offspring that are themselves sterile do not make the two parents one species.",
+          "Defining a species only by appearance. Similar-looking populations that do not interbreed are separate species."
+        ],
+        "memory_tip": "Three words carry the definition: interbreeding, common gene pool, fertile offspring.",
+        "margin_note": "Write the full definition as one sentence. It is worth a mark on its own.",
+        "lines": [
+          "Buffon defined a species as a group of similar",
+          "individuals that interbreed among themselves",
+          "and produce fertile offspring.",
+          "The modern definition adds that the members of",
+          "a species share a common gene pool.",
+          "So a species is an interbreeding group of",
+          "similar individuals, sharing a common gene",
+          "pool and producing fertile offspring."
+        ]
+      },
+      {
+        "id": "s3_aspects",
+        "kind": "boxed_final",
+        "label": "The five aspects",
+        "marks": 2,
+        "mark_note": "Aspects",
+        "why": "Each aspect names one thing a species is a unit OF — breeding, niche, chromosomes, ancestry — so the list is not five separate facts but the same group looked at five ways.",
+        "common_mistakes": [
+          "Giving fewer than five aspects. Two marks are carried by this list.",
+          "Writing that a species never changes. The fifth aspect says the opposite: a species is dynamic."
+        ],
+        "memory_tip": "Four units and one change: breeding, ecological, genetic, evolutionary — and dynamic.",
+        "margin_note": "Two marks, so write all five. Name the unit first in each line, then one short reason.",
+        "lines": [
+          {
+            "text": "Breeding, ecology, genes, evolution, dynamic",
+            "style": "boxed"
+          },
+          "1) Species is a breeding unit: its members",
+          "breed among themselves and are reproductively",
+          "isolated from other species.",
+          "2) Species is an ecological unit: its members",
+          "share the same ecological niche.",
+          "3) Species is a genetic unit: its members show",
+          "a similar karyotype, that is, a similar set",
+          "of chromosomes.",
+          "4) Species is an evolutionary unit: its",
+          "members share similar structural and",
+          "functional characters inherited from a common",
+          "ancestor.",
+          "5) Species is dynamic: it shows a continuous",
+          "tendency to change, so new species can arise",
+          "from it in time."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The five aspects are the bulk of the marks — write them as a numbered list with the unit named first in each line, because the examiner is counting the words breeding, ecological, genetic, evolutionary and dynamic."
+}

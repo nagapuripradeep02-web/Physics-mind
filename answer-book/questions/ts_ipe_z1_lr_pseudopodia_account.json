@@ -1,0 +1,364 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_pseudopodia_account",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give an account of pseudopodia.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What pseudopodia are",
+      "marks": 1
+    },
+    {
+      "label": "The four types",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 1
+    },
+    {
+      "label": "How they are formed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, SAQ chapter 8 'Locomotion & Reproduction' (book p.41, question 40). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [TS May-19] and [AP M-19,20,22]. BOOK WORDING CORRECTED: the book's point III(1) reads 'Pseudopodium is formed by conversion of gel cytoplasm to sol cytoplasm and vice versa (Sol to gel)', which states the change twice without saying where each one happens. This card gives the standard form: the gel of the ectoplasm turns to sol and flows forward at the advancing tip, and the sol turns back to gel at the sides and rear. The book's own theory names (sol-gel theory, Allen's front contraction or fountain zone theory) and its actin and myosin line are kept. BOOK SPELLING: the book prints 'Lobopodia - Blunt, finger like'; the singular forms lobopodium and filopodium are used here where a single process is meant, matching the book's own VSAQ 129. FIGURE SCOPE: the book prints no pseudopodia figure; this figure is authored from the four type descriptions the book gives, one shape per type, so that the four names are separable by shape and not by memory alone."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locomotion and Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What pseudopodia are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Pseudopodia means false feet.",
+          "They are temporary extensions of the cytoplasm",
+          "pushed out in the direction of movement.",
+          "They are used for locomotion and for",
+          "collecting food.",
+          "They are found in the rhizopods, such as",
+          "Amoeba and Entamoeba."
+        ],
+        "why": "The word temporary is what makes them false feet: they are formed when the cell moves and withdrawn again, so no permanent limb exists.",
+        "common_mistakes": [
+          "Writing that a pseudopodium is a permanent organelle. It is formed and withdrawn again.",
+          "Giving locomotion as the only use. Pseudopodia also collect food."
+        ],
+        "memory_tip": "Pseudo means false and podium means foot: a foot that is made when needed and taken back after.",
+        "margin_note": "Meaning of the word, then the two uses, then the group. Four short lines."
+      },
+      {
+        "id": "s2_types",
+        "kind": "text",
+        "label": "The four types",
+        "marks": 1,
+        "mark_note": "Four types",
+        "lines": [
+          "1. Lobopodium: blunt and finger-like.",
+          "Example: Amoeba, Entamoeba.",
+          "2. Filopodium: fine and thread-like.",
+          "Example: Euglypha.",
+          "3. Reticulopodium: thread-like but joined into",
+          "a network. Example: Elphidium.",
+          "4. Axopodium, also called heliopodium:",
+          "ray-like, with a stiff axial rod inside.",
+          "Example: Actinophrys."
+        ],
+        "why": "All four names are shape names, so writing the shape beside each name is what earns the mark; the examples are then only a matter of matching one genus to each shape.",
+        "common_mistakes": [
+          "Writing Amoeba as the example for more than one type. Amoeba forms lobopodia only.",
+          "Confusing filopodium with reticulopodium. Both are thread-like, but only the reticulopodium forms a network."
+        ],
+        "memory_tip": "Blunt, thread, net, ray: lobo-, filo-, reticulo-, axo-. Four shapes in that order.",
+        "margin_note": "One line of shape plus one example per type. Do not write paragraphs."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "lr_pseudopodia_types",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — four cell bodies in a row"
+            },
+            {
+              "type": "stroke",
+              "id": "cell1",
+              "d": "M 49 130 A 21 18 0 1 0 91 130 A 21 18 0 1 0 49 130",
+              "ms": 1750
+            },
+            {
+              "type": "stroke",
+              "id": "cell2",
+              "d": "M 174 130 A 21 18 0 1 0 216 130 A 21 18 0 1 0 174 130",
+              "ms": 1750
+            },
+            {
+              "type": "stroke",
+              "id": "cell3",
+              "d": "M 299 130 A 21 18 0 1 0 341 130 A 21 18 0 1 0 299 130",
+              "ms": 1750
+            },
+            {
+              "type": "stroke",
+              "id": "cell4",
+              "d": "M 424 130 A 21 18 0 1 0 466 130 A 21 18 0 1 0 424 130",
+              "ms": 1750
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — lobopodia: blunt finger-like lobes"
+            },
+            {
+              "type": "stroke",
+              "id": "lobo1",
+              "d": "M 83.6 116.5 L 107 102.4 A 6.5 6.5 0 0 1 113.7 113.5 L 90.3 127.6",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "lobo2",
+              "d": "M 85.1 141.6 L 97.9 167.5 A 6.5 6.5 0 0 1 86.2 173.3 L 73.4 147.4",
+              "ms": 1120
+            },
+            {
+              "type": "stroke",
+              "id": "lobo3",
+              "d": "M 56.4 143.5 L 33 157.6 A 6.5 6.5 0 0 1 26.3 146.5 L 49.7 132.4",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "lobo4",
+              "d": "M 54.9 118.4 L 42.1 92.5 A 6.5 6.5 0 0 1 53.8 86.7 L 66.6 112.6",
+              "ms": 1120
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — filopodia: fine separate threads"
+            },
+            {
+              "type": "stroke",
+              "id": "filo",
+              "d": "M 214.6 133.4 L 242 139.5 M 207.4 143.4 L 224.9 167.5 M 194.5 147.1 L 193.8 178 M 181.8 142.8 L 163.2 166 M 175.3 132.5 L 147.5 137.1 M 178 121.1 L 154.1 104.9 M 188.7 113.8 L 179.7 84.5 M 202.3 114.1 L 212.6 85.3 M 212.5 121.8 L 237.2 107.1",
+              "ms": 3790,
+              "w": 1.3
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — reticulopodia: threads joined into a network"
+            },
+            {
+              "type": "stroke",
+              "id": "retic",
+              "d": "M 339.6 133.4 L 367 139.5 M 332.4 143.4 L 349.9 167.5 M 319.5 147.1 L 318.8 178 M 306.8 142.8 L 288.2 166 M 300.3 132.5 L 272.5 137.1 M 303 121.1 L 279.1 104.9 M 313.7 113.8 L 304.7 84.5 M 327.3 114.1 L 337.6 85.3 M 337.5 121.8 L 362.2 107.1",
+              "ms": 3790,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "retic_net",
+              "d": "M 351.9 136.2 L 340.3 154.3 M 361.5 138.3 L 346.4 162.7 M 340.3 154.3 L 319.2 161 M 346.4 162.7 L 318.9 171.8 M 319.2 161 L 298.4 153.2 M 318.9 171.8 L 291.9 161.3 M 298.4 153.2 L 287.8 134.6 M 291.9 161.3 L 278.1 136.2 M 287.8 134.6 L 292.2 113.8 M 278.1 136.2 L 283.8 108.2 M 292.2 113.8 L 309.6 100.6 M 283.8 108.2 L 306.5 90.4 M 309.6 100.6 L 331.9 101.1 M 306.5 90.4 L 335.5 91.1 M 331.9 101.1 L 348.6 115.2 M 335.5 91.1 L 357.2 110 M 348.6 115.2 L 351.9 136.2 M 357.2 110 L 361.5 138.3",
+              "ms": 4500,
+              "w": 1.3
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — axopodia: straight rays with an axial rod"
+            },
+            {
+              "type": "stroke",
+              "id": "axo_rays",
+              "d": "M 464.9 130 L 495 130 M 459.1 142.1 L 480.4 165.4 M 445 147.1 L 445 180 M 430.9 142.1 L 409.6 165.4 M 425.1 130 L 395 130 M 430.9 117.9 L 409.6 94.6 M 445 112.9 L 445 80 M 459.1 117.9 L 480.4 94.6",
+              "ms": 3600,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "axo_rods",
+              "d": "M 463.9 130 L 451 130 M 458.4 141.5 L 449.2 134.2 M 445 146.2 L 445 136 M 431.6 141.5 L 440.8 134.2 M 426.1 130 L 439 130 M 431.6 118.5 L 440.8 125.8 M 445 113.8 L 445 124 M 458.4 118.5 L 449.2 125.8",
+              "ms": 1330,
+              "w": 1.2
+            },
+            {
+              "type": "stroke",
+              "id": "axo_centre",
+              "d": "M 440 130 A 5 5 0 1 0 450 130 A 5 5 0 1 0 440 130",
+              "ms": 450
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — the four names and their examples"
+            },
+            {
+              "type": "label",
+              "id": "name1",
+              "x": 20,
+              "y": 240,
+              "text": "Lobopodium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "name2",
+              "x": 145,
+              "y": 240,
+              "text": "Filopodium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "name3",
+              "x": 250,
+              "y": 240,
+              "text": "Reticulopodium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "name4",
+              "x": 400,
+              "y": 240,
+              "text": "Axopodium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "eg1",
+              "x": 42,
+              "y": 284,
+              "text": "Amoeba",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "eg2",
+              "x": 155,
+              "y": 284,
+              "text": "Euglypha",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "eg3",
+              "x": 276,
+              "y": 284,
+              "text": "Elphidium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "eg4",
+              "x": 390,
+              "y": 284,
+              "text": "Actinophrys",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The four types are told apart only by shape, so drawing the same cell body four times with a different set of projections is the shortest complete statement of the classification.",
+        "common_mistakes": [
+          "Drawing all four with pointed tips. Only the lobopodium is blunt and rounded.",
+          "Drawing the reticulopodium as separate threads. The threads must join into a network."
+        ],
+        "memory_tip": "Same round body four times; change only what comes out of it: blunt lobes, fine threads, a joined net, straight rays.",
+        "margin_note": "Label each type under its drawing. Four labels, four shapes."
+      },
+      {
+        "id": "s4_formation",
+        "kind": "boxed_final",
+        "label": "How they are formed",
+        "marks": 1,
+        "mark_note": "Formation",
+        "lines": [
+          "The outer cytoplasm, the ectoplasm, is a stiff",
+          "gel. The inner cytoplasm, the endoplasm, is a",
+          "fluid sol.",
+          "At the advancing tip the gel turns to sol and",
+          "flows forward. At the sides and the rear the",
+          "sol turns back to gel.",
+          "This is the sol-gel theory, and it is the",
+          "most accepted explanation.",
+          "Allen's front contraction theory, also called",
+          "the fountain zone theory, is regarded as more",
+          "appropriate. Actin and myosin molecules also",
+          "have a role.",
+          "This movement is called pseudopodial or",
+          "amoeboid movement. It is shown by Amoeba,",
+          "Entamoeba, macrophages and neutrophils.",
+          {
+            "text": "Amoeboid movement = sol to gel, gel to sol",
+            "style": "boxed"
+          }
+        ],
+        "why": "A pseudopodium is not a new structure but the same cytoplasm changing state, so the explanation is a cycle: stiff to fluid at the front, fluid to stiff at the back.",
+        "common_mistakes": [
+          "Writing that the whole cytoplasm turns to sol. The change happens at the tip and is reversed at the rear.",
+          "Naming only one theory. Both the sol-gel theory and Allen's front contraction theory are asked for by the word 'account'."
+        ],
+        "memory_tip": "Gel to sol at the front, sol to gel at the back, and the cell moves forward.",
+        "margin_note": "End with the two theory names and the cells that show amoeboid movement."
+      }
+    ]
+  },
+  "insider_note": "The word 'account' means all three parts are wanted — meaning, types with examples, and formation — so a student who writes only the four types rarely gets more than half the marks."
+}

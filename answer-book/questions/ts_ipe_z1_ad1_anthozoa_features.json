@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_anthozoa_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write short notes on the salient features of the anthozoans.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Body form",
+      "marks": 1
+    },
+    {
+      "label": "Cnidocytes and germ cells",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.35, SAQ 24). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-I (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What the anthozoans are",
+        "marks": 1,
+        "why": "The name Anthozoa means flower animal, and it records the ring of tentacles that a fixed polyp spreads round its mouth.",
+        "common_mistakes": [
+          "Calling Anthozoa a phylum. It is a CLASS of the phylum Cnidaria.",
+          "Writing that they are free-swimming. They are sedentary and stay attached."
+        ],
+        "memory_tip": "Anthozoa means flower animal: sea anemones and corals, marine and fixed.",
+        "margin_note": "Class, phylum, common names, habit. Four or five lines.",
+        "mark_note": "What they are",
+        "lines": [
+          "Anthozoa is a class of the phylum Cnidaria.",
+          "Its members are commonly called sea anemones",
+          "and corals.",
+          "They are marine and sedentary, that is, they",
+          "stay fixed to the substratum.",
+          "They may be solitary or colonial."
+        ]
+      },
+      {
+        "id": "s2_body_form",
+        "kind": "text",
+        "label": "Body form",
+        "marks": 1,
+        "why": "With no medusa there is no swimming stage at all, so an anthozoan spends its whole life as a polyp fixed in one place.",
+        "common_mistakes": [
+          "Writing that both polyp and medusa occur. In Anthozoa the medusa is absent.",
+          "Leaving out the mesenteries. The divided gastrovascular cavity is a mark of the class."
+        ],
+        "memory_tip": "Polyp only, no medusa, and the inside divided by mesenteries.",
+        "margin_note": "The absent medusa and the mesenteries are the two facts marked here.",
+        "mark_note": "Body form",
+        "lines": [
+          "Only the polyp form occurs in the life cycle.",
+          "The medusa stage is absent.",
+          "The gastrovascular cavity is divided by",
+          "vertical partitions called mesenteries, or",
+          "septa, which increase its inner surface.",
+          "The mouth opens into a tube called the",
+          "stomodaeum."
+        ]
+      },
+      {
+        "id": "s3_cnidocytes",
+        "kind": "text",
+        "label": "Cnidocytes, mesogloea, germ cells",
+        "marks": 1,
+        "why": "In the simpler cnidarians the cnidocytes and the germ cells are limited to one layer, so finding both layers involved is what places Anthozoa at the top of the class.",
+        "common_mistakes": [
+          "Writing that cnidocytes occur in the ectoderm only. In Anthozoa they occur in both layers.",
+          "Placing the germ cells in the ectoderm. In Anthozoa they arise in the endoderm."
+        ],
+        "memory_tip": "Both layers carry cnidocytes, and the germ cells come from the inner layer.",
+        "margin_note": "Three short facts. One line each is enough.",
+        "mark_note": "Cnidocytes and germ cells",
+        "lines": [
+          "Cnidocytes are present in the ectoderm and",
+          "also in the endoderm.",
+          "The mesogloea is thick and contains",
+          "connective tissue with cells in it.",
+          "The germ cells arise from the endoderm.",
+          "These features make the anthozoans the most",
+          "advanced cnidarians."
+        ]
+      },
+      {
+        "id": "s4_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "why": "Each example stands for one habit of the class: a solitary anemone, a colony that builds a stony skeleton, and a colony that grows in the shape of a feather.",
+        "common_mistakes": [
+          "Naming Hydra or Aurelia. Hydra is a hydrozoan and Aurelia is a scyphozoan.",
+          "Giving no example. Two or three named animals are expected."
+        ],
+        "memory_tip": "Anemone, coral, sea pen: Adamsia, Corallium, Pennatula.",
+        "margin_note": "Two or three examples with the common name beside each.",
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Polyp only, no medusa, mesenteries present",
+            "style": "boxed"
+          },
+          "Examples:",
+          "Adamsia — the sea anemone.",
+          "Corallium rubrum — the red coral.",
+          "Pennatula — the sea pen."
+        ]
+      }
+    ]
+  },
+  "insider_note": "This is a list question, so write it as a numbered list — the examiner ticks points, and a paragraph hides them."
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_metabolism_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the term metabolism. Give any one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.50, VSAQ 69). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book lists photosynthesis among its examples; photosynthesis is a metabolic reaction but is a plant process, so the card gives animal examples for a zoology paper. CROSS-BANK: botany asks the same definition in ts_ipe_b1_lw_metabolism_anabolism_catabolism with a different second half. The book prints no year citation for this question, so `appearances` is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What metabolism is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Metabolism is a total, not a single reaction, so the definition must say all the chemical reactions of the body taken together.",
+        "common_mistakes": [
+          "Naming one reaction as the definition. One reaction is an example; metabolism is all of them together.",
+          "Writing that non-living things show metabolism. They do not, and this is one of the marks of a living body."
+        ],
+        "memory_tip": "Metabolism is the whole sum: every chemical change of the body added together.",
+        "margin_note": "One sentence of definition and one line on why it matters. Then the example.",
+        "lines": [
+          "Metabolism is the sum of all the chemical",
+          "reactions that take place inside the body of",
+          "an organism.",
+          "Every living organism shows metabolism, so it",
+          "is a defining character of living things."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "why": "One named reaction shows that the student can point to metabolism happening, and naming a building reaction beside a breaking one shows both halves of it.",
+        "common_mistakes": [
+          "Giving photosynthesis in a zoology paper. It is a metabolic reaction, but choose an animal example such as digestion or respiration."
+        ],
+        "memory_tip": "Anabolic builds up, catabolic breaks down; metabolism is both together.",
+        "margin_note": "Only one example is asked. Name two or three at most.",
+        "lines": [
+          {
+            "text": "Examples: digestion, respiration, excretion",
+            "style": "boxed"
+          },
+          "Digestion breaks large food molecules into",
+          "small ones that the body can absorb.",
+          "Respiration releases energy from food.",
+          "Reactions that build molecules up are called",
+          "anabolic, and those that break them down are",
+          "called catabolic."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Only one example is asked, so do not spend time listing many — write the definition carefully and name digestion or respiration."
+}

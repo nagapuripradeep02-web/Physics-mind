@@ -1,0 +1,289 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_laq_major_air_pollutants",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "List out the major air pollutants and describe their effects on human beings.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Air pollution and the list",
+      "marks": 2
+    },
+    {
+      "label": "Carbon monoxide",
+      "marks": 1
+    },
+    {
+      "label": "Carbon dioxide",
+      "marks": 1
+    },
+    {
+      "label": "Sulphur dioxide",
+      "marks": 1
+    },
+    {
+      "label": "Nitrogen oxides",
+      "marks": 1
+    },
+    {
+      "label": "Aerosols",
+      "marks": 1
+    },
+    {
+      "label": "Noise pollution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.28, LAQ 12). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. RULE 35 (globally neutral content): the book's acid rain line cites the Taj Mahal by name as the monument damaged. This card writes the effect in general terms instead — 'buildings and monuments made of marble and limestone' — which states WHY the stone is attacked and keeps the answer portable across syllabi. A student who writes the Taj Mahal is not wrong. BOOK POSITION: the book lists 'Noise pollution' as the sixth major AIR pollutant. Noise is strictly a separate kind of pollution and not a chemical constituent of the air; it is answered here because the board's expected answer for this question lists it, and the point is recorded in that step's why field."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Ecology and Environment · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_list",
+        "kind": "text",
+        "label": "Air pollution and the list",
+        "marks": 2,
+        "mark_note": "The list",
+        "lines": [
+          "Air pollution: any deviation from the",
+          "natural composition of the air that causes",
+          "adverse effects to humans and plants is",
+          "called air pollution.",
+          "The agents that carry air pollution are",
+          "called air pollutants.",
+          "Major air pollutants:",
+          "1) Carbon monoxide (CO)",
+          "2) Carbon dioxide (CO₂)",
+          "3) Sulphur dioxide (SO₂)",
+          "4) Nitrogen oxides (NO, N₂O, NO₂)",
+          "5) Aerosols (particulate matter)",
+          "6) Noise pollution"
+        ],
+        "why": "The question says list out first, so the six names are written as a numbered list before any of them is described; the list is worth two marks on its own and also becomes the order of the rest of the answer.",
+        "common_mistakes": [
+          "Describing the pollutants without listing them first. The list is asked for by name.",
+          "Leaving out the definition of air pollution, which opens the answer.",
+          "Naming chlorofluorocarbons. They are not in this book's list of six."
+        ],
+        "memory_tip": "Two carbon gases, one sulphur gas, the nitrogen oxides, the particles and the noise. Six items.",
+        "margin_note": "Definition in two sentences, then the six names as a numbered list. Two marks."
+      },
+      {
+        "id": "s2_co",
+        "kind": "text",
+        "label": "Carbon monoxide",
+        "marks": 1,
+        "mark_note": "CO",
+        "lines": [
+          "Carbon monoxide (CO) is produced by the",
+          "incomplete combustion of fossil fuels.",
+          "Sources: automobile exhausts, factory fumes,",
+          "emissions from power plants, forest fires",
+          "and the burning of fire wood.",
+          "Harmful effects:",
+          "i) In the presence of carbon monoxide the",
+          "oxygen carrying capacity of haemoglobin is",
+          "reduced.",
+          "ii) At lower concentrations it causes",
+          "headache and blurred vision.",
+          "iii) At higher concentrations it leads to",
+          "coma and sometimes to death.",
+          "Every pollutant below follows the same",
+          "order: source, then harmful effects."
+        ],
+        "why": "Carbon monoxide acts on one target only, the haemoglobin, so that fact is written first and the two levels of effect follow from it in order of dose — mild at low concentration, fatal at high.",
+        "common_mistakes": [
+          "Writing that carbon monoxide comes from complete combustion. It comes from INCOMPLETE combustion.",
+          "Writing that it damages the lungs. It acts on the HAEMOGLOBIN of the blood.",
+          "Giving the effects without separating the low and high concentrations."
+        ],
+        "memory_tip": "Carbon monoxide takes the seat oxygen should have on the haemoglobin. Low dose: headache. High dose: coma.",
+        "margin_note": "Source line, then three effects in order of dose. Keep the same shape for all six pollutants."
+      },
+      {
+        "id": "s3_co2",
+        "kind": "text",
+        "label": "Carbon dioxide",
+        "marks": 1,
+        "mark_note": "CO₂",
+        "lines": [
+          "Carbon dioxide (CO₂) is produced by the",
+          "respiration of living beings, but plants use",
+          "it for photosynthesis.",
+          "Sources: burning of fossil fuels such as",
+          "gasoline, automobiles, aeroplanes and power",
+          "plants.",
+          "Harmful effects:",
+          "i) When its concentration rises above the",
+          "normal level it results in global warming.",
+          "ii) Global warming brings many adverse",
+          "effects on mankind, such as climatic change",
+          "and the melting of the polar ice."
+        ],
+        "why": "Carbon dioxide is the one pollutant on the list that is also a normal part of the air, so the answer says plants use it before saying it is harmful — the harm is in the EXCESS, not in the gas.",
+        "common_mistakes": [
+          "Writing that carbon dioxide is poisonous like carbon monoxide. Its harm is global warming, not poisoning.",
+          "Leaving out the words above the normal level. Ordinary carbon dioxide is not a pollutant."
+        ],
+        "memory_tip": "Carbon monoxide poisons the blood; carbon dioxide warms the planet. One letter, two different harms.",
+        "margin_note": "Note that plants use it, then the sources, then global warming as the effect."
+      },
+      {
+        "id": "s4_so2",
+        "kind": "text",
+        "label": "Sulphur dioxide",
+        "marks": 1,
+        "mark_note": "SO₂",
+        "lines": [
+          "Sulphur dioxide (SO₂) is produced mainly by",
+          "the burning of fossil fuels, the melting of",
+          "sulphur ores and metal smelting.",
+          "Harmful effects:",
+          "i) Breathing problems such as asthma.",
+          "ii) Aggravation of cardiovascular problems.",
+          "iii) Corrosion of buildings and monuments."
+        ],
+        "why": "Sulphur dioxide is the pollutant whose effects reach both people and stone, so the three effects are written to cover the lungs, the heart and the buildings.",
+        "common_mistakes": [
+          "Writing that sulphur dioxide causes global warming. That is carbon dioxide.",
+          "Giving only the effects on people. The corrosion of buildings is one of the three."
+        ],
+        "memory_tip": "Sulphur dioxide attacks two things: the breathing passages and the stone of buildings.",
+        "margin_note": "Source line, then three effects. Keep this one short; it is a single mark."
+      },
+      {
+        "id": "s5_nox",
+        "kind": "text",
+        "label": "Nitrogen oxides",
+        "marks": 1,
+        "mark_note": "Nitrogen oxides",
+        "lines": [
+          "Nitrogen oxides (NO, N₂O, NO₂) are produced",
+          "by automobile exhaust.",
+          "Harmful effects:",
+          "i) The oxides of nitrogen together with",
+          "sulphur dioxide produce acid rain.",
+          "ii) Acid rain acidifies water bodies and",
+          "spoils crops, buildings and monuments made",
+          "of marble and limestone.",
+          "iii) Nitrogen dioxide with hydrocarbons and",
+          "sunlight in foggy conditions produces",
+          "photochemical smog. Spots form on leaves,",
+          "photosynthesis is reduced and the crop",
+          "yield falls.",
+          "iv) Nitrogen oxides combine with secondary",
+          "pollutants to form PAN (peroxy acetyl",
+          "nitrate), which irritates the eyes and the",
+          "respiratory tract."
+        ],
+        "why": "The nitrogen oxides are the busiest pollutant on the list because they produce three named products — acid rain, photochemical smog and PAN — and each of those has to be named, since the marks are given for the names.",
+        "common_mistakes": [
+          "Writing that nitrogen oxides alone make acid rain. Sulphur dioxide acts together with them.",
+          "Leaving out PAN. Its full name, peroxy acetyl nitrate, is the one the examiner looks for.",
+          "Leaving out photochemical smog, which needs sunlight and fog together with the hydrocarbons."
+        ],
+        "memory_tip": "Three products from one family: acid rain, photochemical smog and PAN.",
+        "margin_note": "Name all three products in full. This mark is dense, so use short numbered lines."
+      },
+      {
+        "id": "s6_aerosols",
+        "kind": "text",
+        "label": "Aerosols",
+        "marks": 1,
+        "mark_note": "Aerosols",
+        "lines": [
+          "Aerosols, also called particulate matter,",
+          "are colloidal particles dispersed in a gas.",
+          "Sources: combustion of fossil fuels, fly ash",
+          "from thermal plants, cement factories and",
+          "asbestos plants.",
+          "Harmful effects:",
+          "i) They decrease lung function.",
+          "ii) They aggravate asthma and cause chronic",
+          "bronchitis.",
+          "iii) They cause premature death in patients",
+          "with heart and lung disease, and an",
+          "irregular heart beat."
+        ],
+        "why": "Aerosols are solid particles rather than a gas, so the definition names them as particles first; every effect that follows is then a physical effect of particles lodging in the lungs.",
+        "common_mistakes": [
+          "Calling aerosols a gas. They are solid or liquid PARTICLES dispersed in a gas.",
+          "Leaving out the sources. Fly ash, cement and asbestos are the named ones."
+        ],
+        "memory_tip": "Aerosols are dust, not gas: they settle in the lungs, so the effects are lung effects.",
+        "margin_note": "Definition, sources, then three effects. One mark, so keep the lines short."
+      },
+      {
+        "id": "s7_noise",
+        "kind": "boxed_final",
+        "label": "Noise pollution",
+        "marks": 1,
+        "mark_note": "Noise",
+        "lines": [
+          {
+            "text": "Noise above 120 dB; damage above 150 dB",
+            "style": "boxed"
+          },
+          "Noise pollution is caused by undesirable",
+          "high sounds, above 120 dB.",
+          "Harmful effects:",
+          "i) Extremely high sounds, above 150 dB,",
+          "damage the ear drums and cause permanent",
+          "hearing impairment.",
+          "ii) Noise also causes auditory fatigue,",
+          "anxiety, sleeplessness (insomnia) and",
+          "stress."
+        ],
+        "why": "The two decibel figures are the whole of this step, so both are given with the effect each one produces. Note that noise is strictly a separate kind of pollution and not a chemical air pollutant; this book lists it sixth among the major air pollutants, so it is answered here as the paper asks.",
+        "common_mistakes": [
+          "Giving only one decibel figure. 120 dB is where noise pollution begins; 150 dB is where damage begins.",
+          "Writing that noise pollution only affects hearing. It also causes anxiety, insomnia and stress."
+        ],
+        "memory_tip": "120 to start, 150 to damage. Two numbers, two lines.",
+        "margin_note": "Both decibel numbers with their effects. Close the answer here."
+      }
+    ]
+  },
+  "insider_note": "The six names are worth two marks on their own, so write the numbered list before describing anything — and inside each pollutant the examiner looks for the source line followed by the effects."
+}

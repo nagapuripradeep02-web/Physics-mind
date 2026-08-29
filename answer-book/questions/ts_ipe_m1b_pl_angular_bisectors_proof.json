@@ -12,7 +12,7 @@
   },
   "chapter": "Pair of Straight Lines",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "If the equation ax²+2hxy+by²=0 represents a pair of lines then prove that the equation of the pair of angular bisectors is h(x²−y²)−(a−b)xy=0.",
@@ -37,19 +37,19 @@
     },
     {
       "label": "Substitute back from (1)",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.19 — LAQ chapter 2 Pair of Straight Lines, answer 6. Printed appearance: AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.19 — LAQ chapter 2 Pair of Straight Lines, answer 6. Printed appearance: AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Substitute back from (1)."
   },
   "recall_prompt": "Say how you would prove this — say what property defines an angular bisector, and what you substitute at the end.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Pair of Straight Lines · 7 marks"
+      "Pair of Straight Lines · 8 marks"
     ],
     "steps": [
       {
@@ -184,8 +184,8 @@
         "id": "s4_substitute_back",
         "kind": "boxed_final",
         "label": "Substitute back from (1)",
-        "marks": 2,
-        "margin_note": "The last two marks. Turn both brackets into product form so that (1) can be used: sin²α − sin²β = sin(α+β)sin(α−β), and sin2α − sin2β = 2cos(α+β)sin(α−β). The common sin(α−β) then cancels.",
+        "marks": 3,
+        "margin_note": "The last three marks. Turn both brackets into product form so that (1) can be used: sin²α − sin²β = sin(α+β)sin(α−β), and sin2α − sin2β = 2cos(α+β)sin(α−β). The common sin(α−β) then cancels.",
         "lines": [
           "⇒ [sin(α + β) sin(α − β)](x² − y²) = 2cos(α + β) sin(α − β) xy",
           "  [∵ sin²A − sin²B = sin(A+B)sin(A−B),  sin2A − sin2B = 2cos(A+B)sin(A−B)]",

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_male_vs_female_frog",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you distinguish a male frog from a female frog?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Vocal sacs",
+      "marks": 1
+    },
+    {
+      "label": "Copulatory pad",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.56, VSAQ 115). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_vocal",
+        "kind": "text",
+        "label": "Vocal sacs",
+        "marks": 1,
+        "mark_note": "Vocal sacs",
+        "margin_note": "Name the character, its position and its use. Two characters, one mark each.",
+        "lines": [
+          "A male frog carries secondary sexual",
+          "characters. They are absent in the female frog.",
+          "1) The male has a pair of vocal sacs at the",
+          "angles of the lower jaw.",
+          "They swell with air and make the croak louder."
+        ],
+        "why": "Both differences are secondary sexual characters of the male, so the answer is written as two things the male has and the female lacks.",
+        "common_mistakes": [
+          "Describing the female instead. The female has neither character; write what the male has.",
+          "Placing the vocal sacs on the throat middle. They lie at the angles of the lower jaw."
+        ],
+        "memory_tip": "Two male marks: sacs at the jaw for sound, pad on the thumb for holding."
+      },
+      {
+        "id": "s2_pad",
+        "kind": "boxed_final",
+        "label": "Copulatory pad",
+        "marks": 1,
+        "mark_note": "Pad",
+        "margin_note": "One boxed line names both male characters; the rest gives position and use.",
+        "lines": [
+          {
+            "text": "Male frog: vocal sacs + copulatory pad",
+            "style": "boxed"
+          },
+          "2) The male has a copulatory pad on the first",
+          "digit of each forelimb.",
+          "It helps him hold the female during mating.",
+          "The female frog has neither of these, and her",
+          "body is larger."
+        ],
+        "why": "The copulatory pad holds the female, so it sits on the digit that presses against her body during mating, and it appears only in the male.",
+        "common_mistakes": [
+          "Calling it a nuptial pad on the hind limb. It is on the first digit of the FORElimb.",
+          "Writing that both sexes have the pad. Only the male has it."
+        ],
+        "memory_tip": "First digit of the front limb: the thumb pad that holds the female."
+      }
+    ]
+  },
+  "insider_note": "Both marks are for the male's two characters; a line saying the female is bigger is true but earns nothing on its own."
+}

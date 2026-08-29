@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_exflagellation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is exflagellation and what are the resultant products called?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The process",
+      "marks": 1
+    },
+    {
+      "label": "The products",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.59, VSAQ 146). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_process",
+        "kind": "text",
+        "label": "The process",
+        "marks": 1,
+        "mark_note": "Process",
+        "lines": [
+          "In the crop of the female Anopheles mosquito the",
+          "nucleus of the microgametocyte divides into",
+          "eight daughter nuclei.",
+          "These nuclei pass into eight thin flagella-like",
+          "structures. The structures then lash about and",
+          "break away from the parent body.",
+          "This liberation of the flagella-like male",
+          "gametes is called exflagellation."
+        ],
+        "why": "The process is named for what is seen down the microscope — thin threads whipping off a body — so the answer describes the eight nuclei, the eight threads and the breaking away, in that order.",
+        "common_mistakes": [
+          "Writing that exflagellation happens in man. It happens in the crop of the mosquito.",
+          "Giving the wrong number. Eight daughter nuclei give eight male gametes."
+        ],
+        "memory_tip": "Eight nuclei, eight lashing threads, eight gametes break free.",
+        "margin_note": "Three short lines in order: nuclei, threads, breaking away."
+      },
+      {
+        "id": "s2_products",
+        "kind": "boxed_final",
+        "label": "The products",
+        "marks": 1,
+        "mark_note": "Products",
+        "lines": [
+          {
+            "text": "Eight male gametes (microgametes)",
+            "style": "boxed"
+          },
+          "The products of exflagellation are the male",
+          "gametes, also called microgametes.",
+          "One of them later enters the fertilization cone",
+          "of the female gamete."
+        ],
+        "why": "Naming the product also fixes the place of exflagellation in the cycle, because the very next event is fertilization inside the mosquito.",
+        "common_mistakes": [
+          "Calling the products sporozoites. Sporozoites are formed much later, in the oocyst.",
+          "Calling them gametocytes. The gametocyte is what the gametes were formed FROM."
+        ],
+        "memory_tip": "Gametocyte to gametes: exflagellation makes the male gametes, not the sporozoites.",
+        "margin_note": "Name the product, then one line on what happens to it next."
+      }
+    ]
+  },
+  "insider_note": "Half of this question is a counting mark — eight nuclei giving eight male gametes — so state the number plainly."
+}

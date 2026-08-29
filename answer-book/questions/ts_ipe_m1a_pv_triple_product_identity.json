@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 7,
     "name": "Product of Vectors"
   },
   "chapter": "Product of Vectors",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "If a, b, c are three vectors, then prove that (a×b)×c = (c·a)b − (c·b)a.",
@@ -41,7 +41,7 @@
     },
     {
       "label": "Expand (c·a)b − (c·b)a",
-      "marks": 2
+      "marks": 3
     },
     {
       "label": "Compare and conclude",
@@ -51,13 +51,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.38 — LAQ chapter 4 Product of Vectors, answer 25. Printed appearances: AP 15,19. The only PROOF in this chapter — every other answer computes with numbers. The book calls it \"Lengthy but Easy\", and that is fair: there is no trick, only bookkeeping. ONE PRESENTATION CHANGE, made deliberately: the book writes out all nine component terms of each side in full, across most of a page. Those lines are several times wider than this page body, so each side is expanded to its i-component and the pattern for j and k stated in words. Same mathematics, same marked steps, no line that would be truncated.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.38 — LAQ chapter 4 Product of Vectors, answer 25. Printed appearances: AP 15,19. The only PROOF in this chapter — every other answer computes with numbers. The book calls it \"Lengthy but Easy\", and that is fair: there is no trick, only bookkeeping. ONE PRESENTATION CHANGE, made deliberately: the book writes out all nine component terms of each side in full, across most of a page. Those lines are several times wider than this page body, so each side is expanded to its i-component and the pattern for j and k stated in words. Same mathematics, same marked steps, no line that would be truncated.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Expand (c·a)b − (c·b)a."
   },
   "recall_prompt": "Say how you would prove this identity — say what you do to each side and how they meet.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Product of Vectors · 7 marks"
+      "Product of Vectors · 8 marks"
     ],
     "steps": [
       {
@@ -195,9 +195,9 @@
         "id": "s4_rhs",
         "kind": "equation",
         "label": "Expand the right side",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "R.H.S",
-        "margin_note": "Two marks. c·a and c·b are NUMBERS, each a sum of three products. Multiplying them into b and a gives six terms per component, of which two always cancel.",
+        "margin_note": "Three marks. c·a and c·b are NUMBERS, each a sum of three products. Multiplying them into b and a gives six terms per component, of which two always cancel.",
         "lines": [
           "c·a = c₁a₁ + c₂a₂ + c₃a₃,",
           "c·b = c₁b₁ + c₂b₂ + c₃b₃",

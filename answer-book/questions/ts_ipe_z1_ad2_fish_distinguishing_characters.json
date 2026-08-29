@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_fish_distinguishing_characters",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "List out eight characteristics that help distinguish a fish from the other vertebrates.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Habitat and scales",
+      "marks": 1
+    },
+    {
+      "label": "Vertebrae and fins",
+      "marks": 1
+    },
+    {
+      "label": "Gills and gill slits",
+      "marks": 1
+    },
+    {
+      "label": "The heart",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.39, SAQ 35). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-II (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_habitat",
+        "kind": "text",
+        "label": "Habitat and scales",
+        "marks": 1,
+        "mark_note": "Habitat",
+        "margin_note": "Two characters here. Eight are asked, so plan two per mark.",
+        "lines": [
+          "1) Fishes are aquatic, ectothermal (cold",
+          "blooded), scaly vertebrates.",
+          "2) The scales are mesodermal in origin. In some",
+          "fishes they are modified into shields or into",
+          "spines."
+        ],
+        "why": "The scales of a fish come from the mesoderm, unlike the ectodermal scales of a reptile, so the origin is the fact that separates the two and is worth writing.",
+        "common_mistakes": [
+          "Writing that fish scales are ectodermal. They are mesodermal; reptile scales are ectodermal.",
+          "Calling fishes warm blooded. They are ectothermal."
+        ],
+        "memory_tip": "Water, cold blood, scales from the middle layer: the first three words of the answer."
+      },
+      {
+        "id": "s2_vertebrae",
+        "kind": "text",
+        "label": "Vertebrae and fins",
+        "marks": 1,
+        "mark_note": "Fins",
+        "margin_note": "Name all five fins. Half marks are lost by writing only fins are present.",
+        "lines": [
+          "3) The vertebrae are amphicoelous: the centrum",
+          "is hollowed on both faces.",
+          "4) Fins are present and are used for",
+          "locomotion.",
+          "5) The fins are of two kinds. Paired fins are",
+          "the pectoral and the pelvic. Median fins are",
+          "the dorsal, the caudal and the anal."
+        ],
+        "why": "Fins are the character a student can see, so the answer separates them into paired and median and names all five, which is what the examiner counts.",
+        "common_mistakes": [
+          "Writing that all fins are paired. The dorsal, caudal and anal fins are median and single.",
+          "Calling the vertebrae procoelous. Fish vertebrae are amphicoelous, hollow on both faces."
+        ],
+        "memory_tip": "Two paired, three median: pectoral and pelvic in pairs, dorsal, caudal and anal single."
+      },
+      {
+        "id": "s3_gills",
+        "kind": "text",
+        "label": "Gills and gill slits",
+        "marks": 1,
+        "mark_note": "Gills",
+        "margin_note": "Two characters. The operculum contrast is a cheap extra line that reads well.",
+        "lines": [
+          "6) Gills are the respiratory organs.",
+          "7) The gill slits are open in cartilaginous",
+          "fishes.",
+          "In bony fishes they are covered by a bony flap",
+          "called the operculum."
+        ],
+        "why": "Gills are what make a fish a fish, and the open or covered slit is the one line that also separates the two classes of fishes inside the group.",
+        "common_mistakes": [
+          "Writing that all fishes have an operculum. Cartilaginous fishes have open gill slits.",
+          "Saying fishes breathe through lungs. Gills are the respiratory organs."
+        ],
+        "memory_tip": "Shark slits are open to the water; a bony fish keeps its slits under a lid."
+      },
+      {
+        "id": "s4_heart",
+        "kind": "boxed_final",
+        "label": "The heart",
+        "marks": 1,
+        "mark_note": "Heart",
+        "margin_note": "Close with the heart. Both names with both reasons make this the strongest mark.",
+        "lines": [
+          {
+            "text": "Ventral, 2 chambered: branchial and venous",
+            "style": "boxed"
+          },
+          "8) The heart is ventral in position and two",
+          "chambered, with one auricle and one ventricle.",
+          "It is called a branchial heart, because it",
+          "pumps blood directly to the gills.",
+          "It is also called a venous heart, because it",
+          "holds only deoxygenated blood."
+        ],
+        "why": "The two names of the fish heart come from two different facts, where the blood goes and what kind of blood it is, so both names need their own reason.",
+        "common_mistakes": [
+          "Writing three chambers. The fish heart has only two.",
+          "Giving one name without its reason. Branchial is for the gills, venous is for the blood."
+        ],
+        "memory_tip": "One name for the destination (branchial, to the gills), one for the contents (venous)."
+      }
+    ]
+  },
+  "insider_note": "Eight characters are asked and four marks are given, so write them numbered 1 to 8 — an examiner counting a numbered list awards faster than one reading a paragraph."
+}

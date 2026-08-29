@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_vant_hoff_rule",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain Van't Hoff rule.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The rule",
+      "marks": 1
+    },
+    {
+      "label": "Stated in reverse",
+      "marks": 1
+    },
+    {
+      "label": "Temperature coefficient Q₁₀",
+      "marks": 1
+    },
+    {
+      "label": "Value in living organisms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.68, Star Questions Plus, SAQ 188). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecology and Environment · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "text",
+        "label": "The rule",
+        "marks": 1,
+        "mark_note": "The rule",
+        "lines": [
+          "Van't Hoff's rule states that for every rise",
+          "of 10°C in temperature, the rate of the",
+          "metabolic activities of an animal doubles."
+        ],
+        "why": "The rule is one sentence and it holds three numbers — the step of 10°C, the factor of two, and the direction of the change — so all three go into the first line.",
+        "common_mistakes": [
+          "Writing that the rate doubles for every 1°C. The step is 10°C.",
+          "Writing that the temperature doubles. It is the RATE of metabolism that doubles."
+        ],
+        "memory_tip": "Ten up, rate times two. Ten down, rate halved.",
+        "margin_note": "One sentence with both numbers in it. Do not start on Q₁₀ yet."
+      },
+      {
+        "id": "s2_reverse",
+        "kind": "text",
+        "label": "Stated in reverse",
+        "marks": 1,
+        "mark_note": "Reverse",
+        "lines": [
+          "Stated in reverse, for every fall of 10°C in",
+          "temperature the rate of the metabolic",
+          "reactions is halved.",
+          "So the rule works in both directions."
+        ],
+        "why": "Writing the rule the other way round is a separate mark in this answer because it shows the rule is a relation between temperature and rate, not a one-way effect of heating.",
+        "common_mistakes": [
+          "Writing that cooling stops metabolism. It HALVES the rate for each 10°C fall.",
+          "Repeating the first statement in the same direction."
+        ],
+        "memory_tip": "Same rule, mirror image: double going up, half coming down.",
+        "margin_note": "One sentence, reversed. Two lines are enough."
+      },
+      {
+        "id": "s3_q10",
+        "kind": "text",
+        "label": "Temperature coefficient Q₁₀",
+        "marks": 1,
+        "mark_note": "Q₁₀",
+        "lines": [
+          "The effect of temperature on the rate of a",
+          "reaction is expressed in terms of the",
+          "temperature coefficient Q₁₀.",
+          "Q₁₀ is the ratio between the rate of the",
+          "reaction at X°C and the rate at (X − 10)°C."
+        ],
+        "why": "Q₁₀ is the number that MEASURES the rule, so it must be defined as a ratio of two rates ten degrees apart; a definition without the two temperatures does not say what is being compared.",
+        "common_mistakes": [
+          "Calling Q₁₀ a temperature. It is a RATIO of two reaction rates.",
+          "Leaving out the 10°C gap between the two rates being compared."
+        ],
+        "memory_tip": "Q₁₀ is a ratio, so it has no units: the rate now divided by the rate ten degrees colder.",
+        "margin_note": "Name the coefficient and define it as a ratio with the two temperatures."
+      },
+      {
+        "id": "s4_value",
+        "kind": "boxed_final",
+        "label": "Value in living organisms",
+        "marks": 1,
+        "mark_note": "Value",
+        "lines": [
+          {
+            "text": "Q₁₀ ≈ 2 in living organisms",
+            "style": "boxed"
+          },
+          "In living organisms the value of Q₁₀ is",
+          "about 2.0.",
+          "That is, the rate of metabolism doubles for",
+          "every rise of 10°C in temperature.",
+          "This is the same statement as the rule",
+          "itself, now written as a number."
+        ],
+        "why": "Closing with the value of about 2.0 ties the coefficient back to the rule, showing they are one statement in two forms — words and a number.",
+        "common_mistakes": [
+          "Giving Q₁₀ a value of 10. The value in living organisms is about 2.",
+          "Not linking the value back to the rule. The number 2 IS the doubling."
+        ],
+        "memory_tip": "Q₁₀ of 2 and the word doubles say the same thing.",
+        "margin_note": "The number first, then one line tying it back to the rule."
+      }
+    ]
+  },
+  "insider_note": "Q₁₀ is the part of this answer most often left out, and it carries half the marks — define it as a ratio and give its value of about 2."
+}

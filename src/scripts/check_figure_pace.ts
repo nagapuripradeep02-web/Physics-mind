@@ -24,49 +24,6 @@
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { pathLength } from '../lib/answerBook/pathLength';
-import { answerBookQuestionSchema } from '../schemas/answerBook';
-
-/**
- * Does this branch's schema actually ACCEPT a phase marker?
- *
- * This gate was ported from the zoology branch, where `{type:'pause'}` is part
- * of the figure element union and `notebook.js` knows how to stop on one. Here
- * neither exists — the union is `stroke | label` and the player has no pause
- * handling — so demanding a phase on a big figure demanded something that
- * cannot be authored. Two chapter agents hit the contradiction on the same day
- * and both worked around it by capping figures at 15 drawn elements.
- *
- * Rather than hardcode "this branch has no pause", PROBE the schema. The day the
- * phased-figure mechanism lands (schema + player together, as a platform change
- * under Rule 40 rather than inside a chapter branch) this gate resumes enforcing
- * phases on its own, with no edit here.
- */
-const PHASES_SUPPORTED = (() => {
-    const probe = {
-        schema_version: 'answer_book_v1', question_id: 'probe', board: 'ts_ipe',
-        board_label: 'probe', subject: 'physics_2', year_cycle: 'second_year',
-        class_label: 'probe', unit: { number: 1, name: 'probe' }, chapter: 'probe',
-        qtype: 'VSAQ', marks_total: 1, paper_section: 'Section A', expected_time_min: 1,
-        question_text: 'probe', appearances: [], mark_split: [{ label: 'probe', marks: 1 }],
-        verification: { status: 'unverified', needs_teacher_verification: true, note: 'probe' },
-        recall_prompt: 'probe',
-        answer: {
-            page_header: ['probe'],
-            steps: [{
-                id: 's1', kind: 'diagram', label: 'probe', marks: 1, lines: ['probe'],
-                figure: {
-                    id: 'f1', width: 10, height: 10,
-                    elements: [
-                        { type: 'stroke', id: 'a', d: 'M 0 0 L 1 1', ms: 100 },
-                        { type: 'pause', id: 'p', caption: 'probe' },
-                        { type: 'stroke', id: 'b', d: 'M 1 1 L 2 2', ms: 100 },
-                    ],
-                },
-            }],
-        },
-    };
-    return answerBookQuestionSchema.safeParse(probe).success;
-})();
 
 const ROOT = process.cwd();
 const QDIR = join(ROOT, 'answer-book', 'questions');
@@ -102,13 +59,7 @@ for (const f of files) {
         const drawn = els.filter((e) => e.type !== 'pause').length;
         const pauses = els.filter((e) => e.type === 'pause').length;
         if (drawn >= PHASE_MIN && pauses === 0) {
-            const msg = `${drawn} drawn elements and NO phase — a complex figure must be drawn in named steps (add pause elements)`;
-            // Only a FAILURE where a phase can actually be authored. Where the
-            // schema rejects `pause`, this is a real gap in the platform, not a
-            // fault in the card — so it warns and names the missing mechanism
-            // instead of blocking a chapter on something unauthorable.
-            if (PHASES_SUPPORTED) sink.push({ file: f, fig: fig.id, msg });
-            else warns.push({ file: f, fig: fig.id, msg: `${msg} — but this branch's schema has NO pause element, so the figure cannot be phased. Port the phased-figure mechanism (schema + notebook.js player) as a platform change, or keep figures under ${PHASE_MIN} drawn elements.` });
+            sink.push({ file: f, fig: fig.id, msg: `${drawn} drawn elements and NO phase — a complex figure must be drawn in named steps (add pause elements)` });
         }
         let totalMs = 0;
         for (const e of els) {

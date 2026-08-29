@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_cannabinoids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write short notes on Cannabinoids.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Source",
+      "marks": 1
+    },
+    {
+      "label": "Products",
+      "marks": 1
+    },
+    {
+      "label": "How they are taken",
+      "marks": 1
+    },
+    {
+      "label": "Effect on the body",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.44, SAQ 48). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_source",
+        "kind": "text",
+        "label": "Source",
+        "marks": 1,
+        "mark_note": "Source",
+        "lines": [
+          "Cannabinoids are drugs obtained from the hemp",
+          "plant, Cannabis sativa.",
+          "The flower tips, the leaves and the resin of the",
+          "plant are the parts used."
+        ],
+        "why": "The parts of the plant used are what decide which product is made, so naming the flower tips, leaves and resin sets up the list of products in the next step.",
+        "common_mistakes": [
+          "Naming Papaver somniferum. That plant gives the opioids, not the cannabinoids.",
+          "Writing that the roots are used. The flower tips, leaves and resin are used."
+        ],
+        "memory_tip": "One plant, three parts: flower tips, leaves and resin of Cannabis sativa.",
+        "margin_note": "Two lines: the plant name and the parts used."
+      },
+      {
+        "id": "s2_products",
+        "kind": "text",
+        "label": "Products",
+        "marks": 1,
+        "mark_note": "Products",
+        "lines": [
+          "These parts are used in different combinations",
+          "to produce marijuana, hashish, charas and ganja."
+        ],
+        "why": "Four named products come from one plant, and the list itself is the mark, so the names must be written out rather than summed up as 'various drugs'.",
+        "common_mistakes": [
+          "Writing 'various drugs are produced' with no names. The four names carry the mark.",
+          "Adding cocaine or heroin to this list. They come from other plants."
+        ],
+        "memory_tip": "Four from one plant: marijuana, hashish, charas, ganja.",
+        "margin_note": "One line with all four names. Nothing else is needed here."
+      },
+      {
+        "id": "s3_taken",
+        "kind": "text",
+        "label": "How they are taken",
+        "marks": 1,
+        "mark_note": "Route",
+        "lines": [
+          "Cannabinoids are taken orally or by inhalation.",
+          "Some sportspersons take these drugs to change",
+          "their performance, which is why they are banned",
+          "in sports and games."
+        ],
+        "why": "The route of entry and the misuse in sport are two separate asked facts, and the ban follows directly from the misuse.",
+        "common_mistakes": [
+          "Writing that they are only smoked. They are taken orally as well.",
+          "Leaving out the ban in sports, which is a commonly asked line."
+        ],
+        "memory_tip": "Two routes in, one reason for the ban: oral or inhaled, misused in sport.",
+        "margin_note": "Two lines: the routes, then the misuse and the ban."
+      },
+      {
+        "id": "s4_effect",
+        "kind": "boxed_final",
+        "label": "Effect on the body",
+        "marks": 1,
+        "mark_note": "Effect",
+        "lines": [
+          {
+            "text": "Cardiovascular system is affected",
+            "style": "boxed"
+          },
+          "Cannabinoids act on the central nervous system.",
+          "The cardiovascular system is affected, so the",
+          "heart and the blood vessels are damaged by",
+          "regular use."
+        ],
+        "why": "The syllabus names the cardiovascular system as the target, and that single named system is the closing mark of this answer.",
+        "common_mistakes": [
+          "Writing that cannabinoids act like testosterone. That is the anabolic steroids.",
+          "Writing only 'they are harmful'. Name the system affected."
+        ],
+        "memory_tip": "Cannabinoids hit the nerves and the heart, not the muscles.",
+        "margin_note": "Name the system in the box, then one line. This is the closing mark."
+      }
+    ]
+  },
+  "insider_note": "The named products and the named system carry the marks here; general statements about harm score nothing."
+}

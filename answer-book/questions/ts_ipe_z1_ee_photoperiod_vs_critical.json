@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_photoperiod_vs_critical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between photoperiod and critical photoperiod.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Photoperiod",
+      "marks": 1
+    },
+    {
+      "label": "Critical photoperiod",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.62, VSAQ 167). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_photoperiod",
+        "kind": "text",
+        "label": "Photoperiod",
+        "marks": 1,
+        "mark_note": "Photoperiod",
+        "lines": [
+          "Photoperiod is the duration of the light",
+          "hours in a day.",
+          "It changes with the season and with the",
+          "place on the earth."
+        ],
+        "why": "The photoperiod is simply a measured length of time, so the definition stays short; the second line prepares the contrast by pointing out that this length keeps changing.",
+        "common_mistakes": [
+          "Writing that the photoperiod is the intensity of light. It is the DURATION of light.",
+          "Writing that the photoperiod is fixed. It changes with season and place."
+        ],
+        "memory_tip": "Photoperiod is a reading on a clock: how many hours of light today.",
+        "margin_note": "One sentence and one line. Keep the space for the second half."
+      },
+      {
+        "id": "s2_critical",
+        "kind": "boxed_final",
+        "label": "Critical photoperiod",
+        "marks": 1,
+        "mark_note": "Critical",
+        "lines": [
+          {
+            "text": "Critical photoperiod: the day length needed",
+            "style": "boxed"
+          },
+          "Critical photoperiod is the specific day",
+          "length that is essential to start a seasonal",
+          "event.",
+          "Ex: the day length at which flowering,",
+          "breeding or migration begins."
+        ],
+        "why": "The word critical means a threshold, so the second half needs the word specific and needs a named event — without an event there is nothing for the day length to be critical FOR.",
+        "common_mistakes": [
+          "Writing that the critical photoperiod is the longest day of the year. It is the length that TRIGGERS an event.",
+          "Giving no event. Flowering, breeding or migration must be named."
+        ],
+        "memory_tip": "Photoperiod is any day length; critical photoperiod is the ONE day length that starts something.",
+        "margin_note": "One sentence with the word specific, then one named event."
+      }
+    ]
+  },
+  "insider_note": "The word specific is the difference between the two terms, and an answer without a named seasonal event usually loses the second mark."
+}

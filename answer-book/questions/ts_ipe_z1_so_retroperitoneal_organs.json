@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_retroperitoneal_organs",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are retroperitoneal organs?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Position",
+      "marks": 1
+    },
+    {
+      "label": "Name and example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.51, VSAQ 76). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "text",
+        "label": "Where they lie",
+        "marks": 1,
+        "why": "Retro means behind, so the answer is about the position of the organ with respect to the peritoneal lining.",
+        "common_mistakes": [
+          "Writing that such an organ has no peritoneum at all. It is covered on the ventral side only."
+        ],
+        "memory_tip": "Retro means behind: the organ sits behind the peritoneum, so only its front face is covered.",
+        "margin_note": "Say where the organ sits and how much of it the peritoneum covers. Two lines.",
+        "mark_note": "Position",
+        "lines": [
+          "The peritoneum is the membrane that lines the",
+          "coelom of vertebrates.",
+          "Some organs lie behind this membrane and are",
+          "covered by it on the ventral side only."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The name and the example",
+        "marks": 1,
+        "why": "The term is taught through the kidney, so the named example is what the examiner reads first.",
+        "common_mistakes": [
+          "Giving no example. The kidney is the standard example and carries the second mark."
+        ],
+        "memory_tip": "Kidneys lie against the back wall, so the peritoneum can only reach their front face.",
+        "margin_note": "Name the retroperitoneum and give the kidney as the example.",
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Kidneys are retroperitoneal organs",
+            "style": "boxed"
+          },
+          "Such organs are called retroperitoneal organs.",
+          "The peritoneum covering them is called the",
+          "retroperitoneum.",
+          "Example: the kidneys of vertebrates."
+        ]
+      }
+    ]
+  },
+  "insider_note": "One line of position plus the word kidney is a full-mark answer; long descriptions of the coelom earn nothing extra."
+}

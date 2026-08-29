@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_neuston_vs_nekton",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between neuston and nekton.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Neuston",
+      "marks": 1
+    },
+    {
+      "label": "Nekton",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.62, VSAQ 170). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_neuston",
+        "kind": "text",
+        "label": "Neuston",
+        "marks": 1,
+        "mark_note": "Neuston",
+        "lines": [
+          "Neustons are the animals that live at the",
+          "air-water interface, that is at the surface",
+          "of the water.",
+          "Ex: water striders, beetles and water bugs",
+          "live above the surface — epineuston.",
+          "Ex: mosquito larvae stay just below the",
+          "surface — hyponeuston."
+        ],
+        "why": "Neuston is fixed to one place, the surface film, and it has two named halves — above and below the film — so both are given, since either may be asked for by name.",
+        "common_mistakes": [
+          "Writing that neustons swim in the water. They live AT the surface.",
+          "Mixing up the two halves. Epi is above the surface, hypo is below it."
+        ],
+        "memory_tip": "Epi is on top, hypo is under: the water strider walks on the film, the mosquito larva hangs below it.",
+        "margin_note": "One line for the place, then one example each for above and below."
+      },
+      {
+        "id": "s2_nekton",
+        "kind": "boxed_final",
+        "label": "Nekton",
+        "marks": 1,
+        "mark_note": "Nekton",
+        "lines": [
+          {
+            "text": "Neuston at the surface, nekton swimming",
+            "style": "boxed"
+          },
+          "Nektons are the animals that can swim",
+          "freely in the water.",
+          "They move against the current under their",
+          "own power.",
+          "Ex: fishes, amphibians and water snakes."
+        ],
+        "why": "The distinction is where the animal lives and whether it can swim, so the second half states both — free swimming and moving against the current — which also separates nekton from plankton, which only drift.",
+        "common_mistakes": [
+          "Calling plankton nekton. Plankton drift with the water; nekton swim against it.",
+          "Giving mosquito larvae as nekton. They belong to the neuston, below the surface film."
+        ],
+        "memory_tip": "Neuston lives on the line between air and water; nekton lives in the water and swims.",
+        "margin_note": "One line for swimming, one for the current, then the examples."
+      }
+    ]
+  },
+  "insider_note": "The contrast is surface against open water — a student who writes swims for both terms loses one mark."
+}

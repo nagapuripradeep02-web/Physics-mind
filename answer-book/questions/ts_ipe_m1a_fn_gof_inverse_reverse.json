@@ -6,32 +6,59 @@
   "subject": "mathematics",
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
-  "unit": { "number": 1, "name": "Functions" },
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
   "chapter": "Functions",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "If f: A→B, g: B→C are two bijective functions then prove that (gof)⁻¹ = f⁻¹og⁻¹.",
   "appearances": [
-    { "year": 2020, "board": "ts_ipe" },
-    { "year": 2016, "board": "ts_ipe" },
-    { "year": 2019, "board": "ap_ipe" },
-    { "year": 2017, "board": "ap_ipe" },
-    { "year": 2016, "board": "ap_ipe" }
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
   ],
   "mark_split": [
-    { "label": "Both sides have the same domain", "marks": 3 },
-    { "label": "Both sides give the same value", "marks": 4 }
+    {
+      "label": "Both sides have the same domain",
+      "marks": 3
+    },
+    {
+      "label": "Both sides give the same value",
+      "marks": 5
+    }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 2, on a ★★★ SSP. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,20 and AP 16,17,19. Both are the publisher's claims until a Telangana IPE teacher confirms them."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 2, on a ★★★ SSP. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,20 and AP 16,17,19. Both are the publisher's claims until a Telangana IPE teacher confirms them. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Both sides give the same value."
   },
   "recall_prompt": "Say how you would prove the reverse law for inverses — the two things you have to check, and how each one goes.",
   "answer": {
-    "page_header": ["Section C — Long Answer Question", "Functions · 7 marks"],
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Functions · 8 marks"
+    ],
     "steps": [
       {
         "id": "s1_given",
@@ -40,7 +67,10 @@
         "marks": 0,
         "margin_note": "No mark of its own. It fixes the two sides you are comparing, so the examiner can see you know what has to match.",
         "lines": [
-          { "text": "Given:", "style": "heading" },
+          {
+            "text": "Given:",
+            "style": "heading"
+          },
           "f: A→B and g: B→C are bijective functions.",
           "To prove: (gof)⁻¹ = f⁻¹og⁻¹",
           "Two functions are equal when they have the",
@@ -56,8 +86,20 @@
             "rendu functions equal avvalante domain same undali and value same undali",
             "we compare domain first and then the value at each element"
           ],
-          "reject": ["first I write the given", "I write the question", "both are functions"],
-          "heard_as": ["domain", "bijective", "bijection", "inverse", "g inverse", "f inverse", "gof"]
+          "reject": [
+            "first I write the given",
+            "I write the question",
+            "both are functions"
+          ],
+          "heard_as": [
+            "domain",
+            "bijective",
+            "bijection",
+            "inverse",
+            "g inverse",
+            "f inverse",
+            "gof"
+          ]
         },
         "why": "Function equality is not obvious — two formulas can agree on values and still be different functions if their domains differ. Saying the test out loud is what makes the rest of the answer a proof.",
         "common_mistakes": [
@@ -71,9 +113,12 @@
         "label": "Same domain",
         "marks": 3,
         "mark_note": "Domains",
-        "margin_note": "Three of the seven marks. Show that each side is a bijection from C to A. Write both lines — one for each side.",
+        "margin_note": "Three of the eight marks. Show that each side is a bijection from C to A. Write both lines — one for each side.",
         "lines": [
-          { "text": "Part 1 — the two sides have the same domain", "style": "heading" },
+          {
+            "text": "Part 1 — the two sides have the same domain",
+            "style": "heading"
+          },
           "gof: A→C is a bijection,",
           "so (gof)⁻¹: C→A is also a bijection.",
           "f⁻¹: B→A and g⁻¹: C→B are bijections,",
@@ -90,8 +135,18 @@
             "rendu sides C nunchi A ki velthai so domain same",
             "check the arrows both sides start at C and end at A"
           ],
-          "reject": ["the domains are the same", "I show the domains match", "both are from C to A because they are inverses"],
-          "heard_as": ["domain", "C to A", "bijection", "inverse of gof", "f inverse g inverse"]
+          "reject": [
+            "the domains are the same",
+            "I show the domains match",
+            "both are from C to A because they are inverses"
+          ],
+          "heard_as": [
+            "domain",
+            "C to A",
+            "bijection",
+            "inverse of gof",
+            "f inverse g inverse"
+          ]
         },
         "why": "The inverse of a bijection is itself a bijection, and it runs backwards. Tracking which set each map starts from is what makes both sides land on C.",
         "common_mistakes": [
@@ -103,11 +158,14 @@
         "id": "s3_values",
         "kind": "equation",
         "label": "Same value",
-        "marks": 4,
+        "marks": 5,
         "mark_note": "Values",
-        "margin_note": "Four of the seven marks — the bigger half. Number your three facts (1), (2), (3) and quote the numbers when you use them. The examiner follows the numbers.",
+        "margin_note": "Five of the eight marks — the bigger half. Number your three facts (1), (2), (3) and quote the numbers when you use them. The examiner follows the numbers.",
         "lines": [
-          { "text": "Part 2 — the two sides give the same value", "style": "heading" },
+          {
+            "text": "Part 2 — the two sides give the same value",
+            "style": "heading"
+          },
           "f(a) = b ⇒ a = f⁻¹(b)   …(1)",
           "g(b) = c ⇒ b = g⁻¹(c)   …(2)",
           "(gof)(a) = c ⇒ a = (gof)⁻¹(c)   …(3)",
@@ -127,8 +185,19 @@
             "c teeskoni g inverse tho b vasthundi f inverse tho a vasthundi rendu sides a ne isthai",
             "both sides evaluated at c give a therefore the functions are equal"
           ],
-          "reject": ["then I show the values are equal", "the values match", "it follows from the definition of inverse"],
-          "heard_as": ["c in C", "f inverse", "g inverse", "gof inverse", "for all c", "equal"]
+          "reject": [
+            "then I show the values are equal",
+            "the values match",
+            "it follows from the definition of inverse"
+          ],
+          "heard_as": [
+            "c in C",
+            "f inverse",
+            "g inverse",
+            "gof inverse",
+            "for all c",
+            "equal"
+          ]
         },
         "why": "Applying f⁻¹og⁻¹ to c walks backwards along the same path that f then g walked forwards. That is why the composition of the inverses reverses the order.",
         "common_mistakes": [
@@ -157,11 +226,23 @@
             "domain same value same so equal",
             "we proved both parts so the result follows"
           ],
-          "reject": ["hence proved", "that is the answer", "so it is proved"],
-          "heard_as": ["equal", "hence", "therefore", "same domain", "same value"]
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "so it is proved"
+          ],
+          "heard_as": [
+            "equal",
+            "hence",
+            "therefore",
+            "same domain",
+            "same value"
+          ]
         },
         "why": "The question asked you to prove an equality of functions, so the final line should state that equality, not just the last calculation.",
-        "common_mistakes": ["Ending on the value calculation and never writing the equality."]
+        "common_mistakes": [
+          "Ending on the value calculation and never writing the equality."
+        ]
       }
     ]
   }

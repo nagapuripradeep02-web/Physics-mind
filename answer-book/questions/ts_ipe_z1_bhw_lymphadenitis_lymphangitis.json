@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_lymphadenitis_lymphangitis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between lymphadenitis and lymphangitis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Lymphangitis",
+      "marks": 1
+    },
+    {
+      "label": "Lymphadenitis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.59, VSAQ 140). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_angitis",
+        "kind": "text",
+        "label": "Lymphangitis",
+        "marks": 1,
+        "mark_note": "Vessels",
+        "lines": [
+          "Lymphangitis is the inflammation of the lymph",
+          "VESSELS.",
+          "In filariasis the worms and their dead bodies",
+          "block the lymph vessels and the vessels become",
+          "inflamed."
+        ],
+        "why": "The two words differ only in their middle part, so the answer must state which structure each one names before anything else is written.",
+        "common_mistakes": [
+          "Swapping the two. Angi- refers to the vessels.",
+          "Writing that lymphangitis is a swelling of the leg. That is elephantiasis, the end result."
+        ],
+        "memory_tip": "Angi- means vessel, as in angiogram: lymphangitis is the vessels.",
+        "margin_note": "One line naming the structure, one line on the cause. Do not write a paragraph."
+      },
+      {
+        "id": "s2_adenitis",
+        "kind": "boxed_final",
+        "label": "Lymphadenitis",
+        "marks": 1,
+        "mark_note": "Glands",
+        "lines": [
+          {
+            "text": "Angi- = vessels, aden- = glands",
+            "style": "boxed"
+          },
+          "Lymphadenitis is the inflammation of the lymph",
+          "GLANDS (lymph nodes).",
+          "Both conditions are seen in a heavy infection of",
+          "Wuchereria bancrofti."
+        ],
+        "why": "Aden- means gland in every medical word a student meets, so tying the answer to that root is what stops the pair being mixed up in the exam.",
+        "common_mistakes": [
+          "Writing that lymphadenitis affects the vessels.",
+          "Leaving out the parasite. Both conditions are asked here as effects of Wuchereria."
+        ],
+        "memory_tip": "Aden- means gland, as in adenoid: lymphadenitis is the glands.",
+        "margin_note": "One line naming the structure, then one line naming the parasite that causes both."
+      }
+    ]
+  },
+  "insider_note": "This pair is marked strictly on which structure each word names, so write VESSELS and GLANDS plainly before anything else."
+}

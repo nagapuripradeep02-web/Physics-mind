@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_arachnida_characters",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Mention the general characters of Arachnida.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Appendages",
+      "marks": 1
+    },
+    {
+      "label": "Organ systems",
+      "marks": 1
+    },
+    {
+      "label": "Development and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.36, SAQ 29). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-I (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What the arachnids are",
+        "marks": 1,
+        "why": "The chelicerates are named after their first pair of appendages, so the absence of antennae follows from the name of the subphylum itself.",
+        "common_mistakes": [
+          "Giving them a head, thorax and abdomen. The arachnid body has two parts, prosoma and opisthosoma.",
+          "Giving them antennae. No chelicerate has antennae."
+        ],
+        "memory_tip": "Two body parts and no antennae: prosoma in front, opisthosoma behind.",
+        "margin_note": "Class, subphylum, habitat, body divisions. Four or five lines.",
+        "mark_note": "What they are",
+        "lines": [
+          "Arachnida is a class of chelicerate",
+          "arthropods. Its members are mostly",
+          "terrestrial.",
+          "The body is divided into two parts: the",
+          "prosoma in front and the opisthosoma behind.",
+          "Antennae are absent, as in every chelicerate."
+        ]
+      },
+      {
+        "id": "s2_appendages",
+        "kind": "text",
+        "label": "Appendages",
+        "marks": 1,
+        "why": "The count six is fixed for the class, and it is the four pairs of walking legs at the end of that list that separate an arachnid from an insect with three pairs.",
+        "common_mistakes": [
+          "Giving three pairs of walking legs. Three pairs belong to insects; arachnids have four pairs.",
+          "Placing the spinnerets on the prosoma. They are modified appendages of the opisthosoma."
+        ],
+        "memory_tip": "Six pairs: chelicerae, pedipalps, then four pairs of legs. Four pairs, not three.",
+        "margin_note": "List the six pairs as a, b, c. Then one line on the spinnerets.",
+        "mark_note": "Appendages",
+        "lines": [
+          "The prosoma carries six pairs of appendages:",
+          "a) one pair of chelicerae",
+          "b) one pair of pedipalps",
+          "c) four pairs of walking legs.",
+          "The spinnerets of a spider are modified",
+          "abdominal appendages. They give out the silk",
+          "the spider spins its web from."
+        ]
+      },
+      {
+        "id": "s3_systems",
+        "kind": "text",
+        "label": "Organ systems",
+        "marks": 1,
+        "why": "Haemocyanin carries copper where haemoglobin carries iron, which is why arachnid blood is not red.",
+        "common_mistakes": [
+          "Naming haemoglobin. The arachnid pigment is haemocyanin, and it holds copper.",
+          "Giving only one excretory organ. Both Malpighian tubules and coxal glands are named."
+        ],
+        "memory_tip": "Copper pigment, not iron. Book lungs on land, tracheae in some spiders.",
+        "margin_note": "Respiration, pigment, excretion. One line each.",
+        "mark_note": "Organ systems",
+        "lines": [
+          "Respiration is by book lungs, as in the",
+          "scorpion, and by tracheae in some spiders.",
+          "The respiratory pigment is haemocyanin,",
+          "which contains copper.",
+          "The excretory organs are the Malpighian",
+          "tubules and the coxal glands."
+        ]
+      },
+      {
+        "id": "s4_development",
+        "kind": "boxed_final",
+        "label": "Development and examples",
+        "marks": 1,
+        "why": "The young hatch already shaped like the adult, so no larval stage is needed, and in the scorpion they are carried until then inside the mother.",
+        "common_mistakes": [
+          "Writing that arachnids have a larval stage. Development is direct.",
+          "Writing that scorpions lay eggs. Scorpions are viviparous."
+        ],
+        "memory_tip": "No larva at all, and the scorpion gives birth to live young.",
+        "margin_note": "Development, then the scorpion's habit, then the examples.",
+        "mark_note": "Development and examples",
+        "lines": [
+          {
+            "text": "Two body parts · Six pairs on the prosoma",
+            "style": "boxed"
+          },
+          "Development is direct. There is no larval",
+          "stage.",
+          "Scorpions are viviparous. They give birth to",
+          "young ones.",
+          "Examples:",
+          "Palamnaeus — the scorpion.",
+          "Aranea — the spider.",
+          "Sarcoptes — the itch mite."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four pairs of walking legs is the line that most often separates a correct arachnid answer from an insect answer written by mistake."
+}

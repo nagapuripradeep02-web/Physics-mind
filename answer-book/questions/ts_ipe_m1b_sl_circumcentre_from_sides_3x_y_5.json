@@ -12,7 +12,7 @@
   },
   "chapter": "The Straight Line",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Find the circumcentre of the triangle whose sides are 3x−y−5=0, x+2y−4=0, 5x+3y+1=0.",
@@ -32,19 +32,19 @@
     },
     {
       "label": "Solve the pair",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 1 The Straight Line, answer 4 PQ. No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. The book prints its own boxed 'SOLUTION STEPS' panel beside this answer: solve the three lines to get the three vertices, then SA = SB, then SB = SC, then solve the two perpendicular bisectors. The split follows those printed stages. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed beside the worked answer with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS — it is the same method the facing worked answer uses, and it lands on the book's own printed answer, which is the check. The 1A precedent for authoring a practice question this way is Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 1 The Straight Line, answer 4 PQ. No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. The book prints its own boxed 'SOLUTION STEPS' panel beside this answer: solve the three lines to get the three vertices, then SA = SB, then SB = SC, then solve the two perpendicular bisectors. The split follows those printed stages. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed beside the worked answer with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS — it is the same method the facing worked answer uses, and it lands on the book's own printed answer, which is the check. The 1A precedent for authoring a practice question this way is Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the pair."
   },
   "recall_prompt": "Say how you would solve this — say what has to be found first when the SIDES are given, and how many vertices you need.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "The Straight Line · 7 marks"
+      "The Straight Line · 8 marks"
     ],
     "steps": [
       {
@@ -340,8 +340,8 @@
         "id": "s4_solve_the_pair",
         "kind": "boxed_final",
         "label": "Solve the pair",
-        "marks": 1,
-        "margin_note": "The last mark. Two linear equations, one point.",
+        "marks": 2,
+        "margin_note": "The last two marks. Two linear equations, one point.",
         "lines": [
           "Step-6: Solving (4) & (5) we get S;   (4) ⇒ x = −3y",
           "(5) ⇒ 3(−3y) − 5y + 4 = 0   ⇒   −14y + 4 = 0   ⇒   y = 2/7",

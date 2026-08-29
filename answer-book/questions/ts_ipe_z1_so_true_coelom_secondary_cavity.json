@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_true_coelom_secondary_cavity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is the true coelom considered a secondary body cavity?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Primary cavity",
+      "marks": 1
+    },
+    {
+      "label": "Secondary cavity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.51, VSAQ 75). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_primary",
+        "kind": "text",
+        "label": "The primary cavity",
+        "marks": 1,
+        "why": "The words primary and secondary are about ORDER in development, so the answer has to name the cavity that comes first.",
+        "common_mistakes": [
+          "Writing about the adult animal only. Primary and secondary refer to the order in which the cavities appear in the embryo."
+        ],
+        "memory_tip": "First cavity is the blastocoel. Anything that comes after it is secondary.",
+        "margin_note": "Name the blastocoel and call it the primary cavity. Two lines.",
+        "mark_note": "Primary cavity",
+        "lines": [
+          "In the developing embryo the first cavity to",
+          "appear is the blastocoel.",
+          "The blastocoel is therefore the primary body",
+          "cavity."
+        ]
+      },
+      {
+        "id": "s2_secondary",
+        "kind": "boxed_final",
+        "label": "Why the coelom is secondary",
+        "marks": 1,
+        "why": "The true coelom is not the first cavity but a second one cut out of the mesoderm, and its mesodermal origin is what separates it from the blastocoel.",
+        "common_mistakes": [
+          "Writing that secondary means less important. It means later in development.",
+          "Leaving out mesoderm. The true coelom is a cavity inside the mesoderm, and that is what makes it new."
+        ],
+        "memory_tip": "Blastocoel first, coelom second: the coelom is cut out of the mesoderm afterwards.",
+        "margin_note": "State that the coelom forms later, inside the mesoderm. That is the whole answer.",
+        "mark_note": "Secondary cavity",
+        "lines": [
+          {
+            "text": "Forms after the blastocoel, so it is second",
+            "style": "boxed"
+          },
+          "Later the blastocoel is replaced by a new",
+          "cavity that forms within the mesoderm.",
+          "This mesodermal cavity is the true coelom.",
+          "Because it appears after the primary cavity,",
+          "the true coelom is called the secondary body",
+          "cavity."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for two words in order — blastocoel first, mesoderm second; a card that names only the coelom scores half."
+}

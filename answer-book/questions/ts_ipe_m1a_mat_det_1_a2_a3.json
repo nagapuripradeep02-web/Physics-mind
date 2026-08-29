@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 14,
   "question_text": "Show that the determinant with rows (1, a², a³), (1, b², b³) and (1, c², c³) is equal to (a−b)(b−c)(c−a)(ab+bc+ca).",
@@ -53,19 +53,19 @@
     },
     {
       "label": "Expand and simplify to the required form",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 3 Matrices, answer 13, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.1 in Dets'. The mark split is PRINTED in that book's margin as [1 Mark] against five working lines and [2 Marks] against the closing expansion — a sourced 1+1+1+1+1+2, not an inference. Appearances are printed board-split (TS 19 · AP 17,18). Star rank is the CHAPTER's ★★★, not this question's. ONE PRESENTATION CHANGE, made deliberately: the book prints a full intermediate determinant whose third-column entries are (b−a)(b²+ba+a²) and (c−a)(c²+ca+a²). That line is far wider than this page's body, so the two factorisations are written on their own line first and the determinant is then shown AFTER the common factors leave. Same mathematics, same number of marked steps, one fewer unreadable line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 3 Matrices, answer 13, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.1 in Dets'. The mark split is PRINTED in that book's margin as [1 Mark] against five working lines and [2 Marks] against the closing expansion — a sourced 1+1+1+1+1+2, not an inference. Appearances are printed board-split (TS 19 · AP 17,18). Star rank is the CHAPTER's ★★★, not this question's. ONE PRESENTATION CHANGE, made deliberately: the book prints a full intermediate determinant whose third-column entries are (b−a)(b²+ba+a²) and (c−a)(c²+ca+a²). That line is far wider than this page's body, so the two factorisations are written on their own line first and the determinant is then shown AFTER the common factors leave. Same mathematics, same number of marked steps, one fewer unreadable line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Expand and simplify to the required form\" step."
   },
   "recall_prompt": "Say how you would prove this one — name the row operations in order, say what you take common at each stage, and say what the last bracket works out to.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -333,9 +333,9 @@
         "id": "s7_expand",
         "kind": "boxed_final",
         "label": "Expand and finish",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Expansion and final form",
-        "margin_note": "The last two marks together. Expand along column 1 — only the 1 at the top contributes — then multiply out carefully: a² and b² both cancel, and what survives is exactly ab+bc+ca.",
+        "margin_note": "The last three marks together. Expand along column 1 — only the 1 at the top contributes — then multiply out carefully: a² and b² both cancel, and what survives is exactly ab+bc+ca.",
         "lines": [
           "Expanding along C₁:",
           "Δ = (b−a)(c−a)(c−b)[(a+b)(a+b+c) − (a²+ab+b²)]",

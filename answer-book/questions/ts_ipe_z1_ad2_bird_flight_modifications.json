@@ -1,0 +1,171 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_bird_flight_modifications",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the modifications that are observed in birds that help them in flight?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Body shape and covering",
+      "marks": 1
+    },
+    {
+      "label": "A light skeleton",
+      "marks": 1
+    },
+    {
+      "label": "Wings and flight muscles",
+      "marks": 1
+    },
+    {
+      "label": "Air sacs and sense organs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.38, SAQ 32). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. TEXT BEYOND THE BOOK: the book writes that the sternum 'is large and gives attachment surface to large flight muscles' without naming the KEEL (carina). The keel is the marked term in the syllabus and is the character that separates carinate from ratite birds, so the card names it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-II (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_body",
+        "kind": "text",
+        "label": "Body shape and covering",
+        "marks": 1,
+        "mark_note": "Body",
+        "margin_note": "Group the fifteen book points into four blocks. This block is shape and covering.",
+        "lines": [
+          "1) The body is boat shaped (streamlined) and",
+          "the tail is reduced, so the air is parted with",
+          "little resistance.",
+          "2) The exoskeleton is made of feathers.",
+          "3) Feathers are light in weight and give",
+          "support in air.",
+          "4) The skin is dry and without glands, except",
+          "the preen gland at the base of the tail. Its oil",
+          "is spread over the feathers."
+        ],
+        "why": "Flight has two costs, drag and weight, and the shape of the body and its feather coat answer the first of them, so they are grouped together.",
+        "common_mistakes": [
+          "Writing that the skin has sweat glands. Bird skin is dry; the preen gland is the only gland.",
+          "Calling feathers heavy but strong. They are light AND strong; the light part is the adaptation."
+        ],
+        "memory_tip": "Shape first, coat second: a boat with feathers."
+      },
+      {
+        "id": "s2_skeleton",
+        "kind": "text",
+        "label": "A light skeleton",
+        "marks": 1,
+        "mark_note": "Skeleton",
+        "margin_note": "Four skeleton points. The pneumatic bone line and the lost bladder line are the marked ones.",
+        "lines": [
+          "5) Bones are pneumatic. They hold air cavities",
+          "that carry extensions of the air sacs, so the",
+          "skeleton is light.",
+          "6) The posterior caudal vertebrae are fused",
+          "into the pygostyle, which moves the tail",
+          "feathers.",
+          "7) The two clavicles and the interclavicle are",
+          "fused into the furcula (wish bone).",
+          "8) The urinary bladder is lost, which reduces",
+          "the body weight."
+        ],
+        "why": "Every bone change does one of two things, it removes weight or it fuses parts into a rigid frame, and a bird needs both to beat its wings.",
+        "common_mistakes": [
+          "Writing that pneumatic bones are hollow and empty. They carry air from the air sacs.",
+          "Leaving out the lost urinary bladder. It is a favourite one-mark point."
+        ],
+        "memory_tip": "Lighter and stiffer: air inside the bones, and separate bones fused into one."
+      },
+      {
+        "id": "s3_wings",
+        "kind": "text",
+        "label": "Wings and flight muscles",
+        "marks": 1,
+        "mark_note": "Wings",
+        "margin_note": "Three linked points. Say WHY the keel matters; that sentence is the mark.",
+        "lines": [
+          "9) The forelimbs are modified into wings.",
+          "10) The sternum is large and carries a keel.",
+          "The keel gives a wide surface for the large",
+          "breast muscles that beat the wings.",
+          "11) All modern flying birds have powerful",
+          "breast (flight) muscles."
+        ],
+        "why": "A wing is useless without a muscle big enough to beat it, and a big muscle needs a wide bone to sit on, so the wing, the keel and the muscle are one chain.",
+        "common_mistakes": [
+          "Naming the wings and stopping. The keel and the breast muscles are separate marked points.",
+          "Writing that ratite birds also have a keel. A ratite sternum is raft like and has no keel."
+        ],
+        "memory_tip": "Wing, keel, muscle: each one is useless without the next."
+      },
+      {
+        "id": "s4_air_sacs",
+        "kind": "boxed_final",
+        "label": "Air sacs and sense organs",
+        "marks": 1,
+        "mark_note": "Air sacs",
+        "margin_note": "Close with the air sacs; it is the point examiners look for after the keel.",
+        "lines": [
+          {
+            "text": "Light body, strong wings, steady oxygen",
+            "style": "boxed"
+          },
+          "12) Air sacs are attached to the lungs. They",
+          "give a continuous supply of oxygen, both when",
+          "the bird breathes in and when it breathes out.",
+          "13) The syrinx is the voice box of a bird.",
+          "14) The eyes are large, with sclerotic plates",
+          "and a comb like pecten, so sight is sharp.",
+          "15) The olfactory lobes of the brain are",
+          "reduced, because a flying bird uses sight and",
+          "not smell."
+        ],
+        "why": "Flight burns oxygen quickly and is guided by the eyes, so the last block covers the supply of oxygen and the sense organ the bird depends on.",
+        "common_mistakes": [
+          "Writing that air sacs are extra lungs. They store and move air; exchange of gases happens in the lungs.",
+          "Saying birds have a strong sense of smell. The olfactory lobes are reduced."
+        ],
+        "memory_tip": "Air in the sacs, eyes wide open, nose switched off."
+      }
+    ]
+  },
+  "insider_note": "Fifteen points are printed but four marks are on offer, so write four clearly headed blocks — shape, skeleton, wings, air sacs — rather than one long list."
+}

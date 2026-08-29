@@ -8,8 +8,11 @@ themselves **stroke by stroke** in the same blue ink. When page 1 fills, page 2 
 like a real answer booklet.
 
 First board: **Telangana IPE** (Intermediate Public Examination). The book opened on a
-Physics-I 8-mark LAQ (the parallelogram law of vectors) and now carries three papers:
-**Physics-I**, **Maths-1A** (Units 1-10, complete) and **Maths-1B** (opened 2026-08-23).
+Physics-I 8-mark LAQ (the parallelogram law of vectors) and now carries six papers:
+**Physics-I**, **Maths-1A** (Units 1-10, complete), **Maths-1B** (opened 2026-08-23),
+**Chemistry-I** (Chapters 1-7, 2026-08-23), **Botany** (all 13 chapters, 2026-08-25) and
+**Zoology** (all 8 units, 2026-08-25 — the first subject with phased "watch it drawn" figures;
+see `answer-book/tools/` and `src/scripts/pace_figures.ts` / `check_figure_pace.ts`).
 
 **One paper = one `subject` value.** Maths-1A owns `mathematics` for historical reasons
 (it predates 1B), the same way an absent `subject` means physics; Maths-1B is
@@ -63,7 +66,7 @@ from `file://`.
 3. `npm run build:answers` — it will tell you loudly if the marks don't add up.
 4. Eyeball at `npm run serve:answers`, then `npm run smoke:answers`.
 
-The page opens on a **catalog** — subject chips (Physics · Maths-1A · Maths-1B), then units,
+The page opens on a **catalog** — subject chips (Physics · Chemistry · Maths-1A · Maths-1B · Botany · Zoology), then units,
 then the question cards. A unit's entries come from `units.json`, and the build hard-fails if an
 authored question is missing from that file, or if an entry there resolves to nothing.
 

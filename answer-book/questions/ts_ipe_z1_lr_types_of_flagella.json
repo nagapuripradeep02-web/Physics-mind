@@ -1,0 +1,438 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_types_of_flagella",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are lateral appendages? Based on their presence and absence, write the various types of flagella giving at least one example for each type.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Lateral appendages",
+      "marks": 1
+    },
+    {
+      "label": "Types with mastigonemes",
+      "marks": 1
+    },
+    {
+      "label": "Types without mastigonemes",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, SAQ chapter 8 'Locomotion & Reproduction' (book p.41, question 39). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [AP,TS M-15,17]. ORDER CHANGED, CONTENT KEPT: the book lists the five types in the order stichonematic, pantonematic, acronematic, pantacronematic, anematic. This card regroups the same five as three WITH mastigonemes and two WITHOUT, because the question itself asks for the types 'based on their presence and absence'. No type, definition or example is changed. BOOK SPELLING: the book prints 'Chilomonas and cryptomonas' and 'Peranema, Monas' in lower case in places; the genus names are capitalised here. FIGURE SCOPE: the book prints the five types lettered A to E with the axoneme marked; this figure draws the same five and labels each with its type name."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locomotion and Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lateral",
+        "kind": "text",
+        "label": "Lateral appendages",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Some flagella carry one, two or many rows of",
+          "short hair-like fibrils along their sides.",
+          "These fibrils are called lateral appendages,",
+          "or mastigonemes.",
+          "The central shaft of the flagellum is the",
+          "axoneme. The mastigonemes stand out from it.",
+          "Flagella are classified into five types by the",
+          "presence or absence of these mastigonemes."
+        ],
+        "why": "Every one of the five type names is built from the mastigoneme arrangement, so the classification cannot be written until the word mastigoneme has been defined.",
+        "common_mistakes": [
+          "Calling the mastigonemes cilia. They are fine fibrils on the side of one flagellum, not separate organelles.",
+          "Leaving out the second name. Lateral appendages and mastigonemes are the same thing, and either may be asked for."
+        ],
+        "memory_tip": "Mastigoneme means a thread on a whip: the side hairs on the flagellum shaft.",
+        "margin_note": "Define the word first, then say five types follow from it."
+      },
+      {
+        "id": "s2_present",
+        "kind": "text",
+        "label": "Types with mastigonemes",
+        "marks": 1,
+        "mark_note": "Three types",
+        "lines": [
+          "1. Stichonematic: the flagellum bears ONE row",
+          "of mastigonemes. Example: Euglena, Astasia.",
+          "2. Pantonematic: the flagellum bears TWO or",
+          "more rows. Example: Peranema, Monas.",
+          "3. Pantacronematic: two or more rows of",
+          "mastigonemes and a naked terminal filament at",
+          "the tip. Example: Urceolus."
+        ],
+        "why": "These three differ only in how many rows of mastigonemes there are, so writing the number of rows against each name is what separates them on the answer sheet.",
+        "common_mistakes": [
+          "Swapping sticho- and panto-. Sticho- is one row; panto- is two or more.",
+          "Giving no example. The question asks for at least one for each type."
+        ],
+        "memory_tip": "Sticho- is one row, panto- is many rows, and panta-acro- is many rows plus a bare tip.",
+        "margin_note": "Number of rows, then example, for each of the three. One line each."
+      },
+      {
+        "id": "s3_absent",
+        "kind": "boxed_final",
+        "label": "Types without mastigonemes",
+        "marks": 1,
+        "mark_note": "Two types",
+        "lines": [
+          "4. Acronematic: there are no mastigonemes.",
+          "The tip of the axoneme is naked, with no",
+          "sheath over it. Example: Chlamydomonas,",
+          "Polytoma.",
+          "5. Anematic, or simple: there are no",
+          "mastigonemes and no terminal filament.",
+          "Example: Chilomonas, Cryptomonas.",
+          {
+            "text": "Sticho-, panto-, pantacro-, acro-, anematic",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both of these types lack mastigonemes, so the only thing left to tell them apart is the terminal filament: the acronematic flagellum has a bare one, the anematic flagellum has none at all.",
+        "common_mistakes": [
+          "Writing that an acronematic flagellum has mastigonemes. It has none; only its bare tip is named.",
+          "Treating anematic and acronematic as the same type. The terminal filament separates them."
+        ],
+        "memory_tip": "Acro- means tip, so acronematic is named for its bare tip; a- means none, so anematic has neither hairs nor tip filament.",
+        "margin_note": "Say what is ABSENT in each. That is what the question asks for."
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "lr_flagella_types",
+          "width": 520,
+          "height": 352,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — five bare shafts on their cell bases"
+            },
+            {
+              "type": "stroke",
+              "id": "shaft1",
+              "d": "M 60 230 L 60 70",
+              "ms": 2290
+            },
+            {
+              "type": "stroke",
+              "id": "base1",
+              "d": "M 47 254 L 56 230 M 64 230 L 73 254 M 47 254 Q 60 262 73 254",
+              "ms": 1130,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "shaft2",
+              "d": "M 118 230 L 118 70",
+              "ms": 2290
+            },
+            {
+              "type": "stroke",
+              "id": "base2",
+              "d": "M 105 254 L 114 230 M 122 230 L 131 254 M 105 254 Q 118 262 131 254",
+              "ms": 1130,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "shaft3",
+              "d": "M 176 230 L 176 70",
+              "ms": 2290
+            },
+            {
+              "type": "stroke",
+              "id": "base3",
+              "d": "M 163 254 L 172 230 M 180 230 L 189 254 M 163 254 Q 176 262 189 254",
+              "ms": 1130,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "shaft4",
+              "d": "M 234 230 L 234 70",
+              "ms": 2290
+            },
+            {
+              "type": "stroke",
+              "id": "base4",
+              "d": "M 221 254 L 230 230 M 238 230 L 247 254 M 221 254 Q 234 262 247 254",
+              "ms": 1130,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "shaft5",
+              "d": "M 292 230 L 292 70",
+              "ms": 2290
+            },
+            {
+              "type": "stroke",
+              "id": "base5",
+              "d": "M 279 254 L 288 230 M 296 230 L 305 254 M 279 254 Q 292 262 305 254",
+              "ms": 1130,
+              "w": 1.8
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — A stichonematic: one row of mastigonemes"
+            },
+            {
+              "type": "stroke",
+              "id": "mast_a",
+              "d": "M 60 82 L 49 78 M 60 93 L 49 89 M 60 104 L 49 100 M 60 115 L 49 111 M 60 126 L 49 122 M 60 137 L 49 133 M 60 148 L 49 144 M 60 159 L 49 155 M 60 170 L 49 166 M 60 181 L 49 177 M 60 192 L 49 188 M 60 203 L 49 199 M 60 214 L 49 210",
+              "ms": 2170,
+              "w": 1.3
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — B pantonematic: two rows of mastigonemes"
+            },
+            {
+              "type": "stroke",
+              "id": "mast_b_l",
+              "d": "M 118 82 L 107 78 M 118 93 L 107 89 M 118 104 L 107 100 M 118 115 L 107 111 M 118 126 L 107 122 M 118 137 L 107 133 M 118 148 L 107 144 M 118 159 L 107 155 M 118 170 L 107 166 M 118 181 L 107 177 M 118 192 L 107 188 M 118 203 L 107 199 M 118 214 L 107 210",
+              "ms": 2170,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "mast_b_r",
+              "d": "M 118 82 L 129 78 M 118 93 L 129 89 M 118 104 L 129 100 M 118 115 L 129 111 M 118 126 L 129 122 M 118 137 L 129 133 M 118 148 L 129 144 M 118 159 L 129 155 M 118 170 L 129 166 M 118 181 L 129 177 M 118 192 L 129 188 M 118 203 L 129 199 M 118 214 L 129 210",
+              "ms": 2170,
+              "w": 1.3
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — C acronematic: a naked terminal filament"
+            },
+            {
+              "type": "stroke",
+              "id": "filament_c",
+              "d": "M 176 70 L 176 46",
+              "ms": 340,
+              "w": 1.2
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — D pantacronematic: two rows and a naked tip"
+            },
+            {
+              "type": "stroke",
+              "id": "mast_d_l",
+              "d": "M 234 82 L 223 78 M 234 93 L 223 89 M 234 104 L 223 100 M 234 115 L 223 111 M 234 126 L 223 122 M 234 137 L 223 133 M 234 148 L 223 144 M 234 159 L 223 155 M 234 170 L 223 166 M 234 181 L 223 177 M 234 192 L 223 188 M 234 203 L 223 199 M 234 214 L 223 210",
+              "ms": 2170,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "mast_d_r",
+              "d": "M 234 82 L 245 78 M 234 93 L 245 89 M 234 104 L 245 100 M 234 115 L 245 111 M 234 126 L 245 122 M 234 137 L 245 133 M 234 148 L 245 144 M 234 159 L 245 155 M 234 170 L 245 166 M 234 181 L 245 177 M 234 192 L 245 188 M 234 203 L 245 199 M 234 214 L 245 210",
+              "ms": 2170,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "filament_d",
+              "d": "M 234 70 L 234 46",
+              "ms": 340,
+              "w": 1.2
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — type names and labels; E stays plain"
+            },
+            {
+              "type": "label",
+              "id": "stage_A",
+              "x": 53,
+              "y": 290,
+              "text": "A",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "stage_B",
+              "x": 111,
+              "y": 290,
+              "text": "B",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "stage_C",
+              "x": 169,
+              "y": 290,
+              "text": "C",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "stage_D",
+              "x": 227,
+              "y": 290,
+              "text": "D",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "stage_E",
+              "x": 285,
+              "y": 290,
+              "text": "E",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "name1",
+              "x": 330,
+              "y": 60,
+              "text": "A — Stichonematic",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "name2",
+              "x": 330,
+              "y": 104,
+              "text": "B — Pantonematic",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "name3",
+              "x": 330,
+              "y": 148,
+              "text": "C — Acronematic",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "name4",
+              "x": 330,
+              "y": 192,
+              "text": "D — Pantacronematic",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "name5",
+              "x": 330,
+              "y": 236,
+              "text": "E — Anematic",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_axo",
+              "x": 330,
+              "y": 280,
+              "text": "Axoneme",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_axo",
+              "d": "M 326 276 L 292 180",
+              "ms": 1450,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_mast",
+              "x": 330,
+              "y": 324,
+              "text": "Mastigonemes",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mast",
+              "d": "M 326 320 L 245 222",
+              "ms": 1820,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "title",
+              "x": 80,
+              "y": 334,
+              "text": "TYPES OF FLAGELLA",
+              "ms": 450
+            }
+          ]
+        },
+        "why": "The five types differ only in the mastigoneme rows and the tip, so five shafts drawn side by side make the whole classification readable in one look.",
+        "common_mistakes": [
+          "Drawing all five the same and relying on the labels. The rows of mastigonemes must be visibly different.",
+          "Forgetting the bare terminal filament on types C and D."
+        ],
+        "memory_tip": "Draw the same bare shaft five times, then add: one row, two rows, two rows with a bare tip, a bare tip only, nothing.",
+        "margin_note": "Label each shaft A to E with its type name. The drawing carries the whole fourth mark."
+      }
+    ]
+  },
+  "insider_note": "The examiner counts five type names and five examples — a student who writes perfect definitions but no examples usually loses half the marks on this question."
+}
