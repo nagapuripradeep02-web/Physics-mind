@@ -15328,3 +15328,35 @@ and read at every phase.
 **Next session's first task:** the founder's call on the PR base (item 3), then Checkpoint-C style
 review of a sample of cards against the scan. Nothing is deployed — `PILOT_CONCEPTS` and
 `deploy:answers` are untouched (Rule 17).
+
+---
+
+## 2026-08-29 — Zoology-II synced to the nine-paper master, and the model-paper back-test finds two missing cards
+
+**The queue cleared.** PRs #167 (Senior Physics), #169 (Senior Chemistry), #170 (Junior Zoology + the phased-figure engine) and #171 (Senior Botany) all merged while this desk waited. Master is now nine papers; this desk makes it ten.
+
+**Sync, in two steps and deliberately in that order.** First merged **PR #170's branch** rather than `origin/master`: #170 is this desk's own base plus one master-sync commit, so the merge-base is our base commit and the Junior Zoology content arrives on a shared lineage. Merging master directly would have produced a second, parallel copy of it. Then merged `origin/master` for the rest. `units.json` was rebuilt from master's array **verbatim** (asserted byte-identical in the resolution) plus this desk's eight units, rather than hand-resolving eight conflict hunks in an 18k-line file.
+
+**Two registration sites this desk predated, both of which would have failed the build:**
+- **`PAPER_PATTERNS`** (PR #168) — the schema now REJECTS any question whose marks disagree with its paper's pattern, so without a row all 145 cards fail. `zoology_2` is registered as `ABC_60`, read off the book's own **Model Paper-1 (p.75)**: Section A "Answer ALL" 10 × 2 = 20, Section B "any SIX" of eight printed × 4 = 24, Section C "any TWO" of three printed × 8 = 16, total 60. Verified against the book, not copied from Botany.
+- **`STREAMS`** in `build_answer_book.ts`, which now carries a guard failing the build if a stream names an unknown subject. Deliberately **not** touched: adding a second-year paper there would make a second-year book a buildable artifact, which is a product decision.
+
+**Two corrections to earlier calls in this desk:**
+1. **The `Zoology-I` rename is reverted.** The settled convention keeps the first-year label and adds only the second (`botany: 'Botany'` beside `botany_2: 'Botany-II'`). It reads **Zoology / Zoology-II**.
+2. **`internal` is omitted from the zoology_2 row.** The first attempt asserted a 15-mark practical by following the first-year papers; `physics_2`, `chemistry_2` and `botany_2` all omit it because the books print a practical sheet with no mark value and copying the first-year 15 would be inventing a figure. Sr. Zoology is in the same position, so it now says nothing rather than guessing.
+
+### The back-test earned its keep: the paper was NOT complete
+
+`backtest:botany2` exists because the two-book union check and a real board back-test are structurally impossible for a one-source paper. Zoology-II had no equivalent — so `src/scripts/backtest_zoology2.ts` + `answer-book/tools/zoology2_wip/backtest_refs.json` now transcribe every "Ans-Page Index" citation the book's **five Model Guess Papers** print (105 citations, 89 distinct questions) and assert each resolves to an authored card.
+
+It immediately found **two questions the book sets and we did not answer**, both cited into the **Star Questions Plus** section (book pp.61-68) that the first authoring pass skipped entirely:
+- **global 172** — "Draw a labelled diagram of the T.S. of the spinal cord of man" [TS 19, 22] → `ts_ipe_z2_ncc_spinal_cord_ts_diagram`, Unit 3, with a 34-element 5-phase figure.
+- **global 175** — the colour-blind-daughters probability problem [TS MAY-17] → `ts_ipe_z2_gen_colour_blind_daughters_probability`, Unit 6, with a full four-child cross.
+
+**Resolving is not enough, and the first version of the gate was too weak.** The book miscites the AV-valves question as global 61 (its answer section, p.48, numbers it **63**; 61 there is the open/closed circulation question on the same page). A back-test that only asked "does this number exist?" passed — because 61 resolves, just to the wrong card. The gate now also requires the cited question's wording to agree with the card it lands on, and carries a `KNOWN_MISCITES` table that adjudicates this one openly rather than silencing it. Verified by construction: the strengthened gate reports the miscitation and still passes.
+
+**Correction to the previous session log:** it recorded "14 phased figures" when there were **12**. With the two new cards there are now genuinely 14. Card total is **147**, not 145.
+
+**Verified:** build:answers PASS · tsc 0 errors · check:figure-pace PASS for `ts_ipe_z1,ts_ipe_b2,ts_ipe_z2` · backtest:zoology2 PASS · backtest:botany2 PASS (unaffected) · check:papers PASS · vitest src/lib/answerBook 69/69. Ten papers, 117 units, 2103 authored cards.
+
+**Next: open the PR.** The queue that blocked it is clear.

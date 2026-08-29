@@ -104,7 +104,8 @@
     "content:push:mpc2": "npx tsx --env-file=.env.local src/scripts/push_answer_content.ts --stream=mpc_2",
     "backtest:zoology": "npx tsx src/scripts/backtest_zoology.ts",
     "labels:clashes": "node answer-book/tools/find_label_clashes.mjs",
-    "backtest:botany2": "npx tsx src/scripts/backtest_botany2.ts"
+    "backtest:botany2": "npx tsx src/scripts/backtest_botany2.ts",
+    "backtest:zoology2": "npx tsx src/scripts/backtest_zoology2.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
