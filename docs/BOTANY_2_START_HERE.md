@@ -127,12 +127,17 @@ printed position goes into that card's `verification.note`. Found in this book:
 
 **Treat this book as a source of QUESTIONS, not of physiology.**
 
-### One thing FLAGGED FOR FOUNDER REVIEW, not decided
+### The one judgement call, and the ruling on it — SETTLED
 Global 168, the Calvin cycle. The LAQ chapter cross-references it (*"For Calvin Cycle 'Q' Refer
 P.No: 52(168)"*) and its printed answer runs two pages with a cycle diagram — Section-C-grade
 material. But the 2022 blue print gives Photosynthesis 6 marks with **no** Section-C slot, and the
-book prints it outside every LAQ chapter. It is authored at **4 marks** and **no 8-mark form is
-invented**, the same discipline Botany-I used. If a real paper ever sets it at 8 marks, add a cut.
+book prints it outside every LAQ chapter. It was authored at **4 marks** with **no 8-mark form
+invented**, the same discipline Botany-I used.
+
+> **FOUNDER RULING, 2026-08-29: it stays at 4 marks.** This is decided, not open. Do not re-raise
+> it, and do not "helpfully" add an 8-mark form on a later pass. If a real Telangana Botany-II
+> paper is ever found setting this question at 8 marks, that is NEW EVIDENCE and the answer is a
+> **cut** over the same authored steps — never a second card.
 
 ## 5. The two checks that are structurally impossible, and the one that replaced them
 
@@ -295,5 +300,5 @@ them and **none is invented**.
 
 - **No teacher has verified any mark split.** Every card says so.
 - **The two impossible checks stay impossible** until a second source or a real board paper arrives.
-- **Global 168 (Calvin cycle) is flagged for founder review** — see §4.
+- ~~Global 168 (Calvin cycle) flagged for founder review~~ — **RULED 2026-08-29: stays at 4 marks.** Closed; see §4.
 - **Nothing is deployed.** `PILOT_CONCEPTS` and `deploy:answers` are untouched.
