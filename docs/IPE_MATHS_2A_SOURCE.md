@@ -177,6 +177,83 @@ One trap for future tooling: the four unsolved **PQ** practice questions share a
 number` citation with the numbered answer they sit under (58#76, 68#104, 25#16, 31#25), so any index
 keyed on page+answer collides. Match on question text.
 
+## The independent examiner pass (2026-08-29) — 257 cards, ZERO wrong answers
+
+Run because every card had been re-derived only by the agent that WROTE it, which is the weakest
+form of verification there is, and because the house standard for a new subject is a separate
+adversarial pass: Senior Physics found 3 wrong and 6 misleading in 256 cards, the physics bank 15
+real errors in 198, and the sibling Maths-2B session four genuinely wrong cards the same week.
+
+Four examiners, split by mathematical technique rather than by unit count — complex algebra (60
+cards) · algebra and counting (97) · series and decomposition (49) · statistics (51). Each was told
+to read ONLY `question_text`, solve from first principles, and compare against the working
+afterwards, because checking a card's stated reasoning against itself is circular. Each was required
+to name the check it actually ran on a card it called clean.
+
+**Result: 0 WRONG across all 257.** Every final answer, every table cell, every column sum, every
+identity. The examiners verified by machine as well as by hand — `sympy.apart` on all 15 partial
+fractions, brute-force permutation generation for every dictionary rank, complex Horner on 67
+polynomial roots, 40-digit numeric sums for all 9 infinite series, exact `Fraction` arithmetic for
+the probability work.
+
+**The false-record pattern did NOT appear here.** 2B reported that all four of its wrong cards
+carried a `verification.note` claiming an independent re-derivation had found no error — false in
+every one. 2A has 23 such claims (21 De Moivre "Re-derived: …", 2 Quadratic "Truth-check: …"); the
+examiners tested each against its substance and **all 23 hold**. Note the inversion: the single card
+carrying the most serious finding below is the one De Moivre card that made NO such claim.
+
+**23 defects were found, all in reader-facing prose rather than in results.** Two would have reached
+a student as mathematics:
+
+- **`dm_p_iq_nth_root_sum` taught a false step silently.** It derived `θ = Tan⁻¹(q/p)` with no
+  condition. That is valid only for `p > 0`, and the identity is FALSE otherwise — at p = −3, q = 4,
+  n = 2 the true sum is 2 and the printed formula gives 4. The author knew: `verification.note` said
+  "p > 0 assumed, as the book assumes". But the visible page did the exact thing that **five sibling
+  cards in the same unit exist to teach is illegal** ("a calculator gives θ = −π/6 … the quadrant
+  sentence is what earns the second mark"). The condition is now on the page. **The book states the
+  identity unconditionally, and that is a book defect worth recording** — it is the only one of the
+  three known book errors in this unit that can change a student's answer.
+- **`cn_locus_real_part_z_plus_1_over_z_plus_i` stated a locus containing a point not in it.**
+  `x − y = 1` is right, but at `z = −i` the denominator is zero and the expression undefined — and
+  (0, −1) SATISFIES `x − y = 1`. Both sibling locus cards state their exclusions; this was the one
+  where the excluded point lies on the answer. Now boxed as `x − y = 1, z ≠ −i`.
+
+Two more were claims the printed argument did not support:
+
+- **Three range cards** asserted "y takes every value from A to B" from a discriminant argument that
+  says nothing at the y where the x² coefficient vanishes and the equation goes LINEAR. In all three
+  the value is attained and lies inside the interval, so no answer changed — the proof was
+  incomplete, not wrong. Each now checks its degenerate y explicitly. (`qe_bounds_for_p` was already
+  doing this, which is why it was the family's exception.)
+- **Two validity cards** said the endpoints are excluded "because the series does not converge at
+  |y| = 1". That is false in three of the four endpoint cases: `Σ C(α,k)yᵏ` converges at y = +1
+  whenever α > −1 and at y = −1 whenever α ≥ 0, so `(3 − 4x)^(3/4)` converges at BOTH ends. The open
+  interval is correct because the theorem is **stated** with the hypothesis |y| < 1; endpoint
+  behaviour is outside the syllabus and is now not claimed either way.
+
+The remaining defects were hints describing errors a student cannot make on that card: a "d² = 9"
+warning on two cards whose own working shows 25/4 and 1/36; a class-identification hint
+contradicting its own step (class II of EVEN degree has both +1 and −1 as roots, which the step
+lines say correctly); "Writing 5·10·15 … every factor carries a 3/4/100" on five cards where the
+trailing number was substituted per card but the worked illustration never was; x-flavoured `why`
+text on the one corollary card with no x in it; an impossible "1 = 2"; a vacuous premise
+(2+4+7+8 and 0+2+4+7+8 are the same number); an unreduced fraction contradicting the same unit's own
+marked convention; and a median shortcut stated as though it were the definition.
+
+Two cards were made honest where they had been assertive: `rv_left_handed_one_in_ten` now says the
+BOOK reads the question as "exactly one" and names the "at least one" reading it also admits
+(0.387 against 0.651 — the one card in the set where the two readings diverge sharply), and
+`bt_coefficients_x9_x10_x11_ap` now records that its equation `n² − 41n + 398 = 0` has discriminant
+89, not a perfect square, so **no whole number n exists** — the question asks only for the equation,
+but a student trying to finish by solving deserves to know.
+
+**What this pass does NOT cover**, stated so a later session does not over-read it: it verified the
+mathematics of the answers. It says nothing about whether a card is filed in the right section
+(that is the back-test above), nothing about coverage, and — as one examiner noted — a silent
+agreement between card and book on a shared error would be invisible to it, since the cards were
+the only artifact. Against that, every answer is independently correct on its own merits, which is
+the stronger property.
+
 ## Notation ledger — MEASURED 2026-08-29, quoted in every unit agent's prompt
 
 Measured by rendering each glyph in the page's real font stack (`Kalam, cursive`, 26 px, Google
@@ -234,6 +311,12 @@ Chemistry Fastrack** (~130 findings there), and four units found nothing mathema
 (Partial Fractions, Probability, Binomial, Random Variables — only typographic slips).
 
 **Wrong mathematics.**
+- **p.16, ans 5 (De Moivre)** — the identity `(p+iq)^(1/n) + (p−iq)^(1/n) = 2(p²+q²)^(1/2n)
+  cos((1/n)Tan⁻¹(q/p))` is printed with **no hypothesis on p**, and it is false for p < 0: at
+  p = −3, q = 4, n = 2 the left side is 2 and the right side is 4. `Tan⁻¹` returns an angle in Q1 or
+  Q4, so it names the wrong quadrant whenever p is negative. Found by the examiner pass, 2026-08-29;
+  the card now states `p > 0` on the page. This is the only book error in the subject that can
+  change a student's answer rather than merely mislead.
 - **p.71, ans 110.3 (Complex Numbers)** — the modulus-amplitude form of −1 − i is printed with
   θ = 3π/4, i.e. √2(cos 3π/4 + i sin 3π/4). That is **−1 + i**, a different number, and
   tan(3π/4) = −1 ≠ +1. The point is in the third quadrant, so the principal amplitude is **−3π/4**.

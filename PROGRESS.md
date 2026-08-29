@@ -41,6 +41,50 @@
 `build:answers` clean at 2,034 questions / 105 units / 343 KaTeX lines · `tsc` 0 · `vitest` 443/443 · `check:cards` clean on all 257 · `check:figure-pace` PASS strict (3 Argand figures re-paced to 70 u/s; the rhombus and square each hit the ≥16-elements-and-no-phase rule and are now drawn in four named steps) · `measure:wrap` **0.0% over 2,831 lines**, tied best in the bank · `find_label_clashes` clean across all 217 figures in the book after one real collision was fixed structurally · `scan:register` 1 advisory candidate in 8,882 strings ("a race", literal — it is a horse race) · zero duplicates against the other 1,777 cards · `check:papers` clean · the senior stream builds and reads back 44 units / 853 answers with `Maths 2A · 75 marks written · Section C any 5 of 7 × 7` and no invented practical figure. E2E suite (68 tests) run detached — **budgets raised first, never trimmed**: the two fleet sweeps 30 → 40 min, the widest 40 → 50, the typeset sweep 4 → 6.
 - **A tool that reads `dist` lies about a source you just edited.** `find_label_clashes.mjs` re-reported an identical collision after a real fix, because it measures rendered boxes in the BUILT artifact. Rebuild, then believe it.
 
+### Verified twice more, after the first write-up
+
+Two checks were added after the session first called the subject done, both on the sibling Maths-2B
+session's advice, and both changed what can honestly be claimed.
+
+- **The model-paper back-test — 199 of 199 slots, zero mis-cut cards.** No real second-year maths
+  paper exists in `answer-book/papers/`, so the book's OWN six papers were used as a substitute
+  corpus. The corpus is 199 slot-instances rather than the 144 briefed, because the **Bullet Model
+  Paper is not a 24-question paper but 79 questions grouped under the 24 slot headings** — which
+  makes it better evidence than a pointer, since it assigns each question to a section and a mark
+  value directly. Matching was on question TEXT, never on the printed pointer: the book's
+  cross-references are wrong in **eight** places, four already known and four found here. **A wrong
+  pointer is not a missing card** — in all eight the correct card exists. The two Star-bank cards a
+  paper actually places both CONFIRM their inferred section. Seven Star cards remain unsupported and
+  the honest finding is evidence AGAINST our classing — the book routes readers into those pages
+  from its VSAQ chapters ("Few More VSAQ are in Page N", verified at four chapter ends) — so each of
+  the seven now carries a `⚠ COUNTER-EVIDENCE` paragraph giving both readings, per the Maths-1A
+  answer-150 precedent.
+- **The independent examiner pass — 257 cards, ZERO wrong answers.** Every card had been re-derived
+  only by the agent that wrote it, which is the weakest verification there is; the house standard is
+  a separate adversarial pass (Senior Physics: 3 wrong, 6 misleading in 256). Four examiners split
+  by TECHNIQUE rather than unit count, told to solve from `question_text` alone before reading any
+  working, and required to name the check they ran on anything they called clean. Zero wrong
+  answers, machine-verified (`sympy.apart`, brute-force permutation ranks, complex Horner on 67
+  roots, 40-digit series sums). **23 prose defects fixed**, two of which would have reached a
+  student as mathematics: an identity derived with no `p > 0` condition that is FALSE for p < 0
+  (true sum 2, printed formula 4) on a card whose unit contains five siblings teaching that the step
+  is illegal; and a locus `x − y = 1` whose excluded point (0, −1) satisfies `x − y = 1`.
+
+**The transferable finding is 2B's, not mine: all four of ITS wrong cards carried a
+`verification.note` claiming an independent re-derivation had found no error.** 2A has 23 such
+claims and the examiners tested every one — **all 23 hold**. But the claim itself is worthless as
+evidence; it records what an author believed after checking their own working. Note the inversion:
+the card carrying 2A's most serious finding is the one De Moivre card that made no such claim.
+
+**A destructive mistake worth recording.** To stop my own suite I ran `taskkill /F /IM
+chrome-headless-shell.exe`, which kills every headless browser on the machine — it hit the 2B
+session's live 90-minute run, and when the process count did not drop I fired five more times. The
+count was flat because **Playwright was RESPAWNING browsers after each kill**, so every extra
+attempt did more damage while appearing to do nothing. Kill by PID filtered on your own worktree
+(`Get-CimInstance Win32_Process | Where-Object CommandLine -match '<desk>'`), and never use a shared
+resource count as a signal about your own process — detect completion from your own log
+(`bash -c 'cmd; echo EXIT=$?'`).
+
 ### Not done, deliberately
 
 No PR yet (E2E finishing) · not deployed — `deploy:answers` is founder-only (Rule 17), and it publishes the JUNIOR book: the senior stream has no worker or route of its own, so nothing about this reaches a student until the founder decides how the second year is served · **both structural checks remain IMPOSSIBLE for this paper** (no second Maths-2A book in the corpus, no second-year maths paper in `answer-book/papers/`) and that sentence is on all 257 cards verbatim · `website/students.html` still says "First year only for now. Second year has not been started yet." — stale since Physics-II shipped, left for the founder because it is marketing copy, not a fact about the artifact.
