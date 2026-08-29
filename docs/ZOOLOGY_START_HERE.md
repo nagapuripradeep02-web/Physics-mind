@@ -194,7 +194,7 @@ what survives an interruption.
 
 ```
 npm run build:answers → npx tsc --noEmit → npx vitest run → npm run smoke:answers
-npm run check:figure-pace -- ts_ipe_z1
+npm run check:figure-pace
 npm run backtest:zoology -- --refs answer-book/tools/zoology_wip/backtest_refs.json
 node answer-book/tools/measure_wrap.mjs ts_ipe_z1     # one line = one ruled row
 python answer-book/tools/render_figures.py ...        # then LOOK at every figure

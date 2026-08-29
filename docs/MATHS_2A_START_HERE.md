@@ -46,7 +46,9 @@ authored at `marks_total: 3` failed `check:cards` with *"marks_total = 3 but a m
 ## 2. The source, and the two checks that are impossible
 
 `Downloads\Telegram Desktop\DocScanner 31-Oct-2022 5-49 pm.pdf` — Baby Bullet-Q Senior Inter
-Maths-2A, Sri Publishers. **Book page = PDF page − 2.** Full analysis in `IPE_MATHS_2A_SOURCE.md`.
+Maths-2A, Sri Publishers. **Book page = PDF page − 1** (corrected 2026-08-29 — this doc first said
+− 2, read off the front matter; all ten unit agents measured − 1 from the LAQ section onward). Full
+analysis in `IPE_MATHS_2A_SOURCE.md`.
 Read the source every time; never author from another session's transcription.
 
 No two-book union check (no second 2A source) and no board back-test (`answer-book/papers/` is
@@ -84,9 +86,16 @@ during authoring and by `npm run build:answers` at the end:
 
 Figures (few expected — Argand-plane polygons in Complex Numbers SAQ 54–55): author `"ms": 0`, then
 after the LAST unit lands `npm run pace:figures -- --prefix ts_ipe_m2a --force --write` (70 u/s),
-`npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_m2a` (40–160 u/s; a stroke over ~720
-units cannot pass — split it), `npm run figures:gallery -- ts_ipe_m2a` and LOOK. `figure.height`
-is a pagination decision (whole 32 px rules); ~7 px headroom under an `em` label.
+`npm run check:figure-pace` (40–160 u/s over every opted-in prefix, `ts_ipe_m2a` among them; a
+stroke over ~720 units cannot pass — split it), then `npm run figures:gallery -- ts_ipe_m2a` and
+LOOK. `figure.height` is a pagination decision (whole 32 px rules); leave ~7 px headroom under an
+`em` label. Two of the three Argand figures hit the ≥16-drawn-elements-and-no-`pause` rule and are
+now drawn in four named phases.
+
+**Passing `--strict` with no prefix is a hard error, and that is new.** It used to degrade to a
+silent report-only run: a package.json script ending in a bare `--strict` shipped on 2026-08-29
+gating nothing at all while still printing a green line and exiting 0. Caught by the sibling
+Maths-2B session, not by the script.
 
 ## 4. Orchestration — one agent per unit, and nobody touches units.json
 
@@ -124,7 +133,7 @@ python answer-book/tools/merge_units.py --subject mathematics_2a --prefix ts_ipe
 npx tsc --noEmit
 npm run build:answers                      # marks · completeness · Rule 41 · katex · unit keys · drift
 npx vitest run
-npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_m2a
+npm run check:figure-pace
 npm run measure:wrap -- ts_ipe_m2a
 npm run scan:register -- ts_ipe_m2a
 npm run figures:gallery -- ts_ipe_m2a
