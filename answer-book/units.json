@@ -10739,6 +10739,442 @@
           "question_id": "ts_ipe_b2_mbi_template_vs_coding_strand"
         }
       ]
+    },
+    {
+      "number": 11,
+      "name": "Biotechnology: Principles and Processes (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain briefly the various processes of recombinant DNA technology.",
+          "question_id": "ts_ipe_b2_bpp_laq_rdna_processes"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Give a brief account of the tools of recombinant DNA technology.",
+          "question_id": "ts_ipe_b2_bpp_laq_rdna_tools"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 107,
+          "stars": 0,
+          "text": "Define biotechnology.",
+          "question_id": "ts_ipe_b2_bpp_define_biotechnology"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 108,
+          "stars": 0,
+          "text": "What are molecular scissors? Where are they obtained from?",
+          "question_id": "ts_ipe_b2_bpp_molecular_scissors"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 109,
+          "stars": 0,
+          "text": "Name any two artificially restructured plasmids.",
+          "question_id": "ts_ipe_b2_bpp_artificial_plasmids"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 110,
+          "stars": 0,
+          "text": "What is EcoRI? How does it function?",
+          "question_id": "ts_ipe_b2_bpp_ecori"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 111,
+          "stars": 0,
+          "text": "What are cloning vectors? Give an example.",
+          "question_id": "ts_ipe_b2_bpp_cloning_vectors"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 112,
+          "stars": 0,
+          "text": "What is recombinant DNA?",
+          "question_id": "ts_ipe_b2_bpp_recombinant_dna"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 113,
+          "stars": 0,
+          "text": "What is a palindromic sequence?",
+          "question_id": "ts_ipe_b2_bpp_palindromic_sequence"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 114,
+          "stars": 0,
+          "text": "What is the full form of PCR? How is it useful in biotechnology?",
+          "question_id": "ts_ipe_b2_bpp_pcr"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 115,
+          "stars": 0,
+          "text": "What is down-stream processing?",
+          "question_id": "ts_ipe_b2_bpp_downstream_processing"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 116,
+          "stars": 0,
+          "text": "How does one visualise DNA on an agarose gel?",
+          "question_id": "ts_ipe_b2_bpp_visualise_dna_on_gel"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 117,
+          "stars": 0,
+          "text": "How can you differentiate between exonucleases and endonucleases?",
+          "question_id": "ts_ipe_b2_bpp_exo_vs_endonucleases"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "name": "Biotechnology and its Applications (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 45,
+          "stars": 0,
+          "text": "List out the beneficial aspects of transgenic plants.",
+          "question_id": "ts_ipe_b2_bia_transgenic_plant_benefits"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 46,
+          "stars": 0,
+          "text": "What are some bio-safety issues concerned with genetically modified crops?",
+          "question_id": "ts_ipe_b2_bia_gm_biosafety_issues"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 47,
+          "stars": 0,
+          "text": "Give a brief account of Bt cotton.",
+          "question_id": "ts_ipe_b2_bia_bt_cotton"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 48,
+          "stars": 0,
+          "text": "Give a brief account of pest resistant plants.",
+          "question_id": "ts_ipe_b2_bia_pest_resistant_plants"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 118,
+          "stars": 0,
+          "text": "Give different types of cry genes and the pests which are controlled by the proteins encoded by these genes.",
+          "question_id": "ts_ipe_b2_bia_cry_genes"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 119,
+          "stars": 0,
+          "text": "Can a disease be detected before its symptoms appear? Explain the principle involved.",
+          "question_id": "ts_ipe_b2_bia_early_disease_detection"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 120,
+          "stars": 0,
+          "text": "What is GEAC and what are its objectives?",
+          "question_id": "ts_ipe_b2_bia_geac"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 121,
+          "stars": 0,
+          "text": "Name the nematode that infects the roots of tobacco plants. Name the strategy adopted to prevent this infestation.",
+          "question_id": "ts_ipe_b2_bia_tobacco_nematode"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 122,
+          "stars": 0,
+          "text": "For which variety of Indian rice has a patent been filed by a USA company?",
+          "question_id": "ts_ipe_b2_bia_basmati_patent"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 123,
+          "stars": 0,
+          "text": "Give one example each of a transgenic plant suitable for food processing and one with improved nutritional quality.",
+          "question_id": "ts_ipe_b2_bia_transgenic_examples"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 124,
+          "stars": 0,
+          "text": "What is green revolution? Who is regarded as the Father of the green revolution?",
+          "question_id": "ts_ipe_b2_bia_green_revolution"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "name": "Strategies for Enhancement in Food Production (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "You are a Botanist working in the area of plant breeding. Describe the various steps that you will undertake to release a new variety.",
+          "question_id": "ts_ipe_b2_sef_laq_release_new_variety"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Describe the tissue culture technique. What are the advantages of tissue culture over the conventional method of plant breeding in crop improvement programmes?",
+          "question_id": "ts_ipe_b2_sef_laq_tissue_culture"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 125,
+          "stars": 0,
+          "text": "What is meant by 'hidden hunger'?",
+          "question_id": "ts_ipe_b2_sef_hidden_hunger"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 126,
+          "stars": 0,
+          "text": "Name two semi-dwarf varieties of rice developed in India.",
+          "question_id": "ts_ipe_b2_sef_semi_dwarf_rice"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 127,
+          "stars": 0,
+          "text": "Give two examples of wheat varieties introduced in India which are high yielding and disease resistant.",
+          "question_id": "ts_ipe_b2_sef_wheat_varieties"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 128,
+          "stars": 0,
+          "text": "Give two examples of fungi used in SCP production.",
+          "question_id": "ts_ipe_b2_sef_scp_fungi"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 129,
+          "stars": 0,
+          "text": "Which two species of sugarcane were crossed for better yield?",
+          "question_id": "ts_ipe_b2_sef_sugarcane_species"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 130,
+          "stars": 0,
+          "text": "Define totipotency and explant.",
+          "question_id": "ts_ipe_b2_sef_totipotency_and_explant"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 131,
+          "stars": 0,
+          "text": "Define micropropagation and somaclones.",
+          "question_id": "ts_ipe_b2_sef_micropropagation_somaclones"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 132,
+          "stars": 0,
+          "text": "What is meant by germplasm collection?",
+          "question_id": "ts_ipe_b2_sef_germplasm_collection"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 133,
+          "stars": 0,
+          "text": "What is meant by biofortification?",
+          "question_id": "ts_ipe_b2_sef_biofortification"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 134,
+          "stars": 0,
+          "text": "Which part of the plant is best suited for making virus-free plants and why?",
+          "question_id": "ts_ipe_b2_sef_virus_free_plants"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "name": "Microbes in Human Welfare (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 135,
+          "stars": 0,
+          "text": "Why does Swiss cheese have big holes? Name the bacteria responsible for it.",
+          "question_id": "ts_ipe_b2_mhw_swiss_cheese_holes"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 136,
+          "stars": 0,
+          "text": "What are fermentors?",
+          "question_id": "ts_ipe_b2_mhw_fermentors"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 137,
+          "stars": 0,
+          "text": "Name a microbe used for statin production. How do statins lower blood cholesterol level?",
+          "question_id": "ts_ipe_b2_mhw_statins"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 138,
+          "stars": 0,
+          "text": "Why do we prefer to call secondary waste water treatment biological treatment?",
+          "question_id": "ts_ipe_b2_mhw_biological_treatment"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 139,
+          "stars": 0,
+          "text": "What is Nucleopolyhedrovirus being used for nowadays?",
+          "question_id": "ts_ipe_b2_mhw_nucleopolyhedrovirus"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 140,
+          "stars": 0,
+          "text": "Write the most important characteristic that Aspergillus niger, Clostridium butylicum and Lactobacillus share.",
+          "question_id": "ts_ipe_b2_mhw_acid_producing_microbes"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 141,
+          "stars": 0,
+          "text": "Name any two genetically modified crops.",
+          "question_id": "ts_ipe_b2_mhw_gm_crops"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 142,
+          "stars": 0,
+          "text": "Name any two industrially important enzymes.",
+          "question_id": "ts_ipe_b2_mhw_industrial_enzymes"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 143,
+          "stars": 0,
+          "text": "Name an immunosuppressive agent. From where is it obtained?",
+          "question_id": "ts_ipe_b2_mhw_immunosuppressive_agent"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 144,
+          "stars": 0,
+          "text": "What is the group of bacteria found in both the rumen of cattle and the sludge of sewage treatment?",
+          "question_id": "ts_ipe_b2_mhw_methanogens"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 145,
+          "stars": 0,
+          "text": "Name the scientists who were credited for showing the role of penicillin as an antibiotic.",
+          "question_id": "ts_ipe_b2_mhw_penicillin_scientists"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 146,
+          "stars": 0,
+          "text": "Give any two microbes that are used in biotechnology.",
+          "question_id": "ts_ipe_b2_mhw_microbes_in_biotechnology"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 147,
+          "stars": 0,
+          "text": "In which food do you find lactic acid bacteria? Name the bacterium.",
+          "question_id": "ts_ipe_b2_mhw_lactic_acid_bacteria"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 148,
+          "stars": 0,
+          "text": "Name any two fungi which are used in the production of antibiotics.",
+          "question_id": "ts_ipe_b2_mhw_antibiotic_fungi"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 149,
+          "stars": 0,
+          "text": "How has the discovery of antibiotics helped mankind in the field of medicine?",
+          "question_id": "ts_ipe_b2_mhw_antibiotics_in_medicine"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_transgenic_examples",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give one example each of a transgenic plant suitable for food processing and one with improved nutritional quality.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Food processing",
+      "marks": 1
+    },
+    {
+      "label": "Nutritional quality",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 123. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two names, one line each. Flavr Savr and golden rice — both need the property that makes them the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_processing",
+        "kind": "text",
+        "label": "Food processing",
+        "marks": 1,
+        "mark_note": "Processing",
+        "margin_note": "The variety, the crop, and the property. Four lines.",
+        "lines": [
+          "Transgenic plant suitable for food processing:",
+          "the FLAVR SAVR variety of TOMATO.",
+          "Its ripening is DELAYED, so it is bruise resistant",
+          "and survives storage and transport."
+        ],
+        "why": "Delayed ripening is exactly what a food-processing crop needs: time between harvest and use.",
+        "common_mistakes": [
+          "Naming golden rice here. Golden rice is the NUTRITION example.",
+          "Giving the name with no property. Delayed ripening is why it qualifies."
+        ],
+        "memory_tip": "Flavr Savr ripens slowly, so it travels well."
+      },
+      {
+        "id": "s2_nutrition",
+        "kind": "boxed_final",
+        "label": "Nutritional quality",
+        "marks": 1,
+        "mark_note": "Nutrition",
+        "margin_note": "The variety, the compound, and what it prevents.",
+        "lines": [
+          {
+            "text": "Flavr Savr for processing; golden rice for",
+            "style": "boxed"
+          },
+          {
+            "text": "nutrition",
+            "style": "boxed"
+          },
+          "Transgenic plant with improved nutritional value:",
+          "GOLDEN RICE, from the Taipei rice variety.",
+          "It is rich in beta-carotene, which the body turns",
+          "into VITAMIN A, and so helps prevent blindness."
+        ],
+        "why": "Rice grain carries no beta-carotene naturally, so adding it changes the nutritional value of the staple food itself.",
+        "common_mistakes": [
+          "Saying golden rice is bruise resistant. That is Flavr Savr.",
+          "Saying it contains vitamin A. It contains BETA-CAROTENE, the precursor."
+        ],
+        "memory_tip": "Golden from the carotene, and carotene becomes vitamin A."
+      }
+    ]
+  }
+}

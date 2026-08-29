@@ -1,0 +1,107 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_tobacco_nematode",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the nematode that infects the roots of tobacco plants. Name the strategy adopted to prevent this infestation.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The nematode",
+      "marks": 1
+    },
+    {
+      "label": "The strategy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 121. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "One species name and one technique. Spell Meloidogyne incognita carefully — the guide misspells it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nematode",
+        "kind": "text",
+        "label": "The nematode",
+        "marks": 1,
+        "mark_note": "Nematode",
+        "margin_note": "The full species name and where it lives.",
+        "lines": [
+          "The nematode is MELOIDOGYNE INCOGNITA.",
+          "It infects the ROOTS of tobacco plants and",
+          "reduces the yield."
+        ],
+        "why": "A parasite living inside the root is out of reach of anything sprayed on the plant, which is why a biotechnological answer was needed.",
+        "common_mistakes": [
+          "Writing 'Meloidegyne incognitia'. The correct name is Meloidogyne incognita; the guide misprints it.",
+          "Saying it infects the leaves. It infects the ROOTS."
+        ],
+        "memory_tip": "Meloidogyne incognita, in the roots."
+      },
+      {
+        "id": "s2_strategy",
+        "kind": "boxed_final",
+        "label": "The strategy",
+        "marks": 1,
+        "mark_note": "Strategy",
+        "margin_note": "Name RNAi, the vector, and the double stranded RNA. Seven lines.",
+        "lines": [
+          {
+            "text": "RNA interference silences a nematode gene",
+            "style": "boxed"
+          },
+          "RNA INTERFERENCE (RNAi) is adopted to prevent",
+          "the infestation.",
+          "Nematode specific genes are introduced into the",
+          "tobacco plant using Agrobacterium.",
+          "Both sense and anti-sense RNA are made, they pair",
+          "into double stranded RNA, and the nematode's own",
+          "mRNA is silenced."
+        ],
+        "why": "Silencing a gene the parasite needs kills it without making the plant toxic to anything else.",
+        "common_mistakes": [
+          "Naming a pesticide. The strategy is RNA INTERFERENCE.",
+          "Not expanding RNAi. RNA interference is the full name."
+        ],
+        "memory_tip": "Switch off a gene the parasite cannot live without."
+      }
+    ]
+  }
+}

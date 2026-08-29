@@ -100,9 +100,9 @@
         "mark_note": "Assortment",
         "margin_note": "Definition plus the four gamete types. The gamete list proves the law.",
         "lines": [
-          "The LAW OF INDEPENDENT ASSORTMENT states that",
-          "when two individuals differ in TWO OR MORE",
-          "pairs of contrasting characters, the",
+          "The LAW OF INDEPENDENT ASSORTMENT",
+          "states that when two individuals differ in TWO OR",
+          "MORE pairs of contrasting characters, the",
           "inheritance of one pair of factors is",
           "INDEPENDENT of the other pair.",
           "So a dihybrid YyRr makes FOUR kinds of gamete —",
@@ -133,8 +133,8 @@
           },
           "The law of SEGREGATION is based on the results",
           "of the MONOHYBRID cross.",
-          "The law of INDEPENDENT ASSORTMENT is based on",
-          "the results of the DIHYBRID cross, which gives",
+          "The law of INDEPENDENT ASSORTMENT is",
+          "based on the results of the DIHYBRID cross, which gives",
           "the 9 : 3 : 3 : 1 ratio in F₂.",
           "Independent assortment holds only for genes on",
           "DIFFERENT chromosomes."

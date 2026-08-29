@@ -56,9 +56,10 @@
         "mark_note": "Definition",
         "margin_note": "All four adjectives plus 'separate from the genophore'.",
         "lines": [
-          "A PLASMID is a small, SELF-DUPLICATING, NAKED,",
-          "CIRCULAR, DOUBLE STRANDED DNA fragment found in",
-          "bacteria, separate from the genophore."
+          "A PLASMID is a small, SELF-DUPLICATING,",
+          "NAKED, CIRCULAR, DOUBLE STRANDED",
+          "DNA fragment found in bacteria, separate from the",
+          "genophore."
         ],
         "why": "Self-duplicating is the load-bearing word: because a plasmid copies itself independently, anything inserted into it is copied too.",
         "common_mistakes": [

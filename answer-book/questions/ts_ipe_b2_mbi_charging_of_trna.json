@@ -47,12 +47,12 @@
         "mark_note": "Definition",
         "margin_note": "Definition with ATP and the alternative name. Six lines.",
         "lines": [
-          "CHARGING of tRNA is the ACTIVATION of an amino",
-          "acid, in the presence of ATP, and its linking to",
+          "CHARGING of tRNA is the ACTIVATION of an",
+          "amino acid, in the presence of ATP, and its linking to",
           "the correct (cognate) tRNA.",
           "It is also called AMINOACYLATION.",
-          "A tRNA carrying its amino acid is a CHARGED tRNA,",
-          "or aminoacyl-tRNA."
+          "A tRNA carrying its amino acid is a CHARGED",
+          "tRNA, or aminoacyl-tRNA."
         ],
         "why": "An amino acid on its own cannot recognise a codon, so it has to be attached to a tRNA that can — charging is what makes the amino acid readable.",
         "common_mistakes": [

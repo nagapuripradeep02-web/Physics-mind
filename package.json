@@ -87,7 +87,8 @@
     "pace:figures": "npx tsx src/scripts/pace_figures.ts",
     "figures:gallery": "python answer-book/tools/render_figures.py",
     "measure:wrap": "node answer-book/tools/measure_wrap.mjs",
-    "probe:recall": "npx tsx --env-file=.env.local src/scripts/probe_recall.ts"
+    "probe:recall": "npx tsx --env-file=.env.local src/scripts/probe_recall.ts",
+    "backtest:botany2": "npx tsx src/scripts/backtest_botany2.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",

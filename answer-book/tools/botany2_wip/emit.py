@@ -103,6 +103,13 @@ def Q(unit, slug, qtype, ref, gno, page, text, split, steps,
       years=None, insider=None, note_extra=None, time_min=None):
     """One card. `ref` is the manifest ref (e.g. 'saq1'); `gno` the book's GLOBAL question
     number — what every hit list and guess paper cites as P <page>(<gno>)."""
+    # Guard against the one authoring slip that bit this track three times: writing
+    # `note_extra=` in the middle of a call, before the positional `insider`, which
+    # Python rejects as a SyntaxError with an unhelpful pointer at the LAST line.
+    assert isinstance(text, str), f'{slug}: question_text must be a string'
+    assert insider is None or isinstance(insider, str), f'{slug}: insider must be a string'
+    assert isinstance(steps, list), f'{slug}: steps must be a list'
+    assert isinstance(split, list), f'{slug}: mark_split must be a list of (label, marks)'
     uname, abbr, chapter = UNITS[unit]
     marks, section, tmin = QTYPE[qtype]
     qid = f'{PREFIX}_{abbr}_{slug}'

@@ -56,8 +56,8 @@
         "mark_note": "Scientists",
         "margin_note": "Both names, the year, and the two tracers.",
         "lines": [
-          "ALFRED HERSHEY and MARTHA CHASE proved that DNA",
-          "is the genetic material, in 1952.",
+          "ALFRED HERSHEY and MARTHA CHASE proved",
+          "that DNA is the genetic material, in 1952.",
           "They used radioactive tracers: sulphur-35 to",
           "label protein and phosphorus-32 to label DNA."
         ],
@@ -80,9 +80,9 @@
             "text": "The bacteriophage T2 and its host, E. coli",
             "style": "boxed"
           },
-          "They worked on the BACTERIOPHAGE T2 — a VIRUS —",
-          "and its host bacterium ESCHERICHIA COLI.",
-          "Only the phosphorus label entered the bacterial",
+          "They worked on the BACTERIOPHAGE T2 — a",
+          "VIRUS — and its host bacterium ESCHERICHIA",
+          "COLI. Only the phosphorus label entered the bacterial",
           "cells, so only DNA had gone in."
         ],
         "why": "Finding the phosphorus inside the bacteria and the sulphur outside is the entire result: the DNA went in, the protein did not.",

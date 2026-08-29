@@ -120,7 +120,14 @@
         "lines": [
           "Pyruvic acid from glycolysis enters the",
           "mitochondrion first.",
-          "There it undergoes OXIDATIVE DECARBOXYLATION:",
+          {
+            "text": "There it undergoes OXIDATIVE",
+            "style": "normal"
+          },
+          {
+            "text": "DECARBOXYLATION:",
+            "style": "normal"
+          },
           {
             "text": "Pyruvic acid (3C) + CoA + NAD⁺",
             "style": "eq"

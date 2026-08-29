@@ -57,8 +57,8 @@
         "margin_note": "The molecule, the end, and what the cap is for.",
         "lines": [
           "CAPPING is the addition of an unusual nucleotide,",
-          "METHYL GUANOSINE TRIPHOSPHATE, to the 5' END of",
-          "the hnRNA.",
+          "METHYL GUANOSINE TRIPHOSPHATE, to the 5'",
+          "END of the hnRNA.",
           "The cap protects the RNA and helps the ribosome",
           "recognise it."
         ],
@@ -82,8 +82,8 @@
             "style": "boxed"
           },
           "TAILING is the addition of 200 to 300 ADENYLATE",
-          "residues to the 3' END, in a TEMPLATE INDEPENDENT",
-          "manner.",
+          "residues to the 3' END, in a TEMPLATE",
+          "INDEPENDENT manner.",
           "This is the poly-A tail.",
           "Template independent means no DNA is read to make",
           "it — the adenines are simply added on."

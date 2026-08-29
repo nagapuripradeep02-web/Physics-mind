@@ -52,8 +52,8 @@
         "mark_note": "Virulent",
         "margin_note": "One cycle, the outcome, one example. Four lines.",
         "lines": [
-          "VIRULENT PHAGES replicate only through the LYTIC",
-          "cycle.",
+          "VIRULENT PHAGES replicate only through the",
+          "LYTIC cycle.",
           "They always destroy the host cell.",
           "Example: the T-even phages (T2, T4, T6)."
         ],
@@ -80,8 +80,8 @@
             "text": "phages have two",
             "style": "boxed"
           },
-          "TEMPERATE PHAGES replicate through BOTH the lytic",
-          "and the LYSOGENIC cycles.",
+          "TEMPERATE PHAGES replicate through BOTH the",
+          "lytic and the LYSOGENIC cycles.",
           "In the lysogenic cycle the phage DNA joins the",
           "bacterial chromosome and is copied with it, so",
           "the host survives.",

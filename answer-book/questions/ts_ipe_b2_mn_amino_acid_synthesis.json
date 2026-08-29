@@ -98,7 +98,10 @@
             "text": "   --> glutamate + H2O + NADP+",
             "style": "eq"
           },
-          "The enzyme is GLUTAMATE DEHYDROGENASE."
+          {
+            "text": "The enzyme is GLUTAMATE DEHYDROGENASE.",
+            "style": "normal"
+          }
         ],
         "why": "This is where nitrogen first enters an organic molecule, so every other amino acid in the plant traces back to this one reaction.",
         "common_mistakes": [

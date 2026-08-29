@@ -1,0 +1,111 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_early_disease_detection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Can a disease be detected before its symptoms appear? Explain the principle involved.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The two techniques",
+      "marks": 1
+    },
+    {
+      "label": "Their principles",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 119. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Yes, then two techniques with their two principles. Four facts in four lines.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_yes",
+        "kind": "text",
+        "label": "The two techniques",
+        "marks": 1,
+        "mark_note": "Techniques",
+        "margin_note": "Yes, then both named techniques.",
+        "lines": [
+          "YES. A disease can be detected before its symptoms",
+          "appear.",
+          "Two techniques are used:",
+          "(i) PCR  (ii) ELISA"
+        ],
+        "why": "Both techniques detect the pathogen itself rather than the body's reaction to it, which is why they work before any symptom shows.",
+        "common_mistakes": [
+          "Answering with a bare yes. The techniques are half the mark.",
+          "Naming only one technique. Both PCR and ELISA are expected."
+        ],
+        "memory_tip": "Detect the pathogen, not the symptom."
+      },
+      {
+        "id": "s2_principles",
+        "kind": "boxed_final",
+        "label": "Their principles",
+        "marks": 1,
+        "mark_note": "Principles",
+        "margin_note": "Both principles named, one line of explanation each.",
+        "lines": [
+          {
+            "text": "PCR amplifies the gene; ELISA binds antigen",
+            "style": "boxed"
+          },
+          {
+            "text": "to antibody",
+            "style": "boxed"
+          },
+          "The principle of PCR is GENE AMPLIFICATION:",
+          "even a very small amount of pathogen DNA is copied",
+          "until it can be detected.",
+          "The principle of ELISA is ANTIGEN-ANTIBODY",
+          "INTERACTION: the pathogen's antigen binds a",
+          "specific antibody."
+        ],
+        "why": "A tiny amount of pathogen is invisible until it is either multiplied or made to bind something detectable, which is exactly what the two techniques do.",
+        "common_mistakes": [
+          "Swapping the principles. PCR is amplification; ELISA is antigen-antibody.",
+          "Giving the names with no principles. The question asks for the PRINCIPLE."
+        ],
+        "memory_tip": "One multiplies the evidence; the other makes it stick to something."
+      }
+    ]
+  }
+}

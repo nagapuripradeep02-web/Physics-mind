@@ -104,11 +104,11 @@
         "mark_note": "Gene",
         "margin_note": "Definition, the other name, and the named disease.",
         "lines": [
-          "2. GENE MUTATION is a change in a SINGLE BASE",
-          "PAIR of DNA.",
+          "2. GENE MUTATION is a change in a SINGLE",
+          "BASE PAIR of DNA.",
           "It is also called a POINT MUTATION.",
-          "Example: SICKLE CELL ANAEMIA in humans, caused",
-          "by a single base change in the gene for the",
+          "Example: SICKLE CELL ANAEMIA in humans,",
+          "caused by a single base change in the gene for the",
           "beta chain of haemoglobin."
         ],
         "why": "One base changed means one amino acid changed, and sickle cell anaemia shows that a single such change can be enough to cause a disease.",

@@ -1,0 +1,103 @@
+{
+  "number": 13,
+  "name": "Strategies for Enhancement in Food Production (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "laq1",
+      "section": "LAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "You are a Botanist working in the area of plant breeding. Describe the various steps that you will undertake to release a new variety.",
+      "question_id": "ts_ipe_b2_sef_laq_release_new_variety"
+    },
+    {
+      "ref": "laq2",
+      "section": "LAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "Describe the tissue culture technique. What are the advantages of tissue culture over the conventional method of plant breeding in crop improvement programmes?",
+      "question_id": "ts_ipe_b2_sef_laq_tissue_culture"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 125,
+      "stars": 0,
+      "text": "What is meant by 'hidden hunger'?",
+      "question_id": "ts_ipe_b2_sef_hidden_hunger"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 126,
+      "stars": 0,
+      "text": "Name two semi-dwarf varieties of rice developed in India.",
+      "question_id": "ts_ipe_b2_sef_semi_dwarf_rice"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 127,
+      "stars": 0,
+      "text": "Give two examples of wheat varieties introduced in India which are high yielding and disease resistant.",
+      "question_id": "ts_ipe_b2_sef_wheat_varieties"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 128,
+      "stars": 0,
+      "text": "Give two examples of fungi used in SCP production.",
+      "question_id": "ts_ipe_b2_sef_scp_fungi"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 129,
+      "stars": 0,
+      "text": "Which two species of sugarcane were crossed for better yield?",
+      "question_id": "ts_ipe_b2_sef_sugarcane_species"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 130,
+      "stars": 0,
+      "text": "Define totipotency and explant.",
+      "question_id": "ts_ipe_b2_sef_totipotency_and_explant"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 131,
+      "stars": 0,
+      "text": "Define micropropagation and somaclones.",
+      "question_id": "ts_ipe_b2_sef_micropropagation_somaclones"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 132,
+      "stars": 0,
+      "text": "What is meant by germplasm collection?",
+      "question_id": "ts_ipe_b2_sef_germplasm_collection"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 133,
+      "stars": 0,
+      "text": "What is meant by biofortification?",
+      "question_id": "ts_ipe_b2_sef_biofortification"
+    },
+    {
+      "ref": "vsaq10",
+      "section": "VSAQ",
+      "number": 134,
+      "stars": 0,
+      "text": "Which part of the plant is best suited for making virus-free plants and why?",
+      "question_id": "ts_ipe_b2_sef_virus_free_plants"
+    }
+  ]
+}

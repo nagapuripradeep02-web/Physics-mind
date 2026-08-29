@@ -1,0 +1,241 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_laq_release_new_variety",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "You are a Botanist working in the area of plant breeding. Describe the various steps that you will undertake to release a new variety.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The five steps",
+      "marks": 1
+    },
+    {
+      "label": "Collection of variability",
+      "marks": 2
+    },
+    {
+      "label": "Evaluation and selection of parents",
+      "marks": 1
+    },
+    {
+      "label": "Cross hybridisation",
+      "marks": 1
+    },
+    {
+      "label": "Selection and testing of recombinants",
+      "marks": 2
+    },
+    {
+      "label": "Testing, release and commercialisation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.17, printed question 5. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Five steps, and the marks follow them. List all five first — an examiner who can see the five headings will find every mark, and the list alone is worth one.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_five",
+        "kind": "text",
+        "label": "The five steps",
+        "marks": 1,
+        "mark_note": "The list",
+        "margin_note": "All five, numbered, before any explanation. Eight lines and one mark secured.",
+        "lines": [
+          "Releasing a new crop variety takes FIVE steps:",
+          "1. Collection of variability",
+          "2. Evaluation and selection of parents",
+          "3. Cross hybridisation among the selected",
+          "   parents",
+          "4. Selection and testing of superior",
+          "   recombinants",
+          "5. Testing, release and commercialisation of",
+          "   the new cultivars"
+        ],
+        "why": "The five steps run in one order — gather, choose, cross, select, release — and every later step depends on the one before it.",
+        "common_mistakes": [
+          "Naming three steps. There are FIVE, and each is a heading in the answer.",
+          "Putting selection before hybridisation. You must cross before you can select recombinants."
+        ],
+        "memory_tip": "Gather, choose, cross, select, release."
+      },
+      {
+        "id": "s2_variability",
+        "kind": "text",
+        "label": "Collection of variability",
+        "marks": 2,
+        "mark_note": "Variability",
+        "margin_note": "Two marks here. Define germplasm collection in full — it is asked as a VSAQ on its own.",
+        "lines": [
+          "1. COLLECTION OF VARIABILITY",
+          "Genetic variability is the raw material of any",
+          "breeding programme — without differences there",
+          "is nothing to select from.",
+          "Pre-existing variability is available in the",
+          "WILD RELATIVES of crop plants.",
+          "Collecting and preserving all the wild varieties",
+          "and species is a PRE-REQUISITE, because it is",
+          "the only way to exploit the natural genes in the",
+          "population.",
+          "The entire collection of plants or seeds having",
+          "all the DIVERSE ALLELES for all genes in a given",
+          "crop is called the GERM PLASM COLLECTION."
+        ],
+        "why": "A breeder can only recombine alleles that already exist somewhere, so the size of the germplasm collection sets the limit on what can ever be bred.",
+        "common_mistakes": [
+          "Saying variability can be created at will. It is COLLECTED from wild relatives.",
+          "Leaving out germplasm collection. It is the named term and this mark is largely for it.",
+          "Saying wild relatives are useless. They carry the genes for disease resistance."
+        ],
+        "memory_tip": "You can only breed with alleles somebody has already collected."
+      },
+      {
+        "id": "s3_evaluation",
+        "kind": "text",
+        "label": "Evaluation and selection of parents",
+        "marks": 1,
+        "mark_note": "Evaluation",
+        "margin_note": "Evaluation, multiplication, and pure lines by self pollination.",
+        "lines": [
+          "2. EVALUATION AND SELECTION OF",
+          "PARENTS The germplasm is EVALUATED to identify",
+          "plants with the desired characters.",
+          "The selected plants are MULTIPLIED and used in",
+          "hybridisation.",
+          "PURE LINES are created by continuous SELF",
+          "POLLINATION, so the parents are homozygous and",
+          "of known genotype."
+        ],
+        "why": "A cross can only be interpreted if both parents breed true, so purifying the parents comes before any crossing.",
+        "common_mistakes": [
+          "Skipping the pure lines. Self pollination to homozygosity is what this step is for.",
+          "Saying evaluation means testing the yield of hybrids. It means examining the GERMPLASM for useful characters."
+        ],
+        "memory_tip": "Pick them, then purify them, then cross them."
+      },
+      {
+        "id": "s4_hybridisation",
+        "kind": "text",
+        "label": "Cross hybridisation",
+        "marks": 1,
+        "mark_note": "Hybridisation",
+        "margin_note": "What is combined, an example, and both difficulties.",
+        "lines": [
+          "3. CROSS HYBRIDISATION AMONG SELECTED",
+          "PARENTS The desired characters from different parents",
+          "are combined by crossing them.",
+          "Example: a high yielding parent is crossed with",
+          "a disease resistant one.",
+          "It is very TIME CONSUMING and LABORIOUS:",
+          "each cross needs emasculation and hand pollination.",
+          "It is also uncertain — usually only ONE cross in",
+          "a few hundred gives the desired combination."
+        ],
+        "why": "Each cross is done by hand on individual flowers, so the low success rate translates directly into years of work.",
+        "common_mistakes": [
+          "Saying hybridisation always works. Only about one in a few hundred crosses succeeds.",
+          "Leaving out the difficulty. The time and the low success rate are part of the mark."
+        ],
+        "memory_tip": "Hundreds of crosses for one useful combination."
+      },
+      {
+        "id": "s5_selection",
+        "kind": "text",
+        "label": "Selection and testing of recombinants",
+        "marks": 2,
+        "mark_note": "Selection",
+        "margin_note": "Two marks. Selection, superiority to both parents, and the homozygosity that stops segregation.",
+        "lines": [
+          "4. SELECTION AND TESTING OF SUPERIOR",
+          "RECOMBINANTS Plants with the desired combination",
+          "of characters are selected from among the hybrids.",
+          "This is the CRITICAL step, and it needs careful",
+          "scientific evaluation of the progeny.",
+          "It yields offspring SUPERIOR TO BOTH PARENTS.",
+          "The selected plants are then SELF POLLINATED for",
+          "several generations to reach HOMOZYGOSITY,",
+          "so that the characters no longer SEGREGATE in",
+          "the progeny and the variety breeds true."
+        ],
+        "why": "A hybrid that is still heterozygous will not breed true, so its good characters would scatter in the next generation unless homozygosity is reached first.",
+        "common_mistakes": [
+          "Stopping at 'the best plants are selected'. The self pollination to homozygosity is half this mark.",
+          "Saying the offspring resemble one parent. They are SUPERIOR TO BOTH.",
+          "Leaving out segregation. Preventing it is why homozygosity is needed."
+        ],
+        "memory_tip": "Select the best, then make it breed true."
+      },
+      {
+        "id": "s6_release",
+        "kind": "boxed_final",
+        "label": "Testing, release and commercialisation",
+        "marks": 1,
+        "mark_note": "Release",
+        "margin_note": "Both kinds of field, the comparison, and certification before release.",
+        "lines": [
+          {
+            "text": "Research field, then farmer's field, then",
+            "style": "boxed"
+          },
+          {
+            "text": "certification",
+            "style": "boxed"
+          },
+          "5. TESTING, RELEASE AND",
+          "COMMERCIALISATION The newly selected lines are",
+          "evaluated for YIELD and DISEASE RESISTANCE.",
+          "They are first grown in RESEARCH FIELDS, under",
+          "controlled conditions.",
+          "The hybrid line is then tested in FARMERS'",
+          "FIELDS, in at least three different seasons and",
+          "at several locations.",
+          "The material is compared with the best available",
+          "LOCAL CULTIVAR.",
+          "Only after this evaluation and CERTIFICATION is",
+          "the variety released."
+        ],
+        "why": "A variety that performs well in one research plot may fail in a farmer's field, so the comparison against the best local cultivar is the real test.",
+        "common_mistakes": [
+          "Releasing straight from the research field. Farmers' field trials come first.",
+          "Leaving out the comparison with the local cultivar. A new variety must BEAT what farmers already grow.",
+          "Forgetting certification. Release follows certification, not the other way round."
+        ],
+        "memory_tip": "It must beat what the farmer already grows, in the farmer's own field."
+      }
+    ]
+  }
+}

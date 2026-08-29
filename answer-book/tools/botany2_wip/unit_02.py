@@ -104,7 +104,7 @@ C.append(Q(U, 'amino_acid_synthesis', 'SAQ', 'saq2', 14, 23,
                "form the amino acid glutamic acid.",
                {"text":"alpha-ketoglutaric acid + NH4+ + NADPH + H+","style":"eq"},
                {"text":"   --> glutamate + H2O + NADP+","style":"eq"},
-               "The enzyme is GLUTAMATE DEHYDROGENASE."],
+               {"text": "The enzyme is GLUTAMATE DEHYDROGENASE.", "style": "normal"}],
         why="This is where nitrogen first enters an organic molecule, so every other amino acid in the "
             "plant traces back to this one reaction.",
         mistakes=["Writing the product as glutamine. The product here is GLUTAMIC ACID (glutamate).",

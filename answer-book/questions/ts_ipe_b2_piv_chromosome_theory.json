@@ -68,8 +68,8 @@
         "mark_note": "Names",
         "margin_note": "Both names and the year. Two lines.",
         "lines": [
-          "The CHROMOSOME THEORY OF INHERITANCE was proposed",
-          "by SUTTON and BOVERI, in 1902."
+          "The CHROMOSOME THEORY OF INHERITANCE",
+          "was proposed by SUTTON and BOVERI, in 1902."
         ],
         "why": "Two workers reached the same conclusion independently, which is why both names are always given together.",
         "common_mistakes": [

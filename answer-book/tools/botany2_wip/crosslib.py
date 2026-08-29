@@ -60,3 +60,16 @@ def square(pfx, x0, y0, cw, ch, cols, rows, cells, head_gap=14):
 
 def check(fig, name):
     return F.check(fig['elements'], fig['width'], fig['height'], name)
+
+
+def box(pfx, cx, y, text, bw=None, bh=36, pad=28):
+    """A labelled flow-chart box, centred on cx, top edge at y. Width is taken from the
+    MEASURED text width plus padding unless given, so a box can never be narrower than
+    the words in it."""
+    bw = bw or (w(text) + pad * 2)
+    x0, x1 = cx - bw / 2, cx + bw / 2
+    return [F.stroke(f'{pfx}_t', F.line(x0, y, x1, y), w=1.8),
+            F.stroke(f'{pfx}_b', F.line(x0, y + bh, x1, y + bh), w=1.8),
+            F.stroke(f'{pfx}_l', F.line(x0, y, x0, y + bh), w=1.8),
+            F.stroke(f'{pfx}_r', F.line(x1, y, x1, y + bh), w=1.8),
+            centred(f'{pfx}_x', cx, y + bh / 2 + 5, text)], bw

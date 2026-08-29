@@ -60,16 +60,28 @@
         "mark_note": "Definition",
         "margin_note": "Definition then formula. The direction of each gas is the mark.",
         "lines": [
-          "The RESPIRATORY QUOTIENT (RQ) is the ratio of",
-          "the volume of CO2 GIVEN OUT to the volume of",
-          "O2 TAKEN IN, in a given time at standard",
-          "temperature and pressure.",
+          {
+            "text": "The RESPIRATORY QUOTIENT (RQ) is the ratio",
+            "style": "normal"
+          },
+          {
+            "text": "of the volume of CO2 GIVEN OUT to the volume",
+            "style": "normal"
+          },
+          {
+            "text": "of O2 TAKEN IN, in a given time at standard",
+            "style": "normal"
+          },
+          {
+            "text": "temperature and pressure.",
+            "style": "normal"
+          },
           {
             "text": "RQ = volume of CO2 evolved",
             "style": "eq"
           },
           {
-            "text": "     ────────────────────────",
+            "text": "     ──────────────────",
             "style": "eq"
           },
           {

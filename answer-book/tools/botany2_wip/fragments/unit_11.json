@@ -1,0 +1,111 @@
+{
+  "number": 11,
+  "name": "Biotechnology: Principles and Processes (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "laq1",
+      "section": "LAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "Explain briefly the various processes of recombinant DNA technology.",
+      "question_id": "ts_ipe_b2_bpp_laq_rdna_processes"
+    },
+    {
+      "ref": "laq2",
+      "section": "LAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "Give a brief account of the tools of recombinant DNA technology.",
+      "question_id": "ts_ipe_b2_bpp_laq_rdna_tools"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 107,
+      "stars": 0,
+      "text": "Define biotechnology.",
+      "question_id": "ts_ipe_b2_bpp_define_biotechnology"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 108,
+      "stars": 0,
+      "text": "What are molecular scissors? Where are they obtained from?",
+      "question_id": "ts_ipe_b2_bpp_molecular_scissors"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 109,
+      "stars": 0,
+      "text": "Name any two artificially restructured plasmids.",
+      "question_id": "ts_ipe_b2_bpp_artificial_plasmids"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 110,
+      "stars": 0,
+      "text": "What is EcoRI? How does it function?",
+      "question_id": "ts_ipe_b2_bpp_ecori"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 111,
+      "stars": 0,
+      "text": "What are cloning vectors? Give an example.",
+      "question_id": "ts_ipe_b2_bpp_cloning_vectors"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 112,
+      "stars": 0,
+      "text": "What is recombinant DNA?",
+      "question_id": "ts_ipe_b2_bpp_recombinant_dna"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 113,
+      "stars": 0,
+      "text": "What is a palindromic sequence?",
+      "question_id": "ts_ipe_b2_bpp_palindromic_sequence"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 114,
+      "stars": 0,
+      "text": "What is the full form of PCR? How is it useful in biotechnology?",
+      "question_id": "ts_ipe_b2_bpp_pcr"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 115,
+      "stars": 0,
+      "text": "What is down-stream processing?",
+      "question_id": "ts_ipe_b2_bpp_downstream_processing"
+    },
+    {
+      "ref": "vsaq10",
+      "section": "VSAQ",
+      "number": 116,
+      "stars": 0,
+      "text": "How does one visualise DNA on an agarose gel?",
+      "question_id": "ts_ipe_b2_bpp_visualise_dna_on_gel"
+    },
+    {
+      "ref": "vsaq11",
+      "section": "VSAQ",
+      "number": 117,
+      "stars": 0,
+      "text": "How can you differentiate between exonucleases and endonucleases?",
+      "question_id": "ts_ipe_b2_bpp_exo_vs_endonucleases"
+    }
+  ]
+}

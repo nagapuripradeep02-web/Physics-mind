@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_acid_producing_microbes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the most important characteristic that Aspergillus niger, Clostridium butylicum and Lactobacillus share.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The shared characteristic",
+      "marks": 1
+    },
+    {
+      "label": "Which acid each makes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.48, printed question 140. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "One shared property and three acids. Naming each acid with its organism is the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shared",
+        "kind": "text",
+        "label": "The shared characteristic",
+        "marks": 1,
+        "mark_note": "Shared",
+        "margin_note": "The shared property plus the word fermentation.",
+        "lines": [
+          "All three are ACID PRODUCERS.",
+          "Each of them is used industrially to produce a",
+          "different ORGANIC ACID by fermentation."
+        ],
+        "why": "All three convert a cheap sugar substrate into an acid, which is why they are grouped together despite being a fungus and two bacteria.",
+        "common_mistakes": [
+          "Saying they are all bacteria. Aspergillus niger is a FUNGUS.",
+          "Saying they all make the same acid. Each makes a DIFFERENT one."
+        ],
+        "memory_tip": "Three organisms, three acids, one shared job."
+      },
+      {
+        "id": "s2_acids",
+        "kind": "boxed_final",
+        "label": "Which acid each makes",
+        "marks": 1,
+        "mark_note": "The acids",
+        "margin_note": "All three pairs, and the naming clue. Six lines.",
+        "lines": [
+          {
+            "text": "Citric, butyric and lactic acid",
+            "style": "boxed"
+          },
+          "ASPERGILLUS NIGER, a fungus, produces CITRIC",
+          "ACID. CLOSTRIDIUM BUTYLICUM, a bacterium,",
+          "produces BUTYRIC ACID.",
+          "LACTOBACILLUS, a bacterium, produces LACTIC",
+          "ACID. In each case the name of the acid is a clue to the",
+          "name of the organism, or the other way round."
+        ],
+        "why": "Two of the three names carry their product — butylicum gives butyric acid and Lactobacillus gives lactic acid — which makes them easy to keep apart.",
+        "common_mistakes": [
+          "Matching the wrong acid to the wrong organism. Aspergillus is CITRIC, Clostridium butylicum is BUTYRIC, Lactobacillus is LACTIC.",
+          "Naming only the acids. Each acid must be matched to its organism."
+        ],
+        "memory_tip": "Butylicum makes butyric; Lactobacillus makes lactic."
+      }
+    ]
+  }
+}

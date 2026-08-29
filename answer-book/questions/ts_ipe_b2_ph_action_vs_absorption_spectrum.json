@@ -53,8 +53,8 @@
         "margin_note": "Name the quantity on the y-axis. That is the whole mark.",
         "lines": [
           "The ACTION spectrum is the graph showing the",
-          "RATE OF PHOTOSYNTHESIS at different wavelengths",
-          "of light."
+          "RATE OF PHOTOSYNTHESIS at different",
+          "wavelengths of light."
         ],
         "why": "It measures what the plant actually does with each colour, which is why it is called the action spectrum.",
         "common_mistakes": [

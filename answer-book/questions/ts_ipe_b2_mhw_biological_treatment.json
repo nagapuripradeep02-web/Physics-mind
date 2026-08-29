@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_biological_treatment",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why do we prefer to call secondary waste water treatment biological treatment?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why biological",
+      "marks": 1
+    },
+    {
+      "label": "What it achieves",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.48, printed question 138. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Microbes do the work, and BOD is the measure. Expand BOD correctly: Biochemical Oxygen Demand.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_why",
+        "kind": "text",
+        "label": "Why biological",
+        "marks": 1,
+        "mark_note": "Reason",
+        "margin_note": "Name the microbes, the aeration, and the flocs.",
+        "lines": [
+          "Secondary waste water treatment is called",
+          "BIOLOGICAL treatment because LIVING MICROBES",
+          "do the work.",
+          "The effluent is agitated and aerated, which allows",
+          "vigorous growth of useful AEROBIC microbes into",
+          "masses called FLOCS."
+        ],
+        "why": "Primary treatment is purely physical settling, so the point of the name is that the second stage uses living organisms instead of machinery.",
+        "common_mistakes": [
+          "Saying chemicals do the work. Living MICROBES do it, which is why it is biological.",
+          "Leaving out flocs. They are the named structures the microbes form."
+        ],
+        "memory_tip": "The second stage is done by living things, not machines."
+      },
+      {
+        "id": "s2_bod",
+        "kind": "boxed_final",
+        "label": "What it achieves",
+        "marks": 1,
+        "mark_note": "BOD",
+        "margin_note": "Expand BOD correctly, say it falls, and say what a low BOD means.",
+        "lines": [
+          {
+            "text": "It reduces the BOD of the effluent",
+            "style": "boxed"
+          },
+          "The microbes consume the organic matter in the",
+          "effluent.",
+          "This REDUCES the BOD — the BIOCHEMICAL",
+          "OXYGEN DEMAND — of the water.",
+          "BOD is the amount of oxygen that would be used up",
+          "by microbes to break down the organic matter, so a",
+          "low BOD means clean water."
+        ],
+        "why": "BOD measures how much organic matter is left, so a fall in BOD is a direct measurement that the treatment worked.",
+        "common_mistakes": [
+          "Expanding BOD as 'Biological Oxygen Demand'. It is BIOCHEMICAL Oxygen Demand.",
+          "Saying treatment raises the BOD. It REDUCES it."
+        ],
+        "memory_tip": "Less organic matter left means less oxygen would be demanded."
+      }
+    ]
+  }
+}

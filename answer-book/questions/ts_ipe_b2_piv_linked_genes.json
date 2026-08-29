@@ -48,8 +48,8 @@
         "margin_note": "Yes plus the named law. Three lines.",
         "lines": [
           "YES. Mendel's laws would have been different.",
-          "Specifically, the LAW OF INDEPENDENT ASSORTMENT",
-          "would not have held."
+          "Specifically, the LAW OF INDEPENDENT",
+          "ASSORTMENT would not have held."
         ],
         "why": "Only one of the three laws depends on the genes being on different chromosomes, so the answer has to name which one.",
         "common_mistakes": [
@@ -67,7 +67,11 @@
         "margin_note": "Say inherited together, name linkage, and state the consequence.",
         "lines": [
           {
-            "text": "Genes on one chromosome are inherited TOGETHER",
+            "text": "Genes on one chromosome are",
+            "style": "boxed"
+          },
+          {
+            "text": "inherited TOGETHER",
             "style": "boxed"
           },
           "Genes located on the SAME chromosome are",

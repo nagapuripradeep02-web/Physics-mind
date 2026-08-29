@@ -82,8 +82,8 @@
         "mark_note": "Pol I",
         "margin_note": "Name the three rRNAs with their S values. Three lines.",
         "lines": [
-          "RNA POLYMERASE I transcribes the ribosomal RNAs:",
-          "28S rRNA, 18S rRNA and 5.8S rRNA.",
+          "RNA POLYMERASE I transcribes the ribosomal",
+          "RNAs: 28S rRNA, 18S rRNA and 5.8S rRNA.",
           "These are the RNAs that build the ribosome."
         ],
         "why": "The three rRNAs it makes are needed in enormous quantity, which is why one enzyme is given over to them alone.",
@@ -123,7 +123,7 @@
         "margin_note": "All three products, then one closing line. Watch 5S against 5.8S.",
         "lines": [
           {
-            "text": "I: rRNA. II: hnRNA (mRNA precursor). III: tRNA",
+            "text": "I: rRNA · II: hnRNA · III: tRNA",
             "style": "boxed"
           },
           "RNA POLYMERASE III transcribes tRNA, 5S rRNA",

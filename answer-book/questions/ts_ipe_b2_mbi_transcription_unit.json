@@ -64,7 +64,8 @@
         "mark_note": "Components",
         "margin_note": "All three, numbered, in transcription order.",
         "lines": [
-          "A TRANSCRIPTION UNIT has THREE components:",
+          "A TRANSCRIPTION UNIT has THREE",
+          "components:",
           "1. a PROMOTER",
           "2. the STRUCTURAL GENE",
           "3. a TERMINATOR"
@@ -94,8 +95,8 @@
           },
           "The PROMOTER lies at the 5' end and is where RNA",
           "polymerase binds to begin transcription.",
-          "The STRUCTURAL GENE is the DNA that is actually",
-          "transcribed.",
+          "The STRUCTURAL GENE is the DNA that is",
+          "actually transcribed.",
           "The TERMINATOR lies at the 3' end and defines",
           "where transcription stops."
         ],
