@@ -129,9 +129,9 @@
             "style": "boxed"
           }
         ],
-        "why": "Multiplying the whole equation by 2 clears the fraction on the right, and substituting t = y − x back in returns the final relation to the original variables x and y.",
+        "why": "Multiplying the whole equation by 2 clears the fraction on the right, and substituting t = y − x back in returns the final relation to the original variables x and y, with the doubled constant of integration 2c relabelled as c.",
         "common_mistakes": [
-          "Forgetting to also double the constant of integration when multiplying the equation by 2.",
+          "Assuming the boxed line must show 2c since the equation was multiplied by 2 — the doubled constant of integration is silently relabelled as c, a standard convenience since the constant is arbitrary either way, not a missed step.",
           "Substituting t = x − y instead of y − x at this final stage."
         ]
       }

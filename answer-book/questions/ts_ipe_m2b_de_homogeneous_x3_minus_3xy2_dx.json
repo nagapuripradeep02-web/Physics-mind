@@ -114,7 +114,7 @@
           "Writing (3v − v³)/[(v+1)(v−1)(v²+1)]",
           "= A/(v+1) + B/(v−1) + (Cv+D)/(v²+1)",
           "and resolving into partial fractions gives A",
-          "= 1/2, B = 1/2, C = 0, D = −2"
+          "= 1/2, B = 1/2, C = −2, D = 0"
         ],
         "why": "Splitting the single algebraic fraction into simpler pieces over each linear or quadratic factor is what lets each piece be integrated by a standard rule in the next step — this is the standard partial-fractions method for a rational function.",
         "common_mistakes": [

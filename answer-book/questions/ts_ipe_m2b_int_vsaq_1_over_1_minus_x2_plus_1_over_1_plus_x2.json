@@ -91,7 +91,7 @@
         ],
         "why": "Both pieces are standard, memorised results with a=1, so no completing the square or substitution is needed — just quote the two formulas and add.",
         "common_mistakes": [
-          "Writing log|(1+x)/(1−x)| in place of Tanh⁻¹x — the equivalent log form is also correct, but mixing the two notations in one line is untidy.",
+          "Writing log|(1+x)/(1−x)| in place of Tanh⁻¹x — the correct equivalent is ½log|(1+x)/(1−x)|; dropping the ½ doubles the answer, so keep it in front.",
           "Only one +c for the whole sum, which is correct, but forgetting it entirely."
         ],
         "memory_tip": "Two standard results, added — one h, one without — and a single +c at the very end."

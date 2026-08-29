@@ -66,7 +66,7 @@
         ],
         "why": "Isolating the bracket that carries the fractional power before cubing keeps the algebra clean, and cubing both sides removes the 1/3 power exactly.",
         "common_mistakes": [
-          "Cubing the individual terms x^(1/2) and (d²y/dx²)^(1/3) separately instead of the whole isolated bracket.",
+          "Cubing the original three-term equation directly without isolating the fractional-power term first — cubing does not distribute over addition, so (A+B+C)³ ≠ A³+B³+C³; the bracket must be isolated before cubing.",
           "Forgetting to cube the right-hand side (x·dy/dx + y) as well, leaving a mismatched equation."
         ]
       },

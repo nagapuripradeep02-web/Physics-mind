@@ -83,7 +83,7 @@
         ],
         "why": "The by-parts rule u·v − ∫v·(du) leaves a plain ∫dx/x² = −1/x to finish, giving both terms in the final answer their own negative sign.",
         "common_mistakes": [
-          "Sign slip on the second integral: ∫(−1/x)(1/x)dx = −∫dx/x², and ∫dx/x²=−1/x, so the two minus signs combine to give +∫dx/x², then integrate to −1/x — easy to lose a sign in this chain.",
+          "Sign slip on the second integral: ∫(−1/x)(1/x)dx = −∫dx/x², and ∫dx/x²=−1/x, so the two minus signs combine to give +∫dx/x², then integrate to −1/x — lose that sign and the final answer comes out as −logx/x + 1/x + c instead of the correct −logx/x − 1/x + c.",
           "Forgetting the +c."
         ],
         "memory_tip": "Two separate minus signs appear in this by-parts working — track them one at a time rather than guessing the final sign."

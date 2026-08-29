@@ -139,10 +139,10 @@
             "style": "boxed"
           }
         ],
-        "why": "The double-angle identity turns cos²x into a directly integrable sum, and multiplying the whole equation by 2cos x clears the sec x on the left and writes sin2x·cos x as sin x cos²x, giving the final boxed form the book marks.",
+        "why": "The double-angle identity turns cos²x into a directly integrable sum, and multiplying the whole equation by 2cos x clears the sec x on the left and writes sin2x·cos x as sin x cos²x, giving the final boxed form the book marks, with the doubled constant of integration 2c relabelled as c.",
         "common_mistakes": [
           "Forgetting the double-angle identity and trying to integrate cos²x directly, which is not a standard elementary antiderivative on its own.",
-          "Multiplying only the left side by 2cos x and forgetting to multiply every term on the right by the same factor."
+          "Multiplying only the left side by 2cos x and forgetting to multiply every term on the right by the same factor; the boxed line writes 2y = x cos x + sin x cos²x + c cos x rather than + 2c cos x, silently relabelling 2c as c — a standard convenience since the constant is arbitrary either way, not a missed step."
         ]
       }
     ]

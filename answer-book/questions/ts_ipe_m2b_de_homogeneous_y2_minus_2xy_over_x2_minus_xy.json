@@ -152,7 +152,7 @@
         "lines": [
           "⇒ log(v√(2v − 3)) = −3 log(x/c) = log(c³/x³)",
           "⇒ v√(2v − 3) = c³/x³",
-          "⇒ x³v²(2v − 3) = c⁶, and putting v = y/x:",
+          "⇒ x⁶v²(2v − 3) = c⁶, and putting v = y/x:",
           {
             "text": "x³y²(2y − 3x) = c",
             "style": "boxed"

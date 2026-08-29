@@ -49,7 +49,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.27 (PDF page 26) — LAQ chapter 3 ‘Integration’, answer 17.2, the twin of 17.1 on the same ★★★ SSP 27 page. Printed appearances: TS 19 · AP 16. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
   },
-  "insider_note": "cotⁿx mirrors tanⁿx term for term with cot and csc swapped in for tan and sec — learn tanⁿ's reduction and this one is the same working with every letter relabelled.",
+  "insider_note": "cotⁿx follows the SAME method as tanⁿx — the identity cot²x = csc²x − 1, the substitution t = cotx, and the same denominator (n−1) with the same −I_{n−2} tail — but it is not a straight relabelling: cotx's derivative carries an extra minus sign, so tanⁿx reduces to +tanⁿ⁻¹x/(n−1) − I_{n−2} while cotⁿx reduces to −cotⁿ⁻¹x/(n−1) − I_{n−2}.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

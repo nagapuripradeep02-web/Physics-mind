@@ -124,8 +124,8 @@
         "memory_tip": "Multiplying by −4 turns log(cx) into log(cx)⁻⁴ = log(1/(cx)⁴) on the right.",
         "lines": [
           "⇒ log(1 − 2v²) = −4 log(cx) = log(1/(cx)⁴)",
-          "⇒ 1 − 2v² = 1/(cx⁴)",
-          "Put v = y/x: (x² − 2y²)/x² = 1/(cx⁴)"
+          "⇒ 1 − 2v² = 1/(cx)⁴",
+          "Put v = y/x: (x² − 2y²)/x² = 1/(cx)⁴"
         ],
         "why": "Multiplying both sides of the log equation by −4 removes the fraction, and only then is it clean to substitute v = y/x, since the −4 power would otherwise complicate the fraction further.",
         "common_mistakes": [
@@ -139,10 +139,10 @@
         "label": "Final equation",
         "marks": 1,
         "mark_note": "Result",
-        "margin_note": "The last mark. Cross-multiply and relabel the arbitrary constant.",
+        "margin_note": "The last mark. Cross-multiply and relabel the arbitrary constant. The constant c⁴ is renamed c on the last line — an arbitrary positive constant raised to a fixed power is still an arbitrary constant.",
         "memory_tip": "Since c is arbitrary throughout, cx⁴(x² − 2y²) = x² can be rewritten as x²(x² − 2y²) = c by renaming 1/c as c.",
         "lines": [
-          "⇒ cx⁴(x² − 2y²) = x² ⇒ cx²(x² − 2y²) = 1",
+          "⇒ (cx)⁴(x² − 2y²) = x² ⇒ c⁴x²(x² − 2y²) = 1",
           {
             "text": "x²(x² − 2y²) = c",
             "style": "boxed"
