@@ -23,6 +23,12 @@ gate, Google sign-in, the front door, the MPC stream lens and — the one that a
 and `feat/ipe-answerbook-sr-chemistry` (PR #169) did. Every subject lands as a **PR into master** —
 Botany-I was PR #137, Maths-1B #136 — never a direct commit.
 
+> **MERGE ORDER.** The phased-figure engine is landing as part of **PR #170**
+> (`feat/ipe-answerbook-zoology-synced` — Junior Zoology plus the engine, a synced copy of the
+> stranded zoology branch). **#170 merges first.** Botany-II's own PR opens after it, and is then
+> just its 167 cards and its tooling. Opening both at once would put the same 190 zoology cards in
+> two reviews.
+
 ## 2. Subject enablement — what `botany_2` needed
 
 `botany_2` is now whitelisted everywhere. For the record, a NEW paper needs all of:
