@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_9cosx_minus_sinx_over_4sinx_plus_5cosx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ [(9cosx − sinx)/(4sinx + 5cosx)] dx.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the numerator as A·Dr′ + B·Dr and equate coefficients",
+      "marks": 2
+    },
+    {
+      "label": "Solve the pair of equations for A and B",
+      "marks": 2
+    },
+    {
+      "label": "Substitute back and split the integral",
+      "marks": 2
+    },
+    {
+      "label": "Integrate both parts for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.31 (PDF page 30) — LAQ chapter 3 ‘Integration’, sub-head INTEGRATION-IV, answer 24.1, on a ★★★ SSP 31 page (banner printed on this page). Printed appearance: TS 17. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "Once the numerator is rewritten as A·(derivative of the denominator) + B·(the denominator itself), the integral splits into a plain log term and a plain x term — no trig substitution is ever needed for this family of questions.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the numerator as A·Dr′ + B·Dr and equate coefficients",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let 9cosx−sinx = A·d/dx(4sinx+5cosx) + B(4sinx+5cosx)",
+          "= A(4cosx−5sinx) + B(4sinx+5cosx) …(i)",
+          "Coefficient of cosx: 4A+5B = 9",
+          "Coefficient of sinx: −5A+4B = −1"
+        ],
+        "why": "Any linear combination a·cosx+b·sinx can be rewritten in terms of the denominator and its OWN derivative, because {cosx, sinx} and {Dr, Dr′} both span the same 2-dimensional space of expressions — that is what makes A and B always solvable.",
+        "common_mistakes": [
+          "Differentiating the denominator incorrectly, e.g. writing d/dx(4sinx+5cosx) = 4cosx+5sinx (sign slip on the second term).",
+          "Matching cosx on the LHS to sinx on the RHS by reading the equation too quickly."
+        ],
+        "memory_tip": "Denominator's own derivative, times A, plus the denominator itself, times B — that pair always reproduces any a·cosx+b·sinx numerator."
+      },
+      {
+        "id": "s2_solve",
+        "kind": "equation",
+        "label": "Solve the pair of equations for A and B",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "(1)×4: 16A+20B=36 …(3)   (2)×5: −25A+20B=−5 …(4)",
+          "(3)−(4): 41A=41 ⇒ A=1",
+          "From (1): 5B=9−4(1)=5 ⇒ B=1"
+        ],
+        "why": "Eliminating B by matching its coefficient in both equations (multiplying to make both 20B) isolates A first; B then drops out from a single back-substitution.",
+        "common_mistakes": [
+          "Eliminating the wrong variable, which needs an extra unnecessary step.",
+          "Arithmetic slip in 16A−(−25A) = 41A."
+        ],
+        "memory_tip": "Multiply each equation to match one letter's coefficient, subtract to kill it, then back-substitute for the other."
+      },
+      {
+        "id": "s3_split",
+        "kind": "equation",
+        "label": "Substitute back and split the integral",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "Putting A=1, B=1 in (i): 9cosx−sinx = 1·d/dx(4sinx+5cosx) + 1·(4sinx+5cosx)",
+          "I = ∫[d/dx(4sinx+5cosx)]/(4sinx+5cosx) dx + ∫1 dx"
+        ],
+        "why": "With A and B both known numbers, the original integral splits into exactly two recognisable pieces: an f′(x)/f(x) form (a pure log) and a plain constant.",
+        "common_mistakes": [
+          "Forgetting to substitute the found values of A and B back into (i) before splitting the integral.",
+          "Splitting the integral before finding A and B, which leaves unknowns in the working."
+        ],
+        "memory_tip": "Once A and B are numbers, the integral is ALWAYS a log plus a plain x term — no other outcome is possible for this family."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Integrate both parts for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ [(9cosx−sinx)/(4sinx+5cosx)] dx = log|4sinx+5cosx| + x + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫f′(x)/f(x) dx = log|f(x)| is a standard result used throughout this chapter, and ∫1 dx = x closes off the second piece.",
+        "common_mistakes": [
+          "Dropping the modulus bars on the log.",
+          "Forgetting the +c."
+        ],
+        "memory_tip": "A=1 and B=1 here means the final answer is simply log|Dr| + x — no extra coefficients to carry."
+      }
+    ]
+  }
+}

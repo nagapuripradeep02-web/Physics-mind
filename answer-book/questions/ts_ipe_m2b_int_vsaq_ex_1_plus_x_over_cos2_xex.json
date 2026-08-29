@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_ex_1_plus_x_over_cos2_xex",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ {eˣ(1 + x)/cos²(xeˣ)} dx.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Substitute t = xeˣ",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and back-substitute for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.88 (PDF page 88) — VSAQ chapter 16 ‘Integration’, answer 156, no SSP banner on this page. Printed appearances: AP 17,19 · TS 16,17. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "xeˣ is a product, and its derivative by the product rule is exactly eˣ(1+x) — the whole numerator here IS the derivative of the argument inside cos², which is the signal to substitute the argument whole.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sub",
+        "kind": "equation",
+        "label": "Substitute t = xeˣ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put xeˣ = t ⇒ [xeˣ + eˣ(1)]dx = dt, i.e. eˣ(1+x)dx = dt",
+          "I = ∫ dt/cos²t = ∫ sec²t dt"
+        ],
+        "why": "By the product rule, d/dx(xeˣ) = xeˣ+eˣ = eˣ(x+1), which is exactly the numerator — so the whole numerator dx converts to dt, leaving a plain sec²t to integrate.",
+        "common_mistakes": [
+          "Missing the product rule when differentiating xeˣ, and instead treating eˣ and x as needing separate substitutions.",
+          "Writing 1/cos²t as cos²t instead of sec²t."
+        ],
+        "memory_tip": "d/dx(xeˣ) = eˣ(1+x) by the product rule — the exact numerator here, which is why t=xeˣ is the substitution to spot."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and back-substitute for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ {eˣ(1+x)/cos²(xeˣ)} dx = tan(xeˣ) + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫sec²t dt = tant + c is a standard derivative, and substituting t=xeˣ back in gives the final answer as a tangent of the product xeˣ.",
+        "common_mistakes": [
+          "Writing sin(xeˣ) or cos(xeˣ) instead of tan(xeˣ) — ∫sec²t dt is specifically tant, no other trig function.",
+          "Forgetting to substitute xeˣ back in for t."
+        ],
+        "memory_tip": "∫sec²t dt = tant — one of the six basic trig derivatives, worth having instantly available."
+      }
+    ]
+  }
+}

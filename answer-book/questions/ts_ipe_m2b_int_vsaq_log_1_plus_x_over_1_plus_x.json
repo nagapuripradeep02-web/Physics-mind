@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_log_1_plus_x_over_1_plus_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find ∫ [log(1 + x)/(1 + x)] dx.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Substitute t = log(1 + x)",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and back-substitute for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.88 (PDF page 88) — VSAQ chapter 16 ‘Integration’, answer 152, no SSP banner on this page. Printed appearance: TS 15. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "1/(1+x) is exactly the derivative of log(1+x) — the same f(x)·f′(x) shape as sinx·cosx, just written with a logarithm instead of a trig function.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sub",
+        "kind": "equation",
+        "label": "Substitute t = log(1 + x)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put log(1+x) = t ⇒ dx/(1+x) = dt",
+          "I = ∫ t dt"
+        ],
+        "why": "d/dx[log(1+x)] = 1/(1+x), so the whole factor dx/(1+x) converts to dt in one step, leaving just the outer factor log(1+x) = t to integrate as a plain power of t.",
+        "common_mistakes": [
+          "Trying integration by parts on log(1+x)/(1+x), which is unnecessary once the substitution is spotted.",
+          "Substituting t=1+x instead of t=log(1+x), which does not remove the log from the integrand."
+        ],
+        "memory_tip": "The integrand IS f(x)·f′(x) for f(x)=log(1+x) — the same shape as ∫sinx cosx dx, solved by t=f(x)."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and back-substitute for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ [log(1+x)/(1+x)] dx = [log(1+x)]²/2 + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫t dt = t²/2 + c is the plain power rule, and substituting t=log(1+x) back in gives the final answer as a square of the logarithm.",
+        "common_mistakes": [
+          "Writing log[(1+x)²]/2 instead of [log(1+x)]²/2 — the SQUARE belongs to the whole log, not inside it.",
+          "Forgetting to substitute log(1+x) back in for t."
+        ],
+        "memory_tip": "The square applies to the WHOLE log(1+x), not to what is inside the log — [log(1+x)]², never log[(1+x)²]."
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_x8_over_1_plus_x18",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ [x⁸/(1 + x¹⁸)] dx.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Substitute t = x⁹",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and back-substitute for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.89 (PDF page 89) — VSAQ chapter 16 ‘Integration’, answer 160, the first answer on the last page of this chapter. Printed appearances: AP 16 · TS 19. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "x¹⁸ is (x⁹)², not a fresh power to fear — spotting that 18 is double 9 is the one observation that turns this into a plain Tan⁻¹ question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sub",
+        "kind": "equation",
+        "label": "Substitute t = x⁹",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x¹⁸ = (x⁹)², so put x⁹ = t ⇒ 9x⁸dx = dt, i.e. x⁸dx = dt/9",
+          "I = ∫ (dt/9)/(1+t²) = (1/9)∫dt/(1+t²)"
+        ],
+        "why": "Recognising x¹⁸ as (x⁹)² makes the denominator 1+t² for t=x⁹, and the leftover x⁸dx is exactly (1/9)dt since d/dx(x⁹)=9x⁸.",
+        "common_mistakes": [
+          "Not spotting that x¹⁸=(x⁹)², and trying some other substitution that does not simplify the denominator to 1+t².",
+          "Forgetting the 1/9 that comes from dividing by the 9 in d(x⁹)=9x⁸dx."
+        ],
+        "memory_tip": "18 = 2×9, so x¹⁸ = (x⁹)² — always check whether a high power is really a lower power, squared."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and back-substitute for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ [x⁸/(1+x¹⁸)] dx = (1/9)Tan⁻¹(x⁹) + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "(1/9)∫dt/(1+t²) = (1/9)Tan⁻¹t + c is the standard Tan⁻¹ formula with a=1, and substituting t=x⁹ back in completes the answer.",
+        "common_mistakes": [
+          "Forgetting the outside factor of 1/9 in the final answer.",
+          "Forgetting to substitute x⁹ back in for t."
+        ],
+        "memory_tip": "The 1/9 picked up from the substitution survives to the very end — it is not absorbed into anything else."
+      }
+    ]
+  }
+}

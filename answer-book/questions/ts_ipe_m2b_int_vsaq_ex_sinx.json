@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_ex_sinx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ eˣ sinx dx.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Apply integration by parts twice",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the integral for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.89 (PDF page 89) — VSAQ chapter 16 ‘Integration’, answer 163, no SSP banner on this page. Printed appearance: AP 15. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "eˣ sinx dx is the one standard integral in this chapter where by-parts must be applied TWICE and the original integral reappears on the right — solving for it algebraically, exactly like a reduction formula, is the method that finishes it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_byparts",
+        "kind": "equation",
+        "label": "Apply integration by parts twice",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫sinx·eˣ dx = sinx·eˣ − ∫cosx·eˣ dx",
+          "∫cosx·eˣ dx = cosx·eˣ − ∫(−sinx)eˣ dx = cosx·eˣ + ∫sinx·eˣ dx",
+          "So I = sinx·eˣ − [cosx·eˣ + I] = eˣ(sinx−cosx) − I"
+        ],
+        "why": "Applying by-parts a SECOND time to the leftover ∫cosx eˣdx brings the ORIGINAL integral I back, since differentiating twice returns eˣ sinx again — this is what makes the algebra close.",
+        "common_mistakes": [
+          "Stopping after the first by-parts step, leaving ∫cosx eˣ dx un-integrated.",
+          "Losing track of the sign when the second by-parts application produces +∫sinx eˣ dx = +I."
+        ],
+        "memory_tip": "Two rounds of by-parts on eˣ times a trig function ALWAYS bring the original integral back — this is expected, not a mistake."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Solve for the integral for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "2I = eˣ(sinx−cosx)",
+          {
+            "text": "∴ ∫ eˣ sinx dx = eˣ(sinx−cosx)/2 + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "With I appearing on both sides, collecting the two I terms on the left gives 2I, and dividing by 2 gives the final closed form.",
+        "common_mistakes": [
+          "Forgetting to add the +I from the right side to the I on the left, and instead treating the equation as already solved.",
+          "Dropping the +c, which only appears once the equation is fully solved for I."
+        ],
+        "memory_tip": "I = … − I rearranges to 2I = … — exactly the same move used to solve a reduction formula for I_n."
+      }
+    ]
+  }
+}

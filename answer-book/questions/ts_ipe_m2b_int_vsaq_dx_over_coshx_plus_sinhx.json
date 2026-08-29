@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_dx_over_coshx_plus_sinhx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ dx/(coshx + sinhx).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Multiply by (coshx − sinhx)/(coshx − sinhx)",
+      "marks": 1
+    },
+    {
+      "label": "Simplify and integrate for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.87 (PDF page 87) — VSAQ chapter 16 ‘Integration’, answer 146, no SSP banner on this page. Printed appearances: AP 16,19 · TS 17. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here (it is also algebraically identical to the shorter route coshx+sinhx = eˣ, giving ∫e⁻ˣdx = −e⁻ˣ+c = sinhx−coshx+c directly). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "coshx+sinhx equals eˣ exactly, by definition — spotting that gives a one-line shortcut to the same answer, but the book's own method (multiplying by the conjugate) is shown here since it is what the printed solution follows.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply",
+        "kind": "equation",
+        "label": "Multiply by (coshx − sinhx)/(coshx − sinhx)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1/(coshx+sinhx) = (coshx−sinhx)/[(coshx+sinhx)(coshx−sinhx)]",
+          "= (coshx−sinhx)/(cosh²x−sinh²x) = coshx−sinhx   [∵ cosh²x−sinh²x = 1]"
+        ],
+        "why": "Multiplying top and bottom by the conjugate (coshx−sinhx) uses the identity cosh²x−sinh²x=1 to collapse the whole denominator down to a plain 1, leaving only the numerator.",
+        "common_mistakes": [
+          "Using cosh²x+sinh²x=1 instead of the correct identity cosh²x−sinh²x=1 — the hyperbolic identity has a minus sign, unlike its circular counterpart.",
+          "Forgetting to multiply the numerator by (coshx−sinhx) as well as the denominator."
+        ],
+        "memory_tip": "cosh²x−sinh²x = 1 (minus) is the hyperbolic Pythagorean identity — opposite sign from sin²x+cos²x=1."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Simplify and integrate for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ dx/(coshx+sinhx) = sinhx − coshx + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫coshx dx = sinhx and ∫sinhx dx = coshx are standard hyperbolic derivatives, integrated term by term from coshx−sinhx.",
+        "common_mistakes": [
+          "Writing coshx−sinhx as the final answer instead of integrating it.",
+          "Sign slip: ∫(coshx−sinhx)dx = sinhx−coshx, not coshx−sinhx."
+        ],
+        "memory_tip": "∫coshx=sinhx, ∫sinhx=coshx — the two hyperbolic functions swap names on integration, same as sin and cos do."
+      }
+    ]
+  }
+}

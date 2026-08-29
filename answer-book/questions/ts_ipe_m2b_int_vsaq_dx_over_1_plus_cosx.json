@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_dx_over_1_plus_cosx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ dx/(1 + cosx).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Multiply by (1 − cosx)/(1 − cosx)",
+      "marks": 1
+    },
+    {
+      "label": "Split and integrate for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.87 (PDF page 87) — VSAQ chapter 16 ‘Integration’, answer 147, no SSP banner on this page. Printed appearance: TS 15. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here (it also equals the half-angle shortcut tan(x/2)+c, since (1−cosx)/sinx = tan(x/2) is a standard identity). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "The half-angle formula 1+cosx=2cos²(x/2) gives a one-line answer of tan(x/2)+c — the book's own longer route is shown here since it is what the printed working follows, but recognise both forms are the same answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply",
+        "kind": "equation",
+        "label": "Multiply by (1 − cosx)/(1 − cosx)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1/(1+cosx) = (1−cosx)/[(1+cosx)(1−cosx)] = (1−cosx)/(1−cos²x) = (1−cosx)/sin²x"
+        ],
+        "why": "Multiplying top and bottom by the conjugate (1−cosx) uses 1−cos²x=sin²x to turn the denominator into a single squared sine, which can then be split into two standard pieces.",
+        "common_mistakes": [
+          "Multiplying by (1+cosx)/(1+cosx) instead, which reproduces the same denominator and gets nowhere.",
+          "Writing 1−cos²x as cos²x−1 with the sign flipped."
+        ],
+        "memory_tip": "Multiply by the CONJUGATE of the denominator's extra term — here (1−cosx), the opposite sign from (1+cosx)."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Split and integrate for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "(1−cosx)/sin²x = 1/sin²x − cosx/sin²x = cosec²x − cosecx·cotx",
+          {
+            "text": "∴ ∫ dx/(1+cosx) = −cotx + cosecx + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫cosec²x dx = −cotx and ∫cosecx cotx dx = −cosecx are both standard derivatives, so subtracting the second integral flips its sign to give the +cosecx in the final answer.",
+        "common_mistakes": [
+          "Sign slip on ∫cosecx cotx dx = −cosecx, forgetting the overall minus from subtracting this piece flips it back to +cosecx.",
+          "Dropping the +c."
+        ],
+        "memory_tip": "∫cosecx cotx dx = −cosecx; subtracting THIS integral flips its sign to +cosecx in the final line — two minus signs, easy to lose track of."
+      }
+    ]
+  }
+}

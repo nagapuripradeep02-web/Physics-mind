@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_ex_1_plus_tan2x_plus_tanx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ eˣ(1 + tan²x + tanx) dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite using 1 + tan²x = sec²x and identify f(x), f′(x)",
+      "marks": 1
+    },
+    {
+      "label": "Apply the formula for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.86 (PDF page 86) — VSAQ chapter 16 ‘Integration’, answer 140.2, the twin of 140.1 on the same page, on a ★★★ SSP 86 page (banner printed at the top of the VSAQ chapter). no printed appearance tags on this specific question. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "The bracket is not YET in f+f′ form as printed — 1+tan²x must be rewritten as sec²x first before the pairing with tanx becomes visible; this rewriting step is the actual mark-earning move here, not the final substitution.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Rewrite using 1 + tan²x = sec²x and identify f(x), f′(x)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1 + tan²x + tanx = sec²x + tanx",
+          "Here f(x) = tanx ⇒ f′(x) = sec²x"
+        ],
+        "why": "The Pythagorean identity 1+tan²x=sec²x hides the f+f′ pairing until it is applied — once rewritten, the bracket is plainly tanx (f) plus sec²x (f′).",
+        "common_mistakes": [
+          "Trying to match f and f′ in the ORIGINAL bracket 1+tan²x+tanx before applying the identity.",
+          "Misremembering the identity as 1+cot²x=sec²x instead of 1+tan²x=sec²x."
+        ],
+        "memory_tip": "1+tan²x = sec²x — spot this identity FIRST whenever a bracket has a bare 1 next to a tan² term."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Apply the formula for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ eˣ(1+tan²x+tanx) dx = eˣ tanx + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "With f(x)=tanx identified, the standard eˣ[f+f′] result gives eˣtanx directly.",
+        "common_mistakes": [
+          "Writing eˣ sec²x instead of eˣ tanx — the answer keeps f(x), not f′(x).",
+          "Dropping the +c."
+        ],
+        "memory_tip": "The answer is eˣ times whichever term you called f(x) — here tanx, not sec²x."
+      }
+    ]
+  }
+}

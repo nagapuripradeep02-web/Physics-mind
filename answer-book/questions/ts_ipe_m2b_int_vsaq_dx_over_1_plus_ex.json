@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_dx_over_1_plus_ex",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ dx/(1 + eˣ).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the integrand as 1 minus a fraction",
+      "marks": 1
+    },
+    {
+      "label": "Integrate for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.89 (PDF page 89) — VSAQ chapter 16 ‘Integration’, answer 161, no SSP banner on this page. Printed appearance: AP 19. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "Adding and subtracting eˣ in the numerator turns an awkward-looking fraction into a plain 1 minus a f′/f form — no substitution is even needed once this rewriting is done.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Write the integrand as 1 minus a fraction",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1/(1+eˣ) = (1+eˣ−eˣ)/(1+eˣ) = 1 − eˣ/(1+eˣ)"
+        ],
+        "why": "Adding and subtracting eˣ in the numerator splits the fraction into a plain 1 and an f′(x)/f(x) form for f(x)=1+eˣ, since d/dx(1+eˣ)=eˣ exactly.",
+        "common_mistakes": [
+          "Trying a substitution t=eˣ first instead of the simpler direct rewriting, which also works but takes longer.",
+          "Splitting 1/(1+eˣ) as 1 − 1/(1+eˣ), which is not a valid algebraic step."
+        ],
+        "memory_tip": "Add and subtract eˣ in the numerator to expose the f′/f shape hiding inside 1/(1+eˣ)."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ dx/(1+eˣ) = x − log(1+eˣ) + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫1 dx = x and ∫eˣ/(1+eˣ) dx = log(1+eˣ) (an f′/f form, no modulus needed since 1+eˣ is always positive), subtracted as the split in step 1 requires.",
+        "common_mistakes": [
+          "Adding the modulus bars on log(1+eˣ) unnecessarily — 1+eˣ is always positive, so |1+eˣ|=1+eˣ, but writing the bars is not wrong, just not required here.",
+          "Sign slip, writing x + log(1+eˣ) instead of x − log(1+eˣ)."
+        ],
+        "memory_tip": "1+eˣ is ALWAYS positive (eˣ>0 for every x), so this is the one log in the chapter that genuinely needs no modulus bars."
+      }
+    ]
+  }
+}

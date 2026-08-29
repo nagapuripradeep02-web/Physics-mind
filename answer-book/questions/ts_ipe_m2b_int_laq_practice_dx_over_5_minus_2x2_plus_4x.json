@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_practice_dx_over_5_minus_2x2_plus_4x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find ∫ dx/(5 − 2x² + 4x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take out −2 and complete the square",
+      "marks": 1
+    },
+    {
+      "label": "Identify the standard form and its constant a",
+      "marks": 1
+    },
+    {
+      "label": "State the standard log formula",
+      "marks": 2
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 2
+    },
+    {
+      "label": "Final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.29 (PDF page 28) — a ‘PQ’ (Practice Question) box printed directly under LAQ answer 20, in the same INTEGRATION-II sub-section. The book prints ONLY the question and a terse bracketed answer — ‘[Ans: (1/(2√14))·log|(√7+√2x−√2)/(√7−√2x+√2)|+c]’ — no worked steps at all, so every step here is authored by this card. The book's printed cross-reference ‘☞ P 89(185)’ is a DEAD pointer: printed p.89 holds VSAQ answers 160-164 (Integration chapter), not any question numbered 185 — answer 185 sits on printed p.94, inside the Differential Equations chapter, and has no connection to this question. The book's own sub-heading for this and the next question is printed ‘INTEGRATION-II [to be deleted]’ (book p.29) — the book's own syllabus-deletion marker, not this card's judgement. It is authored here as an ordinary card, and a teacher must confirm whether this sub-section is still examinable before assigning it. This card's derivation, carried through with (x−1) and a = √(7/2), was checked to be algebraically identical to the book's printed Ans line after scaling numerator and denominator by √2 — both forms are recorded so a student can match either one to a mark scheme. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "The book's own bracketed answer is written with √7 and √2 kept separate rather than combined into √14 — both forms are correct and equal; write whichever one this card's boxed line ends in, since that is the more standard way to present it, but recognise the book's form if it turns up in a mark scheme.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_square",
+        "kind": "equation",
+        "label": "Take out −2 and complete the square",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "5 − 2x² + 4x = −2x² + 4x + 5 = −2[x² − 2x − 5/2]",
+          "= −2[x² − 2x + 1² − 1² − 5/2]",
+          "= −2[(x−1)² − 7/2]"
+        ],
+        "why": "Reordering the terms as −2x²+4x+5 first makes the leading coefficient −2 obvious, so it can be factored out before completing the square on x²−2x inside the bracket.",
+        "common_mistakes": [
+          "Completing the square on the ORIGINAL unordered expression 5−2x²+4x, which hides which term is the leading one.",
+          "Sign slip when factoring −2 out of +4x, which becomes −2x inside the bracket."
+        ],
+        "memory_tip": "Reorder to −ax²+bx+c form FIRST, so the leading term's sign and size are both obvious before factoring."
+      },
+      {
+        "id": "s2_identify",
+        "kind": "equation",
+        "label": "Identify the standard form and its constant a",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          "−2[(x−1)² − 7/2] = 7 − 2(x−1)² = 2[7/2 − (x−1)²]",
+          "7/2 = (√(7/2))², so this matches a² − x² with x written as (x−1) and a = √(7/2)"
+        ],
+        "why": "Distributing the −2 flips the sign inside, turning −(x−1)²+7/2 into 7/2−(x−1)² — now the square is SUBTRACTED from the constant, the a²−x² pattern rather than x²−a².",
+        "common_mistakes": [
+          "Keeping the form as −[(x−1)²−7/2] without flipping it to the a²−x² order the standard formula expects.",
+          "Using a = 7/2 instead of its square root."
+        ],
+        "memory_tip": "A negative leading coefficient flips completing-the-square into the a²−x² pattern, not x²−a²."
+      },
+      {
+        "id": "s3_formula",
+        "kind": "equation",
+        "label": "State the standard log formula",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Standard result",
+        "lines": [
+          {
+            "text": "\\int \\frac{dx}{a^2-x^2} = \\frac{1}{2a}\\log\\left|\\frac{a+x}{a-x}\\right| + c",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "why": "This is the a²−x² twin of answer 20's x²−a² log formula — same 1/(2a) coefficient, but the log argument's numerator and denominator swap places.",
+        "common_mistakes": [
+          "Using the x²−a² formula from answer 20 unchanged, which puts the fraction upside down here.",
+          "Missing the modulus bars."
+        ],
+        "memory_tip": "a²−x² flips the log's fraction compared to x²−a² — (a+x)/(a−x) here, not (x−a)/(x+a)."
+      },
+      {
+        "id": "s4_substitute",
+        "kind": "equation",
+        "label": "Substitute and simplify",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "∫dx/(5−2x²+4x) = (1/2)∫dx/[(√(7/2))²−(x−1)²]",
+          "= (1/2)·(1/(2√(7/2)))log|[√(7/2)+(x−1)]/[√(7/2)−(x−1)]| + c",
+          "2√(7/2) = √14, so this is (1/(2√14))log|[√(7/2)+x−1]/[√(7/2)−x+1]| + c"
+        ],
+        "why": "2√(7/2) simplifies to √14 (since 4·(7/2)=14), which is why the book's printed coefficient reads 1/(2√14) once the outside 1/2 is folded into the standard formula's own 1/(2a) term.",
+        "common_mistakes": [
+          "Leaving 2√(7/2) un-simplified instead of recognising it as √14.",
+          "Forgetting to fold the outside 1/2 into the formula's own coefficient."
+        ],
+        "memory_tip": "2√(7/2) = √(4·7/2) = √14 — square the 2 and pull it inside the root to combine them."
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ dx/(5−2x²+4x) = (1/(2√14))log|(√14+2x−2)/(√14−2x+2)| + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Clearing the internal fraction by writing √(7/2) as √14/2 and multiplying through by 2 gives this closed form, algebraically identical to the book's own bracketed Ans line written with √7 and √2 kept separate.",
+        "common_mistakes": [
+          "Mixing the √14 form and the book's √7,√2 form in the same line.",
+          "Dropping the +c."
+        ],
+        "memory_tip": "√14 = √7·√2 — both this card's boxed form and the book's printed form are the same number split two different ways."
+      }
+    ]
+  }
+}

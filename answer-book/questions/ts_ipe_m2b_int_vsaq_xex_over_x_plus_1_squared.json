@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_xex_over_x_plus_1_squared",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ [xeˣ/(x + 1)²] dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite the numerator and identify f(x), f′(x)",
+      "marks": 1
+    },
+    {
+      "label": "Apply the formula for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.86 (PDF page 86) — VSAQ chapter 16 ‘Integration’, answer 142, on a ★★★ SSP 86 page (banner printed at the top of the VSAQ chapter). printed with a plain ‘IPE 14’ tag beside it (the pre-2014 undivided board), which the source rule records as prose rather than as an appearance (the appearances enum has no value for the undivided board). Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "Writing x as (x+1)−1 in the numerator is the one algebraic trick that makes this question fall into the eˣ[f+f′] family — without it, xeˣ/(x+1)² looks like nothing this chapter has seen yet.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Rewrite the numerator and identify f(x), f′(x)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x/(x+1)² = (x+1−1)/(x+1)² = 1/(x+1) − 1/(x+1)²",
+          "Here f(x) = 1/(x+1) ⇒ f′(x) = −1/(x+1)²"
+        ],
+        "why": "Writing x as (x+1)−1 splits the fraction into 1/(x+1) and −1/(x+1)², which are exactly f(x) and f′(x) for f(x)=1/(x+1) — the derivative of 1/(x+1) genuinely is −1/(x+1)².",
+        "common_mistakes": [
+          "Trying integration by parts on xeˣ/(x+1)² directly instead of rewriting the numerator first.",
+          "Writing x = (x+1)+1 instead of (x+1)−1, which gives the wrong split."
+        ],
+        "memory_tip": "x = (x+1) − 1, always — add and subtract 1 to match the denominator's own linear factor."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Apply the formula for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ [xeˣ/(x+1)²] dx = eˣ/(x+1) + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "With f(x)=1/(x+1) identified, the standard eˣ[f+f′] result gives eˣ/(x+1) directly.",
+        "common_mistakes": [
+          "Writing eˣ/(x+1)² instead of eˣ/(x+1) — the answer keeps f(x), not the f′(x) piece.",
+          "Dropping the +c."
+        ],
+        "memory_tip": "The answer is eˣ times f(x) = 1/(x+1), the term with the SMALLER power in the denominator."
+      }
+    ]
+  }
+}

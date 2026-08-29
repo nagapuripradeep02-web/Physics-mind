@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_3x_minus_2_sqrt_2x2_minus_x_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ (3x − 2)√(2x² − x + 1) dx.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the multiplier as A·Dr′ + B and solve for A, B",
+      "marks": 1
+    },
+    {
+      "label": "Substitute back and split the integral",
+      "marks": 2
+    },
+    {
+      "label": "Complete the square and apply the standard √(x²+a²) form",
+      "marks": 2
+    },
+    {
+      "label": "Combine for the final answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.35 (PDF page 34) — LAQ chapter 3 ‘Integration’, answer 29, no SSP banner on this page. Printed appearance: TS 15. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line (written there with (4x−1)/8 in place of this card's equivalent (x−1/4)/2) — no error found, just two equal ways of writing the same fraction. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "A linear factor MULTIPLYING a square root, rather than divided by one, is the signal for this A·f′(x)·√f(x)+B·√f(x) split — the A-part becomes a clean power of f(x) with no log or inverse function at all.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the multiplier as A·Dr′ + B and solve for A, B",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let 3x−2 = A·d/dx(2x²−x+1) + B = A(4x−1) + B",
+          "Coeff of x: 4A=3 ⇒ A=3/4; constant: −A+B=−2 ⇒ B=−2+3/4=−5/4"
+        ],
+        "why": "Writing the outside multiplier as A times the derivative of the expression under the root (plus a leftover B) is the same idea as answer 27, now for a MULTIPLIED root instead of a divided one.",
+        "common_mistakes": [
+          "Confusing this with the A·Dr′+B split used for a root in the DENOMINATOR (answer 27) and expecting the same final formula.",
+          "Sign slip: −A+B=−2 with A=3/4 gives B=−2+3/4=−5/4, not −2−3/4."
+        ],
+        "memory_tip": "−(3/4)+B=−2 ⇒ B=−2+3/4 — adding 3/4, not subtracting it, when moving −A to the other side."
+      },
+      {
+        "id": "s2_split",
+        "kind": "equation",
+        "label": "Substitute back and split the integral",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "Putting A=3/4, B=−5/4: I = (3/4)∫(4x−1)√(2x²−x+1) dx − (5/4)∫√(2x²−x+1) dx",
+          "∫(4x−1)√(2x²−x+1) dx = (2/3)(2x²−x+1)^{3/2}   [∵ ∫f′(x)√f(x) dx = (2/3)f(x)^{3/2}]",
+          "So the first part is (3/4)·(2/3)(2x²−x+1)^{3/2} = (1/2)(2x²−x+1)^{3/2}"
+        ],
+        "why": "∫f′(x)√f(x) dx is a plain power-rule integral in disguise (u=f(x), du=f′(x)dx gives ∫√u du = (2/3)u^{3/2}) — no completing the square is needed for THIS half of the answer.",
+        "common_mistakes": [
+          "Trying to complete the square before splitting off the A-part, which is unnecessary extra work.",
+          "Missing the exponent 3/2, writing a plain square instead."
+        ],
+        "memory_tip": "∫f′√f dx = (2/3)f^{3/2} — the SAME shape as ∫f′/√f dx = 2√f from answer 27, one power higher."
+      },
+      {
+        "id": "s3_square",
+        "kind": "equation",
+        "label": "Complete the square and apply the standard √(x²+a²) form",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "2x²−x+1 = 2[(x−1/4)²+7/16], so √(2x²−x+1) = √2·√[(x−1/4)²+(√7/4)²]",
+          {
+            "text": "\\int\\sqrt{u^2+a^2}\\,du = \\frac{u}{2}\\sqrt{u^2+a^2} + \\frac{a^2}{2}\\sinh^{-1}\\!\\left(\\frac{u}{a}\\right)+c",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "why": "The leftover B∫√f(x) dx piece genuinely needs completing the square, since here the root cannot be reduced by a simple substitution — it needs the standard √(u²+a²) result.",
+        "common_mistakes": [
+          "Applying the standard formula to the WHOLE √(2x²−x+1) directly, forgetting the √2 factored out in front.",
+          "Sign or fraction slip completing (x−1/4)²+7/16 from 2x²−x+1."
+        ],
+        "memory_tip": "Factor out the leading 2 from under the root FIRST — the standard formula only accepts a bare u²+a² inside."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Combine for the final answer",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ I = (1/2)(2x²−x+1)^{3/2} − (5√2/16)·(4x−1)·√(2x²−x+1) − (35√2/128) sinh⁻¹[(4x−1)/√7] + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying B=−5/4 into the √2 factored out and the standard formula's own two terms gives the second and third parts of the final answer, both written with (4x−1) in place of 4(x−1/4).",
+        "common_mistakes": [
+          "Forgetting to multiply B=−5/4 through BOTH terms of the standard √(u²+a²) result, not just one of them.",
+          "Losing the √2 that was factored outside the root back in step 3."
+        ],
+        "memory_tip": "B multiplies BOTH halves of the two-term standard result — the u√(u²+a²) piece and the sinh⁻¹ piece — never just one."
+      }
+    ]
+  }
+}

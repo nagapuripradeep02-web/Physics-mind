@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_cos_sqrt_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ cos√x dx.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Substitute x = t² and integrate by parts",
+      "marks": 1
+    },
+    {
+      "label": "Complete the by-parts and back-substitute for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.89 (PDF page 89) — VSAQ chapter 16 ‘Integration’, answer 164, the last answer of this chapter (the facing page, printed p.90, opens Definite Integrals at answer 165 — boundary confirmed by direct read). Printed appearance: TS 17. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "√x sitting inside a trig function, with no matching 1/√x outside to cancel it, always needs the SQUARING substitution x=t² first — only after that does the integral become an ordinary by-parts question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sub",
+        "kind": "equation",
+        "label": "Substitute x = t² and integrate by parts",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put √x = t ⇒ x = t² ⇒ dx = 2t dt",
+          "I = ∫ cost·2t dt = 2∫ t cost dt"
+        ],
+        "why": "Setting √x=t (equivalently x=t²) removes the square root from inside the cosine entirely, turning the integral into 2∫t cost dt — a standard by-parts shape in t.",
+        "common_mistakes": [
+          "Trying to integrate cos√x directly with no substitution, which has no elementary antiderivative in x.",
+          "Substituting t=x instead of t=√x, which does not remove the square root."
+        ],
+        "memory_tip": "√x alone (no matching 1/√x) inside a function ⇒ always substitute x=t² first to clear the root."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Complete the by-parts and back-substitute for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "2∫t cost dt = 2[t sint − ∫sint dt] = 2[t sint + cost] + c = 2t sint + 2cost + c",
+          {
+            "text": "∴ ∫ cos√x dx = 2√x sin√x + 2cos√x + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "By-parts with u=t, v=cost gives t sint − ∫sint dt = t sint + cost, and substituting t=√x back in returns the final answer to the original variable x.",
+        "common_mistakes": [
+          "Forgetting to substitute √x back in for t in BOTH terms of the final answer.",
+          "Losing the outside factor of 2 picked up from dx=2t dt."
+        ],
+        "memory_tip": "The factor of 2 from dx=2t dt multiplies BOTH terms of the by-parts result, not just one."
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_ex_secx_plus_secx_tanx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ eˣ(secx + secx tanx) dx.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identify f(x) and f′(x)",
+      "marks": 1
+    },
+    {
+      "label": "Apply the formula for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.86 (PDF page 86) — VSAQ chapter 16 ‘Integration’, answer 139.2, the twin of 139.1 on the same page, on a ★★★ SSP 86 page (banner printed at the top of the VSAQ chapter). Printed appearance: AP 16. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "secx tanx is the derivative of secx — a standard derivative worth having memorised cold, since it is the trigger for recognising this f+f′ pairing instantly.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identify",
+        "kind": "equation",
+        "label": "Identify f(x) and f′(x)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here f(x) = secx ⇒ f′(x) = secx tanx",
+          {
+            "text": "\\int e^x[f(x)+f'(x)]\\,dx = e^x f(x)+c",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "why": "secx tanx is the standard derivative of secx, so the bracket secx+secx tanx is f(x)+f′(x) for f(x)=secx.",
+        "common_mistakes": [
+          "Not recognising secx tanx as the derivative of secx, and attempting integration by parts instead.",
+          "Taking f(x)=tanx by mistake, since tanx also appears in the bracket."
+        ],
+        "memory_tip": "secx tanx is ONE standard derivative (of secx) — memorise it as a single unit, not as two separate factors."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Apply the formula for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ eˣ(secx+secx tanx) dx = eˣ secx + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting f(x)=secx into ∫eˣ[f+f′]dx = eˣf(x)+c gives the final answer directly.",
+        "common_mistakes": [
+          "Writing eˣ tanx instead of eˣ secx in the final line.",
+          "Dropping the +c."
+        ],
+        "memory_tip": "The bracket has TWO terms; the answer keeps only ONE — the f(x) you identified, here secx."
+      }
+    ]
+  }
+}

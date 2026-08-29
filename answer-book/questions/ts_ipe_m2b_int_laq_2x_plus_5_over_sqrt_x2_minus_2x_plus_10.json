@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_2x_plus_5_over_sqrt_x2_minus_2x_plus_10",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ [(2x + 5)/√(x² − 2x + 10)] dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the numerator as A·Dr′ + B and solve for A, B",
+      "marks": 1
+    },
+    {
+      "label": "Substitute back and split the integral",
+      "marks": 2
+    },
+    {
+      "label": "Complete the square under the root",
+      "marks": 2
+    },
+    {
+      "label": "Apply the standard sinh⁻¹ form for the final answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.34 (PDF page 33) — LAQ chapter 3 ‘Integration’, answer 27, on a ★★★ SSP 34 page (banner printed on this page). No printed appearance tags legible for this specific question (a black tag sits in the margin but is cropped in the scan). Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "Whenever the numerator is linear and the denominator is a square root of a quadratic, write the numerator as A times the quadratic's derivative plus a leftover constant B — the A-part always integrates to 2√(quadratic), no matter what the quadratic is.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the numerator as A·Dr′ + B and solve for A, B",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let 2x+5 = A·d/dx(x²−2x+10) + B = A(2x−2) + B",
+          "Coeff of x: 2A=2 ⇒ A=1; constant: −2A+B=5 ⇒ B=7"
+        ],
+        "why": "A linear numerator over a square root ALWAYS splits this way — matching the x-coefficient fixes A first, then the constant term fixes B from A.",
+        "common_mistakes": [
+          "Matching the constant term first, which needs A already known and leads to circular working.",
+          "Sign slip: −2A+B=5 with A=1 gives B=7, not B=3."
+        ],
+        "memory_tip": "Match the x-coefficient FIRST to get A; the constant equation then gives B directly."
+      },
+      {
+        "id": "s2_split",
+        "kind": "equation",
+        "label": "Substitute back and split the integral",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "Putting A=1, B=7: 2x+5 = 1·d/dx(x²−2x+10) + 7",
+          "I = ∫[d/dx(x²−2x+10)]/√(x²−2x+10) dx + 7∫dx/√(x²−2x+10)",
+          "= 2√(x²−2x+10) + 7∫dx/√(x²−2x+10)   [∵ ∫f′(x)/√f(x) dx = 2√f(x)]"
+        ],
+        "why": "The A-part is an f′(x)/√f(x) form, a standard result equal to 2√f(x) — it needs no completing the square at all, unlike the leftover B-part.",
+        "common_mistakes": [
+          "Trying to complete the square on the WHOLE numerator 2x+5 instead of splitting it into the A and B pieces first.",
+          "Missing the factor of 2 in ∫f′(x)/√f(x) dx = 2√f(x), writing just √f(x)."
+        ],
+        "memory_tip": "∫f′/√f dx = 2√f — always a factor of 2, easy to drop by habit."
+      },
+      {
+        "id": "s3_square",
+        "kind": "equation",
+        "label": "Complete the square under the root",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "x²−2x+10 = x²−2x+1−1+10 = (x−1)²+9",
+          "So 7∫dx/√(x²−2x+10) = 7∫dx/√[(x−1)²+3²]"
+        ],
+        "why": "This is now a sum of squares under the root, (x−1)²+3² — the exact shape the standard ∫dx/√(x²+a²) = sinh⁻¹(x/a) formula needs.",
+        "common_mistakes": [
+          "Sign error: −1+10 is 9, not 11 or 10.",
+          "Not recognising 9 = 3² and instead leaving it as a bare constant."
+        ],
+        "memory_tip": "−1+10 = 9 = 3² — a is 3 here, not 9."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Apply the standard sinh⁻¹ form for the final answer",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "\\int \\frac{dx}{\\sqrt{x^2+a^2}} = \\sinh^{-1}\\left(\\frac{x}{a}\\right)+c",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ ∫ [(2x+5)/√(x²−2x+10)] dx = 2√(x²−2x+10) + 7 sinh⁻¹[(x−1)/3] + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting x → (x−1) and a=3 into the standard sinh⁻¹ formula, then multiplying by the leftover B=7, gives the second half of the final answer.",
+        "common_mistakes": [
+          "Using Sin⁻¹ (bounded, for a²−x² under the root) instead of Sinh⁻¹ (unbounded, for x²+a² under the root) — the two look alike but are different functions.",
+          "Forgetting to multiply the sinh⁻¹ term by B=7."
+        ],
+        "memory_tip": "x²+a² under a root ⇒ Sinh⁻¹ (hyperbolic); a²−x² under a root ⇒ Sin⁻¹ (circular) — different letter cases matter here."
+      }
+    ]
+  }
+}

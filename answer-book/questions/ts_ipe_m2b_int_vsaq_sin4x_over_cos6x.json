@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_sin4x_over_cos6x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ [sin⁴x/cos⁶x] dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite as tan⁴x sec²x and substitute t = tanx",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and back-substitute for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.88 (PDF page 88) — VSAQ chapter 16 ‘Integration’, answer 159, no printed appearance tags on this question. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "Splitting cos⁶x as cos⁴x·cos²x and pairing sin⁴x/cos⁴x with the leftover 1/cos²x is the standard move whenever a sinᵐx/cosⁿx ratio has an EVEN power of cosx underneath — it always leaves a clean sec²x for dt.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Rewrite as tan⁴x sec²x and substitute t = tanx",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "sin⁴x/cos⁶x = (sin⁴x/cos⁴x)·(1/cos²x) = tan⁴x sec²x",
+          "Put tanx = t ⇒ sec²x dx = dt"
+        ],
+        "why": "Splitting the even power cos⁶x into cos⁴x (paired with sin⁴x to make tan⁴x) and a leftover cos²x (which becomes sec²x) leaves exactly a t=tanx substitution, since sec²x is tanx's own derivative.",
+        "common_mistakes": [
+          "Splitting cos⁶x unevenly, e.g. as cos²x·cos⁴x paired the wrong way with sin⁴x, which does not leave a clean sec²x.",
+          "Trying t=sinx or t=cosx instead of t=tanx, neither of which matches the sec²x factor left over."
+        ],
+        "memory_tip": "EVEN power of cosx underneath ⇒ peel off cos²x as sec²x dx = dt, and t = tanx."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and back-substitute for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "I = ∫ t⁴ dt",
+          {
+            "text": "∴ ∫ [sin⁴x/cos⁶x] dx = tan⁵x/5 + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫t⁴dt = t⁵/5 + c by the power rule, and substituting t=tanx back in gives the final answer as a fifth power of tanx over 5.",
+        "common_mistakes": [
+          "Writing tan⁴x/4 instead of tan⁵x/5 — the power rule raises the power by one and divides by the new power.",
+          "Forgetting to substitute tanx back in for t."
+        ],
+        "memory_tip": "t⁴ integrates to t⁵/5 — the power goes up by one, and the new (higher) power is what you divide by."
+      }
+    ]
+  }
+}

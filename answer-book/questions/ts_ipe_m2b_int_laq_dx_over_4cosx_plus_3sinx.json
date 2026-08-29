@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_dx_over_4cosx_plus_3sinx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ dx/(4cosx + 3sinx).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the tan(x/2) substitution",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify to a rational function of t",
+      "marks": 2
+    },
+    {
+      "label": "Complete the square in t and apply the log formula",
+      "marks": 2
+    },
+    {
+      "label": "Back-substitute for the final answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.30 (PDF page 29) — LAQ chapter 3 ‘Integration’, sub-head INTEGRATION-III, answer 21, no printed appearance tags legible (a black tag is printed but obscured/cropped in the scan). No SSP banner on this page; chapter star rank ★★★ still applies. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test)."
+  },
+  "insider_note": "This substitution turns EVERY trig ratio in the integral into a rational function of t — that is the whole point of tan(x/2), and it is worth memorising the three replacement formulas cold rather than re-deriving them under exam pressure.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sub",
+        "kind": "equation",
+        "label": "Set up the tan(x/2) substitution",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²), cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
+        ],
+        "why": "Every rational function of sinx and cosx can be turned into a rational function of t through this one substitution, because sinx, cosx and dx all convert cleanly using the half-angle formulas.",
+        "common_mistakes": [
+          "Misremembering cosx as (1+t²)/(1−t²) — the t² terms are the wrong way round.",
+          "Forgetting the 2 in dx = 2dt/(1+t²), which changes the final coefficient."
+        ],
+        "memory_tip": "sinx has 2t on top; cosx has (1−t²) on top — both share the same (1+t²) on the bottom."
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "equation",
+        "label": "Substitute and simplify to a rational function of t",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "4cosx+3sinx = [4(1−t²)+3(2t)]/(1+t²) = (4−4t²+6t)/(1+t²)",
+          "I = ∫[2dt/(1+t²)] ÷ [(4−4t²+6t)/(1+t²)] = ∫2dt/(4−4t²+6t)",
+          "= −∫dt/(2t²−3t−2)"
+        ],
+        "why": "The (1+t²) in the numerator and the (1+t²) hiding inside the denominator's fraction cancel completely — this cancellation is guaranteed to happen for every linear-in-sinx-and-cosx denominator.",
+        "common_mistakes": [
+          "Not cancelling the (1+t²) factors, leaving a needlessly complicated rational function.",
+          "Sign slip when dividing 2 by −4t²+6t+4, which flips the whole fraction."
+        ],
+        "memory_tip": "The (1+t²) on top ALWAYS cancels one hiding in the bottom — look for it before doing anything else."
+      },
+      {
+        "id": "s3_square",
+        "kind": "equation",
+        "label": "Complete the square in t and apply the log formula",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "2t²−3t−2 = 2[t²−3t/2−1] = 2[(t−3/4)²−(5/4)²]",
+          "I = −(1/2)∫dt/[(t−3/4)²−(5/4)²]",
+          {
+            "text": "= -\\frac{1}{2}\\cdot\\frac{1}{2(5/4)}\\log\\left|\\frac{t-3/4-5/4}{t-3/4+5/4}\\right| + c",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "why": "The quadratic 2t²−3t−2 completes to a DIFFERENCE of squares, so this is a log-formula integral, exactly like answer 20 earlier in the chapter, just now in the variable t.",
+        "common_mistakes": [
+          "Trying to apply the Tan⁻¹ formula here, which only applies to a SUM of squares.",
+          "Losing the leading −(1/2) factor picked up in the previous step."
+        ],
+        "memory_tip": "t²−a² in the completed square ⇒ log formula, carried straight from t² completing the square work in answer 20."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Back-substitute for the final answer",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "= −(1/5)log|(t−2)/(t+1/2)| + c = (1/5)log|(2t+1)/(2t−4)| + c",
+          {
+            "text": "∴ ∫ dx/(4cosx+3sinx) = (1/5)log|(2tan(x/2)+1)/(2(tan(x/2)−2))| + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Clearing the internal fractions and writing t back as tan(x/2) returns the answer to the original variable x, which is what the question actually asked for.",
+        "common_mistakes": [
+          "Leaving the final answer in terms of t instead of substituting tan(x/2) back in.",
+          "Sign slip when flipping −(t−2)/(t+1/2) to (2t+1)/(2t−4)."
+        ],
+        "memory_tip": "The LAST move in every tan(x/2) integral is always the same: swap t back for tan(x/2)."
+      }
+    ]
+  }
+}
