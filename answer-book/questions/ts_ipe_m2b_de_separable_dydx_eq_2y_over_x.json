@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_separable_dydx_eq_2y_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the general solution of dy/dx = 2y/x.",
+  "appearances": [
+    {
+      "year": 2021,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 Differential Equations, answer 193, the fourth answer on the page. Not on an SSP page (this chapter's only SSP page is p.93). Printed appearance tags: AP 21; TS 19. The mark split is OURS: this answer prints no margin marks. It splits at its one natural break — separating the variables, then integrating and finishing. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This question is not in the Bullet Model Paper's Q10 set (book p.106), which only reuses answers 181, 182, 184 and 185. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Both sides integrate to a log, so the answer combines back into a single log using log addition and log-power rules — that combination is what turns log y = log x² + log c into the clean power form y = cx².",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differential Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_separate",
+        "kind": "equation",
+        "label": "Separate the variables",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Divide by y and multiply by dx to put every y term with dy and every x term with dx.",
+        "memory_tip": "dy/y = 2dx/x is already fully separated — no further rearrangement needed before integrating.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is dy/dx = 2y/x",
+          "⇒ dy/y = 2dx/x"
+        ],
+        "why": "Dividing both sides by y and multiplying through by dx separates the variables immediately, since 2y/x·dx already carries the x and y factors on opposite sides once y is cleared.",
+        "common_mistakes": [
+          "Cross-multiplying incorrectly and writing x dy = 2y dx instead of dy/y = 2dx/x.",
+          "Forgetting the factor of 2 when moving it across from the right side."
+        ]
+      },
+      {
+        "id": "s2_integrate_finish",
+        "kind": "boxed_final",
+        "label": "Integrate and finish",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. ∫dy/y = log y and ∫2dx/x = 2 log x; combine the two logs and the constant into one power form.",
+        "memory_tip": "log y = log x² + log c combines to log y = log(cx²), so y = cx² — always write the constant as log c to combine logs cleanly.",
+        "lines": [
+          "∫dy/y = 2∫dx/x ⇒ log y = 2 log x + log c ⇒ log y = log x² + log c ⇒ log y = log(cx²)",
+          {
+            "text": "∴ y = cx²",
+            "style": "boxed"
+          }
+        ],
+        "why": "Writing the arbitrary constant as log c (instead of a bare c) lets every term combine into a single logarithm using log a + log b = log(ab) and n·log a = log(aⁿ); once both sides are a single log of the same base, the logs themselves can be dropped.",
+        "common_mistakes": [
+          "Writing the constant of integration as +c instead of +log c, which prevents the logs from combining cleanly.",
+          "Stopping at log y = 2 log x + log c without finishing the simplification down to y = cx²."
+        ]
+      }
+    ]
+  }
+}

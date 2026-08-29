@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_orderdegree_x12_d2y13",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the order and degree of the differential equation x^(1/2)(d²y/dx²)^(1/3) + x·dy/dx + y = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cube both sides to remove the fractional power",
+      "marks": 1
+    },
+    {
+      "label": "State the order and degree",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 Differential Equations, answer 182, the second answer in the chapter. It sits on a ★★★ SSP page (book p.93 is this chapter's only SSP page). Printed appearance tag: TS 15. The mark split 1 + 1 is PRINTED: the book marks the cubing/order line and the degree line separately. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This exact question is also the Bullet Model Paper's Q10 (book p.106), second item, printed identically with no discrepancy. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The fractional power sits on the highest derivative alone, so it is cleared by cubing the WHOLE equation, not by touching the x·dy/dx + y terms that already sit outside the bracket.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differential Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cube",
+        "kind": "equation",
+        "label": "Cube both sides to remove the fractional power",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Isolate the bracket with the fractional power, then cube both sides to clear it.",
+        "memory_tip": "A cube-root exponent 1/3 clears by cubing both sides — the standard reciprocal-power move.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is x^(1/2)(d²y/dx²)^(1/3) + x·dy/dx + y = 0",
+          "⇒ x^(1/2)(d²y/dx²)^(1/3) = −(x·dy/dx + y)",
+          "Cubing both sides: x^(3/2)·d²y/dx² = −(x·dy/dx + y)³"
+        ],
+        "why": "Isolating the bracket that carries the fractional power before cubing keeps the algebra clean, and cubing both sides removes the 1/3 power exactly.",
+        "common_mistakes": [
+          "Cubing the individual terms x^(1/2) and (d²y/dx²)^(1/3) separately instead of the whole isolated bracket.",
+          "Forgetting to cube the right-hand side (x·dy/dx + y) as well, leaving a mismatched equation."
+        ]
+      },
+      {
+        "id": "s2_state_order_degree",
+        "kind": "boxed_final",
+        "label": "State the order and degree",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. After cubing, d²y/dx² appears to the power 1 alone — that exponent is the degree.",
+        "memory_tip": "Once every fractional power is cleared, degree is simply the exponent sitting on the highest-order derivative.",
+        "lines": [
+          "The highest order derivative present is d²y/dx², so the order is 2.",
+          "The exponent of d²y/dx² in the cleared equation is 1, so the degree is 1.",
+          {
+            "text": "∴ Order = 2, Degree = 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "With the fractional power removed, the cleared equation is a polynomial in the derivatives, so order and degree can be read directly from the highest-order term d²y/dx², which appears only to the first power.",
+        "common_mistakes": [
+          "Reading the degree from the cubed right-hand side (x·dy/dx + y)³ instead of from the left-hand highest-order derivative.",
+          "Stating degree = 3 by copying the cubing power instead of checking what power d²y/dx² itself carries after cubing."
+        ]
+      }
+    ]
+  }
+}

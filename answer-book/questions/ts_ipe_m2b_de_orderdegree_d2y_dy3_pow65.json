@@ -1,0 +1,105 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_orderdegree_d2y_dy3_pow65",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the order and degree of the differential equation [d²y/dx² + (dy/dx)³]^(6/5) = 6y.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Remove the fractional power",
+      "marks": 1
+    },
+    {
+      "label": "State the order and degree",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 Differential Equations, answer 181, the first answer in the chapter. It sits on a ★★★ SSP (Super Scoring Page): book p.93 carries the SSP banner, the only SSP page this chapter has. Printed appearance tags: AP 15,16; TS 15,17. The mark split 1 + 1 is PRINTED: the book marks the order line and the degree line separately. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This exact question is also the Bullet Model Paper's Q10 (book p.106), first item — but p.106 prints the bracket with a MINUS sign, [d²y/dx² − (dy/dx)³]^(6/5) = 6y, while its own worked line underneath switches straight back to a PLUS: \"Given D.E is (d²y/dx²+(dy/dx)³)^(6/5)=6y\". The VSAQ original on this page prints the PLUS form throughout, matching the Model Paper's own working, so this card follows the plus sign as the book actually solves it and records the Model Paper's question-line minus sign as a misprint. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Order and degree are read only after the equation is free of fractional and negative powers of any derivative — the very first move is always to clear those, as this equation's own 6/5 power shows.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differential Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_clear_power",
+        "kind": "equation",
+        "label": "Remove the fractional power",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Raise both sides to the power 5/6 to clear the fractional exponent outside the bracket.",
+        "memory_tip": "A bracket raised to power p/q clears by raising both sides to the reciprocal power q/p.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is [d²y/dx² + (dy/dx)³]^(6/5) = 6y",
+          "Raising both sides to the power 5/6: d²y/dx² + (dy/dx)³ = (6y)^(5/6)"
+        ],
+        "why": "Raising both sides to the reciprocal power 5/6 clears the fractional exponent outside the bracket, leaving an equation written as a polynomial in the derivatives, which is what the order and degree are read from.",
+        "common_mistakes": [
+          "Trying to read the order and degree directly from the fractional-power form without clearing it first.",
+          "Raising both sides to the power 6/5 instead of its reciprocal 5/6."
+        ]
+      },
+      {
+        "id": "s2_state_order_degree",
+        "kind": "boxed_final",
+        "label": "State the order and degree",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Degree is read from the exponent of the HIGHEST order derivative only, never from a lower-order term.",
+        "memory_tip": "Degree only ever looks at the highest-order derivative's own exponent — every other term in the equation is irrelevant to it.",
+        "lines": [
+          "The highest order derivative present is d²y/dx², so the order is 2.",
+          "The exponent of d²y/dx² in the cleared equation is 1, so the degree is 1.",
+          {
+            "text": "∴ Order = 2, Degree = 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "Order counts the highest derivative appearing in the equation, and degree is the power of that highest derivative once the equation is a polynomial in all the derivatives — here d²y/dx² appears to the first power alone.",
+        "common_mistakes": [
+          "Confusing the outer exponent 6/5 in the original equation with the degree, instead of clearing it first.",
+          "Reading the degree from the (dy/dx)³ term instead of from the highest-order derivative d²y/dx²."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_findif_xdy_minusy_2x2sec22x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the I.F. of the differential equation x·dy/dx − y = 2x²sec²2x by transforming it into linear form.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite in linear form and identify P",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 Differential Equations, answer 195, the sixth and last answer in the chapter. Not on an SSP page (this chapter's only SSP page is p.93). No printed appearance tag is legible for this answer. The mark split is OURS: this answer prints no margin marks. It splits at its one natural break — rewrite in linear form and identify P, then find the I.F. — the same shape as answer 194, since this question also asks only for the integrating factor. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This question is not in the Bullet Model Paper's Q10 set (book p.106), which only reuses answers 181, 182, 184 and 185. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "P here is negative, −1/x, so the integrating factor e^(∫P dx) = e^(−logx) simplifies to the reciprocal 1/x rather than to x itself — the sign on P is what flips it into a reciprocal.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differential Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite_identify_p",
+        "kind": "equation",
+        "label": "Rewrite in linear form and identify P",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Divide throughout by x to make the coefficient of dy/dx equal to 1.",
+        "memory_tip": "Dividing −y by x gives the negative coefficient P = −1/x — carry the sign carefully into the next step.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is x·dy/dx − y = 2x²sec²2x",
+          "⇒ dy/dx + y·(−1/x) = 2x·sec²2x [dividing throughout by x]",
+          "This is in the form dy/dx + yP(x) = Q(x). Here P = −1/x"
+        ],
+        "why": "Dividing every term by x makes the coefficient of dy/dx equal to 1, which is what the standard linear form requires, and it leaves a negative coefficient P = −1/x on the y term.",
+        "common_mistakes": [
+          "Dropping the minus sign on the y term when dividing, writing P = 1/x instead of −1/x.",
+          "Forgetting to divide the right side 2x²sec²2x by x as well, leaving an extra factor of x in Q."
+        ]
+      },
+      {
+        "id": "s2_find_if",
+        "kind": "boxed_final",
+        "label": "Find the integrating factor",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. I.F. = e^(∫P dx); ∫(−1/x)dx = −logx = log(1/x).",
+        "memory_tip": "e^(−logx) = e^(log(x⁻¹)) = x⁻¹ = 1/x — a negative P always turns the I.F. into a reciprocal, never x itself.",
+        "lines": [
+          "Here P = −1/x ⇒ ∫P dx = ∫(−1/x)dx = −logx = log(1/x)",
+          {
+            "text": "∴ I.F. = e^(∫P dx) = e^(log(1/x)) = 1/x",
+            "style": "boxed"
+          }
+        ],
+        "why": "Integrating the negative coefficient −1/x gives −logx, which rewrites as log(1/x); e raised to that log cancels back to the plain reciprocal 1/x, so the integrating factor is 1/x, not x.",
+        "common_mistakes": [
+          "Dropping the minus sign during integration and concluding I.F. = x instead of 1/x.",
+          "Writing e^(−logx) as −x by treating the exponent's minus sign as multiplying the result, instead of inverting it."
+        ]
+      }
+    ]
+  }
+}

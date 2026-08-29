@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_formde_acos_nxplusb",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the differential equation corresponding to y = acos(nx + b), where a, b are parameters.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Differentiate twice",
+      "marks": 1
+    },
+    {
+      "label": "Eliminate the parameters and state the D.E.",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 Differential Equations, answer 187, the fourth answer on the page. Not on an SSP page (this chapter's only SSP page is p.93). Printed appearance tags: TS 18; AP 17. The mark split is OURS: this answer prints no margin marks. It is patterned on answer 184's printed 1+1 shape (differentiate once, then differentiate again and state the D.E.), since this question also has two parameters (a, b) eliminated by two rounds of differentiation, with n treated as a given constant, not a parameter. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This question is not in the Bullet Model Paper's Q10 set (book p.106), which only reuses answers 181, 182, 184 and 185. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Only a and b are named parameters — n is treated as a fixed given constant, so it stays in the final D.E. rather than being eliminated along with a and b.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differential Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate_twice",
+        "kind": "equation",
+        "label": "Differentiate twice",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Two parameters, a and b, need two rounds of differentiation before either can be eliminated.",
+        "memory_tip": "The chain rule brings down a factor of n each time y = acos(nx+b) is differentiated with respect to x.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given y = acos(nx + b) … (1)",
+          "Differentiating (1) w.r.t x: y₁ = −a·sin(nx + b)·n … (2)",
+          "Differentiating (2) w.r.t x: y₂ = −a·n²·cos(nx + b)"
+        ],
+        "why": "With two arbitrary constants a and b present, one differentiation is not enough to eliminate both, so the equation is differentiated a second time to build an expression that can be compared back against the original y.",
+        "common_mistakes": [
+          "Stopping after the first derivative and trying to eliminate both a and b with only one equation.",
+          "Forgetting the chain-rule factor n when differentiating sin(nx+b), writing y₁ = −a sin(nx+b) instead of −an sin(nx+b)."
+        ]
+      },
+      {
+        "id": "s2_eliminate_result",
+        "kind": "boxed_final",
+        "label": "Eliminate the parameters and state the D.E.",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. y₂ reproduces acos(nx+b), which is exactly y from (1), multiplied by −n².",
+        "memory_tip": "y₂ = −n²·[acos(nx+b)] = −n²y is the key recognition — the bracket is exactly the original y.",
+        "lines": [
+          "⇒ y₂ = −n²·[a·cos(nx + b)] ⇒ y₂ = −n²y [from (1)]",
+          {
+            "text": "∴ y₂ + n²y = 0, i.e. d²y/dx² + n²y = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The second derivative reproduces the bracket acos(nx+b), which is exactly the original y from equation (1), multiplied by −n²; substituting that back in eliminates both a and b at once, since neither survives in the final relation.",
+        "common_mistakes": [
+          "Leaving the answer as y₂ = −an²cos(nx+b) without substituting acos(nx+b) = y from (1).",
+          "Treating n as a third parameter to eliminate, when only a and b are named as parameters in the question."
+        ]
+      }
+    ]
+  }
+}
