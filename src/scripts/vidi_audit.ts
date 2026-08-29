@@ -52,6 +52,7 @@ function subjectOf(id: string): string {
     if (id.startsWith('ts_ipe_m1b_')) return 'mathematics_1b';
     if (id.startsWith('ts_ipe_c1_')) return 'chemistry';
     if (id.startsWith('ts_ipe_c2_')) return 'chemistry_2';
+    if (id.startsWith('ts_ipe_m2b_')) return 'mathematics_2b';
     return 'physics';
 }
 
@@ -106,6 +107,19 @@ const SUBJECTS: Record<string, SubjectCfg> = {
         whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
         outOfBankAsk: 'can you give me the answer for de moivre theorem? it is in my exam tomorrow',
         probe: DE_MOIVRE_PROBE,
+        bareMarkAmbiguous: true,
+    },
+    mathematics_2b: {
+        label: 'Maths-2B',
+        whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
+        // De Moivre is Maths-2A — a different PAPER from 2B (conics + calculus), so
+        // the bait stays genuinely outside every card this ask is put against, and
+        // a grep of the bank (2026-08-29) finds "moivre" on zero cards. This holds
+        // even after 2A is authored, because the probe is asked per paper.
+        outOfBankAsk: 'can you give me the answer for de moivre theorem? it is in my exam tomorrow',
+        probe: DE_MOIVRE_PROBE,
+        // M is not a matrix name in 2B, but "2M" still reads as a mark claim to a
+        // student writing "let the tangent be y = 2M x" — keep the human bucket.
         bareMarkAmbiguous: true,
     },
 };

@@ -129,8 +129,10 @@ export type OutOfBankProbe = { askMatches: RegExp; formula: RegExp };
  *  or chemistry out-of-bank ask was mechanically unchecked. */
 export const IDEAL_GAS_PROBE: OutOfBankProbe = { askMatches: /ideal gas/i, formula: /\bnRT\b|\bPV\s*=/i };
 
-/** The maths bait. De Moivre is Maths-2A — genuinely outside both 1A and 1B — so a
- *  correct reply says it is not open and points at the catalog. The formula regex
+/** The maths bait. De Moivre is Maths-2A — genuinely outside 1A, 1B AND 2B (2B
+ *  is conics and calculus; "moivre" is on zero cards, re-grepped 2026-08-29) — so a
+ *  correct reply says it is not open and points at the catalog. When Maths-2A is
+ *  authored, ITS cfg must use a different bait; the others keep this one. The formula regex
  *  fires only on the SUBSTANCE (the theorem itself), never on the wording of a
  *  refusal: hardcoding the topic is what cost the physics probe 8 false criticals
  *  out of 69, every one of which had refused properly. */

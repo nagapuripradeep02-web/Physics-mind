@@ -3,7 +3,8 @@
  *
  *   npx tsx src/scripts/check_figure_pace.ts                     # report everything (warnings)
  *   npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_z1  # hard-fail on that prefix
- *   npm run check:figure-pace                                    # = the zoology strict run
+ *   npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_z1,ts_ipe_c2,ts_ipe_m2b   # several
+ *   npm run check:figure-pace                                    # = every retimed subject, strict
  *
  * A figure's drawing speed is authored per element (`ms`) and the player is
  * purely time-based, so a long stroke given a short `ms` visibly RACES — and no
@@ -33,7 +34,11 @@ const opt = (name: string, dflt: string): string => {
     const i = args.indexOf(name);
     return i >= 0 && args[i + 1] ? args[i + 1] : dflt;
 };
-const STRICT = opt('--strict', '');
+// Comma-separated since 2026-08-29: package.json had declared this script twice
+// (chemistry_2 and zoology), and JSON's last-key-wins meant only ONE of them was
+// ever strict. Every subject whose figures were retimed by pace_figures is listed.
+const STRICT_PREFIXES = opt('--strict', '').split(',').map((s) => s.trim()).filter(Boolean);
+const STRICT = STRICT_PREFIXES.join(',');
 const MIN = parseFloat(opt('--min', '40'));
 const MAX = parseFloat(opt('--max', '160'));
 const PHASE_MIN = parseInt(opt('--phase-min', '16'), 10);
@@ -48,7 +53,7 @@ let figures = 0, strokes = 0, strictFigures = 0;
 const files = readdirSync(QDIR).filter((f) => f.endsWith('.json') && (!ONLY || f.startsWith(ONLY))).sort();
 for (const f of files) {
     const q = JSON.parse(readFileSync(join(QDIR, f), 'utf8'));
-    const strict = STRICT !== '' && f.startsWith(STRICT);
+    const strict = STRICT_PREFIXES.some((p) => f.startsWith(p));
     for (const step of q.answer?.steps || []) {
         if (step.kind !== 'diagram' || !step.figure) continue;
         const fig = step.figure;
