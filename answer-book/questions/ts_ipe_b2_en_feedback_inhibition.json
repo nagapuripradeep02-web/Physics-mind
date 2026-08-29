@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_en_feedback_inhibition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Enzymes (Botany-II)"
+  },
+  "chapter": "Enzymes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by 'Feed-back inhibition'?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Why the cell does it",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.50, printed question 158. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The words 'end product' are the mark. An answer that says an inhibitor stops the enzyme, without saying WHICH inhibitor, has not answered the question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Enzymes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Feedback inhibition defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Three lines. The phrase 'end product' has to appear.",
+        "lines": [
+          "Feedback inhibition is a cellular control",
+          "mechanism in which an enzyme's activity is",
+          "inhibited by the enzyme's own END PRODUCT."
+        ],
+        "why": "The product of the pathway is also the signal that stops it, which is what makes the control a feedback rather than an ordinary inhibition.",
+        "common_mistakes": [
+          "Saying the substrate inhibits the enzyme. It is the END PRODUCT.",
+          "Calling it competitive inhibition. Feedback inhibition is its own named type."
+        ],
+        "memory_tip": "The product feeds back and shuts the tap."
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why the cell does it",
+        "marks": 1,
+        "mark_note": "Purpose",
+        "margin_note": "Name it as homeostatic control and say what is saved.",
+        "lines": [
+          {
+            "text": "Homeostatic control of metabolism",
+            "style": "boxed"
+          },
+          "It is part of the homeostatic control of",
+          "metabolism.",
+          "The cell stops making a product once it has",
+          "enough, so raw material and energy are not",
+          "wasted."
+        ],
+        "why": "Without feedback, a pathway would keep running while its product piled up, which would waste both the starting material and the ATP spent on the pathway.",
+        "common_mistakes": [
+          "Giving no purpose. The reason the cell does it is the second mark.",
+          "Saying it speeds the reaction up. It SLOWS or stops the reaction."
+        ],
+        "memory_tip": "Stop when you have enough, and nothing is wasted."
+      }
+    ]
+  }
+}

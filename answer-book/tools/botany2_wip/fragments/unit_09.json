@@ -1,0 +1,135 @@
+{
+  "number": 9,
+  "name": "Principles of Inheritance and Variation (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 31,
+      "stars": 0,
+      "text": "Mention the advantages of selecting pea plant for experiment by Mendel.",
+      "question_id": "ts_ipe_b2_piv_pea_plant_advantages"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 32,
+      "stars": 0,
+      "text": "Differentiate between the following: (a) Dominant and Recessive (b) Homozygous and Heterozygous.",
+      "question_id": "ts_ipe_b2_piv_dominant_recessive_homozygous"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 33,
+      "stars": 0,
+      "text": "Explain the law of Dominance using a monohybrid cross.",
+      "question_id": "ts_ipe_b2_piv_law_of_dominance"
+    },
+    {
+      "ref": "saq4",
+      "section": "SAQ",
+      "number": 34,
+      "stars": 0,
+      "text": "Define and design a test-cross.",
+      "question_id": "ts_ipe_b2_piv_test_cross"
+    },
+    {
+      "ref": "saq5",
+      "section": "SAQ",
+      "number": 35,
+      "stars": 0,
+      "text": "Explain co-dominance with an example.",
+      "question_id": "ts_ipe_b2_piv_codominance"
+    },
+    {
+      "ref": "saq6",
+      "section": "SAQ",
+      "number": 36,
+      "stars": 0,
+      "text": "Explain incomplete dominance with an example.",
+      "question_id": "ts_ipe_b2_piv_incomplete_dominance"
+    },
+    {
+      "ref": "saq7",
+      "section": "SAQ",
+      "number": 37,
+      "stars": 0,
+      "text": "Write a brief note on chromosomal mutations and gene mutations.",
+      "question_id": "ts_ipe_b2_piv_chromosomal_and_gene_mutations"
+    },
+    {
+      "ref": "saq8",
+      "section": "SAQ",
+      "number": 38,
+      "stars": 0,
+      "text": "Define the law of Segregation and the law of Independent Assortment.",
+      "question_id": "ts_ipe_b2_piv_segregation_and_assortment"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 82,
+      "stars": 0,
+      "text": "What is the cross between the F1 progeny and the homozygous recessive parent called? How is it useful?",
+      "question_id": "ts_ipe_b2_piv_test_cross_name_and_use"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 83,
+      "stars": 0,
+      "text": "Do you think Mendel's laws of inheritance would have been different if the characters he chose were located on the same chromosome?",
+      "question_id": "ts_ipe_b2_piv_linked_genes"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 84,
+      "stars": 0,
+      "text": "Who proposed the Chromosome theory of Inheritance?",
+      "question_id": "ts_ipe_b2_piv_chromosome_theory"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 85,
+      "stars": 0,
+      "text": "Define true breeding. Mention its significance.",
+      "question_id": "ts_ipe_b2_piv_true_breeding"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 86,
+      "stars": 0,
+      "text": "Explain the terms phenotype and genotype.",
+      "question_id": "ts_ipe_b2_piv_phenotype_and_genotype"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 87,
+      "stars": 0,
+      "text": "What is point mutation? Give an example.",
+      "question_id": "ts_ipe_b2_piv_point_mutation_inheritance"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 88,
+      "stars": 0,
+      "text": "What is the genotype of the wrinkled phenotype of pea seeds?",
+      "question_id": "ts_ipe_b2_piv_wrinkled_genotype"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 89,
+      "stars": 0,
+      "text": "What will be the phenotypic ratio in the offspring obtained from the following crosses: (a) Aa × aa (b) AA × aa (c) Aa × Aa (d) Aa × AA?",
+      "question_id": "ts_ipe_b2_piv_phenotypic_ratios"
+    }
+  ]
+}

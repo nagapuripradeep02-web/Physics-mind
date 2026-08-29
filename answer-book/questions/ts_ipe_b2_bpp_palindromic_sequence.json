@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bpp_palindromic_sequence",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Biotechnology: Principles and Processes (Botany-II)"
+  },
+  "chapter": "Biotechnology: Principles and Processes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a palindromic sequence?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "An example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 113. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The definition must say 'in the same 5' to 3' direction' — without it, the sentence is not quite true and examiners know the phrase.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology: Principles and Processes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Palindromic sequence defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "The full definition with the direction condition. Three lines.",
+        "lines": [
+          "A PALINDROME in DNA is a sequence of base pairs",
+          "that reads the SAME on both strands, when both",
+          "are read in the same 5' to 3' direction."
+        ],
+        "why": "Reading both strands in the same direction is what makes them identical; read the other way they are complements, not palindromes.",
+        "common_mistakes": [
+          "Saying it reads the same backwards. That is a word palindrome; a DNA palindrome is about TWO strands.",
+          "Leaving out the 5' to 3' condition. Without it the definition is wrong."
+        ],
+        "memory_tip": "Same reading on both strands, both read the same way round."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "An example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Both strands, then the check spelled out. This is what earns the mark.",
+        "lines": [
+          {
+            "text": "5'-GAATTC-3' reads the same on both strands",
+            "style": "boxed"
+          },
+          "Example, the EcoRI site:",
+          "5'  G A A T T C  3'",
+          "3'  C T T A A G  5'",
+          "Read the lower strand 5' to 3' — that is, right",
+          "to left — and it also reads GAATTC.",
+          "Restriction enzymes recognise such sequences."
+        ],
+        "why": "Writing both strands out is the only way to show the property, because it is a relationship between two strands rather than a feature of one.",
+        "common_mistakes": [
+          "Giving a single strand. A palindrome needs BOTH strands written.",
+          "Giving no example at all. The example is half the answer."
+        ],
+        "memory_tip": "Write both strands and read the bottom one backwards."
+      }
+    ]
+  }
+}

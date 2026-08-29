@@ -1,0 +1,113 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_swiss_cheese_holes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why does Swiss cheese have big holes? Name the bacteria responsible for it.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Why the holes",
+      "marks": 1
+    },
+    {
+      "label": "The bacterium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.48, printed question 135. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two facts: carbon dioxide, and Propionibacterium. Both are short, so write both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_why",
+        "kind": "text",
+        "label": "Why the holes",
+        "marks": 1,
+        "mark_note": "The gas",
+        "margin_note": "The gas and how it is trapped. Four lines.",
+        "lines": [
+          "The large holes in Swiss cheese are caused by the",
+          "production of large amounts of CARBON DIOXIDE.",
+          "The gas is trapped in the setting cheese and",
+          "forms bubbles, which become the holes."
+        ],
+        "why": "The cheese sets while the bacteria are still producing gas, so the bubbles are trapped where they form.",
+        "common_mistakes": [
+          "Saying the holes are made by air. They are made by CARBON DIOXIDE from the bacteria.",
+          "Saying the holes are cut into the cheese. They form as the cheese sets."
+        ],
+        "memory_tip": "Trapped gas in setting cheese."
+      },
+      {
+        "id": "s2_bacterium",
+        "kind": "boxed_final",
+        "label": "The bacterium",
+        "marks": 1,
+        "mark_note": "Bacterium",
+        "margin_note": "The genus and the species if you know it, plus the flavour point.",
+        "lines": [
+          {
+            "text": "Propionibacterium makes the carbon dioxide",
+            "style": "boxed"
+          },
+          "The bacterium responsible is PROPIONIBACTERIUM",
+          "(Propionibacterium sharmanii).",
+          "The bacteria used for cheese also give it its",
+          "characteristic flavour and texture."
+        ],
+        "why": "The same fermentation that makes the gas also makes the flavour compounds, which is why one bacterium is chosen for both.",
+        "common_mistakes": [
+          "Naming Lactobacillus. Lactobacillus makes curd; PROPIONIBACTERIUM makes the Swiss cheese holes.",
+          "Naming no bacterium. Half the question is the name."
+        ],
+        "memory_tip": "Propionibacterium for the holes."
+      }
+    ]
+  }
+}

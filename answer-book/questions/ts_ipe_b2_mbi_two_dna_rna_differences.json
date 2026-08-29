@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_two_dna_rna_differences",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write any two differences between DNA and RNA.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "First difference",
+      "marks": 1
+    },
+    {
+      "label": "Second difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 103. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The question asks for TWO, so give exactly two and make them sharp. Sugar and strandedness are the safest pair.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first",
+        "kind": "text",
+        "label": "First difference",
+        "marks": 1,
+        "mark_note": "Sugar",
+        "margin_note": "Two clean differences, one per numbered pair.",
+        "lines": [
+          "1. DNA contains the sugar DEOXYRIBOSE.",
+          "   RNA contains the sugar RIBOSE.",
+          "2. DNA is DOUBLE stranded.",
+          "   RNA is SINGLE stranded."
+        ],
+        "why": "These two are structural facts that hold for every DNA and every RNA, so neither needs a qualification.",
+        "common_mistakes": [
+          "Saying DNA has ribose. DNA has DEOXYribose — one oxygen less.",
+          "Saying RNA is double stranded. RNA is SINGLE stranded."
+        ],
+        "memory_tip": "Deoxy and double for DNA; ribose and single for RNA."
+      },
+      {
+        "id": "s2_second",
+        "kind": "boxed_final",
+        "label": "Second difference",
+        "marks": 1,
+        "mark_note": "Function",
+        "margin_note": "Two more differences. Four in total is more than the question asks for and costs nothing.",
+        "lines": [
+          {
+            "text": "DNA replicates itself; RNA does not",
+            "style": "boxed"
+          },
+          "3. DNA UNDERGOES self replication.",
+          "   RNA does NOT undergo self replication.",
+          "4. DNA has thymine; RNA has URACIL instead."
+        ],
+        "why": "Only DNA replicates because only DNA is the archive; RNA is made fresh from DNA each time it is needed.",
+        "common_mistakes": [
+          "Saying RNA replicates in cells. It is transcribed from DNA, not self replicated.",
+          "Naming thymine in RNA. RNA has URACIL."
+        ],
+        "memory_tip": "One copies itself, the other is copied from it."
+      }
+    ]
+  }
+}

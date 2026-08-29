@@ -189,7 +189,7 @@
       var subjectWord = (question.subject || '').indexOf('mathematics') === 0 ? 'mathematics'
         : question.subject === 'chemistry' ? 'chemistry'
         : question.subject === 'chemistry_2' ? 'chemistry'
-        : question.subject === 'botany' ? 'botany'
+        : (question.subject || '').indexOf('botany') === 0 ? 'botany'
         : question.subject === 'zoology' ? 'zoology'
         : question.subject === 'physics_2' ? 'physics' : 'physics';
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
@@ -414,7 +414,8 @@
                      mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
                      botany: 'Botany', zoology: 'Zoology',
                      physics_2: 'Physics II',
-                     chemistry_2: 'Chemistry II' };
+                     chemistry_2: 'Chemistry II',
+                     botany_2: 'Botany-II' };
   function subjLabel(s) {
     return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
   }

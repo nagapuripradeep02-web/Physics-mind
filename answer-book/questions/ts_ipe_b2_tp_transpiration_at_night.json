@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_transpiration_at_night",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Does transpiration occur at night? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 57. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "A one-word question with a one-word answer, so the whole risk is forgetting the example. Write the plant names first if you are short of time.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Yes",
+        "margin_note": "Yes, plus one line of reason. Do not answer with a bare yes.",
+        "lines": [
+          "Yes, transpiration occurs at night.",
+          "Some plants keep their stomata open at night",
+          "and closed during the day."
+        ],
+        "why": "The general rule that stomata open in light has exceptions, and this question exists to check that the exception is known.",
+        "common_mistakes": [
+          "Answering simply 'no'. Transpiration DOES occur at night in some plants.",
+          "Giving the answer without any reason. One line on the open stomata makes it an answer."
+        ],
+        "memory_tip": "The rule has exceptions, and the exceptions open at night."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Name both plants and give the one-line reason. Four lines.",
+        "lines": [
+          {
+            "text": "Bryophyllum and cacti open at night",
+            "style": "boxed"
+          },
+          "Examples: Bryophyllum and cacti.",
+          "These are succulent plants. Opening at night",
+          "and closing by day saves water in dry places."
+        ],
+        "why": "Both examples are succulents from dry places, so the night opening is a water-saving pattern rather than a random exception.",
+        "common_mistakes": [
+          "Giving no example. The question asks for one by name.",
+          "Naming an ordinary mesophyte. The examples must be succulents."
+        ],
+        "memory_tip": "Dry-place plants trade daylight for water."
+      }
+    ]
+  }
+}

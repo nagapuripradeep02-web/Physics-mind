@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_pgd_seed_dormancy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Plant Growth and Development (Botany-II)"
+  },
+  "chapter": "Plant Growth and Development",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write short notes on seed dormancy.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What seed dormancy is",
+      "marks": 1
+    },
+    {
+      "label": "Causes: the seed coat",
+      "marks": 1
+    },
+    {
+      "label": "Causes: chemical inhibitors and cold",
+      "marks": 1
+    },
+    {
+      "label": "Breaking dormancy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.27, printed question 24. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide names the tomato germination inhibitor \"lycopane\". The card says \"chemical inhibitors present in the seed\", which is what NCERT states, and records the guide's word here rather than repeating a name that is not standard."
+  },
+  "insider_note": "Dormancy and quiescence are a favourite pair. If you have room, add one line saying dormancy is INTERNAL and quiescence is external — it costs nothing and often earns credit.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Growth and Development (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "What seed dormancy is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, internal cause, and the contrast with quiescence.",
+        "lines": [
+          "Seed dormancy is the inability of a seed to",
+          "germinate, or the delay in its germination,",
+          "even when conditions are favourable.",
+          "It is caused by INTERNAL factors of the seed",
+          "itself.",
+          "Dormancy differs from QUIESCENCE, where the",
+          "seed fails to germinate because the outside",
+          "conditions are wrong."
+        ],
+        "why": "The cause being internal is what separates dormancy from quiescence, and that distinction is the whole basis of the answer.",
+        "common_mistakes": [
+          "Saying dormancy is caused by dry or cold weather. That is QUIESCENCE.",
+          "Saying a dormant seed is dead. It is alive and will germinate once dormancy is broken."
+        ],
+        "memory_tip": "Dormancy is the seed's own decision; quiescence is the weather's."
+      },
+      {
+        "id": "s2_coat",
+        "kind": "text",
+        "label": "Causes: the seed coat",
+        "marks": 1,
+        "mark_note": "Seed coat",
+        "margin_note": "Name the cause and say what it blocks. Four lines.",
+        "lines": [
+          "1. HARD SEED COAT:",
+          "A tough, impermeable seed coat stops water and",
+          "oxygen from entering.",
+          "Without water and oxygen the embryo cannot",
+          "start growing."
+        ],
+        "why": "Germination begins with the uptake of water, so a coat that keeps water out prevents even the first step.",
+        "common_mistakes": [
+          "Saying the hard coat kills the embryo. It only keeps water and oxygen OUT.",
+          "Naming only the coat and stopping. There are other causes to give."
+        ],
+        "memory_tip": "No water in, no germination out."
+      },
+      {
+        "id": "s3_chemical",
+        "kind": "text",
+        "label": "Causes: chemical inhibitors and cold",
+        "marks": 1,
+        "mark_note": "Inhibitors",
+        "margin_note": "Two more causes with an example each.",
+        "lines": [
+          "2. CHEMICAL INHIBITORS:",
+          "Some seeds, such as tomato, contain chemicals",
+          "that stop germination. Abscisic acid is one.",
+          "3. NEED FOR CHILLING:",
+          "Seeds such as Polygonum will not germinate for",
+          "weeks or months until they have been kept cold",
+          "and moist."
+        ],
+        "why": "A seed that needs a cold period cannot germinate in autumn, so the chilling requirement is a clock that holds the seedling back until spring.",
+        "common_mistakes": [
+          "Saying the inhibitor is in the soil. It is inside the SEED.",
+          "Saying chilling kills dormancy instantly. It takes weeks of cold, moist conditions."
+        ],
+        "memory_tip": "Some seeds carry their own brake; others wait out a winter."
+      },
+      {
+        "id": "s4_breaking",
+        "kind": "boxed_final",
+        "label": "Breaking dormancy",
+        "marks": 1,
+        "mark_note": "Breaking it",
+        "margin_note": "Both named treatments, matched to their causes, plus the hormone.",
+        "lines": [
+          {
+            "text": "Scarify the coat, or chill the seed",
+            "style": "boxed"
+          },
+          "A hard coat can be broken by SCARIFICATION:",
+          "rubbing, chipping or acid treatment.",
+          "A chilling requirement is met by",
+          "STRATIFICATION, also called prechilling:",
+          "layering the seeds in moist sand or peat",
+          "through the winter.",
+          "Gibberellins also break seed dormancy."
+        ],
+        "why": "Each treatment removes one named cause, so the way dormancy is broken tells you what was causing it.",
+        "common_mistakes": [
+          "Confusing scarification with stratification. Scarification breaks the COAT; stratification supplies the COLD.",
+          "Leaving out gibberellins. They are the hormone that breaks dormancy."
+        ],
+        "memory_tip": "Scarify the shell, stratify in the cold."
+      }
+    ]
+  }
+}

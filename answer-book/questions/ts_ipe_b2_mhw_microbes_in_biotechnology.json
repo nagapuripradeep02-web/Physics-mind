@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_microbes_in_biotechnology",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give any two microbes that are used in biotechnology.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Escherichia coli",
+      "marks": 1
+    },
+    {
+      "label": "Agrobacterium tumefaciens",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.49, printed question 146. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. DUPLICATE IN THE SOURCE: this exact question, with the same printed answer, appears TWICE in the book — as global 146 and again as global 150, both on book p.49. One card is authored, from the first occurrence. BOOK ERROR corrected here: the printed answer reads \"Escherichia coli: It is a plasmid used as a cloning vector\". E. coli is a BACTERIUM; its plasmids are the cloning vectors, and it is itself the host organism."
+  },
+  "insider_note": "Two organisms and what each is used FOR. Do not just name them — the use is half the question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ecoli",
+        "kind": "text",
+        "label": "Escherichia coli",
+        "marks": 1,
+        "mark_note": "E. coli",
+        "margin_note": "Name it, say it is the host, and name its plasmids as the vectors.",
+        "lines": [
+          "ESCHERICHIA COLI is a bacterium used as the HOST",
+          "organism in recombinant DNA technology.",
+          "Its PLASMIDS — pBR322 and pUC19 — are used as",
+          "CLONING VECTORS.",
+          "It multiplies quickly, so a cloned gene is copied",
+          "many times in a few hours."
+        ],
+        "why": "A host that divides every twenty minutes turns one recombinant cell into millions overnight, which is what makes gene cloning practical.",
+        "common_mistakes": [
+          "Saying E. coli IS a plasmid. It is a BACTERIUM; its plasmids are the vectors. The guide's printed answer makes this mistake.",
+          "Giving the name with no use. The use is what the mark is for."
+        ],
+        "memory_tip": "The bacterium is the host; its plasmid is the vector."
+      },
+      {
+        "id": "s2_agro",
+        "kind": "boxed_final",
+        "label": "Agrobacterium tumefaciens",
+        "marks": 1,
+        "mark_note": "Agrobacterium",
+        "margin_note": "Name it, name the Ti plasmid, and say it is the PLANT vector.",
+        "lines": [
+          {
+            "text": "E. coli hosts the gene; Agrobacterium carries",
+            "style": "boxed"
+          },
+          {
+            "text": "it into a plant",
+            "style": "boxed"
+          },
+          "AGROBACTERIUM TUMEFACIENS is a soil",
+          "bacterium that naturally infects plants.",
+          "Its TI PLASMID is used as a GENE TRANSFER",
+          "VECTOR in plants.",
+          "It has been disarmed, so it carries the gene in",
+          "without causing disease."
+        ],
+        "why": "Agrobacterium already had a natural mechanism for pushing its own DNA into plant cells, so genetic engineers borrowed it rather than inventing one.",
+        "common_mistakes": [
+          "Saying Agrobacterium is used as a host. It is a VECTOR for plants; E. coli is the host.",
+          "Saying the Ti plasmid still causes tumours. It is DISARMED before use."
+        ],
+        "memory_tip": "Ti stands for tumour inducing, and it is disarmed before use."
+      }
+    ]
+  }
+}

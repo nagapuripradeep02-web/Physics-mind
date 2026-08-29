@@ -1,0 +1,95 @@
+{
+  "number": 12,
+  "name": "Biotechnology and its Applications (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 45,
+      "stars": 0,
+      "text": "List out the beneficial aspects of transgenic plants.",
+      "question_id": "ts_ipe_b2_bia_transgenic_plant_benefits"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 46,
+      "stars": 0,
+      "text": "What are some bio-safety issues concerned with genetically modified crops?",
+      "question_id": "ts_ipe_b2_bia_gm_biosafety_issues"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 47,
+      "stars": 0,
+      "text": "Give a brief account of Bt cotton.",
+      "question_id": "ts_ipe_b2_bia_bt_cotton"
+    },
+    {
+      "ref": "saq4",
+      "section": "SAQ",
+      "number": 48,
+      "stars": 0,
+      "text": "Give a brief account of pest resistant plants.",
+      "question_id": "ts_ipe_b2_bia_pest_resistant_plants"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 118,
+      "stars": 0,
+      "text": "Give different types of cry genes and the pests which are controlled by the proteins encoded by these genes.",
+      "question_id": "ts_ipe_b2_bia_cry_genes"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 119,
+      "stars": 0,
+      "text": "Can a disease be detected before its symptoms appear? Explain the principle involved.",
+      "question_id": "ts_ipe_b2_bia_early_disease_detection"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 120,
+      "stars": 0,
+      "text": "What is GEAC and what are its objectives?",
+      "question_id": "ts_ipe_b2_bia_geac"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 121,
+      "stars": 0,
+      "text": "Name the nematode that infects the roots of tobacco plants. Name the strategy adopted to prevent this infestation.",
+      "question_id": "ts_ipe_b2_bia_tobacco_nematode"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 122,
+      "stars": 0,
+      "text": "For which variety of Indian rice has a patent been filed by a USA company?",
+      "question_id": "ts_ipe_b2_bia_basmati_patent"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 123,
+      "stars": 0,
+      "text": "Give one example each of a transgenic plant suitable for food processing and one with improved nutritional quality.",
+      "question_id": "ts_ipe_b2_bia_transgenic_examples"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 124,
+      "stars": 0,
+      "text": "What is green revolution? Who is regarded as the Father of the green revolution?",
+      "question_id": "ts_ipe_b2_bia_green_revolution"
+    }
+  ]
+}

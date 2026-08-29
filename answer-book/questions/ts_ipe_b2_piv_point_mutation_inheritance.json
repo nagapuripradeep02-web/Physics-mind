@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_point_mutation_inheritance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is point mutation? Give an example.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.42, printed question 87. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two lines. Sickle cell anaemia is the example, and naming the affected molecule sharpens it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Point mutation defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition plus the other name. Three lines.",
+        "lines": [
+          "A POINT MUTATION is a mutation that occurs in a",
+          "SINGLE BASE PAIR of a DNA fragment.",
+          "It is also called a gene mutation."
+        ],
+        "why": "Because only one base changes, the effect can be traced to one amino acid — which is what makes point mutations so well understood.",
+        "common_mistakes": [
+          "Saying it changes a whole chromosome. That is a CHROMOSOMAL mutation.",
+          "Saying it changes several genes. It changes ONE base pair."
+        ],
+        "memory_tip": "One point on the DNA, one base pair."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Name the disease and the substitution. Six lines.",
+        "lines": [
+          {
+            "text": "Sickle cell anaemia: one base, one amino acid",
+            "style": "boxed"
+          },
+          "Example: SICKLE CELL ANAEMIA in humans.",
+          "A single base change in the gene for the beta",
+          "chain of haemoglobin replaces glutamic acid with",
+          "valine at position 6.",
+          "That one substitution changes the shape of the",
+          "red blood cell."
+        ],
+        "why": "One base changing one amino acid changing the shape of a whole cell is the clearest chain from DNA to phenotype in the syllabus.",
+        "common_mistakes": [
+          "Naming Down's syndrome. That is a CHROMOSOMAL mutation, not a point mutation.",
+          "Giving the name with no detail. The amino acid substitution is what makes it an example rather than a label."
+        ],
+        "memory_tip": "One letter changed, and the cell changes shape."
+      }
+    ]
+  }
+}

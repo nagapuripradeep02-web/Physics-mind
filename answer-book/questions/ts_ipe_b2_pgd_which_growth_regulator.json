@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_pgd_which_growth_regulator",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Plant Growth and Development (Botany-II)"
+  },
+  "chapter": "Plant Growth and Development",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Which one of the plant growth regulators would you use if you are asked to (a) induce rooting in a twig (b) quickly ripen a fruit (c) delay leaf senescence (d) induce growth in axillary buds (e) bolt a rosette plant (f) induce immediate stomatal closure in leaves (g) overcome apical dominance (h) kill dicotyledonous weeds?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Parts a and b",
+      "marks": 1
+    },
+    {
+      "label": "Parts c and d",
+      "marks": 1
+    },
+    {
+      "label": "Parts e and f",
+      "marks": 1
+    },
+    {
+      "label": "Parts g and h",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.27, printed question 25. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Eight one-word answers, half a mark each. Answer every part even if you are unsure — a blank scores nothing, and a named hormone that is close often scores something.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Growth and Development (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ab",
+        "kind": "text",
+        "label": "Parts a and b",
+        "marks": 1,
+        "mark_note": "a, b",
+        "margin_note": "Repeat the part letter with each answer so nothing is mismarked.",
+        "lines": [
+          "(a) Induce rooting in a twig:",
+          "    AUXIN, such as IBA or NAA.",
+          "(b) Quickly ripen a fruit:",
+          "    ETHYLENE."
+        ],
+        "why": "A twig has no root tip to make its own auxin, and a fruit ripens on ethylene, so each answer names the hormone that does that one job.",
+        "common_mistakes": [
+          "Answering (a) with gibberellin. ROOTING is an auxin effect.",
+          "Answering (b) with abscisic acid. RIPENING is ethylene."
+        ],
+        "memory_tip": "Rooting is auxin; ripening is ethylene."
+      },
+      {
+        "id": "s2_cd",
+        "kind": "text",
+        "label": "Parts c and d",
+        "marks": 1,
+        "mark_note": "c, d",
+        "margin_note": "Two parts, one hormone. Say cytokinin for both without hesitating.",
+        "lines": [
+          "(c) Delay leaf senescence:",
+          "    CYTOKININ.",
+          "(d) Induce growth in axillary buds:",
+          "    CYTOKININ."
+        ],
+        "why": "Both are cytokinin because both are about keeping tissue actively dividing rather than letting it age or stay suppressed.",
+        "common_mistakes": [
+          "Answering (c) with ethylene. Ethylene PROMOTES senescence; cytokinin delays it.",
+          "Answering (d) with auxin. Auxin SUPPRESSES axillary buds."
+        ],
+        "memory_tip": "Cytokinin keeps things young and keeps side buds growing."
+      },
+      {
+        "id": "s3_ef",
+        "kind": "text",
+        "label": "Parts e and f",
+        "marks": 1,
+        "mark_note": "e, f",
+        "margin_note": "Two parts. ABA is also called the stress hormone, which is worth adding.",
+        "lines": [
+          "(e) Bolt a rosette plant:",
+          "    GIBBERELLIN.",
+          "(f) Induce immediate stomatal closure:",
+          "    ABSCISIC ACID (ABA)."
+        ],
+        "why": "Bolting is internode elongation, which is gibberellin's signature effect, and immediate stomatal closure is the one thing abscisic acid is named for.",
+        "common_mistakes": [
+          "Answering (e) with auxin. Bolting is a GIBBERELLIN effect.",
+          "Answering (f) with cytokinin. Stomatal closure is ABSCISIC ACID."
+        ],
+        "memory_tip": "Bolting is gibberellin; shutting the pore is ABA."
+      },
+      {
+        "id": "s4_gh",
+        "kind": "boxed_final",
+        "label": "Parts g and h",
+        "marks": 1,
+        "mark_note": "g, h",
+        "margin_note": "Two parts. Naming 2,4-D specifically is better than writing 'auxin' alone.",
+        "lines": [
+          {
+            "text": "Auxin suppresses buds; cytokinin releases them",
+            "style": "boxed"
+          },
+          "(g) Overcome apical dominance:",
+          "    CYTOKININ.",
+          "(h) Kill dicotyledonous weeds:",
+          "    2,4-D, a synthetic AUXIN."
+        ],
+        "why": "Part (h) is the one trap in the list: the answer is an auxin, even though (d) and (g) were about escaping auxin's effect.",
+        "common_mistakes": [
+          "Answering (h) with ethylene. 2,4-D is the weedkiller, and it is a synthetic AUXIN.",
+          "Answering (g) with auxin. Auxin CAUSES apical dominance; cytokinin overcomes it."
+        ],
+        "memory_tip": "The same family both suppresses buds and kills weeds: auxin does both."
+      }
+    ]
+  }
+}

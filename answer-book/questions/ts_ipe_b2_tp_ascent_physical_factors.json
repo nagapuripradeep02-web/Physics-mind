@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_ascent_physical_factors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the physical factors responsible for the ascent of sap through xylem in plants?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cohesion and adhesion",
+      "marks": 1
+    },
+    {
+      "label": "Transpiration pull",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 54. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Three named factors for two marks, so every name counts. Write the name first and the one-line meaning after it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cohesion",
+        "kind": "text",
+        "label": "Cohesion and adhesion",
+        "marks": 1,
+        "mark_note": "Two attractions",
+        "margin_note": "Both names with a one-line meaning each. Four lines.",
+        "lines": [
+          "1. Cohesion: the mutual attraction BETWEEN",
+          "water molecules.",
+          "2. Adhesion: the attraction of water molecules",
+          "TO the surface of the tracheal elements."
+        ],
+        "why": "Both are attractions, and naming what each attracts to what is the only way to keep them apart in an answer this short.",
+        "common_mistakes": [
+          "Swapping them. Cohesion is water to water; adhesion is water to the wall.",
+          "Writing the names with no meaning. The one-line meaning is what earns the mark."
+        ],
+        "memory_tip": "Cohesion: water to water. Adhesion: water to wall."
+      },
+      {
+        "id": "s2_pull",
+        "kind": "boxed_final",
+        "label": "Transpiration pull",
+        "marks": 1,
+        "mark_note": "Transpiration pull",
+        "margin_note": "Name the third factor and say it is the driving force.",
+        "lines": [
+          {
+            "text": "Two attractions hold the column, one pull moves it",
+            "style": "boxed"
+          },
+          "3. Transpiration pull: the driving force for",
+          "the upward movement of water, created when",
+          "water evaporates from the leaf."
+        ],
+        "why": "Cohesion and adhesion only hold the column together; transpiration pull is the one factor that actually supplies force, so it is named last and separately.",
+        "common_mistakes": [
+          "Naming only two factors. There are THREE.",
+          "Calling transpiration pull a push. It is a PULL from the leaf end."
+        ],
+        "memory_tip": "Two hold, one pulls."
+      }
+    ]
+  }
+}

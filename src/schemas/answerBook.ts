@@ -79,6 +79,13 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     // switches in 2027-28, so `wef` names the syllabus year this row DESCRIBES.
     // `internal` is deliberately omitted — see the type above.
     chemistry_2: { label: 'Chemistry II', total: 60, sections: ABC_60, wef: '2026-27' },
+
+    // Senior Inter Botany Paper-II (2026-08-29). Same ABC_60 shape, confirmed against
+    // the 2022 BIE blue print and all five of the book's model papers. `internal` is
+    // deliberately omitted for the same reason as physics_2 and chemistry_2 above: the
+    // book prints a Botany practical sheet but no mark value for it, and copying the
+    // first-year 15 would be inventing a figure.
+    botany_2: { label: 'Botany-II', total: 60, sections: ABC_60, wef: '2026-27' },
 };
 /** The marks a question of this qtype carries on this subject's paper. */
 export function paperMarksFor(subject: string, qtype: 'VSAQ' | 'SAQ' | 'LAQ'): number | undefined {
@@ -336,7 +343,7 @@ export const answerBookQuestionSchema = z
         // notebook.js LEGACY_PHYSICS_KEYS remaps exact `physics-N` keys for the
         // 2026-27 first-year renumbering, so second-year chapters filed under
         // `physics` would be silently remapped onto first-year units.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2']),
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),

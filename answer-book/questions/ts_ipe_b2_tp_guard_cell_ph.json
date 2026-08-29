@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_guard_cell_ph",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Compare the pH of guard cells during the opening and closing of stomata.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "During opening",
+      "marks": 1
+    },
+    {
+      "label": "During closing",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 58. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two lines, opposite directions. Get the opening direction right and the closing one follows.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Transport in Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_opening",
+        "kind": "text",
+        "label": "During opening",
+        "marks": 1,
+        "mark_note": "Opening",
+        "margin_note": "Direction plus the ion that causes it. Three lines.",
+        "lines": [
+          "The pH of the guard cells INCREASES during the",
+          "opening of stomata.",
+          "H+ ions are pumped out as K+ ions enter, so the",
+          "guard cells become less acidic."
+        ],
+        "why": "Protons leaving is what makes the inside less acidic, so the pH rise is a direct consequence of the ion pump that opens the pore.",
+        "common_mistakes": [
+          "Saying the pH falls on opening. It RISES.",
+          "Giving the direction with no cause. The proton efflux is what makes it rise."
+        ],
+        "memory_tip": "Protons out means acid out means pH up."
+      },
+      {
+        "id": "s2_closing",
+        "kind": "boxed_final",
+        "label": "During closing",
+        "marks": 1,
+        "mark_note": "Closing",
+        "margin_note": "The mirror of the opening line. Three lines.",
+        "lines": [
+          {
+            "text": "pH up on opening, down on closing",
+            "style": "boxed"
+          },
+          "The pH of the guard cells DECREASES during the",
+          "closing of stomata.",
+          "H+ ions return as K+ ions leave."
+        ],
+        "why": "Closing reverses the same pump, so the pH must move the other way.",
+        "common_mistakes": [
+          "Giving the same direction for both. They are opposites.",
+          "Confusing pH with concentration of potassium. Potassium leaves; the pH falls."
+        ],
+        "memory_tip": "Reverse the pump and you reverse the pH."
+      }
+    ]
+  }
+}

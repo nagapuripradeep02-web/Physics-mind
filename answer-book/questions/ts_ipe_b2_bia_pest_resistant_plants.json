@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bia_pest_resistant_plants",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Biotechnology and its Applications (Botany-II)"
+  },
+  "chapter": "Biotechnology and its Applications",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give a brief account of pest resistant plants.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The problem",
+      "marks": 1
+    },
+    {
+      "label": "RNA interference",
+      "marks": 1
+    },
+    {
+      "label": "Making the transgenic plant",
+      "marks": 1
+    },
+    {
+      "label": "How the parasite is defeated",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.36, printed question 48. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide spells the nematode \"Meloidegyne incognitia\". The correct name is MELOIDOGYNE INCOGNITA."
+  },
+  "insider_note": "This is the RNAi question in disguise. Getting to double stranded RNA and gene silencing is where three of the four marks are.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biotechnology and its Applications (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_problem",
+        "kind": "text",
+        "label": "The problem",
+        "marks": 1,
+        "mark_note": "The problem",
+        "margin_note": "The parasite, the host, the part attacked, and the loss.",
+        "lines": [
+          "A nematode parasite, MELOIDOGYNE INCOGNITA,",
+          "infects the ROOTS of tobacco plants.",
+          "The infestation greatly reduces the yield of",
+          "tobacco.",
+          "Pest resistant plants are developed by",
+          "biotechnology to stop this."
+        ],
+        "why": "A root parasite cannot be reached by spraying, so a solution built into the plant is the only practical one.",
+        "common_mistakes": [
+          "Saying the nematode attacks the leaves. It infects the ROOTS.",
+          "Misspelling the name. It is Meloidogyne incognita; the guide misprints it."
+        ],
+        "memory_tip": "A root parasite that spraying cannot reach."
+      },
+      {
+        "id": "s2_rnai",
+        "kind": "text",
+        "label": "RNA interference",
+        "marks": 1,
+        "mark_note": "RNAi",
+        "margin_note": "Expand RNAi, say it is natural, and name the double stranded trigger.",
+        "lines": [
+          "The strategy adopted is RNA INTERFERENCE",
+          "(RNAi). RNAi is a method of CELLULAR DEFENCE",
+          "found in all eukaryotic organisms.",
+          "It works by SILENCING a specific mRNA, so that",
+          "mRNA is never translated into protein.",
+          "The silencing is triggered by DOUBLE STRANDED",
+          "RNA."
+        ],
+        "why": "A cell that meets double stranded RNA treats it as a sign of viral infection, and RNAi is the defence it already has — the technique borrows it.",
+        "common_mistakes": [
+          "Saying RNAi cuts DNA. It silences mRNA; the DNA is untouched.",
+          "Saying RNAi is artificial. It is a NATURAL cellular defence that is being used."
+        ],
+        "memory_tip": "Silence the message and the protein is never made."
+      },
+      {
+        "id": "s3_transgenic",
+        "kind": "text",
+        "label": "Making the transgenic plant",
+        "marks": 1,
+        "mark_note": "The method",
+        "margin_note": "The vector, the transgenic plant, and both RNAs. Three numbered steps.",
+        "lines": [
+          "1. Nematode specific genes are introduced into",
+          "the tobacco plant, using AGROBACTERIUM as the",
+          "vector.",
+          "2. The host tobacco plant is now a TRANSGENIC",
+          "plant.",
+          "3. The introduced DNA is designed so that BOTH",
+          "a SENSE RNA and an ANTI-SENSE RNA are",
+          "produced in the host cells."
+        ],
+        "why": "Making both strands in the same cell is what allows them to pair, and the pairing is what triggers the whole defence.",
+        "common_mistakes": [
+          "Saying only one RNA is made. BOTH sense and anti-sense are produced.",
+          "Naming the wrong vector. Agrobacterium is the standard plant vector."
+        ],
+        "memory_tip": "Two RNAs made in the same cell, so they can find each other."
+      },
+      {
+        "id": "s4_defeat",
+        "kind": "boxed_final",
+        "label": "How the parasite is defeated",
+        "marks": 1,
+        "mark_note": "The result",
+        "margin_note": "The pairing, the silencing, and the consequence. Four numbered steps.",
+        "lines": [
+          {
+            "text": "The parasite's own mRNA is silenced inside",
+            "style": "boxed"
+          },
+          {
+            "text": "the plant",
+            "style": "boxed"
+          },
+          "4. The two RNAs are COMPLEMENTARY, so they",
+          "pair and form a DOUBLE STRANDED RNA.",
+          "5. This initiates RNAi and silences the specific",
+          "nematode mRNA.",
+          "6. The parasite can no longer make the protein",
+          "it needs, so it cannot survive in the",
+          "transgenic plant.",
+          "7. The plant is therefore protected."
+        ],
+        "why": "The plant is not made poisonous; it simply switches off a gene the parasite cannot do without, which is why nothing else is harmed.",
+        "common_mistakes": [
+          "Saying the plant poisons the nematode. It SILENCES a nematode gene.",
+          "Stopping at 'RNAi happens'. The consequence for the parasite is the last mark."
+        ],
+        "memory_tip": "The plant does not kill it; it just switches off a gene it needs."
+      }
+    ]
+  }
+}

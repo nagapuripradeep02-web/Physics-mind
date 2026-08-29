@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_bpp_define_biotechnology",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Biotechnology: Principles and Processes (Botany-II)"
+  },
+  "chapter": "Biotechnology: Principles and Processes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define biotechnology.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "What it produces",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 107. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "A long definition to write nearly word for word. The phrase to include is 'at the industrial level'.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biotechnology: Principles and Processes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Biotechnology defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "The full definition. Five lines, and it is most of the answer.",
+        "lines": [
+          "BIOTECHNOLOGY is the science that uses MICRO",
+          "ORGANISMS, or exploits CELLS and CELL",
+          "CONSTITUENTS, at the INDUSTRIAL LEVEL, to",
+          "make products useful to life and human welfare."
+        ],
+        "why": "The words 'industrial level' are what separate biotechnology from ordinary biology: the same processes, run at scale for a product.",
+        "common_mistakes": [
+          "Leaving out 'industrial level'. Brewing beer in a kitchen is not biotechnology.",
+          "Saying biotechnology means genetic engineering only. Genetic engineering is one part of it."
+        ],
+        "memory_tip": "Living things put to work, at industrial scale."
+      },
+      {
+        "id": "s2_products",
+        "kind": "boxed_final",
+        "label": "What it produces",
+        "marks": 1,
+        "mark_note": "Products",
+        "margin_note": "Four or five named products, then the two core techniques.",
+        "lines": [
+          {
+            "text": "Medicines, vaccines, enzymes, GM crops",
+            "style": "boxed"
+          },
+          "Its products include antibiotics, vaccines,",
+          "hormones such as insulin, industrial enzymes,",
+          "and genetically modified crops.",
+          "Genetic engineering and the maintenance of",
+          "sterile conditions are its two core techniques."
+        ],
+        "why": "Listing what it produces is the shortest way to show the definition was understood rather than memorised.",
+        "common_mistakes": [
+          "Giving no examples. The second mark is for what it actually makes.",
+          "Naming only medicines. Crops and industrial enzymes are equally central."
+        ],
+        "memory_tip": "If a living thing made it and it is sold, it is biotechnology."
+      }
+    ]
+  }
+}

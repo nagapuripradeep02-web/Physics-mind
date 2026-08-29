@@ -1,0 +1,185 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_genetic_code_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the important features of the genetic code.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Triplet and the codon count",
+      "marks": 1
+    },
+    {
+      "label": "Unambiguous and degenerate",
+      "marks": 1
+    },
+    {
+      "label": "Continuous and non-overlapping",
+      "marks": 1
+    },
+    {
+      "label": "Universal, with a start and stops",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.34, printed question 43. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. The most repeated SAQ in the paper: eight printed appearances across both boards."
+  },
+  "insider_note": "Every feature has a NAME — triplet, unambiguous, degenerate, non-overlapping, comma-less, universal. Use the names; a description without the name reads as a guess.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_triplet",
+        "kind": "text",
+        "label": "Triplet and the codon count",
+        "marks": 1,
+        "mark_note": "Triplet",
+        "margin_note": "The triplet nature, the arithmetic, and the 61-and-3 split.",
+        "lines": [
+          "1. The genetic code is a TRIPLET code: three",
+          "bases on the mRNA specify one amino acid.",
+          "Each triplet is called a CODON.",
+          "2. There are 4 x 4 x 4 = 64 codons in all.",
+          "61 codons code for the 20 amino acids.",
+          "3 codons code for none — they are STOP codons."
+        ],
+        "why": "Four bases taken two at a time give only sixteen combinations, too few for twenty amino acids, so the code must be at least a triplet.",
+        "common_mistakes": [
+          "Saying there are 64 amino acids. There are 64 CODONS and 20 amino acids.",
+          "Saying all 64 code for amino acids. THREE are stop codons."
+        ],
+        "memory_tip": "Four bases, three at a time: sixty-four codons for twenty amino acids."
+      },
+      {
+        "id": "s2_degenerate",
+        "kind": "text",
+        "label": "Unambiguous and degenerate",
+        "marks": 1,
+        "mark_note": "Degenerate",
+        "margin_note": "Both terms with their meanings and one example. The direction is what students reverse.",
+        "lines": [
+          "3. The code is UNAMBIGUOUS and SPECIFIC: one",
+          "codon codes for ONE amino acid and no other.",
+          "4. The code is DEGENERATE: some amino acids are",
+          "coded by MORE THAN ONE codon.",
+          "Example: leucine has six codons.",
+          "Degeneracy follows from having 61 codons for",
+          "only 20 amino acids."
+        ],
+        "why": "Sixty-one codons sharing out twenty amino acids means some amino acids must have several codons, so degeneracy is forced by the arithmetic.",
+        "common_mistakes": [
+          "Saying degenerate means one codon codes for several amino acids. It is the other way round: several codons code for ONE amino acid.",
+          "Treating unambiguous and degenerate as contradictory. They are not — read them in opposite directions."
+        ],
+        "memory_tip": "One codon, one amino acid; but one amino acid, several codons."
+      },
+      {
+        "id": "s3_continuous",
+        "kind": "text",
+        "label": "Continuous and non-overlapping",
+        "marks": 1,
+        "mark_note": "Reading",
+        "margin_note": "Both named properties plus the reading-frame consequence.",
+        "lines": [
+          "5. The code is read in a CONTINUOUS fashion,",
+          "with no punctuation between codons. It is",
+          "therefore called COMMA-LESS.",
+          "6. The code is NON-OVERLAPPING: each base",
+          "belongs to one codon only.",
+          "7. The code has a fixed READING FRAME, so adding",
+          "or deleting one base shifts every codon after",
+          "it."
+        ],
+        "why": "With no punctuation and no overlap, the reading frame is everything — which is why a single insertion or deletion ruins the whole protein.",
+        "common_mistakes": [
+          "Saying there are commas or gaps between codons. The code is COMMA-LESS.",
+          "Saying bases are shared between codons. The code is NON-OVERLAPPING."
+        ],
+        "memory_tip": "No gaps and no sharing, so the frame is everything."
+      },
+      {
+        "id": "s4_universal",
+        "kind": "boxed_final",
+        "label": "Universal, with a start and stops",
+        "marks": 1,
+        "mark_note": "Universal",
+        "margin_note": "Universality with an example, then AUG and the three stop codons by name.",
+        "lines": [
+          {
+            "text": "Nearly universal: UUU is phenylalanine in",
+            "style": "boxed"
+          },
+          {
+            "text": "bacteria and in humans alike",
+            "style": "boxed"
+          },
+          "8. The code is nearly UNIVERSAL: it is the same",
+          "from bacteria to human beings.",
+          "Example: UUU codes for phenylalanine in every",
+          "organism.",
+          "9. AUG is the INITIATION codon and also codes",
+          "for methionine.",
+          "10. UAA, UAG and UGA are the STOP codons."
+        ],
+        "why": "The code being the same in every organism is the strongest single piece of evidence that all life shares one ancestor — and it is why a human gene works in a bacterium.",
+        "common_mistakes": [
+          "Saying the code is completely universal. It is NEARLY universal; mitochondria have a few exceptions.",
+          "Leaving out the three stop codons by name. UAA, UAG and UGA are expected."
+        ],
+        "memory_tip": "One code for all life, with one start and three stops."
+      }
+    ]
+  }
+}

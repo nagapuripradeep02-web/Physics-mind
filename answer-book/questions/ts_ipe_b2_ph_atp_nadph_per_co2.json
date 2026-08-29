@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ph_atp_nadph_per_co2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Photosynthesis in Higher Plants (Botany-II)"
+  },
+  "chapter": "Photosynthesis in Higher Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many molecules of ATP and NADPH are needed to fix a molecule of CO2 in C3 plants? Where does this process occur?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The numbers",
+      "marks": 1
+    },
+    {
+      "label": "Where",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.40, printed question 70. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two numbers and one place. Three ATP and two NADPH, in the stroma. Nothing else is needed.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Photosynthesis in Higher Plants (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_numbers",
+        "kind": "text",
+        "label": "The numbers",
+        "marks": 1,
+        "mark_note": "Numbers",
+        "margin_note": "Both numbers on their own lines. This mark is arithmetic, not prose.",
+        "lines": [
+          "To fix ONE molecule of carbon dioxide, a C3",
+          "plant needs:",
+          "3 molecules of ATP",
+          "2 molecules of NADPH"
+        ],
+        "why": "Both are made in the light reaction, so this ratio is the exact bill the dark reaction sends to the light reaction for every carbon fixed.",
+        "common_mistakes": [
+          "Swapping the numbers. It is 3 ATP and 2 NADPH, not 2 and 3.",
+          "Writing NADH. It is NADPH in photosynthesis."
+        ],
+        "memory_tip": "Three ATP, two NADPH, one carbon."
+      },
+      {
+        "id": "s2_where",
+        "kind": "boxed_final",
+        "label": "Where it occurs",
+        "marks": 1,
+        "mark_note": "Where",
+        "margin_note": "Name the site and the source of the ATP. Four lines.",
+        "lines": [
+          {
+            "text": "3 ATP + 2 NADPH per CO2, in the stroma",
+            "style": "boxed"
+          },
+          "The process occurs in the STROMA of the",
+          "chloroplast.",
+          "The ATP and NADPH come from the light reaction",
+          "in the grana."
+        ],
+        "why": "Naming both places shows where the two reactions meet: the products of the grana are spent in the stroma.",
+        "common_mistakes": [
+          "Saying it occurs in the grana. Carbon fixation happens in the STROMA.",
+          "Leaving out where the ATP came from. The link to the grana is worth one line."
+        ],
+        "memory_tip": "Made in the grana, spent in the stroma."
+      }
+    ]
+  }
+}

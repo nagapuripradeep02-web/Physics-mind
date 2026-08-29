@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_ba_sex_pilus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Bacteria (Botany-II)"
+  },
+  "chapter": "Bacteria",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is sex pilus? What is its function?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Its function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.41, printed question 76. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Name the two cell types, F+ and F−. Those two symbols carry the second mark almost by themselves.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Bacteria (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What a sex pilus is",
+        "marks": 1,
+        "mark_note": "Structure",
+        "margin_note": "Structure, alternative name, which cell makes it.",
+        "lines": [
+          "A SEX PILUS is a hollow tube on the surface of a",
+          "bacterium, used in conjugation.",
+          "It is also called a conjugation tube.",
+          "It is produced by the DONOR cell, which is called",
+          "the F+ cell."
+        ],
+        "why": "Only the donor makes the tube, so the pilus is what marks which of the two cells is the donor.",
+        "common_mistakes": [
+          "Saying both cells make a pilus. Only the DONOR (F+) makes it.",
+          "Calling it a flagellum. A flagellum moves the cell; a pilus joins two cells."
+        ],
+        "memory_tip": "Only the giver builds the bridge."
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "Its function",
+        "marks": 1,
+        "mark_note": "Function",
+        "margin_note": "Name both cell types, the direction, and the process.",
+        "lines": [
+          {
+            "text": "It carries DNA from the F+ cell to the F− cell",
+            "style": "boxed"
+          },
+          "The F+ donor cell uses the pilus to make contact",
+          "with the recipient, the F− cell.",
+          "Genetic material then passes through the tube",
+          "from donor to recipient.",
+          "This process is called CONJUGATION."
+        ],
+        "why": "Bacteria have no gametes, so a physical tube is the only way one cell can hand genetic material to another.",
+        "common_mistakes": [
+          "Saying DNA passes both ways. It passes from F+ TO F− only.",
+          "Not naming conjugation. The process name is part of the mark."
+        ],
+        "memory_tip": "F plus gives, F minus receives."
+      }
+    ]
+  }
+}

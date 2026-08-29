@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_en_prosthetic_group_vs_cofactor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Enzymes (Botany-II)"
+  },
+  "chapter": "Enzymes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How are prosthetic groups different from co-factors?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Prosthetic groups",
+      "marks": 1
+    },
+    {
+      "label": "Co-factors",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.50, printed question 155. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "A prosthetic group IS a kind of cofactor, so the honest answer is that one is a subset of the other. Say that and the comparison makes sense.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Enzymes (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_prosthetic",
+        "kind": "text",
+        "label": "Prosthetic groups",
+        "marks": 1,
+        "mark_note": "Prosthetic",
+        "margin_note": "Organic, tightly bound, one example. Three lines.",
+        "lines": [
+          "Prosthetic groups are ORGANIC compounds that",
+          "are TIGHTLY bound to the apoenzyme.",
+          "Example: the haem group of peroxidase."
+        ],
+        "why": "Prosthetic groups are one of the three kinds of cofactor, so their definition is narrower than the general term and adds the words 'organic' and 'tightly'.",
+        "common_mistakes": [
+          "Saying prosthetic groups are inorganic. They are ORGANIC.",
+          "Calling them loosely bound. Tightly bound is the defining feature."
+        ],
+        "memory_tip": "Prosthetic means organic and permanent."
+      },
+      {
+        "id": "s2_cofactor",
+        "kind": "boxed_final",
+        "label": "Co-factors",
+        "marks": 1,
+        "mark_note": "Cofactors",
+        "margin_note": "Define the wider term, then list the three kinds. The subset point is the mark.",
+        "lines": [
+          {
+            "text": "Every prosthetic group is a cofactor; not",
+            "style": "boxed"
+          },
+          {
+            "text": "every cofactor is a prosthetic group",
+            "style": "boxed"
+          },
+          "A cofactor is the whole NON-PROTEIN part of a",
+          "holoenzyme, bound to the enzyme to make it",
+          "catalytically active.",
+          "Cofactors include prosthetic groups, co-enzymes",
+          "and metal ions."
+        ],
+        "why": "The general term covers three kinds, and prosthetic groups are only one of them — which is the actual difference the question is asking about.",
+        "common_mistakes": [
+          "Treating the two as unrelated. A prosthetic group IS a cofactor, of one particular kind.",
+          "Saying cofactors are always organic. Metal ions are inorganic cofactors."
+        ],
+        "memory_tip": "Cofactor is the family; prosthetic group is one member of it."
+      }
+    ]
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_tp_water_potential",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Transport in Plants (Botany-II)"
+  },
+  "chapter": "Transport in Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define and explain water potential.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition and unit",
+      "marks": 1
+    },
+    {
+      "label": "Solute potential",
+      "marks": 1
+    },
+    {
+      "label": "Pressure potential",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.21, printed question 7. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two components, two signs. Solute potential is ALWAYS negative and pressure potential is positive — an answer that gives both values without their signs loses the easiest mark here.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transport in Plants (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Water potential defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, what it drives, unit, and the zero reference. Six or seven lines.",
+        "lines": [
+          "Water potential (psi w) measures the tendency",
+          "of water to move from one part of a plant to",
+          "another.",
+          "It drives diffusion, osmosis and absorption.",
+          "It is measured in pascals (Pa).",
+          "Pure water at standard temperature and",
+          "pressure has a water potential of ZERO."
+        ],
+        "why": "Pure water is fixed at zero so every real solution can be compared against one agreed starting point; that is what makes water potential a scale and not just a description.",
+        "common_mistakes": [
+          "Giving no unit. Water potential is measured in pascals (Pa).",
+          "Saying pure water has the highest positive value. It is set at ZERO, and every solution falls BELOW it."
+        ],
+        "memory_tip": "Pure water is the zero mark on the scale; adding anything to it can only push the value down."
+      },
+      {
+        "id": "s2_solute",
+        "kind": "text",
+        "label": "Solute potential",
+        "marks": 1,
+        "mark_note": "Solute potential",
+        "margin_note": "Name it, say what causes it, and state the sign. The sign is the mark.",
+        "lines": [
+          "Water potential has two components.",
+          "1. Solute potential (psi s):",
+          "When a solute is dissolved in pure water, the",
+          "concentration of free water molecules falls.",
+          "So the water potential also falls.",
+          "This fall is called solute potential.",
+          "It is ALWAYS negative."
+        ],
+        "why": "Dissolving anything reduces the free water available, so the value can only drop — which is why solute potential can never be a positive number.",
+        "common_mistakes": [
+          "Writing solute potential as positive. It is always NEGATIVE.",
+          "Confusing it with concentration. It is the FALL in water potential the solute causes."
+        ],
+        "memory_tip": "Solute pulls the value down: add solute, subtract potential."
+      },
+      {
+        "id": "s3_pressure",
+        "kind": "text",
+        "label": "Pressure potential",
+        "marks": 1,
+        "mark_note": "Pressure potential",
+        "margin_note": "Name it, the cause, the sign, and one place it is seen. Do not skip 'turgid'.",
+        "lines": [
+          "2. Pressure potential (psi p):",
+          "When water enters a plant cell, it presses",
+          "against the cell wall.",
+          "The cell becomes turgid (swollen).",
+          "This rise in water potential is called",
+          "pressure potential.",
+          "It is always positive.",
+          "It is seen in the ascent of water through the",
+          "stem."
+        ],
+        "why": "The wall pushes back on the water inside, and that push adds to the potential — the opposite sign to solute potential, which is why the two are listed as a pair.",
+        "common_mistakes": [
+          "Writing pressure potential as negative. It is POSITIVE.",
+          "Leaving out turgidity. The pressure comes from the swollen cell pushing on its wall."
+        ],
+        "memory_tip": "Pressure pushes the value up; solute pulls it down. Opposite causes, opposite signs."
+      },
+      {
+        "id": "s4_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "margin_note": "Box the equation and say the two terms are added. Four lines is enough.",
+        "lines": [
+          {
+            "text": "psi w  =  psi s  +  psi p",
+            "style": "boxed"
+          },
+          "Total water potential is the sum of solute",
+          "potential and pressure potential.",
+          "Because psi s is negative and psi p is",
+          "positive, the two work against each other."
+        ],
+        "why": "The equation is the whole answer in one line: it says the two components are added, and the signs already established decide which way each one pulls.",
+        "common_mistakes": [
+          "Writing the two terms as a subtraction. They are ADDED; the minus is already inside psi s.",
+          "Leaving the equation out. It is the line the examiner scans for."
+        ],
+        "memory_tip": "One sum, two signs: a negative solute term plus a positive pressure term."
+      }
+    ]
+  }
+}

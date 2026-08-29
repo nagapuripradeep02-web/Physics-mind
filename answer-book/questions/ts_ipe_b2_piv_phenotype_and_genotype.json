@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_phenotype_and_genotype",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the terms phenotype and genotype.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Phenotype",
+      "marks": 1
+    },
+    {
+      "label": "Genotype",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.42, printed question 86. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two definitions and one example that shows why they differ: TT and Tt are different genotypes with the SAME phenotype.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pheno",
+        "kind": "text",
+        "label": "Phenotype",
+        "marks": 1,
+        "mark_note": "Phenotype",
+        "margin_note": "Definition plus an example. Four lines.",
+        "lines": [
+          "The PHENOTYPE is the physical appearance of a",
+          "character in an organism — what can be seen or",
+          "measured.",
+          "Example: tall, dwarf, red, white."
+        ],
+        "why": "The phenotype is what an observer records, which is why it is the only thing Mendel could count directly.",
+        "common_mistakes": [
+          "Saying the phenotype is the gene. That is the GENOTYPE.",
+          "Giving no example. One word is enough and it fixes the definition."
+        ],
+        "memory_tip": "Phenotype is what you can see."
+      },
+      {
+        "id": "s2_geno",
+        "kind": "boxed_final",
+        "label": "Genotype",
+        "marks": 1,
+        "mark_note": "Genotype",
+        "margin_note": "Definition, examples, and the TT-versus-Tt point that links the two.",
+        "lines": [
+          {
+            "text": "TT and Tt look the same but are different",
+            "style": "boxed"
+          },
+          "The GENOTYPE is the genetic make-up of an",
+          "organism — the alleles it carries.",
+          "Example: TT, Tt, tt.",
+          "TT and Tt have the SAME phenotype (tall) but",
+          "DIFFERENT genotypes, which is why a test cross",
+          "is needed to tell them apart."
+        ],
+        "why": "One phenotype can come from more than one genotype, and that gap between the two is the reason genetics needs both words.",
+        "common_mistakes": [
+          "Saying every genotype has its own phenotype. TT and Tt look identical.",
+          "Giving no letters. The letter examples are what make the two terms concrete."
+        ],
+        "memory_tip": "Genotype is what you carry; phenotype is what shows."
+      }
+    ]
+  }
+}

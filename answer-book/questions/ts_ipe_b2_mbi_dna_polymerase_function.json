@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_dna_polymerase_function",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the function of DNA polymerase?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Its function",
+      "marks": 1
+    },
+    {
+      "label": "Speed and accuracy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.43, printed question 92. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two properties: it is fast and it is accurate. Both are worth stating, because the accuracy is what makes replication reliable.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_function",
+        "kind": "text",
+        "label": "Its function",
+        "marks": 1,
+        "mark_note": "Function",
+        "margin_note": "Name the reaction, the process, and the direction.",
+        "lines": [
+          "DNA POLYMERASE catalyses the polymerisation of",
+          "deoxyribonucleotides into a new DNA strand,",
+          "during REPLICATION.",
+          "It adds nucleotides only in the 5' to 3'",
+          "direction."
+        ],
+        "why": "The enzyme can only add to a free 3' end, which is why replication runs in one direction along each strand.",
+        "common_mistakes": [
+          "Saying it makes RNA. That is RNA polymerase.",
+          "Saying it works in both directions. It adds only 5' to 3'."
+        ],
+        "memory_tip": "It builds DNA, and only one way along it."
+      },
+      {
+        "id": "s2_accuracy",
+        "kind": "boxed_final",
+        "label": "Speed and accuracy",
+        "marks": 1,
+        "mark_note": "Accuracy",
+        "margin_note": "Both properties named, then one line on why both matter.",
+        "lines": [
+          {
+            "text": "Fast, and almost never wrong",
+            "style": "boxed"
+          },
+          "It polymerises a very large number of nucleotides",
+          "in a very short time.",
+          "It works with a HIGH DEGREE OF ACCURACY:",
+          "about one error in a billion base pairs.",
+          "Both properties are needed, because an inaccurate",
+          "copy would be a mutation in every generation."
+        ],
+        "why": "A genome copied quickly but carelessly would accumulate mutations faster than selection could remove them, so speed alone is not enough.",
+        "common_mistakes": [
+          "Giving only the speed. The ACCURACY is the second half of the mark.",
+          "Saying it never makes errors. It makes very few, not none."
+        ],
+        "memory_tip": "Speed without accuracy would be useless."
+      }
+    ]
+  }
+}

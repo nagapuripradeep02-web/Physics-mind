@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_sef_virus_free_plants",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Strategies for Enhancement in Food Production (Botany-II)"
+  },
+  "chapter": "Strategies for Enhancement in Food Production",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which part of the plant is best suited for making virus-free plants and why?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The part",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 134. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Meristem is the answer and the reason is that it divides too fast for the virus to keep up. Both halves in four lines.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Strategies for Enhancement in Food Production (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_part",
+        "kind": "text",
+        "label": "The part",
+        "marks": 1,
+        "mark_note": "Part",
+        "margin_note": "Both meristems named and the technique. Three lines.",
+        "lines": [
+          "The APICAL and AXILLARY MERISTEMS are best",
+          "suited for making virus-free plants.",
+          "A SHOOT TIP culture is the standard method."
+        ],
+        "why": "Even in a plant that is systemically infected, the meristem itself is usually free of virus, which is why it is the part to culture.",
+        "common_mistakes": [
+          "Naming the leaf or the root. It is the MERISTEM — the apical or axillary one.",
+          "Not naming shoot tip culture. It is the named technique."
+        ],
+        "memory_tip": "Take the very tip, where the virus has not reached."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "margin_note": "Both reasons: the speed of division and the missing vascular connection.",
+        "lines": [
+          {
+            "text": "Meristem cells divide faster than the virus",
+            "style": "boxed"
+          },
+          {
+            "text": "can spread into them",
+            "style": "boxed"
+          },
+          "Meristematic regions show ACTIVE, RAPID CELL",
+          "DIVISION.",
+          "The cells divide faster than the virus can move",
+          "into them, and meristems have no vascular",
+          "connection for the virus to travel along.",
+          "So the meristem cells are NOT INFECTED, and a",
+          "plant raised from them is virus free."
+        ],
+        "why": "A virus spreads mainly through the vascular tissue, and a meristem has none yet — so it stays ahead of the infection.",
+        "common_mistakes": [
+          "Saying the meristem kills the virus. It simply outgrows it and is never infected.",
+          "Giving the part with no reason. The question says 'and why'."
+        ],
+        "memory_tip": "The tip grows away from the infection faster than it can follow."
+      }
+    ]
+  }
+}

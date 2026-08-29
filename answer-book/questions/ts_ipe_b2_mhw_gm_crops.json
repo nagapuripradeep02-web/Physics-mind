@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mhw_gm_crops",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Microbes in Human Welfare (Botany-II)"
+  },
+  "chapter": "Microbes in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name any two genetically modified crops.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Two crops",
+      "marks": 1
+    },
+    {
+      "label": "What each was modified for",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.48, printed question 141. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two names, then what each does. The second half turns a bare list into an answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Microbes in Human Welfare (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two",
+        "kind": "text",
+        "label": "Two crops",
+        "marks": 1,
+        "mark_note": "Names",
+        "margin_note": "Both names plus two spares. Four lines.",
+        "lines": [
+          "Two genetically modified crops:",
+          "1. BT COTTON",
+          "2. BT BRINJAL",
+          "Golden rice and Flavr Savr tomato are two more."
+        ],
+        "why": "Both carry a Bt gene, which is why they share the prefix and why the name says what was done to them.",
+        "common_mistakes": [
+          "Naming a hybrid variety such as Sonalika. A hybrid is BRED, not genetically modified.",
+          "Naming one crop. The question asks for two."
+        ],
+        "memory_tip": "Bt cotton and Bt brinjal: the Bt is the modification."
+      },
+      {
+        "id": "s2_for",
+        "kind": "boxed_final",
+        "label": "What each was modified for",
+        "marks": 1,
+        "mark_note": "Purpose",
+        "margin_note": "Each crop with its pest, and the self-made insecticide point.",
+        "lines": [
+          {
+            "text": "Both carry a Bt gene for insect resistance",
+            "style": "boxed"
+          },
+          "BT COTTON carries cry genes and resists the",
+          "cotton BOLLWORM.",
+          "BT BRINJAL carries a cry gene and resists the",
+          "fruit and shoot BORER.",
+          "In both, the plant makes its own insecticidal",
+          "protein."
+        ],
+        "why": "In both crops the same idea is used against a different pest, which is why the cry gene has to be matched to the insect.",
+        "common_mistakes": [
+          "Saying Bt crops are sprayed with Bt. The PLANT makes the protein itself.",
+          "Giving no purpose. The reason for the modification is the second mark."
+        ],
+        "memory_tip": "Same trick, different pest."
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mn_absorption_of_essential_elements",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Mineral Nutrition (Botany-II)"
+  },
+  "chapter": "Mineral Nutrition",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain in brief how plants absorb essential elements.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The two phases",
+      "marks": 1
+    },
+    {
+      "label": "Apoplast: the passive phase",
+      "marks": 1
+    },
+    {
+      "label": "Symplast: the active phase",
+      "marks": 1
+    },
+    {
+      "label": "Flux, influx and efflux",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.52, printed question 166. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Printed under STAR QUESTIONS PLUS (p.52), not in an SAQ chapter, but Guess Paper 4 sets it as a Section B question and cites P 52(166) — so it is authored at 4 marks."
+  },
+  "insider_note": "Passive against active is the whole answer. If you write only that ions enter the root, without saying which phase costs energy, half the marks are gone.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mineral Nutrition (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_phases",
+        "kind": "text",
+        "label": "The two phases",
+        "marks": 1,
+        "mark_note": "Two phases",
+        "margin_note": "Name both phases before explaining either.",
+        "lines": [
+          "Absorption of essential elements happens in TWO",
+          "phases:",
+          "a) the apoplast phase",
+          "b) the symplast phase"
+        ],
+        "why": "The two phases differ in whether a membrane is crossed, and that single difference decides everything else in the answer — speed, direction and energy cost.",
+        "common_mistakes": [
+          "Naming one phase only. The question needs both.",
+          "Calling them 'active and passive' without the names. Apoplast and symplast are the terms."
+        ],
+        "memory_tip": "Outside the cells, then inside them: apoplast then symplast."
+      },
+      {
+        "id": "s2_apoplast",
+        "kind": "text",
+        "label": "Apoplast: the passive phase",
+        "marks": 1,
+        "mark_note": "Apoplast",
+        "margin_note": "Speed, direction relative to the gradient, and the word passive.",
+        "lines": [
+          "a) APOPLAST:",
+          "Ions are taken up rapidly into the outer space",
+          "or free space of the cells.",
+          "The movement is ALONG the concentration",
+          "gradient.",
+          "No membrane is crossed and no energy is used.",
+          "So it is a PASSIVE process."
+        ],
+        "why": "Moving down a gradient releases energy rather than costing it, which is why nothing has to be spent for the apoplast phase.",
+        "common_mistakes": [
+          "Calling the apoplast phase active. It is PASSIVE.",
+          "Saying ions cross membranes here. They do not; that is the symplast."
+        ],
+        "memory_tip": "Downhill and outside the cells: nothing to pay."
+      },
+      {
+        "id": "s3_symplast",
+        "kind": "text",
+        "label": "Symplast: the active phase",
+        "marks": 1,
+        "mark_note": "Symplast",
+        "margin_note": "Mirror the apoplast lines point for point: speed, direction, energy, name.",
+        "lines": [
+          "b) SYMPLAST:",
+          "Ions are taken SLOWLY into the inner space of",
+          "the cells.",
+          "The movement is AGAINST the concentration",
+          "gradient.",
+          "It requires metabolic energy.",
+          "So it is an ACTIVE process."
+        ],
+        "why": "Going against the gradient always costs energy, so the symplast phase must be active and is necessarily slower than the apoplast phase.",
+        "common_mistakes": [
+          "Saying the symplast is faster. It is SLOWER, because energy has to be spent.",
+          "Leaving out 'metabolic energy'. It is what makes the process active."
+        ],
+        "memory_tip": "Uphill and inside the cells: it has to be paid for."
+      },
+      {
+        "id": "s4_flux",
+        "kind": "boxed_final",
+        "label": "Flux, influx and efflux",
+        "marks": 1,
+        "mark_note": "Flux terms",
+        "margin_note": "Three short definitions. Do not skip this mark; it is the cheapest one here.",
+        "lines": [
+          {
+            "text": "Flux in = influx; flux out = efflux",
+            "style": "boxed"
+          },
+          "The movement of ions is called FLUX.",
+          "Inward movement into the cells is INFLUX.",
+          "Outward movement out of the cells is EFFLUX."
+        ],
+        "why": "These three words are the vocabulary the rest of the chapter uses, so the question is partly a check that the terms are known.",
+        "common_mistakes": [
+          "Swapping influx and efflux. IN is influx; OUT is efflux.",
+          "Leaving the three terms out. They are a whole mark and take three lines."
+        ],
+        "memory_tip": "In-flux goes in, ef-flux exits."
+      }
+    ]
+  }
+}

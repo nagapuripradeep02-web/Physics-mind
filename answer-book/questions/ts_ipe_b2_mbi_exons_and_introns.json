@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_exons_and_introns",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the difference between exons and introns?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Exons",
+      "marks": 1
+    },
+    {
+      "label": "Introns",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.43, printed question 97. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Coding against non-coding, and present against absent in the mature RNA. Two contrasts each.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_exons",
+        "kind": "text",
+        "label": "Exons",
+        "marks": 1,
+        "mark_note": "Exons",
+        "margin_note": "Coding, present in mature RNA, and the name. Four lines.",
+        "lines": [
+          "EXONS are the CODING sequences of a gene.",
+          "They APPEAR in the mature, processed RNA.",
+          "They are EXPRESSED — which is what the name",
+          "comes from."
+        ],
+        "why": "Only the exons reach the ribosome, so only they decide the amino acid sequence of the protein.",
+        "common_mistakes": [
+          "Saying exons are removed. INTRONS are removed; exons are kept.",
+          "Saying exons do not code. Exons are the CODING parts."
+        ],
+        "memory_tip": "EXons are EXpressed."
+      },
+      {
+        "id": "s2_introns",
+        "kind": "boxed_final",
+        "label": "Introns",
+        "marks": 1,
+        "mark_note": "Introns",
+        "margin_note": "Mirror the exon lines, then name splicing.",
+        "lines": [
+          {
+            "text": "Exons stay in the message; introns are cut out",
+            "style": "boxed"
+          },
+          "INTRONS are the NON-CODING sequences.",
+          "They do NOT appear in the mature, processed RNA.",
+          "They are cut out during SPLICING, and the exons",
+          "are then joined together.",
+          "Introns are INTervening sequences."
+        ],
+        "why": "Splicing removes the introns and joins the exons, which is why the mature message is shorter than the gene it came from.",
+        "common_mistakes": [
+          "Saying introns are translated. They are removed BEFORE translation.",
+          "Not naming splicing. It is the process that removes them."
+        ],
+        "memory_tip": "INtrons are INtervening, and they come out."
+      }
+    ]
+  }
+}
