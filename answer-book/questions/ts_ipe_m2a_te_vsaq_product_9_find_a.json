@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_product_9_find_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the product of the roots of 4x³ + 16x² − 9x − a = 0 is 9, then find a.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Product of roots S₃ = −a₃/a₀",
+      "marks": 1
+    },
+    {
+      "label": "Find a",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.76 — VSAQ chapter 15 Theory of Equations, answer 130. Printed appearances: AP 17, 19, 20 · TS 16, 19, 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. The SAME step ids (s1_relation, s2_answer) are used on answers 127, 128, 130 and 131, deliberately: one root relation (S₁ = −a₁/a₀ or S₃ = −a₃/a₀) read off the coefficients, then one line of arithmetic. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 2 Q5 (book p.113) is this question; the Bullet Model Paper re-solves it under Q5 on book p.97 — identical. Truth check: 4x³ + 16x² − 9x − 36 = 4x²(x + 4) − 9(x + 4) = (x + 4)(2x − 3)(2x + 3), roots −4, 3/2, −3/2, product 9. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say which root relation you would use, and how the minus signs work out.",
+  "insider_note": "Two minus signs meet here — the rule's and the constant term's — so the product is +a/4; one minus too few gives −36.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "Product of roots",
+        "marks": 1,
+        "mark_note": "S₃ = −a₃/a₀",
+        "margin_note": "First mark. The constant term is −a, so a₃ = −a and S₃ = −a₃/a₀ = −(−a)/4 = a/4. Two minus signs; write both.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here a₀ = 4, a₁ = 16, a₂ = −9, a₃ = −a.",
+          "Product of roots S₃ = −a₃/a₀ = −(−a)/4 = a/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product of the roots is −a₃/a₀, and with a₃ = −a this is a/4.",
+          "accept": [
+            "the product of the roots is minus a three by a naught, the constant is minus a, so the product is a by four",
+            "use the product relation, minus minus a over four is a by four",
+            "S three equals a by four",
+            "roots product minus a three by a naught, constant minus a kabatti a by four",
+            "product of the roots comes to a over four"
+          ],
+          "reject": [
+            "use the sum",
+            "find a"
+          ],
+          "heard_as": [
+            "product of roots",
+            "S three",
+            "a by four",
+            "a over four",
+            "minus a"
+          ]
+        },
+        "why": "The product relation is the only one the question gives a value for. The double minus (the rule's minus and the constant's own minus) is where the mark is earned or lost.",
+        "common_mistakes": [
+          "Writing S₃ = −a/4 (one minus instead of two).",
+          "Dividing by 1 instead of the leading coefficient 4."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Find a",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. a/4 = 9 gives a = 36.",
+        "lines": [
+          "a/4 = 9",
+          {
+            "text": "∴ a = 4 × 9 = 36",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a/4 = 9 gives a = 36.",
+          "accept": [
+            "a by four is nine so a is thirty six",
+            "a equals thirty six",
+            "multiply nine by four to get a",
+            "a by four nine, kabatti a thirty six",
+            "a comes out as thirty six"
+          ],
+          "reject": [
+            "find a",
+            "solve it"
+          ],
+          "heard_as": [
+            "a equals thirty six",
+            "thirty six",
+            "four times nine"
+          ]
+        },
+        "why": "Once the product is written as a/4, the given value 9 fixes a. The equation is 4x³ + 16x² − 9x − 36 = 0, whose roots multiply to 36/4 = 9 as required.",
+        "common_mistakes": [
+          "Writing a = 9/4 (dividing instead of multiplying).",
+          "Writing a = −36 from the single-minus slip in step 1."
+        ]
+      }
+    ]
+  }
+}

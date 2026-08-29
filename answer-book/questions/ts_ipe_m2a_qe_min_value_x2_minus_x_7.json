@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_min_value_x2_minus_x_7",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the maximum or minimum value of the expression x² − x + 7.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Sign of a",
+      "marks": 1
+    },
+    {
+      "label": "Value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.74 (PDF p.75 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 123.1. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This exact question is Q4 of the book's Model Paper 4 (book p.117). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the maximum or minimum value — say what decides which one it is, and what formula gives the value.",
+  "insider_note": "b is −1, and (−1)² = 1 — the wrong square is the one slip in this question. The question asks for the minimum VALUE, not the x where it occurs.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sign_of_a",
+        "kind": "equation",
+        "label": "Sign of a",
+        "marks": 1,
+        "mark_note": "Which one it is",
+        "margin_note": "First mark. Read off a = 1, b = −1, c = 7. a > 0 means the graph opens upward, so there is a lowest point and no highest — the expression has a MINIMUM. Say which one before computing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Comparing x² − x + 7 with ax² + bx + c:",
+          "a = 1, b = −1, c = 7",
+          "a = 1 > 0, so the expression has a",
+          "minimum value and no maximum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a, b, c are read off as 1, −1, 7, and that a > 0 means the expression has a minimum value, not a maximum.",
+          "accept": [
+            "compare with a x squared plus b x plus c, a is one which is positive so it has a minimum",
+            "a is positive so the expression has a least value and no greatest value",
+            "only the sign of a matters, a equals one greater than zero means minimum",
+            "a positive kabatti minimum untundi, maximum undadu",
+            "a is one b is minus one c is seven and a positive gives a minimum"
+          ],
+          "reject": [
+            "find the minimum",
+            "use the formula",
+            "it has a minimum"
+          ],
+          "heard_as": [
+            "a is positive",
+            "greater than zero",
+            "minimum",
+            "no maximum",
+            "b is minus one"
+          ]
+        },
+        "why": "For a quadratic, whether there is a maximum or a minimum depends only on the sign of a: positive a opens upward and has a lowest point; negative a opens downward and has a highest point. The question says 'maximum or minimum' because that decision is part of the answer.",
+        "common_mistakes": [
+          "Reading b as 1 instead of −1.",
+          "Skipping the sentence that says which of the two exists.",
+          "Deciding 'maximum' from the constant 7 being positive — only a matters."
+        ]
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "Value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Minimum = (4ac − b²)/(4a) = (28 − 1)/4 = 27/4. Note (−1)² = 1 — the square of a negative number is positive. The minimum occurs at x = −b/2a = 1/2.",
+        "lines": [
+          "Minimum value = (4ac − b²)/(4a)",
+          "= (4(1)(7) − (−1)²)/(4(1))",
+          "= (28 − 1)/4",
+          {
+            "text": "∴ minimum value = 27/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the minimum value is (4ac − b²)/(4a) = (28 − 1)/4 = 27/4.",
+          "accept": [
+            "the minimum is four a c minus b squared over four a which is twenty eight minus one over four equals twenty seven by four",
+            "substitute into four a c minus b squared by four a to get twenty seven by four",
+            "twenty eight minus one over four is twenty seven by four",
+            "four a c minus b square by four a formula lo pettithe twenty seven by four",
+            "minimum value twenty seven by four"
+          ],
+          "reject": [
+            "find the value",
+            "substitute",
+            "box it"
+          ],
+          "heard_as": [
+            "four a c minus b squared",
+            "over four a",
+            "twenty seven by four",
+            "twenty eight minus one"
+          ]
+        },
+        "why": "Completing the square gives a(x + b/2a)² + (4ac − b²)/(4a); the squared term is never negative and is zero at x = −b/2a, so (4ac − b²)/(4a) is the least value when a > 0.",
+        "common_mistakes": [
+          "Writing (−1)² as −1 and getting 29/4.",
+          "Using (b² − 4ac)/(4a) with the sign reversed.",
+          "Answering x = 1/2 (where the minimum occurs) instead of the minimum value."
+        ]
+      }
+    ]
+  }
+}

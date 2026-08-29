@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_form_equation_roots_7_plus_minus_2_root_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Form a quadratic equation whose roots are 7 ± 2√5.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Sum and product",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.74 (PDF p.75 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 121.1. Printed appearances: TS 16,18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This exact question is Q4 of the book's Model Paper 1 (book p.111), and is re-solved as the first Q4 item of the Bullet Model Paper (book p.97) with the same result. No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would form the equation — say what two numbers you compute from the roots and which formula you put them into.",
+  "insider_note": "The whole first mark is one square: (2√5)² = 4·5 = 20, not 10. The surds already cancel in the sum on their own — the product is where this question is decided.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_product",
+        "kind": "equation",
+        "label": "Sum and product",
+        "marks": 1,
+        "mark_note": "α + β and αβ",
+        "margin_note": "First mark. The surd parts cancel in the sum: 7 + 2√5 + 7 − 2√5 = 14. The product is (7)² − (2√5)² = 49 − 4·5 = 29; remember (2√5)² = 4 × 5, not 2 × 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let α = 7 + 2√5, β = 7 − 2√5",
+          "α + β = 14",
+          "αβ = (7 + 2√5)(7 − 2√5) = 49 − 20 = 29"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two roots are added to get 14 and multiplied, as a difference of two squares, to get 49 − 20 = 29.",
+          "accept": [
+            "add the roots to get fourteen and multiply them to get forty nine minus twenty which is twenty nine",
+            "sum is fourteen, product is seven squared minus two root five squared equals twenty nine",
+            "the surds cancel in the sum and the product is a difference of two squares",
+            "roots add cheste fourteen, multiply cheste forty nine minus twenty is twenty nine",
+            "sum fourteen product twenty nine"
+          ],
+          "reject": [
+            "find the roots",
+            "write the equation",
+            "add them"
+          ],
+          "heard_as": [
+            "fourteen",
+            "twenty nine",
+            "sum",
+            "product",
+            "difference of two squares"
+          ]
+        },
+        "why": "A quadratic is fixed by the sum and product of its roots, so those two numbers are all the question really asks for. Conjugate surds are chosen so that both come out rational.",
+        "common_mistakes": [
+          "Computing (2√5)² as 2·5 = 10 instead of 4·5 = 20.",
+          "Getting the product as 49 + 20 = 69 by mis-applying (a + b)(a − b).",
+          "Trying to expand (x − 7 − 2√5)(x − 7 + 2√5) directly and making a surd error."
+        ]
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The formula has a MINUS before the sum and a PLUS before the product. Write '= 0' — an expression is not an equation.",
+        "lines": [
+          "Required equation: x² − (α + β)x + αβ = 0",
+          {
+            "text": "∴ x² − 14x + 29 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is x² − (sum)x + (product) = 0, giving x² − 14x + 29 = 0.",
+          "accept": [
+            "x squared minus sum x plus product equals zero gives x squared minus fourteen x plus twenty nine",
+            "put fourteen and twenty nine into x squared minus s x plus p equals zero",
+            "the equation is x squared minus fourteen x plus twenty nine equals zero",
+            "x squared minus sum into x plus product formula lo pettithe x squared minus fourteen x plus twenty nine",
+            "x squared minus fourteen x plus twenty nine"
+          ],
+          "reject": [
+            "write the equation",
+            "box it",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "x squared minus fourteen x",
+            "plus twenty nine",
+            "sum",
+            "product",
+            "equals zero"
+          ]
+        },
+        "why": "x² − (α + β)x + αβ = (x − α)(x − β), so this formula gives exactly the quadratic with those two roots and leading coefficient 1.",
+        "common_mistakes": [
+          "Writing x² + 14x + 29 = 0 with the wrong sign on the sum.",
+          "Leaving off '= 0'.",
+          "Swapping sum and product: x² − 29x + 14."
+        ]
+      }
+    ]
+  }
+}

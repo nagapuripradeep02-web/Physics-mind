@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_omega_2_minus_omega_49",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 1, ω, ω² are the cube roots of unity, then prove that (2 − ω)(2 − ω²)(2 − ω¹⁰)(2 − ω¹¹) = 49.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Reduce ω¹⁰ and ω¹¹",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate the square",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.73 — VSAQ chapter 13 De Moivre's Theorem, answer 119. Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on the VSAQ page book p.73. 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses, patterned on the 1A book's printed [1 mark] tags for a 2-mark maths VSAQ (Junior Maths-1A book p.82). The SAME 1+1 split and the SAME step ids (s1_reduce, s2_evaluate) are used on every cube-roots-of-unity (ω) VSAQ in this unit (answers 118, 119 and Star Questions Plus 185–189), deliberately: each is one reduction by 1 + ω + ω² = 0 and ω³ = 1, then one evaluation. The book's VSAQ chapter header (book p.73) carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: ω¹⁰ = ω, ω¹¹ = ω², so the product is [(2 − ω)(2 − ω²)]² = 7² = 49; the book's answer is correct. Asked as Model Paper 3, Q3 (book p.115) and Model Paper 5, Q3 (book p.119)."
+  },
+  "recall_prompt": "Say how you would prove this — what ω¹⁰ and ω¹¹ reduce to, and how the product is evaluated.",
+  "insider_note": "Four brackets but only two different ones: ω¹⁰ = ω and ω¹¹ = ω², so the product is [(2 − ω)(2 − ω²)]². Reducing the two powers the other way round still ends at 49, so the first mark is for the reduction itself, not for the number.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce",
+        "kind": "equation",
+        "label": "Reduce ω¹⁰ and ω¹¹",
+        "marks": 1,
+        "mark_note": "Reduce",
+        "margin_note": "First mark. ω³ = 1, so ω¹⁰ = (ω³)³ · ω = ω and ω¹¹ = (ω³)³ · ω² = ω². The four brackets are then two repeated pairs, so the product is [(2 − ω)(2 − ω²)]².",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ω¹⁰ = (ω³)³ · ω = ω,  ω¹¹ = (ω³)³ · ω² = ω²",
+          "(2 − ω)(2 − ω²)(2 − ω¹⁰)(2 − ω¹¹)",
+          "= (2 − ω)(2 − ω²)(2 − ω)(2 − ω²)",
+          "= [(2 − ω)(2 − ω²)]²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + ω + ω² = 0 and ω³ = 1 are used to reduce ω¹⁰ to ω and ω¹¹ to ω², so the product is a square.",
+          "accept": [
+            "use one plus omega plus omega squared equals zero and omega cubed equals one to reduce ω¹⁰ to ω and ω¹¹ to ω², so the product is a square",
+            "replace using the two omega facts, omega cubed is one and the three add to zero",
+            "reduce ω¹⁰ to ω and ω¹¹ to ω², so the product is a square with the cube roots of unity properties",
+            "omega cube one, one plus omega plus omega square zero use chesi ω¹⁰ to ω and ω¹¹ to ω², so the product is a square ni reduce cheyyali",
+            "the sum of the three cube roots is zero, so substitute"
+          ],
+          "reject": [
+            "simplify",
+            "use omega",
+            "reduce"
+          ],
+          "heard_as": [
+            "omega cubed",
+            "one plus omega",
+            "omega squared",
+            "reduce",
+            "cube roots of unity"
+          ]
+        },
+        "why": "Every ω question is the same two facts: ω³ = 1 (so high powers of ω reduce) and 1 + ω + ω² = 0 (so any two of 1, ω, ω² can be replaced by minus the third). The reduction is the mark; the arithmetic after it is short.",
+        "common_mistakes": [
+          "Writing ω¹⁰ = ω² or ω¹¹ = ω (dividing 10 and 11 by 3 wrongly).",
+          "Not noticing the product is a perfect square and multiplying four brackets.",
+          "Writing ω¹⁰ = 1."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate the square",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (2 − ω)(2 − ω²) = 4 − 2(ω + ω²) + ω³ = 4 + 2 + 1 = 7, using ω + ω² = −1 and ω³ = 1. Square it for 49.",
+        "lines": [
+          "(2 − ω)(2 − ω²) = 4 − 2(ω + ω²) + ω³",
+          "= 4 − 2(−1) + 1 = 7",
+          {
+            "text": "∴ the product = 7² = 49",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reduced expression is evaluated to 49.",
+          "accept": [
+            "evaluate the reduced form and get 49",
+            "the answer comes to 49",
+            "simplify the powers of omega and the value is 49",
+            "reduce chesaka value 49 vasthundi",
+            "finally it equals 49"
+          ],
+          "reject": [
+            "then we get the answer",
+            "simplify",
+            "calculate"
+          ],
+          "heard_as": [
+            "equals",
+            "the value is",
+            "final answer",
+            "49"
+          ]
+        },
+        "why": "Multiplying out one pair and using ω + ω² = −1 and ω³ = 1 gives 7, so the square is 49.",
+        "common_mistakes": [
+          "Writing ω + ω² = 1 instead of −1.",
+          "Forgetting the ω³ = 1 term, which gives 6² = 36.",
+          "Stopping at 7 and not squaring."
+        ]
+      }
+    ]
+  }
+}

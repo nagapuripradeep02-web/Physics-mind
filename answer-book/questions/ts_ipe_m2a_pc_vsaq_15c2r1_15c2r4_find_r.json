@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_15c2r1_15c2r4_find_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ¹⁵C₂ᵣ₋₁ = ¹⁵C₂ᵣ₊₄, then find r.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Use ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+      "marks": 1
+    },
+    {
+      "label": "Solve for r",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 16 Permutations & Combinations, answer 144.1. Printed appearances: AP 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_identity, s2_evaluate) are used on every 'ⁿCᵣ = ⁿCₛ' VSAQ in this unit (answers 143.1 to 144.2), deliberately: one identity over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book's working uses only the 'sum equals n' case; the card adds the line that the 'equal indices' case 2r − 1 = 2r + 4 is impossible, which is why only one value of r results (compare answer 144.2, where both cases give a value)."
+  },
+  "recall_prompt": "Say how you would find r when 15 C 2r minus 1 equals 15 C 2r plus 4.",
+  "insider_note": "A false equal branch is part of the design: 2r − 1 = 2r + 4 gives −1 = 4, so the sum branch is the only route — and the lower numbers add to the upper 15, never to each other: (2r − 1) + (2r + 4) = 15, so r = 3.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "equation",
+        "label": "Use ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The two lower numbers 2r − 1 and 2r + 4 can never be equal (they differ by 5), so they must add to 15.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+          "2r − 1 = 2r + 4 is impossible,",
+          "so (2r − 1) + (2r + 4) = 15"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the identity gives two cases, the equal case is impossible because 2r minus 1 can never equal 2r plus 4, so the two lower numbers add to 15.",
+          "accept": [
+            "two r minus one can never equal two r plus four so the lower numbers must add to fifteen",
+            "the equal case is impossible so two r minus one plus two r plus four is fifteen",
+            "use the sum case, the indices add to fifteen",
+            "equal case possible kaadu, so rendu add cheste fifteen",
+            "the two lower numbers add up to n which is fifteen"
+          ],
+          "reject": [
+            "use the identity",
+            "add them"
+          ],
+          "heard_as": [
+            "impossible",
+            "add to fifteen",
+            "two r minus one",
+            "two r plus four",
+            "r plus s equals n"
+          ]
+        },
+        "why": "The identity has two cases and a full answer says which one applies. Here the equal case is empty — subtracting gives −1 = 4 — so the sum case is the only source of r.",
+        "common_mistakes": [
+          "Setting 2r − 1 = 2r + 4 and being stuck at −1 = 4 without moving to the sum case.",
+          "Adding to 2r instead of to 15 — the lower numbers add to the UPPER number."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Solve for r",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 4r + 3 = 15 gives r = 3. Check: ¹⁵C₅ = ¹⁵C₁₀, and 5 + 10 = 15.",
+        "lines": [
+          "4r + 3 = 15 ⇒ 4r = 12",
+          {
+            "text": "∴ r = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4r plus 3 = 15 gives r = 3.",
+          "accept": [
+            "four r plus three is fifteen so four r is twelve and r is three",
+            "r equals three",
+            "four r is twelve so r is three",
+            "four r plus three fifteen, r three",
+            "r is three"
+          ],
+          "reject": [
+            "solve",
+            "three"
+          ],
+          "heard_as": [
+            "r is three",
+            "four r",
+            "twelve",
+            "three"
+          ]
+        },
+        "why": "A single linear equation gives a single r, and putting r = 3 back (¹⁵C₅ = ¹⁵C₁₀) confirms the two lower numbers really add to 15.",
+        "common_mistakes": [
+          "Collecting −1 + 4 as −3 and getting 4r − 3 = 15.",
+          "Answering r = 12 by forgetting to divide by 4."
+        ]
+      }
+    ]
+  }
+}

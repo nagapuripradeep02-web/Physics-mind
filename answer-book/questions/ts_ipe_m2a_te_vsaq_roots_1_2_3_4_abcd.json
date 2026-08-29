@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_roots_1_2_3_4_abcd",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 1, 2, 3 and 4 are the roots of x⁴ + ax³ + bx² + cx + d = 0, then find the values of a, b, c and d.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Root relations: a = −S₁, b = S₂",
+      "marks": 1
+    },
+    {
+      "label": "c = −S₃, d = S₄",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 15 Theory of Equations, answer 137. Printed appearances: AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. Step ids are this card's own (s1_relations, s2_answer): four coefficients from the four root sums, two per mark. The book writes the same relations with a subscript-s notation (a = a₁ = −s₁, b = a₂ = s₂, …); the card writes S₁ … S₄. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: (x − 1)(x − 2)(x − 3)(x − 4) = (x² − 3x + 2)(x² − 7x + 12) = x⁴ − 10x³ + 35x² − 50x + 24, the card's four values. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how each of a, b, c, d comes from the roots, and which ones carry a minus sign.",
+  "insider_note": "The signs alternate −, +, −, +; students who write all four positive lose both marks at once.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relations",
+        "kind": "equation",
+        "label": "Root relations",
+        "marks": 1,
+        "mark_note": "a = −S₁, b = S₂",
+        "margin_note": "First mark. For a monic quartic, a = −S₁, b = S₂, c = −S₃, d = S₄ (signs alternate). S₁ = 10 and S₂ has six products.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For a monic quartic with roots α, β, γ, δ:",
+          "a = −S₁, b = S₂, c = −S₃, d = S₄",
+          "S₁ = 1 + 2 + 3 + 4 = 10, so a = −10",
+          "S₂ = 1·2 + 1·3 + 1·4 + 2·3 + 2·4 + 3·4",
+          "= 2 + 3 + 4 + 6 + 8 + 12 = 35, so b = 35"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficients are the root sums with alternating signs (a = −S₁, b = S₂, c = −S₃, d = S₄), and that S₁ = 10 and S₂ = 35.",
+          "accept": [
+            "a is minus the sum of the roots, b is the sum of the products in pairs, c is minus the sum of products in threes, d is the product, so a is minus ten and b is thirty five",
+            "the signs alternate, sum ten gives a equals minus ten, six pairwise products add to thirty five",
+            "use S one S two S three S four with alternating signs",
+            "a minus S one, b S two, signs alternate, a minus ten b thirty five",
+            "a equals minus ten and b equals thirty five from the sum and the pairwise sum"
+          ],
+          "reject": [
+            "find a b c d",
+            "use the relations"
+          ],
+          "heard_as": [
+            "S one",
+            "S two",
+            "alternate",
+            "minus ten",
+            "thirty five",
+            "pairwise"
+          ]
+        },
+        "why": "Expanding (x − α)(x − β)(x − γ)(x − δ) gives x⁴ − S₁x³ + S₂x² − S₃x + S₄; the signs alternate because each factor contributes a −root. Four roots make six pairs, and all six must be listed.",
+        "common_mistakes": [
+          "Writing a = +10 (a is MINUS the sum).",
+          "Missing one of the six pairwise products; with four roots there are ⁴C₂ = 6."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Find c and d",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. S₃ has four triple products (leave one root out each time), S₄ is the single product 24. c = −S₃, d = S₄. Check: (x − 1)(x − 2)(x − 3)(x − 4) expands to the same.",
+        "lines": [
+          "S₃ = 1·2·3 + 1·2·4 + 1·3·4 + 2·3·4",
+          "= 6 + 8 + 12 + 24 = 50, so c = −50",
+          "S₄ = 1·2·3·4 = 24, so d = 24",
+          {
+            "text": "∴ a = −10, b = 35, c = −50, d = 24",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S₃ = 50 gives c = −50 and S₄ = 24 gives d = 24, so a = −10, b = 35, c = −50, d = 24.",
+          "accept": [
+            "the products in threes add to fifty so c is minus fifty and the product of all four is twenty four so d is twenty four",
+            "a minus ten b thirty five c minus fifty d twenty four",
+            "c is minus S three which is minus fifty and d is S four which is twenty four",
+            "S three fifty kabatti c minus fifty, S four twenty four kabatti d twenty four",
+            "the four values are minus ten, thirty five, minus fifty and twenty four"
+          ],
+          "reject": [
+            "find c and d",
+            "finish it"
+          ],
+          "heard_as": [
+            "minus fifty",
+            "twenty four",
+            "S three",
+            "S four",
+            "c equals",
+            "d equals"
+          ]
+        },
+        "why": "c carries the minus because S₃ enters with a minus; d does not because S₄ enters with a plus. Expanding (x − 1)(x − 2)(x − 3)(x − 4) directly gives x⁴ − 10x³ + 35x² − 50x + 24, the same four numbers.",
+        "common_mistakes": [
+          "Writing c = +50.",
+          "Missing one of the four triple products (leave each root out once: 24, 12, 8, 6).",
+          "Writing d = −24 by continuing the alternation one step too far."
+        ]
+      }
+    ]
+  }
+}

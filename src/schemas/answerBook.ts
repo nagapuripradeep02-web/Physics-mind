@@ -59,6 +59,12 @@ const ABC_60: PaperSection[] = [
     { key: 'SAQ', section: 'Section B', printed: 8, answer: 6, marks: 4 },
     { key: 'LAQ', section: 'Section C', printed: 3, answer: 2, marks: 8 },
 ];
+/** The pre-reform maths paper — still the SECOND-YEAR shape in 2026-27 (see mathematics_2a). */
+const ABC_75_MATHS_PRE_REFORM: PaperSection[] = [
+    { key: 'VSAQ', section: 'Section A', printed: 10, answer: 10, marks: 2 },
+    { key: 'SAQ', section: 'Section B', printed: 7, answer: 5, marks: 4 },
+    { key: 'LAQ', section: 'Section C', printed: 7, answer: 5, marks: 7 },
+];
 export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     physics: { label: 'Physics', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
     chemistry: { label: 'Chemistry', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
@@ -79,6 +85,20 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     // switches in 2027-28, so `wef` names the syllabus year this row DESCRIBES.
     // `internal` is deliberately omitted — see the type above.
     chemistry_2: { label: 'Chemistry II', total: 60, sections: ABC_60, wef: '2026-27' },
+
+    // Senior Inter Maths Paper-IIA (2026-08-29). NOT ABC_60. The 2026-27 reform
+    // that took Maths 1A/1B to 60 marks is FIRST YEAR ONLY (Telangana Today,
+    // 28 May 2026: the revision is to "the first-year intermediate public
+    // examinations question paper pattern"; Resonance Colleges, 15 May 2026:
+    // "the examination framework reforms shall apply to second-year students
+    // from 2027-28 onwards"), so a 2A student sitting March 2027 writes the
+    // unchanged 75-mark paper: A 10x2 all · B any 5 of 7 x4 · C any 5 of 7 x7.
+    // The source book (Baby Bullet-Q Senior Inter Maths-2A, blueprint p.3 —
+    // "prepared according to the Model Question Paper issued by B.I.E." — and
+    // all five of its model papers pp.111-120) prints exactly this shape.
+    // `internal` is deliberately omitted — see the type above. Founder decision
+    // 2026-08-29: "if same as old for the mathematics, continue for 75 marks".
+    mathematics_2a: { label: 'Maths 2A', total: 75, sections: ABC_75_MATHS_PRE_REFORM, wef: '2026-27' },
 
     // Senior Inter Botany Paper-II (2026-08-29). Same ABC_60 shape, confirmed against
     // the 2022 BIE blue print and all five of the book's model papers. `internal` is
@@ -343,7 +363,7 @@ export const answerBookQuestionSchema = z
         // notebook.js LEGACY_PHYSICS_KEYS remaps exact `physics-N` keys for the
         // 2026-27 first-year renumbering, so second-year chapters filed under
         // `physics` would be silently remapped onto first-year units.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2']),
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),

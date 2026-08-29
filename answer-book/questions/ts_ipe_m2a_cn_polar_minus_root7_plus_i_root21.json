@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_polar_minus_root7_plus_i_root21",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write z = −√7 + i√21 in the polar form.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the modulus r",
+      "marks": 1
+    },
+    {
+      "label": "Find the amplitude θ from the quadrant and write r(cos θ + i sin θ)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.71 — VSAQ chapter 12 Complex Numbers, answer 110.1. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The six modulus-amplitude VSAQs of this unit (110.1–110.6) share the same split and step ids deliberately: one method over different points. The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. 'Polar form' and 'modulus-amplitude form' are the same thing; the card uses the question's word. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would write a complex number in polar form — what two numbers you need and how the quadrant fixes the angle.",
+  "insider_note": "tan θ = −√3 fits two angles and a calculator picks the wrong one; (−√7, √21) is in the second quadrant, so θ = π − π/3 = 2π/3. Simplify r = √28 to 2√7 — that is the expected form.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Find r",
+        "marks": 1,
+        "mark_note": "Modulus",
+        "margin_note": "First mark. x = −√7, y = √21. The squares are 7 and 21, so r = √28 = 2√7.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let −√7 + i√21 = x + iy ⇒ x = −√7, y = √21",
+          "r = √(x² + y²) = √(7 + 21) = √28 = 2√7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = −√7, y = √21 and the modulus r = √(7 + 21) = 2√7.",
+          "accept": [
+            "x is minus root seven, y is root twenty one, r is root of seven plus twenty one which is two root seven",
+            "the modulus is root twenty eight equals two root seven",
+            "r equals root x squared plus y squared, that is two root seven",
+            "modulus root twenty eight, ante two root seven",
+            "seven plus twenty one is twenty eight, root of that is two root seven"
+          ],
+          "reject": [
+            "find r",
+            "find the modulus"
+          ],
+          "heard_as": [
+            "two root seven",
+            "root twenty eight",
+            "modulus",
+            "r equals"
+          ]
+        },
+        "why": "r is the distance of the point from the origin, always positive; the sign of x plays no part here. It is needed as the multiplier in front of the bracket in the polar form.",
+        "common_mistakes": [
+          "Writing (−√7)² as −7.",
+          "Leaving r as √28 — acceptable, but 2√7 is the expected simplified form."
+        ]
+      },
+      {
+        "id": "s2_amplitude",
+        "kind": "boxed_final",
+        "label": "Find θ and write the form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. tan θ = y/x = −√3, but that alone gives two candidate angles. The point (−√7, √21) is in the second quadrant, so θ = π − π/3 = 2π/3.",
+        "lines": [
+          "tan θ = y/x = √21/(−√7) = −√3",
+          "(−√7, √21) lies in the second quadrant",
+          "⇒ θ = π − π/3 = 2π/3",
+          {
+            "text": "∴ z = 2√7(cos(2π/3) + i sin(2π/3))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan θ = −√3 with the point in the second quadrant gives θ = 2π/3, so the polar form is 2√7(cos 2π/3 + i sin 2π/3).",
+          "accept": [
+            "tan theta is minus root three and the point is in the second quadrant so theta is two pi by three",
+            "the polar form is two root seven times cos two pi by three plus i sin two pi by three",
+            "second quadrant, theta equals pi minus pi by three equals two pi by three",
+            "point second quadrant lo undi kabatti theta two pi by three",
+            "amplitude two pi by three and modulus two root seven"
+          ],
+          "reject": [
+            "find theta",
+            "write the polar form"
+          ],
+          "heard_as": [
+            "two pi by three",
+            "second quadrant",
+            "minus root three",
+            "tan theta",
+            "cos plus i sin"
+          ]
+        },
+        "why": "tan θ = −√3 is true for both −π/3 and 2π/3. Only the quadrant of the point fixes which: a negative x and positive y is the second quadrant, where the amplitude is between π/2 and π. The quadrant line is the mark, not the tan value.",
+        "common_mistakes": [
+          "Writing θ = −π/3 from the calculator without checking the quadrant — that point would be in the fourth quadrant.",
+          "Forgetting the r in front of the bracket.",
+          "Writing cos 2π/3 − i sin 2π/3, which flips the sign of y."
+        ]
+      }
+    ]
+  }
+}

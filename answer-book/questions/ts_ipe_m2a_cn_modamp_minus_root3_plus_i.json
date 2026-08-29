@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_modamp_minus_root3_plus_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Express the complex number −√3 + i in the modulus-amplitude form.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the modulus r",
+      "marks": 1
+    },
+    {
+      "label": "Find the amplitude θ from the quadrant and write r(cos θ + i sin θ)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.72 — VSAQ chapter 12 Complex Numbers, answer 110.5. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The six modulus-amplitude VSAQs of this unit (110.1–110.6) share the same split and step ids deliberately. The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. The book finds θ as Tan⁻¹(1/(−√3)) = 5π/6 in one line; the card writes the tan value and the quadrant separately, same result. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would write a complex number in modulus-amplitude form — what two numbers you need and how the quadrant fixes the angle.",
+  "insider_note": "A calculator gives θ = −π/6, which is the fourth-quadrant point (√3, −1), not this number. (−√3, 1) is in the second quadrant, so θ = π − π/6 = 5π/6 — the quadrant sentence is what earns the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Find r",
+        "marks": 1,
+        "mark_note": "Modulus",
+        "margin_note": "First mark. x = −√3, y = 1, so r = √(3 + 1) = 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let −√3 + i = x + iy ⇒ x = −√3, y = 1",
+          "r = √(x² + y²) = √(3 + 1) = √4 = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = −√3, y = 1 and the modulus r = √(3 + 1) = 2.",
+          "accept": [
+            "x is minus root three, y is one, r is root of three plus one which is two",
+            "the modulus is root four equals two",
+            "r equals root x squared plus y squared, that is two",
+            "modulus root four, ante two",
+            "three plus one is four, root of that is two"
+          ],
+          "reject": [
+            "find r",
+            "find the modulus"
+          ],
+          "heard_as": [
+            "two",
+            "root four",
+            "modulus",
+            "minus root three"
+          ]
+        },
+        "why": "(−√3)² = 3 — the sign disappears under the square. r = 2 goes in front of the bracket; the negative x is used only to place the point in the second quadrant.",
+        "common_mistakes": [
+          "Writing (−√3)² as −3.",
+          "Reading the number as −3 + i and getting r = √10."
+        ]
+      },
+      {
+        "id": "s2_amplitude",
+        "kind": "boxed_final",
+        "label": "Find θ and write the form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. tan θ = −1/√3. The point (−√3, 1) is in the second quadrant, so θ = π − π/6 = 5π/6. Check: 2 cos(5π/6) = −√3 and 2 sin(5π/6) = 1.",
+        "lines": [
+          "tan θ = y/x = 1/(−√3) = −1/√3",
+          "(−√3, 1) lies in the second quadrant",
+          "⇒ θ = π − π/6 = 5π/6",
+          {
+            "text": "∴ −√3 + i = 2(cos(5π/6) + i sin(5π/6))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan θ = −1/√3 with the point in the second quadrant gives θ = 5π/6, so the form is 2(cos 5π/6 + i sin 5π/6).",
+          "accept": [
+            "tan theta is minus one by root three and the point is in the second quadrant so theta is five pi by six",
+            "the form is two times cos five pi by six plus i sin five pi by six",
+            "second quadrant, theta equals pi minus pi by six equals five pi by six",
+            "point second quadrant lo undi kabatti theta five pi by six",
+            "amplitude five pi by six and modulus two"
+          ],
+          "reject": [
+            "find theta",
+            "write the form",
+            "theta is pi by six"
+          ],
+          "heard_as": [
+            "five pi by six",
+            "second quadrant",
+            "one by root three",
+            "tan theta",
+            "cos plus i sin"
+          ]
+        },
+        "why": "tan θ = −1/√3 is true for −π/6 and for 5π/6. A negative x with positive y is the second quadrant, so the amplitude is π − (acute angle) = 5π/6. The quadrant line, not the tan value, is what fixes the answer.",
+        "common_mistakes": [
+          "Taking θ = −π/6 from the calculator — that is the fourth-quadrant point (√3, −1).",
+          "Taking θ = π/6, the first-quadrant point (√3, 1).",
+          "Forgetting the r = 2."
+        ]
+      }
+    ]
+  }
+}

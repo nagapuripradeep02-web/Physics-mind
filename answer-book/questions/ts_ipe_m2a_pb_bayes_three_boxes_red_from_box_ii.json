@@ -1,0 +1,324 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_bayes_three_boxes_red_from_box_ii",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Three boxes numbered I, II, III contain the balls as follows: box I has 1 white, 2 black, 3 red; box II has 2 white, 1 black, 1 red; box III has 4 white, 5 black, 3 red. One box is randomly selected and a ball is drawn from it. If the ball is red, then find the probability that it is from box II.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Define the events",
+      "marks": 1
+    },
+    {
+      "label": "Prior probabilities of choosing each container",
+      "marks": 1
+    },
+    {
+      "label": "Probability of the colour from each container",
+      "marks": 1
+    },
+    {
+      "label": "Total probability of the colour",
+      "marks": 2
+    },
+    {
+      "label": "Bayes' theorem and the answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.38 — LAQ chapter 4 Probability, answer 37 (PDF p.39: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 16 · TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 37. It is the book's own 1 + 2 + 4 split printed against answer 36 on book p.37 (define the events · the priors and the colour probabilities · Bayes' computation), refined as 1 + (1 + 1) + (2 + 2) so that each of the five steps carries its own mark. The SAME five step ids and the SAME split are used on all four urn/box Bayes answers of this unit (36, 37, 38, 39), deliberately: they are one method over different numbers. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question appears in no model paper; it is re-solved in the Bullet Model Paper Q23 block (book p.109), where the working is identical. The book prints the box contents as a table; the card writes them in words in the question text. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: P(R|I) = 3/6 = 1/2, P(R|II) = 1/4, P(R|III) = 3/12 = 1/4; P(R) = (1/3)(1/2 + 1/4 + 1/4) = 1/3; P(II|R) = (1/3)(1/4)/(1/3) = 1/4 — agrees with the book."
+  },
+  "recall_prompt": "Say how you would find the probability that the red ball came from box II — the events, the priors, the three red-ball probabilities, the total, and Bayes.",
+  "insider_note": "Each box has a different total (6, 4, 12), so each red probability has its own denominator. The total P(R) comes out to exactly 1/3, which makes the last division short.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Probability · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_events",
+        "kind": "text",
+        "label": "Define the events",
+        "marks": 1,
+        "mark_note": "Events",
+        "margin_note": "First mark. Three box events and one colour event.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Let B₁, B₂, B₃ be the events of selecting",
+            "style": "normal"
+          },
+          {
+            "text": "box I, box II, box III respectively, and",
+            "style": "normal"
+          },
+          {
+            "text": "let R be the event that the ball drawn is red.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That B₁, B₂, B₃ are the events of choosing boxes I, II, III and R is the event that the ball is red.",
+          "accept": [
+            "let B one B two B three be choosing box one two three and R be drawing a red ball",
+            "define three box events and one red ball event",
+            "B one is box one chosen and so on and R is red",
+            "moodu boxes ki B one B two B three, red ball ki R",
+            "name the three box events and the red event"
+          ],
+          "reject": [
+            "define the events",
+            "let the events be",
+            "three events"
+          ],
+          "heard_as": [
+            "B one B two B three",
+            "box one",
+            "red ball",
+            "event R"
+          ]
+        },
+        "why": "The three box events are mutually exclusive and exhaustive — exactly one box is chosen — so they are the Eᵢ of Bayes' theorem, and R is the A.",
+        "common_mistakes": [
+          "Naming only the box asked about (box II) and no event for the others.",
+          "Not defining the colour event."
+        ]
+      },
+      {
+        "id": "s2_priors",
+        "kind": "equation",
+        "label": "Priors",
+        "marks": 1,
+        "mark_note": "Priors",
+        "margin_note": "Second mark. One of three boxes at random: 1/3 each.",
+        "lines": [
+          {
+            "text": "The box is chosen at random, so",
+            "style": "normal"
+          },
+          {
+            "text": "P(B₁) = P(B₂) = P(B₃) = 1/3",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each box has probability 1/3 of being chosen.",
+          "accept": [
+            "each box has probability one third",
+            "P of B one equals P of B two equals P of B three equals one by three",
+            "the three priors are all a third",
+            "prathi box ki probability one by three",
+            "one box out of three at random so a third each"
+          ],
+          "reject": [
+            "find the priors",
+            "equal chance",
+            "the box probabilities"
+          ],
+          "heard_as": [
+            "one by three",
+            "a third",
+            "P of B one"
+          ]
+        },
+        "why": "The prior is the chance of the box before any ball is seen; random selection among three boxes makes it 1/3 regardless of how many balls each box holds.",
+        "common_mistakes": [
+          "Weighting the boxes by their number of balls (6/22, 4/22, 12/22).",
+          "Omitting the priors because they are equal."
+        ]
+      },
+      {
+        "id": "s3_likelihoods",
+        "kind": "equation",
+        "label": "P(red | each box)",
+        "marks": 1,
+        "mark_note": "Conditional probabilities",
+        "margin_note": "Third mark. Box I: 3 red of 6. Box II: 1 red of 4. Box III: 3 red of 12. Each over its own box total.",
+        "lines": [
+          {
+            "text": "P(R|B₁) = 3/6 = 1/2",
+            "style": "eq"
+          },
+          {
+            "text": "P(R|B₂) = 1/4",
+            "style": "eq"
+          },
+          {
+            "text": "P(R|B₃) = 3/12 = 1/4",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(R|B₁) = 1/2, P(R|B₂) = 1/4, P(R|B₃) = 1/4, each red count over its own box total.",
+          "accept": [
+            "red given box one is three by six which is half, box two one by four, box three three by twelve which is a quarter",
+            "the red probabilities are half, quarter and quarter",
+            "P of R given B one is one by two, given B two one by four, given B three one by four",
+            "box one lo red half, box two lo quarter, box three lo kuda quarter",
+            "three of six, one of four, three of twelve"
+          ],
+          "reject": [
+            "find the conditional probabilities",
+            "red probabilities",
+            "three one and three"
+          ],
+          "heard_as": [
+            "three by six",
+            "one by two",
+            "one by four",
+            "three by twelve",
+            "R given B"
+          ]
+        },
+        "why": "Each box is its own small experiment; the denominator is that box's total, not the total of all balls.",
+        "common_mistakes": [
+          "Using 22 (all balls) as the denominator for every box.",
+          "Reading the red column into the wrong box."
+        ]
+      },
+      {
+        "id": "s4_total_probability",
+        "kind": "equation",
+        "label": "Total probability of red",
+        "marks": 2,
+        "mark_note": "Total probability",
+        "margin_note": "Two marks. P(R) = Σ P(Bᵢ)·P(R|Bᵢ). Factor out the common 1/3: (1/3)(1/2 + 1/4 + 1/4) = (1/3)(1) = 1/3.",
+        "lines": [
+          {
+            "text": "By total probability,",
+            "style": "normal"
+          },
+          {
+            "text": "P(R) = P(B₁)P(R|B₁) + P(B₂)P(R|B₂)",
+            "style": "eq"
+          },
+          {
+            "text": "+ P(B₃)P(R|B₃)",
+            "style": "eq"
+          },
+          {
+            "text": "= (1/3)(1/2) + (1/3)(1/4) + (1/3)(1/4)",
+            "style": "eq"
+          },
+          {
+            "text": "= (1/3)(1/2 + 1/4 + 1/4) = (1/3)(1) = 1/3",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(R) = (1/3)(1/2 + 1/4 + 1/4) = (1/3)(1) = 1/3.",
+          "accept": [
+            "P of R is a third times half plus quarter plus quarter which is a third times one equals one third",
+            "total probability of red is one by three",
+            "add the three prior times likelihood terms the bracket is one so P R is a third",
+            "P of red ante one by three into half plus quarter plus quarter, bracket one, answer one by three",
+            "the denominator comes to one third"
+          ],
+          "reject": [
+            "find P of R",
+            "total probability",
+            "add them"
+          ],
+          "heard_as": [
+            "one by three",
+            "half plus quarter plus quarter",
+            "total probability",
+            "a third"
+          ]
+        },
+        "why": "A red ball can come by three disjoint routes; adding them gives the overall chance of red, the denominator of Bayes' theorem.",
+        "common_mistakes": [
+          "Adding 1/2 + 1/4 + 1/4 = 1 and calling that P(R).",
+          "Arithmetic in the bracket: 1/2 + 1/4 + 1/4 is 1, not 3/4."
+        ]
+      },
+      {
+        "id": "s5_bayes",
+        "kind": "boxed_final",
+        "label": "Bayes' theorem",
+        "marks": 2,
+        "mark_note": "Bayes' theorem",
+        "margin_note": "Last two marks. P(B₂|R) = P(B₂)·P(R|B₂)/P(R) = (1/12)/(1/3) = 1/4.",
+        "lines": [
+          {
+            "text": "By Bayes' theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(B₂|R) = P(B₂)·P(R|B₂) / P(R)",
+            "style": "eq"
+          },
+          {
+            "text": "= (1/3)(1/4) / (1/3) = (1/12) / (1/3)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(B₂|R) = 1/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(B₂|R) = P(B₂)·P(R|B₂)/P(R) = (1/12)/(1/3) = 1/4.",
+          "accept": [
+            "P of B two given R is a third times a quarter over a third which is one quarter",
+            "by bayes theorem the answer is one by four",
+            "the box two route one by twelve divided by the total one by three gives a quarter",
+            "bayes prakaram one by twelve ni one by three tho divide cheste one by four",
+            "the probability it came from box two is one fourth"
+          ],
+          "reject": [
+            "apply bayes",
+            "one by four",
+            "use the formula"
+          ],
+          "heard_as": [
+            "one by four",
+            "a quarter",
+            "B two given R",
+            "bayes",
+            "one by twelve"
+          ]
+        },
+        "why": "The answer is the share of P(R) that came through box II. Here it equals P(R|B₂) only because P(R) happens to equal 1/3; in general the two differ.",
+        "common_mistakes": [
+          "Answering P(R|B₂) = 1/4 with no Bayes line — the number matches by coincidence but the method is not shown.",
+          "Inverting the division and getting 4."
+        ]
+      }
+    ]
+  }
+}

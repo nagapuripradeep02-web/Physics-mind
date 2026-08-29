@@ -1,0 +1,251 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_multiplication_theorem_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and prove the multiplication theorem on probability.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the theorem",
+      "marks": 1
+    },
+    {
+      "label": "From P(B|A): P(A ∩ B) = P(A)·P(B|A)",
+      "marks": 1
+    },
+    {
+      "label": "From P(A|B): P(A ∩ B) = P(B)·P(A|B)",
+      "marks": 1
+    },
+    {
+      "label": "Combine (1) and (2)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 10 Probability, answer 89 (PDF p.63: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: TS 15,17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). The book's own proof has exactly three moves after the statement (the two conditional-probability definitions and their combination), so 1 + 1 + 1 + 1 follows the printed shape of the answer; it is patterned on the statement-first weighting the LAQ theorems of this unit use. The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question is Q16 of Model Paper 5 (book p.119); it is not in the Bullet Model Paper. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book writes P(B/A) with a slash; the card writes P(B|A) per the notation ledger."
+  },
+  "recall_prompt": "Say the multiplication theorem, then say how it is proved from the two conditional probability definitions.",
+  "insider_note": "The statement needs both conditions P(A) ≠ 0 and P(B) ≠ 0 — each one is what allows one of the two divisions in the proof.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "State the theorem",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "First mark. Name the events, state both non-zero conditions, and write both forms of the product.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Statement: If A, B are two events of a random",
+            "style": "normal"
+          },
+          {
+            "text": "experiment with P(A) ≠ 0 and P(B) ≠ 0, then",
+            "style": "normal"
+          },
+          {
+            "text": "P(A ∩ B) = P(A)·P(B|A) = P(B)·P(A|B)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for events A, B with P(A) ≠ 0, P(B) ≠ 0, P(A ∩ B) = P(A)·P(B|A) = P(B)·P(A|B).",
+          "accept": [
+            "if P A and P B are non zero then P of A intersection B equals P A times P B given A equals P B times P A given B",
+            "the intersection is P A into P B given A and also P B into P A given B",
+            "multiplication theorem P A and B equals P A P B given A",
+            "P A, P B non zero ayithe P of A intersection B ante P A into P B given A, P B into P A given B"
+          ],
+          "reject": [
+            "state the theorem",
+            "multiplication theorem"
+          ],
+          "heard_as": [
+            "A intersection B",
+            "P B given A",
+            "P A given B",
+            "not equal to zero",
+            "multiplication"
+          ]
+        },
+        "why": "The theorem gives the probability of \"both\" for events that need not be independent; the conditional probability carries the dependence.",
+        "common_mistakes": [
+          "Writing P(A ∩ B) = P(A)·P(B), which is only the independent case.",
+          "Leaving out the non-zero conditions."
+        ]
+      },
+      {
+        "id": "s2_from_b_given_a",
+        "kind": "equation",
+        "label": "From the definition of P(B|A)",
+        "marks": 1,
+        "mark_note": "(1)",
+        "margin_note": "Second mark. P(B|A) = P(A ∩ B)/P(A), allowed because P(A) ≠ 0; multiply across.",
+        "lines": [
+          {
+            "text": "Proof: By the definition of conditional probability,",
+            "style": "normal"
+          },
+          {
+            "text": "P(B|A) = P(A ∩ B)/P(A)   [P(A) ≠ 0]",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ P(A ∩ B) = P(A)·P(B|A)  …(1)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(B|A) = P(A ∩ B)/P(A) by definition, so P(A ∩ B) = P(A)·P(B|A).",
+          "accept": [
+            "by definition P B given A is P A intersection B over P A so the intersection is P A times P B given A",
+            "cross multiply the definition of B given A",
+            "the conditional probability definition gives equation one",
+            "P B given A definition nunchi P A intersection B ante P A into P B given A"
+          ],
+          "reject": [
+            "use the definition",
+            "equation one"
+          ],
+          "heard_as": [
+            "P B given A",
+            "definition",
+            "over P A",
+            "cross multiply"
+          ]
+        },
+        "why": "The definition of conditional probability is the only thing the proof uses; the theorem is the definition rearranged.",
+        "common_mistakes": [
+          "Writing the definition as P(B|A) = P(A ∩ B)/P(B)."
+        ]
+      },
+      {
+        "id": "s3_from_a_given_b",
+        "kind": "equation",
+        "label": "From the definition of P(A|B)",
+        "marks": 1,
+        "mark_note": "(2)",
+        "margin_note": "Third mark. The same definition with the roles swapped, allowed because P(B) ≠ 0.",
+        "lines": [
+          {
+            "text": "Again, by the definition of conditional probability,",
+            "style": "normal"
+          },
+          {
+            "text": "P(A|B) = P(A ∩ B)/P(B)   [P(B) ≠ 0]",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ P(A ∩ B) = P(B)·P(A|B)  …(2)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A|B) = P(A ∩ B)/P(B) by definition, so P(A ∩ B) = P(B)·P(A|B).",
+          "accept": [
+            "similarly P A given B is P A intersection B over P B so the intersection is P B times P A given B",
+            "swap the roles and cross multiply again",
+            "the second definition gives equation two",
+            "P A given B definition nunchi P A intersection B ante P B into P A given B"
+          ],
+          "reject": [
+            "similarly",
+            "equation two"
+          ],
+          "heard_as": [
+            "P A given B",
+            "over P B",
+            "similarly",
+            "equation two"
+          ]
+        },
+        "why": "The second form of the theorem needs the second conditional probability; P(B) ≠ 0 is what permits this division.",
+        "common_mistakes": [
+          "Skipping this step and writing the second form without proof."
+        ]
+      },
+      {
+        "id": "s4_combine",
+        "kind": "boxed_final",
+        "label": "Combine (1) and (2)",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Both equal P(A ∩ B), so they equal each other.",
+        "lines": [
+          {
+            "text": "From (1) and (2),",
+            "style": "normal"
+          },
+          {
+            "text": "P(A ∩ B) = P(A)·P(B|A) = P(B)·P(A|B)",
+            "style": "boxed"
+          },
+          {
+            "text": "Hence proved.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equations (1) and (2) together give P(A ∩ B) = P(A)·P(B|A) = P(B)·P(A|B).",
+          "accept": [
+            "from one and two the intersection equals both products hence proved",
+            "combine the two equations to get the theorem",
+            "both expressions equal P A intersection B so they are equal",
+            "one and two nunchi P A intersection B ante rendu products, hence proved"
+          ],
+          "reject": [
+            "hence proved",
+            "combine"
+          ],
+          "heard_as": [
+            "from one and two",
+            "hence proved",
+            "both products"
+          ]
+        },
+        "why": "Two expressions for the same probability are equal to each other; that equality is the statement.",
+        "common_mistakes": [
+          "Ending at (2) without writing the combined line."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_12p5_5_12p4_13pr",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ¹²P₅ + 5·¹²P₄ = ¹³Pᵣ, find r.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the identity for permutations",
+      "marks": 1
+    },
+    {
+      "label": "Compare and state r",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 16 Permutations & Combinations, answer 146.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The printed heading reads '146.2' without a year chip. The card's second step checks the identity numerically (95040 + 59400 = 154440 = 13·12·11·10·9), which the book does not do."
+  },
+  "recall_prompt": "Say how you would find r when 12 P 5 plus 5 times 12 P 4 equals 13 P r.",
+  "insider_note": "The coefficient 5 fits the permutation identity ⁿPᵣ + r·ⁿPᵣ₋₁ = ⁽ⁿ⁺¹⁾Pᵣ, which the combination identity does not have — and r matches the first term, so r = 5, not the 4 of the second term.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Name the identity for permutations",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The permutation form of Pascal: ⁽ⁿ⁻¹⁾Pᵣ + r·⁽ⁿ⁻¹⁾Pᵣ₋₁ = ⁿPᵣ. Here n − 1 = 12 and r = 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "⁽ⁿ⁻¹⁾Pᵣ + r·⁽ⁿ⁻¹⁾Pᵣ₋₁ = ⁿPᵣ",
+          "Here n − 1 = 12 and r = 5:",
+          "¹²P₅ + 5·¹²P₄ = ¹³P₅"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the identity n minus 1 P r plus r times n minus 1 P r minus 1 equals n P r is used with n minus 1 = 12 and r = 5, giving 13 P 5.",
+          "accept": [
+            "n minus one P r plus r times n minus one P r minus one is n P r, with twelve and five it gives thirteen P five",
+            "the permutation identity with r equal five makes the left side thirteen P five",
+            "twelve P five plus five times twelve P four is thirteen P five",
+            "permutation identity vadithe thirteen P five vasthundi",
+            "match the pattern, the coefficient five is r"
+          ],
+          "reject": [
+            "use the identity",
+            "find r"
+          ],
+          "heard_as": [
+            "identity",
+            "thirteen P five",
+            "n minus one P r",
+            "coefficient five"
+          ]
+        },
+        "why": "The coefficient 5 in front of ¹²P₄ is exactly the r of the identity ⁽ⁿ⁻¹⁾Pᵣ + r·⁽ⁿ⁻¹⁾Pᵣ₋₁ = ⁿPᵣ, so the left side is one permutation, ¹³P₅, without any arithmetic.",
+        "common_mistakes": [
+          "Using the combination identity ⁿCᵣ + ⁿCᵣ₋₁ = ⁽ⁿ⁺¹⁾Cᵣ, which has no coefficient r.",
+          "Matching r = 4 to the second term instead of r = 5 to the first."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Compare and state r",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. ¹³P₅ = ¹³Pᵣ, so r = 5. Check: 95040 + 5 · 11880 = 154440 = 13·12·11·10·9.",
+        "lines": [
+          "¹³P₅ = ¹³Pᵣ",
+          "Check: 95040 + 5 · 11880 = 154440 = ¹³P₅",
+          {
+            "text": "∴ r = 5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing 13 P 5 with 13 P r gives r = 5, and the numbers check.",
+          "accept": [
+            "thirteen P five is thirteen P r so r is five",
+            "r equals five",
+            "compare and r is five, the numbers add up to one lakh fifty four thousand four hundred forty",
+            "compare cheste r five",
+            "r is five"
+          ],
+          "reject": [
+            "compare",
+            "five"
+          ],
+          "heard_as": [
+            "r is five",
+            "thirteen P five",
+            "five",
+            "check"
+          ]
+        },
+        "why": "ⁿPᵣ increases with r for fixed n, so only one r fits. The numerical check costs one line and catches a wrong identity.",
+        "common_mistakes": [
+          "Answering r = 4.",
+          "Writing ¹³P₅ and forgetting to state r."
+        ]
+      }
+    ]
+  }
+}

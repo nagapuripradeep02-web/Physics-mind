@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_sqp_z_minus_1_over_z_cos_sin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If z = (cos θ, sin θ), find z − 1/z.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find 1/z as cos θ − i sin θ",
+      "marks": 1
+    },
+    {
+      "label": "Subtract",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.89 — Star Questions Plus, Complex Numbers banner, answer 183. (Book page = PDF page − 1 in this part of the scan.) THIS SECTION IS OURS: Star Questions Plus prints no mark cut and no chapter stars; the question is classed as a 2-mark VSAQ by shape and length (three lines of working) and folded into the Complex Numbers unit as backfill. Printed appearances: TS 19, 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The stars on this card are the VSAQ CHAPTER's ★★★ (chapter 12, the section it joins), not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. The ordered-pair notation (cos θ, sin θ) is the book's and the syllabus's way of writing cos θ + i sin θ; the card keeps it in the question and converts on the first line. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find z minus one over z — what 1/z is for a cis value, and what is left after subtracting.",
+  "insider_note": "The ordered pair (cos θ, sin θ) is the complex number cos θ + i sin θ, and because its modulus is 1 the reciprocal is simply the conjugate cos θ − i sin θ. Subtracting cancels the cos terms, so the answer is 2i sin θ — 2cos θ is z + 1/z, a different question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reciprocal",
+        "kind": "equation",
+        "label": "Find 1/z",
+        "marks": 1,
+        "mark_note": "Reciprocal",
+        "margin_note": "First mark. The ordered pair (cos θ, sin θ) is the complex number cos θ + i sin θ. Its reciprocal is found by the conjugate; since cos²θ + sin²θ = 1 the denominator is 1 and 1/z is simply cos θ − i sin θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "z = (cos θ, sin θ) = cos θ + i sin θ",
+          "1/z = 1/(cos θ + i sin θ)",
+          "= (cos θ − i sin θ)/(cos²θ + sin²θ)",
+          "= cos θ − i sin θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That z = cos θ + i sin θ and 1/z = cos θ − i sin θ, because multiplying by the conjugate gives denominator cos²θ + sin²θ = 1.",
+          "accept": [
+            "z is cos theta plus i sin theta and one by z is cos theta minus i sin theta because the denominator cos squared plus sin squared is one",
+            "the reciprocal of cis theta is cos theta minus i sin theta",
+            "multiply by the conjugate, the bottom is one, so one over z is cos theta minus i sin theta",
+            "one by z ante cos theta minus i sin theta, denominator one",
+            "one over z is the conjugate cos theta minus i sin theta"
+          ],
+          "reject": [
+            "find one by z",
+            "rationalise"
+          ],
+          "heard_as": [
+            "one by z",
+            "cos theta minus i sin theta",
+            "conjugate",
+            "cos squared plus sin squared",
+            "reciprocal"
+          ]
+        },
+        "why": "A cis value has modulus 1, so its reciprocal is its conjugate — no division is really needed. Writing the conjugate step once shows where cos θ − i sin θ comes from.",
+        "common_mistakes": [
+          "Writing 1/z as 1/cos θ + 1/(i sin θ), splitting a fraction over a sum.",
+          "Leaving cos²θ + sin²θ in the denominator instead of replacing it by 1."
+        ]
+      },
+      {
+        "id": "s2_subtract",
+        "kind": "boxed_final",
+        "label": "Subtract",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The cos θ terms cancel; the sin θ terms add.",
+        "lines": [
+          "z − 1/z = (cos θ + i sin θ) − (cos θ − i sin θ)",
+          {
+            "text": "∴ z − 1/z = 2i sin θ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtracting cancels the cos θ terms and leaves 2i sin θ.",
+          "accept": [
+            "subtract, cos theta cancels and i sin theta plus i sin theta is two i sin theta",
+            "z minus one by z equals two i sin theta",
+            "the cos terms cancel leaving two i sin theta",
+            "cos theta cancel ayyi two i sin theta vasthundi",
+            "the answer is two i sin theta"
+          ],
+          "reject": [
+            "subtract",
+            "simplify"
+          ],
+          "heard_as": [
+            "two i sin theta",
+            "cancel",
+            "cos theta",
+            "sin theta"
+          ]
+        },
+        "why": "z − 1/z = cis θ − cis(−θ) is purely imaginary, and equals 2i sin θ; the companion fact z + 1/z = 2cos θ is the one De Moivre questions use. Both come from the same reciprocal line.",
+        "common_mistakes": [
+          "Getting 2cos θ — that is z + 1/z.",
+          "Dropping the i and answering 2 sin θ."
+        ]
+      }
+    ]
+  }
+}

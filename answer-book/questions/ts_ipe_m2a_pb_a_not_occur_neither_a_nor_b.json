@@ -1,0 +1,205 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_a_not_occur_neither_a_nor_b",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If A, B are events with P(A) = 0.5, P(B) = 0.4 and P(A ∩ B) = 0.3, find the probability that (i) A does not occur (ii) neither A nor B occurs.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "(i) P(Aᶜ) = 1 − P(A)",
+      "marks": 1
+    },
+    {
+      "label": "(ii) Neither A nor B is the complement of A ∪ B",
+      "marks": 1
+    },
+    {
+      "label": "Find P(A ∪ B) and finish",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 10 Probability, answer 80 (PDF p.60: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: AP 18 · TS 17,18,22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). It is patterned on the only split this unit prints, answer 36 on book p.37 (1 set-up · 2 values · 4 computation), scaled to 4 marks: the set-up is light and the computation that reaches the answer carries the most. The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question is Q16 of Model Paper 4 (book p.117); it is not in the Bullet Model Paper. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answers checked: (i) 0.5; (ii) 1 − (0.5 + 0.4 − 0.3) = 1 − 0.6 = 0.4 — agree with the book. The book writes the complements with bars (Ā, B̄); the card writes Aᶜ, Bᶜ per the notation ledger."
+  },
+  "recall_prompt": "Say how you would find the probability that A does not occur, and that neither A nor B occurs — which set each one is, and the numbers.",
+  "insider_note": "\"Neither A nor B\" is the complement of \"A or B\", so it is 1 − P(A ∪ B). Students who write 1 − P(A ∩ B) get 0.7 and lose both marks of part (ii).",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_a_not_occur",
+        "kind": "equation",
+        "label": "(i) A does not occur",
+        "marks": 1,
+        "mark_note": "(i)",
+        "margin_note": "First mark. \"A does not occur\" is Aᶜ: 1 − 0.5 = 0.5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Given P(A) = 0.5, P(B) = 0.4, P(A ∩ B) = 0.3.",
+            "style": "normal"
+          },
+          {
+            "text": "(i) P(Aᶜ) = 1 − P(A) = 1 − 0.5 = 0.5",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the probability A does not occur is P(Aᶜ) = 1 − P(A) = 0.5.",
+          "accept": [
+            "A does not occur is the complement, one minus point five equals point five",
+            "P of A complement is 1 minus 0.5 which is 0.5",
+            "the chance A fails is half",
+            "A jaragakapovadam ante A complement, 1 minus 0.5, 0.5"
+          ],
+          "reject": [
+            "find the complement",
+            "one minus"
+          ],
+          "heard_as": [
+            "A complement",
+            "point five",
+            "does not occur"
+          ]
+        },
+        "why": "An event and its complement together are certain, so their probabilities add to 1.",
+        "common_mistakes": [
+          "Writing P(Aᶜ) = P(B) = 0.4."
+        ]
+      },
+      {
+        "id": "s2_neither_is_complement_of_union",
+        "kind": "equation",
+        "label": "(ii) Neither A nor B = (A ∪ B)ᶜ",
+        "marks": 1,
+        "mark_note": "Set identity",
+        "margin_note": "Second mark. \"Neither A nor B\" means A does not occur AND B does not occur: Aᶜ ∩ Bᶜ, which is the complement of A ∪ B. Writing this identity is the mark.",
+        "lines": [
+          {
+            "text": "(ii) Neither A nor B occurs:",
+            "style": "normal"
+          },
+          {
+            "text": "P(Aᶜ ∩ Bᶜ) = P((A ∪ B)ᶜ) = 1 − P(A ∪ B)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That \"neither A nor B\" is Aᶜ ∩ Bᶜ, the complement of A ∪ B, so its probability is 1 − P(A ∪ B).",
+          "accept": [
+            "neither A nor B is A complement intersection B complement which is the complement of A union B so one minus P of A union B",
+            "neither means the complement of the union",
+            "not A and not B equals one minus P A union B",
+            "neither A nor B ante A union B complement, 1 minus P of union"
+          ],
+          "reject": [
+            "find neither",
+            "the complement"
+          ],
+          "heard_as": [
+            "neither",
+            "complement of the union",
+            "A complement intersection B complement",
+            "one minus P A union B"
+          ]
+        },
+        "why": "De Morgan's law: the complement of \"at least one\" is \"none\". That converts the question into one about the union, which the addition theorem can give.",
+        "common_mistakes": [
+          "Writing neither A nor B = 1 − P(A ∩ B).",
+          "Multiplying P(Aᶜ)·P(Bᶜ) — that needs independence, which is not given."
+        ]
+      },
+      {
+        "id": "s3_union_and_answer",
+        "kind": "boxed_final",
+        "label": "Find P(A ∪ B) and finish",
+        "marks": 2,
+        "mark_note": "Union and answer",
+        "margin_note": "Two marks. Addition theorem: 0.5 + 0.4 − 0.3 = 0.6, then 1 − 0.6 = 0.4.",
+        "lines": [
+          {
+            "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.5 + 0.4 − 0.3 = 0.6",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(Aᶜ ∩ Bᶜ) = 1 − 0.6",
+            "style": "eq"
+          },
+          {
+            "text": "∴ (i) 0.5   (ii) 0.4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A ∪ B) = 0.5 + 0.4 − 0.3 = 0.6 and so P(neither) = 1 − 0.6 = 0.4.",
+          "accept": [
+            "the union is point five plus point four minus point three which is point six so neither is one minus point six equals point four",
+            "addition theorem gives 0.6 and one minus that is 0.4",
+            "P A union B is 0.6, neither is 0.4",
+            "union 0.6 vasthundi, 1 minus 0.6 ante 0.4"
+          ],
+          "reject": [
+            "find the union",
+            "one minus the union"
+          ],
+          "heard_as": [
+            "point six",
+            "point four",
+            "addition theorem",
+            "one minus point six"
+          ]
+        },
+        "why": "The addition theorem is the only route to the union from the three given numbers; the complement then finishes the question.",
+        "common_mistakes": [
+          "Forgetting to subtract P(A ∩ B) and getting 0.9, then 0.1.",
+          "Stopping at P(A ∪ B) = 0.6 as the answer to (ii)."
+        ]
+      }
+    ]
+  }
+}

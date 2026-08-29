@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_sum_cr_cr_plus_k_2ncn_plus_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Prove that C₀·Cᵣ + C₁·Cᵣ₊₁ + C₂·Cᵣ₊₂ + … + Cₙ₋ᵣ·Cₙ = ²ⁿCₙ₊ᵣ for 0 ≤ r ≤ n. Hence deduce that (i) C₀² + C₁² + C₂² + … + Cₙ² = ²ⁿCₙ and (ii) C₀C₁ + C₁C₂ + C₂C₃ + … + Cₙ₋₁Cₙ = ²ⁿCₙ₊₁.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the two expansions",
+      "marks": 2
+    },
+    {
+      "label": "Multiply and identify",
+      "marks": 2
+    },
+    {
+      "label": "Compare the coefficient of xⁿ⁺ʳ",
+      "marks": 2
+    },
+    {
+      "label": "Deduce (i) and (ii)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.30 — LAQ chapter 3 Binomial Theorem, answer 24. Printed appearances: AP 18 · TS 15, 19. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — book p.30 prints no [N Marks] tags (the page holds two methods and no margin). It is patterned on the one-mark-per-idea tagging on p.27: the two expansions written (2), their product formed and identified as (1 + x)²ⁿ (2), the coefficient of xⁿ⁺ʳ compared on both sides (2), the two deductions (1). The card follows the book's Method I; Method II (replace x by 1/x) is printed on the same page and reaches the same line. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q20 of Model Paper 4 (book p.118) and is re-solved in the Bullet Model Paper Q20 & 21 block (book p.106, labelled \"22.\" there) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Notation: the book prints ²ⁿC₍ₙ₊ᵣ₎ with brackets round the lower index; the bracket subscripts are not in the measured glyph set, so the card writes ²ⁿCₙ₊ᵣ without brackets — the meaning is the same, \"C with upper index 2n and lower index n + r\"."
+  },
+  "recall_prompt": "Say how you would prove this — the two expansions you multiply, why their product is (1 + x)²ⁿ, which power of x you compare on both sides, and how r = 0 and r = 1 give the two deductions.",
+  "insider_note": "Write the SAME expansion twice, once in rising and once in falling powers, so the product is (1 + x)²ⁿ. The deductions cost one mark only as substitutions — r = 0 for (i), r = 1 for (ii) — never as fresh proofs.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expansions",
+        "kind": "equation",
+        "label": "Write the two expansions",
+        "marks": 2,
+        "mark_note": "Two expansions",
+        "margin_note": "First two marks. (1 + x)ⁿ in rising powers, and the SAME expansion written as (x + 1)ⁿ in falling powers. Both are the same polynomial; only the order of writing differs.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(1 + x)ⁿ = C₀ + C₁x + C₂x² + … + Cᵣxʳ",
+          "  + Cᵣ₊₁xʳ⁺¹ + … + Cₙxⁿ …(1)",
+          "(x + 1)ⁿ = C₀xⁿ + C₁xⁿ⁻¹ + C₂xⁿ⁻² + …",
+          "  + Cₙ₋ᵣxʳ + … + Cₙ …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (1 + x)ⁿ is written in rising powers of x and (x + 1)ⁿ in falling powers, with the same coefficients C₀ … Cₙ.",
+          "accept": [
+            "write one plus x to the n in rising powers and x plus one to the n in falling powers",
+            "the first expansion is C nought plus C one x and so on, the second is C nought x to the n plus C one x to the n minus one and so on",
+            "same binomial written two ways, ascending and descending powers",
+            "one plus x power n ni rising powers lo, x plus one power n ni falling powers lo rayali",
+            "two expansions with the same coefficients but opposite order of powers"
+          ],
+          "reject": [
+            "expand it",
+            "write the expansion"
+          ],
+          "heard_as": [
+            "rising powers",
+            "falling powers",
+            "C nought",
+            "x to the n"
+          ]
+        },
+        "why": "Multiplying a rising expansion by a falling one is what makes products Cₖ·Cₖ₊ᵣ appear together at a single power of x. That pairing is the whole idea.",
+        "common_mistakes": [
+          "Writing (x + 1)ⁿ with the same rising order as (1 + x)ⁿ, so no useful pairing happens.",
+          "Using different letters for the coefficients of the second expansion."
+        ]
+      },
+      {
+        "id": "s2_multiply",
+        "kind": "equation",
+        "label": "Multiply and identify",
+        "marks": 2,
+        "mark_note": "(1 + x)²ⁿ",
+        "margin_note": "Third and fourth marks. The product is (1 + x)ⁿ(x + 1)ⁿ = (1 + x)²ⁿ — the left side is a big bracket product, the right side a single binomial whose coefficients are ²ⁿCₖ.",
+        "lines": [
+          "Multiplying (2) and (1):",
+          "(C₀xⁿ + C₁xⁿ⁻¹ + … + Cₙ₋ᵣxʳ + … + Cₙ)",
+          "  × (C₀ + C₁x + … + Cᵣxʳ + Cᵣ₊₁xʳ⁺¹ + … + Cₙxⁿ)",
+          "= (x + 1)ⁿ(1 + x)ⁿ = (1 + x)²ⁿ …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying the two expansions gives (x + 1)ⁿ(1 + x)ⁿ, which is (1 + x)²ⁿ.",
+          "accept": [
+            "multiply the two expansions, the product is one plus x to the two n",
+            "x plus one to the n times one plus x to the n is one plus x to the two n",
+            "the product of the two brackets equals one plus x to the power two n",
+            "rendu expansions multiply cheste one plus x power two n vasthundi",
+            "left side is the product of the brackets, right side is one plus x to the two n"
+          ],
+          "reject": [
+            "multiply them",
+            "take the product"
+          ],
+          "heard_as": [
+            "two n",
+            "one plus x to the two n",
+            "product"
+          ]
+        },
+        "why": "The same product has two forms: a long bracket product whose coefficients are sums of Cₖ·Cⱼ, and a single binomial whose coefficients are known. Comparing them is what proves the identity.",
+        "common_mistakes": [
+          "Writing the product as (1 + x)ⁿ² or (1 + x²)ⁿ.",
+          "Trying to expand the bracket product fully instead of picking one power of x."
+        ]
+      },
+      {
+        "id": "s3_compare",
+        "kind": "equation",
+        "label": "Compare the coefficient of xⁿ⁺ʳ",
+        "marks": 2,
+        "mark_note": "Coefficient of xⁿ⁺ʳ",
+        "margin_note": "Fifth and sixth marks. On the left, xⁿ⁺ʳ comes from Cₖxⁿ⁻ᵏ (falling) times Cₖ₊ᵣxᵏ⁺ʳ (rising) for k = 0, 1, …, n − r. On the right it is ²ⁿCₙ₊ᵣ.",
+        "lines": [
+          "Compare the coefficient of xⁿ⁺ʳ",
+          "on both sides of (3):",
+          "Left: C₀xⁿ·Cᵣxʳ, C₁xⁿ⁻¹·Cᵣ₊₁xʳ⁺¹, …, Cₙ₋ᵣxʳ·Cₙxⁿ",
+          "Right: the coefficient of xⁿ⁺ʳ in (1 + x)²ⁿ",
+          "  is ²ⁿCₙ₊ᵣ",
+          "∴ C₀Cᵣ + C₁Cᵣ₊₁ + C₂Cᵣ₊₂ + … + Cₙ₋ᵣCₙ = ²ⁿCₙ₊ᵣ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficient of xⁿ⁺ʳ on the left is C₀Cᵣ + C₁Cᵣ₊₁ + … + Cₙ₋ᵣCₙ and on the right is ²ⁿCₙ₊ᵣ, so they are equal.",
+          "accept": [
+            "compare the coefficient of x to the n plus r, on the left it is C nought C r plus C one C r plus one up to C n minus r C n, on the right it is two n C n plus r",
+            "pick out x to the n plus r from both sides",
+            "the coefficient of x to the n plus r in one plus x to the two n is two n C n plus r",
+            "x power n plus r coefficient rendu sides lo compare cheste identity vasthundi",
+            "each pair C k times C k plus r gives x to the n plus r"
+          ],
+          "reject": [
+            "compare coefficients",
+            "equate them"
+          ],
+          "heard_as": [
+            "n plus r",
+            "two n C n plus r",
+            "coefficient of x"
+          ]
+        },
+        "why": "Two equal polynomials have equal coefficients for every power. Choosing the power xⁿ⁺ʳ is what makes the lower indices differ by exactly r.",
+        "common_mistakes": [
+          "Comparing xⁿ when the question has a general r.",
+          "Writing the right side as ²ⁿCᵣ."
+        ]
+      },
+      {
+        "id": "s4_deduce",
+        "kind": "boxed_final",
+        "label": "Deduce (i) and (ii)",
+        "marks": 1,
+        "mark_note": "Deductions",
+        "margin_note": "Seventh mark. r = 0 makes every product a square; r = 1 makes the indices consecutive.",
+        "lines": [
+          "(i) Put r = 0: C₀² + C₁² + C₂² + … + Cₙ² = ²ⁿCₙ",
+          "(ii) Put r = 1:",
+          {
+            "text": "C₀C₁ + C₁C₂ + C₂C₃ + … + Cₙ₋₁Cₙ = ²ⁿCₙ₊₁",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = 0 gives the sum of squares equal to ²ⁿCₙ, and r = 1 gives the sum of consecutive products equal to ²ⁿCₙ₊₁.",
+          "accept": [
+            "put r equal to zero to get the sum of squares equals two n C n and r equal to one to get the consecutive products equal two n C n plus one",
+            "r zero gives C nought squared plus C one squared and so on equals two n C n",
+            "r one gives C nought C one plus C one C two and so on equals two n C n plus one",
+            "r zero pettithe squares sum, r one pettithe consecutive products",
+            "substitute r zero and r one in the proved identity"
+          ],
+          "reject": [
+            "deduce them",
+            "substitute"
+          ],
+          "heard_as": [
+            "r equal to zero",
+            "r equal to one",
+            "two n C n",
+            "two n C n plus one"
+          ]
+        },
+        "why": "The general identity holds for every r from 0 to n, so the two named results are two of its special cases and need no fresh proof.",
+        "common_mistakes": [
+          "Re-proving (i) from scratch instead of substituting r = 0.",
+          "Writing (ii) with ²ⁿCₙ on the right."
+        ]
+      }
+    ]
+  }
+}

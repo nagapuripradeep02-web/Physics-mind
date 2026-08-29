@@ -1,0 +1,237 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_x3_over_2x_minus_1_x_minus_1_sq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve x³/((2x − 1)(x − 1)²) into partial fractions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Divide, then set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, answer 103. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book multiplies its identity through by 2 (2x³ = (2x − 1)(x − 1)² + 2A(x − 1)² + …) to avoid the 1/2; the card keeps the plain identity x³ = (1/2)(2x − 1)(x − 1)² + A(x − 1)² + B(2x − 1)(x − 1) + C(2x − 1), which gives the same A = 1/2, B = 1, C = 1. Both are correct. Truth check: putting x = 2 in the identity gives 8 = (1/2)(3)(1) + A(1) + B(3)(1) + C(3) = 3/2 + 1/2 + 3 + 3 = 8 with A = 1/2, B = 1, C = 1."
+  },
+  "recall_prompt": "Say how you would resolve x³/((2x − 1)(x − 1)²) into partial fractions — name each move in order, starting with what must be done before the form is written.",
+  "insider_note": "The fraction is improper, so the constant 1/2 from the leading coefficients 1 and 2 must stand in front of the form; and the substitution for A uses x = 1/2, the root of 2x − 1, not x = 1.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Divide, then set up the form",
+        "marks": 1,
+        "mark_note": "Divide and form",
+        "margin_note": "First mark. Degree 3 on top, degree 3 below: improper, but the quotient is only a constant, the ratio of the leading coefficients 1/2. So write 1/2 plus the usual form for (2x − 1)(x − 1)²: A over (2x − 1), B over (x − 1), C over (x − 1)².",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Degree 3 = degree 3: improper.",
+          "Leading coefficients 1 and 2, so the",
+          "quotient is the constant 1/2.",
+          "Let x³/((2x − 1)(x − 1)²)",
+          "= 1/2 + A/(2x − 1) + B/(x − 1)",
+          "+ C/(x − 1)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal degrees make the quotient the constant 1/2, and the form is 1/2 + A/(2x − 1) + B/(x − 1) + C/(x − 1)² with two fractions for the repeated factor.",
+          "accept": [
+            "the degrees are equal so the quotient is the constant half, then write half plus A over two x minus one plus B over x minus one plus C over x minus one squared",
+            "improper with equal degrees so a constant half comes first and the repeated factor gives two fractions",
+            "half plus A by 2x minus 1 plus B by x minus 1 plus C by x minus 1 whole square",
+            "degrees same kabatti quotient half, tarvata A by two x minus one plus B by x minus one plus C by x minus one square rasali",
+            "write the constant from the leading coefficients and then one fraction for two x minus one and two for the repeated x minus one"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "equal degrees",
+            "quotient half",
+            "leading coefficients",
+            "A over two x minus one",
+            "B over x minus one",
+            "C over x minus one squared",
+            "repeated"
+          ]
+        },
+        "why": "When numerator and denominator have the same degree, dividing gives a constant quotient equal to the ratio of the leading coefficients, x³ over 2x³, and a remainder of lower degree. That constant must be written before the form, or no A, B, C can satisfy the identity.",
+        "common_mistakes": [
+          "Writing A/(2x − 1) + B/(x − 1) + C/(x − 1)² with no 1/2 in front.",
+          "Writing the constant as 2 instead of 1/2.",
+          "Missing the B/(x − 1) fraction for the repeated factor."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply by (2x − 1)(x − 1)². The 1/2 keeps the whole denominator, A keeps (x − 1)², B keeps (2x − 1)(x − 1), C keeps (2x − 1).",
+        "lines": [
+          "Multiply by (2x − 1)(x − 1)²:",
+          "x³ = (1/2)(2x − 1)(x − 1)² + A(x − 1)²",
+          "+ B(2x − 1)(x − 1) + C(2x − 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying through gives x³ = (1/2)(2x − 1)(x − 1)² + A(x − 1)² + B(2x − 1)(x − 1) + C(2x − 1).",
+          "accept": [
+            "multiply both sides by two x minus one into x minus one squared to get x cubed equals half into the whole denominator plus A into x minus one squared plus B into two x minus one into x minus one plus C into two x minus one",
+            "clear the denominators and the half keeps the whole denominator as a term",
+            "x cubed equals half times two x minus one times x minus one squared plus A x minus one squared plus B two x minus one x minus one plus C two x minus one",
+            "denominator tho multiply cheste x cube equals half into whole denominator plus A into x minus one square plus B into two x minus one x minus one plus C into two x minus one",
+            "remove the fractions and keep the half term multiplied by the full denominator"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "half into",
+            "A into x minus one squared",
+            "B into two x minus one",
+            "C into two x minus one",
+            "identity"
+          ]
+        },
+        "why": "The constant 1/2 is a term of the equation, so it too gets multiplied by the denominator. Forgetting that term is the same error as forgetting the quotient in a long-division question.",
+        "common_mistakes": [
+          "Dropping the (1/2)(2x − 1)(x − 1)² term.",
+          "Giving C the factor (x − 1) instead of (2x − 1).",
+          "Giving B the factor (x − 1)² instead of (2x − 1)(x − 1)."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A, B and C",
+        "margin_note": "Third mark. x = 1/2 makes every term except A zero: 1/8 = A/4. x = 1 leaves only C: 1 = C. Then x = 0 gives one equation in A, B, C, which is B once A and C are known.",
+        "lines": [
+          "Put x = 1/2: 1/8 = A(1/4) ⇒ A = 1/2",
+          "Put x = 1: 1 = C(1) ⇒ C = 1",
+          "Put x = 0: 0 = −1/2 + A + B − C",
+          "⇒ B = 1/2 − A + C = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1/2 gives A = 1/2, x = 1 gives C = 1, and x = 0 gives 0 = −1/2 + A + B − C, so B = 1.",
+          "accept": [
+            "put x equals half to get A equals half, x equals one to get C equals one, then x equals zero to get zero equals minus half plus A plus B minus C so B is one",
+            "the two roots half and one give A half and C one, and x equals zero gives B one",
+            "A half, C one, B one",
+            "x equals half pedithe A half, x equals one pedithe C one, x equals zero pedithe B one vastundi",
+            "two roots and one extra value give the three constants"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals half",
+            "x equals one",
+            "x equals zero",
+            "A is half",
+            "C is one",
+            "B is one",
+            "one by eight"
+          ]
+        },
+        "why": "The root of 2x − 1 is x = 1/2, not x = 1 or x = 2. It makes (2x − 1) zero in every term but A. x = 1 does the same for C. B has no root of its own, so any third value, x = 0 being the easiest, gives the last equation.",
+        "common_mistakes": [
+          "Using x = 1 for the factor (2x − 1); its root is x = 1/2.",
+          "Computing (1/2 − 1)² as 1/2 instead of 1/4, which makes A come out as 1/4.",
+          "At x = 0 writing (1/2)(−1)(1) as +1/2 instead of −1/2, giving B = 0."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The constant 1/2 comes first, then A = 1/2 over (2x − 1) becomes 1/(2(2x − 1)), then 1/(x − 1) and 1/(x − 1)². Four terms; the result is too long for one box, so the constants are boxed under it.",
+        "lines": [
+          "∴ x³/((2x − 1)(x − 1)²)",
+          "= 1/2 + 1/(2(2x − 1)) + 1/(x − 1) + 1/(x − 1)²",
+          {
+            "text": "∴ A = 1/2, B = 1, C = 1 in the form above",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals 1/2 + 1/(2(2x − 1)) + 1/(x − 1) + 1/(x − 1)², with the constant 1/2 in front.",
+          "accept": [
+            "the answer is half plus one over two into two x minus one plus one over x minus one plus one over x minus one squared",
+            "half first then one by two two x minus one plus one by x minus one plus one by x minus one whole square",
+            "the constant half comes first and then the three fractions",
+            "final answer half plus one by two into two x minus one plus one by x minus one plus one by x minus one square ani rasali",
+            "put A half B one C one back into the form with the half in front"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "half plus",
+            "one over two into two x minus one",
+            "one over x minus one",
+            "one over x minus one squared",
+            "final answer"
+          ]
+        },
+        "why": "The constant quotient is part of the answer, exactly as a polynomial quotient would be. All four terms, in the form set up in step 1, are what the examiner marks.",
+        "common_mistakes": [
+          "Leaving out the 1/2 in the final line.",
+          "Writing 1/2(2x − 1) so it reads as half times the bracket; put the 2 inside the denominator bracket.",
+          "Not checking: put x = 2 in the identity, 8 = 3/2 + 1/2 + 3 + 3. If the two sides differ, a constant is wrong."
+        ]
+      }
+    ]
+  }
+}

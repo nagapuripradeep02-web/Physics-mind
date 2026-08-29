@@ -1,0 +1,207 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_locus_real_part_z_plus_1_over_z_plus_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If the real part of (z + 1)/(z + i) is 1, find the locus of z.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the quotient in terms of x and y",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by the conjugate and separate real and imaginary parts",
+      "marks": 2
+    },
+    {
+      "label": "Set the real part to 1 and state the locus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 7 Complex Numbers, answer 61. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 19. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2); the two locus SAQs of this unit (60, 61) share the same split and step ids deliberately. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot; the Bullet Model Paper re-solves this question on book p.100 with the same working. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the locus — what you substitute for z, what you multiply by, and what you set the real part equal to.",
+  "insider_note": "A locus answer must end as an equation in x and y — here the squares cancel and the line x − y = 1 is that equation. The imaginary part of the numerator is never used, so writing it out in full costs time and earns no mark.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Substitute z = x + iy",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. The +1 on top joins x; the +i below joins iy. Write each of numerator and denominator as (real) + i(imaginary).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let z = x + iy. Then",
+          {
+            "text": "(z + 1)/(z + i) = (x + iy + 1)/(x + iy + i)",
+            "style": "eq"
+          },
+          {
+            "text": "= [(x + 1) + iy] / [x + i(y + 1)]",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That z = x + iy is substituted so the quotient becomes [(x + 1) + iy] over [x + i(y + 1)].",
+          "accept": [
+            "put z equals x plus i y so the top is x plus one plus i y and the bottom is x plus i times y plus one",
+            "substitute x plus i y and group the real and imaginary parts above and below",
+            "the fraction becomes x plus one plus i y over x plus i y plus one",
+            "z ki x plus i y pettithe numerator x plus one plus i y, denominator x plus i into y plus one",
+            "write each of top and bottom as real plus i imaginary"
+          ],
+          "reject": [
+            "substitute z",
+            "write it in x and y"
+          ],
+          "heard_as": [
+            "x plus i y",
+            "x plus one",
+            "y plus one",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "why": "The locus is an equation in x and y, so z must be replaced first. The grouping fixes the form of the conjugate: the denominator's imaginary part is (y + 1), not y.",
+        "common_mistakes": [
+          "Grouping the +i in the denominator with x.",
+          "Writing the numerator as x + 1 + y, dropping the i.",
+          "Substituting only in the numerator."
+        ]
+      },
+      {
+        "id": "s2_rationalise",
+        "kind": "equation",
+        "label": "Multiply by the conjugate",
+        "marks": 2,
+        "mark_note": "Real and imaginary parts",
+        "margin_note": "Half the marks. The conjugate of the denominator is x − i(y + 1). The denominator becomes x² + (y + 1)²; the real part of the numerator is x(x + 1) + y(y + 1).",
+        "lines": [
+          "Multiply above and below by x − i(y + 1):",
+          {
+            "text": "= [(x + 1) + iy][x − i(y + 1)]",
+            "style": "eq"
+          },
+          {
+            "text": "/ [x² + (y + 1)²]",
+            "style": "indent"
+          },
+          "Numerator = x(x + 1) − i(x + 1)(y + 1) + ixy",
+          "+ y(y + 1)        (since −i² = 1)",
+          {
+            "text": "= [x² + y² + x + y] + i[xy − (x + 1)(y + 1)]",
+            "style": "eq"
+          },
+          "∴ real part = (x² + y² + x + y)/(x² + (y + 1)²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by the conjugate x − i(y + 1) makes the denominator x² + (y + 1)² and gives real part (x² + y² + x + y) over it.",
+          "accept": [
+            "multiply by the conjugate x minus i times y plus one, the denominator is x squared plus y plus one squared and the real part on top is x squared plus y squared plus x plus y",
+            "rationalise the denominator and separate the real part x squared plus y squared plus x plus y",
+            "after the conjugate the real part of the numerator is x squared plus y squared plus x plus y",
+            "conjugate tho multiply chesi real part x square plus y square plus x plus y teeyali",
+            "make the denominator real with the conjugate and collect the real terms"
+          ],
+          "reject": [
+            "rationalise",
+            "multiply by the conjugate",
+            "separate the parts"
+          ],
+          "heard_as": [
+            "conjugate",
+            "x minus i y plus one",
+            "real part",
+            "x squared plus y squared",
+            "plus x plus y"
+          ]
+        },
+        "why": "The real part of a quotient can be read only when the denominator is real. The conjugate does that in one multiplication; the denominator x² + (y + 1)² is then the thing that cancels against the numerator in the last step.",
+        "common_mistakes": [
+          "Using x + i(y + 1) instead of x − i(y + 1).",
+          "Writing −i·iy(y + 1) as −y(y + 1) instead of +y(y + 1).",
+          "Expanding the imaginary part in full — it is never used."
+        ]
+      },
+      {
+        "id": "s3_locus",
+        "kind": "boxed_final",
+        "label": "Real part = 1",
+        "marks": 1,
+        "mark_note": "Locus",
+        "margin_note": "Last mark. Set the real part to 1, cross-multiply, and the squares cancel — the locus is a straight line.",
+        "lines": [
+          "Real part = 1",
+          "⇒ x² + y² + x + y = x² + (y + 1)²",
+          "⇒ x² + y² + x + y = x² + y² + 2y + 1",
+          "⇒ x + y = 2y + 1",
+          {
+            "text": "∴ Locus of z: x − y = 1, z ≠ −i",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That setting the real part equal to 1 and cancelling the squared terms leaves x − y = 1 as the locus.",
+          "accept": [
+            "put the real part equal to one, the x squared and y squared cancel and the locus is x minus y equals one",
+            "cross multiply, the squares cancel, x minus y equals one",
+            "real part one gives x plus y equals two y plus one so x minus y is one",
+            "real part one pettithe squares cancel ayyi x minus y equals one vasthundi",
+            "the locus is the straight line x minus y equals one"
+          ],
+          "reject": [
+            "find the locus",
+            "set it equal to one"
+          ],
+          "heard_as": [
+            "real part one",
+            "cancel",
+            "x minus y",
+            "equals one",
+            "locus",
+            "straight line"
+          ]
+        },
+        "why": "The condition 'real part is 1' is used exactly here. Because the denominator x² + (y + 1)² also has x² + y² in it, both squares cancel and only a linear equation survives — the locus is a line, not a circle. One point must be removed: at z = −i the denominator z + i is zero, so the expression is undefined there. That point is (0, −1), and 0 − (−1) = 1 — it lies on the line, so it has to be excluded by name or the stated locus contains a point that is not in it.",
+        "common_mistakes": [
+          "Setting the real part to 0 (the 'purely imaginary' condition from the previous question).",
+          "Expanding (y + 1)² as y² + 1.",
+          "Leaving z = −i in the locus, where the expression is undefined."
+        ]
+      }
+    ]
+  }
+}

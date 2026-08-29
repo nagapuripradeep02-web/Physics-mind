@@ -118,7 +118,7 @@ the 96 legacy figures are never silently retimed.
 
 ```
 npx tsx src/scripts/pace_figures.ts --prefix ts_ipe_z1 --write   # fills ms from path length
-npm run check:figure-pace                                        # 40-160 u/s, strict for ts_ipe_z1
+npm run check:figure-pace                                        # 40-160 u/s, strict for every opted-in prefix
 ```
 Authors write the path and the phases and leave `"ms": 0`; the pacer fills timing at **70 figure
 units per second** (clamped 300–4500 ms; labels 450 ms). The gate also **requires phases on any

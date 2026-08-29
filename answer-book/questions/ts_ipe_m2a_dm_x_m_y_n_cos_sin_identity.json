@@ -1,0 +1,272 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_x_m_y_n_cos_sin_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If m, n are integers and x = cos α + i sin α, y = cos β + i sin β, then prove that xᵐyⁿ + 1/(xᵐyⁿ) = 2cos(mα + nβ) and xᵐyⁿ − 1/(xᵐyⁿ) = 2i sin(mα + nβ).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Powers of x and y by De Moivre's theorem",
+      "marks": 1
+    },
+    {
+      "label": "The product xᵐyⁿ",
+      "marks": 1
+    },
+    {
+      "label": "The reciprocal 1/(xᵐyⁿ)",
+      "marks": 1
+    },
+    {
+      "label": "Add for the cosine result",
+      "marks": 2
+    },
+    {
+      "label": "Subtract for the sine result",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 De Moivre's Theorem, answer 3. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1+1+2+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the [1 Mark] · [1 Mark] · [1 Mark] · [2 Marks] · [2 Marks] tags the book prints against answer 8 on book p.18, the nearest printed split for a prove-two-results question: three single marks for the setting-up lines, two marks for each result. The same step names (s1_de_moivre / s2 … / final) are used across the 'x = cis α' identity answers 3 and 7 of this unit as far as their shapes allow; answer 6 is a single evaluation and stands alone. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: xᵐyⁿ = cis(mα + nβ) and its reciprocal is the conjugate, so the sum is 2cos(mα + nβ) and the difference 2i sin(mα + nβ); the book's answer is correct. m and n are integers, which is the case De Moivre's theorem covers exactly."
+  },
+  "recall_prompt": "Say how you would prove both results — what De Moivre's theorem gives for xᵐ and yⁿ, what the product and its reciprocal are, and what adding and subtracting give.",
+  "insider_note": "Four of the seven marks are the last two lines, one addition and one subtraction of the same pair. The mark most often dropped is the reciprocal, 1/cis θ = cis(−θ), and the i must stay in the second answer: 2i sin(mα + nβ).",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "De Moivre's Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_de_moivre",
+        "kind": "equation",
+        "label": "Powers of x and y by De Moivre",
+        "marks": 1,
+        "mark_note": "De Moivre",
+        "margin_note": "First mark. xᵐ = cos mα + i sin mα and yⁿ = cos nβ + i sin nβ. The exponent m belongs to α and n to β; write both lines before multiplying anything.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x = cos α + i sin α = cis α,",
+          "y = cos β + i sin β = cis β",
+          "xᵐ = (cos α + i sin α)ᵐ = cos mα + i sin mα",
+          "yⁿ = (cos β + i sin β)ⁿ = cos nβ + i sin nβ",
+          "(by De Moivre's theorem, m and n integers)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That De Moivre's theorem gives xᵐ = cis mα and yⁿ = cis nβ.",
+          "accept": [
+            "by De Moivre x to the m is cos m alpha plus i sin m alpha and y to the n is cis n beta",
+            "raise x to m and y to n using De Moivre so the angles become m alpha and n beta",
+            "x power m is cis m alpha and y power n is cis n beta",
+            "De Moivre tho x power m cis m alpha, y power n cis n beta avuthai",
+            "the powers multiply the angles by m and by n"
+          ],
+          "reject": [
+            "raise them",
+            "use De Moivre",
+            "find the powers"
+          ],
+          "heard_as": [
+            "cis m alpha",
+            "cis n beta",
+            "De Moivre",
+            "x to the m",
+            "y to the n"
+          ]
+        },
+        "why": "De Moivre's theorem is the only tool in the question: it moves the integer power onto the angle. Both powers are written before anything is multiplied.",
+        "common_mistakes": [
+          "Writing xᵐ = cosᵐ α + i sinᵐ α, which is false.",
+          "Multiplying the angle by n for x and by m for y, swapping the exponents.",
+          "Skipping this line and writing xᵐyⁿ directly, which loses the method mark."
+        ]
+      },
+      {
+        "id": "s2_product",
+        "kind": "equation",
+        "label": "The product xᵐyⁿ",
+        "marks": 1,
+        "mark_note": "Product",
+        "margin_note": "Second mark. cis mα · cis nβ = cis(mα + nβ): both moduli are 1, so only the angles combine, and they add. Label it (1).",
+        "lines": [
+          "xᵐyⁿ = cis mα · cis nβ = cis(mα + nβ)",
+          "= cos(mα + nβ) + i sin(mα + nβ) …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying cis mα by cis nβ adds the angles, so xᵐyⁿ = cis(mα + nβ), called equation (1).",
+          "accept": [
+            "multiply the two and the angles add so x m y n is cis of m alpha plus n beta",
+            "cis m alpha times cis n beta is cis m alpha plus n beta, that is equation one",
+            "the product has angle m alpha plus n beta",
+            "rendu multiply cheste angles add ayyi cis m alpha plus n beta vasthundi",
+            "equation one is cos of m alpha plus n beta plus i sin of the same"
+          ],
+          "reject": [
+            "multiply them",
+            "find the product",
+            "equation one"
+          ],
+          "heard_as": [
+            "angles add",
+            "m alpha plus n beta",
+            "product",
+            "equation one"
+          ]
+        },
+        "why": "cis A · cis B = cis(A + B) is the product rule for numbers on the unit circle: moduli multiply (1 × 1) and amplitudes add. It turns the product into a single cis.",
+        "common_mistakes": [
+          "Multiplying the angles instead of adding them.",
+          "Expanding the product with four trigonometric terms and never using the product rule.",
+          "Writing the angle as mα · nβ."
+        ]
+      },
+      {
+        "id": "s3_reciprocal",
+        "kind": "equation",
+        "label": "The reciprocal 1/(xᵐyⁿ)",
+        "marks": 1,
+        "mark_note": "Reciprocal",
+        "margin_note": "Third mark. 1/cis(mα + nβ) = cis(−(mα + nβ)), because cis θ · cis(−θ) = cis 0 = 1. Only the sine changes sign; label it (2).",
+        "lines": [
+          "1/(xᵐyⁿ) = 1/cis(mα + nβ) = cis(−(mα + nβ))",
+          "= cos(mα + nβ) − i sin(mα + nβ) …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reciprocal of cis(mα + nβ) is cis(−(mα + nβ)) = cos(mα + nβ) − i sin(mα + nβ), called equation (2).",
+          "accept": [
+            "the reciprocal is cis of minus the angle so cos m alpha plus n beta minus i sin, equation two",
+            "one over x m y n is the conjugate, cos minus i sin of m alpha plus n beta",
+            "taking the reciprocal changes the sign of the angle",
+            "reciprocal teeste angle minus avuthundi, cos minus i sin vasthundi",
+            "equation two is the same with a minus before the i sin"
+          ],
+          "reject": [
+            "take the reciprocal",
+            "flip it",
+            "equation two"
+          ],
+          "heard_as": [
+            "reciprocal",
+            "minus the angle",
+            "cos minus i sin",
+            "equation two",
+            "conjugate"
+          ]
+        },
+        "why": "1/cis θ = cis(−θ) because cis θ · cis(−θ) = cis 0 = 1. For a number of modulus 1 the reciprocal is the conjugate, so only the sign of the sine changes.",
+        "common_mistakes": [
+          "Writing 1/cis θ as cos θ + i sin θ with no sign change.",
+          "Changing the sign of the cosine as well as the sine.",
+          "Rationalising the fraction from scratch and losing time."
+        ]
+      },
+      {
+        "id": "s4_add",
+        "kind": "equation",
+        "label": "Add (1) and (2)",
+        "marks": 2,
+        "mark_note": "First result",
+        "margin_note": "Fourth and fifth marks. Adding (1) and (2) cancels the sines and doubles the cosine: 2cos(mα + nβ). The angle stays whole — it does not split into 2cos mα + 2cos nβ.",
+        "lines": [
+          "Adding (1) and (2):",
+          {
+            "text": "xᵐyⁿ + 1/(xᵐyⁿ) = 2cos(mα + nβ)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding equations (1) and (2) cancels the i sin terms and gives xᵐyⁿ + 1/(xᵐyⁿ) = 2cos(mα + nβ).",
+          "accept": [
+            "add one and two, the sine terms cancel and we get two cos of m alpha plus n beta",
+            "adding gives twice the real part which is two cos m alpha plus n beta",
+            "one plus two is two cos of m alpha plus n beta, the first result",
+            "rendu add cheste sin cancel ayyi two cos m alpha plus n beta vasthundi",
+            "the sum of a number and its conjugate is two times the real part"
+          ],
+          "reject": [
+            "add them",
+            "first result",
+            "then we get it"
+          ],
+          "heard_as": [
+            "adding",
+            "two cos",
+            "cancel",
+            "first result"
+          ]
+        },
+        "why": "A number of modulus 1 plus its reciprocal is the number plus its conjugate, which is twice the real part. That is the whole content of the first identity.",
+        "common_mistakes": [
+          "Writing 2cos(mα) + 2cos(nβ), splitting the angle.",
+          "Leaving a stray i in the sum.",
+          "Writing the result as cos(mα + nβ) without the 2."
+        ]
+      },
+      {
+        "id": "s5_subtract",
+        "kind": "boxed_final",
+        "label": "Subtract (2) from (1)",
+        "marks": 2,
+        "mark_note": "Second result",
+        "margin_note": "Sixth and seventh marks. Subtracting (2) from (1) cancels the cosines and doubles the imaginary part: 2i sin(mα + nβ). The i stays in the answer, and the order matters — (2) minus (1) gives the opposite sign.",
+        "lines": [
+          "Subtracting (2) from (1):",
+          {
+            "text": "xᵐyⁿ − 1/(xᵐyⁿ) = 2i sin(mα + nβ)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtracting equation (2) from (1) cancels the cosines and gives xᵐyⁿ − 1/(xᵐyⁿ) = 2i sin(mα + nβ).",
+          "accept": [
+            "subtract two from one, the cosines cancel and we get two i sin of m alpha plus n beta",
+            "subtracting gives twice the imaginary part so two i sin m alpha plus n beta",
+            "one minus two is two i sin of m alpha plus n beta, the second result",
+            "one nunchi two subtract cheste cos cancel ayyi two i sin vasthundi",
+            "the difference of a number and its conjugate is two i times the imaginary part"
+          ],
+          "reject": [
+            "subtract them",
+            "second result",
+            "same again"
+          ],
+          "heard_as": [
+            "subtracting",
+            "two i sin",
+            "cancel",
+            "second result"
+          ]
+        },
+        "why": "A number minus its conjugate is 2i times the imaginary part. The i stays in the answer, which is why the second identity has 2i sin and not 2 sin.",
+        "common_mistakes": [
+          "Dropping the i and writing 2 sin(mα + nβ).",
+          "Subtracting (1) from (2) and getting −2i sin, the wrong sign.",
+          "Writing 2i sin(mα) − 2i sin(nβ), splitting the angle."
+        ]
+      }
+    ]
+  }
+}

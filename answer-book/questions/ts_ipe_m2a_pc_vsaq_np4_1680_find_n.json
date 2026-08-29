@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_np4_1680_find_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ⁿP₄ = 1680, find n.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write 1680 as four consecutive factors",
+      "marks": 1
+    },
+    {
+      "label": "Compare and state n",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 16 Permutations & Combinations, answer 139.1. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_expand, s2_solve) are used on every 'solve for n or r' VSAQ in this unit (answers 138.1 to 142), deliberately: they are one method — write the permutation or combination out, compare or solve — over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book's working factors 1680 as 168 × 10 = (2 × 2 × 2 × 3 × 7) × (5 × 2) and regroups to 8 × 7 × 6 × 5; the card states the regrouped product directly."
+  },
+  "recall_prompt": "Say how you would find n when n P 4 is 1680.",
+  "insider_note": "Same method as ⁿP₃ = 1320 but with FOUR consecutive factors: 1680 = 8 · 7 · 6 · 5, so n = 8 — writing only three factors is the slip this version is built around.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Write 1680 as four consecutive factors",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ⁿP₄ is a product of 4 consecutive whole numbers counting down from n. 1680 = 8 · 7 · 6 · 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ⁿP₄ = n(n − 1)(n − 2)(n − 3) = 1680",
+          "1680 = 8 · 7 · 6 · 5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n P 4 is the product of four consecutive numbers from n down, and 1680 is 8 times 7 times 6 times 5.",
+          "accept": [
+            "n P four is n into n minus one into n minus two into n minus three and sixteen eighty is eight times seven times six times five",
+            "break sixteen eighty into four consecutive numbers eight seven six five",
+            "one thousand six hundred eighty is eight into seven into six into five",
+            "sixteen eighty ni eight seven six five ga rayali",
+            "four consecutive factors of sixteen eighty"
+          ],
+          "reject": [
+            "find n",
+            "use the formula"
+          ],
+          "heard_as": [
+            "n P four",
+            "sixteen eighty",
+            "eight seven six five",
+            "consecutive"
+          ]
+        },
+        "why": "Solving n(n − 1)(n − 2)(n − 3) = 1680 as a polynomial is a quartic; matching it to a product of four consecutive numbers is the whole method.",
+        "common_mistakes": [
+          "Writing only three factors n(n − 1)(n − 2) — ⁿP₄ has four.",
+          "Factoring 1680 as 10 · 8 · 7 · 3, which are not consecutive."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Compare and state n",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. n(n − 1)(n − 2)(n − 3) = 8 · 7 · 6 · 5, so n = 8.",
+        "lines": [
+          "n(n − 1)(n − 2)(n − 3) = 8 · 7 · 6 · 5",
+          {
+            "text": "∴ n = 8",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing the two products gives n = 8.",
+          "accept": [
+            "compare the products so n is eight",
+            "n equals eight",
+            "the largest factor is eight so n is eight",
+            "compare cheste n eight",
+            "n is eight"
+          ],
+          "reject": [
+            "compare",
+            "solve"
+          ],
+          "heard_as": [
+            "n is eight",
+            "eight",
+            "compare"
+          ]
+        },
+        "why": "The product of four consecutive numbers increases with n, so only one n fits, and it is the largest factor.",
+        "common_mistakes": [
+          "Answering n = 5, the smallest factor.",
+          "Writing n = 8 without the comparison line."
+        ]
+      }
+    ]
+  }
+}

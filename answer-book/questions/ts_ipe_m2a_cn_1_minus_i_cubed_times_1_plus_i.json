@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_1_minus_i_cubed_times_1_plus_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Express (1 − i)³(1 + i) in the form a + ib.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Regroup as (1 − i)² · (1 − i)(1 + i)",
+      "marks": 1
+    },
+    {
+      "label": "Simplify each factor and multiply",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.70 — VSAQ chapter 12 Complex Numbers, answer 105.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would simplify this product without expanding a cube.",
+  "insider_note": "Pair one (1 − i) with (1 + i) before touching the cube: that pair is the real number 2, and what is left is only (1 − i)². Expanding the cube term by term is longer and is where the sign slips happen.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group",
+        "kind": "equation",
+        "label": "Regroup the factors",
+        "marks": 1,
+        "mark_note": "Regrouping",
+        "margin_note": "First mark. Take one factor (1 − i) out of the cube and pair it with (1 + i): that pair is a conjugate product, which is real. What remains is (1 − i)², a small square.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(1 − i)³(1 + i) = (1 − i)² · (1 − i)(1 + i)",
+          "= (1 − 2i + i²)(1 − i²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product is regrouped as (1 − i)² times (1 − i)(1 + i), giving (1 − 2i + i²)(1 − i²).",
+          "accept": [
+            "take one factor of one minus i and pair it with one plus i, leaving one minus i squared",
+            "regroup as one minus i squared times one minus i into one plus i",
+            "use the conjugate pair one minus i into one plus i which is one minus i squared",
+            "oka one minus i ni one plus i tho pair chesi, migilindi one minus i square",
+            "split the cube into a square and a conjugate product"
+          ],
+          "reject": [
+            "expand the cube",
+            "simplify"
+          ],
+          "heard_as": [
+            "regroup",
+            "conjugate",
+            "one minus i squared",
+            "one plus i",
+            "pair"
+          ]
+        },
+        "why": "Expanding (1 − i)³ directly is four terms and two powers of i. Pairing one factor with its conjugate gives a real number at once, and (1 − i)² is one line — the regrouping is what keeps a 2-mark question at 2 marks of work.",
+        "common_mistakes": [
+          "Expanding the cube term by term and losing a sign.",
+          "Writing (1 − i)(1 + i) as 1 + i² instead of 1 − i²."
+        ]
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. i² = −1 makes the first bracket −2i and the second bracket 2. Then the real part is 0.",
+        "lines": [
+          "= (1 − 2i − 1)(1 + 1)        (since i² = −1)",
+          "= (−2i)(2) = −4i",
+          {
+            "text": "∴ (1 − i)³(1 + i) = 0 + i(−4)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with i² = −1 the product is (−2i)(2) = −4i, which is 0 + i(−4).",
+          "accept": [
+            "the first bracket is minus two i and the second is two so the product is minus four i",
+            "minus two i times two equals minus four i, real part zero and imaginary part minus four",
+            "it comes to zero plus i times minus four",
+            "i square minus one pettithe minus two i into two, that is minus four i",
+            "the answer is minus four i, a is zero and b is minus four"
+          ],
+          "reject": [
+            "simplify",
+            "multiply"
+          ],
+          "heard_as": [
+            "minus four i",
+            "minus two i",
+            "zero",
+            "minus four"
+          ]
+        },
+        "why": "The form a + ib must show both parts, even when one is zero. Writing 0 + i(−4) says a = 0 and b = −4 explicitly, which is what 'express in the form a + ib' asks.",
+        "common_mistakes": [
+          "Writing (1 − i²) as 0 by using i² = +1.",
+          "Ending at −4i without writing a = 0."
+        ]
+      }
+    ]
+  }
+}

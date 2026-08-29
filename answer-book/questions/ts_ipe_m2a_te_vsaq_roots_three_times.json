@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_roots_three_times",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find an algebraic equation of degree 4 whose roots are 3 times the roots of the equation 6x⁴ − 7x³ + 8x² − 7x + 2 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Replace x by x/3",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by 3⁴ and write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 15 Theory of Equations, answer 134. Printed appearances: none — this answer carries no year chip. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. The SAME step ids (s1_transform, s2_answer) are used on answers 132, 133, 134, 135 and Star Questions Plus 196, deliberately: one substitution (x → 1/x, x/k, −x or x + h) applied to f(x), then one clearing of fractions or brackets. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: coefficient by coefficient, (6, −7, 8, −7, 2) × (1, 3, 9, 27, 81) = (6, −21, 72, −189, 162), the card's answer. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say what you replace x by, and how you clear the fractions afterwards.",
+  "insider_note": "Each coefficient is multiplied by a power of 3 that grows as the degree falls: 1, 3, 9, 27, 81.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transform",
+        "kind": "equation",
+        "label": "Replace x by x/3",
+        "marks": 1,
+        "mark_note": "f(x/3) = 0",
+        "margin_note": "First mark. New roots 3α ⇒ α = x/3, so the required equation is f(x/3) = 0. Denominators 81, 27, 9, 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = 6x⁴ − 7x³ + 8x² − 7x + 2.",
+          "The required equation is f(x/3) = 0:",
+          "6x⁴/81 − 7x³/27 + 8x²/9 − 7x/3 + 2 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation whose roots are three times the old ones is f(x/3) = 0, obtained by replacing x by x/3.",
+          "accept": [
+            "replace x by x by three because the new root is three times the old one",
+            "the required equation is f of x by three equals zero",
+            "put x over three in place of x",
+            "x place lo x by three pettali, f of x by three equals zero",
+            "roots tripled means substitute x over three"
+          ],
+          "reject": [
+            "multiply the coefficients",
+            "find the roots"
+          ],
+          "heard_as": [
+            "x by three",
+            "x over three",
+            "f of x by three",
+            "replace x",
+            "three times"
+          ]
+        },
+        "why": "If f(α) = 0 then f((3α)/3) = 0, so 3α is a root of f(x/3) = 0. Tripling the roots means dividing the variable by 3.",
+        "common_mistakes": [
+          "Replacing x by 3x, which divides the roots by 3 instead.",
+          "Forgetting to raise the 3 to the power along with x: (x/3)⁴ = x⁴/81."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Multiply by 3⁴",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Multiply through by 3⁴ = 81: 81/27 = 3, 81/9 = 9, 81/3 = 27.",
+        "lines": [
+          "Multiply by 3⁴ = 81:",
+          {
+            "text": "∴ 6x⁴ − 21x³ + 72x² − 189x + 162 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by 3⁴ = 81 clears the fractions and gives 6x⁴ − 21x³ + 72x² − 189x + 162 = 0.",
+          "accept": [
+            "multiply by eighty one and the equation is six x four minus twenty one x cube plus seventy two x square minus one eighty nine x plus one sixty two",
+            "clear the denominators with three to the four",
+            "the answer is six x to the four minus twenty one x cubed plus seventy two x squared minus one hundred eighty nine x plus one hundred sixty two",
+            "eighty one tho multiply chesthe six x four minus twenty one x cube plus seventy two x square minus one eighty nine x plus one sixty two",
+            "multiply through by three to the power four"
+          ],
+          "reject": [
+            "multiply it out",
+            "simplify"
+          ],
+          "heard_as": [
+            "eighty one",
+            "three to the four",
+            "multiply",
+            "one sixty two",
+            "one eighty nine"
+          ]
+        },
+        "why": "Multiplying by 81 does not change the roots and gives integer coefficients. Each coefficient of the original is multiplied by 3 to the power of (4 − its degree): 1, 3, 9, 27, 81.",
+        "common_mistakes": [
+          "Multiplying the constant 2 by 1 instead of 81.",
+          "A slip such as 7 × 27 = 189 written as 179."
+        ]
+      }
+    ]
+  }
+}

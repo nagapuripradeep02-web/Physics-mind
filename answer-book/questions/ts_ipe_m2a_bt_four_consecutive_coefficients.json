@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_four_consecutive_coefficients",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If the coefficients of 4 consecutive terms in the expansion of (1 + x)ⁿ are a₁, a₂, a₃, a₄ respectively, then show that a₁/(a₁ + a₂) + a₃/(a₃ + a₄) = 2a₂/(a₂ + a₃).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the four coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Reduce the left side",
+      "marks": 3
+    },
+    {
+      "label": "Reduce the right side",
+      "marks": 2
+    },
+    {
+      "label": "Match the two sides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.28 — LAQ chapter 3 Binomial Theorem, answer 21. Printed appearances: AP 17 · TS 17. ⚠ THE 1+3+2+1 SPLIT IS OURS, NOT THE BOOK'S — book p.28 prints no [N Marks] tags against this answer (it shares the page with answer 22 and the margin holds the tick boxes). It is patterned on the chapter's one-mark-per-idea tagging on p.27 (answer 20): naming the four coefficients (1), the left side reduced to (2r + 4)/(n + 1) in three moves (3), the right side reduced (2), the two sides matched (1). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q20 of Model Paper 3 (book p.116) and is re-solved in the Bullet Model Paper Q20 & 21 block (book p.106) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would prove this — what the four coefficients are, the one identity that turns each fraction into (r + 1)/(n + 1), what the left side and the right side each reduce to, and why they are equal.",
+  "insider_note": "The four coefficients start at a general r — ⁿCᵣ to ⁿCᵣ₊₃, never ⁿC₁ to ⁿC₄. The seventh mark is the one-line sentence that the reduced left and right sides are the same expression; reducing both and never saying so loses it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "equation",
+        "label": "Name the four coefficients",
+        "marks": 1,
+        "mark_note": "Setting up",
+        "margin_note": "First mark. Four consecutive coefficients of (1 + x)ⁿ are ⁿCᵣ, ⁿCᵣ₊₁, ⁿCᵣ₊₂, ⁿCᵣ₊₃ for some r.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take the four consecutive coefficients as",
+          "a₁ = ⁿCᵣ, a₂ = ⁿCᵣ₊₁, a₃ = ⁿCᵣ₊₂, a₄ = ⁿCᵣ₊₃"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a₁, a₂, a₃, a₄ are ⁿCᵣ, ⁿCᵣ₊₁, ⁿCᵣ₊₂, ⁿCᵣ₊₃.",
+          "accept": [
+            "take the four coefficients as n C r, n C r plus one, n C r plus two and n C r plus three",
+            "consecutive coefficients are n C r up to n C r plus three",
+            "let a one be n C r and the next three be r plus one r plus two r plus three",
+            "a one a two a three a four ni n C r nunchi n C r plus three varaku teesukovali",
+            "four consecutive binomial coefficients starting from n C r"
+          ],
+          "reject": [
+            "write the coefficients",
+            "let them be a one to a four"
+          ],
+          "heard_as": [
+            "n C r",
+            "r plus one",
+            "r plus two",
+            "r plus three"
+          ]
+        },
+        "why": "Consecutive coefficients differ only in the lower index, so one letter r fixes all four. Everything after this is algebra in n and r.",
+        "common_mistakes": [
+          "Taking a₁ = ⁿC₁ — the four terms need not start at the beginning.",
+          "Using four unrelated letters and having nothing to simplify."
+        ]
+      },
+      {
+        "id": "s2_lhs",
+        "kind": "equation",
+        "label": "Reduce the left side",
+        "marks": 3,
+        "mark_note": "L.H.S. = 2(r + 2)/(n + 1)",
+        "margin_note": "Second to fourth marks. Two identities: ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁, and ⁿ⁺¹Cᵣ₊₁ = ((n + 1)/(r + 1))·ⁿCᵣ. Together they turn ⁿCᵣ/(ⁿCᵣ + ⁿCᵣ₊₁) into (r + 1)/(n + 1).",
+        "lines": [
+          "L.H.S. = ⁿCᵣ/(ⁿCᵣ + ⁿCᵣ₊₁) + ⁿCᵣ₊₂/(ⁿCᵣ₊₂ + ⁿCᵣ₊₃)",
+          "= ⁿCᵣ/ⁿ⁺¹Cᵣ₊₁ + ⁿCᵣ₊₂/ⁿ⁺¹Cᵣ₊₃",
+          "  [ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁]",
+          "Now ⁿ⁺¹Cᵣ₊₁ = ((n + 1)/(r + 1))·ⁿCᵣ, so",
+          "= (r + 1)/(n + 1) + (r + 3)/(n + 1)",
+          "= (2r + 4)/(n + 1) = 2(r + 2)/(n + 1) …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each fraction on the left becomes ⁿCᵣ over ⁿ⁺¹Cᵣ₊₁ by Pascal's identity, then (r + 1)/(n + 1) by the ratio identity, so the left side is 2(r + 2)/(n + 1).",
+          "accept": [
+            "use n C r plus n C r plus one equals n plus one C r plus one, then n plus one C r plus one is n plus one by r plus one times n C r, so the first fraction is r plus one by n plus one and the second is r plus three by n plus one",
+            "the left side becomes r plus one over n plus one plus r plus three over n plus one which is two r plus four over n plus one",
+            "pascal identity in the denominator then the ratio identity gives two into r plus two by n plus one",
+            "denominator lo pascal rule vadi, tarvata ratio formula tho r plus one by n plus one vasthundi",
+            "left side reduces to two r plus four over n plus one"
+          ],
+          "reject": [
+            "simplify the left side",
+            "use the identity"
+          ],
+          "heard_as": [
+            "n plus one C r plus one",
+            "r plus one by n plus one",
+            "r plus three",
+            "two r plus four"
+          ]
+        },
+        "why": "The sum of two consecutive coefficients is itself a coefficient one row down, and a coefficient one row down is a simple multiple of the one above. Those two facts are the whole proof.",
+        "common_mistakes": [
+          "Writing ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ instead of ⁿ⁺¹Cᵣ₊₁.",
+          "Inverting the ratio and getting (n + 1)/(r + 1).",
+          "Adding the two fractions before reducing them."
+        ]
+      },
+      {
+        "id": "s3_rhs",
+        "kind": "equation",
+        "label": "Reduce the right side",
+        "marks": 2,
+        "mark_note": "R.H.S. = 2(r + 2)/(n + 1)",
+        "margin_note": "Fifth and sixth marks. The same two identities, one index higher: a₂ + a₃ = ⁿ⁺¹Cᵣ₊₂ = ((n + 1)/(r + 2))·ⁿCᵣ₊₁.",
+        "lines": [
+          "R.H.S. = 2·ⁿCᵣ₊₁/(ⁿCᵣ₊₁ + ⁿCᵣ₊₂) = 2·ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂",
+          "= 2·ⁿCᵣ₊₁ / (((n + 1)/(r + 2))·ⁿCᵣ₊₁)",
+          "= 2(r + 2)/(n + 1) …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right side is 2ⁿCᵣ₊₁ over ⁿ⁺¹Cᵣ₊₂, which by the ratio identity is 2(r + 2)/(n + 1).",
+          "accept": [
+            "the right side is two n C r plus one over n plus one C r plus two which is two into r plus two by n plus one",
+            "same identities on the right give two r plus two over n plus one",
+            "a two plus a three is n plus one C r plus two and the ratio gives r plus two by n plus one, doubled",
+            "right side lo kuda same rule vadithe two into r plus two by n plus one vasthundi",
+            "right side reduces to two r plus four over n plus one"
+          ],
+          "reject": [
+            "simplify the right side",
+            "do the same on the right"
+          ],
+          "heard_as": [
+            "n plus one C r plus two",
+            "r plus two by n plus one",
+            "two r plus four"
+          ]
+        },
+        "why": "The right side is built from the middle pair a₂, a₃, so its reduced form has r + 2 where the left side had r + 1 and r + 3 — which average to r + 2.",
+        "common_mistakes": [
+          "Forgetting the factor 2 in front.",
+          "Writing the denominator as ⁿ⁺¹Cᵣ₊₁."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Match the two sides",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Seventh mark. (1) and (2) are the same expression — say so in one line.",
+        "lines": [
+          {
+            "text": "From (1) and (2), L.H.S. = R.H.S.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides equal 2(r + 2)/(n + 1), so the identity is proved.",
+          "accept": [
+            "both sides are two r plus two by n plus one so they are equal",
+            "from one and two the left side equals the right side",
+            "the identity is proved since both reduce to the same fraction",
+            "rendu sides two into r plus two by n plus one kabatti equal",
+            "L H S equals R H S"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true"
+          ],
+          "heard_as": [
+            "equal",
+            "proved",
+            "L H S",
+            "R H S"
+          ]
+        },
+        "why": "A show-that question is finished only when the two reduced forms are placed side by side and declared equal.",
+        "common_mistakes": [
+          "Reducing both sides and never writing the concluding line."
+        ]
+      }
+    ]
+  }
+}

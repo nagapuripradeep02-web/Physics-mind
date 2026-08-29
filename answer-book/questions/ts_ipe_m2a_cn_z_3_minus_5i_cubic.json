@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_z_3_minus_5i_cubic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If z = 3 − 5i, then show that z³ − 10z² + 58z − 136 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Form the quadratic z² − 6z + 34 = 0 from z = 3 − 5i",
+      "marks": 1
+    },
+    {
+      "label": "Factor the cubic as (z − 4)(z² − 6z + 34)",
+      "marks": 2
+    },
+    {
+      "label": "Substitute the quadratic and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 7 Complex Numbers, answer 58. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: none — this answer carries no year tag. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2: set-up, bulk computation, conclusion). The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot. The book prints an unsolved practice variant under this answer ('PQ: if z = 2 − i√7 show that 3z³ − 4z² + z + 88 = 0') — it has no answer number and is NOT authored as a card; recorded so a later session knows it exists. The book's 'Hint for Step-A' says the factor (z − 4) comes from long division; the card shows the multiplication check instead, which is shorter to write and proves the same identity. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show the cubic is zero — what quadratic you build from z first, how you use it inside the cubic, and why the whole thing collapses to zero.",
+  "insider_note": "Do not substitute 3 − 5i into the cubic — build the real quadratic z² − 6z + 34 = 0 first and factor the cubic as (z − 4)(z² − 6z + 34). Half the marks are that factorisation, and the last mark is the sentence that says the second bracket is zero.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quadratic",
+        "kind": "equation",
+        "label": "Build the quadratic",
+        "marks": 1,
+        "mark_note": "Quadratic",
+        "margin_note": "First mark. Do not substitute 3 − 5i into the cubic — that is a long, error-prone expansion. Instead move the 3 across, square to remove i, and get a real quadratic that z satisfies.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "z = 3 − 5i ⇒ z − 3 = −5i",
+          "Squaring: (z − 3)² = (−5i)² = 25i² = −25",
+          "⇒ z² − 6z + 9 = −25",
+          {
+            "text": "⇒ z² − 6z + 34 = 0    …(1)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That z − 3 = −5i is squared to give z² − 6z + 9 = −25, so z satisfies z² − 6z + 34 = 0.",
+          "accept": [
+            "move the three across, square both sides and get z squared minus six z plus thirty four equals zero",
+            "z minus three is minus five i, squaring gives z squared minus six z plus nine equals minus twenty five",
+            "build the quadratic z squared minus six z plus thirty four from z equals three minus five i",
+            "z minus three square cheste minus twenty five, so z square minus six z plus thirty four equals zero",
+            "square z minus three to remove the i and get a real quadratic"
+          ],
+          "reject": [
+            "substitute z",
+            "square it",
+            "find the equation"
+          ],
+          "heard_as": [
+            "z minus three",
+            "minus five i",
+            "thirty four",
+            "z squared minus six z",
+            "quadratic"
+          ]
+        },
+        "why": "Squaring −5i gives −25, a real number, so the i disappears and z is seen to satisfy a real quadratic. The cubic in the question is built from that quadratic, which is why this line does most of the work.",
+        "common_mistakes": [
+          "Writing (−5i)² = 25 by forgetting i² = −1.",
+          "Squaring z = 3 − 5i directly instead of z − 3 = −5i, which keeps an i term.",
+          "Ending at z² − 6z + 9 = −25 without moving the 25 across."
+        ]
+      },
+      {
+        "id": "s2_factor",
+        "kind": "equation",
+        "label": "Factor the cubic",
+        "marks": 2,
+        "mark_note": "Factorisation",
+        "margin_note": "Half the marks. The cubic is (z − 4) times the quadratic from (1). Either divide the cubic by z² − 6z + 34 (quotient z − 4) or, faster to write, multiply out (z − 4)(z² − 6z + 34) and show it matches term by term.",
+        "lines": [
+          "Now (z − 4)(z² − 6z + 34)",
+          "= z³ − 6z² + 34z − 4z² + 24z − 136",
+          "= z³ − 10z² + 58z − 136",
+          {
+            "text": "∴ z³ − 10z² + 58z − 136 = (z − 4)(z² − 6z + 34)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cubic z³ − 10z² + 58z − 136 equals (z − 4)(z² − 6z + 34), shown by division or by multiplying out.",
+          "accept": [
+            "the cubic factors as z minus four times z squared minus six z plus thirty four",
+            "divide the cubic by the quadratic and the quotient is z minus four with no remainder",
+            "multiply z minus four by the quadratic and you get back the cubic exactly",
+            "cubic ni z minus four into quadratic ga rayochu",
+            "write the cubic as z minus four times z squared minus six z plus thirty four"
+          ],
+          "reject": [
+            "factorise it",
+            "divide it",
+            "expand"
+          ],
+          "heard_as": [
+            "z minus four",
+            "factor",
+            "quotient",
+            "remainder",
+            "z squared minus six z plus thirty four"
+          ]
+        },
+        "why": "The question is designed so that the quadratic from step 1 is a factor of the cubic. Showing the factorisation is the whole proof — once the quadratic factor is zero, the product is zero regardless of the other factor.",
+        "common_mistakes": [
+          "Getting the middle coefficient wrong: −6z² − 4z² = −10z² and 34z + 24z = 58z.",
+          "Guessing the factor (z − 4) and never checking that the product really equals the cubic.",
+          "Dividing and leaving a non-zero remainder because of an arithmetic slip, then carrying on anyway."
+        ]
+      },
+      {
+        "id": "s3_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Put (1) into the factored form: the second bracket is 0, so the product is 0.",
+        "lines": [
+          "= (z − 4) · 0        (from (1))",
+          {
+            "text": "∴ z³ − 10z² + 58z − 136 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That since z² − 6z + 34 = 0 from (1), the factored cubic is (z − 4) times zero, which is zero.",
+          "accept": [
+            "the quadratic bracket is zero from equation one so the whole product is zero",
+            "z minus four times zero is zero, hence the cubic is zero",
+            "substitute the quadratic equals zero and the cubic reduces to zero",
+            "second bracket zero kabatti product zero, hence proved",
+            "one factor is zero so the cubic is zero"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is zero"
+          ],
+          "heard_as": [
+            "zero",
+            "from one",
+            "bracket",
+            "product",
+            "hence"
+          ]
+        },
+        "why": "A product with a zero factor is zero. That is the entire logic, and writing 'from (1)' beside it shows the examiner exactly where the zero came from.",
+        "common_mistakes": [
+          "Writing '= 0' without pointing to equation (1).",
+          "Trying to also show z − 4 = 0, which is false and not needed."
+        ]
+      }
+    ]
+  }
+}

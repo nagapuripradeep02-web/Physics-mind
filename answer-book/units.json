@@ -16820,6 +16820,2132 @@
           "question_id": "ts_ipe_b2_mhw_antibiotics_in_medicine"
         }
       ]
+    },
+    {
+      "number": 1,
+      "name": "Complex Numbers (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Show that the points in the Argand diagram represented by the complex numbers 2 + 2i, −2 − 2i, −2√3 + 2√3i are the vertices of an equilateral triangle.",
+          "question_id": "ts_ipe_m2a_cn_argand_equilateral_triangle"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Show that the four points in the Argand plane represented by the complex numbers 2 + i, 4 + 3i, 2 + 5i, 3i are the vertices of a square.",
+          "question_id": "ts_ipe_m2a_cn_argand_square"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Show that the points in the Argand plane represented by the complex numbers −2 + 7i, −3/2 + (1/2)i, 4 − 3i, (7/2)(1 + i) are the vertices of a rhombus.",
+          "question_id": "ts_ipe_m2a_cn_argand_rhombus"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "If (x − iy)^(1/3) = a − ib, then show that x/a + y/b = 4(a² − b²).",
+          "question_id": "ts_ipe_m2a_cn_cube_root_x_over_a_plus_y_over_b"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Show that z₁ = (2 + 11i)/25 and z₂ = (−2 + i)/(1 − 2i)² are conjugate to each other.",
+          "question_id": "ts_ipe_m2a_cn_conjugate_pair_2_plus_11i_over_25"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "If z = 3 − 5i, then show that z³ − 10z² + 58z − 136 = 0.",
+          "question_id": "ts_ipe_m2a_cn_z_3_minus_5i_cubic"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "If x + iy = 1/(1 + cos θ + i sin θ), then show that 4x² − 1 = 0.",
+          "question_id": "ts_ipe_m2a_cn_reciprocal_1_plus_cos_theta_4x2_minus_1"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "If the point P denotes the complex number z = x + iy in the Argand plane and if (z − i)/(z − 1) is a purely imaginary number, find the locus of P.",
+          "question_id": "ts_ipe_m2a_cn_locus_z_minus_i_over_z_minus_1_imaginary"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "If the real part of (z + 1)/(z + i) is 1, find the locus of z.",
+          "question_id": "ts_ipe_m2a_cn_locus_real_part_z_plus_1_over_z_plus_i"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Find the real values of x and y if (x − 1)/(3 + i) + (y − 1)/(3 − i) = i.",
+          "question_id": "ts_ipe_m2a_cn_real_x_y_3_plus_i_3_minus_i"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Write the complex number (2 − 3i)(3 + 4i) in the form A + iB.",
+          "question_id": "ts_ipe_m2a_cn_product_2_minus_3i_3_plus_4i"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Express (1 − i)³(1 + i) in the form a + ib.",
+          "question_id": "ts_ipe_m2a_cn_1_minus_i_cubed_times_1_plus_i"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Write the conjugate of (3 + 4i)(2 − 3i).",
+          "question_id": "ts_ipe_m2a_cn_conjugate_3_plus_4i_2_minus_3i"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Write the conjugate of (2 + 5i)(−4 + 6i).",
+          "question_id": "ts_ipe_m2a_cn_conjugate_2_plus_5i_minus_4_plus_6i"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Write the complex number (a − ib)/(a + ib) in the form A + iB.",
+          "question_id": "ts_ipe_m2a_cn_a_minus_ib_over_a_plus_ib"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the real and imaginary parts of the complex number (a + ib)/(a − ib).",
+          "question_id": "ts_ipe_m2a_cn_real_imag_a_plus_ib_over_a_minus_ib"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the multiplicative inverse of 7 + 24i.",
+          "question_id": "ts_ipe_m2a_cn_mult_inverse_7_plus_24i"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the multiplicative inverse of √5 + 3i.",
+          "question_id": "ts_ipe_m2a_cn_mult_inverse_root5_plus_3i"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the square root of 7 + 24i.",
+          "question_id": "ts_ipe_m2a_cn_sqrt_7_plus_24i"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the square root of −5 + 12i.",
+          "question_id": "ts_ipe_m2a_cn_sqrt_minus_5_plus_12i"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Write z = −√7 + i√21 in the polar form.",
+          "question_id": "ts_ipe_m2a_cn_polar_minus_root7_plus_i_root21"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Express 1 + i√3 in the modulus-amplitude form.",
+          "question_id": "ts_ipe_m2a_cn_modamp_1_plus_i_root3"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Express −1 − i in the modulus-amplitude form.",
+          "question_id": "ts_ipe_m2a_cn_modamp_minus_1_minus_i"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Express 1 − i in the modulus-amplitude form.",
+          "question_id": "ts_ipe_m2a_cn_modamp_1_minus_i"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Express the complex number −√3 + i in the modulus-amplitude form.",
+          "question_id": "ts_ipe_m2a_cn_modamp_minus_root3_plus_i"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Express −1 − i√3 in the modulus-amplitude form.",
+          "question_id": "ts_ipe_m2a_cn_modamp_minus_1_minus_i_root3"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "If z₁ = −1 and z₂ = −i, then find Arg(z₁z₂).",
+          "question_id": "ts_ipe_m2a_cn_arg_product_minus_1_minus_i"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "If z₁ = −1 and z₂ = i, then find Arg(z₁/z₂).",
+          "question_id": "ts_ipe_m2a_cn_arg_quotient_minus_1_over_i"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "If the argument of the conjugate of z₁ is π/5 and Arg z₂ = π/3, then find Arg z₁ + Arg z₂.",
+          "question_id": "ts_ipe_m2a_cn_arg_sum_conjugate_pi_5_pi_3"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "If (a + ib)² = x + iy, find x² + y².",
+          "question_id": "ts_ipe_m2a_cn_a_plus_ib_squared_x2_plus_y2"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 3,
+          "text": "If x + iy = cis α · cis β, then find the value of x² + y².",
+          "question_id": "ts_ipe_m2a_cn_cis_alpha_cis_beta_x2_plus_y2"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 3,
+          "text": "If z = 2 − 3i, show that z² − 4z + 13 = 0.",
+          "question_id": "ts_ipe_m2a_cn_z_2_minus_3i_quadratic"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 3,
+          "text": "Write the conjugate of 5i/(7 + i).",
+          "question_id": "ts_ipe_m2a_cn_sqp_conjugate_5i_over_7_plus_i"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 3,
+          "text": "If (√3 + i)¹⁰⁰ = 2⁹⁹(a + ib), show that a² + b² = 4.",
+          "question_id": "ts_ipe_m2a_cn_sqp_root3_plus_i_power_100"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 3,
+          "text": "Find the least positive integer n satisfying ((1 + i)/(1 − i))ⁿ = 1.",
+          "question_id": "ts_ipe_m2a_cn_sqp_least_n_1_plus_i_over_1_minus_i"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 3,
+          "text": "If z = x + iy and |z| = 1, find the locus of z.",
+          "question_id": "ts_ipe_m2a_cn_sqp_locus_mod_z_1"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 3,
+          "text": "If z = (cos θ, sin θ), find z − 1/z.",
+          "question_id": "ts_ipe_m2a_cn_sqp_z_minus_1_over_z_cos_sin"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 3,
+          "text": "Find the locus of z in the Argand plane if Arg(z − 1) = π/2.",
+          "question_id": "ts_ipe_m2a_cn_sqp_locus_arg_z_minus_1_pi_2"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "De Moivre's Theorem (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If n is a positive integer, show that (1 + i)²ⁿ + (1 − i)²ⁿ = 2ⁿ⁺¹ cos(nπ/2).",
+          "question_id": "ts_ipe_m2a_dm_one_plus_i_2n_cos_n_pi_2"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If n is a positive integer, show that (1 + i)ⁿ + (1 − i)ⁿ = 2^((n+2)/2) cos(nπ/4).",
+          "question_id": "ts_ipe_m2a_dm_one_plus_i_n_cos_n_pi_4"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If n is a positive integer, show that (1 + cos θ + i sin θ)ⁿ + (1 + cos θ − i sin θ)ⁿ = 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2).",
+          "question_id": "ts_ipe_m2a_dm_one_plus_cos_theta_n"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If m, n are integers and x = cos α + i sin α, y = cos β + i sin β, then prove that xᵐyⁿ + 1/(xᵐyⁿ) = 2cos(mα + nβ) and xᵐyⁿ − 1/(xᵐyⁿ) = 2i sin(mα + nβ).",
+          "question_id": "ts_ipe_m2a_dm_x_m_y_n_cos_sin_identity"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If α, β are the roots of the equation x² − 2x + 4 = 0, then show that αⁿ + βⁿ = 2ⁿ⁺¹ cos(nπ/3).",
+          "question_id": "ts_ipe_m2a_dm_alpha_n_beta_n_x2_2x_4"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If n is a positive integer, show that (p + iq)^(1/n) + (p − iq)^(1/n) = 2(p² + q²)^(1/2n) cos((1/n) Tan⁻¹(q/p)).",
+          "question_id": "ts_ipe_m2a_dm_p_iq_nth_root_sum"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Show that one value of [(1 + sin π/8 + i cos π/8)/(1 + sin π/8 − i cos π/8)]^(8/3) is −1.",
+          "question_id": "ts_ipe_m2a_dm_sin_pi_8_power_8_3"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "If n is an integer and z = cis θ, then show that (z²ⁿ − 1)/(z²ⁿ + 1) = i tan nθ.",
+          "question_id": "ts_ipe_m2a_dm_z_2n_i_tan_n_theta"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If cos α + cos β + cos γ = 0 = sin α + sin β + sin γ, then show that cos² α + cos² β + cos² γ = 3/2 = sin² α + sin² β + sin² γ.",
+          "question_id": "ts_ipe_m2a_dm_cos_sum_zero_cos_squares_3_2"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If cos α + cos β + cos γ = 0 = sin α + sin β + sin γ, then show that (i) cos 3α + cos 3β + cos 3γ = 3cos(α + β + γ), (ii) sin 3α + sin 3β + sin 3γ = 3 sin(α + β + γ), (iii) cos(α + β) + cos(β + γ) + cos(γ + α) = 0.",
+          "question_id": "ts_ipe_m2a_dm_cos_sum_zero_cos_3alpha"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If A, B, C are the angles of a triangle and x = cis A, y = cis B, z = cis C, then find the value of xyz.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_cis_abc_triangle_xyz"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If x = cos θ + i sin θ, then find x⁶ + 1/x⁶.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_x6_plus_1_by_x6"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If 1, ω, ω² are the cube roots of unity, show that (1 − ω + ω²)⁶ + (1 + ω − ω²)⁶ = 128.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_omega_sixth_powers_128"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If 1, ω, ω² are the cube roots of unity, then prove that (2 − ω)(2 − ω²)(2 − ω¹⁰)(2 − ω¹¹) = 49.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_omega_2_minus_omega_49"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the value of (1 − i)⁸.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_one_minus_i_8"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the value of (1 + i)¹⁶.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_one_plus_i_16"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If 1, ω, ω² are the cube roots of unity, find the value of (1 − ω + ω²)³.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_omega_cube_minus_8"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "If 1, ω, ω² are the cube roots of unity, find (1 − ω)(1 − ω²)(1 − ω⁴)(1 − ω⁸).",
+          "question_id": "ts_ipe_m2a_dm_vsaq_omega_product_9"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If 1, ω, ω² are the cube roots of unity, then prove that 1/(1 + 2ω) + 1/(2 + ω) = 1/(1 + ω).",
+          "question_id": "ts_ipe_m2a_dm_vsaq_omega_reciprocal_sum"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If the cube roots of unity are 1, ω, ω², then find the roots of the equation (x − 1)³ + 8 = 0.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_x_minus_1_cubed_plus_8"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "If 1, ω, ω² are the cube roots of unity, show that (a + b)(aω + bω²)(aω² + bω) = a³ + b³.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_omega_a3_plus_b3"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find (√3/2 + i/2)⁵ − (√3/2 − i/2)⁵.",
+          "question_id": "ts_ipe_m2a_dm_vsaq_cis_pi_6_fifth_power_i"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Quadratic Expressions (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the range of (x + 2)/(2x² + 3x + 6) for x ∈ R.",
+          "question_id": "ts_ipe_m2a_qe_range_x_plus_2_over_2x2_3x_6"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the range of (x² + x + 1)/(x² − x + 1) for x ∈ R.",
+          "question_id": "ts_ipe_m2a_qe_range_x2_x_1_over_x2_minus_x_1"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the maximum value of the function (x² + 14x + 9)/(x² + 2x + 3) over R.",
+          "question_id": "ts_ipe_m2a_qe_max_x2_14x_9_over_x2_2x_3"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If x is real, prove that x/(x² − 5x + 9) lies between 1 and −1/11.",
+          "question_id": "ts_ipe_m2a_qe_x_over_x2_5x_9_between_1_and_minus_1_11"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Show that 1/(3x + 1) + 1/(x + 1) − 1/((3x + 1)(x + 1)) does not lie between 1 and 4, if x is real.",
+          "question_id": "ts_ipe_m2a_qe_sum_of_fractions_not_between_1_and_4"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If the expression (x − p)/(x² − 3x + 2) takes all real values for x ∈ R, then find the bounds for p.",
+          "question_id": "ts_ipe_m2a_qe_bounds_for_p_x_minus_p_over_x2_3x_2"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If c² ≠ ab and the roots of (c² − ab)x² − 2(a² − bc)x + (b² − ac) = 0 are equal, then show that a³ + b³ + c³ = 3abc or a = 0.",
+          "question_id": "ts_ipe_m2a_qe_equal_roots_a3_b3_c3_3abc"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Find the nature of the roots of 3x² + 7x + 2 = 0.",
+          "question_id": "ts_ipe_m2a_qe_nature_of_roots_3x2_7x_2"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Prove that the roots of (x − a)(x − b) = h² are always real.",
+          "question_id": "ts_ipe_m2a_qe_roots_of_x_minus_a_x_minus_b_h2_real"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Form a quadratic equation whose roots are 7 ± 2√5.",
+          "question_id": "ts_ipe_m2a_qe_form_equation_roots_7_plus_minus_2_root_5"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Form a quadratic equation whose roots are −3 ± 5i.",
+          "question_id": "ts_ipe_m2a_qe_form_equation_roots_minus_3_plus_minus_5i"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "If α, β are the roots of the equation ax² + bx + c = 0, find the value of 1/α + 1/β.",
+          "question_id": "ts_ipe_m2a_qe_one_by_alpha_plus_one_by_beta"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "If α, β are the roots of the equation ax² + bx + c = 0, then find 1/α² + 1/β².",
+          "question_id": "ts_ipe_m2a_qe_one_by_alpha2_plus_one_by_beta2"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Find the maximum or minimum value of the expression x² − x + 7.",
+          "question_id": "ts_ipe_m2a_qe_min_value_x2_minus_x_7"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Find the maximum or minimum value of 2x − 7 − 5x², where x ∈ R.",
+          "question_id": "ts_ipe_m2a_qe_max_value_2x_minus_7_minus_5x2"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "Find the values of m, if the equation x² − 15 − m(2x − 8) = 0 has equal roots.",
+          "question_id": "ts_ipe_m2a_qe_equal_roots_x2_15_m_2x_8"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "For what values of m will the equation x² + (m + 3)x + (m + 6) = 0 have equal roots?",
+          "question_id": "ts_ipe_m2a_qe_equal_roots_x2_m_plus_3_x_m_plus_6"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "If x² − 6x + 5 = 0 and x² − 12x + p = 0 have a common root, then find p.",
+          "question_id": "ts_ipe_m2a_qe_common_root_find_p"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 2,
+          "text": "If the equations x² − 6x + 5 = 0 and x² − 3ax + 35 = 0 have a common root, then find a.",
+          "question_id": "ts_ipe_m2a_qe_common_root_find_a"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 2,
+          "text": "If the equations x² + bx + c = 0 and x² + cx + b = 0 have a common root, then show that b + c + 1 = 0.",
+          "question_id": "ts_ipe_m2a_qe_common_root_b_plus_c_plus_1_zero"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 2,
+          "text": "If the equations x² + ax + b = 0 and x² + cx + d = 0 have a common root and the first equation has equal roots, then prove that 2(b + d) = ac.",
+          "question_id": "ts_ipe_m2a_qe_common_root_2_b_plus_d_equals_ac"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 2,
+          "text": "If α, β are the roots of ax² + bx + c = 0, then find α² + β².",
+          "question_id": "ts_ipe_m2a_qe_alpha2_plus_beta2"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 2,
+          "text": "For what values of x is the expression x² − 5x + 6 positive?",
+          "question_id": "ts_ipe_m2a_qe_x2_5x_6_positive"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 2,
+          "text": "For what values of x is the expression 15 + 4x − 3x² negative?",
+          "question_id": "ts_ipe_m2a_qe_15_4x_3x2_negative"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Theory of Equations (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Solve x⁴ − 10x³ + 26x² − 10x + 1 = 0.",
+          "question_id": "ts_ipe_m2a_te_laq_recip_x4_10x3"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Solve 2x⁴ + x³ − 11x² + x + 2 = 0.",
+          "question_id": "ts_ipe_m2a_te_laq_recip_2x4_x3_11x2"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Solve 6x⁴ − 35x³ + 62x² − 35x + 6 = 0.",
+          "question_id": "ts_ipe_m2a_te_laq_recip_6x4_35x3"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Solve 2x⁵ + x⁴ − 12x³ − 12x² + x + 2 = 0.",
+          "question_id": "ts_ipe_m2a_te_laq_recip_2x5_x4_12x3"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Solve 6x⁶ − 25x⁵ + 31x⁴ − 31x² + 25x − 6 = 0.",
+          "question_id": "ts_ipe_m2a_te_laq_recip_6x6_25x5"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Solve the equation x⁵ − 5x⁴ + 9x³ − 9x² + 5x − 1 = 0.",
+          "question_id": "ts_ipe_m2a_te_laq_recip_x5_5x4_9x3"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Solve the equation 8x³ − 36x² − 18x + 81 = 0, the roots being in A.P.",
+          "question_id": "ts_ipe_m2a_te_laq_ap_8x3_36x2"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Solve the equation 4x³ − 24x² + 23x + 18 = 0, the roots being in A.P.",
+          "question_id": "ts_ipe_m2a_te_laq_ap_4x3_24x2"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Solve 3x³ − 26x² + 52x − 24 = 0, given that the roots are in G.P.",
+          "question_id": "ts_ipe_m2a_te_laq_gp_3x3_26x2"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Solve 18x³ + 81x² + 121x + 60 = 0, given that one root is equal to half the sum of the remaining roots.",
+          "question_id": "ts_ipe_m2a_te_laq_half_sum_18x3_81x2"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Solve the equation x⁴ − 4x² + 8x + 35 = 0, given that 2 + i√3 is a root of the equation.",
+          "question_id": "ts_ipe_m2a_te_laq_complex_root_x4_4x2_8x"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Solve x⁴ + x³ − 16x² − 4x + 48 = 0, given that the product of two of the roots is 6.",
+          "question_id": "ts_ipe_m2a_te_laq_product_two_roots_6"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If 1, 1, α are the roots of x³ − 6x² + 9x − 4 = 0, then find α.",
+          "question_id": "ts_ipe_m2a_te_vsaq_roots_1_1_alpha"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If −1, 2, α are the roots of 2x³ + x² − 7x − 6 = 0, then find α.",
+          "question_id": "ts_ipe_m2a_te_vsaq_roots_m1_2_alpha"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If 1, −2, 3 are the roots of x³ − 2x² + ax + 6 = 0, then find a.",
+          "question_id": "ts_ipe_m2a_te_vsaq_roots_1_m2_3_find_a"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If the product of the roots of 4x³ + 16x² − 9x − a = 0 is 9, then find a.",
+          "question_id": "ts_ipe_m2a_te_vsaq_product_9_find_a"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If α, β, 1 are the roots of x³ − 2x² − 5x + 6 = 0, then find α and β.",
+          "question_id": "ts_ipe_m2a_te_vsaq_roots_alpha_beta_1"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the polynomial equation whose roots are the reciprocals of the roots of x⁴ − 3x³ + 7x² + 5x − 2 = 0.",
+          "question_id": "ts_ipe_m2a_te_vsaq_reciprocal_roots"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the algebraic equation whose roots are two times the roots of x⁵ − 2x⁴ + 3x³ − 2x² + 4x + 3 = 0.",
+          "question_id": "ts_ipe_m2a_te_vsaq_roots_two_times"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find an algebraic equation of degree 4 whose roots are 3 times the roots of the equation 6x⁴ − 7x³ + 8x² − 7x + 2 = 0.",
+          "question_id": "ts_ipe_m2a_te_vsaq_roots_three_times"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the transformed equation whose roots are the negatives of the roots of x⁴ + 5x³ + 11x + 3 = 0.",
+          "question_id": "ts_ipe_m2a_te_vsaq_roots_negatives"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the monic polynomial equation of degree 3 whose roots are 2, 3 and 6.",
+          "question_id": "ts_ipe_m2a_te_vsaq_monic_roots_2_3_6"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "If 1, 2, 3 and 4 are the roots of x⁴ + ax³ + bx² + cx + d = 0, then find the values of a, b, c and d.",
+          "question_id": "ts_ipe_m2a_te_vsaq_roots_1_2_3_4_abcd"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the polynomial equation whose roots are the translates of the roots of the equation x⁴ − 5x³ + 7x² − 4x + 5 = 0 by −2.",
+          "question_id": "ts_ipe_m2a_te_vsaq_translate_by_m2"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Permutations and Combinations (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Simplify ³⁴C₅ + Σ ⁽³⁸⁻ʳ⁾C₄, the sum taken over r = 0, 1, 2, 3, 4.",
+          "question_id": "ts_ipe_m2a_pc_saq_sum_34c5_telescoping"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Show that ²⁵C₄ + Σ ⁽²⁹⁻ʳ⁾C₃ = ³⁰C₄, the sum taken over r = 0, 1, 2, 3, 4.",
+          "question_id": "ts_ipe_m2a_pc_saq_sum_25c4_equals_30c4"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Prove that ⁴ⁿC₂ₙ / ²ⁿCₙ = 1·3·5·…·(4n − 1) / [1·3·5·…·(2n − 1)]².",
+          "question_id": "ts_ipe_m2a_pc_saq_prove_4nc2n_by_2ncn"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the number of ways of selecting a cricket team of 11 players from 7 batsmen and 6 bowlers such that there will be at least 5 bowlers in the team.",
+          "question_id": "ts_ipe_m2a_pc_saq_cricket_team_atleast_5_bowlers"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the number of ways of selecting an 11-member cricket team from 7 batsmen, 6 bowlers and 2 wicket keepers so that the team contains 2 wicket keepers and at least 4 bowlers.",
+          "question_id": "ts_ipe_m2a_pc_saq_cricket_team_2_keepers_atleast_4_bowlers"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the number of ways of forming a committee of 5 members out of 6 Indians and 5 Americans so that the Indians are always in the majority in the committee.",
+          "question_id": "ts_ipe_m2a_pc_saq_committee_indians_majority"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If the letters of the word MASTER are permuted in all possible ways and the words thus formed are arranged in dictionary order, then find the rank of the word MASTER.",
+          "question_id": "ts_ipe_m2a_pc_saq_rank_master"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "If the letters of the word PRISON are permuted in all possible ways and the words thus formed are arranged in dictionary order, then find the rank of the word PRISON.",
+          "question_id": "ts_ipe_m2a_pc_saq_rank_prison"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If the letters of the word EAMCET are permuted in all possible ways and the words thus formed are arranged in dictionary order, then find the rank of the word EAMCET.",
+          "question_id": "ts_ipe_m2a_pc_saq_rank_eamcet"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the sum of all 4-digit numbers that can be formed using the digits 1, 3, 5, 7, 9 (no digit repeated).",
+          "question_id": "ts_ipe_m2a_pc_saq_sum_four_digit_numbers_1_3_5_7_9"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the sum of all four-digit numbers that can be formed using the digits 0, 2, 4, 7, 8 without repetition.",
+          "question_id": "ts_ipe_m2a_pc_saq_sum_four_digit_numbers_0_2_4_7_8"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the number of 4-letter words that can be formed using the letters of the word PISTON in which at least one letter is repeated.",
+          "question_id": "ts_ipe_m2a_pc_saq_piston_four_letter_words_repeated"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If ⁿP₃ = 1320, find n.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_np3_1320_find_n"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If ¹²Pᵣ = 1320, find r.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_12pr_1320_find_r"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If ⁿP₄ = 1680, find n.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_np4_1680_find_n"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If ⁿP₇ = 42 · ⁿP₅, then find n.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_np7_42_np5_find_n"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If ⁽ⁿ⁺¹⁾P₅ : ⁿP₅ = 3 : 2, then find n.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_n1p5_np5_ratio_3_2"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If ⁽ⁿ⁺¹⁾P₅ : ⁿP₆ = 2 : 7, then find n.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_n1p5_np6_ratio_2_7"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If ⁿC₄ = 210, find n.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_nc4_210_find_n"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "If 10 · ⁿC₂ = 3 · ⁽ⁿ⁺¹⁾C₃, find n.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_10nc2_3n1c3_find_n"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If ⁿPᵣ = 5040 and ⁿCᵣ = 210, find n and r.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_npr_5040_ncr_210"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If ⁿC₅ = ⁿC₆, then find ¹³Cₙ.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_nc5_nc6_find_13cn"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "If ⁿC₂₁ = ⁿC₂₇, then find ⁵⁰Cₙ.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_nc21_nc27_find_50cn"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "If ¹⁵C₂ᵣ₋₁ = ¹⁵C₂ᵣ₊₄, then find r.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_15c2r1_15c2r4_find_r"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "If ¹²Cᵣ₊₁ = ¹²C₃ᵣ₋₅, find r.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_12cr1_12c3r5_find_r"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Prove that ¹⁰C₃ + ¹⁰C₆ = ¹¹C₄.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_prove_10c3_10c6_11c4"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "If ⁹C₃ + ⁹C₅ = ¹⁰Cᵣ, then find r.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_9c3_9c5_10cr_find_r"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Find the value of ¹⁰C₅ + 2·¹⁰C₄ + ¹⁰C₃.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_10c5_2_10c4_10c3"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "If ¹²P₅ + 5·¹²P₄ = ¹³Pᵣ, find r.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_12p5_5_12p4_13pr"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "Find the number of ways of arranging the letters of the word INTERMEDIATE.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_arrange_intermediate"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "Find the number of ways of arranging the letters of the word INDEPENDENCE.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_arrange_independence"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "Find the number of ways of arranging the letters of the word MATHEMATICS.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_arrange_mathematics"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 3,
+          "text": "Find the number of ways of arranging the letters of the word a⁴b³c⁵ in its expanded form.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_arrange_a4b3c5"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 3,
+          "text": "Find the number of injections from a set A with 5 elements to a set B with 7 elements.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_injections_5_to_7"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 3,
+          "text": "Find the number of bijections from a set A containing 7 elements onto itself.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_bijections_7_onto_itself"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 3,
+          "text": "Find the number of functions from a set A containing 5 elements into a set B containing 4 elements.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_functions_5_to_4"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 3,
+          "text": "Find the number of ways of forming a committee of 5 members from 6 men and 3 ladies.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_committee_5_from_6_men_3_ladies"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 3,
+          "text": "Find the number of ways of selecting 4 boys and 3 girls from a group of 8 boys and 5 girls.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_select_4_boys_3_girls"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 3,
+          "text": "Find the number of ways of selecting 3 vowels and 2 consonants from the letters of the word EQUATION.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_equation_3_vowels_2_consonants"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 3,
+          "text": "Find the number of different chains that can be prepared using 6 different coloured beads.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_chains_6_beads"
+        },
+        {
+          "ref": "vsaq29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 3,
+          "text": "Find the number of different chains that can be prepared using 7 different coloured beads.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_chains_7_beads"
+        },
+        {
+          "ref": "vsaq30",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 3,
+          "text": "Find the number of diagonals of a polygon with 12 sides.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_diagonals_12_sides"
+        },
+        {
+          "ref": "vsaq31",
+          "section": "VSAQ",
+          "number": 31,
+          "stars": 3,
+          "text": "Find the number of positive divisors of 1080.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_divisors_of_1080"
+        },
+        {
+          "ref": "vsaq32",
+          "section": "VSAQ",
+          "number": 32,
+          "stars": 3,
+          "text": "A man has 4 sons and there are 5 schools within his reach. In how many ways can he admit his sons in the schools so that no two of them will be in the same school?",
+          "question_id": "ts_ipe_m2a_pc_vsaq_4_sons_5_schools"
+        },
+        {
+          "ref": "vsaq33",
+          "section": "VSAQ",
+          "number": 33,
+          "stars": 3,
+          "text": "In a class there are 30 students. If each student plays a chess game with each of the other students, then find the total number of chess games played by them.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_chess_games_30_students"
+        },
+        {
+          "ref": "vsaq34",
+          "section": "VSAQ",
+          "number": 34,
+          "stars": 3,
+          "text": "Find the number of 7-digit numbers that can be formed using the digits 2, 2, 2, 3, 3, 4, 4.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_seven_digit_numbers_2223344"
+        },
+        {
+          "ref": "vsaq35",
+          "section": "VSAQ",
+          "number": 35,
+          "stars": 3,
+          "text": "There are 4 copies alike each of 3 different books. Find the number of ways of arranging these 12 books on a shelf in a single row.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_12_books_4_alike_of_3_kinds"
+        },
+        {
+          "ref": "vsaq36",
+          "section": "VSAQ",
+          "number": 36,
+          "stars": 3,
+          "text": "Find the number of ways of selecting 7 members from a contingent of 10 soldiers.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_select_7_from_10_soldiers"
+        },
+        {
+          "ref": "vsaq37",
+          "section": "VSAQ",
+          "number": 37,
+          "stars": 3,
+          "text": "Find the number of ways in which 4 letters can be put in 4 addressed envelopes so that no letter goes into the envelope meant for it.",
+          "question_id": "ts_ipe_m2a_pc_vsaq_derangements_4_letters"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Binomial Theorem (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If the 2nd, 3rd and 4th terms in the expansion of (a + x)ⁿ are respectively 240, 720 and 1080, then find the values of a, x and n.",
+          "question_id": "ts_ipe_m2a_bt_terms_240_720_1080"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If the coefficients of 4 consecutive terms in the expansion of (1 + x)ⁿ are a₁, a₂, a₃, a₄ respectively, then show that a₁/(a₁ + a₂) + a₃/(a₃ + a₄) = 2a₂/(a₂ + a₃).",
+          "question_id": "ts_ipe_m2a_bt_four_consecutive_coefficients"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If the coefficients of the r-th, (r + 1)-th and (r + 2)-th terms in the expansion of (1 + x)ⁿ are in A.P., then show that n² − (4r + 1)n + 4r² − 2 = 0.",
+          "question_id": "ts_ipe_m2a_bt_three_coefficients_ap_general"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If the coefficient of x¹⁰ in the expansion of (ax² + 1/(bx))¹¹ is equal to the coefficient of x⁻¹⁰ in the expansion of (ax − 1/(bx²))¹¹, find the relation between a and b, where a and b are real numbers.",
+          "question_id": "ts_ipe_m2a_bt_coefficient_x10_x_minus_10_ab"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Prove that C₀·Cᵣ + C₁·Cᵣ₊₁ + C₂·Cᵣ₊₂ + … + Cₙ₋ᵣ·Cₙ = ²ⁿCₙ₊ᵣ for 0 ≤ r ≤ n. Hence deduce that (i) C₀² + C₁² + C₂² + … + Cₙ² = ²ⁿCₙ and (ii) C₀C₁ + C₁C₂ + C₂C₃ + … + Cₙ₋₁Cₙ = ²ⁿCₙ₊₁.",
+          "question_id": "ts_ipe_m2a_bt_sum_cr_cr_plus_k_2ncn_plus_k"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If n is a positive integer and x is any non-zero real number, then prove that C₀ + C₁·(x/2) + C₂·(x²/3) + C₃·(x³/4) + … + Cₙ·(xⁿ/(n + 1)) = ((1 + x)ⁿ⁺¹ − 1)/((n + 1)x).",
+          "question_id": "ts_ipe_m2a_bt_c0_c1x_by_2_series_sum"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Prove that C₀ + C₁/2 + C₂/3 + … + Cₙ/(n + 1) = (2ⁿ⁺¹ − 1)/(n + 1).",
+          "question_id": "ts_ipe_m2a_bt_c0_c1_by_2_corollary"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the sum of the infinite series 1 + 1/3 + (1·3)/(3·6) + (1·3·5)/(3·6·9) + … ∞.",
+          "question_id": "ts_ipe_m2a_bt_series_1_by_3_3_6_sum"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the sum of the series 1 − 4/5 + (4·7)/(5·10) − (4·7·10)/(5·10·15) + … ∞.",
+          "question_id": "ts_ipe_m2a_bt_series_4_by_5_alternating_sum"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If x = 1/5 + (1·3)/(5·10) + (1·3·5)/(5·10·15) + … ∞, then find 3x² + 6x.",
+          "question_id": "ts_ipe_m2a_bt_series_1_by_5_find_3x2_6x"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "If x = (1·3)/(3·6) + (1·3·5)/(3·6·9) + (1·3·5·7)/(3·6·9·12) + …, then prove that 9x² + 24x = 11.",
+          "question_id": "ts_ipe_m2a_bt_series_1_3_by_3_6_prove_9x2_24x"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "If x = 5/(2!·3) + (5·7)/(3!·3²) + (5·7·9)/(4!·3³) + … ∞, then find the value of x² + 4x.",
+          "question_id": "ts_ipe_m2a_bt_series_5_by_2fact_3_find_x2_4x"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Find the sum of the infinite series (7/5)·(1 + 1/10² + (1·3)/(1·2)·(1/10⁴) + (1·3·5)/(1·2·3)·(1/10⁶) + …).",
+          "question_id": "ts_ipe_m2a_bt_series_7_by_5_1_by_100_sum"
+        },
+        {
+          "ref": "laq14",
+          "section": "LAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Find the sum of the infinite series (3·5)/(5·10) + (3·5·7)/(5·10·15) + (3·5·7·9)/(5·10·15·20) + … ∞.",
+          "question_id": "ts_ipe_m2a_bt_series_3_5_by_5_10_sum"
+        },
+        {
+          "ref": "laq15",
+          "section": "LAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "If t = 4/5 + (4·6)/(5·10) + (4·6·8)/(5·10·15) + …, then prove that 9t = 16.",
+          "question_id": "ts_ipe_m2a_bt_series_4_by_5_prove_9t_16"
+        },
+        {
+          "ref": "laq16",
+          "section": "LAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "If 36, 84, 126 are three successive binomial coefficients in the expansion of (1 + x)ⁿ, then find n.",
+          "question_id": "ts_ipe_m2a_bt_successive_coefficients_36_84_126"
+        },
+        {
+          "ref": "laq17",
+          "section": "LAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "If the coefficients of x⁹, x¹⁰, x¹¹ in the expansion of (1 + x)ⁿ are in A.P., then prove that n² − 41n + 398 = 0.",
+          "question_id": "ts_ipe_m2a_bt_coefficients_x9_x10_x11_ap"
+        },
+        {
+          "ref": "laq18",
+          "section": "LAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "If P and Q are the sum of odd terms and the sum of even terms respectively in the expansion of (x + a)ⁿ, then prove that (i) P² − Q² = (x² − a²)ⁿ and (ii) 4PQ = (x + a)²ⁿ − (x − a)²ⁿ.",
+          "question_id": "ts_ipe_m2a_bt_odd_even_terms_p_q"
+        },
+        {
+          "ref": "laq19",
+          "section": "LAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "Prove that (C₀ + C₁)·(C₁ + C₂)·(C₂ + C₃)·…·(Cₙ₋₁ + Cₙ) = ((n + 1)ⁿ/n!)·C₁·C₂·…·Cₙ.",
+          "question_id": "ts_ipe_m2a_bt_product_c_sums_n_plus_1_power_n"
+        },
+        {
+          "ref": "laq20",
+          "section": "LAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "Find the sum of the infinite series 3/(4·8) − (3·5)/(4·8·12) + (3·5·7)/(4·8·12·16) − … .",
+          "question_id": "ts_ipe_m2a_bt_series_3_by_4_8_alternating_sum"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the 7th term in the expansion of (4/x³ + x²/2)¹⁴.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the 4th term from the end in the expansion of (2a + 5b)⁸.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_4th_term_from_end_2a_5b"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the middle term(s) in the expansion of (3x/7 − 2y)¹⁰.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_middle_term_3x_by_7_2y"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the middle term(s) in the expansion of (4x² + 5x³)¹⁷.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_middle_terms_4x2_5x3"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the term independent of x in the expansion of (√(x/3) + 3/(2x²))¹⁰.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_term_independent_x_sqrt"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the coefficient of x¹¹ in the expansion of (2x² + 3/x³)¹³.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_coefficient_x11_2x2"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the largest binomial coefficients in the expansions of (i) (1 + x)²⁴ and (ii) (1 + x)¹⁹.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_largest_coefficient_24_19"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "If ²²Cᵣ is the largest binomial coefficient in the expansion of (1 + x)²², find the value of ¹³Cᵣ.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_largest_22cr_find_13cr"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If the coefficients of the (2r + 4)-th term and the (3r + 4)-th term in the expansion of (1 + x)²¹ are equal, then find r.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_equal_coefficients_find_r"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Prove that C₀ + 2·C₁ + 4·C₂ + 8·C₃ + … + 2ⁿ·Cₙ = 3ⁿ.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_c0_2c1_4c2_3n"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the number of terms in the expansion of (2x + 3y + z)⁷.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_number_of_terms_trinomial"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the set E of x for which the binomial expansion of (3 − 4x)^(3/4) is valid.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_validity_3_minus_4x"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Find the set of x for which the binomial expansion of (2 + 3x)^(−2/3) is valid.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_validity_2_plus_3x"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Find the 6th term in the expansion of (2x/3 + 3y/2)⁹.",
+          "question_id": "ts_ipe_m2a_bt_vsaq_6th_term_2x_by_3_3y_by_2"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Partial Fractions (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Resolve (3x + 7)/(x² − 3x + 2) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_3x_plus_7_over_x2_minus_3x_plus_2"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Resolve (x + 4)/((x² − 4)(x + 1)) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x_plus_4_over_x2_minus_4_x_plus_1"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Resolve (x² − x + 1)/((x + 1)(x − 1)²) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x2_minus_x_plus_1_over_x_plus_1_x_minus_1_sq"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Resolve (2x² + 2x + 1)/(x³ + x²) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_2x2_plus_2x_plus_1_over_x3_plus_x2"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Resolve (3x − 18)/(x³(x + 3)) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_3x_minus_18_over_x3_x_plus_3"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Resolve (x² + 5x + 7)/(x − 3)³ into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x2_plus_5x_plus_7_over_x_minus_3_cubed"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Resolve (2x² + 1)/(x³ − 1) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_2x2_plus_1_over_x3_minus_1"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Resolve (2x² + 3x + 4)/((x − 1)(x² + 2)) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_2x2_plus_3x_plus_4_over_x_minus_1_x2_plus_2"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Resolve (x² − 3)/((x + 2)(x² + 1)) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x2_minus_3_over_x_plus_2_x2_plus_1"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Resolve x³/((x − 1)(x + 2)) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x3_over_x_minus_1_x_plus_2"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Resolve x⁴/((x − 1)(x − 2)) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x4_over_x_minus_1_x_minus_2"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Resolve x³/((2x − 1)(x − 1)²) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x3_over_2x_minus_1_x_minus_1_sq"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Resolve x³/((2x − 1)(x + 2)(x − 3)) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x3_over_2x_minus_1_x_plus_2_x_minus_3"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Resolve x³/((x − a)(x − b)(x − c)) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x3_over_x_minus_a_x_minus_b_x_minus_c"
+        },
+        {
+          "ref": "saq15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Resolve x²/((x − 1)(x − 2)) into partial fractions.",
+          "question_id": "ts_ipe_m2a_pf_x2_over_x_minus_1_x_minus_2"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Measures of Dispersion (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Find the mean deviation about the mean for the given data using the step deviation method: Marks obtained 0–10, 10–20, 20–30, 30–40, 40–50; Number of students 5, 8, 15, 16, 6.",
+          "question_id": "ts_ipe_m2a_md_laq_md_mean_step_dev_0_50"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Find the mean deviation about the mean for the following continuous distribution: Marks 0–10, 10–20, 20–30, 30–40, 40–50, 50–60, 60–70; Number of students 6, 5, 8, 15, 7, 6, 3.",
+          "question_id": "ts_ipe_m2a_md_laq_md_mean_step_dev_0_70"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Find the mean deviation about the median for the following data: Marks 0–10, 10–20, 20–30, 30–40, 40–50, 50–60; Number of boys 6, 8, 14, 16, 4, 2.",
+          "question_id": "ts_ipe_m2a_md_laq_md_median_grouped_0_60"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Find the mean deviation about the median for the following data: xᵢ = 6, 9, 3, 12, 15, 13, 21, 22; fᵢ = 4, 5, 3, 2, 5, 4, 4, 3.",
+          "question_id": "ts_ipe_m2a_md_laq_md_median_discrete_n30"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Calculate the variance and standard deviation for the following distribution: Class 30–40, 40–50, 50–60, 60–70, 70–80, 80–90, 90–100; Frequency 3, 7, 12, 15, 8, 3, 2.",
+          "question_id": "ts_ipe_m2a_md_laq_variance_sd_grouped_30_100"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Find the variance and standard deviation of the following frequency distribution: xᵢ = 4, 8, 11, 17, 20, 24, 32; fᵢ = 3, 5, 9, 5, 4, 3, 1.",
+          "question_id": "ts_ipe_m2a_md_laq_variance_sd_discrete_n30"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the mean deviation about the mean for the data 3, 6, 10, 4, 9, 10.",
+          "question_id": "ts_ipe_m2a_md_vsaq_md_mean_3_6_10_4_9_10"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the mean deviation about the mean for the data 6, 7, 10, 12, 13, 4, 12, 16.",
+          "question_id": "ts_ipe_m2a_md_vsaq_md_mean_6_7_10_12_13_4_12_16"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the mean deviation about the median for the data 4, 6, 9, 3, 10, 13, 2.",
+          "question_id": "ts_ipe_m2a_md_vsaq_md_median_4_6_9_3_10_13_2"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the mean deviation about the median for the data 6, 7, 10, 12, 13, 4, 12, 16.",
+          "question_id": "ts_ipe_m2a_md_vsaq_md_median_6_7_10_12_13_4_12_16"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the mean deviation about the mean for the data 38, 70, 48, 40, 42, 55, 63, 46, 54, 44.",
+          "question_id": "ts_ipe_m2a_md_vsaq_md_mean_38_70_48_ten_values"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the mean deviation about the median for the data 13, 17, 16, 11, 13, 10, 16, 11, 18, 12, 17.",
+          "question_id": "ts_ipe_m2a_md_vsaq_md_median_13_17_16_eleven_values"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the variance for the discrete data 6, 7, 10, 12, 13, 4, 8, 12.",
+          "question_id": "ts_ipe_m2a_md_vsaq_variance_6_7_10_12_13_4_8_12"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the variance and standard deviation for the discrete data 5, 12, 3, 18, 6, 8, 2, 10.",
+          "question_id": "ts_ipe_m2a_md_vsaq_variance_sd_5_12_3_18_6_8_2_10"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "name": "Probability (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "State and prove the addition theorem on probability.",
+          "question_id": "ts_ipe_m2a_pb_addition_theorem_proof"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the probability of drawing an ace or a spade from a well shuffled pack of 52 playing cards.",
+          "question_id": "ts_ipe_m2a_pb_ace_or_spade_52_cards"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "State and prove Bayes' theorem on probability.",
+          "question_id": "ts_ipe_m2a_pb_bayes_theorem_proof"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Suppose that an urn B₁ contains 2 white and 3 black balls and another urn B₂ contains 3 white and 4 black balls. One urn is selected at random and a ball is drawn from it. If the ball drawn is found black, find the probability that the urn chosen was B₁.",
+          "question_id": "ts_ipe_m2a_pb_bayes_two_urns_black_ball"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Three boxes numbered I, II, III contain the balls as follows: box I has 1 white, 2 black, 3 red; box II has 2 white, 1 black, 1 red; box III has 4 white, 5 black, 3 red. One box is randomly selected and a ball is drawn from it. If the ball is red, then find the probability that it is from box II.",
+          "question_id": "ts_ipe_m2a_pb_bayes_three_boxes_red_from_box_ii"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Three boxes B₁, B₂ and B₃ contain balls with different colours as shown: B₁ has 2 white, 1 black, 2 red; B₂ has 3 white, 2 black, 4 red; B₃ has 4 white, 3 black, 2 red. A die is thrown and B₁ is chosen if either 1 or 2 turns up; B₂ is chosen if 3 or 4 turns up and B₃ is chosen if 5 or 6 turns up. Having chosen a box in this way, a ball is chosen at random from this box. If the ball drawn is of red colour, what is the probability that it comes from box B₂?",
+          "question_id": "ts_ipe_m2a_pb_bayes_die_chooses_box_red_from_b2"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Three urns have the following composition of balls. Urn I: 1 white, 2 black. Urn II: 2 white, 1 black. Urn III: 2 white, 2 black. One of the urns is selected at random and a ball is drawn. It turns out to be white. Find the probability that it came from urn III.",
+          "question_id": "ts_ipe_m2a_pb_bayes_three_urns_white_from_urn_iii"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "The probabilities of three mutually exclusive events are respectively given as (1 + 3p)/3, (1 − p)/4, (1 − 2p)/2. Prove that 1/3 ≤ p ≤ 1/2.",
+          "question_id": "ts_ipe_m2a_pb_three_exclusive_events_bounds_on_p"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Suppose A and B are independent events with P(A) = 0.6, P(B) = 0.7. Compute (i) P(A ∩ B) (ii) P(A ∪ B) (iii) P(B|A) (iv) P(Aᶜ ∩ Bᶜ).",
+          "question_id": "ts_ipe_m2a_pb_independent_0_6_0_7_four_parts"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "If A and B are independent events with P(A) = 0.2, P(B) = 0.5, find (i) P(A|B) (ii) P(B|A) (iii) P(A ∩ B) (iv) P(A ∪ B).",
+          "question_id": "ts_ipe_m2a_pb_independent_0_2_0_5_four_parts"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "If A, B are two events with P(A ∪ B) = 0.65 and P(A ∩ B) = 0.15, then find the value of P(Aᶜ) + P(Bᶜ).",
+          "question_id": "ts_ipe_m2a_pb_union_0_65_intersection_0_15_complements_sum"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "If A, B are events with P(A) = 0.5, P(B) = 0.4 and P(A ∩ B) = 0.3, find the probability that (i) A does not occur (ii) neither A nor B occurs.",
+          "question_id": "ts_ipe_m2a_pb_a_not_occur_neither_a_nor_b"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "A problem in calculus is given to two students A and B whose chances of solving it are 1/3 and 1/4 respectively. Find the probability of the problem being solved if both of them try independently.",
+          "question_id": "ts_ipe_m2a_pb_problem_solved_by_at_least_one_1_3_1_4"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "A speaks truth in 75% of the cases and B in 80% of the cases. What is the probability that their statements about an incident do not match?",
+          "question_id": "ts_ipe_m2a_pb_truth_75_80_statements_do_not_match"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "The probability for a contractor to get a road contract is 2/3 and to get a building contract is 5/9. The probability to get at least one contract is 4/5. Find the probability that he gets both the contracts.",
+          "question_id": "ts_ipe_m2a_pb_contractor_both_contracts_2_3_5_9_4_5"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "In a committee of 25 members, each member is proficient either in Mathematics or in Statistics or in both. If 19 of these are proficient in Mathematics, 16 in Statistics, find the probability that a person selected from the committee is proficient in both.",
+          "question_id": "ts_ipe_m2a_pb_committee_25_proficient_in_both"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "A, B, C are three horses in a race. The probability of A to win the race is twice that of B, and the probability of B is twice that of C. What are the probabilities of A, B, C to win the race?",
+          "question_id": "ts_ipe_m2a_pb_three_horses_race_probabilities"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "A, B, C are three newspapers published from a city. 20% of the population read A, 16% read B, 14% read C, 8% read both A and B, 5% read both A and C, 4% read both B and C and 2% read all the three. Find the percentage of the population who read at least one newspaper.",
+          "question_id": "ts_ipe_m2a_pb_three_newspapers_at_least_one"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "If A, B, C are three independent events such that P(A ∩ Bᶜ ∩ Cᶜ) = 1/4, P(Aᶜ ∩ B ∩ Cᶜ) = 1/8, P(Aᶜ ∩ Bᶜ ∩ Cᶜ) = 1/4, then find P(A), P(B) and P(C).",
+          "question_id": "ts_ipe_m2a_pb_three_independent_events_find_p_a_b_c"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 2,
+          "text": "Find the probability that a non-leap year contains (i) 53 Sundays (ii) 52 Sundays only.",
+          "question_id": "ts_ipe_m2a_pb_non_leap_year_53_sundays"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 2,
+          "text": "State and prove the multiplication theorem on probability.",
+          "question_id": "ts_ipe_m2a_pb_multiplication_theorem_proof"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 2,
+          "text": "State conditional event and conditional probability.",
+          "question_id": "ts_ipe_m2a_pb_define_conditional_event_and_probability"
+        },
+        {
+          "ref": "saq15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 2,
+          "text": "If A, B are two independent events in a sample space S, then prove that Aᶜ, Bᶜ are independent.",
+          "question_id": "ts_ipe_m2a_pb_complements_of_independent_events_independent"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "name": "Random Variables and Probability Distributions (Maths-2A)",
+      "subject": "mathematics_2a",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "A random variable X has the following probability distribution: X = 1, 2, 3, 4, 5; P(X = xᵢ) = k, 2k, 3k, 4k, 5k. Find k and the mean and variance of X.",
+          "question_id": "ts_ipe_m2a_rv_dist_table_1_to_5_k_mean_variance"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "A random variable X has the following probability distribution: X = −2, −1, 0, 1, 2, 3; P(X = x) = 0.1, k, 0.2, 2k, 0.3, k. Find k and the variance of X.",
+          "question_id": "ts_ipe_m2a_rv_dist_table_minus2_to_3_k_variance"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "A random variable X has the following probability distribution: X = 0, 1, 2, 3, 4, 5, 6, 7; P(X = xᵢ) = 0, k, 2k, 2k, 3k, k², 2k², 7k² + k. Find (i) k (ii) the mean (iii) P(0 < X < 5).",
+          "question_id": "ts_ipe_m2a_rv_dist_table_0_to_7_k_mean_p_0_to_5"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "A cubical die is thrown. Find the mean and variance of X, giving the number on the face that shows up.",
+          "question_id": "ts_ipe_m2a_rv_die_mean_variance"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Two dice are rolled at random. Find the probability distribution of the sum of the numbers on them. Find the mean of the random variable.",
+          "question_id": "ts_ipe_m2a_rv_two_dice_sum_distribution_mean"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "A random variable X has its range {0, 1, 2} and the probabilities are P(X = 0) = 3c³, P(X = 1) = 4c − 10c², P(X = 2) = 5c − 1, where c is a constant. Find (i) c (ii) P(0 < X < 3) (iii) P(1 < X ≤ 2) (iv) P(X < 1).",
+          "question_id": "ts_ipe_m2a_rv_cubic_in_c_range_0_1_2"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "A random variable X has the range {1, 2, 3, …}. If P(X = k) = cᵏ/k! for k = 1, 2, 3, …, then find c and P(0 < X < 3).",
+          "question_id": "ts_ipe_m2a_rv_c_power_k_by_k_factorial"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "If X is a random variable with the probability distribution P(X = k) = (k + 1)c/2ᵏ for k = 0, 1, 2, …, then find c and P(1 < X < 3).",
+          "question_id": "ts_ipe_m2a_rv_k_plus_1_c_by_2_power_k"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "A Poisson variable satisfies P(X = 1) = P(X = 2). Find P(X = 5).",
+          "question_id": "ts_ipe_m2a_rv_poisson_p1_eq_p2_find_p5"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "The mean and variance of a binomial distribution are 4 and 3 respectively. Find the distribution and find P(X ≥ 1).",
+          "question_id": "ts_ipe_m2a_rv_binomial_mean_4_variance_3"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "For a binomial distribution with mean 6 and variance 2, find the first two terms of the distribution.",
+          "question_id": "ts_ipe_m2a_rv_binomial_mean_6_variance_2_first_two_terms"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "The probability that a person chosen at random is left-handed (in handwriting) is 0.1. What is the probability that in a group of 10 people, there is one who is left-handed?",
+          "question_id": "ts_ipe_m2a_rv_left_handed_one_in_ten"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "On an average, rain falls on 12 days in every 30 days. Find the probability that rain will fall on just 3 days of a given week.",
+          "question_id": "ts_ipe_m2a_rv_rain_three_days_in_a_week"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "If the mean and variance of a binomial variable X are 2.4 and 1.44 respectively, then find P(1 < X ≤ 4).",
+          "question_id": "ts_ipe_m2a_rv_binomial_mean_2_4_variance_1_44"
+        }
+      ]
     }
   ]
 }

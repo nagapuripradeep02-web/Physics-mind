@@ -1,0 +1,159 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_vsaq_md_median_4_6_9_3_10_13_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the mean deviation about the median for the data 4, 6, 9, 3, 10, 13, 2.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the median",
+      "marks": 1
+    },
+    {
+      "label": "Find the mean deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 18 Measures of Dispersion, answer 170.1. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) The unit table in docs/IPE_MATHS_2A_SOURCE.md lists chapter 18 as answers 168–172; the page shows answer 168 is the last Binomial Theorem VSAQ (book p.84) and chapter 18 runs 169.1–172.2 — eight answers in four twin pairs. Printed appearances: AP 17,19 · TS 15,16,20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book pp.85–86. It is patterned on the 1A Matrices VSAQ 1+1 (1A book p.82, answers 100–101 — the one place this book series prints a VSAQ split): 1 for the centre (the mean or the median), 1 for the spread (the mean deviation or the variance). All eight VSAQs of this unit share that shape deliberately, and the twins of each pair share the same step ids. The chapter header (book p.85) carries ★★★ and reads '2 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q9 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q9 of the book's Model Paper 3 (book p.115, index P85(170.1)) and is re-solved as the second Q9 of the Bullet Model Paper (book p.99) with the same 23/7 = 3.29 — a second solution that agrees. Recomputed: ascending 2, 3, 4, 6, 9, 10, 13, n = 7 odd, M = the 4th value = 6, |xᵢ − M| = 4, 3, 2, 0, 3, 4, 7, total 23, 23/7 = 3.2857…, printed 3.29 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the mean deviation about the median for seven numbers — what you do to the data first, how you pick the median, and what you average at the end.",
+  "insider_note": "The data must be put in ascending order and the median stated before any deviation is taken — the middle of the unsorted list is 3, not the true median 6.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Measures of Dispersion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_median",
+        "kind": "equation",
+        "label": "Median",
+        "marks": 1,
+        "mark_note": "Median",
+        "margin_note": "First mark. The data is not in order, so sort it first. n = 7 is odd, so the median is the single middle value, the 4th of seven: 6.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Ascending order: 2, 3, 4, 6, 9, 10, 13",
+          "n = 7 is odd, so M = the middle (4th) value.",
+          "∴ Median M = 6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the values are sorted, n = 7 is odd, and the median is the middle value 6.",
+          "accept": [
+            "put the numbers in order two three four six nine ten thirteen, seven is odd so the median is the middle one, six",
+            "sort the data and take the fourth of the seven values, which is six",
+            "median is the middle value after sorting, six",
+            "ascending order lo pettite madhyalo unnadi six, adi median",
+            "the median is six"
+          ],
+          "reject": [
+            "find the median",
+            "the middle one",
+            "sort them"
+          ],
+          "heard_as": [
+            "ascending",
+            "sort",
+            "middle",
+            "fourth",
+            "six",
+            "median"
+          ]
+        },
+        "why": "The median is the middle of the ORDERED data, so the sort is part of the method, not a preparation. With an odd n there is one middle value and no averaging.",
+        "common_mistakes": [
+          "Taking the middle of the unsorted list (3, the 4th as given).",
+          "Averaging the 3rd and 4th values as if n were even.",
+          "Using the mean (47/7) instead of the median."
+        ]
+      },
+      {
+        "id": "s2_md",
+        "kind": "boxed_final",
+        "label": "Mean deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Absolute deviations from 6, in the sorted order: 4, 3, 2, 0, 3, 4, 7. Sum 23, divide by n = 7. 23/7 = 3.2857…, written 3.29.",
+        "lines": [
+          "|xᵢ − M| : 4, 3, 2, 0, 3, 4, 7",
+          "M.D. = Σ|xᵢ − M|/n",
+          "= (4 + 3 + 2 + 0 + 3 + 4 + 7)/7 = 23/7 = 3.29",
+          {
+            "text": "∴ M.D. about the median = 3.29",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the absolute deviations from 6 are 4, 3, 2, 0, 3, 4, 7, their sum 23 divided by 7 gives 3.29.",
+          "accept": [
+            "take each number minus six without sign, add to twenty three, divide by seven, three point two nine",
+            "the absolute deviations from the median add to twenty three and twenty three by seven is three point two nine",
+            "mean deviation is sigma mod x i minus M by n equals twenty three by seven equals three point two nine",
+            "six nunchi deviations mod teesukoni add cheste twenty three, seven tho divide cheste three point two nine",
+            "the answer is three point two nine"
+          ],
+          "reject": [
+            "divide it",
+            "that is the answer",
+            "find the deviations"
+          ],
+          "heard_as": [
+            "mod",
+            "absolute",
+            "twenty three",
+            "three point two nine",
+            "M D"
+          ]
+        },
+        "why": "Mean deviation about the median is the average distance from the median. The absolute value keeps every distance positive; the median's own term is 0.",
+        "common_mistakes": [
+          "Subtracting from the mean instead of from the median.",
+          "Dividing 23 by 6 (leaving out the zero term) instead of by n = 7.",
+          "Writing 3.28 — the book rounds 3.2857… to 3.29."
+        ]
+      }
+    ]
+  }
+}

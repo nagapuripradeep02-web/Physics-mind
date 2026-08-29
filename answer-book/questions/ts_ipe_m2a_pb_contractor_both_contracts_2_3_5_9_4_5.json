@@ -1,0 +1,201 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_contractor_both_contracts_2_3_5_9_4_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "The probability for a contractor to get a road contract is 2/3 and to get a building contract is 5/9. The probability to get at least one contract is 4/5. Find the probability that he gets both the contracts.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Events; at least one = A ∪ B",
+      "marks": 1
+    },
+    {
+      "label": "Rearrange the addition theorem for P(A ∩ B)",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and compute 19/45",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 10 Probability, answer 83 (PDF p.61: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: TS 19 · AP 16,20. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). It is patterned on the only split this unit prints, answer 36 on book p.37 (1 set-up · 2 values · 4 computation), scaled to 4 marks: the set-up is light and the computation that reaches the answer carries the most. The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question is Q17 of Model Paper 3 (book p.115); it is not in the Bullet Model Paper. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: 2/3 + 5/9 − 4/5 = (30 + 25 − 36)/45 = 19/45 — agrees with the book."
+  },
+  "recall_prompt": "Say how you would find the probability of both contracts — which set \"at least one\" is, the theorem, and the arithmetic.",
+  "insider_note": "The common error is treating the two contracts as independent and multiplying 2/3 × 5/9. The question gives P(at least one), which means the addition theorem is the intended tool.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_events",
+        "kind": "text",
+        "label": "Events; at least one = A ∪ B",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. \"At least one contract\" is the union. Do not assume independence — it is not given, and the union value is what replaces it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Let A = he gets the road contract,",
+            "style": "normal"
+          },
+          {
+            "text": "B = he gets the building contract.",
+            "style": "normal"
+          },
+          {
+            "text": "P(A) = 2/3, P(B) = 5/9, P(A ∪ B) = 4/5",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B are the road and building contract events, with P(A) = 2/3, P(B) = 5/9, and \"at least one\" is P(A ∪ B) = 4/5.",
+          "accept": [
+            "let A be the road contract and B the building contract, at least one is the union with probability four fifths",
+            "P A is 2 by 3, P B is 5 by 9 and P A union B is 4 by 5",
+            "at least one contract means A union B",
+            "road contract A, building contract B, at least one ante union, 4 by 5"
+          ],
+          "reject": [
+            "define the events",
+            "write the values"
+          ],
+          "heard_as": [
+            "two by three",
+            "five by nine",
+            "four by five",
+            "at least one",
+            "union"
+          ]
+        },
+        "why": "The question gives three numbers; recognising the third as the union is what makes the addition theorem usable.",
+        "common_mistakes": [
+          "Reading \"at least one\" as the intersection.",
+          "Assuming the contracts are independent."
+        ]
+      },
+      {
+        "id": "s2_rearrange",
+        "kind": "equation",
+        "label": "Addition theorem for P(A ∩ B)",
+        "marks": 1,
+        "mark_note": "Theorem",
+        "margin_note": "Second mark. P(A ∪ B) = P(A) + P(B) − P(A ∩ B), rearranged for the intersection.",
+        "lines": [
+          {
+            "text": "By the addition theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(A ∩ B) = P(A) + P(B) − P(A ∪ B)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the addition theorem rearranges to P(A ∩ B) = P(A) + P(B) − P(A ∪ B).",
+          "accept": [
+            "rearrange the addition theorem so the intersection is P A plus P B minus the union",
+            "both is P A plus P B minus P A union B",
+            "from the addition theorem the intersection equals sum minus union",
+            "addition theorem nunchi intersection ante P A plus P B minus union"
+          ],
+          "reject": [
+            "use the theorem",
+            "addition theorem"
+          ],
+          "heard_as": [
+            "addition theorem",
+            "intersection",
+            "sum minus union"
+          ]
+        },
+        "why": "The theorem connects the four quantities; three are given, so the fourth — the one asked — follows.",
+        "common_mistakes": [
+          "Writing P(A ∩ B) = P(A)·P(B) = 10/27."
+        ]
+      },
+      {
+        "id": "s3_compute",
+        "kind": "boxed_final",
+        "label": "Substitute and compute",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "Two marks. Common denominator 45: 2/3 = 30/45, 5/9 = 25/45, 4/5 = 36/45; 30 + 25 − 36 = 19.",
+        "lines": [
+          {
+            "text": "= 2/3 + 5/9 − 4/5",
+            "style": "eq"
+          },
+          {
+            "text": "= (30 + 25 − 36)/45",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(both contracts) = 19/45",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A ∩ B) = 2/3 + 5/9 − 4/5 = (30 + 25 − 36)/45 = 19/45.",
+          "accept": [
+            "two thirds plus five ninths minus four fifths over forty five is thirty plus twenty five minus thirty six which is nineteen by forty five",
+            "the answer is 19 by 45",
+            "common denominator forty five gives nineteen",
+            "2 by 3 plus 5 by 9 minus 4 by 5, 45 denominator, 19 by 45"
+          ],
+          "reject": [
+            "substitute",
+            "nineteen by forty five"
+          ],
+          "heard_as": [
+            "nineteen by forty five",
+            "forty five",
+            "thirty plus twenty five minus thirty six"
+          ]
+        },
+        "why": "The LCM of 3, 9 and 5 is 45; every fraction is put over it once and the numerators combine.",
+        "common_mistakes": [
+          "Using 27 as the denominator and dropping the 5.",
+          "Getting 30 + 25 − 36 = 29 or 9."
+        ]
+      }
+    ]
+  }
+}

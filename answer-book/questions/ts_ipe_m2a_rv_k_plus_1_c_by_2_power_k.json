@@ -1,0 +1,194 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_k_plus_1_c_by_2_power_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If X is a random variable with the probability distribution P(X = k) = (k + 1)c/2ᵏ for k = 0, 1, 2, …, then find c and P(1 < X < 3).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write ΣP = 1 as a series",
+      "marks": 2
+    },
+    {
+      "label": "Sum the series and find c",
+      "marks": 3
+    },
+    {
+      "label": "Find P(1 < X < 3)",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.43 — LAQ chapter 5 Random Variables, answer 47. (In this part of the scan book page = PDF page − 1: book p.43 was read at PDF p.44, not p.45 as the −2 rule predicts.) Printed appearances: AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. Same 2 + 3 + 2 and the same step ids (s1_sum_series, s2_find_c, s3_prob) as answer 46, deliberately: both questions sum a known series to find the constant. Here the 2 marks of the last step cover a ONE-term probability (P(X = 2)) because the step also has to read 1 < X < 3 on the range 0, 1, 2, … correctly. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot, and this question IS Q24 of the book's Model Paper 5 (book p.120). The book's first line prints 2ᴷ with a capital K (a typo for 2ᵏ); the working recomputes: c(1 − 1/2)⁻² = 4c = 1 ⇒ c = 1/4, P(X = 2) = 3c/4 = 3/16. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find c and P(1 < X < 3) when P(X = k) = (k + 1)c/2ᵏ — what series the probabilities make, which standard series it is, and which value of X the probability keeps.",
+  "insider_note": "The range starts at k = 0, so the series opens with the term c itself — starting at k = 1 loses that term and c comes out wrong; the sum needed is 1 + 2x + 3x² + … = (1 − x)⁻², not the geometric series.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Random Variables · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_series",
+        "kind": "equation",
+        "label": "Write ΣP = 1 as a series",
+        "marks": 2,
+        "mark_note": "Series",
+        "margin_note": "First two marks. The range starts at k = 0, so the first term is (0 + 1)c/2⁰ = c. Write four terms and the dots, then take c outside: c[1 + 2(1/2) + 3(1/2)² + 4(1/2)³ + …] = 1. The coefficients 1, 2, 3, 4 identify the series used in the next step.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given P(X = k) = (k + 1)c/2ᵏ, k = 0, 1, 2, …",
+          "The probabilities add to 1:",
+          {
+            "text": "ΣP(X = k) = 1",
+            "style": "eq"
+          },
+          "⇒ P(X = 0) + P(X = 1) + P(X = 2) + … = 1",
+          "⇒ 1c/2⁰ + 2c/2¹ + 3c/2² + 4c/2³ + … = 1",
+          "⇒ c[1 + 2(1/2) + 3(1/2)² + 4(1/2)³ + …] = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ΣP(X = k) = 1 becomes c[1 + 2(1/2) + 3(1/2)² + 4(1/2)³ + …] = 1, starting from k = 0.",
+          "accept": [
+            "the probabilities add to one giving c times one plus two into half plus three into half squared and so on equals one",
+            "sum of P equals one is an infinite series starting at k equals zero with coefficients one two three four",
+            "take c out, the bracket is one plus two by two plus three by four plus four by eight and so on",
+            "anni probabilities kalipithe one, c bayataki teesi one plus two into half plus three into half square plus so on",
+            "write the series from k equals zero and factor out c"
+          ],
+          "reject": [
+            "find c",
+            "add them"
+          ],
+          "heard_as": [
+            "c times bracket",
+            "one plus two into half",
+            "infinite series",
+            "equal to one",
+            "k equals zero"
+          ]
+        },
+        "why": "With an infinite range the condition ΣP = 1 is a series, and taking c outside the bracket exposes the coefficients 1, 2, 3, 4, … against the powers of 1/2 — the shape of a standard binomial series.",
+        "common_mistakes": [
+          "Starting at k = 1 and missing the first term c.",
+          "Writing the coefficients as 1, 1, 1, … by dropping the (k + 1).",
+          "Leaving c inside every term so the pattern is hidden."
+        ]
+      },
+      {
+        "id": "s2_find_c",
+        "kind": "equation",
+        "label": "Sum the series and find c",
+        "marks": 3,
+        "mark_note": "c",
+        "margin_note": "Three marks — the main idea. 1 + 2x + 3x² + 4x³ + … = (1 − x)⁻² for |x| < 1. With x = 1/2 the bracket is (1/2)⁻² = 2² = 4, so 4c = 1 and c = 1/4.",
+        "lines": [
+          "We know, for |x| < 1:",
+          "1 + 2x + 3x² + 4x³ + … = (1 − x)⁻²",
+          "Here x = 1/2:",
+          "⇒ c(1 − 1/2)⁻² = 1 ⇒ c(1/2)⁻² = 1",
+          "⇒ c(2²) = 1 ⇒ 4c = 1",
+          "⇒ c = 1/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket is the series (1 − x)⁻² with x = 1/2, which equals 4, so 4c = 1 and c = 1/4.",
+          "accept": [
+            "the series one plus two x plus three x squared is one minus x to the minus two, at x equal to half that is four, so four c is one and c is a quarter",
+            "use the binomial series for one minus x to the power minus two with x equal to half",
+            "the bracket sums to four so c equals one by four",
+            "one plus two x plus three x square series one minus x power minus two, x half pedithe four, c one by four",
+            "c is one fourth"
+          ],
+          "reject": [
+            "find c",
+            "sum the series"
+          ],
+          "heard_as": [
+            "one minus x to the minus two",
+            "binomial series",
+            "four c",
+            "one by four",
+            "quarter"
+          ]
+        },
+        "why": "The series with coefficients 1, 2, 3, 4, … is the expansion of (1 − x)⁻², and 1/2 is inside its range of validity. Recognising it turns an infinite sum into one power of 2.",
+        "common_mistakes": [
+          "Using the geometric series 1 + x + x² + … = (1 − x)⁻¹ and getting 2c = 1.",
+          "Evaluating (1/2)⁻² as 1/4 instead of 4.",
+          "Answering c = 4."
+        ]
+      },
+      {
+        "id": "s3_prob",
+        "kind": "boxed_final",
+        "label": "Find P(1 < X < 3)",
+        "marks": 2,
+        "mark_note": "Probability",
+        "margin_note": "Last two marks. 1 < X < 3 on the range 0, 1, 2, … keeps only X = 2. P(X = 2) = (2 + 1)c/2² = 3c/4, and with c = 1/4 that is 3/16.",
+        "lines": [
+          "P(1 < X < 3) = P(X = 2)",
+          "= (2 + 1)c/2² = 3c/4",
+          "= 3(1/4)/4 = 3/16",
+          {
+            "text": "∴ c = 1/4, P(1 < X < 3) = 3/16",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(1 < X < 3) is P(X = 2) alone, which is 3c/4 = 3/16.",
+          "accept": [
+            "P of one less than X less than three is just P of X equals two which is three c by four equals three by sixteen",
+            "only X equal to two is strictly between one and three, the answer is three sixteenths",
+            "three into a quarter divided by four is three by sixteen",
+            "one and three exclude, X two matrame, three c by four, three by sixteen",
+            "the probability is three by sixteen"
+          ],
+          "reject": [
+            "find the probability",
+            "the last part"
+          ],
+          "heard_as": [
+            "three by sixteen",
+            "P of X equals two",
+            "three c by four",
+            "strictly between",
+            "three sixteenths"
+          ]
+        },
+        "why": "Both inequalities are strict, and the range is integers, so exactly one value survives. The probability is one term of the given formula with the constant now known.",
+        "common_mistakes": [
+          "Including X = 1 or X = 3.",
+          "Computing 3c/4 as 3/4 by forgetting c.",
+          "Writing (2 + 1)c/2² as 3c/2."
+        ]
+      }
+    ]
+  }
+}

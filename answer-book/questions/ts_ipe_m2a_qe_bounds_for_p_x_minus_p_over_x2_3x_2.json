@@ -1,0 +1,254 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_bounds_for_p_x_minus_p_over_x2_3x_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If the expression (x − p)/(x² − 3x + 2) takes all real values for x ∈ R, then find the bounds for p.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Quadratic in x",
+      "marks": 1
+    },
+    {
+      "label": "Δ ≥ 0",
+      "marks": 1
+    },
+    {
+      "label": "Condition on p",
+      "marks": 1
+    },
+    {
+      "label": "Bounds for p",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.54 (PDF p.55 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — SAQ chapter 8 Quadratic Expressions, answer 67. Printed appearances: AP 15,22 · TS 15. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.52–54. The first two steps (s1_quadratic_in_x, s2_discriminant) share their ids and marks with the five range SAQs of this unit because the method starts the same way; the last two (s3_condition_on_p, s4_bounds) are this question's own — the inequality must hold for EVERY y, which is a second discriminant condition, and then the end values p = 1, 2 are rejected. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q12 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This question is re-solved as the fourth Q12 item of the Bullet Model Paper (book p.101) with the same result 1 < p < 2; it does not appear in the five model papers. No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth-check: the book's open interval 1 < p < 2 is correct — at p = 1 the expression reduces to 1/(x − 2), which never equals 0, and at p = 2 to 1/(x − 1), likewise; so neither end value lets the expression take all real values. Also checked: x = 1 and x = 2 (the excluded points) are never roots of the quadratic in x when 1 < p < 2 (substituting gives p − 1 and p − 2), so the discriminant argument introduces nothing false."
+  },
+  "recall_prompt": "Say how you would find the bounds for p — say what you call y, what quadratic in x you form, what x being real gives, why that inequality must hold for every y, what condition on p that gives, and why the two end values are left out.",
+  "insider_note": "'Takes all real values' turns the second discriminant condition into ≤ 0 — true for every y, not for some y. And the end values of p are excluded with a written reason: there the numerator cancels a factor of the denominator, so the bounds are strict.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Quadratic Expressions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quadratic_in_x",
+        "kind": "equation",
+        "label": "Quadratic in x",
+        "marks": 1,
+        "mark_note": "Quadratic in x",
+        "margin_note": "First mark. The x terms collect to −(3y + 1)x and the constant is 2y + p. The denominator is (x − 1)(x − 2), so x = 1 and x = 2 are excluded; neither is a root of (1) for the p found later, so nothing false enters.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = (x − p)/(x² − 3x + 2)",
+          "⇒ y(x² − 3x + 2) = x − p",
+          "⇒ yx² − 3yx + 2y − x + p = 0",
+          "⇒ yx² − (3y + 1)x + (2y + p) = 0 … (1)",
+          "(1) is a quadratic in x, and x is real."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is set equal to y, cross-multiplied, and collected into a quadratic in x: yx² − (3y + 1)x + (2y + p) = 0.",
+          "accept": [
+            "let y equal the expression, cross multiply and collect terms to get a quadratic in x",
+            "put y equal to the fraction, multiply out the denominator and write it as a quadratic in x",
+            "call the expression y and rearrange it into a x squared plus b x plus c equals zero",
+            "expression ni y ani pettukoni cross multiply chesi x lo quadratic rayali"
+          ],
+          "reject": [
+            "find the range",
+            "write the equation",
+            "let y be the expression"
+          ],
+          "heard_as": [
+            "y equals",
+            "cross multiply",
+            "quadratic in x",
+            "x squared",
+            "three y plus one",
+            "two y plus p"
+          ]
+        },
+        "why": "The question is about which y are possible; writing the fraction as a quadratic in x is what lets the discriminant answer that.",
+        "common_mistakes": [
+          "Writing the x coefficient as −(3y − 1).",
+          "Dropping the p when moving x − p across.",
+          "Not writing that (1) is a quadratic in x with x real."
+        ]
+      },
+      {
+        "id": "s2_discriminant",
+        "kind": "equation",
+        "label": "Δ ≥ 0",
+        "marks": 1,
+        "mark_note": "Discriminant",
+        "margin_note": "Second mark. a = y, b = −(3y + 1), c = 2y + p. 4ac = 8y² + 4py. Collect the y terms: 6y − 4py = (6 − 4p)y. Label it (2) — the next step reasons about it.",
+        "lines": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (3y + 1)² − 4y(2y + p) ≥ 0",
+          "⇒ 9y² + 6y + 1 − 8y² − 4py ≥ 0",
+          "⇒ y² + (6 − 4p)y + 1 ≥ 0 … (2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x real gives Δ ≥ 0: (3y + 1)² − 4y(2y + p) ≥ 0, which simplifies to y² + (6 − 4p)y + 1 ≥ 0, a quadratic in y whose middle coefficient contains p.",
+          "accept": [
+            "x is real so the discriminant b squared minus four a c must be greater than or equal to zero",
+            "the quadratic in x has real roots so delta is at least zero",
+            "apply b squared minus 4 a c greater than or equal to zero to the quadratic in x",
+            "x real kabatti delta greater than or equal to zero pettali"
+          ],
+          "reject": [
+            "find delta",
+            "use the discriminant",
+            "solve the quadratic"
+          ],
+          "heard_as": [
+            "discriminant",
+            "delta",
+            "b squared minus four a c",
+            "greater than or equal to zero",
+            "six minus four p",
+            "y squared plus"
+          ]
+        },
+        "why": "This inequality says which y the expression can take, for a given p. The question turns it around: p must be such that EVERY real y satisfies it.",
+        "common_mistakes": [
+          "Writing 4y(2y + p) as 8y² + 4p.",
+          "Collecting the middle term as (6 + 4p)y.",
+          "Using Δ > 0, which changes the later condition on p."
+        ]
+      },
+      {
+        "id": "s3_condition_on_p",
+        "kind": "equation",
+        "label": "Condition on p",
+        "marks": 1,
+        "mark_note": "For every y",
+        "margin_note": "Third mark, and the idea of the question. 'Takes all real values' means (2) is true for EVERY y. A quadratic in y with positive leading coefficient stays ≥ 0 everywhere only if it never goes below the axis — its own discriminant must be ≤ 0. Note the direction: ≤, not ≥.",
+        "lines": [
+          "y takes all real values, so (2) holds",
+          "for every real y.",
+          "The coefficient of y² is 1 > 0, so (2)",
+          "holds for all y only if its Δ ≤ 0:",
+          "⇒ (6 − 4p)² − 4(1)(1) ≤ 0",
+          "⇒ 36 − 48p + 16p² − 4 ≤ 0",
+          "⇒ 16p² − 48p + 32 ≤ 0",
+          "⇒ p² − 3p + 2 ≤ 0",
+          "⇒ (p − 1)(p − 2) ≤ 0",
+          "⇒ 1 ≤ p ≤ 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because the expression takes ALL real values, inequality (2) must hold for every y; with leading coefficient positive that needs the discriminant of (2) to be ≤ 0, giving (6 − 4p)² − 4 ≤ 0 and hence 1 ≤ p ≤ 2.",
+          "accept": [
+            "since y takes all real values the inequality must hold for every y so the discriminant of the quadratic in y must be less than or equal to zero",
+            "the quadratic in y has positive leading coefficient so it is always non negative only if its discriminant is at most zero which gives p between one and two",
+            "apply the discriminant condition a second time, this time to the quadratic in y, with less than or equal to zero",
+            "y anni values teeskuntundi kabatti y lo quadratic ki discriminant less than or equal to zero pettali, p one ki two ki madhya vasthundi",
+            "six minus four p squared minus four is at most zero so p is between one and two"
+          ],
+          "reject": [
+            "find the discriminant",
+            "solve for p",
+            "use the discriminant again"
+          ],
+          "heard_as": [
+            "for every y",
+            "all real values",
+            "less than or equal to zero",
+            "p minus one",
+            "p minus two",
+            "between one and two"
+          ]
+        },
+        "why": "A quadratic that opens upward is ≥ 0 for every input exactly when it has no two distinct real roots, i.e. its discriminant is ≤ 0. That is the second, and decisive, use of the discriminant in this question.",
+        "common_mistakes": [
+          "Using Δ ≥ 0 again by habit — for 'true for all y' the condition is Δ ≤ 0.",
+          "Forgetting the −4 from 4(1)(1) and solving (6 − 4p)² ≤ 0.",
+          "Not dividing by 16 and mis-factorising 16p² − 48p + 32."
+        ]
+      },
+      {
+        "id": "s4_bounds",
+        "kind": "boxed_final",
+        "label": "Bounds for p",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark, and where most answers stop early. At p = 1 the numerator (x − 1) cancels a factor of the denominator and the expression becomes 1/(x − 2), which never takes the value 0; at p = 2 it becomes 1/(x − 1), likewise. So the end values are excluded and the bounds are strict.",
+        "lines": [
+          "If p = 1 or p = 2, the numerator cancels",
+          "a factor of (x − 1)(x − 2), and the",
+          "expression no longer takes all real values.",
+          "So p = 1 and p = 2 are not allowed.",
+          {
+            "text": "∴ 1 < p < 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p = 1 and p = 2 must be rejected because the numerator then cancels a factor of the denominator and the expression stops taking all real values, so the bounds are 1 < p < 2, strict.",
+          "accept": [
+            "p equal to one or two makes the numerator cancel with the denominator so those are left out and the answer is p strictly between one and two",
+            "at the end values the fraction reduces to one over x minus two or one over x minus one which never gives zero so exclude them",
+            "reject p equals one and p equals two, so one less than p less than two",
+            "p one leda two aithe numerator denominator tho cancel avthundi, so strict inequality one less than p less than two",
+            "the bounds are one and two but not including them"
+          ],
+          "reject": [
+            "p is between one and two",
+            "write the answer",
+            "box it"
+          ],
+          "heard_as": [
+            "cancels",
+            "strictly between",
+            "one less than p less than two",
+            "not included",
+            "excluded"
+          ]
+        },
+        "why": "The inequality on p came from the discriminant of (1), which assumed the fraction was really a quadratic problem. When numerator and denominator share a factor the fraction is a different, simpler function, and the assumption fails — so the two end values have to be tested separately and thrown out.",
+        "common_mistakes": [
+          "Answering 1 ≤ p ≤ 2 with the ends included.",
+          "Giving no reason for excluding p = 1 and p = 2.",
+          "Excluding only one of the two end values."
+        ]
+      }
+    ]
+  }
+}

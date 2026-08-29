@@ -72,15 +72,16 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
     // `year` above stopped being three hardcoded "First year" strings: the
     // eyebrow, the shell's static fallback and the og description each printed
     // it, so a second-year student would have read "First year" on all three.
-    // Subjects grow as the other Paper-IIs are authored (mathematics_2a,
-    // mathematics_2b) — the stream is the seam for that. chemistry_2 joined
-    // 2026-08-29, and the blurb moved with it in the same commit: a stream that
-    // serves a paper its blurb does not name advertises a book it does contain,
-    // which is the same defect as the reverse and just as invisible.
+    // Subjects grow as the other Paper-IIs are authored (mathematics_2b next)
+    // — the stream is the seam for that. chemistry_2 joined 2026-08-29 and
+    // mathematics_2a the same day, and the blurb moved with each in the same
+    // commit: a stream that serves a paper its blurb does not name advertises a
+    // book it does contain, which is the same defect as the reverse and just as
+    // invisible. The blurb names 2A, not "Maths": 2B is not written.
     mpc_2: {
-        subjects: ['physics_2', 'chemistry_2'],
+        subjects: ['physics_2', 'chemistry_2', 'mathematics_2a'],
         label: 'Senior Inter MPC',
-        blurb: 'Physics and Chemistry',
+        blurb: 'Maths-2A, Physics and Chemistry',
         short: 'MPC',
         year: 'Second year',
     },
@@ -105,11 +106,11 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
 // The notes are checked against what is on disk, not against the marketing
 // site: Botany is on master (13 chapters) and Zoology is real but on an
 // unmerged branch (8 chapters), so "written, being checked" is true of both.
-// MPC second year went live 2026-08-28 with Physics-II (16 chapters) and gained
-// Chemistry-II (18 units) on 2026-08-29; Maths 2A/2B are not written, which is
-// why `mpc_2.blurb` says "Physics and Chemistry" and not "Maths, Physics and
-// Chemistry" — the blurb is what the reader is promised, and it must describe
-// the artifact, not the ambition.
+// MPC second year went live 2026-08-28 with Physics-II (16 chapters), gained
+// Chemistry-II (18 units) on 2026-08-29 and Maths-2A (10 units) the same day;
+// Maths 2B is not written, which is why `mpc_2.blurb` says "Maths-2A, Physics
+// and Chemistry" and not "Maths, Physics and Chemistry" — the blurb is what the
+// reader is promised, and it must describe the artifact, not the ambition.
 const TRACKS: {
     id: string;
     label: string;
@@ -119,7 +120,7 @@ const TRACKS: {
     {
         id: 'mpc',
         label: 'MPC',
-        subjects: 'Maths 1A · Maths 1B · Physics · Chemistry',
+        subjects: 'Maths 1A · Maths 1B · Maths 2A · Physics · Chemistry',
         years: [
             { id: 'first_year', label: 'First year', stream: 'mpc', note: '' },
             { id: 'second_year', label: 'Second year', stream: 'mpc_2', note: '' },
@@ -287,7 +288,7 @@ const listedIds = new Set<string>();
 // below). `mathematics` is Maths-1A for historical reasons — it predates 1B, the
 // same way an absent subject means physics. Physics-II will need the same
 // treatment when it opens.
-const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2'];
+const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a'];
 // STREAMS (top of file) names subjects too. If the two lists drift — a stream
 // naming a subject that no longer exists, or a renamed subject — the lens would
 // silently drop a whole paper from a student's book rather than erroring. Cheap

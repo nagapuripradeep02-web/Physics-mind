@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_n1p5_np5_ratio_3_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ⁽ⁿ⁺¹⁾P₅ : ⁿP₅ = 3 : 2, then find n.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the ratio and cancel",
+      "marks": 1
+    },
+    {
+      "label": "Cross-multiply and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 16 Permutations & Combinations, answer 140.1. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_expand, s2_solve) are used on every 'solve for n or r' VSAQ in this unit (answers 138.1 to 142), deliberately: they are one method — write the permutation or combination out, compare or solve — over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find n when n plus 1 P 5 to n P 5 is 3 to 2.",
+  "insider_note": "Four of the five factors are common, so the ratio collapses to (n + 1)/(n − 4) = 3/2. Keep the sides in order when cross-multiplying: the swapped version 3(n + 1) = 2(n − 4) gives n = −11.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Write the ratio and cancel",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ⁽ⁿ⁺¹⁾P₅ = (n + 1)n(n − 1)(n − 2)(n − 3) and ⁿP₅ = n(n − 1)(n − 2)(n − 3)(n − 4). Four factors cancel.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "⁽ⁿ⁺¹⁾P₅ / ⁿP₅ = 3/2",
+          "(n + 1)n(n − 1)(n − 2)(n − 3)",
+          "÷ [n(n − 1)(n − 2)(n − 3)(n − 4)] = 3/2",
+          "(n + 1)/(n − 4) = 3/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That writing both permutations as products and cancelling the four common factors leaves n plus 1 over n minus 4 equal to 3 over 2.",
+          "accept": [
+            "write both as products, four factors cancel, leaving n plus one over n minus four equals three by two",
+            "cancel n into n minus one into n minus two into n minus three from both to get n plus one by n minus four",
+            "the ratio reduces to n plus one over n minus four",
+            "common factors cancel chesthe n plus one by n minus four equal three by two",
+            "expand both permutations and cancel"
+          ],
+          "reject": [
+            "cancel",
+            "use the formula"
+          ],
+          "heard_as": [
+            "n plus one",
+            "n minus four",
+            "three by two",
+            "cancel",
+            "ratio"
+          ]
+        },
+        "why": "The two permutations share four consecutive factors; only the first factor of the top (n + 1) and the last factor of the bottom (n − 4) survive. The ratio then contains n once on each side.",
+        "common_mistakes": [
+          "Cancelling the 5 in P₅ as a factor — ⁿP₅ has no factor 5.",
+          "Writing ⁿP₅ with four factors and losing (n − 4)."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Cross-multiply and solve",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 2(n + 1) = 3(n − 4) gives n = 14.",
+        "lines": [
+          "2(n + 1) = 3(n − 4)",
+          "2n + 2 = 3n − 12",
+          {
+            "text": "∴ n = 14",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cross-multiplying gives 2n plus 2 equals 3n minus 12, so n = 14.",
+          "accept": [
+            "two n plus two equals three n minus twelve so n is fourteen",
+            "cross multiply to get n equals fourteen",
+            "n is fourteen",
+            "cross multiply chesthe n fourteen",
+            "twelve plus two is fourteen"
+          ],
+          "reject": [
+            "solve",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "n is fourteen",
+            "fourteen",
+            "cross multiply"
+          ]
+        },
+        "why": "Once the ratio is a single fraction in n, cross-multiplying gives a linear equation, so there is exactly one n and no root to reject.",
+        "common_mistakes": [
+          "Writing 3(n + 1) = 2(n − 4) with the sides swapped, giving n = −11.",
+          "Arithmetic slip: 3n − 2n = 12 + 2 = 14, not 10."
+        ]
+      }
+    ]
+  }
+}

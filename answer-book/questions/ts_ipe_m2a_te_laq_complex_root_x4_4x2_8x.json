@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_laq_complex_root_x4_4x2_8x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Solve the equation x⁴ − 4x² + 8x + 35 = 0, given that 2 + i√3 is a root of the equation.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The conjugate 2 − i√3 is also a root",
+      "marks": 1
+    },
+    {
+      "label": "Form the quadratic factor x² − 4x + 7",
+      "marks": 2
+    },
+    {
+      "label": "Divide f(x) by the factor",
+      "marks": 2
+    },
+    {
+      "label": "Solve x² + 4x + 5 = 0 and list all four roots",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Theory of Equations, answer 19. Printed appearances: AP 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — p.26 prints no [N Marks] tags against this answer. 1+2+2+2 follows the weight the book's other Section-C pages give to the stages (one mark for the identifying statement, two for each block of computation, as on p.20 and p.24). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Correction to the book, recorded not silently fixed: p.26 prints 'the equation with roots 2 + √3, 2 − √3 is x² − (sum of roots)x + product = 0' — the i is dropped in that one line; the roots are 2 ± i√3 and the book's own sum (4), product (7) and factor x² − 4x + 7 are the correct ones for 2 ± i√3 (for 2 ± √3 the product would be 1). The book divides by the two-row synthetic method with 4 and −7; the card shows the same division long-hand. Truth check: (x² − 4x + 7)(x² + 4x + 5) expands to x⁴ − 4x² + 8x + 35; the four roots add to 0 (no x³ term) and multiply to 7 · 5 = 35, the constant term. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would solve this — what the given root tells you about a second root, how the pair becomes a factor, and how you find the other two roots.",
+  "insider_note": "The product of the conjugate pair is 4 + 3 = 7, not 4 − 3 = 1; the i² = −1 is where this question is most often lost.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Theory of Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conjugate",
+        "kind": "text",
+        "label": "Conjugate root",
+        "marks": 1,
+        "mark_note": "Conjugate pair",
+        "margin_note": "First mark. The coefficients are real, so complex roots come in conjugate pairs: 2 − i√3 is a root too. Say why — the word 'real coefficients' is what earns the mark.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = x⁴ − 4x² + 8x + 35.",
+          "The coefficients are real, so complex roots",
+          "come in conjugate pairs:",
+          "2 + i√3 is a root ⇒ 2 − i√3 is also a root."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because the coefficients are real, the conjugate 2 − i√3 is also a root.",
+          "accept": [
+            "the coefficients are real so the conjugate two minus i root three is also a root",
+            "complex roots of a real polynomial come in conjugate pairs so two minus i root three is a root",
+            "the conjugate is also a root because the equation has real coefficients",
+            "coefficients real kabatti conjugate two minus i root three kuda root avutundi",
+            "take the conjugate as the second root"
+          ],
+          "reject": [
+            "find the other root",
+            "the conjugate",
+            "two roots"
+          ],
+          "heard_as": [
+            "conjugate",
+            "real coefficients",
+            "two minus i root three",
+            "pair"
+          ]
+        },
+        "why": "A polynomial with real coefficients cannot have a single non-real root: if z is a root, so is its conjugate z̄, because conjugation respects sums and products and leaves real coefficients unchanged. That doubles the given information with no extra work.",
+        "common_mistakes": [
+          "Not stating that the coefficients are real, which is the reason the conjugate is a root.",
+          "Writing the conjugate as −2 − i√3 (only the sign of the imaginary part changes)."
+        ]
+      },
+      {
+        "id": "s2_factor",
+        "kind": "equation",
+        "label": "Quadratic factor",
+        "marks": 2,
+        "mark_note": "x² − 4x + 7",
+        "margin_note": "Two marks. The pair's sum is 4 and product is 4 − 3i² = 7 (i² = −1, so −3i² = +3). The quadratic with these roots, x² − 4x + 7, divides f(x).",
+        "lines": [
+          "Sum of the pair = (2 + i√3) + (2 − i√3) = 4",
+          "Product = (2 + i√3)(2 − i√3) = 4 − 3i²",
+          "= 4 + 3 = 7",
+          "So x² − (sum)x + product = x² − 4x + 7",
+          "is a factor of f(x)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum (4) and product (7) of the conjugate pair give the quadratic factor x² − 4x + 7.",
+          "accept": [
+            "sum of the pair is four and product is seven so x squared minus four x plus seven is a factor",
+            "the two conjugate roots give the quadratic factor x squared minus four x plus seven",
+            "form x squared minus sum x plus product from the pair",
+            "pair sum four product seven, kabatti x square minus four x plus seven factor",
+            "product is four plus three because i squared is minus one"
+          ],
+          "reject": [
+            "find the factor",
+            "make a quadratic",
+            "multiply the roots"
+          ],
+          "heard_as": [
+            "x squared minus four x plus seven",
+            "sum four",
+            "product seven",
+            "quadratic factor",
+            "i squared"
+          ]
+        },
+        "why": "Two known roots α, β give the factor (x − α)(x − β) = x² − (α + β)x + αβ. Using sum and product keeps the i's out of the long division: the factor has real coefficients even though its roots do not.",
+        "common_mistakes": [
+          "Writing the product as 4 − 3 = 1 (forgetting i² = −1).",
+          "Writing x² + 4x + 7 (the sign of the middle term is minus the sum).",
+          "Trying to divide by (x − 2 − i√3) directly, which carries i through the whole division."
+        ]
+      },
+      {
+        "id": "s3_divide",
+        "kind": "equation",
+        "label": "Divide f(x)",
+        "marks": 2,
+        "mark_note": "Long division",
+        "margin_note": "Two marks. Divide x⁴ + 0x³ − 4x² + 8x + 35 by x² − 4x + 7. Each line: take the leading term, multiply the divisor, subtract. The remainder must be 0; the quotient is x² + 4x + 5.",
+        "lines": [
+          "Divide f(x) by x² − 4x + 7:",
+          "x² · (x² − 4x + 7) = x⁴ − 4x³ + 7x²",
+          "left: 4x³ − 11x² + 8x + 35",
+          "4x · (x² − 4x + 7) = 4x³ − 16x² + 28x",
+          "left: 5x² − 20x + 35",
+          "5 · (x² − 4x + 7) = 5x² − 20x + 35, left: 0",
+          "So f(x) = (x² − 4x + 7)(x² + 4x + 5)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(x) is divided by x² − 4x + 7 with zero remainder, giving the quotient x² + 4x + 5.",
+          "accept": [
+            "divide f of x by x squared minus four x plus seven, remainder zero, quotient x squared plus four x plus five",
+            "long division by the quadratic factor leaves x squared plus four x plus five",
+            "the other factor is x squared plus four x plus five",
+            "x square minus four x plus seven tho divide chesthe quotient x square plus four x plus five",
+            "f of x factorises as the two quadratics"
+          ],
+          "reject": [
+            "divide it",
+            "factorise",
+            "find the quotient"
+          ],
+          "heard_as": [
+            "long division",
+            "quotient",
+            "remainder zero",
+            "x squared plus four x plus five"
+          ]
+        },
+        "why": "Removing the known quadratic factor leaves a quadratic, which the formula can finish. The zero remainder is the proof that x² − 4x + 7 really is a factor — if it is not zero, step 2 was wrong.",
+        "common_mistakes": [
+          "Leaving out the 0x³ term, so the columns do not line up.",
+          "A sign slip when subtracting (subtracting −4x³ adds 4x³).",
+          "Not writing the remainder 0, which is the check the examiner looks for."
+        ]
+      },
+      {
+        "id": "s4_solve_roots",
+        "kind": "boxed_final",
+        "label": "Remaining roots",
+        "marks": 2,
+        "mark_note": "−2 ± i",
+        "margin_note": "Last two marks. x² + 4x + 5 = 0 has discriminant 16 − 20 = −4, so √(−4) = 2i and the roots are −2 ± i. Box all four; the sum is 4 + (−4) = 0, matching the missing x³ term.",
+        "lines": [
+          "The other two roots solve x² + 4x + 5 = 0:",
+          "x = (−4 ± √(16 − 20))/2 = (−4 ± √(−4))/2",
+          "= (−4 ± 2i)/2 = −2 ± i",
+          {
+            "text": "∴ roots: 2 ± i√3, −2 ± i",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² + 4x + 5 = 0 is solved by the formula to give −2 ± i, and all four roots are listed together.",
+          "accept": [
+            "solve x squared plus four x plus five equals zero, discriminant minus four, roots minus two plus or minus i, and list all four",
+            "the quotient gives minus two plus or minus i so the roots are two plus or minus i root three and minus two plus or minus i",
+            "use the quadratic formula on the quotient and write all four roots",
+            "quotient solve chesthe minus two plus or minus i, anni four roots raayali",
+            "the last pair is minus two plus or minus i"
+          ],
+          "reject": [
+            "solve the quadratic",
+            "find the roots",
+            "use the formula"
+          ],
+          "heard_as": [
+            "minus two plus or minus i",
+            "discriminant",
+            "four roots",
+            "root of minus four",
+            "two i"
+          ]
+        },
+        "why": "The quotient's discriminant is negative, so the last two roots are also a conjugate pair — a degree-4 real polynomial with one non-real root must have an even number of them. The sum of all four is 0, which is the coefficient of the missing x³ term.",
+        "common_mistakes": [
+          "Writing √(−4) = 2 instead of 2i.",
+          "Boxing only the two new roots and leaving out the given pair.",
+          "Not checking: the four roots must add to 0 (no x³ term) and multiply to 35 (7 × 5)."
+        ]
+      }
+    ]
+  }
+}

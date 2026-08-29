@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_12cr1_12c3r5_find_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ¹²Cᵣ₊₁ = ¹²C₃ᵣ₋₅, find r.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Use ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+      "marks": 1
+    },
+    {
+      "label": "Sum case and both values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 16 Permutations & Combinations, answer 144.2. Printed appearances: TS 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_identity, s2_evaluate) are used on every 'ⁿCᵣ = ⁿCₛ' VSAQ in this unit (answers 143.1 to 144.2), deliberately: one identity over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; this exact question is Q7 of the book's Model Paper 4 (book p.117) and is re-solved in the Bullet Model Paper Q6&7 block (book p.98), which agrees (r = 4 or 3). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find r when 12 C r plus 1 equals 12 C 3r minus 5.",
+  "insider_note": "¹²Cᵣ = ¹²Cₛ has two branches — r = s or r + s = 12 — and this question needs both: the equal branch gives r = 3, the sum branch gives r = 4. One value alone is half the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "equation",
+        "label": "Use ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. State the identity and take the equal case first: r + 1 = 3r − 5 gives r = 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+          "Equal case: r + 1 = 3r − 5 ⇒ 2r = 6 ⇒ r = 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the identity gives two cases, and the equal case r plus 1 = 3r minus 5 gives r = 3.",
+          "accept": [
+            "n C r equals n C s means r is s or r plus s is n, the equal case r plus one equals three r minus five gives r three",
+            "first case, the indices are equal, two r is six, r is three",
+            "r plus one is three r minus five so r is three",
+            "equal case lo r plus one equal three r minus five, r three",
+            "set the lower numbers equal first"
+          ],
+          "reject": [
+            "use the identity",
+            "find r"
+          ],
+          "heard_as": [
+            "equal case",
+            "r plus one",
+            "three r minus five",
+            "r is three"
+          ]
+        },
+        "why": "Unlike ¹⁵C₂ᵣ₋₁ = ¹⁵C₂ᵣ₊₄, here the two lower numbers CAN be equal, so the equal case gives a real value. Both cases must be checked or a value is lost.",
+        "common_mistakes": [
+          "Skipping the equal case and finding only r = 4.",
+          "Solving r + 1 = 3r − 5 as 2r = 4."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Sum case and both values",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Sum case: (r + 1) + (3r − 5) = 12 gives 4r = 16, r = 4. Both values work: ¹²C₄ = ¹²C₄ and ¹²C₅ = ¹²C₇.",
+        "lines": [
+          "Sum case: (r + 1) + (3r − 5) = 12",
+          "4r − 4 = 12 ⇒ 4r = 16 ⇒ r = 4",
+          {
+            "text": "∴ r = 3 or r = 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum case r plus 1 plus 3r minus 5 = 12 gives r = 4, so r is 3 or 4.",
+          "accept": [
+            "sum case, r plus one plus three r minus five is twelve, four r is sixteen, r is four, so r is three or four",
+            "the lower numbers add to twelve giving r four, both three and four are answers",
+            "r equals three or four",
+            "sum case lo four r sixteen r four, answer three or four",
+            "four r minus four is twelve"
+          ],
+          "reject": [
+            "add them",
+            "four"
+          ],
+          "heard_as": [
+            "sum case",
+            "r is four",
+            "three or four",
+            "four r",
+            "sixteen"
+          ]
+        },
+        "why": "Each case of the identity is a different way the equality can hold, and both hold here, so both values are correct answers. Giving only one is half the answer.",
+        "common_mistakes": [
+          "Answering r = 4 only.",
+          "Collecting 1 − 5 as +4 and reaching 4r + 4 = 12, r = 2 (then ¹²C₃ ≠ ¹²C₁, which a check would catch)."
+        ]
+      }
+    ]
+  }
+}

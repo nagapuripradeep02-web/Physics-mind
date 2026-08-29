@@ -1,0 +1,320 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_addition_theorem_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "State and prove the addition theorem on probability.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the theorem",
+      "marks": 1
+    },
+    {
+      "label": "Case (i): E₁ and E₂ have nothing in common",
+      "marks": 2
+    },
+    {
+      "label": "Case (ii): split E₁ ∪ E₂ and E₁ into disjoint parts",
+      "marks": 3
+    },
+    {
+      "label": "Combine the two equations and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Probability, answer 33 (PDF p.37: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 15,16,17,18 · TS 16,18,22 (the book also prints the question in its \"(or)\" form: \"If E₁, E₂ are any two events of a random experiment and P is a probability function then prove that P(E₁ ∪ E₂) = P(E₁) + P(E₂) − P(E₁ ∩ E₂)\"). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 33. It is patterned on the only split this chapter prints, answer 36 on book p.37 (1 + 2 + 4): the statement 1, the short disjoint case 2, and the main case 4 (split here as 3 for the two disjoint decompositions + 1 for combining them). A teacher may weight the statement at 2. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question is Q23 of Model Paper 1 (book p.112) and is re-solved in the Bullet Model Paper Q23 block (book p.108) — that second solution is identical to the chapter answer, including the Venn diagram. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The proof is written in the textbook form (E₁ ∪ E₂ = (E₁ − E₂) ∪ E₂ and E₁ = (E₁ − E₂) ∪ (E₁ ∩ E₂), both disjoint unions), not the book's abbreviations. The book's Venn diagram is not reproduced — it is optional and carries no mark."
+  },
+  "recall_prompt": "Say the addition theorem, then say how the proof goes — the two cases, and which two disjoint splittings the second case uses.",
+  "insider_note": "The theorem is asked in its \"(or)\" form as often as by name; recognise both wordings. Most marks are lost by writing only the formula and skipping the two disjoint splittings.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Probability · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "State the theorem",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "First mark. Write the statement in full: name the two events, the sample space, and the formula. A formula alone with no words is not a statement.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Statement: If E₁, E₂ are two events of a",
+            "style": "normal"
+          },
+          {
+            "text": "random experiment with sample space S, then",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁ ∪ E₂) = P(E₁) + P(E₂) − P(E₁ ∩ E₂)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for any two events E₁, E₂ of a sample space, P(E₁ ∪ E₂) = P(E₁) + P(E₂) − P(E₁ ∩ E₂).",
+          "accept": [
+            "probability of E one union E two equals P of E one plus P of E two minus P of E one intersection E two",
+            "the probability of A or B is P A plus P B minus P A and B",
+            "for any two events the union probability is the sum minus the intersection",
+            "rendu events ki P of union ante P of E one plus P of E two minus intersection probability",
+            "P of A union B equals P A plus P B minus P A intersection B"
+          ],
+          "reject": [
+            "state the theorem",
+            "addition theorem",
+            "P of A plus P of B"
+          ],
+          "heard_as": [
+            "E one union E two",
+            "union",
+            "intersection",
+            "minus P of E one intersection E two",
+            "addition theorem"
+          ]
+        },
+        "why": "The union counts the overlap twice — once inside P(E₁) and once inside P(E₂) — so the overlap is subtracted once. The statement fixes exactly what is to be proved.",
+        "common_mistakes": [
+          "Writing P(E₁ ∪ E₂) = P(E₁) + P(E₂) with no minus term — that is only the disjoint case.",
+          "Writing the formula with no words: no events named, no sample space.",
+          "Mixing the symbols ∪ (union, \"or\") and ∩ (intersection, \"and\")."
+        ]
+      },
+      {
+        "id": "s2_case_disjoint",
+        "kind": "equation",
+        "label": "Case (i): E₁ ∩ E₂ = ∅",
+        "marks": 2,
+        "mark_note": "Case (i)",
+        "margin_note": "Two marks. When the events have no common outcome, the union axiom gives P(E₁ ∪ E₂) = P(E₁) + P(E₂) directly, and P(E₁ ∩ E₂) = 0 makes the formula hold with the minus term equal to zero.",
+        "lines": [
+          {
+            "text": "Proof: Case (i): E₁ ∩ E₂ = ∅",
+            "style": "normal"
+          },
+          {
+            "text": "E₁ ∩ E₂ = ∅ ⇒ P(E₁ ∩ E₂) = 0",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(E₁ ∪ E₂) = P(E₁) + P(E₂)   [union axiom]",
+            "style": "eq"
+          },
+          {
+            "text": "= P(E₁) + P(E₂) − 0",
+            "style": "eq"
+          },
+          {
+            "text": "= P(E₁) + P(E₂) − P(E₁ ∩ E₂)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That when E₁ ∩ E₂ is empty, P(E₁ ∩ E₂) = 0 and the union axiom gives P(E₁ ∪ E₂) = P(E₁) + P(E₂), which equals the formula.",
+          "accept": [
+            "if the events are disjoint the intersection probability is zero and by the union axiom the union probability is the sum",
+            "case one the intersection is empty so P of union is P E one plus P E two minus zero",
+            "when there is no overlap the axiom gives the sum and the minus term is zero",
+            "disjoint case lo intersection probability zero, axiom prakaram union ante sum",
+            "mutually exclusive case the formula reduces to the sum of the two probabilities"
+          ],
+          "reject": [
+            "case one",
+            "the disjoint case",
+            "the two cases"
+          ],
+          "heard_as": [
+            "disjoint",
+            "empty",
+            "phi",
+            "union axiom",
+            "intersection is zero"
+          ]
+        },
+        "why": "The union axiom is stated only for mutually exclusive events, so the disjoint case is where the axiom applies directly. The second case is built on this one.",
+        "common_mistakes": [
+          "Skipping this case and starting from the overlapping case.",
+          "Not writing P(E₁ ∩ E₂) = 0 before using the formula.",
+          "Not naming the union axiom as the reason for P(E₁ ∪ E₂) = P(E₁) + P(E₂)."
+        ]
+      },
+      {
+        "id": "s3_case_overlap",
+        "kind": "equation",
+        "label": "Case (ii): E₁ ∩ E₂ ≠ ∅",
+        "marks": 3,
+        "mark_note": "Two disjoint splittings",
+        "margin_note": "Three marks — the main case. E₁ ∪ E₂ is split as (E₁ − E₂) ∪ E₂ and E₁ is split as (E₁ − E₂) ∪ (E₁ ∩ E₂). Each split is a union of DISJOINT sets, which is what allows the union axiom to be used on each.",
+        "lines": [
+          {
+            "text": "Case (ii): E₁ ∩ E₂ ≠ ∅",
+            "style": "normal"
+          },
+          {
+            "text": "E₁ ∪ E₂ is the union of the disjoint sets",
+            "style": "normal"
+          },
+          {
+            "text": "(E₁ − E₂) and E₂, so by the union axiom",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁ ∪ E₂) = P(E₁ − E₂) + P(E₂)  …(1)",
+            "style": "eq"
+          },
+          {
+            "text": "E₁ is the union of the disjoint sets",
+            "style": "normal"
+          },
+          {
+            "text": "(E₁ − E₂) and (E₁ ∩ E₂), so",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁) = P(E₁ − E₂) + P(E₁ ∩ E₂)",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ P(E₁ − E₂) = P(E₁) − P(E₁ ∩ E₂)  …(2)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E₁ ∪ E₂ = (E₁ − E₂) ∪ E₂ and E₁ = (E₁ − E₂) ∪ (E₁ ∩ E₂), both disjoint unions, giving P(E₁ ∪ E₂) = P(E₁ − E₂) + P(E₂) and P(E₁ − E₂) = P(E₁) − P(E₁ ∩ E₂).",
+          "accept": [
+            "write E one union E two as E one minus E two union E two which are disjoint and write E one as E one minus E two union E one intersection E two",
+            "split the union into E one minus E two and E two and split E one into E one minus E two and the intersection",
+            "the two disjoint splittings give P of E one minus E two plus P E two and P E one minus P of the intersection",
+            "E one union E two ni E one minus E two, E two ga disjoint split chesi, E one ni kuda split cheyyali",
+            "use disjoint decompositions of the union and of E one and apply the axiom to each"
+          ],
+          "reject": [
+            "case two",
+            "the overlapping case",
+            "use the axiom"
+          ],
+          "heard_as": [
+            "E one minus E two",
+            "disjoint",
+            "decompose",
+            "split",
+            "union axiom"
+          ]
+        },
+        "why": "The union axiom only adds probabilities of DISJOINT sets. Both splittings are chosen so that the pieces do not overlap, and both contain the same piece (E₁ − E₂), which is what lets the two equations be combined.",
+        "common_mistakes": [
+          "Writing E₁ ∪ E₂ = E₁ ∪ E₂ − (E₁ ∩ E₂) type shortcuts with no disjoint splitting shown.",
+          "Not saying the sets in each splitting are disjoint — the axiom cannot be used without it.",
+          "Splitting E₂ instead of E₁ in the second equation and then not being able to eliminate P(E₁ − E₂)."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Combine and conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Substitute (2) into (1). Write \"Hence proved\" only after the formula appears in exactly the stated form.",
+        "lines": [
+          {
+            "text": "Substituting (2) in (1):",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁ ∪ E₂) = P(E₁) − P(E₁ ∩ E₂) + P(E₂)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(E₁ ∪ E₂) = P(E₁) + P(E₂) − P(E₁ ∩ E₂)",
+            "style": "boxed"
+          },
+          {
+            "text": "Hence proved.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting P(E₁ − E₂) from the second equation into the first gives P(E₁ ∪ E₂) = P(E₁) + P(E₂) − P(E₁ ∩ E₂).",
+          "accept": [
+            "substitute equation two in equation one to get P of union equals P E one plus P E two minus P of intersection",
+            "put P of E one minus E two from the second equation into the first and the theorem follows",
+            "eliminate P of E one minus E two between the two equations",
+            "rendu equations combine cheste P of union equals P E one plus P E two minus intersection vasthundi",
+            "replace the difference term and the addition formula comes out"
+          ],
+          "reject": [
+            "hence proved",
+            "combine them",
+            "so it is proved"
+          ],
+          "heard_as": [
+            "substitute",
+            "equation two in equation one",
+            "hence proved",
+            "minus intersection"
+          ]
+        },
+        "why": "The shared piece P(E₁ − E₂) is not something the question gives; eliminating it is the reason for writing two equations.",
+        "common_mistakes": [
+          "Stopping at equation (1) and (2) without substituting.",
+          "Writing the final line with a plus sign before P(E₁ ∩ E₂)."
+        ]
+      }
+    ]
+  }
+}

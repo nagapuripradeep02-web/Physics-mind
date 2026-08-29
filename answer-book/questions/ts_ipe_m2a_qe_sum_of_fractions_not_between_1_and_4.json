@@ -1,0 +1,270 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_sum_of_fractions_not_between_1_and_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that 1/(3x + 1) + 1/(x + 1) − 1/((3x + 1)(x + 1)) does not lie between 1 and 4, if x is real.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Quadratic in x",
+      "marks": 1
+    },
+    {
+      "label": "Δ ≥ 0",
+      "marks": 1
+    },
+    {
+      "label": "Solve for y",
+      "marks": 1
+    },
+    {
+      "label": "Range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.54 (PDF p.55 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — SAQ chapter 8 Quadratic Expressions, answer 66. Printed appearances: AP 15,16,17,19 · TS 16,18,22. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.52–54. It follows the four moves an examiner ticks in this method: form the quadratic in x · write Δ ≥ 0 · solve the inequality in y · state the range. The SAME split and the SAME step ids (s1_quadratic_in_x, s2_discriminant, s3_solve_in_y, s4_range) are used on all five range / maximum / lies-between SAQs in this unit (answers 63.1, 63.2, 64, 65, 66), deliberately: they are one method — cross-multiply, quadratic in x, discriminant ≥ 0, solve the inequality in y — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q12 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This question is re-solved as the third Q12 item of the Bullet Model Paper (book p.101) with the same result; it does not appear in the five model papers. No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Note on the domain: x = −1 and x = −1/3 make a denominator zero and are excluded. The card checks that neither is ever a root of the quadratic in x (substituting gives 3 and 1/3, never 0), so the discriminant argument introduces no false value of y; the book does not mention this."
+  },
+  "recall_prompt": "Say how you would show the expression never lies between 1 and 4 — say how you simplify it first, what you call y, what equation in x you form, what condition x being real gives, and how the conclusion comes out.",
+  "insider_note": "Combine the three fractions first — the common denominator is already there and the numerator reduces to one linear term. 'Does not lie between' reverses the range habit: the product is ≥ 0, so y lies OUTSIDE the two values, and writing the between-answer proves the opposite of the claim.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Quadratic Expressions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quadratic_in_x",
+        "kind": "equation",
+        "label": "Quadratic in x",
+        "marks": 1,
+        "mark_note": "Quadratic in x",
+        "margin_note": "First mark, and it has two parts: simplify, THEN set y. The common denominator is already (3x + 1)(x + 1); the numerator is (x + 1) + (3x + 1) − 1 = 4x + 1. Only then cross-multiply. x = −1 and x = −1/3 are excluded (denominator zero); neither is ever a root of (1), so nothing false enters.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given expression",
+          "= 1/(3x + 1) + 1/(x + 1)",
+          "   − 1/((3x + 1)(x + 1))",
+          "= (x + 1 + 3x + 1 − 1)/((3x + 1)(x + 1))",
+          "= (4x + 1)/(3x² + 4x + 1)",
+          "Let y = (4x + 1)/(3x² + 4x + 1)",
+          "⇒ 3yx² + 4yx + y = 4x + 1",
+          "⇒ 3yx² + (4y − 4)x + (y − 1) = 0 … (1)",
+          "(1) is a quadratic in x, and x is real."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three fractions are first combined over the common denominator (3x + 1)(x + 1) to (4x + 1)/(3x² + 4x + 1), then set equal to y and collected into the quadratic 3yx² + (4y − 4)x + (y − 1) = 0.",
+          "accept": [
+            "let y equal the expression, cross multiply and collect terms to get a quadratic in x",
+            "put y equal to the fraction, multiply out the denominator and write it as a quadratic in x",
+            "call the expression y and rearrange it into a x squared plus b x plus c equals zero",
+            "first add the three fractions over the common denominator to get four x plus one over three x squared plus four x plus one then let that be y",
+            "expression ni y ani pettukoni cross multiply chesi x lo quadratic rayali"
+          ],
+          "reject": [
+            "find the range",
+            "write the equation",
+            "let y be the expression"
+          ],
+          "heard_as": [
+            "y equals",
+            "cross multiply",
+            "quadratic in x",
+            "x squared",
+            "common denominator",
+            "four x plus one",
+            "three y x squared"
+          ]
+        },
+        "why": "The discriminant method needs ONE fraction. Combining first turns a three-term expression into the standard shape, and the rest of the question is then identical to every other range question.",
+        "common_mistakes": [
+          "Cross-multiplying each fraction separately instead of combining them first.",
+          "Getting the numerator as 4x + 2 by forgetting the −1.",
+          "Not writing that (1) is a quadratic in x with x real."
+        ]
+      },
+      {
+        "id": "s2_discriminant",
+        "kind": "equation",
+        "label": "Δ ≥ 0",
+        "marks": 1,
+        "mark_note": "Discriminant",
+        "margin_note": "Second mark. a = 3y, b = 4y − 4, c = y − 1. (4y − 4)² = 16y² − 32y + 16 and 4(3y)(y − 1) = 12y² − 12y, subtracted. Here the leading coefficient comes out POSITIVE, so no sign flip is needed later.",
+        "lines": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (4y − 4)² − 4(3y)(y − 1) ≥ 0",
+          "⇒ 16y² − 32y + 16 − 12y² + 12y ≥ 0",
+          "⇒ 4y² − 20y + 16 ≥ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x real gives Δ ≥ 0: (4y − 4)² − 4(3y)(y − 1) ≥ 0, which simplifies to 4y² − 20y + 16 ≥ 0.",
+          "accept": [
+            "x is real so the discriminant b squared minus four a c must be greater than or equal to zero",
+            "the quadratic in x has real roots so delta is at least zero",
+            "apply b squared minus 4 a c greater than or equal to zero to the quadratic in x",
+            "x real kabatti delta greater than or equal to zero pettali"
+          ],
+          "reject": [
+            "find delta",
+            "use the discriminant",
+            "solve the quadratic"
+          ],
+          "heard_as": [
+            "discriminant",
+            "delta",
+            "b squared minus four a c",
+            "greater than or equal to zero",
+            "four y minus four squared",
+            "twelve y squared",
+            "four y squared minus twenty y"
+          ]
+        },
+        "why": "x is real, so the quadratic (1) has a real root and its discriminant is at least zero. This time the resulting quadratic in y opens upward, which is why the answer is the OUTSIDE of two roots.",
+        "common_mistakes": [
+          "Expanding (4y − 4)² as 16y² − 16.",
+          "Writing 4(3y)(y − 1) as 12y² − 12 (the 12y term needs the y).",
+          "Using Δ > 0, which mis-handles the boundary values 1 and 4."
+        ]
+      },
+      {
+        "id": "s3_solve_in_y",
+        "kind": "equation",
+        "label": "Solve for y",
+        "marks": 1,
+        "mark_note": "Inequality in y",
+        "margin_note": "Third mark. Dividing by the positive number 4 keeps the inequality as it is. A product ≥ 0 means y is OUTSIDE the roots — y ≤ 1 or y ≥ 4 — the opposite of the range questions, and exactly what 'does not lie between' needs.",
+        "lines": [
+          "⇒ y² − 5y + 4 ≥ 0",
+          "⇒ (y − 1)(y − 4) ≥ 0",
+          "⇒ y ≤ 1 or y ≥ 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by 4 gives y² − 5y + 4 ≥ 0, which factorises as (y − 1)(y − 4) ≥ 0, so y ≤ 1 or y ≥ 4 — the OUTSIDE of the roots.",
+          "accept": [
+            "multiply by minus one to make the leading coefficient positive, factorise and read off the interval for y",
+            "factorise the quadratic in y and find where the product is less than or equal to zero",
+            "solve the quadratic inequality in y by factoring",
+            "divide by four and factorise as y minus one into y minus four greater than or equal to zero so y is outside one and four",
+            "y lo quadratic inequality ni factorise chesi y ki interval teeyali"
+          ],
+          "reject": [
+            "solve it",
+            "find y",
+            "factorise"
+          ],
+          "heard_as": [
+            "factorise",
+            "less than or equal to",
+            "between",
+            "interval",
+            "y lies",
+            "y minus one",
+            "y minus four",
+            "outside",
+            "less than or equal to one",
+            "greater than or equal to four"
+          ]
+        },
+        "why": "Inside or outside depends on the sign of the leading coefficient. It is positive here, and the inequality is ≥, so y is outside the two roots; that is the whole content of the claim.",
+        "common_mistakes": [
+          "Writing 1 ≤ y ≤ 4 by habit from the range questions.",
+          "Factorising as (y + 1)(y + 4).",
+          "Dividing by 4 and reversing the inequality — only a NEGATIVE divisor reverses it."
+        ]
+      },
+      {
+        "id": "s4_range",
+        "kind": "boxed_final",
+        "label": "Range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The values 1 and 4 themselves ARE reached (Δ = 0 there: y = 1 at x = 0, y = 4 at x = −1/2); the claim is about the open gap between them, and that gap is empty. End with the question's own sentence.",
+        "lines": [
+          "So no value of y lies strictly between 1 and 4.",
+          {
+            "text": "∴ y does not lie between 1 and 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y is never strictly between 1 and 4, so the expression does not lie between 1 and 4 — the statement to be shown.",
+          "accept": [
+            "so y never lies between one and four which is what we had to show",
+            "the expression is either at most one or at least four so it does not lie between one and four",
+            "no value of the expression is between one and four hence shown",
+            "y one ki four ki madhya undadu, so expression does not lie between one and four",
+            "hence the expression does not lie between one and four"
+          ],
+          "reject": [
+            "that is the range",
+            "write the answer",
+            "box it"
+          ],
+          "heard_as": [
+            "does not lie between",
+            "one and four",
+            "hence shown",
+            "never between"
+          ]
+        },
+        "why": "A 'show that' question is complete only when the required statement is written as the conclusion. 'y ≤ 1 or y ≥ 4' is that statement in symbols; the sentence is it in words.",
+        "common_mistakes": [
+          "Ending at y ≤ 1 or y ≥ 4 without the sentence.",
+          "Claiming y is never equal to 1 or 4 — both values are reached.",
+          "Concluding 'lies between 1 and 4' by mis-reading the direction of the inequality."
+        ]
+      }
+    ]
+  }
+}

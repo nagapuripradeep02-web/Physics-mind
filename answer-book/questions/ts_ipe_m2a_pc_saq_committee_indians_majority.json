@@ -1,0 +1,183 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_saq_committee_indians_majority",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the number of ways of forming a committee of 5 members out of 6 Indians and 5 Americans so that the Indians are always in the majority in the committee.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "List the allowed compositions",
+      "marks": 1
+    },
+    {
+      "label": "Count each composition",
+      "marks": 2
+    },
+    {
+      "label": "Add the cases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 9 Permutations & Combinations, answer 72. Printed appearances: TS 15, 19. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_cases, s2_count_cases, s3_total) are used on all three selection-with-conditions SAQs in this unit (answers 70, 71, 72), deliberately: they are one method — list the allowed compositions, count each, add — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; the question is re-solved in the Bullet Model Paper Q13&14 block (book p.101), which agrees with the chapter answer, and does not appear in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The nationalities are the question's own wording as printed and set by the board; they are kept because changing them would change the question."
+  },
+  "recall_prompt": "Say how you would count the committees — which compositions give an Indian majority, how each is counted, and how you finish.",
+  "insider_note": "Indian majority means three cases — 3, 4 or 5 Indians — and the case list carries its own mark before any ⁿCᵣ is evaluated. The case students drop is all five Indians, ⁶C₅·⁵C₀ = 6, and without it 275 replaces 281.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Permutations and Combinations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cases",
+        "kind": "text",
+        "label": "List the allowed compositions",
+        "marks": 1,
+        "mark_note": "Cases",
+        "margin_note": "First mark. In a committee of 5, a majority means 3 or more. So Indians 3, 4 or 5 with Americans 2, 1 or 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Committee of 5; Indians in majority means",
+          "at least 3 Indians. Three cases:",
+          "5 Indians + 0 Americans, 4 + 1, or 3 + 2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a majority of 5 is at least 3, so the cases are 5 Indians, 4 Indians with 1 American, or 3 Indians with 2 Americans.",
+          "accept": [
+            "majority in five means three or more Indians so the cases are five and zero, four and one, three and two",
+            "three cases, five Indians, four Indians one American, three Indians two Americans",
+            "at least three Indians gives three compositions",
+            "five lo majority ante three or more Indians, cases five zero, four one, three two",
+            "list the cases with three four or five Indians"
+          ],
+          "reject": [
+            "make cases",
+            "more Indians"
+          ],
+          "heard_as": [
+            "majority",
+            "at least three",
+            "three cases",
+            "five Indians",
+            "two Americans"
+          ]
+        },
+        "why": "Majority is a comparison, not a fixed number: in a committee of 5 it means at least 3. Turning the word into the three exact compositions is the step that makes the count possible.",
+        "common_mistakes": [
+          "Taking majority as exactly 3 and missing the 4-and-1 and 5-and-0 cases.",
+          "Including 2 Indians + 3 Americans — that is an American majority."
+        ]
+      },
+      {
+        "id": "s2_count_cases",
+        "kind": "equation",
+        "label": "Count each composition",
+        "marks": 2,
+        "mark_note": "Counting",
+        "margin_note": "Two marks. ⁶C₅ = 6, ⁶C₄ = 15, ⁶C₃ = 20; ⁵C₀ = 1, ⁵C₁ = 5, ⁵C₂ = 10. Multiply within each case.",
+        "lines": [
+          "Case 1: ⁶C₅ · ⁵C₀ = 6 · 1 = 6",
+          "Case 2: ⁶C₄ · ⁵C₁ = 15 · 5 = 75",
+          "Case 3: ⁶C₃ · ⁵C₂ = 20 · 10 = 200"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each case multiplies the Indian choice by the American choice — 6, 75 and 200.",
+          "accept": [
+            "six C five times five C zero is six, six C four times five C one is seventy five, six C three times five C two is two hundred",
+            "multiply Indians by Americans in each case to get six, seventy five and two hundred",
+            "the three cases give six, seventy five and two hundred",
+            "prathi case lo Indians into Americans, six, seventy five, two hundred",
+            "six times one, fifteen times five, twenty times ten"
+          ],
+          "reject": [
+            "use combinations",
+            "count the cases"
+          ],
+          "heard_as": [
+            "seventy five",
+            "two hundred",
+            "six C three",
+            "five C two",
+            "multiply"
+          ]
+        },
+        "why": "Within a case every group of Indians pairs with every group of Americans, so the counts multiply. ⁵C₀ = 1 is a real factor: there is exactly one way to choose zero Americans.",
+        "common_mistakes": [
+          "Writing ⁵C₀ = 0 and losing the all-Indian case.",
+          "Adding the two selections inside a case instead of multiplying.",
+          "Computing ⁶C₃ as 6·5·4 = 120 without dividing by 3! = 6."
+        ]
+      },
+      {
+        "id": "s3_total",
+        "kind": "boxed_final",
+        "label": "Add the cases",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 6 + 75 + 200 = 281.",
+        "lines": [
+          {
+            "text": "∴ number of ways = 6 + 75 + 200 = 281",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three case counts are added to give 281.",
+          "accept": [
+            "add six, seventy five and two hundred to get two hundred eighty one",
+            "the total is two eighty one",
+            "adding the cases gives two hundred and eighty one committees",
+            "moodu cases add cheste two hundred eighty one",
+            "six plus seventy five plus two hundred is two eighty one"
+          ],
+          "reject": [
+            "add them",
+            "two hundred"
+          ],
+          "heard_as": [
+            "two hundred eighty one",
+            "two eighty one",
+            "add",
+            "total"
+          ]
+        },
+        "why": "Committees with different numbers of Indians are different committees, so the cases do not overlap and their sum is the complete count.",
+        "common_mistakes": [
+          "Multiplying the cases instead of adding.",
+          "Dropping the 6 from the all-Indian case and answering 275."
+        ]
+      }
+    ]
+  }
+}

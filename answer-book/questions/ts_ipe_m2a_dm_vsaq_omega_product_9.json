@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_omega_product_9",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 1, ω, ω² are the cube roots of unity, find (1 − ω)(1 − ω²)(1 − ω⁴)(1 − ω⁸).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reduce ω⁴ and ω⁸",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate the square",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.90 — Star Questions Plus, De Moivre's Theorem banner, answer 186. Printed appearances: none — this answer carries no year tag. Section OURS: the book's Star Questions Plus pages carry no mark cut; this answer is a short reduction of the same shape as the chapter's 2-mark VSAQs, so it is classed VSAQ (2 marks). This unit has no SAQ chapter, so a 4-mark class was not available. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book p.90; 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses. The SAME 1+1 split and the SAME step ids (s1_reduce, s2_evaluate) are used on every cube-roots-of-unity (ω) VSAQ in this unit (answers 118, 119 and Star Questions Plus 185–189), deliberately: each is one reduction by 1 + ω + ω² = 0 and ω³ = 1, then one evaluation. Chapter stars: the Star Questions Plus section prints none; the ★★★ carried in the manifest is the De Moivre VSAQ CHAPTER's rank (book p.73), not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: ω⁴ = ω, ω⁸ = ω², (1 − ω)(1 − ω²) = 3, product = 3² = 9; the book's answer is correct."
+  },
+  "recall_prompt": "Say how you would find this — what ω⁴ and ω⁸ reduce to, and how the product is evaluated.",
+  "insider_note": "The four brackets are two repeated pairs, because ω⁴ = ω and ω⁸ = ω²; multiply one pair and square it. (1 − ω)(1 − ω²) = 3 needs the ω³ = 1 term at the end — drop it and the pair gives 2 and the answer 4.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce",
+        "kind": "equation",
+        "label": "Reduce ω⁴ and ω⁸",
+        "marks": 1,
+        "mark_note": "Reduce",
+        "margin_note": "First mark. ω³ = 1, so ω⁴ = ω and ω⁸ = (ω³)² · ω² = ω². The four brackets are then two repeated pairs, so the product is [(1 − ω)(1 − ω²)]².",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ω⁴ = ω³ · ω = ω,  ω⁸ = (ω³)² · ω² = ω²",
+          "(1 − ω)(1 − ω²)(1 − ω⁴)(1 − ω⁸)",
+          "= (1 − ω)(1 − ω²)(1 − ω)(1 − ω²)",
+          "= [(1 − ω)(1 − ω²)]²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + ω + ω² = 0 and ω³ = 1 are used to reduce ω⁴ to ω and ω⁸ to ω², so the product is a square.",
+          "accept": [
+            "use one plus omega plus omega squared equals zero and omega cubed equals one to reduce ω⁴ to ω and ω⁸ to ω², so the product is a square",
+            "replace using the two omega facts, omega cubed is one and the three add to zero",
+            "reduce ω⁴ to ω and ω⁸ to ω², so the product is a square with the cube roots of unity properties",
+            "omega cube one, one plus omega plus omega square zero use chesi ω⁴ to ω and ω⁸ to ω², so the product is a square ni reduce cheyyali",
+            "the sum of the three cube roots is zero, so substitute"
+          ],
+          "reject": [
+            "simplify",
+            "use omega",
+            "reduce"
+          ],
+          "heard_as": [
+            "omega cubed",
+            "one plus omega",
+            "omega squared",
+            "reduce",
+            "cube roots of unity"
+          ]
+        },
+        "why": "Every ω question is the same two facts: ω³ = 1 (so high powers of ω reduce) and 1 + ω + ω² = 0 (so any two of 1, ω, ω² can be replaced by minus the third). The reduction is the mark; the arithmetic after it is short.",
+        "common_mistakes": [
+          "Writing ω⁴ = ω² or ω⁸ = ω.",
+          "Multiplying four brackets instead of squaring one pair.",
+          "Writing ω⁸ = 1."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate the square",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (1 − ω)(1 − ω²) = 1 − (ω + ω²) + ω³ = 1 + 1 + 1 = 3, using ω + ω² = −1 and ω³ = 1. Square it for 9.",
+        "lines": [
+          "(1 − ω)(1 − ω²) = 1 − ω − ω² + ω³",
+          "= 1 − (ω + ω²) + 1 = 1 + 1 + 1 = 3",
+          {
+            "text": "∴ the product = 3² = 9",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reduced expression is evaluated to 9.",
+          "accept": [
+            "evaluate the reduced form and get 9",
+            "the answer comes to 9",
+            "simplify the powers of omega and the value is 9",
+            "reduce chesaka value 9 vasthundi",
+            "finally it equals 9"
+          ],
+          "reject": [
+            "then we get the answer",
+            "simplify",
+            "calculate"
+          ],
+          "heard_as": [
+            "equals",
+            "the value is",
+            "final answer",
+            "9"
+          ]
+        },
+        "why": "One pair multiplies to 1 − (ω + ω²) + ω³ = 1 + 1 + 1 = 3, and the whole product is that squared.",
+        "common_mistakes": [
+          "Writing ω + ω² = 1 instead of −1.",
+          "Forgetting ω³ = 1 and getting 2² = 4.",
+          "Stopping at 3."
+        ]
+      }
+    ]
+  }
+}

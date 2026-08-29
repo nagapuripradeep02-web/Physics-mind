@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_number_of_terms_trinomial",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the number of terms in the expansion of (2x + 3y + z)⁷.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Formula for a trinomial",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate for n = 7",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 17 Binomial Theorem, answer 166. Printed appearances: TS 17, 19, 22 · AP 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q8 of Model Paper 4 (book p.117) and is re-solved in the Bullet Model Paper Q8 block (book p.99) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would count the terms — the formula for a trinomial expansion and the number for n = 7.",
+  "insider_note": "Three entries in the bracket, so the count is (n + 1)(n + 2)/2, not the binomial's n + 1. The coefficients 2 and 3 change nothing about the count.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Formula for a trinomial",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. (x + y + z)ⁿ has (n + 1)(n + 2)/2 distinct terms — one for each way of writing n as a sum of three powers.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Number of terms in (x + y + z)ⁿ",
+          "= (n + 1)(n + 2)/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the number of terms in (x + y + z)ⁿ is (n + 1)(n + 2)/2.",
+          "accept": [
+            "the number of terms in a trinomial expansion is n plus one into n plus two by two",
+            "x plus y plus z to the n has n plus one n plus two over two terms",
+            "use the trinomial formula n plus one into n plus two by two",
+            "trinomial lo terms n plus one into n plus two by two",
+            "the count is a triangular number in n plus one"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "n plus one",
+            "n plus two",
+            "by two",
+            "trinomial"
+          ]
+        },
+        "why": "A binomial has n + 1 terms; a trinomial has one term for each pair (power of y, power of z) with sum at most n, which counts to (n + 1)(n + 2)/2.",
+        "common_mistakes": [
+          "Using n + 1 as for a binomial.",
+          "Writing (n + 1)(n + 2) without the /2."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate for n = 7",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (8 × 9)/2 = 36. The coefficients 2 and 3 do not change the count.",
+        "lines": [
+          "For n = 7: (7 + 1)(7 + 2)/2 = (8 × 9)/2",
+          {
+            "text": "∴ number of terms = 36",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for n = 7 the count is (8 × 9)/2 = 36.",
+          "accept": [
+            "eight into nine by two is thirty six",
+            "the number of terms is thirty six",
+            "seven plus one into seven plus two by two gives thirty six",
+            "n seven pettithe thirty six terms",
+            "thirty six"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "thirty six",
+            "eight into nine"
+          ]
+        },
+        "why": "The coefficients 2 and 3 only scale the terms; they never merge or create any, so the count depends on n alone.",
+        "common_mistakes": [
+          "Answering 8.",
+          "Multiplying by the coefficients 2 and 3."
+        ]
+      }
+    ]
+  }
+}
