@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_node_antinode_distance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the distance between a node and succeeding antinode?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Nodes and antinodes alternate",
+      "marks": 1
+    },
+    {
+      "label": "The distance λ/4",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: nodes sit at x = 0, λ/2, λ … and antinodes at x = λ/4, 3λ/4 …, so adjacent nodes are λ/2 apart and a node to the next antinode is λ/4. The book prints 'succeding' in the question; the spelling is corrected here."
+  },
+  "recall_prompt": "Say how nodes and antinodes are spaced in a stationary wave, and the distance from a node to the next antinode.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_spacing",
+        "kind": "text",
+        "label": "How they are spaced",
+        "marks": 1,
+        "mark_note": "Alternating pattern stated",
+        "lines": [
+          "In a stationary wave, nodes and antinodes",
+          "alternate. Two neighbouring nodes are λ/2",
+          "apart, and an antinode sits midway",
+          "between them."
+        ],
+        "margin_note": "First mark. State the pattern — the λ/4 answer follows from it instead of being memorised.",
+        "why": "Nodes fall where sin kx = 0 (x = 0, λ/2, λ …) and antinodes where sin kx = ±1 (x = λ/4, 3λ/4 …) — the antinode is exactly midway between two nodes, so the spacing pattern fixes every distance in the wave.",
+        "common_mistakes": [
+          "Taking the node-to-node distance as λ — one full wavelength holds TWO loops; adjacent nodes are λ/2 apart.",
+          "Placing the antinode anywhere between the nodes — it is exactly midway."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That nodes are λ/2 apart and an antinode sits midway between two neighbouring nodes.",
+          "accept": [
+            "nodes are half a wavelength apart",
+            "antinode is midway between two nodes",
+            "they alternate along the wave"
+          ],
+          "reject": [
+            "the distance is lambda by four"
+          ],
+          "heard_as": [
+            "lambda by two",
+            "midway",
+            "alternate"
+          ]
+        },
+        "memory_tip": "One loop = node to node = λ/2. The antinode is the middle of the loop."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The distance",
+        "marks": 1,
+        "mark_note": "λ/4",
+        "lines": [
+          "So the distance from a node to the next",
+          "antinode is half of λ/2:",
+          {
+            "text": "Node to next antinode = λ/4",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Half of the λ/2 loop — write λ/4 and box it.",
+        "why": "The antinode is midway along the λ/2 loop, so the node-to-antinode distance is half of λ/2, which is λ/4.",
+        "common_mistakes": [
+          "Writing λ/2 — that is node to NODE. Node to the next ANTINODE is λ/4."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the distance between a node and the next antinode is λ/4.",
+          "accept": [
+            "lambda by four",
+            "a quarter wavelength",
+            "half of the half wavelength"
+          ],
+          "reject": [
+            "nodes are half a wavelength apart"
+          ],
+          "heard_as": [
+            "lambda by 4",
+            "quarter wavelength"
+          ]
+        },
+        "memory_tip": "Node–antinode–node fits in one loop of λ/2, so each hop is λ/4."
+      }
+    ]
+  },
+  "insider_note": "λ/4 is the answer, but writing the spacing pattern first is what protects the mark when the examiner asks node-to-node in another year."
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_classify_materials",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Classify the following materials with regard to magnetism: Manganese, Cobalt, Nickel, Bismuth, Oxygen, Copper.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ferro and para",
+      "marks": 1
+    },
+    {
+      "label": "Dia",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: cobalt and nickel are ferromagnetic (with iron and gadolinium); manganese and oxygen are paramagnetic (small positive χ); bismuth and copper are diamagnetic (small negative χ) — the book's classification of all six is correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ferro_para",
+        "kind": "text",
+        "label": "Ferro and para",
+        "marks": 1,
+        "mark_note": "Four materials placed",
+        "lines": [
+          "Cobalt : ferromagnetic.",
+          "Nickel : ferromagnetic.",
+          "Manganese : paramagnetic.",
+          "Oxygen : paramagnetic."
+        ],
+        "margin_note": "First mark. One labelled line per material — the examiner reads the pairs at a glance.",
+        "why": "Cobalt and nickel are two of the classic ferromagnetic elements (iron, cobalt, nickel, gadolinium). Manganese and oxygen have a small positive susceptibility, so they are paramagnetic.",
+        "common_mistakes": [
+          "Calling manganese ferromagnetic because it sits near iron in the periodic table. Manganese is paramagnetic.",
+          "Calling oxygen non-magnetic. Oxygen is paramagnetic — liquid oxygen sticks between magnet poles."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cobalt and nickel are ferromagnetic while manganese and oxygen are paramagnetic.",
+          "accept": [
+            "cobalt and nickel are ferromagnetic",
+            "manganese and oxygen are paramagnetic"
+          ],
+          "reject": [
+            "bismuth and copper are diamagnetic"
+          ],
+          "heard_as": [
+            "ferromagnetic",
+            "paramagnetic",
+            "manganese"
+          ]
+        },
+        "memory_tip": "The magnet metals are iron, cobalt, nickel — so cobalt and nickel go under ferromagnetic."
+      },
+      {
+        "id": "s2_dia",
+        "kind": "text",
+        "label": "Dia",
+        "marks": 1,
+        "mark_note": "Both dia materials placed",
+        "lines": [
+          "Bismuth : diamagnetic.",
+          "Copper : diamagnetic."
+        ],
+        "margin_note": "Second mark. Bismuth and copper are the two diamagnetic materials in the list.",
+        "why": "Bismuth and copper have a small negative susceptibility — a magnet feebly repels them — which is the mark of a diamagnetic material.",
+        "common_mistakes": [
+          "Calling copper paramagnetic because it conducts well. Electrical conduction and magnetism are separate properties — copper is diamagnetic."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That bismuth and copper are diamagnetic.",
+          "accept": [
+            "bismuth is diamagnetic",
+            "copper is diamagnetic"
+          ],
+          "reject": [
+            "cobalt is ferromagnetic"
+          ],
+          "heard_as": [
+            "diamagnetic",
+            "bismuth",
+            "copper"
+          ]
+        },
+        "memory_tip": "Bismuth is the strongest common diamagnetic material, and copper joins it — both are feebly repelled."
+      }
+    ]
+  },
+  "insider_note": "Write six labelled lines, one material each — a paragraph mixing the six names is where the examiner loses the pairs."
+}

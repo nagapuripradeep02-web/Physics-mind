@@ -1,0 +1,363 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_biot_savart_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and explain Biot-Savart law.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The set-up and the statement",
+      "marks": 1
+    },
+    {
+      "label": "The four proportionalities",
+      "marks": 1
+    },
+    {
+      "label": "Combining them",
+      "marks": 1
+    },
+    {
+      "label": "The final formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: dB ∝ i, dB ∝ dl, dB ∝ sin θ, dB ∝ 1/r², so dB = (μ₀/4π)(i dl sin θ)/r², with μ₀ = 4π × 10⁻⁷ T m A⁻¹ — matches the book. The book's printed question reads 'Biot savart law'; the proper name is corrected here to 'Biot-Savart'. In the figure dB at P is into the page, which follows from dl × r with the current upward and P to the right and below."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Write the four proportionalities as four numbered lines before you combine them. Examiners mark them one by one, and a student who jumps straight to the final formula loses the middle marks.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Moving Charges and Magnetism · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The current element and the point P",
+        "marks": 0,
+        "figure": {
+          "id": "biot_savart_element",
+          "width": 380,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "wire_lower",
+              "d": "M 150 220 L 150 130",
+              "ms": 1290
+            },
+            {
+              "type": "stroke",
+              "id": "wire_upper",
+              "d": "M 150 105 L 150 30",
+              "ms": 1070
+            },
+            {
+              "type": "stroke",
+              "id": "dl_element",
+              "d": "M 150 130 L 150 105",
+              "ms": 360,
+              "w": 5
+            },
+            {
+              "type": "stroke",
+              "id": "i_arrowhead",
+              "d": "M 144 205 L 150 195 L 156 205",
+              "ms": 330
+            },
+            {
+              "type": "stroke",
+              "id": "r_line",
+              "d": "M 150 117 L 322 165",
+              "ms": 2550
+            },
+            {
+              "type": "stroke",
+              "id": "r_arrowhead",
+              "d": "M 312 157 L 322 165 L 311 169",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "theta_arc",
+              "d": "M 150 77 A 40 40 0 0 1 188 128",
+              "ms": 1050
+            },
+            {
+              "type": "label",
+              "id": "lbl_i",
+              "x": 126,
+              "y": 208,
+              "text": "i",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_dl",
+              "x": 110,
+              "y": 122,
+              "text": "dl",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 182,
+              "y": 92,
+              "text": "θ",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 232,
+              "y": 132,
+              "text": "r",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 330,
+              "y": 172,
+              "text": "P",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_db",
+              "x": 292,
+              "y": 208,
+              "text": "dB ⊗ at P",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "A wire carrying current i, one small element dl on it, the point P at distance r, and the angle θ between the element and the line to P.",
+        "why": "Every symbol in the formula is a marked part of this one picture, so drawing it first makes the four proportionalities read straight off the figure.",
+        "common_mistakes": [
+          "Marking θ at P instead of at the element. The angle sits between the element and the line joining the element to P.",
+          "Drawing r from the bottom of the wire. It runs from the mid-point of the element to P."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a wire with a small element dl is drawn, with r to the point P and the angle θ between them marked.",
+          "accept": [
+            "draw the wire and a small element dl",
+            "mark r from the element to P",
+            "mark the angle theta"
+          ],
+          "reject": [
+            "dB is mu nought by four pi"
+          ],
+          "heard_as": [
+            "element",
+            "figure"
+          ]
+        },
+        "memory_tip": "One wire, one short element, one line out to P: dl, r and θ are all on that line."
+      },
+      {
+        "id": "s2_statement",
+        "kind": "text",
+        "label": "The set-up and the statement",
+        "marks": 1,
+        "mark_note": "The statement in words",
+        "lines": [
+          "Take a small element of length dl of a wire",
+          "carrying a current i. Let P be a point at a",
+          "distance r from the element, and let θ be the",
+          "angle between the element and the line",
+          "joining the element to P.",
+          "Biot-Savart law: the magnetic induction dB at",
+          "P due to this element is directly",
+          "proportional to the current, to the length of",
+          "the element and to sin θ, and is inversely",
+          "proportional to the square of r."
+        ],
+        "margin_note": "First mark. Name dl, r and θ, then say the four dependences in words before writing any symbol.",
+        "why": "The law is about ONE small piece of the wire, not the whole wire: the field of a full circuit is found by adding the dB of every element.",
+        "common_mistakes": [
+          "Applying the law to the whole wire at once. It gives dB for one element only.",
+          "Measuring r from the point P to the wire's end instead of to the element."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dB at P from a current element depends on i, dl, sin θ and 1/r².",
+          "accept": [
+            "field due to a small current element",
+            "depends on current length and sine theta",
+            "inversely as the square of the distance"
+          ],
+          "reject": [
+            "mu nought by four pi"
+          ],
+          "heard_as": [
+            "biot savart",
+            "current element"
+          ]
+        },
+        "memory_tip": "Three things on top (i, dl, sin θ) and one thing below (r²)."
+      },
+      {
+        "id": "s3_four",
+        "kind": "equation",
+        "label": "The four proportionalities",
+        "marks": 1,
+        "mark_note": "All four written out",
+        "lines": [
+          "1) directly proportional to the current i:",
+          {
+            "text": "dB ∝ i",
+            "style": "eq"
+          },
+          "2) directly proportional to the length dl:",
+          {
+            "text": "dB ∝ dl",
+            "style": "eq"
+          },
+          "3) directly proportional to sin θ:",
+          {
+            "text": "dB ∝ sin θ",
+            "style": "eq"
+          },
+          "4) inversely proportional to r²:",
+          {
+            "text": "dB ∝ 1 / r²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Four numbered lines, one for each dependence — this is the part examiners tick one by one.",
+        "why": "Each line is a separate experimental fact, so writing them apart shows where every factor in the final formula comes from.",
+        "common_mistakes": [
+          "Writing cos θ in place of sin θ. The element and the line to P give sin θ.",
+          "Writing 1/r instead of 1/r². It is an inverse square law."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The four separate proportionalities: to i, to dl, to sin θ and to 1/r².",
+          "accept": [
+            "dB proportional to i",
+            "dB proportional to dl",
+            "dB proportional to sine theta",
+            "dB proportional to one by r squared"
+          ],
+          "reject": [
+            "the angle is between the element and the line to P"
+          ],
+          "heard_as": [
+            "proportional",
+            "r squared"
+          ]
+        },
+        "memory_tip": "Count them off on four fingers: i, dl, sin θ, then r² underneath."
+      },
+      {
+        "id": "s4_combine",
+        "kind": "equation",
+        "label": "Combining them",
+        "marks": 1,
+        "mark_note": "The combined proportionality",
+        "lines": [
+          "Putting the four results together,",
+          {
+            "text": "dB ∝ i dl sin θ / r²",
+            "style": "eq"
+          },
+          "Writing the constant of proportionality as",
+          "μ₀/4π for a wire in vacuum,",
+          {
+            "text": "dB = (μ₀/4π) · i dl sin θ / r²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Multiply the three top factors, divide by r², then put in the constant μ₀/4π.",
+        "why": "A proportionality becomes an equation only when a constant is fixed; μ₀/4π is the constant that makes the SI units come out in tesla.",
+        "common_mistakes": [
+          "Writing the constant as μ₀ alone. It is μ₀/4π.",
+          "Dropping sin θ once the constant is put in."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four results combine to dB ∝ i dl sin θ / r², and the constant is μ₀/4π.",
+          "accept": [
+            "dB proportional to i dl sine theta by r squared",
+            "constant is mu nought by four pi"
+          ],
+          "reject": [
+            "mu nought is four pi into ten power minus seven"
+          ],
+          "heard_as": [
+            "combine",
+            "mu nought by four pi"
+          ]
+        },
+        "memory_tip": "Multiply the three that raise dB, divide by the one that lowers it."
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "The final formula",
+        "marks": 1,
+        "mark_note": "dB = (μ₀/4π) i dl sin θ / r²",
+        "lines": [
+          {
+            "text": "dB = (μ₀/4π) · i dl sin θ / r²",
+            "style": "boxed"
+          },
+          "Here μ₀ = 4π × 10⁻⁷ T m A⁻¹ is the",
+          "permeability of free space.",
+          "dB is perpendicular to the plane containing",
+          "the element and the line to P. In vector form",
+          {
+            "text": "dB = (μ₀/4π) · i (dl × r̂) / r²",
+            "style": "eq"
+          },
+          "In the figure dB at P is into the page (⊗)."
+        ],
+        "margin_note": "Last mark. The boxed formula, the value of μ₀ and one line on the direction of dB.",
+        "why": "The cross product is what fixes the direction: dB is perpendicular to both the element and the line to P, which is why the field of a straight wire circles the wire.",
+        "common_mistakes": [
+          "Leaving out the units of μ₀ when its value is asked for.",
+          "Saying dB points from the element towards P. It is perpendicular to that line."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The final formula dB = (μ₀/4π) i dl sin θ / r², and that dB is perpendicular to the plane of dl and r.",
+          "accept": [
+            "dB equals mu nought by four pi i dl sine theta by r squared",
+            "dB is perpendicular to the plane",
+            "dl cross r hat"
+          ],
+          "reject": [
+            "dB proportional to sine theta"
+          ],
+          "heard_as": [
+            "final formula",
+            "perpendicular"
+          ]
+        },
+        "memory_tip": "Same shape as Coulomb's law: a constant, the source on top, r² below."
+      }
+    ]
+  }
+}

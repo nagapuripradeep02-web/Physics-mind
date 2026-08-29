@@ -1,0 +1,374 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_formation_of_mirage",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the formation of a mirage.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a mirage is",
+      "marks": 1
+    },
+    {
+      "label": "The layers of air",
+      "marks": 1
+    },
+    {
+      "label": "Bending away from the normal",
+      "marks": 1
+    },
+    {
+      "label": "Total internal reflection and the image",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.12 — Section B, 4 marks. The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The figure carries ZERO marks because the printed question does not ask for a diagram at all; the book prints one, so one is authored. Hand-checked physically: on a hot day the air next to the ground is hottest, so it is least dense and has the smallest refractive index; a downward ray therefore passes into rarer and rarer layers, bends further from the normal at each one, and at the layer where the angle of incidence passes the critical angle it is totally internally reflected and curves back upwards. The observer sees an inverted image below the object, which reads as a reflection in water."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ray Optics and Optical Instruments · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What a mirage is",
+        "marks": 1,
+        "mark_note": "Optical illusion by TIR",
+        "lines": [
+          {
+            "text": "Mirage:",
+            "style": "heading"
+          },
+          "A mirage is an optical illusion seen in a",
+          "desert or on a hot road, in which a person",
+          "sees what looks like a pond of water some",
+          "distance ahead, with the objects near it",
+          "appearing upside down.",
+          "It is caused by total internal reflection in",
+          "the air."
+        ],
+        "margin_note": "First mark. Say both halves: what is seen, and that total internal reflection causes it.",
+        "why": "Naming total internal reflection in the first line sets up everything that follows, because the rest of the answer is only an explanation of how air can give the critical angle that total internal reflection needs.",
+        "common_mistakes": [
+          "Calling it a reflection from a layer of hot air. It is total internal reflection through many layers, not a bounce off one.",
+          "Leaving out that the objects appear inverted. That is what makes it look like water."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a mirage is an optical illusion of water seen on hot ground, caused by total internal reflection.",
+          "accept": [
+            "optical illusion of water on a hot road",
+            "objects look inverted as if reflected in a pond",
+            "caused by total internal reflection in air",
+            "veedhi meeda neellu unnattu kanipinche illusion"
+          ],
+          "reject": [
+            "the air near the ground is hotter and rarer"
+          ],
+          "heard_as": [
+            "mirage",
+            "optical illusion",
+            "total internal reflection",
+            "pond of water"
+          ]
+        },
+        "memory_tip": "A mirage is not water and not a mirror — it is the air acting as the denser medium."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 0,
+        "figure": {
+          "id": "mirage_path",
+          "width": 360,
+          "height": 215,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ground",
+              "d": "M 20 185 L 330 185",
+              "ms": 4430
+            },
+            {
+              "type": "stroke",
+              "id": "trunk",
+              "d": "M 62 185 L 62 96",
+              "ms": 1270
+            },
+            {
+              "type": "stroke",
+              "id": "crown_top",
+              "d": "M 42 96 L 62 62 L 82 96",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "crown_low",
+              "d": "M 48 108 L 62 82 L 76 108",
+              "ms": 840
+            },
+            {
+              "type": "stroke",
+              "id": "ray",
+              "d": "M 62 92 C 150 145 205 176 282 120",
+              "ms": 3430
+            },
+            {
+              "type": "stroke",
+              "id": "ray_head",
+              "d": "M 242 150 L 249 140 L 237 142",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "virtual_ray",
+              "d": "M 282 120 L 176 197",
+              "ms": 1870,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "head",
+              "d": "M 282 116 A 7 7 0 1 1 296 116 A 7 7 0 1 1 282 116",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "body",
+              "d": "M 289 123 L 289 154",
+              "ms": 440
+            },
+            {
+              "type": "stroke",
+              "id": "legs",
+              "d": "M 289 154 L 281 185 M 289 154 L 297 185",
+              "ms": 910
+            },
+            {
+              "type": "stroke",
+              "id": "arms",
+              "d": "M 278 132 L 300 132",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "lbl_cool",
+              "x": 118,
+              "y": 40,
+              "text": "Cooler, denser air",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_hot",
+              "x": 90,
+              "y": 172,
+              "text": "Hotter, rarer",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_igtc",
+              "x": 146,
+              "y": 130,
+              "text": "i > C",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_observer",
+              "x": 250,
+              "y": 208,
+              "text": "Observer",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "The ray from the top of the tree curves down through hotter air, turns near the ground, and reaches the eye from below. The dashed line is where the eye places the image.",
+        "why": "The curve is the whole explanation in one line: it bends more and more as it goes down, and once it turns it arrives at the eye travelling upwards. The eye traces it back in a straight line, which is why the tree is seen below the ground.",
+        "common_mistakes": [
+          "Drawing the ray as a straight line that bounces off the ground. It is a smooth curve that never touches the ground."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the ray from the object curves downward, turns before the ground, and reaches the observer from below, with a dashed line back to the inverted image.",
+          "accept": [
+            "draw the tree, the curved ray and the observer",
+            "the ray bends down and turns back up before the ground",
+            "dashed line back from the eye to the inverted image"
+          ],
+          "reject": [
+            "the air near the ground is hotter and rarer"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "curved ray",
+            "tree"
+          ]
+        },
+        "memory_tip": "The ray is a curve, not a bounce. It turns in the air, above the ground."
+      },
+      {
+        "id": "s3_layers",
+        "kind": "text",
+        "label": "The layers of air",
+        "marks": 1,
+        "mark_note": "μ increases upwards",
+        "lines": [
+          "On a hot day the ground heats the air just",
+          "above it, so the temperature of the air",
+          "layers falls as one goes up.",
+          "Cooler air is denser, so the density and",
+          "with it the refractive index of the air",
+          "layers increase as one goes up.",
+          "The air near the ground is therefore the",
+          "rarest layer."
+        ],
+        "margin_note": "Second mark. Temperature falls upward, so refractive index rises upward. Say both.",
+        "why": "The whole effect needs a medium whose refractive index changes from place to place. Hot ground supplies exactly that, and the direction of the change decides which way the ray curves.",
+        "common_mistakes": [
+          "Saying the air near the ground is denser. It is the hottest and therefore the rarest.",
+          "Giving the temperature change without linking it to the refractive index."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the air near the hot ground is hottest and rarest, and the density and refractive index increase with height.",
+          "accept": [
+            "temperature falls with height so refractive index rises with height",
+            "air near the ground is hotter rarer and has a smaller refractive index",
+            "the layers get denser as you go up",
+            "ground daggara air hot ga undi, mu takkuva"
+          ],
+          "reject": [
+            "optical illusion of water on a hot road"
+          ],
+          "heard_as": [
+            "layers of air",
+            "refractive index",
+            "hotter near the ground",
+            "denser above"
+          ]
+        },
+        "memory_tip": "Hot ground, rare air below, dense air above. The refractive index climbs with height."
+      },
+      {
+        "id": "s4_bending",
+        "kind": "text",
+        "label": "Bending away from the normal",
+        "marks": 1,
+        "mark_note": "Denser to rarer at each layer",
+        "lines": [
+          "A ray of light from the top O of a tree",
+          "travels downwards, so it passes through air",
+          "of gradually decreasing refractive index.",
+          "At each layer it goes from denser to rarer",
+          "air, so it bends away from the normal.",
+          "The angle of incidence at the next layer is",
+          "therefore larger than at the last one, and",
+          "the ray follows a curved path."
+        ],
+        "margin_note": "Third mark. Each step is denser to rarer, so each step bends the ray a little further from the normal.",
+        "why": "The angle grows layer by layer, which is what makes the path a smooth curve rather than a straight line. This growth is also what guarantees the critical angle is reached somewhere.",
+        "common_mistakes": [
+          "Saying the ray bends towards the normal. Going into rarer air bends it away.",
+          "Describing one refraction only. The curve comes from many small refractions in succession."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the downward ray passes into rarer and rarer layers, bends away from the normal at each one, and so follows a curved path with a growing angle of incidence.",
+          "accept": [
+            "the ray bends away from the normal at each layer",
+            "denser to rarer at every layer so the angle keeps increasing",
+            "many small refractions make the path curve",
+            "prati layer daggara normal nunchi door ga bend avutundi"
+          ],
+          "reject": [
+            "the ray is totally internally reflected and curves upward"
+          ],
+          "heard_as": [
+            "away from the normal",
+            "curved path",
+            "angle increases",
+            "layer by layer"
+          ]
+        },
+        "memory_tip": "Into rarer air, away from the normal. Repeat that at every layer and the ray bends into a curve."
+      },
+      {
+        "id": "s5_tir_image",
+        "kind": "boxed_final",
+        "label": "Total internal reflection",
+        "marks": 1,
+        "mark_note": "i > C, ray turns up",
+        "lines": [
+          "At a particular layer the angle of incidence",
+          "becomes greater than the critical angle.",
+          "There the ray is totally internally reflected",
+          "and turns back upwards.",
+          "This ray reaches the eye of the observer,",
+          "who sees it as coming from a point I below",
+          "the tree.",
+          "The inverted image of the tree then looks",
+          "like a reflection in a pond of water.",
+          {
+            "text": "Curved path + i > C → inverted image",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Finish with the eye: the observer traces the ray back in a straight line and places the image below the ground.",
+        "why": "The eye has no way to know that the ray curved, so it extends the last direction backwards in a straight line. That straight extension lands below the ground, which is where the upside-down tree appears.",
+        "common_mistakes": [
+          "Stopping at the total internal reflection without saying what the observer sees.",
+          "Saying the image is erect. It is inverted, which is what makes it look like water."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That where the angle of incidence exceeds the critical angle the ray is totally internally reflected, turns upward, reaches the eye and is traced back to an inverted image below the object.",
+          "accept": [
+            "beyond the critical angle the ray is totally internally reflected and goes up",
+            "the observer traces it back and sees an inverted image below",
+            "the inverted image looks like water",
+            "i greater than C ayyaka ray paiki turn avutundi"
+          ],
+          "reject": [
+            "the ray bends away from the normal at each layer"
+          ],
+          "heard_as": [
+            "total internal reflection",
+            "inverted image",
+            "critical angle",
+            "observer"
+          ]
+        },
+        "memory_tip": "The eye always draws a straight line back. That straight line is what puts the tree under the ground."
+      }
+    ]
+  },
+  "insider_note": "Four sentences in order: what is seen, why the air layers differ, why the ray curves, and why the image is inverted. Skipping the layers step loses the whole explanation."
+}

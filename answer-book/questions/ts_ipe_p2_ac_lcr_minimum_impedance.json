@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_lcr_minimum_impedance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "When does an LCR series circuit have minimum impedance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The impedance",
+      "marks": 1
+    },
+    {
+      "label": "The resonance condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: Z = √(R² + (ωL − 1/ωC)²); the bracket is the only ω-dependent term, so Z is minimum when ωL = 1/ωC, i.e. at resonance ω = 1/√(LC), leaving Zₘᵢₙ = R and maximum current — matching the book's Zₘᵢₙ = R."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_impedance",
+        "kind": "equation",
+        "label": "The impedance",
+        "marks": 1,
+        "mark_note": "Z written",
+        "lines": [
+          "The impedance of a series LCR circuit is",
+          {
+            "text": "Z = √(R² + (ωL − 1/ωC)²)",
+            "style": "eq"
+          },
+          "ωL is the inductive reactance and 1/ωC is",
+          "the capacitive reactance."
+        ],
+        "margin_note": "First mark. Write Z in full — the answer reads straight off the bracket.",
+        "why": "The formula shows the whole answer in advance: R is fixed, and the bracket (ωL − 1/ωC) is the only part that depends on frequency, so Z is smallest when that bracket is zero.",
+        "common_mistakes": [
+          "Writing a plus sign inside the bracket. The two reactances oppose each other, so it is ωL minus 1/ωC.",
+          "Adding R and the reactances directly. They add as squares under the root, like the sides of a right triangle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Z = √(R² + (ωL − 1/ωC)²) for a series LCR circuit.",
+          "accept": [
+            "root of R squared plus the bracket squared",
+            "omega L minus 1 by omega C"
+          ],
+          "reject": [
+            "Z minimum is R"
+          ],
+          "heard_as": [
+            "impedance",
+            "root"
+          ]
+        },
+        "memory_tip": "Impedance triangle: R along the base, (ωL − 1/ωC) upright, Z the longest side."
+      },
+      {
+        "id": "s2_resonance",
+        "kind": "boxed_final",
+        "label": "The resonance condition",
+        "marks": 1,
+        "mark_note": "At resonance, Z = R",
+        "lines": [
+          "Z is minimum when the bracket is zero, that",
+          "is when ωL = 1/ωC. This is resonance, at",
+          {
+            "text": "ω = 1 / √(LC)",
+            "style": "eq"
+          },
+          "Then Zₘᵢₙ = R and the current in the circuit",
+          "is maximum.",
+          {
+            "text": "At resonance ωL = 1/ωC and Zₘᵢₙ = R",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Two things must appear: the condition ωL = 1/ωC and the leftover Zₘᵢₙ = R.",
+        "why": "At ωL = 1/ωC the two reactances cancel and only R is left, so the circuit draws its largest current — the condition, the frequency and the leftover R together make the full answer.",
+        "common_mistakes": [
+          "Saying the impedance is zero at resonance. The reactances cancel, but R remains: Zₘᵢₙ = R.",
+          "Writing ω = √(LC). The resonance angular frequency is 1/√(LC)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Z is minimum at resonance, when ωL = 1/ωC and ω = 1/√(LC), leaving Z = R and maximum current.",
+          "accept": [
+            "omega L equals 1 by omega C",
+            "at resonance",
+            "Z equals R",
+            "current is maximum"
+          ],
+          "reject": [
+            "root of R squared plus the bracket squared"
+          ],
+          "heard_as": [
+            "resonance",
+            "omega L"
+          ]
+        },
+        "memory_tip": "Resonance: the L and C parts cancel, R alone is left, the current peaks."
+      }
+    ]
+  },
+  "insider_note": "Saying at resonance alone is half the answer — the examiner wants the condition ωL = 1/ωC and the leftover Zₘᵢₙ = R."
+}

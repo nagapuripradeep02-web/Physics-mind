@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_depletion_width_forward_reverse_bias",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to the width of the depletion layer in a p-n junction diode when it is i) forward biased ii) reverse biased?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Forward bias — width decreases",
+      "marks": 1
+    },
+    {
+      "label": "Reverse bias — width increases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. The book answers with the two words 'decreases' and 'increases'; the one-line reason for each is added here."
+  },
+  "recall_prompt": "Say what the depletion width does in forward bias and in reverse bias, and why.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_forward",
+        "kind": "text",
+        "label": "Forward bias",
+        "marks": 1,
+        "mark_note": "Width decreases",
+        "lines": [
+          "i) In forward bias the width of the",
+          "depletion layer decreases.",
+          "The applied voltage opposes the barrier",
+          "voltage, so carriers move towards the",
+          "junction and the layer becomes narrow."
+        ],
+        "margin_note": "First mark. Decreases — and the reason is that the applied voltage opposes the barrier.",
+        "why": "In forward bias the battery pushes holes from the p side and electrons from the n side towards the junction. They move into the depletion region and cancel some of the fixed ion charge there, so the region shrinks and the diode begins to conduct.",
+        "common_mistakes": [
+          "Saying the layer disappears completely. It narrows; it does not vanish.",
+          "Swapping the two answers. Forward narrows, reverse widens."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in forward bias the depletion layer becomes narrower.",
+          "accept": [
+            "width decreases",
+            "layer becomes narrow",
+            "depletion region shrinks"
+          ],
+          "reject": [
+            "width increases"
+          ],
+          "heard_as": [
+            "forward bias",
+            "decreases",
+            "narrow"
+          ]
+        },
+        "memory_tip": "Forward bias helps current, so it thins the barrier."
+      },
+      {
+        "id": "s2_reverse",
+        "kind": "boxed_final",
+        "label": "Reverse bias",
+        "marks": 1,
+        "mark_note": "Width increases",
+        "lines": [
+          "ii) In reverse bias the width of the",
+          "depletion layer increases.",
+          "The applied voltage adds to the barrier",
+          "voltage, so carriers move away from the",
+          "junction and the layer becomes wider.",
+          {
+            "text": "Forward → narrower · Reverse → wider",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Increases — the applied voltage adds to the barrier.",
+        "why": "In reverse bias the battery pulls holes and electrons away from the junction. More fixed ions are uncovered on both sides, so the depletion region widens, the barrier grows and only the very small reverse current flows.",
+        "common_mistakes": [
+          "Saying no current at all flows in reverse bias. A very small reverse current flows, carried by minority carriers.",
+          "Saying the width does not change in reverse bias."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in reverse bias the depletion layer becomes wider.",
+          "accept": [
+            "width increases",
+            "layer becomes wider",
+            "depletion region grows"
+          ],
+          "reject": [
+            "width decreases"
+          ],
+          "heard_as": [
+            "reverse bias",
+            "increases",
+            "wider"
+          ]
+        },
+        "memory_tip": "Reverse bias blocks current, so it thickens the barrier."
+      }
+    ]
+  },
+  "insider_note": "Two words carry the marks — decreases and increases. Add one line of reason each so a single wrong word does not cost the whole mark."
+}

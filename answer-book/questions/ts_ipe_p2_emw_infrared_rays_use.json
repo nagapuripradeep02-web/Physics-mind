@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_infrared_rays_use",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give any one use of infrared rays.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "One use of infrared rays, stated fully",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The single 2-mark step is an INVENTED split and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the book (p.41) lists four uses — solar water heaters or cookers, photographs in fog and smoke, infrared lamps in physical therapy, and remote switches of household TV and video recorders — all genuine infrared applications; the question asks for any one, so one complete use carries the full 2 marks and the rest are alternatives."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_use",
+        "kind": "text",
+        "label": "One use of infrared rays",
+        "marks": 2,
+        "mark_note": "Any one correct use, in a full sentence",
+        "lines": [
+          "Infrared rays are used in solar water",
+          "heaters and in solar cookers."
+        ],
+        "margin_note": "Full marks for any one correct use written as a complete sentence.",
+        "why": "Infrared radiation carries heat, so every use on the book's list is a heating or heat-sensing job. Writing the use as a full sentence, with the device named, is what the examiner marks.",
+        "common_mistakes": [
+          "Writing only the word heating with no device. Name a device or a situation, such as solar water heaters.",
+          "Giving a use of ultraviolet rays, such as sterilising water. The question asks about infrared."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "Any one correct use of infrared rays, such as solar water heaters or solar cookers.",
+          "accept": [
+            "solar water heater",
+            "solar cooker",
+            "photographs in fog",
+            "physical therapy lamps",
+            "TV remote"
+          ],
+          "reject": [
+            "sterilising water"
+          ],
+          "heard_as": [
+            "infrared",
+            "solar cooker",
+            "remote"
+          ]
+        },
+        "memory_tip": "Infrared means heat: pick the heater or the cooker and say it as one sentence."
+      },
+      {
+        "id": "s2_more_uses",
+        "kind": "text",
+        "label": "More uses the examiner accepts",
+        "marks": 0,
+        "lines": [
+          "Other accepted uses: taking photographs in",
+          "fog and smoke, infrared lamps in physical",
+          "therapy, and the remote controls of",
+          "television sets and video recorders."
+        ],
+        "margin_note": "Any one of these earns the same two marks; you do not need more than one.",
+        "why": "The book prints four uses so that any one of them can be written in the exam. Knowing the list gives you a spare answer if one use slips from memory in the hall.",
+        "common_mistakes": [
+          "Writing all four uses in the exam. One complete use is enough for the two marks; the rest only costs time."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "A second use of infrared rays from the book's list, as a backup.",
+          "accept": [
+            "photographs in fog and smoke",
+            "infrared lamps in physical therapy",
+            "remote switches of TV",
+            "video recorders"
+          ],
+          "reject": [
+            "solar water heater"
+          ],
+          "heard_as": [
+            "fog",
+            "therapy",
+            "remote"
+          ]
+        },
+        "memory_tip": "Four uses: heaters and cookers, fog photographs, therapy lamps, remotes."
+      }
+    ]
+  },
+  "insider_note": "The question says any one use — one complete sentence earns both marks; a bare word like heating does not."
+}

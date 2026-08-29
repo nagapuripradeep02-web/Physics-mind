@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_reading_spectacles_focal_length",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What focal length should the reading spectacles have for a person for whom the least distance of vision is 50 cm? (The distance of Normal vision is 25 cm)",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Object at 25 cm, image at the near point",
+      "marks": 1
+    },
+    {
+      "label": "Lens formula and the focal length",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.11 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. TRANSCRIPTION: the book prints a space before the question mark (removed here) and capitalises 'Normal' mid-sentence (kept, as it changes no reading). Hand-checked numerically: u = −25 cm and v = −50 cm in 1/f = 1/v − 1/u give 1/f = −1/50 + 1/25 = 1/50, so f = +50 cm, a convex lens of power +2 D. This matches the printed answer f = 50 cm."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Set up the two distances",
+        "marks": 1,
+        "mark_note": "u = −25 cm, v = −50 cm",
+        "lines": [
+          {
+            "text": "Given:",
+            "style": "heading"
+          },
+          "Near point of this person = 50 cm.",
+          "The book is held at the normal near point,",
+          "25 cm. The spectacles must form a virtual",
+          "image of it at 50 cm, where this person can",
+          "see it.",
+          {
+            "text": "u = −25 cm ,   v = −50 cm",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Object at 25 cm, image at 50 cm, both virtual side, so both distances are negative.",
+        "why": "A person whose near point is 50 cm cannot focus anything closer than 50 cm. The spectacle lens therefore has to take the book at 25 cm and push its image out to 50 cm, where the eye can work. That single sentence fixes both u and v.",
+        "common_mistakes": [
+          "Taking v = +50 cm. The image is virtual and on the same side as the book, so v is negative.",
+          "Swapping u and v. The object is the book at 25 cm; the image is at the person's near point, 50 cm."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the object is at 25 cm and the virtual image must be at 50 cm, so u = −25 cm and v = −50 cm.",
+          "accept": [
+            "object at minus twenty five image at minus fifty",
+            "the lens must move the image from twenty five to fifty centimetres",
+            "u is minus twenty five and v is minus fifty",
+            "u minus twenty five, v minus fifty"
+          ],
+          "reject": [
+            "f is fifty centimetres"
+          ],
+          "heard_as": [
+            "minus twenty five",
+            "minus fifty",
+            "near point",
+            "virtual image"
+          ]
+        },
+        "memory_tip": "The book stays at 25 cm; the lens moves its image out to 50 cm. Object 25, image 50."
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Focal length",
+        "marks": 1,
+        "mark_note": "f = +50 cm",
+        "lines": [
+          {
+            "text": "1/f = 1/v − 1/u   (lens formula)",
+            "style": "eq"
+          },
+          {
+            "text": "1/f = −1/50 − (−1/25) = −1/50 + 1/25",
+            "style": "eq"
+          },
+          {
+            "text": "1/f = (−1 + 2)/50 = 1/50",
+            "style": "eq"
+          },
+          "The focal length is positive, so the",
+          "spectacles use a convex lens of power +2 D.",
+          {
+            "text": "f = +50 cm  (convex lens)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Keep the plus sign — it is what says the lens is convex, which the answer should state.",
+        "why": "The two reciprocals differ by exactly one part in fifty, which is why the answer comes out at the same 50 cm as the near point. The positive sign is the physics: reading spectacles are always convex.",
+        "common_mistakes": [
+          "Getting f = −50 cm by mixing the signs. Check that 1/25 is larger than 1/50, so the result is positive.",
+          "Leaving the answer as 1/f = 1/50 without inverting."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the lens formula gives 1/f = 1/50, so f = +50 cm, a convex lens.",
+          "accept": [
+            "one by f is one by fifty so f is fifty centimetres",
+            "focal length fifty centimetres convex",
+            "f is plus fifty centimetres",
+            "f fifty centimetres convex lens"
+          ],
+          "reject": [
+            "object at minus twenty five image at minus fifty"
+          ],
+          "heard_as": [
+            "fifty centimetres",
+            "one by fifty",
+            "convex",
+            "plus fifty"
+          ]
+        },
+        "memory_tip": "Reading spectacles are always convex — a negative answer here means a sign slipped."
+      }
+    ]
+  },
+  "insider_note": "Setting u and v is the whole question. Once they are written down the arithmetic is one subtraction."
+}

@@ -1,0 +1,383 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_axial_line_dipole_field",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for the intensity of the electric field at a point on the axial line of an electric dipole.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Setup and dipole moment",
+      "marks": 1
+    },
+    {
+      "label": "Fields at P due to +q and −q",
+      "marks": 1
+    },
+    {
+      "label": "Resultant E = 2pr / 4πε₀(r² − a²)²",
+      "marks": 1
+    },
+    {
+      "label": "Short dipole result and direction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: (r+a)² − (r−a)² = 4ra and (r−a)²(r+a)² = (r²−a²)², so E = (q/4πε₀)·4ra/(r²−a²)² = (1/4πε₀)·2pr/(r²−a²)²; for r ≫ a this becomes (1/4πε₀)·2p/r³, directed along p. CORRECTED FROM THE BOOK (printed p.20): the book's intermediate line reads 'E_axial = q/4πε₀ · (2a)(q)·r/(r²−a²)²', which carries the charge q twice and drops the factor 2 — the correct grouping is q·4ra = 2(q·2a)r = 2pr, and the book's own next line, 2Pr/4πε₀(r²−a²)², is right, so the slip is confined to that one intermediate line. The book writes the dipole moment as capital P; the standard lowercase p is used here, matching the other cards of this chapter. The book prints 'seperated' and 'neglisible'; both are written correctly here."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Charges and Fields · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "The dipole and the point P",
+        "marks": 1,
+        "mark_note": "p = q × 2a, and P at a distance r",
+        "lines": [
+          "Consider an electric dipole with charges −q",
+          "and +q separated by a distance 2a, with its",
+          "centre at O. Its dipole moment is",
+          {
+            "text": "p = q × 2a",
+            "style": "eq"
+          },
+          "directed from −q to +q. Let P be a point on",
+          "the axial line at a distance r from O, on",
+          "the +q side."
+        ],
+        "margin_note": "First mark. Name q, 2a, p, r and the point P before any field is written.",
+        "why": "The result is written in p and r, so both must be defined first: p from the charge and the separation, r from the centre O out to the point P on the axis.",
+        "common_mistakes": [
+          "Writing p = q × a. The separation of the charges is 2a, so p = q × 2a.",
+          "Measuring r from one charge. It is measured from the centre O."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a dipole of charges −q and +q separated by 2a has moment p = q × 2a, and P lies on the axis a distance r from the centre O.",
+          "accept": [
+            "charges minus q and plus q separated by 2a",
+            "dipole moment q into 2a",
+            "point P on the axial line at distance r from the centre"
+          ],
+          "reject": [
+            "one by four pi epsilon nought two p by r cubed"
+          ],
+          "heard_as": [
+            "dipole",
+            "axial line",
+            "2a",
+            "centre O"
+          ]
+        },
+        "memory_tip": "Define the dipole first: two charges, separation 2a, moment p = q × 2a."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "axial_dipole_field",
+          "width": 372,
+          "height": 160,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis",
+              "d": "M 44 92 L 356 92",
+              "ms": 4460
+            },
+            {
+              "type": "stroke",
+              "id": "q_neg",
+              "d": "M 76 92 A 6 6 0 1 0 88 92 A 6 6 0 1 0 76 92",
+              "ms": 540
+            },
+            {
+              "type": "label",
+              "id": "lbl_nq",
+              "x": 72,
+              "y": 116,
+              "text": "−q",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "q_pos",
+              "d": "M 176 92 A 6 6 0 1 0 188 92 A 6 6 0 1 0 176 92",
+              "ms": 540
+            },
+            {
+              "type": "label",
+              "id": "lbl_pq",
+              "x": 172,
+              "y": 116,
+              "text": "+q",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_2a",
+              "x": 122,
+              "y": 116,
+              "text": "2a",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_P",
+              "x": 282,
+              "y": 116,
+              "text": "P",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "r_line",
+              "d": "M 132 142 L 288 142",
+              "ms": 2230,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 204,
+              "y": 134,
+              "text": "r",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "e2",
+              "d": "M 280 56 L 246.2 56",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "e2_head",
+              "d": "M 235 51.5 L 228 56 L 235 60.5",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_e2",
+              "x": 240,
+              "y": 40,
+              "text": "E₂",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "e1",
+              "d": "M 296 56 L 348 56",
+              "ms": 740
+            },
+            {
+              "type": "stroke",
+              "id": "e1_head",
+              "d": "M 341 51.5 L 348 56 L 341 60.5",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_e1",
+              "x": 312,
+              "y": 40,
+              "text": "E₁",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The charges −q and +q on the axial line, the dashed distance r from the centre of the dipole out to P, and the two fields at P drawn above the line: E₁ due to +q pointing outwards, E₂ due to −q pointing back.",
+        "why": "The figure fixes the two distances the derivation needs — (r − a) from +q and (r + a) from −q — and shows that the two fields at P lie along one line in opposite directions, which is why they subtract.",
+        "common_mistakes": [
+          "Drawing both field arrows the same way. At an axial point they are opposite.",
+          "Marking r from +q. r is measured from the centre O of the dipole."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure shows the dipole about O, P on the axis at a distance r, and the two opposite field arrows at P.",
+          "accept": [
+            "draw the dipole and mark P on the axis",
+            "show the two field arrows at P in opposite directions",
+            "mark 2a and r"
+          ],
+          "reject": [
+            "E equals E one minus E two"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "axial line"
+          ]
+        },
+        "memory_tip": "Charges on a line, P further out, two arrows at P facing opposite ways."
+      },
+      {
+        "id": "s3_fields",
+        "kind": "equation",
+        "label": "Fields at P due to each charge",
+        "marks": 1,
+        "mark_note": "E₁ and E₂ with the correct distances",
+        "lines": [
+          "P is at a distance (r − a) from +q and",
+          "(r + a) from −q. The field at P due to +q is",
+          {
+            "text": "E₁ = (1/4πε₀) · q / (r − a)²",
+            "style": "eq"
+          },
+          "directed away from the dipole, and the field",
+          "at P due to −q is",
+          {
+            "text": "E₂ = (1/4πε₀) · q / (r + a)²",
+            "style": "eq"
+          },
+          "directed back towards the dipole."
+        ],
+        "margin_note": "Second mark. Both fields written with the correct distance, and each with its direction.",
+        "why": "Each charge sets up its own field at P and the two add as vectors. On the axis they lie along one line, so only the two distances (r − a) and (r + a) and the two directions are needed.",
+        "common_mistakes": [
+          "Using r for both distances. P is nearer +q by a and further from −q by a.",
+          "Writing (r − a)² as r² − a². They are not the same."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E₁ = (1/4πε₀)q/(r − a)² away from the dipole and E₂ = (1/4πε₀)q/(r + a)² towards it.",
+          "accept": [
+            "q by r minus a whole squared",
+            "q by r plus a whole squared",
+            "the two fields are in opposite directions"
+          ],
+          "reject": [
+            "two p r by r squared minus a squared whole squared"
+          ],
+          "heard_as": [
+            "r minus a",
+            "r plus a",
+            "opposite directions"
+          ]
+        },
+        "memory_tip": "Nearer charge, smaller denominator: (r − a) belongs to +q."
+      },
+      {
+        "id": "s4_resultant",
+        "kind": "equation",
+        "label": "Resultant field at P",
+        "marks": 1,
+        "mark_note": "E = 2pr / 4πε₀(r² − a²)²",
+        "lines": [
+          "E₁ is larger than E₂, so the resultant field",
+          "at P acts along p. Its magnitude is",
+          {
+            "text": "E = E₁ − E₂",
+            "style": "eq"
+          },
+          {
+            "text": "E = (q/4πε₀)[1/(r − a)² − 1/(r + a)²]",
+            "style": "eq"
+          },
+          {
+            "text": "E = (q/4πε₀) · 4ra / (r² − a²)²",
+            "style": "eq"
+          },
+          {
+            "text": "E = (1/4πε₀) · 2pr / (r² − a²)²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Subtract, take the common denominator, then group q × 2a into p.",
+        "why": "The two fields are opposite, so the resultant is their difference. Over the common denominator (r² − a²)² the numerator becomes (r + a)² − (r − a)² = 4ra, and q × 2a is exactly p, so 4raq becomes 2pr.",
+        "common_mistakes": [
+          "Adding E₁ and E₂. They are opposite, so they subtract.",
+          "Leaving the answer in q and a. Group q × 2a into the dipole moment p."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E = E₁ − E₂ simplifies to (1/4πε₀)·2pr/(r² − a²)².",
+          "accept": [
+            "E one minus E two",
+            "four r a over r squared minus a squared whole squared",
+            "two p r by four pi epsilon nought into r squared minus a squared whole squared"
+          ],
+          "reject": [
+            "two p by r cubed"
+          ],
+          "heard_as": [
+            "subtract",
+            "common denominator",
+            "four r a"
+          ]
+        },
+        "memory_tip": "Difference of two squares on top: (r + a)² − (r − a)² = 4ra."
+      },
+      {
+        "id": "s5_short_dipole",
+        "kind": "boxed_final",
+        "label": "Short dipole result",
+        "marks": 1,
+        "mark_note": "r ≫ a gives E = 2p / 4πε₀r³",
+        "lines": [
+          "For a short dipole a is much smaller than r,",
+          "so a² can be neglected and (r² − a²)² ≈ r⁴.",
+          {
+            "text": "E = (1/4πε₀) · 2p / r³",
+            "style": "eq"
+          },
+          "The field is along p, that is from −q to +q.",
+          {
+            "text": "E = (1/4πε₀) · 2p / r³ (along p)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. State the short dipole condition, simplify, then give the direction.",
+        "why": "Exam work uses the short dipole, where a² is small next to r². Dropping it turns (r² − a²)² into r⁴ and leaves the inverse cube law every dipole field obeys.",
+        "common_mistakes": [
+          "Writing 1/r². A dipole field falls off as 1/r³, not as 1/r².",
+          "Leaving out the direction. On the axial line E is along p."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for r ≫ a, E = (1/4πε₀)·2p/r³, directed along p.",
+          "accept": [
+            "a is much less than r",
+            "two p by four pi epsilon nought r cubed",
+            "the field is along the dipole moment"
+          ],
+          "reject": [
+            "four r a over r squared minus a squared whole squared"
+          ],
+          "heard_as": [
+            "short dipole",
+            "r cubed",
+            "along p"
+          ]
+        },
+        "memory_tip": "Axial field carries the 2: 2p on the axis, plain p on the equator."
+      }
+    ]
+  },
+  "insider_note": "The axial field is twice the equatorial field at the same distance — carrying the 2 on the axis and dropping it on the equator is the fastest way to keep the two derivations apart."
+}

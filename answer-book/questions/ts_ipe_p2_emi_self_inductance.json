@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_self_inductance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you understand by 'self inductance'?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The emf form and the unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: NΦ = L i defines L as flux linkage per unit current in the same coil; ε = −L di/dt; SI unit henry, 1 H = 1 V per (A s⁻¹)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "L = flux linkage per unit current",
+        "lines": [
+          "When the current in a coil changes, the",
+          "flux linked with the coil changes, so an",
+          "emf is induced in the same coil. This is",
+          "self induction.",
+          "The flux linkage is proportional to the",
+          "current:",
+          {
+            "text": "NΦ = L i",
+            "style": "eq"
+          },
+          "L is called the self inductance of the",
+          "coil — its flux linkage per unit current."
+        ],
+        "margin_note": "First mark. The coil's OWN current makes its own flux linkage; L is the ratio of the two.",
+        "why": "The definition ties L to the coil itself: its own changing current, its own flux. That is what the word self records.",
+        "common_mistakes": [
+          "Defining L with two coils. Flux from the coil's OWN current defines self inductance; two coils give mutual inductance."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That self inductance is the flux linkage of a coil per unit current flowing in the same coil.",
+          "accept": [
+            "N phi equals L i",
+            "flux linkage per unit current",
+            "its own changing current"
+          ],
+          "reject": [
+            "two coils"
+          ],
+          "heard_as": [
+            "self inductance",
+            "flux linkage"
+          ]
+        },
+        "memory_tip": "Self = same coil twice: its own current makes its own flux linkage, and L is the ratio."
+      },
+      {
+        "id": "s2_emf_unit",
+        "kind": "boxed_final",
+        "label": "The emf form and the unit",
+        "marks": 1,
+        "mark_note": "ε = −L di/dt; unit henry",
+        "lines": [
+          "The emf induced in the coil is",
+          {
+            "text": "ε = −L di/dt",
+            "style": "eq"
+          },
+          "So L is numerically the emf induced when",
+          "the current changes at the rate 1 A s⁻¹.",
+          {
+            "text": "SI unit of L: henry (H)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The emf form with its minus sign, and the unit henry.",
+        "why": "The emf form is the definition in action: it makes L measurable, as the emf per unit rate of change of current.",
+        "common_mistakes": [
+          "Dropping the minus sign in ε = −L di/dt. The sign is Lenz's law and stays.",
+          "Writing the unit as weber. The weber is the unit of flux; flux linkage per ampere is the henry."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the induced emf is minus L di by dt and the SI unit of L is the henry.",
+          "accept": [
+            "minus L d i by d t",
+            "henry",
+            "emf per unit rate of change of current"
+          ],
+          "reject": [
+            "B A cos theta"
+          ],
+          "heard_as": [
+            "henry",
+            "d i by d t"
+          ]
+        },
+        "memory_tip": "Henry for inductance, weber for flux. One henry = one volt per ampere per second."
+      }
+    ]
+  },
+  "insider_note": "Both marks live in the two equations: NΦ = L i for the definition, ε = −L di/dt with the unit henry for the second."
+}

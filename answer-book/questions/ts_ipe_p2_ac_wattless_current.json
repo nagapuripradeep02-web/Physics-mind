@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_wattless_current",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by wattless component of current?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The meaning",
+      "marks": 1
+    },
+    {
+      "label": "The component I sin φ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The book prints \"wattles\" for wattless (printed p40, twice) — corrected here. Physics hand-checked: average power = V I cos(angle between V and the current component); the I sin φ component sits at 90° to the voltage, cos 90° = 0, so it transfers zero average power — that component is the wattless current."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "The meaning",
+        "marks": 1,
+        "mark_note": "Zero average power",
+        "lines": [
+          "The current in an a.c. circuit is wattless",
+          "when the average power consumed is zero."
+        ],
+        "margin_note": "First mark. The word average must appear — instantaneous power is not zero.",
+        "why": "Wattless is a literal name — a current that consumes no watts. The definition must say AVERAGE power: the energy taken in one quarter cycle is returned in the next, so the average over a full cycle is zero.",
+        "common_mistakes": [
+          "Saying the instantaneous power is zero. It is the AVERAGE power over a cycle that is zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a current is wattless when the average power it consumes is zero.",
+          "accept": [
+            "average power is zero",
+            "consumes no power on average"
+          ],
+          "reject": [
+            "I sin phi"
+          ],
+          "heard_as": [
+            "wattless",
+            "average power"
+          ]
+        },
+        "memory_tip": "Wattless = no watts — the average power over a cycle is zero."
+      },
+      {
+        "id": "s2_component",
+        "kind": "boxed_final",
+        "label": "The component I sin φ",
+        "marks": 1,
+        "mark_note": "I sin φ at 90°",
+        "lines": [
+          "Let φ be the phase angle between the emf and",
+          "the current I. Resolve I into two parts:",
+          "I cos φ along the voltage and I sin φ at 90°",
+          "to the voltage.",
+          "The part at 90° gives average power",
+          {
+            "text": "P = V (I sin φ) cos 90° = 0",
+            "style": "eq"
+          },
+          "So I sin φ is called the wattless current.",
+          {
+            "text": "Wattless current = I sin φ",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name I sin φ and say why it carries no power: cos 90° = 0.",
+        "why": "Average power is V I cos(angle between them). The I sin φ component sits at 90° to the voltage, and cos 90° = 0, so this component transfers no average power — that is the whole meaning of wattless.",
+        "common_mistakes": [
+          "Calling I cos φ the wattless component. I cos φ carries the power; the wattless part is I sin φ.",
+          "Leaving out the reason. cos 90° = 0 is what makes the average power vanish."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the component I sin φ, at 90° to the voltage, gives zero average power and is the wattless current.",
+          "accept": [
+            "I sin phi",
+            "at 90 degrees to the voltage",
+            "cos 90 is zero"
+          ],
+          "reject": [
+            "average power is zero"
+          ],
+          "heard_as": [
+            "sin phi",
+            "ninety degrees"
+          ]
+        },
+        "memory_tip": "cos carries, sin sits idle: I cos φ carries the power, I sin φ is wattless."
+      }
+    ]
+  },
+  "insider_note": "The book prints wattles — write wattless. The mark is in naming I sin φ and saying why it carries no power: cos 90° = 0."
+}

@@ -1,0 +1,95 @@
+{
+  "number": 11,
+  "name": "Electromagnetic Waves",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What is the average wavelength of X-rays?",
+      "question_id": "ts_ipe_p2_emw_xray_average_wavelength"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Give any one use of infrared rays.",
+      "question_id": "ts_ipe_p2_emw_infrared_rays_use"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "If the wavelength of electromagnetic radiation is doubled, what happens to the energy of photon?",
+      "question_id": "ts_ipe_p2_emw_wavelength_doubled_photon_energy"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "What is the principle of production of electromagnetic waves?",
+      "question_id": "ts_ipe_p2_emw_production_principle"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "What is the ratio of speed of infrared rays and ultraviolet rays in vacuum?",
+      "question_id": "ts_ipe_p2_emw_infrared_uv_speed_ratio"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "What is the relation between the amplitudes of the electric and magnetic field in free space for an electromagnetic wave?",
+      "question_id": "ts_ipe_p2_emw_e0_b0_relation"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "What are the applications of microwaves?",
+      "question_id": "ts_ipe_p2_emw_microwaves_applications"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "Microwaves are used in Radars, why?",
+      "question_id": "ts_ipe_p2_emw_microwaves_in_radar_why"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 9,
+      "stars": 0,
+      "text": "The charging current for a capacitor is 0.6 A. What is the displacement current across its plates?",
+      "question_id": "ts_ipe_p2_emw_displacement_current_capacitor"
+    },
+    {
+      "ref": "vsaq10",
+      "section": "VSAQ",
+      "number": 10,
+      "stars": 0,
+      "text": "Which animal can detect Infrared Waves?",
+      "question_id": "ts_ipe_p2_emw_infrared_detecting_animal"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What is Greenhouse effect and its contribution towards the surface temperature of earth?",
+      "question_id": "ts_ipe_p2_emw_greenhouse_effect"
+    }
+  ]
+}

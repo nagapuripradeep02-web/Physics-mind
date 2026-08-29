@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emi_magnetic_flux_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Electromagnetic Induction"
+  },
+  "chapter": "Electromagnetic Induction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define magnetic flux.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Unit and nature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: Φ = BA cos θ with θ measured between B and the NORMAL to the surface; flux is a scalar; SI unit weber, 1 Wb = 1 T × 1 m². The book defines flux as the number of field lines through the area — the card uses the quantitative definition the formula needs."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Induction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Φ = BA cos θ, with θ named",
+        "lines": [
+          "The magnetic flux Φ through a surface is",
+          "the product of the magnetic field B, the",
+          "area A of the surface, and the cosine of",
+          "the angle θ between B and the normal to",
+          "the surface:",
+          {
+            "text": "Φ = BA cos θ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The angle θ is measured from the NORMAL to the surface, not from the surface.",
+        "why": "cos θ counts only the part of the field that passes straight through the surface; the part parallel to the surface sends no field lines through it.",
+        "common_mistakes": [
+          "Taking θ as the angle between B and the surface. It is measured from the normal to the surface.",
+          "Writing Φ = BA for every case. That is the special case θ = 0, field along the normal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That magnetic flux is BA cos θ, with θ measured between the field and the normal to the surface.",
+          "accept": [
+            "B A cos theta",
+            "angle from the normal",
+            "field times area times cos theta"
+          ],
+          "reject": [
+            "weber"
+          ],
+          "heard_as": [
+            "flux",
+            "cos theta",
+            "normal"
+          ]
+        },
+        "memory_tip": "Field, area, and the cosine of the angle from the NORMAL — three factors, in that order."
+      },
+      {
+        "id": "s2_unit_nature",
+        "kind": "boxed_final",
+        "label": "Unit and nature",
+        "marks": 1,
+        "mark_note": "Scalar; SI unit weber",
+        "lines": [
+          "Magnetic flux is a scalar quantity.",
+          "Its SI unit is the weber (Wb):",
+          {
+            "text": "1 Wb = 1 T × 1 m²",
+            "style": "eq"
+          },
+          {
+            "text": "Φ = BA cos θ · SI unit: weber (Wb)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Scalar, and the unit weber with its build-up from tesla and square metre.",
+        "why": "The flux is the dot product of the field with the area vector, so the result is a single number — a scalar — measured in tesla times square metre, named the weber.",
+        "common_mistakes": [
+          "Calling flux a vector because B is a vector. The dot product of two vectors is a scalar."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That flux is a scalar with SI unit weber, equal to tesla times square metre.",
+          "accept": [
+            "scalar",
+            "weber",
+            "tesla metre squared"
+          ],
+          "reject": [
+            "cos theta"
+          ],
+          "heard_as": [
+            "weber",
+            "scalar"
+          ]
+        },
+        "memory_tip": "Weber = tesla × square metre. Say the unit with its build-up and both facts are covered."
+      }
+    ]
+  },
+  "insider_note": "The definition mark needs θ tied to the NORMAL of the surface; the second mark is the unit, weber, said with its build-up."
+}

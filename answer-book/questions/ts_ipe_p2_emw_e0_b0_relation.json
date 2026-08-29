@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_emw_e0_b0_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 11,
+    "name": "Electromagnetic Waves"
+  },
+  "chapter": "Electromagnetic Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the relation between the amplitudes of the electric and magnetic field in free space for an electromagnetic wave?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement in words",
+      "marks": 1
+    },
+    {
+      "label": "E₀/B₀ = c with the symbols named",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: in free space E₀/B₀ = c — the electric-field amplitude sits on top, and the ratio equals the speed of light, matching the book's E₀/B₀ = C with the terms named (p.41)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electromagnetic Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement in words",
+        "marks": 1,
+        "mark_note": "Ratio of amplitudes equals c",
+        "lines": [
+          "In free space, the ratio of the amplitudes",
+          "of the electric and magnetic fields equals",
+          "the speed of light."
+        ],
+        "margin_note": "First mark. Say whose amplitudes: the electric and magnetic fields of the same wave.",
+        "why": "The words carry the physics: the two amplitudes are not independent — the wave fixes their ratio at c.",
+        "common_mistakes": [
+          "Saying the two amplitudes are equal. They are related by the factor c, not equal.",
+          "Writing the relation for a wave inside a medium. In a medium the ratio equals the wave speed there, not c; the asked case is free space."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in free space the ratio of the electric and magnetic field amplitudes equals the speed of light.",
+          "accept": [
+            "ratio of amplitudes equals speed of light",
+            "E naught by B naught is c",
+            "amplitude ratio is the speed of light"
+          ],
+          "reject": [
+            "amplitudes are equal"
+          ],
+          "heard_as": [
+            "amplitude",
+            "speed of light",
+            "free space"
+          ]
+        },
+        "memory_tip": "The electric amplitude is the big one — c times the magnetic amplitude."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation E₀/B₀ = c",
+        "marks": 1,
+        "mark_note": "E₀/B₀ = c, terms named",
+        "lines": [
+          {
+            "text": "E₀ = amplitude of the electric field",
+            "style": "indent"
+          },
+          {
+            "text": "B₀ = amplitude of the magnetic field",
+            "style": "indent"
+          },
+          {
+            "text": "c = speed of light in free space",
+            "style": "indent"
+          },
+          {
+            "text": "E₀ / B₀ = c",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The relation with each symbol named.",
+        "why": "Naming E₀, B₀ and c is part of the answer — a bare formula does not show which amplitude sits on top.",
+        "common_mistakes": [
+          "Inverting the ratio. B₀/E₀ equals 1/c, a very small number; the ratio that equals c is E₀/B₀.",
+          "Using E and B for the amplitudes. E₀ and B₀ are the peak values; E and B change from point to point along the wave."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E naught divided by B naught equals c.",
+          "accept": [
+            "E naught by B naught equals c",
+            "E zero by B zero is the speed of light"
+          ],
+          "reject": [
+            "B naught by E naught equals c"
+          ],
+          "heard_as": [
+            "E naught",
+            "B naught",
+            "c"
+          ]
+        },
+        "memory_tip": "E over B, in alphabetical order, gives c."
+      }
+    ]
+  },
+  "insider_note": "The examiner checks which amplitude is on top — E₀/B₀ = c earns the mark; the inverted ratio does not."
+}

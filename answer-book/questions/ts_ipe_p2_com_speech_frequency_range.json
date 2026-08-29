@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_com_speech_frequency_range",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Communication System"
+  },
+  "chapter": "Communication System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the frequency range of speech signals.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The range: 300 Hz to 3100 Hz",
+      "marks": 1
+    },
+    {
+      "label": "The bandwidth: 2800 Hz",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Whether Communication Systems is still on the current Telangana second-year syllabus is UNCONFIRMED — NCERT removed this chapter in the 2023 rationalisation, but this book prints it. A lecturer's pen tick marks this question as expected. Physics hand-checked: the standard telephone-quality speech band is 300 Hz to 3100 Hz, so the bandwidth is 3100 − 300 = 2800 Hz — the numbers and the subtraction both agree with the book."
+  },
+  "recall_prompt": "Say the frequency range used for speech signals and the bandwidth that range gives.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Communication System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_range",
+        "kind": "text",
+        "label": "The range: 300 Hz to 3100 Hz",
+        "marks": 1,
+        "mark_note": "300 Hz to 3100 Hz",
+        "lines": [
+          "For speech signals, the frequency range",
+          "used is 300 Hz to 3100 Hz."
+        ],
+        "margin_note": "First mark. Both end values, with the unit Hz on each.",
+        "why": "This is the band a telephone channel is built to carry: it is wide enough for speech to stay clear, and keeping it narrow lets many calls share one channel.",
+        "common_mistakes": [
+          "Writing 20 Hz to 20 000 Hz. That is the range of human HEARING; the speech-signal band used in communication is 300 Hz to 3100 Hz.",
+          "Dropping the unit. Both limits need Hz."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That speech signals use the frequency range 300 Hz to 3100 Hz.",
+          "accept": [
+            "300 to 3100 hertz",
+            "300 Hz to 3100 Hz",
+            "the speech band is 300 to 3100"
+          ],
+          "reject": [
+            "20 Hz to 20 kilohertz"
+          ],
+          "heard_as": [
+            "300",
+            "3100",
+            "three thousand one hundred",
+            "hertz"
+          ]
+        },
+        "memory_tip": "Both limits end the same way: 300 and 3100 — a 3 at the front of each."
+      },
+      {
+        "id": "s2_bandwidth",
+        "kind": "boxed_final",
+        "label": "The bandwidth: 2800 Hz",
+        "marks": 1,
+        "mark_note": "Highest minus lowest = 2800 Hz",
+        "lines": [
+          "The bandwidth is the difference between",
+          "the highest and lowest frequencies:",
+          {
+            "text": "3100 Hz − 300 Hz = 2800 Hz",
+            "style": "eq"
+          },
+          {
+            "text": "Speech: 300–3100 Hz · bandwidth 2800 Hz",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Show the subtraction, not just the answer 2800 Hz.",
+        "why": "Bandwidth is defined as highest frequency minus lowest, so writing the subtraction shows the definition is known and makes the 2800 Hz impossible to get wrong.",
+        "common_mistakes": [
+          "Adding instead of subtracting. Bandwidth is 3100 − 300, not 3100 + 300.",
+          "Writing 2800 without Hz. Bandwidth is a frequency and carries the unit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bandwidth is the highest frequency minus the lowest, 3100 − 300 = 2800 Hz.",
+          "accept": [
+            "the bandwidth is 2800 hertz",
+            "3100 minus 300 is 2800",
+            "highest minus lowest gives 2800"
+          ],
+          "reject": [
+            "the range is 300 to 3100"
+          ],
+          "heard_as": [
+            "bandwidth",
+            "2800",
+            "two thousand eight hundred"
+          ]
+        },
+        "memory_tip": "Bandwidth is a width: top of the band minus bottom of the band."
+      }
+    ]
+  },
+  "insider_note": "One mark per number pair: the range 300–3100 Hz, then the subtraction that gives 2800 Hz. The subtraction line is what separates this from a memorised figure."
+}

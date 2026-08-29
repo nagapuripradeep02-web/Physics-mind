@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mag_angle_of_dip",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Magnetism and Matter"
+  },
+  "chapter": "Magnetism and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define magnetic inclination or angle of dip.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Equator and poles",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: dip at a place is the angle between the total field of the earth and the horizontal, taken in the magnetic meridian (tan θ = Z/H); it is 0° at the magnetic equator and 90° at the magnetic poles — the values the chapter's own numericals (VSAQ 6) and pole questions (VSAQ 10, 11) rely on."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Magnetism and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Angle with the horizontal",
+        "lines": [
+          "At a place, the angle between the direction",
+          "of the total magnetic field of the earth",
+          "and the horizontal, taken in the magnetic",
+          "meridian, is called the angle of dip or",
+          "magnetic inclination."
+        ],
+        "margin_note": "First mark. Three parts carry it: the total field of the earth, the horizontal, and in the magnetic meridian.",
+        "why": "The earth's field at a place has a horizontal part H and a vertical part Z. Dip is the angle the total field makes as it leans below the horizontal, and it is measured in the magnetic meridian because that is the plane the field lies in.",
+        "common_mistakes": [
+          "Mixing dip up with declination. Dip is measured against the horizontal; declination is between two meridian planes.",
+          "Leaving out in the magnetic meridian — the angle is defined in that plane."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dip is the angle between the earth's total magnetic field and the horizontal, in the magnetic meridian.",
+          "accept": [
+            "angle of the total field with the horizontal",
+            "measured in the magnetic meridian",
+            "how much the field leans below the horizontal"
+          ],
+          "reject": [
+            "angle between the two meridians"
+          ],
+          "heard_as": [
+            "dip",
+            "inclination",
+            "horizontal"
+          ]
+        },
+        "memory_tip": "Dip = how far the field dips below the horizontal."
+      },
+      {
+        "id": "s2_extremes",
+        "kind": "text",
+        "label": "Equator and poles",
+        "marks": 1,
+        "mark_note": "0° and 90°",
+        "lines": [
+          "At the magnetic equator the field is",
+          "horizontal, so the dip is 0°.",
+          "At the magnetic poles the field is",
+          "vertical, so the dip is 90°."
+        ],
+        "margin_note": "Second mark. Give the two extreme values — 0° at the magnetic equator, 90° at the magnetic poles.",
+        "why": "The two extreme values show what the angle measures: where the field lies flat the dip is zero, and where the field stands straight down the dip is a right angle. Papers reuse these two values in the pole questions.",
+        "common_mistakes": [
+          "Swapping the two values. The field is horizontal at the equator (dip 0°) and vertical at the poles (dip 90°).",
+          "Writing geographic equator. The values belong to the magnetic equator and magnetic poles."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the dip is 0° at the magnetic equator and 90° at the magnetic poles.",
+          "accept": [
+            "zero at the magnetic equator",
+            "ninety degrees at the poles",
+            "horizontal at the equator, vertical at the poles"
+          ],
+          "reject": [
+            "angle with the horizontal in the meridian"
+          ],
+          "heard_as": [
+            "equator",
+            "poles",
+            "ninety degrees"
+          ]
+        },
+        "memory_tip": "Flat at the equator (0°), straight down at the poles (90°)."
+      }
+    ]
+  },
+  "insider_note": "Write the definition and then the two extreme values — the 0° and 90° line is the half of this answer students forget."
+}

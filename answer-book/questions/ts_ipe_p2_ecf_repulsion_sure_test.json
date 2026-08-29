@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_repulsion_sure_test",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Repulsion is the sure test of charging than attraction. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Attraction is not a sure test",
+      "marks": 1
+    },
+    {
+      "label": "Repulsion needs like charges",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: a charged body attracts both an oppositely charged body and an uncharged body (by induction), so attraction is ambiguous; repulsion happens only between two like-charged bodies, so it proves charging. Matches the book's answer (printed p.19)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Charges and Fields · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_attraction",
+        "kind": "text",
+        "label": "Attraction is not a sure test",
+        "marks": 1,
+        "mark_note": "Uncharged bodies are also attracted",
+        "lines": [
+          "A charged body attracts an oppositely",
+          "charged body. It also attracts an uncharged",
+          "body, by inducing opposite charge on the",
+          "near side. So attraction cannot say whether",
+          "the other body is charged or uncharged."
+        ],
+        "margin_note": "First mark. Name BOTH causes of attraction — opposite charge, and an uncharged body by induction.",
+        "why": "A test is sure only when one cause can produce it. Attraction has two possible causes, so seeing attraction leaves the question open.",
+        "common_mistakes": [
+          "Saying attraction happens only between opposite charges. An uncharged body is also attracted, by induction.",
+          "Leaving out the word induction. It is the reason an uncharged body is attracted."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That attraction can come from an oppositely charged body or from an uncharged body by induction, so it is not a sure test.",
+          "accept": [
+            "an uncharged body is also attracted",
+            "attraction has two causes",
+            "induction attracts an uncharged body"
+          ],
+          "reject": [
+            "repulsion only between like charges"
+          ],
+          "heard_as": [
+            "induction",
+            "uncharged",
+            "attraction"
+          ]
+        },
+        "memory_tip": "Attraction has two suspects — an opposite charge, or no charge at all."
+      },
+      {
+        "id": "s2_repulsion",
+        "kind": "boxed_final",
+        "label": "Repulsion needs like charges",
+        "marks": 1,
+        "mark_note": "Only like charges repel",
+        "lines": [
+          "Repulsion happens only between two bodies",
+          "with the same kind of charge. An uncharged",
+          "body is never repelled. So repulsion is the",
+          "sure test of charging.",
+          {
+            "text": "Only a charged body can be repelled",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The sentence an uncharged body is never repelled closes the argument.",
+        "why": "Repulsion has exactly one cause — like charges on both bodies. One cause means one conclusion, which is what makes the test sure.",
+        "common_mistakes": [
+          "Writing only like charges repel without adding that an uncharged body is never repelled. Both halves are needed.",
+          "Swapping the conclusion — the sure test is repulsion, not attraction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That repulsion happens only between like charges and never with an uncharged body, so repulsion proves charging.",
+          "accept": [
+            "only like charges repel",
+            "an uncharged body is never repelled",
+            "repulsion proves the body is charged"
+          ],
+          "reject": [
+            "induction attracts an uncharged body"
+          ],
+          "heard_as": [
+            "repulsion",
+            "like charges",
+            "sure test"
+          ]
+        },
+        "memory_tip": "Repulsion has one suspect only — like charge on both bodies."
+      }
+    ]
+  },
+  "insider_note": "The mark-winning sentence is the one the book buries: an uncharged body is also attracted by induction — that is what breaks attraction as a test."
+}

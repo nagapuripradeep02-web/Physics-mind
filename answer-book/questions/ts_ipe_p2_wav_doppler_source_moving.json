@@ -1,0 +1,423 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_doppler_source_moving",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is Doppler effect? Obtain an expression for the apparent frequency of sound heard when the source is in motion with respect to an observer at rest?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Doppler effect defined",
+      "marks": 1
+    },
+    {
+      "label": "Set-up and the first crest",
+      "marks": 1
+    },
+    {
+      "label": "The second crest",
+      "marks": 2
+    },
+    {
+      "label": "Apparent time period",
+      "marks": 2
+    },
+    {
+      "label": "Apparent frequency",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+2+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it — the figure carries 0 marks because the question does not ask for a diagram. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: t₁ = L/V; t₂ = T + (L − VₛT)/V; T′ = t₂ − t₁ = T(V − Vₛ)/V; n′ = 1/T′ = n·V/(V − Vₛ) > n for approach, and n′ = n·V/(V + Vₛ) < n for recession. This is the moving-SOURCE derivation — the crest spacing (wavelength) changes; the moving-observer case is a genuinely different derivation and lives on its own card."
+  },
+  "recall_prompt": "Say the derivation in order — the set-up, the arrival times of the two crests, the apparent period, and the apparent frequency.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Waves · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Doppler effect defined",
+        "marks": 1,
+        "mark_note": "Apparent change due to relative motion",
+        "lines": [
+          "The apparent change in the frequency of",
+          "sound due to relative motion between the",
+          "source and the observer is known as the",
+          "Doppler effect."
+        ],
+        "margin_note": "First mark. State the definition before the derivation — apparent change, relative motion.",
+        "why": "The derivation below computes exactly what this sentence claims: how motion alone changes the frequency the observer receives while the source emits the same n throughout.",
+        "common_mistakes": [
+          "Dropping the word apparent — the source's own frequency never changes.",
+          "Starting the derivation without the definition — the question asks for both."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Doppler effect is the apparent change in frequency caused by relative motion between source and observer.",
+          "accept": [
+            "apparent change in frequency",
+            "relative motion between source and observer",
+            "the heard frequency changes, not the emitted one"
+          ],
+          "reject": [
+            "the first crest takes L by V"
+          ],
+          "heard_as": [
+            "Doppler",
+            "apparent",
+            "relative motion"
+          ]
+        },
+        "memory_tip": "One sentence, two key words: apparent and relative."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The geometry",
+        "marks": 0,
+        "figure": {
+          "id": "doppler_source_moving",
+          "width": 340,
+          "height": 170,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "s_line",
+              "d": "M 60 40 L 60 140",
+              "ms": 1430
+            },
+            {
+              "type": "stroke",
+              "id": "sp_line",
+              "d": "M 130 40 L 130 140",
+              "ms": 1430
+            },
+            {
+              "type": "stroke",
+              "id": "o_line",
+              "d": "M 300 40 L 300 140",
+              "ms": 1430
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 48,
+              "y": 34,
+              "text": "S",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_sp",
+              "x": 118,
+              "y": 34,
+              "text": "S′",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 292,
+              "y": 34,
+              "text": "O",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "l_line",
+              "d": "M 60 70 L 300 70",
+              "ms": 3430
+            },
+            {
+              "type": "stroke",
+              "id": "l_head",
+              "d": "M 291 65 L 300 70 L 291 75",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_l",
+              "x": 175,
+              "y": 62,
+              "text": "L",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "vst_line",
+              "d": "M 60 110 L 130 110",
+              "ms": 1000
+            },
+            {
+              "type": "stroke",
+              "id": "vst_head",
+              "d": "M 121 105 L 130 110 L 121 115",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_vst",
+              "x": 74,
+              "y": 102,
+              "text": "VₛT",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "rem_line",
+              "d": "M 130 135 L 300 135",
+              "ms": 2430
+            },
+            {
+              "type": "stroke",
+              "id": "rem_head",
+              "d": "M 291 130 L 300 135 L 291 140",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_rem",
+              "x": 178,
+              "y": 127,
+              "text": "L − VₛT",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "S emits the first crest; one period later the source stands at S′, a distance VₛT nearer to O.",
+        "why": "The whole derivation is in this picture: the second crest starts its journey VₛT closer to the observer, so it needs less travel time — the two arrival times differ by less than T.",
+        "common_mistakes": [
+          "Moving the observer in this figure — in this case only the SOURCE moves; O stays fixed."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the source moves from S to S′ (a distance VₛT) between the two crests, while O stays fixed at distance L.",
+          "accept": [
+            "mark S, S dash and O",
+            "the source moves V s T toward the observer",
+            "the second crest starts closer"
+          ],
+          "reject": [
+            "T dash is T into V minus V s by V"
+          ],
+          "heard_as": [
+            "figure",
+            "geometry",
+            "diagram"
+          ]
+        },
+        "memory_tip": "Three ticks on a line — S, S′, O — and the three distances L, VₛT, L − VₛT between them."
+      },
+      {
+        "id": "s3_setup",
+        "kind": "text",
+        "label": "Set-up and the first crest",
+        "marks": 1,
+        "mark_note": "t₁ = L/V",
+        "lines": [
+          "A source S and an observer O at rest are",
+          "a distance L apart. The source emits",
+          "sound of frequency n and time period T;",
+          "V is the speed of sound in air.",
+          "The source moves toward O with velocity",
+          "Vₛ, and releases the first crest at S.",
+          "The crest travels the full distance L:",
+          {
+            "text": "t₁ = L/V … (1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "One mark. Name every symbol, then the first arrival time L/V.",
+        "why": "The first crest leaves before the motion matters — it covers the full original distance L at the speed of sound. It is the reference against which the second crest's earlier arrival will be measured.",
+        "common_mistakes": [
+          "Writing t₁ = L/(V − Vₛ) — the crest travels at the speed of sound V in still air; the source's motion never changes the speed of the sound already emitted.",
+          "Leaving symbols undefined — n, T, V, Vₛ and L must each be introduced."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That source and observer start a distance L apart and the first crest arrives after t₁ = L/V.",
+          "accept": [
+            "distance L apart",
+            "the first crest takes L by V",
+            "source moves toward the observer with V s"
+          ],
+          "reject": [
+            "the second crest travels L minus V s T"
+          ],
+          "heard_as": [
+            "first crest",
+            "L by V",
+            "set up"
+          ]
+        },
+        "memory_tip": "Crest one leaves before the source has moved — plain distance over speed, L/V."
+      },
+      {
+        "id": "s4_second_crest",
+        "kind": "equation",
+        "label": "The second crest",
+        "marks": 2,
+        "mark_note": "t₂ = T + (L − VₛT)/V",
+        "lines": [
+          "The source releases the second crest one",
+          "time period T later. In that time the",
+          "source has moved a distance VₛT toward",
+          "O and stands at S′, so the second crest",
+          "travels only L − VₛT:",
+          {
+            "text": "t₂ = T + (L − VₛT)/V … (2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: the shortened distance L − VₛT, and the T added for the later start.",
+        "why": "Both pieces of t₂ matter: the crest starts T later (the emission delay) but travels a shorter path (the motion). The competition between those two is the whole Doppler effect.",
+        "common_mistakes": [
+          "Forgetting the leading T — the second crest is EMITTED at time T, then travels.",
+          "Writing L + VₛT — the source approaches, so the remaining distance shrinks."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second crest leaves T later from a point VₛT closer, so t₂ = T + (L − VₛT)/V.",
+          "accept": [
+            "emitted a period later",
+            "travels only L minus V s T",
+            "t two is T plus L minus V s T over V"
+          ],
+          "reject": [
+            "the first crest takes L by V"
+          ],
+          "heard_as": [
+            "second crest",
+            "L minus V s T",
+            "time period"
+          ]
+        },
+        "memory_tip": "Later start (+T), shorter road (L − VₛT) — write both, in that order."
+      },
+      {
+        "id": "s5_apparent_period",
+        "kind": "equation",
+        "label": "Apparent time period",
+        "marks": 2,
+        "mark_note": "T′ = T(V − Vₛ)/V",
+        "lines": [
+          "The observer receives the two crests a",
+          "time T′ apart — the apparent time",
+          "period:",
+          {
+            "text": "T′ = t₂ − t₁ = T + (L − VₛT)/V − L/V",
+            "style": "eq"
+          },
+          {
+            "text": "T′ = T − VₛT/V = T(1 − Vₛ/V)",
+            "style": "eq"
+          },
+          {
+            "text": "T′ = T[(V − Vₛ)/V]",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: subtract the arrival times and watch L cancel — the answer must not contain L.",
+        "why": "L cancels because the effect does not depend on how far away the source is, only on how fast it approaches — a result that checks itself: any surviving L would mean an algebra slip.",
+        "common_mistakes": [
+          "Keeping L in the final expression — the L/V terms cancel exactly.",
+          "Sign slip in the bracket — approach must SHORTEN the period: T′ < T."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtracting the arrival times cancels L and gives T′ = T(V − Vₛ)/V.",
+          "accept": [
+            "subtract t one from t two",
+            "L cancels out",
+            "T dash is T into V minus V s over V"
+          ],
+          "reject": [
+            "frequency is the reciprocal"
+          ],
+          "heard_as": [
+            "apparent period",
+            "T dash",
+            "cancels"
+          ]
+        },
+        "memory_tip": "If L survives the subtraction, redo it — distance must drop out of a rate effect."
+      },
+      {
+        "id": "s6_apparent_frequency",
+        "kind": "boxed_final",
+        "label": "Apparent frequency",
+        "marks": 2,
+        "mark_note": "n′ = n[V/(V − Vₛ)]",
+        "lines": [
+          "The apparent frequency is the reciprocal",
+          "of the apparent time period:",
+          {
+            "text": "n′ = 1/T′ = (1/T)[V/(V − Vₛ)]",
+            "style": "eq"
+          },
+          {
+            "text": "n′ = n[V/(V − Vₛ)]",
+            "style": "boxed"
+          },
+          "n′ > n: the heard frequency is higher",
+          "when the source approaches.",
+          "If the source moves away from O, Vₛ",
+          "reverses sign:",
+          {
+            "text": "n′ = n[V/(V + Vₛ)] , n′ < n",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks: invert T′ to get n′, then state both cases with their inequalities.",
+        "why": "Inverting the period turns the shorter T′ into a higher n′ — the algebra now says what the train example says. Quoting the receding case shows the formula's sign carries the physics.",
+        "common_mistakes": [
+          "Inverting only part of the expression — n′ = 1/T′ inverts the whole bracket.",
+          "Writing the approach case with V + Vₛ — check: approach must give n′ > n, so the denominator must shrink."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n′ = 1/T′ = nV/(V − Vₛ), higher than n for approach, with V + Vₛ for recession.",
+          "accept": [
+            "reciprocal of the apparent period",
+            "n V by V minus V s",
+            "plus V s when moving away"
+          ],
+          "reject": [
+            "subtract the arrival times"
+          ],
+          "heard_as": [
+            "apparent frequency",
+            "n prime",
+            "reciprocal"
+          ]
+        },
+        "memory_tip": "Approach shrinks the denominator, so the frequency grows — the sign always tells the story."
+      }
+    ]
+  },
+  "insider_note": "This is the crest-timing derivation — two arrival times, subtract, invert. The observer-moving case looks similar but runs on relative sound speed, and mixing the two structures is where this answer loses marks."
+}

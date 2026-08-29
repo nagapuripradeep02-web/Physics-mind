@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_conditions_for_reflection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Under what conditions will a wave be reflected?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Medium ends abruptly",
+      "marks": 1
+    },
+    {
+      "label": "Change of density or rigidity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: reflection happens at any boundary where the wave impedance changes — fully where the medium ends abruptly (a rigid wall), and partially wherever the density or the elastic properties (rigidity) of the medium change, with the rest of the wave transmitted."
+  },
+  "recall_prompt": "Say the two conditions under which a wave is reflected.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_abrupt",
+        "kind": "text",
+        "label": "Medium ends abruptly",
+        "marks": 1,
+        "mark_note": "Reflection at an abrupt end",
+        "lines": [
+          "A progressive wave is reflected when the",
+          "medium ends abruptly at any point — for",
+          "example at a rigid boundary."
+        ],
+        "margin_note": "First mark. The full-reflection case: the medium simply stops.",
+        "why": "Where the medium stops, the wave energy cannot continue forward, so the wave must come back — this is the complete-reflection case.",
+        "common_mistakes": [
+          "Saying a wave reflects only from a rigid wall — a free end also reflects; the condition is the medium ending, rigid or free."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a wave reflects where the medium ends abruptly, such as at a rigid boundary.",
+          "accept": [
+            "the medium ends abruptly",
+            "at a rigid boundary",
+            "the wave cannot continue so it comes back"
+          ],
+          "reject": [
+            "where the density changes"
+          ],
+          "heard_as": [
+            "abruptly",
+            "rigid boundary",
+            "medium ends"
+          ]
+        },
+        "memory_tip": "No medium ahead — the wave has to come back."
+      },
+      {
+        "id": "s2_partial",
+        "kind": "boxed_final",
+        "label": "Change of density or rigidity",
+        "marks": 1,
+        "mark_note": "Partial reflection at a property change",
+        "lines": [
+          "A wave is partially reflected wherever",
+          "the density or the rigidity (elastic",
+          "property) of the medium changes; the",
+          "rest of the wave is transmitted.",
+          {
+            "text": "A wave reflects where the medium changes",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The partial case — name BOTH properties, density and rigidity.",
+        "why": "The wave speed is set by the medium's density and elasticity. Where either changes, the speed changes, and part of the wave cannot cross the join — that part returns as the reflected wave.",
+        "common_mistakes": [
+          "Naming only density — the elastic property (rigidity) is the other half of the condition.",
+          "Calling this complete reflection — at a property change the wave splits: part reflected, part transmitted."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a wave is partially reflected wherever the density or rigidity of the medium changes.",
+          "accept": [
+            "partial reflection at a change of density",
+            "change of rigidity reflects part of the wave",
+            "part reflected, part transmitted"
+          ],
+          "reject": [
+            "the medium ends abruptly"
+          ],
+          "heard_as": [
+            "density",
+            "rigidity",
+            "partially reflected"
+          ]
+        },
+        "memory_tip": "Full stop → full reflection. Property change → partial reflection."
+      }
+    ]
+  },
+  "insider_note": "Two conditions, two marks: the medium ending (full reflection) and the medium changing (partial). Naming both density and rigidity in the second protects it."
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_what_wave_represents",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What does a wave represent?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A disturbance that carries energy",
+      "marks": 1
+    },
+    {
+      "label": "Particles are not carried along",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: a wave is a disturbance that transports energy (and momentum) from one point to another while each particle of the medium only vibrates about its own mean position — the medium itself is not transported."
+  },
+  "recall_prompt": "Say what a wave carries from one point to another, and what happens to the particles of the medium.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_energy",
+        "kind": "text",
+        "label": "Energy transport",
+        "marks": 1,
+        "mark_note": "Disturbance carrying energy",
+        "lines": [
+          "A wave is a disturbance that carries",
+          "energy from one point of the medium to",
+          "another."
+        ],
+        "margin_note": "First mark. Two words carry it: disturbance and energy.",
+        "why": "The definition has to say what actually travels — the disturbance and its energy — because the next line will say the matter does NOT travel.",
+        "common_mistakes": [
+          "Defining a wave as moving particles — the wave moves through the particles, not with them.",
+          "Leaving out the word energy — a wave that carried nothing would not be a disturbance worth naming."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a wave is a disturbance carrying energy from one point to another.",
+          "accept": [
+            "a disturbance that carries energy",
+            "energy moves from point to point",
+            "the wave transports energy"
+          ],
+          "reject": [
+            "the particles stay at their mean positions"
+          ],
+          "heard_as": [
+            "disturbance",
+            "energy",
+            "transports"
+          ]
+        },
+        "memory_tip": "Two words make the definition: disturbance, energy."
+      },
+      {
+        "id": "s2_no_matter",
+        "kind": "boxed_final",
+        "label": "Particles are not carried",
+        "marks": 1,
+        "mark_note": "Particles vibrate about mean positions",
+        "lines": [
+          "The particles of the medium are not",
+          "carried with the wave — each particle",
+          "only vibrates about its own mean",
+          "position.",
+          {
+            "text": "A wave carries energy, not matter",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The contrast is the point: energy travels, matter does not.",
+        "why": "This is what separates a wave from a flow. In a river the water itself moves along; in a wave each particle stays near one place and only the disturbance passes through.",
+        "common_mistakes": [
+          "Saying the medium flows along with the wave — a floating leaf on water waves bobs up and down, it does not travel with the wave."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the particles of the medium only vibrate about their mean positions and are not transported.",
+          "accept": [
+            "particles vibrate about their mean positions",
+            "the medium is not carried along",
+            "energy travels, matter does not"
+          ],
+          "reject": [
+            "a disturbance that carries energy"
+          ],
+          "heard_as": [
+            "mean position",
+            "vibrate",
+            "not carried"
+          ]
+        },
+        "memory_tip": "Picture a leaf on water waves: it bobs in place while the wave passes under it."
+      }
+    ]
+  },
+  "insider_note": "Examiners want the pair: energy IS carried, matter is NOT. Writing only one half reads as an incomplete definition."
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_colour_code_350_milli_ohm",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the colour code of a carbon resistor of resistance 350 mΩ ± 10%.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Two digits and a multiplier",
+      "marks": 1
+    },
+    {
+      "label": "The four colours",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription: the book (p28, VSAQ 21) prints 350mΩ ± 10% without a space before the unit; a space is inserted. Note this is a DIFFERENT question from VSAQ 9 (p27), which asks for 350 MΩ with 5% tolerance — milli-ohm here, mega-ohm there. Hand-checked: 350 mΩ = 350 × 10⁻³ Ω = 35 × 10⁻² Ω, so digits 3 and 5 with multiplier 10⁻², giving Orange, Green, Silver, and Silver for ±10% — the same four colours the book prints."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Two digits and a multiplier",
+        "marks": 1,
+        "mark_note": "35 × 10⁻² Ω",
+        "lines": [
+          "The colour code carries two significant",
+          "digits, then a power-of-ten multiplier, then",
+          "the tolerance.",
+          {
+            "text": "R = 350 mΩ = 350 × 10⁻³ Ω",
+            "style": "eq"
+          },
+          {
+            "text": "R = 35 × 10⁻² Ω ± 10%",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Rewrite the value as two digits times a power of ten.",
+        "why": "The first two bands can only show two digits, so the value has to be written as a two-digit number times a power of ten before any colour can be read off.",
+        "common_mistakes": [
+          "Leaving it as 350 × 10⁻³. Three digits cannot be shown on two bands.",
+          "Reading mΩ as MΩ. Small m is milli, 10⁻³."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 350 milli-ohm is written as 35 times ten to the power minus two ohm.",
+          "accept": [
+            "350 into ten power minus three",
+            "35 into ten power minus two",
+            "two digits and a multiplier"
+          ],
+          "reject": [
+            "orange green silver silver"
+          ],
+          "heard_as": [
+            "ten power minus two",
+            "thirty five"
+          ]
+        },
+        "memory_tip": "Two digits first: turn 350 into 35 and move the rest into the power of ten."
+      },
+      {
+        "id": "s2_colours",
+        "kind": "boxed_final",
+        "label": "The four colours",
+        "marks": 1,
+        "mark_note": "Orange, Green, Silver, Silver",
+        "lines": [
+          "First digit 3 → Orange",
+          "Second digit 5 → Green",
+          "Multiplier 10⁻² → Silver",
+          "Tolerance ±10% → Silver",
+          {
+            "text": "Orange, Green, Silver, Silver",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. All four bands in order, including the tolerance band.",
+        "why": "Gold and Silver do double duty in this code: as multipliers they mean 10⁻¹ and 10⁻², and as tolerance bands they mean ±5% and ±10%. Here Silver appears in both roles.",
+        "common_mistakes": [
+          "Giving only three bands. The tolerance band is asked for as well.",
+          "Using Gold for 10⁻². Gold is 10⁻¹; Silver is 10⁻²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bands are Orange, Green, Silver and Silver.",
+          "accept": [
+            "orange green silver silver",
+            "three is orange five is green",
+            "silver for ten power minus two and silver for ten percent"
+          ],
+          "reject": [
+            "35 into ten power minus two"
+          ],
+          "heard_as": [
+            "orange",
+            "green",
+            "silver"
+          ]
+        },
+        "memory_tip": "Silver twice: once as the multiplier 10⁻², once as the ±10% band."
+      }
+    ]
+  },
+  "insider_note": "Silver is both the multiplier band and the tolerance band here. Students who write only three colours lose the second mark."
+}

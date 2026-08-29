@@ -1,0 +1,262 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_three_ten_ohm_parallel",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Three resistors each of resistance 10 Ω are connected in parallel. Calculate the effective resistance of the combination.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The given values",
+      "marks": 1
+    },
+    {
+      "label": "The parallel rule",
+      "marks": 2
+    },
+    {
+      "label": "The substitution",
+      "marks": 2
+    },
+    {
+      "label": "The effective resistance",
+      "marks": 2
+    },
+    {
+      "label": "The check",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "THE MARK SPLIT NEEDS A TEACHER MORE THAN ANY OTHER CARD IN THIS CHAPTER. This is a SHORT NUMERICAL that the book prints under LONG ANSWER numbering (p31, LAQ 4), with no Problems banner over it, so it is authored as an 8-mark Section C question. But a two-line parallel calculation does not naturally carry eight marks, and the 1+2+2+2+1 split here is INVENTED outright — it is a guess at how an examiner would spread eight marks over a calculation this short, not a scheme anyone has confirmed. A Telangana IPE teacher must rule on both the split AND on whether this question is really examined at 8 marks at all. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE as well: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription: the book prints 'are connected parallel'; the dropped 'in' is restored. Hand-checked: 1/R = 1/10 + 1/10 + 1/10 = 3/10, so R = 10/3 Ω ≈ 3.33 Ω — the same answer the book prints."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Current Electricity · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "The given values",
+        "marks": 1,
+        "mark_note": "R₁ = R₂ = R₃ = 10 Ω",
+        "lines": [
+          "Three resistors are joined in parallel, each",
+          "of resistance 10 Ω:",
+          {
+            "text": "R₁ = R₂ = R₃ = 10 Ω",
+            "style": "eq"
+          },
+          "Required: the effective resistance R of the",
+          "combination."
+        ],
+        "margin_note": "One mark. Write the given values and what is asked before any formula.",
+        "why": "Setting out the given values and the required quantity first fixes which formula is needed, and it is the line an examiner looks for at the top of a numerical.",
+        "common_mistakes": [
+          "Starting with numbers and no statement of what is given."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three resistances are each 10 ohm and the effective resistance of the parallel combination is required.",
+          "accept": [
+            "three resistors each ten ohm in parallel",
+            "R one R two R three are ten ohm",
+            "find the effective resistance"
+          ],
+          "reject": [
+            "ten by three ohm"
+          ],
+          "heard_as": [
+            "ten ohm",
+            "parallel",
+            "effective resistance"
+          ]
+        },
+        "memory_tip": "Given first, required second, formula third."
+      },
+      {
+        "id": "s2_rule",
+        "kind": "equation",
+        "label": "The parallel rule",
+        "marks": 2,
+        "mark_note": "1/R = 1/R₁ + 1/R₂ + 1/R₃",
+        "lines": [
+          "In a parallel combination the same potential",
+          "difference sits across every resistor, so the",
+          "branch currents add:",
+          {
+            "text": "I = I₁ + I₂ + I₃",
+            "style": "eq"
+          },
+          "Dividing through by the common V,",
+          {
+            "text": "1/R = 1/R₁ + 1/R₂ + 1/R₃",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. The reciprocal rule, with one line saying where it comes from.",
+        "why": "Every branch is joined across the same two points, so each carries V/R of its own. Adding the currents and dividing by V turns the current sum into a sum of reciprocals.",
+        "common_mistakes": [
+          "Adding the resistances directly. That is the series rule.",
+          "Writing R = 1/R₁ + 1/R₂ + 1/R₃, dropping the reciprocal on the left."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in parallel the reciprocals of the resistances add, one by R equals one by R one plus one by R two plus one by R three.",
+          "accept": [
+            "one by R equals sum of one by R one etcetera",
+            "reciprocals add in parallel",
+            "branch currents add"
+          ],
+          "reject": [
+            "three by ten"
+          ],
+          "heard_as": [
+            "one by R",
+            "reciprocal",
+            "parallel"
+          ]
+        },
+        "memory_tip": "Parallel adds currents, so it adds reciprocals of resistance."
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "The substitution",
+        "marks": 2,
+        "mark_note": "1/R = 3/10",
+        "lines": [
+          "Substituting the three given values,",
+          {
+            "text": "1/R = 1/10 + 1/10 + 1/10",
+            "style": "eq"
+          },
+          {
+            "text": "1/R = (1 + 1 + 1)/10 = 3/10",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. Show the three separate terms before adding them.",
+        "why": "Writing the three equal terms out before adding keeps the count visible. With three equal resistances the sum is simply three times one of them.",
+        "common_mistakes": [
+          "Writing 1/R = 1/30 by adding the denominators.",
+          "Adding only two of the three terms."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives one by ten three times, which adds to three by ten.",
+          "accept": [
+            "one by ten plus one by ten plus one by ten",
+            "three by ten",
+            "sum of the three reciprocals"
+          ],
+          "reject": [
+            "R equals ten by three"
+          ],
+          "heard_as": [
+            "one by ten",
+            "three by ten"
+          ]
+        },
+        "memory_tip": "Three equal terms: keep them separate on the page, then add."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The effective resistance",
+        "marks": 2,
+        "mark_note": "R = 10/3 Ω",
+        "lines": [
+          "Taking the reciprocal of both sides,",
+          {
+            "text": "R = 10/3 Ω",
+            "style": "boxed"
+          },
+          {
+            "text": "R ≈ 3.33 Ω",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. Invert 3/10 and give the unit. The last step is the one most often skipped.",
+        "why": "The rule gives 1/R, not R, so the answer is only reached after the reciprocal is taken. Leaving 3/10 as the answer would be a resistance of 0.3 Ω, which is ten times too small.",
+        "common_mistakes": [
+          "Giving 3/10 Ω as the answer. That is 1/R, not R.",
+          "Leaving the unit off the final line."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That taking the reciprocal gives R equal to ten by three ohm, about 3.33 ohm.",
+          "accept": [
+            "R equals ten by three ohm",
+            "three point three three ohm",
+            "take the reciprocal"
+          ],
+          "reject": [
+            "one by R equals three by ten"
+          ],
+          "heard_as": [
+            "ten by three",
+            "three point three three",
+            "ohm"
+          ]
+        },
+        "memory_tip": "The formula ends at 1/R. Turn it upside down before writing the answer."
+      },
+      {
+        "id": "s5_check",
+        "kind": "text",
+        "label": "The check",
+        "marks": 1,
+        "mark_note": "Smaller than any one resistor",
+        "lines": [
+          "Check: n equal resistors of resistance x in",
+          "parallel give x/n. Here x = 10 Ω and n = 3,",
+          "which gives 10/3 Ω, as found.",
+          "The effective resistance is smaller than any",
+          "one of the three resistors, as it must be for",
+          "a parallel combination."
+        ],
+        "margin_note": "One mark. A one-line check that the answer is smaller than the smallest resistor.",
+        "why": "Adding a parallel branch opens another path for the current, so the combination always conducts better than any single branch. Any parallel answer larger than the smallest resistor is wrong.",
+        "common_mistakes": [
+          "Reporting an answer larger than 10 Ω without noticing it cannot be right."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n equal resistors in parallel give x by n, and that a parallel result must be smaller than the smallest resistor.",
+          "accept": [
+            "x by n for n equal resistors",
+            "smaller than any one resistor",
+            "parallel result is always the smallest"
+          ],
+          "reject": [
+            "one by ten plus one by ten plus one by ten"
+          ],
+          "heard_as": [
+            "smaller than",
+            "x by n"
+          ]
+        },
+        "memory_tip": "A parallel answer is always below the smallest resistor in the group."
+      }
+    ]
+  },
+  "insider_note": "The book prints this as Long Answer 4, so it is written out at full length. The value 10/3 Ω is exact; leave it as a fraction and give 3.33 Ω beside it."
+}

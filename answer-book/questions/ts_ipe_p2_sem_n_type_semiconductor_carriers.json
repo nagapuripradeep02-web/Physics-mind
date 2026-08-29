@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_n_type_semiconductor_carriers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is an n-type semiconductor? What are the majority and minority charge carriers in it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "n-type semiconductor defined",
+      "marks": 1
+    },
+    {
+      "label": "Majority and minority carriers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the space before the first question mark is dropped. The book writes 'N-type'; the standard lowercase 'n-type' is used here, and named donor examples (P, As, Sb) are added — the book gives none."
+  },
+  "recall_prompt": "Say what is added to make an n-type semiconductor, and name its majority and minority carriers.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "n-type semiconductor",
+        "marks": 1,
+        "mark_note": "Pentavalent impurity added",
+        "lines": [
+          "n-type semiconductor: when a pentavalent",
+          "impurity is added to a pure semiconductor,",
+          "the result is an n-type semiconductor.",
+          "Pentavalent impurities are phosphorus,",
+          "arsenic and antimony. They are called",
+          "donor impurities."
+        ],
+        "margin_note": "First mark. The word pentavalent carries it; the named examples are a bonus.",
+        "why": "A pentavalent atom has five valence electrons but only four are needed for the bonds with the neighbouring silicon atoms. The fifth is left loosely held and becomes a free electron, so the crystal gains electrons without gaining charge.",
+        "common_mistakes": [
+          "Saying trivalent. Trivalent doping gives p-type.",
+          "Saying the crystal becomes negatively charged. It stays neutral — each donor atom keeps its positive ion behind."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding a pentavalent (donor) impurity to a pure semiconductor gives an n-type semiconductor.",
+          "accept": [
+            "pentavalent impurity is added",
+            "donor impurity like phosphorus",
+            "five valence electrons added to silicon"
+          ],
+          "reject": [
+            "majority carriers are electrons"
+          ],
+          "heard_as": [
+            "pentavalent",
+            "donor",
+            "n type"
+          ]
+        },
+        "memory_tip": "n for negative, and pentavalent gives the spare electron."
+      },
+      {
+        "id": "s2_carriers",
+        "kind": "boxed_final",
+        "label": "Majority and minority",
+        "marks": 1,
+        "mark_note": "Electrons majority, holes minority",
+        "lines": [
+          "Majority charge carriers: electrons.",
+          "Minority charge carriers: holes.",
+          {
+            "text": "n-type → majority electrons, minority holes",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Both carriers must be named; naming one is half the answer.",
+        "why": "Doping adds electrons only. The few holes present come from thermal breaking of covalent bonds, which happens in any semiconductor, so they are far fewer than the donated electrons and are the minority.",
+        "common_mistakes": [
+          "Saying there are no holes at all in n-type. There are a few, produced by heat.",
+          "Swapping the two. In n-type the electrons are the majority."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That electrons are the majority carriers and holes the minority carriers in n-type.",
+          "accept": [
+            "majority electrons minority holes",
+            "electrons are majority carriers",
+            "holes are the minority"
+          ],
+          "reject": [
+            "majority holes minority electrons"
+          ],
+          "heard_as": [
+            "majority",
+            "minority",
+            "electrons",
+            "holes"
+          ]
+        },
+        "memory_tip": "n-type = negative carriers in the majority."
+      }
+    ]
+  },
+  "insider_note": "Both carriers must be named for the second mark. Writing only 'electrons' leaves half of it on the table."
+}

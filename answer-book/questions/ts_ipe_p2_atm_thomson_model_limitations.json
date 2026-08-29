@@ -1,0 +1,332 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_thomson_model_limitations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give a brief account of Thomson model of atom. What are its limitations?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The model itself",
+      "marks": 1
+    },
+    {
+      "label": "It gives no stable atom",
+      "marks": 1
+    },
+    {
+      "label": "It cannot explain large-angle scattering",
+      "marks": 1
+    },
+    {
+      "label": "It cannot explain the line spectra",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. The book prints \"the enitre mass\", \"uniformly distributed\" and \"(Water milon model)\"; the misspellings are corrected here to \"entire\" and \"watermelon model\", and the wording is otherwise unchanged. Physics hand-checked: Thomson's atom is a sphere of positive charge about 10⁻¹⁰ m across with the electrons inside it, the electron charge exactly balancing the positive charge; its three recorded failures are the stability of the atom, the large-angle α-scattering Geiger and Marsden measured, and the discrete line spectra of hydrogen and other atoms. FIGURE NOTE: the renderer draws outlines only, with no fills and no occlusion, so the plum pudding is drawn as a sphere OUTLINE with five small electron circles set well apart inside it — not as a shaded sphere with dots laid over it."
+  },
+  "recall_prompt": "Describe Thomson's model of the atom, then give its three limitations.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atoms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_model",
+        "kind": "text",
+        "label": "Thomson's model",
+        "marks": 1,
+        "mark_note": "Positive sphere with electrons inside",
+        "lines": [
+          "Thomson model of atom:",
+          "An atom is a positively charged sphere of",
+          "radius about 10⁻¹⁰ m. The entire mass and the",
+          "positive charge of the atom are spread evenly",
+          "through this sphere, and the negative electrons",
+          "are placed inside it.",
+          "The number of electrons is such that their",
+          "negative charge equals the positive charge of",
+          "the sphere, so the atom is electrically",
+          "neutral.",
+          "It is called the plum pudding model, or the",
+          "watermelon model."
+        ],
+        "margin_note": "First mark. Sphere size, charge spread evenly, electrons inside, atom neutral.",
+        "why": "The picture matters: the positive charge fills the whole atom rather than sitting at a point. That is exactly the feature Rutherford's scattering experiment later ruled out.",
+        "common_mistakes": [
+          "Putting the positive charge at the centre. In Thomson's model it fills the whole sphere.",
+          "Leaving out the neutrality. The electron charge balancing the positive charge is part of the model."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the atom is a positively charged sphere about 10⁻¹⁰ m across with electrons inside it, and is neutral overall.",
+          "accept": [
+            "positively charged sphere",
+            "electrons are inside the sphere",
+            "the atom is neutral",
+            "plum pudding model"
+          ],
+          "reject": [
+            "it could not explain the line spectra"
+          ],
+          "heard_as": [
+            "Thomson model",
+            "plum pudding",
+            "positively charged sphere"
+          ]
+        },
+        "memory_tip": "One positive sphere with electrons set inside it, and no nucleus."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The plum pudding model",
+        "marks": 0,
+        "figure": {
+          "id": "thomson_plum_pudding",
+          "width": 440,
+          "height": 270,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "sphere",
+              "d": "M 70 130 A 100 100 0 1 0 270 130 A 100 100 0 1 0 70 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "e1",
+              "d": "M 112 90 A 8 8 0 1 0 128 90 A 8 8 0 1 0 112 90",
+              "ms": 720
+            },
+            {
+              "type": "stroke",
+              "id": "e2",
+              "d": "M 207 90 A 8 8 0 1 0 223 90 A 8 8 0 1 0 207 90",
+              "ms": 720
+            },
+            {
+              "type": "stroke",
+              "id": "e3",
+              "d": "M 162 135 A 8 8 0 1 0 178 135 A 8 8 0 1 0 162 135",
+              "ms": 720
+            },
+            {
+              "type": "stroke",
+              "id": "e4",
+              "d": "M 107 175 A 8 8 0 1 0 123 175 A 8 8 0 1 0 107 175",
+              "ms": 720
+            },
+            {
+              "type": "stroke",
+              "id": "e5",
+              "d": "M 212 172 A 8 8 0 1 0 228 172 A 8 8 0 1 0 212 172",
+              "ms": 720
+            },
+            {
+              "type": "stroke",
+              "id": "leader_electron",
+              "d": "M 224 88 L 292 70",
+              "ms": 1000
+            },
+            {
+              "type": "stroke",
+              "id": "leader_matter",
+              "d": "M 245 150 L 300 185",
+              "ms": 930
+            },
+            {
+              "type": "label",
+              "id": "lbl_electron",
+              "x": 298,
+              "y": 66,
+              "text": "Electron",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_matter",
+              "x": 306,
+              "y": 182,
+              "text": "Positively charged",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_matter2",
+              "x": 306,
+              "y": 222,
+              "text": "matter",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "One large circle for the sphere of positive matter, five small circles inside it for the electrons, two leader lines to the labels.",
+        "why": "The sphere is the positive matter and the small circles are the electrons set inside it. Five is enough to show the arrangement; the real number is whatever makes the atom neutral.",
+        "common_mistakes": [
+          "Drawing the electrons on the surface of the sphere. They sit inside the positive matter."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a large circle is drawn for the positive sphere with small circles inside it for the electrons.",
+          "accept": [
+            "draw a big circle with small circles inside",
+            "sphere of positive charge with electrons in it"
+          ],
+          "reject": [
+            "draw a nucleus at the centre"
+          ],
+          "heard_as": [
+            "plum pudding diagram",
+            "sphere with electrons"
+          ]
+        },
+        "memory_tip": "One big circle, small circles inside, no nucleus anywhere."
+      },
+      {
+        "id": "s3_limit_stability",
+        "kind": "text",
+        "label": "No stable atom",
+        "marks": 1,
+        "mark_note": "Charges would be drawn together",
+        "lines": [
+          "Limitations:",
+          "1. It could not provide stability to the atom.",
+          "The positive and negative charges are at rest,",
+          "so they would be drawn towards each other and",
+          "the separate charges would be destroyed.",
+          "Later work showed that the positive and",
+          "negative charges in an atom stay as separate",
+          "entities, although the atom as a whole is",
+          "neutral."
+        ],
+        "margin_note": "First limitation. Charges at rest attract, so nothing holds the arrangement apart.",
+        "why": "In Thomson's picture nothing keeps the electron away from the positive matter — there is no orbit and no motion. Static opposite charges simply move together, so the model gives no reason for an atom to last.",
+        "common_mistakes": [
+          "Saying the electrons radiate and spiral in. That is Rutherford's problem; Thomson's electrons are not orbiting.",
+          "Leaving out the reason. The mark is for the charges being drawn together."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the model gives no stable atom because the positive and negative charges at rest would be drawn together.",
+          "accept": [
+            "could not provide stability to the atom",
+            "the charges would be drawn towards each other",
+            "the charges are at rest"
+          ],
+          "reject": [
+            "large angle scattering"
+          ],
+          "heard_as": [
+            "stability",
+            "drawn together",
+            "at rest"
+          ]
+        },
+        "memory_tip": "Nothing moves, so nothing keeps the charges apart."
+      },
+      {
+        "id": "s4_limit_scattering",
+        "kind": "text",
+        "label": "No large-angle scattering",
+        "marks": 1,
+        "mark_note": "α-particles turned back",
+        "lines": [
+          "2. It could not explain the large angle",
+          "scattering of α-particles that pass close to",
+          "the atom.",
+          "A charge spread thinly through the whole atom",
+          "gives only a weak force, so no α-particle",
+          "should be turned through a large angle. In the",
+          "experiment some were turned back through 180°."
+        ],
+        "margin_note": "Second limitation. Spread-out charge means a weak force, but large deflections were measured.",
+        "why": "This is the observation that ended the model. A force strong enough to turn a fast α-particle right around needs the positive charge packed into a very small volume, which is what led Rutherford to the nucleus.",
+        "common_mistakes": [
+          "Saying the model predicts no scattering at all. It predicts small-angle scattering only.",
+          "Leaving out the reason. Spread-out charge gives a weak force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the model cannot explain the large-angle scattering of α-particles, because a spread-out charge gives only a weak force.",
+          "accept": [
+            "could not explain large angle scattering",
+            "alpha particles passing close to the atom",
+            "spread out charge gives a weak force"
+          ],
+          "reject": [
+            "could not explain the line spectra"
+          ],
+          "heard_as": [
+            "large angle scattering",
+            "alpha particles",
+            "deflection"
+          ]
+        },
+        "memory_tip": "Thin charge, weak push — but some α-particles came straight back."
+      },
+      {
+        "id": "s5_limit_spectra",
+        "kind": "boxed_final",
+        "label": "No line spectra",
+        "marks": 1,
+        "mark_note": "Discrete lines unexplained",
+        "lines": [
+          "3. It could not explain the presence of discrete",
+          "spectral lines emitted by hydrogen and other",
+          "atoms. The model has no separate energy levels,",
+          "so it gives no reason for a set of fixed",
+          "wavelengths.",
+          {
+            "text": "No stability · no large-angle scattering",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third limitation, and the box lists all three together.",
+        "why": "Discrete lines need discrete energy levels. Thomson's sphere has no levels at all, so any radiation from it would be a continuous band, not the sharp lines that are measured.",
+        "common_mistakes": [
+          "Naming only one or two limitations. The question asks for the limitations, so give all three.",
+          "Saying the model explains the spectra of hydrogen only. It explains no line spectrum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the model cannot explain the discrete spectral lines of hydrogen and other atoms.",
+          "accept": [
+            "could not explain the discrete spectral lines",
+            "no energy levels in the model",
+            "line spectra of hydrogen and other atoms"
+          ],
+          "reject": [
+            "the charges would be drawn together"
+          ],
+          "heard_as": [
+            "spectral lines",
+            "line spectra",
+            "discrete"
+          ]
+        },
+        "memory_tip": "Three failures in order: stability, scattering, spectrum."
+      }
+    ]
+  },
+  "insider_note": "The model is worth one mark and the three limitations one each — number them, because an unnumbered paragraph makes the examiner hunt for the third."
+}

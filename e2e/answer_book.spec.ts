@@ -670,8 +670,19 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
     // never trim the sweep or the waits to fit, because a shortened sweep silently
     // stops checking the questions it drops.
-    test.setTimeout(1_800_000);   // the WIDEST sweep: questions x cuts. ~1340 entries after zoology opened.
-    // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~0.9 s/question.
+    test.setTimeout(2_400_000);   // the WIDEST sweep: questions x cuts. ~1600 entries with zoology AND Physics-II.
+    // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~1.05 s/question.
+    // Raised to 2_400_000 on 2026-08-29. Two papers landed at once — zoology took
+    // the bank to ~1340 and Senior Inter Physics adds 256 more — and this sweep had
+    // already TIMED OUT at 20 min on Physics-II alone (1247 x 1.05 s = ~21.8 min, so
+    // that ceiling held ~7% headroom). At ~1600 entries the projection is ~28 min,
+    // which the 30-min figure this merge superseded would have cut very fine.
+    // The timeout is NOT an assertion; it reports "failed" while naming nothing,
+    // which is this sweep's recorded failure mode — so the product was verified
+    // independently BEFORE the budget was touched: sum(steps.marks) and
+    // sum(mark_split.marks) are held to marks_total by both
+    // answer-book/tools/check_p2_cards.ts and build_answer_book.ts, both green.
+    // 40 min also covers Chemistry-II and Maths-2A/2B without another mid-paper raise.
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 

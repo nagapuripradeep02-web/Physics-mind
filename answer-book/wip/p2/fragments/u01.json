@@ -1,0 +1,191 @@
+{
+  "number": 1,
+  "name": "Waves",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "Distinguish between transverse and longitudinal waves.",
+      "question_id": "ts_ipe_p2_wav_transverse_vs_longitudinal"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Using dimensional analysis obtain an expression for the speed of transverse waves in a stretched string.",
+      "question_id": "ts_ipe_p2_wav_dimensional_speed_string"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "Using dimensional analysis obtain an expression for the speed of sound waves in a medium.",
+      "question_id": "ts_ipe_p2_wav_dimensional_speed_sound"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "What is the phase difference between the incident and reflected waves when the wave is reflected by a rigid boundary?",
+      "question_id": "ts_ipe_p2_wav_phase_reversal_rigid_boundary"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "What do you understand by the terms 'node' and 'antinode'?",
+      "question_id": "ts_ipe_p2_wav_node_and_antinode"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "What is the distance between a node and succeeding antinode?",
+      "question_id": "ts_ipe_p2_wav_node_antinode_distance"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "What does a wave represent?",
+      "question_id": "ts_ipe_p2_wav_what_wave_represents"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "Obtain an expression for the wave velocity in terms of wavelength (λ) and frequency (n).",
+      "question_id": "ts_ipe_p2_wav_wave_velocity_expression"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 9,
+      "stars": 0,
+      "text": "What is the principle of superposition?",
+      "question_id": "ts_ipe_p2_wav_principle_of_superposition"
+    },
+    {
+      "ref": "vsaq10",
+      "section": "VSAQ",
+      "number": 10,
+      "stars": 0,
+      "text": "Mention the applications of Doppler effect?",
+      "question_id": "ts_ipe_p2_wav_doppler_applications"
+    },
+    {
+      "ref": "vsaq11",
+      "section": "VSAQ",
+      "number": 11,
+      "stars": 0,
+      "text": "Under what conditions will a wave be reflected?",
+      "question_id": "ts_ipe_p2_wav_conditions_for_reflection"
+    },
+    {
+      "ref": "vsaq12",
+      "section": "VSAQ",
+      "number": 12,
+      "stars": 0,
+      "text": "What is 'Doppler effect'? Give an example.",
+      "question_id": "ts_ipe_p2_wav_doppler_effect_example"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "What are beats? When do they occur? Explain their use, if any.",
+      "question_id": "ts_ipe_p2_wav_beats_occurrence_uses"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "What do you understand by resonance? How would you use resonance to determine the velocity of sound in air?",
+      "question_id": "ts_ipe_p2_wav_resonance_velocity_of_sound"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "What is 'Doppler effect'? Give illustrative examples.",
+      "question_id": "ts_ipe_p2_wav_doppler_effect_illustrative"
+    },
+    {
+      "ref": "laq1",
+      "section": "LAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "Explain the formation of stationary waves in stretched strings and hence deduce the laws of transverse waves in stretched strings.",
+      "question_id": "ts_ipe_p2_wav_stationary_waves_string_laws"
+    },
+    {
+      "ref": "laq2",
+      "section": "LAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "Explain the formation of stationary waves in an air column enclosed in open pipe. Derive the equations for the frequencies of the harmonics produced.",
+      "question_id": "ts_ipe_p2_wav_open_pipe_harmonics"
+    },
+    {
+      "ref": "laq3",
+      "section": "LAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "How are the stationary waves formed in a closed pipe? Explain the various modes of vibrations in a closed pipe and establish the relation between their frequencies.",
+      "question_id": "ts_ipe_p2_wav_closed_pipe_harmonics"
+    },
+    {
+      "ref": "laq4",
+      "section": "LAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "What is Doppler effect? Obtain an expression for the apparent frequency of sound heard when the source is in motion with respect to an observer at rest?",
+      "question_id": "ts_ipe_p2_wav_doppler_source_moving"
+    },
+    {
+      "ref": "laq5",
+      "section": "LAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "What is Doppler shift? Obtain an expression for the apparent frequency of sound heard when the observer is in motion with respect a source at rest?",
+      "question_id": "ts_ipe_p2_wav_doppler_observer_moving"
+    },
+    {
+      "ref": "laq6",
+      "section": "LAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "A closed organ pipe 70cm long is sounded. If the velocity of sound is 331 m/s, what is the fundamental frequency of vibration of the air column?",
+      "question_id": "ts_ipe_p2_wav_closed_pipe_70cm_fundamental"
+    },
+    {
+      "ref": "laq7",
+      "section": "LAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "A steel wire 0.72m long has a mass of 5.0 × 10⁻³ kg. If the wire is under a tension of 60N, what is the speed of transverse waves on the wire?",
+      "question_id": "ts_ipe_p2_wav_steel_wire_wave_speed"
+    },
+    {
+      "ref": "laq8",
+      "section": "LAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "A string has a length of 0.4m and a mass of 0.16g. If the tension in the string is 70N, what are three lowest frequencies it produces when plucked?",
+      "question_id": "ts_ipe_p2_wav_string_three_lowest_frequencies"
+    }
+  ]
+}

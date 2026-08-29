@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_transverse_vs_longitudinal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between transverse and longitudinal waves.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Transverse waves",
+      "marks": 1
+    },
+    {
+      "label": "Longitudinal waves",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: in a transverse wave the particle vibration is perpendicular to the direction of wave propagation (string waves, light); in a longitudinal wave it is parallel (sound in air). In both types the particles only vibrate about their mean positions — neither wave carries the particles along."
+  },
+  "recall_prompt": "Say the difference between the two wave types — the direction of vibration in each, with one example each.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transverse",
+        "kind": "text",
+        "label": "Transverse waves",
+        "marks": 1,
+        "mark_note": "Vibration perpendicular to propagation",
+        "lines": [
+          "In a transverse wave, each particle of the",
+          "medium vibrates perpendicular to the",
+          "direction in which the wave travels.",
+          "Example: waves on a stretched string."
+        ],
+        "margin_note": "First mark. The word perpendicular is the mark; the example makes the answer safe.",
+        "why": "The two wave types differ in one thing only — the angle between the particle vibration and the wave direction — so the definition must name that angle.",
+        "common_mistakes": [
+          "Saying the particles travel with the wave. In both wave types each particle only vibrates about its mean position.",
+          "Writing perpendicular without saying perpendicular to WHAT — it is the direction of wave propagation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in a transverse wave the particles vibrate perpendicular to the direction the wave travels.",
+          "accept": [
+            "particles vibrate perpendicular to the wave direction",
+            "vibration is at right angles to propagation",
+            "string waves are transverse"
+          ],
+          "reject": [
+            "particles vibrate parallel to the wave direction"
+          ],
+          "heard_as": [
+            "transverse",
+            "perpendicular",
+            "right angles"
+          ]
+        },
+        "memory_tip": "Transverse — across. The particle moves across the line the wave travels on."
+      },
+      {
+        "id": "s2_longitudinal",
+        "kind": "boxed_final",
+        "label": "Longitudinal waves",
+        "marks": 1,
+        "mark_note": "Vibration parallel to propagation",
+        "lines": [
+          "In a longitudinal wave, each particle",
+          "vibrates parallel to the direction in",
+          "which the wave travels.",
+          "Example: sound waves in air.",
+          {
+            "text": "Transverse: ⊥ · Longitudinal: ∥",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Parallel is the mark word; sound in air is the standard example.",
+        "why": "Parallel vibration is what lets a longitudinal wave travel as compressions and rarefactions — the particles push together and spread apart along the same line the wave moves on.",
+        "common_mistakes": [
+          "Swapping the examples. Sound in air is longitudinal; a wave on a string is transverse.",
+          "Writing along the wave without the word parallel — the examiner looks for the direction word."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in a longitudinal wave the particles vibrate parallel to the direction the wave travels.",
+          "accept": [
+            "particles vibrate parallel to the wave direction",
+            "vibration is along the line of propagation",
+            "sound in air is longitudinal"
+          ],
+          "reject": [
+            "vibration is at right angles to the wave"
+          ],
+          "heard_as": [
+            "longitudinal",
+            "parallel",
+            "sound waves"
+          ]
+        },
+        "memory_tip": "Longitudinal — along. The particle moves along the same line the wave travels on."
+      }
+    ]
+  },
+  "insider_note": "Both marks live in the two direction words — perpendicular for transverse, parallel for longitudinal — each with one named example."
+}

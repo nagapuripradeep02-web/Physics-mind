@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_atm_closest_approach_impact_parameter",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Atoms"
+  },
+  "chapter": "Atoms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the distance of closest approach and impact parameter.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Distance of closest approach — the definition",
+      "marks": 1
+    },
+    {
+      "label": "The expression for r₀",
+      "marks": 1
+    },
+    {
+      "label": "Impact parameter — the definition",
+      "marks": 1
+    },
+    {
+      "label": "The relation between b and θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: at the distance of closest approach the whole kinetic energy of the α-particle has become electrostatic potential energy, ½mv² = (1/4πε₀)(2Ze²/r₀), so r₀ = (1/4πε₀)(2Ze²/Kα) with Kα = ½mv²; the factor 2 is the α-particle's own charge +2e. For the impact parameter, b = Ze² cot(θ/2)/[4πε₀(½mv²)]."
+  },
+  "recall_prompt": "Define the distance of closest approach and derive r₀, then define the impact parameter and give its relation to θ.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atoms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_closest_definition",
+        "kind": "text",
+        "label": "Distance of closest approach",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "Distance of closest approach:",
+          "The minimum distance from the centre of a",
+          "nucleus that an α-particle can reach in a",
+          "head-on collision is called the distance of",
+          "closest approach, r₀.",
+          "As the α-particle comes near the positive",
+          "nucleus it is repelled, slows down, stops for a",
+          "moment at r₀ and then retraces its path, so it",
+          "is scattered through 180°."
+        ],
+        "margin_note": "First mark. Say head-on, say it stops, say it retraces its path.",
+        "why": "Only a head-on approach defines r₀: any other path curves away before the particle reaches its nearest point on that straight line. At r₀ the speed is zero for an instant, which is what makes the energy equation simple.",
+        "common_mistakes": [
+          "Saying the α-particle touches the nucleus. It stops before reaching it.",
+          "Confusing r₀ with the nuclear radius. r₀ is an upper limit on the nuclear size, not the size itself."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r₀ is the minimum distance from the nucleus reached in a head-on collision, where the α-particle stops and retraces its path.",
+          "accept": [
+            "minimum distance from the centre of the nucleus",
+            "head on collision",
+            "it stops and retraces its path"
+          ],
+          "reject": [
+            "perpendicular distance of the velocity vector"
+          ],
+          "heard_as": [
+            "closest approach",
+            "head on",
+            "retraces"
+          ]
+        },
+        "memory_tip": "Straight at the nucleus, stop, come straight back — the turning point is r₀."
+      },
+      {
+        "id": "s2_closest_formula",
+        "kind": "text",
+        "label": "The expression for r₀",
+        "marks": 1,
+        "mark_note": "Kinetic energy becomes potential energy",
+        "lines": [
+          "At r₀ the whole kinetic energy of the",
+          "α-particle has become electrostatic potential",
+          "energy of the α-particle and the nucleus:",
+          {
+            "text": "½mv² = (1/4πε₀) · 2Ze²/r₀",
+            "style": "eq"
+          },
+          {
+            "text": "∴ r₀ = (1/4πε₀) · 2Ze²/Kα,   Kα = ½mv²",
+            "style": "eq"
+          },
+          "A faster α-particle has a smaller r₀."
+        ],
+        "margin_note": "Second mark. The 2 in 2Ze² is the α-particle's own charge +2e.",
+        "why": "Energy is conserved: kinetic energy far away equals potential energy at the turning point, where the speed is zero. The charges are +2e for the α-particle and +Ze for the nucleus, which is where 2Ze² comes from.",
+        "common_mistakes": [
+          "Writing Ze² and losing the factor 2. The α-particle carries +2e.",
+          "Adding a kinetic term at r₀. The particle is momentarily at rest there."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ½mv² = (1/4πε₀)(2Ze²/r₀), so r₀ = (1/4πε₀)(2Ze²/Kα).",
+          "accept": [
+            "half m v squared equals two Z e squared by four pi epsilon nought r nought",
+            "kinetic energy becomes potential energy",
+            "r nought equals two Z e squared by four pi epsilon nought K alpha"
+          ],
+          "reject": [
+            "cot theta by two"
+          ],
+          "heard_as": [
+            "r nought",
+            "two Z e squared",
+            "K alpha"
+          ]
+        },
+        "memory_tip": "All the kinetic energy is spent at the turning point — set the two energies equal."
+      },
+      {
+        "id": "s3_impact_definition",
+        "kind": "text",
+        "label": "Impact parameter",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "Impact parameter:",
+          "The impact parameter of an α-particle is the",
+          "perpendicular distance of the velocity vector",
+          "of the α-particle from the centre of the",
+          "nucleus, measured when the α-particle is far",
+          "away from the atom. It is denoted by b."
+        ],
+        "margin_note": "Third mark. Perpendicular distance, of the velocity vector, from the centre of the nucleus.",
+        "why": "b and r₀ are different distances: b is measured on the straight incoming line before the path bends, while r₀ is the nearest point actually reached. They are equal only in the sense that b = 0 gives the head-on case.",
+        "common_mistakes": [
+          "Defining b as the distance of closest approach. That is r₀.",
+          "Leaving out \"far away\". Near the nucleus the path is already curved."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b is the perpendicular distance of the α-particle's velocity vector from the centre of the nucleus, measured far away.",
+          "accept": [
+            "perpendicular distance of the velocity vector",
+            "from the centre of the nucleus",
+            "measured when it is far away"
+          ],
+          "reject": [
+            "minimum distance reached in a head on collision"
+          ],
+          "heard_as": [
+            "impact parameter",
+            "perpendicular distance",
+            "velocity vector"
+          ]
+        },
+        "memory_tip": "b is measured on the straight line in; r₀ is measured on the way through."
+      },
+      {
+        "id": "s4_impact_relation",
+        "kind": "boxed_final",
+        "label": "b and the angle θ",
+        "marks": 1,
+        "mark_note": "b ∝ cot(θ/2)",
+        "lines": [
+          "Rutherford found the relation",
+          {
+            "text": "b = Ze² cot(θ/2) / 4πε₀(½mv²)",
+            "style": "eq"
+          },
+          "1. Large b — small scattering angle θ, so the",
+          "deflection is small.",
+          "2. Small b — large scattering angle θ, so the",
+          "deflection is large.",
+          "3. b = 0 gives θ = 180°: the α-particle is",
+          "aimed at the centre and retraces its path.",
+          {
+            "text": "r₀ = 2Ze²/4πε₀Kα  ·  b ∝ cot(θ/2)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The formula plus all three cases.",
+        "why": "cot(θ/2) falls steadily as θ rises from 0° to 180°, and cot(90°) = 0, so the formula itself contains the three cases — a large b gives a small turn, and b = 0 gives the full 180°.",
+        "common_mistakes": [
+          "Writing tan(θ/2) instead of cot(θ/2).",
+          "Giving only one of the three cases. The examiner marks the set."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b = Ze² cot(θ/2)/[4πε₀(½mv²)], with large b giving small θ and b = 0 giving θ = 180°.",
+          "accept": [
+            "Z e squared cot theta by two",
+            "large b small angle",
+            "b zero gives one eighty degrees"
+          ],
+          "reject": [
+            "kinetic energy becomes potential energy"
+          ],
+          "heard_as": [
+            "cot theta by 2",
+            "180 degrees",
+            "impact parameter formula"
+          ]
+        },
+        "memory_tip": "cot(90°) = 0, so b = 0 sits exactly at θ = 180°."
+      }
+    ]
+  },
+  "insider_note": "Two quantities are asked for, so the page needs two headings — r₀ with its energy equation, and b with its cot(θ/2) relation."
+}

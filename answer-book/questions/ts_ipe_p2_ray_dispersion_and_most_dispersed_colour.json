@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_dispersion_and_most_dispersed_colour",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is 'dispersion'? Which colour gets relatively more dispersed?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of dispersion",
+      "marks": 1
+    },
+    {
+      "label": "The colour dispersed most",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed p.10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. TRANSCRIPTION: the book prints a space before the question mark; it is removed here. Hand-checked physically: the refractive index of glass is largest for the shortest wavelength, so violet is deviated most and red least — the printed answer is correct."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dispersion",
+        "kind": "text",
+        "label": "Definition of dispersion",
+        "marks": 1,
+        "mark_note": "Splitting of white light",
+        "lines": [
+          {
+            "text": "Dispersion:",
+            "style": "heading"
+          },
+          "When white light passes through a prism it",
+          "splits into its constituent colours, from",
+          "violet to red. This splitting of white light",
+          "into its component colours is called",
+          "dispersion of light."
+        ],
+        "margin_note": "First mark. The word splitting and the words white light both have to appear.",
+        "why": "White light is a mixture of colours, and the prism material has a different refractive index for each one. Different refractive indices mean different deviations, so the colours leave the prism along different directions and become visible separately.",
+        "common_mistakes": [
+          "Describing only the band of colours seen on the screen. The definition is about the splitting of white light, not about the screen.",
+          "Confusing dispersion with scattering. Dispersion needs a change of medium; scattering does not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dispersion is the splitting of white light into its constituent colours when it passes through a prism.",
+          "accept": [
+            "splitting of white light into its colours",
+            "white light separates into seven colours in a prism",
+            "dispersion is separation of white light into components",
+            "white light prism lo colours ga split avutundi"
+          ],
+          "reject": [
+            "violet is deviated the most"
+          ],
+          "heard_as": [
+            "dispersion",
+            "splitting",
+            "white light",
+            "constituent colours"
+          ]
+        },
+        "memory_tip": "One word carries the definition: splitting. White light in, a band of colours out."
+      },
+      {
+        "id": "s2_violet",
+        "kind": "boxed_final",
+        "label": "The colour dispersed most",
+        "marks": 1,
+        "mark_note": "Violet",
+        "lines": [
+          "The refractive index of the prism material is",
+          "largest for violet and smallest for red.",
+          "A larger refractive index gives a larger",
+          "deviation, so violet bends most and red",
+          "bends least.",
+          {
+            "text": "Violet is dispersed the most",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name violet and give the reason: the largest refractive index.",
+        "why": "Violet has the shortest wavelength of the visible colours, and the refractive index of glass rises as the wavelength falls. The order of the colours in the band is therefore fixed by the order of their wavelengths.",
+        "common_mistakes": [
+          "Answering red. Red has the longest wavelength and is deviated the least.",
+          "Naming violet without the reason. The mark is safer with the refractive index sentence."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That violet is deviated and dispersed the most, because the refractive index is largest for violet.",
+          "accept": [
+            "violet is deviated the most",
+            "violet bends most red bends least",
+            "violet because mu is largest for violet",
+            "violet ekkuva deviate avutundi"
+          ],
+          "reject": [
+            "splitting of white light into its colours"
+          ],
+          "heard_as": [
+            "violet",
+            "red least",
+            "deviated most",
+            "refractive index"
+          ]
+        },
+        "memory_tip": "Short wavelength, large μ, large bend: violet leads, red trails."
+      }
+    ]
+  },
+  "insider_note": "One definition and one colour. Violet is the answer, and the refractive index sentence is what makes it an answer rather than a guess."
+}

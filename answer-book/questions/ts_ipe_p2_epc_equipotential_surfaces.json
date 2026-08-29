@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_epc_equipotential_surfaces",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Electric Potential and Capacitance"
+  },
+  "chapter": "Electric Potential and Capacitance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are meant by equipotential surfaces?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Example and property",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Two structural checks are IMPOSSIBLE for this paper: the two-book union check (the TSBIE Basic Learning Material on hand is first-year physics only) and the past-paper back-test (the paper corpus holds only Paper-I papers). Hand-checked: definition matches NCERT; the surface of a charged conductor is equipotential (the book's example); W = qΔV = 0 for movement on the surface, the standard added property."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Potential and Capacitance · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A surface that has the same electric potential",
+          "at every point on it is called an",
+          "equipotential surface."
+        ],
+        "margin_note": "First mark. The words same potential at every point are the definition.",
+        "why": "One value of V shared by every point of the surface is the whole content of the word equipotential — equal potential.",
+        "common_mistakes": [
+          "Saying \"same field at every point\". The surface shares one POTENTIAL, not one field."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an equipotential surface has the same potential at every point on it.",
+          "accept": [
+            "same potential at every point",
+            "one value of V over the surface",
+            "equal potential everywhere on it"
+          ],
+          "reject": [
+            "surface of a charged conductor"
+          ],
+          "heard_as": [
+            "equipotential",
+            "same potential"
+          ]
+        },
+        "memory_tip": "Equi-potential: equal potential. The name is the definition."
+      },
+      {
+        "id": "s2_example_property",
+        "kind": "boxed_final",
+        "label": "Example and property",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "The surface of a charged conductor is an",
+          "equipotential surface. No work is done in",
+          "moving a charge on an equipotential surface,",
+          "because V does not change: W = qΔV = 0.",
+          {
+            "text": "Same V at every point of the surface",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Give the conductor-surface example; the zero-work line supports it.",
+        "why": "Work in an electric field is charge times the change in potential. On an equipotential surface the change is zero, so the work is zero — this is why the field must meet the surface at right angles.",
+        "common_mistakes": [
+          "Giving no example. The charged conductor's surface is the expected one.",
+          "Writing W = qV instead of W = qΔV. Work uses the CHANGE in potential."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a charged conductor's surface is an example, and no work is done moving a charge on such a surface.",
+          "accept": [
+            "surface of a charged conductor",
+            "no work moving a charge on it",
+            "W equals q delta V equals zero"
+          ],
+          "reject": [
+            "same potential at every point"
+          ],
+          "heard_as": [
+            "conductor",
+            "no work"
+          ]
+        },
+        "memory_tip": "Conductor surface for the example; no change in V, so no work."
+      }
+    ]
+  },
+  "insider_note": "The definition alone is one mark; the conductor-surface example is what completes the two."
+}

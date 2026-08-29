@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_focal_length_radius_concave_lens",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define focal length and radius of curvature of a concave lens.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Radius of curvature",
+      "marks": 1
+    },
+    {
+      "label": "Focal length",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed pp.9-10 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: each lens surface is a part of a sphere and R is that sphere's radius (one R per surface); for a concave lens the principal focus is virtual — parallel rays appear to diverge from F — and f is measured from the optical centre to F."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_radius",
+        "kind": "text",
+        "label": "Radius of curvature",
+        "marks": 1,
+        "mark_note": "Radius of the sphere",
+        "lines": [
+          {
+            "text": "Radius of curvature (R):",
+            "style": "heading"
+          },
+          "Each surface of a lens is a part of a sphere.",
+          "The radius of that sphere is called the",
+          "radius of curvature R of that surface."
+        ],
+        "margin_note": "First mark. Name the sphere — the surface is a part of it, and R is that sphere's radius.",
+        "why": "A lens face is ground as a part of a sphere, so the only complete definition names that sphere and takes its radius. Each of the two faces has its own R.",
+        "common_mistakes": [
+          "Giving the focal length as the radius of curvature. R belongs to one surface; f belongs to the whole lens.",
+          "Forgetting that a lens has two surfaces, each with its own radius of curvature."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the radius of curvature is the radius of the sphere of which the lens surface is a part.",
+          "accept": [
+            "radius of the sphere of which the surface is a part",
+            "each surface is part of a sphere and R is that sphere's radius",
+            "the lens surface belongs to a sphere and its radius is the radius of curvature",
+            "surface oka sphere lo part, daani radius ye R"
+          ],
+          "reject": [
+            "distance from the optical centre to the principal focus"
+          ],
+          "heard_as": [
+            "radius of curvature",
+            "sphere",
+            "surface",
+            "part of a sphere"
+          ]
+        },
+        "memory_tip": "R lives on one face of the lens: face → sphere → that sphere's radius."
+      },
+      {
+        "id": "s2_focal_length",
+        "kind": "boxed_final",
+        "label": "Focal length",
+        "marks": 1,
+        "mark_note": "Centre to focus",
+        "lines": [
+          {
+            "text": "Focal length (f):",
+            "style": "heading"
+          },
+          "Rays parallel to the principal axis, after",
+          "refraction through a concave lens, appear to",
+          "come from a fixed point on the axis — the",
+          "principal focus F.",
+          "The distance from the optical centre of the",
+          "lens to the principal focus is the focal",
+          "length f.",
+          {
+            "text": "f = optical centre to principal focus",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. For a concave lens say appear to come from — the focus is virtual.",
+        "why": "A concave lens spreads the parallel rays out, so they never actually meet — only their backward extensions meet at F. The words appear to come from are what make the definition correct for a concave lens.",
+        "common_mistakes": [
+          "Saying the rays pass through F. For a concave lens they only appear to come from F.",
+          "Measuring f from the surface of the lens. It is measured from the optical centre."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the focal length is the distance from the optical centre to the principal focus, the point parallel rays appear to come from after refraction.",
+          "accept": [
+            "distance between the optical centre and the principal focus",
+            "parallel rays appear to diverge from F and f is the distance from the centre to F",
+            "optical centre to focus distance",
+            "focal length ante optical centre nunchi F varaku distance"
+          ],
+          "reject": [
+            "radius of the sphere of which the surface is a part"
+          ],
+          "heard_as": [
+            "focal length",
+            "optical centre",
+            "principal focus",
+            "appear to diverge"
+          ]
+        },
+        "memory_tip": "f joins the two special points of the lens: optical centre and principal focus."
+      }
+    ]
+  },
+  "insider_note": "Two definitions, one mark each — the words a part of a sphere and appear to come from carry them."
+}

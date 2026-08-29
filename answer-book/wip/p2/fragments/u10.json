@@ -1,0 +1,95 @@
+{
+  "number": 10,
+  "name": "Alternating Current",
+  "subject": "physics_2",
+  "questions": [
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "A transformer converts 200 V a.c. into 2000 V a.c. Calculate the number of turns on the secondary if the primary has 10 turns.",
+      "question_id": "ts_ipe_p2_ac_transformer_turns_numerical"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 2,
+      "stars": 0,
+      "text": "What type of transformer is used in a 6 V bed lamp?",
+      "question_id": "ts_ipe_p2_ac_bed_lamp_transformer"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 3,
+      "stars": 0,
+      "text": "What is the phenomenon involved in the working of a transformer?",
+      "question_id": "ts_ipe_p2_ac_transformer_phenomenon"
+    },
+    {
+      "ref": "vsaq4",
+      "section": "VSAQ",
+      "number": 4,
+      "stars": 0,
+      "text": "What is transformer ratio?",
+      "question_id": "ts_ipe_p2_ac_transformer_ratio"
+    },
+    {
+      "ref": "vsaq5",
+      "section": "VSAQ",
+      "number": 5,
+      "stars": 0,
+      "text": "State the expression for the reactance of (i) an inductor and (ii) a capacitor.",
+      "question_id": "ts_ipe_p2_ac_reactance_expressions"
+    },
+    {
+      "ref": "vsaq6",
+      "section": "VSAQ",
+      "number": 6,
+      "stars": 0,
+      "text": "What is the phase difference between a.c. emf and current in the following? (i) pure resistor (ii) pure inductor (iii) pure capacitor",
+      "question_id": "ts_ipe_p2_ac_phase_difference_r_l_c"
+    },
+    {
+      "ref": "vsaq7",
+      "section": "VSAQ",
+      "number": 7,
+      "stars": 0,
+      "text": "Define power factor. On which factors does power factor depend?",
+      "question_id": "ts_ipe_p2_ac_power_factor_define"
+    },
+    {
+      "ref": "vsaq8",
+      "section": "VSAQ",
+      "number": 8,
+      "stars": 0,
+      "text": "What is meant by wattless component of current?",
+      "question_id": "ts_ipe_p2_ac_wattless_current"
+    },
+    {
+      "ref": "vsaq9",
+      "section": "VSAQ",
+      "number": 9,
+      "stars": 0,
+      "text": "When does an LCR series circuit have minimum impedance?",
+      "question_id": "ts_ipe_p2_ac_lcr_minimum_impedance"
+    },
+    {
+      "ref": "vsaq10",
+      "section": "VSAQ",
+      "number": 10,
+      "stars": 0,
+      "text": "What is the phase difference between voltage and current when the power factor in LCR series circuit is unity?",
+      "question_id": "ts_ipe_p2_ac_unity_power_factor_phase"
+    },
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 1,
+      "stars": 0,
+      "text": "State the principle on which a transformer works. Describe the working of a transformer with necessary theory.",
+      "question_id": "ts_ipe_p2_ac_transformer_principle_working"
+    }
+  ]
+}

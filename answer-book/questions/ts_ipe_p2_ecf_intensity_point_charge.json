@@ -1,0 +1,333 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_intensity_point_charge",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for the intensity due to a point charge.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of intensity",
+      "marks": 1
+    },
+    {
+      "label": "Force on the test charge",
+      "marks": 1
+    },
+    {
+      "label": "Expression for E",
+      "marks": 1
+    },
+    {
+      "label": "Direction and unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: E = F/Q₀ and F = (1/4πε₀)·QQ₀/d² give E = (1/4πε₀)·Q/d², directed along the force on a positive test charge, SI unit N C⁻¹. The book's heading 'Intensity if electric field' (printed p.20) is written correctly; the book defines E = F/Q then uses Q₀ — the test charge is Q₀ throughout here."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Charges and Fields · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition of intensity",
+        "marks": 1,
+        "mark_note": "Force per unit positive test charge",
+        "lines": [
+          "Intensity of electric field at a point is",
+          "the force experienced by a unit positive",
+          "test charge placed at that point.",
+          {
+            "text": "E = F / Q₀",
+            "style": "eq"
+          },
+          "where Q₀ is a small positive test charge."
+        ],
+        "margin_note": "First mark. The words unit positive test charge are the definition.",
+        "why": "The field is defined through what it does to a charge, so the definition must name the probe: a unit, positive, test charge — small enough not to disturb the field it measures.",
+        "common_mistakes": [
+          "Dropping the word positive. The direction of E is fixed by a POSITIVE test charge.",
+          "Writing E = FQ₀ instead of F/Q₀ — intensity is force PER charge."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That intensity is the force per unit positive test charge, E = F/Q₀.",
+          "accept": [
+            "force per unit positive charge",
+            "E equals F by Q nought",
+            "force on a unit positive test charge"
+          ],
+          "reject": [
+            "one by four pi epsilon nought Q by d squared"
+          ],
+          "heard_as": [
+            "intensity",
+            "test charge",
+            "unit positive"
+          ]
+        },
+        "memory_tip": "Definition first: E is force divided by the test charge that feels it."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "point_charge_field",
+          "width": 360,
+          "height": 128,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "qA",
+              "d": "M 48 52 A 7 7 0 1 0 62 52 A 7 7 0 1 0 48 52",
+              "ms": 630
+            },
+            {
+              "type": "label",
+              "id": "lbl_Q",
+              "x": 30,
+              "y": 28,
+              "text": "Q",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_A",
+              "x": 50,
+              "y": 84,
+              "text": "A",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "join",
+              "d": "M 62 52 L 258 52",
+              "ms": 2800
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 155,
+              "y": 40,
+              "text": "d",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "qP",
+              "d": "M 260 52 A 5 5 0 1 0 270 52 A 5 5 0 1 0 260 52",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_Q0",
+              "x": 250,
+              "y": 28,
+              "text": "Q₀",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_P",
+              "x": 261,
+              "y": 84,
+              "text": "P",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "farr",
+              "d": "M 272 52 L 322 52",
+              "ms": 710
+            },
+            {
+              "type": "stroke",
+              "id": "farr_head",
+              "d": "M 315 47.5 L 322 52 L 315 56.5",
+              "ms": 130
+            },
+            {
+              "type": "label",
+              "id": "lbl_F",
+              "x": 330,
+              "y": 44,
+              "text": "F",
+              "ms": 300,
+              "em": true
+            }
+          ]
+        },
+        "margin_note": "The charge Q at A, the test charge Q₀ at P, a distance d apart; F is the force on Q₀.",
+        "why": "The figure fixes the two points and the distance the derivation uses — Q at A, Q₀ at P, separation d — so the Coulomb force line that follows has its symbols already defined.",
+        "common_mistakes": [
+          "Marking the distance from P back to itself or leaving d unlabelled — d is the full distance from A to P."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure shows Q at A and the test charge Q₀ at P, a distance d apart, with the force F on Q₀.",
+          "accept": [
+            "draw Q at A and Q nought at P",
+            "mark the distance d and the force arrow"
+          ],
+          "reject": [
+            "F equals Coulomb force by Q nought"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "test charge"
+          ]
+        },
+        "memory_tip": "Source at A, probe at P, distance d — label all three before deriving."
+      },
+      {
+        "id": "s3_force",
+        "kind": "equation",
+        "label": "Force on the test charge",
+        "marks": 1,
+        "mark_note": "Coulomb force on Q₀",
+        "lines": [
+          "Let a point charge Q be placed at a point",
+          "A. Place a test charge Q₀ at a point P at a",
+          "distance d from A. By Coulomb's law, the",
+          "force on Q₀ is",
+          {
+            "text": "F = (1/4πε₀) · QQ₀ / d²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Coulomb's law applied to the pair Q and Q₀.",
+        "why": "The only physics input in this derivation is Coulomb's law — the field expression is that force with the probe divided out, so this line has to come first.",
+        "common_mistakes": [
+          "Writing Q² or Q₀² in the numerator. The force involves the PRODUCT QQ₀.",
+          "Using r for the distance after the figure named it d — keep one symbol."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Coulomb force on the test charge is F = (1/4πε₀) · QQ₀/d².",
+          "accept": [
+            "Coulomb force between Q and Q nought",
+            "one by four pi epsilon nought Q Q nought by d squared"
+          ],
+          "reject": [
+            "divide by Q nought"
+          ],
+          "heard_as": [
+            "Coulomb's law",
+            "Q Q nought",
+            "d squared"
+          ]
+        },
+        "memory_tip": "Write the ordinary Coulomb force first — the field comes from it in one division."
+      },
+      {
+        "id": "s4_expression",
+        "kind": "equation",
+        "label": "Expression for E",
+        "marks": 1,
+        "mark_note": "E = (1/4πε₀) · Q/d²",
+        "lines": [
+          "Intensity of the electric field at P is",
+          {
+            "text": "E = F / Q₀ = (1/4πε₀) · QQ₀ / Q₀d²",
+            "style": "eq"
+          },
+          {
+            "text": "E = (1/4πε₀) · Q / d²",
+            "style": "eq"
+          },
+          "The test charge Q₀ cancels: the field does",
+          "not depend on the charge used to test it."
+        ],
+        "margin_note": "Third mark. Divide the force by Q₀ — the test charge cancels out.",
+        "why": "Dividing by Q₀ removes the probe from the answer. What remains depends only on the source charge Q and the distance d — that is what makes E a property of the point, not of the probe.",
+        "common_mistakes": [
+          "Leaving Q₀ in the final expression. E must not contain the test charge.",
+          "Writing 1/d instead of 1/d² — the field inherits the inverse square from the force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing the force by Q₀ gives E = (1/4πε₀) · Q/d², with the test charge cancelled.",
+          "accept": [
+            "divide by Q nought",
+            "E equals one by four pi epsilon nought Q by d squared",
+            "the test charge cancels"
+          ],
+          "reject": [
+            "force per unit positive charge"
+          ],
+          "heard_as": [
+            "cancels",
+            "Q by d squared"
+          ]
+        },
+        "memory_tip": "One division and the probe disappears — E keeps only Q and d."
+      },
+      {
+        "id": "s5_direction",
+        "kind": "boxed_final",
+        "label": "Direction and unit",
+        "marks": 1,
+        "mark_note": "Direction of E and SI unit",
+        "lines": [
+          "E acts along the force on the positive test",
+          "charge: away from Q if Q is positive, and",
+          "towards Q if Q is negative. Its SI unit is",
+          "N C⁻¹ (or V m⁻¹).",
+          {
+            "text": "E = (1/4πε₀) · Q / d²",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. E is a vector — give its direction, then the unit.",
+        "why": "Intensity is a vector, so the derivation is complete only when the direction is stated. The direction follows from the positive test charge: pushed away by positive Q, pulled in by negative Q.",
+        "common_mistakes": [
+          "Saying E always points away from the charge. That holds only when Q is positive.",
+          "Giving the unit as N/C² or C/N — it is newton per coulomb, N C⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E points along the force on a positive test charge — away from positive Q, towards negative Q — with unit N C⁻¹.",
+          "accept": [
+            "away from a positive charge",
+            "towards a negative charge",
+            "newton per coulomb"
+          ],
+          "reject": [
+            "the test charge cancels"
+          ],
+          "heard_as": [
+            "direction",
+            "newton per coulomb",
+            "away from"
+          ]
+        },
+        "memory_tip": "Finish every field derivation the same way: direction, then unit."
+      }
+    ]
+  },
+  "insider_note": "Four clean quarters: definition, Coulomb force, the division that cancels Q₀, then direction and unit — the last quarter is the one an answer written in a hurry leaves out."
+}

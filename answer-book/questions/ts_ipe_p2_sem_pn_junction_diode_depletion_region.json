@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_pn_junction_diode_depletion_region",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is p-n junction diode? Define depletion region.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "p-n junction diode defined",
+      "marks": 1
+    },
+    {
+      "label": "Depletion region defined",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the space before the question mark in the printed question is dropped. The book heads its second part 'Depletion layer'; the question asks for the depletion REGION and both names are used here, since they mean the same thing."
+  },
+  "recall_prompt": "Say what a p-n junction diode is, then say what the depletion region contains and why it forms.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Semiconductor Electronics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diode",
+        "kind": "text",
+        "label": "p-n junction diode",
+        "marks": 1,
+        "mark_note": "Definition with two electrodes",
+        "lines": [
+          "p-n junction diode: when a p-type and an",
+          "n-type semiconductor are joined, a",
+          "junction is formed between them. This",
+          "single crystal, with one electrode on",
+          "each side, is called a p-n junction diode."
+        ],
+        "margin_note": "First mark. Both semiconductor types, the junction, and the two electrodes.",
+        "why": "The two doped regions are not two separate crystals stuck together — they are two doped parts of one crystal, which is why charge carriers can cross the boundary at all.",
+        "common_mistakes": [
+          "Saying two pieces are joined by a wire. The p and n regions are two parts of one crystal.",
+          "Leaving out the two electrodes. The question asks for a diode, which is a two-terminal device."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That joining a p-type and an n-type semiconductor forms a junction, and this with two electrodes is a p-n junction diode.",
+          "accept": [
+            "p type and n type joined form a junction",
+            "one crystal with p side and n side",
+            "two electrodes across the junction"
+          ],
+          "reject": [
+            "narrow region with no free carriers"
+          ],
+          "heard_as": [
+            "p n junction",
+            "diode",
+            "electrodes"
+          ]
+        },
+        "memory_tip": "Two doped regions, one crystal, two terminals — that is the whole device."
+      },
+      {
+        "id": "s2_depletion_region",
+        "kind": "boxed_final",
+        "label": "Depletion region",
+        "marks": 1,
+        "mark_note": "Definition with immobile ions",
+        "lines": [
+          "Depletion region: the narrow region on",
+          "either side of the junction which has no",
+          "free charge carriers. Holes and electrons",
+          "near the junction recombine and leave",
+          "behind only immobile charged ions.",
+          {
+            "text": "Depletion region: fixed ions, no carriers",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. 'No free charge carriers' and 'immobile ions' are the two phrases the examiner looks for.",
+        "why": "The region is named for what has been removed from it. The mobile carriers have recombined and gone, so what remains is the fixed ionised impurity atoms — negative on the p side, positive on the n side — and their charge sets up the barrier field across the junction.",
+        "common_mistakes": [
+          "Saying the region is empty. It holds fixed ions; it is empty only of MOBILE carriers.",
+          "Saying it lies on one side of the junction. It spreads on both sides."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the depletion region is the narrow region on both sides of the junction with no free carriers, holding only immobile ions.",
+          "accept": [
+            "narrow region on either side of the junction",
+            "no free charge carriers there",
+            "only immobile ions are left"
+          ],
+          "reject": [
+            "p type and n type joined together"
+          ],
+          "heard_as": [
+            "depletion layer",
+            "immobile",
+            "free carriers"
+          ]
+        },
+        "memory_tip": "Depleted of what moves; left with what cannot move."
+      }
+    ]
+  },
+  "insider_note": "Two definitions, one mark each. The second mark hangs on two phrases: no free charge carriers, and immobile ions."
+}

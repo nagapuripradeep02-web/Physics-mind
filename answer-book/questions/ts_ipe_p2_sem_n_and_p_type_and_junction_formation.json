@@ -1,0 +1,345 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_n_and_p_type_and_junction_formation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are n type and p-type semiconductors how is a semiconductor junction formed.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "n-type semiconductor",
+      "marks": 1
+    },
+    {
+      "label": "p-type semiconductor",
+      "marks": 1
+    },
+    {
+      "label": "Formation of the junction",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The figure carries 0 marks because the question does not ask for a diagram. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the book prints 'semi conductors' as two words and 'P-N jnction' in its answer; both are corrected here. The barrier potential values (about 0.3 V for germanium, about 0.7 V for silicon) are added — the book does not give them. FIGURE NOTE: the renderer draws outlines only, with no fills and no occlusion, so the depletion region cannot be shaded. It is marked instead by two dashed construction lines with the fixed ion signs written between them, and a dimension arrow beneath. The figure was rendered and inspected before this card was filed."
+  },
+  "recall_prompt": "Define n-type and p-type, then describe how the junction and the depletion region form.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Semiconductor Electronics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_n_type",
+        "kind": "text",
+        "label": "n-type semiconductor",
+        "marks": 1,
+        "mark_note": "Pentavalent impurity",
+        "lines": [
+          {
+            "text": "n-type semiconductor:",
+            "style": "heading"
+          },
+          "When a pentavalent impurity such as",
+          "phosphorus, arsenic or antimony is added",
+          "to a pure semiconductor, the crystal",
+          "becomes an n-type semiconductor.",
+          "Majority carriers: electrons.",
+          "Minority carriers: holes."
+        ],
+        "margin_note": "First mark. Pentavalent, and both carriers named.",
+        "why": "The fifth valence electron of the impurity atom is not needed for bonding, so it is free to move. The impurity is called a donor because it gives the crystal a free electron.",
+        "common_mistakes": [
+          "Saying the crystal becomes negatively charged. It stays neutral overall.",
+          "Naming boron or aluminium. Those are trivalent and give p-type."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a pentavalent (donor) impurity gives n-type, with electrons as majority carriers.",
+          "accept": [
+            "pentavalent impurity added",
+            "donor impurity such as phosphorus",
+            "electrons are the majority carriers"
+          ],
+          "reject": [
+            "trivalent impurity added"
+          ],
+          "heard_as": [
+            "pentavalent",
+            "n type",
+            "donor"
+          ]
+        },
+        "memory_tip": "Five valence electrons, one spare — n for negative carriers."
+      },
+      {
+        "id": "s2_p_type",
+        "kind": "text",
+        "label": "p-type semiconductor",
+        "marks": 1,
+        "mark_note": "Trivalent impurity",
+        "lines": [
+          {
+            "text": "p-type semiconductor:",
+            "style": "heading"
+          },
+          "When a trivalent impurity such as boron,",
+          "aluminium or indium is added to a pure",
+          "semiconductor, the crystal becomes a",
+          "p-type semiconductor.",
+          "Majority carriers: holes.",
+          "Minority carriers: electrons."
+        ],
+        "margin_note": "Second mark. Trivalent, and both carriers named.",
+        "why": "A trivalent atom can fill only three of the four bonds, so one bond is left with an empty place. That empty place moves through the crystal like a positive charge and is called a hole. The impurity is called an acceptor because it can accept an electron.",
+        "common_mistakes": [
+          "Saying the crystal becomes positively charged. It stays neutral overall.",
+          "Saying a hole is a proton. A hole is an empty place in a covalent bond."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a trivalent (acceptor) impurity gives p-type, with holes as majority carriers.",
+          "accept": [
+            "trivalent impurity added",
+            "acceptor impurity such as boron",
+            "holes are the majority carriers"
+          ],
+          "reject": [
+            "pentavalent impurity added"
+          ],
+          "heard_as": [
+            "trivalent",
+            "p type",
+            "acceptor"
+          ]
+        },
+        "memory_tip": "Three valence electrons, one bond short — p for positive carriers."
+      },
+      {
+        "id": "s3_junction_figure",
+        "kind": "diagram",
+        "label": "The junction",
+        "marks": 0,
+        "figure": {
+          "id": "pn_junction",
+          "width": 420,
+          "height": 230,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "pn_body_top",
+              "d": "M 50 155 L 50 60 L 350 60",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "pn_body_bottom",
+              "d": "M 350 60 L 350 155 L 50 155",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "pn_junction_line",
+              "d": "M 200 60 L 200 155",
+              "ms": 1360
+            },
+            {
+              "type": "stroke",
+              "id": "pn_dep_left",
+              "d": "M 155 60 L 155 155",
+              "ms": 1360,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "pn_dep_right",
+              "d": "M 245 60 L 245 155",
+              "ms": 1360,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "pn_dep_dim",
+              "d": "M 155 176 L 245 176 M 164 171 L 155 176 L 164 181 M 236 171 L 245 176 L 236 181",
+              "ms": 1870
+            },
+            {
+              "type": "label",
+              "id": "pn_lbl_p",
+              "x": 78,
+              "y": 116,
+              "text": "p-type",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pn_lbl_n",
+              "x": 258,
+              "y": 116,
+              "text": "n-type",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pn_lbl_neg",
+              "x": 161,
+              "y": 116,
+              "text": "− −",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pn_lbl_pos",
+              "x": 206,
+              "y": 116,
+              "text": "+ +",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pn_lbl_junction",
+              "x": 162,
+              "y": 46,
+              "text": "Junction",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pn_lbl_dep",
+              "x": 118,
+              "y": 208,
+              "text": "Depletion region",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The solid line is the junction. The two dashed lines mark the edges of the depletion region; the fixed ions sit between them.",
+        "why": "The figure shows the one thing the words cannot: that the depletion region straddles the junction, with the negative acceptor ions on the p side and the positive donor ions on the n side. Those two rows of fixed charge are the barrier.",
+        "common_mistakes": [
+          "Drawing the depletion region on one side of the junction only. It spreads on both sides.",
+          "Putting the positive ions on the p side. The p side keeps negative acceptor ions; the n side keeps positive donor ions."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure shows the p and n regions with a depletion region straddling the junction, negative ions on the p side and positive ions on the n side.",
+          "accept": [
+            "draw the p side and n side with the junction between",
+            "mark the depletion region on both sides",
+            "negative ions on p and positive ions on n"
+          ],
+          "reject": [
+            "the barrier potential is 0.7 V for silicon"
+          ],
+          "heard_as": [
+            "figure",
+            "depletion region",
+            "junction"
+          ]
+        },
+        "memory_tip": "Signs are opposite to the side they sit on: minus on p, plus on n."
+      },
+      {
+        "id": "s4_junction_formation",
+        "kind": "boxed_final",
+        "label": "Formation of the junction",
+        "marks": 2,
+        "mark_note": "Diffusion, ions, barrier",
+        "lines": [
+          {
+            "text": "Formation of a semiconductor junction:",
+            "style": "heading"
+          },
+          "1) A p-type and an n-type region are made",
+          {
+            "text": "in one crystal. The boundary between",
+            "style": "indent"
+          },
+          {
+            "text": "them is the p-n junction.",
+            "style": "indent"
+          },
+          "2) Holes from the p side and electrons",
+          {
+            "text": "from the n side diffuse across the",
+            "style": "indent"
+          },
+          {
+            "text": "junction and recombine.",
+            "style": "indent"
+          },
+          "3) This leaves immobile negative ions on",
+          {
+            "text": "the p side and immobile positive ions",
+            "style": "indent"
+          },
+          {
+            "text": "on the n side — the depletion region.",
+            "style": "indent"
+          },
+          "4) These fixed ions set up an electric",
+          {
+            "text": "field and a potential difference across",
+            "style": "indent"
+          },
+          {
+            "text": "the junction, called the barrier",
+            "style": "indent"
+          },
+          {
+            "text": "potential. It stops further diffusion.",
+            "style": "indent"
+          },
+          {
+            "text": "Barrier: ≈ 0.3 V for Ge, ≈ 0.7 V for Si",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Two marks. Diffusion and recombination for one; the fixed ions and the barrier potential for the other.",
+        "why": "Diffusion happens because there are far more holes on one side and far more electrons on the other, so carriers spread out. It stops on its own: the charge left behind builds a field pointing the wrong way for further diffusion, so the junction settles at a fixed barrier voltage.",
+        "common_mistakes": [
+          "Saying diffusion continues for ever. It stops once the barrier potential is built up.",
+          "Saying an external battery is needed to form the junction. The barrier forms by itself.",
+          "Calling the leftover ions free charges. They are fixed in the crystal lattice."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That carriers diffuse across the junction and recombine, leaving fixed ions that form a depletion region and a barrier potential which stops further diffusion.",
+          "accept": [
+            "holes and electrons diffuse and recombine",
+            "immobile ions are left on both sides",
+            "barrier potential stops further diffusion"
+          ],
+          "reject": [
+            "trivalent impurity gives p type"
+          ],
+          "heard_as": [
+            "diffusion",
+            "recombine",
+            "barrier potential"
+          ]
+        },
+        "memory_tip": "Diffuse, recombine, leave ions, build the barrier — four steps in order."
+      }
+    ]
+  },
+  "insider_note": "The last two marks are for the junction, not for the doping. Get to diffusion, recombination and the barrier potential quickly."
+}

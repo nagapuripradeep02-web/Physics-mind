@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_half_wave_vs_full_wave_rectifier",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between half wave and full wave rectifier?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Half wave rectifier — its four points",
+      "marks": 2
+    },
+    {
+      "label": "Full wave rectifier — its four points",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the book prints 'One p-n jnction diode is used' and 'the freuqency of applied A.C'; both are spelled correctly here. Physics hand-checked: number of diodes 1 against 2; one half cycle against both; maxima 4/π² = 40.6% and 8/π² = 81.2%; and the ripple frequency, which is the frequency f of the supply for the half wave rectifier and 2f for the full wave rectifier — the book states this as the number of d.c. pulses per second and it is correct in both rows."
+  },
+  "recall_prompt": "Compare the two rectifiers point by point — diodes used, half cycles used, efficiency, and pulses per second.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Semiconductor Electronics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_half_wave",
+        "kind": "text",
+        "label": "Half wave rectifier",
+        "marks": 2,
+        "mark_note": "Four points listed",
+        "lines": [
+          {
+            "text": "Half wave rectifier:",
+            "style": "heading"
+          },
+          "1) One p-n junction diode is used.",
+          "2) Only one half cycle of the input a.c.",
+          {
+            "text": "signal is converted into d.c. output.",
+            "style": "indent"
+          },
+          "3) Efficiency:",
+          {
+            "text": "\\eta = \\dfrac{0.406\\,R_L}{r_f + R_L}",
+            "style": "eq",
+            "render": "katex"
+          },
+          "4) Maximum efficiency is 40.6%.",
+          "5) The number of d.c. pulses per second",
+          {
+            "text": "equals the frequency of the applied a.c.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Two marks. Four or five numbered points; the diode count and the half cycle used are the two that always carry marks.",
+        "why": "A distinguishing question is marked point by point, so the answer has to be written as a numbered list with the SAME points in the same order for both devices. Writing a paragraph makes the examiner hunt for the comparison.",
+        "common_mistakes": [
+          "Writing a paragraph instead of numbered points. The marks are given point by point.",
+          "Saying the output is pure d.c. It is a pulsating d.c. — one pulse per cycle.",
+          "Giving 50% as the efficiency. The maximum is 40.6%."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the half wave rectifier uses one diode, rectifies one half cycle, has a maximum efficiency of 40.6%, and gives one pulse per cycle.",
+          "accept": [
+            "one diode and one half cycle",
+            "maximum efficiency forty point six per cent",
+            "pulses per second equal the supply frequency"
+          ],
+          "reject": [
+            "two diodes are used"
+          ],
+          "heard_as": [
+            "half wave",
+            "one diode",
+            "forty point six"
+          ]
+        },
+        "memory_tip": "Half wave: one diode, one half cycle, one pulse per cycle. Everything is one."
+      },
+      {
+        "id": "s2_full_wave",
+        "kind": "text",
+        "label": "Full wave rectifier",
+        "marks": 2,
+        "mark_note": "Same four points, other column",
+        "lines": [
+          {
+            "text": "Full wave rectifier:",
+            "style": "heading"
+          },
+          "1) Two p-n junction diodes are used.",
+          "2) Both the positive and the negative",
+          {
+            "text": "half cycles are converted into d.c.",
+            "style": "indent"
+          },
+          "3) Efficiency:",
+          {
+            "text": "\\eta = \\dfrac{0.812\\,R_L}{r_f + R_L}",
+            "style": "eq",
+            "render": "katex"
+          },
+          "4) Maximum efficiency is 81.2%.",
+          "5) The number of d.c. pulses per second",
+          {
+            "text": "is twice the frequency of the a.c.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Two marks. The same five numbers, in the same order, so the comparison reads across.",
+        "why": "Both half cycles reach the load, so twice as much charge arrives in each cycle. That single fact explains every other row: twice the pulses, twice the constant on top of the efficiency, and therefore twice the maximum efficiency.",
+        "common_mistakes": [
+          "Saying a full wave rectifier always needs four diodes. The centre-tap circuit in this chapter uses two; a bridge rectifier uses four.",
+          "Writing the same pulse rate as the half wave rectifier. It is twice the supply frequency.",
+          "Writing 100% efficiency. The maximum is 81.2%."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the full wave rectifier uses two diodes, rectifies both half cycles, has a maximum efficiency of 81.2%, and gives two pulses per cycle.",
+          "accept": [
+            "two diodes and both half cycles",
+            "maximum efficiency eighty one point two per cent",
+            "pulses per second are twice the supply frequency"
+          ],
+          "reject": [
+            "one diode is used"
+          ],
+          "heard_as": [
+            "full wave",
+            "two diodes",
+            "eighty one point two"
+          ]
+        },
+        "memory_tip": "Full wave: two diodes, two half cycles, two pulses. Everything is doubled."
+      }
+    ]
+  },
+  "insider_note": "Number the points and keep the same order in both lists — the examiner reads across the two columns, not down one."
+}

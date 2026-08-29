@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_parallel_wires_force_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A current of 10 A passes through two very long wires held parallel to each other and separated by a distance of 1 m. What is the force per unit length between them?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The data",
+      "marks": 1
+    },
+    {
+      "label": "The substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer and its direction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Arithmetic re-derived: F/l = μ₀i₁i₂/2πr = (4π × 10⁻⁷ × 10 × 10)/(2π × 1) = 2 × 10⁻⁵ N/m, agreeing with the book. The book's printed 'lenght' is corrected to 'length' and the space before the question mark is dropped. The book gives no direction; the force is attractive when the two currents run the same way and repulsive when they run opposite ways, which is stated here as an extra line. This numerical is printed inside the Short Answer list, so it is authored as an SAQ; the three questions under the separate PROBLEMS banner of this chapter are deferred and are not authored."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Write the formula with 2π in the denominator before substituting. The 4π on top and the 2π below cancel to 2, and that cancellation is the whole calculation.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Moving Charges and Magnetism · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "F/l = μ₀i₁i₂/2πr",
+        "lines": [
+          "Two long parallel wires carrying currents i₁",
+          "and i₂ a distance r apart exert equal and",
+          "opposite forces on each other.",
+          "The force per unit length is",
+          {
+            "text": "F / l = μ₀ i₁ i₂ / 2πr",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The formula, with 2πr in the denominator.",
+        "why": "Each wire sits in the field of the other, so the formula is just B = μ₀i/2πr for one wire multiplied by the current and length of the second wire.",
+        "common_mistakes": [
+          "Writing 4π in the denominator. It is 2π for two straight parallel wires.",
+          "Writing r² in the denominator. The dependence is 1/r, not 1/r²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the force per unit length is μ₀i₁i₂/2πr.",
+          "accept": [
+            "F by l equals mu nought i one i two by two pi r",
+            "force per unit length formula",
+            "mu nought by two pi into i one i two by r"
+          ],
+          "reject": [
+            "two into ten power minus five newton per metre"
+          ],
+          "heard_as": [
+            "force per unit length",
+            "two pi r"
+          ]
+        },
+        "memory_tip": "Both currents on top, 2π and the separation below."
+      },
+      {
+        "id": "s2_data",
+        "kind": "equation",
+        "label": "The data",
+        "marks": 1,
+        "mark_note": "Data listed in SI units",
+        "lines": [
+          "i₁ = i₂ = 10 A",
+          "r = 1 m",
+          "μ₀ = 4π × 10⁻⁷ T m A⁻¹",
+          {
+            "text": "F / l = ?",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Both currents, the separation and μ₀, all in SI units.",
+        "why": "Both wires carry the same current here, so i₁i₂ becomes simply 10 × 10 = 100.",
+        "common_mistakes": [
+          "Using only one current, as if the force depended on one wire alone.",
+          "Forgetting the value of μ₀."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That i₁ = i₂ = 10 A, r = 1 m and μ₀ = 4π × 10⁻⁷.",
+          "accept": [
+            "both currents ten ampere",
+            "separation one metre",
+            "mu nought is four pi into ten power minus seven"
+          ],
+          "reject": [
+            "two into ten power minus five"
+          ],
+          "heard_as": [
+            "ten ampere",
+            "one metre"
+          ]
+        },
+        "memory_tip": "Two tens and a one: 10 A, 10 A, 1 m."
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "The substitution",
+        "marks": 1,
+        "mark_note": "Values put in and π cancelled",
+        "lines": [
+          "Substituting the values,",
+          {
+            "text": "F / l = (4π × 10⁻⁷ × 10 × 10) / (2π × 1)",
+            "style": "eq"
+          },
+          "The π on the top cancels the π below, and",
+          "4/2 = 2, so",
+          {
+            "text": "F / l = 2 × 10⁻⁷ × 100",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Show the substitution line and the cancellation of π before the final number.",
+        "why": "The cancellation is why the answer comes out as a clean power of ten: 4π/2π is exactly 2, with no decimals left.",
+        "common_mistakes": [
+          "Putting 3.14 in for π and carrying decimals through. The π cancels exactly.",
+          "Multiplying by only one 10 instead of 10 × 10."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives 4π × 10⁻⁷ × 100 over 2π, and the π cancels.",
+          "accept": [
+            "four pi into ten power minus seven into hundred",
+            "divided by two pi",
+            "pi cancels leaving two"
+          ],
+          "reject": [
+            "newton per metre"
+          ],
+          "heard_as": [
+            "pi cancels",
+            "substitution"
+          ]
+        },
+        "memory_tip": "4π over 2π is just 2 — cancel before you multiply."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The answer and its direction",
+        "marks": 1,
+        "mark_note": "2 × 10⁻⁵ N/m",
+        "lines": [
+          {
+            "text": "F / l = 2 × 10⁻⁵ N/m",
+            "style": "boxed"
+          },
+          "The two forces are equal in size and",
+          "opposite in direction.",
+          "If the two currents run in the same",
+          "direction the wires attract each other; if",
+          "they run in opposite directions the wires",
+          "repel each other."
+        ],
+        "margin_note": "Last mark. The value with the unit N/m, plus the attract-or-repel line.",
+        "why": "The size of the force does not tell you its direction, so the same number describes both cases; only the relative direction of the currents decides between attraction and repulsion.",
+        "common_mistakes": [
+          "Writing the unit as N instead of N/m. The answer is a force per unit length.",
+          "Saying the wires always attract. They repel when the currents are opposite."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F/l = 2 × 10⁻⁵ N/m, attractive for currents in the same direction.",
+          "accept": [
+            "two into ten power minus five newton per metre",
+            "same direction currents attract",
+            "opposite currents repel"
+          ],
+          "reject": [
+            "four pi into ten power minus seven"
+          ],
+          "heard_as": [
+            "newton per metre",
+            "attract"
+          ]
+        },
+        "memory_tip": "Same way, come together; opposite ways, push apart."
+      }
+    ]
+  }
+}

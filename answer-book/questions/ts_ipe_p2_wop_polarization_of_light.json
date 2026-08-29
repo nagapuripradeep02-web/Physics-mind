@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wop_polarization_of_light",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Wave Optics"
+  },
+  "chapter": "Wave Optics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is polarization of light?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Unpolarised to plane polarised",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: light is a transverse electromagnetic wave; in ordinary light the electric field vector vibrates in every direction perpendicular to the direction of travel; a polaroid transmits only the component along its transmission axis, so the emerging light vibrates in one direction only — plane polarised light. Only transverse waves can be polarised."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "Only transverse waves can be polarised — the phrase vibrations restricted to one direction is what carries the mark, not the word polaroid.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Wave Optics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Vibrations restricted to one direction",
+        "lines": [
+          "Light is a transverse wave. In ordinary light",
+          "the electric field vector vibrates in every",
+          "direction perpendicular to the direction of",
+          "travel of the light.",
+          "The property of light by which these",
+          "vibrations are restricted to one direction",
+          "only is called polarization of light."
+        ],
+        "margin_note": "First mark. Say what vibrates (the electric field vector) and what happens to it (restricted to one direction).",
+        "why": "Polarization only makes sense for a transverse wave, because only a transverse wave has a vibration direction perpendicular to travel that can be restricted. Opening with the ordinary-light picture makes the restriction visible.",
+        "common_mistakes": [
+          "Writing that light itself travels in one direction. It is the vibration of the electric field vector that is restricted to one direction, not the travel of the light.",
+          "Leaving out the electric field vector and saying only that light becomes one-sided."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in ordinary light the electric field vibrates in every direction perpendicular to travel, and polarization restricts these vibrations to one direction only.",
+          "accept": [
+            "electric field vibrates in all directions",
+            "vibrations restricted to one direction",
+            "perpendicular to the direction of travel"
+          ],
+          "reject": [
+            "light passes through a polaroid"
+          ],
+          "heard_as": [
+            "polarization",
+            "electric field vector",
+            "transverse"
+          ]
+        },
+        "memory_tip": "Ordinary light: the electric field vibrates every way. Polarised light: it vibrates one way."
+      },
+      {
+        "id": "s2_polaroid",
+        "kind": "boxed_final",
+        "label": "Unpolarised to plane polarised",
+        "marks": 1,
+        "mark_note": "Through a polaroid",
+        "lines": [
+          "Ordinary light is unpolarised. When it",
+          "passes through a polaroid, the light that",
+          "comes out vibrates in one plane only. Such",
+          "light is called plane polarised light.",
+          {
+            "text": "Vibrations restricted to one direction",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the device (a polaroid) and the result (plane polarised light).",
+        "why": "The definition needs a concrete way to produce the effect. A polaroid transmits only the component of the electric field along its transmission axis, so what emerges vibrates in one plane — that is what plane polarised means.",
+        "common_mistakes": [
+          "Saying a polaroid blocks all the light. It blocks the component across its axis and passes the component along it.",
+          "Calling the emerging light unpolarised. Ordinary light is unpolarised; the light after the polaroid is plane polarised."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ordinary light is unpolarised, and passing it through a polaroid gives plane polarised light that vibrates in one plane only.",
+          "accept": [
+            "polaroid gives plane polarised light",
+            "ordinary light is unpolarised",
+            "comes out vibrating in one plane"
+          ],
+          "reject": [
+            "vibrates in every direction perpendicular to travel"
+          ],
+          "heard_as": [
+            "polaroid",
+            "plane polarised",
+            "unpolarised"
+          ]
+        },
+        "memory_tip": "Polaroid in, one plane out — unpolarised light enters, plane polarised light leaves."
+      }
+    ]
+  }
+}

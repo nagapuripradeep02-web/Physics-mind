@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_cur_mean_free_path",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Current Electricity"
+  },
+  "chapter": "Current Electricity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define mean free path of electron in a conductor.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The relation λ = v τ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: mean free path = average distance a free electron travels between two successive collisions with the ions of the conductor; λ = v τ with v the average (thermal) speed and τ the relaxation time; order of magnitude in copper about 10⁻⁸ m."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Current Electricity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Average distance between collisions",
+        "lines": [
+          "Inside a conductor, a free electron keeps",
+          "colliding with the ions of the metal.",
+          "The average distance a free electron travels",
+          "between two successive collisions is called",
+          "the mean free path."
+        ],
+        "margin_note": "First mark. The words average and successive collisions are both part of the definition.",
+        "why": "A single electron travels a different distance before each collision, so only the average over very many collisions is a fixed, usable number for the material.",
+        "common_mistakes": [
+          "Writing distance travelled per second — that is a speed, not a path length.",
+          "Leaving out average, which makes the quantity undefined."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean free path is the average distance a free electron travels between two successive collisions in the conductor.",
+          "accept": [
+            "average distance between two successive collisions",
+            "average distance travelled between collisions",
+            "path between collisions on average"
+          ],
+          "reject": [
+            "lambda equals v tau"
+          ],
+          "heard_as": [
+            "mean free path",
+            "collisions",
+            "average distance"
+          ]
+        },
+        "memory_tip": "Three words carry the mark: average, between, collisions."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation λ = v τ",
+        "marks": 1,
+        "mark_note": "λ = v τ",
+        "lines": [
+          "If v is the average speed of the electron and",
+          "τ is the average time between two successive",
+          "collisions (the relaxation time), then",
+          {
+            "text": "λ = v τ",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name both symbols: v is the average speed, τ is the relaxation time.",
+        "why": "Distance is speed multiplied by time. The average distance between collisions must therefore be the average speed multiplied by the average time between collisions.",
+        "common_mistakes": [
+          "Using the drift velocity for v. The electron moves at its thermal speed between collisions; drift velocity is far smaller.",
+          "Calling τ the time period. It is the average time between collisions, called the relaxation time."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean free path lambda equals the average speed v times the relaxation time tau.",
+          "accept": [
+            "lambda equals v tau",
+            "average speed times relaxation time",
+            "speed multiplied by time between collisions"
+          ],
+          "reject": [
+            "average distance between two successive collisions"
+          ],
+          "heard_as": [
+            "lambda",
+            "tau",
+            "relaxation time"
+          ]
+        },
+        "memory_tip": "Distance = speed × time, so λ = v τ with τ the time between collisions."
+      }
+    ]
+  },
+  "insider_note": "The definition mark needs the exact words average distance between two successive collisions — a vague between collisions sentence loses it."
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_weight_positively_charged",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to the weight of a body when it is charged positively?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Electrons are removed",
+      "marks": 1
+    },
+    {
+      "label": "Weight decreases slightly",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: positive charging removes electrons; each electron has mass 9.1 × 10⁻³¹ kg, so the body's mass and hence its weight mg decrease slightly. Matches the book's answer (printed p.19)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Charges and Fields · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_electrons_removed",
+        "kind": "text",
+        "label": "Electrons are removed",
+        "marks": 1,
+        "mark_note": "Positive charging removes electrons",
+        "lines": [
+          "To charge a body positively, some electrons",
+          "are removed from it. Every electron has a",
+          "mass of 9.1 × 10⁻³¹ kg, so the mass of the",
+          "body decreases slightly."
+        ],
+        "margin_note": "First mark. Positive charging means electrons LEAVE the body — the mass change follows from that.",
+        "why": "Charging never moves protons; only electrons transfer. Positive charge means a shortage of electrons, and each missing electron takes its small mass away.",
+        "common_mistakes": [
+          "Saying protons are added to make the body positive. Charging transfers electrons only.",
+          "Saying the mass does not change. Each removed electron carries away 9.1 × 10⁻³¹ kg."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That positive charging removes electrons, and each electron carries away a small mass.",
+          "accept": [
+            "electrons are removed",
+            "the body loses electrons",
+            "each electron has mass"
+          ],
+          "reject": [
+            "weight decreases slightly"
+          ],
+          "heard_as": [
+            "electrons removed",
+            "positively charged",
+            "mass"
+          ]
+        },
+        "memory_tip": "Positive = electrons gone. Whatever leaves takes its mass with it."
+      },
+      {
+        "id": "s2_weight",
+        "kind": "boxed_final",
+        "label": "Weight decreases slightly",
+        "marks": 1,
+        "mark_note": "Weight = mg, so it decreases",
+        "lines": [
+          "Weight = mg. The mass has decreased",
+          "slightly, so the weight of the body also",
+          "decreases slightly.",
+          {
+            "text": "The weight decreases slightly",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Say slightly — the electron mass is tiny, so the change is very small.",
+        "why": "Weight is mg with g unchanged, so the weight tracks the mass exactly. The word slightly is part of the physics: the electron mass is about 10⁻³⁰ kg.",
+        "common_mistakes": [
+          "Answering that the weight increases. Electrons leave a positively charged body, they do not join it.",
+          "Dropping the word slightly. The examiner looks for it — the change is real but very small."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the weight decreases slightly because weight = mg and the mass decreased slightly.",
+          "accept": [
+            "weight decreases slightly",
+            "mg goes down a little"
+          ],
+          "reject": [
+            "electrons are removed"
+          ],
+          "heard_as": [
+            "decreases slightly",
+            "mg"
+          ]
+        },
+        "memory_tip": "Follow the chain: electrons out → mass down → weight mg down, all slightly."
+      }
+    ]
+  },
+  "insider_note": "The one-word trap: negatively charged would mean electrons ADDED and weight slightly increased — read which charge the question gives before writing."
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_galvanometer_to_voltmeter",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you convert a moving coil galvanometer into a voltmeter?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "High resistance in series",
+      "marks": 1
+    },
+    {
+      "label": "Why the series resistance works",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: a high resistance in series with the galvanometer limits the coil current to its small full-scale value for a large applied potential difference, and gives the combination the high overall resistance a voltmeter must have. Matches the book's answer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The mirror of the ammeter conversion: HIGH resistance, in SERIES — students who swap the two lose both conversion questions at once.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Moving Charges and Magnetism · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "text",
+        "label": "Connect a high resistance in series",
+        "marks": 1,
+        "mark_note": "High resistance in series",
+        "lines": [
+          "A moving coil galvanometer is converted",
+          "into a voltmeter by connecting a high",
+          "resistance in series with the",
+          "galvanometer coil."
+        ],
+        "margin_note": "First mark. Both words matter: HIGH resistance, in SERIES.",
+        "why": "In series, the same small current passes through the added resistance and the coil, so a large applied potential difference still drives only the coil's safe current.",
+        "common_mistakes": [
+          "Saying a low resistance is connected. A low resistance in parallel makes an ammeter, not a voltmeter.",
+          "Saying the resistance is in parallel. In parallel it would not limit the coil current."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a high resistance is connected in series with the galvanometer.",
+          "accept": [
+            "high resistance in series",
+            "series resistance with the galvanometer",
+            "resistance connected in series"
+          ],
+          "reject": [
+            "low resistance in parallel"
+          ],
+          "heard_as": [
+            "high resistance",
+            "series"
+          ]
+        },
+        "memory_tip": "Voltmeter needs a brake in the line: a high resistance in series."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "Why the series resistance works",
+        "marks": 1,
+        "mark_note": "Coil current limited; range extended",
+        "lines": [
+          "The high resistance limits the current",
+          "through the coil to its small full-scale",
+          "value even when a large potential",
+          "difference is applied across the meter.",
+          "The combination also has a high overall",
+          "resistance, so it draws very little",
+          "current from the circuit.",
+          {
+            "text": "High resistance in series: voltmeter",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Two effects: the coil is protected, and the meter as a whole draws almost no current.",
+        "why": "A voltmeter must read the potential difference between two points without disturbing the circuit, so its total resistance has to be high — the series resistance provides exactly that.",
+        "common_mistakes": [
+          "Saying the series resistance increases the current. It reduces the coil current for a given potential difference.",
+          "Forgetting that the high total resistance is what stops the meter loading the circuit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series resistance limits the coil current and gives the meter a high total resistance.",
+          "accept": [
+            "limits the current through the coil",
+            "meter draws very little current",
+            "range of the galvanometer increases"
+          ],
+          "reject": [
+            "most current goes through the shunt"
+          ],
+          "heard_as": [
+            "limits",
+            "high resistance"
+          ]
+        },
+        "memory_tip": "Series brake: big voltage outside, same small current inside the coil."
+      }
+    ]
+  }
+}

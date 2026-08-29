@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_node_and_antinode",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you understand by the terms 'node' and 'antinode'?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Node",
+      "marks": 1
+    },
+    {
+      "label": "Antinode",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: in a stationary wave y = 2A sin kx cos ωt, the amplitude 2A sin kx is zero at kx = 0, π, 2π … (nodes) and maximum at kx = π/2, 3π/2 … (antinodes); nodes and antinodes are fixed positions, alternating λ/4 apart."
+  },
+  "recall_prompt": "Say what a node is and what an antinode is, in a stationary wave.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Waves · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_node",
+        "kind": "text",
+        "label": "Node",
+        "marks": 1,
+        "mark_note": "Zero displacement points",
+        "lines": [
+          "In a stationary wave, the points where the",
+          "displacement of the particles is always",
+          "zero are called nodes."
+        ],
+        "margin_note": "First mark. The word always matters — a node never moves, at any instant.",
+        "why": "In a stationary wave the amplitude 2A sin kx depends on position; where sin kx = 0 the particle can never move — those fixed positions are the nodes.",
+        "common_mistakes": [
+          "Saying the displacement is zero at some instant — every particle passes through zero twice a cycle. A node has zero displacement at ALL times.",
+          "Placing nodes in a progressive wave — nodes and antinodes exist only in stationary waves."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a node is a point of a stationary wave where the displacement is always zero.",
+          "accept": [
+            "points of zero displacement",
+            "the particle never moves at a node",
+            "amplitude is zero at a node"
+          ],
+          "reject": [
+            "maximum displacement points"
+          ],
+          "heard_as": [
+            "node",
+            "zero displacement",
+            "stationary wave"
+          ]
+        },
+        "memory_tip": "Node — no motion. The n of node is the n of no."
+      },
+      {
+        "id": "s2_antinode",
+        "kind": "boxed_final",
+        "label": "Antinode",
+        "marks": 1,
+        "mark_note": "Maximum displacement points",
+        "lines": [
+          "The points where the particles vibrate",
+          "with maximum displacement are called",
+          "antinodes.",
+          "Nodes and antinodes alternate along the",
+          "wave, λ/4 apart.",
+          {
+            "text": "Node: always zero · Antinode: maximum",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Anti = opposite: the antinode is the opposite of the node — maximum vibration.",
+        "why": "Where sin kx = ±1 the amplitude takes its largest value 2A — those positions vibrate the most, exactly midway between the nodes.",
+        "common_mistakes": [
+          "Saying an antinode is at maximum displacement at all times — it vibrates THROUGH zero; its amplitude, not its position, is the maximum.",
+          "Writing the node–antinode gap as λ/2 — that is node to node. Node to the next antinode is λ/4."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an antinode is a point of a stationary wave where the particles vibrate with maximum amplitude.",
+          "accept": [
+            "points of maximum displacement",
+            "the particle vibrates the most",
+            "amplitude is maximum at an antinode"
+          ],
+          "reject": [
+            "displacement is always zero"
+          ],
+          "heard_as": [
+            "antinode",
+            "maximum",
+            "amplitude"
+          ]
+        },
+        "memory_tip": "Anti means opposite — the antinode does the opposite of the node: it vibrates the most."
+      }
+    ]
+  },
+  "insider_note": "The word always in the node definition is what separates a full mark from a half — every particle is momentarily at zero twice a cycle, but only a node stays there."
+}

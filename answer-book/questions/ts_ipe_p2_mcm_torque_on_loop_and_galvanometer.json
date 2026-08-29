@@ -1,0 +1,676 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_torque_on_loop_and_galvanometer",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Obtain an expression for the torque on a loop placed in a uniform magnetic field. Describe the construction and working of moving coil galvanometer.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The coil in the field",
+      "marks": 1
+    },
+    {
+      "label": "Forces on the b sides cancel",
+      "marks": 1
+    },
+    {
+      "label": "The couple on the l sides",
+      "marks": 1
+    },
+    {
+      "label": "The torque on the coil",
+      "marks": 2
+    },
+    {
+      "label": "Construction",
+      "marks": 1
+    },
+    {
+      "label": "Working",
+      "marks": 1
+    },
+    {
+      "label": "Deflection proportional to current",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+2+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: forces i(b × B) on the two b sides act along the suspension axis and cancel; the two l sides each carry ilB and form a couple of arm b sin θ, so τ = ilB · b sin θ = iAB sin θ and τ = niAB sin θ for n turns; in the radial field of the instrument sin θ = 1, so niAB = Cθ gives i = (C/nAB)θ = Kθ — all matching the book. The book's headings print 'Movind coil galvanometer', 'equibibrium', 'defrecting' and 'carrnet pases'; these spellings are corrected here and the physics is unchanged. The first figure is drawn as a view along the axis of suspension, which is not the book's three-dimensional drawing, because the arm b sin θ of the couple can be seen directly in that view."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "The radial field is the line that carries the second half: it is the reason sin θ = 1 at every deflection and the reason the scale is uniform. Note the marks are not split evenly — the torque derivation carries 5 and the galvanometer 3, so a full first half with no galvanometer still earns 5.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Moving Charges and Magnetism · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fig_loop",
+        "kind": "diagram",
+        "label": "The coil seen along its axis",
+        "marks": 0,
+        "figure": {
+          "id": "loop_in_uniform_field",
+          "width": 400,
+          "height": 270,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "coil_segment",
+              "d": "M 155 106 L 245 214",
+              "ms": 2010
+            },
+            {
+              "type": "stroke",
+              "id": "field_ray",
+              "d": "M 130 160 L 305 160",
+              "ms": 2500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "normal_line",
+              "d": "M 200 160 L 261 109",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "normal_arrowhead",
+              "d": "M 257 119 L 261 109 L 250 112",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "theta_arc",
+              "d": "M 238 160 A 38 38 0 0 0 229 136",
+              "ms": 370
+            },
+            {
+              "type": "stroke",
+              "id": "f1_line",
+              "d": "M 155 106 L 155 200",
+              "ms": 1340
+            },
+            {
+              "type": "stroke",
+              "id": "f1_arrowhead",
+              "d": "M 149 190 L 155 200 L 161 190",
+              "ms": 330
+            },
+            {
+              "type": "stroke",
+              "id": "f2_line",
+              "d": "M 245 214 L 245 120",
+              "ms": 1340
+            },
+            {
+              "type": "stroke",
+              "id": "f2_arrowhead",
+              "d": "M 239 130 L 245 120 L 251 130",
+              "ms": 330
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 312,
+              "y": 164,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 266,
+              "y": 104,
+              "text": "N",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 228,
+              "y": 156,
+              "text": "θ",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_left",
+              "x": 58,
+              "y": 202,
+              "text": "F = i l B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_right",
+              "x": 254,
+              "y": 200,
+              "text": "F = i l B",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "The coil seen from above, along its axis of suspension. The coil appears as a line of length b, the two l sides appear as its two ends, the normal N makes angle θ with the field B, and the two forces i l B form the couple.",
+        "why": "Seen this way the arm of the couple is the horizontal distance between the two force arrows, which is b sin θ — the one length the three-dimensional drawing hides.",
+        "common_mistakes": [
+          "Measuring θ from the plane of the coil. It is measured from the normal to the plane.",
+          "Drawing the two forces in the same direction. They are equal and opposite and do not act along the same line."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the coil is drawn in a uniform field with the normal at angle θ and the two equal opposite forces marked.",
+          "accept": [
+            "draw the coil in the field",
+            "normal at angle theta to the field",
+            "two equal opposite forces"
+          ],
+          "reject": [
+            "tau equals n i A B sine theta"
+          ],
+          "heard_as": [
+            "loop",
+            "figure"
+          ]
+        },
+        "memory_tip": "One slanted line for the coil, one arrow up and one down: that is the couple."
+      },
+      {
+        "id": "s2_setup",
+        "kind": "text",
+        "label": "The coil in the field",
+        "marks": 1,
+        "mark_note": "The set-up and the angle θ",
+        "lines": [
+          "Let a rectangular coil ABCD, with",
+          "AB = CD = l and AD = BC = b, carry a current",
+          "i. It is suspended in a uniform magnetic",
+          "field of induction B and is free to turn",
+          "about a vertical axis.",
+          "Let the normal to the plane of the coil make",
+          "an angle θ with the direction of the field."
+        ],
+        "margin_note": "First mark. Name the two side lengths l and b, the current i, the field B, and define θ from the NORMAL.",
+        "why": "θ is measured from the normal, not from the plane, so that θ = 0 means the coil faces the field squarely and feels no turning effect.",
+        "common_mistakes": [
+          "Taking θ between the plane of the coil and the field, which gives cos θ instead of sin θ.",
+          "Forgetting to say the field is uniform. In a non-uniform field there is also a net force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a rectangular coil of sides l and b carries current i in a uniform field B, with the normal at angle θ.",
+          "accept": [
+            "rectangular coil of sides l and b",
+            "uniform magnetic field of induction B",
+            "normal makes angle theta with the field"
+          ],
+          "reject": [
+            "forces on AD and BC cancel"
+          ],
+          "heard_as": [
+            "rectangular coil",
+            "normal"
+          ]
+        },
+        "memory_tip": "Angle from the normal, never from the plane."
+      },
+      {
+        "id": "s3_side_forces",
+        "kind": "equation",
+        "label": "Forces on the b sides cancel",
+        "marks": 1,
+        "mark_note": "i(b × B) forces cancel",
+        "lines": [
+          "The sides AD and BC, each of length b, carry",
+          "forces",
+          {
+            "text": "F = i (b × B)",
+            "style": "eq"
+          },
+          "These two forces are equal in size and",
+          "opposite in direction, and both act along",
+          "the vertical axis of suspension.",
+          "They therefore cancel each other and produce",
+          "no turning effect on the coil."
+        ],
+        "margin_note": "Second mark. Say why these two forces do nothing: they act along the same line, the axis of suspension.",
+        "why": "Two equal opposite forces along the SAME line cancel completely; it is only when their lines of action are separated that they turn the coil.",
+        "common_mistakes": [
+          "Saying these forces are zero. They are not zero; they cancel.",
+          "Leaving this pair out of the answer. The examiner marks the statement that they cancel."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the forces on the two b sides are equal and opposite along the axis of suspension and cancel.",
+          "accept": [
+            "forces on AD and BC cancel",
+            "along the axis of suspension",
+            "no turning effect"
+          ],
+          "reject": [
+            "form a couple of arm b sine theta"
+          ],
+          "heard_as": [
+            "cancel",
+            "axis of suspension"
+          ]
+        },
+        "memory_tip": "Same line, no turn."
+      },
+      {
+        "id": "s4_couple",
+        "kind": "equation",
+        "label": "The couple on the l sides",
+        "marks": 1,
+        "mark_note": "F = ilB each, arm = b sin θ",
+        "lines": [
+          "The sides AB and DC, each of length l, stay",
+          "perpendicular to the field in every position",
+          "of the coil, so each carries a force",
+          {
+            "text": "F = i l B",
+            "style": "eq"
+          },
+          "These two forces are equal, opposite and do",
+          "not act along the same line, so they form a",
+          "couple.",
+          "The perpendicular distance between their",
+          "lines of action is the arm of the couple,",
+          {
+            "text": "arm = b sin θ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The force on each l side, and the arm b sin θ. The sin θ enters here and nowhere else.",
+        "why": "Turning the coil does not change either force, only how far apart their lines of action are — which is why the whole angle dependence of the torque sits in the arm.",
+        "common_mistakes": [
+          "Writing the arm as b. The arm is the perpendicular distance b sin θ, not the full side.",
+          "Writing b cos θ, which comes from measuring θ from the plane instead of the normal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each l side carries F = ilB and the two form a couple of arm b sin θ.",
+          "accept": [
+            "force i l B on each of the two sides",
+            "they form a couple",
+            "arm is b sine theta"
+          ],
+          "reject": [
+            "tau equals i A B sine theta"
+          ],
+          "heard_as": [
+            "couple",
+            "b sine theta"
+          ]
+        },
+        "memory_tip": "The forces stay the same size; only the arm changes as the coil turns."
+      },
+      {
+        "id": "s5_torque",
+        "kind": "equation",
+        "label": "The torque on the coil",
+        "marks": 2,
+        "mark_note": "τ = niAB sin θ",
+        "lines": [
+          "Torque = one force × arm of the couple",
+          {
+            "text": "τ = (i l B)(b sin θ) = i (l b) B sin θ",
+            "style": "eq"
+          },
+          "Since l b = A, the area of the coil,",
+          {
+            "text": "τ = i A B sin θ",
+            "style": "eq"
+          },
+          "For a coil of n turns each turn contributes",
+          "the same couple, so",
+          {
+            "text": "τ = n i A B sin θ",
+            "style": "eq"
+          },
+          "τ is maximum when θ = 90°, that is when the",
+          "field lies in the plane of the coil, and τ is",
+          "zero when θ = 0°."
+        ],
+        "margin_note": "Two marks. Show lb becoming the area A, then bring in the n turns, then the maximum and zero cases.",
+        "why": "Only the product lb survives, so the torque depends on the area of the loop and not on its shape — a circular loop of the same area gives the same torque.",
+        "common_mistakes": [
+          "Writing τ = 2ilBb sin θ by counting both forces. A couple's torque is one force times the arm.",
+          "Dropping the n for a coil of many turns."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That τ = ilB × b sin θ = iAB sin θ, and τ = niAB sin θ for n turns.",
+          "accept": [
+            "force into arm of the couple",
+            "tau equals i A B sine theta",
+            "n i A B sine theta for n turns"
+          ],
+          "reject": [
+            "restoring torque C theta"
+          ],
+          "heard_as": [
+            "torque",
+            "n i A B sine theta"
+          ]
+        },
+        "memory_tip": "Number of turns, current, area, field, sine of the angle — in that order."
+      },
+      {
+        "id": "s6_fig_galvanometer",
+        "kind": "diagram",
+        "label": "The moving coil galvanometer",
+        "marks": 0,
+        "figure": {
+          "id": "moving_coil_galvanometer",
+          "width": 400,
+          "height": 340,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "support",
+              "d": "M 150 40 L 250 40",
+              "ms": 1430
+            },
+            {
+              "type": "stroke",
+              "id": "suspension",
+              "d": "M 200 40 L 200 112",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "pole_n",
+              "d": "M 75 100 L 145 100 A 70 70 0 0 0 145 200 L 75 200 L 75 100",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "pole_s",
+              "d": "M 325 100 L 255 100 A 70 70 0 0 1 255 200 L 325 200 L 325 100",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "coil_rect",
+              "d": "M 185 112 L 215 112 L 215 190 L 185 190 L 185 112",
+              "ms": 3090
+            },
+            {
+              "type": "stroke",
+              "id": "core_rect",
+              "d": "M 194 132 L 206 132 L 206 170 L 194 170 L 194 132",
+              "ms": 1430
+            },
+            {
+              "type": "stroke",
+              "id": "spring",
+              "d": "M 200 190 L 200 206 L 210 212 L 190 220 L 210 228 L 190 236 L 200 242 L 200 258",
+              "ms": 1710
+            },
+            {
+              "type": "stroke",
+              "id": "lead_out",
+              "d": "M 200 258 L 200 290",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "lbl_n_pole",
+              "x": 100,
+              "y": 158,
+              "text": "N",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_s_pole",
+              "x": 296,
+              "y": 158,
+              "text": "S",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_wire",
+              "x": 212,
+              "y": 66,
+              "text": "phosphor bronze wire",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_coil",
+              "x": 224,
+              "y": 108,
+              "text": "coil",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_core",
+              "x": 222,
+              "y": 178,
+              "text": "core",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_spring",
+              "x": 218,
+              "y": 226,
+              "text": "spring",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_g",
+              "x": 188,
+              "y": 306,
+              "text": "G",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "A rectangular coil hung by a phosphor bronze wire between the concave poles N and S, with a soft iron core inside the coil and a spring at the lower end.",
+        "why": "The concave poles together with the soft iron core are what make the field radial, so this shape is not decoration — it is the reason the instrument reads a current directly.",
+        "common_mistakes": [
+          "Drawing flat pole faces. They are concave, and with the core they make the field radial.",
+          "Leaving out the soft iron core inside the coil."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the coil, the phosphor bronze suspension, the concave poles, the soft iron core and the spring are drawn.",
+          "accept": [
+            "coil hung between the poles",
+            "phosphor bronze suspension",
+            "soft iron core and spring"
+          ],
+          "reject": [
+            "i equals K theta"
+          ],
+          "heard_as": [
+            "galvanometer",
+            "figure"
+          ]
+        },
+        "memory_tip": "Hang the coil, curve the poles, put the core in the middle, spring at the bottom."
+      },
+      {
+        "id": "s7_construction",
+        "kind": "text",
+        "label": "Construction",
+        "marks": 1,
+        "mark_note": "Coil, suspension, poles, core, spring",
+        "lines": [
+          "1) A moving coil galvanometer has a",
+          "   rectangular coil of insulated copper wire",
+          "   suspended between the concave poles of a",
+          "   horseshoe magnet by a phosphor bronze",
+          "   wire.",
+          "2) Phosphor bronze has a high Young's modulus",
+          "   and a very low rigidity modulus, so it can",
+          "   be twisted easily but not stretched.",
+          "3) A soft iron cylinder is placed inside the",
+          "   coil. It increases the field strength and,",
+          "   with the concave poles, makes the field",
+          "   radial.",
+          "4) In a radial field the field always lies in",
+          "   the plane of the coil, so the deflecting",
+          "   torque is n i A B at every deflection.",
+          "5) A spring at the lower end supplies the",
+          "   restoring couple, and the current enters",
+          "   and leaves through the suspension and the",
+          "   spring."
+        ],
+        "margin_note": "Fifth mark. Five short numbered points. The phosphor bronze property and the radial field are the two the examiner looks for.",
+        "why": "Every part answers one need: the wire must twist without stretching, the core must make the field radial, and the spring must supply a restoring couple that grows with the twist. A radial field gives the coil ZERO flux, not maximum: the field lies in the plane of the coil, so the normal is at 90° to B and Φ = NBA cos 90° = 0. What it maximises is the TORQUE, τ = niAB sin θ with sin θ = 1 at every deflection — and that is what makes the scale uniform.",
+        "common_mistakes": [
+          "Saying phosphor bronze has a high rigidity modulus. It is LOW, so the wire twists easily.",
+          "Saying the field is uniform. In this instrument it is radial.",
+          "Saying the radial field gives maximum flux. It gives maximum torque; the flux through the coil is zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The coil on a phosphor bronze suspension between concave poles, with a soft iron core making the field radial and a spring below.",
+          "accept": [
+            "rectangular coil of insulated copper wire",
+            "phosphor bronze suspension twists easily",
+            "soft iron core makes the field radial",
+            "spring gives the restoring couple"
+          ],
+          "reject": [
+            "n i A B equals C theta"
+          ],
+          "heard_as": [
+            "phosphor bronze",
+            "soft iron core",
+            "radial"
+          ]
+        },
+        "memory_tip": "Coil, wire, poles, core, spring — top to bottom, five parts."
+      },
+      {
+        "id": "s8_working",
+        "kind": "equation",
+        "label": "Working",
+        "marks": 1,
+        "mark_note": "Deflecting torque niAB, restoring torque Cθ",
+        "lines": [
+          "When a current i passes through the coil, the",
+          "coil experiences a deflecting torque.",
+          "The field is radial, so it lies in the plane",
+          "of the coil in every position and sin θ = 1.",
+          {
+            "text": "deflecting torque = n i A B",
+            "style": "eq"
+          },
+          "The coil turns and twists the suspension",
+          "wire. If the coil turns through an angle θ,",
+          "the wire sets up a restoring torque",
+          {
+            "text": "restoring torque = C θ",
+            "style": "eq"
+          },
+          "where C is the restoring couple per unit",
+          "twist of the wire."
+        ],
+        "margin_note": "Sixth mark. The radial field removes sin θ from the deflecting torque; the suspension supplies a restoring torque proportional to the twist.",
+        "why": "Without the radial field the deflecting torque would fall as the coil turned, and equal steps of current would give smaller and smaller steps of deflection.",
+        "common_mistakes": [
+          "Keeping sin θ in the deflecting torque of the instrument. The radial field makes sin θ = 1.",
+          "Writing the restoring torque as C alone. It grows with the twist, as Cθ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the deflecting torque is niAB because the field is radial, and the restoring torque is Cθ.",
+          "accept": [
+            "deflecting torque n i A B",
+            "radial field so sine theta is one",
+            "restoring torque C theta"
+          ],
+          "reject": [
+            "i equals K theta"
+          ],
+          "heard_as": [
+            "deflecting torque",
+            "restoring couple"
+          ]
+        },
+        "memory_tip": "Current pushes the coil round, the wire's twist pushes it back."
+      },
+      {
+        "id": "s9_final",
+        "kind": "boxed_final",
+        "label": "Deflection proportional to current",
+        "marks": 1,
+        "mark_note": "i = Kθ, K = C/nAB",
+        "lines": [
+          "At equilibrium the deflecting torque equals",
+          "the restoring torque:",
+          {
+            "text": "n i A B = C θ",
+            "style": "eq"
+          },
+          {
+            "text": "i = (C / n A B) θ = K θ",
+            "style": "eq"
+          },
+          {
+            "text": "i ∝ θ,   K = C / n A B",
+            "style": "boxed"
+          },
+          "K is called the galvanometer constant.",
+          "The current is directly proportional to the",
+          "deflection, so the instrument has a uniform",
+          "scale."
+        ],
+        "margin_note": "Last mark. Equate the two torques, make i the subject, and finish with the statement that the scale is uniform.",
+        "why": "Every quantity in K is fixed by the construction, so once the instrument is built the deflection reads the current on a scale of equal divisions.",
+        "common_mistakes": [
+          "Writing θ ∝ 1/i. The deflection grows with the current.",
+          "Leaving out the constant K or its expression C/nAB."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That niAB = Cθ gives i = (C/nAB)θ = Kθ, so the current is proportional to the deflection.",
+          "accept": [
+            "n i A B equals C theta",
+            "i equals K theta",
+            "K is C by n A B",
+            "uniform scale"
+          ],
+          "reject": [
+            "restoring torque is C theta"
+          ],
+          "heard_as": [
+            "galvanometer constant",
+            "proportional"
+          ]
+        },
+        "memory_tip": "Set the two torques equal and the current falls out as a straight multiple of the turn."
+      }
+    ]
+  }
+}

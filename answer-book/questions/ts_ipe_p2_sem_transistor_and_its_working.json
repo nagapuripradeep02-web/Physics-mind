@@ -1,0 +1,711 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_sem_transistor_and_its_working",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Semiconductor Electronics"
+  },
+  "chapter": "Semiconductor Electronics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe a transistor and explain its working.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Transistor defined",
+      "marks": 1
+    },
+    {
+      "label": "Emitter, base and collector",
+      "marks": 2
+    },
+    {
+      "label": "Working of the p-n-p transistor",
+      "marks": 2
+    },
+    {
+      "label": "Working of the n-p-n transistor",
+      "marks": 2
+    },
+    {
+      "label": "The current relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+2+2+2+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two figures carry 0 marks because the question does not ask for a diagram. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. TRANSCRIPTION: the book prints 'a small base correct' for base current, 'reverse bised', 'penitrate', and 'As the base in lightly doped'; all are written correctly here. The current-gain definitions α = I_C/I_E, β = I_C/I_B and β = α/(1 − α) are ADDED — the book gives only I_E = I_B + I_C. Physics hand-checked: the emitter is heavily doped, the base thin and lightly doped, the collector moderately doped; the emitter-base junction is forward biased and the collector-base junction reverse biased in both types; in p-n-p the carriers crossing the base are holes and in n-p-n they are electrons; conservation of charge at the device gives I_E = I_B + I_C, and dividing through gives β = α/(1 − α). Symbols with capital-letter subscripts are authored as KaTeX, which Unicode cannot encode honestly. FIGURE NOTE: the battery plate lengths are drawn to the correct polarity for each type — in p-n-p the emitter side of the left battery is positive and the collector side of the right battery is negative; in n-p-n both are reversed. The current arrows follow the conventional current: into the emitter for p-n-p and out of the emitter for n-p-n. Both figures were rendered and inspected before this card was filed."
+  },
+  "recall_prompt": "Describe the transistor — its three sections and their doping — then explain the p-n-p and n-p-n working and give the current relation.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Semiconductor Electronics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transistor",
+        "kind": "text",
+        "label": "Transistor",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Transistor:",
+            "style": "heading"
+          },
+          "A transistor is a device which consists of",
+          "two p-n junctions. It is also called a",
+          "junction transistor.",
+          "The name comes from transfer of",
+          "resistance from the input to the output.",
+          "There are two types: p-n-p and n-p-n."
+        ],
+        "margin_note": "First mark. Two p-n junctions, and both types named.",
+        "why": "Two junctions in one crystal is what separates a transistor from a diode. Naming both types at the start also sets up the two halves of the working that follow.",
+        "common_mistakes": [
+          "Saying it has one p-n junction. That is a diode.",
+          "Saying it is made by joining two separate diodes. The three regions are parts of one crystal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a transistor is a single device with two p-n junctions, of two types, p-n-p and n-p-n.",
+          "accept": [
+            "device with two p n junctions",
+            "junction transistor",
+            "two types p n p and n p n"
+          ],
+          "reject": [
+            "the emitter is heavily doped"
+          ],
+          "heard_as": [
+            "transistor",
+            "two junctions",
+            "p n p"
+          ]
+        },
+        "memory_tip": "One junction is a diode; two junctions in one crystal is a transistor."
+      },
+      {
+        "id": "s2_three_sections",
+        "kind": "text",
+        "label": "The three sections",
+        "marks": 2,
+        "mark_note": "All three with their doping",
+        "lines": [
+          "i) Emitter (E): the section at one end. It",
+          {
+            "text": "is heavily doped and supplies the",
+            "style": "indent"
+          },
+          {
+            "text": "majority charge carriers.",
+            "style": "indent"
+          },
+          "ii) Base (B): the section in the middle. It",
+          {
+            "text": "is very thin and lightly doped, so most",
+            "style": "indent"
+          },
+          {
+            "text": "of the injected carriers pass through it",
+            "style": "indent"
+          },
+          {
+            "text": "to the collector.",
+            "style": "indent"
+          },
+          "iii) Collector (C): the section at the other",
+          {
+            "text": "end. It is moderately doped and",
+            "style": "indent"
+          },
+          {
+            "text": "collects the majority carriers that come",
+            "style": "indent"
+          },
+          {
+            "text": "through the base.",
+            "style": "indent"
+          },
+          "In both types the emitter-base junction",
+          "is forward biased and the collector-base",
+          "junction is reverse biased."
+        ],
+        "margin_note": "Two marks. Each section needs its doping level, and the base needs the word THIN as well.",
+        "why": "The doping levels are not descriptive detail — they are the design. Heavy emitter doping supplies plenty of carriers, and a thin lightly doped base means few of them recombine there, so nearly all reach the collector. That is why the collector current is almost as large as the emitter current.",
+        "common_mistakes": [
+          "Saying the base is heavily doped. It is lightly doped, and thin.",
+          "Leaving out the biasing sentence. Both junctions and both biases are needed.",
+          "Saying the collector is the most heavily doped section. The emitter is."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the emitter is heavily doped, the base thin and lightly doped, the collector moderately doped, with the emitter junction forward biased and the collector junction reverse biased.",
+          "accept": [
+            "emitter heavily doped supplies the carriers",
+            "base is thin and lightly doped",
+            "collector moderately doped and collects the carriers"
+          ],
+          "reject": [
+            "holes cross the emitter base junction"
+          ],
+          "heard_as": [
+            "emitter",
+            "base",
+            "collector",
+            "lightly doped"
+          ]
+        },
+        "memory_tip": "Heavy, thin and light, moderate — emitter, base, collector, in that order."
+      },
+      {
+        "id": "s3_pnp_figure",
+        "kind": "diagram",
+        "label": "p-n-p connection",
+        "marks": 0,
+        "figure": {
+          "id": "pnp_connection",
+          "width": 400,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "pnpc_body",
+              "d": "M 70 55 L 300 55 L 300 130 L 70 130 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "pnpc_div1",
+              "d": "M 147 55 L 147 130",
+              "ms": 1070
+            },
+            {
+              "type": "stroke",
+              "id": "pnpc_div2",
+              "d": "M 224 55 L 224 130",
+              "ms": 1070
+            },
+            {
+              "type": "stroke",
+              "id": "pnpc_left",
+              "d": "M 70 92 L 34 92 L 34 190 L 104 190 M 112 176 L 112 204 M 122 182 L 122 198 M 122 190 L 185 190 L 185 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "pnpc_right",
+              "d": "M 300 92 L 336 92 L 336 190 L 266 190 M 258 182 L 258 198 M 248 176 L 248 204 M 248 190 L 185 190",
+              "ms": 4440
+            },
+            {
+              "type": "stroke",
+              "id": "pnpc_arrow_e",
+              "d": "M 52 87 L 60 92 L 52 97",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "pnpc_arrow_c",
+              "d": "M 318 87 L 326 92 L 318 97",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "pnpc_lbl_p1",
+              "x": 100,
+              "y": 100,
+              "text": "p",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pnpc_lbl_n",
+              "x": 178,
+              "y": 100,
+              "text": "n",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pnpc_lbl_p2",
+              "x": 255,
+              "y": 100,
+              "text": "p",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pnpc_lbl_e",
+              "x": 44,
+              "y": 80,
+              "text": "E",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pnpc_lbl_c",
+              "x": 314,
+              "y": 80,
+              "text": "C",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pnpc_lbl_b",
+              "x": 194,
+              "y": 162,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pnpc_lbl_fwd",
+              "x": 44,
+              "y": 232,
+              "text": "Forward bias",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "pnpc_lbl_rev",
+              "x": 236,
+              "y": 232,
+              "text": "Reverse bias",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Basic connection of a p-n-p transistor. The emitter side of the left battery is positive; the collector side of the right battery is negative.",
+        "why": "The battery polarities are the whole figure: the long plate is the positive terminal, and here the positive terminal faces the p-type emitter. That is what forward biases the emitter junction and pushes holes towards the base.",
+        "common_mistakes": [
+          "Reversing the batteries. In p-n-p the emitter side is positive.",
+          "Forward biasing the collector junction as well. It must be reverse biased."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the p-n-p figure shows p, n, p regions with the emitter junction forward biased and the collector junction reverse biased.",
+          "accept": [
+            "p n p with two batteries",
+            "emitter junction forward biased, collector junction reverse biased",
+            "draw the basic connection of a p n p transistor"
+          ],
+          "reject": [
+            "electrons cross into the base"
+          ],
+          "heard_as": [
+            "figure",
+            "p n p",
+            "connection"
+          ]
+        },
+        "memory_tip": "Positive plate faces the p-type emitter. p for positive."
+      },
+      {
+        "id": "s4_pnp_working",
+        "kind": "text",
+        "label": "p-n-p working",
+        "marks": 2,
+        "mark_note": "Hole flow through all three regions",
+        "lines": [
+          {
+            "text": "Working of a p-n-p transistor:",
+            "style": "heading"
+          },
+          "i) The emitter and collector are p-type",
+          {
+            "text": "and the base is n-type. The emitter-base",
+            "style": "indent"
+          },
+          {
+            "text": "junction is forward biased and the",
+            "style": "indent"
+          },
+          {
+            "text": "collector-base junction reverse biased.",
+            "style": "indent"
+          },
+          "ii) Holes in the emitter are repelled by",
+          {
+            "text": "the positive terminal, cross the",
+            "style": "indent"
+          },
+          {
+            "text": "emitter-base junction and enter the",
+            "style": "indent"
+          },
+          {
+            "text": "base. This is the emitter current.",
+            "style": "indent"
+          },
+          "iii) The base is thin and lightly doped, so",
+          {
+            "text": "only a few holes recombine with",
+            "style": "indent"
+          },
+          {
+            "text": "electrons there. This small flow is the",
+            "style": "indent"
+          },
+          {
+            "text": "base current.",
+            "style": "indent"
+          },
+          "iv) Most of the holes pass through the",
+          {
+            "text": "base and reach the collector region,",
+            "style": "indent"
+          },
+          {
+            "text": "giving the large collector current.",
+            "style": "indent"
+          },
+          "v) Inside the transistor the current is",
+          {
+            "text": "carried by holes; in the external circuit",
+            "style": "indent"
+          },
+          {
+            "text": "it is carried by electrons.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Two marks. Follow one hole from the emitter, through the base, to the collector — and name each current as it appears.",
+        "why": "The three currents are three stages of the same flow of holes, not three separate things. Because the base is thin and lightly doped, only a small part of that flow is lost there, so the collector current is nearly the whole emitter current — which is what makes the device useful as an amplifier.",
+        "common_mistakes": [
+          "Saying the base current is large. It is small, because the base is thin and lightly doped.",
+          "Saying electrons carry the current inside a p-n-p transistor. Holes do.",
+          "Forward biasing the collector junction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That holes leave the emitter, most cross the thin lightly doped base to the collector, and only a few recombine there giving the small base current.",
+          "accept": [
+            "holes cross the emitter base junction into the base",
+            "few holes recombine so the base current is small",
+            "most holes reach the collector"
+          ],
+          "reject": [
+            "electrons cross the emitter base junction"
+          ],
+          "heard_as": [
+            "holes",
+            "emitter current",
+            "collector current"
+          ]
+        },
+        "memory_tip": "p-n-p carries holes. Follow one hole and the three currents name themselves."
+      },
+      {
+        "id": "s5_npn_figure",
+        "kind": "diagram",
+        "label": "n-p-n connection",
+        "marks": 0,
+        "figure": {
+          "id": "npn_connection",
+          "width": 400,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "npnc_body",
+              "d": "M 70 55 L 300 55 L 300 130 L 70 130 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "npnc_div1",
+              "d": "M 147 55 L 147 130",
+              "ms": 1070
+            },
+            {
+              "type": "stroke",
+              "id": "npnc_div2",
+              "d": "M 224 55 L 224 130",
+              "ms": 1070
+            },
+            {
+              "type": "stroke",
+              "id": "npnc_left",
+              "d": "M 70 92 L 34 92 L 34 190 L 104 190 M 112 182 L 112 198 M 122 176 L 122 204 M 122 190 L 185 190 L 185 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "npnc_right",
+              "d": "M 300 92 L 336 92 L 336 190 L 266 190 M 258 176 L 258 204 M 248 182 L 248 198 M 248 190 L 185 190",
+              "ms": 4440
+            },
+            {
+              "type": "stroke",
+              "id": "npnc_arrow_e",
+              "d": "M 52 87 L 44 92 L 52 97",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "npnc_arrow_c",
+              "d": "M 318 87 L 310 92 L 318 97",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "npnc_lbl_n1",
+              "x": 100,
+              "y": 100,
+              "text": "n",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "npnc_lbl_p",
+              "x": 178,
+              "y": 100,
+              "text": "p",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "npnc_lbl_n2",
+              "x": 255,
+              "y": 100,
+              "text": "n",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "npnc_lbl_e",
+              "x": 44,
+              "y": 80,
+              "text": "E",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "npnc_lbl_c",
+              "x": 314,
+              "y": 80,
+              "text": "C",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "npnc_lbl_b",
+              "x": 194,
+              "y": 162,
+              "text": "B",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "npnc_lbl_fwd",
+              "x": 44,
+              "y": 232,
+              "text": "Forward bias",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "npnc_lbl_rev",
+              "x": 236,
+              "y": 232,
+              "text": "Reverse bias",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Basic connection of an n-p-n transistor. Both batteries are turned round: the emitter side is negative, the collector side positive.",
+        "why": "The n-p-n figure is the p-n-p figure with every polarity reversed, because the carriers that must be pushed out of the emitter are now electrons instead of holes. Drawing them one under the other makes that single difference obvious.",
+        "common_mistakes": [
+          "Copying the p-n-p battery polarities. Both are reversed for n-p-n.",
+          "Writing p, n, p under the three regions. For n-p-n it is n, p, n."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the n-p-n figure shows n, p, n regions with both battery polarities reversed from the p-n-p case.",
+          "accept": [
+            "n p n with the batteries the other way round",
+            "emitter side negative and collector side positive",
+            "draw the basic connection of an n p n transistor"
+          ],
+          "reject": [
+            "holes cross into the base"
+          ],
+          "heard_as": [
+            "figure",
+            "n p n",
+            "connection"
+          ]
+        },
+        "memory_tip": "Same picture, every polarity flipped — and n, p, n instead of p, n, p."
+      },
+      {
+        "id": "s6_npn_working",
+        "kind": "text",
+        "label": "n-p-n working",
+        "marks": 2,
+        "mark_note": "Electron flow through all three regions",
+        "lines": [
+          {
+            "text": "Working of an n-p-n transistor:",
+            "style": "heading"
+          },
+          "i) The emitter and collector are n-type",
+          {
+            "text": "and the base is p-type. The emitter-base",
+            "style": "indent"
+          },
+          {
+            "text": "junction is forward biased and the",
+            "style": "indent"
+          },
+          {
+            "text": "collector-base junction reverse biased.",
+            "style": "indent"
+          },
+          "ii) Electrons in the emitter are repelled",
+          {
+            "text": "by the negative terminal, cross the",
+            "style": "indent"
+          },
+          {
+            "text": "emitter-base junction and enter the",
+            "style": "indent"
+          },
+          {
+            "text": "base. This is the emitter current.",
+            "style": "indent"
+          },
+          "iii) The base is thin and lightly doped, so",
+          {
+            "text": "only a few electrons recombine with",
+            "style": "indent"
+          },
+          {
+            "text": "holes there, giving the small base",
+            "style": "indent"
+          },
+          {
+            "text": "current.",
+            "style": "indent"
+          },
+          "iv) Most of the electrons pass through the",
+          {
+            "text": "base and reach the collector region,",
+            "style": "indent"
+          },
+          {
+            "text": "giving the large collector current.",
+            "style": "indent"
+          },
+          "v) Here the current is carried by",
+          {
+            "text": "electrons both inside the transistor and",
+            "style": "indent"
+          },
+          {
+            "text": "in the external circuit.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Two marks. The same four stages as the p-n-p case, with electrons in place of holes.",
+        "why": "Only the carrier changes. Because electrons move faster than holes in the same material, n-p-n transistors are the ones used in most circuits — the same reason the NOT gate circuit earlier in this chapter uses an n-p-n transistor.",
+        "common_mistakes": [
+          "Saying holes cross the base in an n-p-n transistor. Electrons do.",
+          "Saying the current in the external circuit is carried by holes. Outside the crystal it is always electrons.",
+          "Making the base current the large one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That electrons leave the emitter, most cross the thin lightly doped base to the collector, and only a few recombine there giving the small base current.",
+          "accept": [
+            "electrons cross the emitter base junction",
+            "few electrons recombine so the base current is small",
+            "most electrons reach the collector"
+          ],
+          "reject": [
+            "holes cross the emitter base junction"
+          ],
+          "heard_as": [
+            "electrons",
+            "emitter current",
+            "collector current"
+          ]
+        },
+        "memory_tip": "Same four stages, electrons instead of holes."
+      },
+      {
+        "id": "s7_current_relation",
+        "kind": "boxed_final",
+        "label": "Current relation",
+        "marks": 1,
+        "mark_note": "Relation and current gains",
+        "lines": [
+          "Whatever leaves the emitter arrives",
+          "either at the base or at the collector:",
+          {
+            "text": "I_E = I_B + I_C",
+            "style": "eq",
+            "render": "katex"
+          },
+          "The current gains are defined as",
+          {
+            "text": "\\alpha = \\dfrac{I_C}{I_E}, \\qquad \\beta = \\dfrac{I_C}{I_B}",
+            "style": "eq",
+            "render": "katex"
+          },
+          {
+            "text": "\\beta = \\dfrac{\\alpha}{1 - \\alpha}",
+            "style": "eq",
+            "render": "katex"
+          },
+          "α is a little less than 1 and β is large,",
+          "which is why a transistor can amplify.",
+          {
+            "text": "I_E = I_B + I_C",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Eighth mark. The relation itself is the marked line; the two gains are worth adding.",
+        "why": "The relation is just conservation of charge: no carrier disappears, so the emitter current splits between the base and the collector. Because the base takes only a small share, α is close to 1 and β = α/(1 − α) becomes large — a small base current controls a much larger collector current.",
+        "common_mistakes": [
+          "Writing I_B = I_E + I_C. The emitter current is the largest of the three.",
+          "Writing β = α. The two are different; β = α/(1 − α).",
+          "Saying α is greater than 1. It is always a little less than 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the emitter current equals the base current plus the collector current, with α = I_C/I_E and β = I_C/I_B.",
+          "accept": [
+            "I E equals I B plus I C",
+            "alpha is collector by emitter current",
+            "beta is collector by base current"
+          ],
+          "reject": [
+            "electrons cross into the collector"
+          ],
+          "heard_as": [
+            "I E",
+            "alpha",
+            "beta"
+          ]
+        },
+        "memory_tip": "The emitter current splits two ways, so it is the biggest of the three."
+      }
+    ]
+  },
+  "insider_note": "The two workings are the same four stages twice — holes for p-n-p, electrons for n-p-n. Write the p-n-p case carefully and the n-p-n case is a rewrite with one word changed."
+}

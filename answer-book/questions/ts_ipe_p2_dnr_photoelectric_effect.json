@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_photoelectric_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is \"photoelectric effect\"?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Photoelectrons and threshold frequency",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.42); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: emission of electrons from a metal surface under radiation of suitable frequency is the photoelectric effect; emission happens only for frequency at or above the threshold frequency ν₀ of the metal, which is the book's own 'suitable frequency' made precise. A lecturer's pen tick marks this question in the source scan as one to expect."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Dual Nature of Radiation and Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Emission of electrons under radiation",
+        "lines": [
+          "When radiation of a suitable frequency falls",
+          "on a metal surface, electrons are emitted",
+          "from the surface. This phenomenon is called",
+          "the photoelectric effect."
+        ],
+        "margin_note": "First mark. Three parts: radiation of suitable frequency, a metal surface, electrons emitted.",
+        "why": "Each word narrows the claim: the radiation must have a high enough frequency, the surface is a metal, and what comes out is electrons — not light and not ions.",
+        "common_mistakes": [
+          "Writing radiation of any frequency. Below the threshold frequency no electrons come out at all.",
+          "Saying the metal emits light. It emits electrons."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That electrons are emitted from a metal surface when radiation of suitable frequency falls on it.",
+          "accept": [
+            "electrons are emitted from the metal",
+            "radiation of suitable frequency",
+            "light falls on a metal surface and electrons come out"
+          ],
+          "reject": [
+            "threshold frequency nu naught"
+          ],
+          "heard_as": [
+            "photoelectric effect",
+            "emission of electrons",
+            "suitable frequency"
+          ]
+        },
+        "memory_tip": "Photo then electric: light goes in, electrons come out."
+      },
+      {
+        "id": "s2_photoelectrons_threshold",
+        "kind": "boxed_final",
+        "label": "Photoelectrons and threshold frequency",
+        "marks": 1,
+        "mark_note": "Emission only at or above ν₀",
+        "lines": [
+          "The emitted electrons are called",
+          "photoelectrons. Emission takes place only",
+          "when the frequency of the radiation is at or",
+          "above a minimum value called the threshold",
+          "frequency ν₀ of the metal.",
+          {
+            "text": "Suitable frequency in, electrons out",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the photoelectrons and the threshold frequency ν₀.",
+        "why": "The words suitable frequency in the definition stand for a real condition: each metal has a threshold frequency ν₀, and radiation below ν₀ emits no electrons at any intensity.",
+        "common_mistakes": [
+          "Saying stronger light always causes emission. Below ν₀ no intensity produces photoelectrons.",
+          "Calling ν₀ the threshold wavelength. ν₀ is a frequency; the threshold wavelength is c/ν₀."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the emitted electrons are photoelectrons and emission needs the frequency to be at or above the threshold frequency ν₀.",
+          "accept": [
+            "photoelectrons",
+            "threshold frequency",
+            "no emission below nu naught"
+          ],
+          "reject": [
+            "electrons are emitted from the metal"
+          ],
+          "heard_as": [
+            "photoelectrons",
+            "threshold frequency",
+            "nu naught"
+          ]
+        },
+        "memory_tip": "Name both: photoelectrons for the particles, ν₀ for the frequency floor."
+      }
+    ]
+  },
+  "insider_note": "The definition alone reads as one mark; the second comes from naming the photoelectrons and the threshold frequency ν₀."
+}

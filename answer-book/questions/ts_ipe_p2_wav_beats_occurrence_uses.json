@@ -1,0 +1,208 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_wav_beats_occurrence_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Waves"
+  },
+  "chapter": "Waves",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are beats? When do they occur? Explain their use, if any.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of beats",
+      "marks": 1
+    },
+    {
+      "label": "Waxing and waning",
+      "marks": 1
+    },
+    {
+      "label": "Beat frequency",
+      "marks": 1
+    },
+    {
+      "label": "Uses of beats",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: beats need two waves of NEARLY equal frequencies in the same direction; maxima arrive where the waves meet in phase and minima in opposite phase; the beat frequency equals the difference n₁ − n₂ (the book writes n₁ ~ n₂, the positive difference). The book spells 'waining' — corrected to waning throughout."
+  },
+  "recall_prompt": "Say what beats are, when they occur, the beat frequency formula, and two uses.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Waves · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition of beats",
+        "marks": 1,
+        "mark_note": "Nearly equal frequencies, same direction",
+        "lines": [
+          "When two sound waves of nearly equal",
+          "frequencies travel in the same direction",
+          "and superpose, the loudness of the sound",
+          "rises and falls at regular intervals of",
+          "time. This phenomenon is called beats."
+        ],
+        "margin_note": "First mark. The condition — NEARLY equal frequencies — is part of the definition.",
+        "why": "Nearly equal is the whole condition: equal frequencies give a steady loudness, and widely different frequencies rise and fall too fast for the ear to follow. Only a small difference produces countable beats.",
+        "common_mistakes": [
+          "Writing equal frequencies — equal frequencies give NO beats; the frequencies must be nearly equal.",
+          "Leaving out same direction — beats come from superposition along the same line of travel."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That beats are the regular rise and fall of loudness when two waves of nearly equal frequencies superpose.",
+          "accept": [
+            "loudness rises and falls at regular intervals",
+            "two waves of nearly equal frequencies",
+            "travelling in the same direction"
+          ],
+          "reject": [
+            "beat frequency is n1 minus n2"
+          ],
+          "heard_as": [
+            "beats",
+            "nearly equal",
+            "loudness"
+          ]
+        },
+        "memory_tip": "Three conditions in one sentence: two waves, nearly equal frequencies, same direction."
+      },
+      {
+        "id": "s2_waxing_waning",
+        "kind": "text",
+        "label": "Waxing and waning",
+        "marks": 1,
+        "mark_note": "Phase explains loud and soft",
+        "lines": [
+          "Let the two frequencies be n₁ and n₂",
+          "(n₁ > n₂). Where the two waves meet in",
+          "the same phase, the intensity of sound is",
+          "maximum — waxing. Where they meet in",
+          "opposite phase, the intensity is",
+          "minimum — waning."
+        ],
+        "margin_note": "Second mark. Same phase = waxing (loud); opposite phase = waning (soft).",
+        "why": "The two frequencies drift in and out of step because they are not exactly equal — in phase their displacements add (loud), in opposite phase they cancel (soft), and the cycle repeats at a regular interval.",
+        "common_mistakes": [
+          "Swapping the terms — waxing is the loud instant (same phase), waning the soft one (opposite phase).",
+          "Saying the waves stay in one phase relation — the small frequency difference makes the phase relation change continuously."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That same-phase meetings give maximum intensity (waxing) and opposite-phase meetings give minimum (waning).",
+          "accept": [
+            "in phase gives maximum, waxing",
+            "opposite phase gives minimum, waning",
+            "the waves drift in and out of step"
+          ],
+          "reject": [
+            "the number of waxings per second"
+          ],
+          "heard_as": [
+            "waxing",
+            "waning",
+            "in phase",
+            "opposite phase"
+          ]
+        },
+        "memory_tip": "Waxing = growing loud, waning = fading soft — the same pair of words used for the moon."
+      },
+      {
+        "id": "s3_beat_frequency",
+        "kind": "equation",
+        "label": "Beat frequency",
+        "marks": 1,
+        "mark_note": "n = n₁ − n₂",
+        "lines": [
+          "The number of waxings (or wanings) heard",
+          "in one second is called the beat",
+          "frequency.",
+          {
+            "text": "Beat frequency n = n₁ − n₂",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third mark. Define it in words first, then write the difference formula.",
+        "why": "In one second the higher-frequency wave completes n₁ − n₂ more vibrations than the other, so the pair comes back into step n₁ − n₂ times — one loud instant each time. The formula IS that counting argument.",
+        "common_mistakes": [
+          "Writing n₁ + n₂ — the sum is not heard as beats; the ear counts the DIFFERENCE.",
+          "Giving a negative beat frequency — take n₁ > n₂, or write the positive difference."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the beat frequency equals the difference of the two frequencies, n₁ − n₂.",
+          "accept": [
+            "n1 minus n2",
+            "the difference of the two frequencies",
+            "waxings per second equals the difference"
+          ],
+          "reject": [
+            "used to detect gases in mines"
+          ],
+          "heard_as": [
+            "beat frequency",
+            "difference",
+            "n one minus n two"
+          ]
+        },
+        "memory_tip": "The faster wave gains one full vibration per beat — so beats per second = the frequency difference."
+      },
+      {
+        "id": "s4_uses",
+        "kind": "text",
+        "label": "Uses of beats",
+        "marks": 1,
+        "mark_note": "Uses listed",
+        "lines": [
+          "1) To detect dangerous gases in mines.",
+          "2) To produce special sound effects in",
+          "films (cinematography).",
+          "3) To find the unknown frequency of a",
+          "note, using a fork of known frequency."
+        ],
+        "margin_note": "Fourth mark. Three named uses close the answer.",
+        "why": "Each use is the same measurement: a change in beat count reveals a change in one frequency — air with gas changes a pipe's note against a reference, and an unknown fork's frequency sits a counted number of beats from a known one.",
+        "common_mistakes": [
+          "Naming only one use — the question asks for their use, and listed answers earn with two or three items."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That beats detect mine gases, make sound effects in films, and find an unknown frequency.",
+          "accept": [
+            "detecting gases in mines",
+            "special effects in cinematography",
+            "finding an unknown frequency"
+          ],
+          "reject": [
+            "waxing and waning"
+          ],
+          "heard_as": [
+            "mines",
+            "cinematography",
+            "unknown frequency"
+          ]
+        },
+        "memory_tip": "Mines, movies, music — the three m-words of beat uses."
+      }
+    ]
+  },
+  "insider_note": "The condition nearly equal in the first sentence and the difference formula n₁ − n₂ are the two places this answer usually leaks marks."
+}

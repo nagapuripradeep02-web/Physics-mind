@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_mcm_moving_coil_galvanometer_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Moving Charges and Magnetism"
+  },
+  "chapter": "Moving Charges and Magnetism",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the principle of the moving coil galvanometer?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A current coil in a field feels a torque",
+      "marks": 1
+    },
+    {
+      "label": "Deflection proportional to current",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: principle — a current-carrying coil in a magnetic field experiences a torque τ = NiAB sin θ and rotates; in the radial field of the instrument the torque is always NiAB, so the steady deflection is proportional to the current. The book's printed question reads 'principal of the moving coil galvonometer' — corrected here to 'principle' and 'galvanometer'."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "insider_note": "State the torque as the principle, then add the radial-field line — that second line is what separates a 2-mark answer from a 1-mark one.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Moving Charges and Magnetism · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Current coil in a field: torque",
+        "lines": [
+          "A current-carrying coil suspended in a",
+          "magnetic field experiences a torque, and",
+          "the torque rotates the coil.",
+          {
+            "text": "τ = N i A B sin θ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The one-line principle: a current coil in a magnetic field experiences a torque.",
+        "why": "Everything in the instrument follows from this one fact — the current makes the torque, and the torque turns the coil against the suspension wire. θ here is measured from the NORMAL to the plane of the coil, not from the plane itself — the same θ the long-answer form warns about.",
+        "common_mistakes": [
+          "Saying the coil feels a net force. In a uniform field the net force is zero; it is the TORQUE that turns the coil.",
+          "Leaving out the field: the torque needs both the current and the magnetic field.",
+          "Measuring θ from the plane of the coil. It is measured from the normal to the plane."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a current-carrying coil in a magnetic field experiences a torque and rotates.",
+          "accept": [
+            "current coil in a magnetic field experiences torque",
+            "torque rotates the coil",
+            "tau equals N i A B sin theta"
+          ],
+          "reject": [
+            "deflection proportional to current"
+          ],
+          "heard_as": [
+            "torque",
+            "coil"
+          ]
+        },
+        "memory_tip": "Current in, torque out: the coil turns because it carries current inside a field."
+      },
+      {
+        "id": "s2_linear",
+        "kind": "boxed_final",
+        "label": "Why it reads current",
+        "marks": 1,
+        "mark_note": "Radial field: deflection ∝ current",
+        "lines": [
+          "In the instrument the field is radial,",
+          "so the torque on the coil is N i A B in",
+          "every position.",
+          "The coil turns until the twist of the",
+          "suspension balances this torque, so the",
+          "steady deflection is directly",
+          "proportional to the current.",
+          {
+            "text": "In a radial field, deflection ∝ current",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Radial field → constant torque factor → deflection ∝ current: that chain is the answer.",
+        "why": "Without the radial field the torque would change with the coil's position and the scale could not be uniform; the radial field is what makes the reading proportional to the current.",
+        "common_mistakes": [
+          "Stopping at the torque and never saying the deflection is proportional to the current.",
+          "Saying the field is uniform. The instrument's field is RADIAL, made by concave poles and the soft iron core."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the radial field makes the deflection directly proportional to the current.",
+          "accept": [
+            "radial field",
+            "deflection proportional to current",
+            "i proportional to theta"
+          ],
+          "reject": [
+            "high resistance in series"
+          ],
+          "heard_as": [
+            "radial",
+            "proportional"
+          ]
+        },
+        "memory_tip": "Radial field keeps the torque the same at every angle, so twice the current gives twice the turn."
+      }
+    ]
+  }
+}

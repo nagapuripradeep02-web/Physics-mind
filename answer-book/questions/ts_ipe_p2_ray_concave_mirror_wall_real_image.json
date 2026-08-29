@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ray_concave_mirror_wall_real_image",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Ray Optics and Optical Instruments"
+  },
+  "chapter": "Ray Optics and Optical Instruments",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A concave mirror of focal length 10 cm is placed at a distance 35 cm from a wall. How far from the wall should an object be placed so that its real image is formed on the wall?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Mirror formula and the object distance",
+      "marks": 1
+    },
+    {
+      "label": "Distance from the wall",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed pp.10-11 — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. TRANSCRIPTION: the book prints a space before the question mark; it is removed here. Hand-checked numerically: f = −10 cm and v = −35 cm give 1/u = 1/f − 1/v = −1/10 + 1/35 = −1/14, so u = −14 cm; the object is 14 cm from the mirror and 35 − 14 = 21 cm from the wall. Both figures match the printed answer. The object at 14 cm lies between f = 10 cm and 2f = 20 cm, which is exactly the range that gives a real magnified image beyond 2f."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ray Optics and Optical Instruments · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mirror_formula",
+        "kind": "equation",
+        "label": "Mirror formula",
+        "marks": 1,
+        "mark_note": "u = −14 cm",
+        "lines": [
+          {
+            "text": "Given:",
+            "style": "heading"
+          },
+          "f = −10 cm ,   v = −35 cm  (image on the",
+          "wall, real, in front of the mirror)",
+          {
+            "text": "1/f = 1/v + 1/u   (mirror formula)",
+            "style": "eq"
+          },
+          {
+            "text": "1/u = 1/f − 1/v = −1/10 + 1/35",
+            "style": "eq"
+          },
+          {
+            "text": "1/u = (−7 + 2)/70 = −5/70 = −1/14",
+            "style": "eq"
+          },
+          {
+            "text": "u = −14 cm",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The image is ON the wall, so v is the mirror-to-wall distance, 35 cm, and it is negative.",
+        "why": "The wall is the screen, so the image distance is fixed by the room: v = 35 cm in front of the mirror. Once v and f are both known the mirror formula gives u directly, and the question becomes arithmetic.",
+        "common_mistakes": [
+          "Taking v = 35 cm as the object distance. The 35 cm is where the IMAGE forms.",
+          "Using the lens formula 1/f = 1/v − 1/u. A mirror uses a plus sign."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v = −35 cm and f = −10 cm in the mirror formula give u = −14 cm.",
+          "accept": [
+            "one by u is minus one by ten plus one by thirty five so u is minus fourteen",
+            "u comes out minus fourteen centimetres",
+            "object distance fourteen centimetres from the mirror",
+            "u minus fourteen centimetres vastundi"
+          ],
+          "reject": [
+            "twenty one centimetres from the wall"
+          ],
+          "heard_as": [
+            "minus fourteen",
+            "mirror formula",
+            "one by u",
+            "thirty five"
+          ]
+        },
+        "memory_tip": "The wall is the screen, so the wall distance is v. Solve for u, never for v."
+      },
+      {
+        "id": "s2_from_wall",
+        "kind": "boxed_final",
+        "label": "Distance from the wall",
+        "marks": 1,
+        "mark_note": "21 cm",
+        "lines": [
+          "The object is 14 cm from the mirror, and the",
+          "mirror is 35 cm from the wall. So the",
+          "distance of the object from the wall is",
+          {
+            "text": "x = 35 − 14 = 21 cm",
+            "style": "eq"
+          },
+          {
+            "text": "x = 21 cm from the wall",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The question asks the distance from the WALL, not from the mirror. Subtract.",
+        "why": "The mirror formula measures every distance from the pole of the mirror, but the question measures from the wall. The subtraction is the translation between the two, and it is the step most answers stop just short of.",
+        "common_mistakes": [
+          "Stopping at 14 cm. That is the distance from the mirror, not from the wall.",
+          "Adding instead of subtracting. The object stands between the mirror and the wall."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the object is 35 − 14 = 21 cm from the wall.",
+          "accept": [
+            "thirty five minus fourteen is twenty one centimetres",
+            "twenty one centimetres from the wall",
+            "x equals twenty one",
+            "wall nunchi twenty one centimetres"
+          ],
+          "reject": [
+            "u comes out minus fourteen centimetres"
+          ],
+          "heard_as": [
+            "twenty one",
+            "from the wall",
+            "thirty five minus fourteen",
+            "twenty one centimetres"
+          ]
+        },
+        "memory_tip": "Two distances in the room: mirror to wall 35, mirror to object 14. The answer is the gap between them."
+      }
+    ]
+  },
+  "insider_note": "The mirror formula is only half the work. The other half is remembering that the question measures from the wall."
+}

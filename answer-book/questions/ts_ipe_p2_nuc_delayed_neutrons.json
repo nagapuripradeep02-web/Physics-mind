@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_nuc_delayed_neutrons",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Nuclei"
+  },
+  "chapter": "Nuclei",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are delayed neutrons?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Why they matter",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: about 99% of fission neutrons are prompt, emitted within about 10⁻¹⁴ s; the remaining fraction (about 0.65% for ²³⁵U) is emitted seconds later by excited fission fragments. That delay is what makes a reactor mechanically controllable. The book gives the definition alone; the reason is added here as the second mark."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Nuclei · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Neutrons emitted after the fission, by the fragments",
+        "lines": [
+          "Most fission neutrons appear at the instant of",
+          "fission; these are prompt neutrons.",
+          "Delayed neutrons are the few neutrons emitted",
+          "later, over a period of time, by the fission",
+          "fragments."
+        ],
+        "margin_note": "First mark. \"Liberated over a period of time after the fission\" is the phrase.",
+        "why": "Some fission fragments are left with more neutrons than a stable nucleus can hold, and they release one seconds after the split rather than at the instant of the split.",
+        "common_mistakes": [
+          "Saying delayed neutrons are slow neutrons. Slow refers to energy, delayed to time.",
+          "Confusing them with thermal neutrons."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That delayed neutrons are the neutrons liberated over a period of time after the fission has taken place, from the fission fragments.",
+          "accept": [
+            "liberated after the fission process",
+            "emitted later by the fission fragments",
+            "not prompt neutrons"
+          ],
+          "reject": [
+            "they make the reactor controllable"
+          ],
+          "heard_as": [
+            "delayed neutrons",
+            "fission fragments",
+            "prompt"
+          ]
+        },
+        "memory_tip": "Delayed is about WHEN, thermal is about HOW FAST."
+      },
+      {
+        "id": "s2_importance",
+        "kind": "boxed_final",
+        "label": "Why they matter",
+        "marks": 1,
+        "mark_note": "The delay makes a reactor controllable",
+        "lines": [
+          "They are less than one per cent of all fission",
+          "neutrons, but they arrive seconds after the",
+          "fission.",
+          "That delay is long enough for the control rods",
+          "to be moved, so a reactor can be controlled.",
+          {
+            "text": "Delayed neutrons make control possible",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Link the delay to the movement of the control rods.",
+        "why": "Prompt neutrons alone appear within about 10⁻¹⁴ s, far too fast for any mechanical rod to follow. The small delayed fraction stretches the response time to seconds, which is what a reactor is regulated on.",
+        "common_mistakes": [
+          "Saying delayed neutrons produce most of the energy. They are a very small fraction.",
+          "Leaving out the control rods. The delay matters because the rods can be moved in time."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That delayed neutrons are a very small fraction but arrive seconds later, which gives time for the control rods to act and makes a reactor controllable.",
+          "accept": [
+            "they give time to move the control rods",
+            "less than one per cent of the neutrons",
+            "reactor can be controlled because of them"
+          ],
+          "reject": [
+            "emitted by the fission fragments"
+          ],
+          "heard_as": [
+            "control rods",
+            "delay",
+            "reactor"
+          ]
+        },
+        "memory_tip": "A few seconds of delay is the whole margin a reactor is steered on."
+      }
+    ]
+  },
+  "insider_note": "The definition is one line. The second mark is the point of the question: the delay is what makes a reactor controllable."
+}

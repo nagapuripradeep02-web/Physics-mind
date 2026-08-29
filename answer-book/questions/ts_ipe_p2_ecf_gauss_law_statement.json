@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_gauss_law_statement",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Gauss's law in electrostatics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: total flux through any closed surface = (1/ε₀) × net enclosed charge, ∮ E·dS = q/ε₀ — matches NCERT and the book (printed p.19). The book's 'permittivity' spellings are written correctly here."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Electric Charges and Fields · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Flux = enclosed charge / ε₀",
+        "lines": [
+          "The total electric flux through any closed",
+          "surface is 1/ε₀ times the net charge",
+          "enclosed by the surface."
+        ],
+        "margin_note": "First mark. Three load-bearing words: closed, net, enclosed.",
+        "why": "Each word closes a hole: closed makes the flux countable, net allows + and − charges together, enclosed excludes charges outside the surface, which give zero net flux.",
+        "common_mistakes": [
+          "Dropping the word closed. The law holds only for a closed surface.",
+          "Saying charge on the surface or near the surface. Only charge ENCLOSED by the surface counts."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the total flux through any closed surface equals the net enclosed charge divided by ε₀.",
+          "accept": [
+            "flux through a closed surface",
+            "one by epsilon nought times the charge enclosed",
+            "net charge inside divided by epsilon nought"
+          ],
+          "reject": [
+            "the integral sign with the circle"
+          ],
+          "heard_as": [
+            "flux",
+            "closed surface",
+            "epsilon nought",
+            "enclosed"
+          ]
+        },
+        "memory_tip": "Closed surface, net charge, enclosed — the three words the mark hangs on."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "∮ E · dS = q / ε₀",
+        "lines": [
+          "Mathematically,",
+          {
+            "text": "∮ E · dS = q / ε₀",
+            "style": "boxed"
+          },
+          "Here q is the total charge enclosed by the",
+          "closed surface S, and ε₀ is the",
+          "permittivity of free space. The circle on",
+          "the integral sign shows the surface is",
+          "closed."
+        ],
+        "margin_note": "Second mark. Write the equation and say what q and ε₀ stand for.",
+        "why": "The equation is the statement in symbols: the left side is the total flux through S, the right side is the enclosed charge over ε₀. Naming q and ε₀ shows the symbols are understood, not copied.",
+        "common_mistakes": [
+          "Writing a plain integral sign instead of the closed-surface integral ∮.",
+          "Writing q as any nearby charge. q is the charge INSIDE the surface only."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is the closed-surface integral of E · dS equal to q over ε₀, with q the enclosed charge.",
+          "accept": [
+            "closed integral of E dot dS",
+            "q by epsilon nought",
+            "q is the enclosed charge"
+          ],
+          "reject": [
+            "flux through any closed surface is one by epsilon nought times the charge"
+          ],
+          "heard_as": [
+            "integral",
+            "E dot dS",
+            "q by epsilon nought"
+          ]
+        },
+        "memory_tip": "The circle on the integral is the closed surface itself — flux out, charge in."
+      }
+    ]
+  },
+  "insider_note": "Statement in words plus the equation with q and ε₀ named — the examiner wants both forms, not one."
+}

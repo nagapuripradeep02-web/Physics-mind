@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ac_unity_power_factor_phase",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Alternating Current"
+  },
+  "chapter": "Alternating Current",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the phase difference between voltage and current when the power factor in LCR series circuit is unity?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set the power factor to 1",
+      "marks": 1
+    },
+    {
+      "label": "The phase difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE — the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: the power factor is cos φ with φ the phase angle between the applied voltage and the current, and φ lies in 0° to 90° for a series LCR circuit, so cos φ = 1 gives φ = 0° and no other value; cos φ = R/Z equals 1 only when Z = R, which is the resonance condition ωL = 1/ωC, where the current is maximum. The book's own answer stops at cos φ = 1 ⇒ φ = 0° and the statement that the phase difference is zero; the resonance line is added here because it is the reason."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alternating Current · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cos_unity",
+        "kind": "text",
+        "label": "Set the power factor to 1",
+        "marks": 1,
+        "mark_note": "cos φ = 1 gives φ = 0°",
+        "lines": [
+          "The power factor of an a.c. circuit is cos φ,",
+          "where φ is the phase angle between the voltage",
+          "and the current.",
+          {
+            "text": "power factor = cos φ = 1",
+            "style": "eq"
+          },
+          "The only angle whose cosine is 1 is zero.",
+          {
+            "text": "∴ φ = 0°",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Write cos φ = 1 and solve it for φ.",
+        "why": "The power factor is defined as cos φ, so the phase angle is read straight out of the given value — no circuit values are needed.",
+        "common_mistakes": [
+          "Answering 90°. cos 90° = 0, which is zero power factor, not unity.",
+          "Writing φ = 1. The value 1 is the cosine, not the angle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the power factor is cos φ, so cos φ = 1 gives φ = 0°.",
+          "accept": [
+            "cos phi equals one",
+            "power factor is cos phi",
+            "phi is zero degrees"
+          ],
+          "reject": [
+            "ninety degrees"
+          ],
+          "heard_as": [
+            "cos phi",
+            "power factor"
+          ]
+        },
+        "memory_tip": "The power factor is a cosine, and a cosine is 1 only at 0°."
+      },
+      {
+        "id": "s2_in_phase",
+        "kind": "boxed_final",
+        "label": "The phase difference",
+        "marks": 1,
+        "mark_note": "Phase difference is zero",
+        "lines": [
+          "So the voltage and the current are in phase.",
+          {
+            "text": "phase difference = φ = 0°",
+            "style": "boxed"
+          },
+          "This happens when ωL = 1/ωC, that is at",
+          "resonance. The circuit then behaves like a",
+          "pure resistance, Z = R, and the current is",
+          "maximum."
+        ],
+        "margin_note": "Second mark. State the phase difference is zero, then add the resonance line.",
+        "why": "At unity power factor the two reactances cancel, so the circuit is purely resistive at that frequency and the voltage and the current rise and fall together.",
+        "common_mistakes": [
+          "Stopping at cos φ = 1. The asked answer is the phase difference, 0°.",
+          "Saying the current is zero at resonance. The impedance is least there, so the current is maximum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the phase difference between the voltage and the current is zero, so they are in phase.",
+          "accept": [
+            "zero phase difference",
+            "voltage and current are in phase",
+            "phase difference is zero"
+          ],
+          "reject": [
+            "cos phi equals one"
+          ],
+          "heard_as": [
+            "in phase",
+            "zero"
+          ]
+        },
+        "memory_tip": "Unity power factor and zero phase angle are the same statement."
+      }
+    ]
+  },
+  "insider_note": "Two lines carry both marks: cos φ = 1 ⇒ φ = 0°, and the voltage and current are in phase. Adding ωL = 1/ωC shows this is the resonance case."
+}

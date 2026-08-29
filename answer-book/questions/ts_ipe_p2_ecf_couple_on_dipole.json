@@ -1,0 +1,358 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_ecf_couple_on_dipole",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Electric Charges and Fields"
+  },
+  "chapter": "Electric Charges and Fields",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive the equation for couple acting on an electric dipole in uniform electric field.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Setup and dipole moment",
+      "marks": 1
+    },
+    {
+      "label": "The two forces form a couple",
+      "marks": 1
+    },
+    {
+      "label": "Torque = qE × 2a sin θ",
+      "marks": 1
+    },
+    {
+      "label": "τ = pE sin θ and vector form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: forces +qE and −qE give zero net force; torque = force × perpendicular distance = qE × 2a sin θ = pE sin θ; vector form τ = p × E, perpendicular to both p and E. The book writes the dipole moment as capital P (printed p.20); the standard lowercase p is used here. The book's question prints 'a electric dipole'; written as 'an electric dipole'."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Electric Charges and Fields · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "The dipole in the field",
+        "marks": 1,
+        "mark_note": "Setup with p = q × 2a",
+        "lines": [
+          "Consider an electric dipole with charges +q",
+          "and −q separated by a distance 2a, placed",
+          "in a uniform electric field E with its axis",
+          "at an angle θ to the field.",
+          "Its dipole moment is p = q × 2a, directed",
+          "from −q to +q."
+        ],
+        "margin_note": "First mark. Name every symbol the result will use: q, 2a, E, θ and p.",
+        "why": "The final answer is written in p, E and θ, so all three must be defined at the start — p as charge times separation, θ as the angle between the dipole axis and the field.",
+        "common_mistakes": [
+          "Writing p = q × a. The separation of the charges is 2a, so p = q × 2a.",
+          "Taking θ from the perpendicular instead of from the field direction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a dipole of moment p = q × 2a sits in a uniform field E at angle θ.",
+          "accept": [
+            "charges plus q and minus q separated by 2a",
+            "dipole moment q into 2a",
+            "axis at angle theta to the field"
+          ],
+          "reject": [
+            "torque equals pE sin theta"
+          ],
+          "heard_as": [
+            "dipole",
+            "uniform field",
+            "theta",
+            "2a"
+          ]
+        },
+        "memory_tip": "Define before you derive: q, 2a, E, θ — and p = q × 2a from them."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "figure": {
+          "id": "dipole_couple",
+          "width": 340,
+          "height": 224,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "field",
+              "d": "M 36 30 L 296 30",
+              "ms": 3710
+            },
+            {
+              "type": "stroke",
+              "id": "field_head",
+              "d": "M 289 25.5 L 296 30 L 289 34.5",
+              "ms": 130
+            },
+            {
+              "type": "label",
+              "id": "lbl_E",
+              "x": 306,
+              "y": 20,
+              "text": "E",
+              "ms": 300,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "dipole",
+              "d": "M 100 186 L 200 66",
+              "ms": 2230
+            },
+            {
+              "type": "label",
+              "id": "lbl_pq",
+              "x": 206,
+              "y": 60,
+              "text": "+q",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_nq",
+              "x": 66,
+              "y": 196,
+              "text": "−q",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "fplus",
+              "d": "M 200 66 L 264 66",
+              "ms": 910
+            },
+            {
+              "type": "stroke",
+              "id": "fplus_head",
+              "d": "M 257 61.5 L 264 66 L 257 70.5",
+              "ms": 130
+            },
+            {
+              "type": "label",
+              "id": "lbl_fplus",
+              "x": 270,
+              "y": 60,
+              "text": "+qE",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "fminus",
+              "d": "M 100 186 L 36 186",
+              "ms": 910
+            },
+            {
+              "type": "stroke",
+              "id": "fminus_head",
+              "d": "M 43 181.5 L 36 186 L 43 190.5",
+              "ms": 130
+            },
+            {
+              "type": "label",
+              "id": "lbl_fminus",
+              "x": 14,
+              "y": 212,
+              "text": "−qE",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "perp",
+              "d": "M 100 66 L 100 186",
+              "ms": 1710,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_2asin",
+              "x": 18,
+              "y": 132,
+              "text": "2a sin θ",
+              "ms": 300,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 122,
+              "y": 174,
+              "text": "θ",
+              "ms": 300
+            }
+          ]
+        },
+        "margin_note": "The dipole at angle θ to the field, the force +qE on +q along E, −qE on −q opposite to E, and the dashed perpendicular distance 2a sin θ between the two lines of action.",
+        "why": "The mark-carrying length 2a sin θ can only be SEEN — it is the perpendicular distance between the two parallel force lines, and the dashed construction line is what makes the torque formula readable.",
+        "common_mistakes": [
+          "Drawing both forces in the same direction. They are equal and OPPOSITE — that is why the net force is zero.",
+          "Labelling the dashed distance 2a. The separation along the axis is 2a; the distance between the force lines is 2a sin θ."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure shows the tilted dipole in the uniform field with forces +qE and −qE and the perpendicular distance 2a sin θ.",
+          "accept": [
+            "draw the dipole at angle theta with the two forces",
+            "mark 2a sin theta between the force lines"
+          ],
+          "reject": [
+            "torque equals force into perpendicular distance"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "2a sin theta"
+          ]
+        },
+        "memory_tip": "Two equal opposite arrows on a tilted rod — then drop the dashed perpendicular between them."
+      },
+      {
+        "id": "s3_couple",
+        "kind": "text",
+        "label": "The two forces form a couple",
+        "marks": 1,
+        "mark_note": "Net force zero, couple remains",
+        "lines": [
+          "The field exerts a force qE on +q along E,",
+          "and a force qE on −q opposite to E. The net",
+          "force on the dipole is zero, but the two",
+          "forces act at different points, so they",
+          "form a couple and rotate the dipole."
+        ],
+        "margin_note": "Second mark. Two claims: net force zero, AND the two forces form a couple.",
+        "why": "Equal and opposite forces cancel as a push but not as a turn — acting at different points they form a couple, which is why the dipole rotates instead of moving away.",
+        "common_mistakes": [
+          "Saying the dipole moves in the field. In a UNIFORM field the net force is zero — it only rotates.",
+          "Writing the forces as qE and −q. The force on each charge has magnitude qE."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the forces qE and qE are equal and opposite at different points, so the net force is zero and a couple acts.",
+          "accept": [
+            "equal and opposite forces",
+            "net force is zero",
+            "they form a couple"
+          ],
+          "reject": [
+            "perpendicular distance 2a sin theta"
+          ],
+          "heard_as": [
+            "couple",
+            "net force zero",
+            "qE"
+          ]
+        },
+        "memory_tip": "Zero push, pure turn — equal opposite forces at two points are a couple."
+      },
+      {
+        "id": "s4_torque",
+        "kind": "equation",
+        "label": "Torque of the couple",
+        "marks": 1,
+        "mark_note": "τ = qE × 2a sin θ",
+        "lines": [
+          "Torque of a couple = one force ×",
+          "perpendicular distance between the two",
+          "forces. From the figure this distance is",
+          "2a sin θ. Therefore",
+          {
+            "text": "τ = qE × 2a sin θ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The perpendicular distance is 2a sin θ, read off the figure.",
+        "why": "A couple's torque is one force times the perpendicular distance between the two lines of action. The geometry of the tilted dipole makes that distance 2a sin θ — the sine is where θ enters the result.",
+        "common_mistakes": [
+          "Using 2a cos θ. The perpendicular distance between the force lines involves sin θ.",
+          "Multiplying by BOTH forces. A couple's torque uses ONE force times the perpendicular distance."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the torque is one force qE times the perpendicular distance 2a sin θ.",
+          "accept": [
+            "force into perpendicular distance",
+            "qE into 2a sin theta"
+          ],
+          "reject": [
+            "tau equals p cross E"
+          ],
+          "heard_as": [
+            "torque",
+            "perpendicular distance",
+            "sin theta"
+          ]
+        },
+        "memory_tip": "One force, one perpendicular distance — qE times 2a sin θ."
+      },
+      {
+        "id": "s5_result",
+        "kind": "boxed_final",
+        "label": "τ = pE sin θ",
+        "marks": 1,
+        "mark_note": "τ = pE sin θ · τ = p × E",
+        "lines": [
+          {
+            "text": "τ = (q × 2a) E sin θ = pE sin θ",
+            "style": "eq"
+          },
+          "In vector form τ = p × E. The direction of",
+          "τ is perpendicular to both p and E.",
+          {
+            "text": "τ = pE sin θ · τ = p × E",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. Substitute p = q × 2a, then give the vector form with its direction.",
+        "why": "Grouping q × 2a into p turns the geometry into the standard result τ = pE sin θ, and the cross product p × E packs both the magnitude and the perpendicular direction into one line.",
+        "common_mistakes": [
+          "Writing τ = pE cos θ. Torque is maximum when the dipole is PERPENDICULAR to the field (θ = 90°), so it must be sin θ.",
+          "Writing τ = E × p. The order matters in a cross product: τ = p × E."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That τ = pE sin θ, and in vector form τ = p × E, perpendicular to both.",
+          "accept": [
+            "tau equals pE sin theta",
+            "p cross E",
+            "perpendicular to both p and E"
+          ],
+          "reject": [
+            "net force is zero"
+          ],
+          "heard_as": [
+            "pE sin theta",
+            "cross product",
+            "vector form"
+          ]
+        },
+        "memory_tip": "Check the limits: θ = 0 gives no torque, θ = 90° gives the maximum pE — only sin θ does both."
+      }
+    ]
+  },
+  "insider_note": "The figure earns its keep at the third mark — 2a sin θ must be visible as the dashed distance between the two force lines, not pulled from memory."
+}

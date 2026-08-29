@@ -1,0 +1,371 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p2_dnr_intensity_potential_photocurrent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 12,
+    "name": "Dual Nature of Radiation and Matter"
+  },
+  "chapter": "Dual Nature of Radiation and Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the effect of (i) intensity of light (ii) potential on photoelectric current?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Effect of intensity",
+      "marks": 2
+    },
+    {
+      "label": "Effect of potential",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.43; the book's heading misprints 'photelectric'). The book prints no exam-year citations for this chapter. The 2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: at fixed frequency the photocurrent is directly proportional to intensity (straight line through the origin); with anode potential the current rises to a saturation value, and under a retarding potential it falls to zero at the stopping potential −V₀; for a given frequency V₀ is independent of intensity (the three curves I₃ > I₂ > I₁ share one −V₀) — all consistent with the standard NCERT treatment. This question covers the laws of photoelectric emission at LAQ grade in most other syllabuses; it is kept as the 4-mark SAQ this book prints."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Dual Nature of Radiation and Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intensity",
+        "kind": "text",
+        "label": "Effect of intensity",
+        "marks": 2,
+        "mark_note": "Current proportional to intensity",
+        "lines": [
+          "(i) Keep the frequency of the incident",
+          "radiation fixed and increase the intensity",
+          "of the light. The number of photons striking",
+          "the surface per unit area per second",
+          "increases, so the number of photoelectrons",
+          "emitted per second increases in the same way.",
+          "The photoelectric current is directly",
+          "proportional to the intensity of the",
+          "incident radiation:",
+          {
+            "text": "i ∝ I  (at a fixed frequency)",
+            "style": "eq"
+          },
+          "The graph of current against intensity is a",
+          "straight line through the origin O."
+        ],
+        "margin_note": "Two marks. The mechanism (more photons, more photoelectrons) plus the proportionality and its straight-line graph.",
+        "why": "One photon frees at most one electron, so doubling the photon arrival rate doubles the electron emission rate — that one-to-one link is the whole reason the graph is a straight line through the origin.",
+        "common_mistakes": [
+          "Saying higher intensity gives faster electrons. Intensity changes how MANY electrons are emitted, not their maximum speed.",
+          "Drawing the line starting above the origin. Zero intensity means zero current, so the line passes through O."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at a fixed frequency the photoelectric current is directly proportional to the intensity of the radiation.",
+          "accept": [
+            "current is proportional to intensity",
+            "more photons so more photoelectrons",
+            "straight line through the origin"
+          ],
+          "reject": [
+            "saturation current",
+            "stopping potential"
+          ],
+          "heard_as": [
+            "intensity",
+            "proportional",
+            "photons per second"
+          ]
+        },
+        "memory_tip": "Intensity counts photons, and photons count electrons: i ∝ I."
+      },
+      {
+        "id": "s2_intensity_graph",
+        "kind": "diagram",
+        "label": "Current against intensity",
+        "marks": 0,
+        "figure": {
+          "id": "fig_dnr_current_vs_intensity",
+          "width": 320,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "st_yaxis",
+              "d": "M 60 200 L 60 40",
+              "ms": 2290
+            },
+            {
+              "type": "stroke",
+              "id": "st_xaxis",
+              "d": "M 60 200 L 300 200",
+              "ms": 3430
+            },
+            {
+              "type": "stroke",
+              "id": "st_line",
+              "d": "M 60 200 L 272 62",
+              "ms": 3610
+            },
+            {
+              "type": "label",
+              "id": "lb_y",
+              "x": 70,
+              "y": 36,
+              "text": "Photoelectric current",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_x",
+              "x": 168,
+              "y": 228,
+              "text": "Intensity of light",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_o",
+              "x": 44,
+              "y": 218,
+              "text": "O",
+              "ms": 450
+            }
+          ]
+        },
+        "margin_note": "A small sketch is enough: both axes labelled, and the line starting at O.",
+        "why": "The straight line through the origin is the picture of i ∝ I — a line that misses O would claim current with no light.",
+        "common_mistakes": [
+          "Curving the line. Direct proportionality draws a straight line.",
+          "Leaving the axes unlabelled. An unlabelled sketch shows nothing."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the graph is a straight line through the origin with current on one axis and intensity on the other.",
+          "accept": [
+            "straight line through the origin",
+            "current against intensity graph"
+          ],
+          "reject": [
+            "saturation curves"
+          ],
+          "heard_as": [
+            "straight line",
+            "origin"
+          ]
+        },
+        "memory_tip": "One line, from O, going up — that is the whole intensity graph."
+      },
+      {
+        "id": "s3_potential",
+        "kind": "text",
+        "label": "Effect of potential",
+        "marks": 2,
+        "mark_note": "Saturation and stopping potential",
+        "lines": [
+          "(ii) Now keep the intensity fixed and make",
+          "the anode A more and more positive. The",
+          "photoelectric current increases at first,",
+          "then reaches a maximum value and stays there.",
+          "This maximum is the saturation current: every",
+          "photoelectron emitted by the cathode C now",
+          "reaches the anode A.",
+          "Next make the anode negative instead. The",
+          "negative anode repels the photoelectrons, so",
+          "the current decreases. At one value of the",
+          "retarding potential the current becomes zero.",
+          "This value is the stopping potential V₀.",
+          "For a fixed frequency, a higher intensity",
+          "gives a higher saturation current, but the",
+          "stopping potential stays the same: V₀ is",
+          "independent of the intensity and depends",
+          "only on the frequency of the radiation."
+        ],
+        "margin_note": "Two marks. Saturation current for the positive side, stopping potential for the negative side — and the sentence that V₀ does not change with intensity.",
+        "why": "The positive side counts electrons (all of them arrive at saturation); the negative side measures their maximum kinetic energy (eV₀). Intensity changes the count but not the energy, so the curves share one −V₀.",
+        "common_mistakes": [
+          "Saying the current keeps rising with anode potential. It stops rising at the saturation current.",
+          "Making V₀ depend on intensity. The three curves for I₃ > I₂ > I₁ all reach zero at the same −V₀.",
+          "Writing that below V₀ the current is maximum. At the stopping potential the current is zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the current saturates at positive potentials, falls to zero at the stopping potential, and V₀ is independent of intensity.",
+          "accept": [
+            "saturation current",
+            "current becomes zero at the stopping potential",
+            "stopping potential does not depend on intensity"
+          ],
+          "reject": [
+            "current is proportional to intensity"
+          ],
+          "heard_as": [
+            "saturation",
+            "stopping potential",
+            "retarding potential",
+            "V naught"
+          ]
+        },
+        "memory_tip": "Positive side: count saturates. Negative side: zero at −V₀. Intensity moves the first, never the second."
+      },
+      {
+        "id": "s4_potential_graph",
+        "kind": "diagram",
+        "label": "Current against anode potential",
+        "marks": 0,
+        "figure": {
+          "id": "fig_dnr_current_vs_potential",
+          "width": 380,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "st_xaxis",
+              "d": "M 40 250 L 350 250",
+              "ms": 4430
+            },
+            {
+              "type": "stroke",
+              "id": "st_yaxis",
+              "d": "M 150 250 L 150 40",
+              "ms": 3000
+            },
+            {
+              "type": "stroke",
+              "id": "st_i1",
+              "d": "M 90 250 C 140 248 165 190 212 182 L 330 180",
+              "ms": 3720
+            },
+            {
+              "type": "stroke",
+              "id": "st_i2",
+              "d": "M 90 250 C 142 246 168 160 216 152 L 330 150",
+              "ms": 3970
+            },
+            {
+              "type": "stroke",
+              "id": "st_i3",
+              "d": "M 90 250 C 145 244 172 130 220 122 L 330 120",
+              "ms": 4250
+            },
+            {
+              "type": "label",
+              "id": "lb_y",
+              "x": 60,
+              "y": 30,
+              "text": "Photoelectric current",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_x",
+              "x": 240,
+              "y": 280,
+              "text": "Anode potential V",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_o",
+              "x": 138,
+              "y": 268,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lb_v0",
+              "x": 76,
+              "y": 272,
+              "text": "−V₀",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_stop",
+              "x": 6,
+              "y": 215,
+              "text": "Stopping potential",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_i1",
+              "x": 336,
+              "y": 186,
+              "text": "I₁",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_i2",
+              "x": 336,
+              "y": 156,
+              "text": "I₂",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_i3",
+              "x": 336,
+              "y": 126,
+              "text": "I₃",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_order",
+              "x": 196,
+              "y": 66,
+              "text": "I₃ > I₂ > I₁",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Three curves for three intensities: separate saturation levels labelled I₁, I₂, I₃ at their right ends, and ONE common −V₀ where all three meet the axis.",
+        "why": "The figure carries both facts at once: higher intensity lifts the saturation level, while all three curves reach zero at the same stopping potential −V₀.",
+        "common_mistakes": [
+          "Giving each curve its own stopping potential. For one frequency all the curves meet the axis at the same −V₀.",
+          "Letting the saturation levels touch. Draw them clearly separated and label each at its right end."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the graph shows three curves saturating at I₃ > I₂ > I₁ and meeting the potential axis together at −V₀.",
+          "accept": [
+            "three curves with one stopping potential",
+            "saturation levels I three greater than I two greater than I one"
+          ],
+          "reject": [
+            "straight line through the origin"
+          ],
+          "heard_as": [
+            "saturation",
+            "minus V naught",
+            "three curves"
+          ]
+        },
+        "memory_tip": "Three plateaus on the right, one meeting point on the left."
+      }
+    ]
+  },
+  "insider_note": "The sentence that separates answers is the last one: the stopping potential does not change with intensity — only the saturation current does."
+}
