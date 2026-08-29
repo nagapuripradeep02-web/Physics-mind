@@ -37,13 +37,21 @@ const STREAM_SUBJECTS: Record<string, string[]> = {
     // the artifact does not serve.
     mpc_2: ['physics_2', 'chemistry_2', 'mathematics_2a'],
 };
-if (STREAM !== null && !STREAM_SUBJECTS[STREAM]) {
-    console.error(`✗ --stream="${STREAM}" is not one of ${Object.keys(STREAM_SUBJECTS).join('/')}`);
-    process.exit(1);
+// `--stream` takes a COMMA-SEPARATED list, matching build_answer_book.ts since
+// 2026-08-29: one artifact can carry both years, so its bundles live in one
+// directory named for the joined key and must all be pushed together.
+const STREAM_KEYS = STREAM ? STREAM.split(',').map((x) => x.trim()).filter(Boolean) : [];
+for (const key of STREAM_KEYS) {
+    if (!STREAM_SUBJECTS[key]) {
+        console.error(`✗ --stream="${key}" is not one of ${Object.keys(STREAM_SUBJECTS).join('/')}`);
+        process.exit(1);
+    }
 }
-const WANT_SUBJECTS = STREAM ? new Set(STREAM_SUBJECTS[STREAM]) : null;
+const WANT_SUBJECTS = STREAM_KEYS.length
+    ? new Set(STREAM_KEYS.flatMap((k) => STREAM_SUBJECTS[k]))
+    : null;
 const CONTENT_DIR = STREAM
-    ? join(ROOT, 'answer-book', 'content', STREAM)
+    ? join(ROOT, 'answer-book', 'content', STREAM_KEYS.join('+'))
     : join(ROOT, 'answer-book', 'content');
 const MANIFEST = join(ROOT, 'answer-book', 'units.json');
 

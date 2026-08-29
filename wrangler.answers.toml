@@ -40,4 +40,8 @@ routes = [
 # To go back to the free book: point directory at "./answer-book/dist-mpc" and
 # set deploy:answers back to build:answers:mpc.
 [assets]
-directory = "./answer-book/dist-gated-mpc"
+# BOTH years since 2026-08-29 (founder): one book at answers.viditra.co whose
+# door sends a student to first or second year. Was dist-gated-mpc, the junior
+# book alone — which is why Physics-II, Chemistry-II and Maths-2A were complete
+# and unreachable.
+directory = "./answer-book/dist-gated-mpc+mpc_2"

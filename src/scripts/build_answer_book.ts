@@ -154,16 +154,45 @@ const TRACKS: {
 
 const streamArg = process.argv.find((a) => a.startsWith('--stream='));
 const STREAM = streamArg ? streamArg.slice('--stream='.length) : null;
-if (STREAM !== null && !STREAMS[STREAM]) {
-    // Loud, not lenient: a typo'd stream falling back to the full bank would
-    // ship Botany to an MPC student — the exact thing this flag prevents.
-    fail(`  --stream="${STREAM}" is not one of ${Object.keys(STREAMS).join('/')}`);
+// `--stream` takes a COMMA-SEPARATED list since 2026-08-29, so ONE artifact can
+// carry more than one stream and the DOOR routes between them. The founder's
+// call: a student lands on answers.viditra.co, picks MPC, then first or second
+// year — rather than the two years living on two domains. A single value still
+// behaves exactly as before, which is what keeps the junior book unchanged.
+const STREAM_KEYS = STREAM ? STREAM.split(',').map((x) => x.trim()).filter(Boolean) : [];
+for (const key of STREAM_KEYS) {
+    if (!STREAMS[key]) {
+        // Loud, not lenient: a typo'd stream falling back to the full bank would
+        // ship Botany to an MPC student — the exact thing this flag prevents.
+        fail(`  --stream="${key}" is not one of ${Object.keys(STREAMS).join('/')}`);
+    }
 }
-const STREAM_SUBJECTS = STREAM ? new Set(STREAMS[STREAM].subjects) : null;
+if (STREAM !== null && STREAM_KEYS.length === 0) fail('  --stream= was given with no stream name');
+const STREAM_SET = new Set(STREAM_KEYS);
+const STREAM_SUBJECTS = STREAM_KEYS.length
+    ? new Set(STREAM_KEYS.flatMap((k) => STREAMS[k].subjects))
+    : null;
+// A subject in two streams would be served twice and counted twice on the door.
+{
+    const seen = new Map<string, string>();
+    for (const k of STREAM_KEYS) {
+        for (const subj of STREAMS[k].subjects) {
+            const prev = seen.get(subj);
+            if (prev) fail(`  streams "${prev}" and "${k}" both claim subject "${subj}"`);
+            seen.set(subj, k);
+        }
+    }
+}
+/** The subjects of ONE stream, for the per-cell door counts and the player's year lens. */
+const subjectsOf = (k: string) => new Set(STREAMS[k].subjects);
 
+// A multi-stream build gets ONE directory named for the joined key, so
+// `--stream=mpc,mpc_2` is `dist-gated-mpc+mpc_2` and never collides with either
+// single-stream build sitting beside it.
+const STREAM_DIR = STREAM_KEYS.join('+');
 const OUT_DIR = join(
     BOOK_DIR,
-    GATED ? (STREAM ? `dist-gated-${STREAM}` : 'dist-gated') : STREAM ? `dist-${STREAM}` : 'dist'
+    GATED ? (STREAM ? `dist-gated-${STREAM_DIR}` : 'dist-gated') : STREAM ? `dist-${STREAM_DIR}` : 'dist'
 );
 // Content bundles are scoped PER STREAM (2026-08-27). --gated and --stream used
 // to be refused outright: the bundles all landed in one flat answer-book/content/,
@@ -171,7 +200,7 @@ const OUT_DIR = join(
 // content:push either aborted on them or served dead content forever. A stream
 // gets its own directory, cleared before every write, so what is on disk is
 // exactly what this build produced — nothing inherited from a previous one.
-const CONTENT_DIR = STREAM ? join(BOOK_DIR, 'content', STREAM) : join(BOOK_DIR, 'content');
+const CONTENT_DIR = STREAM ? join(BOOK_DIR, 'content', STREAM_DIR) : join(BOOK_DIR, 'content');
 
 // ── 1. read + validate every question ────────────────────────────────────────
 const files = readdirSync(QUESTIONS_DIR).filter((f) => f.endsWith('.json')).sort();
@@ -670,28 +699,47 @@ const doorTracks = TRACKS.map((t) => ({
     label: t.label,
     subjects: t.subjects,
     years: t.years.map((y) => {
-        const live = !!STREAM && y.stream === STREAM;
+        const live = !!y.stream && STREAM_SET.has(y.stream);
+        // Each live cell counts ITS OWN stream's units, not the whole manifest.
+        // With one stream per artifact those were the same number; with two they
+        // are not, and a cell claiming the other year's total would be a lie the
+        // student meets before they have opened anything.
+        const mine = live ? manifest.units.filter((u) => subjectsOf(y.stream!).has(u.subject || 'physics')) : [];
         return {
             id: y.id,
             label: y.label,
             live,
+            // The stream this cell opens. The player reads it to lens the catalog
+            // down to that year's subjects once the student has chosen.
+            stream: live ? y.stream : null,
+            // The papers THIS year contains, so the tile describes the year rather
+            // than the whole group. Without it a two-year artifact showed every
+            // MPC student both years' papers on whichever tile they were about to
+            // open — Maths 1A and 1B offered to a second-year student.
+            subjects: live ? STREAMS[y.stream!].subjects : null,
             note: y.note,
             // Chapters and answers a student can OPEN — coming-soon rows for a
             // chapter the 2026-27 syllabus announced but nobody has written yet
             // are listed in the catalog (true shape) and must not be counted in
             // a number the door uses to say what this book contains.
-            units: live ? manifest.units.filter((u) => u.questions.some((e) => e.question_id)).length : 0,
-            questions: live ? manifest.units.reduce((n, u) => n + u.questions.filter((e) => e.question_id).length, 0) : 0,
+            units: mine.filter((u) => u.questions.some((e) => e.question_id)).length,
+            questions: mine.reduce((n, u) => n + u.questions.filter((e) => e.question_id).length, 0),
         };
     }),
 }));
-// Exactly one way in, or the door is broken in a way no gate would notice: zero
-// live cells strands every student on the chooser, two lets one artifact claim
-// to be two different books.
+// One live cell PER SELECTED STREAM, or the door is broken in a way no gate
+// would notice: a stream with no cell is content a student cannot reach, and a
+// cell with no stream would open an empty catalog. (Before 2026-08-29 this was
+// "exactly one" full stop, because an artifact held exactly one stream.)
 if (STREAM) {
     const liveCells = doorTracks.reduce((n, t) => n + t.years.filter((y) => y.live).length, 0);
-    if (liveCells !== 1) {
-        fail(`  the door resolved ${liveCells} live cells for --stream=${STREAM} — TRACKS must name exactly one`);
+    if (liveCells !== STREAM_KEYS.length) {
+        fail(`  the door resolved ${liveCells} live cells for --stream=${STREAM} — TRACKS must name exactly one per stream (${STREAM_KEYS.length})`);
+    }
+    const litStreams = new Set(doorTracks.flatMap((t) => t.years.filter((y) => y.live).map((y) => y.stream)));
+    const dark = STREAM_KEYS.filter((k) => !litStreams.has(k));
+    if (dark.length) {
+        fail(`  stream(s) ${dark.join('/')} are in the build but no TRACKS year opens them — that content is unreachable`);
     }
 }
 
@@ -715,11 +763,30 @@ const dataJs =
     `window.PM_AUTH_BASE = ${JSON.stringify(authBase)};\n` +
     `window.PM_AUTH_ANON = ${JSON.stringify(authAnon)};\n` +
     // null on the full build — the catalog eyebrow then stays subject-neutral.
-    `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM].short : null)};
+    // Every stream in one artifact shares a short label today (both MPC cells say
+    // "MPC"); if that ever stops being true this becomes per-stream like the year.
+    `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM_KEYS[0]].short : null)};
 ` +
     // The YEAR the built artifact is for. Hardcoded in three places until
-    // 2026-08-28; null on the full build, where the eyebrow stays neutral.
-    `window.PM_YEAR = ${JSON.stringify(STREAM ? STREAMS[STREAM].year : null)};
+    // 2026-08-28; null on the full build, where the eyebrow stays neutral. On a
+    // MULTI-stream build it is the first stream's year and the player overrides
+    // it from PM_STREAM_YEARS once the student has chosen at the door.
+    `window.PM_YEAR = ${JSON.stringify(STREAM ? STREAMS[STREAM_KEYS[0]].year : null)};
+` +
+    // The lens the door hands the catalog: which subjects and which year label
+    // belong to each stream this artifact carries. Absent on a single-stream
+    // build, where the whole book already is the one year.
+    `window.PM_STREAM_SUBJECTS = ${JSON.stringify(
+        STREAM_KEYS.length > 1
+            ? Object.fromEntries(STREAM_KEYS.map((k) => [k, STREAMS[k].subjects]))
+            : null
+    ).replace(/</g, '\u003c')};
+` +
+    `window.PM_STREAM_YEARS = ${JSON.stringify(
+        STREAM_KEYS.length > 1
+            ? Object.fromEntries(STREAM_KEYS.map((k) => [k, STREAMS[k].year]))
+            : null
+    ).replace(/</g, '\u003c')};
 ` +
     // null on the full build too, and that is what switches the DOOR off. An
     // unstreamed build is the whole five-subject bank — it belongs to no group,
@@ -786,7 +853,7 @@ console.log(`✓ answer-book built → ${outPath} (${(html.length / 1024).toFixe
 // is which subjects a student is about to receive.
 if (STREAM) {
     const dropped = SUBJECTS.filter((s) => !STREAM_SUBJECTS!.has(s));
-    console.log(`  stream:       ${STREAM.toUpperCase()} — ${[...STREAM_SUBJECTS!].join(', ')}`);
+    console.log(`  stream:       ${STREAM_KEYS.map((k) => k.toUpperCase()).join(' + ')} — ${[...STREAM_SUBJECTS!].join(', ')}`);
     console.log(`                ${questions.length} of ${allQuestions.length} cards, ${manifest.units.length} units` +
         (dropped.length ? ` (excluded: ${dropped.join(', ')})` : ''));
 } else {
