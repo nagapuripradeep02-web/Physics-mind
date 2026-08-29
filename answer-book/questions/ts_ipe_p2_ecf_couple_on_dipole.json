@@ -113,7 +113,7 @@
               "type": "label",
               "id": "lbl_E",
               "x": 306,
-              "y": 36,
+              "y": 20,
               "text": "E",
               "ms": 300,
               "em": true

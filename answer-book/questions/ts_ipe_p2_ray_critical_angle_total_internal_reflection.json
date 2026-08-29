@@ -196,7 +196,7 @@
               "type": "label",
               "id": "lbl_i_eq_c",
               "x": 58,
-              "y": 158,
+              "y": 148,
               "text": "i = C",
               "ms": 450,
               "sm": true

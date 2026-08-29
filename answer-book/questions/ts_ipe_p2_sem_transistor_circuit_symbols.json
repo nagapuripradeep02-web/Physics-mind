@@ -98,7 +98,7 @@
               "type": "label",
               "id": "npn_lbl_e",
               "x": 190,
-              "y": 184,
+              "y": 166,
               "text": "Emitter",
               "ms": 450
             },
@@ -205,7 +205,7 @@
               "type": "label",
               "id": "pnp_lbl_e",
               "x": 190,
-              "y": 184,
+              "y": 166,
               "text": "Emitter",
               "ms": 450
             },

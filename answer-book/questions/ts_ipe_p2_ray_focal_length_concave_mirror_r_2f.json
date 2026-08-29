@@ -217,7 +217,7 @@
             {
               "type": "label",
               "id": "lbl_two_theta",
-              "x": 132,
+              "x": 172,
               "y": 102,
               "text": "2θ",
               "ms": 450,

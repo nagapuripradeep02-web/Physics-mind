@@ -130,7 +130,7 @@
               "type": "label",
               "id": "lbl_d",
               "x": 141,
-              "y": 124,
+              "y": 110,
               "text": "d",
               "ms": 200,
               "em": true

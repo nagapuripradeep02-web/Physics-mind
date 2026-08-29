@@ -173,7 +173,7 @@
               "type": "label",
               "id": "lbl_matter2",
               "x": 306,
-              "y": 200,
+              "y": 222,
               "text": "matter",
               "ms": 450,
               "sm": true

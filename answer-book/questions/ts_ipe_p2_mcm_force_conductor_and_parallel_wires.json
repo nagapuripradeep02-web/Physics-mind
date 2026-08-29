@@ -139,7 +139,7 @@
               "type": "label",
               "id": "lbl_b",
               "x": 256,
-              "y": 176,
+              "y": 188,
               "text": "B",
               "ms": 450
             },
@@ -170,7 +170,7 @@
             {
               "type": "label",
               "id": "lbl_f_text",
-              "x": 96,
+              "x": 8,
               "y": 128,
               "text": "F is out of the page",
               "ms": 450,
